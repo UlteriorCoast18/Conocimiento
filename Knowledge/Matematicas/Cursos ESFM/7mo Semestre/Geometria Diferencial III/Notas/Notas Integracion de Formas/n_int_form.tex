@@ -1,0 +1,354 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\square$}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos para poner en específico teoremas anidados al capítulo%
+
+\newcommand{\Det}{\textup{Det}}
+
+\begin{document}
+    \title{Notas Integracion de Formas GD III}
+    \author{Cristo Daniel Alvarado}
+    \date{Diciembre de 2023}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \setcounter{chapter}{2} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    \chapter{Integración de formas}
+    
+    \section{Introducción}
+    El objetivo 
+    \section{Lema de Poincaré para formas con soporte compacto en rectángulos acotados}
+    
+    \begin{mydef}
+        Sea $\nu$ una \textit{k}-forma en $\mathbb{R}^{n}$. Definimos el \textbf{suporte de $\nu$} como
+        \begin{equation*}
+            \textup{supp}\left(\nu\right)=\bar{\left\{x\in\mathbb{R}^n|\nu_x\neq0\right\}}
+        \end{equation*}
+        y decimos que $\nu$ tiene \textbf{soporte compacto} si supp$(\nu)$ es compacto.
+    \end{mydef}
+
+    \begin{theor}[\textbf{Lema de Poincaré para rectángulos}]
+        Sea $\omega$ una n-forma con soporte compacto tal que $\textup{supp}(\omega)\subseteq\textup{int}(Q)$. Entonces los siguientes son equivalentes:
+        \begin{enumerate}
+            \item $\int \omega = 0$.
+            \item Existe una (n-1)-forma $\mu$ con soporte compacto tal que $\textup{supp}(\mu)\subseteq\textup{int}(Q)$ que satisface $d\mu=\omega$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        $(1)\Rightarrow(2)$: Sea
+        \begin{equation}
+            \mu=\sum_{i=1}^{n}f_i dx_1\wedge\cdots\wedge\hat{dx_i}\wedge\cdots\wedge dx_n
+        \end{equation}
+    \end{proof}
+
+    \begin{theor}
+        Sea $U\subseteq\mathbb{R}^{n-1}$ un abierto y $A\subseteq\mathbb{R}$ un intervalo abierto. Entonces si $U$ tiene la propiedad $P$, entonces $U\times A$ también la tiene.
+    \end{theor}
+
+    \begin{obs}
+        Es muy sencillo ver que el intervalo abierto $A$ por si mismo tiene la propiedad $P$
+    \end{obs}
+
+    \section{Lema de Poincaré para formas con soporte compacto en abiertos conexos en $\mathbb{R}^n$}
+
+    \begin{theor}
+        Sea $U\subseteq\mathbb{R}^n$ un abierto conexo y $\omega$ una n-forma con soporte compacto tal que $\textup{supp}(\omega)\subseteq U$. Entonces las siguientes son equivalentes:
+        \begin{enumerate}
+            \item $\int_{\mathbb{R}^n}\omega = 0$.
+            \item Existe una (n-1)-forma con soporte compacto $\mu$ tal que $\textup{supp}(\mu)\subseteq U$ y $d\mu = \omega$.
+        \end{enumerate}
+    \end{theor}
+    
+    \begin{proof}
+        $(2)\Rightarrow(1)$: Es inmediata de la parte anterior.
+
+        $(1)\Rightarrow(2)$: Supongase que
+        \begin{equation*}
+            \int_{\mathbb{R}^n}\omega = 0.
+        \end{equation*}
+        para probar el resultado se probará un resultado anterior
+        \begin{theor}
+            Si $\omega$ es una n-forma con soporte compacto tal que $\textup{supp}(\omega)\subseteq U$ y $c=\int_{\mathbb{R}^n}\omega$ entonces $\omega \sim c\omega_0$.
+        \end{theor}
+        \begin{proof}
+            Para demostrar el teorema, sea $\left\{Q_i\right\}_{i\in\mathbb{N}}$ una familia de rectángulos acotados contenidos en $U$ tales que $\cup_{i\in\mathbb{N}}\textup{int}(Q_i)=U$ y sea $\left\{\phi_i\right\}_{i\in\mathbb{N}}$ una partición de la unidad tal que $\textup{supp}(\phi_i)\subseteq \textup{int}(Q_i)$, es decir, se tiene que
+            \begin{enumerate}
+                \item $\sum_{i\in\mathbb{N}}\phi_i=1$.
+                \item $\textup{supp}(\phi_i)\subseteq \textup{int}(Q_i),\forall i\in\mathbb{N}$.
+            \end{enumerate}
+            Para la demostración del teorema, asumiremos la condición de finitud local, es decir\dots
+            Dado a que el soporte de $\omega$ está contenido en el abierto $U$, entonces se debe tener que existe un $m\in\mathbb{N}$ tal que
+            \begin{equation*}
+                \textup{supp}(\omega)\subseteq\cup_{i=1}^{m}Q_i
+            \end{equation*}
+            De esta forma, podemos escribir a $\omega$ como:
+            \begin{equation*}
+                \omega = \sum_{i=1}^{m}\phi_i \omega
+            \end{equation*}
+            Donde, para cada $i=1,\dots,m$ se tiene que $\textup{supp}(\phi_i \omega)\subseteq \textup{int}(Q_i)$. Con esto se tiene que
+            \begin{equation*}
+                c=\int_{\mathbb{R}^n}\omega = \sum_{i=1}^{m}\int_{\mathbb{R}^n}\phi_i\omega=\sum_{i=1}^{m}c_i, \quad \textup{donde }c_i=\int_{\mathbb{R}^n}\phi_i\omega 
+            \end{equation*}
+            Para continuar con la demostración, se asumirá el siguiente resultado:
+            \begin{lema}
+                Para cada $j=1\cdots,m$ existe una sucesión de rectangulos acotados $\left\{R_{i,j}\right\}_{i=0}^{N+1}$ tales que $R_{0,j}=Q_0$ y $R_{N+1,j}=Q_j$
+            \end{lema}
+            Con esto en mente, podemos elegir para cada $j=1\cdots m$, $N+2$ n-formas $\nu_{k,j}$ (con $k=1,\cdots N+2$) tales que
+            \begin{equation*}
+                \begin{split}
+                    \textup{supp}(\nu_{k,j})\subseteq& \textup{int}(R_{k,j})\cap\textup{int}(R_{k,j})\\
+                    \int_{\mathbb{R}^n}\nu_{k,j}=&1
+                \end{split}
+            \end{equation*}
+            En particular, se cumple que 
+            \begin{equation*}
+                \textup{supp}(\nu_{k,j}-\nu_{k+1,j})\subseteq\textup{int}(Q_{k+1,j})
+            \end{equation*}
+            Por lo cual, integrando se debe tener que
+            \begin{equation*}
+                \int_{\mathbb{R}^n}\nu_{k,j}-\nu_{k+1,j}=0
+            \end{equation*}
+            Por el lema de Poincaré para rectángulos, se tiene que la n-forma que estamos integrando es exacta, por lo cual se puede ver como
+            \begin{equation*}
+                \nu_{k,j}-\nu_{k+1,j}=d\mu_{k+1,j}
+            \end{equation*}
+            Cumpliendo esta n-forma que
+            \begin{equation*}
+                \textup{supp}(\mu_{k+1,j})\subseteq \textup{int}(Q_{k+1,j})
+            \end{equation*}
+            Para cada $k=0,\cdots, N+1$. Por otro lado $\omega_0 \sim \nu_{0,j}$, pues la integral de su diferencia es 0 y el soporte de su diferencia está contenido en el interior del $Q_0$. De esta forma escribimos
+            \begin{equation*}
+                \omega_0-\nu_{0,j}=d\mu_{0,j},\quad \textup{con supp}(\mu_{0,j})\subseteq\textup{int}(Q_0)
+            \end{equation*}
+            También, se afirm que $c_i\mu_{N+1,j}\sim\phi_i\omega$. En efecto, pues como en lo anterior se tiene que la diferencia de sus integrales es cero y el soporte de cada una está contenido en un rectángulo, aplicando el lema de Poincaré para rectángulos se sigue el resultado. De esta forma se puede escribir
+            \begin{equation*}
+                c_j\mu_{N+1,j}-\phi_j\omega =dc_j\mu_{N+2,j}
+            \end{equation*}
+            en resumen
+            \begin{equation*}
+                \begin{split}
+                    c_j\omega_0 -c_j\omega_{0,j}=&d(c_j\omega_{0,j})\\
+                    c_j\omega_0 -c_j\omega_{1,j}=&d(c_j\omega_{1,j})\\
+                    c_j\omega_1 -c_j\omega_{2,j}=&d(c_j\omega_{2,j})\\
+                    c_j\omega_N -c_j\omega_{N+1,j}=&d(c_j\omega_{N+1,j})\\
+                    c_j\omega_{N+1} -\phi_j\omega=&d(c_j\omega_{N+2,j})\\
+                \end{split}
+            \end{equation*}
+            Sumando todas las ecuaciones anteriores, se sigue que
+            \begin{equation*}
+                c_j\omega_0-\phi_j\omega = d\left(c_j\sum_{k=0}^{N+2}\mu_{k,j}\right)=-d\lambda_j
+            \end{equation*}
+            donde $\lambda_j$ es una (n-1)-forma que se define de forma natural como la suma. Así:
+            \begin{equation*}
+                \phi_j\omega = c_j\omega_0+d\lambda_j, \quad j=1,\cdots,m
+            \end{equation*}
+            Finalmente
+            \begin{equation*}
+                \begin{split}
+                    \omega =&\sum_{j=1}^{m}\phi_i\omega\\
+                    =&\sum_{j=1}^{m}\left(c_j\omega_0+d\lambda_j\right)\\
+                    =&\omega_0\sum_{j=1}^{m}\left(c_j\right)+d\left(\sum_{j=1}^{m}\lambda_j\right)\\
+                \Rightarrow \omega - c\omega_0 =& d\Lambda\\
+                \end{split}
+            \end{equation*}
+            Donde $\Lambda$ es una (n-1)-forma con soporte en U. Por tanto $\omega \sim c\omega_0$, lo que prueba al resultado.
+        \end{proof}
+        
+        Por este teorema, como c = 0, se sigue que, usando la notación del teorema anterior, podemos escribir $w=d\Lambda$.
+    \end{proof}
+
+    \section{El grado de un mapeo diferencial}
+
+    \begin{mydef}
+        Sean $U$ y $V$ subconjuntos abiertos en $\mathbb{R}^n$ y $\mathbb{R}^m$. Un mapeo continuo $f:U\rightarrow V$, es llamado \textbf{propio} si para cada subconjunto compacto $K\subseteq V$, la imagen inversa $f^{-1}(K)$ es compacto en $U$.
+    \end{mydef}
+
+    Este tipo de mapeos tienen (entre muchas otras), las siguientes propiedades:
+
+    \begin{obs}
+        Sea $f:U\rightarrow V$ un mapeo propio $C^{\infty}$ y $\omega$ una k-forma en $\mathbb{R}^m$ con soporte compacto tal que $\textup{supp}(\omega)\subseteq V$, entonces $f*\omega$ es una k-forma en $\mathbb{R}^n$ tal que $\textup{supp}(f*\omega)\subseteq U$.
+    \end{obs}
+
+    En particular, si $U,V\subseteq \mathbb{R}^n$ son abiertos conexos y $f:U\rightarrow V$ es un mapeo propio $C^{\infty}$ entonces existe un invariante topológico de $f$, llamado el \textbf{grado de f} (denotado por $\textup{deg}(f))$ tal que
+    \begin{equation*}
+        \int_{U}f^*\omega=\textup{deg}(f)\int_{V}\omega
+    \end{equation*}
+    para toda $\omega\in\Omega_c^n(V)$
+
+    La parte de que sea un invariante topológico es extremandamente complicado de probar (ahora mismo), pero se probará la identidad de la ecuación anterior. Veamos a que se refiere la ecuación anterior. Si
+    \begin{equation*}
+        \omega = \phi(y)dy_1\wedge\cdots\wedge dy_n
+    \end{equation*}
+    (para esto, estamos en el acuerdo de que $x=\left(x_1,\dots,x_n\right)\in U$ y $y=\left(y_1,\dots, y_n\right)\in V$) Con $\phi:V\rightarrow \mathbb{R}$ es una función $C_0^{\infty}(V)$. Entonces en $x\in U$:
+    \begin{equation*}
+        f^*\omega = \left(\phi\circ f\right)(x)\det\left(Df(x)\right)dx_1\wedge\cdots\wedge dx_n.
+    \end{equation*}
+    Por lo cual, la igualdad anterior lo que nos dice es que
+    \begin{equation*}
+        \int_{U}\left(\phi\circ f\right)(x)\det(Df(x))dx=\deg\left(f\right)\int_{V}\phi(y)dy
+    \end{equation*}
+    Probaremos el resultado
+    \begin{proof}
+        Sea $\omega_0\in\Omega_c^n(V)$ tal que
+        \begin{equation*}
+            \begin{split}
+                \textup{supp}(\omega_0)\subseteq& V\\
+                \int_{V}\omega_0 =1
+            \end{split}
+        \end{equation*}
+        Si $\deg(f)=\int_{U}f^*\omega$, el resultado se sigue de forma inmediata (usando la expresión obtendida anteriormente).
+        
+        Para el caso general, por un teorema anterior, se tiene que
+        \begin{equation*}
+            \omega -c\omega_0 = d\mu
+        \end{equation*}
+        donde $\mu$ es una (n-1)-forma tal que $\textup{supp}(\mu)\subseteq V$ y $c=\int_{V}\omega$. Como el pullback conmuta con la diferencial exterior, se tiene entonces de la ecuación anterior que
+        \begin{equation*}
+            \begin{split}
+                \int_{U}f^*\omega-c\int_{U}f^*\omega_0 =& \int_{U}d(f^*\mu)\\
+                =& 0\\
+            \end{split}
+        \end{equation*}
+        ya que $f^*\mu$ es una (n-1)-forma en el abierto $V$, el cual es conexto, luego por el Lema de Poincaré, su integral es cero y así:
+        \begin{equation*}
+            \begin{split}
+                \int_{U}f^*\omega=&c\int_{U}f^*\omega_0\\
+            \end{split}
+        \end{equation*}
+        pero $\int_{U}f^*\omega_0=\deg(f)$ y $c=\int_{V}\omega$. Por tanto:
+        \begin{equation}
+            \int_{U}f^*\omega=\deg(f)\int_{V}\omega
+        \end{equation}
+    \end{proof}
+    \begin{propo}
+        Sean $U,V,W\subseteq \mathbb{R}^n$ conjuntos abiertos conexos y $f:U\rightarrow V$, $g:V \rightarrow W$ mapeos propios $C^\infty$. Entonces
+        \begin{equation}
+            \deg(g\circ f)=\deg(f)\deg(g)\label{equation:mult_p_deg}
+        \end{equation}
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    De la ecuación (\ref{equation:mult_p_deg}) se deduce de forma inmediata el siguiente resultado
+
+    \begin{theor}
+        Sea $A$ una matriz no singular $n\times n$ y $f_A:\mathbb{R}^n\rightarrow \mathbb{R}^n$ el mapeo asociado a $A$. Entonces $\deg(f_A)=1$ si $\Det(A)>0$ y $\deg(f_A)=-1$ si $\Det(A)<0$.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \section{La fórmula de cambio de variable}
+
+\end{document}

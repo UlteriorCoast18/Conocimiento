@@ -1,0 +1,242 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\square$}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \title{Notas Variedades}
+    \author{Cristo Daniel Alvarado}
+    \date{\today}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Variedades}
+    
+    \section{Variedades Topológicas}
+    
+    Para hacer toda la parte de introducción a varidedades, se hará uso del libro de Loring W. Tu 'An introduction to manifolds'. Hablaremos inicialmente de variedades topológicas. Para entender mejor los conceptos usados a lo largo de la sección, consultar al apéndice A del libro mencionado anteriormente.
+
+    Recordemos varias cosas, Un espacio topológico $M$ es \textbf{segundo numerable} si tiene una base a lo sumo numerable. Una \textbf{vecindad} de un punto $p\in M$ es cualquier conjunto abierto que contenga a $p$. Una \textbf{cubierta abierta de $M$} es una colección $\left\{U_\alpha\right\}_{\alpha\in A}$ de conjuntos abiertos de $M$ tales que $\cup_{\alpha\in A}U_\alpha=M$.
+
+    \begin{mydef}
+        Un espacio topológico $M$ es \textbf{localmente euclideano de dimensión n} si todo punto $p\in M$ tiene una vecindad $U\subseteq M$ tal que existe un homeomorfismo $\phi:U\rightarrow V$, donde $V\subseteq\mathbb{R}^n$ es abierto. 
+        Al par $(U, \phi:U\rightarrow V)$ se le conoce como una \textbf{carta}, $U$ es una \textbf{vecindad coordenada} o \textbf{conjunto abierto coordenado}, y $\phi$ es el mapeo \textbf{mapeo coordenado} o \textbf{sistema coordenado sobre $U$}.
+
+        Decimos que una carta $(U,\phi)$ \textbf{está centrada en $p\in U$} si para $\phi(p)=0$. Una carta $(U,\phi)$ \textbf{alrededor de $p$} simplemente significa que $(U,\phi)$ es una carta y que $p\in U$.
+    \end{mydef} 
+
+    \begin{mydef}
+        Una \textbf{Variedad Topológica de dimensión n} es un espacio topológico localmente euclideano de dimensión n, Hausdorff y segundo numerable.
+    \end{mydef}
+
+    Recordamos que la condición de Hausdorff y la segunda numerabilidad son propiedades hereditarias, esto es, son heredadas a los subespacios de estos espacios topológicos. Un subespacio de un espacio Hausdorff es Hausforff y un subespacio de un espacio segundo numerable es segundo numerable. Así que de forma inmediata, como $\mathbb{R}^n$ es Hausdorff y segundo numerable, cualquier subespacio de él es automáticamente Hausdorff y segundo numerable.
+
+    \begin{exa}
+        El espacio euclideano $\mathbb{R}^n$ es una variedad topológica de dimensión n, pues pues es un espacio topológico localmente euclideano, pues para todo $p\in\mathbb{R}^n$ existe $\phi=\textup{id}_{\mathbb{R}^n}$ homeomorfismo de $\mathbb{R}^n$ en $\mathbb{R}^n$, además $\mathbb{R}^n$ es Hausdorff y segundo numerable.
+    \end{exa}
+
+    \begin{exa}
+        Considere la gráfica de la función $f\mathbb{R}\rightarrow\mathbb{R}$, $x\mapsto x^{2/3}$. Su gráfica tiene la siguiente forma:
+        %insertar gráfica%
+        Su gráfica (denotada por $\Gamma(f)$) es una variedad topológica, esto en virtud de ser un subespacio de $\mathbb{R}^2$, el cual es Hausdorff y segundo numerable. Y es localmente euclideano ya que es homeomorfo a $\mathbb{R}$, usando el mapeo $\pi:\mathbb{R}^2\rightarrow\mathbb{R}$, $(x,x^{2/3})\mapsto x$.
+    \end{exa}
+
+    \begin{exa}
+        Considere la cruz como subconjunto de $\mathbb{R}^2$. Claramente es Hausdorff y segundo numerable. Probaremos que no es una variedad topológica de dimensión 1 ó 2. Suponga que lo es, entonces para $p\in M$ (la intersección de la cruz) existe un mapeo $\phi:U\rightarrow V$, donde $U\subseteq M$ ($M$ es el espacio topológico) con $V\subseteq \mathbb{R}^n$, donde $n\in\mathbb{N}$. Podemos suponer que $U$ es abierto conexo (si no es conexo, basta tomar una bola tal que esté contenida en $U$). Notemos que $U/\left\{p\right\}$ es un conjunto que tiene 4 componentes conexas. Si
+        \begin{itemize}
+            \item $n=1$, como los abiertos conexos en $\mathbb{R}$ son intervalos conexos, al quitarles un punto del interior, se tiene que $V/\left\{\phi(p)\right\}$ tiene dos componentes conexas.
+            \item $n>1$, como a los conexos abiertos de $\mathbb{R}^n$ con $n>1$ al quitarles un punto siguen siendo conexos, se tiene que $V/\left\{\phi(p)\right\}$ tiene una componente conexa.
+        \end{itemize}
+        como los homeomorfismos mandan componentes conexas en componentes conexas, no puede suceder que la imagen de $U/\left\{p\right\}$ el cual es $V/\left\{\phi(p)\right\}$ tenga 2 o una componente conexa. Luego el espacio topológico $M$ no es localmente euclideano y por tanto, no es variedad topológica.
+    \end{exa}
+
+    \section{Compatibilidad de Cartas}
+
+    Sea $M$ una variedad topológica y considere $(U, \phi:U\rightarrow \mathbb{R}^n)$ y $(V, \psi:V\rightarrow \mathbb{R}^n)$ dos cartas de la variedad topológica $M$.
+
+    \begin{mydef}
+        Dadas dos cartas de una variedad topológica (usando la notación de lo escrito anteriormente), decimos que son \textbf{$C^{\infty}$-compatibles} si los dos mapeos
+        \begin{equation}
+            \begin{split}
+                \phi\circ\psi^{-1}:&\psi(U\cap V)\rightarrow \phi(U\cap V)\\
+                \psi\circ\phi^{-1}:&\phi(U\cap V)\rightarrow \psi(U\cap V)\\
+            \end{split} 
+        \end{equation}
+        son $C^{\infty}$. Estos dos mapeos son llamados \textbf{funciones de transición} entre las cartas.
+    \end{mydef}
+
+    \begin{obs}
+        En el contexto de la definición anterior, en caso de que la intersección de las dos cartas sea vacía, las cartas serán en automático $C^{\infty}$-compatibles.
+
+        Para simplificar la notación, escribiremos
+        \begin{equation*}
+            U_{\alpha\beta}=U_{\alpha}\cap U_{\beta}
+        \end{equation*}
+        y
+        \begin{equation*}
+            U_{\alpha\beta,\gamma}=U_{\alpha}\cap U_{\beta}\cap U_{\gamma}
+        \end{equation*}
+    \end{obs}
+
+    Como nuestro interés va solo sobre cartas $C^{\infty}$-compatibles, seguidamente vamos a omitir la mención de $C^{\infty}$ y hablaremos simplemente de cartas compatibles.
+
+    \begin{mydef}
+        Un \textbf{Atlas $C^{\infty}$} o simplemente un \textbf{atlas} en un espacio localmente euclideano, es una colección $\mathbb{U}=\left\{(U_\alpha, \phi_\alpha)\right\}$ de cartas $C^{\infty}$-compatibles a pares que cubren a $M$, es decir tales que $M=\cup_{\alpha}U\alpha$. 
+    \end{mydef}
+
+    \begin{obs}
+        La $C^{\infty}$-compatibilidad de cartas es una relación reflexiva, simétrica, pero no es transitiva. En efecto.
+    \end{obs}
+    \begin{proof}
+        Sea $M$ un espacio localmente euclideano. 
+    \end{proof}
+
+    \newpage
+
+    \begin{theor}[Nombre]
+        Teorema
+    \end{theor}
+
+    \begin{propo}[Nombre]
+        Proposición
+    \end{propo}
+
+    \begin{cor}[Nombre]
+        Corolario
+    \end{cor}
+
+    \begin{lema}[Nombre]
+        Lema
+    \end{lema}
+
+    \begin{mydef}[Nombre]
+        Definición
+    \end{mydef}
+
+    \begin{obs}[Nombre]
+        Observación
+    \end{obs}
+
+    \begin{exa}[Nombre]
+        Ejemplo
+    \end{exa}
+
+    \begin{excer}[Nombre]
+        Ejercicio
+    \end{excer}
+
+\end{document}

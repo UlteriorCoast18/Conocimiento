@@ -1,0 +1,483 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Solución:\\}}
+\def\endproof{\hfill$\square$\\}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\renewcommand{\theenumi}{\Roman{enumi}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+\title{Lista 4 AnM III}
+\author{Cristo Daniel Alvarado}
+\date{\today}
+\maketitle
+
+\tableofcontents
+\chapter{Lista 4}
+
+\section{Ejercicios}
+    \begin{excer}
+        \begin{enumerate}
+            \item Sea $f:[0,1]\rightarrow \mathbb{R}$ la función
+            \begin{equation*}
+                f(x)=\int_{0}^{x+e^{x^2}}\log\left(\frac{t+1}{t^2+1}\right)dt,\quad\forall x\geq0.
+            \end{equation*}
+            \textbf{Verifique} que $f$ está bien definida y que es derivable en $[0,\infty[$. \textbf{Calcule} $f'(x)$, $\forall x\geq 0$.
+            \item Sea $f:[0,\infty[\rightarrow\mathbb{R}$ la función
+            \begin{equation*}
+                f(x)=\left(\int_{0}^{\sqrtsign{x+1}\log\left(x^2+1\right)}e^{-t^2+1}dt\right)^2, \quad \forall x\geq0.
+            \end{equation*}
+            \textbf{Demuestre} que $f$ está bien definida y que es derivable en $[0,\infty[$. \textbf{Calcule} $f'(x)$, $\forall x\geq 0$.
+        \end{enumerate}
+    \end{excer}
+    
+    \begin{proof}
+        De (I): Veamos que la función está bien definida. Para ello, notemos que la función $t\mapsto\log\left(\frac{t+1}{t^2+1}\right)$ es integrable en todo subintervalo compacto de $[0,\infty[$ (por ser continua). Luego $f$ está bien definida. Notemos que podemos reescribir a $f$ como
+        \begin{equation}
+            f(x)=G\circ h(x)
+        \end{equation}
+        donde $G(x)=\int_{0}^{x}\log\left(\frac{t+1}{t^2+1}\right)dt$ y $h(x)=x+e^{x^2}$. Siendo que $t\mapsto\log\left(\frac{t+1}{t^2+1}\right)$ es integrable en todo subintervalo compacto, la función $G$ es diferenciable c.t.p. en $[0,\infty[$, y
+        \begin{equation*}
+            G'(x)=\log\left(\frac{x+1}{x^2+1}\right)
+        \end{equation*}
+        c.t.p. en $[0,\infty[$. Para ver que la igualdad es en todo el dominio de la función, basta ver que la función $G'$ es continua en $[0,\infty[$. En efecto, notemos que
+    \end{proof}
+
+    \begin{excer}
+        Sea $\cf{f}{[-\pi, \pi]}{\mathbb{C}}$ una función integrable en $[-\pi, \pi]$. Sea $\cf{F}{[-\pi, \pi]}{\mathbb{C}}$ la integral indefinida de $f$, dada por
+        \begin{equation*}
+            F(x)=\int_{-\pi}^{x}\left(f(t)-c\right)dt,\quad\forall x\in[-\pi, \pi]
+        \end{equation*}
+        donde $c$ es constante. Defina
+        \begin{equation*}
+            c_k'=\int_{-\pi}^{\pi}f(x)e^{-ikx}dx\quad\textup{y}\quad c_k=\int_{-\pi}^{\pi}F(x)e^{-ikx}dx
+        \end{equation*}
+        donde $k\in\mathbb{Z}$. \textbf{Determine} la relación entre $c_k$ y $c_k'$.
+    \end{excer}
+
+    \begin{proof}
+        Determinemos la relación entre las variables $c_k$ y $c_k'$. Para ello, notemos que podemos escribir
+        \begin{equation*}
+            \begin{split}
+                c_k = & \int_{-\pi}^{\pi}F(x)e^{-ikx}dx\\
+                = & \int_{-\pi}^{\pi}\left[\int_{-\pi}^{x}\left(f(t)-c\right)dt\right]e^{-ikx}dx\\
+            \end{split}
+        \end{equation*}        
+    \end{proof}
+
+    \begin{excer}
+        Integrando por partes, \textbf{calcule} las integrales siguientes
+        \begin{equation*}
+            \int_{a}^{b}e^{\alpha x}\sin(\beta x)dx\quad\textup{y}\quad\int_{a}^{b}e^{\alpha x}\cos(\beta x)dx
+        \end{equation*}
+        donde $\alpha$ y $\beta$ son constantes.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sean $0<a<1$ y $-\pi<\lambda<\pi$ fijos. \textbf{Verifique} que existen las integrales siguientes y mediante una integración por partes \textbf{pruebe} la identidad:
+        \begin{equation*}
+            \int_{0}^{\infty}\frac{-e^{i\lambda}x^a}{(e^{i\lambda}x+1)^2}dx=\int_{0}^{\infty}\frac{ax^{a-1}}{e^{i\lambda}x+1}dx
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        \textbf{Determine} cuáles de las siguientes funciones son de clase $C^1$, de variación acotada y/o absolutamente continuas en $[0,1]$.
+        \begin{enumerate}
+            \item \begin{equation*}
+                f(x) = 
+                \left \{
+                    \begin{aligned}
+                    x^{4/3}\sin\left(\frac{1}{\sqrt{x}}\right) &,\ \text{si} \ x \in ]0,1]\\
+                    0 &,\ \text{si} \ x=0
+                    \end{aligned}
+                \right .
+            \end{equation*}
+            \item \begin{equation*}
+                f(x) = 
+                \left \{
+                    \begin{aligned}
+                    x^2\sin\left(\frac{1}{x^2}\right) &,\ \text{si} \ x \in ]0,1]\\
+                    0 &,\ \text{si} \ x=0
+                    \end{aligned}
+                \right .
+            \end{equation*}
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        \textbf{Proporcione} un contraejemplo de una función que sea absolutamente continua en todo intervalo $[a,1]$, $0< a\leq 1$, y continua en cero, pero que no sea absolutamente continua en $[0,1]$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        \textbf{Demuestre} que si una función $f$ es absolutamente continua en todo intervalo $[a,1]$, $0< a\leq 1$, continua en cero y de variación acotada en $[0,1]$, entonces $f$ es absolutamente continua en $[0,1]$.
+        
+        \textit{Sugerencia.} Verifique que $f'$ es integrable en $[0,1]$ y utilice la función $G(x)=\int_{1}^{x}f'$, $\forall x\in]0,1]$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        \textbf{Determine} si la función $f(x)=x^{1/2}$ es o no de clase $C^1$, de variación acotada y/o absolutamente continua en $[0,1]$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        \textbf{Determine} si la función
+        \begin{equation*}
+            f(x) = 
+                \left \{
+                    \begin{aligned}
+                    x^{3/2}\sin\left(\frac{1}{x^2}\right) &,\ \textup{si} \ x \in ]0,1]\\
+                    0 &,\ \textup{si} \ x=0
+                    \end{aligned}
+                \right .
+        \end{equation*}
+        es o no de clase $C^1$, absolutamente continua y/o de variación acotada en $[0,1]$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Se dice que una función $f:[a,b]\rightarrow \mathbb{K}$ satisface la \textbf{condición de Lipschitz} en $[a,b]$ si existe una constante $M\geq 0$ tal que
+        \begin{equation*}
+            \abs{f(x)-f(y)}\leq M\abs{x-y},\quad\forall x,y\in [a,b].
+        \end{equation*}
+        \begin{enumerate}
+            \item \textbf{Pruebe} que si $f$ satisface la condición de Lipschitz en $[a,b]$, entonces $f$ es absolutamente continua en $[a,b]$.
+            \item \textbf{Demuestre} que si $f$ es absolutamente continua, entonces $f$ satisface la condición de Lipschitz en $[a,b]$ si y sólo si $\abs{f'}$ es acotada en $[a,b]$.
+            \item Si $f$ es continua en $[a,b]$ y una de sus derivadas (digamos $D^+$) es acotada en $[a,b]$, \textbf{muestre} que $f$ satisface la condición de Lipschitz en $[a,b]$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        De (I): Suponga que $f$ satisface la condición de Lipschitz, es decir existe una constante $M\geq0$ tal que
+        \begin{equation*}
+            \abs{f(x)-f(y)}\leq M\abs{x-y}<(M+1)\abs{x-y}
+        \end{equation*}
+        Lo haremos por la definición. Sea $\varepsilon>0$, tomemos $\delta=\frac{\varepsilon}{M+1}>0$. Si $\left\{]x_k,x_k'[\right\}_{k=1}^{m}$ es una familia de intervalos abiertos disjuntos contenidos en $[a,b]$ tales que
+        \begin{equation*}
+            \sum_{k=1}^{m}\abs{x_k'-x_k}=\sum_{k=1}^{m}(x_k'-x_k)\leq\delta =\frac{\varepsilon}{M+1}
+        \end{equation*}
+        entonces, por la condición de Lipschitz se tiene
+        \begin{equation*}
+            \sum_{k=1}^{m}\abs{f(x_k')-f(x_k)}\leq\sum_{k=1}^{m}M\abs{x_k'-x_k}<(M+1)\cdot\frac{\varepsilon}{M+1}=\varepsilon
+        \end{equation*}
+        Luego, $f$ es absolutamente continua en $[a,b]$.
+
+        De (II): Suponga que $f$ es absoultamente continua.
+
+        $\Rightarrow$): Suponga que $f$ satisface la condición de Lipschitz, entonces existe $M\geq0$ tal que
+        \begin{equation*}
+            \abs{f(x)-f(y)}\leq M\abs{x-y}<(M+1)\abs{x-y}
+        \end{equation*}
+        Como $f$ es de variación acotada, es diferenciable c.t.p. en $[a,b]$. Sea $A$ el conjunto de puntos en los que $f$ es diferenciable. Si $x\in A$ y $y\in[a,b]/\left\{x\right\}$ se tiene que
+        \begin{equation*}
+            \begin{split}
+                \abs{f(x)-f(y)}\leq &M\abs{x-y}\\
+                \Rightarrow \abs{\frac{f(x)-f(y)}{x-y}}\leq&M\\
+            \end{split}
+        \end{equation*}
+        siendo $y\in[a,b]/\left\{x\right\}$ arbitrario. Tomando límites con respecto a $x$ se tiene que
+        \begin{equation*}
+            \abs{f'(x)}\leq M
+        \end{equation*}
+        para todo $x\in A$. Es decir, la función $f'$ definida c.t.p. en $A$ es acotada (en particular lo es en $[a,b]$).
+
+        $\Leftarrow$): Suponga que $f'$ es acotada en $[a,b]$. 
+
+        %Te quedaste acá%
+
+    \end{proof}
+
+    \begin{excer}
+        \textbf{Determine} si la función
+        \begin{equation*}
+            f(x) = 
+                \left \{
+                    \begin{aligned}
+                    x^2\sin\left(\frac{1}{x}\right) &,\ \text{si} \ x \in ]0,1] \\
+                    0 &,\ \text{si} \ x=0
+                    \end{aligned}
+                \right .
+        \end{equation*}
+        es o no de clase $C^1$, absoultamente continua y/o de variación acotada en $[0,1]$.
+    \end{excer}
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Considere la función $\cf{f}{[-1,1]}{\mathbb{R}}$,
+        \begin{equation*}
+            f(x) = 
+                \left \{
+                    \begin{aligned}
+                    x\sin\left(\frac{1}{x}\right) &,\ \text{si} \ x \in [-1,1]/\left\{0\right\} \\
+                    0 &,\ \text{si} \ x=0
+                    \end{aligned}
+                \right .
+        \end{equation*}
+        \textbf{Calcule} las cuatro derivadas de $f$ en cero. ¿Es $f$ de variación acotada en $[-1,1]$?
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Si $\cf{f}{[a,b]}{\mathbb{R}}$ es continua en $[a,b]$ y alcanza un máximo local en un punto $c\in]a,b[$, \textbf{pruebe} que
+        \begin{equation*}
+            D_+f(x)\leq D^+f(x)\leq D_-f(c)\leq D^-f(c)
+        \end{equation*}
+        ¿Qué relaciones se darían si $f$ alcanzara un máximo local en $a$ o $b$?
+    \end{excer}
+    
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Si $\cf{f}{[a,b]}{\mathbb{R}}$ es continua y alguna de sus derivadas (digamos $D^+$) es no negativa en todo punto de $[a,b]$, \textbf{demuestre} que $f(b)\geq f(a)$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sean $\cf{f,g}{[a,b]}{\mathbb{R}}$ dos funciones
+        \begin{enumerate}
+            \item \textbf{Muestre} que $D^+(f+g)\leq D^+f+D^+g$ en todo punto de $[a,b[$. \textbf{Establezca} desigualdades similares para las otras derivadas.
+            \item \textbf{Pruebe} que si $f$ y $g$ son no negativas y continuas en un punto $c\in[a,b[$, entonces
+            \begin{equation*}
+                D^+(fg)(c)\leq f(c)D^+g(c)+g(c)D^+f(c)
+            \end{equation*}
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        \textbf{Proporcione} un ejemplo de una función monótona en $[0,1]$ que sea discontinua en cada número racional.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        \textbf{Demuestre} las proposiciones 4.18, 4.21 y 4.36.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $\left\{f_\nu\right\}_{\nu=1}^{\infty}$ una sucesión de funciones en $\mathscr{V}([a,b],\mathbb{K})$ que converge puntualmente en $[a,b]$ a una función $f$. \textbf{Pruebe} que
+        \begin{equation*}
+            V_f([a,b])\leq \liminf_{\nu\rightarrow\infty}V_{f_\nu}([a,b])
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        \textbf{Pruebe} que si $\cf{f}{[a,b]}{\mathbb{R}}$ es una función de variación acotada en $[a,b]$, entonces
+        \begin{equation*}
+            \int_{a}^{b}\abs{f'}\leq V_f([a,b]);
+        \end{equation*}
+        y si $f$ es, además, absolutamente continua en $[a,b]$, \textbf{muestre} que
+        \begin{equation*}
+            \int_{a}^{b}\abs{f'}=V_f([a,b]).
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        \textbf{Demuestre} que si $\cf{f}{[0,1]}{\mathbb{R}}$ es una función monótona, absolutamente continua en $[0,1]$ y $A$ es un conjunto despreciable contenido en $[0,1]$, entonces $f(A)$ es un conjunto despreciable.
+    \end{excer}
+
+    \begin{proof}
+        Sea $A$ un conjunto despreciable, es decir $m\left(a\right)=0$.
+    \end{proof}
+
+    \begin{excer}
+        Haga lo siguiente
+        \begin{enumerate}
+            \item \textbf{Proporcione} un ejemplo de una función $f$ estrictamente creciente y absolutamente continua en $[0,1]$ tal lque $f'=0$ en algún conjunto con medida positiva.
+            
+            \textit{Sugerencia.} Sea $A$ el complemento de un conjunto de Cantor generalizado $\mathscr{C}_\alpha$ con medida $1-\alpha>0$. Tome como $f$ la integral indefinida de $\chi_A$.
+            \item \textbf{Pruebe} que existe un conjunto despreciable $E$ contenido en $[0,1]$ tal que $f^{-1}(E)$ no es medible.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}[\textbf{Teorema de Cambio de Variable}]
+        Sea $\cf{\phi}{[a,b]}{[c,d]}$ una función creciente absolutamente continua en $[a,b]$ tal que $\phi(a)=c$ y $\phi(b)=d$. Observe que $\phi$ \textbf{NO} necesariamente debe ser un isomorfismo $C^1$ de $[a,b]$ en $[c,d]$.
+        \begin{enumerate}
+            \item \textbf{Muestre} que para cualquier conjunto abierto $W$ contenido en $[c,d]$ se cumple
+            \begin{equation*}
+                m(W)=\int_{\phi^{-1}(W)}\phi'(x)dx.
+            \end{equation*}
+            \item Sea $N=\left\{x\in[a,b]|\phi'(x)\neq0\right\}$. Si $C$ es un subconjunto despreciable de $[c,d]$, \textbf{demuestre} que $\phi^{-1}(C)\cap N$ es un subconjunto despreciable de $[a,b]$.
+            \item Si $D$ es un subconjunto medible de $[c,d]$, \textbf{pruebe} que $B=\phi^{-1}(D)\cap N$ es un subconjunto medible de $[a,b]$ y
+            \begin{equation*}
+                m(D)=\int_{B}\phi'=\int_{c}^{d}\chi_D(\phi(x))\phi'(x)dx.
+            \end{equation*}
+            \item Si $\cf{f}{[c,d]}{\mathbb{R}}$ es una función medible no negativa, \textbf{muestre} que la función $\cf{(f\circ\phi)\cdot\phi'}{[a,b]}{\mathbb{R}}$ es medible no negativa y
+            \begin{equation*}
+                \int_{c}^{d}f(y)dy=\int_{a}^{b}f(\phi(x))\phi'(x)dx.
+            \end{equation*}
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        Esta cosa es una prueba.
+    \end{proof}
+    
+\end{document}
