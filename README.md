@@ -149,7 +149,9 @@ Matematicas
 La carpeta de `Cursos ESFM` se presenta una organziación de carpetas por semestre, conteniendo la carpeta respectiva a cada semestre las materias llevadas en el mismo. En la carpeta de cada materia se incluyen 3 carpetas organizadas de la siguiente forma:
 
 -**Examenes**: Es una recopilación de los exámenes aplicados en esa materia a lo largo del semestre. Si es posible, se incluye la solución del mismo.
+
 -**Listas**: Esta carpeta es la razón principal por la cual este repositorio fue creado. Son las listas de ejercicios que se han llevado en cada materia y una recopilación de las soluciones (en caso de que haya sido posible resolver de forma satisfactoria el problema). Se recopilan una GRAN cantidad de problemas que, al lector interesado, le pueden ayudar en su formación matemática (tanto como si los resuelve como si no).
+
 -**Notas**: Son las notas del curso. Se organizan enumeradas por orden para que al lector le sea más fácil seguir la secuencia lógica de ideas. En caso de estar interesado solamente en alguna nota particular, se puede consultar viendo el tópico mencionado justo al lado del número de la nota.
 
 **Nota**: _En la parte de las listas, se recomienda ampliamente que, en caso de encontrar alguna solución a un problema aún no resuelto, sea enviada al correo: `ulterior18@proton.me`. En caso de ser aceptada por el autor, se hará reconocimiento a la persona sobre su aporte (en caso de que lo desee) en el documento._
