@@ -1,0 +1,275 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\square$}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\supp[1]{\ensuremath{\textup{supp}\left(#1\right)}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \title{Segundo Examen Geometría Diferencial III}
+    \author{Cristo Daniel Alvarado}
+    \date{\today}
+    \maketitle
+
+    \setcounter{chapter}{1} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+        
+    \section{Demostración del teorema de punto fijo de Brower}
+    
+En este documento se pretende dar una prueba, lo más entendible posible, del teorema del punto fijo de Brower, desde el punto de vista de las formas diferenciales. 
+
+    \begin{theor}[Punto Fijo de Brower]
+        Denotemos por $B^n$ a la bola unitaria en $\mathbb{R}^n$, es decir, se denota al conjunto
+        \begin{equation*}
+            B^n=\left\{x\in\mathbb{R}^n|\|x\|\leq 1\right\}.
+        \end{equation*}
+        Sea $\cf{f}{B^n}{B^n}$ una función continua. Entonces $f$ tiene un punto fijo, es decir existe $x_0\in B^n$ tal que $f(x_0)=x_0$.    \end{theor}
+
+Para la demostración del teorema, se requieren de unos resultados anteriores. Entre ellos se tiene el Teorema 3.5.11 y un lema (casi inmediato) del mismo:
+
+\begin{theor}
+    Sea $V\subseteq\mathbb{R}^n$ abierto. Si $\cf{\phi}{\mathbb{R}^n}{\mathbb{R}}$ es una función continua tal que $\supp{\phi}\subseteq V$. Entonces para cada $\varepsilon>0$ existe una función $\cf{\psi}{\mathbb{R}^n}{\mathbb{R}}$ con soporte compacto tal que $\supp{\psi}\subseteq V$ y
+    \begin{equation*}
+        \sup\abs{\phi-\psi}<\varepsilon
+    \end{equation*}
+\end{theor}
+
+\begin{proof}
+    Denotemos por $A=\supp{\phi}$, y definamos
+    \begin{equation*}
+        d=\inf\left\{\|x-y\|_{\infty}|x\in A \textup{ y }y\in V^c\right\}
+    \end{equation*}
+    Recordando que 
+    \begin{equation*}
+        \|x\|_{\infty}=\max\left\{\abs{x_i}|i=1,\dots,n\right\}\textup{, donde }x=\left(x_1,\dots,x_n\right)\in\mathbb{R}^n
+    \end{equation*}
+    Afirmamos que $d>0$. Como $A\subseteq V$, entonces se tiene que $A\cap V^c=\emptyset$. Siendo que $V$ es abierto, se sigue que $V^c$ es cerrado. Defina $\cf{f}{A}{\mathbb{R}}$ dada como sigue:
+    \begin{equation*}
+        \begin{split}
+            f(x)=&\inf\left\{\|x-z\|_{\infty}|z\in V^c\right\}\\
+            =&d_\infty(x,V^c)\\
+        \end{split}
+    \end{equation*}
+    para todo $x\in A$. Afirmamos que la función $f$ es continua en $A$. En efecto, sean $x\in A$ $\left\{x_n\right\}_{n=1}^{\infty}$ una sucesión de puntos de $A$ que convergen a $x$ (con la norma infinito). Se tiene
+    \begin{equation}
+        \begin{split}
+            \abs{f(x)-f(x_n)}=&\abs{d_\infty(x,V^c)-d_\infty(x_n,V^c)}\\
+        \end{split}
+    \end{equation}
+    Por la desigualdad del triángulo, se tiene que si $z\in V^c$:
+    \begin{equation*}
+        d_{\infty}(x,z)\leq d_{\infty}(x,x_n)+d_{\infty}(x_n,z)
+    \end{equation*}
+    Pero $d_{\infty}(x,V^c)\leq d_{\infty}(x,z)$. Por lo cual:
+    \begin{equation*}
+        \begin{split}
+            d_{\infty}(x,V^c)\leq&d_{\infty}(x,x_n)+d_{\infty}(x_n,z)\\
+            \Rightarrow d_{\infty}(x,V^c)-d_{\infty}(x,x_n)\leq&d_{\infty}(x_n,z)\\
+        \end{split}
+    \end{equation*}
+    para todo $z\in V^c$. De esta forma, $d_{\infty}(x,V^c)-d_{\infty}(x,x_n)$ es cota inferior de $\left\{d_{\infty}(x_n,z)|z\in V^c\right\}$. Así
+    \begin{equation*}
+        \begin{split}
+            d_{\infty}(x,V^c)-d_{\infty}(x,x_n)\leq&d_{\infty}(x_n,V^c)\\
+            \Rightarrow d_{\infty}(x,V^c)-d_{\infty}(x_n,V^c)\leq&d_{\infty}(x,x_n)\\
+        \end{split}
+    \end{equation*}
+    de forma análoga se prueba también que
+    \begin{equation*}
+        -\left(d_{\infty}(x,V^c)-d_{\infty}(x_n,V^c)\right)\leq d_{\infty}(x,x_n)
+    \end{equation*}
+    para todo $n\in\mathbb{N}$. Por lo cual
+    \begin{equation*}
+        \abs{d_{\infty}(x,A)-d_{\infty}(x_n,A)}\leq d_{\infty}(x, x_n)
+    \end{equation*}
+    para todo $n\in\mathbb{N}$. Retomando la ecuación (1.1) se sigue que
+    \begin{equation*}
+        0\leq\abs{f(x_n)-f(x)}\leq d_{\infty}(x,x_n)
+    \end{equation*}
+    Tomando ambos límites de ambos lados
+    \begin{equation*}
+        \lim_{n\rightarrow\infty}\abs{f(x_n)-f(x)}=0
+    \end{equation*}
+    pues $\lim_{n\rightarrow\infty}d_{\infty}(x,x_n)=0$. Luego $f$ es continua en $x$. Por ser $x\in A$ arbitrario, se sigue que $f$ es continua en $A$.
+
+    Pero $A$ es un conjunto compacto y $f$ es una función que toma valores reales, por lo cual alcanza su máximo y su mínimo, digamos lo alcanza en $a\in A$, es decir
+    \begin{equation*}
+        f(a)\leq f(x),\quad\forall x\in A
+    \end{equation*}
+    donde $a\notin V^c$, pues en caso contrario se tendría que $A\cap V^c\neq \emptyset$. Se tiene que $f(a)=d_{\infty}(a,V^c)>0$, ya que en caso contrario, por propiedades del ínfimo existiría una sucesión en $V^c$ que converge a $a$, cosa que no puede suceder, pues $V^c$ es cerrado y $a\notin V^c$ (esto implicaría que $V^c$ no tiene a todos sus puntos de acumulación). Así
+    \begin{equation*}
+        \begin{split}
+            d=&\inf\left\{\|x-y\|_{\infty}|x\in A \textup{ y }y\in V^c\right\}\\
+            =&\inf\left\{d_{\infty}(x,V^c)|x\in A\right\}\\
+            =&\inf\left\{f(x)|x\in A\right\}\\
+            =&\min\left\{f(x)|x\in A\right\}\\
+            =&f(a)\\
+            >&0\\
+        \end{split}
+    \end{equation*}
+    por lo cual $d>0$.
+    
+    Como $\phi$ es continua en el compacto $A$, es uniformemente continua en $A$. Pero también es uniformemente continua fuera de $A$, pues toma el valor constante $0$, así $\phi$ es continua en todo su dominio.
+    Por tanto, para $\varepsilon>0$ existe $\delta'>0$ tal que si $x,y\in\mathbb{R}^n$ son tales que $\|x-y\|_{\infty}<\delta'$, entonces $\abs{\phi(x)-\phi(y)}<\varepsilon$. Sea $\delta =\min\left\{\delta',\frac{d}{2}\right\}>0$.
+
+    Definamos
+    
+    \begin{equation*}
+        Q=\left\{x\in\mathbb{R}^n|\|x\|_{\infty}\leq\delta\right\}
+    \end{equation*}
+    
+    y sea $\cf{\rho}{\mathbb{R}^n}{\mathbb{R}}$ una función $C^{\infty}$ no negativa con soporte compacto tal que $\supp{\rho}\subseteq Q$ y
+    
+    \begin{equation*}
+        \int_{\mathbb{R}^n}\rho(y)dy=1
+    \end{equation*}
+
+    \end{proof}
+
+\begin{lema}
+    Sea $U\subseteq\mathbb{R}^n$ abierto, $C\subseteq U$ compacto y $\cf{\phi}{U}{\mathbb{R}}$ una función continua que es clase $C^{\infty}$ en el complemento de C. Entonces, para todo $\varepsilon > 0$ existe una función $\cf{\psi}{U}{\mathbb{R}}$ $C^{\infty}$ en $U$, tal que $\phi - \psi$ tiene soporte compacto y $\abs{\phi - \psi}<\varepsilon$.
+\end{lema}
+
+\begin{theor}
+    
+\end{theor}
+
+    \begin{propo}[Nombre]
+        Proposición
+    \end{propo}
+
+    \begin{cor}[Nombre]
+        Corolario
+    \end{cor}
+
+    \begin{lema}[Nombre]
+        Lema
+    \end{lema}
+
+    \begin{mydef}[Nombre]
+        Definición
+    \end{mydef}
+
+    \begin{obs}[Nombre]
+        Observación
+    \end{obs}
+
+    \begin{exa}[Nombre]
+        Ejemplo
+    \end{exa}
+
+    \begin{excer}[Nombre]
+        Ejercicio
+    \end{excer}
+
+\end{document}
