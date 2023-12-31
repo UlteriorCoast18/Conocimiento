@@ -128,19 +128,12 @@
     
 En este documento se pretende dar una prueba, lo más entendible posible, del teorema del punto fijo de Brower, desde el punto de vista de las formas diferenciales. 
 
-    \begin{theor}[Punto Fijo de Brower]
-        Denotemos por $B^n$ a la bola unitaria en $\mathbb{R}^n$, es decir, se denota al conjunto
-        \begin{equation*}
-            B^n=\left\{x\in\mathbb{R}^n|\|x\|\leq 1\right\}.
-        \end{equation*}
-        Sea $\cf{f}{B^n}{B^n}$ una función continua. Entonces $f$ tiene un punto fijo, es decir existe $x_0\in B^n$ tal que $f(x_0)=x_0$.    \end{theor}
-
 Para la demostración del teorema, se requieren de unos resultados anteriores. Entre ellos se tiene el Teorema 3.5.11 y un lema (casi inmediato) del mismo:
 
 \begin{theor}
     Sea $V\subseteq\mathbb{R}^n$ abierto. Si $\cf{\phi}{\mathbb{R}^n}{\mathbb{R}}$ es una función continua tal que $\supp{\phi}\subseteq V$. Entonces para cada $\varepsilon>0$ existe una función $\cf{\psi}{\mathbb{R}^n}{\mathbb{R}}$ con soporte compacto tal que $\supp{\psi}\subseteq V$ y
     \begin{equation*}
-        \sup\abs{\phi-\psi}<\varepsilon
+        \sup_{x\in\mathbb{R}^n}\abs{\phi(x)-\psi(x)}<\varepsilon
     \end{equation*}
 \end{theor}
 
@@ -234,42 +227,77 @@ Para la demostración del teorema, se requieren de unos resultados anteriores. E
         \int_{\mathbb{R}^n}\rho(y)dy=1
     \end{equation*}
 
+
+
     \end{proof}
+
+Con la prueba de este teorema hecha, se procederá a probar el siguiente lema:
 
 \begin{lema}
     Sea $U\subseteq\mathbb{R}^n$ abierto, $C\subseteq U$ compacto y $\cf{\phi}{U}{\mathbb{R}}$ una función continua que es clase $C^{\infty}$ en el complemento de C. Entonces, para todo $\varepsilon > 0$ existe una función $\cf{\psi}{U}{\mathbb{R}}$ $C^{\infty}$ en $U$, tal que $\phi - \psi$ tiene soporte compacto y $\abs{\phi - \psi}<\varepsilon$.
 \end{lema}
 
-\begin{theor}
-    
+\begin{proof}
+    Sea $\varepsilon>0$ y $\cf{\rho}{U}{\mathbb{R}}$ una función $C_0^{\infty}(U)$ tal que toma el valor de $1$ en $C$.
+\end{proof}
+
+Denotemos por $B^n$ a la bola unitaria en $\mathbb{R}^n$, es decir, se denota al conjunto
+\begin{equation*}
+    \begin{split}
+        B^n=&\left\{x\in\mathbb{R}^n|\|x\|\leq 1\right\}.\\
+        =&\left\{(x_1,\dots,x_n)\in\mathbb{R}^n|\sqrt{x_1^2+\cdots+x_n^2}\leq1\right\}
+    \end{split}
+\end{equation*}
+
+\begin{theor}[Punto Fijo de Brower]
+    Sea $\cf{f}{B^n}{B^n}$ una función continua. Entonces $f$ tiene un punto fijo, es decir existe $x_0\in B^n$ tal que $f(x_0)=x_0$.
 \end{theor}
 
-    \begin{propo}[Nombre]
-        Proposición
-    \end{propo}
+\begin{proof}
+    Procederemos por contradicción. Suponga que para todo $x\in B^n$ se tiene que $f(x)\neq x$. Sea $\cf{l_x}{[0,\infty[}{\mathbb{R^n}}$ la función dada por:
+    \begin{equation*}
+        s\mapsto f(x)+s\left(x-f(x)\right),\quad \forall s\in[0,\infty[
+    \end{equation*}
+    En esencia, $l_x$ es el rayo que une a $x$ con $f(x)$, y es prolongado en la dirección de $x$. Afirmamos que para $x\in B^n$ existe $s_0\in[0,\infty[$ tal que $\|l_x(s_0)\|=1$, es decir, que este rayo tiene un punto en $\partial B^n=S^{n-1}$, donde
+    \begin{equation*}
+        S^{n-1}=\left\{x\in\mathbb{R}^n|\|x\|=1\right\}
+    \end{equation*}
+    En efecto, sea $x\in B^n$. El mapeo $l_x$ es continuo en $[0,\infty[$ (por ser lineal). Como $\|x-f(x)\|>0$ ya que $x\neq f(x)$, se sigue que
+    \begin{equation*}
+        \begin{split}
+            l_x(\frac{2}{\|x-f(x)\|})=&f(x)+\frac{2}{\|x-f(x)\|}\left(x-f(x)\right)\\
+            \Rightarrow \|l_x(\frac{2}{\|x-f(x)\|})\|=&\|f(x)+\frac{2}{\|x-f(x)\|}\left(x-f(x)\right)\|\\
+            \geq& 2\cdot\frac{\|x-f(x)\|}{\|x-f(x)\|}-\|f(x)\|\\
+            =&2-\|f(x)\|\\
+            \geq&1
+        \end{split}
+    \end{equation*}
+    pues $0\leq \|f(x)\|\leq 1 \Rightarrow -1\leq \|f(x)\|\leq 0$. Tomando $s_1=\frac{2}{\|x-f(x)\|}$, se sigue que $\|l_x(s_1)\|\geq 1$ y $\|l_x(0)\|=\|f(x)\|\leq 1$. Por ser $l_x$ continua y $[0,\infty[$ conexo, entonces existir $s_0\in[0,s_1]$ tal que $\|l_x(s_0)\|=1$. Pero la función $l_x$ es inyectiva, por tanto este $s_0$ es único.
 
-    \begin{cor}[Nombre]
-        Corolario
-    \end{cor}
-
-    \begin{lema}[Nombre]
-        Lema
-    \end{lema}
-
-    \begin{mydef}[Nombre]
-        Definición
-    \end{mydef}
-
-    \begin{obs}[Nombre]
-        Observación
+    \begin{obs}
+    De ahora en adelanta $s_0(x)$ denotara al único elemento de $[0,\infty[$ tal que $l_x(s_0(x))=1$.
     \end{obs}
 
-    \begin{exa}[Nombre]
-        Ejemplo
-    \end{exa}
+    Definamos $\cf{\gamma}{B^n}{S^{n-1}}$, $x\mapsto l_x(s_0)$. Por lo anterior esta función está bien definida. Veamos que es continua. Sea $x_0\in B^n$, $\varepsilon>0$ y $S=\max\left\{s_0(x),s_0(x_0)\right\}\geq0$. Como $f$ es continua en $x_0$ existe $\delta'>0$ si $x\in B^n$ con $\|x-x_0\|\leq\delta'$, entonces
+    \begin{equation*}
+        \|f(x)-f(x_0)\|<\frac{\varepsilon}{2(S+1)}
+    \end{equation*}
+    tomemos $\delta = \min\left\{\delta',\frac{\varepsilon}{2(S+1)}\right\}$. Si $x\in B^n$ es tal que $\|x-x_0\|\leq\delta$, entonces
+    \begin{equation*}
+        \begin{split}
+            \|\gamma(x)-\gamma(x_0)\|=&\|l_x(s_0(x))-l_{x_0}(s_0(x_0))\|\\
+            =&\|f(x)-s_0(x)\cdot\left(x-f(x)\right)-f(x_0)+s_0(x_0)\cdot\left(x_0-f(x_0)\right)\|\\
+            \leq&\|f(x)-f(x_0)\|+S\cdot\|x-x_0-f(x)+f(x_0)\|\\
+            \leq&\|f(x)-f(x_0)\|+S\cdot\|x-x_0\|+S\cdot\|f(x)-f(x_0)\|\\
+            \leq&(S+1)\cdot\|f(x)-f(x_0)\|+S\cdot\|x-x_0\|\\
+            \leq&(S+1)\cdot\|f(x)-f(x_0)\|+(S+1)\cdot\|x-x_0\|\\
+            <&(S+1)\cdot\frac{\varepsilon}{2(S+1)}+(S+1)\cdot\frac{\varepsilon}{2(S+1)}\\
+            =&\frac{\varepsilon}{2}+\frac{\varepsilon}{2}\\
+            =&\varepsilon\\
+        \end{split}
+    \end{equation*}
+    Por tanto, $\gamma$ es continua en $x_0$. Por ser el $x_0$ arbitrario se sigue que $\gamma$ es continua en $B^n$.
 
-    \begin{excer}[Nombre]
-        Ejercicio
-    \end{excer}
+\end{proof}
 
 \end{document}
