@@ -214,21 +214,37 @@ Para la demostración del teorema, se requieren de unos resultados anteriores. E
     
     Como $\phi$ es continua en el compacto $A$, es uniformemente continua en $A$. Pero también es uniformemente continua fuera de $A$, pues toma el valor constante $0$, así $\phi$ es continua en todo su dominio.
     Por tanto, para $\varepsilon>0$ existe $\delta'>0$ tal que si $x,y\in\mathbb{R}^n$ son tales que $\|x-y\|_{\infty}<\delta'$, entonces $\abs{\phi(x)-\phi(y)}<\varepsilon$. Sea $\delta =\min\left\{\delta',\frac{d}{2}\right\}>0$.
-
-    Definamos
     
+    Definamos
     \begin{equation*}
         Q=\left\{x\in\mathbb{R}^n|\|x\|_{\infty}\leq\delta\right\}
     \end{equation*}
-    
     y sea $\cf{\rho}{\mathbb{R}^n}{\mathbb{R}}$ una función $C^{\infty}$ no negativa con soporte compacto tal que $\supp{\rho}\subseteq Q$ y
-    
     \begin{equation*}
         \int_{\mathbb{R}^n}\rho(y)dy=1
     \end{equation*}
+    Defina $\cf{\psi}{\mathbb{R}^n}{\mathbb{R}}$ dada como:
+    \begin{equation*}
+        \begin{split}
+            \psi(x)=&\int_{\mathbb{R}^n}\rho(y-x)\phi(y)dy\\
+            =&\int_{A}\rho(y-x)\phi(y)dy\\
+        \end{split}
+    \end{equation*}
+    (ya que $\phi$ tiene soporte en $A$). Como $\rho$ es de clase $C^{\infty}$, se sigue que $\psi$ también lo es.
 
-
-
+    Sea
+    \begin{equation*}
+        A_{\delta}=\left\{x\in\mathbb{R}^n|d_{\infty}(x,A)\leq\delta\right\}
+    \end{equation*}
+    Notemos que si $x\notin A_\delta$ entonces para todo $y\in A$, $\|x-y\|_{\infty}>\delta$, como $\supp{\rho}\subseteq Q$ entonces $\rho(x-y)=0$. Por tanto se tendría que
+    para $x\notin A_\delta$:
+    \begin{equation*}
+        \begin{split}
+            \psi(x)=&\int_{A}\rho(y-x)\phi(y)dy\\
+            =&0
+        \end{split}
+    \end{equation*}
+    de esta forma el soporte de $\psi$ está contenido en $A_\delta$
     \end{proof}
 
 Con la prueba de este teorema hecha, se procederá a probar el siguiente lema:
@@ -239,6 +255,14 @@ Con la prueba de este teorema hecha, se procederá a probar el siguiente lema:
 
 \begin{proof}
     Sea $\varepsilon>0$ y $\cf{\rho}{U}{\mathbb{R}}$ una función $C_0^{\infty}(U)$ tal que toma el valor de $1$ en $C$.
+\end{proof}
+
+\begin{propo}
+    Sea $U\subseteq \mathbb{R}^n$ abierto conexo y $\cf{f}{U}{U}$ un mapeo propio $C^{\infty}$. Entonces si $f|_{C^c}=\textup{id}_{C^c}$ donde $C\subseteq\mathbb{R}^n$ es compacto, entonces $f$ es propio y $\deg(f)=1$.
+\end{propo}
+
+\begin{proof}
+    
 \end{proof}
 
 Denotemos por $B^n$ a la bola unitaria en $\mathbb{R}^n$, es decir, se denota al conjunto
