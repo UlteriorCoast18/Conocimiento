@@ -122,13 +122,16 @@
     \date{\today}
     \maketitle
 
-    \setcounter{chapter}{1} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
-        
+    \setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    \setcounter{section}{5}
     \section{Demostración del teorema de punto fijo de Brower}
     
 En este documento se pretende dar una prueba, lo más entendible posible, del teorema del punto fijo de Brower, desde el punto de vista de las formas diferenciales. 
 
 Para la demostración del teorema, se requieren de unos resultados anteriores. Entre ellos se tiene el Teorema 3.5.11 y un lema (casi inmediato) del mismo:
+
+\setcounter{section}{5}
+\setcounter{theor}{10}
 
 \begin{theor}
     Sea $V\subseteq\mathbb{R}^n$ abierto. Si $\cf{\phi}{\mathbb{R}^n}{\mathbb{R}}$ es una función continua tal que $\supp{\phi}\subseteq V$. Entonces para cada $\varepsilon>0$ existe una función $\cf{\psi}{\mathbb{R}^n}{\mathbb{R}}$ con soporte compacto tal que $\supp{\psi}\subseteq V$ y
@@ -223,6 +226,7 @@ Para la demostración del teorema, se requieren de unos resultados anteriores. E
     \begin{equation*}
         \int_{\mathbb{R}^n}\rho(y)dy=1
     \end{equation*}
+    
     Defina $\cf{\psi}{\mathbb{R}^n}{\mathbb{R}}$ dada como:
     \begin{equation*}
         \begin{split}
@@ -244,25 +248,113 @@ Para la demostración del teorema, se requieren de unos resultados anteriores. E
             =&0
         \end{split}
     \end{equation*}
-    de esta forma el soporte de $\psi$ está contenido en $A_\delta$
+    de esta forma el soporte de $\psi$ es un subconjunto de $A_\delta$. Siendo que $\delta\leq\frac{d}{2}$, como la distancia de $A$ a $V^c$ es $d$, entonces $A_\delta\subseteq V$, así $\supp{\psi}\subseteq V$.
+
+    Ahora, por el teorema de cambio de variable se tiene que
+    
+    \begin{equation*}
+        \int_{\mathbb{R}^n}\rho(y-x)dy=\int_{\mathbb{R}^n}\rho(y)dy=1,\quad\forall x\in\mathbb{R}^n
+    \end{equation*}
+
+    Por tanto,
+
+    \begin{equation*}
+        \phi(x)=\int_{\mathbb{R}^n}\phi(x)\rho(y-x)dy,\quad \forall x\in\mathbb{R}^n
+    \end{equation*}
+
+    Así,
+
+    \begin{equation*}
+        \begin{split}
+            \phi(x)-\psi(x)=&\int_{\mathbb{R}^n}\left(\phi(x)-\phi(y)\right)\rho(y-x)dy\\
+            \Rightarrow \abs{\phi(x)-\psi(x)}\leq&\int_{\mathbb{R}^n}\abs{\phi(x)-\phi(y)}\rho(y-x)dy,\quad \forall x\in\mathbb{R}^n\\
+        \end{split}
+    \end{equation*}
+    
+    Notemos varias cosas. Primero, si tenemos $x,y\in\mathbb{R}^n$ tales que $\|x-y\|_\infty>\delta$, entonces $\rho(x-y)=0$. Si por el contrario $\|x-y\|_\infty\leq\delta$, entonces $\abs{\phi(x)-\phi(y)}<\varepsilon$. Por lo cual
+    \begin{equation*}
+        \begin{split}
+            \abs{\phi(x)-\psi(x)}\leq&\int_{\mathbb{R}^n}\abs{\phi(x)-\phi(y)}\rho(y-x)dy\\
+            <&\int_{\mathbb{R}^n}\varepsilon\cdot\rho(y-x)dy\\
+            =&\varepsilon,\quad\forall x\in\mathbb{R}^n\\
+        \end{split}
+    \end{equation*}
+    
+    Luego,
+    
+    \begin{equation*}
+        \sup_{x\in\mathbb{R}^n}\abs{\phi(x)-\psi(x)}<\varepsilon
+    \end{equation*}
+
     \end{proof}
 
 Con la prueba de este teorema hecha, se procederá a probar el siguiente lema:
+
+\setcounter{section}{6}
+\setcounter{lema}{14}
 
 \begin{lema}
     Sea $U\subseteq\mathbb{R}^n$ abierto, $C\subseteq U$ compacto y $\cf{\phi}{U}{\mathbb{R}}$ una función continua que es clase $C^{\infty}$ en el complemento de C. Entonces, para todo $\varepsilon > 0$ existe una función $\cf{\psi}{U}{\mathbb{R}}$ $C^{\infty}$ en $U$, tal que $\phi - \psi$ tiene soporte compacto y $\abs{\phi - \psi}<\varepsilon$.
 \end{lema}
 
 \begin{proof}
-    Sea $\varepsilon>0$ y $\cf{\rho}{U}{\mathbb{R}}$ una función $C_0^{\infty}(U)$ tal que toma el valor de $1$ en $C$.
+    Sea $\varepsilon>0$ y $\cf{\rho}{U}{\mathbb{R}}$ una función $C_0^{\infty}(U)$ tal que toma el valor de $1$ en $C$. Por el Teorema 3.5.11 para $\rho\cdot\phi$ función continua y $\varepsilon>0$ existe una función $\psi_0\in C^{\infty}_{0}(U)$ tal que
+    \begin{equation*}
+        \abs{\rho\cdot\phi(x)-\psi_0(x)}<\varepsilon,\quad\forall x\in U
+    \end{equation*}
+
+    Tomemos $\psi=\left(1-\rho\right)\phi+\psi_0$. Ya se sabe que $\psi_0$ es $C^\infty$. Como $\rho$ toma el valor de 1 dentro de $C$, entonces $1-\rho$ toma el valor de $0$ en $C$. Por ser $\phi$ $C^\infty$ en el complemento de $C$, y tomar el valor de $0$ en $C$, se sigue que $\left(1-\rho\right)\phi$ es $C^\infty$ en $U$, luego la diferencia $\left(1-\rho\right)\phi+\psi_0=\psi$ lo es.
+
+    Además, se cumple que
+    \begin{equation*}
+        \begin{split}
+            \abs{\phi(x)-\psi(x)}=&\abs{\phi(x)-\left(\left(1-\rho\right)\phi+\psi_0\right)(x)}\\
+            =&\abs{\phi(x)-\phi(x)+\rho(x)\phi(x)-\psi_0(x)}\\
+            =&\abs{\rho(x)\phi(x)-\psi_0(x)}\\
+            <&\varepsilon,\quad\forall x\in U\\
+        \end{split}
+    \end{equation*}
+    
+    donde la función $\rho\cdot\phi-\psi_0$ tiene soporte contenido en el compacto $C$ (por tenerlo $\rho$ y $\psi_0$). Por lo cual $\phi-\rho$ tienen soporte contenido en $C$, i.e. soporte compacto. 
 \end{proof}
+
+Asumiremos como cierto el siguiente resultado, el cual nos permitirá computar el grado de un mapeo.
+
+\setcounter{section}{6}
+\setcounter{theor}{1}
+
+\begin{theor}[Sard]
+    Sean $U$ y $V$ son subconjuntos abiertos de $\mathbb{R}^n$ y $\cf{f}{U}{V}$ un mapeo propio $C^\infty$. Entonces el conjunto de valores regulares de $f$ es un conjunto abierto denso de $V$.
+\end{theor}
+
+Con esto, se procederá con la prueba de algunos resultados.
+
+\begin{theor}
+    Sean $U$ y $V$ son subconjuntos abiertos de $\mathbb{R}^n$ y $\cf{f}{U}{V}$ un mapeo propio $C^\infty$. Sea $q\in U$ un valor regular de $f$. Entonces el conjunto $f^{-1}(q)$ es finito. Más aún, si $f^{-1}(1)=\left\{p_1,\dots,p_N\right\}$, existen vecindades abiertas conexas $U_i$ de $p_i$ para cada $i=1,\dots,N$ en $U$ y una vecindad abierta $W$ de $q$ contenida en $V$ tal que
+    \begin{enumerate}
+        \item Para $i\neq j$, los conjuntos $U_i$ y $U_j$ son disjuntos.
+        \item $f^{-1}(W)=U_1\cup\cdots\cup U_N$.
+        \item $f$ mapea a los $U_i$ difeomorfamente en $W$. 
+    \end{enumerate}
+\end{theor}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{theor}
+    En las condiciones del Teorema 3.6.3, para cada $p_i\in f^{-1}(q)$, sea $\sigma_{p_i}=1$ si $\cf{f}{U_i}{W}$ preserva la orientación, y $-1$ si la invierte. Entonces
+    \begin{equation*}
+        \deg(f)=\sum_{i=1}^{N}\sigma_{p_i}
+    \end{equation*}
+\end{theor}
 
 \begin{propo}
     Sea $U\subseteq \mathbb{R}^n$ abierto conexo y $\cf{f}{U}{U}$ un mapeo propio $C^{\infty}$. Entonces si $f|_{C^c}=\textup{id}_{C^c}$ donde $C\subseteq\mathbb{R}^n$ es compacto, entonces $f$ es propio y $\deg(f)=1$.
 \end{propo}
 
 \begin{proof}
-    
+    Claramente $f$ es un mapeo propio (pues por hipótesis se tiene que es mapeo propio $C^\infty$).
 \end{proof}
 
 Denotemos por $B^n$ a la bola unitaria en $\mathbb{R}^n$, es decir, se denota al conjunto
@@ -272,6 +364,9 @@ Denotemos por $B^n$ a la bola unitaria en $\mathbb{R}^n$, es decir, se denota al
         =&\left\{(x_1,\dots,x_n)\in\mathbb{R}^n|\sqrt{x_1^2+\cdots+x_n^2}\leq1\right\}
     \end{split}
 \end{equation*}
+
+\setcounter{section}{6}
+\setcounter{theor}{12}
 
 \begin{theor}[Punto Fijo de Brower]
     Sea $\cf{f}{B^n}{B^n}$ una función continua. Entonces $f$ tiene un punto fijo, es decir existe $x_0\in B^n$ tal que $f(x_0)=x_0$.
