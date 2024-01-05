@@ -126,7 +126,7 @@
     \setcounter{section}{5}
     \section{Demostración del Teorema de punto fijo de Brower}
     
-En este documento se pretende dar una prueba, lo más entendible posible, del teorema del punto fijo de Brower, desde el punto de vista de las formas diferenciales. 
+En este documento se pretende dar una prueba lo más sencilla posible del teorema del punto fijo de Brower, partiendo de la teoría de formas diferenciles. 
 
 Para la demostración del teorema se requieren de unos resultados preliminares.
 
@@ -138,17 +138,17 @@ Para la demostración del teorema se requieren de unos resultados preliminares.
 \end{theor}
 
 \begin{proof}
-    Sea $U_0\subseteq U$ abierto tal que $A\subseteq U_0$. Tomemos $C\subseteq V$ compacto tal que $B\subseteq \textup{int}(C)$ y $W=f^{-1}(C)\backslash U_0=f^{-1}(C)\cap U_0^c$, el cual es compacto (por ser la intersección del compacto $f^{-1}(C)$ ya que $f$ es propio, con el cerrado $U_0^c$). Como $f$ es continua, entonces $f(W)$ es compacto.
+    Sea $U_0\subseteq U$ abierto tal que $A\subseteq U_0$. Tomemos $C\subseteq V$ compacto tal que $B\subseteq \textup{int}(C)$ y con ello $W=f^{-1}(C)\backslash U_0=f^{-1}(C)\cap U_0^c$, el cual es compacto (por ser la intersección del compacto $f^{-1}(C)$ ya que $f$ es propio, con el cerrado $U_0^c$). Como $f$ es continua, entonces $f(W)$ es compacto.
     
-    Veamos que $f(W)$ y $B$ son disjuntos. En efecto, suponga que tienen intersección no vacía. Sea $x\in f(W)\cap B$, entonces existe $y\in W$ tal que $x=f(y)$ donde $y\in f^{-1}(C)\backslash U_0$, es decir $x=f(y)\in C$ y en $B$ pero no en $U_0$.
+    Veamos que $f(W)$ y $B$ son disjuntos. En efecto, suponga que tienen intersección no vacía. Sea $x\in f(W)\cap B$, entonces existe $y\in W$ tal que $x=f(y)$ donde $y\in f^{-1}(C)\backslash U_0$, es decir $x=f(y)\in C$ y en $B$, pero no en $U_0$.
 
-    Pero $f^{-1}(B)\subseteq U_0$, por lo cual $B\subseteq f(U_0)$, así como $x\in B$, también $x\in U_0$, que es una contradicción. Por tanto, $f(W)\cap B=\emptyset$.
+    Pero $f^{-1}(B)\subseteq U_0$, por lo cual $B\subseteq f(U_0)$, luego, como $x\in B$, también $x\in U_0$, lo que es una contradicción. Por tanto, $f(W)\cap B=\emptyset$.
     
     Sea
     \begin{equation*}
         V_0=\textup{int}(C)\backslash f(W)
     \end{equation*}
-    Claramenet $V_0$ es abierto (por ser la intersección de dos abiertos), además como $f(W)\cap B=\emptyset$ se sigue que $B\subseteq V_0$ (pues, $\textup{int}(C)$ contiene a $B$), y es subconjunto de $V$. Además
+    Claramente $V_0$ es abierto (por ser la intersección de dos abiertos), además como $f(W)\cap B=\emptyset$ se sigue que $B\subseteq V_0$ (pues, $\textup{int}(C)$ contiene a $B$), y es subconjunto de $V$. Finalmente
     \begin{equation*}
         \begin{split}
             x\in f^{-1}(V_0)&\Rightarrow f(x)\in V_0\\
@@ -169,7 +169,7 @@ Para la demostración del teorema se requieren de unos resultados preliminares.
 \setcounter{theor}{10}
 
 \begin{theor}
-    Sea $V\subseteq\mathbb{R}^n$ abierto. Si $\cf{\phi}{\mathbb{R}^n}{\mathbb{R}}$ es una función continua tal que $\supp{\phi}\subseteq V$. Entonces para cada $\varepsilon>0$ existe una función $\cf{\psi}{\mathbb{R}^n}{\mathbb{R}}$ con soporte compacto tal que $\supp{\psi}\subseteq V$ y
+    Sea $V\subseteq\mathbb{R}^n$ abierto. Si $\cf{\phi}{\mathbb{R}^n}{\mathbb{R}}$ es una función continua tal que $\supp{\phi}\subseteq V$, entonces para cada $\varepsilon>0$ existe una función $\cf{\psi}{\mathbb{R}^n}{\mathbb{R}}$ con soporte compacto tal que $\supp{\psi}\subseteq V$ y
     \begin{equation*}
         \sup_{x\in\mathbb{R}^n}\abs{\phi(x)-\psi(x)}<\varepsilon
     \end{equation*}
@@ -191,13 +191,13 @@ Para la demostración del teorema se requieren de unos resultados preliminares.
             =&d_\infty(x,V^c)\\
         \end{split}
     \end{equation*}
-    para todo $x\in A$. Afirmamos que la función $f$ es continua en $A$. En efecto, sean $x\in A$ $\left\{x_n\right\}_{n=1}^{\infty}$ una sucesión de puntos de $A$ que convergen a $x$ (con la norma infinito). Se tiene
+    para todo $x\in A$. Afirmamos que la función $f$ es continua en $A$. En efecto, sean $x\in A$ y $\left\{x_n\right\}_{n=1}^{\infty}$ una sucesión de puntos de $A$ que converge a $x$ (respecto a la norma infinito). Se tiene
     \begin{equation}
         \begin{split}
             \abs{f(x)-f(x_n)}=&\abs{d_\infty(x,V^c)-d_\infty(x_n,V^c)}\\
         \end{split}
     \end{equation}
-    Por la desigualdad del triángulo, se tiene que si $z\in V^c$:
+    Por la desigualdad del triángulo, si $z\in V^c$:
     \begin{equation*}
         d_{\infty}(x,z)\leq d_{\infty}(x,x_n)+d_{\infty}(x_n,z)
     \end{equation*}
@@ -227,7 +227,7 @@ Para la demostración del teorema se requieren de unos resultados preliminares.
     \begin{equation*}
         0\leq\abs{f(x_n)-f(x)}\leq d_{\infty}(x,x_n)
     \end{equation*}
-    Tomando ambos límites de ambos lados
+    Tomando límites de ambos lados:
     \begin{equation*}
         \lim_{n\rightarrow\infty}\abs{f(x_n)-f(x)}=0
     \end{equation*}
@@ -237,7 +237,7 @@ Para la demostración del teorema se requieren de unos resultados preliminares.
     \begin{equation*}
         f(a)\leq f(x),\quad\forall x\in A
     \end{equation*}
-    donde $a\notin V^c$, pues en caso contrario se tendría que $A\cap V^c\neq \emptyset$. Se tiene que $f(a)=d_{\infty}(a,V^c)>0$, ya que en caso contrario, por propiedades del ínfimo existiría una sucesión en $V^c$ que converge a $a$, cosa que no puede suceder, pues $V^c$ es cerrado y $a\notin V^c$ (esto implicaría que $V^c$ no tiene a todos sus puntos de acumulación). Así
+    donde $a\notin V^c$, pues en caso contrario se tendría que $A\cap V^c\neq \emptyset$. Se tiene que $f(a)=d_{\infty}(a,V^c)>0$, ya que en caso contrario, por propiedades del ínfimo existiría una sucesión en $V^c$ que converge a $a$, cosa que no puede suceder ya que $V^c$ es cerrado y $a\notin V^c$ (esto implicaría que $V^c$ no tiene a todos sus puntos de acumulación). Así
     \begin{equation*}
         \begin{split}
             d=&\inf\left\{\|x-y\|_{\infty}|x\in A \textup{ y }y\in V^c\right\}\\
@@ -250,7 +250,7 @@ Para la demostración del teorema se requieren de unos resultados preliminares.
     \end{equation*}
     por lo cual $d>0$.
     
-    Como $\phi$ es continua en el compacto $A$, es uniformemente continua en $A$. Pero también es uniformemente continua fuera de $A$, pues toma el valor constante $0$, así $\phi$ es continua en todo su dominio.
+    Como $\phi$ es continua en el compacto $A$, es uniformemente continua en $A$. Pero también es uniformemente continua fuera de $A$, pues toma el valor constante $0$, así $\phi$ es uniformemente continua en todo su dominio.
     Por tanto, para $\varepsilon>0$ existe $\delta'>0$ tal que si $x,y\in\mathbb{R}^n$ son tales que $\|x-y\|_{\infty}<\delta'$, entonces $\abs{\phi(x)-\phi(y)}<\varepsilon$. Sea $\delta =\min\left\{\delta',\frac{d}{2}\right\}>0$.
     
     Definamos
@@ -269,7 +269,7 @@ Para la demostración del teorema se requieren de unos resultados preliminares.
             =&\int_{A}\rho(y-x)\phi(y)dy\\
         \end{split}
     \end{equation*}
-    (ya que $\phi$ tiene soporte en $A$). Como $\rho$ es de clase $C^{\infty}$, se sigue que $\psi$ también lo es.
+    ya que $\phi$ tiene soporte en $A$. Como $\rho$ es de clase $C^{\infty}$, se sigue que $\psi$ también lo es.
 
     Sea
     \begin{equation*}
@@ -374,7 +374,7 @@ Con esto, se procederá con la prueba de algunos resultados.
 \end{theor}
 
 \begin{proof}
-    Probaremos primero que $f^{-1}(q)$ es finito. Sea $p\in f^{-1}(q)$. Como $q$ es un valor regular de $f$ entonces $p\in C_f$, donde $C_f$ denota al conjunto de todos los puntos críticos de $f$. Por lo cual
+    Probaremos primero que $f^{-1}(q)$ es finito. Sea $p\in f^{-1}(q)$. Como $q$ es un valor regular de $f$ entonces $p\notin C_f$, donde $C_f$ denota al conjunto de todos los puntos críticos de $f$. Por lo cual
     \begin{equation*}
         \det(Df(p))\neq0
     \end{equation*}
@@ -403,7 +403,7 @@ Con esto, se procederá con la prueba de algunos resultados.
     \end{equation*}
     donde $W$ es conexa.
 
-    Tomemos $U_i=f^{-1}(W)\cap U_{p_i}$, para cada $i=1,\dots,N$. Estos conjuntos abiertos (lo son, pues $f$ es continua y por ende $f^{-1}(W)$ es abierto) los podemos tomar como conexos (en caso de no serlo, haceos más pequeñas las vecindades $U_{p_i}$ del tal forma que la intersección con $f^{-1}(W)$ sea conexa). Se cumple que
+    Tomemos $U_i=f^{-1}(W)\cap U_{p_i}$, para cada $i=1,\dots,N$. Estos conjuntos abiertos (lo son, pues $f$ es continua y por ende $f^{-1}(W)$ es abierto) los podemos tomar como conexos (en caso de no serlo, hacemos más pequeñas las vecindades $U_{p_i}$ del tal forma que la intersección con $f^{-1}(W)$ sea conexa). Se cumple que
 
     \begin{enumerate}
         \item Los $U_i$ son ajenos a pares, es decir $U_i\cap U_j=\emptyset$ para $i\neq j$.
@@ -436,7 +436,7 @@ Con esto, se procederá con la prueba de algunos resultados.
             &=\sum_{i=1}^{N}\int_{U_i}f^*\omega\\
         \end{split}
     \end{equation*}
-    pues, $f^{-1}(W)=U_1\cup\dots\cup U_N$. Pero como $f|_{U_i}$ es difeomorfismo, para cada $i=1,\dots,N$, entonces se tiene que
+    pues, $f^{-1}(W)=U_1\cup\dots\cup U_N$. Pero como $f|_{U_i}$ es difeomorfismo, para cada $i=1,\dots,N$, se tiene que
     \begin{equation*}
         \int_{U_i}f^*\omega=\pm \int_{W}\omega=\pm 1
     \end{equation*}
@@ -466,15 +466,16 @@ Con esto, se procederá con la prueba de algunos resultados.
 Con estos teoremas a la mano, se procederá con la prueba de la siguiente proposición.
 
 \begin{propo}
-    Sea $U\subseteq \mathbb{R}^n$ abierto conexo y $\cf{f}{U}{U}$ un mapeo $C^{\infty}$. Entonces si $f|_{C^c}=\textup{id}_{C^c}$ donde $C\subseteq\mathbb{R}^n$ es compacto, entonces $f$ es propio y $\deg(f)=1$.
+    Sea $U\subseteq \mathbb{R}^n$ abierto conexo y $\cf{f}{U}{U}$ un mapeo $C^{\infty}$. Entonces si $f|_{C^c}=\textup{id}_{C^c}$ donde $C\subseteq\mathbb{R}^n$ es compacto, entonces $f$ es mapeo propio y $\deg(f)=1$.
 \end{propo}
 
 \begin{proof}
     Sea $A\subseteq U$. Veamos que $f^{-1}(A)\subseteq A\cup C$. Si $f^{-1}(A)=\emptyset$, el resultado es inmediato. Suponga que es no vacío, si $x\in f^{-1}(A)$, entonces $f(x)\in A$.
 
-    Tenemos dos casos: si $x\notin C$ entonces como $f$ es la identidad en el complemento de $C$ se sigue que $x = f(x)\in A$. Por tanto, $x\in A\cup C$. Así $f^{-1}(A)\subseteq A\cup C$.
+    Si $x\notin C$ entonces como $f$ es la identidad en el complemento de $C$ se sigue que $x = f(x)\in A$. Por tanto, $x\in A\cup C$. Si $x\in C$ es claro que $x\in A\cup C$.
+    Así $f^{-1}(A)\subseteq A\cup C$.
 
-    Si $A$ es compacto, entonces $f^{-1}(A)\subseteq A\cup C$ es cerrado (pues la imagen inversa de cerrados es cerrado, por ser $f$ continua) y es acotado (ya que $A$ y $C$ son compactos, en particular su unión lo es, luego $f^{-1}(A)$ es acotado), luego compacto. Por tanto, $f$ es un mapeo propio.
+    Si $A$ es compacto, entonces $f^{-1}(A)$ es cerrado (pues la imagen inversa de cerrados es cerrado, por ser $f$ continua) y es acotado (ya que $A$ y $C$ son compactos, en particular su unión lo es, luego $f^{-1}(A)\subseteq A\cup C$ es acotado), luego compacto. Por tanto, $f$ es un mapeo propio.
     
     Para la otra parte, como $C\subseteq U$ es compacto, entonces $U\backslash f(C)$ es no vacío, pues $f(C)\subseteq U$ es compacto, entonces debe existir al menos un elemento $x\in U$ tal que $x\notin f(C)$. Se cumple para este elemento que $f^{-1}(x)=\left\{x\right\}$, pues $x\notin f(C)$. Además es valor regular de $f$ ya que
     \begin{equation*}
@@ -507,28 +508,28 @@ Procedamos ahora con la prueba del teorema del punto fijo. Denotemos por $B^n$ a
 \end{theor}
 
 \begin{proof}
-    Procederemos por contradicción. Suponga que para todo $x\in B^n$ se tiene que $f(x)\neq x$. Sea $\cf{l_x}{[0,\infty[}{\mathbb{R^n}}$ la función dada por:
+    Procederemos por contradicción. Suponga que para todo $x\in B^n$ se tiene que $f(x)\neq x$. Sea $\cf{l_x}{[0,\infty[}{\mathbb{R}^n}$ la función dada por:
     \begin{equation*}
         s\mapsto f(x)+s\left(x-f(x)\right),\quad \forall s\in[0,\infty[
     \end{equation*}
-    En esencia, $l_x$ es el rayo que une a $f(x)$ con $x$, y es prolongado en la dirección de $x$. Afirmamos que para $x\in B^n$ existe $s_0\in[0,\infty[$ tal que $\|l_x(s_0)\|=1$, es decir, que este rayo tiene un punto en $\partial B^n=S^{n-1}$, donde
+    En decir, $l_x$ es el rayo que une a $f(x)$ con $x$ y es prolongado en la dirección de $x$. Afirmamos que para $x\in B^n$ existe $s_0\in[0,\infty[$ tal que $\|l_x(s_0)\|=1$, es decir, que este rayo tiene un punto en $\partial B^n=S^{n-1}$, donde
     \begin{equation*}
         S^{n-1}=\left\{x\in\mathbb{R}^n|\|x\|=1\right\}
     \end{equation*}
-    En efecto, sea $x\in B^n$. El mapeo $l_x$ es continuo en $[0,\infty[$ (por ser lineal). Como $\|x-f(x)\|>0$ ya que $x\neq f(x)$, se sigue que
+    En efecto, sea $x\in B^n$. El mapeo $l_x$ es continuo en $[0,\infty[$ (por ser lineal). Como $\|x-f(x)\|>0$ ya que $x\neq f(x)$, se tiene que
     \begin{equation*}
         \begin{split}
-            l_x(\frac{2}{\|x-f(x)\|})=&f(x)+\frac{2}{\|x-f(x)\|}\left(x-f(x)\right)\\
-            \Rightarrow \|l_x(\frac{2}{\|x-f(x)\|})\|=&\|f(x)+\frac{2}{\|x-f(x)\|}\left(x-f(x)\right)\|\\
+            l_x\left(\frac{2}{\|x-f(x)\|}\right)=&f(x)+\frac{2}{\|x-f(x)\|}\left(x-f(x)\right)\\
+            \Rightarrow \|l_x\left(\frac{2}{\|x-f(x)\|}\right)\|=&\|f(x)+\frac{2}{\|x-f(x)\|}\left(x-f(x)\right)\|\\
             \geq& 2\cdot\frac{\|x-f(x)\|}{\|x-f(x)\|}-\|f(x)\|\\
             =&2-\|f(x)\|\\
             \geq&1
         \end{split}
     \end{equation*}
-    pues $0\leq \|f(x)\|\leq 1 \Rightarrow -1\leq \|f(x)\|\leq 0$. Tomando $s_1=\frac{2}{\|x-f(x)\|}$, se sigue que $\|l_x(s_1)\|\geq 1$ y $\|l_x(0)\|=\|f(x)\|\leq 1$. Por ser $l_x$ continua y $[0,\infty[$ conexo, entonces existir $s_0\in[0,s_1]$ tal que $\|l_x(s_0)\|=1$.
+    pues $0\leq \|f(x)\|\leq 1 \Rightarrow -1\leq \|f(x)\|\leq 0$. Tomando $s_1=\frac{2}{\|x-f(x)\|}$, se sigue que $\|l_x(s_1)\|\geq 1$ y $\|l_x(0)\|=\|f(x)\|\leq 1$. Por ser $l_x$ continua y $[0,\infty[$ conexo, entonces debe existir $s_0\in[0,s_1]$ tal que $\|l_x(s_0)\|=1$.
 
     \begin{obs}
-        Tenemos dos casos, en caso de que haya dos de estos puntos, elegimos el máximo de ambos (este caso sucede cuando $x$ y $f(x)$ tienen ambos norma 1, para evitar el conflicto tomamos al mayor, es decir tal que $l_x(s_0)=x$, ya que el rayo parte desde $f(x)$ y luego pasa por $x$). Esto se hace para que en los puntos de la frontera, la función $\gamma$ definida más adelante tome sea la identidad en esta región. 
+        Tenemos dos casos, en caso de que haya dos de estos puntos, elegimos el máximo de ambos (este caso sucede cuando $x$ y $f(x)$ tienen ambos norma 1, para evitar el conflicto tomamos al mayor, es decir tal que $l_x(s_0)=x$, ya que el rayo parte desde $f(x)$ y luego pasa por $x$). Esto se hace para que en los puntos de la frontera, la función $\gamma$ definida más adelante sea la identidad en esta región. 
 
         De ahora en adelante $s_0(x)$ denotara al único elemento (y en caso de no ser único, al mayor) de $[0,\infty[$ tal que $l_x(s_0(x))=1$.
     \end{obs}
@@ -557,19 +558,19 @@ Procedamos ahora con la prueba del teorema del punto fijo. Denotemos por $B^n$ a
     \begin{equation*}
         \mathcal{C}=\left\{x\in\mathbb{R}^n|\|x\|\geq1\right\}
     \end{equation*}
-    Como $\gamma$ coincide con la identidad en la frontera de $B^n=S^{n-1}$ y es continua en $B^n$ y $\mathcal{C}$ (pues en $\mathcal{C}$ es la identidad), por el teorema del pegado, $\gamma$ es continua en $\mathbb{R}^n$. Además esta función es $C^\infty$ en el complemento de $B^n$ (el cual es un conjunto compacto), luego las funciones componentes $\gamma_i$, $i=1,\dots,n$ también son $C^\infty$ en el complemento de $B^n$ y continuas en $\mathbb{R}^n$.
+    Como $\gamma$ coincide con la identidad en la frontera de $B^n=S^{n-1}$ y es continua en $B^n$ y $\mathcal{C}$ (pues en $\mathcal{C}$ es la identidad), por el teorema del pegado, $\gamma$ es continua en $\mathbb{R}^n$. Además esta función es $C^\infty$ en el complemento de $B^n$ (siendo $B^n$ un conjunto compacto), luego las funciones componentes $\gamma_i$, $i=1,\dots,n$ también son $C^\infty$ en el complemento de $B^n$ y continuas en $\mathbb{R}^n$.
     Sea $\varepsilon>0$ y tomemos $\varepsilon'=\min\left\{\frac{1}{2},\varepsilon\right\}>0$, por el Lema 3.6.15, para cada $i=1,\dots,n$ existe una función $\cf{g_i}{\mathbb{R}^n}{\mathbb{R}}$ tal que $\gamma_i-g_i$ tiene soporte compacto y
     \begin{equation*}
-        \abs{\gamma_i(x)-g_i(x)}<\varepsilon'\leq1,\quad\forall x\in\mathbb{R}^n
+        \abs{\gamma_i(x)-g_i(x)}<\frac{\varepsilon'}{2}\leq\frac{1}{2},\quad\forall x\in\mathbb{R}^n
     \end{equation*}
     Sea $\cf{g}{\mathbb{R}^n}{\mathbb{R}^n}$ la función que tiene por funciones componentes las $g_i$. Esta función es $C^\infty$ y cumple que
     \begin{equation*}
         \begin{split}
-            &\|\gamma(x)-g(x)\|_{\infty}< \varepsilon'\leq1\\
+            &\|\gamma(x)-g(x)\|_{\infty}< \frac{\varepsilon'}{2}\leq\frac{1}{2}\\
             \Rightarrow &\|\gamma(x)-g(x)\|< \varepsilon'\leq1,\quad\forall x\in\mathbb{R}^n\\
         \end{split}
     \end{equation*}
-    (pues la bola euclideana está contenida en el cubo de mismo radio), donde la función $\gamma-g$ tiene soporte compacto (pues cada una de las funciones componentes lo tiene). Por tanto, existe un conjunto $\mathcal{D}\subseteq\mathbb{R}^n$ compacto en el cual $\gamma(x)=g(x)$ para todo $x\in\mathcal{D}^c$, sea $\mathcal{A}=B^n\cup\mathcal{D}$. $\mathcal{A}$ es compacto (por ser la unión de dos compactos) y $g$ coincide con la identidad en $\mathcal{A}^c$, entonces por la Proposición 3.6.1 $g$ es propio y $\deg(g)=1$.
+    (pues la bola euclideana de radio $\varepsilon'$ contiene al cubo de mitad de radio), donde la función $\gamma-g$ tiene soporte compacto (pues cada una de las funciones componentes lo tiene). Por tanto, existe un conjunto $\mathcal{D}\subseteq\mathbb{R}^n$ compacto en el cual $\gamma(x)=g(x)$ para todo $x\in\mathcal{D}^c$, sea $\mathcal{A}=B^n\cup\mathcal{D}$. $\mathcal{A}$ es compacto (por ser la unión de dos compactos) y $g$ coincide con la identidad en $\mathcal{A}^c$, entonces por la Proposición 3.6.1 $g$ es propio y $\deg(g)=1$.
     
     Por otra parte, si $x\in\mathbb{R}^n$, se tienen dos casos:
     \begin{enumerate}
