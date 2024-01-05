@@ -124,11 +124,46 @@
 
     \setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
     \setcounter{section}{5}
-    \section{Demostración del teorema de punto fijo de Brower}
+    \section{Demostración del Teorema de punto fijo de Brower}
     
 En este documento se pretende dar una prueba, lo más entendible posible, del teorema del punto fijo de Brower, desde el punto de vista de las formas diferenciales. 
 
-Para la demostración del teorema, se requieren de unos resultados anteriores. Entre ellos se tiene el Teorema 3.5.11 y un lema (casi inmediato) del mismo:
+Para la demostración del teorema se requieren de unos resultados preliminares.
+
+\setcounter{section}{4}
+\setcounter{theor}{6}
+
+\begin{theor}
+    Sean $U$ y $V$ subconjuntos abiertos de $\mathbb{R}^n$ y $\mathbb{R}^m$, respectivamente y sea $\cf{f}{U}{V}$ un mapeo propio continuo. Si $B\subseteq V$ es compacto y $A=f^{-1}(B)$, entonces para cada conjunto abierto $U_0$ tal que $A\subseteq U_0\subseteq U$, existe un conjunto abierto $V_0$ tal que $B\subseteq V_0\subseteq V$ y $f^{-1}(V_0)\subseteq U_0$.
+\end{theor}
+
+\begin{proof}
+    Sea $U_0\subseteq U$ abierto tal que $A\subseteq U_0$. Tomemos $C\subseteq V$ compacto tal que $B\subseteq \textup{int}(C)$ y $W=f^{-1}(C)\backslash U_0=f^{-1}(C)\cap U_0^c$, el cual es compacto (por ser la intersección del compacto $f^{-1}(C)$ ya que $f$ es propio, con el cerrado $U_0^c$). Como $f$ es continua, entonces $f(W)$ es compacto.
+    
+    Veamos que $f(W)$ y $B$ son disjuntos. En efecto, suponga que tienen intersección no vacía. Sea $x\in f(W)\cap B$, entonces existe $y\in W$ tal que $x=f(y)$ donde $y\in f^{-1}(C)\backslash U_0$, es decir $x=f(y)\in C$ y en $B$ pero no en $U_0$.
+
+    Pero $f^{-1}(B)\subseteq U_0$, por lo cual $B\subseteq f(U_0)$, así como $x\in B$, también $x\in U_0$, que es una contradicción. Por tanto, $f(W)\cap B=\emptyset$.
+    
+    Sea
+    \begin{equation*}
+        V_0=\textup{int}(C)\backslash f(W)
+    \end{equation*}
+    Claramenet $V_0$ es abierto (por ser la intersección de dos abiertos), además como $f(W)\cap B=\emptyset$ se sigue que $B\subseteq V_0$ (pues, $\textup{int}(C)$ contiene a $B$), y es subconjunto de $V$. Además
+    \begin{equation*}
+        \begin{split}
+            x\in f^{-1}(V_0)&\Rightarrow f(x)\in V_0\\
+            &\Rightarrow f(x)\in \textup{int}(C)\backslash f(W)\\
+            &\Rightarrow f(x)\in \textup{int}(C)\textup{ y } f(x)\notin f(W)\\
+            &\Rightarrow f(x)\in \textup{int}(C)\textup{ y } x\notin W\\
+            &\Rightarrow f(x)\in \textup{int}(C)\textup{ y } x\notin f^{-1}(C)\backslash U_0\\
+            &\Rightarrow f(x)\in C\textup{ y } x\in f^{-1}(C)^c\cup U_0\\
+            &\Rightarrow f(x)\in C\textup{ y } x\in f^{-1}(C^c)\cup U_0\\
+            &\Rightarrow f(x)\in C\textup{ y, } f(x)\in C^c\textup{ o }x\in U_0\\
+            &\Rightarrow x\in U_0\\
+        \end{split}
+    \end{equation*}
+    Por tanto, $f^{-1}(V_0)\subseteq U_0$.
+\end{proof}
 
 \setcounter{section}{5}
 \setcounter{theor}{10}
@@ -286,7 +321,7 @@ Para la demostración del teorema, se requieren de unos resultados anteriores. E
         \sup_{x\in\mathbb{R}^n}\abs{\phi(x)-\psi(x)}<\varepsilon
     \end{equation*}
 
-    \end{proof}
+\end{proof}
 
 Con la prueba de este teorema hecha, se procederá a probar el siguiente lema:
 
@@ -339,7 +374,47 @@ Con esto, se procederá con la prueba de algunos resultados.
 \end{theor}
 
 \begin{proof}
+    Probaremos primero que $f^{-1}(q)$ es finito. Sea $p\in f^{-1}(q)$. Como $q$ es un valor regular de $f$ entonces $p\in C_f$, donde $C_f$ denota al conjunto de todos los puntos críticos de $f$. Por lo cual
+    \begin{equation*}
+        \det(Df(p))\neq0
+    \end{equation*}
+    luego, por el teorema de la función inversa existen vecindades $p\in U_p$ de $U$ y $q\in V_q$ de $V$ tales que $f|_{U_p}$ es difeomorfismo de $U_p$ en $V_q$.
+
+    Considere la familia de estas vecindades dada por
+    \begin{equation*}
+        \left\{U_p|p\in f^{-1}(q)\right\}
+    \end{equation*}
+    Claramente esta familia de subconjuntos de $U$ forman una cubierta abierta de $f^{-1}(q)$. Como $f$ es propio, el conjunto $f^{-1}(q)$ es compacto, luego existen $p_1,\dots,p_N\in U$ tales que
+    \begin{equation*}
+        f^{-1}(q)\subseteq\bigcup_{i=1}^{N}U_{p_i}
+    \end{equation*}
+    Como las reestricciones de $f$ a los $U_{p_i}$ son biyectivas, $p_i$ es el único punto tal que $f$ lo mapea a $q$, para todo $i=1,\dots,N$. Por lo cual debido a la contención anterior se sigue que
+    \begin{equation*}
+        f^{-1}(q)=\left\{p_1,\dots,p_N\right\}
+    \end{equation*}
     
+    Sin pérdida de generalidad, podemos suponer que los $U_{p_i}$ son disjuntos a pares y conexos. En caso de que no lo sean, podemos tomar bolas abiertas conexas disjuntas a pares centradas en cada $p_i$ contenidas en cada $U_{p_i}$ (pues $\mathbb{R}^n$ es Hausdorff y las bolas abiertas son conexas). Por el Teorema 3.4.7 existe una vecindad $W'$ de $q$ en $V$ para la cual
+    \begin{equation*}
+        f^{-1}(W')\subseteq\bigcup_{i=1}^{N}U_{p_i}
+    \end{equation*}
+    si $W'$ no es conexa, tomando a $W\subseteq W'$ como una bola abierta centrada en $q$ contenida en $W'$, se sigue que
+    \begin{equation*}
+        f^{-1}(W)\subseteq\bigcup_{i=1}^{N}U_{p_i}
+    \end{equation*}
+    donde $W$ es conexa.
+
+    Tomemos $U_i=f^{-1}(W)\cap U_{p_i}$, para cada $i=1,\dots,N$. Estos conjuntos abiertos (lo son, pues $f$ es continua y por ende $f^{-1}(W)$ es abierto) los podemos tomar como conexos (en caso de no serlo, haceos más pequeñas las vecindades $U_{p_i}$ del tal forma que la intersección con $f^{-1}(W)$ sea conexa). Se cumple que
+
+    \begin{enumerate}
+        \item Los $U_i$ son ajenos a pares, es decir $U_i\cap U_j=\emptyset$ para $i\neq j$.
+        \item Claramente
+        \begin{equation*}
+            f^{-1}(W)=U_1\cup\dots\cup U_N
+        \end{equation*}
+        \item $f|_{U_i}$ es difeomorfismo, para cada $1,\dots,N$.
+    \end{enumerate}
+    
+    Lo cual termina la demostración.
 \end{proof}
 
 \begin{theor}
@@ -349,15 +424,74 @@ Con esto, se procederá con la prueba de algunos resultados.
     \end{equation*}
 \end{theor}
 
+\begin{proof}
+    Sea $\omega$ una $n$-forma con soporte compacto en $W$ tal que
+    \begin{equation*}
+        \int_{W}\omega = 1
+    \end{equation*}
+    Entonces
+    \begin{equation*}
+        \begin{split}
+            \deg(f)&=\int_{U}f^*\omega\\
+            &=\sum_{i=1}^{N}\int_{U_i}f^*\omega\\
+        \end{split}
+    \end{equation*}
+    pues, $f^{-1}(W)=U_1\cup\dots\cup U_N$. Pero como $f|_{U_i}$ es difeomorfismo, para cada $i=1,\dots,N$, entonces se tiene que
+    \begin{equation*}
+        \int_{U_i}f^*\omega=\pm \int_{W}\omega=\pm 1
+    \end{equation*}
+    Siendo $+1$ si $f$ preserva la orientación y $-1$ en caso contrario. Por lo cual
+    \begin{equation*}
+        \deg(f)=\sum_{i=1}^{N}\sigma_{p_i}
+    \end{equation*}
+\end{proof}
+
+\begin{theor}
+    En las condiciones del Teorema 3.6.4, si $\cf{f}{U}{V}$ no es suprayectiva, entonces $\deg(f)=0$.
+\end{theor}
+
+\begin{proof}
+    Afirmamos que $V\backslash f(U)$ es abierto. En efecto, sea $x\in V\backslash f(U)\neq \emptyset$ pues $f$ no es suprayectiva. Entonces como $x\notin f(U)$, se tiene que $f^{-1}(x)=\emptyset=A$. Como $f$ es un mapeo propio continuo, por el Teorema 3.4.7 para $U_0=\emptyset$ existe un abierto $V_0\subseteq V$ tal que $x\in V_0$ y $f^{-1}(V_0)\subseteq U_0=\emptyset$. Es decir, que $f^{-1}(V_0)=\emptyset$, por tanto $V_0\subseteq V\backslash f(U)$. Por ende $V\backslash f(U)$ es abierto.
+
+    De esta forma, existe una $n$-forma $\omega$ con soporte compacto en $V\backslash f(U)$ tal que
+    \begin{equation*}
+        \int_{V}\omega = 1
+    \end{equation*}
+    Como $\omega$ toma el valor de cero en la imagen de $f$, se sigue que
+    \begin{equation*}
+        0=\int_{U}f^*\omega=\deg(f)\int_{V}\omega = \deg(f)
+    \end{equation*}
+\end{proof}
+
+Con estos teoremas a la mano, se procederá con la prueba de la siguiente proposición.
+
 \begin{propo}
-    Sea $U\subseteq \mathbb{R}^n$ abierto conexo y $\cf{f}{U}{U}$ un mapeo propio $C^{\infty}$. Entonces si $f|_{C^c}=\textup{id}_{C^c}$ donde $C\subseteq\mathbb{R}^n$ es compacto, entonces $f$ es propio y $\deg(f)=1$.
+    Sea $U\subseteq \mathbb{R}^n$ abierto conexo y $\cf{f}{U}{U}$ un mapeo $C^{\infty}$. Entonces si $f|_{C^c}=\textup{id}_{C^c}$ donde $C\subseteq\mathbb{R}^n$ es compacto, entonces $f$ es propio y $\deg(f)=1$.
 \end{propo}
 
 \begin{proof}
-    Claramente $f$ es un mapeo propio (pues por hipótesis se tiene que es mapeo propio $C^\infty$).
+    Sea $A\subseteq U$. Veamos que $f^{-1}(A)\subseteq A\cup C$. Si $f^{-1}(A)=\emptyset$, el resultado es inmediato. Suponga que es no vacío, si $x\in f^{-1}(A)$, entonces $f(x)\in A$.
+
+    Tenemos dos casos: si $x\notin C$ entonces como $f$ es la identidad en el complemento de $C$ se sigue que $x = f(x)\in A$. Por tanto, $x\in A\cup C$. Así $f^{-1}(A)\subseteq A\cup C$.
+
+    Si $A$ es compacto, entonces $f^{-1}(A)\subseteq A\cup C$ es cerrado (pues la imagen inversa de cerrados es cerrado, por ser $f$ continua) y es acotado (ya que $A$ y $C$ son compactos, en particular su unión lo es, luego $f^{-1}(A)$ es acotado), luego compacto. Por tanto, $f$ es un mapeo propio.
+    
+    Para la otra parte, como $C\subseteq U$ es compacto, entonces $U\backslash f(C)$ es no vacío, pues $f(C)\subseteq U$ es compacto, entonces debe existir al menos un elemento $x\in U$ tal que $x\notin f(C)$. Se cumple para este elemento que $f^{-1}(x)=\left\{x\right\}$, pues $x\notin f(C)$. Además es valor regular de $f$ ya que
+    \begin{equation*}
+        Df(x)=\textup{id}_{\mathbb{R}^n}
+    \end{equation*}
+    
+    Por el Teorema 3.6.3 existe una vecindad conexa $U_1$ de $x$ contenida en $U$ y una vecindad abierta conexa $W$ también de $x$ tal que
+    \begin{equation*}
+        f^{-1}(W)=U_1
+    \end{equation*}
+    siendo $f|_{U_1}$ difeomorfismo. En particular como es una vecindad de $x$ y $Df(x)=\textup{id}_{\mathbb{R}^n}$ entonces $f$ debe preservar la orientación, por lo cual
+    \begin{equation*}
+        \deg(f)=\sum_{i=1}^{1}1=1
+    \end{equation*}
 \end{proof}
 
-Denotemos por $B^n$ a la bola unitaria en $\mathbb{R}^n$, es decir, se denota al conjunto
+Procedamos ahora con la prueba del teorema del punto fijo. Denotemos por $B^n$ a la bola unitaria en $\mathbb{R}^n$, es decir, se denota al conjunto
 \begin{equation*}
     \begin{split}
         B^n=&\left\{x\in\mathbb{R}^n|\|x\|\leq 1\right\}.\\
@@ -377,7 +511,7 @@ Denotemos por $B^n$ a la bola unitaria en $\mathbb{R}^n$, es decir, se denota al
     \begin{equation*}
         s\mapsto f(x)+s\left(x-f(x)\right),\quad \forall s\in[0,\infty[
     \end{equation*}
-    En esencia, $l_x$ es el rayo que une a $x$ con $f(x)$, y es prolongado en la dirección de $x$. Afirmamos que para $x\in B^n$ existe $s_0\in[0,\infty[$ tal que $\|l_x(s_0)\|=1$, es decir, que este rayo tiene un punto en $\partial B^n=S^{n-1}$, donde
+    En esencia, $l_x$ es el rayo que une a $f(x)$ con $x$, y es prolongado en la dirección de $x$. Afirmamos que para $x\in B^n$ existe $s_0\in[0,\infty[$ tal que $\|l_x(s_0)\|=1$, es decir, que este rayo tiene un punto en $\partial B^n=S^{n-1}$, donde
     \begin{equation*}
         S^{n-1}=\left\{x\in\mathbb{R}^n|\|x\|=1\right\}
     \end{equation*}
@@ -391,10 +525,12 @@ Denotemos por $B^n$ a la bola unitaria en $\mathbb{R}^n$, es decir, se denota al
             \geq&1
         \end{split}
     \end{equation*}
-    pues $0\leq \|f(x)\|\leq 1 \Rightarrow -1\leq \|f(x)\|\leq 0$. Tomando $s_1=\frac{2}{\|x-f(x)\|}$, se sigue que $\|l_x(s_1)\|\geq 1$ y $\|l_x(0)\|=\|f(x)\|\leq 1$. Por ser $l_x$ continua y $[0,\infty[$ conexo, entonces existir $s_0\in[0,s_1]$ tal que $\|l_x(s_0)\|=1$. Pero la función $l_x$ es inyectiva, por tanto este $s_0$ es único.
+    pues $0\leq \|f(x)\|\leq 1 \Rightarrow -1\leq \|f(x)\|\leq 0$. Tomando $s_1=\frac{2}{\|x-f(x)\|}$, se sigue que $\|l_x(s_1)\|\geq 1$ y $\|l_x(0)\|=\|f(x)\|\leq 1$. Por ser $l_x$ continua y $[0,\infty[$ conexo, entonces existir $s_0\in[0,s_1]$ tal que $\|l_x(s_0)\|=1$.
 
     \begin{obs}
-    De ahora en adelanta $s_0(x)$ denotara al único elemento de $[0,\infty[$ tal que $l_x(s_0(x))=1$.
+        Tenemos dos casos, en caso de que haya dos de estos puntos, elegimos el máximo de ambos (este caso sucede cuando $x$ y $f(x)$ tienen ambos norma 1, para evitar el conflicto tomamos al mayor, es decir tal que $l_x(s_0)=x$, ya que el rayo parte desde $f(x)$ y luego pasa por $x$). Esto se hace para que en los puntos de la frontera, la función $\gamma$ definida más adelante tome sea la identidad en esta región. 
+
+        De ahora en adelante $s_0(x)$ denotara al único elemento (y en caso de no ser único, al mayor) de $[0,\infty[$ tal que $l_x(s_0(x))=1$.
     \end{obs}
 
     Definamos $\cf{\gamma}{B^n}{S^{n-1}}$, $x\mapsto l_x(s_0)$. Por lo anterior esta función está bien definida. Veamos que es continua. Sea $x_0\in B^n$, $\varepsilon>0$ y $S=\max\left\{s_0(x),s_0(x_0)\right\}\geq0$. Como $f$ es continua en $x_0$ existe $\delta'>0$ si $x\in B^n$ con $\|x-x_0\|\leq\delta'$, entonces
@@ -417,6 +553,39 @@ Denotemos por $B^n$ a la bola unitaria en $\mathbb{R}^n$, es decir, se denota al
     \end{equation*}
     Por tanto, $\gamma$ es continua en $x_0$. Por ser el $x_0$ arbitrario se sigue que $\gamma$ es continua en $B^n$.
 
+    Extendamos esta función a $\mathbb{R}^n$ haciendo que $\gamma(x)=x$, para todo $x\in\mathcal{C}$, donde
+    \begin{equation*}
+        \mathcal{C}=\left\{x\in\mathbb{R}^n|\|x\|\geq1\right\}
+    \end{equation*}
+    Como $\gamma$ coincide con la identidad en la frontera de $B^n=S^{n-1}$ y es continua en $B^n$ y $\mathcal{C}$ (pues en $\mathcal{C}$ es la identidad), por el teorema del pegado, $\gamma$ es continua en $\mathbb{R}^n$. Además esta función es $C^\infty$ en el complemento de $B^n$ (el cual es un conjunto compacto), luego las funciones componentes $\gamma_i$, $i=1,\dots,n$ también son $C^\infty$ en el complemento de $B^n$ y continuas en $\mathbb{R}^n$.
+    Sea $\varepsilon>0$ y tomemos $\varepsilon'=\min\left\{\frac{1}{2},\varepsilon\right\}>0$, por el Lema 3.6.15, para cada $i=1,\dots,n$ existe una función $\cf{g_i}{\mathbb{R}^n}{\mathbb{R}}$ tal que $\gamma_i-g_i$ tiene soporte compacto y
+    \begin{equation*}
+        \abs{\gamma_i(x)-g_i(x)}<\varepsilon'\leq1,\quad\forall x\in\mathbb{R}^n
+    \end{equation*}
+    Sea $\cf{g}{\mathbb{R}^n}{\mathbb{R}^n}$ la función que tiene por funciones componentes las $g_i$. Esta función es $C^\infty$ y cumple que
+    \begin{equation*}
+        \begin{split}
+            &\|\gamma(x)-g(x)\|_{\infty}< \varepsilon'\leq1\\
+            \Rightarrow &\|\gamma(x)-g(x)\|< \varepsilon'\leq1,\quad\forall x\in\mathbb{R}^n\\
+        \end{split}
+    \end{equation*}
+    (pues la bola euclideana está contenida en el cubo de mismo radio), donde la función $\gamma-g$ tiene soporte compacto (pues cada una de las funciones componentes lo tiene). Por tanto, existe un conjunto $\mathcal{D}\subseteq\mathbb{R}^n$ compacto en el cual $\gamma(x)=g(x)$ para todo $x\in\mathcal{D}^c$, sea $\mathcal{A}=B^n\cup\mathcal{D}$. $\mathcal{A}$ es compacto (por ser la unión de dos compactos) y $g$ coincide con la identidad en $\mathcal{A}^c$, entonces por la Proposición 3.6.1 $g$ es propio y $\deg(g)=1$.
+    
+    Por otra parte, si $x\in\mathbb{R}^n$, se tienen dos casos:
+    \begin{enumerate}
+        \item $x\in\mathcal{A}^c$, en este caso $g(x)=\gamma(x)=x$, por ende como $x\notin B^n$ se sigue que $\|g(x)\|\geq1>1-\varepsilon'$.
+        \item $x\in\mathcal{A}$, en este caso como $\|\gamma(x)\|\geq1$ se sigue que
+        \begin{equation*}
+            \begin{split}
+                \|\gamma(x)\|-\|g(x)\|&\leq\|g(x)-\gamma(x)\|\\
+                &<\varepsilon'\\
+                \Rightarrow \|\gamma(x)\|-\varepsilon'&<\|g(x)\|\\
+                \Rightarrow 1-\varepsilon'&<\|g(x)\|\\
+            \end{split}
+        \end{equation*}
+    \end{enumerate}
+    Es decir, $\|g(x)\|>0$, para todo $x\in\mathbb{R}^n$, por lo cual $0\notin \textup{im}(g)$, es decir $g$ no es suprayectiva. Por tanto, por el Teorema 3.6.6 se tiene que $\deg(g)=0$, lo cual contradice el hecho de que $\deg(g)=1$.
+    Así, existe al menos un $x\in B^n$ tal que $f(x_0)=x_0$.
 \end{proof}
 
 \end{document}
