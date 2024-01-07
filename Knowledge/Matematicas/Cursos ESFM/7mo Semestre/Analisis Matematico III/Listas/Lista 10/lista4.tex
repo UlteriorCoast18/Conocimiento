@@ -196,7 +196,18 @@
     \end{excer}
 
     \begin{proof}
-        
+		Primero veamos que las funciones $x\mapsto \frac{-e^{i\lambda}x^a}{(e^{i\lambda}x+1)^2}$ y $x\mapsto \frac{ax^{a-1}}{e^{i\lambda}x+1}$ son integrables en $[0,\infty[$. En efecto, notemos que
+		\begin{equation*}
+			\begin{split}
+				\abs{\frac{ax^{a-1}}{e^{i\lambda}x+1}}&=\frac{\abs{ax^{a-1}}}{\abs{e^{i\lambda}x+1}}\\
+				&=\frac{ax^{a-1}}{\abs{x\left(\cos(\lambda)+i\sen(\lambda)\right)+1}}\\
+				&=\frac{ax^{a-1}}{\abs{x\cos(\lambda)+1+ix\sen(\lambda)}}\\
+				&=\frac{ax^{a-1}}{\sqrt{x^2\cos^{2}(\lambda)+2x\cos(\lambda)+1+x^2\sen^{2}(\lambda)}}\\
+				&=\frac{ax^{a-1}}{\sqrt{x^2+2x\cos(\lambda)+1}}\\
+                &=\frac{ax^{a-1}}{\sqrt{x^2+2x\cos(\lambda)+1}}\\
+			\end{split}
+		\end{equation*}
+		
     \end{proof}
 
     \begin{excer}
@@ -440,7 +451,7 @@
     \end{excer}
 
     \begin{proof}
-        Sea $A$ un conjunto despreciable, es decir $m\left(a\right)=0$.
+        Sea $A$ un conjunto despreciable, es decir $m\left(\right)=0$ y sea $\varepsilon>0$. Como $f$ es absolutmente continua, entonces para todo
     \end{proof}
 
     \begin{excer}

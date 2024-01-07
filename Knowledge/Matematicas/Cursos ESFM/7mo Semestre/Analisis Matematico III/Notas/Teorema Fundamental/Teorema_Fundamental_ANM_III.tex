@@ -1,0 +1,136 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\square$}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\newtheoremstyle{largebreak}
+	{}% use the default space above
+	{}% use the default space below
+	{\normalfont}% body font
+	{}% indent (0pt)
+	{\bfseries}% header font
+	{}% punctuation
+	{\newline}% break after header
+	{}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[leftmargin=0em,rightmargin=0em,innertopmargin=-2pt,innerbottommargin=8pt,hidealllines = true,roundcorner = 5pt,backgroundcolor = gray!60!red!30]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[leftmargin=0em,rightmargin=0em,innertopmargin=-2pt,innerbottommargin=8pt,hidealllines = true,roundcorner = 5pt,backgroundcolor = gray!50!blue!30]{obs}{Observación}[section]
+
+\newmdtheoremenv[leftmargin=0em,rightmargin=0em,innertopmargin=-2pt,innerbottommargin=8pt,rightline = false,leftline = false]{theor}{Teorema}[section]
+
+\newmdtheoremenv[leftmargin=0em,rightmargin=0em,innertopmargin=-2pt,innerbottommargin=8pt,rightline = false,leftline = false]{propo}{Proposición}[section]
+
+\newmdtheoremenv[leftmargin=0em,rightmargin=0em,innertopmargin=-2pt,innerbottommargin=8pt,rightline = false,leftline = false]{cor}{Corolario}[section]
+
+\newmdtheoremenv[leftmargin=0em,rightmargin=0em,innertopmargin=-2pt,innerbottommargin=8pt,rightline = false,leftline = false]{lema}{Lema}[section]
+
+\newmdtheoremenv[leftmargin=0em,rightmargin=0em,innertopmargin=-2pt,innerbottommargin=8pt,roundcorner=5pt,backgroundcolor = gray!30,hidealllines = true]{mydef}{Definición}[section]
+
+\newmdtheoremenv[leftmargin=0em,rightmargin=0em,innertopmargin=-2pt,innerbottommargin=8pt,roundcorner=5pt]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+	\title{Notas Teorema Fundamental del Cálculo}
+	\author{Cristo Daniel Alvarado}
+	\today
+	\maketitle
+	\tableofcontents %Con este comando se genera el índice general del libro%
+	\setcounter{chapter}{0} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+	\chapter{Teorema Fundamental del Cálculo}
+	\section{Segundo Teorema Fundamental del Cálculo}
+
+	\begin{theor}[\textbf{Segundo Teorema Fundamental del Cálculo}]
+		Sea $\cf{F}{[a,b]}{\mathbb{K}}$ si y sólo si existe $F'(x)$ para casi toda $x\in [a,b]$, la función $F'$ es integrable en $[a,b]$ y se cumple que
+		\begin{equation*}
+			\int_{{a}}^{{x}} {F'(x)} \: d{x}={F(x)-F(a)},\quad \forall x\in [a,b]
+		\end{equation*}
+		
+	\end{theor}
+
+	\begin{cor}
+		Si $\cf{f}{[a,b]}{\mathbb{K}}$ es continua en $[a,b]$ y $ \cf{F}{[a,b]}{\mathbb{K}}$ es una primitiva de $f$, entonces
+		\begin{equation*}
+			\int_{{a}}^{{b}} {f(t)} \: d{t}={F(x)\big|_{x=a}^{x=b}}={F(b)-F(a)}
+		\end{equation*}
+		
+	\end{cor}
+	
+	\begin{theor}[\textbf{Fórmula de Integración por partes para el cálculo de integrales}]
+		Si $F$ y $G$ son funciones absolutamente continuas en $[a,b]$, entonces $FG$ también lo es en $[a,b]$, y
+		\begin{equation*}
+			\int_{{a}}^{{b}} {F(x)G'(x)} \: d{x} = {F(x)G(x)\big|_{x=a}^{x=b}-\int_{{a}}^{{b}} {F'(x)G(x)} \: d{x}}			
+		\end{equation*}
+		
+	\end{theor}
+
+	\begin{obs}
+		En particular, el Teorema anterior se cumple si $F'$ y $G'$ son continuas, es decir que $F$ y $G$ son de clase $C^1$.
+	\end{obs}
+	
+	\section{Cálculo de integrales en invervalos abiertos}
+
+	\begin{theor}[\textbf{Primer Teorema Fundamental para intervalos abiertos}]
+		Se $\cf{f}{I}{\mathbb{R}}$ donde $I$ es un intervalo abierto (que puede o no ser acotado), localmente integrable y sea $\gamma\in I$ fijo.
+		Entonces la intgral indefinida $\cf{F}{I}{\mathbb{K}}$, $F(x)=\int_{{\gamma}}^{{x}} {f(t)} \: d{t}$, para todo $x\in I$ es continua en $I$, diferenciable c.t.p. en $I$, y
+		\begin{equation*}
+			F'(x)=f(x),\quad\textup{ c.t.p. en }I
+		\end{equation*}
+		
+	\end{theor}
+
+	\begin{cor}[Fórmula para integrales por partes para primitivas]
+			
+	\end{cor}
+	
+
+	\begin{mydef}
+		Sea $\cf{f}{I}{\mathbb{K}}$ con $I$ intervalo abierto (acotado o no). Entonces $f$ es \textbf{absolutamente continua} si lo es en todo subintervalo compacto contenido en $I$.
+	\end{mydef}
+	
+	\begin{propo}
+		Si $\cf{f}{I}{\mathbb{K}}$ es de clase $C^1$ en $I$ (siendo $I$ un intervalo abierto), entonces $f$ es absolutamente continua en $I$.
+	\end{propo}
+	
+	\begin{theor}
+	Sea $\cf{F}{I}{\mathbb{K}}$ con $I$ un intervalo abierto, y sea $\gamma\in I$. Entonces $F$	es absolutamente continua en $I$, si y sólo si, existe $F'(x)$ para casi toda $x\in I$, $F'$ está definida c.t.p. en $I$, es localmente integrable en $I$, y
+	\begin{equation*}
+		\int_{{\gamma}}^{{x}} {F'(t)} \: d{t}={F(x)-F(\gamma)\quad \forall x\in I}
+	\end{equation*}
+	
+	\end{theor}
+
+	\begin{theor}[\textbf{Segundo Teorema Fundamental del Cálculo, 1° Versión}]
+		
+	\end{theor}
+	
+
+	\begin{theor}[\textbf{Segundo Teorema Fundamental del Cálculo, 2° Versión}]
+		
+	\end{theor}
+	
+
+\end{document}
+
