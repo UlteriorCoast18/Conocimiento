@@ -491,7 +491,92 @@
         \end{equation*}
         es decir, $F(a_0,a_1,\dots,a_{m-1},\alpha)/F$ es una extensión separable, en particular se tiene que $\alpha$ es separable sobre $F$. Por ser el $\alpha$ arbitrario en $E$, se sigue que $E/F$ es una extensión separable.
 
-        De (b):
+        De (b): 
     \end{proof}
+
+    %Falta de campos acabar esto y más cosas
+
+    \begin{theor}
+        Todo campo finito es perfecto.
+    \end{theor}
+
+    \section{Extesiones puramente inseparables}
+
+    \begin{mydef}
+        Sea $E/F$ una extensión de campos con $\car(F)=p>0$ y $\alpha\in E$. Decimos que $\alpha$ \textbf{es puramente inseparable} si existe $t\in \mathbb{Z}$, $t\geq 0$ tal que $\alpha^{p^t}\in F$.
+        La extensión $E/F$ \textbf{es p.i.} si todo elemento de $E$ es p.i. sobre $F$.
+    \end{mydef}
+
+    \begin{obs}
+        Si $E/F$ es una extensión de campos, entonces todos los elementos de $F$ son p.i. (separables) sobre $F$. 
+    \end{obs}
+
+    \begin{propo}
+        Sea $E/F$ una extensión de campos con $\car(F)=p>0$. Sea
+        \begin{equation*}
+            K:=\left\{\alpha\in E|\alpha\textup{ es puramente inseparable sobre }F\right\}
+        \end{equation*}
+        (por la observación anterior, $K\neq \emptyset$). Entonces, $K$ es subcampo de $E$ que contiene a $F$.
+    \end{propo}
+
+    \begin{proof}
+        Es claro que $K\neq \emptyset$ y $F\subseteq K \subseteq E$. Sean $\alpha, \beta\in K$, y $t_1,t_2\in \mathbb{Z}_{\geq0}$ tales que
+        \begin{equation*}
+            \alpha^{p^t_1},\beta^{p^t_2}\in F
+        \end{equation*}
+        Sea $t=\max\left\{t_1,t_2\right\}$. Por lo cual $\alpha^{p^t},\beta^{p^t}\in F$, así
+        \begin{equation*}
+            \begin{split}
+                \left(\alpha-\beta\right)^{p^t}&=\alpha^{p^t}-\beta^{p^t}\in F\\
+                \left(\alpha\beta\right)^{p^t}&=\alpha^{p^t}\beta^{p^t}\in F\\
+                \left(\alpha^{-1}\right)^{p^t}&=\left(\alpha^{p^t}\right)^{-1}\in F\textup{ donde $\alpha\neq0$}
+            \end{split}
+        \end{equation*}
+        por lo cual $K$ es campo intermedio de la extensión $E/F$.
+    \end{proof}
+
+    \begin{propo}
+        Sea $E/F$ una extensión algebraica, con $\car(F)=p>0$. Sea $S\subseteq E$ tal que $E=F(S)$. Entonces, las siguientes condiciones son equivalentes:
+        
+        \begin{enumerate}
+            \item $E/F$ es puramente inseparable.
+            \item Todo elemento de $S$ es puramente inseparable sobre $F$.
+            \item Los elementos de $E$ que son puramente inseparables y separables sobre $F$ son exactamente los de $F$.
+            \item Si $\phi:E\rightarrow \Bar{F}$ es un $F$-homomorfismo, entonces $\phi(\alpha)=\alpha$, para todo $\alpha\in E$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        $(1)\Rightarrow(2)$: Es inmediato.
+
+        $(2)\Rightarrow(3)$: Sea $\alpha\in E$ tal que es puramente inseparable sobre $F$ y separable sobre $F$, y $e\in\mathbb{Z}_{\geq0}$ el exponente de inseparablilidad de $\alpha$ sobre $F$.
+
+        Tenemos que $\alpha^{p^e}$ es separable sobre $F$ (por una proposición anterior). Por otro lado, sea $t\in\mathbb{Z}_{\geq0}$ tal que $\alpha^{p^e}\in F$. Podemos suponer que $t\geq e$. Luego, $\alpha$ es raíz del polinomio $g(X)=X^{p^t}-\alpha^{p^t}=(X-\alpha)^{p^t}$, por lo cual $f(X)|g(X)$, donde $f(X)=\irr(\alpha,F,X)$.
+
+        Así $f(x)=(X-\alpha)^{p^t}$. Como $\alpha$ es separable sobre $F$, se tiene que $e=0$, es decir que $f(X)=X-\alpha\in F[X]$, en particular, $\alpha\in F$.
+
+        $(3)\Rightarrow(4)$: Sea $\phi:E\rightarrow\Bar{F}$ un $F$-homomorfismo arbitrario, y $\alpha\in E$, con $e\in\mathbb{Z}_{\geq0}$ su exponente de inseparabilidad. Sabemos que $\alpha^{p^e}$ es separable sobre $F$. Por hipótesis, $\alpha^{p^e}\in F$. Por lo cual
+        \begin{equation*}
+            \begin{split}
+                \phi(\alpha^{p^e})&=\alpha^{p^e}\\
+                \Rightarrow (\phi(\alpha)-\alpha)^{p^e}=\left(\phi\alpha^{p^e}\right)-\alpha^{p^e}&=0\\
+                \Rightarrow \phi(\alpha)&=\alpha\\
+            \end{split}
+        \end{equation*} 
+
+        $(4)\Rightarrow(1)$: sea $\alpha\in E$ arbitrario. Probaremos que existe $t\in\mathbb{Z}_{\geq0}$ tal que $\alpha^{p^t}\in F$. Sea $\beta\in\bar{F}$ un $F$-conjugado de $\alpha$. Sabemos que existe un $F$-isomorfismo $\psi:F(\alpha)\rightarrow F(\beta)$ tal que $\psi(\alpha)=\beta$. Extendemos $\psi$ a un $F$-homomorfismo $\phi:E\rightarrow \Bar{F}$. Por hipótesis, se tiene que $\phi(\gamma)=\gamma$, para todo $\gamma\in E$, en particular $\beta = \psi(\alpha)=\phi(\alpha)=\alpha$. Luego, si $e\in\mathbb{Z}_{\geq0}$ es el exponente de inseparabilidad de $\alpha$, entonces
+        \begin{equation*}
+            \begin{split}
+                f(X)=&\irr(\alpha,F,X)\\
+                =&(X-\alpha)^{p^e}\\
+                =&X^{p^e}-\alpha^{p^e}\in F[X]\\
+            \end{split}
+        \end{equation*}
+        por tanto $\alpha^{p^e}\in F$. Luego $\alpha$ es p.i. sobre $F$.
+    \end{proof}
+
+    \begin{mydef}
+        Si $E/F$ es una extensión algebraica con $\car(F)=p>0$, entonces la \textbf{cerradura puramente inseparable} de la extensión $E/F$ es el campo intermedio de todos los elementos $\alpha\in R$ tal que son puramente inseparables sobre $F$.
+    \end{mydef}
 
 \end{document}
