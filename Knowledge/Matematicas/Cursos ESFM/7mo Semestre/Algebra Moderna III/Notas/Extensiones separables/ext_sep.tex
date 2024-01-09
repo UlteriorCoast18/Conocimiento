@@ -21,6 +21,8 @@
 
 %En esta parte se definen los comandos a usar dentro del documento para enlistar%
 
+\newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
+
 \newtheoremstyle{largebreak}
   {}% use the default space above
   {}% use the default space below
@@ -491,14 +493,74 @@
         \end{equation*}
         es decir, $F(a_0,a_1,\dots,a_{m-1},\alpha)/F$ es una extensión separable, en particular se tiene que $\alpha$ es separable sobre $F$. Por ser el $\alpha$ arbitrario en $E$, se sigue que $E/F$ es una extensión separable.
 
-        De (b): 
+        De (b): Sean $E/F$ y $K/F$ extensiones separables, dónde $E/F$ es separable y, $E$ y $K$ subcampos de un campo común $L$. Como $K(E)=KE$, entonce basta ver que  los elementos de $E$ son separables sobre $K$, lo cual ya se tiene.
+
+        Entonces, $KE/F$ es una extensión separable.
     \end{proof}
 
-    %Falta de campos acabar esto y más cosas
+    \begin{cor}
+        Sean $E/F$ y $K/F$ extensiones separables, con $E$ y $K$ subcamopos de un campo común $L$. Entonces, $KE/F$ es separable.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato de la proposición teorema.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $F$ un campo. Se dice que \textbf{$F$ es perfecto} si toda extensión algebraica de $F$ es separable.
+    \end{mydef}
+
+    \begin{obs}
+        Todo campo de caracterísitica $0$ es perfecto (ya que toda extensión algebraica de un campo con caracterísica $0$ sigue teniendo característica $0$, es decir que la extensión siempre va a ser separable).
+    \end{obs}
+
+    \begin{mydef}
+        Sea $F$ campo de caracerística $p>0$. Sea $n\in\mathbb{N}$. Se define la función $\phi_n:F\rightarrow F$, $\alpha\mapsto\alpha^{p^n}$.
+
+        Se tiene que $\phi_n$ es un homomorfismo, llamado \textbf{el homomorfismo de Fröbenius de grado $n$}. Para $n=1$ se dice simplemente que $\phi_1$ es el homomorfismo de Fröbenius, y se denota por $\phi$.
+    \end{mydef}
+
+    \begin{theor}
+        Sea $F$ un campo de caracterísitca $p>0$. Las siguientes condiciones son equivalentes:
+        \begin{enumerate}
+            \item $F$ es perfecto.
+            \item Toda extensión finita de $F$ es separable.
+            \item Todo polinomio irreducible sobre $F$ es separable.
+            \item Todo polinomio sobre $F$ es separable.
+            \item El homomorfismo de Fröbenius es un automorfismo de $F$.
+        \end{enumerate}
+    \end{theor}
+    
+    \begin{proof}
+        $(1)\Rightarrow(2)$: Es inmediato.
+        
+        $(2)\Rightarrow(3)$: Sea $f(X)\in F[X]\backslash F$ irreducible y sea $\alpha\in\bar{F}$ una raíz de $f(X)$. Por hipótesis, $F(\alpha)$ es una extensión separable de $F$, luego $\alpha$ es separable sobre $F$. Como $f(X)$ es asociado con $\irr(\alpha, F, X)$, entonces $f$ es separable sobre $F$.
+
+        $(3)\iff(4)$: Es inmediato.
+
+        $(4)\Rightarrow(5)$: Es claro que $\cf{\phi}{F}{F}$ es un monorfismo. Sea $\alpha\in F$ y considérese $f(X)=X^p-\alpha\in F[X]$. Sea $\beta\in\bar{F}$ una raíz de $f(X)$ y sea $g(X)=\irr(\beta,F,X)$, el cual es separable y divide a $f(X)$. Pero $f(X)=X^p-\alpha^p=(X-\alpha)^p$, así $\beta$ es la única raíz de $f(X)$, por lo que también lo es de $g(X)$. Por tanto, $g(X)=X-\beta\in F[X]$.
+
+        Luego, $\beta\in F$. Así pues, $\phi$ es suprayectiva, luego es un automorfismo de $F$.
+
+        $(5)\Rightarrow(1)$: Sea $E/F$ una extensión algebraica. Sean $\alpha\in E$ y $f(X)=\irr(\alpha, F, X)$, cuyas raíces tienen multiplicidad $p^e$, con $e\in\mathbb{Z}_{\geq0}$, siendo $e$ el exponente de inseparabilidad de $\alpha$. Suponiendo que $e\geq1$, entonces $\alpha$ es raíz múltiple de $f(X)$, por lo que existe $g(x)\in F[X]$ tal que $f(X)=g(X^p)$. Sea
+        \begin{equation*}
+            g(X)=b_0+b_1X+\cdots+b_mX^m
+        \end{equation*}
+        
+        Por hipótesis, para todo $i\in\left\{0,\dots,m\right\}$ existe $c_i\in F$ tal que $b_i=c_i^p$. Pero, esto implica que
+        \begin{equation*}
+            f(X)=c_0^p+c_0^pX^p+\cdots c_m^pX^{mp}=\left(c_0+c_1X+\cdots+c_mX^m\right)^p
+        \end{equation*}
+        lo cual contradice el hecho de que $f(X)$ sea irredicible. Por tanto, $e=0$, luego $\alpha$ es separable sobre sobre $F$ y, en consecuencia, $E/F$ es una extensión separable.
+    \end{proof}
 
     \begin{theor}
         Todo campo finito es perfecto.
     \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
 
     \section{Extesiones puramente inseparables}
 
