@@ -113,6 +113,7 @@
 
 \newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
 \newcommand\divides{\ensuremath{\bigm|}}
+\newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -288,6 +289,9 @@
         Sea $U\subseteq M$ abierto. Si $F:U\rightarrow F(U)\subseteq\mathbb{R}^n$ es un difeomorfismo sobre su imagen, entonces $(U,F)$ es una carta en el atlas de $M$.
     \end{propo}
 
+    \setcounter{chapter}{7}
+    \chapter{El Espacio Tangente}
+
     \section{Vectores Tangentes}
 
     %Checar página 87 (o 106) del Introduction to differential forms
@@ -309,43 +313,142 @@
         llamada \textbf{derivada direccional de $f$ en la dirección de $\alpha'(0)$}.
     \end{mydef}
 
+    Para dar la definición de vector tangente, tenemos que retomar el concepto de de \textbf{germen} de una función $C^\infty$. Lo hacemos tomando una función $\cf{f}{M}{\mathbb{R}}$ y un punto $p\in M$. Decimos que $\cf{g}{M}{\mathbb{R}}$ es equivalente a $f$, si coinciden en una vecindad de $p$.
+
+    El conjunto de gérmenes de funciones reales $C^\infty$ en un punto $p\in M$ es denotado por $C_p^\infty(M)$. Esta es un algebra sobre $\mathbb{R}$.
+
+    Generalizando la derivación en un punto en $\mathbb{R}^n$, definimos la \textbf{derivación en un punto en una variedad $M$}, o \textbf{derivación puntual de $C_p^\infty(M)$} que sea un mapeo lineal $\cf{D}{C_p^\infty(M)}{\mathbb{R}}$ tal que
+    \begin{equation*}
+        D(fg)=(Df)g(p)+f(p)Dg
+    \end{equation*}
+
+    \begin{mydef}
+        Sea $M$ una variedad suave. Un \textbf{vector tangente en un punto $p\in M$} es una derivación en $p$.
+    \end{mydef}
+
+    Retomando la parte de la derivada direccional, tomemos una carta $(\phi, U)$ tal que $p\in U$. Tenemos entonces que
+
+    \begin{equation}
+        \begin{split}
+            \alpha'(0)[f]&=\frac{d}{dt}(f\circ\alpha)(t)\Big|_{t=0}\\
+            &=\frac{d}{dt}(f\circ\phi^{-1}\circ\phi\circ\alpha)(t)\Big|_{t=0}\\
+            &=\frac{d}{dt}((f\circ\phi^{-1})\circ(\phi\circ\alpha))(t)\Big|_{t=0}\\
+            &=\sum_{i=1}^{n}\frac{d}{dr^i}(f\circ\phi^{-1})\Big|_{\phi(p)}\cdot \frac{dr^i}{dt}\Big|_{t=0}
+        \end{split}
+    \end{equation}
+    pues, en este caso vemos que $\cf{\phi\circ\alpha}{I}{\mathbb{R}^n}$, tal que $t\mapsto (r^1(t),\dots,r^n(t))$ ($r^i$ son las funciones coordenadas de $\mathbb{R}^n$), para todo $t\in I$, donde $\cf{\phi}{U}{\mathbb{R}^n}$.
+    
+    De esta forma, se tiene que
+    \begin{equation*}
+        \begin{split}
+            \alpha'(0)[f]&=\sum_{i=1}^{n}\frac{d}{dr^i}(f\circ\phi^{-1})\Big|_{\phi(p)}\cdot \frac{dr^i}{dt}\Big|_{t=0}
+        \end{split}
+    \end{equation*}
+
+    definimos las coordenadas locales de la variedad $M$ en la carta $(\phi, U)$, como:
+
+    \begin{equation*}
+        x^i:=\cf{r^i\circ\phi}{U}{\mathbb{R}}
+    \end{equation*}
+
+    de esta forma, se sigue que
+
+    \begin{equation*}
+        \frac{\partial}{\partial x^i}\Big|_{p}f=\frac{\partial}{\partial r^i}\Big|_{\phi}f\circ\phi^{-1}\in\mathbb{R}
+    \end{equation*}
+
+    de esta forma, (6.1) es escribe como:
+
+    \begin{equation*}
+        \alpha'(0)[f]=\sum_{i=1}^{n}\frac{\partial}{\partial x^i}\Big|_{p}f\cdot\frac{dr^i}{dt}\Big|_{t=0}
+    \end{equation*}
+
+    (de alguna forma, lo que se hace es definir la derivación de una función en dirección de una curva sobre la variedad). Podemos ver entonces a $\frac{\partial}{\partial x^i}\Big|_{p}$ como un operador lineal que va de $C_p^{\infty}(M)$ en $\mathbb{R}$. es decir, es una derivación.
+
+    \begin{obs}
+        Airmamos que $d\phi^{-1}_{\phi(p)}(\frac{\partial}{\partial r^i}\Big|_{\phi(p)})=\frac{\partial}{\partial x^i}\Big|_{p}$.
+    \end{obs}
+
+    \begin{proof}
+        No se probará, pues no se entendió en lo absoluto lo que hizo el profesor.
+    \end{proof}
+
+    De ahora en adelante, no habrá defininciones formales, simplemente se intenta dar una idea breve de lo que sucede para llegar a formas diferenciales sobre variedades.
+
+    \begin{obs}
+        Con estas ideas, afirmamos que
+        \begin{equation*}
+            \frac{\partial}{\partial x^i}\Big|_{p}x^j=\delta_{ij}
+        \end{equation*}
+    \end{obs}
+
+    \begin{proof}
+        En efecto, observemos que
+        \begin{equation*}
+            \begin{split}
+                \frac{\partial}{\partial x^i}x^j&=\frac{\partial}{\partial r^i}\Big|_{\phi(p)}(x^j\circ\phi^{-1})\\
+                &=\frac{\partial}{\partial r^i}\Big|_{\phi(p)}(r^j\circ\phi\circ\phi^{-1})\\
+                &=\frac{\partial}{\partial r^i}\Big|_{\phi(p)}(r^j)\\
+                &=\frac{\partial r^j}{\partial r^i}\Big|_{\phi(p)}\\
+                &=\delta_{ij}\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \section{El diferencial de un mapeo}
+
+    \begin{mydef}
+        Sea $\cf{F}{N}{M}$ un mapeo $C^\infty$ entre dos variedades suaves. Para cada punto $p\in N$, el mapeo $F$ induce un mapeo lineal entre espacios tangentes, llamado \textbf{su diferencial en $p$}, dado como
+        \begin{equation*}
+            F_*:T_pN\rightarrow T_{F(p)}M
+        \end{equation*}
+        como sigue. Si $X_p\in T_pN$, entonces $F_*(X_p)$ es el vector tangente en $T_{F(p)}M$ definido por
+        \begin{equation}
+            (F_*(X_p))[f]:=X_p[f\circ F]\in\mathbb{R},\quad\textup{para }f\in C_{F(p)}^\infty(M)
+        \end{equation}
+        Aquí, $f$ es un gérmen en $F(p)$, representado por una función $C^\infty$ en una vecindad de $F(p)$. En la ecuación (8.2), la definición es independiente del gérmen y el representante de la función (cosa que se tiene que probar en el siguiente ejercicio)
+    \end{mydef}
+
+    \begin{excer}
+        Pruebe que $F_*(X_p)$ es una derivación en $F(p)$ y que el mapeo $F_*:T_pN\rightarrow T_{F(p)}M$ es lineal.
+    \end{excer}
+
+    \setcounter{propo}{8}
+
     \begin{propo}
-        
+        Sea $(U,\phi)=(U,x^1,\cdots,x^n)$ una carta alrededor de un punto $p\in M$, siendo $M$ una variedad. Entonces
+        \begin{equation*}
+            \phi_*\left(\frac{\partial}{\partial x^i}\Big|_{p}\right)=\frac{\partial}{\partial r^i}\Big|_{\phi(p)}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Sea $f\in C_{\phi(p)}^\infty$, entonces
+        \begin{equation*}
+            \begin{split}
+                \phi_*\left(\frac{\partial}{\partial x^i}\Big|_{p}\right)f\\
+                &=\frac{\partial}{\partial x^i}\Big|_{p}(f\circ\phi)\\
+                &=\frac{\partial}{\partial r^i}\Big|_{\phi(p)}(f\circ\phi\circ\phi^{-1})\\
+                &=\frac{\partial}{\partial r^i}\Big|_{\phi(p)}f\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \begin{propo}
+        Si $(U,\phi)$ es una carta que contiene a $p\in M$, entonces el espacio tangente $T_pM$ tiene como base
+        \begin{equation*}
+            \frac{\partial}{\partial x^1}\Big|_p,\dots,\frac{\partial}{\partial x^n}\Big|_p
+        \end{equation*}
+    \end{propo}
+
+    \begin{propo}[\textbf{Matriz de transición para vectores coordenados}]
+        Dadas cartas $(U,\phi)=(U,x^1,\dots,x^n)$ y $(V,\psi)=(V,y^1,\dots,y^n)$ sobre una variedad $M$ tales que $U\cap V\neq \emptyset$, entonces
+        \begin{equation*}
+            \frac{\partial}{\partial x^j}=\sum_{i=1}^n\frac{\partial y^i}{\partial x^j}\frac{\partial}{\partial y^i},\quad \forall j\in\left\{1,\dots,n\right\}
+        \end{equation*}
+        en $U\cap V$.
     \end{propo}
 
     \newpage
-
-
-    \begin{theor}[Nombre]
-        Teorema
-    \end{theor}
-
-    \begin{propo}[Nombre]
-        Proposición
-    \end{propo}
-
-    \begin{cor}[Nombre]
-        Corolario
-    \end{cor}
-
-    \begin{lema}[Nombre]
-        Lema
-    \end{lema}
-
-    \begin{mydef}[Nombre]
-        Definición
-    \end{mydef}
-
-    \begin{obs}[Nombre]
-        Observación
-    \end{obs}
-
-    \begin{exa}[Nombre]
-        Ejemplo
-    \end{exa}
-
-    \begin{excer}[Nombre]
-        Ejercicio
-    \end{excer}
 
 \end{document}

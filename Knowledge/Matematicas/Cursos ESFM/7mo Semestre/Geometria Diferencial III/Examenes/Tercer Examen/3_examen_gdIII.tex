@@ -243,8 +243,46 @@
         \begin{equation*}
             F(x,y)=(u,v)=(x^2+y^2,xy)
         \end{equation*}
-        Compute $F^*(udu+vdv)$.
+        Compute $F^*(u\:du+v\:dv)$.
     \end{excer}
+
+    \begin{proof}
+        Como el pullback es lineal, se tiene entonces que
+        \begin{equation*}
+            F^*(u\:du+v\:dv)=F^*(u\:du)+F^*(v\:dv)
+        \end{equation*}
+        Determinemos $F^*(u\:du)$ y $F^*(v\:dv)$.
+        \begin{enumerate}
+            \item Veamos que
+            \begin{equation*}
+                \begin{split}
+                    F^*(u\:du)&=F^*(u\wedge du)\\
+                    &=(F^*u)\wedge(F^*du)\\
+                    &=(F^*u)\wedge d(F^*u)\\
+                \end{split}
+            \end{equation*}
+            pues, podemos ver a la $1$-forma $u\:du$ como el producto wedge de una $0$-forma con una $1$-forma. De esta forma, por propiedades del pullback, se sigue la primera y segunda igualdad. Para la tercera, se cumple ya que el producto wedge conmuta con la diferencial exterior.
+            
+            Computemos $F^*u$:
+
+            \begin{equation*}
+                \begin{split}
+                    F^*u&=u\circ F
+                \end{split}
+            \end{equation*}
+            es decir, $F^*u$ es la función de $\mathbb{R}^2$ en $\mathbb{R}$ tal que $(x,y)\mapsto u\circ F(x,y)=u(x^2+y^2,xy)=x^2+y^2$. De esta forma, se tiene que
+            \begin{equation*}
+                \begin{split}
+                    d(F^*u)&=d(x^2+y^2)\\
+                    &=\frac{\partial }{\partial x}(x^2+y^2)\:dx+\frac{\partial }{\partial y}(x^2+y^2)\:dy\\
+                    &=2x\:dx+2y\:dy\\
+                    \Rightarrow d(F^*u)&=2x\:dx+2y\:dy\\
+                \end{split}
+            \end{equation*}
+            \item Como en el inciso (I), se tiene que
+            \item 
+        \end{enumerate}
+    \end{proof}
 
     \newpage
 
