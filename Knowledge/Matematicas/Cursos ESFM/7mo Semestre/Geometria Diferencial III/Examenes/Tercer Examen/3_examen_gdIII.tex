@@ -1,0 +1,315 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\square$}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \title{Tercer Examen Geometría Diferencial III}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Examen}
+    
+    \renewcommand{\theenumi}{\roman{enumi}}
+    \renewcommand{\labelenumi}{{(\theenumi)}}
+
+    \section{Ejercicio 1}
+
+    \begin{excer}[\textbf{Pullback de una forma diferencial}]
+        Considere $U\subseteq ]0,\infty[\times]0,\pi[\times]0,2\pi[$ abierto en el espacio $(\rho, \phi, \theta)$ de $\mathbb{R}^3$. Defina $\cf{f}{F}{\mathbb{R}^3}$ dada como
+        \begin{equation*}
+            (x,y,z)=F(\rho,\phi,\theta)=(\rho\sin\phi\cos\theta,\rho\sin\phi\sin\theta,\rho\cos\phi)
+        \end{equation*}
+        pruebe que $F^*(dx\wedge dy\wedge dz)=\rho^2\sin\phi\:d\rho\wedge d\phi\wedge d\theta$.
+    \end{excer}
+
+    \begin{proof}
+        Primeramente, veamos que
+        \begin{equation*}
+            F^*(dx\wedge dy\wedge dz)=F^*dx\wedge F^*dy\wedge F^*dz
+        \end{equation*}
+        pues $F$ es un mapeo $C^\infty$ entre las variedades $U$ y $\mathbb{R}^2$. Por la Proposición 18.11 se sigue la identidad de arriba.
+        Pero, el producto wedge conmuta con la diferencial exterior, por lo cual
+        \begin{equation}
+            F^*dx=d(F^*x),\quad F^*dy=d(F^*y)\quad\textup{y }F^*dz=d(F^*z)
+        \end{equation}
+        siendo $\cf{x,y,z}{\mathbb{R}^3}{\mathbb{R}}$ las funciones coordenadas de $\mathbb{R}^3$. Con esto en mente, analicemos cada una de las diferenciales exteriores de (1.1).
+        \begin{enumerate}
+            \item Notemos que $F^*x=x\circ F$, por lo cual
+            \begin{equation*}
+                \begin{split}
+                    d(F^*x)&=d(x\circ F)\\
+                    &=d(F_1)\\
+                \end{split}
+            \end{equation*}
+            donde $\cf{F_1}{U}{\mathbb{R}}$ es la función tal que $((\rho,\phi,\theta))\mapsto x\circ F((\rho,\phi,\theta))=\rho\sin\phi \cos\theta$, para todo $(\rho,\phi,\theta)\in U$. Por lo cual
+            \begin{equation*}
+                \begin{split}
+                    d(F^*x)&=d(\rho\sin\phi\cos\theta)\\
+                    &=\frac{\partial}{\partial\rho}(\rho\sin\phi\cos\theta)d\rho+\frac{\partial}{\partial\phi}(\rho\sin\phi\cos\theta)d\phi+\frac{\partial}{\partial\theta}(\rho\sin\phi\cos\theta)d\theta\\
+                    &=\sin\phi\cos\theta d\rho+\rho\cos\phi\cos\theta d\phi-\rho\sin\phi\sin\theta d\theta\\
+                    \Rightarrow d(F^*x)&=\sin\phi\cos\theta d\rho+\rho\cos\phi\cos\theta d\phi-\rho\sin\phi\sin\theta d\theta\\
+                \end{split}
+            \end{equation*}
+            \item De forma similar al inciso (I), se tiene que
+            \begin{equation*}
+                \begin{split}
+                    d(F^*y)&=d(y\circ F)\\
+                    &=d(F_2)\\
+                \end{split}
+            \end{equation*}
+            donde $\cf{F_2}{U}{\mathbb{R}}$ es la función tal que $((\rho,\phi,\theta))\mapsto y\circ F((\rho,\phi,\theta))=\rho\sin\phi \sin\theta$, para todo $(\rho,\phi,\theta)\in U$. Luego
+            \begin{equation*}
+                \begin{split}
+                    d(F^*y)&=d(\rho\sin\phi\sin\theta)\\
+                    &=\frac{\partial}{\partial\rho}(\rho\sin\phi\sin\theta)d\rho+\frac{\partial}{\partial\phi}(\rho\sin\phi\sin\theta)d\phi+\frac{\partial}{\partial\theta}(\rho\sin\phi\sin\theta)d\theta\\
+                    &=\sin\phi\sin\theta d\rho+\rho\cos\phi\sin\theta d\phi+\rho\sin\phi\cos\theta d\theta\\
+                    \Rightarrow d(F^*y)&=\sin\phi\sin\theta d\rho+\rho\cos\phi\sin\theta d\phi+\rho\sin\phi\cos\theta d\theta\\
+                \end{split}
+            \end{equation*}
+            \item De forma similar al inciso (I), se tiene que
+            \begin{equation*}
+                \begin{split}
+                    d(F^*z)&=d(z\circ F)\\
+                    &=d(F_3)\\
+                \end{split}
+            \end{equation*}
+            donde $\cf{F_3}{U}{\mathbb{R}}$ es la función tal que $((\rho,\phi,\theta))\mapsto z\circ F((\rho,\phi,\theta))=\rho\cos\phi$, para todo $(\rho,\phi,\theta)\in U$. Luego
+            \begin{equation*}
+                \begin{split}
+                    d(F^*z)&=d(\rho\cos\phi)\\
+                    &=\frac{\partial}{\partial\rho}(\rho\cos\phi)d\rho+\frac{\partial}{\partial\phi}(\rho\cos\phi)d\phi+\frac{\partial}{\partial\theta}(\rho\cos\phi)d\theta\\
+                    &=\cos\phi d\rho-\rho\sin\phi d\phi\\
+                    \Rightarrow d(F^*z)&=\cos\phi d\rho-\rho\sin\phi d\phi\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+        Por los tres incisos anteriores, se sigue que
+        \begin{multline*}
+            F^*(dx\wedge dy\wedge dz)=(\sin\phi\cos\theta d\rho+\rho\cos\phi\cos\theta d\phi-\rho\sin\phi\sin\theta d\theta)\\ \wedge(\sin\phi\sin\theta d\rho+\rho\cos\phi\sin\theta d\phi+\rho\sin\phi\cos\theta d\theta) \wedge(\cos\phi d\rho-\rho\sin\phi d\phi)
+        \end{multline*}
+        Computemos $(\sin\phi\sin\theta d\rho+\rho\cos\phi\sin\theta d\phi+\rho\sin\phi\cos\theta d\theta)\wedge(\cos\phi d\rho-\rho\sin\phi d\phi)$:
+        \begin{multline*}
+            (\sin\phi\sin\theta d\rho+\rho\cos\phi\sin\theta d\phi+\rho\sin\phi\cos\theta d\theta)\wedge(\cos\phi d\rho-\rho\sin\phi d\phi)\\
+            =(\rho\cos^2\phi\sin\theta d\phi\wedge d\rho+\rho \sin\phi\cos\phi\cos\theta d\theta\wedge d\rho)+(-\rho \sin^2\sin\theta\phi d\rho\wedge d\phi-\rho^2\sin^2\phi\cos\theta d\theta\wedge d\phi)\\
+            =(-\rho\cos^2\phi\sin\theta d\rho\wedge d\phi-\rho \sin\phi\cos\phi\cos\theta d\rho\wedge d\theta)+(-\rho \sin^2\phi\sin\theta d\rho\wedge d\phi+\rho^2\sin^2\phi\cos\theta d\phi\wedge d\theta)\\
+            =-\rho\sin\theta d\rho\wedge d\phi-\rho \sin\phi\cos\phi\cos\theta d\rho\wedge d\theta+\rho^2\sin^2\phi\cos\theta d\phi\wedge d\theta
+        \end{multline*}
+        luego,
+        \begin{multline*}
+            \Rightarrow(\sin\phi\cos\theta d\rho+\rho\cos\phi\cos\theta d\phi-\rho\sin\phi\sin\theta d\theta)\\ \wedge(\sin\phi\sin\theta d\rho+\rho\cos\phi\sin\theta d\phi+\rho\sin\phi\cos\theta d\theta) \wedge(\cos\phi d\rho-\rho\sin\phi d\phi)\\
+            =(\sin\phi\cos\theta d\rho+\rho\cos\phi\cos\theta d\phi-\rho\sin\phi\sin\theta d\theta)\\
+            \wedge(-\rho\sin\theta d\rho\wedge d\phi-\rho \sin\phi\cos\phi\cos\theta d\rho\wedge d\theta+\rho^2\sin^2\phi\cos\theta d\phi\wedge d\theta)\\
+            =\rho^2\sin\phi\sin^2\theta d\theta\wedge d\rho\wedge d\phi-\rho^2\sin\phi\cos^2\phi\cos^2\theta d\phi\wedge d\rho\wedge d\theta
+            +\rho^2\sin^3\phi\cos^2\theta d\rho\wedge d\phi\wedge d\theta\\
+            =\rho^2\sin\phi\sin^2\theta d\rho\wedge d\phi\wedge d\theta
+            +\rho^2\sin\phi\cos^2\phi\cos^2\theta d\rho\wedge d\phi\wedge d\theta
+            +\rho^2\sin^3\phi\cos^2\theta d\rho\wedge d\phi\wedge d\theta\\
+            =\rho^2\sin\phi\sin^2\theta d\rho\wedge d\phi\wedge d\theta
+            +\rho^2\sin\phi\cos^2\theta\left[\cos^2\phi+\sin^2\phi\right]d\rho\wedge d\phi\wedge d\theta\\
+            =\rho^2\sin\phi\sin^2\theta d\rho\wedge d\phi\wedge d\theta
+            +\rho^2\sin\phi\cos^2\theta d\rho\wedge d\phi\wedge d\theta\\
+            =\rho^2\sin\phi\left[\sin^2\theta+\cos^2\theta\right] d\rho\wedge d\phi\wedge d\theta\\
+            =\rho^2\sin\phi \:d\rho\wedge d\phi\wedge d\theta\\
+        \end{multline*}
+        por tanto
+        \begin{equation*}
+            F^*(dx\wedge dy\wedge dz)=\rho^2\sin\phi\:d\rho\wedge d\phi\wedge d\theta
+        \end{equation*}
+    \end{proof}
+
+    \newpage
+
+    \section{Ejercicio 2}
+
+    \begin{excer}[\textbf{Pullback de una forma diferencial}]
+        Sea $\cf{F}{\mathbb{R}^2}{\mathbb{R}^2}$ la función dada por
+        \begin{equation*}
+            F(x,y)=(u,v)=(x^2+y^2,xy)
+        \end{equation*}
+        Compute $F^*(udu+vdv)$.
+    \end{excer}
+
+    \newpage
+
+    \section{Ejercicio 3}
+
+    \begin{excer}[\textbf{Pullback de una forma diferencial por una curva}]
+        Sea $\omega$ la $1$-forma dada por
+        \begin{equation*}
+            \omega = \frac{-ydx+xdy}{x^2+y^2}
+        \end{equation*}
+        en $\mathbb{R}^2\backslash\left\{0\right\}$. Defina $\cf{c}{\mathbb{R}}{\mathbb{R}^2}$, $t\mapsto (\cos t,\sin t)$. Compute $c^*\omega$.
+    \end{excer}
+
+    \newpage
+
+    \renewcommand{\theenumi}{\alph{enumi}}
+    \renewcommand{\labelenumi}{{(\theenumi)}}
+
+    \section{Ejercicio 4}
+
+    \begin{excer}[\textbf{Una forma que no se desvanece sobre una hypersuperficie suave}]
+        Resuelva los siguientes incisos.
+        \begin{enumerate}
+            \item Sea $f(x,y)$ una función $C^\infty$ en $\mathbb{R}^2$ y asuma que $0$ es valor regular de $f$. Por el teorema del valor regular, el conjunto cero $M$ de $f(x,y)$ es una subvariedad $1$-dimensional de $\mathbb{R}^2$. Construya una $1$-forma que no se anula en $M$.
+            \item Sea $f(x,y,z)$ una función $C^\infty$ en $\mathbb{R}^3$ y asuma que $0$ es valor regular de $f$. Por el teorema del valor regular, el conjunto cero $M$ de $f(x,y,z)$ es una subvariedad $2$-dimensional de $\mathbb{R}^3$. Sean $f_x$, $f_y$ y $f_z$ las derivadas parciales de $f$ con respecto a $x$, $y$ y $z$, respectivamente. Muestre que las igualdades
+            \begin{equation*}
+                \frac{dx\wedge dy}{f_z}=\frac{dy\wedge dz}{f_x}=\frac{dz\wedge dx}{f_y}
+            \end{equation*}
+            son válidas en $M$ siempre y cuando estas tengan sentido, y por tanto juntas dan una $2$-forma sobre $M$ que no se desvanece en ninguna parte.
+            \item Generalice este problema al conjunto de nivel regular de $f(x^1,\dots,x^{n+1})$ en $\mathbb{R}^{n+1}$.
+        \end{enumerate}
+    \end{excer}
+
+    \newpage
+
+    \begin{theor}[Nombre]
+        Teorema
+    \end{theor}
+
+    \begin{propo}[Nombre]
+        Proposición
+    \end{propo}
+
+    \begin{cor}[Nombre]
+        Corolario
+    \end{cor}
+
+    \begin{lema}[Nombre]
+        Lema
+    \end{lema}
+
+    \begin{mydef}[Nombre]
+        Definición
+    \end{mydef}
+
+    \begin{obs}[Nombre]
+        Observación
+    \end{obs}
+
+    \begin{exa}[Nombre]
+        Ejemplo
+    \end{exa}
+
+    \begin{excer}[Nombre]
+        Ejercicio
+    \end{excer}
+
+\end{document}
