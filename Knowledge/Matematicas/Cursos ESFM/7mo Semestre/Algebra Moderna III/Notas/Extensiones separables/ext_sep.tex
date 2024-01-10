@@ -638,11 +638,119 @@
     \end{proof}
 
     \begin{mydef}
-        Si $E/F$ es una extensión algebraica con $\car(F)=p>0$, entonces la \textbf{cerradura puramente inseparable} de la extensión $E/F$ es el campo intermedio de todos los elementos $\alpha\in R$ tal que son puramente inseparables sobre $F$.
+        Si $E/F$ es una extensión algebraica con $\car(F)=p>0$, entonces la \textbf{cerradura puramente inseparable} de la extensión $E/F$ o de $E$ en $F$, es el campo intermedio de todos los elementos $\alpha\in R$ tal que son puramente inseparables sobre $F$.
     \end{mydef}
 
     \begin{obs}
         Si $E/F$ es finita, entonces $E/F$ es p.i. $\iff$ $[E:F]_S=1$.
+    \end{obs}
+
+    \begin{obs}
+        Sea $E/F$ una extensión algebraica la cual es p.i. y separable. Entonces, tenemos que $E=F$.
+    \end{obs}
+
+    \begin{theor}
+        La clase de extensiones p.i. forman una clase distinguida.
+    \end{theor}
+
+    \begin{proof}
+        (a): Sea $F\subseteq K\subseteq E$ una torre de campos con $\car(F)=p>0$. Supóngase que $E/F$ es puramente inseparable. Sea $\alpha\in E$, entonces existe $t\in\mathbb{R}_{\geq0}$ tal que $\alpha^{p^t}\in F\subseteq K$, por tanto $E/K$ es puramente inseparable.
+
+        Por otro lado, es claro que todos los elementos de $K$ son p.i. sobre $F$, por lo cual $K/F$ es puramente inseparable.
+
+        Recíprocamente, suponga que $E/K$ y $K/F$ son p.i. Sea $\alpha\in E$ ,entonces existe $r\in\mathbb{Z}_{\geq0}$ tal que $\alpha^{p^r}\in K$. Pero para este elemento existe $s\in\mathbb{Z}_{\geq0}$ tal que $(\alpha^{p^r})^{p^s}\in F$, es decir $\alpha^{p^{r+s}}\in F$. Por tanto, $E/F$ es puramente inseparable.
+
+        (b): Sean $E/F$ y $K/F$ extensiones de campos con $\car(F)=p>0$, donde $E$ y $K$ son subcampos de un campo común $L$. Supóngase que la extensión $E/F$ es p.i. Probaremos que la extensión $EK/K$ es p.i.
+        
+        Tenemos que $EK=K(E)$. Si $\alpha\in E$, entonces existe $t\in\mathbb{Z}_{\geq0}$ tal que $\alpha^{p^t}\in F\subseteq K$. Por tanto, $EK/K$ es p.i.
+
+        Por (a) y (b), se sigue que la clase de extensiones p.i. es una clase distinguida.
+    \end{proof}
+
+    \begin{cor}
+        Sean $E/F$ y $K/F$ extensiones de campos tales que $\car(F)=p>0$, donde $K$ y $E$ son subcampos de un campo común $L$. Si $E/F$ y $K/F$ son p.i., entonces $EK/F$ es p.i.  
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato del teorema anterior.
+    \end{proof}
+
+    Sea $E/F$ una extensión algebraica con $\car(F)=p>0$, y sean $F_i$ y $F_s$ las cerraduras p.i. y separables, respectivamente. Entonces tenemos el siguiente diagrama:
+
+
+    donde $F_i\cap F_s=F$.
+
+    \begin{propo}
+        En las condiciones de las notaciones anteriores, tenemos lo siguiente
+        \begin{enumerate}
+            \item $E/F_s$ es p.i.
+            \item $E/F_i$ es separable si y sólo si $E=F_iF_s$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): Sea $\alpha\in E$, y $e\in\mathbb{Z}_{\geq0}$ su expontente de inseparabilidad sobre $F$. Sabemos que $\alpha^{p^e}$ es separable sobre $F$, por lo cual $\alpha\in F_s$. De esta forma, $E/F_s$ es puramente inseparable.
+
+        De (2):
+
+        $\Rightarrow)$: Supóngase que $E/F_i$ es separable, entonces $E/F_iF_s$ es separable y p.i., por lo cual $E=F_iF_s$.
+
+        $\Leftarrow)$: Es inmediata.
+    \end{proof}
+
+    \begin{propo}
+        Sea $F$ un campo cualquiera tal que $\car(F)=p>0$. Sea $\bar(F)$ su cerradura algebraica y $F_i$ la cerradura p.i. de $F$ en $\bar{F}$. Tenemos lo siguiente
+        \begin{enumerate}
+            \item El campo $F_i$ es perfecto.
+            \item $F_i\cap F_s=F$ y $F_iF_s=\bar{F}$, dónde $F_s$ es la cerradura separable de $F$ en $\bar{F}$.
+            \item Si $K$ es un campo perfecto tal que $F\subseteq K$, con $K\subseteq\bar{F}$, entonces $F_i\subseteq K$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): Probemos que $F_i^p=F_i$, donde
+        \begin{equation*}
+            F_i^p=\left\{\alpha^p|\alpha\in F_i\right\}
+        \end{equation*}
+        ya se tiene que $F_i^p\subseteq F_i$. Sea $\alpha\in F_i$, y $\beta\in \bar{F}$ tal que $\alpha=\beta^p$. Luego, existe $t\in\mathbb{Z}_{\geq0}$ tal que $\beta^{p^{t+1}}=\alpha^{p^t}\in F$, por lo cual $\beta\in F_i$. Asi $\alpha=\beta^p\in F_i$.
+
+        Por tanto, $F_i=F_i^p$. Luego, $F_i$ es un campo perfecto.
+
+        De (2): Ya sabemos que $F_i\cap F_s=F$. Para la otra igualdad, como $F_i$ es un campo perfecto, entonces la extensión $\bar{F}/F_i$ es separable, lo cual implica que $F_iF_s=\bar{F}$.
+
+        De (3): Sea $K$ un campo intermedio de la extensión $\bar{F}/F$ el cual es perfecto. Probemos que $F_i\subseteq K$. Sea $\alpha\in F_i$. Consideremos la extensión $K(\alpha)/K$, esta extensión es separable; por otro lado, existe un elemento $t\in\mathbb{Z}_{\geq0}$ tal que $\alpha^{p^t}\in F\subseteq K$, luego la extensión $K(\alpha)/K$ es p.i., así $K(\alpha)=K$ lo cual implica que $\alpha\in K$.
+
+        Por ende, $F_i\subseteq K$.
+    \end{proof}
+
+    \begin{cor}
+        Sea $F$ un campo con $\car(F)=p>0$. Entonces, la intersección de cualquier familia de subcampos de $\bar{F}$ que contienen a $F$ es un campo perfecto.
+    \end{cor}
+
+    \begin{proof}
+            Es inmediata.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $E/F$ una extensión finita arbitraria. Se define \textbf{el grado de inseparabilidad de la extensión $E/F$} como:
+        \begin{equation*}
+            [E:F]_i:=\frac{[E:F]}{[E:F]_s}
+        \end{equation*}
+        
+        Notemos que si $\car(F)=0$, entonces $[E:F]_i=1$. Si $\car(F)=p>0$, entonces $[E:F]_i=p^t$, para algún $t\in\mathbb{Z}_{\geq0}$.
+    \end{mydef}
+
+    \begin{obs}
+        Sea $E/F$ una extensión finita. Si $K$ es un campo intermedio de la extensión $E/F$, entonces
+        \begin{equation*}
+            [E:F]_i=[E:K]_i\cdot[K:F]_i
+        \end{equation*}
+        
+        Si $E/F$ es una extensión finita con $\car(F)=p>0$, entonces $E/F$ es p.i. si y sólo si $[E:F]=[E:F]_i$.
+    \end{obs}
+
+    \begin{obs}
+        Sea $E/F$ una extensión finita con $\car(F)=p>0$. Si $p\nmid [E:F]$ entonces $[E:F]_i=1$, es decir la extensión $E/F$ es separable.
     \end{obs}
 
 \end{document}
