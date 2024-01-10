@@ -12,6 +12,8 @@
 \usepackage{enumerate}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
@@ -205,7 +207,114 @@
         Sea $M$ un espacio localmente euclideano. 
     \end{proof}
 
+    \begin{obs}
+        Si $M$ y $N$ son variedades suaves, entonces $M\times N$ con su topología producto es una variedad suave.
+    \end{obs}
+
+    \begin{propo}
+        Si $\left\{(U_{\alpha},\phi_{\alpha})\right\}$ y $\left\{(V_\beta,\psi_\beta)\right\}$ son atlas para $M$ y $N$, respectivamente, entonces
+        \begin{equation*}
+            \left\{(U_\alpha\times V_\beta,\phi_\alpha\times\psi_\beta:U_\alpha\times V_\beta\rightarrow M\times N)\right\}
+        \end{equation*}
+        es un atlas para $M\times N$.
+    \end{propo}
+
+    \begin{exa}
+        $T^2=S^1\times S^1$. Y el $n$-toro $T^n=\underbrace{S^1\times S^1}_{\textup{n-veces}}$ son ejemplos de variedades suaves.
+    \end{exa}
+
+    \setcounter{chapter}{5}
+
+    \chapter{Funciones suaves sobre una variedades}
+
+    \section{Introducción}
+
+    \begin{mydef}
+        Sea $M$ una variedad de dimensión $n$. Una función $f:M\rightarrow \mathbb{R}$ se dice que \textbf{es una función $C^\infty$ en $p\in M$} si existe una carta $(U,\phi)$ que contenga a $p$ tal que $f\circ \phi^{-1}$ es $C^\infty$ en $\phi(p)$. La función $f$ se dice que es \textbf{$C^\infty$ en $M$} si es $C^\infty$ en cada punto de $M$.
+    \end{mydef}
+
+    \begin{figure}
+        \includegraphics[scale = 0.75]{f_suaves.png}
+        \centering
+        \caption{Función $C^\infty$.}
+    \end{figure}
+
+    Notemos que la definición de suavidad de una función $f$ en u punto es independiente de de la carta $(U,\phi)$, pues si $f\circ \phi^{-1}$ es $C^\infty$ en $\phi(p)$ y $(V,\psi)$ es otra carta sobre $p\in M$, entonces en $\psi(U\cap V)$:
+
+    \begin{equation*}
+        f\circ \psi^{-1}=(f\circ\phi^{-1})\circ(\phi\circ\psi^{-1})
+    \end{equation*}
+
+    las cual es $C^\infty$ en $\psi(p)$.
+
+    Se denota al conjunto de \textbf{la funciones suaves sobre una variedad suave $M$} por:
+
+    \begin{equation*}
+        C^\infty(M)=\left\{\textup{conjunto de todas las funciones $C^\infty$ sobre $M$}\right\}
+    \end{equation*}
+
+    Sean $M^m$ y $N^n$ variedades suaves, $h\in C^\infty(M)$ y $F:N\rightarrow M$ funciones. Se define el \textbf{pullback de $h$ bajo $F$} como la función
+
+    \begin{equation*}
+        F^*h=h\circ F
+    \end{equation*}
+
+    \begin{mydef}
+        Sean $M$ y $N$ variedades suaves  de dimensión $n$ y $m$, respectivamente. Una función continua $f:N\rightarrow M$ es \textbf{$C^\infty$ en un punto $p\in N$} si existen cartas $(V,\psi)$ alrededor de $F(p)$ en $M$ y $(U,\phi)$ alrededor de $p$ en $N$ tales que la composición
+        \begin{equation*}
+            \psi \circ F\circ \phi^{-1}
+        \end{equation*}
+        el cual es un mapeo del abierto $\phi(F^{-1}(V)\cap U)$ subcojunto de $\mathbb{R}^n$ y va a $\mathbb{R}^m$, es $C^\infty$ en $\phi(p)$.
+
+        Se die que $F$ \textbf{es $C^\infty$} si es $C^\infty$ en todo punto de $N$. Este es un \textbf{difeomorfismo} si este es biyectivo y tanto $F$ como $F^{-1}$ son $C^\infty$.
+    \end{mydef}
+
+    \begin{figure}
+        \includegraphics[scale = 0.75]{Pullback.png}
+        \centering
+        \caption{Función $F:N\rightarrow M$ entre dos variedades.}
+    \end{figure}
+
+    \begin{exa}
+        Si $(U,F)$ es una carta en el atlas de $M$, entonces $F$ y $F^{-1}$ son $C^\infty$.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, notemos que $U\subseteq\mathbb{R}^n$ abierto es variedad de dimensión $n$. En particular, podemos interpretar a $F$ como el mapeo entre las variedades $U$ y $F(U)$. de forma inmediata se sigue que $F$ es difeomorfismo.
+    \end{proof}
+
+    %Esta es la proposicicón 6.11
+    \begin{propo}
+        Sea $U\subseteq M$ abierto. Si $F:U\rightarrow F(U)\subseteq\mathbb{R}^n$ es un difeomorfismo sobre su imagen, entonces $(U,F)$ es una carta en el atlas de $M$.
+    \end{propo}
+
+    \section{Vectores Tangentes}
+
+    %Checar página 87 (o 106) del Introduction to differential forms
+
+    \begin{mydef}[\textbf{Coordenadas estándar de $\mathbb{R}^n$}]
+        Para cada cada $i=1,\dots,n$, se definen las funciones \textbf{coordenadas estándar de $\mathbb{R}^n$} como
+        \begin{equation*}
+            p=(p_1,\dots, p_n)\mapsto r_i(p)=p_i
+        \end{equation*}
+    \end{mydef}
+
+    Esto se usará para evitar conflictos más adelante con la notación de coordenadas locales sobre una variedad.
+
+    \begin{mydef}[\textbf{Derivada direccional}]
+        Sea $M$ una variedad y $p\in M$. Consideremos $\alpha:I\rightarrow M$ función continua (dónde $I$ es un intervalo conexo tal que $0\in I$) y $f:M\rightarrow \mathbb{R}$ función diferenciable sobre la variedad. Entonces $f\circ \alpha$ es una función de $I$ en $\mathbb{R}$. Se denota por
+        \begin{equation*}
+            \alpha'(0)[f]=\frac{d}{dt}(f\circ\alpha)(t)\Big|_{t=0}
+        \end{equation*}
+        llamada \textbf{derivada direccional de $f$ en la dirección de $\alpha'(0)$}.
+    \end{mydef}
+
+    \begin{propo}
+        
+    \end{propo}
+
     \newpage
+
 
     \begin{theor}[Nombre]
         Teorema

@@ -1,9 +1,9 @@
-PWD /home/ulterior18/Documentos/LaTex/Matematicas/7mo Semestre/Geometria Diferencial III/Notas/Notas Variedades
+PWD /home/ulterior18/Documentos/Knowledge/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Geometria Diferencial III/Notas/Notas Variedades
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/ulterior18/Documentos/LaTex/Matematicas/7mo Semestre/Geometria Diferencial III/Notas/Notas Variedades/n_manifolds_gd_iii.tex
+INPUT /home/ulterior18/Documentos/Knowledge/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Geometria Diferencial III/Notas/Notas Variedades/n_manifolds_gd_iii.tex
 OUTPUT n_manifolds_gd_iii.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
@@ -741,6 +741,7 @@ INPUT /usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 INPUT ./n_manifolds_gd_iii.aux
 INPUT n_manifolds_gd_iii.aux
 INPUT n_manifolds_gd_iii.aux
@@ -812,8 +813,22 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 OUTPUT n_manifolds_gd_iii.toc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT ./images//f_suaves.png
+INPUT ./images//f_suaves.png
+INPUT images//f_suaves.png
+INPUT ./images//f_suaves.png
+INPUT ./images//f_suaves.png
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT ./images//Pullback.png
+INPUT ./images//Pullback.png
+INPUT images//Pullback.png
+INPUT ./images//Pullback.png
+INPUT ./images//Pullback.png
 INPUT n_manifolds_gd_iii.aux
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
