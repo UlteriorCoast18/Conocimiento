@@ -356,6 +356,68 @@
                 c^*\omega=&c^*\left(-\frac{y}{x^2+y^2}\wedge\:dx+\frac{x}{x^2+y^2}\wedge\:dy\right) \\
                 =&c^*\left(-\frac{y}{x^2+y^2}\wedge\:dx\right)+c^*\left(\frac{x}{x^2+y^2}\wedge\:dy\right) \\
                 =&c^*\left(-\frac{y}{x^2+y^2}\wedge\:dx\right)+c^*\left(\frac{x}{x^2+y^2}\wedge\:dy\right) \\
+                =&c^*\left(-\frac{y}{x^2+y^2}\right)\wedge c^*\left(dx\right)+c^*\left(\frac{x}{x^2+y^2}\right)\wedge c^*\left(dy\right) \\
+                =&c^*\left(-\frac{y}{x^2+y^2}\right)\wedge d\left(c^*x\right)+c^*\left(\frac{x}{x^2+y^2}\right)\wedge d\left(c^*y\right) \\
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{enumerate}
+            \item Para el primer elemento se tiene que
+            \begin{equation*}
+                \begin{split}
+                    c^*\left(-\frac{y}{x^2+y^2}\right)&=\left(-\frac{y}{x^2+y^2}\right)\circ c\\
+                \end{split}
+            \end{equation*}
+            por lo cual,
+            \begin{equation*}
+                \begin{split}
+                    c^*\left(-\frac{y}{x^2+y^2}\right)(t)&=\left(-\frac{y}{x^2+y^2}\right)\circ c(t)\\
+                    &=\left(-\frac{y}{x^2+y^2}\right)(\cos t, \sin t)\\
+                    &=-\frac{\sin t}{\cos^2t+\sin^2t}\\
+                    &=-\sin t\\
+                \end{split}
+            \end{equation*}
+            \item Para el segundo se tiene
+            \begin{equation*}
+                \begin{split}
+                    d\left(c^*x\right)&=d\left(x\circ c\right)\\
+                    &=d\left(x(\cos t,\sin t)\right)\\
+                    &=d\left(\cos t\right)\\
+                    &=-\sin t\:dt\\
+                \end{split}
+            \end{equation*}
+            \item Para el tercero se tiene
+            \begin{equation*}
+                \begin{split}
+                    c^*\left(\frac{x}{x^2+y^2}\right)&=\left(\frac{x}{x^2+y^2}\right)\circ c \\
+                \end{split}
+            \end{equation*}
+            por lo cual
+            \begin{equation*}
+                \begin{split}
+                    \left(\frac{x}{x^2+y^2}\right)\circ c(t)&=\left(\frac{x}{x^2+y^2}\right)(\cos t,\sin t)\\
+                    &=\frac{\cos t}{\cos^2t+\sin^2t}\\
+                    &=\cos t\\
+                \end{split}
+            \end{equation*}
+            \item Para el cuarto se tiene
+            \begin{equation*}
+                \begin{split}
+                    d\left(c^*y\right)&=d\left(y\circ c\right)\\
+                    &=d\left(y(\cos t, \sin t)\right)\\
+                    &=d\left(\sin t\right)\\
+                    &=\cos t\:dt\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+        Por los incisos (I)-(IV), se sigue que
+        \begin{equation*}
+            \begin{split}
+                c^*\omega=&c^*\left(-\frac{y}{x^2+y^2}\right)\wedge d\left(c^*x\right)+c^*\left(\frac{x}{x^2+y^2}\right)\wedge d\left(c^*y\right) \\
+                &=(-\sin t)(-\sin t\:dt)+(\cos t)(\cos t\:dt)\\
+                &=\sin^2t\:dt+\cos^2t\:dt\\
+                &=dt\\
+                \Rightarrow c^*\omega=&dt\\
             \end{split}
         \end{equation*}
     \end{proof}
@@ -367,7 +429,7 @@
 
     \section{Ejercicio 4}
 
-    \begin{excer}[\textbf{Una forma que no se desvanece sobre una hypersuperficie suave}]
+    \begin{excer}[\textbf{Una forma que no se desvanece sobre una hípersuperficie suave}]
         Resuelva los siguientes incisos.
         \begin{enumerate}
             \item Sea $f(x,y)$ una función $C^\infty$ en $\mathbb{R}^2$ y asuma que $0$ es valor regular de $f$. Por el teorema del valor regular, el conjunto cero $M$ de $f(x,y)$ es una subvariedad $1$-dimensional de $\mathbb{R}^2$. Construya una $1$-forma que no se anula en $M$.
@@ -380,38 +442,192 @@
         \end{enumerate}
     \end{excer}
 
-    \newpage
+    \begin{proof}
+        Recordemos una proposición y el teorema del valor regular
 
-    \begin{theor}[Nombre]
-        Teorema
-    \end{theor}
+        \setcounter{section}{8}
+        \setcounter{propo}{22}
 
-    \begin{propo}[Nombre]
-        Proposición
-    \end{propo}
+        \begin{propo}
+            Para una función real valuada $\cf{f}{M}{\mathbb{R}}$, donde $M$ es una variedad, se tiene que $p\in M$ es un punto crítico de $M$, si y sólo si relativo a alguna carta $(U,x^1,\dots,x^n)$ que contiene a $p$, todas la derivadas parciales de $f$ satisfacen
+            \begin{equation*}
+                \frac{\partial f}{\partial x^j}(p)=0,\quad\forall j=1,\dots,n.
+            \end{equation*}
+        \end{propo}
 
-    \begin{cor}[Nombre]
-        Corolario
-    \end{cor}
+        \setcounter{section}{9}
+        \setcounter{theor}{8}
 
-    \begin{lema}[Nombre]
-        Lema
-    \end{lema}
+        \begin{theor}[\textbf{Teorema del valor regular}]
+            Sea $\cf{F}{N}{M}$ un mapeo $C^\infty$ entre variedades, donde $\dim N = n$ y $\dim M = m$. Entonces el conjunto de nivel no vacío $F^{-1}(c)$, donde $c\in M$, es una subvariedad regular de $N$ con dimensión $n-m$.
+        \end{theor}
 
-    \begin{mydef}[Nombre]
-        Definición
-    \end{mydef}
+        De (I): En este caso, $\cf{f}{\mathbb{R}^2}{\mathbb{R}}$, donde $\mathbb{R}^2$ y $\mathbb{R}$ son variedades suaves, y
+        \begin{equation*}
+            \begin{split}
+                M&=f^{-1}(0)\\
+                &=\left\{(x,y)\in\mathbb{R}^2|f(x,y)=0\right\}
+            \end{split}
+        \end{equation*}
+        siendo $M$ el conjunto cero de $f(x,y)$. Observemos que
+        \begin{equation*}
+            f(x,y)=0,\quad\forall (x,y)\in M
+        \end{equation*}
+        Por lo cual, tomando diferencial exterior de ambos lados, se sigue que
+        \begin{equation*}
+            \begin{split}
+                df(x,y)&=0\\
+                \Rightarrow f_x(x,y)\:dx+f_y(x,y)\:dy&=0,\quad\forall (x,y)\in M\\
+            \end{split}
+        \end{equation*}
+        donde $f_x=\frac{\partial f}{\partial x}$ y $f_y=\frac{\partial f}{\partial y}$. Considere los conjuntos
+        \begin{equation*}
+            U_x=\left\{(x,y)\in M|f_x(x,y)\neq 0\right\}\textup{ y }U_y=\left\{(x,y)\in M|f_y(x,y)\neq 0\right\}
+        \end{equation*}
+        se tiene que en $U_x\cap U_y$:
 
-    \begin{obs}[Nombre]
-        Observación
-    \end{obs}
+        \begin{equation}
+            \begin{split}
+                f_x\:dx+f_y\:dy&=0\\
+                \Rightarrow f_x\:dx&=-f_y\:dy\\
+            \end{split}
+        \end{equation}
 
-    \begin{exa}[Nombre]
-        Ejemplo
-    \end{exa}
+        Defina así la $1$-forma $\omega$ como sigue
 
-    \begin{excer}[Nombre]
-        Ejercicio
-    \end{excer}
+        \begin{equation}
+            \omega(x,y)=\left\{
+                \begin{aligned}
+                    f_x(x,y)\:dx & \text{ si }(x,y)\in U_x\\
+                    -f_y(x,y)\:dy & \text{ si }(x,y)\in U_y\\
+                \end{aligned} 
+            \right.
+        \end{equation}
+        para todo $(x,y)\in M$. Por (1.2), está $1$-forma está bien definida en $M$, ya que las $1$-formas $-f_y\:dy$ y $f_x\:dx$ coinciden en $U_x\cap U_y$. Veamos que $\omega$ es $C^\infty$ y no se anula en $M$. Para ello, consideremos las cartas de $\mathbb{R}^2$. Sean
+        \begin{equation}
+            \begin{split}
+                U_x^+=\left\{(x,y),\in M|f_x(x,y)>0\right\}\\
+                U_x^-=\left\{(x,y),\in M|f_x(x,y)<0\right\}\\
+                U_y^+= \left\{(x,y),\in M|f_y(x,y)>0\right\}\\
+                U_y^-=\left\{(x,y),\in M|f_y(x,y)<0\right\}\\
+        \end{split}
+        \end{equation}
+        Es claro que $U_x=U_x^+\cup U_x^-$ y $U_y=U_y^+\cup U_y^-$. Notemos que, como $0$ es un valor regular de $f$, entonces todo punto de $f^{-1}(0)=M$ es un punto regular. Por tanto, de la Proposición (8.23) se tiene que para todo punto $p\in M$, alguna de las derivadas parciales
+        \begin{equation*}
+            \frac{\partial f}{\partial x}(p)=f_x(p),\quad\frac{\partial f}{\partial y}(p)=f_y(p)
+        \end{equation*}
+        no se anula. Es decir, que $p$ se encuentra en alguno de los conjuntos de (1.4). Luego, $M$ está totalmente contenida en la unión de estos conjuntos. Por tanto, $\omega$ no se anula en $M$.
+        
+        Y, claramente $\omega$ es $C^\infty$, pues las funciones $f_x$ y $f_y$ lo son. Así, la $1$-forma buscada es $\omega$.
+
+        De (II): En este caso, $\cf{f}{\mathbb{R}^3}{\mathbb{R}}$, donde $\mathbb{R}^3$ y $\mathbb{R}$ son variedades suaves, y
+        \begin{equation*}
+            \begin{split}
+                M&=f^{-1}(0)\\
+                &=\left\{(x,y,z)\in\mathbb{R}^3|f(x,y,z)=0\right\}
+            \end{split}
+        \end{equation*}
+        siendo $M$ el conjunto cero de $f(x,y,z)$. Observemos que
+
+        \begin{equation}
+            \begin{split}
+                df(x,y,z)&=0\\
+                \Rightarrow f_x(x,y,z)\:dx+f_y(x,y,z)\:dy+f_z(x,y,z)\:dz&=0,\quad\forall (x,y,z)\in M\\
+            \end{split}
+        \end{equation}
+        por tanto, en $M$ se tienen las siguientes igualdades:
+        \begin{equation*}
+            \begin{split}
+                f_y\:dy\wedge dx+f_z\:dz\wedge dx=0\\
+                f_x\:dx\wedge dy+f_z\:dz\wedge dy=0\\
+                f_x\:dx\wedge dz+f_y\:dy\wedge dz=0\\
+            \end{split}
+        \end{equation*}
+        (haciendo el producto wedge de (1.5) con $dx$, $dy$ y $dz$). Las igualdades anteriores son equivalentes a
+        \begin{equation*}
+            \begin{split}
+                -f_y\:dx\wedge dy+f_z\:dz\wedge dx=0\Rightarrow f_y\:dx\wedge dy=f_z\:dz\wedge dx \\
+                f_x\:dx\wedge dy-f_z\:dy\wedge dz=0\Rightarrow f_x\:dx\wedge dy=f_z\:dy\wedge dz\\
+                -f_x\:dz\wedge dx+f_y\:dy\wedge dz=0\Rightarrow f_x\:dz\wedge dx=f_y\:dy\wedge dz \\
+            \end{split}
+        \end{equation*}
+        por tanto
+        \begin{equation*}
+            \frac{dx\wedge dy}{f_z}=\frac{dz\wedge dx}{f_y}\text{ y }\frac{dx\wedge dy}{f_z}=\frac{dy\wedge dz}{f_x}
+        \end{equation*}
+        (siempre que $f_x(x,y,z),f_y(x,y,z),f_z(x,y,z)\neq 0$, con $(x,y,z)\in M$). Luego
+        \begin{equation}
+            \frac{dx\wedge dy}{f_z}=\frac{dy\wedge dz}{f_x}=\frac{dz\wedge dx}{f_y}
+        \end{equation}
+        
+        Sean
+        \begin{equation}
+            \begin{split}
+                U_x=\left\{(x,y,z)\in M|f_x(x,y,z)\neq0\right\}\\
+                U_y=\left\{(x,y,z)\in M|f_y(x,y,z)\neq0\right\}\\
+                U_z=\left\{(x,y,z)\in M|f_z(x,y,z)\neq0\right\}\\
+            \end{split}
+        \end{equation}
+        como en el inciso (I), es claro que $M$ está contenida en la unión de estos conjuntos (ya que al ser 0 valor regular de $f$, todos los puntos de $M$ son regulares y por ende, alguna de las derivadas parciales no se anula en $p\in M$). Definamos
+        
+        \begin{equation}
+            \omega(x,y,z)=\left\{
+                \begin{aligned}
+                    \frac{dy\wedge dz}{f_x(x,y,z)} & \text{ si }(x,y,z)\in U_x\\
+                    \frac{dz\wedge dx}{f_y(x,y,z)} & \text{ si }(x,y,z)\in U_y\\
+                    \frac{dz\wedge dx}{f_y(x,y,z)} & \text{ si }(x,y,z)\in U_z\\
+                \end{aligned}
+            \right.
+        \end{equation}
+
+        Por (1.7), es claro que $\omega$ es una $2$-forma está bien definida en $M$, pues en la intersección de 2 conjuntos de (1.6), se cumplen las igualdades en (1.7). Y además es $C^\infty$, pues cada una de las funciones $f_x$, $f_y$ y $f_z$ lo es.
+
+        De (III): Sea $f$ una función $C^\infty$ en $\mathbb{R}^{n+1}$ y suponga que $c\in\mathbb{R}$ es un valor regular de $f$. Entonces por el teorema del valor regular, el conjunto $M=f^{-1}(c)$ es una subvariedad $n$-dimensional de $\mathbb{R}^{n+1}$. Construya una $n$-forma que no se anula en $M$.
+
+        Para ello, notemos que si $(x^1,\dots,x^{n+1})\in M$, donde
+        \begin{equation*}
+            \begin{split}
+                M=&f^{-1}(c)\\
+                =&\left\{(x^1,\dots,x^{n+1})\in \mathbb{R}^{n+1}|f(x^1,\dots,x^{n+1})=c\right\} \\
+            \end{split}
+        \end{equation*}
+        entonces
+        \begin{equation*}
+            \begin{split}
+                f(x^1,\dots,x^{n+1})&=c\\
+                \Rightarrow df(x^1,\dots,x^{n+1})&=0\\
+                \Rightarrow f_{x^1}(x^1,\dots,x^{n+1})dx_1+\cdots+f_{x^{n+1}}(x^1,\dots,x^{n+1})dx_{n+1}&=0\\
+            \end{split}
+        \end{equation*}
+        Si $I=(i_1,i_2,\dots,i_{n-1})$ es un multi-índice creciente de $n-1$ de longitud $n-1$, se tiene que haciendo el producto wedge de la igualdad de arriba con $dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}$:
+
+        \begin{equation*}
+            f_{x^{j_1}}(x^1,\dots,x^{n+1})dx_j\wedge dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}+f_{x^{j_2}}(x^1,\dots,x^{n+1})dx_2\wedge dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}=0
+        \end{equation*}
+        donde $j_1$ y $j_2$ son tales que no están en $I$. Por tanto
+
+        \begin{equation}
+            f_{x^{j_1}}(x^1,\dots,x^{n+1})dx_j\wedge dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}=-f_{x^{j_2}}(x^1,\dots,x^{n+1})dx_2\wedge dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}
+        \end{equation}
+
+        Con esto, de forma similar al inciso (II), se obtienen igualdades
+        que relacionan a $f_{x^i}$ con $f_{x^j}$, siendo $i,j\in\left\{1,\dots,n+1 \right\}$ con $i<j$, dadas por
+        \begin{equation}
+            \begin{split}
+                f_{x^i}(x^1,\dots,x^{n+1})\:dx_1\wedge\cdots\wedge\widehat{dx_j}\wedge\cdots\wedge dx_{n+1}&=f_{x^j}(x^1,\dots,x^{n+1})\:dx_1\wedge\cdots\wedge\widehat{dx_i}\wedge\cdots\wedge dx_{n+1}\\
+                \Rightarrow \frac{dx_1\wedge\cdots\wedge\widehat{dx_j}\wedge\cdots\wedge dx_{n+1}}{f_{x^j}(x^1,\dots,x^{n+1})}&=\frac{dx_1\wedge\cdots\wedge\widehat{dx_i}\wedge\cdots\wedge dx_{n+1}}{f_{x^i}(x^1,\dots,x^{n+1})}\\
+            \end{split}
+        \end{equation}
+        (siempre que las derivadas parciales no se anulen). Definimos así a la $n$-forma $\omega$, como
+        \begin{equation}
+            \omega(x^1,\dots,x^{n+1})=\frac{dx_1\wedge\cdots\wedge\widehat{dx_i}\wedge\cdots\wedge dx_{n+1}}{f_{x^i}(x^1,\dots,x^{n+1})}
+        \end{equation}
+        si $(x^1,\dots,x^{n+1})\in U_{x^i}$, donde
+        \begin{equation*}
+            U_{x^i}=\left\{(x^1,\dots,x^{n+1})\in M|f_{x_1}(x^1,\dots,x^{n+1})\neq0 \right\},\quad \forall i=1,\dots,n+1
+        \end{equation*}
+        Por (1.10) esta $n$-forma está bien definida, y por la proposición (8.23), como $c$ es valor regular de $f$, entonces $M\subseteq \bigcup_{i=1}^{n+1}U_{x^i}$ (si $p\in M$, entonces alguna de las derivadas parciales de $f$ no se anula en $p$). De esta forma, como las funciones $f_{x^i}$ son $C^\infty$, se sigue que $\omega$ es una $n$-forma $C^\infty$ que no se anula en $M$.
+
+    \end{proof}
 
 \end{document}
