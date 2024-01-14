@@ -132,7 +132,7 @@
     \section{Ejercicio 1}
 
     \begin{excer}[\textbf{Pullback de una forma diferencial}]
-        Considere $U\subseteq ]0,\infty[\times]0,\pi[\times]0,2\pi[$ abierto en el espacio $(\rho, \phi, \theta)$ de $\mathbb{R}^3$. Defina $\cf{f}{F}{\mathbb{R}^3}$ dada como
+        Considere $U\subseteq ]0,\infty[\times]0,\pi[\times]0,2\pi[$ abierto en el espacio $(\rho, \phi, \theta)$ de $\mathbb{R}^3$. Defina $\cf{F}{U}{\mathbb{R}^3}$ dada como
         \begin{equation*}
             (x,y,z)=F(\rho,\phi,\theta)=(\rho\sin\phi\cos\theta,\rho\sin\phi\sin\theta,\rho\cos\phi)
         \end{equation*}
@@ -261,10 +261,9 @@
                     &=(F^*u)\wedge d(F^*u)\\
                 \end{split}
             \end{equation*}
-            pues, podemos ver a la $1$-forma $u\:du$ como el producto wedge de una $0$-forma con una $1$-forma. De esta forma, por propiedades del pullback, se sigue la primera y segunda igualdad. Para la tercera, se cumple ya que el producto wedge conmuta con la diferencial exterior.
+            pues, podemos ver a la $1$-forma $u\:du$ como el producto wedge de una $0$-forma con una $1$-forma. De esta manera, por propiedades del pullback, se sigue la primera y segunda igualdad. Para la tercera, se cumple ya que el producto wedge conmuta con la diferencial exterior.
             
             Computemos $F^*u$:
-
             \begin{equation*}
                 \begin{split}
                     F^*u&=u\circ F
@@ -281,7 +280,6 @@
             \end{equation*}
             
             Por lo cual
-
             \begin{equation*}
                 \begin{split}
                     F^*(u\:du)&=(F^*u)\wedge d(F^*u)\\
@@ -310,7 +308,7 @@
                 \begin{split}
                     \Rightarrow F^*(v\:dv)&=(F^*v)\wedge d(F^*v)\\
                     &=(xy)\wedge (y\:dx+x\: dy)\\
-                    &=xy^2\:dx+x^2y\: dy)\\
+                    &=xy^2\:dx+x^2y\: dy\\
                 \end{split}
             \end{equation*}
         \end{enumerate}
@@ -354,7 +352,6 @@
         \begin{equation*}
             \begin{split}
                 c^*\omega=&c^*\left(-\frac{y}{x^2+y^2}\wedge\:dx+\frac{x}{x^2+y^2}\wedge\:dy\right) \\
-                =&c^*\left(-\frac{y}{x^2+y^2}\wedge\:dx\right)+c^*\left(\frac{x}{x^2+y^2}\wedge\:dy\right) \\
                 =&c^*\left(-\frac{y}{x^2+y^2}\wedge\:dx\right)+c^*\left(\frac{x}{x^2+y^2}\wedge\:dy\right) \\
                 =&c^*\left(-\frac{y}{x^2+y^2}\right)\wedge c^*\left(dx\right)+c^*\left(\frac{x}{x^2+y^2}\right)\wedge c^*\left(dy\right) \\
                 =&c^*\left(-\frac{y}{x^2+y^2}\right)\wedge d\left(c^*x\right)+c^*\left(\frac{x}{x^2+y^2}\right)\wedge d\left(c^*y\right) \\
@@ -485,7 +482,6 @@
             U_x=\left\{(x,y)\in M|f_x(x,y)\neq 0\right\}\textup{ y }U_y=\left\{(x,y)\in M|f_y(x,y)\neq 0\right\}
         \end{equation*}
         se tiene que en $U_x\cap U_y$:
-
         \begin{equation}
             \begin{split}
                 f_x\:dx+f_y\:dy&=0\\
@@ -494,7 +490,6 @@
         \end{equation}
 
         Defina así la $1$-forma $\omega$ como sigue
-
         \begin{equation}
             \omega(x,y)=\left\{
                 \begin{aligned}
@@ -528,7 +523,6 @@
             \end{split}
         \end{equation*}
         siendo $M$ el conjunto cero de $f(x,y,z)$. Observemos que
-
         \begin{equation}
             \begin{split}
                 df(x,y,z)&=0\\
@@ -569,7 +563,6 @@
             \end{split}
         \end{equation}
         como en el inciso (I), es claro que $M$ está contenida en la unión de estos conjuntos (ya que al ser 0 valor regular de $f$, todos los puntos de $M$ son regulares y por ende, alguna de las derivadas parciales no se anula en $p\in M$). Definamos
-        
         \begin{equation}
             \omega(x,y,z)=\left\{
                 \begin{aligned}
@@ -599,15 +592,13 @@
                 \Rightarrow f_{x^1}(x^1,\dots,x^{n+1})dx_1+\cdots+f_{x^{n+1}}(x^1,\dots,x^{n+1})dx_{n+1}&=0\\
             \end{split}
         \end{equation*}
-        Si $I=(i_1,i_2,\dots,i_{n-1})$ es un multi-índice creciente de $n-1$ de longitud $n-1$, se tiene que haciendo el producto wedge de la igualdad de arriba con $dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}$:
-
+        Si $I=(i_1,i_2,\dots,i_{n-1})$ es un multi-índice creciente de $n+1$ de longitud $n-1$, se tiene que haciendo el producto wedge de la igualdad de arriba con $dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}$:
         \begin{equation*}
-            f_{x^{j_1}}(x^1,\dots,x^{n+1})dx_j\wedge dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}+f_{x^{j_2}}(x^1,\dots,x^{n+1})dx_2\wedge dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}=0
+            f_{x^{j_1}}(x^1,\dots,x^{n+1})dx_{j_1}\wedge dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}+f_{x^{j_2}}(x^1,\dots,x^{n+1})dx_{j_2}\wedge dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}=0
         \end{equation*}
         donde $j_1$ y $j_2$ son tales que no están en $I$. Por tanto
-
         \begin{equation}
-            f_{x^{j_1}}(x^1,\dots,x^{n+1})dx_j\wedge dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}=-f_{x^{j_2}}(x^1,\dots,x^{n+1})dx_2\wedge dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}
+            f_{x^{j_1}}(x^1,\dots,x^{n+1})dx_{j_1}\wedge dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}=-f_{x^{j_2}}(x^1,\dots,x^{n+1})dx_{j_2}\wedge dx_{i_1}\wedge\cdots\wedge dx_{i_{n-1}}
         \end{equation}
 
         Con esto, de forma similar al inciso (II), se obtienen igualdades
