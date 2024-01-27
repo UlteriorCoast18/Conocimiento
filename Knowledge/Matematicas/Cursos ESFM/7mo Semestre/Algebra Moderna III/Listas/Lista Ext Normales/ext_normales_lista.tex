@@ -4,7 +4,6 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{graphics}
 \usepackage{subfigure}
 \usepackage{lipsum}
 \usepackage{array}
@@ -12,6 +11,8 @@
 \usepackage{enumerate}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{wrapfig}
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
@@ -131,7 +132,7 @@
 \begin{excer}
     Sea $E/F$ una extensión de campos. Denotamos por $\textup{Aut}(E)$ (resp. $\textup{Aut}_F(E)$) al conjunto de todos los automorfismos (resp. $F$-automorfismos) de $E$. Demuestre que $\textup{Aut}(E)$ es un grupo con la compsición de funciones, y que $\textup{Aut}_F(E)$ es un subgrupo de $\textup{Aut}(E)$.
 \end{excer}
-    
+
 \begin{proof}
     Claramente el resultado se tiene de que $\textup{Aut}(E)$ es un grupo con la composición de funciones. Veamos que $\textup{Aut}_F(E)$ es un subgrupo. En efecto, el conjunto $\textup{Aut}_F(E)$ es no vacío pues $\textup{id}_E\in\textup{Aut}_F(E)$. Ahora, sean $f,g\in\textup{Aut}(E)$, se tiene que
     \begin{equation}
@@ -164,7 +165,7 @@
 \end{proof}
 
 \begin{excer}
-    Sea $E$ el campo de descomposición de un polinomio $f(X)\in F[X]$ con $\deg(f)=n\geq1$. Pruebe que $[E:F]$ divide a $n!$. Más aún, el grupo $\textup{Aut}_F(E)$ está encajado en el grupo simétrico $S_n$ de grado $n$.
+    Sea $E$ el campo de descomposición de un polinomio $f(X)\in F[X]$ con $\deg(f)=n\geq1$, donde $E/F$ es extensión de campos. Pruebe que $[E:F]$ divide a $n!$. Más aún, el grupo $\textup{Aut}_F(E)$ está encajado en el grupo simétrico $S_n$ de grado $n$.
 \end{excer}
 
 \begin{proof}
@@ -176,11 +177,19 @@
 \end{excer}
 
 \begin{proof}
-    
+    Por un ejercicio de la lista anterior, se tiene que
+    \begin{equation*}
+        [F(\alpha,\beta):F(\alpha)]=[F(\beta):F]
+    \end{equation*}
+    por ser $\deg(f)$ y $\deg(g)$ primos relativos (en realidad, se tiene que $[F(\alpha,\beta):F]=[F(\alpha):F][F(\beta):F]$, esto implica la igualdad de arriba). Por tanto, si $g$ no fuera irreducible sobre $F(\alpha)$, se tendría que
+    \begin{equation*}
+        [F(\alpha,\beta):F(\alpha)]=[F(\alpha)(\beta):F(\alpha)]<[F(\beta):F]
+    \end{equation*}
+    pues, en este caso se tendría que $h(X)=\irr(\beta,F(\alpha),X)|g(X)$, con $\deg(h)<\deg(g)$, lo cual contradice la ecuación anterior. Por tanto, $g$ es irredicible sobre $F(\alpha)$.
 \end{proof}
 
 \begin{excer}
-    Sea $\alpha$ una raíz del polinomio $X^6+X^3+1$ sobre $\mathbb{Q}$. Encunetre todos los homomorfismos de $\mathbb{Q}(\alpha)$ en $\mathbb{C}$.(Sugerencia: El polinomio es el facto del polinomio $X^9-1$).
+    Sea $\alpha$ una raíz del polinomio $X^6+X^3+1$ sobre $\mathbb{Q}$. Encunetre todos los homomorfismos de $\mathbb{Q}(\alpha)$ en $\mathbb{C}$.(Sugerencia: El polinomio es factor del polinomio $X^9-1$).
 \end{excer}
 
 \begin{proof}
@@ -224,6 +233,41 @@
 
 \begin{excer}
     Sea $E/F$ una extensión algebraica. Demuestre que $E/F$ es extensión normal si, y sólo si cada $F$-homomorfismo $\sigma:E\rightarrow N$, donde $N$ es cualquier extensión normal de $F$ que contiene a $E$, se tiene que $\sigma(E)=E$.
+\end{excer}
+
+\begin{proof}
+    Probaremos las dos implicaciones.
+
+    $\Rightarrow)$: Suponga que $E/F$ es una extensión normal 
+
+    \begin{wrapfigure}{l}{0.15\textwidth}
+        \begin{center}
+            \includegraphics[scale=2.5]{Figures/torre_de_campos.pdf}
+        \end{center}
+        \caption{Torre de Campos}
+    \end{wrapfigure}
+
+    \lipsum
+\end{proof}
+
+\begin{excer}
+    Sea $E/F$ una extensión algebraica. Demuestre que si $[E:F]=2$, entonces $E/F$ es extensión normal.
+\end{excer}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{excer}
+    Sean $E/F$ una extensión normal, $f(X)$ un polinomio con coeficientes en $F$ el cual es irredicible sobre $F[X]$. Sean $g(X)$ y $h(X)$ polinomios mónicos con coeficientes en $E$ irreducibles sobre $E[X]$ los cuales son factores de $f(X)$. Pruebe que existe un $F$-automorfismo de $E$ tal que $g^\phi(X)=h(X)$.
+\end{excer}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{excer}
+    Sea $E/F$ extensión algebraica. Demuestre que la extensión $E/F$ es normal si, y sólo si para cada polinomio irreducible $f(X)\in F[X]$, los factores irreducibles de $f(X)$ en $E[X]$ tienen el mismo grado.
 \end{excer}
 
 \begin{proof}
