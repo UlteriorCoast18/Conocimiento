@@ -1,0 +1,203 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage[mathscr]{euscript}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\square$}
+\renewcommand{\theenumi}{\arabic{enumi})}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand{\N}[1]{\ensuremath{\mathscr{N}(#1)}}
+\newcommand{\piz}[1]{\ensuremath{\mathscr{#1}}}
+\newcommand{\eul}[1]{\ensuremath{\mathbb{#1}}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \title{Grupos Topológicos}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Elementos de la teoría de grupos topológicos}
+    
+    \section{Preliminares}
+
+    \begin{mydef}
+        Sea $G$ un conjunto no vacío dotado de una operación binaria (denotada por $\cdot$) y una familia $\tau$ de subconjuntos de $G$. $G$ es llamado \textbf{grupo topológico} si
+        \begin{enumerate}
+            \item $(G,\cdot)$ es un grupo.
+            \item $(G,\tau)$ es un espacio topológico.
+            \item Las funciones $\cf{g_1}{(G,\tau)\times (G,\tau)}{(G,\tau)}$ y $\cf{g_2}{(G,\tau)}{(G,\tau)}$ dadas por $(x,y)\mapsto x\cdot y$ y $x\mapsto x^{-1}$, respectivamente, son continuas, siendo $x^{-1}$ el inverso de $x$ en $G$.
+        \end{enumerate}
+    \end{mydef}
+
+    Se denotará a la operación $\cdot$ por yuxtaposición, es decir $x\cdot y = xy$.
+
+    \begin{obs}
+        Una equivalencia de la condición (3) de la proposición anterior es la siguiente:
+
+        Sea $G$ un grupo topológico. Denotamos por $\mathscr{N}(x)$ a \textbf{ la familia de todas las vecindades de $x\in G$}. 3) es equivalente a
+        \begin{enumerate}
+            \setcounter{enumi}{3}
+            \item Si $x,y\in G$, entonces para cada $U\in \mathscr{N}(xy)$ existen vecindades $V\in \mathscr{N}(x)$ y $W\in \mathscr{N}(y)$ tales que $V\cdot W\subseteq U$, donde
+            \begin{equation*}
+                V\cdot W = \left\{vw \big| v\in V \textup{ \& } w\in W \right\}
+            \end{equation*}
+            y, para cada $U\in\N{x^{-1}}$ existe $V\in\N{x}$ tal que $V^{-1}\subseteq U$, siendo
+            \begin{equation*}
+                V^{-1}=\left\{v^{-1}\big| v\in V \right\}
+            \end{equation*}
+        \end{enumerate}
+
+        esta equivalencia es inmediada de la definición de continuidad de una función en un espacio topológico.
+    \end{obs}
+
+    \begin{obs}
+        El símbolo $e_G$ denotará siempre a la identidad de un grupo $G$.
+
+        Con frecuencia se referirá al grupo topológico $G$, con operación binaria $\cdot$ y topología $\tau$ como la terna $(G,\cdot,\tau)$. Si no hay ambiguedad, se denotará simplemente por $G$.
+    \end{obs}
+
+    \begin{lema}
+        Sean $(G,\cdot)$ un grupo, y $\tau$ una topología en $G$. Entonces, $(G,\cdot,\tau)$ es un grupo topológico si y sólo si la función
+        \begin{equation*}
+            \begin{split}
+                g_3:(G,\tau)\times (G,\tau)&\rightarrow(G,\tau)\\
+                (x,y)&\mapsto xy^{-1}\\
+            \end{split}
+        \end{equation*}
+        es continua.
+    \end{lema}
+
+    \begin{proof}
+        $\Rightarrow):$ Suponga que $G$ es un grupo topológico, entonces las funciones $g_1$ y $g_2$ son continuas (por la condición 3) de la definición anterior). Notemos que
+        \begin{equation*}
+            g_3=g_1(x,g_2(y)),\quad\forall x,y\in G
+        \end{equation*}
+        por ende, $g_3$ es continua.
+
+        $\Leftarrow):$ Suponga que la función $g_3$ es continua. Notemos que
+        \begin{equation*}
+            g_2(x)=g_3(x,e_G),\quad\forall x\in G
+        \end{equation*}
+        por ser $g_3$ continua, se sigue que $g_2$ también lo es. Además
+        \begin{equation*}
+            g_1(x,y)=g_3(x,g_2(y)),\quad\forall x,y\in G
+        \end{equation*}
+        por lo cual, $g_1$ también es continua. Por tanto, $G$ es grupo topológico.
+    \end{proof}
+
+    
+
+\end{document}

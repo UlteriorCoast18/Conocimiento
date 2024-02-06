@@ -1,0 +1,217 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage[mathscr]{euscript}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\square$}
+\renewcommand{\theenumii}{\roman{enumii}}
+\renewcommand{\thechapter}{\Alph{chapter}}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand{\eul}[1]{\ensuremath{\mathscr{#1}}}
+\renewcommand{\theenumi}{\arabic{enumi})}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \title{Grupos Topológicos}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \setcounter{chapter}{1}
+
+    \chapter{Topología}
+    
+    \section{Espacios Topológicos}
+
+    En esta parte se hará un breve recordatorio de los resultados más relevantes de la parte de espacios topológicos.
+
+    \begin{mydef}
+        Un \textbf{espacio topológico} es una pareja $(X,\tau)$ que consiste en un conjunto $X$ y una familia $\tau$ de subconjuntos de $X$ con las siguientes propiedades:
+        \begin{enumerate}
+            \item $\emptyset, X\in \tau$.
+            \item Si $U_1,U_2\in \tau$, entonces $U_1\cap U_2\in \tau$.
+            \item Si $\eul{F}\subseteq \tau$, entonces
+            \begin{equation*}
+                \bigcup_{F\in \eul{F}}F\in\tau
+            \end{equation*}
+        \end{enumerate}
+    \end{mydef}
+
+    A los miembros de $\tau$ se les conoce como \textbf{conjuntos abiertos} en $X$. La familia $\tau$ es una \textbf{topología} en $X$.
+
+    \begin{mydef}
+        Sea $X$ un espacio topológico y $x\in X$. Si $U$ es un subconjunto abierto de $X$ tal que $x\in U$, diremos que \textbf{$U$ es una vecindad de $x$}.
+    \end{mydef}
+
+    Como resultado de lo anterior, se tiene que un subconjunto $V\subseteq X$ es abierto si para todo $x\in V$ existe una vecindad $U_x$ contenida en $V$.
+
+    \begin{mydef}
+        Sea $X$ un espacio topológico. Una \textbf{base} del espacio topológico $X$ es una familia $\eul{B}\subseteq\tau$ tal que todo subconjunto abierto no vacío de $X$ es unión de elementos de $\eul{B}$.
+    \end{mydef}
+
+    \begin{propo}
+        Sea $X$ un espacio topológico. Una familia $\eul{B}\subseteq\tau$ es una base del espacio si y sólo si para todo punto $x\in X$ y para cualquier vecindad $V$ de $x$ existe $U\in\eul{B}$ tal que $x\in U\subseteq V$.
+    \end{propo}
+
+    El objetivo de la base de un espacio topológico es la de disminuir el número de elementos de la familia $\tau$, y de que esta familia más pequeña cumple propiedaes más generales que, resultan útiles para resultados posteriores.
+
+    \begin{propo}
+        Sea $X$ un espacio topológico. Una base $\eul{B}$ de $X$ tiene las propiedades siguientes:
+        \renewcommand{\theenumi}{B\arabic{enumi})}
+        \begin{enumerate}
+            \item Para cualesquier $U_1, U_2\in\eul{B}$ y todo punto $x\in U_1\cap U_2$ existe un $U\in\eul{B}$ tal que $x\in U\subseteq U_1\cap U_2$.
+            \item Para todo $x\in X$ existe $U\in\eul{B}$ tal que $x\in U$, es decir $X=\bigcup_{B\in\eul{B}}B$.
+        \end{enumerate}
+        \renewcommand{\theenumi}{\arabic{enumi})}
+        Además, si una familia $\eul{B}$ de subconjuntos de $X$ cumple B1) y B2), entonces existe una única topología $\tau$ en $X$ para la cual $\eul{B}$ es una base.
+    \end{propo}
+
+    \begin{mydef}
+        Si $(X,\tau)$ es un espacio topológico que posee una base numerable $\eul{B}$, se dice que $X$ es \textbf{segundo numerable}.
+    \end{mydef}
+
+    Una familia $\eul{P}\subseteq\tau$ es una \textbf{sub-base} de un espacio topológico $(X,\tau)$ si la familia de todas las intersecciones finitas $U_1\cap U_2\cap\cdots\cap U_k$, donde $U_i\in\eul{P}$ para $i=1,\dots,k$, es una base de $(X,\tau)$.\
+
+    \begin{mydef}
+        Una familia $\eul{B}(x)$ de vecindades de $x$ es una \textbf{base local} en $x\in X$ en el espacio topológico $(X,\tau)$, si para toda vecindad $V$ de $x$ existe $U\in\eul{B}(x)$ tal que $x\in U\subseteq V$.
+    \end{mydef}
+
+    Observe que si $\eul{B}$ es una base de $(X,\tau)$, la familia $\eul{B}(x)$ consistente en todos los elementos de $\eul{B}$ que contienen a $x$ es una base local para $x$ en $(X,\tau)$. Por otro lado, si para todo $x\in X$ contamos con una base local $\eul{B}(x)$ para $x$, enotnces $\eul{B}=\bigcup_{x\in X}\eul{B}(x)$ es un base de $(X,\tau)$.
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico y supongamos que para todo $x\in X$ tenemos una base local $\eul{B}(x)$ en $x$; la familia
+        \begin{equation*}
+            \left\{\eul{B}(x) \big| x\in X \right\}
+        \end{equation*}
+        es un \textbf{sistema de vecindades} para el espacio topológico $(X,\tau)$.
+    \end{mydef}
+
+    \begin{propo}
+        Sea $X$ un espacio topológico. Entonces, cualquier sistema de vecindades para el espacio $X$ tiene las siguientes propiedades:
+        \renewcommand{\theenumi}{BP\arabic{enumi})}
+        \begin{enumerate}
+            \item Para toda $x\in X$, $\eul{B}(x)\neq\emptyset$ y para toda $U\in\eul{B}(x)$, $x\in U$.
+            \item Si $U_1\in\eul{B}(x)$, $U_2\in\eul{B}(y)$ y $z\in U_1\cap U_2$, existe un $U\in \eul{B}(z)$ tal que $U\subseteq U_1\cap U_2$.
+        \end{enumerate}
+        \renewcommand{\theenumi}{B\arabic{enumi})}
+    \end{propo}
+
+    \begin{mydef}
+        Si $(X,\tau)$ es un espacio topológico tal que todo punto $x\in X$ posee una base local en $x$ numerable, decimos que $X$ es un espacio \textbf{primero numerable}. 
+    \end{mydef}
+
+    \chapter{Funciones Cardinales}
+
+    \section{nose}
+
+\end{document}

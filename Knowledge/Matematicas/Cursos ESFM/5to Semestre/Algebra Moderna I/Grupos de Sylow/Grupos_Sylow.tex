@@ -111,6 +111,7 @@
 
 \newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
 \newcommand\divides{\ensuremath{\bigm|}}
+\newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -177,16 +178,78 @@
     \end{theor}
 
     \begin{proof}
-        
+        Sea
+        \begin{equation*}
+            X=\left\{(x_1,\dots,x_p)|x_i\in G,\forall i\in [|1,p|]\textup{ \& }x_1\cdots x_p=e \right\}
+        \end{equation*}
+        $X$ es no vacío, pues $(e,\dots,e)\in X$. Definamos la función 
+        \begin{equation*}
+            \begin{split}
+                f:X\rightarrow& \overbrace{G\times\cdots\times G}^{p\textup{-veces}}\\
+                (x_1,\dots,x_p) \mapsto& (x_1,\dots,x_{p-1})\\
+            \end{split}
+        \end{equation*}
+        Afirmamos que $f$ es biyectiva. En efecto, veamos que
+        \begin{enumerate}
+            \item \textbf{$f$ es suprayectiva}. Sea $(x_1,\dots,x_{p-1})\in G^{p-1}$. Tomemos $x_p=(x_1\cdots x_{p-1})^{-1}=x_{p-1}^{-1}\cdots x_1^{-1}$. Se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    x_1\cdots x_{p-1}\cdot x_p&=x_1\cdots x_{p-1}\cdot(x_{p-1}^{-1}\cdots x_1^{-1})\\
+                    &=e\\
+                \end{split}
+            \end{equation*}
+            por lo cual, $(x_1,\dots,x_{p-1},x_p)\in X$. Y,
+            \begin{equation*}
+                f(x_1,\dots,x_{p-1},x_p)=(x_1,\dots,x_{p-1})
+            \end{equation*}
+            Así, $f$ es suprayectiva.
+
+            \item \textbf{$f$ es inyectiva}. Sean $Z=(z_1,\dots,z_p),Y=(y_1,\dots,y_p)\in X$ tales que $f(z_1,\dots,z_p)=f(y_1,\dots,y_p)$, es decir
+            \begin{equation*}
+                (z_1,\dots,z_{p-1})=(y_1,\dots,y_{p-1})
+            \end{equation*}
+            Pero, como $Z,Y\in X$, debe de suceder que
+            \begin{equation*}
+                \begin{split}
+                    z_1\cdots z_p&=e\\
+                    y_1\cdots y_p&=e\\
+                \end{split}
+            \end{equation*}
+            por lo cual
+            \begin{equation*}
+                \begin{split}
+                    z_p&=z_{p-1}^{-1}\cdots z_1^{-1}\\
+                    y_p&=y_{p-1}^{-1}\cdots y_1^{-1}\\
+                \end{split}
+            \end{equation*}
+            pero, como $(z_1,\dots,z_{p-1})=(y_1,\dots,y_{p-1})$ entonces $z_p=y_p$. Por tanto, $Z=Y$. Así, $f$ es inyectiva.
+        \end{enumerate}
+        por (1) y (2), $f$ es biyectiva, luego $|X|=|G|^{p-1}$. Como $p\divides|G|$, entonces $p\divides |X|$, es decir
+        \begin{equation*}
+            |X|\equiv 0\mod p
+        \end{equation*}
+        Ahora hacemos actuar al grupo cíclico $\mathbb{Z}/p\mathbb{Z}$ en el conjunto $X$ a través de la acción cíclica. Si $(x_1,\dots,x_p)\in X$, su órbita está dada por el conjunto:
+        \begin{equation*}
+            \mathbb{Z}/p\mathbb{Z}\cdot(x_1,\dots,x_p)=\left\{(x_1,\dots,x_p),(x_2,\dots,x_p,x_1),\dots(x_p,x_1,\dots,x_{p-1}) \right\}
+        \end{equation*}
+        Luego, dado $(x_1,\dots,x_p)\in X$, se tiene que $(x_1,\dots,x_p)\in X^{\mathbb{Z}/p\mathbb{Z}}$ si, y solo si $x_1=x_2=\cdots=x_p$. Ahora bien, por la proposición 7.1.1,
+        \begin{equation*}
+            |G|^{p-|}=|X|\equiv|X^{\mathbb{Z}/p\mathbb{Z}}|\mod p
+        \end{equation*}
+        donde $\mathbb{Z}/p\mathbb{Z}\neq \emptyset$, pues $(e,\dots, e)\in X$. Por tanto, $p\divides |X^{\mathbb{Z}/p\mathbb{Z}}|$, es decir $|X^{\mathbb{Z}/p\mathbb{Z}}|=pr>1$, donde $r\in\mathbb{N}$. Por lo cual, existe un elemento $a\in G\backslash\left\{e\right\}$ tal que $a^p=e$. 
     \end{proof}
 
-    Este teorema justifica la razón de la existencia de la siguiente definición y teorema.
+    Este teorema se usa para probar el teorema que sigue de esta definición.
 
     \begin{mydef}
         Sea $p$ un número primo. Todo grupo $G$ se dice que es \textbf{$p$-grupo}, si todo elemento de $G$ es del orden $p^t$, donde $t\in\mathbb{Z}_{\geq0}$.
     \end{mydef}
 
-    
+    Notemos que la identidad $e$ de un grupo $G$ es de orden $1=p^0$ para cada $p\in\mathbb{N}$ número primo. Si $H$ es un subgrupo de $G$ tal que $H$ es $p$-grupo, diremos que \textbf{$H$ es $p$-subgrupo de $G$}. Por lo cual, $\langle e\rangle$ es un $p$-subgrupo de $G$.
+
+    \begin{propo}
+        Sea $p$ un número primo. Un grupo finito $G$ es $p$-grupo si, y solo si $G$ es del orden una potencia de $p$.
+    \end{propo}
 
     \newpage
 
