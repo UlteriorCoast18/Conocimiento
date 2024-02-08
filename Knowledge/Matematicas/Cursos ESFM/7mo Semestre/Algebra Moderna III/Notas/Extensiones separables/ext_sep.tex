@@ -22,6 +22,7 @@
 %En esta parte se definen los comandos a usar dentro del documento para enlistar%
 
 \newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand{\natint}[1]{\ensuremath{\left[\big|#1\big|\right]}}
 
 \newtheoremstyle{largebreak}
   {}% use the default space above
@@ -137,7 +138,7 @@
     \begin{propo}
         Sea $F$ un campo y $f(X)\in F[X]$ un polinomio no constante. Si
         \begin{enumerate}
-            \item $\car(F)=0$, entonces $f'(X)=0$. \label{F_1}
+            \item $\car(F)=0$, entonces $f'(X)\neq0$. \label{F_1}
             \item $\car(F)=p>0$, entonces $f'(X)=0$  si y sólo si $\exists g(X)\in F[X]$ tal que $f(X)=g(X^{p})$. \label{F_2}
         \end{enumerate}
     \end{propo}
@@ -187,6 +188,10 @@
             \item $\car(F)=p>0$, entonces $f(X)$ tiene una raíz simple si y sólo si, $\exists g(X)\in F[X]$ tal que $f(X)=g(X^{p})$.
         \end{enumerate}
     \end{cor}
+
+    \begin{proof}
+        Es inmediata de la proposición anterior.
+    \end{proof}
 
     El siguiente teorema tiene como objetivo caracterizar las extensiones separables, enunciando un resultado importante para su definición.
 
@@ -277,7 +282,11 @@
     \end{propo}
     
     \begin{proof}
-        
+        Sea $f(X)=\irr(\alpha,F, X)$. Tomemos $\alpha_1,\dots,\alpha_m\in \bar(F)$ las raíces distintas de $f(X)$. Se tiene por definición que
+        \begin{equation*}
+            m=\left[F(\alpha):F\right]_{S}
+        \end{equation*}
+        Sea $\cf{\phi}{F(\alpha)}{\bar(F)}$ un $F$-homomorfismo. Sabemos que $\phi$ está completamente detemrinada por su acción sobre $\alpha$, teniendo que $phi(\alpha)$ es raíces de $f(X)$, esto es debe ser que $\phi(\alpha)=\alpha_{i}$, con $i\in\natint{1,m}$. luego, a lo más tenemos $m$ $F$-homomorfismos de $F(\alpha)$ en $\bar{F}$, con lo cual se tiene el resultado.
     \end{proof}
 
     \begin{mydef}
@@ -292,6 +301,10 @@
             \left[E:F\right]_s=\left[E:K\right]_s \left[K:F\right]_s
         \end{equation}
     \end{theor}
+
+    \begin{proof}
+        Es inmediata de un teorema anterior.
+    \end{proof}
 
     \begin{mydef}
         Sea $F$ un campo y $\alpha\in\bar{F}$. Decimos que \textbf{$\alpha$ es separable sobre $F$} si $\left[F(\alpha):F\right]_s=\left[F(\alpha):F\right]$. Si $E/F$ es una extensión algebraica, entonces se dice que \textbf{$E/F$ es separable} o \textbf{$E$ es separable sobre $F$}, si todo elemento de $E$ es separable sobre $F$.
@@ -315,6 +328,19 @@
         En particular, si $p\nmid \left[E:F\right]$, enotnces $\left[E:F\right]=\left[E:F\right]_s$.
     \end{propo}
 
+    \begin{proof}
+        Sean $\alpha_1,\dots,\alpha_n\in E$ tales que $E=F(\alpha_1,\dots,\alpha_n)$. Consideraremos la torre de campos $F\subseteq F(\alpha_1)\subseteq\cdots\subseteq F(\alpha_1,\dots,\alpha_{n-1})\subseteq F(\alpha_1,\dots,\alpha_n)$.
+        Sea $e^{i}$ es exponente de inseparabilidad de $\alpha_i$ sobre $F(\alpha_1,\dots,\alpha_{i-1})$, con $i\in\natint{2,n}$ y $e_1$ el grado de inseparabilidad de $\alpha_1$ sobre $F$. Entonces
+        \begin{equation*}
+            \begin{split}
+                \left[E:F\right]_s=&\left[F(\alpha_1,\dots,\alpha_n):F(\alpha_1,\dots,\alpha_{n-1})\right]_s\cdot\dots\cdot[F(\alpha_1):F]_s\\
+                =&\frac{1}{p^{e_n}} \left[F(\alpha_1,\dots,\alpha_n):F(\alpha_1,\dots,\alpha_{n-1})\right]\cdot\dots\cdot\frac{1}{p^{e_1}}[F(\alpha_1):F]\\
+                \Rightarrow [E:F]=&p^{e_1+e_2+\cdots+e_n}\left[E:F\right]_s\\
+            \end{split}
+        \end{equation*}
+        tomando $t=e_1+\cdots+e_n\in\mathbb{Z}_{\geq0}$ se sigue el resultado.
+    \end{proof}
+
     \begin{obs}
         Si $E/F$ es una extensión finita y $\car(F)=0$, entonces $\left[E:F\right]=\left[E:F\right]_s$.
     \end{obs}
@@ -334,7 +360,26 @@
     \end{propo}
 
     \begin{proof}
-        De 
+        De (1): Sea $f(X)=\irr(\alpha,F,X)$ y $\psi(x)\in F[X]$ tal que $\psi(X^{p^e})=f(X)$, pero $f(X)\notin F[X^{p^{e+1}}]$. Sabemos que $\psi(X)$ es irreducible sobre $F$ y que todas sus raíces son simples, donde
+        \begin{equation*}
+            0=f(\alpha)=\psi(\alpha^{p^e})
+        \end{equation*}
+        esto es, $\alpha^{p^e}$ es raíz de $\psi(X)$, por lo cual $\psi(X)=\irr(\alpha^{p^e},F,X)$. Por tanto, $\alpha^{p^e}$ es separable sobre $F$.
+
+        De (2): Es claro que I)$\iff$II)$\iff$III). Probaremos que I)$\iff$IV). Antes, notemos que
+        \begin{equation*}
+            F\subseteq F(\alpha^p)\subseteq F(\alpha)
+        \end{equation*}
+        
+        I)$\Rightarrow$ IV): Sea $f(X)=\irr(\alpha, F, X)$. Tenemos que $g(X)=X^p-\alpha^p\in F(\alpha^p)[X]$ y $\alpha$ es raíz de $g(X)$. Por lo cual $\irr(\alpha,F(\alpha^p),X)\divides g(X)$ y $\irr(\alpha,F(\alpha^p),X)
+        \divides f(X)$ en $F(\alpha^p)[X]$.
+
+        Entonces, como todas las raíces de $f(X)$ son simples, las raíces de $h(X)=\irr(\alpha,F(\alpha^p),X)$ también lo son; además $h(X)\divides X^p-\alpha^p=(X-\alpha)^p\Rightarrow h(X)=(x-\alpha)\Rightarrow \alpha\in F(\alpha^p)$. Por tanto, $F(\alpha)=F(\alpha^p)$.
+
+        IV)$\Rightarrow$ I): Recíprocamente, supongamos que $F(\alpha)=F(\alpha^p)$ pero $\alpha$ no es separable sobre $F$. Siendo $f(X)=\irr(\alpha,F,X)$, tenemos que $f(X)\in F[X^p]$, esto es, existe $g(X)\in F[X]$ tal que $f(X)=g(X^p)$ donde $\deg(f)=p\cdot\deg(g)>\deg(g)$.
+        
+        Notemos que $g(X)$ tiene por raíz a $\alpha^p$, pues $g(\alpha^p)=f(\alpha)=0$, de esta forma $\irr(\alpha^p,F,X)\divides g(X)\Rightarrow [F(\alpha^p):F]=\deg(\irr(\alpha^p,F,X))=\deg(g)<\deg(f)=[F(\alpha):F]$, luego $F(\alpha^p)\subsetneq F(\alpha)$, lo cual es una contradicción. Por tanto, $\alpha$ es separable sobre $F$.
+
     \end{proof}
 
     \begin{propo}
@@ -342,7 +387,34 @@
     \end{propo}
 
     \begin{proof}
+        $\Rightarrow):$ Suponga que $E/F$ es separable. Sean $\alpha_1,\dots,\alpha_n\in E$ tales que $F(\alpha_1,\dots,\alpha_n)=E$. Consideremos la torre de campos:
         
+        \begin{equation*}
+            F\subsetneq F(\alpha_1)\subsetneq\dots\subsetneq F(\alpha_1,\dots,\alpha_n)=E
+        \end{equation*}
+        para cada $i\in\natint{2,n}$, tenemos que $\alpha_i$ es separable y, por ende, lo es sobre $F(\alpha_1,\dots,\alpha_{i-1})$. Luego,
+        \begin{equation*}
+            \begin{split}
+                [E:F]_s=&[F(\alpha_1,\dots,\alpha_n):F(\alpha_1,\dots,\alpha_{n-1})]_s\cdot\dots\cdot[F(\alpha_1):F]_s\\
+                =&[F(\alpha_1,\dots,\alpha_n):F(\alpha_1,\dots,\alpha_{n-1})]\cdot\dots\cdot[F(\alpha_1):F]\\
+                =&[E:F]
+            \end{split}
+        \end{equation*}
+
+        $\Leftarrow):$ Sea $\alpha\in E$ arbitrario. Tenemos lo siguiente:
+        \begin{equation*}
+            \begin{split}
+                [E:F(\alpha)]_s\cdot[F(\alpha):F]_s=&[E:F]_s\\
+                =&[E:F]\\
+                =&[E:F(\alpha)]\cdot[F(\alpha):F]\\
+            \end{split}
+        \end{equation*}
+        donde $[E:F(\alpha)]_s\leq [E:F(\alpha)]$ y $[F(\alpha):F]_s\leq [F(\alpha):F]$. Por la igualdad anterior debe suceder que
+        \begin{equation*}
+            [F(\alpha):F]=[F(\alpha):F]
+        \end{equation*}
+        esto es, que $\alpha$ es separable sobre $F$. Como el $\alpha$ fue arbitrario, entonces se sigue que la extensión $E/F$ es una extensión separable.
+
     \end{proof}
 
     \begin{obs}
