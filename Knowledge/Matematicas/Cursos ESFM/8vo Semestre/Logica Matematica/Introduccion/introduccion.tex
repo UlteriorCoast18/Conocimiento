@@ -1,0 +1,232 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\biglvert#1\bigrvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \title{Curso de Lógica Matemática}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \setcounter{chapter}{-1} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Introducción}
+    
+    \section{Temario}
+    
+
+    Los siguientes temas se verán a lo largo del curso:
+
+    \begin{enumerate}
+        \item Lógica (Teoría de Modelos).
+        \begin{enumerate}
+            \item Lógica proposicional.
+            \item Lógica de primer orden.
+        \end{enumerate}
+        \item Teoría de la Computabilidad.
+        \item Teoría de Conjuntos.
+    \end{enumerate}
+
+    Y la bibliografía para el curso es la siguiente:
+
+    \begin{itemize}
+        \item Enderton, 'Introducción matemática a la lógica'.
+        \item  Enderton, 'Teoría de la computabilidad'.
+        \item Copi, 'Lógica Simbólica' o 'Computability Theory'.
+        \item Rebeca Weber 'Computability Theory'.
+    \end{itemize}
+
+    \section{Conectivas Lógicas}
+
+    La disyunción ($\land$), conjunción ($\lor$), negación ($\neg$), implicación ($\Rightarrow$) y si y sólo si ($\iff$) son las conectivas lógicas usadas usualmente. 
+
+    (Se habló un poco de una cosa llamada forma normal disyuntiva).
+    
+    A $\left\{\land, \lor, \neg \right\}$ se le conoce como un conjunto completo de conectivas lógicas. Nos podemos quedar simplemente con conjuntos completos de disyuntivas con solo dos elementos, a saber: $\left\{\land, \neg \right\}$ y $\left\{\lor, \neg \right\}$, ya que $P\lor Q$ es $\neg(\neg P\land \neg Q)$. (de forma similar a lo otro $P\land Q$ es $\neg(\neg P\lor \neg Q)$).
+
+    También $\left\{\Rightarrow, \neg \right\}$ es otro conjunto completo de conectivas lógicas, ya que $P\land Q$ es $\neg(P\Rightarrow\neq Q)$.
+
+    Y, $\left\{|\right\}$ es un conjunto completo, donde $|$ es llamado la \textbf{barra de Scheffel}, que tiene la siguiente tabla de verdad.
+
+    \begin{center}
+        \begin{tabular}{c c | c}
+            \hline
+            $P$ & $Q$ & $P|Q$ \\
+            \hline
+            V & V & F \\
+            V & F & V \\
+            F & V & V \\
+            F & F & V \\
+        \end{tabular}
+    \end{center}
+    con este, se tiene un conjunto completo de conectivas lógicas.
+
+    Como muchas veces se usan conectivas de este tipo:
+    \begin{equation*}
+        (P\Rightarrow \neg Q)\Rightarrow((P\Rightarrow R)\land\neg(Q\Rightarrow S)\land T)
+    \end{equation*}
+    al ser muy largas, a veces es más conveniente escribirlas en forma Polaca. De esta forma, lo anterior quedaría de la siguiente manera:
+    \begin{equation*}
+        \Rightarrow\Rightarrow P\neg Q\land\land PR\neg\Rightarrow Q S T 
+    \end{equation*}
+    \newpage
+
+    \begin{proof}
+        Entorno de Prueba
+    \end{proof}
+
+    \begin{sol}
+        Entorno de Solución
+    \end{sol}
+
+    \begin{theor}[Nombre]
+        Teorema
+    \end{theor}
+
+    \begin{propo}[Nombre]
+        Proposición
+    \end{propo}
+
+    \begin{cor}[Nombre]
+        Corolario
+    \end{cor}
+
+    \begin{lema}[Nombre]
+        Lema
+    \end{lema}
+
+    \begin{mydef}[Nombre]
+        Definición
+    \end{mydef}
+
+    \begin{obs}[Nombre]
+        Observación
+    \end{obs}
+
+    \begin{exa}[Nombre]
+        Ejemplo
+    \end{exa}
+
+    \begin{excer}[Nombre]
+        Ejercicio
+    \end{excer}
+
+\end{document}
