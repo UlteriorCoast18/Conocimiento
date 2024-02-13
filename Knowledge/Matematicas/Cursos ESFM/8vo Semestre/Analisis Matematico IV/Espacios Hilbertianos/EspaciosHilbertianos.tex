@@ -16,6 +16,7 @@
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
 \renewcommand{\theenumii}{\roman{enumii}}
+\renewcommand{\theenumi}{\arabic{enumi})}
 
 \def\proof{\paragraph{Demostración:\\}}
 \def\endproof{\hfill$\blacksquare$}
@@ -113,9 +114,13 @@
 
 %En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
 
-\newcommand\abs[1]{\ensuremath{\biglvert#1\bigrvert}}
+\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\norm[1]{\ensuremath{\|#1\|}}
+\newcommand\ora[1]{\ensuremath{\vec{#1}}}
+\newcommand\pint[2]{\ensuremath{\left(#1\big| #2\right)}}
+\newcommand\conj[1]{\ensuremath{\overline{#1}}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -126,8 +131,6 @@
 
     \tableofcontents %Con este comando se genera el índice general del libro%
 
-    \setcounter{chapter}{0} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
-    
     \chapter{Espacios Hilbertianos}
     
     %apostol de análisis matemático, lang de análisis real
@@ -135,35 +138,39 @@
     \section{Conceptos básicos. Proyecciones ortogonales}
 
     \begin{mydef}
-        Sea $H$ un espacio vectorial sobre el campo $\mathbb{K}$. Decimos que $H$ es un \textbf{espacio prehilbertiano} si está dotado de una aplicación $(\bar{x},\bar{y})\mapsto (\bar{x}\big| \bar{y})$ con las propiedades siguientes:
+        Sea $H$ un espacio vectorial sobre el campo $\mathbb{K}$. Decimos que $H$ es un \textbf{espacio prehilbertiano} si está dotado de una aplicación $(\ora{x},\ora{y})\mapsto \pint{\ora{x}}{\ora{y}}$ con las propiedades siguientes:
         \begin{enumerate}
-            \item $\forall \bar{y}\in H$ fijo, $\bar{x}\mapsto (\bar{x}\big| \bar{y})$ es una aplicación lineal de $H$ en $\mathbb{K}$, o sea
+            \item $\forall \ora{y}\in H$ fijo, $\ora{x}\mapsto\pint{\ora{x}}{\ora{y}}$ es una aplicación lineal de $H$ en $\mathbb{K}$, o sea
             \begin{equation*}
                 \begin{split}
-                    %prppiedades de un mapeo lineal
+                    \pint{\ora{x_1}+\ora{x_2}}{\ora{y}}=&\pint{\ora{x_1}}{\ora{y}}+\pint{\ora{x_2}}{\ora{y}}\\
+                    \pint{\alpha\ora{x}}{\ora{y}}=&\alpha\cdot\pint{\ora{x}}{\ora{y}}\\
                 \end{split}
             \end{equation*}
-            \item $(\bar{y}\big| \bar{x})=\widetilde{(\bar{x} \big| \bar{y})}$, para todo $\bar{x}\in H$.
-            \item $(\bar{x},\bar{x})\geq0$, para todo $\bar{x}\in H$.
-            \item $(\bar{x},\bar{x})=0$ si y sólo si $\bar{x}=0$.
+            para todo $\ora{x},\ora{x_1},\ora{x_2}\in H$ y $\alpha\in\mathbb{K}$.
+            \item $(\ora{y}\big| \ora{x})=\conj{\pint{\ora{x}}{\ora{y}}}$, para todo $\ora{x}\in H$.
+            \item $\pint{\ora{x}}{\ora{x}}\geq0$, para todo $\ora{x}\in H$.
+            \item $\pint{\ora{x}}{\ora{x}}=0$ si y sólo si $\ora{x}=0$.
         \end{enumerate}
     \end{mydef}
 
     \begin{obs}
-        Si $\mathbb{K}=\mathbb{R}$, entonces 1) y 2) implican que $\forall \bar{x}\in H$ fijo, la aplicación $\bar{y}\mapsto(\bar{x},\bar{y})$ de $H$ en $\mathbb{R}$ eslineal. En este caso se dice que $(\bar{x},\bar{y})\mapsto(\bar{x}\big|\bar{y})$ es una \textbf{forma bilineal sobre $H$}.
+        Si $\mathbb{K}=\mathbb{R}$, entonces 1) y 2) implican que $\forall \ora{x}\in H$ fijo, la aplicación $\ora{y}\mapsto\pint{\ora{x}}{\ora{y}}$ de $H$ en $\mathbb{R}$ es lineal. En este caso se dice que $(\ora{x},\ora{y})\mapsto\pint{\ora{x}}{\ora{y}}$ es una \textbf{forma bilineal sobre $H$}.
 
-        Si $K\mathbb{L}=\mathbb{C}$, entonces
+        Si $\mathbb{K}=\mathbb{C}$, entonces
         \begin{equation*}
-            (\overrightarrow{x},\overrightarrow{y_1}+\overrightarrow{y_2})=(\overrightarrow{x},\overrightarrow{y_1})+(\overrightarrow{x},\overrightarrow{y_2})
-            (\overrightarrow{x},\alpha\overrightarrow{y})=\bar{x}(\overrightarrow{x},\overrightarrow{y})
+            \begin{split}
+                \pint{\ora{x}}{\ora{y_1}+\ora{y_2}}=&\pint{\ora{x}}{\ora{y_1}}+\pint{\ora{x}}{\ora{y_2}}\\
+                \pint{\ora{x}}{\alpha\ora{y}}=&\conj{\alpha}\pint{\ora{x}}{\ora{y}}\\
+            \end{split}
         \end{equation*}
-        Se dice que $\overrightarrow{y}\mapsto(\overrightarrow{x}\big|\overrightarrow{y})$ es entonces semilineal y que $(\overrightarrow{x},\overrightarrow{y})\mapsto(\overrightarrow{x}\big|\overrightarrow{y})$ es sesquilineal.
+        Se dice que $\ora{y}\mapsto\pint{\ora{x}}{\ora{y}}$ es entonces \textbf{semilineal} y que $(\ora{x},\ora{y})\mapsto\pint{\ora{x}}{\ora{y}}$ es \textbf{sesquilineal} ($1\frac{1}{2}$-lineal).
 
-        La aplicación $(\overrightarrow{x},\overrightarrow{y})\mapsto(\overrightarrow{x}\big|\overrightarrow{y})$ se llama \textbf{producto escalar sobre $H$}.
+        La aplicación $(\ora{x},\ora{y})\mapsto\pint{\ora{x}}{\ora{y}}$ se llama \textbf{producto escalar sobre $H$}.
     \end{obs}
 
     \begin{mydef}
-        Para todo $\overrightarrow{x}\in H$ se define la \textbf{norma de $\overrightarrow{x}$} como: $|x|=\sqrt{(\overrightarrow{x}|\overrightarrow{x})}$.
+        Para todo $\ora{x}\in H$ se define la \textbf{norma de $\ora{x}$} como: $\norm{\ora{x}}=\sqrt{\pint{\ora{x}}{\ora{x}}}$.
     \end{mydef}
 
     \begin{exa}
@@ -174,26 +181,26 @@
     \begin{exa}
         Sea $S\subseteq\mathbb{R}^n$ medible y sea $H=L_2(S,\mathbb{K})$. Para todo $f,g\in H$ se define
         \begin{equation*}
-            (f\big| g)=\int_Sf\bar{g}
+            \pint{f}{g}=\int_Sf\conj{g}
         \end{equation*}
-        La integral existe por Holder con $p=p^*=2$. Este es un producto escalar sobre $H$ y, en este caso:
+        La integral existe por Hölder con $p=p^*=2$. Este es un producto escalar sobre $H$ y, en este caso:
         \begin{equation*}
-            |f|=\left[\int_S|f|^2 \right]^{\frac{1}{2}}=\mathcal{N}_2(f),\quad \forall f\in H
+            \norm{f}=\left[\int_S\big|f\big|^2 \right]^{\frac{1}{2}}=\mathcal{N}_2(f),\quad \forall f\in H
         \end{equation*}
     \end{exa}
 
     \begin{exa}
-        Sea $H=l_2(\mathbb{K})$ el espacio de sucesoines en $\mathbb{K}$ que son cuadrado sumables, entonces $\overrightarrow{x}=(x_1,x_2,...)\in l_2(\mathbb{K})$ si y sólo si
+        Sea $H=l_2(\mathbb{K})$ el espacio de sucesiones en $\mathbb{K}$ que son cuadrado sumables. Se sabe que $\ora{x}=(x_1,x_2,...)\in l_2(\mathbb{K})$ si y sólo si
         \begin{equation*}
             \sum_{i=1}^{\infty}|x_i|^2<\infty
         \end{equation*}
         $l_2(\mathbb{K})$ es un espacio prehilbertiano con el producto escalar:
         \begin{equation*}
-            (\overrightarrow{x}\big| \overrightarrow{y})=\sum_{i=1}^{\infty}x_i\bar{y_i}
+            \pint{\ora{x}}{\ora{y}}=\sum_{i=1}^{\infty}x_i\conj{y_i}
         \end{equation*}
-        donde la serie es convergente por Holder. En este caso:
+        donde la serie es convergente por Hölder. En este caso:
         \begin{equation}
-            \|\overrightarrow{x} \|=\left[\sum_{i=1}^{\infty}|x_i|^2\right]^{\frac{1}{2}}=\mathcal{N}_2(\overrightarrow{x}),\quad\forall\overrightarrow{x}\in l_2(\mathbb{K})
+            \norm{\ora{x}}=\left[\sum_{i=1}^{\infty}\abs{x_i}^2\right]^{\frac{1}{2}}=\mathcal{N}_2(\ora{x}),\quad\forall\ora{x}\in l_2(\mathbb{K})
         \end{equation}
     \end{exa}
 
