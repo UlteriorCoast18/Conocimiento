@@ -198,6 +198,59 @@
         por lo cual, $g_1$ también es continua. Por tanto, $G$ es grupo topológico.
     \end{proof}
 
-    
+    Una de las primeras ventajas que surgen en el estudio de los grupos topológicos es que, ciertas propiedades locales se vuelven globales desde el punto de vista de la topología.
+
+    \begin{theor}
+        Sea $G$ un grupo topológico. Si $g\in G$ es un elemento fijo arbitrario, entonces las funciones $\varphi_g(x)=xg$ y $\sigma_g(x)=gx$, para todo $x\in G$, de $G$ en $G$, son homeomorfismos. La inversión $\cf{f}{G}{G}$, definida por $f(y)=y^{-1}$, también es un homeomorfismos. Las funciones $\varphi_g$ y $\sigma_g$ son llamadas \textbf{traslaciones por la derecha e izquierda}, respectivamente.
+    \end{theor}
+
+    \begin{proof}
+        Por la definición de grupo topológico, las funciones $\varphi_g$, $\sigma_g$ y $f$ son continuas. Veamos que son homeomorfismos de $G$ en $G$.
+        \begin{enumerate}
+            \item Veamos que $\varphi_g$ es inyectiva. Si $a,b\in G$ son tales que $\varphi_g(a)=\varphi_g(b)$, entonces $ag = bg\Rightarrow a = b$, con lo que se tiene el resultado.
+            
+            Además es suprayectiva, pues para cada $b\in G$ existe $g^{-1}b\in G$ tal que $\varphi_g(bg^{-1})=b$.
+
+            Luego, $\varphi$ es homeomorfismo de $G$, con inversa $\varphi_{g^{-1}}$. Además es homomorfismo.
+            \item Para $\sigma_g$ el caso es similar a $\varphi_g$.
+            \item Para $f$ el resultado es inmediato, pues es biyectiva, homomorfismo y su inversa es ella misma.
+        \end{enumerate}
+    \end{proof}
+
+    Los resultados siguientes nos perimitirán estudiar las propiedades topológicas locales de un grupo topológico $G$ en un solo punto, que por simplificar siempre tomaremos como la identidad $e_G$ del grupo.
+
+    \begin{cor}
+        Todo grupo topológico $G$ es un espacio homogéneo.
+    \end{cor}
+
+    \begin{proof}
+        Debemos probar que dados dos elementos arbitrarios del grupo topológico $G$, digamos $g,h\in G$, existe un homeomorfismo de $G$ sobre sí mismo tal que manda un elemento en el otro. Por el teorema anterior, tomando como homeomorfismo a $\varphi_{g^{-1}h}$ se tiene el resultado, pues $\varphi_{g^{-1}h}(g)=h$.
+    \end{proof}
+
+    Como en grupos y espacios topológicos, nos interesan las funciones que preservan las propiedades entre éstos. Por lo cual se estudiarán los siguientes tipos de funciones:
+
+    \begin{mydef}
+        Decimos que una función biyectiva $\cf{f}{G}{G'}$ entre dos grupos topológicos $G$ y $G'$ es un \textbf{isomorfismo topológico} si $f$ y $f^{-1}$ son homomorfismos continuos.
+
+        Si $G=G'$, el isomorfismo $f$ se llama \textbf{automorfismo topológico}. dos grupos topológicos son \textbf{topológicamente isomorfos} si existe un isomorfismo topológico de uno al otro. Utilizaremos el símbolo $G\cong H$ para indicar que los grupos $G$ y $H$ son topológicamente isomorfos.
+    \end{mydef}
+
+    El objetivo del siguiente teorema es ver que un grupo topológico no abeliano admite muchos automorfismos.
+
+    \begin{theor}
+        Si $G$ es un grupo topológico y $a\in G$ está fijo, entonces la función $g(x)=axa^{-1}$ es un automorfismo topológico.
+    \end{theor}
+
+    \begin{proof}
+        Observemos que $g(x)=\sigma_a(\varphi_{a}^{-1}(x))$, donde las dos funciones de la composición definidas como en el teorema anterior son homeomofismos, y por ende $g$ lo es. Además $g$ es homomorfismo ya que
+        \begin{equation}
+            g(xy)=axya^{-1}=\left(axa^{-1}\right)\left(aya^{-1}\right)=g(x)g(y)
+        \end{equation}
+        el cual es invertible, con inversa $f(x)=a^{-1}xa$.
+    \end{proof}
+
+    \begin{obs}
+        En el caso de que el grupo $G$ sea abeliano, el automorfismo topológico $G$ definido en el teorema anterior, es trivial ya que coincide con la identidad.
+    \end{obs}
 
 \end{document}
