@@ -189,12 +189,14 @@
         \end{enumerate}
     \end{cor}
 
+    
+
     \begin{proof}
         Es inmediata de la proposición anterior.
     \end{proof}
 
     El siguiente teorema tiene como objetivo caracterizar las extensiones separables, enunciando un resultado importante para su definición.
-
+    
     \begin{theor}
         Sea $F$ un campo con $\car(F)=p>0$. Sea $f(X)\in F[X]$ un polinomio irreducible, y $e\in\mathbb{N}^{*}$ tal que $f(X)\in F[x^{p^e}]$, pero $f(X)\notin F[x^{p^{e+1}}]$. Sea $\Psi(X)\in F[X]$ el polinomio tal que $f(X)=\Psi(X^{p^e})$. Entonces
         \begin{enumerate}
@@ -286,7 +288,7 @@
         \begin{equation*}
             m=\left[F(\alpha):F\right]_{S}
         \end{equation*}
-        Sea $\cf{\phi}{F(\alpha)}{\bar(F)}$ un $F$-homomorfismo. Sabemos que $\phi$ está completamente detemrinada por su acción sobre $\alpha$, teniendo que $phi(\alpha)$ es raíces de $f(X)$, esto es debe ser que $\phi(\alpha)=\alpha_{i}$, con $i\in\natint{1,m}$. luego, a lo más tenemos $m$ $F$-homomorfismos de $F(\alpha)$ en $\bar{F}$, con lo cual se tiene el resultado.
+        Sea $\cf{\phi}{F(\alpha)}{\bar(F)}$ un $F$-homomorfismo. Sabemos que $\phi$ está completamente detemrinada por su acción sobre $\alpha$, teniendo que $\phi(\alpha)$ es raíces de $f(X)$, esto es debe ser que $\phi(\alpha)=\alpha_{i}$, con $i\in\natint{1,m}$. luego, a lo más tenemos $m$ $F$-homomorfismos de $F(\alpha)$ en $\bar{F}$, con lo cual se tiene el resultado.
     \end{proof}
 
     \begin{mydef}
@@ -631,8 +633,12 @@
     \end{theor}
 
     \begin{proof}
-        
+        Considerando el homomorfismo de Fröbenius $\cf{\phi}{F}{F}$, se tiene que $\phi$ es inyectivo, por lo cual $\big| \phi(F) \big| = \big| F\big|$. Pero, como $F$ es finito, entonces $\phi(F)=F$, luego $\phi$ es automorfismo de $F$. Así pues, $F$ es perfecto.
     \end{proof}
+
+    \begin{mydef}
+        Sea $E/F$ una extensión de campos y $\alpha$ inseparable sobre $F$. Entonces $f(X)=\irr(\alpha,F,X)$ es de la forma $f(X)=\left(X-\alpha_1\right)^{p^e}\cdot...\cdot\left(X-\alpha_m\right)^{p^e}$ con $e\geq1$, Se dice que $\alpha$ es \textbf{puramente inseparable sobre $F$} si y sólo si existe $t\in\mathbb{Z}_{\geq0}$ tal que $\alpha^{p^t}\in F$.
+    \end{mydef}
 
     \section{Extesiones puramente inseparables}
 

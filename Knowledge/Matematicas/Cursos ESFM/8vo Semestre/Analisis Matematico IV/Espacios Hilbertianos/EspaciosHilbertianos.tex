@@ -1,0 +1,242 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\biglvert#1\bigrvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \title{Espacios Hilbertianos}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \setcounter{chapter}{0} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Espacios Hilbertianos}
+    
+    %apostol de análisis matemático, lang de análisis real
+
+    \section{Conceptos básicos. Proyecciones ortogonales}
+
+    \begin{mydef}
+        Sea $H$ un espacio vectorial sobre el campo $\mathbb{K}$. Decimos que $H$ es un \textbf{espacio prehilbertiano} si está dotado de una aplicación $(\bar{x},\bar{y})\mapsto (\bar{x}\big| \bar{y})$ con las propiedades siguientes:
+        \begin{enumerate}
+            \item $\forall \bar{y}\in H$ fijo, $\bar{x}\mapsto (\bar{x}\big| \bar{y})$ es una aplicación lineal de $H$ en $\mathbb{K}$, o sea
+            \begin{equation*}
+                \begin{split}
+                    %prppiedades de un mapeo lineal
+                \end{split}
+            \end{equation*}
+            \item $(\bar{y}\big| \bar{x})=\widetilde{(\bar{x} \big| \bar{y})}$, para todo $\bar{x}\in H$.
+            \item $(\bar{x},\bar{x})\geq0$, para todo $\bar{x}\in H$.
+            \item $(\bar{x},\bar{x})=0$ si y sólo si $\bar{x}=0$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        Si $\mathbb{K}=\mathbb{R}$, entonces 1) y 2) implican que $\forall \bar{x}\in H$ fijo, la aplicación $\bar{y}\mapsto(\bar{x},\bar{y})$ de $H$ en $\mathbb{R}$ eslineal. En este caso se dice que $(\bar{x},\bar{y})\mapsto(\bar{x}\big|\bar{y})$ es una \textbf{forma bilineal sobre $H$}.
+
+        Si $K\mathbb{L}=\mathbb{C}$, entonces
+        \begin{equation*}
+            (\overrightarrow{x},\overrightarrow{y_1}+\overrightarrow{y_2})=(\overrightarrow{x},\overrightarrow{y_1})+(\overrightarrow{x},\overrightarrow{y_2})
+            (\overrightarrow{x},\alpha\overrightarrow{y})=\bar{x}(\overrightarrow{x},\overrightarrow{y})
+        \end{equation*}
+        Se dice que $\overrightarrow{y}\mapsto(\overrightarrow{x}\big|\overrightarrow{y})$ es entonces semilineal y que $(\overrightarrow{x},\overrightarrow{y})\mapsto(\overrightarrow{x}\big|\overrightarrow{y})$ es sesquilineal.
+
+        La aplicación $(\overrightarrow{x},\overrightarrow{y})\mapsto(\overrightarrow{x}\big|\overrightarrow{y})$ se llama \textbf{producto escalar sobre $H$}.
+    \end{obs}
+
+    \begin{mydef}
+        Para todo $\overrightarrow{x}\in H$ se define la \textbf{norma de $\overrightarrow{x}$} como: $|x|=\sqrt{(\overrightarrow{x}|\overrightarrow{x})}$.
+    \end{mydef}
+
+    \begin{exa}
+        Sea $H=\mathbb{K}^n$
+        %El producto interior usual en ese espacio ya conocido y es prehilbertiano
+    \end{exa}
+
+    \begin{exa}
+        Sea $S\subseteq\mathbb{R}^n$ medible y sea $H=L_2(S,\mathbb{K})$. Para todo $f,g\in H$ se define
+        \begin{equation*}
+            (f\big| g)=\int_Sf\bar{g}
+        \end{equation*}
+        La integral existe por Holder con $p=p^*=2$. Este es un producto escalar sobre $H$ y, en este caso:
+        \begin{equation*}
+            |f|=\left[\int_S|f|^2 \right]^{\frac{1}{2}}=\mathcal{N}_2(f),\quad \forall f\in H
+        \end{equation*}
+    \end{exa}
+
+    \begin{exa}
+        Sea $H=l_2(\mathbb{K})$ el espacio de sucesoines en $\mathbb{K}$ que son cuadrado sumables, entonces $\overrightarrow{x}=(x_1,x_2,...)\in l_2(\mathbb{K})$ si y sólo si
+        \begin{equation*}
+            \sum_{i=1}^{\infty}|x_i|^2<\infty
+        \end{equation*}
+        $l_2(\mathbb{K})$ es un espacio prehilbertiano con el producto escalar:
+        \begin{equation*}
+            (\overrightarrow{x}\big| \overrightarrow{y})=\sum_{i=1}^{\infty}x_i\bar{y_i}
+        \end{equation*}
+        donde la serie es convergente por Holder. En este caso:
+        \begin{equation}
+            \|\overrightarrow{x} \|=\left[\sum_{i=1}^{\infty}|x_i|^2\right]^{\frac{1}{2}}=\mathcal{N}_2(\overrightarrow{x}),\quad\forall\overrightarrow{x}\in l_2(\mathbb{K})
+        \end{equation}
+    \end{exa}
+
+    \newpage
+
+    \begin{proof}
+        Entorno de Prueba
+    \end{proof}
+
+    \begin{sol}
+        Entorno de Solución
+    \end{sol}
+
+    \begin{theor}[Nombre]
+        Teorema
+    \end{theor}
+
+    \begin{propo}[Nombre]
+        Proposición
+    \end{propo}
+
+    \begin{cor}[Nombre]
+        Corolario
+    \end{cor}
+
+    \begin{lema}[Nombre]
+        Lema
+    \end{lema}
+
+    \begin{mydef}[Nombre]
+        Definición
+    \end{mydef}
+
+    \begin{obs}[Nombre]
+        Observación
+    \end{obs}
+
+    \begin{exa}[Nombre]
+        Ejemplo
+    \end{exa}
+
+    \begin{excer}[Nombre]
+        Ejercicio
+    \end{excer}
+
+\end{document}

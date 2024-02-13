@@ -1,0 +1,289 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\square$}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand{\car}[1]{\ensuremath{\textup{car}(#1)}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \title{Lista de Ejercicios de Extensiones Separables}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \setcounter{chapter}{3}
+    \setcounter{section}{1}
+
+    \begin{excer}
+        Sea $f(X)\in F$ un polinomio mónico irreducible de grado $\geq2$ tal que $f(X)$ tiene todas sus raíces iguales en algún campo de descomposición. Pruebe que $\car{F}=p>0$ y que $f(X)=X^{p^n}-a$, para algún $n\in\mathbb{N}$ y $a\in F$.
+    \end{excer}
+    
+    \begin{proof}
+        Esto es una contradicción.\contradiction
+        \begin{equation}
+            asd\quad sadf\contradiction
+        \end{equation}
+    \end{proof}
+
+    \begin{excer}
+        Sea $f(X)\in F[X]$ un polinomio irreducible de grado $m\in\mathbb{N}^*$, y $\car{F}$ no divide a $m$. Demuestre que $f(X)$ es separable.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        sea $F$ un campo de caracterísitica $p\in\mathbb{N}^*$, y sea $a\in F$ tal que $a\notin F^p$. Pruebe que el polinomio $f(X)=X^{p^n}-a\in F[X]$ es irreducible para cada $n\geq 1$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $F$ un campo de caracterísitica cero, y supóngase que existe un polinomoi de grado dos irredicible sobre $F[X]$. Probar que hay un número infinito de polinomios irreducibles sobre $F[x]$ de grado dos.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $E/F$ la extensión de campos con $\car{F}=p>0$. Pruebe que si $\alpha\in E$ es algebraico sobre $F$, entonces $\alpha^{p^n}$ es separable sobre $F$ para algún $n\geq0$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $F$ un campo de caracterísitica $p>0$, y esa $\alpha$ algebraico sobre $F$. Demuestre que $\alpha$ es separable sobre $F$ si y sólo si $F(\alpha)=F(\alpha^{p^n})$ para cada $n\geq1$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $E/F$ una extensión de campos con $\car{F}=p>0$, y sea $n\geq$ tal que $\left(n,p\right)=1$. Pruebe que para cada $\alpha\in E$, con $n\alpha\in F$, se tiene que $\alpha\in F$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $\alpha$ algebraico sobre $F$. Demuestre que $\left[F(\alpha):F\right]_i$ es la multiplicidad de $\alpha$ en su polinomio irredicuble sobre $F$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $E/F$ una extensión de campos finita con $E$ campo perfecto. Demuestre que $F$ es también campo perfecto.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $F$ un campo y $\Bar{F}$ una cerradura algebraica de $F$. Pruebe que $\Bar{F}$ es un campo perfecto.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $E/F$ uan extensión finita de campos con $\car{F}=p>0$. Pruebe que la extensión $E/F$ es separable si y sólo si $E=E^pF$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $E/F$ una extensión finita y separable con $\car{F}=p>0$. Pruebe que si $\left\{u_1,...,u_n\right\}$ es una base de $E$ sobre $F$, entonces también lo es $\left\{u_1^{p^m},...,u_n^{p^m}\right\}$ para cualquier $m\geq0$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $E/F$ una extensión finita de campos con $F$ campo infinito. Pruebe que $E/F$ es una extensión simple si y sólo si existe solamente un número finito de campos intermedios en la extensión $E/F$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $E/F$ una extensión de campos con $\car{F}=p>0$, y sea $\alpha\in E$ algebraico sobre $F$. Pruebe que las siguientes condiciones son equivalentes:
+        \renewcommand{\theenumi}{\arabic{enumi})}
+        \begin{enumerate}
+            \item $\alpha$ es puramente inseparable sobre $F$.
+            \item El polinomio irredicuble de $\alpha$ sobre $F$ es de la forma $(X-\alpha)^m$ para algún $m\geq1$, donde $m$ es una potencia de $p$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $E/F$ una extensión de campos con $\car{F}=p>0$, y sean $\alpha\in E$ separable sobre $F$ y $\beta\in E$ puramente inseparables sobre $F$. Pruebe que $F(\alpha,\beta)=F(\alpha+\beta)$. Si $\alpha\neq0\neq\beta$, entonces $F(\alpha,\beta)=F(\alpha\beta)$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Dar un ejemplo de una extensión finita de campos que no sea separable ni puramente inseparable.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Encuentre un elemento $\alpha\in\mathbb{Q}(\sqrt{2},\sqrt[3]{3})$ tal que $(\alpha)=\mathbb{Q}(\sqrt{2},\sqrt[3]{3})$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $E/F$ una extensión de campos finita con $\car{F}=p>0$, y sea $p^r=\left[E:F\right]_i$. Supóngase que no existe una potencia $p^s$, con $s<r$ tal que $E^{p^s}F$ sea separable sobre $F$. Pruebe que la extensión $E/F$ es simple. (\textit{Sugerencia: }Suponga primeramente que $E/F$ es una extensión puramente inseparable).
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $F$ un campo de caracterísitica $p>0$, y sea $E=F(\alpha,\beta)$ con $\alpha,\beta\notin F$. Supóngase que $\alpha^p,\beta^p\in F$ y que $[E:F]=p^2$. Pruebe que $E/F$ no es una extensión simple. Exhibta un número infinito de campos intermedios.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+\end{document}
