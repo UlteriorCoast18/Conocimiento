@@ -1,0 +1,305 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\biglvert#1\bigrvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \title{Notas del curso Topología I}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \setcounter{chapter}{-1} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Introduccion}
+    
+    \section{Temario}
+    
+    \section{Bibliografía}    
+
+    \begin{enumerate}
+        \item J. R. Munkres 'Topología' - Prentices Hall.
+        \item M. Gemignsni 'Elementary Topology' -  Dover.
+        \item J. Dugundji 'Topology' -  Allyn Bacon.
+    \end{enumerate}
+
+    \chapter{Conceptos Fundamentales}
+
+    \section{Fundamentos}
+
+    \begin{mydef}
+        Sea $X$ un conjunto y $\mathcal{A}$ una familia no vacía de subconjuntos de $X$. Definamos los \textbf{complementos de $\mathcal{A}$}
+        \begin{equation*}
+            \mathcal{A}':=\left\{X-A\big| A\in\mathcal{A} \right\}
+        \end{equation*}
+        (básicamente es el conjunto de todos los complementos de los conjuntos en $\mathcal{A}$). Para no perder ambiguedad, no denotaremos al complemento de un conjunto por $B^c$, sino por $X-B$ (para denotar quien es el conjunto sobre el que se toma el complemento del conjunto).
+
+        La \textbf{unión de los elementos} de $\mathcal{A}$ se define com oel conjunto:
+        \begin{equation*}
+            \bigcup\mathcal{A}=\bigcup_{A\in\mathcal{A}}A=\left\{x\in X\big| x\in A\textup{ para algún elemento }A\in\mathcal{A} \right\}
+        \end{equation*}
+        denotada por el símbolo de la izquierda.
+
+        La \textbf{intersección de los elementos} de $\mathcal{A}$ se define como el conjunto:
+        \begin{equation*}
+            \bigcap\mathcal{A}=\bigcap_{A\in\mathcal{A}}A=\left\{x\in X\big| x\in A\textup{ para todo elemento }A\in\mathcal{A} \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        En caso de que la colección $\mathcal{A}$ sea vacía, no se puede hacer lo que marca la definición anterior. Como $\mathcal{A}$ es vacía, entonces $\mathcal{A}'$ también es vacía.
+        \begin{enumerate}
+            \item Suponga que $\cup\mathcal{A}\neq\emptyset$, entonces existe $x\in X$ tal que $x\in \cup\mathcal{A}$, luego existe algún elemento $A\in\mathcal{A}$ tal que $x\in A$, pero esto no puede suceder, pues la familia $\mathcal{A}$ es vacía. \contradiction. Por tanto, $\cup\mathcal{A}=\emptyset$.
+            \item Ahora, si aplicamos las leyes de Morgan, y tomamos
+            \begin{equation*}
+                X-\cap\mathcal{A}=X-\cap\emptyset=\cup\emptyset'=\cup\emptyset=\emptyset
+            \end{equation*}
+            luego, $\cap\mathcal{A}=X$.
+        \end{enumerate}
+        En definitiva, si $\mathcal{A}$ es una colección vacía, entonces definimos $\cup\mathcal{A}=\emptyset$ y $\cap\mathcal{A}=X$.
+    \end{obs}
+
+    La observación junto con la definición anterior se usarán a lo largo de todo el curos y serán de utilidad.
+
+    \begin{mydef} 
+        Sea $X$ un conjunto y sea $\tau$ una familia de subconjuntos de $X$. Se dice que $\tau$ es una \textbf{una topología definida sobre $X$} si se cumple lo siguiente:
+        \begin{enumerate}
+            \item $\emptyset,X\in\tau$.
+            \item Si $\mathcal{A}$ es una subcolección de $\tau$, entonces $\bigcup\mathcal{A}\in\tau$.
+            \item Si $A,B\in\tau$, entonces $A\cap B\in\tau$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        En algunos libros viejos viene la siguiente condición adicional a la definición:
+        \begin{enumerate}
+            \setcounter{enumi}{3}
+            \item Si $p,q\in X$ con $p\neq q$, entonces existen $U, V\in\tau$ tales que $p\in U$, $q\in V$ y $U\cap V=\emptyset$.
+        \end{enumerate}
+        en este caso se dirá que el espacio es \textbf{Hausdorff}.
+    \end{obs}
+
+    \begin{obs}
+        Se tienen las siguientes observaciones:
+        \begin{enumerate}
+            \item Sea $X$ un conjunto y $\mathcal{A}$ una familia de subconjuntos de $X$. Si
+            \begin{equation*}
+                \mathcal{A}=\left\{A_\alpha\big|\alpha\in I \right\}
+            \end{equation*}
+            entonces podemos escribir
+            \begin{equation*}
+                \bigcup\mathcal{A}=\bigcup_{A_\alpha\in\mathcal{A}}A=\bigcup_{\alpha\in I}A_\alpha
+            \end{equation*}
+            e igual con la intersección:
+            \begin{equation*}
+                \bigcap\mathcal{A}=\bigcap_{A_\alpha\in\mathcal{A}}A=\bigcap_{\alpha\in I}A_\alpha
+            \end{equation*}
+            Si $\mathcal{A}$ es una familia vacía, y se toma como definición lo dicho en la observación 1.0.1, entonces podemos omitir el primer inciso de la definición anterior.
+            \item Si $\tau$ es una topología sobre $X$ y para $n\in\mathbb{N}$, $A_1,...,A_n\in\tau$, entonces $A_1\cap...\cap A_n\in\tau$.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{exa}
+        Sea $X$ un conjunto no vacío.
+        \begin{enumerate}
+            \item El conjunto potencia (denotado por $\mathcal{P}$) de $X$ es una topología sobre $X$, la cual se llama la \textbf{topología discreta}, y se denota por $\tau_D$.
+            \item La colección formada únicamente por $X$ y $\emptyset$ es una topolgía sobre $X$, es decir $\tau=\left\{\emptyset,X \right\}$ es llamada la \textbf{topología indiscreta}, y se escribe como $\tau_I$.
+            \item En el caso de que $X=\left\{1\right\}$, se tendría que $\tau_D=\left\{\emptyset,\left\{1\right\} \right\}$ y $\tau_I=\left\{\emptyset,\left\{1\right\} \right\}$.
+            
+            Si $X=\left\{1,\zeta\right\}$, entonces $\tau_D=\left\{\emptyset,\left\{1\right\},\left\{\zeta\right\},\left\{1,\zeta\right\} \right\}$ y $\tau_I=\left\{\emptyset,\left\{1,\zeta\right\} \right\}$.
+
+            \item Si $\tau$ es una topología sobre $X$, entonces
+            \begin{equation*}
+                \tau_I\subseteq\tau\subseteq\tau_D
+            \end{equation*}
+            \item Sea $a\in X$. Entonces $\tau=\left\{\emptyset,X,\left\{a\right\},\right\}$ es una topología sobre $X$.
+            \item Sea $A\subseteq X$ y sea $\tau\left(A\right)=\left\{B\subseteq X\big| A\subseteq B \right\}\bigcup\left\{\emptyset\right\}$. Esta familia $\tau\left(A\right)$ es una topología sobre $X$.
+        \end{enumerate} 
+    \end{exa}
+
+    \begin{obs}
+        Sea $X$ un conjunto no vacío. Si $A=\left\{a\right\}\subseteq X$, entonces escribimos $\tau_a$ en vez de $\tau\left(A\right)$.
+    \end{obs}
+
+    \setcounter{exa}{0}
+    \begin{exa}
+        Se continuan con los ejemplos anteriores:
+        \begin{enumerate}
+            \setcounter{enumi}{6}
+            \item Sea $\tau_{cf}=\left\{A\subseteq X\big| X-A\textup{ es un conjunto finito} \right\}\bigcup\left\{\emptyset\right\}$. Esta es una topología sobre $X$ y se llama la \textbf{topología de los complementos finitos}.
+            \item Si $X$ es un conjunto finito, entonces $\tau_{cf}=\tau_D=\mathcal{P}$.
+            \item Considere $\tau_{cf}$ y sean $a,b\in X$ con $a\neq b$. Si $U_a=X-\left\{b\right\}$, $U_b=X-\left\{a\right\}$, entonces $U_a,U_b\in\tau_{cf}$ y además, $a\in U_a$ pero $b\notin U_a$ y $a\notin U_b$ pero $b\in U_b$. Esta propiedad es muy importante tenerla en mente pues más adelante se usará.
+        \end{enumerate}
+    \end{exa}
+
+    \begin{propo}
+        Sea $(X,d)$ un espacio métrico. Dados $a\in X$ y $\varepsilon\in\mathbb{R}^+$, al conjunto $B_d(x,\varepsilon)=\left\{y\in X\big|d(x,y)<\varepsilon \right\}$ se llama \textbf{$\varepsilon$-bola con centro en $x$ y radio $\varepsilon$}. 
+        
+        Sea
+        \begin{equation*}
+            \tau_d=\left\{A\subseteq X\big| \forall a\in A \exists r>0\textup{ tal que }B_d(a,r)\subseteq A \right\}
+        \end{equation*}
+        Esta colección es una topología sobre $X$.
+    \end{propo}
+
+    \newpage
+
+    \begin{proof}
+        Entorno de Prueba
+    \end{proof}
+
+    \begin{sol}
+        Entorno de Solución
+    \end{sol}
+
+    \begin{theor}[Nombre]
+        Teorema
+    \end{theor}
+
+    \begin{propo}[Nombre]
+        Proposición
+    \end{propo}
+
+    \begin{cor}[Nombre]
+        Corolario
+    \end{cor}
+
+    \begin{lema}[Nombre]
+        Lema
+    \end{lema}
+
+    \begin{mydef}[Nombre]
+        Definición
+    \end{mydef}
+
+    \begin{obs}[Nombre]
+        Observación
+    \end{obs}
+
+    \begin{exa}[Nombre]
+        Ejemplo
+    \end{exa}
+
+    \begin{excer}[Nombre]
+        Ejercicio
+    \end{excer}
+
+\end{document}
