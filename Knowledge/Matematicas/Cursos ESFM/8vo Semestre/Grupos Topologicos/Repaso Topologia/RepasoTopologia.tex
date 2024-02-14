@@ -115,6 +115,7 @@
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand{\eul}[1]{\ensuremath{\mathscr{#1}}}
 \renewcommand{\theenumi}{\arabic{enumi})}
+\newcommand{\Int}[1]{\text{Int}\ensuremath{#1}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -209,6 +210,98 @@
     \begin{mydef}
         Si $(X,\tau)$ es un espacio topológico tal que todo punto $x\in X$ posee una base local en $x$ numerable, decimos que $X$ es un espacio \textbf{primero numerable}. 
     \end{mydef}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico. Decimos que un subconjunto $F\subseteq X$ es \textbf{cerrado}, si $X\backslash F\in \tau$, es decir, si su complemento relativo a $X$ es abierto. De forma inmediata se deducen las propiedades siguientes:
+        \renewcommand{\theenumi}{C\arabic{enumi})}
+        \begin{enumerate}
+            \item El conjunto $X$ es cerrado, lo mismo con $\emptyset$.
+            \item La unión de dos conjuntos cerrados es cerrada.
+            \item La intersección de cualquier familia de conjuntos cerrados es cerrada.
+        \end{enumerate}
+        \renewcommand{\theenumi}{B\arabic{enumi})}
+    \end{mydef}
+
+    De ahora en adelante, cada que se mencione al conjunto $X$, se entenderá que es el espacio topológico $(X,\tau)$. Si no hay ambiguedad, no se mencionará la topología $\tau$.
+
+    Ahora se procederá a definir dos conjuntos importantes para todo subconjunto $A\subseteq X$, con el objetivo de relacionar a éste con algún elemento de la topología $\tau$.
+
+    \begin{mydef}
+        Sea $A\subseteq X$. Considere la familia $\mathcal{C}_A$ de todos los conjuntos cerrados que contienen a $A$. La intersección
+        \begin{equation*}
+            \overline{A}=\bigcap_{E\in\mathcal{C}_A}E
+        \end{equation*}
+        es la \textbf{cerradora} o \textbf{clausura de $A$}. Es claro que $\overline{A}$ es un conjunto cerrado.
+    \end{mydef}
+
+    \begin{propo}
+        Sea $X$ un espacio topológico; enotnces
+        \renewcommand{\theenumi}{\arabic{enumi})}
+        \begin{enumerate}
+            \item $A\subseteq \overline{A}$.
+            \item Si $A\subseteq B$, entonces $\overline{A}\subseteq\overline{B}$.
+            \item Si $x\in\overline{A}$, entonces para toda vecindad $U$ de $x$ se cumple que
+            \item $U\cap A\neq\emptyset$.
+            \item $\overline{\emptyset}=\emptyset$.
+            \item $\overline{A\cup B}=\overline{A}\cup\overline{B}$.
+            \item $\overline{\overline{A}}=\overline{A}$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{mydef}
+        El \textbf{interior} de un subconjunto $A\subseteq X$ de un espacio topológico $X$ es la unión de todos los subconjuntos abiertos contenidos en $A$, o en forma equivalente, el abierto más grande contenido en $A$. El interior de $A$ se denota como $\Int{A}$ y es claramente un conjunto abierto.
+    \end{mydef}
+
+    Algunas propiedades del interior de un conjunto son las siguientes:
+
+    \begin{propo}
+        Sea $X$ un espacio topológico, enotnces
+        \begin{enumerate}
+            \item Para todo $A\subseteq X$ se cumple que $\Int{A}=X\backslash\overline{X\backslash A}$.
+            \item $\Int{X}=X$.
+            \item $\Int{A}\subseteq A$.
+            \item $\Int{A\cap B}=\Int{A}\cap\Int{B}$.
+            \item $\Int{\Int{A}}=\Int{A}$.
+        \end{enumerate}
+    \end{propo}
+
+    Bajo esta perspectiva, podemos considerar a la cerradura e interior de un conjunto como operadores que actúan sobre los subconjuntos de un espacio topológico. Ahora definiremos un operador más en un espacio topológico:
+
+    \begin{mydef}
+        Un punto $x\in X$ de un espacio topológico $X$ es un \textbf{punto de acumulación} de un conjunto $A\subseteq X$, si $x\in\overline{A\backslash\left\{x\right\}}$; el conjunto de todos los puntos de acumulación de $A$ es el \textbf{conjunto derivado} de $A$ y se denota por $A^d$.
+
+        A los puntos de $A^d$ se les conoce como \textbf{puntos no aislados} del conjunto $A$. Un punto $x$ es \textbf{aislado} en $X$ si y sólo si el conjunto $\left\{x\right\}$ es abierto.
+    \end{mydef}
+
+    Algunas de las propiedades del conjunto derivado son las siguientes:
+
+    \begin{propo}
+        Sean $X$ un espacio topológico, $x\in X$ y $A\subseteq X$. Entonces,
+        \renewcommand{\theenumi}{D\arabic{enumi})}
+        \begin{enumerate}
+            \item El punto $x$ pertenece a $A^d$ si y sólo si toda vecindad de $x$ contiene al menos un punto de $A$ distinto de $x$.
+            \item $\overline{A}=A\cup A^d$.
+            \item Si $A\subseteq B$, entonces $A^d\subseteq B^d$.
+            \item $(A\cup B)^d=A^d\cup B^d$.
+            \item $\bigcup_{i\in I} A_i^d\subseteq \left(\bigcup_{i\in I}A_i\right)^d$.
+        \end{enumerate}
+    \end{propo}
+
+    Ahora se definirán varios conceptos importantes en la topología general.
+
+    \begin{mydef}
+        Sea $X$ un espacio topológico.
+        \renewcommand{\theenumi}{\arabic{enumi})}
+        \begin{enumerate}
+            \item Un conjunto $A\subseteq X$ es \textbf{denso} en $X$ si $\overline{A}=X$.
+            \item Un conjunto $A\subseteq X$ es \textbf{denso en ninguna parte} en $X$, si $X\backslash \overline{A}$ es denso en $X$.
+            \item Un conjunto $A\subseteq X$ es \textbf{denso en sí mismo} si $A=A^d$.
+        \end{enumerate}
+    \end{mydef}
+
+    Entre las propiedades de subconjuntos de espacios relativas a la definición anterior se cuentan las siguientes:
+
+    %me quedé en la página 174
 
     \chapter{Funciones Cardinales}
 
