@@ -116,6 +116,7 @@
 \newcommand{\eul}[1]{\ensuremath{\mathscr{#1}}}
 \renewcommand{\theenumi}{\arabic{enumi})}
 \newcommand{\Int}[1]{\text{Int}\ensuremath{#1}}
+\newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -301,7 +302,160 @@
 
     Entre las propiedades de subconjuntos de espacios relativas a la definición anterior se cuentan las siguientes:
 
-    %me quedé en la página 174
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico. Entonces, se cumplen los 3 incisos siguientes:
+        \begin{enumerate}
+            \item Un conjunto $A$ es denso en $X$ si y sólo si todo subconjunto abierto no vacío de $X$ interseca a $A$.
+            \item El conjunto $A$ es denso en ningun a parte en $X$ si y sólo si todo abierto no vacío de $X$ contiene un abuerto no vacío ajeno a $A$.
+            \item Si $A$ es denso en $X$, entonces para todo abierto $U\subseteq X$ tenemos que $\overline{U}=\overline{U\cap A}$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{mydef}
+        Decimos que un espacio $X$ es \textbf{separable} si contiene un conjunto denso numerable.
+    \end{mydef}
+
+    \section{Funciones y homeomorfismos}
+
+    Ahora, definiremos dos conceptos de gran transendencia en la topología general: la continuidad de funciones y el homeomorfismo.
+
+    \begin{mydef}
+        Sean $(x,\tau)$ y $(Y,\sigma)$ espacios topológicos; una función de $X$ en $Y$ es \textbf{continua} si $f^{-1}(U)\in\tau$, para todo $U\in\sigma$, es decir que la imagen inversa de todo abierto en $Y$ es abierta en $X$.
+    \end{mydef}
+
+    A continuación se presentan varios criterios de continuidad:
+
+    \begin{propo}
+        Para una función $\cf{f}{X}{Y}$ de un espacio $X$ en $Y$, las siguientes afirmaciones son equivalentes:
+        \begin{enumerate}
+            \item La función $f$ es continua.
+            \item Las imágenes inversas de miembros de una sub-base $\eul{P}$ en $Y$ son abiertas en $X$.
+            \item Las imágenes inversas de miembros de una base $\eul{B}$ en $Y$ son abiertas en $X$.
+            \item Imágenes inverssa de conjuntos cerrados en $Y$ son cerados en $Y$.
+            \item Para todo $A\subseteq X$ tenemos que $f(\overline{A})\subseteq\overline{f(A)}$.
+            \item Para todo $B\subseteq Y$ tenemos que $f^{-1}(\Int{B})\subseteq\Int{f^{-1}(B)}$.
+            \item Para todo $B\subseteq Y$ tenemos que $\overline{f^{-1}(B)}\subseteq f^{-1}(\overline{B})$.
+        \end{enumerate}
+    \end{propo}
+
+    Una función $f$ del espacoi $X$ al espacio $Y$ es \textbf{continua en el punto $x\in X$} si para toda vecindad $V$ de $f(x)$ existe una vecindad $U$ de $x$ tal que $f(U)\subseteq V$. Claramente, una función $f$ de $X$ a $Y$ es continua si y sólo si es continua en cada punto $x\in X$.
+
+    \begin{mydef}
+        Un subconjunto de $G$ de un espacio $X$ es un \textbf{conjunto $G_\delta$} si $G$ es la intersección de una familia numerable de conjuntos abiertos en $X$.
+
+        Un subconjunto $F$ de un espacio $X$ es un conjunto \textbf{conjunto $F_\sigma$} si $F$ es la unión de una familia numerable de cerrados en $X$.
+    \end{mydef}
+
+    \begin{obs}
+        Observe que si $f$ es una función continua de $X$ a $Y$, entonces para cualquier conjunto $B\subseteq Y$ que sea $G_\delta$ (respectivamente, $F_\sigma$), la imagen inversa $f^{-1}(B)$ es un $G_\delta$ (respectivamente, $F_\sigma$) en $X$.
+    \end{obs}
+
+    \begin{mydef}
+        Una función continua $\cf{f}{X}{Y}$ es \textbf{cerrada} (respectivamente, \textbf{abierta}) si para todo subconjunto cerrado (respectivamente, abierto) $A\subseteq X$, su imagen directa $f(A$) es cerrada (respectivamente, cerrada) en $Y$.
+    \end{mydef}
+
+    Ahora analizaremos la clase de funciones continuas que son homeomorfismos.
+    
+    \begin{mydef}
+        Una función continua $\cf{f}{X}{Y}$ es un \textbf{homeomorfismo} si $f$ es una biyección y su inversa $\cf{f^{-1}}{Y}{X}$ es continua.
+    \end{mydef}
+
+    Si existe un homeomorfismo entre los espacios $X$ y $Y$, diremos que $X$ es \textbf{homeomorfo} a $Y$. La presencia de tal homeomorfismo hace topológicamente indistinguibles a los espacios $X$ y $Y$. Note que la relación de ser homeomorfos es una relación de equivalencia en la clase de todos los espacios topológicos.
+
+    Otra clase importante de funciones la conforman las llamadas funciones cociente, que se definen a continuación.
+
+    \begin{mydef}
+        Una función $f$ de un espacio topológico $(X,\tau)$ sobre otro espacio topológico $(Y,\sigma)$ es una \textbf{función cociente} si un conjunto $V$ es abuerto en $Y$ si y sólo si su imagen inversa $f^{-1}(V)$ es abierta en $X$.
+    \end{mydef}
+
+    \begin{obs}
+        Es inmediato que toda función cociente biyectiva es un homeomorfismo.
+    \end{obs}
+
+    \begin{propo}
+        Sean $X$ y $Y$ espacios topológicos. Entonces
+        \begin{enumerate}
+            \item Toda función continua y abierta de $X$ sobre $Y$ es cociente.
+            \item Toda función cerrada de $X$ sobre $Y$ es cociente.
+        \end{enumerate}
+    \end{propo}
+
+    \section{Axiomas de separación}
+
+    Por si sola, la definición de espacio topológico es muy general y pocos son los resultados interesantes que se pueden probar en todo espacio topológico. Para solventar este problema, se requiere de imponer ciertas reestricciones para que se puedan desarrollar resultados más interesantes. Básicamente lo que sigue es para establecer formas de separar puntos y conjuntos cerrados en espacios. 
+
+    \begin{mydef}
+        Espacios $T_i$:
+        \begin{enumerate}
+            \item Un espacio topológico $X$ es un \textbf{Espacio $T_0$} si para toda pareja de puntos distintos $x_1,x_2\in X$ existe un abierto que contiene uno de los puntos pero no el otro.
+            \item Un espacio $X$ es un \textbf{Espacio $T_1$} si para toda pareja de puntos distintos $x_1,x_2\in X$ existe un abierto $U$ tal que $x_1\in U$ y $x_2\notin U$. Obseve que también existe un abierto $V$ que contiene a $x_2$ pero no a $x_1$.
+            
+            La diferencia entre un espacio $T_0$ y $T_1$ radica en que, en los $T_0$ no puedes elegir cual punto cumple la condición de estar en el abierto, y en el $T_1$ esto es posible.
+            \item Un espacio $X$ es un \textbf{espacio $T_2$} o \textbf{Haussdorff} si para toda pareja de puntos distintos $x_1,x_2\in X$ existen conjuntos abiertos ajenos $U_1$ y $U_2$ en $X$ tales que $x_1\in U_1$ y $x_2\in U_2$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{lema}
+        Para cualquier pareja de funciones continuas $f,g$ de un espacio $X$ en un espacio Hausdorff $Y$, el conjunto
+        \begin{equation*}
+            \left\{x\in X\big|f(x)=g(x) \right\}
+        \end{equation*}
+        es cerrado en $X$.
+    \end{lema}
+
+    \begin{mydef}
+        Un espacio $X$ es $T_3$ o \textbf{regular} si es $T_1$ y para toda $x\in X$ y todo cerrado $F\subseteq X$ tal que $x\notin F$ existen abiertos $U_1,U_2$ en $X$ tales que $x\in U_1$, $F\subseteq U_2$ y $U_1\cap U_2=\emptyset$.
+    \end{mydef}
+
+    Claramente todo espacio regular es Hausdorff. No obstante, los espacios regulares tienen una propiedad aún más importante.\
+
+    \begin{propo}
+        Si $X$ es un espacio $T_1$, entonces $X$ es regular si y sólo si para todo punto $x\in X$ y toda vecindad $V$ de $x$ existe una vecindad $U$ de $x$ tal que $\overline{U}\subseteq V$.
+    \end{propo}
+
+    Una clase aún más particular de espacios topológicos son los espacios Tikhonov.
+
+    \begin{mydef}
+        Un espacio $X$ es un espacio $T_{3\frac{1}{2}}$ o \textbf{completamente regular} si para todo $x\in X$ y para todo cerrado $F\subseteq X$ tal que $x\notin F$ existe una función continua $\cf{f}{X}{[0,1]}$ con la propiedad de que $f(x)=0$ y $f(y)=1$ para todo $y\in F$. Si además el espacio $X$ es $T_1$, entonces $X$ es \textbf{completamente regular} o \textbf{Tikhonov}.
+    \end{mydef}
+
+    \begin{theor}
+        Todo espacio Tikhonov es regular.
+    \end{theor}
+
+    \begin{mydef}
+        Un espacio topológico $X$ es un espacio $T_4$ o \textbf{normal} si $X$ es $T_1$ y para toda pareja de cerrados ajenos $A,B\subseteq X$ existen abiertos ajenos $U_A$ y $U_B$ tales que $A\subseteq U_A$ y $B\subseteq U_B$.
+    \end{mydef}
+
+    \begin{obs}
+        Si un espacio $X$ es $T_1$, entonces es normal si y sólo si para todo conjunto cerrado $F\subseteq X$ y todo abierto $V\subseteq X$ que contiene a $F$ existe un abierto $U\subseteq X$ tal que $F\subseteq U\subseteq \overline{U}\subseteq V$.Claramente todo espacio normal es regular. El hecho de que todo espacio normal es Tikhonov se deduce del siguiente teorema.
+    \end{obs}
+
+    \begin{theor}[Lema de Urysohn]
+        Para cada pareja de subconjuntos cerrados ajenos $A,B$ de un espacio normal $X$ existe una función continua $\cf{f}{X}{[0,1]}$ tal que $f(x)=0$ para todo $x\in A$ y $f(x)=1$ para todo $x\in B$.
+    \end{theor}
+    
+    \begin{obs}
+        Todo espacio segundo numerable y regular es normal. Lo mismo ocurre con todo espacio regular y numerable.
+    \end{obs}
+
+    \begin{cor}
+        Un subconjunto $A$ de un espacio normal $X$ es un cerrado $G_\delta$ si y sólo si existe una función continua $\cf{f}{X}{[0,1]}$ tal que $A=f^{-1}(0)$.
+    \end{cor}
+
+    \begin{mydef}
+        \begin{itemize}
+            \item Dos subconjuntos $A,B$ de un espacio topológico $X$ están \textbf{completamente separados} si existe una función continua $\cf{f}{X}{[0,1]}$ tal que $f(x)=0$ para $x\in A$ y $f(x)=1$ para $x\in B$.
+            \item Un subconjunto $A$ de un espacio $X$ es \textbf{funcionalmente cerrado} (también llamado \textbf{conjunto nulo}) si $A=f^{-1}(0)$ para alguna función continua $\cf{f}{X}{[0,1]}$. El complemento de un conjunto funcionalmente cerrad oes un conjunto \textbf{funcionalmente abierto} (también llamado \textbf{conjunto cocero}).
+            \item Un espacio topológico $X$ es \textbf{perfectamente normal} si $X$ es normal y todo subconjunto cerrado de $X$ es un $G_\delta$. Claramente un espacio normal $X$ es perfectamente normal si y sólo si todo subconjunto abierto de $X$ es un $F_\sigma$.
+        \end{itemize}
+    \end{mydef}
+
+    \section{Convergencia}
+
+    El concepto de sucesión convergente\dots
+    %Me quedé en la página 179%
+
 
     \chapter{Funciones Cardinales}
 
