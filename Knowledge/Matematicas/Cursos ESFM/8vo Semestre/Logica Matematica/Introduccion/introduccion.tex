@@ -135,6 +135,8 @@
 
     Los siguientes temas se verán a lo largo del curso:
 
+    \renewcommand{\theenumii}{\arabic{enumi}.\arabic{enumii}}
+
     \begin{enumerate}
         \item Lógica (Teoría de Modelos).
         \begin{enumerate}
@@ -171,10 +173,10 @@
             \hline
             $P$ & $Q$ & $P|Q$ \\
             \hline
-            V & V & F \\
-            V & F & V \\
-            F & V & V \\
-            F & F & V \\
+            $V$ & $V$ & $F$ \\
+            $V$ & $F$ & $V$ \\
+            $F$ & $V$ & $V$ \\
+            $F$ & $F$ & $V$ \\
         \end{tabular}
     \end{center}
     con este, se tiene un conjunto completo de conectivas lógicas.
@@ -187,6 +189,136 @@
     \begin{equation*}
         \Rightarrow\Rightarrow P\neg Q\land\land PR\neg\Rightarrow Q S T 
     \end{equation*}
+
+    Ahora empezamos con el estudio formal de la lógica.
+
+    \chapter{Lógica Proposicional}
+
+    \section{Alfabeto}
+
+    El alfabeto de la lógica proposicional es un conjunto que consta de dos tipos de símbolos:
+    \begin{enumerate}
+        \item \textbf{Variables}, denotadas por $p_1,p_2,...,p_n,...$ (a lo más una cantidad numerable). Estas representan proposiciones o enunciados (tengo un paraguas, me caí de las escaleras, no tengo café en la cafetera, etc\dots).
+        \item \textbf{Conectivas}, como $\Rightarrow$ y $\neg$.
+    \end{enumerate}
+    Aceptamos la existencia de estas cosas (pues, al menos debemos aceptar la existencia de algo).
+
+    Se van a trabajar con sucesiones finitas de símbolos del alfabeto descrito anteriormente. Ahora necesitaremos especificar que tipos de sucesiones van a servirnos para tener un significado formal.
+
+    \begin{mydef}
+        En el conjunto de sucesiones finitas de símbolos del alfabeto, definimos una \textbf{fórmula bien formada} (abreviada como \textbf{FBF}) como sigue:
+        \begin{enumerate}
+            \item Cada variable es una \textbf{FBF}.
+            \item Si $\varphi,\psi$ son \textbf{FBF}, entonces $\neg\varphi$ y $\Rightarrow\varphi\psi$ también lo son.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        Recordar que usamos la notación Polaca en la definición anterior.
+    \end{obs}
+
+    A continuación unos ejemplos:
+    
+    \begin{exa}
+        $p_{17}$, $p_{54}$ y $\Rightarrow p_2p_{25}$ son FBF. Las primeras dos son llamadas \textbf{variables aisladas}. También lo es $\neg \Rightarrow p_2p_{25}$ (en este ejemplo, los $p_i$ son variables).
+
+        Pero, por ejemplo $\Rightarrow \neg p_1 p_2 p_3$ y $\Rightarrow p_4$ no son FBF.
+    \end{exa}
+
+    Viendo el ejemplo anterior, notamos que el operador $\Rightarrow$ es binario (solo usa dos entradas) y $\neg$ es unario (solo una entrada). Por lo cual, añadir o no demás variables a los opeadores dentro de la fórmula, hace que la fórmula ya no sea una FBF.
+
+    \begin{obs}
+        Eventualmente se va a sustituir la notación Polaca por la normal, para que se pueda leer la FBF y el proceso no sea robotizado.
+    \end{obs}
+
+    Definiremos ahora más conectivas lógicas para poder trabajar más cómodamente.
+
+    \begin{mydef}
+        Se definirán tres conectivas lógicos adicionales.
+        \begin{enumerate}
+            \item Se define la \textbf{disyunción} $\varphi\lor\psi$ como $\Rightarrow\neg\psi\varphi$ (en notación Polaca).
+            \item Se define la \textbf{conjunción} $\varphi\land\psi$ como $\neg(\neg\psi\lor\neg\varphi)$.
+            \item Se define el \textbf{si sólo si} $\psi\iff\varphi$ como $(\psi\Rightarrow\varphi)\land(\varphi\Rightarrow\psi)$.
+        \end{enumerate}
+    \end{mydef}
+
+    \section{Modeos o Estructuras}
+
+    En el fondo, queremos que las FBF sean cosas verdaderas o falsas. Un Modelo o Estructura es algo que le va a dar significado a las FBF. De alguna manera va a ser una forma de asignarle el valor de verdadero o falso a cada una de las variables.
+
+    \begin{mydef}
+        Un \textbf{Modelo o Estructura} de la lógica proposicional es una función $\cf{m}{\textup{Var}}{\left\{V,F\right\}}$, donde Var denota al conjunto de símbolos que son variables. Básicamente estamos diciendo que hay variables que son verdaderas y otras que son falsas.
+    \end{mydef}
+
+    \begin{theor}
+        Para todo modelo $m$, existe una única extensión $\cf{\overline{m}}{\textup{FBF}}{\left\{V,F\right\}}$, donde FBF denota al conjunto de las fórmulas bien formadas, tal que $\overline{m}(\neg\varphi)=V\iff \overline{m}(\varphi)=F$ y $\overline{m}(\neg\varphi\psi)=F\iff\overline{m}(\varphi)=V$ y $\overline{m}(\psi)=F$.
+    \end{theor}
+
+    \begin{mydef}
+        Sea $m$ un modelo, $\varphi$ una fórmula y $\Sigma$ un cojunto de fórmulas. Definimos que
+        \begin{enumerate}
+            \item $m\vDash \varphi$ ($m$ satisface $\varphi$) si $\overline{m}(\varphi)=V$.
+            \item $m\vDash \Sigma$ si $m\vDash\varphi$ para cada $\varphi$ elemento de $\Sigma$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        Sea $m$ un modelo tal que $m(p_1)=V$ y $m(p_i)=F$, para todo $i\geq2$. En este caso $m\nvDash \Rightarrow p_1p_3$, pero $m\vDash \neg p_5$.
+    \end{exa}
+    
+    \begin{mydef}
+        Decimos que una fórmula $\varphi$ es:
+        \begin{enumerate}
+            \item \textbf{Satisfacible} si existe un modelo $m$ tal que $m\vDash\varphi$.
+            \item \textbf{Contradictoria} si todo modelo cumple que $m\nvDash\varphi$.
+            \item \textbf{Una tautología} si todo modelo $m$ cumple que $m\vDash\varphi$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        Tomemos de ejemplo a $\Rightarrow p_1 p_2$. cualquier modelo que haga a $p_1$ y $p_3$ verdaderas, o ambas falsas satisfacen la FBF, $p_1$, $\neg\Rightarrow p_1 p_3$ o $\neg(p_1\Rightarrow\neg p_1)$. Por lo cual, esta fórmula es satisfacible.
+
+        En cambio, $\neg(p_1\Rightarrow p_1)$ es contradictoria y, por ende $p_1\Rightarrow p_1$ y $\neg p_1\Rightarrow\neg p_1$ son tautologías.
+    \end{exa}
+
+    \begin{mydef}
+        Sea $\Sigma$ un conjunto de fórmulas. Decimos que $\Sigma$ es
+        \begin{enumerate}
+            \item \textbf{Satisfacible} si existe un modelo $m$ tal que $m\vDash\Sigma$.
+            \item \textbf{Contradictoria} si todo modelo cumple que $m\nvDash\Sigma$.
+            \item \textbf{Una tautología} si todo modelo $m$ cumple que $m\vDash\Sigma$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        El conjunto de fórmulas $\Sigma=\left\{\Rightarrow p_1p_2, p_1,\neg p_2 \right\}$ no es satisfacible (en este caso, es contradictorio).
+    \end{exa}
+
+    \begin{obs}
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item Una tautología $\Rightarrow$ satisfacible.
+            \item $\varphi$ es satisfacible $\iff$ $\neg\varphi$ es una contradicción.
+            \item Satisfacible es lo mismo que no contradictoria.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{mydef}
+        Si $\Sigma$ es un conjunto de FBF y $\varphi$ es alguna otra fórmula, entonces decimos que $\varphi$ es \textbf{consecuencia lógica} de $\Sigma$, o que $\Sigma$ \textbf{implica lógicamente} a $\varphi$, escrito como $\Sigma\vDash\varphi$, si para todo modelo $m$ tal que $m\vDash\Sigma$ se tiene que $m\vDash\varphi$.
+    \end{mydef}
+
+    \begin{exa}
+        El conjunto  de FBF $\left\{\Rightarrow p_1 p_2, p_1\right\}\vDash p_2$.
+    \end{exa}
+
+    \begin{obs}
+        \begin{enumerate}
+            Se tiene lo siguiente:
+            \item Un conjunto de FBF $\Sigma\nvDash\varphi$ si y sólo si $\Sigma\cup\left\{\neg\varphi \right\}$ es satisfacible.
+            \item Además, un conjunto de FBF $\Sigma\vDash\varphi$ si y sólo si $\Sigma\cup\left\{\neg\varphi \right\}$ no es satisfacible.
+        \end{enumerate}
+    \end{obs}
+
     \newpage
 
     \begin{proof}
