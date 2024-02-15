@@ -319,46 +319,68 @@
         \end{enumerate}
     \end{obs}
 
-    \newpage
-
-    \begin{proof}
-        Entorno de Prueba
-    \end{proof}
-
-    \begin{sol}
-        Entorno de Solución
-    \end{sol}
-
-    \begin{theor}[Nombre]
-        Teorema
-    \end{theor}
-
-    \begin{propo}[Nombre]
-        Proposición
-    \end{propo}
-
-    \begin{cor}[Nombre]
-        Corolario
-    \end{cor}
-
-    \begin{lema}[Nombre]
-        Lema
+    \begin{lema}
+        Sea $\Sigma$ un conjunto de fórmulas y sean Var$(\Sigma)$ el conjunto de las variables $p_i$ que aparecen en las fórmulas de $\Sigma$. Si $m_1$ y $m_2$ son dos modelos tales que
+        \begin{equation*}
+            m_1|_{\textup{Var}(\Sigma)}=m_2|_{\textup{Var}(\Sigma)}
+        \end{equation*}
+        entonces, $\overline{m_1}|_{\Sigma}=\overline{m_2}|_{\Sigma}$. En particular, para cada fórmula $\varphi$ que sea elemento de $\Sigma$, entonces $m_1\vDash\varphi$ si y sólo si $m_2\vDash\varphi$, más aún $m_1\vDash\Sigma$ si y sólo si $m_2\vDash\Sigma$.
     \end{lema}
 
-    \begin{mydef}[Nombre]
-        Definición
+    \begin{proof}
+        Sin pérdida de generalidad, $\Sigma$ es cerrado bajo subformulas.
+        
+        Procederemos por inducción sobre $\varphi\in\Sigma$, demostraremos que $\overline{m_1}(\varphi)=\overline{m_2}(\varphi)$.
+        Si $\varphi$ coincide con algún $p_i$, entonces $p_i\in\textup{Var}(\Sigma)$ y, por tanto
+        \begin{equation*}
+            \overline{m_1}(p_i)=m_1(p_i)=m_2(p_i)=\overline{m_2}(p_i)
+        \end{equation*}
+        Ahora hacemos el paso inductivo. 
+        \begin{enumerate}
+            \item Tenemos el caso en que $\varphi$ es de la forma $\neg\psi$ y suponemos que $\overline{m_1}(\psi)=\overline{m_2}(\psi)$. Se tiene que $\overline{m_1}(\neg \psi)=F\iff \overline{m_1}(\psi) = V \iff\overline{m_2}(\psi)=V\iff\overline{m_2}(\neg \psi)=F$. Por lo tanto, $\overline{m_1}(\psi)=\overline{m_2}(\psi)$. El caso en que sea verdadero es análogo.
+            
+            \item Tenemos el caso en que $\varphi$ es de la forma $\Rightarrow\varphi_1\psi$ y, supontemos que $\overline{m_1}(\varphi_1)=\overline{m_2}(\varphi_1)$ y $\overline{m_1}(\psi)=\overline{m_2}(\psi)$. Se tiene que $\overline{m_1}(\Rightarrow\varphi_1\psi)=F\iff\overline{m_1}(\varphi_1)=V$ y $\overline{m_1}(\psi)=F\iff$ (por hipótesis de inducción) $\overline{m_2}(\varphi_1)=V$ y $\overline{m_2}(\psi)=F\iff\overline{m_2}(\Rightarrow\varphi_1\psi)=F$. El caso en que sean verdaderas es análogo. Por tanto, $\overline{m_1}(\Rightarrow\varphi_1\psi)=\overline{m_2}(\Rightarrow\varphi_1\psi)$.
+        \end{enumerate}
+        Lo cual completa el paso inductivo.
+    \end{proof}
+
+    \begin{cor}
+        Si $\Sigma$ es un conjunto finito de fórmulas, entonces se puede verificar 'Mecánicamente' si es el caso, que $\Sigma\vDash\varphi$.
+    \end{cor}
+
+    El procedimiento para verificar el modelo, se hace mediante la tabla de verdad de las variables y las FBF de $\Sigma$.
+
+    \begin{mydef}
+        Decimos que un conjunto de fórmulas bien formadas $\Sigma$ es \textbf{finitamente satisfacible} si cualquier subconjunto finito $\Delta\subseteq\Sigma$ es satisfacible.
     \end{mydef}
 
-    \begin{obs}[Nombre]
-        Observación
-    \end{obs}
+    \begin{theor}[Teorema de Compacidad de Gödel]
+        Si $\Sigma$ es un conjunto (arbitrario) de fórmulas tal que $\Sigma\vDash\varphi$, entonces existe un $\Delta\subseteq\Sigma$ finito tal que $\Delta\vDash\varphi$.
+    \end{theor}
 
-    \begin{exa}[Nombre]
-        Ejemplo
-    \end{exa}
+    El teorema que Gödel probó originalmente fue este:
 
-    \begin{excer}[Nombre]
-        Ejercicio
-    \end{excer}
+    \begin{theor}[Teorema de Gödel]
+        Un conjunto de fórmulas $\Sigma$ es satisfacible si y sólo si es finitamente satisfacible.
+    \end{theor}
+
+    Veamos por qué el teorema de Gödel implica el teorema de compacidad de Gödel. Se tiene que $\Sigma\nvDash\varphi\iff$ existe un modelo $m$ tal que $m\vDash\Sigma\cup\left\{\neg\varphi \right\}$. Es decir, si y sólo si $\Sigma\cup\left\{\neg\varphi \right\}$ es satisfacible, es decir que es finitamente satisfacible (por el teorema de Gödel), es decir que para todo $\Delta\subseteq\Sigma$ finito se cumple que
+    \begin{equation*}
+        \Delta\cup\left\{\neg\varphi \right\}
+    \end{equation*}
+    es satisfacible. Y esto sucede si y sólo si para todo $\Delta\subseteq\Sigma$ finito existe $m$ tal que $m\vDash\Delta\cup\left\{\neg\varphi \right\}$, si y sólo si para todo $\Delta\subseteq\Sigma$ finito $\Delta\nvDash\varphi$, con lo cual
+    \begin{equation*}
+        \Sigma\nvDash\varphi\iff\Delta\nvDash\varphi
+    \end{equation*}
+    para todo $\Delta\subseteq\Sigma$ finito, que es el teorema de compacidad en su forma contrapositiva.
+
+    \begin{lema}
+        Sea $\Sigma$ un conjunto finitamente satisfacible, y sea $\varphi$ cualquier fórmula, entonces o bien $\Sigma\cup\left\{\varphi\right\}$ es finitamente satisfacible o $\Sigma\cup\left\{\neg\varphi\right\}$ lo es.
+    \end{lema}
+
+    \begin{proof}
+        Supongamos que no, es decir que tanto $\Sigma\cup\left\{\varphi\right\}$ como $\Sigma\cup\left\{\neg\varphi\right\}$ no son finitamente satisfacibles, por lo cual existen $\Delta_1,\Delta_2\subseteq\Sigma$ finitos tales que $\Delta_1\cup\left\{\varphi \right\}$ y $\Delta_2\cup\left\{\neg\varphi \right\}$ no son satisfacibles.
+        Entonces $\Delta_1\cup\Delta_2$ no puede ser satisfacible.
+    \end{proof}
 
 \end{document}
