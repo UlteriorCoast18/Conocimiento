@@ -253,4 +253,32 @@
         En el caso de que el grupo $G$ sea abeliano, el automorfismo topológico $G$ definido en el teorema anterior, es trivial ya que coincide con la identidad.
     \end{obs}
 
+    El siguiente resultado tiene como objetivo el describir la topología del grupo, que en este caso resulta más sencillo que describir la topología de un espacio topológico. Para ello, basta describir una base local para la identidad del grupo $e_G$.
+
+    \begin{lema}
+        Sea $G$ un grupo topológico, y sea $\mathcal{N}(e_G)$ una base local para la identidad del grupo $e_G$. Entonces las familias $\left\{xU\right\}$ y $\left\{Ux\right\}$, donde $x$ toma los valores en los elemntos de $G$ y $U$ varía sobre todos los elementos de $\mathcal{N}(e_G)$, son bases para la topología de $G$.
+    \end{lema}
+
+    \begin{proof}
+        Sea $W$ un abieto no vacío de $G$ y $a\in G$ un elemento de $W$. Probaremos que existe un elemento $\hat{U}$ de alguna las familias descritas anteriormente tal que
+        \begin{equation*}
+            a\in\hat{U}\subseteq W
+        \end{equation*}
+        Considere la función $\cf{f}{G}{G}$, $x\mapsto a^{-1}x$. Esta función es un homeomorfismo, el cual transforma a $W$ en $a^{-1}W$. Notemos que $e_G\in a^{-1}W$, pues el elemento $e_G=a^{-1}a\in a^{-1}W$. Como $\mathcal{N}(e_G)$ es una base local de $e_G$, entonces existe $U\in\mathcal{N}(e_G)$ tal que
+        \begin{equation*}
+            e_G\in U \subseteq a^{-1}W
+        \end{equation*}
+        Por lo cual
+        \begin{equation*}
+            a\in aU \subseteq aa^{-1}W=W
+        \end{equation*}
+        Por tanto, tomando $\hat{U}=aU$ se tiene el resultado para la primera familia. Para la segunda se procede de forma análoga cambiando el orden del producto en la función $f$.
+    \end{proof}
+
+    El siguiente lema nos proporciona una base local para la identidad formada por vecindades tales que $V^{-1}=V$. Estas vecindades reciben el nombre de \textbf{simétricas}.
+
+    \begin{lema}
+        Sean $U\in\mathcal{N}(e_G)$
+    \end{lema}
+
 \end{document}
