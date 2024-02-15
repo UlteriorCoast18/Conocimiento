@@ -115,6 +115,7 @@
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand{\N}[1]{\ensuremath{\mathscr{N}(#1)}}
+\newcommand{\Ns}[1]{\ensuremath{\mathscr{N}*(#1)}}
 \newcommand{\piz}[1]{\ensuremath{\mathscr{#1}}}
 \newcommand{\eul}[1]{\ensuremath{\mathbb{#1}}}
 
@@ -256,7 +257,7 @@
     El siguiente resultado tiene como objetivo el describir la topología del grupo, que en este caso resulta más sencillo que describir la topología de un espacio topológico. Para ello, basta describir una base local para la identidad del grupo $e_G$.
 
     \begin{lema}
-        Sea $G$ un grupo topológico, y sea $\mathcal{N}(e_G)$ una base local para la identidad del grupo $e_G$. Entonces las familias $\left\{xU\right\}$ y $\left\{Ux\right\}$, donde $x$ toma los valores en los elemntos de $G$ y $U$ varía sobre todos los elementos de $\mathcal{N}(e_G)$, son bases para la topología de $G$.
+        Sea $G$ un grupo topológico, y sea $\N{e_G}$ una base local para la identidad del grupo $e_G$. Entonces las familias $\left\{xU\right\}$ y $\left\{Ux\right\}$, donde $x$ toma los valores en los elemntos de $G$ y $U$ varía sobre todos los elementos de $\N{e_G}$, son bases para la topología de $G$.
     \end{lema}
 
     \begin{proof}
@@ -264,7 +265,7 @@
         \begin{equation*}
             a\in\hat{U}\subseteq W
         \end{equation*}
-        Considere la función $\cf{f}{G}{G}$, $x\mapsto a^{-1}x$. Esta función es un homeomorfismo, el cual transforma a $W$ en $a^{-1}W$. Notemos que $e_G\in a^{-1}W$, pues el elemento $e_G=a^{-1}a\in a^{-1}W$. Como $\mathcal{N}(e_G)$ es una base local de $e_G$, entonces existe $U\in\mathcal{N}(e_G)$ tal que
+        Considere la función $\cf{f}{G}{G}$, $x\mapsto a^{-1}x$. Esta función es un homeomorfismo, el cual transforma a $W$ en $a^{-1}W$. Notemos que $e_G\in a^{-1}W$, pues el elemento $e_G=a^{-1}a\in a^{-1}W$. Como $\N{e_G}$ es una base local de $e_G$, entonces existe $U\in\N{e_G}$ tal que
         \begin{equation*}
             e_G\in U \subseteq a^{-1}W
         \end{equation*}
@@ -278,7 +279,78 @@
     El siguiente lema nos proporciona una base local para la identidad formada por vecindades tales que $V^{-1}=V$. Estas vecindades reciben el nombre de \textbf{simétricas}.
 
     \begin{lema}
-        Sean $U\in\mathcal{N}(e_G)$
+        Sea $G$ un grupo topológico y $U\in\N{e_G}$, entonces existe $V\in\N{e_G}$ tal que $V^{-1}=V\subseteq U$. Por lo tanto, las vecindades simétricas de la identidad constituyen una base local de $e_G$.
     \end{lema}
+
+    \begin{proof}
+        Sean $U\in\N{e_G}$ y $\cf{f}{G}{G}$, $x\mapsto x^{-1}$. Como $f$ es un homeomorfismo de $G$ sobre $G$, entonces $f(U)=U^{-1}$ es abierto y $e_G\in U^{-1}$. Por lo cual $V=U\cap U^{-1}$ es abierto y $V^{-1}=V$ es tal que $e_G\in V\subseteq U$.
+    \end{proof}
+
+    En lo sucesivo denotaremos por $\Ns{e_G}$ a la base local de vecindades de $e_G$ que son abiertas y simétricas en un grupo topológico $G$.
+
+    Otra propiedad importante de la identidad del grupo topológico $G$, es que admite una base local formada por subconjuntos cerrados.
+
+    \begin{lema}
+        Sea $G$ grupo topológico.
+        \begin{enumerate}
+            \item Si $U\in\N{e_G}$, entonces para cada $n\in\mathbb{N}^+$ existe $V\in\N{e_G}$ con $V^{n}\subseteq U$, donde
+            \begin{equation*}
+                V^n=\underbrace{V\cdots V}_{n\text{-veces}}
+            \end{equation*}
+            \item Si $U\in\N{e_G}$, entonces existe $V\in\N{e_G}$ con $\overline{V}\subseteq U$. En particular, las vecindades cerradas de $e_G$ constituyen una base local de la identidad $e_G$ cuyos elementos son subconjuntos cerrados.
+        \end{enumerate}
+    \end{lema}
+
+    \begin{proof}
+        De 1): Procederemos por inducción sobre $n$. Para $n=1$ el resultado es inmediato, pues tomando $V=U$ se sigue el resultado.
+
+        Suponga el resultado cierto para algún $n\in\mathbb{N}^+$, entonces para $U$ existe $W\in\N{e_G}$ tal que $W^n\subseteq U$. Como la multiplicación es continua $g_1(x,y)=xy$, y $g_1(e_G,e_G)=e_G$, entonces para $W$ existen vecindades $V_1,V_2\in\N{e_G}$ tales que $f(V_1\times V_2)=V_1\cdot V_2\subseteq W$. Tomemos $V=V_1\cap V_2$, claro que $e_G\in V$, por lo cual $V\in\N{e_g}$ y, además:
+        \begin{equation*}
+            V^{n+1}= V\cdot V\cdot V^{n-1}\subseteq V_1\cdot V_2\cdot W^{n-1}\subseteq W\cdot W^{n-1}=W^n\subseteq U
+        \end{equation*}
+        Aplicando inducción se sigue el resultado.
+
+        De 2): Por 1) y por el hecho de que $\Ns{e_G}$ es una base local de $e_G$, existe $V\in\Ns{e_G}$ tal que $V^2\subseteq U$. Si $x\in\overline{V}$, entonces como $xV$ es una vecindad de $x$, la intersección $xV\cap V\neq\emptyset$ (pues $x$ está en la adherencia de $V$), es decir, existen $v_1,v_2\in V$ tales que
+        \begin{equation*}
+            xv_1=v_2\Rightarrow x=v_2v_1^{-1}\in V\cdot V^{-1}=V^{2}\subseteq U
+        \end{equation*}
+        Por ende, $\overline{V}\subseteq U$.
+    \end{proof}
+
+    \begin{theor}
+        Sea $G$ un grupo topológico, $a\in G$ y $A, B, O, M$ subconjuntos de $G$. Entonces
+        \begin{enumerate}
+            \item Si $O$ es abierto, entonces los conjuntos $aO$, $Oa$, $O^{-1}$, $MO$ y $OM$ son abiertos.
+            \item Si $A$ es cerrado, entonces $aA, Aa, A^{-1}$ son conjuntos cerrados.
+            \item Si $A$ y $B$ son compactos, también lo son $AB$ y $A^{-1}$.
+            \item Se cumple que
+            \begin{equation*}
+                \overline{A}=\bigcap_{W\in\N{e_G}}AW=\bigcap_{W\in\N{e_G}}WA
+            \end{equation*}
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De 1): Por el teorema 1.1.1, $\varphi_a$, $\sigma_a$ y $f(x)=x^{-1}$ son homeomorfismos, para cualquier $a\in G$ fijo. Por lo tanto, si $O$ es abierto, entonces la imagen directa de $O$ bajo estas funciones (es decir, los conjuntos $aO, Oa, O^{-1}$) son abiertos. Para los dos últimos conjuntos, basta ver que
+        \begin{equation*}
+            \begin{split}
+                MO =& \bigcup\left\{mO\big|m\in\mathbb{M} \right\}\\
+                OM =& \bigcup\left\{Om\big|m\in\mathbb{M} \right\}\\
+            \end{split}
+        \end{equation*}
+        por ser uniones arbitrarias de abiertos, los conjuntos $MO$ y $OM$ son abiertos.
+
+        De 2): Es análogo a 1), usando el hecho de que los homomorfismos son aplicaciones cerradas.
+
+        De 3): Notemos que $A\times B$ es compacto en el espacio topológico producto $G\times G$, por lo cual al ser $\cf{g_1}{G\times G}{G}$, $(x,y)\mapsto xy$ una función continua, se sigue que la imagen de este compacto $f(A\times B) = AB$ es compacto. De forma similar con $A^{-1}$ con la función $f(x)=x^{-1}$ se obtiene que $A^{-1}$ es compacto.
+
+        De 4): Nuestro objetivo será intentar caracterizar a $AW$ y $WA$ (donde $W\in\N{e_G}$) antes de ver los elementos de la intersección. Sea $W\in\N{e_G}$, entonces existe un abierto $V\in\Ns{e_G}$ tal que $V\subseteq W$. Por 1) el producto $AV$ es abierto y $A\subseteq AV$ (pues $e_G\in V$).
+
+        Además, $\overline{A}\subseteq AW$, pues si $x\in\overline{A}$, entonces $xV$ es una vecindad de $x$ y por lo tanto $xV\cap A\neq\emptyset$, así existen $v\in V$ y $a\in A$ tales que $xv=a\Rightarrow x=av^{-1}\in AV^{-1}=AV\subseteq AW$. Como el $W$ fue arbitrario, se sigue que
+        \begin{equation*}
+            \overline{A}\subseteq\bigcap_{W\in\N{e_G}}AW
+        \end{equation*} 
+        (de forma análoga con $\bigcap_{W\in\N{e_G}}WA$). Ahora, 
+    \end{proof}
 
 \end{document}
