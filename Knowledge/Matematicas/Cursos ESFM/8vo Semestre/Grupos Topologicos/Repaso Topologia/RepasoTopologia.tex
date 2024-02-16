@@ -117,6 +117,8 @@
 \renewcommand{\theenumi}{\arabic{enumi})}
 \newcommand{\Int}[1]{\text{Int}\ensuremath{#1}}
 \newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand{\natint}[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand{\coord}[1]{\ensuremath{\textup{coord}\left(#1\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -453,9 +455,96 @@
 
     \section{Convergencia}
 
-    El concepto de sucesión convergente\dots
-    %Me quedé en la página 179%
+    El concepto de sucesión convergente es de los más antiguos en topología general. Sin embargo, tiene carencias el enunciar el concepto de un espacio topológico simplemente en estos términos, pues no resulta la definición general. Sin embargo, este concepto puede definirse en cualquier espacio topológico. A continuación se verá la definición del mismo.
 
+    \begin{mydef}
+        Una sucesión $\left\{x_n\right\}_{n=1}^{\infty}$ de puntos de un espacio $X$ \textbf{converge a un punto $x\in X$} si para cada vecindad $V$ de $x$ existe $m\in\mathbb{N}$ tal que $x_k\in V$, para todo $k\geq m$.
+    \end{mydef}
+
+    Una forma de generalizar el concepto de convergencia de sucesiones es por medio de filtros.
+
+    \begin{mydef}
+        Sea $A$ un conjunto y $\mathcal{F}$ una familia no vacía de subconjuntos de $A$. La familia $\mathcal{F}$ es dice que es un \textbf{filtro} cuando:
+        \begin{enumerate}
+            \item $\emptyset\notin\mathcal{F}$.
+            \item Si $A_1,A_2\in\mathcal{F}$, entonces $A_1\cap A_2\in\mathcal{F}$.
+            \item Si $A\in\mathcal{F}$ y $A\subseteq B$, entonces $B\in\mathcal{F}$.
+        \end{enumerate}
+        Un filtro $\mathcal{F}$ en $A$ es un \textbf{filtro maximal} o un \textbf{ultrafiltro} si para todo filtro $\mathcal{F}'$ en $A$ tal que $\mathcal{F}\subseteq\mathcal{F}'$ se cumple que $\mathcal{F}=\mathcal{F}'$.
+
+        Una familia no vacía de subconjuntos $\mathcal{B}$ de un conjunto $A$ es una \textbf{base de filtro} si $\emptyset\notin\mathcal{B}$ y para toda pareja $A,B\in\mathcal{B}$ existe $C\in\mathcal{B}$ tal que $C\subseteq A\cap B$.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $\mathcal{F}$ un filtro de subconjuntos de un espacio topológico $X$. Un punto $x\in X$ es un \textbf{punto límite} de $\mathcal{F}$ si toda vecindad de $x$ pertenece a $\mathcal{F}$. En tal caso, decimos que $\mathcal{F}$ \textbf{converge a $x$}. La convergencia de una base filtro $\mathcal{B}$ a un punto $x\in X$ se define de forma similar.
+
+        Un punto $x\in X$ es un \textbf{punto de adherencia} de un filtro $\mathcal{F}$ (de una base de filtro $\mathcal{B}$) si toda vecindad de $x$ interseca todos los elementos de $\mathcal{F}$ (todos los elementos de $\mathcal{B}$).
+    \end{mydef}
+
+    En la siguiente propsición usaremos como $\lim\mathcal{F}$ al conjunto formado por todos los puntos límite de un filtro $\mathcal{F}$.
+
+    \begin{propo}
+        El punto $x\in X$ pertenece a la cerradura $\overline{A}$, donde $A$ es un subconjunto de un espacio $X$ si y sólo si existe una base filtro consistente de subconjuntos de $A$ que converge a $X$
+
+        Una función $f$ de un espacio topológico $X$ a un espacio topológico $Y$ es continua si y sólo si para cada base filtro $\mathcal{G}$ en el espacio $X$ y la base filtro
+         \begin{equation*}
+            f(\mathcal{G})=\left\{f(A)|A\in\mathcal{G} \right\}
+         \end{equation*}
+         en el espacio $Y$ se cumple que
+         \begin{equation*}
+            f(\lim\mathcal{G})=\lim f(\mathcal{G})
+         \end{equation*}
+         
+         Un espacio topológico $X$ es Hausdorff si y spolo si todo filtro en $X$ tiene a lo más un punto límite.
+    \end{propo}
+
+    El problema de la definición de espacio topológico en términos de sucesiones es que, no todo espacio topológico puede describirse de esta manera. Por lo cual se definirán dos tipos de espacios que sí dependen, en su definición, de cierto tipo de convergencia.
+
+    \begin{mydef}
+        Un espacio topológico $X$ es \textbf{secuencial} si un conjunto $A\subseteq X$ es cerrado si y sólo si junto con cualquier sucesión $A$ contiene sus puntos límite.
+
+        Un espacio $X$ es \textbf{Fréchet-Urysohn} si para todo $A\subseteq  X$ y todo $x\in\overline{A}$ existe una sucesión $\left\{x_n\right\}_{n=1}^{\infty}$ de puntos de $A$ que converge a $x$.
+    \end{mydef}
+
+    Es fácil ver que todo espacio primero numerable es Fréchet-Urysohn, y estos últimos son secuenciales.
+
+    \section{Subespacios}
+
+    Todo espacio tooplógico da lugar a numerosos espacios nuevos: cualquier subconjunto del espacio se puede ver como un espacio con la topología definida a continuación.
+
+    \begin{mydef}
+        Sean $(X,\tau)$ un espacio topológico y $M\subseteq X$. En $M$ consideramos la familia $\left\{U\cap M|U\in\tau \right\}$, la cual define una topología en $M$. Visto con esta topología, $M$ se convierte en un espacio topológico y decimos que $M$ es un \textbf{subespacio} de $X$.
+    \end{mydef}
+
+    El concepto de subespacio da lugar a que ciertas propiedades topológicas se vuelvan relativas. Por ejemplo, si $X$ es un espacio y $Y$ un subespacio, un subconjunto $A\subseteq Y$ puede ser cerrado respecto a $Y$, pero no serlo resepcto a $X$. De hecho, $Y$ siempre es cerrado respecto a $Y$, pero puede no serlo respecto a $X$.
+
+    Es fácil probar que si $X$ es un espacio y $Y$ es un subespacio de $X$, entonces la cerradura de un subconjunto $A\subseteq Y$ respecto a $Y$ es $\overline{A}^{Y}=\overline{A}^X\cap Y$.
+
+    \begin{mydef}
+        Una función $\cf{f}{X}{Y}$ es un \textbf{encaje homeomórfico} si $\cf{f}{X}{f(X)}$ es un homeomorfismo. Si para un espacio $X$ existe un encaje homeomórfico $\cf{f}{X}{Y}$, decimos que \textbf{$X$ se encaja en $Y$}.
+    \end{mydef}
+
+    A continuación se presenta un teorema de extensión de funciones continuas en espacios normales.
+
+    \begin{theor}[Teorema de Tietze-Urysohn]
+        Toda función continua de un subespacio cerrado $M$ de un espacio normal $X$ a $[0,1]$ (respectivamente, $\mathbb{R}$) se puede extender a una función continua ed $X$ a $[0,1]$ (respectivamente, $\mathbb{R}$).
+    \end{theor}
+
+    \section{Espacios Producto}
+
+    Suponga que se tiene una familia de espacios $\left\{X_i|i\in I \right\}$; considere el producto cartesiano de la familia dado por:
+    \begin{equation*}
+        X=\prod_{i\in I}X_i
+    \end{equation*}
+    y una familia $\tau$ de subconjuntos $U\subseteq X$ tales que $U=\prod_{i\in I}U_i$, donde $U_i= X_i$, con excepción de a lo sumo un número finito de índices $i_1,...,i_n\in I$ y $U_{i_k}$ es abierto en $U_{i_k}$ para $k\in\natint{1,n}$. Se verifica que la familia $\tau$ es una base para una topología en $X$. Esta topología es llamada \textbf{topología de Tikhonov para el producto cartesiano $X$}. Los elementos de esta base se conocen como abiertos \textbf{básicos} y la base misma es la \textbf{base canónica} en $X$.
+
+    Si $U=\prod_{i=1}^{\infty}U_i$ es un abierto básico $U\subseteq X$, definimos el conjunto $\coord{U}$ com el conjunto de índices $i\in I$ tales que $U_i\neq X$.
+
+    Los elementos del producto $X$ son puntos de la forma $\left\{x_i|i\in I \right\}$, donde $x_i\in X_i$, para todo $i\in I$.
+
+    Para $i\in I$.
+
+    %Me quedé en la página 183
 
     \chapter{Funciones Cardinales}
 

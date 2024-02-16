@@ -199,15 +199,15 @@
             \pint{\ora{x}}{\ora{y}}=\sum_{i=1}^{\infty}x_i\conj{y_i}
         \end{equation*}
         donde la serie es convergente por Hölder. En este caso:
-        \begin{equation}
+        \begin{equation*}
             \norm{\ora{x}}=\left[\sum_{i=1}^{\infty}\abs{x_i}^2\right]^{\frac{1}{2}}=\mathcal{N}_2(\ora{x}),\quad\forall\ora{x}\in l_2(\mathbb{K})
-        \end{equation}
+        \end{equation*}
     \end{exa}
 
     \begin{theor}[Desigualdad de Cauchy-Schwartz]
         Sea $H$ un espacio prehilbertiano. Entonces:
         \begin{enumerate}
-            \item Se cumple la desigualda de Cauchy-Schwartz:
+            \item Se cumple la desigualdad de Cauchy-Schwartz:
             \begin{equation*}
                 \abs{\pint{\vec{x}}{\vec{y}}}\leq \norm{\vec{x}}\norm{\vec{y}}, \quad\forall\vec{x},\vec{y}\in H
             \end{equation*}
@@ -216,24 +216,29 @@
             \begin{equation*}
                 \norm{\vec{x}+\vec{y}}\leq\norm{\vec{x}}+\norm{\vec{y}},\quad\forall\vec{x},\vec{y}\in H
             \end{equation*}
-            y la igualdad se da si y sólo si uno de los vectores es multiplo no negativo del otro.
+            y la igualdad se da si y sólo si uno de los vectores es múltiplo no negativo del otro.
         \end{enumerate}
     \end{theor}
 
     \begin{proof}
         De 1): Se supondrá que $\mathbb{K}=\mathbb{C}$ (el caso en que sea $\mathbb{R}$ es similar y se deja como ejercicio).
 
-        Sean $\vec{x},\vec{y}\in H$. En el caso de que alguno de los vectores sea $\vec{0}$, el resultado es inmediato (ambos dan cero). Por lo cual, supongamos que ambos son no cero. Se tiene para todo $\lambda\in\mathbb{K}$ que
+        Sean $\vec{x},\vec{y}\in H$. En el caso de que alguno de los vectores sea $\vec{0}$, el resultado es inmediato (ambos miembros de la desigualdad son cero). Por lo cual, supongamos que ambos son no cero. Se tiene para todo $\lambda\in\mathbb{K}$ que
         \begin{equation}
             \begin{split}
                 0\leq& \pint{\vec{x}+\lambda\vec{y}}{\vec{x}+\lambda\vec{y}}\\
                 =& \pint{\vec{x}}{\vec{x}}+\conj{\lambda}\pint{\vec{x}}{\vec{y}}+\lambda\pint{\vec{y}}{\vec{x}}+\lambda\conj{\lambda}\pint{\vec{y}}{\vec{y}}\\
+                =& \pint{\vec{x}}{\vec{x}}+\conj{\lambda\pint{\vec{y}}{\vec{x}}}+\lambda\pint{\vec{y}}{\vec{x}}+\lambda\conj{\lambda}\pint{\vec{y}}{\vec{y}}\\
                 &= \norm{\vec{x}}^2+2\Re{\lambda\pint{\vec{y}}{\vec{x}}}+\abs{\lambda}^2\norm{\vec{y}}^2\\
             \end{split}
         \end{equation}
         En particular, para
         \begin{equation*}
-            %\lambda=\left\{t\frac{\pint{\vec{x}}{\vec{y}}}{\norm{\pint{\vec{x}}{\vec{y}}}} si $\pint{\vec{x}}{\vec{y}}\neq0$ y t si $\pint{\vec{x}}{\vec{y}}=0$ \right\}
+            \lambda(t)=\left\{\begin{array}{lcr}
+                    t\frac{\pint{\vec{x}}{\vec{y}}}{\abs{\pint{\vec{x}}{\vec{y}}}} & \textup{si} & \pint{\vec{x}}{\vec{y}}\neq0\\
+                    t & \textup{si} & \pint{\vec{x}}{\vec{y}}=0
+                \end{array}
+            \right.
         \end{equation*}
         con $t\in\mathbb{R}$, la desigualdad (1) se convierte en
         \begin{equation}
@@ -245,7 +250,7 @@
         \end{equation*}
         es decir
         \begin{equation*}
-            \abs{\pint{\vec{x}}{\vec{y}}}\leq\norm{\vec{x}}^2\norm{\vec{y}}^2
+            \abs{\pint{\vec{x}}{\vec{y}}}\leq\norm{\vec{x}}\norm{\vec{y}}
         \end{equation*}
         Si $\abs{\pint{\vec{x}}{\vec{y}}}=\norm{\vec{x}}^2\norm{\vec{y}}^2$, entonces el trinomio en (2) tiene una raíz doble. Luego, existe $\lambda\in\mathbb{C}$ tal que
         \begin{equation*}
@@ -267,7 +272,7 @@
         \begin{equation*}
             \abs{\pint{\vec{x}}{\vec{y}}}=\Re\pint{\vec{x}}{\vec{y}}\textup{ y }\abs{\pint{\vec{x}}{\vec{y}}}=\norm{\vec{x}}\norm{\vec{y}}
         \end{equation*}
-        la primera igualdad implica que $\pint{\vec{x}}{\vec{y}}$ es real (en particular, $\geq0$) y la segunda implica que $\vec{x}$ y $\vec{y}$ son linealmente dependientes. Es decir, si y sólo si un vector es multiplo no negativo del otro.
+        la primera igualdad implica que $\pint{\vec{x}}{\vec{y}}$ es real (en particular, $\geq0$ por el valor absoluto) y la segunda implica que $\vec{x}$ y $\vec{y}$ son linealmente dependientes. Es decir, si y sólo si un vector es multiplo no negativo del otro.
     \end{proof}
 
     Se concluye del teorema anterior que $\norm{\cdot}$ es una norma sobre $H$. En lo sucesivo se consdierará a $H$ como espacio normado dotado de esta norma.
@@ -278,17 +283,16 @@
     \end{propo}
 
     \begin{proof}
-        Sean $\vec{x},\vec{y}\in H$ y, $\left\{\vec{x_n} \right\}$ y $\left\{\vec{y_n} \right\}$ dos sucesiones que convergen a $\vec{x}$ y $\vec{y}$, respectivamente. Se probará que $\left\{\pint{\vec{x_n}}{\vec{y_n}} \right\}$ converge a $\pint{\vec{x}}{\vec{y}}$ en $\mathbb{K}$.
+        Sean $\vec{x},\vec{y}\in H$ y, $\left\{\vec{x_n} \right\}_{n=1}^\infty$ y $\left\{\vec{y_n} \right\}_{n=1}^\infty$ dos sucesiones que convergen a $\vec{x}$ y $\vec{y}$, respectivamente. Se probará que $\left\{\pint{\vec{x_n}}{\vec{y_n}} \right\}_{n=1}^\infty$ converge a $\pint{\vec{x}}{\vec{y}}$ en $\mathbb{K}$.
         Se tiene que
         \begin{equation}
             \begin{split}
                 \abs{\pint{\vec{x}}{\vec{y}}-\pint{\vec{x_n}}{\vec{y_n}}}
                 \leq&\abs{\pint{\vec{x}-\vec{x_n}}{\vec{y}}}+\abs{\pint{\vec{x_n}}{\vec{y}-\vec{y_n}}}\\
                 \leq&\norm{\vec{x}-\vec{x_n}}\norm{\vec{y}}+\norm{\vec{x_n}}\norm{\vec{y}-\vec{y_n}}\\
-                \leq&\norm{\vec{x}-\vec{x_n}}\norm{\vec{y}}+\norm{\vec{x_n}}\norm{\vec{y}-\vec{y_n}}\\
             \end{split}
         \end{equation}
-        para todo $n\in\mathbb{N}$. Como $\left\{\vec{x_n} \right\}$ es convergente, es acotada. Luego existe $M_1>0$ tal que
+        para todo $n\in\mathbb{N}$. Como $\left\{\vec{x_n} \right\}$ es convergente, es acotada. Luego existe $M>0$ tal que
         \begin{equation*}
             \norm{\vec{x_n}}\leq M,\quad\forall n\in\mathbb{N}
         \end{equation*}
@@ -309,7 +313,7 @@
     \end{mydef}
 
     \begin{exa}
-        Los espacios $L_2(S,\mathbb{K})$, $l_2(\mathbb{K})$ y todo espacio prehilbertiano de dimensión finita ($\mathbb{K}$) eson hilbretianos (ya que, todo espacio prehilbertiano de dimensión finita es isomorfo a $\mathbb{R}^k$, para algún $k\in\mathbb{N}$).
+        Los espacios $L_2(S,\mathbb{K})$, $l_2(\mathbb{K})$ y todo espacio prehilbertiano de dimensión finita ($\mathbb{K}^n$) son hilbretianos (ya que, todo espacio prehilbertiano de dimensión finita es isomorfo a $\mathbb{R}^k$, para algún $k\in\mathbb{N}$).
     \end{exa}
 
     De ahora en adelante, $H$ denotará siempre a un espacio prehilbertiano (a menos que se indique lo contrario).
@@ -338,8 +342,27 @@
                 =&\norm{\vec{x_1}}^2+\norm{\vec{x_2}}^2\\
             \end{split}
         \end{equation*}
-        Suponga que los k-vectores $\vec{x_1},...\vec{x_k}$ son ortogonales.
-        %Completar la inducción%
+        Suponga que el resultado se cumple para $n\geq2$. Sea $\vec{x_1},...\vec{x_{n+1}}\in H$ un sistema de vectores ortogonales. Observemos que
+        \begin{equation*}
+            \begin{split}
+                \pint{\vec{x_1}+\cdots+\vec{x_n}}{\vec{x_{n+1}}}&=\pint{\vec{x_1}}{\vec{x_{n+1}}}+\cdots+\pint{\vec{x_n}}{\vec{x_{n+1}}}\\
+                &=0+\cdots+0\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        por lo cual, $x_{n+1}\perp\vec{x_1}+\cdots+\vec{x_n}$. Por el caso $n=2$ se sigue que:
+        \begin{equation*}
+            \norm{\vec{x_1}+\cdots+\vec{x_{n+1}}}^2=\norm{\vec{x_1}+\cdots+\vec{x_n}}^2+\norm{\vec{x_{n+1}}}^2
+        \end{equation*}
+        Pero, por hipótesis de inducción:
+        \begin{equation*}
+            \norm{\vec{x_1}+\dots+\vec{x_n}}^2=\norm{\vec{x_1}}^2+\dots+\norm{\vec{x_n}}^2
+        \end{equation*}
+        Por lo cual:
+        \begin{equation*}
+            \norm{\vec{x_1}+\cdots+\vec{x_{n+1}}}^2=\norm{\vec{x_1}}^2+\dots+\norm{\vec{x_n}}^2+\norm{\vec{x_{n+1}}}^2
+        \end{equation*}
+        Aplicando inducción se sigue el resultado.
     \end{proof}
 
     \begin{propo}[Identidad del paralelogramo]
@@ -350,17 +373,25 @@
     \end{propo}
 
     \begin{proof}
-        Ejercicio.
+        Sean $\vec{x},\vec{y}\in H$. Veamos que
+        \begin{equation*}
+            \begin{split}
+                \norm{\vec{x}+\vec{y}}^2+\norm{\vec{x}-\vec{y}}^2
+                =&\pint{\vec{x}+\vec{y}}{\vec{x}+\vec{y}}+\pint{\vec{x}-\vec{y}}{\vec{x}-\vec{y}}\\
+                =&\norm{\vec{x}}^2+2\Re\pint{\vec{y}}{\vec{x}}+\norm{\vec{y}^2}+\norm{\vec{x}}^2-2\Re\pint{\vec{y}}{\vec{x}}+\norm{\vec{y}}^2\\
+                =&2(\norm{\vec{x}}^2+\norm{\vec{y}}^2)\\
+            \end{split}
+        \end{equation*}
     \end{proof}
 
-    Este resultado anterior es importante, pues en espacios donde la norma no venga de un producto escalar, no se cumple la igualdad.
+    Este resultado anterior es importante, pues en espacios donde la norma no venga de un producto escalar, no necesariamente se cumple la igualdad.
 
     \begin{exa}
-        Los vectores $\chi_{[0,1]}$ y $\chi_{[1,2]}$ son ortogonales en $L_2(\mathbb{R},\mathbb{R})$.
+        Los vectores $\chi_{[0,1]}$ y $\chi_{[1,2]}$ son ortogonales en $L_2(\mathbb{R},\mathbb{R})$ (es inmediato del producto escalar en $L_2(\mathbb{R},\mathbb{R})$).
     \end{exa}
 
     \begin{exa}
-        Los vectores $\sen$ y $\cos$ son ortogonales en $L_2([-\pi,\pi[,\mathbb{R})$. En efecot, veamos que
+        Los vectores $\sen$ y $\cos$ son ortogonales en $L_2([-\pi,\pi[,\mathbb{R})$. En efecto, veamos que
         \begin{equation*}
             \pint{\sen}{\cos}=\int_{-\pi}^{\pi}\sen x\cos xdx=\frac{1}{2}\int_{-\pi}^{\pi}\sen 2xdx=0
         \end{equation*}
@@ -378,7 +409,7 @@
                 =&\lim_{n\rightarrow\infty}s_n
             \end{split}
         \end{equation*}
-        donde $\left\{s_n\right\}$ es la sucesión de sumas parciales, siendo $s_{2m}=0$ y $s_{2m-1}=\frac{1}{m}$. Por lo cual
+        donde $\left\{s_n\right\}_{n=1}^\infty$ es la sucesión de sumas parciales, siendo $s_{2m}=0$ y $s_{2m-1}=\frac{1}{m}$. Por lo cual
         \begin{equation*}
             \pint{\vec{x}}{\vec{y}}=\lim_{n\rightarrow\infty}s_n=0
         \end{equation*}

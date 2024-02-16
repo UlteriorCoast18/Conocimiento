@@ -133,6 +133,8 @@
     
     \section{Temario}
     
+    Checar el Munkres
+
     \section{Bibliografía}    
 
     \begin{enumerate}
@@ -152,7 +154,7 @@
         \end{equation*}
         (básicamente es el conjunto de todos los complementos de los conjuntos en $\mathcal{A}$). Para no perder ambiguedad, no denotaremos al complemento de un conjunto por $B^c$, sino por $X-B$ (para denotar quien es el conjunto sobre el que se toma el complemento del conjunto).
 
-        La \textbf{unión de los elementos} de $\mathcal{A}$ se define com oel conjunto:
+        La \textbf{unión de los elementos} de $\mathcal{A}$ se define como el conjunto:
         \begin{equation*}
             \bigcup\mathcal{A}=\bigcup_{A\in\mathcal{A}}A=\left\{x\in X\big| x\in A\textup{ para algún elemento }A\in\mathcal{A} \right\}
         \end{equation*}
@@ -206,11 +208,11 @@
             \end{equation*}
             entonces podemos escribir
             \begin{equation*}
-                \bigcup\mathcal{A}=\bigcup_{A_\alpha\in\mathcal{A}}A=\bigcup_{\alpha\in I}A_\alpha
+                \bigcup\mathcal{A}=\bigcup_{A\in\mathcal{A}}A=\bigcup_{\alpha\in I}A_\alpha
             \end{equation*}
             e igual con la intersección:
             \begin{equation*}
-                \bigcap\mathcal{A}=\bigcap_{A_\alpha\in\mathcal{A}}A=\bigcap_{\alpha\in I}A_\alpha
+                \bigcap\mathcal{A}=\bigcap_{A\in\mathcal{A}}A=\bigcap_{\alpha\in I}A_\alpha
             \end{equation*}
             Si $\mathcal{A}$ es una familia vacía, y se toma como definición lo dicho en la observación 1.0.1, entonces podemos omitir el primer inciso de la definición anterior.
             \item Si $\tau$ es una topología sobre $X$ y para $n\in\mathbb{N}$, $A_1,...,A_n\in\tau$, entonces $A_1\cap...\cap A_n\in\tau$.
@@ -235,6 +237,20 @@
         \end{enumerate} 
     \end{exa}
 
+    \begin{sol}
+        Para el inciso 6., veamos que $\tau(A)$ es una topología sobre $X$. En efecto, verificaremos que se cumplen las 3 condiciones:
+        \begin{enumerate}
+            \item Claro que $\emptyset\in\tau(A)$ por definición de $\tau(A)$. Además $X\in\tau(A)$ ya que $X\subseteq X$ y $A\subseteq X$.
+            \item Sea $\mathcal{B}$ una familia no vacía de subconjuntos de $\tau(A)$, entonces existe $B_0\in\mathcal{B}$ tal que $A\subseteq B_0$, por lo cual
+            \begin{equation*}
+                A\subseteq B_0\subseteq\bigcup_{B\in\mathcal{B}}B\subseteq X
+            \end{equation*}
+            por tanto $\bigcup_{B\in\mathcal{B}}B\in\tau(A)$.
+            \item Sean $C,D\in\tau(A)$, entonces $A\subseteq C$ y $A\subseteq B$, por ende $A\subseteq B\cap C\subseteq X$. Así, $B\cap C\in\tau(A)$.
+        \end{enumerate}
+        Por los incisos anteriores, la familia descrita en el inciso 6. es una topología sobre $X$.
+    \end{sol}
+
     \begin{obs}
         Sea $X$ un conjunto no vacío. Si $A=\left\{a\right\}\subseteq X$, entonces escribimos $\tau_a$ en vez de $\tau\left(A\right)$.
     \end{obs}
@@ -246,9 +262,29 @@
             \setcounter{enumi}{6}
             \item Sea $\tau_{cf}=\left\{A\subseteq X\big| X-A\textup{ es un conjunto finito} \right\}\bigcup\left\{\emptyset\right\}$. Esta es una topología sobre $X$ y se llama la \textbf{topología de los complementos finitos}.
             \item Si $X$ es un conjunto finito, entonces $\tau_{cf}=\tau_D=\mathcal{P}$.
-            \item Considere $\tau_{cf}$ y sean $a,b\in X$ con $a\neq b$. Si $U_a=X-\left\{b\right\}$, $U_b=X-\left\{a\right\}$, entonces $U_a,U_b\in\tau_{cf}$ y además, $a\in U_a$ pero $b\notin U_a$ y $a\notin U_b$ pero $b\in U_b$. Esta propiedad es muy importante tenerla en mente pues más adelante se usará.
+            \item Considere (en un conjunto finito $X$) a $\tau_{cf}$ y sean $a,b\in X$ con $a\neq b$. Si $U_a=X-\left\{b\right\}$, $U_b=X-\left\{a\right\}$, entonces $U_a,U_b\in\tau_{cf}$ y además, $a\in U_a$ pero $b\notin U_a$ y $a\notin U_b$ pero $b\in U_b$. Esta propiedad es muy importante tenerla en mente pues más adelante se usará.
         \end{enumerate}
     \end{exa}
+
+    \begin{sol}
+        Veamos que la famila del ejemplo 7. es una topología sobre $X$. En efecto, veamos que se cumplen las 3 condiciones:
+        \begin{enumerate}
+            \item Claro que $\emptyset\in\tau_{cf}$ (por definición de $\tau_{cf}$). Y además $X\in\tau_{cf}$ ya que $\emptyset=X-X$ es un conjunto finito y $X\subseteq X$.
+            \item Sea $\mathcal{A}$ una familia no vacía de subconjuntos de $\tau_{cf}$. Se cumple entonces que existe $A_0\in\mathcal{A}$ tal que $X-A_0$ es finito. Por lo cual como
+            \begin{equation*}
+                X-\bigcup\mathcal{A}\subseteq X-A
+            \end{equation*}
+            ya que $A\subseteq\bigcup\mathcal{A}$, se tiene que $X-\bigcup\mathcal{A}$ es finito y $\bigcup\mathcal{A}\subseteq X$. Por tanto, $\bigcup\mathcal{A}\in\mathcal{A}$.
+            \item Sean $A,B\in\tau_{cf}$. Probaremos que $A\cap B\in\tau_{cf}$. Afirmamos que $X-A\cap B$ es finito, en efecto, por leyes de Morgan se tiene que
+            \begin{equation*}
+                X-(A\cap B)=(X-A)\cup(X-B)\subseteq X
+            \end{equation*}
+            donde $X-A$ y $X-B$ son finitos, por lo cual su unión también lo es. Por tanto $A\cap B\in\tau_{cf}$.
+        \end{enumerate}
+        Por los tres incisos anteriores, se sigue que $\tau_{cf}$ es una topología sobre $X$.
+    \end{sol}
+
+    A continuación se verá una proposición la cual tiene como objetivo el inducir una topología sobre un espacio métrico $(X,d)$ arbitrario.
 
     \begin{propo}
         Sea $(X,d)$ un espacio métrico. Dados $a\in X$ y $\varepsilon\in\mathbb{R}^+$, al conjunto $B_d(x,\varepsilon)=\left\{y\in X\big|d(x,y)<\varepsilon \right\}$ se llama \textbf{$\varepsilon$-bola con centro en $x$ y radio $\varepsilon$}. 
@@ -260,46 +296,8 @@
         Esta colección es una topología sobre $X$.
     \end{propo}
 
-    \newpage
-
     \begin{proof}
-        Entorno de Prueba
+        
     \end{proof}
-
-    \begin{sol}
-        Entorno de Solución
-    \end{sol}
-
-    \begin{theor}[Nombre]
-        Teorema
-    \end{theor}
-
-    \begin{propo}[Nombre]
-        Proposición
-    \end{propo}
-
-    \begin{cor}[Nombre]
-        Corolario
-    \end{cor}
-
-    \begin{lema}[Nombre]
-        Lema
-    \end{lema}
-
-    \begin{mydef}[Nombre]
-        Definición
-    \end{mydef}
-
-    \begin{obs}[Nombre]
-        Observación
-    \end{obs}
-
-    \begin{exa}[Nombre]
-        Ejemplo
-    \end{exa}
-
-    \begin{excer}[Nombre]
-        Ejercicio
-    \end{excer}
 
 \end{document}
