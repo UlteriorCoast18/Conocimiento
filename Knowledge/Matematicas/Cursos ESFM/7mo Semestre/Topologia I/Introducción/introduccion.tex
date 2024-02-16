@@ -297,7 +297,141 @@
     \end{propo}
 
     \begin{proof}
+        Se verificará que se cumplen las tres condiciones.
+        \begin{enumerate}
+            \item Por vacuidado, $\emptyset\in\tau_d$. Además, $X\in\tau_d$, pues para todo $x\in X$, $B_d(x,1)\subseteq X$.
+            \item Sean $\mathcal{A}$ una familia no vacía de subconjuntos de $\tau_d$. Sea $p\in\cup\mathcal{A}$, es decir que existe $A_\beta\in\mathcal{A}$ tal que $p\in A_\beta$, así existe $r>0$ tal que $B_d(a,r)\subseteq A_\beta\subseteq\cup\mathcal{A}$, luego $\cup\mathcal{A}\in\tau_d$.
+            \item Sean $M,N\in\tau_d$, y sea $p\in M\cap N$, es decir que $p\in M$ y $p\in N$, por lo cual existen $r_1,r_2>0$ tales que $B_d(p,r_1)\subseteq M$ y $B_d(p,r_2)\subseteq N$. Sea $r=\min\left\{r_1,r_2\right\}$, es inmediato que $B_d(p,r)\subseteq B_d(p,r_i)$, para $i=1,2$. Por tanto, $B_d(p,r)\subseteq M\cap N$. Luego, como el $p$ fue arbitrario,se sigue que $M\cap N\in \tau_d$.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{mydef}
+        La topología de la proposición anterior es llamada la \textbf{topología generada por la métrica $d$}.
+    \end{mydef}
+
+    Sea $(X,d)$ espacio métrico. Veamos que, dados $x\in X$ y $r>0$, se cumple que $B_d(x,r)\in\tau_d$.
+
+    \begin{sol}
+        Sea $y\in B_d(x,r)$, entonces $d(x,y)<r$. Sea $\varepsilon=d(x,y)$ y, supongamos que $x\neq y$ (pues en caso contrario, el caso es inmediato) luego $\varepsilon>0$ y además $\varepsilon<r$. Sea $s=r-\varepsilon\in\mathbb{R}^+$.
+
+        Afirmamos que $B_d(y,s)\subseteq B_d(x,r)$. En efecto, sea $z\in B_d(y,s)$, entonces
+        \begin{equation*}
+            \begin{split}
+                d(z,y)&<s\\
+                \Rightarrow d(z,y)&<r-\varepsilon\\
+                \Rightarrow d(z,y)+\varepsilon&<r\\
+                \Rightarrow d(z,y)+d(y,x)&<r\\
+                \Rightarrow d(z,x)&<r\\
+            \end{split}
+        \end{equation*}
+        por tanto, $x\in B_d(x,r)$. Luego, $B_d(x,r)\in\tau_d$.
+    \end{sol}
+
+    \begin{lema}
+        Todo espacio métrico $(X,d)$ es Hausdorff. 
+    \end{lema}
+
+    \begin{proof}
+        Veamos que dados $x,y\in X$, $x\neq y$ existen $r,s\in\mathbb{R}^+$ tales que $B_d(x,r)\cap B_d(y,s)=\emptyset$. Como $x\neq y$ entonces $d(x,y)=m\in\mathbb{R}^+$. Tomemos $r=\frac{m}{\pi}$ y $s=\frac{\pi-1}{\pi}m$, veamos que la intersección es vacía.
+    
+        En efecto, en caso de que no lo fuese, se tendría que si existiera $p\in B_d(x,r)\cap B_d(y,s)$, entonces $d(p,x)<\frac{m}{\pi}$ y $d(p,y)<\frac{\pi-1}{\pi}m$, por lo cual por desigualdad triangular se sigue que:
+        \begin{equation*}
+            d(x,y)\leq d(p,x)+d(p,y)<\frac{1+\pi-1}{\pi}m=m=d(x,y)
+        \end{equation*}
+        lo cual es una contradicción\contradiction. Por tanto, la intersección es vacía.
+    \end{proof}
+
+    Tenemos qeu para $A\subseteq X$, $A\in\tau_d$ si y sólo si existen $\left\{a_\alpha\right\}_{\alpha\in I}\subseteq A$ y $\left\{\varepsilon_\alpha\right\}_{\alpha\in I}\subseteq\mathbb{R}^+$ tal que
+    \begin{equation*}
+        \bigcup_{\alpha}B_d(a_\alpha,\varepsilon_\alpha)=A
+    \end{equation*}
+    donde $\forall\alpha\in I$ se tiene que $A_\alpha\in A$.
+
+    \begin{cor}
+        Sea $(X,d)$ un espacio métrico y sea
+        \begin{equation*}
+            \mathcal{B}_d=\left\{B_d(x,\varepsilon)|x\in X,\varepsilon\in\mathbb{R}^+ \right\}
+        \end{equation*}
+        entonces, para $A\subseteq X$ se tiene que $A\in\tau_d$ si y sólo si existe una colección $\left\{B_\alpha \right\}_{\alpha\in I}\subseteq \mathcal{B}_d$ tal que $A=\bigcup_{\alpha\in I}B_\alpha$. La colección $\mathcal{B}_d\subseteq\tau_d$.
+    \end{cor}
+
+    \begin{exa}
+        Sea $m\in\mathbb{N}$ y considere el espacio métrico $\mathbb{R}^m$ con la métrica $d_u$, siendo:
+        \begin{equation*}
+            d_u(x,y)=[(x_1-y_1)^2+...+(x_m-y_m)^2]^{\frac{1}{2}}
+        \end{equation*}
+        para $x=(x_1,...,x_m),y=(y_1,...,y_m)\in\mathbb{R}^m$. Esta métrica será denominada \textbf{métrica usual}. Vamos a escribir a la topología generada por esta métrica como $\tau_u$, y se dice la \textbf{topología usual definida sobre $\mathbb{R}^m$}. En particular, cuando $m=1$ tenemos que $\tau_u$ la topología usual definida sobre $\mathbb{R}$. En este caso, se tiene que $A\in\tau_u$ si y sólo si existe $\left\{a_\alpha\right\}$ y $\left\{B_\alpha\right\}$ subfamilias de $\mathbb{R}$ tal que $A=\bigcup_{\alpha\in I}\left(a_\alpha,b_\alpha\right)$.
+    \end{exa}
+
+    \begin{obs}
+        Tenemos que para todo $n\in\mathbb{N}$, los conjuntos $\left(-\frac{1}{n},\frac{1}{n}\right)\in\tau_u$, y $\bigcap_{n\in\mathbb{N}}\left(-\frac{1}{n},\frac{1}{n}\right)=\left\{0\right\}\notin\tau_u$. Es decir, que la topología solo es cerrada (en general) bajo intersecciones finitas.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $X$ un conjunto, y sean $\tau_1$ y $\tau_2$ topologías sobre $X$. Decimos que $\tau_2$ es \textbf{más fina} que la topología $\tau_1$ si se tiene que $\tau_1\subseteq\tau_2$ (a veces también se dice que $\tau_1$ es \textbf{menos fina} que $\tau_2s$).
+    \end{mydef}
+
+    \begin{exa}
+        Sea $X=\left\{1,2,3\right\}$, $\tau_1=\left\{X,\emptyset,\left\{1\right\} \right\}$, $\tau_2=\left\{X,\emptyset,\left\{2\right\} \right\}$. Tomemos
+        \begin{equation*}
+            \tau_1\cup\tau_2=\left\{X,\emptyset,\left\{1\right\},\left\{2\right\}\right\}
+        \end{equation*}
+        la familia $\tau_1\cup\tau_2$ no es una topología sobre $X$, pues no es cerrada bajo uniones arbitrarias. Con esto se tiene que la unión de dos topologías no necesariamente es una topología.
+    \end{exa}
+
+    \begin{theor}
+        Sea $X$ un conjunto, y sea $\left\{\tau_\alpha\right\}_{\alpha\in I}$ una familia de topologías sobre $X$, entonces $\tau=\bigcap_{\alpha\in I}s\tau_\alpha$ es una topología sobre $X$.
+    \end{theor}
+
+    \begin{proof}
+        Veamos que se cumplen las tres condiciones.
+        \begin{enumerate}
+            \item Claro que $X,\emptyset\in\tau$, pues $X,\emptyset\in\tau_\alpha$, para todo $\alpha\in I$.
+            \item Sea $\mathcal{A}=\left\{A_\beta\right\}_{\beta\in J}\subseteq\tau=\bigcap_{\alpha\in I}\tau_\alpha$ una subcolección arbitraria de elementos de $\tau$. Por ser $\tau_\alpha$ una topología, se sigue que $\bigcup\mathcal{A}\in\tau_\alpha$, para todo $\alpha\in I$.
+
+            Por tanto, $\bigcup\mathcal{A}\in\tau$.
+            \item Sean $K,L\in\tau$, entonces $K,L\in\tau_\alpha$, para todo $\alpha\in I$, luego como $\tau_\alpha$ es una topología sobre $X$, se tiene que $L\cap K\in \tau_\alpha$, para todo $\alpha\in I$, por tanto, $L\cap K\in\tau$.
+        \end{enumerate}
+        Por los tres incisos anteriores, se sigue que $\tau$ es una topología sobre $X$.
+    \end{proof}
+
+    \begin{cor}
+        Sea $X$ un conjunto y sean $\mathcal{A}$ una familia de subconjuntos de $X$. Definimos
+        \begin{equation*}
+            \mathcal{K}=\left\{\tau|\tau\textup{ es una topología sobre }X\textup{ y }\mathcal{A}\subseteq\tau \right\}
+        \end{equation*}
+        Entonces:
+        \begin{enumerate}
+            \item $\tau_D\in\mathcal{K}$.
+            \item Definiendo $\tau(\mathcal{A})=\bigcap_{\tau\in\mathcal{K}}\tau$, se tiene que $\tau(\mathcal{A})$ es una topología sobre $X$.
+            \item Para toda topología $\tau\in\mathcal{K}$, $\tau(\mathcal{A})\subseteq\tau$.
+            \item $\tau(\mathcal{A})\in\mathcal{A}$.
+        \end{enumerate}
+    \end{cor}
+
+    \begin{proof}
         
     \end{proof}
 
+    \begin{mydef}
+        Un \textbf{espacio topológico} es una pareja $(X,\tau)$ en donde $X$ es un conjunto y $\tau$ es una topología sobre $X$. A los elementos de $\tau$ los llamaremos los \textbf{abiertos} del espacio $(X,\tau)$ a veces también se les nombra como los \textbf{$\tau$-abiertos de $X$}.
+    \end{mydef}
+
+    \begin{exa}
+        Ejemplos de espacios topológicos son $(\mathbb{R},\tau_D)$, $(\mathbb{R},\tau_I)$, $(\mathbb{R},\tau_{cf})$, $(\mathbb{R},\tau_u)$, etc... Las diferencias notables son que $\left\{1,\sqrt{2} \right\}$ es abierto en $(\mathbb{R},\tau_D)$, pero no en $(\mathbb{R},\tau_u)$.
+    \end{exa}
+
+    Sea $X$ un conjunto y $\mathcal{A}\subseteq\mathcal{P}$. Por el corolario anterior, podemos trabajar con la topología $\tau(\mathcal{A})$, y tenemos así al espacio topológico $(X,\tau(\mathcal{A}))$, el cual en particular tiene como abiertos a los elementos de la familia $\mathcal{A}$.
+    
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico.
+        \begin{enumerate}
+            \item Un subconjunto $C\subseteq X$ es un \textbf{conjunto cerrado} del espacio topológico $(X,\tau)$ si $X-C\in\tau$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        En $(\mathbb{R},\tau_u)$ se tiene que $\mathbb{R}$ y $\emptyset$ son abiertos y cerrados a la vez, pero el conjunto $[1,2[$ no es abierto ni cerrado, $]1,2[$ es abierto pero no cerrado y $[1,2]$ no es abierto pero sí es cerrado.
+    \end{exa}
+    
 \end{document}
