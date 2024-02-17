@@ -447,16 +447,15 @@
         \begin{equation}
             \begin{split}
                 \norm{\vec{x}-(\vec{x_0}+\lambda\vec{y})}^2\geq&\norm{\vec{x}-\vec{x_0}}^2\\
-                \Rightarrow \norm{(\vec{x}-\vec{x_0})-\lambda\vec{y}}^2=&\norm{\vec{x}-\vec{x_0}}^2+2\Re[\conj{\lambda} \pint{\vec{x}-\vec{x_0}}{\vec{y}}]+\abs{\lambda}^2\norm{\vec{y}}^2\\
-                =&\norm{\vec{x}-\vec{x_0}}^2-2\Re[\lambda\pint{\vec{x}-\vec{x_0}}{\vec{y}}]+\abs{\lambda}^2\norm{\vec{y}}^2\\
+                \Rightarrow \norm{(\vec{x}-\vec{x_0})-\lambda\vec{y}}^2\geq&\norm{\vec{x}-\vec{x_0}}^2\\
+                \Rightarrow \norm{\vec{x}-\vec{x_0}}^2+2\Re[\conj{\lambda} \pint{\vec{x}-\vec{x_0}}{\vec{y}}]+\abs{\lambda}^2\norm{\vec{y}}^2\geq&\norm{\vec{x}-\vec{x_0}}^2\\
                 \Rightarrow -2\Re[\lambda\pint{\vec{x}-\vec{x_0}}{\vec{y}}]+\abs{\lambda}^2\norm{\vec{y}}^2\geq& 0\\
             \end{split}
         \end{equation}
         en particular, para $\lambda=t\pint{\vec{x}-\vec{x_0}}{\vec{y}}$, con $t\in\mathbb{R}$, la ecuación anterior se transforma en:
         \begin{equation*}
             \begin{split}
-                %=&-2t\abs{\pint{\vec{x}-\vec{x_0}}{\vec{y}}}^2+t^2\abs{\pint{\vec{x}-\vec{x_0}}}^2+\norm{\vec{y}}^2\\
-                =&\abs{\pint{\vec{x}-\vec{x_0}}{\vec{y}}}^2\left[-2t+t^2\norm{\vec{y}}\right]\\
+                \abs{\pint{\vec{x}-\vec{x_0}}{\vec{y}}}^2\left[-2t+t^2\norm{\vec{y}}\right]\geq0 \\
             \end{split}
         \end{equation*}
         para todo $t\in\mathbb{R}$. Esto exige que $\pint{\vec{x}-\vec{x_0}}{\vec{y}}=0$, o sea que $\vec{x}-\vec{x_0}\perp \vec{y}$.
@@ -469,7 +468,7 @@
     \end{mydef}
 
     \begin{exa}
-        El subespacio $\phi_0$ de las sucesiones eventualmente constantes de calor cero es un subespacio del espacio hilbretiano $l_2(\mathbb{R})$. Sea $M$ el subespacio de $\phi_0$ dado como sigue:
+        El subespacio $\phi_0$ de las sucesiones eventualmente constantes de valor cero es un subespacio del espacio hilbretiano $l_2(\mathbb{R})$. Sea $M$ el subespacio de $\phi_0$ dado como sigue:
         \begin{equation*}
             M=\left\{\vec{x}\in\phi_0|x_2=0 \right\}
         \end{equation*}
@@ -477,17 +476,32 @@
         \begin{equation*}
             \begin{split}
                 d(\vec{x},M)&=\inf_{\vec{y}\in M}\left\{\norm{\vec{x}-\vec{y}} \right\}\\
-                &=\inf_{\vec{y}\in M}\left\{\left[\sum_{i=2}^{\infty} \frac{1}{2^{(i-1)/2}}-y_i \right] \right\}\\
+                &=\inf_{\vec{y}\in M}\left\{\left[\abs{y_1}+\sum_{i=2}^{\infty} \abs{\frac{1}{2^{(i-2)/2}}-y_i}^2 \right]^{1/2} \right\}\\
+                &=1\\
+                &=\inf_{\vec{y}\in M}\left\{\left[\abs{y_1}+1+\sum_{i=3}^{\infty} \abs{\frac{1}{2^{(i-2)/2}}-y_i}^2 \right]^{1/2} \right\}\\
                 &=1\\
             \end{split}
         \end{equation*}
-        (pues, $y_2=0$). Pero $\norm{\vec{x}-\vec{y}}>1$, para todo $\vec{y}\in M$, luego no existe $\vec{x_0}\in M$ tal que $d(\vec{x},M)=\norm{\vec{x}-\vec{x_0}}$. Por lo tanto, no existe la proyección ortogonal de $\vec{x}$ sobre $M$ (luego $M$ no es distinguido).
+        (pues, $y_2=0$). Pero $\norm{\vec{x}-\vec{y}}>1$, para todo $\vec{y}\in M$. En efecto, sea $\vec{y}\in M$, entonces $\exists m\in\mathbb{N}$ tal que si $k\geq m$ se tiene que $y_k=0=y_2$. Veamos que
+
+        \begin{equation*}
+            \begin{split}
+                \norm{\vec{x}-\vec{y}}&=\left[\abs{y_1}+1+\sum_{i=3}^{\infty} \abs{\frac{1}{2^{(i-2)/2}}-y_i}^2 \right]^{1/2}\\
+                &\geq \left[1+\sum_{i=3}^{k-1} \abs{\frac{1}{2^{(i-2)/2}}-y_i}^2 + \sum_{i=k}^{\infty} \abs{\frac{1}{2^{(i-2)/2}}-y_i}^2 \right]^{1/2}\\
+                &= \left[1+\sum_{i=3}^{k-1} \abs{\frac{1}{2^{(i-2)/2}}-y_i}^2 + \sum_{i=k}^{\infty} \abs{\frac{1}{2^{(i-2)/2}}}^2 \right]^{1/2}\\
+                &\geq \left[1+\sum_{i=k}^{\infty} \abs{\frac{1}{2^{(i-2)/2}}}^2 \right]^{1/2}\\
+                &> \left[1\right]^{1/2}\\
+                &> 1\\
+            \end{split}
+        \end{equation*}
+        
+        Luego no existe $\vec{x_0}\in M$ tal que $d(\vec{x},M)=\norm{\vec{x}-\vec{x_0}}$. Por lo tanto, no existe la proyección ortogonal de $\vec{x}$ sobre $M$ (es decir, $M$ no es distinguido).
 
         Sin embargo, si $\vec{x}=(1,1,0,...)\in l_2(\mathbb{R})$, entonces si existe la proyección ortogonal de $\vec{x}$ sobre $M$, pues
         \begin{equation*}
             \begin{split}
                 d(\vec{x},M)&=\inf_{\vec{y}\in M}\left\{\norm{\vec{x}-\vec{y}} \right\}\\
-                &=\inf_{\vec{y}\in M}\left\{1-y_1+1+\left[\sum_{i=3}^{\infty} y_i \right] \right\}\\
+                &=\inf_{\vec{y}\in M}\left\{\left[\abs{1-y_1}^2+1^2+\sum_{i=3}^{\infty} \abs{y_i}^2 \right]^{1/2} \right\}\\
                 &=1\\
             \end{split}
         \end{equation*}
@@ -495,11 +509,11 @@
     \end{exa}
 
     \begin{theor}
-        Si $M$ es un subespacio completo de un espacio prehilbertiano, entonces $M$ es distinguido, en particular, todo subespacio de dimensión finita de un espacio prehilbertiano siempre es distinguido. 
+        Si $M$ es un subespacio completo de un espacio prehilbertiano, entonces $M$ es distinguido. En particular todo subespacio de dimensión finita de un espacio prehilbertiano siempre es distinguido. 
     \end{theor}
 
     \begin{proof}
-        Sea $\vec{x}\in H$. Se debe probar que existe un $\vec{x_0}\in M$ tal que $d(\vec{x},M)=\norm{\vec{x}-\vec{x_0}}$. Sea $a=d(\vec{x},M)$. Existe una sucesión $\left\{\vec{y_\nu} \right\}$ tal que
+        Sea $\vec{x}\in H$. Se debe probar que existe un $\vec{x_0}\in M$ tal que $d(\vec{x},M)=\norm{\vec{x}-\vec{x_0}}$. Sea $a=d(\vec{x},M)$. Por propiedades del ínfimo existe una sucesión $\left\{\vec{y_\nu} \right\}_{\nu=1}^{\infty}$ tal que
         \begin{equation}
             \lim_{\nu\rightarrow\infty}\norm{\vec{x}-\vec{y_\nu}}=a
         \end{equation}
@@ -514,13 +528,13 @@
         \end{equation*}
         de donde
         \begin{equation*}
-            \norm{\vec{y_\nu}-\vec{y_\mu}}^2\leq4\left(\norm{\vec{x}-\vec{y_\nu}}^2+\norm{\vec{x}-\vec{y_\mu}}^2 \right)-2a^2
+            \norm{\vec{y_\nu}-\vec{y_\mu}}^2\leq2\left(\norm{\vec{x}-\vec{y_\nu}}^2+\norm{\vec{x}-\vec{y_\mu}}^2 \right)-4a^2
         \end{equation*}
         Tomando límite cuando $\nu,\mu$ tienden a infinito y por (6), se tiene que
         \begin{equation*}
             \lim_{\nu,\mu\rightarrow\infty}\norm{\vec{y_\nu}-\vec{y_\mu}}^2=0
         \end{equation*}
-        por tanto, $\left\{\vec{y_\nu} \right\}$ es de Cauchy. Por ser $M$ completo, existe $\vec{x_0}\in M$ tal que $\lim_{\nu\rightarrow\infty}\vec{y_\nu}=\vec{x_0}$. Por (6):
+        por tanto, $\left\{\vec{y_\nu} \right\}_{\nu=1}^{\infty}$ es de Cauchy. Por ser $M$ completo, existe $\vec{x_0}\in M$ tal que $\lim_{\nu\rightarrow\infty}\vec{y_\nu}=\vec{x_0}$. Por (6):
         \begin{equation*}
             a=\lim_{\nu\rightarrow\infty}\norm{\vec{x}-\vec{y_\nu}}=\norm{\vec{x}-\vec{x_0}}
         \end{equation*}
@@ -533,13 +547,13 @@
         \end{equation*}
         ?
         
-        La respuesta es que sí, ya que $M$ es cerrado. En efecto, sea $\left\{f_\nu\right\}$ una sucesión en $M$ convergente en promedio cuadrático a una $f\in\mathcal{L}_2(\mathbb{R},\mathbb{R})$, es decir:
+        La respuesta es que sí, ya que $M$ es cerrado. En efecto, sea $\left\{f_\nu\right\}_{\nu=1}^{\infty}$ una sucesión en $M$ convergente en promedio cuadrático a una $f\in\mathcal{L}_2(\mathbb{R},\mathbb{R})$, es decir:
         \begin{equation*}
             \lim_{\nu\rightarrow\infty}\mathcal{N}_2(f_\nu-f)=0
         \end{equation*}
-        Se sabe que existe una subsucesión de $\left\{f_\nu\right\}$, digamos $\left\{f_{\alpha(\nu)}\right\}$ que converge c.t.p. a $f$ en $\mathbb{R}$. Como $f_{\alpha(\nu)}=0$ c.t.p. en $[1,2]$, entonces $f=0$ c.t.p. en $[1,2]$, es decir $f\in M$. Por tanto, $M$ es distinguido.
+        Se sabe que existe una subsucesión de $\left\{f_\nu\right\}_{\nu=1}^{\infty}$, digamos $\left\{f_{\alpha(\nu)}\right\}_{\nu=1}^{\infty}$ que converge c.t.p. a $f$ en $\mathbb{R}$. Como $f_{\alpha(\nu)}=0$ c.t.p. en $[1,2]$, entonces $f=0$ c.t.p. en $[1,2]$, es decir $f\in M$. Por tanto, $M$ es distinguido.
 
-        Ahora, dada $f\in\mathcal{L}_2(\mathbb{R},\mathbb{R})$, ¿Cuál será la proyección ortogonal de $f$ sobre $M$? Veamos que
+        Ahora, dada $f\in\mathcal{L}_2(\mathbb{R},\mathbb{R})$, ¿Cuál será la proyección ortogonal de $f$ sobre $M$? Es claro que
         \begin{equation*}
             f_0=f\cdot\chi_{\mathbb{R}\backslash[1,2]}\in M
         \end{equation*}
