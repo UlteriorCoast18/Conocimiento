@@ -115,9 +115,11 @@
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand{\N}[1]{\ensuremath{\mathscr{N}(#1)}}
-\newcommand{\Ns}[1]{\ensuremath{\mathscr{N}*(#1)}}
+\newcommand{\Ns}[1]{\ensuremath{\mathscr{N}^*(#1)}}
 \newcommand{\piz}[1]{\ensuremath{\mathscr{#1}}}
 \newcommand{\eul}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\natint}[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand{\contradiction}{\ensuremath{\#_c}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -244,9 +246,9 @@
 
     \begin{proof}
         Observemos que $g(x)=\sigma_a(\varphi_{a}^{-1}(x))$, donde las dos funciones de la composición definidas como en el teorema anterior son homeomofismos, y por ende $g$ lo es. Además $g$ es homomorfismo ya que
-        \begin{equation}
+        \begin{equation*}
             g(xy)=axya^{-1}=\left(axa^{-1}\right)\left(aya^{-1}\right)=g(x)g(y)
-        \end{equation}
+        \end{equation*}
         el cual es invertible, con inversa $f(x)=a^{-1}xa$.
     \end{proof}
 
@@ -350,7 +352,126 @@
         \begin{equation*}
             \overline{A}\subseteq\bigcap_{W\in\N{e_G}}AW
         \end{equation*} 
-        (de forma análoga con $\bigcap_{W\in\N{e_G}}WA$). Ahora, 
+        (de forma análoga con $\bigcap_{W\in\N{e_G}}WA$). Ahora, sean $x\in\bigcap_{W\in\N{e_G}}AW$ y $V\in\N{x}$. Debemos probar que $V\cap A\neq\emptyset$ (con ello, se tendría que $x\in\overline{A}$). Se tiene que $x^{-1}V\in\N{e_G}$ y, por ende $V^{-1}x\in\N{e_G}$.
+
+        Por tanto, como $x\in\bigcap_{W\in\N{e_G}}AW$ en particular $x\in AV^{-1}x$, así existen $a\in A$ y $v\in V$ tales que $x=av^{-1}x$, es decir $a=v\in V$ y $a\in A$, por lo cual $a\in A\cap V$. Por tanto, $A\cap V\neq\emptyset$.
+    \end{proof}
+
+    Como ya se sabe que todo grupo topológico es un espacio homogéneo, para verificar propiedades locales del grupo (tales como la conexidad local, compacidad local, carácter numerable, etc...), basta con verificar la propiedad en la identidad del grupo. Una de éstas propiedades es la $T_3$.
+
+    \begin{lema}
+        Todo grupo topológico $G$ cumple las propiedades siguientes:
+        \begin{enumerate}
+            \item $G$ es un espacio $T_3$.
+            \item Si $A\subseteq G$ es compacto y $B\subseteq G$ cerrado, entonces $AB$ y $BA$ son cerrados.
+        \end{enumerate}
+    \end{lema}
+
+    \begin{proof}
+        De 1): Se debe probar que $G$ es un espacio regular, es decir, hay que probar que $G$ es $T_1$ y que para todo $x\in G$ y toda vecindad $V$ de $x$ existe una vecindad $U$ de $x$ tal que $\overline{U}\subseteq V$. Esto es inmediato del lema 1.1.4 2).
+
+        De 2). Probaremos que $BA$ es cerrado. Para ello, se probará que $G\backslash BA$ es abierto. Sea $a\in G\backslash BA$. Para cada $x\in A$, el conjunto $Bx$ es cerrado (por ser $B$ cerrado), así que existen vecindades $U_x,V_x\in\Ns{e_G}$ con $aU_x\cap Bx=\emptyset$ y $V_x^2\subseteq U_x$. Por ello, $aV_x\cap BxV_x=\emptyset$.
+
+        Ahora, como ${xV_x}_{x\in A}$ es una cubierta abierta de $A$, al ser $A$ compacto existen $x_1,...,x_n\in A$ tales que
+        \begin{equation*}
+            A\subseteq\bigcup_{i=1}^n x_iV{x_i}
+        \end{equation*}
+        Sea
+        \begin{equation*}
+            W=\bigcap_{i=1}^n x_iV{x_i}
+        \end{equation*}
+        Este conjunto es abierto y simétrico, y además $aW\cap BxV_{x_i}=\emptyset$ para todo $i\in\natint{1,n}$. Por tanto, $aW\cap BA=\emptyset$. Así que $aW$ es una vecindad de $a$ ajena a $BA$. De forma análoga se prueba que $BA$ es cerrado.
+    \end{proof}
+
+    \begin{exa}
+        Sea $G$ un grupo no trivial dotado de la topología indscreta. Entonces $G$ es un grupo topológico que no es ni $T_0$ ni $T_1$ (en esta topología solo hay dos conjuntos: $\emptyset$ y $G$).
+    
+        Ahora, si tenemos un grupo topológico que es $T_0$ esto es equivalente a que sea $T_1$. En efecto, supongamos que es $T_0$ y sean $x_1,x_2\in G$ elementos distingos. Como es $T_0$ existe $U\subseteq G$ abierto que contiene a $e_G$ ó $x_1x_2^{-1}$. Si $e_G\in U$, entonces existe $V\in\Ns{e_G}$ tal que $V\subseteq U$, en particular $e_G\in V$ y $x_1x_2^{-1}\notin V$, por lo cual $x_2,x_1^{-1}\notin V$, luego $Vx_2$ es un abierto que contiene a $x_2$ y no a $x_1$, y $Vx_1$ es un abierto $x_1$ que contiene a $x_1$ pero no a $x_2$.
+
+        Si $x_1x_2^{-1}\in U$, entonces $W=Ux_2x_1^{-1}\in\N{e_G}$, y $x_1x_2\notin W$. Haciendo lo análogo a lo anterior, se llega al resultado. Por tanto, la propiedad de ser $T_0$ y $T_1$ en un grupo topológico $G$ son equivalentes.
+        
+        De esta forma, todo grupo que sea $T_0$ es en automático un espacio regular, y más aún, es Hausdorff.
+    \end{exa}
+
+    De ahora en adelante sólo se considerarán grupos topológicos $T_0$ (en automático, esto serán espacios regulares). Más adelante se probará que todo grupo $T_0$ es Tikhonov.
+
+    \begin{obs}
+        En todo grupo topológico que sea un espacio $T_0$ se tiene que el conjunto $e_G$ es cerrado.
+    \end{obs}
+
+    \begin{proof}
+        En efecto, sea $G$ un grupo topológico con las propiedades anteriores. Considere:
+        \begin{equation*}
+            A=\bigcap_{U\in\N{e_G}}\overline{U}
+        \end{equation*}
+        Claro que $e_G\in A$. Suponga que existe $a\in A$ tal que no es la identidad del grupo topológico, como $G$ es $T_1$ existe $V$ abierto tal que $e_G\in V$ pero $a\notin V$. Como la cerradura de los elementos de $\N{e_G}$ forman una base local para $e_G$, existe $U_0\in\N{e_G}$ tal que $\overline{U_0}\subseteq V$. Por tanto, $a\notin \bigcap_{U\in\N{e_G}}\overline{U}$ pues $a\notin \overline{U_0}$\contradiction. Luego $A=\left\{e_G\right\}$, pero $A$ es cerrado por ser intersección arbitraria de cerrados. Por tanto, el conjunto unipuntual $\left\{e_G\right\}$ es cerrado (más aún, el conjunto $\left\{x\right\}$ es cerrado, para todo $x\in G$).
+    \end{proof}
+
+    En los grupos topológicos, los subespacios compactos tienen propieadedes similares a las de los puntos en relación con las condiciones de separación:
+
+    \begin{theor}
+        Sea $G$ un grupo topológico, $K\subseteq U\subseteq G$, $U$ abierto y $K$ compacto. Entonces, existe $W\in\N{e_G}$ con la siguiente propiedad:
+        \begin{equation*}
+            K\subseteq KW\subseteq U
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Para cada $x\in K$ existe $V_x\in\N{e_G}$ con $xV_x\subseteq U$. Además, existe $W_x\in\N{e_G}$ tal que $W_x^2\subseteq V_x$.
+
+        Como $K$ es compacto, y $K\subseteq\bigcup_{x\in K}xW_x$, entonces existen $x_1,...,x_n\in K$ tales que
+        \begin{equation*}
+            K\subseteq\bigcup_{i=1}^nx_iW_{x_i}
+        \end{equation*}
+        Sea $W=\bigcap_{i=1}^nW_{x_i}$. El conjunto $W$ es una vecindad abierta de $e_G$ y, por ende $K\subseteq KW$.
+
+        Si $x\in K$, entonces por la contención anterior se sigue que existe $i\in\natint{1,n}$ tal que $x\in x_iW_{x_i}$. Así:
+        \begin{equation*}
+            xW\subseteq x_iW_{x_i}W\subseteq x_iW_{x_i}W_{x_i}\subseteq x_iV_{x_i}\subseteq U
+        \end{equation*}
+        es decir, $KW\subseteq U$.
+    \end{proof}
+
+    El siguiente teorema tiene como objetivo el resumir varias de las propiedades obtenidas anteriormente para la familia $\N{e_G}$; de hecho esta familia se caracteriza completamente. Esta propiedad es un de las que distinguen a los grupos topológicos de los espacios topológicos arbitrarios. Además, dicho teorema nos proporciona un método para definir topologías de grupos topológicos.
+
+    \begin{theor}
+        Sea $G$ un grupo topológico de Hausdorff. Existe una base local $\mathcal{V}$ para $e_G$ tal que cumple las siguientes condiciones:
+        \begin{enumerate}
+            \item $\bigcap\mathcal{V}=\left\{e_G\right\}$.
+            \item Si $U,V$ son dos elementos arbitrarios de $\mathcal{V}$, entonces existe $W\in\mathcal{V}$ tal que $W\subseteq U\cap V$.
+            \item Para cada $U\in\mathcal{V}$ existe $V\in\mathcal{V}$ tal que $VV^{-1}\subseteq U$.
+            \item Para cada $U\in\mathcal{V}$ y para cada $x\in U$ existe $V\in \mathcal{V}$ con $xV\subseteq U$.
+            \item Para cada $U\in \mathcal{V}$ y $a\in G$ existe $W\in\mathcal{V}$ con $aWa^{-1}\subseteq U$.
+        \end{enumerate}
+
+        Recíprocamente, si tenemos un grupo $G$ y una familia $\mathcal{V}$ no vacía de subconjuntos de $G$ que contienen a $e_G$, tales que satisfacen las condiciones de (1) a (5) para $\mathcal{V}$, entonces cada una de las familias $\left\{xU\big|U\in\mathcal{V}, x\in G \right\}$ y $\left\{Ux\big|U\in\mathcal{V}, x\in G \right\}$ es base para una topología de grupo $\tau$ para $G$. Además, $\mathcal{V}$ es una base local para $e_G$ en $(G,\tau)$.
+    \end{theor}
+
+    \begin{proof}
+        $\Rightarrow$): Sea $G$ un grupo topológico $Hasdorff$ (de forma inmediata es un espacio $T_0$ y, por ende es un espacio regular). Considere la familia:
+        \begin{equation*}
+            \mathcal{V}=\left\{V\cap V^{-1}\big|V\in\N{e_G} \right\}
+        \end{equation*}
+        es inmedaito que $\mathcal{V}$ cumple las condiciones (1) y (2) (por la observación 1.1.4 y la otra por ser $\mathcal{V}$ una base local de $e_G$). Para probar (3), sea $U\in\mathcal{V}$. Por un lema anterior existe $V\in\N{e_G}$ tal que $V^2\subseteq U$; entonces $W=V\cap V^{-1}$ pertenece a $\mathcal{V}$, y se tiene que $W^{-1}=W$ y $WW^{-1}=W^2\subseteq V^2\subseteq U$.
+
+        Para (4), sean $U\in\mathcal{V}$ y $x\in U$. Como la multiplicación es una operación continua y $xe_G=x$, existen vecindades abiertas $V_x$ y $W$ de $x$ y $e_G$ respectivamente, tales que $V_xW\subseteq U$. El conjunto $V=W\cap W^{-1}$ pertenece a $\mathcal{V}$ y se cumple que $xV\subseteq V_xW\subseteq U$.
+
+        Para (5), si $a\in G$ y $U\in\mathcal{V}$, como $aa^{-1}=ae_Ga$ y por ser continua la multiplicación, existen vecindades abiertas $W_a,V,W_{a^{-1}}$ de $a,e_G$ y $a$, respectivamente tales que
+        \begin{equation*}
+            W_aVW_{a^{-1}}\subseteq U
+        \end{equation*}
+        entonces, $W=V\cap V^{-1}$ pertenece a $\mathcal{V}$, y $aWa^{-1}\subseteq W_aVW_{a^{-1}}\subseteq U$.
+
+        $\Leftarrow$): Sea $\mathcal{V}$ uan familia de subconjuntos de $G$ que satisfacen las condiciones (1) a (5) del teorema. Debemos probar que
+        \begin{equation*}
+            \mathcal{B}=\left\{xU\big|U\in\mathcal{V}, x\in G \right\}
+        \end{equation*}
+        es una base para una topología de grupo $\tau$ en $G$. Sea $\tau$ la familia de subconjuntos de $G$ que son uniones arbitrarias de subconjuntos de $\mathcal{B}$, es decir $U\in\tau$ si y sólo si $U=\cap\mathcal{A}$, donde $\mathcal{A}$ es una subfamilia de $\mathcal{B}$.
+
+        Sean
+
+        %Me quedé en la página 27 del pdf%
+
     \end{proof}
 
 \end{document}
