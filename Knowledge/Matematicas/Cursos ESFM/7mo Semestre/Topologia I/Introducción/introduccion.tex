@@ -117,6 +117,10 @@
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand{\V}[1]{\ensuremath{\mathcal{V}(#1)}}
+\newcommand{\Int}[1]{\ensuremath{\mathring{#1}}}
+\newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\Fr}[1]{\ensuremath{\textup{Fr}(#1)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -439,5 +443,128 @@
     \begin{exa}
         En $(\mathbb{R},\tau_u)$ se tiene que $\mathbb{R}$ y $\emptyset$ son abiertos y cerrados a la vez, pero el conjunto $[1,2[$ no es abierto ni cerrado, $]1,2[$ es abierto pero no cerrado y $[1,2]$ no es abierto pero sí es cerrado.
     \end{exa}
-    
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico.
+        \begin{enumerate}
+            \item Si $A_1,...,A_n$ son subconjuntos cerrados de $(X,\tau)$, entonces su unión $A_1\cup...\cup A_n$ es un cerrado de $(X,\tau)$.
+            \item Si $\mathcal{A}$ es una familia arbitraria de conjuntos cerrados en $(X,\tau)$, entonces $\bigcap\mathcal{A}$ es un conjunto cerrado.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): Consideremos el complemento de la unión. Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                X-\bigcup_{i=1}^nA_i=&\bigcap_{i=1}^n(X-A_i)\\
+            \end{split}
+        \end{equation*}
+        el cuál es abierto por ser intersección finita de abiertos. Luego $\bigcap_{i=1}^nA_i$ es cerrado.
+
+        De (2): Basta con aplicar leyes de Morgan.
+    \end{proof}
+
+    \begin{exa}
+        Considere $(\mathbb{R},\tau_u)$ y, para $n\in\mathbb{N}$ definimos $A_n=(-\frac{1}{n},\frac{1}{n})$, es claro que cada uno de estos conjuntos es abierto. Sea $B_n=\mathbb{R}-A_n=(-\infty,-\frac{1}{n}]\cup[\frac{1}{n},\infty)$.
+
+        Se tiene que:
+        \begin{equation*}
+            \bigcup_{n\in\mathbb{N}}B_n=\bigcup_{n\in\mathbb{N}}\mathbb{R}-A_n=\mathbb{R}-\bigcap_{n\in\mathbb{N}}A_n=\mathbb{R}-\left\{0\right\}
+        \end{equation*}
+        el cual es abierto. Por tanto, la unión arbitraria de cerrados no es cerrada (en general).
+    \end{exa}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico y, sean $x\in X$ y $V\subseteq X$ tal que $x\in V$. Se dice que $V$ es una \textbf{vecindad de $x$} si existe $U\in\tau$ abierto tal que $x\in U$ y $U\subseteq V$.
+        \begin{enumerate}
+            \item Si $V$ es una vecindad de $x$ y $V\in\tau$, decimos que $V$ es una \textbf{vecindad abierta de $x$}.
+            \item Si $V$ es una vecindad de $x$ y $X-V\in\tau$, decimos que $V$ es una \textbf{vecindad cerrada de $x$}.
+        \end{enumerate}
+        Al conjunto de todas las vecindades del punto $x$ lo denotamos por $\mathcal{V}(x)$. Tenemos que $X\in\mathcal{V}(x)$ para todo $x\in X$.
+    \end{mydef}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico.
+        \begin{enumerate}
+            \item Si $V_1,...,V_n\in\mathcal{V}(x)$ para $x\in X$, entonces $V_1\cap...\cap V_n\in\mathcal{V}(x)$.
+            \item Si $\left\{V_\alpha\right\}_{\alpha\in I}\subseteq\mathcal{V}(x)$ para $x\in X$, entonces $\bigcap_{\alpha\in I}V_\alpha\in\mathcal{V}(x)$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico y $A\subseteq X$.
+        \begin{enumerate}
+            \item Sea $x\in X$. $x$ es un \textbf{punto de acumulación de $A$} si para todo $U$ abierto que contiene a $x$ se tiene que $(U-\left\{x\right\})\cap A\neq\emptyset$ ($U$ contiene un punto de $A$ diferente de $x$). Al conjunto de todos los puntos de acumulación lo llamaremos el \textbf{conjunto derivado de $A$}, y se denota por $A'$.
+            \item Un elemento $a\in A$ es un \textbf{punto interior} de $A$, si $A$ es una vecindad de $x$ (es decir, $A\in\V{x}$). 
+            \textbf{El interior de $A$} es el conjunto de todos los puntos interiores de $A$ y se escribe $\Int{A}$. Es claro que $\Int{A}\subseteq A$.
+            \item Sea
+            \begin{equation*}
+                \mathcal{C}=\left\{C\subseteq X\big|X-C\in\tau,A\subseteq C \right\}
+            \end{equation*}
+            es claro que $\mathcal{C}$ es no vacía, pues $X\in\mathcal{C}$. La \textbf{cerradura de $A$} es el conjunto $\bigcap_{C\in\mathcal{C}}C$ y se denota por $\overline{A}$. Si $x\in\overline{A}$, diremos que \textbf{$x$ es un punto adherente de $A$}. Es claro que $A\subseteq\overline{A}$.
+            \item La \textbf{frontera de $A$} es el conjunto $\Cls{A}\cap\Cls{X-A}$ y se denota por $\Fr{A}$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico, $x\in X$ y sean $A,B\subseteq X$. Entonces:
+        \begin{enumerate}
+            \item $\Int{A}\subseteq A\subseteq\Cls{A}$.
+            \item $\Int{A}=\bigcup\left\{U\in\tau\big|U\subseteq A \right\}$.
+            \item $\Int{A}\in\tau$.
+            \item Si $V\in\tau$ tal que $V\subseteq A$, entonces $V\subseteq\Int{A}$.
+            \item $A$ es abierto si y sólo si $\Int{A}=A$.
+            \item $\Int{\Int{A}}=\Int{A}$.
+            \item $\Int{A\cap B}=\Int{A}\cap\Int{B}$.
+            \item $\Int{A}\cup\Int{B}\subseteq \Int{A\cup B}$.
+            \item $\Cls{A}$ es un conjunto cerrado.
+            \item Si $K\subseteq X$ es cerrado de $(X,\tau)$ y $A\subseteq K$, entonces $\Cls{A}\subseteq K$.
+            \item $A$ es cerrado si y sólo si $\Cls{A}=A$.
+            \item $\Cls{\Cls{A}}=\Cls{A}$.
+            \item $\Cls{A\cup B}=\Cls{A}\cup\Cls{B}$.
+            \item $\Cls{A\cap B}\subseteq\Cls{A}\cap\Cls{B}$.
+            \item $\emptyset=\Int{\emptyset}=\Cls{\emptyset}$ y $X=\Int{X}=\Cls{X}$.
+            \item Si $A\subseteq B$, entonces $\Int{A}\subseteq \Int{B}$ y $\Cls{A}\subseteq\Cls{B}$.
+            \item $x\in\Cls{A}$ si y sólo si para todo abierto $U\subseteq X$ tal que $x\in U$ se tiene que $U\cap A\neq\emptyset$.
+            \item $x\in\Fr{A}$ si y sólo si para todo abierto $U$ tal que $x\in U$ se cumple que $U\cap A\neq\emptyset$ y $U\cap (A-X)\neq\emptyset$.
+            \item $\Cls{A}=A\cup A'$.
+            \item $A$ es un conjunto cerrado si y sólo si $A'\subseteq A$.
+            \item $\Cls{A}=\Int{A}\cup\Fr{A}$.
+            \item $\Fr{A}=\Fr{X-A}$.
+            \item $\Cls{A}-\Fr{A}=\Int{A}$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1):
+
+        De (17): Sea $x\in X$.
+        
+        $\Rightarrow$): Suponga que $x\in\Cls{A}$, entonces para todo $C\subseteq X$ cerrado tal que $A\subseteq C$. Suponga que existe $U_0\in\tau$ abierto tal que $x\in U_0$ y $U_0\cap A=\emptyset$. Entonces $A\subseteq X-M$ es un cerrado que contiene a $A$, luego $x\in X-M$, es decir $x\notin M$\contradiction. Por tanto, $U\cap A\neq\emptyset$.
+
+        $\Leftarrow$): Sea $L\subseteq X$ un cerrado tal que $A\subseteq L$. Probaremos que $x\in L$, suponiendo la tesis para este $x\in X$. Suponga que $x\notin L$, entonces $x\in X-L$ el cual es abierto, por tanto $(X-L)\cap A\neq\emptyset$, es decir $A\nsubseteq L$\contradiction. Por tanto, $x\in L$.
+        
+        De (19): Se probarán las dos contenciones:
+        \renewcommand{\theenumi}{\alph{enumi})}
+        \begin{enumerate}
+            \item $\Cls{A}\subseteq A\cup A'$. Sea $x\in\Cls{A}$. Si $x\in A$, se tiene el resultado. Suponga que $x\notin A$. Como $x\in\Cls{A}$, por (17) para todo abierto $U\subseteq X$ se tiene que $U\cap A\neq\emptyset$, pero $x\notin A$, por lo cual $(U-\left\{x\right\})\cap A-\neq\emptyset$. Por tanto, $x\in A'$.
+            \item $A\cup A'\subseteq\Cls{A}$. Es inmediata de la definición de $\Cls{A}$ y $A'$.
+        \end{enumerate}
+        Por a) y b) se sigue el resultado.
+    \end{proof}
+
+    \renewcommand{\theenumi}{\arabic{enumi}}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico y $\left\{A_\alpha \right\}_{\alpha\in I}\subseteq\mathcal{P}(X)$.
+        \begin{enumerate}
+            \item $\bigcup_{\alpha\in I}\Cls{A_\alpha}\subseteq\Cls{\bigcup_{\alpha\in I}A_\alpha}$.
+            \item $\Cls{\bigcap_{\alpha\in I}A_\alpha}\subseteq\bigcap_{\alpha\in I}\Cls{A_\alpha}$. 
+        \end{enumerate}
+    \end{propo}
+
 \end{document}
