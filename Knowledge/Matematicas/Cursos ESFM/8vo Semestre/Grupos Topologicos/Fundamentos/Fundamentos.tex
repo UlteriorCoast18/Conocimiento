@@ -474,4 +474,138 @@
 
     \end{proof}
 
+    De un leman anterior sabemos que si $A,B\subseteq G$ con $G$ grupo topológico, $A$ compacto y $B$ cerrado, entonces $AB$ y $BA$ son cerrados. La hipótesis de que $A$ sea compacto no es imprescindible.
+
+    \begin{exa}
+        Sea $G$ un grupo arbitrario con la topología discreta, es decir, aquella formada por todos los subconjuntos de $G$; entonces $G$ forma un grupo topológico llamado \textbf{grupo discreto}.
+    \end{exa}
+
+    \begin{exa}
+        Cualquier grupo $G$ con la topología indiscreta, es decir, aquella que consiste únicamente en el conjuno vacío y $G$ mismo, es un grupo topológico. Éste no es un gtupo topológico $T_0$ si $G$ contiene más de un elemento. 
+    \end{exa}
+
+    \begin{exa}
+        El conjunto de los números reales $\mathbb{R}$ con su topología y operación de suma usuales es un grupo topológico.
+    \end{exa}
+
+    \begin{exa}
+        En el grupo aditivo de los números enteros, $(\mathbb{Z},+)$, definiremos varias topologías de grupo:
+        \begin{enumerate}
+            \item Sea $p\in\mathbb{Z}$ un número primo fijo y para cada $k\in\mathbb{N}$ sea $U_k=p^k\mathbb{Z}$; entonces la familia $\mathcal{V}=\left\{U_k\big|k\in\mathbb{N} \right\}$ satisface las condiciones del teorema anterior: todos los miembros de $\mathcal{V}$ contienen al cero y se prueba que su intersección es el cero. La condición (3) se deduce de la relación $U_k=-U_k$.
+            Las propiedades (2) y (4) se obtienen a partir de la contención $2(U_k)\subseteq U_k$ y de la definición de $U_k$. Por último, (5) se cumple por ser $(\mathbb{Z},+)$ abeliano.
+
+            Esta topología de $G$ recibe el nombre de \textbf{$p$-ádica}. Para números primos distintos $p$ y $q$, las topologías obtenidas de esta manera son distintas porque el conjunto $M=\left\{p,p^2,...,p^n,...\right\}$ tiene al $0\in\mathbb{Z}$ como punto de acumulación en la $p$-ádica. Por el contrario, el $0$ no es punto de acumulación de $M$ en la $q$-ádica.
+        \end{enumerate}
+    \end{exa}
+
+    \begin{exa}
+        El \textbf{grupo lineal general de orden $n$ sobre $\mathbb{R}$}. Considere el grupo $GL(n,\mathbb{R})$ de las matrices no sigulares (invertibles) de orden $n$ con elementos en el campo $\mathbb{R}$ y como operación de grupo la multiplicación de matricecs.
+
+        En $GL(n,\mathbb{R})$ considere la topología heredada por ser un subesapcio del espacio euclideano real de dimensión $n^2$, es decir, con la topología generada por la métrica:
+        \begin{equation*}
+            d(A,B)=\sqrt{\sum_{i,j=1}^n\abs{A_{i,j}-B_{i,j}}^2},
+        \end{equation*}
+        para cualesquier $A=\left(A_{i,j}\right)$, $B=\left(B_{i,j}\right)$. Observe que la función $(A,B)\mapsto AB^{-1}$ es continua pues los elementos de la matriz producto son sumas de productos de los elementos de $A$ y $B$.
+    \end{exa}
+
+    \subsection{Grupos Ordenados}
+
+    Se presentarán en esta parte dos ejemplos de grupos topológicos cuya construcción es interesante. Estos ejemplos (aunque no se analicen a profundidad más adelante en el texto) se exponen con el propósito de ayudar al lector a familiarizarse con la noción de grupo topológico. Se estudiará la estructura de grupo ordenado.
+
+    Sea $G$ un grupo con más de un elemento que está ordenado linelamente por una relación $<$, es decir, $<$ cumple las condiciones siguientes:
+    \begin{itemize}
+        \item $<$ es irreflexiva (para toda $x\in G$, $x\nless x$).
+        \item $<$ es antisimétrica (para todo $x,y\in G$ se tiene que $x<y$ ó $y<x$).
+        \item Cualesquiera dos elementos de $G$ son comparables (ley de tricotomía).
+    \end{itemize}
+    Falta establecer una conexión entre este orden lineal y las operaciones del grupo, para lo cual se supone además lo siguiente:
+    \begin{itemize}
+        \item Si $x,y\in G$ son tales que $x<y$, entonces para todo $a\in G$ se tiene que $ax<ay$ y $xa<ya$.
+    \end{itemize}
+    Los grupos con esta estructura se conocen como \textbf{grupos linealmente ordenados}.
+
+    Hay varias propiedades que tienen estos grupos, las cuales se probarán a continuación:
+
+    \begin{propo}
+        Sea $G$ un grupo linealmente ordenado por $<$. Entonces,
+        $G$ no tiene elementos máximo y mínimo (esto implica que $G$ es infinito si $G$ tiene más de un elemento).
+    \end{propo}
+
+    \begin{proof}
+        Observemos que $e_G$ no puede ser máximo o mínimo, ya que si $a<e_G$ entonces $e_G<a^{-1}$, para todo $a\in G$. Por otro lado si $x$ fuera elemento mínimo de $G$, en particular $x<e_G$ (ya que $x\neq e_G$) y, por ende $x^2<x$\contradiction. Por tanto $G$ no tiene elementos máximo o mínimo.
+    \end{proof}
+
+    Definamos con lo anterior una topología en $G$ como sigue: si $a,b\in G$ y $a<b$, sea $(a,b)=\left\{x\in G\big|a<x<b \right\}$; la familia
+    \begin{equation*}
+        \mathcal{B}=\left\{(a,b)\big| a,b\in G, a<b \right\}
+    \end{equation*}
+    forma una base de una topología en $G$. En efecto, veamos que se cumplen las dos condiciones:
+    \begin{enumerate}
+        \item Si $(a_1,b_1),(a_2,b_2)\in\mathcal{B}$, donde $a_1<b_1$ y $a_2<b_2$ entonces si $x\in(a_1,b_1)\cap(a_2,b_2)$, se tiene que $a_2<b_1$, ya que en otro caso $x$ no podría estar en la intersección, luego el conjunto $(a_2,b_1)\in\mathcal{B}$ y se tiene que $x\in(a_2,b_1)$.
+        \item Sea $x\in G$. Como $G$ no admite elementos máximos ni mínimos, existen $a,b\in G$ tales que $a<x<b$. Por ende, $x\in(a,b)\in\mathcal{B}$.
+    \end{enumerate}
+    Por las dos condiciones anteriores, se tiene que al cumplirlas $\mathcal{B}$ existe una única topología $\tau$ para la cual $\mathcal{B}$ es una base. Consideremos de ahora en adelante tal topología. Veamos que las funciones
+    \begin{equation*}
+        \begin{split}
+            h:G&\rightarrow G\\
+            a&\mapsto a^{-1}\\
+        \end{split}
+    \end{equation*}
+    y
+    \begin{equation*}
+        \begin{split}
+            g:G\times G&\rightarrow G\\
+            (a,b)&\mapsto ab\\
+        \end{split}
+    \end{equation*}
+    son funciones continuas en $G$. En efecto, sea $(a,b)\in\mathcal{B}$, donde $a,b\in G$. Entonces:
+    \begin{equation*}
+        \begin{split}
+            h^{-1}((a,b))=&\left\{x\in G\big| a<h(x)<b \right\}\\
+            =&\left\{x\in G\big| a<x^{-1}<b \right\}\\
+        \end{split}
+    \end{equation*}
+    pero, si $a<x^{-1}\Rightarrow xa<e_G\Rightarrow x<a^{-1}$. Por ende:
+    \begin{equation*}
+        \begin{split}
+            h^{-1}((a,b))=&\left\{x\in G\big| b^{-1}<x<a^{-1} \right\}\\
+            =&(b^{-1},a^{-1})\\
+        \end{split}
+    \end{equation*}
+    es decir, que imágenes inversas de vecindades abiertos son abiertas. Por tanto, $h$ es continua.
+
+    Ahora para $g$
+
+    \subsection{Grupos Booleanos}
+
+    \section{Homomorfismos e isomorfismos}
+
+    \begin{mydef}
+        Decimos que el homomorfismo $\cf{f}{G}{G'}$ es \textbf{homomorfismo abierto} si $f$ es una función abierta (es decir, que manda abiertos en abiertos).
+    \end{mydef}
+
+    Este concepto es importante pues permite establecer el concepto de grupso topológicos equivalentes. A continación se enunciarán y demostrarán propiedades elementales importantes de los homomorfismos continuos.
+
+    \begin{lema}
+        Sea $\cf{\varphi}{G}{H}$ un homomorfismo entre grupos topológicos. El homomorfismo $\varphi$ es continuo (respectivamente, abierto) si lo es en la identidad $e_G$, es decir, si $\varphi$ satisface la condición (1) (respectivamente (2)) siguiente:
+        \begin{enumerate}
+            \item Para toda $W$ vecindad de $e_H$ en $H$, existe $U$ vecindad de $e_G$ en $G$ tal que $\varphi(U)\subseteq W$.
+            \item Para toda vecindad $U$ de $e_G$ en $G$, existe $W$ vecindad de $e_H$ tal que $W\subseteq\varphi(U)$.
+        \end{enumerate}
+    \end{lema}
+
+    \begin{proof}
+        Supongamos que se cumple la condición (1), debemos probar que $\varphi$ es continua en todo punto de $G$. Para ello, basta con ver que si $g\in G$ es arbitrario y $W$ es una vecindad de $\varphi(g)$ en $H$, entonces existe una vecindad $U$ de $G$ tal que $\varphi(U)\subseteq W$.
+
+        Sean $g\in G$ y $W$ es una vecindad de $h=\varphi(g)$ en $H$. Se puede expresar a $W=hW'$ $W'$ es una vecindad de $e_H$. Por (1) existe una vecindad $U'$ de $e_G$ tal que $\varphi(U')\subseteq W'$. Entonces $U=gU'$ es una vecindad de $g$ y,
+        \begin{equation*}
+            \varphi(U)=\varphi(gU')=\varphi(g)\varphi(U')=h\varphi(U')\subseteq hW'=W
+        \end{equation*}
+        por tanto, $\varphi$ es continua en $g$.
+
+        Para la segunda parte debemos probar que dado un abierto $O$ en $G$, su imagen respecto a $\varphi$ es abierta en $H$.
+
+        Sea entonces $O$ abierto en $G$ y $h\in\varphi(O)$; entonces $h=\varphi(g)$ para alguna $g\in G$. Por lo anteiror, $g^{-1}O$ es una vecindad de $e_G$, aunado con la condición (2) se sigue que existe una vecindad $W$
+    \end{proof}
+    
 \end{document}
