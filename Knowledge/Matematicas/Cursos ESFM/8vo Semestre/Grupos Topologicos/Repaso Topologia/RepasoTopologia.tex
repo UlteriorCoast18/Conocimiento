@@ -117,8 +117,9 @@
 \renewcommand{\theenumi}{\arabic{enumi})}
 \newcommand{\Int}[1]{\text{Int}\ensuremath{#1}}
 \newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
-\newcommand{\natint}[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand{\natint}[1]{\ensuremath{\left[|#1|\right]}}
 \newcommand{\coord}[1]{\ensuremath{\textup{coord}\left(#1\right)}}
+\newcommand{\supp}[1]{\ensuremath{\textup{supp}\left(#1\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -527,7 +528,7 @@
     A continuación se presenta un teorema de extensión de funciones continuas en espacios normales.
 
     \begin{theor}[Teorema de Tietze-Urysohn]
-        Toda función continua de un subespacio cerrado $M$ de un espacio normal $X$ a $[0,1]$ (respectivamente, $\mathbb{R}$) se puede extender a una función continua ed $X$ a $[0,1]$ (respectivamente, $\mathbb{R}$).
+        Toda función continua de un subespacio cerrado $M$ de un espacio normal $X$ a $[0,1]$ (respectivamente, $\mathbb{R}$) se puede extender a una función continua de $X$ a $[0,1]$ (respectivamente, $\mathbb{R}$).
     \end{theor}
 
     \section{Espacios Producto}
@@ -536,15 +537,154 @@
     \begin{equation*}
         X=\prod_{i\in I}X_i
     \end{equation*}
-    y una familia $\tau$ de subconjuntos $U\subseteq X$ tales que $U=\prod_{i\in I}U_i$, donde $U_i= X_i$, con excepción de a lo sumo un número finito de índices $i_1,...,i_n\in I$ y $U_{i_k}$ es abierto en $U_{i_k}$ para $k\in\natint{1,n}$. Se verifica que la familia $\tau$ es una base para una topología en $X$. Esta topología es llamada \textbf{topología de Tikhonov para el producto cartesiano $X$}. Los elementos de esta base se conocen como abiertos \textbf{básicos} y la base misma es la \textbf{base canónica} en $X$.
+    y una familia $\tau$ de subconjuntos $U\subseteq X$ tales que $U=\prod_{i\in I}U_i$, donde $U_i= X_i$, con excepción de a lo sumo un número finito de índices $i_1,...,i_n\in I$ y $U_{i_k}$ es abierto en $X_{i_k}$ para $k\in\natint{1,n}$. Se verifica que la familia $\tau$ es una base para una topología en $X$. Esta topología es llamada \textbf{topología de Tikhonov para el producto cartesiano $X$}. Los elementos de esta base se conocen como abiertos \textbf{básicos} y la base misma es la \textbf{base canónica} en $X$.
 
     Si $U=\prod_{i=1}^{\infty}U_i$ es un abierto básico $U\subseteq X$, definimos el conjunto $\coord{U}$ com el conjunto de índices $i\in I$ tales que $U_i\neq X$.
 
     Los elementos del producto $X$ son puntos de la forma $\left\{x_i|i\in I \right\}$, donde $x_i\in X_i$, para todo $i\in I$.
 
-    Para $i\in I$.
+    Para $i\in I$, la función $\cf{p_i}{X}{X_i}$ es la \textbf{proyección de $X$ sobre $X_i$} si $p_i(x)=x_i$. En forma más general, si $J\subseteq I$, entonces $\cf{p_J}{X}{\prod_{i\in J}X_i}$ es la \textbf{proyección de $X$ sobre $X_J$}, donde $p_J(x_i)_{i\in I}=(x_i)_{i\in J}$.
 
-    %Me quedé en la página 183
+    Si $X_i=Y$ para toda $i\in I$, entonces el producto $X$ se denota como $Y^I$ o $Y^\kappa$ si $\abs{I}=\kappa$.
+
+    \begin{mydef}
+        Sea $\left\{X_i\big| i\in I \right\}$ un conjunto de espacios topológicos. En el producto $X=\prod_{i\in I}X_i$ considere un punto $p$, es decir $p=\left(x_i\right)_{i\in I}$. Definimos el \textbf{soporte de un punto $x\in X$ respecto a $p$} como:
+        \begin{equation*}
+            \supp{x}=\left\{i\in I\big| x_i\neq p_i \right\}
+        \end{equation*}
+        
+        El $\sigma$-producto ($\Sigma$-producto) denotado como $\sigma(p)$ ($\Sigma(p)$) en $X$ se define de la siguiente manera:
+        \begin{equation*}
+            \sigma(p)=\left\{x\in X\big| \abs{\supp{x}}<\aleph_0 \right\}
+        \end{equation*}
+        y
+        \begin{equation*}
+            \Sigma(p)=\left\{x\in X\big| \abs{\supp{x}}\leq\aleph_0 \right\}
+        \end{equation*}
+    \end{mydef}
+
+    Entre las propiedades de los $\sigma$-productos ($\Sigma$-productos), se encuentran las siguientes:
+
+    \begin{propo}
+        Sea $\left\{X_i\big| i\in I \right\}$ un conjunto de espacios y $X=\prod_{i\in I}X_i$ su producto cartesiano con la topología de Tikhonov. Entonces se cumplen las siguientes afirmaciones:
+        \begin{enumerate}
+            \item Para todo $p\in X$, $\sigma(p)$ y $\Sigma(p)$ son densos en $X$.
+            \item Si $x,y\in Y$ son tales que $\abs{\left\{i\in I\big| x_i\neq y_i \right\}}\geq\aleph_0$, entonces $\sigma(x)\cap\sigma(y)=\emptyset$. Si $\abs{\left\{i\in I\big| x_i\neq y_i \right\}}>\aleph_0$, entonces $\Sigma(x)\cap\Sigma(y)=\emptyset$.
+        \end{enumerate}
+    \end{propo}
+
+    Existe un criterio para determinar la continuidad de funciones con valores en espacios producto:
+
+    \begin{theor}
+        Una función $f$ de un espacio $X$ a un producto cartesiano $Y=\prod_{i\in I}Y_i$ con la topología de Tikhonov es continua si y sólo si la composición $p_i\circ f$ es continua para toda $i\in I$.
+    \end{theor}
+
+    Una cosa importante es que los productos cartesianos con la topología de Tikhonov preservan los axiomas de separación:
+
+    \begin{theor}
+        Cualquier producto de espacios $T_j$ es un espacio $T_j$ para $j\in\natint{1,3}\cup\left\{3\frac{1}{2} \right\}$. Si el espacio producto $X=\prod_{i\in I}X_i$ es no vacío y $T_j$, entonces para cada $i\in I$, $X_i$ es un espacio $T_j$ para $j\in\natint{1,4}\cup\left\{3\frac{1}{2} \right\}$.
+    \end{theor}
+
+    \begin{mydef}
+        Sean $\kappa$ un cardinal infinito y $\left\{X_i\big| i\in I \right\}$ una familia de conjuntos, $X=\prod_{i\in I}X_i$ el producto cartesiano, $Y$ un conjunto, $A\subseteq X$ y $\cf{f}{X}{Y}$.
+        \begin{enumerate}
+            \item Si existe $J\subseteq I$ tal que $A=p_J^{-1}(p_J(A))$ y tal que $\abs{J}<\kappa$, entonces se dice que \textbf{$A$ depende de $J$} y que \textbf{$A$ depende de $\leq\kappa$ coordenadas}.
+            \item Si existe $J\subseteq I$ tal que $f(p)=f(q)$ siempre que $p,q\in X$ y $p_J(p)=p_J(q)$, entonces decimos que \textbf{$f$ depende de $J$}, y si además $\abs{J}\leq\kappa$, diremos que \textbf{$f$ depende de $\leq\kappa$ coordenadas}.
+        \end{enumerate}
+    \end{mydef}
+
+    Tenemos el siguiente teorema de factorización de funciones continuas definidas en productos. En él, $w(X)$ y $d(X)$ significan \textbf{peso} y \textbf{densidad} del espacio topológico $X$ (ver el apéndice C).
+
+    \begin{theor}
+        Sean $\kappa$ un cardinal infinito, $\left\{X_i\big| i\in I \right\}$ un conjunto de espacios tales que $d(X_i)\leq\kappa$, y $\cf{f}{\prod_{i\in I}X_i}{Y}$ una función continua, donde $Y$ es un espacio Hausdorff con $w(Y)\leq\kappa$. Entonces $f$ depende de $\leq\kappa$ coordenadas.
+    \end{theor}
+
+    Una de las técnicas más importantes para encajar espacios en espacios producto se basa en el uso de funciones del espacio a los espacios que forman el producto; dichas funciones deben cumplir ciertos requerimientos para garantizar la posibildad del encaje.
+
+    \begin{mydef}
+        Suponga que $X$ es un espacio, $\left\{Y_i\big| i\in I \right\}$ una familia de espacios y $\mathcal{F}=\left\{f_i\big|i\in I \right\}$ una familia de funciones tales que $\cf{f_i}{X}{Y_i}$. Decimos que la familia $\mathcal{F}$ \textbf{separa puntos de $X$} si para cada par de puntos distintos $x,y\in X$ existe una función $f_i\in\mathcal{F}$ con la propiedad $f_i(x)\neq f_i(y)$. Si para todo $x\in X$ y para todo subconjunto cerrado $F\subseteq X$ tal que $x\notin F$ existe una función $f_i\in\mathcal{F}$ que cumple con $f_i(x)\notin \overline{f_i(F)}$, entonces diremos que la familia $\mathcal{F}$ \textbf{separa puntos de cerrados}.
+    \end{mydef}
+
+    Si tenemos un conjunto de funciones como en la definición anterior, podemos definir una nueva función que permite encajar el espacio $X$ en el producto $\prod_{i\in I}Y_i$.
+
+    \begin{mydef}
+        Sean $X$ un espacio y $\left\{f_i\big|i\in I \right\}$ un conjunto de funciones tales que $\cf{f_i}{X}{Y_i}$. Definimos el \textbf{producto diagonal} $\cf{f}{X}{\prod_{i\in I}Y_i}=\Delta_{i\in I}f_i$ mediante la fórmula $f(x)=(f_i(x))_{i\in I}$.
+    \end{mydef}
+
+    \begin{mydef}
+        Sean $X$ un esapcio y $\left\{f_i\big|i\in I \right\}$ una familia de funciones tales que $\cf{f_i}{X}{Y_i}$. Si cada $f_i$ es continua, el producto diagonal $f=\Delta_{i\in I}f_i$ es continuo.
+    \end{mydef}
+
+    El siguiente teorema describe una forma de obtener encajes de espacios en productos cartesianos.
+
+    \begin{theor}[Teorema Diagonal]
+        Si $\mathcal{F}=\left\{\cf{f_i}{X}{Y_i}\big|i\in I \right\}$ es una familia de funciones continuas que separa puntos de $X$, entonces la función diagonal $f=\Delta_{i\in I}f_i$ es inyectiva. Más aún, si la familia $\mathcal{F}$ separa puntos y conjuntos cerrados de $X$, entonces $f$ es un encaje.
+    \end{theor}
+
+    Existen otras topologías que se peuden definir en el producto cartesiano de uan familia infinita de esapcios. A continuación describimos algunas de estas topologías.
+
+    \begin{mydef}
+        Suponga que $\left\{X_i\big|i\in I \right\}$ es un conjunto de espacios y $X=\prod_{i\in I}X_i$ su producto cartesiano. Los conjuntos de la forma $U=\prod_{i\in I}U_i$ son \textbf{cajas abiertas} si $U_i$ es abierto en $X_i$, para cada $i\in I$. La topología generada en $X$ que tiene como base todas las posibles cajas abiertas $U$ es la \textbf{topología caja}.
+    \end{mydef}
+
+    Esta topología fue la primera que se consideró en un producto de espacios. No obastante, esta topología no preserva algunas de las propiedades importantes; por ello es que es más usada la topología de Tikhonov.
+
+    Existe una gran variedad de topologías más finas que la topología de Tikhonov pero contenidas en la topología caja:
+
+    \begin{mydef}
+        Sean $\lambda,\kappa$ cardinales con $\lambda<\kappa$ y $\left\{X_\alpha\big|\alpha<\kappa \right\}$ una famila de espacios. Considere el producto cartesiano $X=\prod{\alpha<\kappa}X_\alpha$. Los conjunto sde la forma $U=\prod_{\alpha<\kappa}U_\alpha$ con $U_\alpha=X_\alpha$ para toda $\alpha<\kappa$ con excepción de no más de $\lambda$ coordenadas, forman la base de una topología $\tau$ para $X$. Esta topología es la \textbf{topología $\lambda$-caja}.
+    \end{mydef}
+
+    \section{Espacios compactos}
+
+    Los espacios compactos constituyen una de las clases de espacios topológicos que más se han estudiado. Se presentan sus principales propiedades:
+
+    \begin{mydef}
+        Sea $X$ un espacio topológico. Una familia de conjuntos $\mathcal{U}=\left\{U_\alpha\big|\alpha<\beta \right\}$ es una \textbf{cubierta} de $X$ si $X=\bigcup_{\alpha<\beta}U_\alpha$. Si los elementos $U_\alpha$ de la familia son abiertos, entonces la cubierta $\mathcal{U}$ es una \textbf{cubierta abierta}. Una familia de conjuntos $\mathcal{F}=\left\{F_\alpha\big|\alpha<\beta \right\}$ tiene la \textbf{propiedad de la intersección finita} si $\bigcap\left\{F_i\big|i\in K \right\}\neq\emptyset$ para todo subconjunto finito $K\subseteq\beta$.
+    \end{mydef}
+
+    \begin{mydef}
+        Un espacio topológico es \textbf{compacto} si $X$ es Hausdorff y toda cybuerta abierta de $X$ tiene una subcubierta abierta finita.
+    \end{mydef}
+
+    \begin{obs}
+        En forma equivalente, un espacio Hausdorff es compacto si toda familia $\mathcal{F}$ de subconjuntos cerrados de $X$ que tenga la propiedad de la intersección finita cumple con $\bigcap\mathcal{F}\neq\emptyset$.
+    \end{obs}
+
+    \begin{theor}
+        Si $A$ es un subespacio compacto de un espacio regular $X$, entonces para todo subconjunto cerrado $B$ ajeno a $A$ existen conjuntos abiertos ajenos $U,V\subseteq X$ tales que $A\subseteq U$ y $B\subseteq V$.
+
+        Más aún, si $B$ es compacto, es suficiente con exigir que $X$ sea Hausdorff para obtener la misma conclusión.
+    \end{theor}
+
+    Entre las propiedades más significativas de los espacios compactos se encuentran las siguientes. La notación $nw(X)$ representa el peso de red del espacio $X$ (ver apéndice C).
+
+    \begin{theor}
+        Sean $X$ y $Y$ espacios topológicos con $X$ compacto. Entonces:
+        \begin{enumerate}
+            \item Todo subespacio compacto de un espacio Hausforff es cerrado.
+            \item Todo espacio compacto es normal.
+            \item Si existe una función continua sobre $\cf{f}{X}{Y}$, $Y$ es Hausdorff, entonces $Y$ es compacto.
+            \item Toda función continua de un espacio compacto sobre un espacio Hausdorff es cerrada.
+            \item $nw(X)=w(X)$.
+            \item $w(X)\leq\abs{X}$.
+            \item $Y$ es compacto si y sólo si todo filtro en $Y$ tiene un punto de adherencia.
+        \end{enumerate}
+    \end{theor}
+
+    Uno de los teoremas más importantes en topología general es el segundo teorema de Tikhonov relativo al producto de espacios compactos. De hecho, este teorema es equivalente al axioma de elección:
+
+    \begin{theor}[Teorema de Tikhonov]
+        El producto cartesiano $X=\prod_{i\in I}X_i$ de espacios no vacíos, con la topología de Tikhonov, es compacto si y sólo si cada espacio $X_i$ es compacto para todo $i\in I$.
+    \end{theor}
+
+    Con el uso del teorema diagonal se puede probar el siguiente resultado conocido como primer teorema de Tikhonov:
+
+    \begin{theor}[Primer Teorema de Tikhonov]
+        uwu
+    \end{theor}
+
+    %Me quedé en la página 188
 
     \chapter{Funciones Cardinales}
 
