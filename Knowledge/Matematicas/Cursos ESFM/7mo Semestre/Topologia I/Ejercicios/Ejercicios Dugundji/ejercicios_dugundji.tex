@@ -249,7 +249,9 @@
                 C_1\cup C_2\notin\tau
             \end{equation*}
             ya que, en caso contrario se tendría que $C_1\cup C_2=A\times B$, con $A,B\subseteq\mathbb{R}$ abiertos con la topología usual. 
-            \item Sean $C,D\in\tau$, es decir que $C=A_1\times B_1$ y $D=A_2\times B_2$, donde $A_i\in\tau_X$ y $B_i\in\tau_Y$ para $i\in\left\{1,2\right\}$. Entonces, en particular los elementos $(\frac{1}{2},\frac{1}{2}),(\frac{3}{2},\frac{3}{2})\in C_1\cup C_2$, por lo cual los elementos $(\frac{1}{2},\frac{3}{2}),(\frac{3}{2},\frac{1}{2})\in C_1\cup C_2$\contradiction por la forma en que se tomaron $C_1$ y $C_2$. Por lo cual, $C_1\cup C_2$ no puede expresarse como el producto cartesiano de dos abiertos.
+            
+            Entonces, en particular los elementos $(\frac{1}{2},\frac{1}{2}),(\frac{3}{2},\frac{3}{2})\in C_1\cup C_2$, por lo cual los elementos $(\frac{1}{2},\frac{3}{2}),(\frac{3}{2},\frac{1}{2})\in C_1\cup C_2$\contradiction, por la forma en que se tomaron $C_1$ y $C_2$. Por lo cual, $C_1\cup C_2$ no puede expresarse como el producto cartesiano de dos abiertos.
+            \item Sean $C,D\in\tau$, es decir que $C=A_1\times B_1$ y $D=A_2\times B_2$, donde $A_i\in\tau_X$ y $B_i\in\tau_Y$ para $i\in\left\{1,2\right\}$. Entonces:
             \begin{equation*}
                 \begin{split}
                     C\cap B&= (A_1\times B_1)\cap(A_2\times B_2)\\
@@ -292,13 +294,22 @@
     \begin{excer}
         Sea $X$ un conjunto parcialmente ordenado. Defina $U\subseteq X$ abierto si y sólo si satisface la condición: $(x\in U)\land (y\prec x)\Rightarrow y\in U$. Pruebe que la familia
         \begin{equation*}
-            \left\{U\subseteq X\big| U\textup{ es abierto} \right\}
+            \mathcal{A}=\left\{U\subseteq X\big| U\textup{ es abierto} \right\}
         \end{equation*}
         es una topología sobre $X$.
     \end{excer}
 
     \begin{proof}
-        
+        Se deben verificar que se cumplen las tres condiciones.
+        \begin{enumerate}
+            \item $\emptyset\in\mathcal{A}$, pues por vacuidad se cumple que $\emptyset$ satisface la condición. Ahora, sea $x\in X$ y $y\prec x$, entonces $y\in X$ (pues es dónde se define el preorden). Por tanto, $X\in\mathcal{A}$.
+            \item Sea $\mathcal{B}$ una familia no vacía de subconjuntos de $\mathcal{A}$. Si $x\in\bigcup\mathcal{B}$, entonces existe $B_0\in\mathcal{B}$ tal que $x\in B_0$.
+            
+            Ahora, si $y\in X$ es tal que $y\prec x$, como $x\in B_0$, por ser $B_0$ abierto se tiene que $y\in B_0\subseteq\bigcup\mathcal{B}$. Por lo cual $\bigcup\mathcal{B}$ es abierto.
+
+            \item Sean $U,V\in\mathcal{A}$, si $U\cap V=\emptyset$ es claro que $U\cap V\in\mathcal{A}$. Suponga que la intersección es no vacía y sean $x\in U\cap V$ y $y\in X$ tal que $y\prec x$. En particular $(x\in U)\land(y\prec x)$ y $(x\in V)\land(y\prec x)$, por ende $y\in U\cap V$, es decir que $U\cap V\in\mathcal{A}$.
+        \end{enumerate}
+        Por los incisos anteriores, se tiene que $\mathcal{A}$ es una topología sobre $X$.
     \end{proof}
 
     \begin{excer}
@@ -306,7 +317,13 @@
     \end{excer}
 
     \begin{proof}
-        
+        Llamemos $\tau$ a la familia de todos los conjuntos abiertos en $\mathbb{Z}^+$. Veamos que para $\tau$ se cumplen las tres condiciones:
+        \begin{enumerate}
+            \item $\emptyset\in\tau$, esto es cierto por vacuidad. Ahora si $n\in\mathbb{Z}^+$, entonces todos sus divisores están en $\mathbb{Z}^+$ (divisores positivos), por lo cual $\mathbb{Z}^+\in\tau$.
+            \item Sea $\mathcal{A}$ una familia no vacía de elementos de $\tau$, y sea $n\in\bigcap\mathcal{A}$, entonces existe $A_0$ tal que $n\in A_0$, pero $A_0$ es abierto, por lo cual contiene a todos los divisores de $n$. Como $A\subseteq\bigcup\mathcal{A}$ entonces $\bigcup\mathcal{A}$ contiene a todos los divisores de $n$, luego $\bigcup\mathcal{A}\in\tau$.
+            \item Sean $A,B\in\tau$ tales que $A\cap B\neq\emptyset$. Si $n\in A\cap B$ entonces $n\in A$ y $n\in B$, como $A$ y $B$ son abiertos, entonces estos dos conjuntos cumplen que cada divisor de $n$ pertenece a $A$ y $B$, en particular cada divisor de $n$ pertenece a $A\cap B$. Por tanto, $A\cap B\in\tau$. 
+        \end{enumerate}
+        Por los tres incisos anteriores, se sigue que $\tau$ es una topología sobre $\mathbb{Z}^+$.
     \end{proof}
 
     \begin{excer}
@@ -314,7 +331,22 @@
     \end{excer}
 
     \begin{proof}
-        
+        Se probará la doble implicación:
+        $\Rightarrow)$: Suponga que $\tau$ es la topología discreta, entonces $\tau=\mathcal{P}(X)$, en particular $\left\{x\right\}\in \mathcal{P}(X)$, para cada $x\in X$, esto es $\left\{x\right\}\in\tau$.
+
+        $\Leftarrow)$: Suponga que todo conjunto unipuntual de $X$ está en $\tau$, y sea $A\in\mathcal{P}(X)$, entonces:
+        \begin{equation*}
+            A=\bigcup_{a\in A}\left\{a\right\}
+        \end{equation*}
+        donde $\left\{a\right\}$ es abierto y, por ende $A$ es abierto al ser una unión arbitraria de abiertos. Por tanto, $A\in\tau$, Por ende $\mathcal{P}(X)\subseteq\tau$, pero siempre se tiene que $\tau\subseteq\mathcal{P}(X)$, luego $\tau=\mathcal{P}(X)=\tau_D$.
     \end{proof}
 
-\end{document}
+    \setcounter{section}{2}
+
+    \section{Creación de topologías dados conjuntos}
+
+    \begin{excer}
+        
+    \end{excer}
+
+\end{document} 
