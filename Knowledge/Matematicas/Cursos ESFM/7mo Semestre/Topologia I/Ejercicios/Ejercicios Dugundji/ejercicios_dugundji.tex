@@ -1,0 +1,320 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\biglvert#1\bigrvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand{\contradiction}{\ensuremath{\#_c}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \title{Ejercicios Dugundji Topology}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+
+    \chapter{Espacios Topológicos}
+
+    \section{Conceptos Fundamentales}
+
+    \begin{obs}
+        El símbolo $\aleph(X)$, donde $X$ es un conjunto, denota al cardinal del conjunto (realmente denota a otra cosa que viene a ser lo mismo, pero para usos prácticos tomaremos lo anterior como cierto).
+    \end{obs}
+
+    \begin{excer}
+        Pruebe lo siguiente:
+        \begin{enumerate}
+            \item Sea $X$ un conjunto infinto. Pruebe que $\mathcal{A}_0=\left\{A\subseteq X \big|X-A\textup{ es finito} \right\}\cup\left\{\emptyset \right\}$ es una topología sobre $X$.
+            \item Sea $\aleph(X)\geq\aleph_0$. Pruebe que $\mathcal{A}_1=\left\{A\subseteq X \big|\aleph(X-A)<\aleph(X) \right\}\cup\left\{\emptyset \right\}$ es una topología sobre $X$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        De (1): Es la topología de los complementos finitos (la prueba de esto se hizo en las notas).
+
+        De (2): Veamos que se verifican las tres condiciones:
+        \begin{enumerate}
+            \item Por definición de $\mathcal{A}_1$ se tiene que $\emptyset\in\mathcal{A}_1$ y, como $\aleph(\emptyset)<\aleph_0$, entonces $\aleph(X-X)<\aleph(X)$, por ende $X\in\mathcal{A}_1$.
+            \item Sea $\mathcal{E}$ una subfamilia no vacía arbitraria de $\mathcal{A}_1$. Considere a $\bigcup\mathcal{E}$. Como la familia es no vacía, existe $E_0\in\mathcal{E}$, se tiene así que:
+            \begin{equation*}
+                \begin{split}
+                    E_0\subseteq \bigcup\mathcal{E}\Rightarrow& X- \bigcup\mathcal{E}\subseteq X-E_0\\
+                    \Rightarrow& \aleph\left(X- \bigcup\mathcal{E}\right) \subseteq \aleph(X-E_0) \\
+                \end{split}
+            \end{equation*}
+            por Cantor-Bernstein. Por lo cual al tenerse que $\bigcup\mathcal{E}\subseteq X$, se sigue que $\bigcup\mathcal{E}\in\mathcal{A}_1$.
+            \item Sean $A,B\in\mathcal{A}_1$, entonces $\aleph(X-A)<\aleph(X)$ y $\aleph(X-B)<\aleph(X)$. Notemos que
+            \begin{equation*}
+                X-(A\cap B)=(X-A)\cup (X-B)
+            \end{equation*}
+            Entonces $\aleph(X-(A\cap B))=\aleph((X-A)\cup (X-B))\leq\aleph(X-A)+\aleph(X-B)< \aleph(X)+\aleph(X)=2\aleph(X)=\aleph(X)$, pues $\aleph(X)\geq\aleph_0$. Por tanto, al ser $A\cap B\subseteq X$, se sigue que $A\cap B\in \mathcal{A}_1$.
+        \end{enumerate}
+        Por las tres condiciones anteriores, se sigue que $\mathcal{A}_1$ es una topología sobre $X$.
+    \end{proof}
+
+    \begin{excer}
+        ¿Cuántas topologías distintas puede tener un conjunto de tres elemento? ¿Cuál es su orden parcial?
+    \end{excer}
+
+    \begin{sol}
+        Considere $X=\left\{a,b,c\right\}$. De todas las topologías que puede tener, deben de estar al menos la topología discreta y la indiscreta, formada por los conjuntos:
+        \begin{equation*}
+            \begin{split}
+                \tau_D&=\left\{\emptyset, \left\{a\right\},\left\{b\right\}, \left\{c\right\}, \left\{a,b\right\},\left\{b,c\right\},\left\{c,a\right\},\left\{a,b,c\right\} \right\}=\mathcal{P}(\left\{a,b,c\right\})\\
+                \tau_I&=\left\{\emptyset,\left\{a,b,c\right\} \right\}
+            \end{split}
+        \end{equation*}
+        Ahora, las otras que se pueden tener son aquellas que solo contienen a uno de los elementos, es decir las siguientes:
+        \begin{equation*}
+            \begin{split}
+                \tau_a&=\left\{\emptyset,\left\{a\right\},\left\{a,b,c\right\}\right\}\\
+                \tau_b&=\left\{\emptyset,\left\{b\right\},\left\{a,b,c\right\}\right\}\\
+                \tau_c&=\left\{\emptyset,\left\{c\right\},\left\{a,b,c\right\}\right\}\\
+            \end{split}
+        \end{equation*}
+        y, también aquellas que contengan a un par de elementos, pero de esta forma: $\left\{a,b\right\}$, que serían las siguientes:
+        \begin{equation*}
+            \begin{split}
+                \tau_{a,b}&=\left\{\emptyset,\left\{a,b\right\},\left\{a,b,c\right\}\right\}\\
+                \tau_{b,c}&=\left\{\emptyset,\left\{b,c\right\},\left\{a,b,c\right\}\right\}\\
+                \tau_{c,a}&=\left\{\emptyset,\left\{c,a\right\},\left\{a,b,c\right\}\right\}\\
+            \end{split}
+        \end{equation*}
+        (en esta se verifica casi de forma inmediata que es una topología sobre $X$). Ahora, se deben considerar aquellas en las que se tiene más de un elemento no trivial (cuando menciono la palabra trivial, me refiero a que no sea alguno de $\emptyset$ o $X=\left\{a,b,c\right\}$). Por ejemplo, consideremos a $\left\{a,b\right\}$ un elemento no trivial, y sea $\tau$ una topología sobre $X$ que contiene a este elemento. Se tienen seis casos:
+        \begin{enumerate}
+            \item ${a}\in\tau$, entonces al ser cerrado bajo uniones e intersecciones se tiene que (al menos) $\tau$ debe ser de la forma:
+            \begin{equation*}
+                \tau=\left\{\emptyset,\left\{a\right\},\left\{a,b\right\},\left\{a,b,c\right\}\right\}
+            \end{equation*}
+            \item $\left\{b\right\}\in\tau$, como con el caso anterior, se tendría que (al menos) $\tau$ debe ser de la forma:
+            \begin{equation*}
+                \tau=\left\{\emptyset,\left\{b\right\},\left\{a,b\right\},\left\{a,b,c\right\}\right\}
+            \end{equation*}
+            Ahora, si $\left\{a\right\}\in\tau$, entonces (al menos) $\tau$ debe ser de la forma:
+            \begin{equation*}
+                \tau=\left\{\emptyset,\left\{a\right\},\left\{b\right\},\left\{a,b\right\},\left\{a,b,c\right\}\right\}
+            \end{equation*}
+            \item $\left\{c\right\}\in\tau$, se tiene entonces que una topología sobre $X$ (al menos), debe ser:
+            \begin{equation*}
+                \tau=\left\{\emptyset,\left\{c\right\},\left\{a,b\right\},\left\{a,b,c\right\} \right\}
+            \end{equation*}
+            \item $\left\{b,c\right\}\in\tau$, se tiene entonces que $\tau$ debe ser de la forma (al menos):
+            \begin{equation*}
+                \tau=\left\{\emptyset,\left\{b\right\},\left\{b,c\right\},\left\{a,b\right\},\left\{a,b,c\right\} \right\}
+            \end{equation*}
+        \end{enumerate}
+        Son un vergo, nmms.
+    \end{sol}
+
+    \begin{excer}
+        Sean $\tau_X$ y $\tau_Y$ dos topologías en $X$ y $Y$, respectivamente. ¿Es
+        \begin{equation*}
+            \tau=\left\{A\times B\big| A\in\tau_X, B\in\tau_Y \right\}
+        \end{equation*}
+        una topología en $X\times Y$?
+    \end{excer}
+
+    \begin{sol}
+        Veamos si se cumplen las tres condiciones para que $\tau$ sea una topología sobre $X$.
+        \begin{enumerate}
+            \item Es claro que $\emptyset,X\times Y \in\tau$, pues $\emptyset\in\tau_X,\tau_Y$ y, $X\in\tau_X$ y $Y\in\tau_Y$.
+            \item Sea $\mathcal{C}$ una subfamilia no vacía de $\tau$. Entonces, cada elemento de $\mathcal{C}=\left\{C_\alpha\big|\alpha\in I \right\}$ es de la forma:
+            \begin{equation*}
+                C_\alpha=A_\alpha\times B_\alpha
+            \end{equation*}
+            donde $A_\alpha\in \tau_X$ y $B_\alpha\in\tau_Y$, para todo $\alpha\in I$. Luego:
+            \begin{equation*}
+                \begin{split}
+                    \bigcup_{\alpha\in I}C_\alpha&=\bigcup_{\alpha\in I}A_\alpha\times B_\alpha \\
+                \end{split}
+            \end{equation*}
+            Veamos que en general no es cierto que $\bigcup_{\alpha\in I}C_\alpha\in\tau$. En efecto, tomemos $X=Y=\mathbb{R}$ (con la topología usual) y como conjuntos de la familia a: $C_1=(0,1)\times(0,1)$, y $C_2=(1,2)\times(1,2)$. Se tiene que:
+            \begin{equation*}
+                C_1\cup C_2\notin\tau
+            \end{equation*}
+            ya que, en caso contrario se tendría que $C_1\cup C_2=A\times B$, con $A,B\subseteq\mathbb{R}$ abiertos con la topología usual. 
+            \item Sean $C,D\in\tau$, es decir que $C=A_1\times B_1$ y $D=A_2\times B_2$, donde $A_i\in\tau_X$ y $B_i\in\tau_Y$ para $i\in\left\{1,2\right\}$. Entonces, en particular los elementos $(\frac{1}{2},\frac{1}{2}),(\frac{3}{2},\frac{3}{2})\in C_1\cup C_2$, por lo cual los elementos $(\frac{1}{2},\frac{3}{2}),(\frac{3}{2},\frac{1}{2})\in C_1\cup C_2$\contradiction por la forma en que se tomaron $C_1$ y $C_2$. Por lo cual, $C_1\cup C_2$ no puede expresarse como el producto cartesiano de dos abiertos.
+            \begin{equation*}
+                \begin{split}
+                    C\cap B&= (A_1\times B_1)\cap(A_2\times B_2)\\
+                    &= (A_1\cap A_2)\times (B_1\cap B_2) \\
+                \end{split}
+            \end{equation*}
+            donde $A_1\cap A_2\in\tau_X$ y $B_1\cap B_2\in\tau_Y$, por ende $C\cap B\in\tau$.
+        \end{enumerate}
+        Por el inciso (2), se tiene que $\tau$ (al menos en un caso particular) no es una topología sobre $X\times Y$.
+    \end{sol}
+
+    Recordemos la definición de un preorden y orden parcial:
+
+    \begin{mydef}
+        Una relación binaria $R$ en un conjunto $A$ es llamada un \textbf{preorden} si es reflexiva y transitiva, esto es:
+        \begin{enumerate}
+            \item $\forall a\in A, aRa$.
+            \item $(aRb)\lor(bRc)\Rightarrow aRc$.
+        \end{enumerate}
+        denotamos (en general) al preorden por $\prec$.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $(A,\prec)$ un conjunto preordenado.
+        \begin{enumerate}
+            \item $m\in A$ es llamado \textbf{elemento maximal} en $A$ si para todo $a\in A$ tal que $m\prec a\Rightarrow a\prec m$.
+            \item Un elemento $a_0\in A$ es llamado \textbf{cota superior de un subconjunto $B\subseteq A$} si para todo $b\in B$, $b\prec a_0$.
+            \item Un subconjunto $B\subseteq A$ es llamado una \textbf{cadena} si cualesquiera dos elementos de $B$ están relacionados, es decir que $a,b\in B$ implica que $a\prec b$ o $b\prec a$.
+        \end{enumerate}
+    \end{mydef}
+    
+    \begin{mydef}
+        Sea $A$ un conjunto preordenado. Un \textbf{orden parcial} es un preorden en $A$ junto con la propiedad adicional:
+        \begin{equation*}
+            (a\prec b)\land (b\prec a)\Rightarrow (a=b)
+        \end{equation*}
+        esta propiedad es llamada antisimetría. Un conjunto $A$ adjutandole además un orden parcial es llamado un \textbf{conjunto parcialmente ordenado}. Un conjunto parcialente ordenado que es también una cadena es llamado un \textbf{conjunto totalmente ordenado}.
+    \end{mydef}
+
+    \begin{excer}
+        Sea $X$ un conjunto parcialmente ordenado. Defina $U\subseteq X$ abierto si y sólo si satisface la condición: $(x\in U)\land (y\prec x)\Rightarrow y\in U$. Pruebe que la familia
+        \begin{equation*}
+            \left\{U\subseteq X\big| U\textup{ es abierto} \right\}
+        \end{equation*}
+        es una topología sobre $X$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        En $\mathbb{Z}^+$ defina $U\subseteq\mathbb{Z}^+$ que sea abierto si satisface la condición $n\in U\Rightarrow$ cada divisor de $n$ pertenece a $U$. Pruebe que esta es una topología en $\mathbb{Z}^+$ y que no es la topología discreta.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Pruebe lo siguiente: $\tau$ es la topología discreta en $X$ si y sólo si todo punto de $X$ es un conjunto abierto (hablando de los conjuntos unipuntuales). 
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+\end{document}
