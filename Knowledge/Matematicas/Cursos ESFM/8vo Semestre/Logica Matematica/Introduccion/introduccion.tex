@@ -383,4 +383,64 @@
         Entonces $\Delta_1\cup\Delta_2$ no puede ser satisfacible, pues si $m$ es un modelo tal que $m\vDash\Delta_1\cup\Delta_2$, entonces $m\vDash\varphi$ contradice el hecho de que $\Delta_1\cup\left\{\varphi \right\}$ es no satisfacible y si $m\vDash\neg\varphi$ contradice el hecho de que $\Delta_2\cup\left\{\neg\varphi \right\}$ no es satisfacible, siendo $\Delta_1\cup\Delta_2\subseteq\Sigma$, se contradice el hecho de que $\Sigma$ es finitamente satisfacible$\#_c$. Luego se tiene el resultado.
     \end{proof}
 
+    Ahora procederemos a probar el teorema de Gödel. 
+
+    \begin{proof}
+        Se probará la doble implicación:
+        
+        $\Rightarrow)$: Es inmediato.
+
+        $\Leftarrow)$: Sean $\varphi_1,\varphi_2,...$ una enumeración 'efectiva' de todas las fórmulas (checar la observación). Recursivamente, definimos conjuntos de fórmulas $\Sigma_0\subseteq\Sigma_1\subseteq\cdots$ tales que $\Sigma_0=\Sigma$, y
+        \begin{enumerate}
+            \item Cada $\Sigma_n$ es finitamente satisfacible.
+            \item Para cada $n\in\mathbb{N}$, o bien $\varphi_n\in\Sigma_{n+1}$ o bien $\neg\varphi_n\in\Sigma_{n+1}$
+        \end{enumerate}
+        en este contexto, definimos:
+        \begin{equation*}
+            \Sigma_{n+1}=\left\{\begin{array}{lr}
+                    \Sigma_n\cup\left\{\varphi_n \right\} & \textup{si este conjunto es finitamente satisfacible}\\
+                    \Sigma_n\cup\left\{\neg \varphi_n \right\} & \textup{en caso contrario}\\
+                \end{array}
+            \right.
+        \end{equation*}
+        Esta definición es consistente con la recursión por el lema anterior.
+
+        Ahora, definimos $\Sigma_\infty=\bigcup_{n\in\mathbb{N}}\Sigma_n$. Analicemos a este conjunto.
+
+        \begin{enumerate}
+            \item \textbf{$\Sigma_\infty$ es finitamente satisfacible}. En efecto, sea $\Delta\subseteq\Sigma$ un subconjunto finito, entonces existe $n\in\mathbb{N}$ tal que $\Delta\subseteq\Sigma_n$, luego como $\Sigma_n$ es finitamente satisfacible, $\Delta$ es satisfacible. Por lo cual $\Sigma_\infty$ es finitamente satisfacible.
+            \item \textbf{Para cada fórmula $\psi$ o bien $\psi\in\Sigma_\infty$ ó $\neg\psi\in\Sigma_\infty$ y no ambas.} Esto es inmediato con la enumeración efectiva de todas las fórmulas bien formadas.
+            \item \textbf{$\Sigma_\infty$ es maximal finitamente satisfacible}.
+        \end{enumerate}
+
+        Sea $\cf{m}{\textup{Var}(\Sigma_\infty)}{\left\{V,F\right\}}$, dado por $m(p_n)=V$ si y sólo si $p_n\in \Sigma_\infty$.
+
+        Se probará el siguiente lema:
+
+        \begin{lema}
+            Para cualquier fórmula $\psi$, $\overline{m}(\psi)=V$ si y sólo si $\psi\in\Sigma_\infty$ y $\overline{m}(\psi)=F$ si y sólo si $\neg\psi\in\Sigma_\infty$.
+        \end{lema}
+
+        \begin{proof}
+            Procederemos por inducción sobre $\psi$.
+            \begin{itemize}
+                \item El caso base es inmediato por definición.
+                \item $\overline{m}(\neg\psi)=V\iff\overline{m}(\psi)=F\iff\psi\notin\Sigma_\infty\iff\neg\psi\in\Sigma_\infty$.
+                \item $\overline{m}(\Rightarrow\xi\psi)=F\iff\overline{m}(\xi)=F$ y $\overline{m}(\psi)=V\iff\neg\xi,\psi\in\Sigma_\infty$ si y sólo si $\Rightarrow \psi\xi\notin\Sigma_\infty$ (esto es cierto por la maximalidad de $\Sigma_\infty$ al ser finitamente satisfacible).
+            \end{itemize}
+            por inducción se tiene lo deseado.
+        \end{proof}
+
+        En conclusión, el modelo definido cumple que $m\vDash\psi$ si y sólo si $\psi\in\Sigma_\infty$. En particular, $m\vDash\Sigma$, y $\Sigma$ es satisfacible.
+
+    \end{proof}
+
+    \begin{obs}
+        Tuplas. Considere los números naturales. Podemos establecer una biyección entre las tuplas finitas de números naturales junto con el cero, y los números naturales, de esta forma:
+
+        Si $n\in\mathbb{N}$, por el TFA podemos expresar a $n=q_1^{\alpha_1}\cdot...\cdot q_m^{\alpha_m}$. Establecemos la biyección dada como sigue: $n\mapsto(\alpha_1,...,\alpha_{m-1},\alpha_{m}-1)$. De esta forma podemos enumerar algo con tuplas. Lo que Gödel hace es que hace ciertas asignaciones: $\neg=0$, $\Rightarrow=1$, $2=p_1$, $3=p_2$, etc... Esta enumeración es llamada \textbf{enumeración de Gödel}.
+
+        Cuando decimos lo de enumeración, nos referimos a esto. Básicamente enumeramos a todas las fórmulas bien formadas. Cuando decimos que la enumeración es efectiva, hacemos referencia a que podemos hacerlo de forma mecánica.
+    \end{obs}
+
 \end{document}
