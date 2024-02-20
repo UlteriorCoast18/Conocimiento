@@ -462,19 +462,56 @@
         \end{equation*}
         entonces, $W=V\cap V^{-1}$ pertenece a $\mathcal{V}$, y $aWa^{-1}\subseteq W_aVW_{a^{-1}}\subseteq U$.
 
-        $\Leftarrow$): Sea $\mathcal{V}$ uan familia de subconjuntos de $G$ que satisfacen las condiciones (1) a (5) del teorema. Debemos probar que
+        $\Leftarrow$): Sea $\mathcal{V}$ una familia de subconjuntos de $G$ que satisfacen las condiciones (1) a (5) del teorema. Debemos probar que
         \begin{equation*}
             \mathcal{B}=\left\{xU\big|U\in\mathcal{V}, x\in G \right\}
         \end{equation*}
-        es una base para una topología de grupo $\tau$ en $G$. Sea $\tau$ la familia de subconjuntos de $G$ que son uniones arbitrarias de subconjuntos de $\mathcal{B}$, es decir $U\in\tau$ si y sólo si $U=\cap\mathcal{A}$, donde $\mathcal{A}$ es una subfamilia de $\mathcal{B}$.
+        es una base para una topología de grupo $\tau$ en $G$. Sea $\tau$ la familia de subconjuntos de $G$ que son uniones arbitrarias de subconjuntos de $\mathcal{B}$, es decir $U\in\tau$ si y sólo si $U=\bigcup\mathcal{A}$, donde $\mathcal{A}$ es una subfamilia de $\mathcal{B}$.
 
-        Sean
+        Se tienen que verificar dos condiciones:
+
+        \begin{enumerate}
+            \item Sean $x_1,x_2\in G$ y $U_1,U_2\in\mathcal{V}$. Si $x_3\in x_1U_1\cap x_2U_2$, entonces $x_1^{-1}x_3\in U_1$ y $x_2^{-1}x_3\in U_2$, por (4) existen $V_1,V_2\in\mathcal{V}$ tales que
+            \begin{equation*}
+                \begin{split}
+                    x_1^{-1}x_3V_1&\subseteq U_1\\
+                    x_2^{-1}x_3V_2&\subseteq U_2\\
+                \end{split}
+            \end{equation*}
+            por ende,
+            \begin{equation*}
+                \begin{split}
+                    x_3V_1&\subseteq x_1U_1\\
+                    x_3V_2&\subseteq x_2U_2\\
+                \end{split}
+            \end{equation*}
+            Tomemos $U_3\in\mathcal{V}$ tal que $U_3\subseteq V_1\cap V_2\in\mathcal{V}$ (lo cual se puede por la condición (2)). Luego, $x_3U_3\subseteq x_3V_1\cap x_3V_2\subseteq x_1U_1\cap x_2U_2$.
+
+            \item Sea $x\in G$. Si $U\in\mathcal{V}$ entonces $x\in xU$, por lo cual:
+            \begin{equation*}
+                G=\bigcup_{x\in G}xU
+            \end{equation*}
+        \end{enumerate}
+        por las dos condiciones anteriores, se sigue que $\mathcal{B}$ es una base para la topología $\tau$ definida anteriormente.
+
+        Ahora, probemos que $\mathcal{V}$ es base local para $e_G$. Sea $U\in\tau$ tal que $e_G\in U$. Como $U\in\tau$ entonces podemos escribir:
+        \begin{equation*}
+            U=\bigcup\mathcal{A}
+        \end{equation*}
+        donde $\mathcal{A}$ es una subfamilia de $\mathcal{B}$. Entonces por estar en la unión, existe $x\in G$ y $V\in\mathcal{V}$ tal que $e_G\in xV\subseteq U$. En particular, $x^{-1}\in V$, luego por (4) podemos encontrar $W\in\mathcal{V}$ tal que $x^{-1}W\subseteq V$, es decir $W\subseteq xV$. Pero $e_G\in W$, por ende:
+        \begin{equation*}
+            e_G\in W\subseteq xV\subseteq U
+        \end{equation*}
+        
+        Luego, $\mathcal{V}$ es una base local de $e_G$.
+
+        Ahora probaremos que $\tau$ es una topología del grupo $G$.
 
         %Me quedé en la página 27 del pdf%
 
     \end{proof}
 
-    De un leman anterior sabemos que si $A,B\subseteq G$ con $G$ grupo topológico, $A$ compacto y $B$ cerrado, entonces $AB$ y $BA$ son cerrados. La hipótesis de que $A$ sea compacto no es imprescindible.
+    De un lema anterior sabemos que si $A,B\subseteq G$ con $G$ grupo topológico, $A$ compacto y $B$ cerrado, entonces $AB$ y $BA$ son cerrados. La hipótesis de que $A$ sea compacto no es imprescindible.
 
     \begin{exa}
         Sea $G$ un grupo arbitrario con la topología discreta, es decir, aquella formada por todos los subconjuntos de $G$; entonces $G$ forma un grupo topológico llamado \textbf{grupo discreto}.
