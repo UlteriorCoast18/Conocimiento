@@ -587,7 +587,7 @@
     \end{sol}
 
     \begin{propo}
-        Un subespacio $M$ de un espaco prehilbertiano $H$ es distinguido si y sólo si
+        Un subespacio $M$ de un espacio prehilbertiano $H$ es distinguido si y sólo si
         \begin{equation*}
             H=M\oplus M^\perp
         \end{equation*}
@@ -605,6 +605,219 @@
             \vec{x}-\vec{x_1}=\vec{x_2}\in M^\perp
         \end{equation*}
         pero $\vec{x_2}\perp M$, por tanto $\vec{x_1}$ es la proyección ortogonal.
+    \end{proof}
+
+    \begin{exa}
+        Sea $M=\left\{x\in l_2(\mathbb{R})\big| x(2n)=0, \forall n\in\mathbb{N} \right\}$. Afirmamos que $M$ es distinguido, para lo cual basta ver que este subespacio es cerrado (por ser $l_(\mathbb{R})$ completo, es decir por ser un espacio Hilbertiano).
+
+        Sea $\left\{\vec{x_n} \right\}$ una sucesión en $l_2(\mathbb{R})$ que converge a $\vec{x}\in l_2(\mathbb{R})$, es decir
+        \begin{equation}
+            \begin{split}
+                \lim_{n\rightarrow \infty}\mathcal{N}_2(\vec{x}-\vec{x_n})=&0\\
+                \lim_{k\rightarrow \infty}(\vec{x}(2k)-\vec{x_n}(2k))=&0,\quad \forall k\in\mathbb{N}\\
+                \Rightarrow \vec{x}(2k)=&0\quad\forall x\in\mathbb{N}\\ 
+            \end{split}
+        \end{equation}
+        por lo cual, $\vec{x}\in M$. Luego, $M$ es cerrado. Dado que $M$ es distinguido, si $\vec{x}\in l_2(\mathbb{R})=M\oplus M^\perp$, se tiene
+        \begin{equation*}
+            \vec{x}=\vec{x_1}+\vec{x_2}
+        \end{equation*}
+        donde $\vec{x_1}\in M$ y $\vec{x_2}\in M^\perp$ son únciso y están dados por:
+        \begin{equation*}
+            \begin{split}
+                \vec{x_1}=&(\vec{x}(1),0,\vec{x}(3),...)\\
+                \vec{x_2}=&(0,\vec{x}(2),0,\vec{x}(4),...)\\
+            \end{split}
+        \end{equation*}
+    \end{exa}
+
+    \begin{cor}
+        Si $M$ es un subespacio distinguido de $H$, entonces $M^\perp$ es también un subespacio distinguido.
+    \end{cor}
+
+    \begin{proof}
+        Se probará que cualquier $\vec{x}\in H$ posee una proyección ortogonal sobre $M^\perp$. Por el teorema anterior:
+        \begin{equation*}
+            \vec{x}=\vec{x_1}+\vec{x_2}
+        \end{equation*}
+        con $\vec{x_1}\in M$ y $\vec{x_2}\in M^\perp$ únicos. Luego, $\vec{x}-\vec{x_2}=\vec{x_1}\in M$, por lo que cualquier vector en $M^\perp$ se cumple que $\vec{x_1}\perp \vec{y}$, para todo $\vec{y}\in M$, es decir que $\vec{x_2}$ es la proyecicón ortogonal de $\vec{x}$ sobre $M^\perp$.
+    \end{proof}
+
+    \begin{propo}
+        Si $M$ es un subespacio distinguido de $H$, entonces $M^{\perp\perp}=M$.
+    \end{propo}
+
+    \begin{proof}
+        Claramente $M\subseteq M^{\perp\perp}$. Ahora, sea $\vec{x}\in M^{\perp\perp}$, por el teorema $\vec{x}=\vec{x_1}+\vec{x_2}$ donde $\vec{x_1}\in M$ y $\vec{x_2}\in M^\perp$ únicos.
+
+        Se tiene que
+        \begin{equation*}
+            0=\pint{\vec{x}}{\vec{x_2}}=\pint{\vec{x}}{\vec{x_1}}+\pint{\vec{x_2}}{\vec{x_2}}=\pint{\vec{x_2}}{\vec{x_2}}
+        \end{equation*}
+        es decir que $\vec{x_2}=\vec{0}$. Por tanto, $\vec{x}\in M$.
+
+        Luego, $M=M^{\perp\perp}$.
+    \end{proof}
+
+    \begin{cor}
+        En un espacio hilbertiano $H$, un subespacio es distinguido si y sólo si es cerrado.
+    \end{cor}
+
+    \begin{proof}
+        Si es cerrado es inmediato que es distinguido. Ahora, si es distinguido entonces es cerrado, pues por el corolario anterior $M=M^{\perp\perp}$, donde $M^{\perp\perp}$ es cerrado por ser intersección arbitraria de cerrrados, luego $M$ es cerrado.
+    \end{proof}
+
+    \begin{propo}
+        Sea $H$ un espacio prehilbertiano y sea $M$ un subespacio distinguido de $H$ (que no se reduce al $\left\{\vec{0} \right\}$). $\forall\vec{x}\in H$ sea $\pi(\vec{x})$ la \textbf{proyección ortogonal de $\vec{x}$ sobre $M$}.
+
+        Entonces $\cf{\pi}{H}{M}$ es lineal continua y tal que $\norm{\pi}=1$. Además, $\pi\circ\pi=\pi$, y $\pint{\pi(\vec{x})}{\vec{y}}=\pint{\vec{x}}{\pi(\vec{y})}$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $\vec{x}\in H$ y $\alpha\in\mathbb{K}$. Si $\alpha=0$, el resultado es inmediato. Suponga que $\alpha\neq 0$. Se tiene que $\alpha\pi(\vec{x})\in M$ por ser subespacio, y
+        \begin{equation*}
+            \alpha\vec{x}-\alpha\pi(\vec{x})=\alpha(\vec{x}-\pi(\vec{x}))\perp M
+        \end{equation*}
+        Luego, $\alpha\pi(\vec{x})$ es una proyección ortogonal de $\alpha\pi(\vec{x})$ sobre $M$, pero por unicidad de la proyección ortogonal, se tiene que $\pi(\alpha\vec{x})=\alpha\pi(\vec{x})$.
+
+        Ahora, sean $\vec{x},\vec{y}\in H$. Entonces, $\pi(\vec{x})+\pi(\vec{y})\in M$ y:
+        \begin{equation*}
+            (\vec{x}+\vec{y})-(\pi(\vec{x})+\pi(\vec{x}))=(\vec{x}-\pi(\vec{x}))+(\vec{y}-\pi(\vec{y}))\perp M
+        \end{equation*}
+        es decir que $\pi(\vec{x})+\pi(\vec{y})$ es una proyección ortogonal de $\vec{x}+\vec{y}$ sobre $M$. Por unicidad,
+        \begin{equation*}
+            \pi(\vec{x}+\vec{y})=\pi(\vec{x})+\pi(\vec{y})
+        \end{equation*}
+        Por tanto, $\pi$ es lineal.
+
+
+        Ahora, veamos que es continua. Se sabe que:
+        \begin{equation*}
+            \begin{split}
+                d(\vec{x},M)^2&=\norm{\vec{x}-\pi(\vec{x})}^2\\
+                &=\norm{\vec{x}}^2-\norm{\pi(\vec{x})}^2\\
+                \Rightarrow \norm{\pi(\vec{x})}^2&=\norm{\vec{x}}^2-\norm{\vec{x}-\pi(\vec{x})}^2\\
+                &\leq\norm{\vec{x}}^2\\
+            \end{split}
+        \end{equation*}
+        luego, $\pi$ es continua y, $\norm{\pi}\leq 1$.
+
+        Sea ahora $\vec{x}\in M$, $\vec{x}\neq\vec{0}$. Entonces:
+        \begin{equation*}
+            \norm{\vec{x}}=\norm{\pi(\vec{x})}\leq\norm{\pi}\norm{\vec{x}}
+        \end{equation*}
+        por tanto, $\norm{\pi}\geq 1$, por lo anterior se sigue que $\norm{\pi}=1$.
+
+        Ya se sabe que $\pi\circ\pi=\pi^2=\pi$ (por la proposición anterior).
+
+        Sean $\vec{x},\vec{y}\in H$ arbitrarios. Entonces, $\pi(\vec{x})\in M$ y $\vec{y}-\pi(\vec{y})\perp M$, por lo cual
+        \begin{equation*}
+            \begin{split}
+                0=&\pint{\pi(\vec{x})}{\vec{y}-\pi(\vec{y})} \\
+                =&\pint{\pi(\vec{x})}{\vec{y}}-\pint{\pi(\vec{x})}{\pi(\vec{y})}\\
+                \Rightarrow \pint{\pi(\vec{x})}{\vec{y}} =& \pint{\pi(\vec{x})}{\pi(\vec{y})}\\
+            \end{split}
+        \end{equation*}
+        Intercambiando los papeles de $\vec{x}$ y $\vec{y}$ se obtiene que: $\pint{\pi(\vec{y})}{\vec{x}}=\pint{\pi(\vec{y})}{\pi(\vec{x})}$ o sea:
+        \begin{equation*}
+            \pint{\vec{x}}{\pi(\vec{y})}=\pint{\pi(\vec{x})}{\pi(\vec{y})}
+        \end{equation*}
+        por lo cual $\pint{\pi(\vec{x})}{\vec{y}}=\pint{\vec{x}}{\pi(\vec{y})}$.
+    \end{proof}
+
+    \begin{propo}
+        Sea $H$ prehilbertiano. Suponga que $\pi$ es una aplicación lineal de $H$ en $H$ tal que
+        \begin{itemize}
+            \item $\pi^2=\pi$.
+            \item $\pint{\pi(\vec{x})}{\vec{y}}=\pint{\vec{x}}{\pi(\vec{y})},\forall\vec{x},\vec{y}\in H$.
+        \end{itemize}
+        Entonces existe un único subespacio distinguido $M$ de $H$ tal que $\pi$ es la proyección ortogonal de $H$ sobre $M$.
+    \end{propo}
+
+    \begin{proof}
+        Claramente, si $M$ existe debe ser $M=\pi(H)$, o sea:
+        \begin{equation*}
+            M=\pi(H)=\left\{\pi(\vec{x})\big| \vec{x}\in H \right\}
+        \end{equation*}
+        
+        Se debe probar que si $\vec{x}\in H$ es arbitrario $\vec{x}-\pi(\vec{x})\perp M$, o sea
+        \begin{equation*}
+            \pint{\vec{x}-\pi(\vec{x})}{\pi(\vec{y})}=0,\quad\forall\vec{y}\in H
+        \end{equation*}
+        Sean $\vec{x},\vec{y}\in H$. Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \pint{\vec{x}-\pi(\vec{x})}{\pi(\vec{y})}=&\pint{\vec{x}}{\pi(\vec{y})}-\pint{\pi(\vec{x})}{\pi(\vec{y})} \\
+                =&\pint{\vec{x}}{\pi(\vec{y})}-\pint{\vec{x}}{\pi(\vec{y})} \\
+                =&0\\
+            \end{split}
+        \end{equation*}
+        usando las dos propiedades de $\pi$. Por tanto, $\pi(\vec{x})$ es la proyección ortogonal de $\vec{x}$, es decir que $M$ es distinguido. La unicidad se sigue de la construcción.
+    \end{proof}
+
+    \section{Autodualidad de espacios hilbertianos}
+
+    Si $E$ es un espacio normado, $E^*$ denota su \textbf{dual topológico} formado por todas las aplicaciones lineales continuas de $E$ en $\mathbb{K}$. Si $W\in E^*$, se define la $\norm{W}$ como
+    \begin{equation*}
+        \norm{W}=\inf\left\{a\in\mathbb{R}\big| \norm{W(\vec{x})}\leq a\norm{\vec{x}},\forall\vec{x} \right\}
+    \end{equation*}
+    
+    Recuerde que $E^*$ es siempre un espaico de Banach aunque $E$ no lo sea.
+
+    \begin{theor}[Teorema de Riesz]
+        Sea $H$ un espacio hilbertiano (no reducido a $\left\{\vec{0} \right\}$). Para cada $\vec{y}\in H$ se define una aplicación $\cf{G_{\vec{y}}}{H}{\mathbb{K}}$ como sigue:
+        \begin{equation*}
+            G_{\vec{y}}(\vec{y})=\pint{\vec{x}}{\vec{y}},\forall\vec{x}\in H
+        \end{equation*}
+        Entonces, $G_{\vec{y}}$ es un funcional lineal continuo sobre $H$. Además, la aplicación $\cf{G}{H}{H^*}$ dada por:
+        \begin{equation*}
+            \vec{y}\mapsto G_{\vec{y}}
+        \end{equation*}
+         es una isometría semilineal de $H$ en $H^*$ que es suprayectiva.
+    \end{theor}
+
+    \begin{proof}
+        Se probarán varias cosas:
+        \begin{enumerate}
+            \item Por propiedades del producto escalar, para cada $\vec{y}\in H$ la aplicación $\cf{G_{\vec{y}}}{H}{\mathbb{K}}$ es lineal. Dicha aplicación lineal es continua, pues
+            \begin{equation*}
+                \abs{G_{\vec{y}}}=\abs{\pint{\vec{x}}{\vec{y}}}\leq\norm{\vec{x}}\norm{\vec{y}},\quad\forall\vec{x}\in H
+            \end{equation*}
+            (por Cauchy-Schwartz). Así que $G_{\vec{y}}\in H^*$. Además, $\norm{G_{\vec{y}}}\leq \norm{\vec{y}}$. Por otra, parte, si $\vec{y}\neq\vec{0}$, entonces
+            \begin{equation*}
+                G_{\vec{y}}(\vec{y})=\pint{\vec{y}}{\vec{y}}=\norm{\vec{y}}^2
+            \end{equation*}
+            pero, como el operador es continuo, se tiene que $G_{\vec{y}}\leq\norm{G_{\vec{y}}}\norm{\vec{y}}$. Por lo cual, $\norm{\vec{y}}\leq\norm{G_{\vec{y}}}$. Así pues, $\norm{G_{\vec{y}}}=\norm{\vec{y}}$.
+
+            Si $\vec{y}=\vec{0}$, entonces $\norm{G_{\vec{y}}}=0=\norm{\vec{y}}$, pues $G_{\vec{y}}=0$.
+
+            \item La aplicación $\cf{G}{H}{H^*}$, $\vec{y}\mapsto G_{\vec{y}}$ es semilinel, es decir que $G_{\alpha\vec{y}}=\conj{\alpha}G_{\vec{y}}$ y separa sumas. En efecto, sea $\vec{y}\in H$ y $\alpha\in\mathbb{K}$. Entonces:
+            \begin{equation*}
+                \begin{split}
+                    G_{\alpha\vec{y}}(\vec{x})=&\pint{\vec{x}}{\alpha\vec{y}}\\
+                    =&\conj{\alpha} \pint{\vec{x}}{\vec{y}}\\
+                    =& G_{\vec{y}}(\vec{x}),\quad\forall\vec{x}\in H \\
+                \end{split}
+            \end{equation*}
+            y además, para $\vec{z}\in H$ se tiene que
+            \begin{equation*}
+                \begin{split}
+                    G_{\vec{y}+\vec{z}}(\vec{x})=&\pint{\vec{x}}{\vec{y}+\vec{z}} \\
+                    =&\pint{\vec{x}}{\vec{y}}+\pint{\vec{x}}{\vec{z}} \\
+                    =& G_{\vec{y}}(\vec{x})+G_{\vec{z}}(\vec{x}),\quad\forall\vec{x}\in H \\
+                \end{split}
+            \end{equation*}
+            por tanto, $G$ es semilineal. Ahora, veamos que es isometría; sean $\vec{y_1},\vec{y_2}\in H$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    \norm{G_{\vec{y_1}}-G_{\vec{y_2}}}=&\norm{G_{\vec{y_1}+\vec{y_2}}} \\
+                    =& \norm{\vec{y_1}+\vec{y_2}}\\
+                \end{split}
+            \end{equation*}
+            así, isometría. Automáticamente, $G$ es inyectiva. Note que $\vec{y}\in\left(\ker G_{\vec{y}} \right)^\perp$ y $G_{\vec{y}}(\vec{y})=\norm{\vec{y}}^2$.
+
+            Sea $W\in H^*$, 
+        \end{enumerate}
     \end{proof}
 
 \end{document}
