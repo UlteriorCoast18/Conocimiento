@@ -678,7 +678,7 @@
         \begin{equation*}
             \alpha\vec{x}-\alpha\pi(\vec{x})=\alpha(\vec{x}-\pi(\vec{x}))\perp M
         \end{equation*}
-        Luego, $\alpha\pi(\vec{x})$ es una proyección ortogonal de $\alpha\pi(\vec{x})$ sobre $M$, pero por unicidad de la proyección ortogonal, se tiene que $\pi(\alpha\vec{x})=\alpha\pi(\vec{x})$.
+        Luego, $\alpha\pi(\vec{x})$ es una proyección ortogonal de $\alpha\vec{x}$ sobre $M$, pero por unicidad de la proyección ortogonal, se tiene que $\pi(\alpha\vec{x})=\alpha\pi(\vec{x})$.
 
         Ahora, sean $\vec{x},\vec{y}\in H$. Entonces, $\pi(\vec{x})+\pi(\vec{y})\in M$ y:
         \begin{equation*}
@@ -752,7 +752,7 @@
                 =&0\\
             \end{split}
         \end{equation*}
-        usando las dos propiedades de $\pi$. Por tanto, $\pi(\vec{x})$ es la proyección ortogonal de $\vec{x}$, es decir que $M$ es distinguido. La unicidad se sigue de la construcción.
+        usando las dos propiedades de $\pi$. Por tanto, $\pi(\vec{x})$ es la proyección ortogonal de $\vec{x}$, es decir que $M$ es distinguido. La unicidad se sigue de la construcción de $M$.
     \end{proof}
 
     \section{Autodualidad de espacios hilbertianos}
@@ -767,7 +767,7 @@
     \begin{theor}[Teorema de Riesz]
         Sea $H$ un espacio hilbertiano (no reducido a $\left\{\vec{0} \right\}$). Para cada $\vec{y}\in H$ se define una aplicación $\cf{G_{\vec{y}}}{H}{\mathbb{K}}$ como sigue:
         \begin{equation*}
-            G_{\vec{y}}(\vec{y})=\pint{\vec{x}}{\vec{y}},\forall\vec{x}\in H
+            G_{\vec{y}}(\vec{x})=\pint{\vec{x}}{\vec{y}},\forall\vec{x}\in H
         \end{equation*}
         Entonces, $G_{\vec{y}}$ es un funcional lineal continuo sobre $H$. Además, la aplicación $\cf{G}{H}{H^*}$ dada por:
         \begin{equation*}
@@ -781,17 +781,17 @@
         \begin{enumerate}
             \item Por propiedades del producto escalar, para cada $\vec{y}\in H$ la aplicación $\cf{G_{\vec{y}}}{H}{\mathbb{K}}$ es lineal. Dicha aplicación lineal es continua, pues
             \begin{equation*}
-                \abs{G_{\vec{y}}}=\abs{\pint{\vec{x}}{\vec{y}}}\leq\norm{\vec{x}}\norm{\vec{y}},\quad\forall\vec{x}\in H
+                \abs{G_{\vec{y}}(\vec{x})}=\abs{\pint{\vec{x}}{\vec{y}}}\leq\norm{\vec{x}}\norm{\vec{y}},\quad\forall\vec{x}\in H
             \end{equation*}
             (por Cauchy-Schwartz). Así que $G_{\vec{y}}\in H^*$. Además, $\norm{G_{\vec{y}}}\leq \norm{\vec{y}}$. Por otra, parte, si $\vec{y}\neq\vec{0}$, entonces
             \begin{equation*}
                 G_{\vec{y}}(\vec{y})=\pint{\vec{y}}{\vec{y}}=\norm{\vec{y}}^2
             \end{equation*}
-            pero, como el operador es continuo, se tiene que $G_{\vec{y}}\leq\norm{G_{\vec{y}}}\norm{\vec{y}}$. Por lo cual, $\norm{\vec{y}}\leq\norm{G_{\vec{y}}}$. Así pues, $\norm{G_{\vec{y}}}=\norm{\vec{y}}$.
+            pero, como el operador es continuo, se tiene que $\abs{G_{\vec{y}}(\vec{y})} \leq\norm{G_{\vec{y}}}\norm{\vec{y}}$. Por lo cual, $\norm{\vec{y}}\leq\norm{G_{\vec{y}}}$. Así pues, $\norm{G_{\vec{y}}}=\norm{\vec{y}}$.
 
             Si $\vec{y}=\vec{0}$, entonces $\norm{G_{\vec{y}}}=0=\norm{\vec{y}}$, pues $G_{\vec{y}}=0$.
 
-            \item La aplicación $\cf{G}{H}{H^*}$, $\vec{y}\mapsto G_{\vec{y}}$ es semilinel, es decir que $G_{\alpha\vec{y}}=\conj{\alpha}G_{\vec{y}}$ y separa sumas. En efecto, sea $\vec{y}\in H$ y $\alpha\in\mathbb{K}$. Entonces:
+            \item La aplicación $\cf{G}{H}{H^*}$, $\vec{y}\mapsto G_{\vec{y}}$ es semilineal, es decir que $G_{\alpha\vec{y}}=\conj{\alpha}G_{\vec{y}}$ y separa sumas. En efecto, sea $\vec{y}\in H$ y $\alpha\in\mathbb{K}$. Entonces:
             \begin{equation*}
                 \begin{split}
                     G_{\alpha\vec{y}}(\vec{x})=&\pint{\vec{x}}{\alpha\vec{y}}\\
