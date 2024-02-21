@@ -1,9 +1,9 @@
-PWD x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Topologia I/Ejercicios/Ejercicios Dugundji
+PWD x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Cursos ESFM/8vo Semestre/Analisis Matematico IV/Listas/Lista 1
 INPUT x:/Programas/texlive/2023/texmf.cnf
 INPUT x:/Programas/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT x:/Programas/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Topologia I/Ejercicios/Ejercicios Dugundji/ejercicios_dugundji.tex
-OUTPUT ejercicios_dugundji.log
+INPUT x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Cursos ESFM/8vo Semestre/Analisis Matematico IV/Listas/Lista 1/lista1.tex
+OUTPUT lista1.log
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/base/report.cls
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/base/report.cls
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/base/size12.clo
@@ -220,10 +220,12 @@ INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
-INPUT ./ejercicios_dugundji.aux
-INPUT ./ejercicios_dugundji.aux
-INPUT ejercicios_dugundji.aux
-OUTPUT ejercicios_dugundji.aux
+INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+INPUT ./lista1.aux
+INPUT ./lista1.aux
+INPUT lista1.aux
+OUTPUT lista1.aux
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -250,13 +252,19 @@ INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-OUTPUT ejercicios_dugundji.pdf
+INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/jknapltx/ursfs.fd
+INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/jknapltx/ursfs.fd
+INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/jknapltx/ursfs.fd
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs7.tfm
+OUTPUT lista1.pdf
 INPUT x:/Programas/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT ./ejercicios_dugundji.toc
-INPUT ./ejercicios_dugundji.toc
-INPUT ejercicios_dugundji.toc
+INPUT ./lista1.toc
+INPUT ./lista1.toc
+INPUT lista1.toc
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
@@ -275,18 +283,29 @@ INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msa
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-OUTPUT ejercicios_dugundji.toc
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm
+OUTPUT lista1.toc
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT ejercicios_dugundji.aux
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
+INPUT lista1.aux
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb

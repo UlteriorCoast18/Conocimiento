@@ -1,0 +1,487 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{mathrsfs}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand{\contradiction}{\ensuremath{\#_c}}
+\newcommand\adj[1]{\ensuremath{\widetilde{#1}}}
+\newcommand\pint[2]{\ensuremath{\left(#1\big|#2\right)}}
+\newcommand\conj[1]{\ensuremath{\overline{#1}}}
+\newcommand\norm[1]{\ensuremath{\|#1\|}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \title{Ejercicios Análisis Matemático IV}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \chapter{Espacios Hilbertianos}
+
+    \section{Ejercicios}
+
+    \renewcommand{\theenumi}{\roman{enumi}}
+
+    \begin{excer}
+        Pruebe lo siguiente:
+        \begin{enumerate}
+            \item Sean $H,H'$ espacios hilbertianos y sea $T$ una aplicación lineal continua de $H$ en $H'$. \textbf{Demuestre} que existe una única aplicación lineal $\cf{\adj{T}}{H'}{H}$ tal que
+            \begin{equation*}
+                \pint{\vec{x}}{\adj{T}\vec{x'}}=\pint{T\vec{x}}{\vec{x'}},\quad\forall\vec{x}\in H\textup{ y }\forall\vec{x'}\in H'
+            \end{equation*}
+            \item \textbf{Demuestre} las reglas:
+            \begin{equation*}
+                \adj{T_1+T_2}=\adj{T_1}+\adj{T_2}\quad\textup{y}\quad\adj{\alpha T}=\conj{\alpha}\adj{T}
+            \end{equation*}
+            \item Sea $H''$ un tercer espacio hilbertiano. Sean $T$ una aplicación lineal continua de $H$ en $H'$ y $U$ una aplicación lineal continua de $H'$ en $H''$. \textbf{Pruebe} que:
+            \begin{equation*}
+                \adj{U\circ T}=\adj{T}\circ\adj{U}
+            \end{equation*}
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $H$ un espacio hilbertiano complejo. A toda aplicación lineal continua $T$ de $H$ en $H$ se le asocia la aplicación $\cf{Q_T}{H}{\mathbb{C}}$ (llamada \textbf{forma hermitiana}) definida por:
+        \begin{equation*}
+            Q_T(\vec{x})=\pint{T\vec{x}}{\vec{x}},\quad\forall\vec{x}\in H
+        \end{equation*}
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item \textbf{Establezca} la fórmula:
+            \begin{equation*}
+                \pint{T\vec{x}}{\vec{y}}=\frac{1}{4}\left[Q_T(\vec{x}+\vec{y})-Q_T(\vec{x}-\vec{y})+iQ_T(\vec{x}+i\vec{y})-iQ_T(\vec{x}-i\vec{y})\right]
+            \end{equation*}
+            \item \textbf{Muestre} que
+            \begin{equation*}
+                Q_{\adj{T}}(\vec{x})=\conj{Q_T(\vec{x})},\quad\forall\vec{x}\in H
+            \end{equation*}
+            y que $Q_T(\vec{x})$ es real, $\forall\vec{x}\in H$, si y sólo si $T$ es autoadjunto (es decir, que $T=\adj{T}$).
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        Establezcamos ambos incisos:
+        
+        De (i): Sean $\vec{x},\vec{y}\in H$. Tenemos que:
+        \begin{equation*}
+            \begin{split}
+                Q_T(\vec{x}+\vec{y})=&\pint{T(\vec{x}+\vec{y})}{\vec{x}+\vec{y}}\\
+                =&\pint{T(\vec{x})+T(\vec{y})}{\vec{x}+\vec{y}}\\
+                =&\pint{T(\vec{x})+T(\vec{y})}{\vec{x}}+\pint{T(\vec{x})+T(\vec{y})}{\vec{y}}\\
+                =&\pint{T(\vec{x})}{\vec{x}}+\pint{T(\vec{y})}{\vec{x}}+\pint{T(\vec{x})}{\vec{y}}+\pint{T(\vec{y})}{\vec{y}}\\
+                =&Q_T(\vec{x})+\pint{T(\vec{y})}{\vec{x}}+\pint{T(\vec{x})}{\vec{y}}+Q_T(\vec{y})\\
+            \end{split}
+        \end{equation*}
+        por lo cual,
+        \begin{equation*}
+            \begin{split}
+                Q_T(\vec{x}-\vec{y})=&Q_T(\vec{x})+\pint{T(-\vec{y})}{\vec{x}}+\pint{T(\vec{x})}{-\vec{y}}+Q_T(-\vec{y})\\
+                =&Q_T(\vec{x})-\pint{T(\vec{y})}{\vec{x}}-\pint{T(\vec{x})}{\vec{y}}+Q_T(\vec{y})\\
+            \end{split}
+        \end{equation*}
+        Luego:
+        \begin{equation*}
+            \begin{split}
+                Q_T(\vec{x}+\vec{y})-Q_T(\vec{x}-\vec{y})&=2\left(\pint{T(\vec{y})}{\vec{x}}+\pint{T(\vec{x})}{\vec{y}}\right)\\
+            \end{split}
+        \end{equation*}
+        y, por ende:
+        \begin{equation*}
+            \begin{split}
+                iQ_T(\vec{x}+i\vec{y})-iQ_T(\vec{x}-i\vec{y})&=2i\left(\pint{T(i\vec{y})}{\vec{x}}+\pint{T(\vec{x})}{i\vec{y}}\right)\\
+                &=2i\left(i\pint{T(\vec{y})}{\vec{x}}-i\pint{T(\vec{x})}{\vec{y}}\right)\\
+                &=2\left(-\pint{T(\vec{y})}{\vec{x}}+\pint{T(\vec{x})}{\vec{y}}\right)\\
+            \end{split}
+        \end{equation*}
+        Finalmente, se sigue que
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{4}\left[Q_T(\vec{x}+\vec{y})-Q_T(\vec{x}-\vec{y})+iQ_T(\vec{x}+i\vec{y})-iQ_T(\vec{x}-i\vec{y})\right]=&\frac{1}{4}\left[4\pint{T(\vec{x})}{\vec{y}}\right] \\
+                =&\pint{T(\vec{x})}{\vec{y}}\\
+            \end{split}
+        \end{equation*}
+        lo cual establece la fórmula.
+
+        De (ii): Sea $\vec{x}\in H$, entonces:
+        \begin{equation*}
+            \begin{split}
+                Q_{\adj{T}}(\vec{x})&=\pint{\adj{T}\vec{x}}{\vec{x}}\\
+                &=\pint{\adj{T}\vec{x}}{\vec{x}}\\
+                &=\conj{\pint{\vec{x}}{\adj{T}\vec{x}}}\\
+                &=\conj{\pint{T\vec{x}}{\vec{x}}}\\
+                &=\conj{Q_T(\vec{x})}\\
+            \end{split}
+        \end{equation*}
+
+        Para la otra parte, veamos que:
+        \begin{equation*}
+            \begin{split}
+                Q_T(\vec{x})\in\mathbb{R},\forall\vec{x}\in H\iff&Q_T(\vec{x})=\conj{Q_T(\vec{x})},\forall\vec{x}\in H\\
+                \iff&Q_T(\vec{x})=Q_{\adj{T}}(\vec{x}),\forall\vec{x}\in H\\
+                \iff&\pint{T\vec{x}}{\vec{x}}=\pint{\adj{T}\vec{x}}{\vec{x}},\forall\vec{x}\in H\\
+                \iff&\pint{T\vec{x}}{\vec{x}}-\pint{\adj{T}\vec{x}}{\vec{x}}=0,\forall\vec{x}\in H\\
+                \iff&\pint{T\vec{x}-\adj{T}\vec{x}}{\vec{x}}=0,\forall\vec{x}\in H\\
+                \iff&\pint{\left[T-\adj{T}\right]\vec{x}}{\vec{x}}=0,\forall\vec{x}\in H\\
+            \end{split}
+        \end{equation*}
+        Veamos que $\pint{\left[T-\adj{T}\right]\vec{x}}{\vec{x}}=0,\forall\vec{x}\in H$ si y sólo si $T=\adj{T}$. La vuelta es inmediata.
+
+        %Falta%
+
+    \end{sol}
+
+    \begin{excer}
+        Sea $A$ un endomorfismo lineal continuo de un espacio prehilbertiano $H$. Defina $\cf{Q_A}{H}{\mathbb{K}}$ como:
+        \begin{equation*}
+            Q_A(\vec{x})=\pint{A\vec{x}}{\vec{x}},\quad\forall\vec{x}\in H
+        \end{equation*}
+        Sea
+        \begin{equation*}
+            \alpha=\sup\left\{\frac{\abs{Q_A(\vec{x})}}{\norm{\vec{x}}^2}\big| \vec{x}\in H,\vec{x}\neq\vec{0} \right\}
+        \end{equation*}
+        \begin{enumerate}
+            \item \textbf{Pruebe} que $\alpha\leq\norm{A}$.
+            \item Al suponer $A$ autoadjunto, \textbf{demuestre} la igualdad opuesta. Luego, si $A$ es autoadjunto se tiene que
+            \begin{equation*}
+                \norm{A}=\sup\left\{\frac{\abs{Q_A(\vec{x})}}{\norm{\vec{x}}^2}\big| \vec{x}\in H,\vec{x}\neq\vec{0} \right\}
+            \end{equation*}
+        \end{enumerate}
+        \textit{Indicación}. Compruebe que $\forall\vec{x}\in H$ y $\forall\lambda>0$,
+        \begin{equation*}
+            \pint{A\vec{x}}{A\vec{x}}=\frac{1}{4}\left(Q_A(\lambda\vec{x}+\lambda^{-1}A\vec{x})-Q_A(\lambda\vec{x}-\lambda^{-1}A\vec{x})\right)
+        \end{equation*}
+        de ahí obtenga que $\norm{A\vec{x}}^2\leq\frac{\alpha}{2}\left(\lambda^2\norm{\vec{x}}^2+\frac{1}{\lambda^2}\norm{A\vec{x}}^2 \right)$ y elija $\lambda$ convenientemente.
+    \end{excer}
+
+    \begin{proof}
+        Demostremos cada inciso.
+
+        De (i): Basta con ver que $\norm{A}$ es cota superior del conjunto al que se le quiere sacar el supremo. Para ello, notemos que al ser $A$ lineal continuo, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \abs{\pint{A\vec{x}}{\vec{x}}} \leq \norm{A\vec{x}}\norm{\vec{x}}\leq\norm{A}\norm{\vec{x}}^2
+            \end{split}
+        \end{equation*}
+        para todo $\vec{x}\in H$. En particular, para $\vec{x}\neq\vec{0}$ se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \frac{\abs{\pint{A\vec{x}}{\vec{x}}}}{\norm{\vec{x}}^2}\leq&\norm{A}\\
+                \Rightarrow \frac{\abs{Q_A(\vec{x})}}{\norm{\vec{x}}^2}\leq&\norm{A}\\
+            \end{split}
+        \end{equation*}
+        luego, $\norm{A}$ es cota superior del conjunto. Por tanto $\alpha\leq\norm{A}$.
+
+        De (ii): Suponga que $A$ es autoadjunto
+    \end{proof}
+
+    \begin{excer}
+        \textbf{Muestre} que todo endomorfismo continuo $T$ de un espacio hilbertiano $H$ se expresa únicamente en la forma:
+        \begin{equation*}
+            T=A+iB
+        \end{equation*}
+        donde $A$ y $B$ son endomorfismos adjuntos de $H$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $H$ un espacio prehilbertiano. \textbf{Construya} un espacio hilbertiano $\hat{H}$ y una inyección lineal $\cf{j}{H}{\hat{H}}$ tal que
+        \begin{equation*}
+            \pint{j\vec{x}}{j\vec{y}}=\pint{\vec{x}}{\vec{y}},\quad\forall\vec{x},\vec{y}\in H.
+        \end{equation*}
+        y que $j(H)$ sea denso en $\hat{H}$. El espacio hilbertiano $\hat{H}$ se llama la \textbf{completación} del espacio prehilibertiano $H$. \textbf{Formule y demuestre} un teorema de unicidad de esta completación.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Si $E$ es un espacio vectorial complejo, la adición de elementos de $E$ y la multiplicación de elementos de $E$ por números reales, hacen de $E$ un espacio vectorial real que se designa por $E_\mathbb{R}$.
+        \begin{enumerate}
+            \item Sea $H$ un espacio prehilbertiano complejo. Se designa por $\pint{\vec{x}}{\vec{y}}$ un producto escalar en $H$. \textbf{Muestre} que la aplicación:
+            \begin{equation*}
+                (\vec{x},\vec{y})\mapsto\pint{\vec{x}}{\vec{y}}_\mathbb{R}=\Re\pint{\vec{x}}{\vec{y}}
+            \end{equation*}
+            hace de $H_\mathbb{R}$ un espacio prehilbertiano real para el que se cumple:
+            \begin{equation*}
+                \pint{i\vec{x}}{i\vec{y}}_\mathbb{R}=\pint{\vec{x}}{\vec{y}}_\mathbb{R}
+            \end{equation*}
+            \textbf{Pruebe} la relación:
+            \begin{equation}
+                \pint{\vec{x}}{\vec{y}}=\pint{\vec{x}}{\vec{y}}_\mathbb{R}+i\pint{i\vec{x}}{i\vec{y}}_\mathbb{R}
+            \end{equation}
+            \item Sea $H$ un espacio vectorial complejo. Se supone que $H_\mathbb{R}$ está provisto de un producto escalar $(\vec{x},\vec{y})\mapsto\pint{\vec{x}}{\vec{y}}_\mathbb{R}$ que hace de $H_\mathbb{R}$ un espacio prehilbertiano real. Se supone también que $\pint{i\vec{x}}{i\vec{y}}_\mathbb{R}=\pint{\vec{x}}{\vec{y}}_\mathbb{R}$, para todo $\vec{x},\vec{y}\in H$. Se define en $H$ un producto $\pint{\vec{x}}{\vec{y}}$ por la fórmula (1.1). \textbf{Demuestre} que $(\vec{x},\vec{y})\mapsto\pint{\vec{x}}{\vec{y}}$ es un producto escalar complejo que hace de $H$ un espacio prehilbertiano complejo. 
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Haga lo sugiente:
+        \begin{enumerate}
+            \item \textbf{Muestre} que en todo espacio prehilbertiano real se cumple
+            \begin{equation*}
+                \pint{\vec{x}}{\vec{y}}=\frac{1}{4}\left(\norm{\vec{x}+vec{y}}^2-\norm{\vec{x}-\vec{y}}^2 \right)
+            \end{equation*}
+            y en todo espacio prehilbertiano complejo se cumple
+            \begin{equation*}
+                \pint{\vec{x}}{\vec{y}}=\frac{1}{4}\left(\norm{\vec{x}+\vec{y}}^2-\norm{\vec{x}-\vec{y}}^2+i\norm{\vec{x}+i\vec{y}}^2-i\norm{\vec{x}-i\vec{y}}^2 \right)
+            \end{equation*}
+            \item Sea $E$ un espacio vectorial normado real en el que se verifica la identidad del paralelogramo:
+            \begin{equation*}
+                \norm{\vec{x}+\vec{y}}^2+\norm{\vec{x}-\vec{y}}^2=2(\norm{\vec{x}}^2+\norm{\vec{y}}^2)
+            \end{equation*}
+            \textbf{Pruebe} que se puede definir de manera única un producto escalar $\pint{ }{ }$ sobre $E$ que hace de $E$ un espacio prehilbertiano real para el cual $\norm{\vec{x}}^2=\pint{\vec{x}}{\vec{x}}$, $\forall\vec{x}\in E$.
+
+            \textit{Indicación.} Defina $\pint{\vec{x}}{\vec{y}}$ por la primera fórmula del inciso (i). Usando la fórmula del paralelogramo compruebe que $\pint{\vec{x}}{2\vec{y}}=2\pint{\vec{x}}{\vec{y}}$. Transforme $\pint{\vec{x_1}}{\vec{y_1}}+\pint{\vec{x_2}}{\vec{y_2}}$ por la identidad del paralelogramo y deduzca la fórmula $\pint{\vec{x_1}}{\vec{y}}+\pint{\vec{x_2}}{\vec{y}}=\pint{\vec{x_1}+\vec{x_2}}{\vec{y}}$.
+
+            \item Misma pregunta que en (ii) en el caso de ser $E$ espacio vectorial complejo. 
+            
+            \textit{Indicación.} Use (ii) y el problema 1.6.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Para todo $s\in\mathbb{R}$ sea $\cf{u_s}{\mathbb{R}}{\mathbb{C}}$ la función definida por:
+        \begin{equation*}
+            u_s(x)=e^{isx},\quad\forall x\in\mathbb{R}.
+        \end{equation*}
+        Sea $X$ el espacio vectorial complejo compuesto de todas las combinaciones lineales finitas de estas funciones $u_s$, $\forall f,g\in X$ se define:
+        \begin{equation*}
+            \pint{f}{g}=\lim_{R\rightarrow\infty}\frac{1}{2R}\int_{-R}^Rf\conj{g}.
+        \end{equation*}
+        \textbf{Pruebe} que esta definición tiene sentido y que la aplicación $(f,g)\mapsto\pint{f}{g}$ es un producto escalar que hace de $X$ un espacio prehilbertiano.
+
+        Sea $H$ el espacio prehilbertiano, completación del espacio prehilbertiano $X$ (ver problema 1.5). \textbf{Muestre} que $H$ es un espacio hilbertiano no separable y que la familia $\left(u_s\right)_{s\in\mathbb{R}}$ es un sistema ortonormal maximal en $H$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $H$ un espacio hilbertiano de dimensión infinita. \textbf{Demuestre} que existe una aplicación continua inyectiva $\gamma$ de $[0,1]$ en $H$ (un \textbf{camino simple} en $H$) tal que si $0\leq a\leq b\leq c\leq d\leq 1$, los vectores $\gamma(b)-\gamma(a)$ y $\gamma(d)-\gamma(c)$ son ortogonales.
+
+        \textit{Indicación.} Tome $H=L_2([0,1],\mathbb{K})$ y considere funciones características de ciertos subconjuntos de $[0,1]$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ una sucesión de elementos de un espacio hilbertiano $H$. La sucesión $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ se llama \textbf{martingala} (en el sentido amplio) si, $\forall\nu\in\mathbb{N}$, $\vec{x_\nu}$ es el vector de $\mathscr{L}(\vec{x_1},...,\vec{x_\nu})$ menos alejado de $\vec{x_{\nu+1}}$.
+        \begin{enumerate}
+            \item Sea $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ una martingala. Se definen:
+            \begin{equation*}
+                \vec{y_1}=\vec{x_1}\quad\textup{e}\quad\vec{y_\nu}=\vec{x_\nu}-\vec{x_{\nu-1}},\quad\forall\nu\geq2.
+            \end{equation*}
+            \textbf{Muestre} que los vectores $\vec{y_\nu}$ son ortogonales a pares y que $\left\{\norm{\vec{x_\nu}} \right\}_{\nu=1}^\infty$ es una sucesión creciente de números no negativos.
+            \item Sea $\left\{\vec{y_\nu} \right\}_{\nu=1}^\infty$ una sucesión de vectores en $H$ ortogonales a pares. Se define
+            \begin{equation*}
+                \vec{x_\nu}=\sum{k=1}^\nu\vec{y_k},\quad\forall\nu\in\mathbb{N}.
+            \end{equation*}
+            \textbf{Pruebe} que $\left\{\vec{y_\nu} \right\}_{\nu=1}^\infty$ es una martingala.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $\cf{f}{\mathbb{R}^n}{\mathbb{K}}$ una función medible, integrable en todo subconjunto de $\mathbb{R}^n$ de medida finita. Si
+        \begin{equation*}
+            \int f=0,\quad\forall\textup{ rectángulo acotado }P,
+        \end{equation*}
+        \textbf{demuestre} que $f=0$ c.t.p. en $\mathbb{R}^n$.
+        
+        \textit{Indicación.} Redúzcase a un corolario del lema de los promedios.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}[\textbf{Funciones de Hermite}]
+        Por inducción se ve inmediatamente que
+        \begin{equation*}
+            D^ne^{-x^2}=(-1)^nH_n(x)e^{-x^2}, \quad n=0,1,2,...
+        \end{equation*}
+        donde $(-1)H_n$ es un polinomio de grado $n$. Estos polinomios $(-1)H_n$ se llaman \textbf{polinomios de Hermite}. Se definen las \textbf{funciones de Hermite} $\varphi_n$ por:
+        \begin{equation*}
+            \varphi_n(x)=H_n(x)e^{-\frac{x^2}{2}},\quad n=0,1,2,...
+        \end{equation*}
+        equivalentemente,
+        \begin{equation*}
+            \varphi_n(x)=(-1)^ne^{-\frac{x^2}{2}}D^ne^{-x^2},\quad n=0,1,2,...
+        \end{equation*}
+        \begin{enumerate}
+            \item \textbf{Demuestre} que las funciones de Hermite satisfacen la relación:
+            \begin{equation*}
+                \varphi_n''(x)=(x^2-2n-1)\varphi_n(x),\quad\forall x\in\mathbb{R}.
+            \end{equation*}
+            \textit{Indicación.} Exprese a $\varphi_n''(x)$ mediante $D^ne^{-x^2}$, $D^{n+1}e^{-x^2}$ y $D^{n+2}e^{-x^2}$ y calcule $D^{n+2}e^{-x^2}=D^{n+1}(-2xe^{-x^2})$ por la fórmula de Leibniz para la derivada $n+1$-enésima de un producto de factores.
+
+            \item \textbf{Muestre} que las funciones de Hermite consistituyen un sistema ortogonal en el espacio hilbertiano $L_2(\mathbb{R},\mathbb{K})$
+            
+            \textit{Indicación.} Del inciso (i) se sigue que $\varphi_n''\varphi_m-\varphi_m''\varphi_n=2(m-n)\varphi_n\varphi_m$.
+
+            \item \textbf{Pruebe} la relación
+            \begin{equation*}
+                H_n'(x)=2nH_{n-1}(x).
+            \end{equation*}
+            \textit{Indicación.} Exprese $H_n'(x)$ mediante $D^ne^{-x^2}$ y $D^{n+1}e^{-x^2}$. Calcule $D^{n+1}e^{-x^2}=D^n(-2xe^{-x^2})$ por la fórmula de Leibniz.
+
+            \item \textbf{Demuestre} que
+            \begin{equation*}
+                \int_{-\infty}^\infty\varphi_n^2(x)dx=2n\int_{-\infty}^\infty\varphi_{n-1}^2(x)dx
+            \end{equation*}
+            y deduzca que
+            \begin{equation*}
+                \int_{-\infty}^\infty\varphi_n^2(x)dx=\pi^{1/2}2^nn!.
+            \end{equation*}
+            Luego el sistema de funciones:
+            \begin{equation*}
+                \Psi_n=\frac{1}{\pi^{1/2}2^nn!}\varphi_n
+            \end{equation*}
+            es un sistema ortonormal en $L_2(\mathbb{R},\mathbb{K})$ (En un ejercicio posterior se probará que dicho sistema ortonormal es, de hecho, maximal).
+
+            \textit{Indicación.} Integre por partes
+            \begin{equation*}
+                \int_{-\infty}^\infty\varphi_n^2(x)dx=(-1)^n\int_{-\infty}^\infty H_n(x)D^ne^{-x^2}dx
+            \end{equation*}
+            y use (iii).
+        \end{enumerate}
+    \end{excer}
+
+\end{document} 
