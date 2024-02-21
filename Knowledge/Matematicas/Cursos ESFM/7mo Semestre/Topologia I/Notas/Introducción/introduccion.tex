@@ -519,8 +519,8 @@
             \item Si $V\in\tau$ tal que $V\subseteq A$, entonces $V\subseteq\Int{A}$.
             \item $A$ es abierto si y sólo si $\Int{A}=A$.
             \item $\Int{\Int{A}}=\Int{A}$.
-            \item $\Int{A\cap B}=\Int{A}\cap\Int{B}$.
-            \item $\Int{A}\cup\Int{B}\subseteq \Int{A\cup B}$.
+            \item $\Int{\widehat{A\cap B}}=\Int{A}\cap\Int{B}$.
+            \item $\Int{A}\cup\Int{B}\subseteq \Int{\widehat{A\cup B}}$.
             \item $\Cls{A}$ es un conjunto cerrado.
             \item Si $K\subseteq X$ es cerrado de $(X,\tau)$ y $A\subseteq K$, entonces $\Cls{A}\subseteq K$.
             \item $A$ es cerrado si y sólo si $\Cls{A}=A$.
@@ -566,5 +566,169 @@
             \item $\Cls{\bigcap_{\alpha\in I}A_\alpha}\subseteq\bigcap_{\alpha\in I}\Cls{A_\alpha}$. 
         \end{enumerate}
     \end{propo}
+    
+    \begin{proof}
+        Probemos ambos incisos:
+        
+        De (1): Si $x\in \bigcup_{\alpha\in I}\Cls{A_\alpha}$, sea $U\in\tau$ tal que $x\in U$, luego $\exists \alpha\in I$ tal que $x\in \Cls{A_\alpha}$, por ende $U\cap A_\alpha\neq\emptyset$, por tanto $\left(\bigcup_{\alpha\in I}A_\alpha\right)\cap A_\alpha\neq\emptyset$. Como el $U$ fue arbitrario, se sigue que $x\in\Cls{\bigcup_{\alpha\in I}A_\alpha}$.
+
+        De (2): Si $x\in \Cls{\bigcap_{\alpha\in I}A_\alpha}$, entonces para $U\in\tau$ tal que $x\in U$ se cumple que $\left(\bigcap_{\alpha\in I}A_\alpha\right)\cap U\neq\emptyset\Rightarrow\bigcap_{\alpha\in I}\left(A_\alpha\cap U \right)\neq\emptyset$, es decir que $U\cap A_\alpha\neq\emptyset$, para todo $\alpha\in I$, luego como $U\in\tau$ fue arbitrario, se sigue que $x\in \Cls{A_\alpha}$ para todo $\alpha\in I$. Así $x\in\bigcap_{\alpha\in I}\Cls{A_\alpha}$. 
+    \end{proof}
+
+    \begin{exa}
+        Considere al espacio topológico $(\mathbb{R},\tau_u)$. Tomemos
+        \begin{enumerate}
+            \item $A=]0,1]\cup\left\{9\right\}$. Tenemos que $\Cls{A}=[0,1]\cup\left\{9\right\}$, $A'=[0,1]$, por lo cual no podemos relacionar (al menos de forma directa) a $A$ junto con su $A'$ (uno no está contenido dentro del otro).
+            \item Sea $n\in\mathbb{N}$, defina $A_n=[\frac{1}{n},1]$. Se tiene que
+            \begin{equation*}
+                \bigcup_{n\in\mathbb{N}}\Cls{A_n}=]0,1]
+            \end{equation*}
+            y,
+            \begin{equation*}
+                \bigcup_{n\in\mathbb{N}}A_n=]0,1]\Rightarrow \Cls{\bigcup_{n\in\mathbb{N}}A_n}=[0,1]
+            \end{equation*}
+            es decir que $\Cls{\bigcup_{n\in\mathbb{N}}A_n}\nsubseteq\bigcup_{n\in\mathbb{N}}\Cls{A_n}$.
+            \item Considere $X=\left\{a,b\right\}$, tomemos al espacio topológico $(X,\tau=\left\{X,\emptyset,\left\{a\right\} \right\})$. Si $A=\left\{a\right\}$ y $b=\left\{b\right\}$, entonces $\Int{A}=\left\{a\right\}$, $\Int{B}=\emptyset$, $\Cls{A}=X$, $\Cls{B}=B$. Luego $\Int{\widehat{A\cup B}}\nsubseteq \Int{A}\cup\Int{B}$.
+            
+            Además $A\cap B=\emptyset$, $\Cls{A\cap B}=\emptyset$. Por ende, $\Cls{A}\cap \Cls{B}\nsubseteq\Cls{A\cap B}$.
+        \end{enumerate}
+    \end{exa}
+
+    \begin{excer}
+        Considere $(\mathbb{R},\tau_u)$. Encuentre $\Int{\mathbb{N}}$, $\Cls{\mathbb{N}}$, $\mathbb{N}'$, $\Fr{\mathbb{N}}$.
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Considere $(\mathbb{R},\tau_I)$, $(\mathbb{R},\tau_D)$ y $(\mathbb{R},\tau_{cf})$. Encuentre en cada uno de los espacios anteriores $\Int{\mathbb{Z}}$, $\Cls{\mathbb{Z}}$, $\mathbb{Z}'$, $\Fr{\mathbb{Z}}$.
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico. Se dice que el espacio $(X,\tau)$ es de \textbf{Hausdorff} si para todo $x_1,x_2\in X$ distintos existen $U_1,U_2\in\tau$ tales que $x_1\in U_1$, $x_2\in U_2$ y $U_1\cap U_2=\emptyset$.
+    \end{mydef}
+
+    \begin{exa}
+        Considere $(X,\tau)$ donde $X=\left\{1,2\right\}$ y $\tau=\left\{X,\emptyset, \left\{1\right\} \right\}$, entonces $(X,\tau)$ no es de Hausdorff.
+    \end{exa}
+
+    \begin{exa}
+        $(\mathbb{R},\tau_I)$ no es de Hausdorff (cuando el espacio tiene más de un elemento, esto se sigue cumpliendo).
+    \end{exa}
+
+    \begin{exa}
+        Sea $(X,d)$ un espacio métrico y consideremos al espacio topológico $(X,\tau_d)$. Este espacio es de Hausdorff.
+    \end{exa}
+
+    \begin{exa}
+        Sea $(X,d)$ es espacio métrico tal que la métrica de él está definida como:
+        \begin{equation*}
+            d(x,y)=\left\{
+            \begin{array}{lr}
+                0 & \textup{ si }x\neq y\\
+                1 & \textup{ si }x = y\\
+            \end{array}
+            \right.
+        \end{equation*}
+        dado $p\in X$ considere $B_d(p,1)=\left\{p\right\}$. Entonces para todo $p\in X$, $\left\{p\right\}\in\tau_D\Rightarrow \forall A\subseteq X$, $A\in\tau_d$, es decir que $\tau_d=\tau_D$. 
+    \end{exa}
+
+    \begin{mydef}
+        Un espacio topológico $(X,\tau)$ se dice \textbf{metrizable} si existe una métrica $\cf{d}{X\times X}{\mathbb{R}}$ tal que $\tau_d=\tau$. 
+    \end{mydef}
+
+    \begin{propo}
+        Si $(X,\tau)$ es un espacio metrizable, entonces $(X,\tau)$ es un espacio de Hausdorff.
+    \end{propo}
+
+    \begin{proof}
+        Es inmediata de la definición de espacio metrizable y del ejemplo 1.1.10.
+    \end{proof}
+
+    \begin{exa}
+        Considere $X=\left\{1,2\right\}$, si tomamos al espacio topológico $(X,\tau=\left\{X,\emptyset,\left\{2\right\} \right\})$. Este espacio no es metrizable por no ser de Hausdorff.
+    \end{exa}
+
+    \begin{exa}
+        Considere $(X,\tau_D)$. Este espacio es metrizable tomando la métrica discreta.
+    \end{exa}
+
+    \section{Bases y sub-bases de topología}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico. Una subcolección $\mathcal{B}$ de $\tau$ es una \textbf{base para la toplogía $\tau$} si todo $U\in \tau$ puede escribirse como unión arbitraria de elementos de $\mathcal{B}$.
+
+        Si $\mathcal{B}$ es una base para $\tau$, a sus elementos los llamaremos \textbf{básicos}.
+    \end{mydef}
+
+    \begin{obs}
+        Cualquier topología es una base para si misma.
+    \end{obs}
+
+    Considere al espacio topolóigco $(X,\tau)$. Una base $\mathcal{B}$ de $\tau$ cumple que
+    \begin{enumerate}
+        \item $\mathcal{B}\subseteq\tau$.
+        \item Si $U\in\tau$ entonces existe $\left\{U_\alpha\right\}_{\alpha\in I}\subseteq\mathcal{B}$ tal que $U=\bigcup_{\alpha\in A}U_\alpha$.
+    \end{enumerate}
+
+    ¿Qué pretendemos con esta definición?
+
+    \begin{exa}
+        Sea $X$ un conjunto y sea $\mathcal{M}=\left\{\left\{p\right\}\big| p\in X \right\}$. Esta es una base para $\tau_D$ definida sobre $X$.
+    \end{exa}
+
+    Básicamente lo que se pretende es descibir a todos los elementos de la topología mediante un conjunto más pequeño de elementos (esto permite que sea más fácil de manejar y que las propiedades deseadas para los elementos de la topología se sigan cumpliendo).
+
+    \begin{exa}
+        Sea $(X,d)$ un espacio métrico y sea $\tau_d$ la topología generada por la métrica $d$. Entonces, las colecciones:
+        \begin{equation*}
+            \mathcal{B}_1 =\left\{B_d(x,r)\big| x\in X, r\in\mathbb{R}^+ \right\}
+        \end{equation*}
+        es una base para la topología generada por $\tau_d$. Además,
+        \begin{equation*}
+            \mathcal{B}_2=\left\{B_d(x,q)\big| x\in X, q\in\mathbb{Q}^+ \right\}
+        \end{equation*}
+        es otra base. Más aún:
+        \begin{equation*}
+            \mathcal{B}_3=\left\{B_d\left(x,\frac{1}{n}\right) \big| x\in X, n\in\mathbb{N} \right\}
+        \end{equation*}
+        es otra base.
+    \end{exa}
+
+    \begin{exa}
+        Sea $X=\left\{a,b,c,d\right\}$ y $\kappa=\left\{\left\{a,b,c\right\}, \left\{c,d\right\} \right\}$. Afirmamos que no existe una topología definida sobre $X$ tal que $\kappa$ sea base de ella.
+
+        En efecto, suponga que $\tau$ es una topología sobre $X$ y $\kappa$ es una base para $\tau$, entonces $\left\{a,b,c\right\}$ y $\left\{c,d\right\}$ están en $\tau$, luego su intersección $\left\{c\right\}\in\tau$. Pero, $\left\{c\right\}$ no puede ser escrito como unión de elementos de $\kappa$.
+    \end{exa}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico y sea $\mathcal{B}\subseteq\tau$. Entonces, $\mathcal{B}$ es una base para la topología $\tau$ si y sólo si dados $U\in \tau$ y $u\in U$ existe $B\in\mathcal{B}$ tal que $u\in B\subseteq U$.
+    \end{propo}
+
+    \begin{proof}
+        Probaremos la doble implicación.
+
+        $\Rightarrow$): Suponga que $\mathcal{B}$ es una base para la topología $\tau$. Sea $U\in \tau$ y $u\in U$. Como $\mathcal{B}$ es una base entonces exise una subcolección $\mathcal{C}\subseteq\mathbb{B}$ tal que $U\bigcup\mathcal{C}$, luego existe $C_\alpha\in\mathcal{C}$ tal que $u\in C_\alpha$. Por ende $u\in C_\alpha\subseteq U$. Tomando $B=C_\alpha\in\mathcal{B}$ se tiene el resultado.
+
+        $\Leftarrow)$: Suponga que se cumple la tesis. Ya se tiene que $\mathcal{B}\subseteq\tau$. Sea entonces $U\in\tau$. Para cada $x\in U$ existe $B_x\in\mathcal{B}$ tal que $x\in B_x\subseteq U$, luego la colección:
+        \begin{equation*}
+            \left\{U_x\in\mathcal{B}\big| x\in U \right\}
+        \end{equation*}
+        es una subcolección de $\mathcal{B}$ tal que $\bigcup_{x\in U}U_x=M$. Por tanto, $\mathcal{B}$ es una base de $\tau$.
+    \end{proof}
+
+    \begin{cor}
+        Sea $(X,\tau)$ un espacio topológico y sea $\mathcal{B}$ una base de la topología $\tau$. Sea $U\subseteq X$, entonces $U$ es abierto en $\tau$ si y sólo si dados $x\in U$ existe $B\in\mathcal{B}$ tal que $x\in B\subseteq U$.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato de la proposición anterior.
+    \end{proof}
 
 \end{document}
