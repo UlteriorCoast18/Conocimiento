@@ -443,4 +443,145 @@
         Cuando decimos lo de enumeración, nos referimos a esto. Básicamente enumeramos a todas las fórmulas bien formadas. Cuando decimos que la enumeración es efectiva, hacemos referencia a que podemos hacerlo de forma mecánica.
     \end{obs}
 
+    \section{Lista de Axiomas Lógicos}    
+
+    \begin{mydef}[Axiomas Lógicos]
+        Se tienen los siguientes axiomas. Cualquier fórmula que caiga en alguno de los siguientes casos.
+        \begin{enumerate}
+            \item $\varphi\Rightarrow (\psi\Rightarrow \varphi)$.
+            \item $\varphi\Rightarrow ((\psi\Rightarrow\neg\varphi)\Rightarrow \neg\psi)$.
+            \item $\varphi\Rightarrow\varphi'$ siempre que $\varphi'$ sea el resultado de sustituir una subfórmula de la forma $\neg\neg\psi$ por $\psi$, o viceversa.
+            \item $\varphi\Rightarrow \varphi[\psi\Rightarrow\xi \leftrightsquigarrow\neg\xi\Rightarrow \neg\psi]$.
+            \item $\varphi\Rightarrow\varphi[\neg\psi\Rightarrow\psi\leftrightsquigarrow\psi]$.
+            \item $(\varphi\Rightarrow(\xi\Rightarrow\psi))\Rightarrow((\varphi\Rightarrow\xi)\Rightarrow(\varphi\Rightarrow\psi))$.
+        \end{enumerate}
+        Junto con una única regla de inferencia, llamada \textbf{Modus Ponens}, la cual consiste en que
+        \begin{center}
+            \begin{tabular}{c c c}
+                $\varphi$ & $\Rightarrow$ & $\psi$ \\
+                $\varphi$ &  &  \\
+                \hline
+                 & $\therefore$ & $\psi$ \\
+            \end{tabular}
+        \end{center}
+    \end{mydef}
+
+    Un ejemplo de 3. sería que $(p_1\Rightarrow p_2)\Rightarrow(p_1\Rightarrow \neg\neg p_2)$. Cuando ponemos $[.]$ al lado de una fórmula, nos referimos a cualquier subfórmula interna dentro de la original. Cuando ponemos $\leftrightsquigarrow$ es que podemos sustituir uno por otro.
+
+    \begin{mydef}
+        Sea $\Gamma$ un conjunto de fórmulas,y sea $\varphi$ una fórmula.
+        \begin{enumerate}
+            \item Una \textbf{demostración} de $\varphi$ a partifr de $\Gamma$ es una sucesión finita de fórmulas $\left(\varphi_1,...,\varphi_n\right)$ tales que, para cada $i$ se cumple una de las siguientes:
+            \begin{enumerate}
+                \item $\varphi_i$ es un axioma lógico.
+                \item $\varphi_i$ es un elemento de $\Gamma$.
+                \item Existen $j,k<i$ tales que: $\varphi_j$ es la fórmula $\varphi_k\Rightarrow\varphi_i$.
+            \end{enumerate}
+            \item $\varphi$ es \textbf{demostrable a partir de $\Gamma$}, o bien $\varphi$ es un \textbf{teorema de $\Gamma$}, si existe una demostración de $\varphi$ a partir de $\Gamma$. Esto se simboliza por $\Gamma\vdash\varphi$. 
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        $\varphi\lor\psi$ es $\neg\varphi\Rightarrow\psi$, y $\varphi\land\psi$ es $\neg(\psi\Rightarrow\neg \varphi)$.
+        $\varphi\iff\psi$ es $(\varphi\Rightarrow \psi)\land( \psi\Rightarrow\varphi)$
+    \end{obs}
+
+    \begin{exa}
+        Se cumple que $\left\{\neg C,A\Rightarrow C, A\lor(B\Rightarrow C),\neg C\Rightarrow (C\Rightarrow E), B \right\}\vdash E$. Probemos que esto es cierto:
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $(A\Rightarrow C)$ & $\Rightarrow$ & $(\neg C\Rightarrow\neg A)$ & Ax. 4 \\
+                2) & $A$ & $\Rightarrow$ & $C$ & Premisa \\
+                3) & $\neg C$ & $\Rightarrow$ & $\neg A$& Modus ponens \\
+                4) & $\neg C$ &  &  & Premisa\\
+                5) & $\neg A$ &  &  & 3,4 Modus ponens\\
+                6) & $\neg A$ & $\Rightarrow$ & $(B\Rightarrow C)$ & Premisa\\
+                7) & $B$ & $\Rightarrow$ & $C$ & 6,5 Modus ponens\\
+                8) & $B$ &  &  & Premisa\\
+                9) & $C$ &  &  & 7,8 Modus ponens\\
+                10) & $\neg C$ & $\Rightarrow$ & $(C\Rightarrow E)$ & Premisa\\
+                11) & $C$ & $\Rightarrow$ & $E$  & 10,4 Modus ponens\\
+                12) & $E$ &  &  & 11,9 Modus ponens\\
+                \hline
+                & & $\therefore$ & $E$ & \\
+            \end{tabular}
+        \end{center}
+    \end{exa}
+
+    \begin{exa}
+        $\left\{\varphi\land\psi \right\}\vdash\varphi$. En efecto:
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $\neg(\psi\Rightarrow\neg\varphi)$ &  &  & Premisa \\
+                2) & $\neg\varphi$ & $\Rightarrow$ & $\psi\Rightarrow\neg\varphi$ & Ax. 1 \\
+                3) & $(\neg\varphi\Rightarrow(\psi\Rightarrow\neg\varphi))$ & $\Rightarrow$ & $(\neg(\psi\Rightarrow\neg\varphi)\Rightarrow\neg\neg\varphi)$ & Ax. 4 \\
+                4) & $\neg(\psi\Rightarrow\neg\varphi)$ & $\Rightarrow$ & $\neg\neg\varphi$ & 3,2 M.P. \\
+                5) & $\neg\neg\varphi$ &  &  & 4,1 M.P. \\
+                6) & $\neg\neg\varphi$ & $\Rightarrow$ & $\varphi$ & Ax. 3\\
+                7) & $\varphi$ &  &  & 6,5 M.P.\\
+                \hline
+                & & $\therefore$ & $\varphi$ & \\
+            \end{tabular}
+        \end{center}
+        esta demostración es llamada \textbf{simplificación}.
+    \end{exa}
+
+    Hay varias demostraciones que son de utilidad. Como las siguientes:
+    \begin{excer}
+        Pruebe lo siguiente: 
+        \begin{enumerate}
+            \item $\left\{\varphi\Rightarrow \psi,\neg\psi \right\}\vdash\neg\varphi$ (llamada \textbf{Modus Tollens}).
+            \item $\left\{\varphi\right\}\vdash\varphi\lor\psi$ (llamada \textbf{Adición}).
+            \item $\left\{\varphi\lor\psi,\neg\varphi \right\}\vdash\psi$ (llamada \textbf{Silogismo Disyuntivo}).
+            \item $\left\{\varphi,\psi\right\}\vdash \varphi\land\psi$ (llamada \textbf{Conjunción}).
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        Probemos cada inciso.
+        
+        De (1): 
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $\varphi\Rightarrow\psi$ & & & Premisa \\
+                2) & $(\varphi\Rightarrow \psi)$ & $\Rightarrow$ & $(\neg \psi\Rightarrow\neg\psi)$ & Ax. 4 \\
+                3) & $\neg\psi$ & $\Rightarrow$ & $\neg\psi$ & 2,1 M.P. \\
+                4) & $\neg\psi$ &  &  & Premisa \\
+                5) & $\neg\varphi$ &  &  & 3,4 M.P. \\
+                \hline
+                & & $\therefore$ & $\neg\varphi$ & \\
+            \end{tabular}
+        \end{center}
+
+        De (2): 
+
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $\varphi$ & & & Premisa \\
+                2) & $\varphi$ & $\Rightarrow$ & $(\neg\psi\Rightarrow\varphi)$ & Ax. 1 \\
+                3) & $\neg\psi\Rightarrow\varphi$ & & & 2,1 M.P. \\
+                4) & $\neg\psi\Rightarrow\varphi$ & $\Rightarrow$ & $\neg\varphi\Rightarrow\neg\neg\psi$ & Ax.4. \\
+                5) & $\neg\varphi\Rightarrow\neg\neg\psi$ & & & 4,3 M.P. \\
+                6) & $\neg\varphi\Rightarrow\neg\neg\psi$ & $\Rightarrow$ & $\neg\varphi\Rightarrow\psi$ & Ax. 3 \\
+                7) & $\neg\varphi\Rightarrow\psi$ & & & 6,5 M.P. \\
+                8) & $\varphi\lor\psi$ & & & 7) \\
+                \hline
+                & & $\therefore$ & $\varphi\lor\psi$ & \\
+            \end{tabular}
+        \end{center}
+
+        De (3):
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $\varphi\lor\psi$ & & & Premisa \\
+                2) & $\neg\varphi$ & $\Rightarrow$ & $\psi$ & 1) \\
+                3) & $\neg\varphi$ & & & Premisa\\
+                4) & $\psi$ & & & 2,3 M.P.\\
+                \hline
+                & & $\therefore$ & $\psi$ & \\
+            \end{tabular}
+        \end{center}
+
+    \end{proof}
+
 \end{document}
