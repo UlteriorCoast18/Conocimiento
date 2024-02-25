@@ -40,8 +40,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!60!red!30
@@ -50,8 +50,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!50!blue!30
@@ -60,8 +60,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{theor}{Teorema}[section]
@@ -69,8 +69,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{propo}{Proposición}[section]
@@ -78,8 +78,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{cor}{Corolario}[section]
@@ -87,8 +87,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{lema}{Lema}[section]
@@ -96,8 +96,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     roundcorner=5pt,
     backgroundcolor = gray!30,
     hidealllines = true
@@ -106,8 +106,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     roundcorner=5pt
 ]{excer}{Ejercicio}[section]
 
@@ -121,10 +121,14 @@
 \newcommand{\Int}[1]{\ensuremath{\mathring{#1}}}
 \newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
 \newcommand{\Fr}[1]{\ensuremath{\textup{Fr}(#1)}}
+\newcommand{\natint}[1]{\ensuremath{\left[|#1|\right]}}
+\newcommand{\floor}[1]{\ensuremath{\lfloor#1\rfloor}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
 \begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
     \title{Notas del curso Topología I}
     \author{Cristo Daniel Alvarado}
     \maketitle
@@ -483,16 +487,24 @@
         Al conjunto de todas las vecindades del punto $x$ lo denotamos por $\mathcal{V}(x)$. Tenemos que $X\in\mathcal{V}(x)$ para todo $x\in X$.
     \end{mydef}
 
+    \begin{mydef}
+        Se define el conjunto $\natint{1,n}$ llamado \textbf{intervalo natural de $1$ a $n$} como el conjunto $\left\{1,2,...,n\right\}$.
+    \end{mydef}
+        
     \begin{excer}
         Sea $(X,\tau)$ un espacio topológico.
         \begin{enumerate}
             \item Si $V_1,...,V_n\in\mathcal{V}(x)$ para $x\in X$, entonces $V_1\cap...\cap V_n\in\mathcal{V}(x)$.
-            \item Si $\left\{V_\alpha\right\}_{\alpha\in I}\subseteq\mathcal{V}(x)$ para $x\in X$, entonces $\bigcap_{\alpha\in I}V_\alpha\in\mathcal{V}(x)$.
+            \item Si $\left\{V_\alpha\right\}_{\alpha\in I}\subseteq\mathcal{V}(x)$ para $x\in X$, entonces $\bigcup_{\alpha\in I}V_\alpha\in\mathcal{V}(x)$.
         \end{enumerate}
     \end{excer}
 
     \begin{sol}
+        Probaremos ambos incisos:
         
+        De (1): Como $x\in V_i$ para $i\in\natint{1,n}$, entonces existen $U_1,...,U_n$ abiertos en $X$ tales que $x\in U_i\subseteq V_i$ para todo $i\in\natint{1,n}$, luego $x\in\bigcap_{i=1}^n U_i\subseteq V_1\cap...\cap V_n$ donde el primer conjunto es abierto, luego $V_1\cap...\cap V_n\in\V{x}$.
+
+        De (2): Es inmediato.
     \end{sol}
 
     \begin{mydef}
@@ -514,7 +526,7 @@
         Sea $(X,\tau)$ un espacio topológico, $x\in X$ y sean $A,B\subseteq X$. Entonces:
         \begin{enumerate}
             \item $\Int{A}\subseteq A\subseteq\Cls{A}$.
-            \item $\Int{A}=\bigcup\left\{U\in\tau\big|U\subseteq A \right\}$.
+            \item $\Int{A}=\bigcup\left\{U\in\tau\big|U\subseteq A \right\}=\bigcup\mathcal{A}$.
             \item $\Int{A}\in\tau$.
             \item Si $V\in\tau$ tal que $V\subseteq A$, entonces $V\subseteq\Int{A}$.
             \item $A$ es abierto si y sólo si $\Int{A}=A$.
@@ -540,21 +552,100 @@
     \end{propo}
 
     \begin{proof}
-        De (1):
+        Se probarán todos los incisos.
 
-        De (17): Sea $x\in X$.
+        De (1): Si $x\in\Int{A}$, entonces $A\in\V{x}$, luego $x\in A$. Por tanto, $\Int{A}\subseteq A$. Ahora, es claro que $A\subseteq \Cls{A}$, pues de la definción de cerradura de $A$, todos los elementos de la intersección en esta definición contienen a $A$, luego $A$ está contenida en la intersección.
+
+        De (2): Veamos que se tienen las dos contenciones:
+        \begin{itemize}
+            \item $\Int{A}\subseteq\bigcup\mathcal{A}$. Sea $x\in \Int{A}$, entonces $A\in\V{x}$, por lo cual existe un abierto $U\in\tau$ tal que $x\in U\subseteq A$, luego $U\in\mathcal{A}$, es decir que $x\in \bigcup\mathcal{A}$.
+            \item $\bigcup\mathcal{A}\subseteq\Int{A}$. Sea $x\in \bigcup\mathcal{A}$, entonces existe $U\in\tau$ con $U\subseteq A$ tal que $x\in U$, por lo cual $A\in\V{x}$, luego $x\in\Int{A}$.
+        \end{itemize}
+        por los dos incisos anteriores, se sigue que $\Int{A}=\bigcup\mathcal{A}$, es decir que el interior de $A$ es el conjunto abierto más grande contenido en $A$.
+
+        De (3): Es inmediato de (2).
+
+        De (4): Es inmediato de (2).
+
+        De (5): Supongamos que $A$ es abierto, entonces $A\in\tau$. Además, $A\subseteq A$, por lo cual de (4) se sigue que $A\subseteq\Int{A}$. Ya se tiene que $\Int{A}\subseteq A$, por tanto $A=\Int{A}$.
+
+        La recíproca es inmediata.
+
+        De (6): Por (3), se tiene que $\Int{A}$ es abierto, luego por (5) se sigue que $\Int{\Int{A}}=\Int{A}$.
+
+        De (7): Probaremos las dos contenciones:
+        \begin{itemize}
+            \item $\Int{\widehat{A\cap B}}\subseteq\Int{A}\cap\Int{B}$. Si $x\in\Int{\widehat{A\cap B}}\subseteq A\cap B$, entonces existe $U\in\tau$ tal que $x\in U\subseteq A\cap B$, en particular $x\in U\subseteq A$ y $x\in U\subseteq B$, luego $x\in \Int{A}$ y $x\in \Int{B}\Rightarrow x\in \Int{A}\cap\Int{B}$. Por tanto, $\Int{\widehat{A\cap B}}\subseteq\Int{A}\cap\Int{B}$.
+            \item $\Int{A}\cap\Int{B}\subseteq\Int{\widehat{A\cap B}}$. El conjunto $\Int{A}\cap\Int{B}\in\tau$ y $\Int{A}\cap\Int{B}\subseteq A\cap B$. Por (4), se sigue que $\Int{A}\cap\Int{B}\subseteq\Int{\widehat{A\cap B}}$.
+        \end{itemize}
+        de los dos incisos anteriores, se sigue que $\Int{\widehat{A\cap B}}=\Int{A}\cap\Int{B}$.
+
+        De (8): Se tiene que $\Int{A}\cup\Int{B}\in\tau$ es tal que $\Int{A}\cup\Int{B}\subseteq A\cup B$, luego por (4) se sigue que $\Int{A}\cup\Int{B}\subseteq\Int{\widehat{A\cup B}}$.
+
+        De (9): Es inmediato de la definición de $\Cls{A}$, pues este conjunto es intersección arbitraria de cerrados.
+
+        De (10): Es inmediato de la definición de $\Cls{A}$. Esto significa que la cerradura de un conjunto es el cerrado más pequeño que contiene a $A$.
+
+        De (11): Suponga que $A$ es cerrado, entonces como $A\subseteq A$, se tiene por (10) que $\Cls{A}\subseteq A$. Luego, como $A\subseteq \Cls{A}$ por (1), se sigue que $A=\Cls{A}$.
         
-        $\Rightarrow$): Suponga que $x\in\Cls{A}$, entonces para todo $C\subseteq X$ cerrado tal que $A\subseteq C$. Suponga que existe $U_0\in\tau$ abierto tal que $x\in U_0$ y $U_0\cap A=\emptyset$. Entonces $A\subseteq X-M$ es un cerrado que contiene a $A$, luego $x\in X-M$, es decir $x\notin M$\contradiction. Por tanto, $U\cap A\neq\emptyset$.
+        La recíproca es inmediata de (9).
+
+        De (12): Por (9), $\Cls{A}$ es cerrado, luego por (11) se tiene que $\Cls{A}=\Cls{\Cls{A}}$.
+
+        De (13): Proaremos las dos contenciones:
+        \begin{itemize}
+            \item $\Cls{A\cup B}\subseteq\Cls{A}\cup\Cls{B}$. El conjunto $\Cls{A}\cup\Cls{B}$ es un cerrado que contiene a $A\cup B$, por tanto del inciso (10) se tiene que $\Cls{A\cup B}\subseteq\Cls{A}\cup\Cls{B}$.
+            \item Como $A, B\subseteq A\cup B$, entonces $A,B\subseteq \Cls{A\cup B}$, luego por (10) se tiene que $\Cls{A},\Cls{B}\subseteq \Cls{A\cup B}$. Por tanto, $\Cls{A}\cup\Cls{B}\subseteq\Cls{A\cup B}$.
+        \end{itemize}
+        de los dos incisos anteriores, se sigue que $\Cls{A\cup B}=\Cls{A}\cup\Cls{B}$.
+
+        De (14): Como $A\subseteq\Cls{A}$ y $B\subseteq\Cls{B}$, entonces $A\cap B\subseteq\Cls{A}\cap\Cls{B}$. Por (10), se sigue que $\Cls{A\cap B}\subseteq\Cls{A}\cap\Cls{B}$.
+
+        De (15): Se dividirá en dos partes:
+        \begin{itemize}
+            \item $\emptyset=\Int{\emptyset}=\Cls{\emptyset}$. Como $\emptyset\subseteq\Int{\emptyset}\subseteq\emptyset$, entonces $\emptyset=\Int{\emptyset}$. Ahora, como $\emptyset$ es un cerrado que contiene a $\emptyset$, se sigue por (10) que $\Cls{\emptyset}\subseteq\emptyset$. Por ende, $\Cls{\emptyset}=\emptyset$.
+            \item Para $X$ el caso es casi análogo a $\emptyset$ (al final todo esto resulta más en un juego de palabras que en otra cosa).
+        \end{itemize}
+
+        De (16). Como $A\subseteq B$, entonces $\Int{A}\subseteq B$, y $A\subseteq\Cls{B}$, por (4) y (10), se debe tener que $\Int{A}\subseteq\Int{B}$ y $\Cls{A}\subseteq\Cls{B}$.
+
+        De (17): Sea $x\in X$:
+        
+        $\Rightarrow$): Suponga que $x\in\Cls{A}$, entonces para todo $C\subseteq X$ cerrado tal que $A\subseteq C$, $x\in C$. Suponga que existe $U_0\in\tau$ abierto tal que $x\in U_0$ y $U_0\cap A=\emptyset$. Entonces $A\subseteq X-U_0$ es un cerrado que contiene a $A$, luego $x\in X-U_0$, es decir $x\notin U_0$\contradiction. Por tanto, $U\cap A\neq\emptyset$ para todo $U\in\tau$ tal que $x\in U$.
 
         $\Leftarrow$): Sea $L\subseteq X$ un cerrado tal que $A\subseteq L$. Probaremos que $x\in L$, suponiendo la tesis para este $x\in X$. Suponga que $x\notin L$, entonces $x\in X-L$ el cual es abierto, por tanto $(X-L)\cap A\neq\emptyset$, es decir $A\nsubseteq L$\contradiction. Por tanto, $x\in L$.
         
+        De (18): Es inmediato de la definición de $\Fr{A}=\Cls{A}\cap\Cls{X-A}$ y del inciso (17).
+
         De (19): Se probarán las dos contenciones:
-        \renewcommand{\theenumi}{\alph{enumi})}
-        \begin{enumerate}
-            \item $\Cls{A}\subseteq A\cup A'$. Sea $x\in\Cls{A}$. Si $x\in A$, se tiene el resultado. Suponga que $x\notin A$. Como $x\in\Cls{A}$, por (17) para todo abierto $U\subseteq X$ se tiene que $U\cap A\neq\emptyset$, pero $x\notin A$, por lo cual $(U-\left\{x\right\})\cap A-\neq\emptyset$. Por tanto, $x\in A'$.
+        \begin{itemize}
+            \item $\Cls{A}\subseteq A\cup A'$. Sea $x\in\Cls{A}$. Si $x\in A$, se tiene el resultado. Suponga que $x\notin A$. Como $x\in\Cls{A}$, por (17) para todo abierto $U\subseteq X$ se tiene que $U\cap A\neq\emptyset$, pero $x\notin A$, por lo cual $(U-\left\{x\right\})\cap A\neq\emptyset$. Por tanto, $x\in A'$.
             \item $A\cup A'\subseteq\Cls{A}$. Es inmediata de la definición de $\Cls{A}$ y $A'$.
-        \end{enumerate}
-        Por a) y b) se sigue el resultado.
+        \end{itemize}
+        por los dos incisos anteriores se sigue que $\Cls{A}=A\cup A'$.
+
+        De (20): Suponga que $A$ es cerrado, entonces por (11), $\Cls{A}=A$, luego por (19) se tiene que $A\cup A'=\Cls{A}=A$, es decir que $A'\subseteq A$.
+        
+        Si $A'\subseteq A$, entonces $A=A\cup A'=\Cls{A}$ por (11), luego $A=\Cls{A}$, es decir que $A$ es cerrado.
+        
+        De (21): Es claro que $\Int{A}\cap\Fr{A}\subseteq\Cls{A}$, pues $\Int{A},\Fr{A}\subseteq\Cls{A}$. Ahora, si $x\in\Cls{A}$ sea $U\subseteq X$ tal que $x\in U$. Se tienen dos casos:
+        \begin{itemize}
+            \item $U\subseteq A$, en este caso se sigue de la definición que $x\in\Int{A}$.
+            \item $U\nsubseteq A$, entonces existe $y\in U$ tal que $y\notin A$, es decir que $U\cap(X-A)\neq\emptyset$. Como $x\in \Cls{A}$, entonces $U\cap A\neq\emptyset$. Por ser el $U$ arbitrario, se sigue por (18) que $x\in\Fr{A}$.
+        \end{itemize}
+        es decir que $x\in\Int{A}\cup\Fr{A}$. Por tanto, $\Cls{A}\subseteq\Int{A}\cup\Fr{A}$. Así, $\Cls{A}=\Int{A}\cup\Fr{A}$.
+
+        De (22): Veamos que $A=X-(X-A)$, por lo cual:
+        \begin{equation*}
+            \Fr{A}=\Cls{A}\cap\Cls{X-A}=\Cls{X-A}\cap\Cls{A}=\Cls{X-A}\cap\Cls{X-(X-A)}=\Fr{X-A}
+        \end{equation*}
+
+        De (23): Observemos que: $x\in\Cls{A}-\Fr{A}$ si y sólo si se cumple que
+        \begin{itemize}
+            \item Para todo $U$ abierto tal que $x\in U$ se cumple que $U\cap A\neq\emptyset$.
+            \item Existe $U_0$ abierto tal que $x\in U_0$ y, $U_0\cap A=\emptyset$ o $U_0\cap (X-A)=\emptyset$.
+        \end{itemize}
+        Por ambas condiciones, debe suceder que $U_0\cap A\neq\emptyset$ y $U_0\cap(X-A)=\emptyset$, es decir que $U_0 \subseteq A$, esto es que $x\in\Int{A}$. Por tanto, $x\in \Cls{A}-\Fr{A}$ si y sólo si $x\in\Int{A}$. Luego se tiene la igualdad.
     \end{proof}
 
     \renewcommand{\theenumi}{\arabic{enumi}}
@@ -570,7 +661,7 @@
     \begin{proof}
         Probemos ambos incisos:
         
-        De (1): Si $x\in \bigcup_{\alpha\in I}\Cls{A_\alpha}$, sea $U\in\tau$ tal que $x\in U$, luego $\exists \alpha\in I$ tal que $x\in \Cls{A_\alpha}$, por ende $U\cap A_\alpha\neq\emptyset$, por tanto $\left(\bigcup_{\alpha\in I}A_\alpha\right)\cap A_\alpha\neq\emptyset$. Como el $U$ fue arbitrario, se sigue que $x\in\Cls{\bigcup_{\alpha\in I}A_\alpha}$.
+        De (1): Si $x\in \bigcup_{\alpha\in I}\Cls{A_\alpha}$, sea $U\in\tau$ tal que $x\in U$, luego $\exists \alpha\in I$ tal que $x\in \Cls{A_\alpha}$, por ende $U\cap A_\alpha\neq\emptyset$, por tanto $U\cap\left(\bigcup_{\alpha\in I}A_\alpha\right)\cap \neq\emptyset$. Como el $U\in\tau$ fue arbitrario, se sigue que $x\in\Cls{\bigcup_{\alpha\in I}A_\alpha}$.
 
         De (2): Si $x\in \Cls{\bigcap_{\alpha\in I}A_\alpha}$, entonces para $U\in\tau$ tal que $x\in U$ se cumple que $\left(\bigcap_{\alpha\in I}A_\alpha\right)\cap U\neq\emptyset\Rightarrow\bigcap_{\alpha\in I}\left(A_\alpha\cap U \right)\neq\emptyset$, es decir que $U\cap A_\alpha\neq\emptyset$, para todo $\alpha\in I$, luego como $U\in\tau$ fue arbitrario, se sigue que $x\in \Cls{A_\alpha}$ para todo $\alpha\in I$. Así $x\in\bigcap_{\alpha\in I}\Cls{A_\alpha}$. 
     \end{proof}
@@ -578,7 +669,7 @@
     \begin{exa}
         Considere al espacio topológico $(\mathbb{R},\tau_u)$. Tomemos
         \begin{enumerate}
-            \item $A=]0,1]\cup\left\{9\right\}$. Tenemos que $\Cls{A}=[0,1]\cup\left\{9\right\}$, $A'=[0,1]$, por lo cual no podemos relacionar (al menos de forma directa) a $A$ junto con su $A'$ (uno no está contenido dentro del otro).
+            \item $A=]0,1]\cup\left\{9\right\}$. Tenemos que $\Cls{A}=[0,1]\cup\left\{9\right\}$, $A'=[0,1]$, por lo cual no podemos relacionar (al menos de forma directa) a $A$ junto con su $A'$ (esto es, uno no está contenido dentro del otro).
             \item Sea $n\in\mathbb{N}$, defina $A_n=[\frac{1}{n},1]$. Se tiene que
             \begin{equation*}
                 \bigcup_{n\in\mathbb{N}}\Cls{A_n}=]0,1]
@@ -588,18 +679,48 @@
                 \bigcup_{n\in\mathbb{N}}A_n=]0,1]\Rightarrow \Cls{\bigcup_{n\in\mathbb{N}}A_n}=[0,1]
             \end{equation*}
             es decir que $\Cls{\bigcup_{n\in\mathbb{N}}A_n}\nsubseteq\bigcup_{n\in\mathbb{N}}\Cls{A_n}$.
-            \item Considere $X=\left\{a,b\right\}$, tomemos al espacio topológico $(X,\tau=\left\{X,\emptyset,\left\{a\right\} \right\})$. Si $A=\left\{a\right\}$ y $b=\left\{b\right\}$, entonces $\Int{A}=\left\{a\right\}$, $\Int{B}=\emptyset$, $\Cls{A}=X$, $\Cls{B}=B$. Luego $\Int{\widehat{A\cup B}}\nsubseteq \Int{A}\cup\Int{B}$.
+            \item Considere $X=\left\{a,b\right\}$, tomemos al espacio topológico $(X,\tau=\left\{X,\emptyset,\left\{a\right\} \right\})$. Si $A=\left\{a\right\}$ y $b=\left\{b\right\}$, entonces $\Int{A}=\left\{a\right\}$, $\Int{B}=\emptyset$, $\Cls{A}=X$, $\Cls{B}=B$. Luego $X=\Int{\widehat{A\cup B}}\nsubseteq \Int{A}\cup\Int{B}=A$.
             
-            Además $A\cap B=\emptyset$, $\Cls{A\cap B}=\emptyset$. Por ende, $\Cls{A}\cap \Cls{B}\nsubseteq\Cls{A\cap B}$.
+            Además $A\cap B=\emptyset\Rightarrow\Cls{A\cap B}=\emptyset$. Por ende, $B=\Cls{A}\cap \Cls{B}\nsubseteq\Cls{A\cap B}$.
         \end{enumerate}
     \end{exa}
+
+    \begin{mydef}
+        Para $x\in\mathbb{R}$, se define el \textbf{suelo de $x$} (denotado por $\floor{x}$) como el máximo entero tal que $\floor{x}\leq x$.
+    \end{mydef}
 
     \begin{excer}
         Considere $(\mathbb{R},\tau_u)$. Encuentre $\Int{\mathbb{N}}$, $\Cls{\mathbb{N}}$, $\mathbb{N}'$, $\Fr{\mathbb{N}}$.
     \end{excer}
 
     \begin{sol}
-        
+        Hagamos cada uno de los incisos:
+        \begin{enumerate}
+            \item $\Int{\mathbb{N}}$) Afirmamos que $\Int{\mathbb{N}}=\emptyset$. En efecto, si fuese el caso contrario, existiría $U$ abierto no vacío en $(\mathbb{R},\tau_u)$ tal que $U\subseteq\mathbb{N}$, luego si $x\in U\cap\mathbb{N}\neq\emptyset$ (por ser $U$ no vacío), entonces existe $r>0$ tal que $]x-r,x+r[\subseteq U$.
+            
+            Sea $\delta=\min\left\{1,r\right\}>0$, entonces $]x-\delta,x+\delta[\subseteq U$, pero como $x\in\mathbb{N}$, no puede ser que $x+\frac{1}{2}\in\mathbb{N}$, lo cual contradice el hecho de que $U\subseteq\mathbb{N}$. Por tanto, $\Int{\mathbb{N}}=\emptyset$.
+            \item $\Cls{\mathbb{N}}$) Probaremos que $\mathbb{N}$ es cerrado. Si $x\in\mathbb{R}-\mathbb{N}$, entonces existe $r=\min\left\{x-\floor{x},1-x+\floor{x}\right\}>0$ (pues $x\notin\mathbb{N}$, luego $\floor{x}<x$) tal que $]x-r,x+r[\subseteq\mathbb{R}-\mathbb{N}$. 
+            
+            En efecto, supongamos que $x-\floor{x}\leq1-x+\floor{x}$, entonces
+            \begin{equation*}
+                \begin{split}
+                    ]x-r,x+r[\subseteq &]\floor{x},x+1-x+\floor{x}[ \\
+                    \subseteq &]\floor{x},\floor{x}+1[ \\
+                \end{split}
+            \end{equation*}
+            es decir, $]x-r,x+r[\subseteq\mathbb{R}-\mathbb{N}$. Si $x-\floor{x}\leq1-x+\floor{x}$ el caso es análogo. Por tanto, $\mathbb{R}-\mathbb{N}$ es abierto, luego $\mathbb{N}$ es cerrado y, por ende $\Cls{\mathbb{N}}=\mathbb{N}$.
+
+            \item $\mathbb{N}'$) Afirmamos que el conjunto es vacío. Sea $x\in\mathbb{R}$. Se tienen dos casos:
+            \begin{itemize}
+                \item $x\in\mathbb{N}$) En este caso, existe $r=\frac{1}{2}>0$ tal que $(]x-r,x+r[-\left\{x\right\})\cap\mathbb{N}=\emptyset$.
+                \item $x\notin\mathbb{N}$) En este caso, existe $r=\min\left\{x-\floor{x},1-x+\floor{x}\right\}>0$ tal que (como se vió en (2)) $]x-r,x+r[\cap\mathbb{N}=\emptyset$, en particular $(]x-r,x+r[-\left\{x\right\})\cap\mathbb{N}=\emptyset$.
+            \end{itemize}
+            Por ambos incisos, se sigue que $\mathbb{N}'=\emptyset$.
+
+            \item $\Fr{\mathbb{N}}$) Afirmamos que $\Fr{\mathbb{N}}=\mathbb{N}$. En efecto, ya se sabe que $\mathbb{N}=\Cls{\mathbb{N}}$. Probaremos que $\mathbb{N}\subseteq\Cls{\mathbb{R}-\mathbb{N}}$ y con ello se tendría el resultado. 
+            
+            Sea $x\in\mathbb{N}$, entonces si $U$ es un abierto tal que $x\in U$, entonces existe $r>0$ tal que $]x-r,x+r[\subseteq U$, luego si $\delta=\min\left\{1,r\right\}>0$, se tiene que el elemento $x+\frac{\delta}{2}\in\mathbb{R}-\mathbb{N}$, es decir que $U\cap(\mathbb{R}-\mathbb{N})\neq\emptyset$. Por tanto, $x\in\Cls{\mathbb{R}-\mathbb{N}}$, así $\mathbb{N}\subseteq\Cls{\mathbb{R}-\mathbb{N}}$.
+        \end{enumerate}
     \end{sol}
 
     \begin{excer}
@@ -607,7 +728,30 @@
     \end{excer}
 
     \begin{sol}
-        
+        Consideremos cada una de las topologías por separado.
+        \begin{enumerate}
+            \item En $(\mathbb{R},\tau_I)$:
+            \begin{itemize}
+                \item $\Int{\mathbb{Z}}$) Afirmamos que $\Int{\mathbb{Z}}=\emptyset$. En efecto, como $\tau_I=\left\{\emptyset,\mathbb{R} \right\}$, el único abierto contenido en $\mathbb{Z}$ es $\emptyset$, luego $\Int{\mathbb{Z}}=\emptyset$.
+                \item $\Cls{\mathbb{Z}}$) Como el único cerrado que contiene a $\mathbb{Z}$ es $\mathbb{R}$, se sigue que $\Cls{\mathbb{Z}}=\mathbb{R}$.
+                \item $\mathbb{Z}'$) Sea $x\in\mathbb{R}$, si $U$ es un abierto tal que $x\in U$, entonces debe suceder que $U=\mathbb{R}$, luego $(U-\left\{x\right\})\cap\mathbb{Z}\neq\emptyset$. Por tanto $x\in\mathbb{Z}'$. Así, $\mathbb{R}=\mathbb{Z}'$.
+                \item $\Fr{\mathbb{Z}}$) Como $\Cls{\mathbb{R}-\mathbb{Z}}=\mathbb{R}$, entonces se tiene que $\Fr{\mathbb{Z}}=\mathbb{R}$.
+            \end{itemize}
+            \item En $(\mathbb{R},\tau_D)$:
+            \begin{itemize}
+                \item $\Int{\mathbb{Z}}$)
+                \item $\Cls{\mathbb{Z}}$)
+                \item $\mathbb{Z}'$)
+                \item $\Fr{\mathbb{Z}}$)
+            \end{itemize}
+            \item En $(\mathbb{R},\tau_{cf})$:
+            \begin{itemize}
+                \item $\Int{\mathbb{Z}}$)
+                \item $\Cls{\mathbb{Z}}$)
+                \item $\mathbb{Z}'$)
+                \item $\Fr{\mathbb{Z}}$)
+            \end{itemize}
+        \end{enumerate}
     \end{sol}
 
     \begin{mydef}
@@ -619,7 +763,7 @@
     \end{exa}
 
     \begin{exa}
-        $(\mathbb{R},\tau_I)$ no es de Hausdorff (cuando el espacio tiene más de un elemento, esto se sigue cumpliendo).
+        $(\mathbb{R},\tau_I)$ no es de Hausdorff (cuando el espacio tiene más de un elemento esto se sigue cumpliendo).
     \end{exa}
 
     \begin{exa}
@@ -652,7 +796,7 @@
     \end{proof}
 
     \begin{exa}
-        Considere $X=\left\{1,2\right\}$, si tomamos al espacio topológico $(X,\tau=\left\{X,\emptyset,\left\{2\right\} \right\})$. Este espacio no es metrizable por no ser de Hausdorff.
+        Considere $X=\left\{1,2\right\}$, si tomamos al espacio topológico $(X,\tau=\left\{X,\emptyset,\left\{2\right\} \right\})$ obtenemos que este espacio no es metrizable por no ser de Hausdorff.
     \end{exa}
 
     \begin{exa}
@@ -668,10 +812,10 @@
     \end{mydef}
 
     \begin{obs}
-        Cualquier topología es una base para si misma.
+        Cualquier topología es una base para sí misma.
     \end{obs}
 
-    Considere al espacio topolóigco $(X,\tau)$. Una base $\mathcal{B}$ de $\tau$ cumple que
+    Considere al espacio topolóigco $(X,\tau)$. Una base $\mathcal{B}$ de $\tau$ cumple que:
     \begin{enumerate}
         \item $\mathcal{B}\subseteq\tau$.
         \item Si $U\in\tau$ entonces existe $\left\{U_\alpha\right\}_{\alpha\in I}\subseteq\mathcal{B}$ tal que $U=\bigcup_{\alpha\in A}U_\alpha$.
@@ -679,11 +823,11 @@
 
     ¿Qué pretendemos con esta definición?
 
+    Básicamente lo que se pretende es descibir a todos los elementos de la topología mediante un conjunto más pequeño de elementos (esto permite que sea más fácil de manejar y que las propiedades deseadas para los elementos de la topología se sigan cumpliendo).
+
     \begin{exa}
         Sea $X$ un conjunto y sea $\mathcal{M}=\left\{\left\{p\right\}\big| p\in X \right\}$. Esta es una base para $\tau_D$ definida sobre $X$.
     \end{exa}
-
-    Básicamente lo que se pretende es descibir a todos los elementos de la topología mediante un conjunto más pequeño de elementos (esto permite que sea más fácil de manejar y que las propiedades deseadas para los elementos de la topología se sigan cumpliendo).
 
     \begin{exa}
         Sea $(X,d)$ un espacio métrico y sea $\tau_d$ la topología generada por la métrica $d$. Entonces, las colecciones:
@@ -714,13 +858,13 @@
     \begin{proof}
         Probaremos la doble implicación.
 
-        $\Rightarrow$): Suponga que $\mathcal{B}$ es una base para la topología $\tau$. Sea $U\in \tau$ y $u\in U$. Como $\mathcal{B}$ es una base entonces exise una subcolección $\mathcal{C}\subseteq\mathbb{B}$ tal que $U\bigcup\mathcal{C}$, luego existe $C_\alpha\in\mathcal{C}$ tal que $u\in C_\alpha$. Por ende $u\in C_\alpha\subseteq U$. Tomando $B=C_\alpha\in\mathcal{B}$ se tiene el resultado.
+        $\Rightarrow$): Suponga que $\mathcal{B}$ es una base para la topología $\tau$. Sea $U\in \tau$ y $u\in U$. Como $\mathcal{B}$ es una base entonces exise una subcolección $\mathcal{C}\subseteq\mathcal{B}$ tal que $U=\bigcup\mathcal{C}$, luego existe $C_\alpha\in\mathcal{C}$ tal que $u\in C_\alpha$. Por ende $u\in C_\alpha\subseteq U$. Tomando $B=C_\alpha\in\mathcal{B}$ se tiene el resultado.
 
         $\Leftarrow)$: Suponga que se cumple la tesis. Ya se tiene que $\mathcal{B}\subseteq\tau$. Sea entonces $U\in\tau$. Para cada $x\in U$ existe $B_x\in\mathcal{B}$ tal que $x\in B_x\subseteq U$, luego la colección:
         \begin{equation*}
             \left\{U_x\in\mathcal{B}\big| x\in U \right\}
         \end{equation*}
-        es una subcolección de $\mathcal{B}$ tal que $\bigcup_{x\in U}U_x=M$. Por tanto, $\mathcal{B}$ es una base de $\tau$.
+        es una subcolección de $\mathcal{B}$ tal que $\bigcup_{x\in U}U_x=U$. Por tanto, $\mathcal{B}$ es una base de $\tau$.
     \end{proof}
 
     \begin{cor}
