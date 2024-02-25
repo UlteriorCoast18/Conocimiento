@@ -123,7 +123,9 @@
 %recuerda usar \clearpage para hacer un salto de página
 
 \begin{document}
-    \title{Notas de Álgebra Moderna IV. Una introducción a la teoría de categorías.}
+    \title{Notas de Álgebra Moderna IV.
+    
+    Una introducción a la teoría de categorías.}
     \author{Cristo Daniel Alvarado}
     \maketitle
 
@@ -139,13 +141,13 @@
 
     Aceptamos la existencia de \textit{objetos primitivos}, las cuales son clases y conjuntos, dotadas de dos relaciones primitivas, la pertenencia $\in$ e igualdad $=$. Denotamos a los objetos primitivos por letras en mayúsculas.
 
-    \begin{mydef}[Axiomas de NBG]
+    \begin{mydef}[\textbf{Axiomas de NBG}]
         \renewcommand{\theenumi}{A\arabic{enumi}}
         Se tienen los siguientes axiomas:
         \begin{enumerate}
             \item Todo conjunto es una clase.
             \item Si $x\in A$, $\forall x\in B$ y $x\in B$, $\forall x\in A$, entonces $A=B$.
-            \item Si $A\in B$, entonces $A$ es un conjunto.
+            \item Si $A\in B$ donde $B$ es una clase, entonces $A$ es un conjunto.
             \item Si $P(x)$ es una propiedad definida sobre el parámetro $x$ que se recorre sobre conjuntos, entonces existe una clase $[x\big| P(x)]$ tal que para cada conjunto $y$.
             \begin{equation*}
                 \begin{split}
@@ -171,7 +173,7 @@
     \begin{exa}
         Si $X$ y $Y$ son conjuntos, entonces
         \begin{equation*}
-            [X,Y]=[z\big| z=x\textup{ o }z=y]
+            [X,Y]=[Z\big| Z=X\textup{ o }Z=Y]
         \end{equation*}
         (construida por el A4).
     \end{exa}
