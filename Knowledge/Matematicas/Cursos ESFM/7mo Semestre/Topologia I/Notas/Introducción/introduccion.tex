@@ -123,6 +123,7 @@
 \newcommand{\Fr}[1]{\ensuremath{\textup{Fr}(#1)}}
 \newcommand{\natint}[1]{\ensuremath{\left[|#1|\right]}}
 \newcommand{\floor}[1]{\ensuremath{\lfloor#1\rfloor}}
+\newcommand{\Card}[1]{\ensuremath{\textup{Card}\left(#1\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -739,17 +740,21 @@
             \end{itemize}
             \item En $(\mathbb{R},\tau_D)$:
             \begin{itemize}
-                \item $\Int{\mathbb{Z}}$)
-                \item $\Cls{\mathbb{Z}}$)
-                \item $\mathbb{Z}'$)
-                \item $\Fr{\mathbb{Z}}$)
+                \item $\Int{\mathbb{Z}}$) Es claro que $\Int{\mathbb{Z}}=\mathbb{Z}$, pues en la topología discreta todo subconjunto de $\mathbb{R}$ es abierto.
+                \item $\Cls{\mathbb{Z}}$) Es claro que $\Cls{\mathbb{Z}}=\mathbb{Z}$, pues en la topología discreta todo subconjunto de $\mathbb{R}$ es cerrado.
+                \item $\mathbb{Z}'$) Afirmamos que $\mathbb{Z}'=\emptyset$. En efecto, si $x\in\mathbb{Z}$, entonces $\left\{x\right\}$ es un abierto en $\mathbb{R}$ tal que $x\in\left\{x\right\}$, y se cumple que $(\left\{x\right\}-\left\{x\right\})\cap \mathbb{Z}=\emptyset$. Luego $\mathbb{Z}'=\emptyset$.
+                \item $\Fr{\mathbb{Z}}$) Como $\mathbb{R}-\mathbb{Z}$ es cerrado, por un inciso anterior se sigue que $\Fr{\mathbb{Z}}=\emptyset$.
             \end{itemize}
             \item En $(\mathbb{R},\tau_{cf})$:
             \begin{itemize}
-                \item $\Int{\mathbb{Z}}$)
-                \item $\Cls{\mathbb{Z}}$)
-                \item $\mathbb{Z}'$)
-                \item $\Fr{\mathbb{Z}}$)
+                \item $\Int{\mathbb{Z}}$) Sea $U\subseteq \mathbb{Z}$ abierto, es decir que $\mathbb{R}-U$ es finito o $U=\emptyset$. Se tiene entonces que:
+                \begin{equation*}
+                    \mathbb{R}-\mathbb{Z}\subseteq\mathbb{R}-U
+                \end{equation*}
+                como $\mathbb{R}-\mathbb{Z}$ es infinito, entonces por Cantor-Bernstein debe suceder que $\mathbb{R}-U$ también sea infinito. Por tanto, $U=\emptyset$. Luego entonces $\Int{\mathbb{Z}}=\emptyset$.
+                \item $\Cls{\mathbb{Z}}$) Sea $C\subseteq\mathbb{R}$ un cerrado tal que $\mathbb{Z}\subseteq C$. Como en $\tau_{cf}$ los cerrados son todos los subconjuntos finitos o $\mathbb{R}$, entonces al ser $\mathbb{Z}$ infinito no puede ser que $C$ sea finito, luego $C=\mathbb{R}$. Por ende, $\Cls{\mathbb{Z}}=\mathbb{R}$.
+                \item $\mathbb{Z}'$) Sea $x\in\mathbb{R}$, afirmamos que $x\in\mathbb{Z}'$. En efecto, si $U\subseteq\mathbb{R}$ es abierto tal que $x\in U$, entonces $\mathbb{R}-U$ es finito, luego como $\mathbb{Z}$ es infinito, existe $z\in\mathbb{Z}$ tal que $z< y$, para todo $y\in \mathbb{R}-U$ y $x<y$. Es decir que $y\in(U-\left\{x\right\})\cap\mathbb{Z}$. Por tanto, $(U-\left\{x\right\})\cap\mathbb{Z}\neq\emptyset$, es decir que $x\in\mathbb{Z}'$.
+                \item $\Fr{\mathbb{Z}}$) Computemos $\Cls{\mathbb{R}-\mathbb{Z}}$. Sea $C\subseteq\mathbb{R}$ cerrado tal que $\mathbb{R}-\mathbb{Z}\subseteq C$, entonces como $C$ es cerrado, $C$ es finito o $C=\mathbb{R}$, pero $C$ no puede ser finito ya que $\mathbb{R}-\mathbb{Z}$ es infinito, luego $C=\mathbb{R}$. Así, $\Cls{\mathbb{R}-\mathbb{Z}}=\mathbb{R}$. Por tanto, $\Fr{\mathbb{Z}}=\mathbb{Z}$.
             \end{itemize}
         \end{enumerate}
     \end{sol}
