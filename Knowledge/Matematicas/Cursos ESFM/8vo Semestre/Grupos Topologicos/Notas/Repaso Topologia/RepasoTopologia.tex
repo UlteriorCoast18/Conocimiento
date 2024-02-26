@@ -681,8 +681,92 @@
     Con el uso del teorema diagonal se puede probar el siguiente resultado conocido como primer teorema de Tikhonov:
 
     \begin{theor}[Primer Teorema de Tikhonov]
-        uwu
+        Si $X$ es un espacio de Tikhonob y $\kappa=w(X)$, entonces $X$ se puede encajar en el producot $I^\kappa$, donde $I$ es el intervalo unitario $I=[0,1]$ con la topología usual.
     \end{theor}
+
+    Un resultado de gran utilidad en análisis es lo siguiente:
+
+    \begin{theor}
+        Toda función $\cf{f}{X}{\mathbb{R}}$, donde $X$ es compacto, es acotada y alcanza su máximo y su mínimo.
+    \end{theor}
+
+    Ahora introducimos nuevas clases de espacios, relacionadsa de alguna manera con la clase de los espacios compactos.
+
+    \begin{mydef}
+        Un espacio topológico Hausdorff $X$ es \textbf{localmente compacto} si para todo $x\in X$ existe una vecindad abierta $U$ tal que su cerradura $\overline{U}$ es compacta.
+    \end{mydef}
+
+    Los espacios localmente compactos no se comportan bien en los productos, es decir, el producto de una familia arbitraria de espacios localmente compactos no es por fuerza localmente compacto.
+
+    \begin{theor}
+        El producto cartesiano $X=\prod{i\in I}X_i$, donde $X_i\neq\emptyset$ para $i\in I$, es localmente compacto si y sólo si todos los espacios $X_i$ son localmente compactos y existe un subconjunto finito $J\subseteq I$ tal que $X_i$ es compacto para todo $i\in I\backslash J$.
+    \end{theor} 
+
+    \begin{mydef}
+        Un espacio $X$ es \textbf{Lindelöf} o tiene la \textbf{propiedad de Lindelöf} si $X$ es regular y toda cubierta abierta de $X$ tiene una subcubierta abierta numerable.
+    \end{mydef}
+
+    Entre las propiedades de los espacios de Lindelöf se cuentan las que ahora describimos:
+
+    \begin{propo}
+        Se cumple lo siguiente:
+        \begin{enumerate}
+            \item Todo espacio regular segundo numerable es Lindelöf.
+            \item Todo espacio de Lindelöf es normal.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{mydef}
+        Un espacio $X$ es \textbf{numerablemente compacto} si $X$ es Hausdorff y toda cubierta abierta numerable de $X$ posee una subcubierta finita.
+    \end{mydef}
+
+    En forma equivalente, el espacio $X$ es numerablemente compacto si todo subconjunto infinito $F\subseteq X$ tiene un punto de acumulación.
+
+    Es inmediato que todo espacio es compacto si y sólo si es numerablemente compacto y Lindelöf. Un ejemplo de un espacio numerablemete compacto no compacto lo proporciona el siguiente caso particular de un $\Sigma$-producto.
+
+    \begin{theor}
+        Sea $\left\{X_i\big| i\in I \right\}$ una familia de espacios compactos. En el producto cartesiano $X=\prod_{i\in I }X_i$ considere un punto arbitrario $p$. Entonces el $\Sigma$-producto $\Sigma(p)$ tiene la propiedad de que todo subconjunto numerable $F\subseteq\Sigma(p)$ tiene cerradura compacta y, por lo tanto, $\Sigma(p)$ es numerablemente compacto.
+    \end{theor}
+
+    La compactificación de un espacio ha resultado una de las principales herramientas de la topología general.
+
+    \begin{mydef}
+        Una pareja $(Y,c)$, donde $Y$ es un espacio compacto y $\cf{c}{X}{Y}$ es un encaje de $X$ en $Y$ tal que $\overline{c(X)}=Y$ es una \textbf{compactificación} del espacio $X$.
+    \end{mydef}
+
+    \begin{exa}
+        Una de las compactificaciones más simples e importantes es la compactificación unipuntual, que se obtiene al añadir un punto $z$ a un espacio no compacto localmente compacto $X$. Sea $X'=X\cup\left\{z \right\}$. Si $\tau$ es la topología de $X$, definimos la topología $\tau'$ en $X'$ mediante la unión de $\tau$ con la familia de subconjuntos $C\subseteq X'$ tales que $z\in C$ y $X'\backslash C$ es un subconjunto cerrado y compacto de $X$.
+    \end{exa}
+
+    \section{Espacios métricos}
+
+    La clase de los espacios metrizables y la clase de los espacios compactos son las dos categorías de espacios fundamentales en la topología general. De hecho, muchas de las definiciones y resultados en la topología han sido motivados por alguna característica de los espacios métricos.
+
+    \begin{mydef}
+        Un \textbf{espacio métrico} es una pareja $(X,\rho)$ que consiste en un conjunto $X$ y una función $\rho$ definida en el conjunto $X\times X$, que toma valores reales no negativos y que cumple con:
+        \renewcommand{\theenumi}{M\arabic{enumi})}
+        \begin{enumerate}
+            \item $\rho(x,y)=0$ si y sólo si $x=y$.
+            \item $\rho(x,y)=\rho(y,x)$ para cualesquiera $x,y\in X$.
+            \item $\rho(x,z)\leq\rho(x+y)+\rho(y,z)$ para cualesquier $x,y,z\in X$.
+        \end{enumerate}
+        Una función $\rho$ definida en el conjunto $X\times X$, que toma valores reales no negativos, satisface las condiciones (M2), (M3) y la condición:
+        \renewcommand{\theenumi}{M\arabic{enumi}')}
+        \begin{enumerate}
+            \item $\rho(x,x)=0$ para todo $x\in X$.
+        \end{enumerate}
+        es llamada \textbf{pseudométrica}.
+    \end{mydef}
+
+    \renewcommand{\theenumi}{\arabic{enumi})}
+
+    La métrica $\rho$ de un espacio métrico genera una topología mediante la asignación a cada punto $x\in X$ de una familia de vecindades abiertas $\left\{B_d(x,1/n)\big| n\in\mathbb{N} \right\}$, donde $B(x,1/n)=\left\{y\in X\big| \rho(x,y)<1/n \right\}$. En particular, los espacios métricos son primero numerables.
+
+    La definición de espacio métrico conduce en forma natural al concepto de un espacio metrizable.
+
+    \section{Conexidad}
+    
+    En esta sección describimos las principales propiedades de la importante clase de los espacios conexos, así como varias clases de espacios disconexos.
 
     %Me quedé en la página 188
 

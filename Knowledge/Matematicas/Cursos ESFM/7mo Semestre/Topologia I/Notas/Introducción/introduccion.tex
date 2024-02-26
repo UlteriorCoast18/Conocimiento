@@ -808,7 +808,7 @@
         Considere $(X,\tau_D)$. Este espacio es metrizable tomando la métrica discreta.
     \end{exa}
 
-    \section{Bases y sub-bases de topología}
+    \section{Bases de una topología}
 
     \begin{mydef}
         Sea $(X,\tau)$ un espacio topológico. Una subcolección $\mathcal{B}$ de $\tau$ es una \textbf{base para la toplogía $\tau$} si todo $U\in \tau$ puede escribirse como unión arbitraria de elementos de $\mathcal{B}$.
@@ -879,5 +879,145 @@
     \begin{proof}
         Es inmediato de la proposición anterior.
     \end{proof}
+
+    \begin{cor}
+        Sea $X$ un conjunto y sean $\tau_1,\tau_2$ dos topologías definidas sobre $X$. Tomemos $\mathcal{B}_1,\mathcal{B}_2$ bases para $\tau_1,\tau_2$, respectivamente, entonces los siguientes resultados son equivalentes:
+        \begin{enumerate}
+            \item $\tau_1\subseteq\tau_2$.
+            \item Dados $x\in X$ y $B_1\in\mathcal{B}_1$ tal que $x\in B_1$ existe $B_2\in\mathcal{B}_2$ tal que $x\in B_2$ y $B_2\subseteq B_1$.
+        \end{enumerate}
+    \end{cor}
+
+    \begin{proof}
+        Probaremos la doble implicación.
+        
+        $1) \Rightarrow 2)$: Sean $x\in X$ y $B_1\in\mathcal{B_2}$ tal que $x\in B_1$. Como $\tau_1\subseteq\tau_2$, entonces en particular $B_1$ es abierto de $\tau_2$, luego existe $B_2\in\mathcal{B}_2$ tal que $x\in B_2\subseteq B_1$.
+
+        $2) \Rightarrow 1)$: Sea $U\in\tau_1$, como $\mathcal{B}_1$ es base de $\tau_1$ entonces existe $\left\{B_\alpha \right\}_{\alpha\in I}$ subcolección de $\mathcal{B}_1$ tal que:
+        \begin{equation*}
+            \bigcup_{\alpha\in I}B_\alpha=U
+        \end{equation*}
+        Sea $u\in U$, entonces existe $\beta\in I$ tal que $u\in B_\beta$. Por (2) existe $C_\beta$ tal que $u\in C_\beta\subseteq B_\beta$. Formamos la subcolección $\left\{C_\alpha \right\}_{\alpha\in I}$, por lo anterior se sigue que:
+        \begin{equation*}
+            \begin{split}
+                U=&\bigcup_{\alpha\in I}C_\alpha\\
+                \subseteq&\bigcup_{\alpha\in I}B_\alpha\\
+                =&U\\
+                \Rightarrow U =&\bigcup_{\alpha\in I}C_\alpha\\
+            \end{split}
+        \end{equation*}
+        donde $\bigcup_{\alpha\in I}C_\alpha\in\tau_2$ por ser $\mathcal{B}_2$ una base de $\tau_2$. Por tanto, $U\in\tau_2$. Finalmente, se sigue que $\tau_1\subseteq\tau_2$.
+
+    \end{proof}
+
+    \begin{cor}
+        Sean $d_1$ y $d_2$ métricas definidas sobre el conjunto $X$. Consideremos $\tau_{d_1}$ y $\tau_{d_2}$. Entonces $\tau_{d_1}\subseteq \tau_{d_2}$ si y sólo si dado $x\in X$ y $\varepsilon\in\mathbb{R}^{+}$ existe $\delta\in\mathbb{R}^{+}$ tal que $B_{d_2}(x,\varepsilon)\subseteq B_{d_1}(x,\delta)$
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato del corolario anterior.
+    \end{proof}
+
+    \begin{cor}
+        Sea $X$ un conjunto y sea $\mathcal{B}$ una colección de subconjuntos de $X$ tal que $\mathcal{B}$ es base para dos topologías $\tau_1$ y $\tau_2$ definidas sobre $X$. Entonces, $\tau_1=\tau_2$.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato del corolario 1.2.2.
+    \end{proof}
+
+    \begin{cor}
+        Sea $(X,\tau)$ un espacio topológico y sea $\mathcal{B}$ una base para $\tau$. Entonces, se cumple lo siguiente:
+        \begin{enumerate}
+            \item La intersección de dos elementos de $\mathcal{B}$ se puede escribir como una unión de elementos de $\mathcal{B}$.
+            \item Existe $\left\{B_\alpha \right\}_{\alpha\in I}\subseteq\mathcal{B}$ tal que
+            \begin{equation*}
+                \bigcup_{\alpha\in I}B_\alpha=X
+            \end{equation*}
+        \end{enumerate} 
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato de la definición de base.
+    \end{proof}
+
+    ¿Es posible prescindir de un espacio topológico para definir lo que es una base?
+
+    \begin{mydef}
+        Sea $X$ un conjunto arbitrario y sea $\mathcal{A}$ una familia de subconjuntos de $X$, $\mathcal{A}$ se dice que es \textbf{una base para una topología sobre $X$} si cumple lo siguiente:
+        \begin{enumerate}
+            \item La intersección de dos elementos de $\mathcal{A}$ se puede escribir como una unión de elementos de $\mathcal{A}$.
+            \item $X$ se puede escribir como una unión de elementos de $\mathcal{A}$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{propo}
+        Sea $\mathcal{A}$ una base para una topología sobre el conjunto $X$. Entonces, la colección $\tau_{\mathcal{A}}$ dada por:
+        \begin{equation*}
+            \tau_{\mathcal{A}}=\left\{U\subseteq X\big| U\textup{ se puede escribir como una unión de elementos de }\mathcal{A} \right\}
+        \end{equation*}
+        es una topología sobre $X$ y $\mathcal{A}$ es una base para ella. La topología $\tau_{\mathcal{A}}$ es llamada \textbf{topología generada por $\tau_{\mathcal{A}}$}.
+    \end{propo}
+
+    \begin{proof}
+        Veamos que $\tau_{\mathcal{A}}$ es una topología sobre $X$.
+        \begin{enumerate}
+            \item Es claro que $X\in\tau_{\mathcal{A}}$ y además $\emptyset\in\tau_{\mathcal{A}}$ ya que se puede ver como la unión de los elementos de la familia vacía.
+            \item Sea $\mathcal{U}=\left\{U_\alpha\right\}_{\alpha\in I} \subseteq\mathcal{\tau_{\mathcal{A}}}$, entonces dado $\alpha\in I$ existe $\left\{A^\alpha_\beta\right\}_{\beta\in J_\alpha}\subseteq\mathcal{A}$ tal que
+            \begin{equation*}
+                U_\alpha=\bigcup_{\beta\in J_\alpha}A^\alpha_\beta
+            \end{equation*}
+            luego
+            \begin{equation*}
+                \begin{split}
+                    \bigcup_{\alpha\in I}U_\alpha=&\bigcup_{\alpha\in I}\left(\bigcup_{\beta\in J_\alpha}A^\alpha_\beta \right)\in\tau_{\mathcal{A}} \\
+                \end{split}
+            \end{equation*}
+            donde la unión está en $\tau_{\mathcal{A}}$ por definición de la misma.
+            \item Sean $U,V\in\tau_{\mathcal{A}}$, entonces existen $\left\{A_\alpha \right\}_{\alpha\in I}$ y $\left\{B_\beta\right\}_{\beta\in J}$ subcolecciones de $\mathcal{A}$ tales que:
+            \begin{equation*}
+                U=\bigcup_{\alpha\in I}A_\alpha\quad \textup{y}\quad V=\bigcup_{\beta\in J}B_\beta
+            \end{equation*}
+            se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    U\cap V =& \left(\bigcup_{\alpha\in I}A_\alpha\right) \cap \left(\bigcup_{\beta\in J}B_\beta\right)\\
+                    =& \left(\bigcup_{\alpha\in I\textup{ y }\beta\in J}A_\alpha\cap B_\beta\right)\\
+                    =& \left(\bigcup_{(\alpha,\beta)\in I\times J}A_\alpha\cap B_\beta\right)\\
+                \end{split}
+            \end{equation*}
+            sabemos que para $\alpha\in I$ y $\beta\in J$, el conjunto $A_\alpha\cap B_\beta$ se puede escribir como una unión de elementos de $\mathcal{A}$, por tanto $U\cap V$ es una unión de elementos de $\mathcal{A}$.
+        \end{enumerate}
+        por los tres incisos anteriores, se sigue que $\tau_{\mathcal{A}}$ es una topología sobre $X$. El hecho de que $\mathcal{A}$ sea una base para esta topología es inmediato de la definición de $\tau_{\mathcal{A}}$.
+    \end{proof}
+
+    \section{Sub-bases}
+
+    \begin{mydef}
+        Sea $X$ un conjunto y $\mathcal{S}$ una colección no vacía de subconjuntos de $X$. Entonces, se dice que $\mathcal{S}$ es una \textbf{sub-base para $\tau(\mathcal{S})$}.
+    \end{mydef}
+
+    \begin{exa}
+        Sea $X={a,e,i,o,u}$, $\mathcal{S}=\left\{\left\{a,e\right\},\left\{e,i\right\} \right\}$. $\mathcal{S}$ es una sub-base para $\tau(\mathcal{S})$ pero no es una base para $\tau(\mathcal{S})$.
+
+        Sea $\mathcal{S}'=\left\{\left\{a,e\right\},\left\{e,i\right\},\left\{e\right\} \right\}$. Entonces $\tau(\mathcal{S})=\tau(\mathcal{S}')$, pues 
+        \begin{enumerate}
+            \item $\mathcal{S}\subseteq\mathcal{S}'$ implica que $\tau(\mathcal{S})\subseteq\tau(\mathcal{S}')$.
+            \item Como $\left\{a,e\right\},\left\{e,i\right\}\in\tau(\mathcal{S})$ entonces $\mathcal{S}'\subseteq\tau(\mathcal{S})$ lo cual implica que $\tau(\mathcal{S}')\subseteq\tau(\mathcal{S})$.
+        \end{enumerate}
+    \end{exa}
+
+    \begin{propo}
+        Sea $X$ un conjunto arbitrario y sea $\mathcal{S}$ una colección no vacía de subconjuntos de $X$. Sea 
+        \begin{equation*}
+            \mathcal{B}=\left\{B\subseteq X\big| B\textup{ se puede escribir como una intersección finita de elementos de }\mathcal{S} \right\}\cup\left\{X\right\}
+        \end{equation*}
+        Entonces, 
+        \begin{enumerate}
+            \item $\mathcal{B}$ es una base para una topología sobre $X$.
+            %se va a redactar de otra forma
+            \item $\tau_{\mathcal{B}}=\tau(\mathcal{S})$.
+        \end{enumerate}
+    \end{propo}
 
 \end{document}
