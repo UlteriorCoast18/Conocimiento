@@ -533,6 +533,7 @@
             \item $\left\{\varphi\right\}\vdash\varphi\lor\psi$ (llamada \textbf{Adición}).
             \item $\left\{\varphi\lor\psi,\neg\varphi \right\}\vdash\psi$ (llamada \textbf{Silogismo Disyuntivo}).
             \item $\left\{\varphi,\psi\right\}\vdash \varphi\land\psi$ (llamada \textbf{Conjunción}).
+            \item $\left\{\varphi\Rightarrow\psi \right\}\vdash\neg\psi\Rightarrow\neg\varphi$. (llamada \textbf{Transposición}).
         \end{enumerate}
     \end{excer}
 
@@ -584,11 +585,121 @@
         De (4):
         \begin{center}
             \begin{tabular}{l l c l r}
-                1) & $\varphi$ & $\Rightarrow$ & $((\psi\Rightarrow\neg\varphi)\Rightarrow\varphi)$ & Axioma \\
-                1) & $((\psi\Rightarrow\neg\varphi)\Rightarrow\neg\varphi)$ & $\Rightarrow$ & $\neg(\psi\Rightarrow\neg\varphi)$ & Axioma \\
-                1) & $\neg(\psi$ & $\Rightarrow$ & $\neg\varphi)$ & M.P. \\
+                1) & $\varphi$ &  &  & Premisa \\
+                2) & $\psi$ &  &  & Premisa \\
+                3) & $\psi$ & $\Rightarrow$ & $((\psi\Rightarrow\neg\varphi)\Rightarrow\neg\psi)$ & Ax. 2 \\
+                4) & $(\psi\Rightarrow\neg\varphi)$ & $\Rightarrow$ & $\neg\psi$ & 1,3 M.P. \\
+                5) & $\psi$ & $\Rightarrow$ & $\neg\neg\psi$ & Ax. 3 \\
+                6) & $\neg\neg\psi$ &  &  & 2,5 M.P. \\
+                7) & $\neg(\psi$ & $\Rightarrow$ & $\neg\varphi)$ & 4,6 M.T. \\
+                8) & $\varphi$ & $\land$ & $\psi$ & 7) \\
                 \hline
                 & & $\therefore$ & $\varphi\land\psi$  & \\
+            \end{tabular}
+        \end{center}
+
+    \end{proof}
+
+    \begin{excer}
+        Demuestre que existe una demostración de lo siguiente:
+        \begin{enumerate}
+            \item $\left\{F\lor(G\lor H),(G\lor H)\Rightarrow(I\lor J),(I\lor J)\Rightarrow(F\lor H),\neg F \right\}\vdash H$.
+            \item $\left\{Q\Rightarrow(R\Rightarrow S), (R\Rightarrow S)\Rightarrow T, (S\lor U)\Rightarrow \neg V,\neg V\Rightarrow(R\iff \neg W),\neg T,\neg(R\iff \neg W) \right\}\vdash \neg Q\land\neg(S\lor U)$.
+            \item $\left\{A\Rightarrow B, C\Rightarrow D, \neg B\lor\neg D,\neg\neg A, (E\land F)\Rightarrow C \right\}\vdash \neg(E\land F)$.
+            \item $\left\{E\Rightarrow (F\land \neg G),(F\lor G)\Rightarrow H, E \right\}\vdash H$.
+            \item $\left\{J\Rightarrow K, J\lor(L\lor\neg L),\neg K \right\}\vdash\neg L\land \neg K$.
+            \item $\left\{(R\Rightarrow\neg S)\land(T\Rightarrow\neg U),(V\Rightarrow\neg W)\land(X\Rightarrow\neg Y),(T\Rightarrow W)\land(W\Rightarrow S), V, R \right\}\vdash \neg T\land\neg U$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        De (1):
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $F$ & $\lor$ & $(G\lor H)$ & Premisa \\
+                2) & $G$ & $\lor$ & $H$ & Premisa \\
+                3) & $(G\lor H)$ & $\Rightarrow$ & $(I\lor J)$ & Premisa \\
+                4) & $(I\lor J)$ & $\Rightarrow$ & $(F\lor H)$ & Premisa \\
+                5) & $F$ & $\lor$ & $H$ & Premisa \\
+                6) & $\neg F$ &  &  & Premisa \\
+                7) & $G$ & $\lor$ & $H$ & 1,6 S.D. \\
+                8) & $I$ & $\lor$ & $J$ & 3,7 M.P. \\
+                9) & $F$ & $\lor$ & $H$ & 4,8 M.P. \\
+                10) & $H$ &  &  & 9,6 S.D. \\
+                \hline
+                & & $\therefore$ & $H$  & \\
+            \end{tabular}
+        \end{center}
+
+        De (2):
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $Q$ & $\Rightarrow$ & $(R\Rightarrow S)$ & Premisa \\
+                2) & $(R\Rightarrow S)$ & $\Rightarrow$ & $T$ & Premisa \\
+                3) & $(S\lor U)$ & $\Rightarrow$ & $\neg V$ & Premisa \\
+                4) & $\neg V$ & $\Rightarrow$ & $(R\iff \neg W)$ & Premisa \\
+                5) & $\neg T$ &  &  & Premisa \\
+                6) & $\neg(R$ & $\iff$ & $\neg W)$ & Premisa \\
+                7) & $\neg\neg V$ &  &  & 4,6 M.T. \\
+                8) & $\neg\neg V$ & $\Rightarrow$  & $V$ & Ax. 3. \\
+                9) & $V$ &  &  & 8,7 M.P. \\
+                10) & $\neg(S\lor U)$ &  &  & 3,9 M.T. \\
+                11) & $\neg(R\Rightarrow S)$ &  &  & 2,5 M.T. \\
+                12) & $\neg Q$ &  &  & 1,11 M.T. \\
+                13) & $\neg Q$ & $\land$ & $\neg(S\lor U)$ & 12,10 Conj.\\
+                \hline
+                & & $\therefore$ & $\neg Q\land\neg(S\lor U)$  & \\
+            \end{tabular}
+        \end{center}
+
+        De (3):
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $A$ & $\Rightarrow$ & $B$ & Premisa \\
+                2) & $C$ & $\Rightarrow$ & $D$ & Premisa \\
+                3) & $\neg B$ & $\lor$ & $\neg D$ & Premisa \\
+                4) & $\neg\neg A$ &  &  & Premisa \\
+                5) & $(E\land F)$ & $\Rightarrow$ & $C$ & Premisa \\
+                6) & $\neg\neg A$ & $\Rightarrow$ & $A$ & Ax. 3 \\
+                7) & $A$ &  &  & 6,4 M.P. \\
+                8) & $B$ &  &  & 1,7 M.P. \\
+                9) & $B$ & $\Rightarrow$ & $\neg\neg B$ & Ax. 3 \\
+                10) & $\neg\neg B$ &  &  & 8,9 M.P. \\
+                11) & $\neg D$ &  &  &  3,9 S.D.\\
+                12) & $\neg C$ &  &  &  2,11 M.T.\\
+                13) & $\neg(E\land F)$ &  &  &  5,12 M.T.\\
+                \hline
+                & & $\therefore$ & $\neg (E\lor F)$  & \\
+            \end{tabular}
+        \end{center}
+
+        De (4):
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $E$ & $\Rightarrow$ & $(F\land \neg G)$ & Premisa \\
+                2) & $(F\lor G)$ & $\Rightarrow$ & $H$ & Premisa \\
+                3) & $E$ &  &  & Premisa \\
+                4) & $F\and \neg G$ &  &  & 1,3 M.P. \\
+                5) & $F$ &  &  & 4 Simp. \\
+                6) & $F\lor G$ &  &  & 5 Ad. \\
+                7) & $H$ &  &  & 2,6 M.P. \\
+                \hline
+                & & $\therefore$ & $H$  & \\
+            \end{tabular}
+        \end{center}
+
+        De (5):
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $J$ & $\Rightarrow$ & $K$ & Premisa \\
+                2) & $J$ & $\lor$ & $(K\lor\neg L)$ & Premisa \\
+                3) & $\neg K$ &  &  & Premisa \\
+                4) & $\neg J$ &  &  & 1,3 M.T. \\
+                5) & $K$ & $\lor$ & $\neg L$ & 2,4 S.D.\\
+                6) & $\neg L$ &  &  & 5,3 S.D.\\
+                7) & $\neg L$ & $\land$ & $\neg K$ & 3,6 Conj.\\
+                \hline
+                & & $\therefore$ & $\neg L\land \neg K$  & \\
             \end{tabular}
         \end{center}
 
