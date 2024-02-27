@@ -814,10 +814,206 @@
                     =& \norm{\vec{y_1}+\vec{y_2}}\\
                 \end{split}
             \end{equation*}
-            así, isometría. Automáticamente, $G$ es inyectiva. Note que $\vec{y}\in\left(\ker G_{\vec{y}} \right)^\perp$ y $G_{\vec{y}}(\vec{y})=\norm{\vec{y}}^2$.
+            así, esta función semilineal es isometría. Automáticamente $G$ es inyectiva. Note que $\vec{y}\in\left(\ker G_{\vec{y}} \right)^\perp$ y $G_{\vec{y}}(\vec{y})=\norm{\vec{y}}^2$.
 
-            Sea $W\in H^*$, 
+            \item Se probará la suprayectividad. Sea $W\in H^*$ tal que $W\neq 0$ (en caso contrario basta tomar $\vec{y}=\vec{0}$) se debe probar que existe $\vec{y}\in H$ tal que $W=G_{\vec{y}}$. 
+            
+            Por la parte (2), tal $\vec{y}$ debe cumplir que $\vec{y}\in \left(\ker W\right)^\perp$ y $W(\vec{y})=\norm{\vec{y}}^2$. Como $\ker W $ es un subespacio cerrado de $H$ y $H$ es hilbertiano, entonces $\ker W$ es distinguido. Luego:
+            \begin{equation*}
+                H=\ker W \oplus\left(\ker W\right)^\perp
+            \end{equation*}
+            por tanto, la restricción de $W$ a $\left(\ker W\right)^\perp$ es un isomorfismo de $\left(\ker W\right)^\perp$ sobre $\mathbb{K}$. En efecto, como $W\neq 0$ entonces existe $\vec{x}\in H$ tal que $W(\vec{x})\neq 0$, pero podemos escribir de forma única a $\vec{x}=\vec{x_1}+\vec{x_2}$ con $\vec{x_1}\in \ker W$ y $\vec{x_2}\in \left(\ker W\right)^\perp$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    W(\vec{x})=&W(\vec{x_1}+\vec{x_2})\\
+                    =&W(\vec{x_1})+W(\vec{x_2})\\
+                    =&W(\vec{x_2})\\
+                    =&W\big|_{\left(\ker W\right)^\perp} (\vec{x_2})\\
+                    \neq&0\\
+                \end{split}
+            \end{equation*}
+            Sea $\beta\in\mathbb{K}$ arbitrario, entonces:
+            \begin{equation*}
+                \begin{split}
+                    W\big|_{\left(\ker W\right)^\perp}\left(\beta\frac{\vec{x_2}}{W(\vec{x_2})} \right)=&\beta\\
+                \end{split}
+            \end{equation*}
+            por tanto la restricción es suprayectiva. Ahora si para algún $\vec{u}\in \left(\ker W\right)^\perp$ se tiene que $W\big|_{\left(\ker W\right)^\perp}\left(\vec{u} \right)=0$, en particular $\vec{u}\in\ker W$, pero:
+            \begin{equation*}
+                \left(\ker W\right)^\perp\cap \ker W=\left\{\vec{0} \right\}
+            \end{equation*}
+            por tanto $\vec{u}=\vec{0}$. Así la restricción es inyectiva. Luego es un isomorfismo. En particular la dimensión de $\mathbb{K}$ sobre $\mathbb{K}$ es $1$, así la dimensión de $\left(\ker W\right)^\perp$ es 1.
+
+            Tomemos $\vec{z}$ generador de $\left(\ker W\right)^\perp$. El $\vec{y}$ buscado debe ser de la forma $\vec{y}=\alpha\vec{z}$ donde $\alpha\in\mathbb{K}$. Además,
+            \begin{equation*}
+                \begin{split}
+                    W(\vec{y})=&\norm{\vec{y}}^2\\
+                    \alpha W(\vec{z})=&\alpha^2\norm{\vec{z}}^2\\
+                    \Rightarrow \alpha=&\conj{\frac{W(\vec{z})}{\norm{\vec{z}}^2}}\\
+                \end{split}
+            \end{equation*}
+            así, debe ser
+            \begin{equation}
+                \vec{y}=\conj{\frac{W(\vec{z})}{\norm{\vec{z}}^2}}\vec{z}
+            \end{equation}
+            Verifiquemos el que vector en (1.8) es el que cumple que $W=G_{\vec{y}}$. Se tiene:
+            \begin{equation*}
+                \begin{split}
+                    G_{\vec{y}}(\vec{x})=&\pint{\vec{x}}{\vec{y}} \\
+                \end{split}
+            \end{equation*}
+            para todo $\vec{x}\in H$, donde este vector se descompone de forma única como $\vec{x}=\vec{x_1}+\vec{x_2}$ con $\vec{x_1}\in\ker W$ y $\vec{x_2}\in\left(\ker W\right)^\perp$. Por tanto:
+            \begin{equation*}
+                \begin{split}
+                    G_{\vec{y}}(\vec{x})=&\pint{\vec{x_1}+\vec{x_2}}{\vec{y}} \\
+                    =&\pint{\vec{x_1}}{\vec{y}}+\pint{\vec{x_2}}{\vec{y}} \\
+                    =&\pint{\vec{x_2}}{\vec{y}} \\
+                \end{split}
+            \end{equation*}
+            pero los elementos de $\left(\ker W\right)^\perp$ son de la forma $\beta\vec{z}$, por lo cual:\begin{equation*}
+                \begin{split}
+                    G_{\vec{y}}(\vec{x})=&\pint{\beta\vec{z}}{\vec{y}} \\
+                    =&\pint{\beta\vec{z}}{\conj{\frac{W(\vec{z})}{\norm{\vec{z}}^2}}\vec{z}} \\
+                    =&\beta\frac{W(\vec{z})}{\norm{\vec{z}^2}}\pint{\vec{z}}{\vec{z}} \\
+                    =&\beta W(\vec{z}) \\
+                    =&W(\beta\vec{z}) \\
+                    =&W(\vec{x_2}) \\
+                    =&W(\vec{x}) \\
+                \end{split}
+            \end{equation*}
+            con lo que se tiene el resultado.
+
         \end{enumerate}
     \end{proof}
+
+    \begin{obs}
+        La demostración no cambia en vez de suponer que $H$ es hilbertiano se supone $H$ prehilbertiano tal que todo subespacio cerrado es distinguido (para solventar el problema que puede llegar a haber en la restricción del fucional lineal continuo $W$). Pero la conclusión del teorema afirma que $H$ es (semilinealmente) isométrico al espacio de Banach $H^*$, luego $H$ debe ser de Banach, es decir que es hilbertiano.
+
+        Así pues, un espacio prehilbertiano en el cual todo subespacio cerrado es distinguido es un espacio hilbertiano. 
+    \end{obs}
+
+    \begin{propo}[Autodualidad de $L_2$]
+        Sea $S$ un conjunto medible en $\mathbb{R}^n$. Para cada $g\in L_2(S,\mathbb{K})$ sea $\varphi_g$ el funcional lineal sobre $L_2(S,\mathbb{K})$ definido como:
+        \begin{equation*}
+            \varphi_g(f)=\int_Sfg, \quad\forall f\in L_2(S,\mathbb{K})
+        \end{equation*}
+        entonces, la aplicación lineal $\varphi:g\mapsto \varphi_g$ es una isometría lineal de $L_2(S,\mathbb{K})$ sobre $L_2(S,\mathbb{K})^*$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $$\psi_g(f)=\int_S f\conj{g}$$ para todo $f\in L_2(S,\mathbb{K})$. Por el teorema de Riesz, $\psi:g\mapsto\psi_g$ es una isometría semilineal de $L_2(S,\mathbb{K})$ sobre $L_2(S,\mathbb{K})^*$.
+
+        Como la función $\eta$, $g\mapsto\conj{g}$ es una isometría semilineal de $L_2(S,\mathbb{K})$ sobre $L_2(S,\mathbb{K})$ y $\varphi$ es la composición de $\eta$ con $\psi$, entonces $\varphi$ es una isometría lineal de $L_2(S,\mathbb{K})$ sobre $L_2(S,\mathbb{K})$. La linealidad es inmediata de las propiedades de la integral de Lebesgue.
+
+    \end{proof}
+
+    ¿Es posible clasificar a los espacios hilbertianos?
+
+    Consideremos las sumas de familisa de elementos en $[0,\infty]$. Se tiene que
+
+    \begin{equation*}
+        [0,\infty]=[0,\infty[\cup\left\{\infty \right\}
+    \end{equation*}
+    todo conjunto $S$ en $[0,\infty]$ posee un supremo, el usual si el conjunto es acotado en $[0,\infty[$ e $\infty$ si $S$ no es acotado.
+
+    Si $\left\{x_n \right\}_{n=1}^\infty$ es una sucesión creciente en $[0,\infty[$, se define:
+    \begin{equation*}
+        \lim_{n\rightarrow\infty}x_n=\sup\left\{a_n\big|n\in\mathbb{N} \right\}
+    \end{equation*}
+    este límite coincide con el usual en el caso de que la sucesión sea acotada. De otra forma es igual a $\infty$.
+
+    Se tienen las siguientes propiedades:
+
+    \begin{enumerate}
+        \item $a+\infty=\infty+a=\infty$, para todo $a\in[0,\infty[$.
+        \item $a\cdot \infty=\infty\cdot a=\infty$, para todo $a\in[0,\infty[$.
+        \item $0\cdot\infty=\infty\cdot0=0$.
+    \end{enumerate}
+
+    \begin{mydef}
+        Sea $\left(a_\alpha\right)_{\alpha\in\Omega}$ una familia arbitraria de elementos de $[0,\infty]$. Se denota por $\mathcal{F}(\Omega)$ a la colección de \textbf{todos los subconjuntos finitos de $\Omega$}. Toda suma:
+        \begin{equation*}
+            \sum_{\alpha\in J}a_\alpha,\quad\forall J\in\mathcal{F}(\Omega)
+        \end{equation*}
+        se llama \textbf{suma parcial de la familia $\left(a_\alpha\right)_{\alpha\in\Omega}$}. Al elemento de $[0,\infty]$:
+        \begin{equation*}
+            \sum_{\alpha\in\Omega}a_\alpha=\sup\left\{ \sum_{\alpha\in J}a_\alpha\big|J\in\mathcal{F}(\Omega) \right\}
+        \end{equation*}
+        se le llama \textbf{suma de la familia $\left(a_\alpha\right)_{\alpha\in\Omega}$}. Se dice que $\left(a_\alpha\right)_{\alpha\in\Omega}$ es una \textbf{familia sumable} de números no negativos si $\sum_{\alpha\in\Omega}a_\alpha<\infty$.
+    \end{mydef}
+
+    \begin{exa}
+        Se tiene que:
+        \begin{equation*}
+            \sum_{t\in[0,1]}t=\infty
+        \end{equation*}
+    \end{exa}
+
+    \begin{propo}[Conmutatividad general]
+        Si $\Omega'$ es otro conjunto de índices para indexar la familia $\left(a_\alpha\right)_{\alpha\in\Omega}$ y $\sigma$ es una biyección de $\Omega$ sobre $\Omega'$, entonces:
+        \begin{equation}
+            \sum_{\alpha'\in\Omega'}a_{\sigma(\alpha')}=\sum_{\alpha\in\Omega}a_\alpha
+        \end{equation}
+    \end{propo}
+
+    \begin{proof}
+        Es inmediato del hecho de que los conjuntos de las sumas parciales de las dos familias son el mismo, por tanto al tomar el supremo se obtiene el mismo valor.
+    \end{proof}
+
+    La ecuación (1.9) se aplica en particular al caso en el que $\Omega=\Omega'$, obteniendo una propiedad de conmutatividad general para sumas de familias en $[0,\infty]$.
+
+    Ahora, ¿se tendrá una propiedad para la asociatividad general?
+
+    \begin{theor}[Sumación por paquetes de familias]
+        Sea $\left(a_\alpha\right)_{\alpha\in I}$ una familia en $[0,\infty]$ y $\left(I_\lambda\right)_{\lambda\in L}$ una partición aritraria de subconjuntos de $I$. Si
+        \begin{equation*}
+            \Delta=\sum_{\alpha\in I}a_\alpha\quad\textup{y}\quad\Delta_\lambda=\sum_{\alpha\in I_\lambda}a_\alpha,\quad\forall\lambda\in L
+        \end{equation*}
+        entonces,
+        \begin{equation*}
+            \Delta=\sum_{\lambda\in L}\Delta_\lambda
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Sea $J\in\mathcal{F}(I)$ y sea
+        \begin{equation*}
+            M=\left\{\lambda\in L\big|I_\lambda\cap J\neq\emptyset \right\}
+        \end{equation*}
+        Entonces $M\in \mathcal{F}(L)$ y
+        \begin{equation*}
+            \begin{split}
+                \sum_{\alpha\in J}a_\alpha=&\sum_{\lambda\in M} \sum_{\alpha\in J\cap I_\lambda}a_\alpha\\
+                \leq&\sum_{\lambda\in M}\Delta_\lambda\\
+                \leq&\sum_{\lambda\in Ls}\Delta_\lambda\\
+            \end{split}
+        \end{equation*}
+        tomando supremo respecto a $J$ se sigue que:
+        \begin{equation}
+            \Delta\leq\sum_{\lambda\in L}\Delta_\lambda
+        \end{equation}
+
+        Sea $M\in\mathcal{F}(L)$. Fijemos arbitrariamente una $H_\lambda\in\mathcal{F}(I_\lambda)$, para todo $\lambda\in M$. Se tiene
+        \begin{equation*}
+            \begin{split}
+                \sum_{\lambda\in M}\sum_{\alpha\in H_\lambda}a_\alpha=&\sum_{\alpha\in \bigcup_{\lambda\in M}H_\lambda}a_\alpha\\
+                \leq&\Delta\\
+            \end{split}
+        \end{equation*}
+        Manteniendo a $M$ fijo y tomando supremo con respecto a $H_\lambda\in\mathcal{F}(I_\lambda)$,resulta:
+        \begin{equation*}
+            \sum_{\lambda\in M}\Delta_\lambda\leq\Delta
+        \end{equation*}
+        tomando ahora el supremo con respecto a $M$ se obtiene que:
+        \begin{equation}
+            \sum_{\lambda\in L}\Delta_\lambda\leq\Delta
+        \end{equation}
+        de (1.10) y (1.11) se sigue la igualdad.
+
+    \end{proof}
+
+    \begin{exa}
+        ¿Es cierto que $\sum_{n\in\mathbb{N}}a_n=\sum_{n=1}^{\infty}a_n$?
+    \end{exa}
 
 \end{document}
