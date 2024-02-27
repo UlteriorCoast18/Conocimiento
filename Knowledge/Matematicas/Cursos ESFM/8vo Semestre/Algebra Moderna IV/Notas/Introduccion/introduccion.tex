@@ -120,6 +120,8 @@
 \newcommand{\Obj}[1]{\ensuremath{\textup{Obj}\left(#1\right)}}
 \newcommand{\Hom}[3]{\ensuremath{\textup{Hom}_{#1}\left(#2,#3\right)}}
 
+\newcommand{\Cat}[1]{\ensuremath{\textup{\textbf{#1}}}}
+
 %recuerda usar \clearpage para hacer un salto de página
 
 \begin{document}
@@ -328,4 +330,99 @@
         Definimos a $n$ por la categoría de un conjunto con $n$ elementos, donde $n\in\mathbb{N}$.
     \end{exa}
     
+    \section{Objetos especiales y Morfismos en una Categoría}
+
+    Las nociones de monomirfismo y epimorfismo que se van a introducir son generalizaciones a categorías arbitrarias de las funciones familiares inyectiva y suprayectiva que van de $\Cat{Set}$.
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría y $f\in\Hom{\mathcal{C}}{A}{B}$.
+        \begin{enumerate}
+            \item $f$ es llamado \textbf{monomorfismo} si para cualesquiera $g_1,g_2\in\Hom{\mathcal{C}}{C}{A}$ (siendo $C$ un objeto de la categoría) tales que $f\circ g_1=f\circ g_2$ tenemos que $g_1=g_2$.
+            \item $g$ es llamado \textbf{epimorfismo} si para cualesquiera $h_1,h_2\in\Hom{\mathcal{C}}{B}{C}$ (siendo $C$ un objeto de la categoría) tales que $h_1\circ f=h_2\circ f$ tenemos que $h_1=h_2$.
+            \item $f$ es llamado \textbf{isomorfismo} si existe $f'\in\Hom{\mathcal{C}}{B}{A}$ tal que $f\circ f'=1_B$ y $f'\circ f=1_A$. En este caso decimos que $A$ y $B$ son \textbf{objetos isomorfos}.
+        \end{enumerate}
+    \end{mydef}
+
+    A pesar de que en la categoría $\Cat{Set}$ los monomorfismos (respectivamente, epimorfismos) coinciden con funciones inyectivas (respectivamente, suprayectivas), esto no es cierto en cualquier categoría arbitraria cuyos objetos y morfismos pueden ser conjuntos y funciones, respectivamente. Esto se verá más a fondo en los siguientes ejemplos.
+
+    \begin{exa}
+        En cada una de las categorías $\Cat{Set},\Cat{Grp},\Cat{Ab},_R\mathcal{M}$ los monomorfismos coinciden con los homomorfismos inyectivos, mientras que en $\Cat{Top}$ y $\Cat{KHaus}$ los monomorfismos coinciden con los mapeos continuos inyectivos. Solo se probará que los monomorfismos en la categoría $ \Cat{Set}$ coinciden con las funciones inyectivas.
+    \end{exa}
+
+    \begin{proof}
+        Sea $f\in\Hom{\Cat{Set}}{A}{B}$ es morfismo.
+
+        Suponga que $f$ es monomorfismo, decir que $\cf{f}{A}{B}$ es una función que cumple el primer inciso de la definición anterior. Hay que probar que $f$ es inyectiva. Sean $a\in A$ y $a'\in A$ elementos tales que $f(a)=f(a')$. Consideremos a $g_1$ y $g_2$ los morfismos tales que $g_1(x)=a$ y $g_2(x)=a'$, estos pertenecen a $\Hom{\Cat{Set}}{\left\{x\right\}}{A}$ (en este contexto $x$ es un elemento de un conjunto arbitrario). Se tiene entonces que
+        \begin{equation*}
+            \begin{split}
+                f\circ g_1(x)=&f(a) \\
+                =&f(a') \\
+                =&f\circ g_2(x) \\
+            \end{split}
+        \end{equation*}
+        por tanto, $f\circ g_1=f\circ g_2$ (ya que coinciden en $x$). Por tanto, al suponer que fue monomorfismo, se sigue que $g_1=g_2$, es decir que $a=a'$. Luego $f$ es inyectiva.
+
+        Suponga ahora que $f$ es inyectiva. Sean $g_1,g_2\in\Hom{\Cat{C}}{C}{A}$ tales que $f\circ g_1 = f\circ g_2$. Si $c\in C$, tenemos que:
+        \begin{equation*}
+            \begin{split}
+                f\circ g_1(c)=&f\circ g_2(c)\\
+                f(g_1(c))=&f(g_2(c))\\
+                \Rightarrow g_1(c)=&g_2(c)\\
+            \end{split}
+        \end{equation*}
+        pues $f$ es inyectiva. Como el $c\in C$ fue arbitrario, se sigue que $g_1=g_2$, por ende, $f$ es monomorfismo.
+
+    \end{proof}
+
+    De forma idéntica se prueba lo anterior para las categorías $\Cat{Top}$ y $\Cat{KHaus}$ (pues los morfismos en estas son simplemente las funciones continuas).
+
+    \begin{exa}
+        
+    \end{exa}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{exa}
+        En cada una de las categorías $\Cat{Set}$, $\Cat{Grp}$, $\Cat{Ab}$ y $_R\mathcal{M}$, los isomorfismos coinciden con los homomorfismos biyectivos (por los ejemplos anteriores). En $\Cat{Top}$, los isomorfismos son exactamente los \textit{homeomorfismos}, esto es, biyecciones continuas cuyas inversas también son continuas.
+    \end{exa}
+
+    \begin{mydef}
+        Sea $(G,+)$ un grupo abeliano. Decimos que $G$ es un \textbf{grupo divisible} si para cualesquiera $n\in\mathbb{N}$ y $g\in G$ existe $h\in H$ tal que $nh=g$.
+    \end{mydef}
+
+    \begin{exa}
+        En la categoría $\Cat{Div}$ de grupos divisibles, el mapeo cociente $\cf{q}{\mathbb{Q}}{\mathbb{Q}/\mathbb{Z}}$ entre los grupos $(\mathbb{Q},+)$ y $(\mathbb{Q}/\mathbb{Z},+)$ no es inyectivo pero es un monomorfismo.
+    \end{exa}
+
+    \begin{sol}
+        Recordemos que $(\mathbb{Q},+)$ es grupo con la operación de suma de elementos y $(\mathbb{Q}/\mathbb{Z},+)$ es el grupo cuyos elementos están dados de la siguiente forma; si $x\in\mathbb{Q}$, entonces $[x]\in\mathbb{Q}/\mathbb{Z}$ es el conjunto formado por:
+        \begin{equation*}
+            [x]=\left\{y\in\mathbb{Q}\big|y-x\in\mathbb{Z}  \right\}
+        \end{equation*}
+        Es claro que el mapeo cociente no es inyectivo, pues $q(0)=q(1)$ y $0\neq 1$. Pero sí es un monomorfismo. En efecto, sea $G$ otro grupo divisible y sean $f.g\in\Hom{\Cat{Div}}{G}{\mathbb{Q}}$ tales que $q\circ f = q\circ g$ (la composición de morfismos en esta categoría coincide con la composición usual de funciones), debemos probar que $f=g$.
+
+        Como $q\circ f = q\circ g$ entonces, $q\circ(f-g)=[0]$ donde $[0]$ denota al morfismo que a cada elemento de $G$ lo envía a la clase del $0$, $[0]$. Denotemos por $h=f-g$, se sigue entonces que $q\circ h=[0]$. Entonces, para cualquier $x\in G$ tenemos que $q(h(x))=[0]$, por tanto $h(x)\in\mathbb{Z}$.
+        
+        Para probar el resultado basta con ver que $h(x)=0$ para todo $x\in G$. Procederemos por contradicción. Suponga que existe $x_0\in G$ tal que $h(x_0)\neq 0$, podemos asumir que $h(x_0)\in\mathbb{Z}^+$ (en caso de que no sea así, tomamos $-x_0\in G$ para el cual se cumple que $h(-x_0)=-h(x_0)\in\mathbb{Z}^+$). Como estamos trabajando con grupos divisibles, para $2h(x_0) \in\mathbb{N}$ y $x_0\in G$ existe $y_0\in G$ tal que
+        \begin{equation*}
+            \begin{split}
+                x_0=&2h(x_0)y_0\\
+                h(x_0)=&2h(x_0)h(y_0)\\
+            \end{split}
+        \end{equation*}
+        como $h(x_0)\neq 0$, entonces $h(y_0)\neq 0$, luego lo anterior no puede suceder ya que debería suceder que $h(y_0)=\frac{1}{2}$, pero $h(y_0)\in\mathbb{Z}$. Luego tal $x_0$ no puede existir. Así, $h(x)=0$ para todo $x\in G$, lo cual prueba el resultado. Esto prueba que, de hecho, $q$ es un monomorfismo que no es inyectivo.
+    \end{sol}
+
+    \begin{exa}
+        En la categoría $\Cat{Ring}^c$ de los anillos conmutativos con identidad, el mapeo inclusión $\cf{i}{\mathbb{Z}}{\mathbb{Q}}$ no es suprayectivo, pero sí es un epimorfismo.
+    \end{exa}
+
+    \begin{sol}
+        
+    \end{sol}
+    
+
+
 \end{document}
