@@ -16,7 +16,6 @@
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
 \renewcommand{\theenumii}{\roman{enumii}}
-\renewcommand{\theenumi}{\arabic{enumi})}
 
 \def\proof{\paragraph{Demostración:\\}}
 \def\endproof{\hfill$\blacksquare$}
@@ -41,8 +40,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!60!red!30
@@ -51,8 +50,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!50!blue!30
@@ -61,8 +60,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{theor}{Teorema}[section]
@@ -70,8 +69,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{propo}{Proposición}[section]
@@ -79,8 +78,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{cor}{Corolario}[section]
@@ -88,8 +87,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{lema}{Lema}[section]
@@ -97,8 +96,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     roundcorner=5pt,
     backgroundcolor = gray!30,
     hidealllines = true
@@ -107,16 +106,17 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     roundcorner=5pt
 ]{excer}{Ejercicio}[section]
 
 %En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
 
-\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
 \newcommand\norm[1]{\ensuremath{\|#1\|}}
 \newcommand\ora[1]{\ensuremath{\vec{#1}}}
 \newcommand\pint[2]{\ensuremath{\left(#1\big| #2\right)}}

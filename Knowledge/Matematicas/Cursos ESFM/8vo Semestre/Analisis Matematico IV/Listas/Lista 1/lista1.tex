@@ -12,7 +12,6 @@
 \usepackage{enumerate}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[a4paper, margin = 1.5cm]{geometry}
-\usepackage{mathrsfs}
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
@@ -41,8 +40,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!60!red!30
@@ -51,8 +50,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!50!blue!30
@@ -61,8 +60,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{theor}{Teorema}[section]
@@ -70,8 +69,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{propo}{Proposición}[section]
@@ -79,8 +78,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{cor}{Corolario}[section]
@@ -88,8 +87,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{lema}{Lema}[section]
@@ -97,8 +96,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     roundcorner=5pt,
     backgroundcolor = gray!30,
     hidealllines = true
@@ -107,8 +106,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     roundcorner=5pt
 ]{excer}{Ejercicio}[section]
 
@@ -399,7 +398,7 @@
     \end{proof}
 
     \begin{excer}
-        Sea $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ una sucesión de elementos de un espacio hilbertiano $H$. La sucesión $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ se llama \textbf{martingala} (en el sentido amplio) si, $\forall\nu\in\mathbb{N}$, $\vec{x_\nu}$ es el vector de $\mathscr{L}(\vec{x_1},...,\vec{x_\nu})$ menos alejado de $\vec{x_{\nu+1}}$.
+        %Sea $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ una sucesión de elementos de un espacio hilbertiano $H$. La sucesión $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ se llama \textbf{martingala} (en el sentido amplio) si, $\forall\nu\in\mathbb{N}$, $\vec{x_\nu}$ es el vector de $\mathscr{L}(\vec{x_1},...,\vec{x_\nu})$ menos alejado de $\vec{x_{\nu+1}}$.
         \begin{enumerate}
             \item Sea $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ una martingala. Se definen:
             \begin{equation*}

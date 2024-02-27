@@ -16,10 +16,13 @@
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
-\def\proof{\paragraph{Demostración:\\}}
-\def\endproof{\hfill$\square$}
 \renewcommand{\theenumii}{\roman{enumii}}
-\renewcommand{\thechapter}{\Alph{chapter}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
 
 %En esta parte se definen los comandos a usar dentro del documento para enlistar%
 
@@ -38,8 +41,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!60!red!30
@@ -48,8 +51,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!50!blue!30
@@ -58,8 +61,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{theor}{Teorema}[section]
@@ -67,8 +70,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{propo}{Proposición}[section]
@@ -76,8 +79,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{cor}{Corolario}[section]
@@ -85,8 +88,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{lema}{Lema}[section]
@@ -94,8 +97,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     roundcorner=5pt,
     backgroundcolor = gray!30,
     hidealllines = true
@@ -104,13 +107,14 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     roundcorner=5pt
 ]{excer}{Ejercicio}[section]
 
 %En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
 
+\newcommand\contradiction{\ensuremath{\#_c}}
 \newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand{\eul}[1]{\ensuremath{\mathscr{#1}}}
@@ -764,12 +768,129 @@
 
     La definición de espacio métrico conduce en forma natural al concepto de un espacio metrizable.
 
+    \begin{mydef}
+        Un espacio topológico $X$ se dice que es \textbf{metrizable} si existe una métrica $\rho$ en el conjunto $X$ tal que la topología generada por esta métrica $\rho$ coincide con la topología original en $X$.
+    \end{mydef}
+
+    \begin{theor}
+        Un punto $x$ pertenece a la cerradura $\overline{A}$ de un conjunto $A\subseteq X$ con respecto a la topología inducida en $X$ por una métrica $\rho$ si y sólo si existe una sucesión de puntos de $A$ que converge a $x$.
+    \end{theor}
+
+    En particular, todo espacio metrizable es Fréchet-Urysohn. La combinación de compacidad-metrizabilidad implica propiedades muy especiales.
+
+    \begin{theor}
+        Sea $X$ un espacio metrizable. as siguientes condiciones son equivalentes:
+        \begin{enumerate}
+            \item El espacio $X$ es compacto.
+            \item El espacio $X$ es numerablemente compacto.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{theor}
+        Todo espacio compacto metrizable es separable.
+    \end{theor}
+
+    No cualquier producto de espacios metrizables es metrizable. Sin embargo, con una cantidad numerable de factores el producto sí es metrizable.
+
+    \begin{theor}
+        Sea
+        \begin{equation*}
+            \left\{X_n\Big|n<\omega \right\}
+        \end{equation*}
+        una familia de espacios metrizables y sea $\rho_n$ una métrica en el espacio $X_n$, acotada por 1. Entonces, la topología inducida en el conjunto $X=\prod_{n<\omega}X_n$ por la métrica $\rho$ definida por:
+        \begin{equation*}
+            \rho(x,y)=\sum_{n<\omega}\frac{1}{2^n}\rho_n(x_n,y_n)
+        \end{equation*}
+        siendo $x=\left(x_n\right)_{n<\omega},y=\left(y_n\right)_{n<\omega}\in X$, coincide con la topología de Tikhonov.
+    \end{theor}
+    
+    Existen varios criterios para determinar si un espaci oes metrizable. Entre ellos se encunetran los siguientes:
+    
+    \begin{theor}
+        Un espacio compacto es metrizable si y sólo si es un espacio segundo numerable.
+
+        Un espacio segundo numerable es metrizable si y sólo si es un espacio regular.
+    \end{theor}
+
     \section{Conexidad}
     
     En esta sección describimos las principales propiedades de la importante clase de los espacios conexos, así como varias clases de espacios disconexos.
 
-    %Me quedé en la página 188
+    \begin{mydef}
+        Un espacio $X$ es \textbf{conexo} si no es posible representarlo como unión de dos subespacios no vacíos abiertos, cerrados y ajenos.
+    \end{mydef}
 
+    En forma equivalente, un espacio $X$ es conexo si los únicos subespacios abiertos y cerrados de $X$ son el vacío y $X$ mismo. La conexidad se preserva respecto a imágenes continuas, es decir, si $X$ es un espacio conexo y $\cf{f}{X}{Y}$ una funció ncontinua sobre $Y$, enotnces $Y$ es conexo.
+
+    \begin{theor}
+        Todo espacio Tikhonov conexo con al menos dos puntos tiene cardinalidad no menor que $\aleph_1$.
+    \end{theor}\
+
+    \begin{theor}
+        Si la familia $\left\{C_i\Big|i\in I \right\}$ de subespacios conexos de un espaci otiene intersección no vacía, entonces la unioń $\bigcup_{i\in I}C_i$ es conexa.
+
+        Si un subespacio $C$ de un espacio $X$ es conexo, entonces todo subespacio $A$ de $X$ que satisfaga $C\subseteq A\subseteq\overline{C}$ también es conexo.
+    \end{theor}
+
+    La conexidad se comporta bien respecto a los productos, es decir:
+
+    \begin{theor}
+        El producto cartesiano $X=\prod_{i\in I}X_i$ de espacios no vacíos es conexo si y sólo si cada $X_i$ es conexo.
+    \end{theor}
+
+    \begin{mydef}
+        La \textbf{componente de un punto $x$} en un espacio topológico $X$ es la unión de todos los subespacios conexos de $X$ que contienen a $X$.
+
+        La \textbf{casi componente de un punto $x$} eun un espacio $X$ es la intersección de todos los subespacios abiertos-cerrados de $X$ que contienen a $x$.
+    \end{mydef}
+
+    \begin{obs}
+        Las componentes de dos puntos distintos de un espacio $X$ coinciden o son ajenas. Lo mismo ocurre con las casi componentes. Las componentes y las casi componentes son subespacios cerrados. La componente de un punto $x$ de un espacio $X$ está contenida en la casi componente de $x$. en espacios compactos ambas componentes coinciden.
+    \end{obs}
+
+    \begin{theor}
+        En un espacio compacto $X$ la componente de un punto $x\in X$ es igual a la casi componente de $x$.
+    \end{theor}
+
+    Un espacio no conexo puede presentar varios grados de disconexidad.
+
+    \begin{mydef}
+        Un espacio $X$ es \textbf{hereditariamente disconexo} o \textbf{totalmente disconexo} si $X$ no contiene subespacios conexos con más de un punto.
+
+        Un espacio $X$ es de \textbf{dimensión cero} si $X$ es no vacío, $T_1$ y tiene una base que consiste en conjuntos abiertos-cerrados.
+    \end{mydef}
+
+    \begin{obs}
+        En un espacio totalmente disconexo las componentes de los puntos tienen cardinalidad 1. Todo espacio de dimensión cero es totalmente disconexo.
+    \end{obs}
+
+    \begin{theor}
+        Tood espacio no vacío totalmente disconexo y localmente compacto es de dimensión cero.
+
+        Total disconexidad y dimensión ccero son equivalentes en la clase de los espacios localmente compactos.
+    \end{theor}
+
+    \begin{mydef}
+        Un espacio $X$ es \textbf{localmente conexo} si para todo $x\in X$ y para toda vecindad $U$ de $x$ existe un conjunto conexo $C\subseteq U$ tal que $x\in\Int{C}$.
+    \end{mydef}
+
+    \begin{theor}
+        Si $X$ es un espacio loclamente conexo, entonces
+        \begin{enumerate}
+            \item Las componentes de todos los puntos de $X$ son abiertas.
+            \item las comñponentes de los puntos de $X$ coinciden con las casi componentes.
+            \item Todo subespacio de $X$ abierto es localmente conexo.
+        \end{enumerate}
+    \end{theor}
+
+    El producto de una familia de espacios localmente conexos no es necesariamente localmente conexo. Sin embargo:
+
+    \begin{theor}
+        El prodcuto cartesiano $\prod_{i\in I}X_i$ con $X_i\neq\emptyset$ para todo $i\in I$ es localmente conexo si y sólo si todos los espacios $X_i$ son localmente conexos y existe un conjunto finito $J\subseteq I$ tal que $X_i$ es conexo si $i\in I\backslash J$.
+    \end{theor}
+
+
+    
     \chapter{Funciones Cardinales}
 
     \section{nose}

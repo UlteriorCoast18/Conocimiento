@@ -16,10 +16,13 @@
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
-\def\proof{\paragraph{Demostración:\\}}
-\def\endproof{\hfill$\square$}
-\renewcommand{\theenumi}{\arabic{enumi})}
 \renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
 
 %En esta parte se definen los comandos a usar dentro del documento para enlistar%
 
@@ -38,8 +41,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!60!red!30
@@ -48,8 +51,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!50!blue!30
@@ -58,8 +61,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{theor}{Teorema}[section]
@@ -67,8 +70,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{propo}{Proposición}[section]
@@ -76,8 +79,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{cor}{Corolario}[section]
@@ -85,8 +88,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{lema}{Lema}[section]
@@ -94,8 +97,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     roundcorner=5pt,
     backgroundcolor = gray!30,
     hidealllines = true
@@ -104,8 +107,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     roundcorner=5pt
 ]{excer}{Ejercicio}[section]
 
@@ -448,7 +451,7 @@
     \end{theor}
 
     \begin{proof}
-        $\Rightarrow$): Sea $G$ un grupo topológico $Hasdorff$ (de forma inmediata es un espacio $T_0$ y, por ende es un espacio regular). Considere la familia:
+        $\Rightarrow$): Sea $G$ un grupo topológico \textbf{Hasdorff} (de forma inmediata es un espacio $T_0$ y, por ende es un espacio regular). Considere la familia:
         \begin{equation*}
             \mathcal{V}=\left\{V\cap V^{-1}\big|V\in\N{e_G} \right\}
         \end{equation*}
@@ -505,9 +508,30 @@
         
         Luego, $\mathcal{V}$ es una base local de $e_G$.
 
-        Ahora probaremos que $\tau$ es una topología del grupo $G$.
+        Ahora probaremos que $\tau$ es una topología del grupo $G$. Para ello hay que ver que la función $(a,b)\mapsto ab^{-1}$ es continua. Sean $a,b\in G$ y $U$ una vecindad de $ab^{-1}$. De la condición (4) existe $V\in\mathcal{V}$ tal que $ab^{-1}V\subseteq U$, y por (5) y (3) existen $W_1,W_2\in\mathcal{V}$ tales que $bW_1b^{-1}\subseteq V$ y $W_2W_2^{-1}\subseteq W_1$.
 
-        %Me quedé en la página 27 del pdf%
+        Entonces, $aW_2$ y $bW_2$ son vecindades de los puntos $a$ y $b$ para las cuales se tiene que
+        \begin{equation*}
+            \begin{split}
+                (aW_2)(bW_2)^{-1}&=aW_2W_2^{-1}b^{-1}\\
+                &\subseteq aW_1b^{-1}\\
+                &\subseteq ab^{-1}(bW_1b^{-1})\\
+                &\subseteq ab^{-1}(bW_1b^{-1})\\
+                &\subseteq ab^{-1}V\\
+                &\subseteq U\\
+            \end{split}
+        \end{equation*}
+        lo cual prueba que la operación considerada es continua.
+
+        Para terminar la demostració, hay que ver que la familia:
+        \begin{equation*}
+            \left\{Ux\Big|x\in G, U\in\mathcal{V} \right\}
+        \end{equation*}
+        es también una base para la topología $\tau$. Sean $a\in G$ y $U\in\tau$ tales que $a\in U$. Por (4) existe $V\in\mathcal{V}$ tal que $aV\subseteq U$, y por (5) existe $W\in\mathcal{V}$ tal que $a^{-1}Wa\subseteq V$. Entonces:
+        \begin{equation*}
+            a\in Wa\subseteq aV\subseteq U
+        \end{equation*}
+        lo cual prueba que la familia es una base para la topología $\tau$, terminando así la prueba.
 
     \end{proof}
 
@@ -518,7 +542,7 @@
     \end{exa}
 
     \begin{exa}
-        Cualquier grupo $G$ con la topología indiscreta, es decir, aquella que consiste únicamente en el conjuno vacío y $G$ mismo, es un grupo topológico. Éste no es un gtupo topológico $T_0$ si $G$ contiene más de un elemento. 
+        Cualquier grupo $G$ con la topología indiscreta, es decir, aquella que consiste únicamente en el conjunto vacío y $G$ mismo, es un grupo topológico. Éste no es un grupo topológico $T_0$ si $G$ contiene más de un elemento. 
     \end{exa}
 
     \begin{exa}
