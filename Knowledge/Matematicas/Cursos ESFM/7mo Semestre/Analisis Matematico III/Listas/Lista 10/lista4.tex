@@ -16,9 +16,13 @@
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
-\def\proof{\paragraph{Solución:\\}}
-\def\endproof{\hfill$\square$\\}
 \renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
 
 %En esta parte se definen los comandos a usar dentro del documento para enlistar%
 
@@ -37,62 +41,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
-    roundcorner=5pt
-]{excer}{Ejercicio}[section]
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
-    rightline = false,
-    leftline = false
-]{theor}{Teorema}[section]
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
-    rightline = false,
-    leftline = false
-]{propo}{Proposición}[section]
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
-    rightline = false,
-    leftline = false
-]{cor}{Corolario}[section]
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
-    rightline = false,
-    leftline = false
-]{lema}{Lema}[section]
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
-    roundcorner=5pt,
-    backgroundcolor = gray!30,
-    hidealllines = true
-]{mydef}{Definición}[section]
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!60!red!30
@@ -101,30 +51,87 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!50!blue!30
 ]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
 
 %En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
 
 \newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
-\renewcommand{\theenumi}{\Roman{enumi}}
-
-%recuerda usar \clearpage para hacer un salto de página
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
 
 \begin{document}
-\title{Lista 4 AnM III}
-\author{Cristo Daniel Alvarado}
-\date{\today}
-\maketitle
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Lista 4 AnM III}
+    \author{Cristo Daniel Alvarado}
+    \date{\today}
+    \maketitle
 
-\tableofcontents
-\chapter{Lista 4}
+    \renewcommand{\theenumi}{\Roman{enumi}}
+
+    \tableofcontents
+    \chapter{Lista 4}
 
 \section{Ejercicios}
     \begin{excer}

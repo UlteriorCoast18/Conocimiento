@@ -1,9 +1,9 @@
-PWD x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Algebra Moderna III/Listas/Lista Ext Normales
+PWD x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Topologia I/Ejercicios/Examenes Topologia I Quintin
 INPUT x:/Programas/texlive/2023/texmf.cnf
 INPUT x:/Programas/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT x:/Programas/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Algebra Moderna III/Listas/Lista Ext Normales/ext_normales_lista.tex
-OUTPUT ext_normales_lista.log
+INPUT x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Topologia I/Ejercicios/Examenes Topologia I Quintin/primerExamen.tex
+OUTPUT primerExamen.log
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/base/report.cls
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/base/report.cls
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/base/size12.clo
@@ -220,12 +220,10 @@ INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
-INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-INPUT ./ext_normales_lista.aux
-INPUT ./ext_normales_lista.aux
-INPUT ext_normales_lista.aux
-OUTPUT ext_normales_lista.aux
+INPUT ./primerExamen.aux
+INPUT ./primerExamen.aux
+INPUT primerExamen.aux
+OUTPUT primerExamen.aux
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -252,12 +250,13 @@ INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-OUTPUT ext_normales_lista.pdf
+OUTPUT primerExamen.pdf
 INPUT x:/Programas/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT ./primerExamen.toc
+INPUT ./primerExamen.toc
+INPUT primerExamen.toc
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
@@ -276,20 +275,10 @@ INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msa
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-INPUT ./Figures/torre_de_campos.pdf
-INPUT ./Figures/torre_de_campos.pdf
-INPUT ./Figures/torre_de_campos.pdf
-INPUT ./Figures/torre_de_campos.pdf
-INPUT ./Figures/torre_de_campos.pdf
-INPUT ext_normales_lista.aux
+OUTPUT primerExamen.toc
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT primerExamen.aux
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
