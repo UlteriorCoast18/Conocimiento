@@ -1015,9 +1015,191 @@
         Entonces, 
         \begin{enumerate}
             \item $\mathcal{B}$ es una base para una topología sobre $X$.
-            %se va a redactar de otra forma
-            \item $\tau_{\mathcal{B}}=\tau(\mathcal{S})$.
+            \item $\tau_{\mathcal{B}}$ es la topología más gruesa definida sobre $X$ para la cual $\mathcal{S}$ es una colección de conjuntos abiertos, es decir que $\tau_{\mathcal{B}}=\tau(\mathcal{S})$.
         \end{enumerate}
     \end{propo}
+
+    \begin{proof}
+        Notemos antes que, $\mathcal{S}\subseteq\mathcal{B}$.
+
+        De (1): Sean $M,N\in\mathcal{B}$, entonces existen $S_{M,1},...,S_{M,k},S_{N,1},...,S_{N,l}\in\mathcal{S}$ tales que:
+        \begin{equation*}
+            M=\bigcap_{i=1 }^kS_{M,i }\quad \textup{y}\quad N=\bigcap_{j=1 }^nN_{N,j }
+        \end{equation*}
+        por tanto:
+        \begin{equation*}
+            \begin{split}
+                M\cap N=&\left(\bigcap_{i=1 }^kS_{M,i }\right)\cap\left(\bigcap_{j=1 }^nN_{N,j }\right) \\
+                =&\left(\bigcap_{i=1,j=1 }^{k,n } S_{M,i }\cap S_{N,j }  \right)
+            \end{split}
+        \end{equation*}
+        luego, por definición de $\mathcal{B}$ se sigue que $M\cap N\in\mathcal{B}$.
+
+        Además, de la definición es claro que $X\in\mathcal{B}$. Por tanto, $\mathcal{B}$ es una base de una topología sobre $X$.
+
+        De (2): De la observacíon que se hizo al inicio, se tiene que $\mathcal{S}\subseteq\tau_{\mathcal{B}}$, es decir que $\tau_{\mathcal{B}}$ es una topología que contiene a $\mathcal{S}$, luego $\tau(\mathcal{S})\subseteq \tau_{\mathcal{B}}$.
+
+        Suponga que $\tau$ es una topología sobre $X$ tal que $\mathcal{S}\subseteq\tau$. Es claro que $\mathcal{B}\subseteq\tau$ ya que $\tau$ es cerrado bajo intersecciones finitas. Por tanto, $\tau_{\mathcal{B}}\subseteq\tau$. Luego:
+        \begin{equation*}
+            \tau_{\mathcal{B}}\subseteq\tau(\mathcal{S})
+        \end{equation*}
+        Por ambas contenciones se sigue la igualdad.
+    \end{proof}
+
+    \begin{obs}
+        Sea $X$ un conjunto y $\mathcal{S}$ una colección no vacía de subconjuntos de $X$. Sea $M\in\tau(\mathcal{S})$, es decir que existe $\left\{A_\alpha \right\}_{\alpha\in I } \subseteq\mathcal{P}(X)$ tal que:
+        \begin{equation*}
+            M=\bigcup_{\alpha\in I}A_\alpha
+        \end{equation*}
+        y además, dado $\beta\in I$ existen $S_{\beta,1},...,S_{\beta,n_\beta}\in\mathcal{S}$ tales que:
+        \begin{equation*}
+            A_\beta=\bigcap_{i=1 }^{n_\beta }S_{\beta,i}
+        \end{equation*}
+    \end{obs}
+
+    \begin{excer}
+        Demuestre que las siguientes colecciones de subconjuntos de $\mathbb{R}$ son base para una topología sobre $\mathbb{R}$:
+        \begin{enumerate}
+            \item $\mathcal{B}_1=\left\{]a,b[\Big|a,b\in\mathbb{R},a<b \right\}$.
+            \item $\mathcal{B}_1=\left\{[a,b[\Big|a,b\in\mathbb{R},a<b \right\}$.
+            \item $\mathcal{B}_1=\left\{]a,b[\Big|a,b\in\mathbb{R},a<b \right\}$.
+            \item  $\mathcal{B}_1=\left\{B-K \Big|B\in\mathcal{B}_1 \right\}\cup\mathcal{B}_1$, con $K=\left\{\frac{1}{n}\Big|n\in\mathbb{N} \right\}$.
+            \item $\mathcal{B}_1=\left\{]a,\infty[\Big|a\in\mathbb{R}\right\}$.
+            \item $\mathcal{B}_1=\left\{]-\infty,b[\Big|b\in\mathbb{R} \right\}$.
+            \item La topología de complementos finitos.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{obs}
+        Usamos la notación:
+        \begin{equation*}
+            \mathcal{B}_l=\left\{[a,b[\Big|a,b\in\mathbb{R},a<b \right\}
+        \end{equation*}
+        a la topología $\tau_{\mathcal{B}_l}$ la llamaremos la \textbf{topología del límite inferior}, y se denota por $\tau_l$.
+    \end{obs}
+
+    \section{Subespacios topológicos}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico y $Y\subseteq X$. Demostrar que
+        \begin{equation*}
+            \tau_Y=\left\{Y\cap U\Big|U\in\tau \right\}
+        \end{equation*}
+        es una topología sobre $Y$.
+    \end{excer}
+
+    \begin{proof}
+        Verifiquemos que se cumplen las tres condiciones:
+        \begin{enumerate}
+            \item Es claro que $\emptyset\in\tau_Y$, pues $\emptyset=Y\cap\emptyset$ donde $\emptyset\in\tau$. Además, $Y\in\tau_Y$ pues $Y=Y\cap X$ con $X\in\tau$.
+            \item Sea $\left\{A_\alpha \right\}_{\alpha\in I}\subseteq\tau_Y$ una coleccíón no vacía. Entonces, para cada $\alpha\in I$ existe $U_\alpha\in\tau$ tal que
+            \begin{equation*}
+                A_\alpha=Y\cap U_\alpha
+            \end{equation*}
+            Por lo cual:
+            \begin{equation*}
+                \begin{split}
+                    \bigcup_{\alpha\in I }A_\alpha=&\bigcup_{\alpha\in I }\left(Y\cap U_\alpha \right) \\
+                    =&Y\cap \bigcup_{\alpha\in I } U_\alpha\\
+                \end{split}
+            \end{equation*}
+            donde $\bigcup_{\alpha\in I } U_\alpha\in\tau$. Por tanto, $\bigcup_{\alpha\in I }A_\alpha\in\tau_Y$.
+            \item Sean $A,B\in\tau_Y$, entonces existen $U,V\in\tau$ tales que:
+            \begin{equation*}
+                A=Y\cap U\quad\textup{y}\quad B=Y\cap V
+            \end{equation*}
+            por tanto:
+            \begin{equation*}
+                \begin{split}
+                    A\cap B=&(Y\cap U)\cap (Y\cap V)\\
+                    =&Y\cap (U\cap (Y\cap V))\\
+                    =&Y\cap (U\cap V)\\
+                \end{split}
+            \end{equation*}
+            donde $U\cap V\in\tau$. Por tanto, $A\cap B\in\tau_Y$.
+        \end{enumerate}
+    \end{proof}
+    
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico y sea $Y\subseteq X$. A la topología sobre $Y$,
+        \begin{equation*}
+            \tau_Y=\left\{Y\cap U\Big|U\in\tau \right\}
+        \end{equation*}
+        la llamaremos \textbf{la topología inducida por $\tau$ en $Y$}. A la pareja $(Y,\tau_Y)$ la llamaremos \textbf{un subespacio topológico de $(X,\tau)$}.
+
+        Si $A\in\tau_Y$, se dice que $A$ es un \textbf{abierto en $Y$}. Si $A\subseteq Y$ y cumple que $Y-A\in\tau_Y$, se dice que $A$ es un \textbf{cerrado en $Y$}.
+    \end{mydef}
+
+    \begin{exa}
+        Considere $(\mathbb{R},\tau_u)$, $Y=[0,1[$, $A=[0,\frac{1}{2}[$. Podemos escribir:
+        \begin{equation*}
+            A=]-1,\frac{1}{2}[\cap Y
+        \end{equation*}
+        donde $]-1,\frac{1}{2}[\in\tau_u$, por ende $A\in\tau_Y$, pero $A$ no es abierto en $(\mathbb{R},\tau_u)$.
+
+        Se tiene además que $\Int{A}=]0,\frac{1}{2}[$ y, como $A\in\tau_Y$, entonces $\Int{A}^Y=[0,\frac{1}{2}[$.
+    \end{exa}
+
+    \begin{exa}
+        Considere $(\mathbb{R},\tau_u)$. Tomemos al subconjunto $\mathbb{N}$. Como:
+        \begin{equation*}
+            \left\{m\right\}=\mathbb{N}\cap]m-\frac{1}{2},m+\frac{1}{2}[,\quad\forall m\in\mathbb{N}
+        \end{equation*}
+        así, $\left\{m \right\}\in\tau_{u_\mathbb{N}}$, es decir que coincide con la topología discreta de $\mathbb{N}$, pero $\left\{m\right\}\notin\tau_u$.
+    \end{exa}
+
+    \begin{exa}
+        Considere $(\mathbb{R},\tau_u)$, $Y=[0,1[$, $A=[0,\frac{1}{2}[\in\tau_{u_Y }$. Sea $B=[\frac{1}{2},1[\subseteq Y$. Se tiene que $B=Y-A$, es decir que $B$ es un cerrado de $(Y,\tau_{u_Y })$, pero no es cerrado en $(\mathbb{R},\tau_u)$.
+
+        Además, $\Cls{B}=[\frac{1}{2},1]$, y $\Cls{B}^Y=B=[\frac{1}{2},1[$ (por ser cerrado en la topología del subespacio).
+
+        Sea $M\subseteq Y$, denotamos por $\Fr{M}_Y$ a la frontera de $M$ en $(Y,\tau_{u_Y })$.
+    \end{exa}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico y sea $Y\subseteq X$.
+        \begin{enumerate}
+            \item Si $Y$ es abierto (respectivamente, cerrado) en $(X,\tau)$ y $U\subseteq Y$ es un conjunto abierto (respectivamente, cerrado) en $(Y,\tau_Y)$, entonces $U$ es abierto (respectivamente, cerrado) en $(X,\tau)$.
+            \item Si $\mathcal{B}$ es una base para $\tau$, entonces la colección:
+            \begin{equation*}
+                \mathcal{B}_Y=\left\{Y\cap B\Big| B\in\mathcal{B} \right\}
+            \end{equation*}
+            es una base para la topología $\tau_Y$.
+            \item Sea $A\subseteq Y$. Entonces $A$ es cerrado en $Y$ si y sólo si existe $C\subseteq X$ cerradp en $X$ tal que $A=Y\cap C$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): Es inmediata de la definción de subespacio de un espacio topológico.
+
+        De (2): Se deben verificar dos condiciones:
+        \begin{enumerate}
+            \item $\mathcal{B}_Y\subseteq\tau_Y$, esto es inmediato pues si $Y\cap B\in\mathcal{B}_Y$, entonces $B\in\mathcal{B}$, luego $B\in\tau$ y, por ende $Y\cap B\in\tau_Y$.
+            \item Sea $U\in\tau_Y$ abierto no vacío. Entonces existe $V\in\tau$ tal que $U=Y\cap V$. Sea $\left\{B_\alpha \right\}_{\alpha\in I}\subseteq\mathcal{B}$ tal que $V=\bigcup_{\alpha\in I}B_\alpha$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    U=&Y\cap V\\
+                =&Y\cap\left(\bigcup_{\alpha\in I}B_\alpha\right) \\
+                =&\left(\bigcup_{\alpha\in I}Y\cap B_\alpha\right) \\
+                \end{split}
+            \end{equation*}
+            por tanto, $U$ es unión de elementos de $\mathcal{B}_Y$.
+        \end{enumerate}
+        
+        por los dos incisos anteriores, se sigue que $\mathcal{B}_Y$ es base de $\tau_Y$.
+
+        De (3): Probaremos la doble implicación:
+        
+        $\Rightarrow)$: Suponga que $A$ es cerrado en $Y$, entonces $Y-A\in\tau_Y$, luego existe $U\in\tau$ tal que $Y-A=Y\cap U$. Tomemos $C=X-U$, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                Y\cap C=&(X-U)\cap Y\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
 
 \end{document}
