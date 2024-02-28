@@ -309,10 +309,16 @@
     \end{mydef}
 
     \begin{mydef}
-        Si la clase de objetos de la categoría $\mathcal{C}$ es un conjunto, diremos que $\mathcal{C}$ es una \textbf{categoría pequeña}. Más aún, si tenemos un número finito de morfismos, diremos que $\mathcal{C}$ es una \textbf{categoría finita}.
+        Si la clase de objetos de la categoría $\mathcal{C}$ es un conjunto, diremos que $\mathcal{C}$ es una \textbf{categoría pequeña}. 
+        
+        Más aún, si tenemos un número finito de morfismos (hablando de todos los que puede haber en la categoría y entre todos los objetos de la categoría), diremos que $\mathcal{C}$ es una \textbf{categoría finita}.
     \end{mydef}
 
     Dadas las definciones anteriores, no se nos da ejemplos concretos de lo que es una categoría, por lo cual procederemos a dar ejemplos de la misma.
+
+    \begin{obs}
+        Denotamos por $\mathbb{N}_0=\mathbb{N}^*$ a $\mathbb{N}\cup\left\{0\right\}$.
+    \end{obs}
 
     \begin{exa}
         Sea $X$ un conjunto. Denotamos por $\mathcal{C}_X$ a una categoría formada por $\Obj{\mathcal{C}_X}=X$, y tendremos para cualquier par de elementos $x,y\in\Obj{\mathcal{C}_X}$ definimos:
@@ -320,16 +326,118 @@
             \Hom{\mathcal{C}_X}{x}{y}=\left\{
                 \begin{array}{lcr}
                     \emptyset & \textup{ si } & x\neq y\\
-                    1_x & \textup{ si } & x=y\\
+                    \left\{1_x\right\} & \textup{ si } & x=y\\
                 \end{array}
             \right.
         \end{equation*}
+        Definimos la ley de composición de la siguiente forma:
+        \begin{equation*}
+            1_x\circ 1_x=1_x,\quad\forall x\in X
+        \end{equation*}
+        Observemos que el único caso en el que está definido es cuando los tres objetos de la categoría son el mismo, en caso contrario el conjunto de morfismos es vacío. Estos objetos que tomamos aquí hacemos $1_x=\left\{x\right\}$ para todo $x\in X$. Este ejemplo da una razón para decir que es lo que son los morfismos y objetos de la categoría.
+
+        $\mathcal{C}_X$ es una categoría pequeña la cual no necesariamente es finita (es finita en el caso que la cardinalidad de $X$ sea finita).
+
+        Si $X=\emptyset$ entonces $\mathcal{C}_X$ es la \textbf{categoría vacía} (que coincide cuando $n=0$ en la siguiente parte).
+        
+        Denotamos $\Cat{n}$ a la categoría como la de este ejemplo del conjunto con $n$ elementos, donde $n\in\mathbb{N}$.
+    \end{exa}
+    
+    \begin{mydef}
+        Un conjunto no vacío $X$ es preordenado si...
+    \end{mydef}
+
+    \begin{exa}
+        Consideremos al conjunto preordenado $(X,\leq)$ (llamado a veces \textbf{PoSet}). Definimos la categoría $\mathcal{C}_{(X,\leq)}$ en donde:
+        \begin{itemize}
+            \item $\Obj{\mathcal{C}_{(X,\leq)}}=X$.
+            \item Se define el conjunto de morfismos por:
+            \begin{equation*}
+                \Hom{\mathcal{C}_{(X,\leq)}}{x}{y}=\left\{
+                    \begin{array}{lcr}
+                        \emptyset & \textup{ si } & x\nleq y\\
+                        \left\{\varphi_{x,y} \right\} & \textup{ si } & x\leq y\\
+                    \end{array}
+                \right.
+            \end{equation*}
+            \item Sean $x,y,z\in \Obj{\mathcal{C}_{(X,\leq)}}$. Se define la Ley de Composición de la siguiente manera:
+            \begin{equation*}
+                \begin{split}
+                    \Hom{\mathcal{C}_{(X,\leq)}}{x}{y}\times\Hom{\mathcal{C}_{(X,\leq)}}{y}{z}\rightarrow&\Hom{\mathcal{C}_{(X,\leq)}}{x}{z}\\
+                    (\varphi_{x,y},\varphi_{y,z})\mapsto&\varphi_{x,z}\\
+                \end{split}
+            \end{equation*}
+            La Ley de composición anterior está definida solamente cuando $x\leq y\leq z$, pues es el único caso en el que el conjunto de morfismos es no vacío.
+        \end{itemize}
+
+        El morfismo es un objeto que cumple las leyes anteriores.
+    \end{exa}
+    
+    \begin{exa}
+        Construimos la categoría $\Cat{Set}$, donde la clase objetos es la clase de todos los conjuntos y los morfismos son las funciones entre cada conjunto. La ley de composición es la composición usual de funciones.
     \end{exa}
 
     \begin{exa}
-        Definimos a $n$ por la categoría de un conjunto con $n$ elementos, donde $n\in\mathbb{N}$.
+        Sea $(M,\cdot)$ un monoide, es decir, $M$ es un conjunto no vacío en el que $\cdot$ es una operación binaria que es asociativa, para la cual existe un elemento $e_M\in M$ tal que:
+        \begin{equation*}
+            e_M\cdot x=x\cdot e_M=x\quad\forall x\in M
+        \end{equation*}
+        Denotamos por $\mathcal{M}$ a la categoría en donde:
+        \begin{itemize}
+            \item $\Obj{\mathcal{M}}=\left\{\cdot \right\}$.
+            \item $\Hom{\mathcal{M}}{\cdot}{\cdot}=\left\{M \right\}$.
+            \item La ley de composición $\circ$, se define de la siguiente forma:
+            \begin{equation*}
+                x\circ y=x\cdot y
+            \end{equation*}
+            donde $x,y\in \Hom{\mathcal{M}}{\cdot}{\cdot}$ (en este caso $\cdot$ son el dominio y codominio de $x,y\in X$).
+        \end{itemize}
+        En este caso, el morfismo identidad es la identidad del monoide.
+
+        Este ejemplo se puede extender a grupos, y en el caso de grupos abelianos se tendría que la ley de composición es conmutativa.
     \end{exa}
-    
+
+    \begin{exa}
+        La categoría $\Cat{Grp}$ es la categoría de todos los grupos, donde la clase de objetos de la categoría es la clase de todos los grupos y los morfismos son los homomorfismos de grupos.
+
+        De forma similar $\Cat{Grp}=\Cat{AbGrp}$ y $\Cat{SiGrp}$ son las categorías de grupos abelianos y simples.
+    \end{exa}
+
+    \begin{exa}
+        Sea $R$ un anillo con identidad, denotamos por $R_\mathcal{M}$ a la categoría
+    \end{exa}
+
+    \begin{exa}
+        La categoría $\Cat{Top}$ es la categoría de todos los espacios topológicos con funciones continuas entre los espacios como los morfismos.
+
+        De forma análoga con $\Cat{HausTop}$, que es la categoría de todos los espacios topológicos que en particular son Hausdorff y los morfismos son las funciones continuas entre los espacios.
+    \end{exa}
+
+    \begin{mydef}
+        Sean $\mathcal{C}$ y $\mathcal{C}'$ dos categorías. Si
+        \begin{enumerate}
+            \item $\Obj{\mathcal{C}'}\subseteq\Obj{\mathcal{C}}$.
+            \item $\Hom{\mathcal{C}}{A}{B}\subseteq\Hom{\mathcal{C}'}{A}{B}$ para todo $A,B\in\Obj{\mathcal{C}'}$.
+            \item La ley de composición de morfismos en $\mathcal{C}'$ está inducida por la ley de composición de morfismos en $\mathcal{C}$.
+            \item Los morfismos identidad en $\mathcal{C}'$ son los morfismos identidad en $\mathcal{C}$.
+        \end{enumerate}
+        se dice entonces que $\mathcal{C}'$ es una \textbf{subcategoría} de $\mathcal{C}$.
+
+        Más aún, $\mathcal{C}'$ se dice que es una \textbf{subcategoría llena} de $\mathcal{C}$ si para cada par $(A,B)$ de objetos de $\mathcal{C}'$ tenemos que
+        \begin{equation*}
+            \Hom{\mathcal{C}'}{A}{B}=\Hom{\mathcal{C}}{A}{B}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{exa}
+        \begin{enumerate}
+            Se cumple lo siguiente:
+            \item Las categorías $\Cat{Ab}$ y $\Cat{SiGrp}$ son subcategorías llenas de $\Cat{Set}$.
+            \item La categoría $\Cat{HausTop}$ es una subcategoría llena de $\Cat{Top}$.
+            \item $\Cat{Ring}^c$ y $\Cat{Field}$ son subcategorísa de $\Cat{Ring}$, más aún son subcategorías llenas.
+        \end{enumerate}
+    \end{exa}
+
     \section{Objetos especiales y Morfismos en una Categoría}
 
     Las nociones de monomirfismo y epimorfismo que se van a introducir son generalizaciones a categorías arbitrarias de las funciones familiares inyectiva y suprayectiva que van de $\Cat{Set}$.
