@@ -458,22 +458,6 @@
     \end{exa}
 
     \begin{proof}
-        Sea $\cf{f}{G}{G'}$ un homomorfismo biyectivo de grupos y considere a $\cf{f'}{G'}{G}$ su mapeo inverso, es decir que:
-        \begin{equation*}
-            f\circ f'=1_{G'}\quad\textup{y}\quad f'\circ f=1_G
-        \end{equation*}
-        veamos que en efecto, $f'$ es homomorfismo biyectivo (el cual ya es biyectivo y por tanto, será homomorfismo biyectivo). Sean $a',b'\in G'$, se tiene que:
-        \begin{equation*}
-            \begin{split}
-                f'(a\cdot b)=&f'(f(a)\cdot f(b))\\
-                =&f'(f(a\cdot b))\\
-                =&a\cdot b\\
-            \end{split}
-        \end{equation*}
-        luego, $f'$ es homomorfismo que, al ser biyectivo es homomorfismo biyectivo. 
-    \end{proof}
-
-    \begin{proof}
         Sea $f\in\Hom{\Cat{Set}}{A}{B}$ es morfismo.
 
         Suponga que $f$ es monomorfismo, decir que $\cf{f}{A}{B}$ es una función que cumple el primer inciso de la definición anterior. Hay que probar que $f$ es inyectiva. Sean $a\in A$ y $a'\in A$ elementos tales que $f(a)=f(a')$. Consideremos a $g_1$ y $g_2$ los morfismos tales que $g_1(x)=a$ y $g_2(x)=a'$, estos pertenecen a $\Hom{\Cat{Set}}{\left\{x\right\}}{A}$ (en este contexto $x$ es un elemento de un conjunto arbitrario). Se tiene entonces que
@@ -511,6 +495,22 @@
     \begin{exa}
         En cada una de las categorías $\Cat{Set}$, $\Cat{Grp}$, $\Cat{Ab}$ y $_R\mathcal{M}$, los isomorfismos coinciden con los homomorfismos biyectivos (por los ejemplos anteriores). En $\Cat{Top}$, los isomorfismos son exactamente los \textit{homeomorfismos}, esto es, biyecciones continuas cuyas inversas también son continuas.
     \end{exa}
+
+    \begin{proof}
+        Sea $\cf{f}{G}{G'}$ un homomorfismo biyectivo de grupos y considere a $\cf{f'}{G'}{G}$ su mapeo inverso, es decir que:
+        \begin{equation*}
+            f\circ f'=1_{G'}\quad\textup{y}\quad f'\circ f=1_G
+        \end{equation*}
+        veamos que en efecto, $f'$ es homomorfismo biyectivo (el cual ya es biyectivo y por tanto, será homomorfismo biyectivo). Sean $a',b'\in G'$, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                f'(a\cdot b)=&f'(f(a)\cdot f(b))\\
+                =&f'(f(a\cdot b))\\
+                =&a\cdot b\\
+            \end{split}
+        \end{equation*}
+        luego, $f'$ es homomorfismo que, al ser biyectivo es homomorfismo biyectivo. 
+    \end{proof}
 
     \begin{mydef}
         Sea $(G,+)$ un grupo abeliano. Decimos que $G$ es un \textbf{grupo divisible} si para cualesquiera $n\in\mathbb{N}$ y $g\in G$ existe $h\in H$ tal que $nh=g$.
