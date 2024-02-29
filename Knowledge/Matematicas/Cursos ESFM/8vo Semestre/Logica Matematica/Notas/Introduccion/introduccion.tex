@@ -879,4 +879,150 @@
 
     \end{excer}
 
+    \begin{excer}
+        Complete las demostraciones:
+        
+        1.
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $P$ & $\Rightarrow$ & $Q$ & Premisa \\
+                2) & $Q$ & $\Rightarrow$ & $R$ & Premisa \\
+                3) & $P$ &  &  & Suposición \\
+                4) & $Q$ &  &  & 1,3 M.P. \\
+                5) & $R$ &  &  & 2,4 M.P. \\
+                6) & $P$ & $\Rightarrow$ & $R$ & 3-5 P.C. \\
+                \hline
+                & & $\therefore$ & $P\Rightarrow R$ & \\
+            \end{tabular}
+        \end{center}
+
+        2.
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $Q$ &  &  & Premisa \\
+                2) & $Q$ & $\Rightarrow$ & $(P\Rightarrow Q)$ & Ax. 2 \\
+                3) & $P$ & $\Rightarrow$ & $Q$ & 2,1 M.P. \\
+                \hline
+                & & $\therefore$ & $P\Rightarrow Q$ & \\
+            \end{tabular}
+        \end{center}
+
+        3.
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $P$ & $\Rightarrow$ & $(Q\Rightarrow R)$ & Premisa\\
+                2) & $P$ &  &  & Suposición\\
+                3) & $Q$ & $\Rightarrow$ & $R$ & 1,2 M.P.\\
+                4) & $Q$ &  &  & Suposición\\
+                5) & $R$ &  &  & 3,4 M.P.\\
+                6) & $P$ & $\Rightarrow$ & $R$ & 2-5 P.C.\\
+                7) & $Q$ & $\Rightarrow$ & $(P\Rightarrow R)$ & 6 Eje. 2\\
+                \hline
+                & & $\therefore$ & $Q\Rightarrow (P\Rightarrow R)$ & \\
+            \end{tabular}
+        \end{center}
+
+        4.
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $P$ & $\Rightarrow$ & $(Q\land R)$ & Premisa \\
+                2) & $P$ &  &  & Suposición \\
+                3) & $Q\land R$ &  &  & 1,2 M.P. \\
+                4) & $Q$ &  &  & 3 Simp. \\
+                5) & $P$ & $\Rightarrow$ & $Q$ & 1-4 P.C. \\
+                \hline
+                & & $\therefore$ & $P\Rightarrow Q$ & \\
+            \end{tabular}
+        \end{center}
+
+        5.
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $(P\Rightarrow Q)$ & $\land$ & $(C\Rightarrow D)$ & Premisa \\
+                2) & $(Q\lor D)$ & $\Rightarrow$ & $((E\Rightarrow(E\lor F))\Rightarrow(P\land C))$ & Premisa \\
+                3) & $P$ & $\Rightarrow$ & $Q$ & 1 Simp.\\
+                4) & $C$ & $\Rightarrow$ & $D$ & 1 Simp.\\
+
+                5) & $E$ &  &  & Suposición.\\
+                6) & $E$ & $\lor$ & $F$ & 5 Ad.\\
+                7) & $E$ & $\Rightarrow$ & $(E\lor F)$ & 5-6 P.C.\\
+
+                8) & $P$ &  &  & Suposición.\\
+                9) & $Q$ &  &  & 3,5 M.P.\\
+                10) & $Q\lor D$ &  &  & 6 Ad.\\
+                11) & $(E\Rightarrow(E\lor F))$ & $\Rightarrow$ & $(P\land C)$ & 7,2 M.P.\\
+                \hline
+                & & $\therefore$ & $P\iff R$ & \\
+            \end{tabular}
+        \end{center}
+        
+    \end{excer}
+
+    \begin{exa}
+        Este es un esquema general en el que se hacen las pruebas por contradicción:
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $P$ & $\lor$ & $(Q\land R)$ & Premisa \\
+                2) & $P$ & $\Rightarrow$ & $R$ & Premisa \\
+                3) & $\neg R$ &  &  & Suposición. \\
+                4) & $\neg P$ &  &  & 2,3 M.T. \\
+                5) & $Q$ & $\land$ & $R$ & 4,1 S.D. \\
+                6) & $R$ &  &  & 5 Simp. \\
+                7) & $R$ & $\land$ & $\neg R$ & 6,3 Ad. \\
+                8) & $R$ &  &  & 3-7 P.I. \\
+
+                \hline
+                & & $\therefore$ & $R$ & \\
+            \end{tabular}
+        \end{center}
+    \end{exa}
+
+    \begin{excer}
+        Complete las siguientes demostraciones:
+
+        1.
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $(P\lor Q)$ & $\Rightarrow$ & $(R\Rightarrow D)$ & Premisa \\
+                2) & $(\neg D\lor E)$ & $\Rightarrow$ & $(P\land R)$ & Premisa \\
+                3) & $\neg D$ &  &  & Suposición \\
+                4) & $\neg D$ & $\lor$ & $E$ & 3 Ad. \\
+                5) & $P$ & $\land$ & $R$ & 2,4 M.P. \\
+                6) & $P$ &  &  & 5 Simp. \\
+                7) & $P$ & $\lor$ & $Q$ & 6 Ad. \\
+                8) & $R$ & $\Rightarrow$ & $D$ & 1,7 M.P. \\
+                9) & $R$ &  &  & 5 Simp. \\
+                10) & $D$ &  &  & 8,9 M.P. \\
+                11) & $D$ & $\land$ & $\neg D$ & 10, 3 Conj. \\
+                12) & $\neg\neg D$ &  &  & 3-11 P.I. \\
+                13) & $D$ &  &  & 12 Ax. 3 \\
+                \hline
+                & & $\therefore$ & $D$ & \\
+            \end{tabular}
+        \end{center}
+
+        2.
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $(P\lor Q)$ & $\Rightarrow$ & $(R\land D)$ & Premisa \\
+                2) & $(R\lor F)$ & $\Rightarrow$ & $(\neg F\land G)$ & Premisa \\
+                3) & $(F\lor H)$ & $\Rightarrow$ & $(P\land I)$ & Premisa \\
+                4) & $F$ &  &  & Suposición \\
+                5) & $F$ & $\lor$ & $H$ & 4. Ad. \\
+                6) & $P$ & $\land$ & $I$ & 3,5 M.P. \\
+                7) & $P$ &  &  & 6 Simp. \\
+                8) & $P$ & $\lor$ & $Q$ & 7 Ad. \\
+                9) & $R$ & $\land$ & $D$ & 7 Ad. \\
+                10) & $R$ &  &  & 9 Simp. \\
+                11) & $R$ & $\lor$ & $ F$ & 10 Ad. \\
+                12) & $\neg F$ & $\land$ & $G$ & 2,11 M.P. \\
+                13) & $\neg F$ &  &  & 12 Simp. \\
+                14) & $F$ & $\land$ & $\neg F$ & 4,13 Conj. \\
+                15) & $\neg F$ &  &  & 4-14 P.I. \\
+                \hline
+                & & $\therefore$ & $\neg F$ & \\
+            \end{tabular}
+        \end{center}
+    \end{excer}
+
 \end{document}
