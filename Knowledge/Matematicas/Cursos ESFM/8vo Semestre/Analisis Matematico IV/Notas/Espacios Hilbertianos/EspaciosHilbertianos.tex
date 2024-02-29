@@ -1018,4 +1018,236 @@
         ¿Es cierto que $\sum_{n\in\mathbb{N}}a_n=\sum_{n=1}^{\infty}a_n$?
     \end{exa}
 
+    La respuesta a esta pregunta la da el siguiente teorema:
+
+    \begin{theor}
+        Para toda sucesión $\left\{a_n \right\}_{n=1}^\infty$ en $[0,\infty]$ se cumple:
+        \begin{equation*}
+            \sum_{n\in\mathbb{N}}a_n=\sum_{n=1}^{\infty}a_n
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Sea $\Delta=\sum_{n\in\mathbb{N}}a_n$ y $\Sigma=\sum_{n=1}^{\infty}a_n$. Como la colección de sumas parciales de la serie $\sum_{n=1}^{\infty}a_n$ está contenida en la colección de sumas parciales de $\sum_{n\in J }a_n$ donde $J\in \mathcal{F}(\mathbb{N})$, entonces:
+        \begin{equation*}
+            \Sigma\leq\Delta
+        \end{equation*}
+        
+        Sea $J\in \mathcal{F}(\mathbb{N})$. Tomando $k=\max_{i\in J} i$ se obtiene que:
+        \begin{equation*}
+            \sum_{n\in J }a_n\leq\sum_{n=1 }^{k}a_n
+        \end{equation*}
+        tomando supremos se sigue que $\Delta\leq\Sigma$. Finalmente, se obtiene que $\Delta=\Sigma$.
+
+    \end{proof}
+
+    \begin{cor}][Propiedad de conmutatividad para series]
+        Sea $\left\{a_n \right\}_{n=1}^\infty$ en $[0,\infty]$, y sea $\sigma$ una biyección de $\mathbb{N}$ sobre $\mathbb{N}$. Entonces:
+        \begin{equation*}
+            \sum_{n=1}^{\infty}a_n=\sum_{n=1}^{\infty}a_{\sigma(n) }
+        \end{equation*}
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{cor}
+        Sea $\left\{a_{i,j} \right\}{(i,j)\in\mathbb{N}\times\mathbb{N}}$ una sucesión doble en $[0,\infty]$ y, $\sigma$ una biyección de $\mathbb{N}\times\mathbb{N}$ sobre $\mathbb{N}$.
+
+        Tomemos $a_{i,j }=b_{\sigma(i,j)}$ para todo $(i,j)\in\mathbb{N}\times\mathbb{N}$. Entonces:
+        \begin{equation*}
+            \sum_{(i,j)\in\mathbb{N}\times\mathbb{N}}a_{i,j }=\sum_{k=1 }^{\infty}b_k
+        \end{equation*}
+
+        Además, sumando por paquetes, se tiene en particular que:
+        \begin{equation*}
+            \sum_{(i,j)\in\mathbb{N}\times\mathbb{N}}a_{i,j }=\sum_{i=1 }^{\infty} \sum_{j=1 }^{\infty}a_{ i,j}=\sum_{j=1 }^{\infty} \sum_{is=1 }^{\infty}a_{ i,j}
+        \end{equation*}
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{theor}
+        Para que una familia $\left(a_\alpha \right)_{\alpha\in\Omega }$ de elementos de $[0,\infty]$ sea sumable, son necesarias y suficientes las condiciones siguientes:
+        \begin{enumerate}
+            \item El conjunto:
+            \begin{equation*}
+                \Omega_0=\left\{\alpha\in\Omega\Big|a_\alpha\neq0 \right\}
+            \end{equation*}
+            sea a lo sumo numerable.
+            \item En el caso de que $\Omega_0$ sea numerable, si tenemos una numeración $n\mapsto\alpha(n)$ es una biyección de $\mathbb{N}$ sobre $\Omega_0$ se tenga que:
+            \begin{equation*}
+                \sum_{n=1 }^{\infty}a_{\alpha(n)}<\infty
+            \end{equation*}
+        \end{enumerate}
+        En este caso:
+        \begin{equation*}
+            \sum_{\alpha\in\Omega }a_\alpha=\sum_{n=1 }^{\infty}a_{\alpha(n)}
+        \end{equation*}
+
+    \end{theor}
+    
+    \begin{proof}
+        La suficiencia es clara. (Ejercicio) %TODO%
+
+        Veamos la necesidad. Supona que la familia $(a_\alpha)_{\alpha\in\Omega}$ de números no negativos es sumable de suma digamos $\Delta$. Sea:
+        \begin{equation*}
+            A_\nu=\left\{\alpha\Big|a_\alpha\geq\frac{1}{\nu} \right\},\quad\forall\nu\in\mathbb{N}
+        \end{equation*}
+        probaremos que los $A_\nu$ son finitos. Sea $\left\{\alpha_1,...,\alpha_k\right\}$ una familia finita de índices en $A_\nu$ con $\nu\in\mathbb{N}$. Entonces:
+        \begin{equation*}
+            \frac{k}{\nu}\leq a_{\alpha_1}+...+a_{\alpha_k}\leq\Delta
+        \end{equation*}
+        por tanto, $k\leq \nu\Delta$. Esto prueba que para cada $\nu\in\mathbb{N}$, $A_\nu$ es finito.
+
+        Como $\Omega_0=\bigcup_{\nu=1 }^\infty A_\nu$, entonces $\Omega_0$ es a lo sumo numerable.
+
+        El resto se deja como ejercicio al lector.
+    \end{proof}
+
+    \section{Familias sumables de números complejos}
+
+    \begin{mydef}
+        Sea $\left(u_\alpha \right)_{\alpha\in\Omega}$ una familia arbitraria de números complejos. Se dice que dicha familia es \textbf{sumable} si la familia de los módulos $\left(\abs{u_\alpha } \right)_{\alpha\in\Omega}$ es una familia sumable de números no negativos.
+    \end{mydef}
+
+    \begin{propo}
+        Sea $\left(u_\alpha \right)_{\alpha\in\Omega}$ una familia sumable de números complejos. Sea:
+        \begin{equation*}
+            \Omega_0=\left\{\alpha\in\Omega\Big|u_\alpha\neq0 \right\}
+        \end{equation*}
+        entonces $\Omega_0$ es a lo sumo numerable. Además, si $i\mapsto\alpha(i)$ es una biyección de $\mathbb{N}$ sobre $\Omega_0$, entonces la serie
+        \begin{equation*}
+            \sum_{i=1 }^{\infty}a_{\alpha(i)}
+        \end{equation*}
+        es absolutamente convergente, y la suma de dicha serie es independiente la biyección $\alpha$ elegida, la cual se denomina \textbf{suma de la familia sumable $\left(u_\alpha \right)_{\alpha\in\Omega}$}, y se escribe
+        \begin{equation*}
+            \sum_{\alpha\in\Omega }a_\alpha=\sum_{i=1 }^{\infty}a_{\alpha(i)}
+        \end{equation*}
+        Si $\Omega'$ es otro conjunto numerable tal que $\Omega_0\subseteq\Omega'\subseteq\Omega$ y $i\mapsto\alpha(i)$ es una biyección de $\mathbb{N}$ sobre $\Omega'$, entonces:
+        \begin{equation*}
+            \sum_{\alpha\in\Omega }a_\alpha=\sum_{i=1 }^{\infty}a_{\alpha(i)}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        %TODO%
+        Solo se probará la penúltima parte. Sea $i\mapsto\beta(i)$ otra biyección de $\mathbb{N}$ sobre $\Omega_0$. Hay que probar que:
+        \begin{equation*}
+            s=\sum_{i=1 }^{\infty}u_{\alpha(i)}=\sum_{i=1 }^{\infty}u_{\beta(i)}=t
+        \end{equation*}
+        Dado $\varepsilon>0$ existe $n_0\in\mathbb{N}$ tal que:
+        \begin{equation*}
+            \sum_{i>n_0 }\abs{u_{\alpha(i)} }<\frac{\varepsilon}{3}\quad\textup{y}\quad \sum_{i>n_0 }\abs{u_{\beta(i)} }<\frac{\varepsilon}{3}
+        \end{equation*}
+        también existe $n_1\in\mathbb{N}$ tal que $n_1>n_0$ y $\left\{\alpha(1),...,\alpha(n_0)\right\}\subseteq\left\{\beta(1),...,\beta(n_1) \right\}$ (básicamente podemos cubrir todos los índices de $\alpha$ con los $\beta$ eventualmente). Se tiene:
+        \begin{equation*}
+            \begin{split}
+                \abs{s-t}\leq&\abs{s-\sum_{i=1 }^{n_0}u_{\alpha(i)}}+\abs{\sum_{i=1 }^{n_0 }u_{\alpha(i)}-\sum_{i=1 }^{n_1 }u_{\beta(i)}}+\abs{\sum_{i=1 }^{n_1}u_{\beta(i)}-t} \\
+                < &\frac{2\varepsilon}{3}+\abs{\sum_{i=1 }^{n_0 }u_{\alpha(i)}-\sum_{i=1 }^{n_1 }u_{\beta(i)}}\\
+            \end{split}
+        \end{equation*}
+        donde la primera desigualdad se da por la convergencia de la suma de los módulos. El último término, después de la reducción, se convierte en la suma de unos cuantos $u_\alpha(i)$ con $i\geq n_0$, los cuales al ser mayorizados con sus módulos suman algo menor que $\frac{\varepsilon}{3}$. Por tanto:
+        \begin{equation*}
+            \abs{s-t}<\varepsilon
+        \end{equation*}
+        luego, $s=t$.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $\Omega$ un conjunto arbitrario.
+        \begin{enumerate}
+            \item $l_1(\Omega,\mathbb{K})$ denota al conjunto de funciones $\cf{f}{\Omega}{\mathbb{K}}$ tales que $\left(f(\alpha) \right)_{\alpha\in\Omega}$ es una familia sumable en $\mathbb{K}$. Si $f\in l_1(\Omega,\mathbb{K})$, se escribe:
+            \begin{equation*}
+                \mathcal{N}_1(f)=\sum_{\alpha\in\Omega }\abs{f(\alpha)}
+            \end{equation*}
+            \item $l_2(\Omega,\mathbb{K})$ denota al conjunto de funciones $\cf{f}{\Omega}{\mathbb{K}}$ tales que $\left(f(\alpha)^2 \right)_{\alpha\in\Omega}$ es una familia sumable en $\mathbb{K}$. Si $f\in l_2(\Omega,\mathbb{K})$, se escribe:
+            \begin{equation*}
+                \mathcal{N}_2(f)=\left[\sum_{\alpha\in\Omega }\abs{f(\alpha)}^2\right]^{1/2}
+            \end{equation*}
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{propo}
+        $l_1(\Omega,\mathbb{K})$ es un espacio vectorial sobre el campo $\mathbb{K}$, y $\mathcal{N}_1$ es una norma sobre $l_1(\Omega,\mathbb{K})$. Además, si $f,g\in l_1(\Omega,\mathbb{K})$ entonces,
+        \begin{equation*}
+            \sum_{\alpha\in\Omega }(f+g)(\alpha)=\sum_{\alpha\in\Omega }f(\alpha)+\sum_{\alpha\in\Omega }g(\alpha)
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Sea $f\in l_1(\Omega,\mathbb{K})$ y $\lambda\in\mathbb{K}$. Sea $J\in\mathcal{F}(\Omega)$, se tiene que:
+        \begin{equation*}
+            \sum_{\alpha\in J }\abs{\lambda f(\alpha)}=\abs{\lambda} \sum_{\alpha\in J }\abs{f(\alpha)}\leq\abs{\lambda}\mathcal{N}_1(f)
+        \end{equation*}
+        tomando supremos se sigue que $\lambda f\in l_1(\Omega,\mathbb{K})$, pues la familia de sus módulos es sumable.
+
+        Sean ahora $f,g\in l_1(\Omega,\mathbb{K})$ y $J\in\mathcal{F}(\Omega)$. Se sabe que:
+        \begin{equation*}
+            \sum_{\alpha\in J }\abs{(f+g)(\alpha)}\leq \sum_{\alpha\in J }\abs{f(\alpha)}+\sum_{\alpha\in J }\abs{g(\alpha)}=\mathcal{N}_1(f)+\mathcal{N}_1(g)
+        \end{equation*}
+        por tanto, $f+g\in l_1(\Omega,\mathbb{K})$ y $\mathcal{N}_1(f+g)\leq\mathcal{N}_1(f)+\mathcal{N}_1(g)$.
+
+        Finalmente, se tiene que $\mathcal{N}_1(f)=0$ si y sólo si $f(\alpha)=0$ para todo $\alpha\in\Omega$, si y sólo si $f=0$.
+
+        Por tanto, $\mathcal{N}_1$ es una norma sobre $l_1(\Omega,\mathbb{K})$.
+
+        Sean ahora $f,g\in l_1(\Omega,\mathbb{K})$. Tomemos:
+        \begin{equation*}
+            \Omega_1=\left\{\alpha\in\Omega\Big|f(\alpha)\neq0 \right\}\quad\textup{y}\quad\Omega_2=\left\{\alpha\in\Omega\Big|g(\alpha)\neq0 \right\}
+        \end{equation*}
+        Defina $\Omega_0=\Omega_1\cup\Omega_2$. $\Omega_0,\Omega_1$ y $\Omega_2$ son a lo sumo numerables. Sea $i\mapsto\alpha(i)$ una biyección de $\mathbb{N}$ sobre $\Omega_0$. Entonces:
+        \begin{equation*}
+            \begin{split}
+                \sum_{\alpha\in\Omega }(f+g)(\alpha)=&\sum_{i=1 }^\infty(f+g)(\alpha)\\
+                =&\sum_{i=1 }^\infty f(\alpha)+\sum_{i=1 }^\infty g(\alpha)\\
+                =&\sum_{\alpha\in\Omega }f(\alpha)+\sum_{\alpha\in\Omega }g(\alpha)\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \begin{obs}
+        En la sumatoria con $\Omega_0$ se usó el último resultado de la proposición 1.3.1, ya que puede que la familia $\Omega_0$ no coincida con aquella en la que $\alpha\in\Omega$ es tal que $(f+g)(\alpha)=0$, sin embargo este conjunto $\Omega_0$ contiene a este conjunto que se especificó.
+    \end{obs}
+
+    \begin{theor}
+        El espacio normado $l_1(\Omega,\mathbb{K})$ con la norma $\mathcal{N}_1$ es un espacio de Banach.
+    \end{theor}
+
+    \begin{proof}
+        (Se seguirá adaptando la demostración correspondiente para $l_2$).
+    \end{proof}
+
+    \begin{theor}
+        Sean $f,g\in l_2(\Omega,\mathbb{K})$. Entonces, $fg \in l_1(\Omega,\mathbb{K})$ y:
+        \begin{equation*}
+            \mathcal{N}_1(fg)\leq\mathcal{N}_2(f)\mathcal{N}_2(g)
+        \end{equation*}
+        Además, $l_2(\Omega,\mathbb{K})$ es un espacio vectorial sobre el campo $\mathbb{K}$. Se define $\forall f,g\in l_2(\Omega,\mathbb{K})$
+        \begin{equation*}
+            \pint{f}{g}=\sum_{\alpha\in\Omega}f(\alpha)\conj{g(\alpha)}
+        \end{equation*}
+        La aplicación $(f,g)\mapsto\pint{f}{g}$ hace de $l_2(\Omega,\mathbb{K})$ un espacio hilbertiano. La norma inducida por este producto escalar es $\mathcal{N}_2$.
+    \end{theor}
+
+    \begin{proof}
+        Sea $J\in\mathcal{F}(\Omega)$. Por Cauchy-Schwartz para sumas finitas se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \sum_{\alpha\in J }\abs{f(\alpha)g(\alpha)}\leq&\left( \sum_{\alpha\in J }\abs{f(\alpha)}^2 \right)^{1/2}+\left( \sum_{\alpha\in J }\abs{g(\alpha)}^2 \right)^{1/2}\\
+                \leq&\mathcal{N}_2(f)\mathcal{N}_2(g) \\
+            \end{split}
+        \end{equation*}
+        tomando supremo respecto a $J$ se obtiene que $\mathcal{N}_1(fg)\leq\mathcal{N}_2(f)\mathcal{N}_2(g)$.
+
+        Sean $f\in l_2(\Omega,\mathbb{K})$ y $\lambda\in\mathbb{K}$. Para todo $J\in\mathcal{F}(\Omega)$ se tiene que:
+        \begin{equation*}
+            \sum_{\alpha\in J}\abs{\lambda f(\alpha)}^2\leq\abs{\lambda}^2\sum_{\alpha\in J}\abs{f(\alpha)}^2\leq\abs{\lambda}^2\mathcal{N}_2(f)^2
+        \end{equation*}
+        tomando supremos se sigue que $\lambda f\in l_2(\Omega,\mathbb{K})$, y que $\mathcal{N}_2(\lambda f)=\abs{\lambda}\mathcal{N}_2(f)$.
+    \end{proof}
+
 \end{document}
