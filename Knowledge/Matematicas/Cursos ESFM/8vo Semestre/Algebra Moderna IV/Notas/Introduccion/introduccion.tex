@@ -385,7 +385,7 @@
         Denotamos por $\mathcal{M}$ a la categoría en donde:
         \begin{itemize}
             \item $\Obj{\mathcal{M}}=\left\{\cdot \right\}$.
-            \item $\Hom{\mathcal{M}}{\cdot}{\cdot}=\left\{M \right\}$.
+            \item $\Hom{\mathcal{M}}{\cdot}{\cdot}=M$.
             \item La ley de composición $\circ$, se define de la siguiente forma:
             \begin{equation*}
                 x\circ y=x\cdot y
@@ -432,7 +432,7 @@
     \begin{exa}
         \begin{enumerate}
             Se cumple lo siguiente:
-            \item Las categorías $\Cat{Ab}$ y $\Cat{SiGrp}$ son subcategorías llenas de $\Cat{Set}$.
+            \item Las categorías $\Cat{Ab}$ y $\Cat{SiGrp}$ son subcategorías llenas de $\Cat{Grp}$.
             \item La categoría $\Cat{HausTop}$ es una subcategoría llena de $\Cat{Top}$.
             \item $\Cat{Ring}^c$ y $\Cat{Field}$ son subcategorísa de $\Cat{Ring}$, más aún son subcategorías llenas.
         \end{enumerate}
@@ -456,6 +456,22 @@
     \begin{exa}
         En cada una de las categorías $\Cat{Set},\Cat{Grp},\Cat{Ab},_R\mathcal{M}$ los monomorfismos coinciden con los homomorfismos inyectivos, mientras que en $\Cat{Top}$ y $\Cat{KHaus}$ los monomorfismos coinciden con los mapeos continuos inyectivos. Solo se probará que los monomorfismos en la categoría $ \Cat{Set}$ coinciden con las funciones inyectivas.
     \end{exa}
+
+    \begin{proof}
+        Sea $\cf{f}{G}{G'}$ un homomorfismo biyectivo de grupos y considere a $\cf{f'}{G'}{G}$ su mapeo inverso, es decir que:
+        \begin{equation*}
+            f\circ f'=1_{G'}\quad\textup{y}\quad f'\circ f=1_G
+        \end{equation*}
+        veamos que en efecto, $f'$ es homomorfismo biyectivo (el cual ya es biyectivo y por tanto, será homomorfismo biyectivo). Sean $a',b'\in G'$, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                f'(a\cdot b)=&f'(f(a)\cdot f(b))\\
+                =&f'(f(a\cdot b))\\
+                =&a\cdot b\\
+            \end{split}
+        \end{equation*}
+        luego, $f'$ es homomorfismo que, al ser biyectivo es homomorfismo biyectivo. 
+    \end{proof}
 
     \begin{proof}
         Sea $f\in\Hom{\Cat{Set}}{A}{B}$ es morfismo.
@@ -528,9 +544,82 @@
     \end{exa}
 
     \begin{sol}
-        
+        En efecto, el mapeo inclusión no es suprayectivo pero es un epimorfismo. En efecto, sea $R$ otro anillo conmutativo con identidad, y sean $\cf{f,g}{\mathbb{Q}}{R}$ dos morfismos de anillos (que en este caso, coinciden con los homomorfismos de anillos) tales que
+        \begin{equation*}
+            f\circ i=g\circ i
+        \end{equation*}
+        Hay que ver que $f=g$. Sea $z\in\mathbb{Z}\backslash\left\{0\right\}$, entonces:
+        \begin{equation*}
+            1=f(1)=f(z)f(1/z)
+        \end{equation*}
+        por tanto, como $f(z)\neq 0$, entonces $f(1/z)=1/f(z)$. De forma totalmente análoga se tiene que $g(1/z)=1/g(z)$. Por tanto, como $f$ y $g$ coinciden en $\mathbb{Z}$, se tiene entonces que:
+        \begin{equation*}
+            f(1/z)=g(1/z),\quad\forall z\in\mathbb{Z}
+        \end{equation*}
+        Ahora, si $z'\in\mathbb{Z}$, entonces:
+        \begin{equation*}
+            f(z'/z)=f(z')f(1/z)=g(z')g(1/z)=g(z'/z)
+        \end{equation*}
+        por tanto, $f=g$. Luego, $i$ es un epimorfismo en $\Cat{Ring}^c$.
+
+        Esta idea se puede generalizar en el caso de que si tenemos un anillo conmutativo con identidad $R$ y $(S^{-1}R,j)$ su localización con respecto al conjunto multiplicativo $S\subseteq R$, entonces la función:
+        \begin{equation*}
+            \begin{split}
+                j:R\rightarrow& S^{-1}R\\
+                r\mapsto &\frac{r}{1}\\
+            \end{split}
+        \end{equation*}
+        para todo $r\in R$ es también un epimorfismo en $\Cat{Ring}^c$.
     \end{sol}
     
+    \begin{exa}
+        El mapeo inclusión $\cf{i}{\mathbb{Z}}{\mathbb{Q}}$ es un monomorfismo en la categoría  $\Cat{Ring}^c$ y también por el ejemplo anterior, es un epimorfismo. Pero, no es un isomorfismo.
+    \end{exa}
 
+    \begin{proof}
+        Veamos que es un epimorfismo, para ello hay que probar que si $\cf{f,g}{R}{\mathbb{Z}}$ son tales que
+        \begin{equation*}
+            i\circ f=i\circ g
+        \end{equation*}
+        entonces, $f=g$. En efecto, como el mapeo $i$ es inyectivo, entonces si $r\in R$:
+        \begin{equation*}
+            i(f(r))=i(g(r))\Rightarrow f(r)=g(r)
+        \end{equation*}
+        por tanto, $f=g$. Luego $i$ es un monomorfismo. Pero no es isomorfismo ya que si existiera $\cf{j}{\mathbb{Q}}{\mathbb{Z}}$ tal que $i\circ j=1_{\mathbb{Q}}$ y $j\circ i=1_{\mathbb{Z}}$, se tendría entonces que:
+        \begin{equation*}
+            i(j(\frac{1}{2}))=1_{\mathbb{Q}}(\frac{1}{2})=\frac{1}{2}
+        \end{equation*}
+        lo cual no puede suceder, pues $i(\mathbb{Z})=\mathbb{Z}\subseteq\mathbb{Q}$. Por tanto tal función no existe, luego $i$ no es isomorfismo, es decir que $i$ es un morfismo que es monomorfismo y epimorfismo, pero que no es isomorfismo.
+
+    \end{proof}
+
+    \begin{propo}
+        Sea $\mathcal{C}$ una categoría y $A,B\in\Obj{\mathcal{C}}$ objetos isomorfos, entonces los isomorfismos $f\in\Hom{\mathcal{C}}{A}{B}$ y $f'\in\Hom{\mathcal{C}}{B}{A}$ tales que:
+        \begin{equation*}
+            f\circ f'=1_B\quad\textup{y}\quad f'\circ f=1_A
+        \end{equation*}
+        son monomorfismos y epimorfismos.
+    \end{propo}
+
+    \begin{proof}
+        Basta probar el resultado para $f$, pues por simetría se tiene de forma inmediata que, al cumplirse para $f$ también se cumple para $f'$.
+        \begin{enumerate}
+            \item Sean $g_1,g_2\in\Hom{\mathcal{C}}{C}{A}$ tales que $f\circ g_1=f\circ g_2$. Entonces:
+            \begin{equation*}
+                \begin{split}
+                    f'\circ (f\circ g_1)&=f'\circ(f\circ g_2)\\
+                    \Rightarrow(f'\circ f)\circ g_1&=(f'\circ f)\circ g_2\\
+                    \Rightarrow 1_A\circ g_1&=1_A\circ g_2\\
+                    \Rightarrow g_1&= g_2\\
+                \end{split}
+            \end{equation*}
+            pues, la ley de composición es asociativa, luego por la hipótesis y finalmente por ser el morfismo identidad.
+            \item Es análogo a la parte anterior.
+        \end{enumerate}
+        Por ambos incisos, se sigue que $f$ es monomorfismo y epimorfismo.
+
+    \end{proof}
+
+    La recíproca de la proposición anterior no es cierta en general, como prueba el ejemplo anterior. Lo cual da pie a la siguiente definición:
 
 \end{document}

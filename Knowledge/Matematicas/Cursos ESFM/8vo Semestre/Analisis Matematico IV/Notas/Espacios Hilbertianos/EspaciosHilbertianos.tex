@@ -850,11 +850,11 @@
             \begin{equation*}
                 \begin{split}
                     W(\vec{y})=&\norm{\vec{y}}^2\\
-                    \alpha W(\vec{z})=&\alpha^2\norm{\vec{z}}^2\\
+                    \Rightarrow \alpha W(\vec{z})=&\alpha^2\norm{\vec{z}}^2\\
                     \Rightarrow \alpha=&\conj{\frac{W(\vec{z})}{\norm{\vec{z}}^2}}\\
                 \end{split}
             \end{equation*}
-            así, debe ser
+            así, $\vec{y}$ debe ser
             \begin{equation}
                 \vec{y}=\conj{\frac{W(\vec{z})}{\norm{\vec{z}}^2}}\vec{z}
             \end{equation}
@@ -876,7 +876,7 @@
                 \begin{split}
                     G_{\vec{y}}(\vec{x})=&\pint{\beta\vec{z}}{\vec{y}} \\
                     =&\pint{\beta\vec{z}}{\conj{\frac{W(\vec{z})}{\norm{\vec{z}}^2}}\vec{z}} \\
-                    =&\beta\frac{W(\vec{z})}{\norm{\vec{z}^2}}\pint{\vec{z}}{\vec{z}} \\
+                    =&\beta\frac{W(\vec{z})}{\norm{\vec{z}}^2}\pint{\vec{z}}{\vec{z}} \\
                     =&\beta W(\vec{z}) \\
                     =&W(\beta\vec{z}) \\
                     =&W(\vec{x_2}) \\
@@ -964,7 +964,7 @@
 
     La ecuación (1.9) se aplica en particular al caso en el que $\Omega=\Omega'$, obteniendo una propiedad de conmutatividad general para sumas de familias en $[0,\infty]$.
 
-    Ahora, ¿se tendrá una propiedad para la asociatividad general?
+    Ahora, ¿se tendrá una propiedad para la asociatividad general? La respuesta es que sí, se tiene un resultado que nos permite obtener esta propiedad para sumar familias.
 
     \begin{theor}[Sumación por paquetes de familias]
         Sea $\left(a_\alpha\right)_{\alpha\in I}$ una familia en $[0,\infty]$ y $\left(I_\lambda\right)_{\lambda\in L}$ una partición aritraria de subconjuntos de $I$. Si
