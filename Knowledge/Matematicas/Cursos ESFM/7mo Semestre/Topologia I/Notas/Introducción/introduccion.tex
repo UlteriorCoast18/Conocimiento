@@ -1020,7 +1020,7 @@
     \end{propo}
 
     \begin{proof}
-        Notemos antes que, $\mathcal{S}\subseteq\mathcal{B}$.
+        Notemos antes que $\mathcal{S}\subseteq\mathcal{B}$.
 
         De (1): Sean $M,N\in\mathcal{B}$, entonces existen $S_{M,1},...,S_{M,k},S_{N,1},...,S_{N,l}\in\mathcal{S}$ tales que:
         \begin{equation*}
@@ -1055,23 +1055,68 @@
         \begin{equation*}
             A_\beta=\bigcap_{i=1 }^{n_\beta }S_{\beta,i}
         \end{equation*}
+        por tanto,
+        \begin{equation*}
+            M=\bigcup_{\alpha\in I}\left(\bigcap_{i=1 }^{n_\alpha }S_{\alpha,i} \right)
+        \end{equation*}
+        lo cual caracteriza a los elementos de $\tau(\mathcal{S})$.
     \end{obs}
 
     \begin{excer}
         Demuestre que las siguientes colecciones de subconjuntos de $\mathbb{R}$ son base para una topología sobre $\mathbb{R}$:
         \begin{enumerate}
             \item $\mathcal{B}_1=\left\{]a,b[\Big|a,b\in\mathbb{R},a<b \right\}$.
-            \item $\mathcal{B}_1=\left\{[a,b[\Big|a,b\in\mathbb{R},a<b \right\}$.
-            \item $\mathcal{B}_1=\left\{]a,b[\Big|a,b\in\mathbb{R},a<b \right\}$.
-            \item  $\mathcal{B}_1=\left\{B-K \Big|B\in\mathcal{B}_1 \right\}\cup\mathcal{B}_1$, con $K=\left\{\frac{1}{n}\Big|n\in\mathbb{N} \right\}$.
-            \item $\mathcal{B}_1=\left\{]a,\infty[\Big|a\in\mathbb{R}\right\}$.
-            \item $\mathcal{B}_1=\left\{]-\infty,b[\Big|b\in\mathbb{R} \right\}$.
-            \item La topología de complementos finitos.
+            \item $\mathcal{B}_2=\left\{[a,b[\Big|a,b\in\mathbb{R},a<b \right\}$.
+            \item $\mathcal{B}_3=\left\{]a,b]\Big|a,b\in\mathbb{R},a<b \right\}$.
+            \item  $\mathcal{B}_4=\left\{B-K \Big|B\in\mathcal{B}_1 \right\}\cup\mathcal{B}_1$, con $K=\left\{\frac{1}{n}\Big|n\in\mathbb{N} \right\}$.
+            \item $\mathcal{B}_5=\left\{]a,\infty[\Big|a\in\mathbb{R}\right\}$.
+            \item $\mathcal{B}_6=\left\{]-\infty,b[\Big|b\in\mathbb{R} \right\}$.
+            \item $\mathcal{B}_7=\left\{A\subseteq\mathbb{R}\Big| \mathbb{R}-A\textup{ es finito} \right\}$.
         \end{enumerate}
     \end{excer}
 
     \begin{sol}
+        %TODO (4) y (7)%
+
+        La demostrción de (1)-(3) es muy similar, por lo que solo se probará para (3).
         
+        De (3): Tenemos que verificar que la intersección de dos elementos de $\mathcal{B}_3$ se puede escribir como unión de elementos de $\mathcal{B}_3$ y que $\mathbb{R}$ puede ser escrito como unión de elementos de esta colección. En efecto:
+        \begin{enumerate}
+            \item Sean $]a_1,b_1],]a_2,b_2]\in\mathcal{B}_3$. Se tienen dos casos:
+            \begin{itemize}
+                \item $]a_1,b_1]\cap]a_2,b_2]=\emptyset$. En este caso la intersección se escribe como la unión de los elementos de la familia vacía.
+                \item $]a_1,b_1]\cap]a_2,b_2]\neq \emptyset$. Analicemos este caso.
+            \end{itemize}
+            \item Notemos que:
+            \begin{equation*}
+                \mathbb{R}=\bigcup_{m\in\mathbb{Z} }]m,m+1]
+            \end{equation*}
+            donde $]m,m+1]\in\mathcal{B}_3$ para todo $m\in\mathbb{Z}$.
+        \end{enumerate}
+        por 1) y 2) se sigue que $\mathcal{B}_3$ es una base para una topología sobre $\mathbb{R}$.
+
+        De (4): 
+
+        La prueba de (5) y (6) es muy similar, por lo cual solo se hará la de (5).
+        
+        De (5): Se tienen que verificar dos condiciones:
+        \begin{enumerate}
+            \item Sean $a,b\in\mathbb{R}$. Sea $c=\max\left\{a,b\right\}\in\mathbb{R}$, tenemos que:
+            \begin{equation*}
+                ]a,\infty[\cap]b,\infty[=]c,\infty[
+            \end{equation*}
+            en efecto, si $x\in ]a,\infty[\cap]b,\infty[$, entonces $x>a$ y $x>b$, luego $x>\max\left\{a,b\right\}=c$, así pues $x\in ]c,\infty[$. Si $x\in]c,\infty[$ es claro que $x\in]a,\infty[\cap]b,\infty[$. Luego la intersección de estos dos elementos de $\mathcal{B}_5$ se escribe como unión de elementos de $\mathcal{B}_5$, pues $]c,\infty[\in\mathcal{B}_5$.
+
+            \item Notemos que:
+            \begin{equation}
+                \mathbb{R}=\bigcup_{m\in\mathbb{N}}]-m,\infty[
+            \end{equation}
+            donde $]-m,\infty[\in\mathcal{B}_5$ para todo $m\in\mathbb{N}$.
+        \end{enumerate}
+
+        Por los dos incisos anteriores, se sigue que $\mathcal{B}_5$ es una base para una topología sobre $\mathbb{R}$.
+
+        De (7):
     \end{sol}
 
     \begin{obs}
@@ -1117,6 +1162,7 @@
                 \begin{split}
                     A\cap B=&(Y\cap U)\cap (Y\cap V)\\
                     =&Y\cap (U\cap (Y\cap V))\\
+                    =&Y\cap (Y\cap (U\cap V))\\
                     =&Y\cap (U\cap V)\\
                 \end{split}
             \end{equation*}
@@ -1169,12 +1215,12 @@
                 \mathcal{B}_Y=\left\{Y\cap B\Big| B\in\mathcal{B} \right\}
             \end{equation*}
             es una base para la topología $\tau_Y$.
-            \item Sea $A\subseteq Y$. Entonces $A$ es cerrado en $Y$ si y sólo si existe $C\subseteq X$ cerradp en $X$ tal que $A=Y\cap C$.
+            \item Sea $A\subseteq Y$. Entonces $A$ es cerrado en $Y$ si y sólo si existe $C\subseteq X$ cerrado en $X$ tal que $A=Y\cap C$.
         \end{enumerate}
     \end{propo}
 
     \begin{proof}
-        De (1): Es inmediata de la definción de subespacio de un espacio topológico.
+        De (1): En ambos casos la prueba es inmediata de la definción de subespacio de un espacio topológico.
 
         De (2): Se deben verificar dos condiciones:
         \begin{enumerate}
@@ -1190,7 +1236,7 @@
             por tanto, $U$ es unión de elementos de $\mathcal{B}_Y$.
         \end{enumerate}
         
-        por los dos incisos anteriores, se sigue que $\mathcal{B}_Y$ es base de $\tau_Y$.
+        por los dos incisos anteriores se sigue que $\mathcal{B}_Y$ es base de $\tau_Y$.
 
         De (3): Probaremos la doble implicación:
         
@@ -1198,8 +1244,33 @@
         \begin{equation*}
             \begin{split}
                 Y\cap C=&(X-U)\cap Y\\
+                =&(X\cap Y)-(U\cap Y)\\
+                =&Y-(U\cap Y)\\
+                =&Y-(Y\cap U)\\
+                =&Y-(Y-A)\\
+                =&A\\
+                \Rightarrow A=& Y\cap C\\
             \end{split}
         \end{equation*}
+        
+        $\Leftarrow)$: Suponga que existe $C\subseteq X$ cerrado en $X$ tal que $A=Y\cap C$. Hay que ver que $A$ es cerrado en $Y$, para ello, notemos que:
+        \begin{equation*}
+            \begin{split}
+                Y-A=&Y-(Y\cap C) \\
+                =&Y-(Y-Y\cap U) \\
+                =&Y\cap U \\
+            \end{split}
+        \end{equation*}
+        donde $U=X-C$ es abierto en $X$ y, por ende $Y\cap U$ es abierto en $Y$, luego $Y-A$ es abierto en $Y$ lo que implica que $A$ es cerrado.
+
     \end{proof}
+
+    \begin{obs}
+        En el inciso (3) de la demostración anterior, notemos que:
+        \begin{equation*}
+            (Y\cap U)\cup (Y\cap C)=Y
+        \end{equation*}
+        pues, $U\cap C = X$ donde $U$ y $C$ son disjuntos, luego $Y\cap U$ y $Y\cap C$ lo son , así $Y-Y\cap U=Y\cap C$. Esto justifica un paso en la demostración de la vuelta de (3).
+    \end{obs}
 
 \end{document}
