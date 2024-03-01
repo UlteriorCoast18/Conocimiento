@@ -12,6 +12,7 @@
 \usepackage{enumerate}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{cancel}
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
@@ -1216,6 +1217,9 @@
             \end{equation*}
             es una base para la topología $\tau_Y$.
             \item Sea $A\subseteq Y$. Entonces $A$ es cerrado en $Y$ si y sólo si existe $C\subseteq X$ cerrado en $X$ tal que $A=Y\cap C$.
+            \item Sea $B\subseteq Y$. Si $\Cls{B}$ es la cerradura de $B$ en $X$, entonces la cerradura de $B$ en $Y$, denotada por $\Cls{B}^Y$, es $Y\cap \Cls{B}$.
+            \item Sea $A\subseteq Y$, si $\Int{\widehat{A}}^Y$ denota al interior de $A$ en $Y$, entonces $Y\cap\Int{A}\subseteq \Int{\widehat{A}}^Y$.
+            \item Sea $A\subseteq Y$, si $\Fr{A}_Y$ es la frontera de $A$ en $Y$, entonces $\Fr{A}_Y\subseteq Y\cap \Fr{A}$.
         \end{enumerate}
     \end{propo}
 
@@ -1252,7 +1256,13 @@
                 \Rightarrow A=& Y\cap C\\
             \end{split}
         \end{equation*}
-        
+
+        Prueba alternativa de la igualdad de conjuntos. Sea $a\in A$, en particular $a\in Y$. Si $a\in U$, entonces $a\notin A$, luego esto contradice el hecho de que $Y-A=Y\cap U$, por tanto $a\in C$. Así, $a\in C\cap Y$.
+
+        Si $p\in Y\cap C$, entonces $p\in Y$ y $p\notin U$, luego $p\notin Y-A$, es decir $p\in A$.
+
+        Por lo anterior se sigue que $A=Y\cap C$.
+
         $\Leftarrow)$: Suponga que existe $C\subseteq X$ cerrado en $X$ tal que $A=Y\cap C$. Hay que ver que $A$ es cerrado en $Y$, para ello, notemos que:
         \begin{equation*}
             \begin{split}
@@ -1263,6 +1273,29 @@
         \end{equation*}
         donde $U=X-C$ es abierto en $X$ y, por ende $Y\cap U$ es abierto en $Y$, luego $Y-A$ es abierto en $Y$ lo que implica que $A$ es cerrado.
 
+        De (4): Se probarán las dos contenciones:
+        \begin{itemize}
+            \item $Y\cap\Cls{B}\subseteq\Cls{B}^Y$) Por el inciso anterior, $Y\cap\Cls{B}$ es un cerrado en $Y$ el cual contiene a $B$ (pues $B\subseteq\Cls{B},Y$), luego $\Cls{B}^Y\subseteq Y\cap \Cls{B}$.
+            \item $\Cls{B}^Y\subseteq Y\cap\Cls{B}$) Sea $M\subseteq Y$ cerrado en $Y$ tal que $B\subseteq M$, luego por (3) existe $K\subseteq X$ cerrado tal que $M=Y\cap K$, siendo $K$ un cerrado que contiene a $B$, luego $\Cls{B}\subseteq K$. Por tanto, $Y\cap \Cls{B}\subseteq M$. Por ende, al ser $M$ un cerrado en $Y$ arbitrario que contiene a $B$ se sigue que $Y\cap\Cls{M}\subseteq \Cls{B}^Y$.
+        \end{itemize}
+
+        Por las dos contenciones se sigue que $\Cls{B}^Y=Y\cap\Cls{B}$.
+
+        De (5): Es inmediato.
+
+        De (6): Observemos que:
+        \begin{equation*}
+            \begin{split}
+                \Fr{A}_Y=&\Cls{A}^Y\cap\Cls{Y-A}^Y\\
+                =&(Y\cap\Cls{A})\cap(Y\cap\Cls{Y-A})\\
+                =&Y\cap(\Cls{A}\cap\Cls{Y-A}) \\
+                \subseteq&Y\cap(\Cls{A}\cap\Cls{X-A}) \\
+                =&Y\cap\Fr{A}\\
+                \Rightarrow \Fr{A}_Y\subseteq& Y\cap\Fr{A}\\
+            \end{split}
+        \end{equation*}
+        pues, $Y-A\subseteq X-A$.
+
     \end{proof}
 
     \begin{obs}
@@ -1272,5 +1305,75 @@
         \end{equation*}
         pues, $U\cap C = X$ donde $U$ y $C$ son disjuntos, luego $Y\cap U$ y $Y\cap C$ lo son , así $Y-Y\cap U=Y\cap C$. Esto justifica un paso en la demostración de la vuelta de (3).
     \end{obs}
+
+    \begin{exa}
+        Considere $(\mathbb{R},\tau_u)$ y, considere el subespacio $(\mathbb{Z},\tau_{u\mathbb{Z}})$. Entonces, $\Int{\mathbb{N}}=\emptyset$ y, $\Int{\widehat{\mathbb{N}}}^Y=\mathbb{N}$. Por ende, $\Int{\widehat{\mathbb{N}}}^Y\nsubseteq\Int{\mathbb{N}}$.
+    \end{exa}
+
+    \begin{exa}
+        Considere $(\mathbb{R}^2,\tau_u)$ y el subespacio $(Y,\tau_{uY})$ con:
+        \begin{equation*}
+            Y=\left\{(x,y)\in\mathbb{R}^2\Big|y=0 \right\}
+        \end{equation*}
+        entonces, $\Fr{Y}=Y$ y $\Fr{Y}_Y=\emptyset$.
+    \end{exa}
+
+    \begin{obs}
+        Sea $(X,\tau)$ un espacio topológico y sean $Y,Z\subseteq X$ tales que $Z\subseteq Y$. Tenemos que podemos considerar a $(Z,\tau_Z)$ como subespacio de $X$.
+
+        También, podemos considerar a $(Z,\tau_{Y_Z})$ como subespacio de $(Y,\tau_Y)$.
+
+        ¿Es cierto que $\tau_{Y_Z}=\tau_{Y}$? La respuesta es que sí:
+        \begin{itemize}
+            \item Sea $M\in\tau_Z$, entonces, $M=Z\cap U$ donde $U\in\tau$, luego como $M\subseteq Y$ se sigue que: $M=Z\cap(Y\cap U)$ siendo $Y\cap U\in\tau_Y$, así $M\in \tau_{Y_Z}$.
+            \item Sea $K\in \tau_{Y_Z}$, entonces existe $L\in\tau_Y$ tal que $K=Z\cap L$, pero como $L\in\tau_Y$ entonces existe $U\in\tau$ tal que $L=Y\cap U$, por tanto: $K=Z\cap(Y\cap U)=Z\cap U$ pues $Z\subseteq Y$, luego $K\in\tau_Z$.
+        \end{itemize}
+        por ambos incisos, se sigue la igualdad.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico. Una propiedad $P$ que se cumple para $(X,\tau)$ se dice que es una \textbf{propiedad que se hereda}, si se verifica en cualquier subespacio topológico de $(X,\tau)$. A veces simplemente se dice que $P$ es una \textbf{propiedad hereditaria}.
+    \end{mydef}
+
+    \begin{exa}
+        La propiedad de ser un espacio de Hausdorff es hereditaria.
+    \end{exa}
+
+    \begin{proof}
+        Sea $(X,\tau)$ un espacio de Hausdorff y sea $Y\subseteq X$ arbitrario. Sean $p,q\in Y$ con $p\neq q$, en particular como $X$ es de Hausdorff, existen $M,N\in\tau$ tales que $p\in M$, $q\in N$ y $M\cap N=\emptyset$.
+
+        En particular, $p\in Y\cap M$ y $q\in Y\cap N$, donde ambos conjuntos son abiertos en $Y$ y, además $(Y\cap M)\cap (Y\cap N)=\emptyset$. Por tanto, $(Y,\tau_Y)$ es de Hausdorff.
+    \end{proof}
+
+    \begin{exa}
+        Sea $(X,\tau)$ un espacio topológico tal que $\tau$ tiene una base numerable, sea $\mathcal{B}$ tal base. Si $Y\subseteq X$ es arbitrario, sabemos que
+        \begin{equation*}
+            \mathcal{B}_Y=\left\{Y\cap B\Big|B\in\mathcal{B} \right\}
+        \end{equation*}
+        es una base para $\tau_Y$, la cual es numerable por ser $\mathcal{B}$ numerable. Luego esta propiedad es hereditaria.
+    \end{exa}
+
+    \begin{excer}
+        La propiedad de ser metrizable se hereda.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \section{Relaciones de orden y la topología del orden}
+
+    \begin{mydef}
+        Una relación $\mathcal{R}$ definida sobre un conjunto $A$ es una \textbf{relación de orden lineal} si se cumple lo siguiente:
+        \begin{enumerate}
+            \item Dados $a,b\in A$ distintos se tiene que $a\mathcal{R}b$ ó $b\mathcal{R}a$.
+            \item Para todo elemento de $a\in A$, $a\cancel{\mathcal{R}}a$.
+            \item Si $a,b,c\in A$ son tales que $a\mathcal{R}b$ y $b\mathcal{R}c$, entonces $a\mathcal{R}c$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{mydef}
+        Si $\mathcal{R}$ es una relación de orden lineal definida sobre el conjunto $A$, diremos que $(A,\mathcal{R})$ es un \textbf{conjunto ordenado}.
+    \end{mydef}
 
 \end{document}
