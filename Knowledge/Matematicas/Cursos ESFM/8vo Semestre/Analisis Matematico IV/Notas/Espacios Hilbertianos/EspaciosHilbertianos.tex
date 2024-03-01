@@ -1248,6 +1248,228 @@
             \sum_{\alpha\in J}\abs{\lambda f(\alpha)}^2\leq\abs{\lambda}^2\sum_{\alpha\in J}\abs{f(\alpha)}^2\leq\abs{\lambda}^2\mathcal{N}_2(f)^2
         \end{equation*}
         tomando supremos se sigue que $\lambda f\in l_2(\Omega,\mathbb{K})$, y que $\mathcal{N}_2(\lambda f)=\abs{\lambda}\mathcal{N}_2(f)$.
+
+        Sean $f,g\in l_2(\Omega,\mathbb{K})$. Para todo $J\in\mathcal{F}(\Omega)$ se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \sum_{\alpha\in J }\abs{f(\alpha)+g(\alpha)}^2=&\sum_{\alpha\in J }\abs{f(\alpha)}^2+\sum_{\alpha\in J }\abs{g(\alpha)}^2+\sum_{\alpha\in J }2\Re(f(\alpha)\conj{g(\alpha)})\\
+                \leq&\sum_{\alpha\in J }\abs{f(\alpha)}^2+\sum_{\alpha\in J }\abs{g(\alpha)}^2+\sum_{\alpha\in J }2\abs{f(\alpha)+g(\alpha)}\\
+                \leq& \mathcal{N}_2(f)+\mathcal{N}_2(g)+2\mathcal{N}_1(fg)
+            \end{split}
+        \end{equation*}
+        tomando supremos respecto a $J$ se sigue que $f+g\in l_2(\Omega,\mathbb{K})$.
+
+        La definición $\pint{f}{g}=\sum_{\alpha\in\Omega}f(\alpha)\conj{g(\alpha)}$ tiene sentido pues $f,g\in l_2(\Omega,\mathbb{K})$ implica que $fg\in l_1(\Omega,\mathbb{K})$. Se verifica de inmediato que $\pint{f}{g}$ es un producto escalar el cual induce $\mathcal{N}_2$.
+
+        Ahora probaremos que es completo. Sea $\left\{f_\nu \right\}$ una sucesión de Cauchy en $l_2(\Omega,\mathbb{K})$. Sea $\varepsilon>0$. Existe $n_0\in\mathbb{N}$ tal que:
+        \begin{equation*}
+            \mathcal{N}_2(f_p-f_q)<\varepsilon,\quad\forall p,q\geq n_0
+        \end{equation*}
+        ya que para cada $\alpha\in\Omega$:
+        \begin{equation*}
+            \abs{f_p(\alpha)-f_q(\alpha)}\leq\mathcal{N}_2(f_p-f_q)<\varepsilon ,\quad\forall p,q\geq n_0
+        \end{equation*}
+        Como $\mathbb{K}$ es completo, existe $f(\alpha)\in\mathbb{K}$ tal que:
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}f_\nu(\alpha)=f(\alpha)
+        \end{equation*}
+        Sea $J\in\mathcal{F}(\Omega)$. Se tiene entonces que:
+        \begin{equation*}
+            \sum_{\alpha\in J}\abs{f_p(\alpha)-f_q(\alpha)}^2\leq\varepsilon^2,\quad\forall p,q\geq n_0
+        \end{equation*}
+        Manteniendo a $p\geq n_0$ fijo y tomando límite cuando $q\rightarrow\infty$ y siendo $J$ finito,
+        \begin{equation*}
+            \sum_{\alpha\in J}\abs{f_p(\alpha)-f(\alpha)}^2\leq\varepsilon^2
+        \end{equation*}
+        Esto prueba que $f_p-f\in l_2(\Omega,\mathbb{K})$, de donde $f\in l_2(\Omega,\mathbb{K})$ y
+        \begin{equation*}
+            \mathcal{N}_2(f_p-f)\leq \varepsilon,\quad\forall p,q\geq n_0
+        \end{equation*}
+        luego, $l_2(\Omega,\mathbb{K})$ es completo.
+    \end{proof}
+
+    \section{Familias Ortonormales (O.N.)}
+
+    \begin{mydef}
+        Una familia de vectores, digamos $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ de vectores en un espacio prehilbertiano $H$ es \textbf{ortonormal} si:
+        \begin{equation*}
+                \pint{\vec{u_\alpha}}{\vec{u_\beta}}
+                =\left\{\begin{array}{lcr}
+                    0 & \textup{ si } \alpha\neq\beta\\
+                    1 & \textup{ si } \alpha=\beta\\
+                \end{array}
+                \right.\quad\forall\alpha,\beta\in\Omega
+        \end{equation*}
+    \end{mydef}
+    
+    Recuerde que una familia $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ en $H$ es \textbf{linealmente independiente} si cualquier subcolección finita es linealmente independiente. Se tiene que si $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ es una familia O.N., entonces dicha familia es l.l. (linealmente independiente). En efecto, si $(\vec{u_1},...,\vec{u_n})$ son O.N., entonces
+    \begin{eqnarray}
+        \begin{split}
+            \norm{\sum_{i=1 }^{n}\alpha_i\vec{u_i}}^2=& \sum_{i=1 }^{n}\abs{\alpha_i}^2\norm{\vec{u_i}}^2 \\
+            =& \sum_{i=1 }^{n}\abs{\alpha_i}^2 \\
+        \end{split}
+    \end{eqnarray}
+    (esto por Pitágoras), la cual es 0 si todos los $\alpha_i$ son cero, es decir si los vectores son l.i.
+
+    \begin{propo}
+        Se cumple lo siguiente:
+        \begin{enumerate}
+            \item Todo espacio hilbertiano $H$ de dimensión finita posee una base O.N.
+            \item Sea $M$ un subespacio de dimensión finita de un espacio prehilbertiano $H$. Sea $(\vec{e_1},...,\vec{e_n})$ una base O.N. de $M$. Dado $\vec{x}\in H$. La proyección ortogonal de $\vec{x}$ sobre $M$ es:
+            \begin{equation*}
+                \vec{x_0}=\sum_{ i=1}^{n}\pint{\vec{x}}{\vec{e_i}}\vec{e_i}
+            \end{equation*}
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): La prueba se hará por inducción sobre la dimensión de $H$.
+        \begin{itemize}
+            \item Suponga que la dimensión es 1. Existe $\vec{u}\in H$ tal que $\vec{u}\neq\vec{0}$. Una base O.N. de $H$ es $(\frac{\vec{u}}{\norm{\vec{u}}})$.
+            \item Suponga que el resultado es cierto para dimensión $n-1$. Sea $H$ de dimensión $n$. Sea $\vec{u}\in H$ diferente de $\vec{0}$, defina:
+            \begin{equation*}
+                \vec{e_1}=\frac{\vec{u}}{\norm{\vec{u}}}
+            \end{equation*}
+            Sea $M=\mathcal{L}(\vec{e_1})$. Ya que $H=M\oplus M^\perp$ (ya que $M$ es distinguido), necesariamente $\dim M^\perp = n-1$. Por hipótesis inductiva $M^\perp$ posee una base O.N. digamos $(\vec{e_2},...,\vec{e_n})$.
+            
+            Entonces, $(\vec{e_1},...,\vec{e_n})$ es base O.N. de $H$.
+        \end{itemize}
+        aplicando inducción se sigue el resultado.
+
+        De (2): Sea $\vec{x_0}=\sum_{ i=1}^{n}\pint{\vec{x}}{\vec{e_i}}\vec{e_i}$. Se tiene
+        \begin{equation*}
+            \begin{split}
+                \pint{\vec{x}-\vec{x_0}}{\vec{e_i}}=&\pint{\vec{x}}{\vec{e_i}}-\pint{\vec{x_0}}{\vec{e_i}} \\
+                =&\pint{\vec{x}}{\vec{e_i}}-\pint{\sum_{ j=1}^{n}\pint{\vec{x}}{\vec{e_j}}\vec{e_j}}{\vec{e_i}} \\
+                =&\pint{\vec{x}}{\vec{e_i}}-\pint{\pint{\vec{x}}{\vec{e_j}}\vec{e_j}}{\vec{e_i}} \\
+                =&\pint{\vec{x}}{\vec{e_i}}-\pint{\vec{x}}{\vec{e_j}}\pint{\vec{e_j}}{\vec{e_i}} \\
+                =&\pint{\vec{x}}{\vec{e_i}}-\pint{\vec{x}}{\vec{e_j}}\\
+                =&0\\
+            \end{split}
+        \end{equation*}
+        Siendo $M=\mathcal{L}(\vec{e_1},...,\vec{e_n})$, necesariamente $\pint{\vec{x}-\vec{x_0}}{\vec{y}}=0$, para todo $\vec{y}\in M$. Por tanto, $\vec{x_0}$ es efectivamente la proyección ortogonal de $\vec{x}$ sobre $M$.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $H$ prehilbertiano y sea $(\vec{u}_\alpha)_{\alpha\in\Omega}$ una familia O.N. en $H$. Para cada $\vec{x}\in H$ se define una función $\cf{\hat{x}}{\Omega}{\mathbb{K}}$ dada por:
+        \begin{equation*}
+            \hat{x}(\alpha)=\pint{\vec{x}}{\vec{u_\alpha}},\quad\forall\alpha\in\Omega
+        \end{equation*}
+        los escalares $\hat{x}(\alpha)$ se llaman \textbf{los coeficientes de Fourier de $\vec{x}$ con respecto a la familia ortonormal $(\vec{u}_\alpha)_{\alpha\in\Omega}$}.
+    \end{mydef}
+
+    \begin{theor}
+        Con las hipótesis y notaciones de la definición anterior, $\forall\vec{x}\in H$ se tiene que $\hat{x}\in l_2(\Omega,\mathbb{K})$, y se cumple
+        \begin{equation*}
+            \mathcal{N}_2(\hat{x})\leq\norm{\vec{x}}
+        \end{equation*}
+        es decir:
+        \begin{equation*}
+            \sum_{\alpha\in\Omega}\abs{\hat{x}(\alpha)}^2\leq\norm{\vec{x}}^2
+        \end{equation*}
+        la desigualdad anterior es llamada \textbf{desigualdad de Bessel}.
+    \end{theor}
+
+    \begin{proof}
+        Sea $J\in\mathcal{F}(\Omega)$ y defina $M_J=\mathcal{L}((\vec{u_\alpha})_{\alpha\in\Omega})$. Entonces $M_J$ es un subespacio de dimensión finita de $H$ provisto de la base O.N. $(\vec{u_\alpha})_{\alpha\in J}$. Entonces, la proyección ortogonal de $\vec{x}$ sobre $M_J$ debe ser:
+        \begin{equation*}
+            \vec{x_0}=\sum_{\alpha\in J }\pint{\vec{x}}{\vec{u_\alpha}}\vec{u_\alpha}=\sum_{\alpha\in J }\hat{x}(\alpha)\vec{u_\alpha}
+        \end{equation*}
+        por la proposición anterior. Por Pitágoras:
+        \begin{equation*}
+            \sum_{\alpha\in J}\abs{\hat{x}(\alpha)}^2=\norm{\sum_{\alpha\in J}\hat{x}(\alpha)\vec{u_\alpha}}^2=\norm{\vec{x_0}}^2=\norm{\vec{x}}^2-d(\vec{x},M)^2\leq\norm{\vec{x}}^2
+        \end{equation*}
+        tomando supremos respecto a $J$ se tiene el resultado.
+    \end{proof}
+
+    \begin{cor}
+        La aplicación $\vec{x}\mapsto\hat{x}$ de $H$ en $l_2(\Omega,\mathbb{K})$ es una aplicación lineal continua de norma menor o igual a 1.
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+        
+    \begin{cor}
+        Si $(\vec{u}_\alpha)_{\alpha\in\Omega}$ es un sistema O.N. de $H$ y $\vec{x}\in H$, entonces:
+        \begin{equation*}
+            \hat{x}(\alpha)=\pint{\vec{x}}{\vec{u_\alpha}}\neq0
+        \end{equation*}
+        para una cantidad a lo sumo numerable de índices $\alpha\in\Omega$.
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{theor}[Teorema de Riesz-Fischer]
+        Sea $H$ prehilbertiano y sea $(\vec{u_\alpha})_{\alpha\in\Omega}$ una familia O.N. en $H$. Se supone que el subespacio cerrado
+        \begin{equation*}
+            M=\overline{\mathcal{L}((\vec{u_\alpha})_{\alpha\in\Omega})}
+        \end{equation*}
+        es completo (lo cual se cumple en particular si $H$ es hilbertiano). Entonces la aplicación $\vec{x}\mapsto\hat{x}$ es suprayectiva de $H$ sobre $l_2(\Omega,\mathbb{K})$. Más precisamente, dado $\varphi\in l_2(\Omega,\mathbb{K})$ existe un único $\vec{x_0}\in M$ tal que sus coeficientes de Fourier son, i.e. $\hat{x_0}=\varphi$.
+        
+        Además, para cualquier $\vec{x}\in H$ se cumple que $\hat{x}=\varphi$ si y sólo si $\vec{x}-\vec{x_0}\perp M$. 
+    \end{theor}
+
+    \begin{proof}
+        Se harán varias cosas:
+        \begin{enumerate}
+            \item Sea $\varphi\in l_2(\Omega,\mathbb{K})$ y sea $\Omega_0=\left\{\alpha\in\Omega\Big|\varphi(\alpha)\neq0 \right\}$ el cual es a lo sumo numerable. Suponiendo que $\Omega_0$ es a lo sumo numerable, sea $i\mapsto\alpha(i)$ una biyección de $\mathbb{N}$ sobre $\Omega_0$.
+            
+            Considere la serie
+            \begin{equation*}
+                \sum_{i=1} ^{\infty}\varphi(\alpha(i))\vec{u_{\alpha(i)}}
+            \end{equation*}
+            en $M$. Como
+            \begin{equation*}
+                \sum_{i=1}^{\infty}\abs{\varphi(\alpha(i))}^2=\mathcal{N}_2(\varphi)<\infty
+            \end{equation*}
+            dado $\varepsilon>0$ existe $n_0\in\mathbb{N}$ tal que si $q>p\geq n_0$:
+            \begin{equation*}
+                \begin{split}
+                    \norm{\sum_{i=p }^{q}\varphi(\alpha(i))\vec{u_{\alpha(i)}}}^2=&\sum_{i=p }^{q}\abs{\varphi(\alpha(i))^2}\\
+                    \leq&\varepsilon^2 \\
+                \end{split}
+            \end{equation*}
+            se cumple pues la condición de Cauchy para la convergencia de la serie en $M$. Como $M$ es completo, existe $\vec{x_0}\in M$ único tal que
+            \begin{equation*}
+                \vec{x_0}=\sum_{i=1} ^{\infty}\varphi(\alpha(i))\vec{u_{\alpha(i)}}
+            \end{equation*}
+            Se tiene
+            \begin{equation*}
+                \begin{split}
+                    \pint{\sum_{i=1 }^{m}\varphi(\alpha)\vec{u_{\alpha(i)}}}{\vec{u_{\alpha(k)}}}=\varphi(\alpha(k)),\quad\forall m\geq k \\
+                \end{split}
+            \end{equation*}
+            tomando límite cuando $m\rightarrow\infty$ y usando la continuidad de $\pint{}{}$:
+            \begin{equation*}
+                \Rightarrow \hat{x_0}(\alpha(k))=\pint{\vec{x_0}}{\vec{u_{\alpha(k)}}}=\varphi(\alpha(k)),\quad\forall k\in\mathbb{N}
+            \end{equation*}
+            Sea $\alpha\in\Omega\backslash\Omega_0$. Se tiene:
+            \begin{equation*}
+                \begin{split}
+                    \pint{\sum_{i=1 }^{m}\varphi(\alpha)\vec{u_{\alpha(i)}}}{\vec{u_{\alpha}}}=\varphi(\alpha(k)),\quad\forall m\in\mathbb{N} \\
+                \end{split}
+            \end{equation*}
+            tomando límite cuando $m\rightarrow\infty$ y usando la continuidad de $\pint{}{}$ se obtiene que:
+            \begin{equation*}
+                \Rightarrow \hat{x_0}(\alpha)=\pint{\vec{x_0}}{\vec{u_{\alpha}}}=\varphi(\alpha)
+            \end{equation*}
+            por tanto, $\hat{x_0}=\varphi$.
+
+            \item Sea $\vec{x}\in H$ tal que $\hat{x}=\varphi$. Entonces,
+            \begin{equation*}
+                \widehat{x-x_0}=\hat{x}-\hat{x_0}=\varphi-\varphi=0
+            \end{equation*}
+            luego
+            \begin{equation*}
+                \pint{\vec{x}-\vec{x_0}}{\vec{u_\alpha}}=0\quad\forall\alpha\in\Omega
+            \end{equation*}
+            Así pues, $\vec{x}-\vec{x_0}\perp\mathcal{L}((\vec{u_\alpha})_{\alpha\in\Omega})$. Siendo los elementos de $M$ límites de sucesiones en $\mathcal{L}((\vec{u_\alpha})_{\alpha\in\Omega})$, por la continuidad de $\pint{}{}$ se tiene que $\vec{x}-\vec{x_0}\perp M$.
+
+            Recíprocamente, si $\vec{x}-\vec{x_0}\perp M$, es claro que $\hat{0}=\widehat{x-x_0}=\hat{x}-\hat{x_0}=\hat{x}-\varphi$. Por tanto, $\hat{x}=\varphi$. En particular, si $x\in M$ y $\hat{x}=\varphi$, resulta que $\vec{x}-\vec{x_0}\in M$ y $\vec{x}-\vec{x_0}\perp M$, luego $\vec{x}-\vec{x_0}$, o sea $\vec{x}=\vec{x_0}$, es decir que el $\vec{x_0}$ es único.
+        \end{enumerate}
     \end{proof}
 
 \end{document}
