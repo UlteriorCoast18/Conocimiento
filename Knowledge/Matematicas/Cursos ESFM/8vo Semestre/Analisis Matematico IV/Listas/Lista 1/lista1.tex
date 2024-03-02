@@ -156,7 +156,53 @@
     \end{excer}
 
     \begin{proof}
-        
+        De (i): Se probarán dos cosas:
+        \begin{itemize}
+            \item \textbf{Unicidad}. Suponga que existen $\cf{S,W}{H'}{H}$ tales que:
+            \begin{equation*}
+                \pint{\vec{x}}{S\vec{x'}}=\pint{T\vec{x}}{\vec{x'}}\quad\textup{y}\quad\pint{\vec{x}}{W\vec{x'}}=\pint{T\vec{x}}{\vec{x'}},\quad\forall\vec{x}\textup{ y }\vec{x'}\in H'
+            \end{equation*}
+            entonces, se tiene que para $\vec{x'}\in H'$ fijo:
+            \begin{equation}
+                \begin{split}
+                    \pint{\vec{x}}{S\vec{x'}}=&\pint{\vec{x}}{W\vec{x'}}\\
+                    \Rightarrow \pint{\vec{x}}{S\vec{x'}}-\pint{\vec{x}}{W\vec{x'}}=&0\\
+                    \Rightarrow \pint{\vec{x}}{S\vec{x'}-W\vec{x'}}=&0\forall\vec{x}\in H \\
+                \end{split}
+            \end{equation}
+            Por tanto, $S\vec{x'}=W\vec{x'}$. Como el $\vec{x'}\in H'$ fue arbitrario, se sigue que $S=W$.
+
+            \item \textbf{Existencia}. Para cada $\vec{x'}\in H'$, sea $\cf{L_{\vec{x'}}}{H}{\mathbb{K}}$ definida como sigue:
+            \begin{equation*}
+                L_{\vec{x'}}(\vec{x})=\pint{T\vec{x}}{\vec{x'}}
+            \end{equation*}
+            Afirmamos que $L_{\vec{x'}}$ es lineal continuo. En efecto, si $\vec{x},\vec{y}\in H$ y $\alpha\in\mathbb{K}$, tenemos que:
+            \begin{equation*}
+                \begin{split}
+                    L_{\vec{x'}}(\vec{x}+\alpha\vec{y})=&\pint{T(\vec{x}+\alpha\vec{y})}{\vec{x'}} \\
+                    =&\pint{T\vec{x}}{\vec{x'}}+\alpha\pint{T\vec{y}}{\vec{x'}} \\
+                    =& L_{\vec{x'}}(\vec{x})+\alpha L_{\vec{x'}}(\vec{y})\\
+                \end{split}
+            \end{equation*}
+            luego es lineal, y es continuo ya que
+            \begin{equation*}
+                \begin{split}
+                    \abs{L_{\vec{x}}(\vec{x'})}=&\abs{\pint{T\vec{x}}{\vec{x'}}}\\
+                    \leq&\norm{T\vec{x}}\norm{\vec{x'}} \\
+                    \leq&(\norm{T}\norm{\vec{x'}})\norm{\vec{x}} \\
+                \end{split}
+            \end{equation*}
+            donde la primera desigualdad es por Cauchy-Schwarts, y la segunda es por el hecho de que $T$ es un funcional lineal continuo. Por tanto: $\norm{L_{\vec{x'}}}\leq\norm{T}\norm{\vec{x'}}$. Luego, $L_{\vec{x'}}$ es lineal continuo.
+
+            Por el teorema de Riesz, como la aplicación $\cf{G}{H}{H^*}$ es suprayectiva, para $\vec{x'}\in H'$ existe $\adj{T}\vec{x'}\in H$ tal que $L_{\vec{x'}}=G_{\adj{T}\vec{x'}}$, es decir que:
+            \begin{equation*}
+                L_{\vec{x'}}\vec{x}=\pint{T\vec{x}}{\vec{x'}}=\pint{\vec{x}}{\adj{T}\vec{x'}}=G_{\adj{T}\vec{x'}}\vec{x},\quad\forall\vec{x}\in H
+            \end{equation*}
+            Afirmamos que la aplicación $\cf{\adj{T}}{H'}{H}$ está bien definida y es lineal continua. En efecto, si
+
+            
+            sean $\vec{x'},\vec{y'}\in H'$, entonces:
+        \end{itemize}
     \end{proof}
 
     \begin{excer}
@@ -398,7 +444,7 @@
     \end{proof}
 
     \begin{excer}
-        %Sea $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ una sucesión de elementos de un espacio hilbertiano $H$. La sucesión $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ se llama \textbf{martingala} (en el sentido amplio) si, $\forall\nu\in\mathbb{N}$, $\vec{x_\nu}$ es el vector de $\mathscr{L}(\vec{x_1},...,\vec{x_\nu})$ menos alejado de $\vec{x_{\nu+1}}$.
+        Sea $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ una sucesión de elementos de un espacio hilbertiano $H$. La sucesión $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ se llama \textbf{martingala} (en el sentido amplio) si, $\forall\nu\in\mathbb{N}$, $\vec{x_\nu}$ es el vector de $\mathcal{L}(\vec{x_1},...,\vec{x_\nu})$ menos alejado de $\vec{x_{\nu+1}}$.
         \begin{enumerate}
             \item Sea $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ una martingala. Se definen:
             \begin{equation*}
