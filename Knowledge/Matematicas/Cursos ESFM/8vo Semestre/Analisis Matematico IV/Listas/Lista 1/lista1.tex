@@ -192,17 +192,57 @@
                     \leq&(\norm{T}\norm{\vec{x'}})\norm{\vec{x}} \\
                 \end{split}
             \end{equation*}
-            donde la primera desigualdad es por Cauchy-Schwarts, y la segunda es por el hecho de que $T$ es un funcional lineal continuo. Por tanto: $\norm{L_{\vec{x'}}}\leq\norm{T}\norm{\vec{x'}}$. Luego, $L_{\vec{x'}}$ es lineal continuo.
+            donde la primera desigualdad es por Cauchy-Schwarts, y la segunda es por el hecho de que $T$ es un funcional lineal continuo. Por tanto: $\norm{L_{\vec{x'}}}\leq\norm{T}\norm{\vec{x'}}$. Luego, $L_{\vec{x'}}$ es lineal continuo, i.e. $L_{\vec{x'}}\in H^*$.
 
             Por el teorema de Riesz, como la aplicación $\cf{G}{H}{H^*}$ es suprayectiva, para $\vec{x'}\in H'$ existe $\adj{T}\vec{x'}\in H$ tal que $L_{\vec{x'}}=G_{\adj{T}\vec{x'}}$, es decir que:
             \begin{equation*}
                 L_{\vec{x'}}\vec{x}=\pint{T\vec{x}}{\vec{x'}}=\pint{\vec{x}}{\adj{T}\vec{x'}}=G_{\adj{T}\vec{x'}}\vec{x},\quad\forall\vec{x}\in H
             \end{equation*}
-            Afirmamos que la aplicación $\cf{\adj{T}}{H'}{H}$ está bien definida y es lineal continua. En efecto, si
-
-            
-            sean $\vec{x'},\vec{y'}\in H'$, entonces:
+            Afirmamos que la aplicación $\cf{\adj{T}}{H'}{H}$ está bien definida y es lineal. En efecto, si $\adj{T}\vec{x_1'},\adj{T}\vec{x_2'}\in H$ son tales que $L_{\vec{x'}}=G_{\adj{T}\vec{x_1'}}$ y $L_{\vec{x}}=G_{\adj{T}\vec{x_1'}}$, entonces:
+            \begin{equation*}
+                \pint{T\vec{x}}{\vec{x'}}=\pint{\vec{x}}{\adj{T}\vec{x_1'}}\quad\textup{y}\quad\pint{T\vec{x}}{\vec{x'}}=\pint{\vec{x}}{\adj{T}\vec{x_2'}},\quad\forall\vec{x}\in H
+            \end{equation*}
+            entonces:
+            \begin{equation*}
+                \begin{split}
+                    \pint{\vec{x}}{\adj{T}\vec{x_1'}}=&\pint{\vec{x}}{\adj{T}\vec{x_2'}},\quad\forall\vec{x}\in H\\
+                    \Rightarrow \pint{\vec{x}}{\adj{T}\vec{x_1'}-\adj{T}\vec{x_2'}}=&0\quad\forall\vec{x}\in H\\
+                    \Rightarrow\adj{T}\vec{x_1'}-\adj{T}\vec{x_2'}=&\vec{0}\\
+                    \Rightarrow\adj{T}\vec{x_1'}=&\adj{T}\vec{x_2'}\\ 
+                \end{split}
+            \end{equation*}
+            por tanto, $\cf{\adj{T}}{H'}{H}$ está bien definida. Comprobemos ahora la linealidad, sean $\vec{x'},\vec{y'}\in H'$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    &\pint{T\vec{x}}{\vec{x'}}=\pint{\vec{x}}{\adj{T}\vec{x'}},\pint{T\vec{x}}{\vec{y'}}=\pint{\vec{x}}{\adj{T}\vec{y'}}\textup{ y }\pint{T\vec{x}}{\vec{x'}+\vec{y'}}=\pint{\vec{x}}{\adj{T}(\vec{x'}+\vec{y'})}\quad\forall\vec{x}\in H\\
+                    \Rightarrow& \pint{T\vec{x}}{\vec{x'}}+\pint{T\vec{x}}{\vec{y'}}=\pint{\vec{x}}{\adj{T}\vec{x'}}+\pint{\vec{x}}{\adj{T}\vec{y'}}\textup{ y }\pint{T\vec{x}}{\vec{x'}+\vec{y'}}=\pint{\vec{x}}{\adj{T}(\vec{x'}+\vec{y'})}\quad\forall\vec{x}\in H\\
+                    \Rightarrow& \pint{T\vec{x}}{\vec{x'}+\vec{y'}}=\pint{\vec{x}}{\adj{T}\vec{x'}+\adj{T}\vec{y'}}\textup{ y }\pint{T\vec{x}}{\vec{x'}+\vec{y'}}=\pint{\vec{x}}{\adj{T}(\vec{x'}+\vec{y'})}\quad\forall\vec{x}\in H\\
+                    \Rightarrow& \pint{\vec{x}}{\adj{T}\vec{x'}+\adj{T}\vec{y'}}=\pint{\vec{x}}{\adj{T}(\vec{x'}+\vec{y'})}\quad\forall\vec{x}\in H\\
+                    \Rightarrow& \pint{\vec{x}}{(\adj{T}\vec{x'}+\adj{T}\vec{y'})-\adj{T}(\vec{x'}+\vec{y'})}=0\quad\forall\vec{x}\in H\\
+                    \Rightarrow& (\adj{T}\vec{x'}+\adj{T}\vec{y'})-\adj{T}(\vec{x'}+\vec{y'})=0\\
+                    \Rightarrow& \adj{T}\vec{x'}+\adj{T}\vec{y'}=\adj{T}(\vec{x'}+\vec{y'})\\
+                \end{split}
+            \end{equation*}
+            y, si $\alpha\in\mathbb{K}$, tenemos que:
+            \begin{equation*}
+                \begin{split}
+                    &\pint{T\vec{x}}{\alpha\vec{x'}}=\pint{\vec{x}}{\adj{T}(\alpha\vec{x'})}\textup{ y }\pint{T\vec{x}}{\vec{x'}}=\pint{\vec{x}}{\adj{T}\vec{x'}}\quad\forall\vec{x}\in H\\
+                    \Rightarrow&\conj{\alpha} \pint{T\vec{x}}{\vec{x'}}=\pint{\vec{x}}{\adj{T}(\alpha\vec{x'})}\textup{ y }\conj{\alpha}\pint{T\vec{x}}{\vec{x'}}=\conj{\alpha}\pint{\vec{x}}{\adj{T}\vec{x'}}\quad\forall\vec{x}\in H\\
+                    \Rightarrow&\conj{\alpha} \pint{T\vec{x}}{\vec{x'}}=\pint{\vec{x}}{\adj{T}(\alpha\vec{x'})}\textup{ y }\conj{\alpha}\pint{T\vec{x}}{\vec{x'}}=\pint{\vec{x}}{\alpha\adj{T}\vec{x'}}\quad\forall\vec{x}\in H\\
+                    \Rightarrow&\pint{\vec{x}}{\adj{T}(\alpha\vec{x'})}=\pint{\vec{x}}{\alpha\adj{T}\vec{x'}}\quad\forall\vec{x}\in H\\
+                    \Rightarrow&\pint{\vec{x}}{\adj{T}(\alpha\vec{x'})}-\pint{\vec{x}}{\alpha\adj{T}\vec{x'}}=0\quad\forall\vec{x}\in H\\
+                    \Rightarrow&\pint{\vec{x}}{\adj{T}(\alpha\vec{x'})-\alpha\adj{T}\vec{x'}}=0\quad\forall\vec{x}\in H\\
+                    \Rightarrow&\adj{T}(\alpha\vec{x'})-\alpha\adj{T}\vec{x'}=\vec{0}\\
+                    \Rightarrow&\adj{T}(\alpha\vec{x'})=\alpha\adj{T}\vec{x'}\\
+                \end{split}
+            \end{equation*}
+            por tanto $\adj{T}$ es lineal. Además, se cumple para todos $\vec{x}\in H$ y $\vec{x'}\in H'$ que:
+            \begin{equation*}
+                \pint{T\vec{x}}{\vec{x'}}=\pint{\vec{x}}{\adj{T} \vec{x'}}
+            \end{equation*}
         \end{itemize}
+
+        De (ii): 
     \end{proof}
 
     \begin{excer}
