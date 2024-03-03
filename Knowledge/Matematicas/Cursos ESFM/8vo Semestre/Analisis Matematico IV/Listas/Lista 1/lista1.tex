@@ -457,16 +457,10 @@
         \begin{equation*}
             \begin{split}
                 \norm{A\vec{x}}^2=&\frac{1}{4}\abs{Q_A(\lambda\vec{x}+\lambda^{-1}A\vec{x})-Q_A(\lambda\vec{x}-\lambda^{-1}A\vec{x})}\\
-                \leq&\frac{1}{4}\abs{Q_A(\lambda\vec{x}+\lambda^{-1}A\vec{x})}+\frac{1}{4}\abs{Q_A(\lambda\vec{x}-\lambda^{-1}A\vec{x})}\\
-                \leq&\frac{1}{4}\norm{\lambda\vec{x}+\lambda^{-1}A\vec{x}}^2+\frac{1}{4}\norm{\lambda\vec{x}-\lambda^{-1}A\vec{x}}^2 \\
-                =&\frac{1}{2}(\norm{\lambda\vec{x}}^2+\norm{\lambda^{-1}A\vec{x}}^2) \\
-                =&\frac{1}{2}(\lambda^2\norm{\vec{x}}^2+\frac{1}{\lambda^2}\norm{A\vec{x}}^2) \\
-                \Rightarrow \norm{A\vec{x}}^2\leq&\frac{1}{2}(\lambda^2\norm{\vec{x}}^2+\frac{1}{\lambda^2}\norm{A\vec{x}}^2) \\
-                \Rightarrow 2\norm{A\vec{x}}^2-\frac{1}{\lambda^2}\norm{A\vec{x}}^2\leq&\lambda^2\norm{\vec{x}}^2\\
-                \Rightarrow \left(2-\frac{1}{\lambda^2}\right)\norm{A\vec{x}}^2\leq&\lambda^2\norm{\vec{x}}^2\\
-                \Rightarrow \left(\frac{2\lambda^2-1}{\lambda^2}\right)\norm{A\vec{x}}^2\leq&\lambda^2\norm{\vec{x}}^2\\
-                \Rightarrow \norm{A\vec{x}}^2\leq&\left(\frac{\lambda^4}{2\lambda^2-1}\right)\norm{\vec{x}}^2\\
-                \Rightarrow \norm{A\vec{x}}\leq&\left(\frac{\lambda^2}{\sqrt{2\lambda^2-1}}\right)\norm{\vec{x}}\\
+                \leq&\frac{1}{4}(\abs{Q_A(\lambda\vec{x}+\lambda^{-1}A\vec{x})}+\abs{Q_A(\lambda\vec{x}-\lambda^{-1}A\vec{x})})\\
+                =&\frac{1}{4}(\abs{\pint{A(\lambda\vec{x}+\lambda^{-1}A\vec{x})}{\lambda\vec{x}+\lambda^{-1}A\vec{x}}}+\abs{\pint{A(\lambda\vec{x}-\lambda^{-1}A\vec{x})}{\lambda\vec{x}-\lambda^{-1}A\vec{x}}})\\
+                \leq&\frac{1}{4}(\norm{A(\lambda\vec{x}+\lambda^{-1}A\vec{x})}\norm{\lambda\vec{x}+\lambda^{-1}A\vec{x}}+\norm{A(\lambda\vec{x}-\lambda^{-1}A\vec{x})}\norm{\lambda\vec{x}-\lambda^{-1}A\vec{x}})\\
+                \leq&\frac{1}{4}(\norm{A}\norm{\lambda\vec{x}+\lambda^{-1}A\vec{x}}^2+\norm{A}\norm{\lambda\vec{x}-\lambda^{-1}A\vec{x}}^2)\\
             \end{split}
         \end{equation*}
         por Cauchy-Schwartz y usando la identidad del paralelogramo y, tomando
@@ -503,7 +497,7 @@
                 =&B \\
             \end{split}
         \end{equation*}
-        además, son endomorfismos. Para ello, basta ver que $T+\adj{T}$ y $T-\adj{T}$ lo son. En efecto, si 
+        además, son endomorfismos. Para ello, basta ver que $T+\adj{T}$ y $T-\adj{T}$ lo son. En efecto, si $\vec{y}\in H$, entonces 
     \end{proof}
 
     \begin{excer}
@@ -515,7 +509,43 @@
     \end{excer}
 
     \begin{proof}
-        
+        Sea
+        \begin{equation*}
+            \hat{H}=\left\{\left\{\vec{x_n} \right\}_{n=1}^\infty\Big|\left\{\vec{x_n} \right\}_{n=1}^\infty\textup{ es sucesión de Cauchy en }H \right\}
+        \end{equation*}
+        se definen sobre $\hat{H}'$ dos operaciones, para todo $\hat{x'}=\left\{\vec{x_n} \right\}_{n=1}^\infty,\hat{y'}=\left\{\vec{y_n} \right\}_{n=1}^\infty\in \hat{H}'$ y $\alpha\in K$:
+        \begin{equation*}
+            \hat{x'}+\hat{y'}=\left\{\vec{x_n}+\vec{y_n} \right\}_{n=1 }^\infty\quad\textup{y}\quad\alpha\hat{x'}=\left\{\alpha\vec{x_n} \right\}_{n=1 }^\infty
+        \end{equation*}
+        Con estas operaciones $\hat{H}'$ es un espacio vectorial sobre $\mathbb{K}$. Definimos una relación $\sim$ en $\hat{H}'$ dada como sigue:
+        \begin{equation*}
+            \hat{x'}\sim\hat{y'}\iff\lim_{n\rightarrow\infty }\norm{\vec{x_n}-\vec{y_n}}=0
+        \end{equation*}
+        donde $\norm{\cdot}$ es la norma inducida por el producto interno sobre $H$. Tomemos $\hat{0'}=\left\{\vec{0} \right\}_{ n=1}^\infty\in\hat{H}'$, y sea:
+        \begin{equation*}
+            \hat{K}=\left\{\hat{x'}\in\hat{H}'\Big|\hat{x'}\sim\hat{0'} \right\}
+        \end{equation*}
+        Afirmamos que $\hat{K}$ es subespacio vectorial de $\hat{H}$. En efecto, sean $\hat{x'}=\left\{\vec{x_n} \right\}_{n=1}^\infty,\hat{y'}=\left\{\vec{y_n} \right\}_{n=1}^\infty\in \hat{K}'$ y $\alpha\in\mathbb{K}$, entonces:
+        \begin{equation*}
+            \begin{split}
+                0\leq&\lim_{n\rightarrow\infty}\norm{\vec{x_n}+\alpha\vec{y_n}-\vec{0}}\\
+                =&\lim_{n\rightarrow\infty}\norm{\vec{x_n}+\alpha\vec{y_n}}\\
+                \leq&\lim_{n\rightarrow\infty}\norm{\vec{x_n}}+\lim_{n\rightarrow\infty}\norm{\alpha\vec{y_n}}\\
+                =&\lim_{n\rightarrow\infty}\norm{\vec{x_n}}+\lim_{n\rightarrow\infty}\abs{\alpha}\cdot\norm{\vec{y_n}}\\
+                =&\lim_{n\rightarrow\infty}\norm{\vec{x_n}-\vec{0}}+\abs{\alpha}\lim_{n\rightarrow\infty}\norm{\vec{y_n}-\vec{0}}\\
+                =&0+\abs{\alpha}\cdot0\\
+                =&0\\
+            \end{split}
+        \end{equation*}
+        por tanto, $\hat{x'}+\alpha\hat{y'}\in\hat{K}'$. Así $\hat{K}'$ es espacio vectorial. Tomemos
+        \begin{equation*}
+            \hat{H}=\hat{H}'/\hat{K}'
+        \end{equation*}
+        el espacio vectorial cociente, cuyos elementos los denotaremos por $\hat{x}=[\hat{x'}]=\hat{x'}+\hat{K}'$. Definimos un producto escalar en $\hat{H}$ como sigue; para cada $\hat{x},\hat{y}\in H$:
+        \begin{equation*}
+            \pint{\hat{x}}{\hat{y}}=\lim_{n\rightarrow\infty }\pint{\vec{x_n}}{\vec{y_n}}
+        \end{equation*}
+
     \end{proof}
 
     \begin{excer}

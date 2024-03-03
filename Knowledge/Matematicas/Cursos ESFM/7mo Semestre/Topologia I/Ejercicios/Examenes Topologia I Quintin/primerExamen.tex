@@ -113,11 +113,14 @@
 
 %En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
 
-\newcommand\abs[1]{\ensuremath{\biglvert#1\bigrvert}}
+\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
 \newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand\Cls[1]{\ensuremath{\overline{#1}}}
+
+\newcommand\gen[1]{\ensuremath{\langle#1\rangle}}
 
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
@@ -130,12 +133,183 @@
 
     %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
 
-    \chapter{Espacios Topológicos}
+    \chapter{Primer Examamen Parcial}
 
-    \section{Conceptos Fundamentales}
+    \section{Ejercicios}
 
     \begin{excer}
         
     \end{excer}
 
-\end{document} 
+    \chapter{Segundo Examen Parcial}
+
+    \section{Ejercicios}
+
+    \begin{excer}
+        
+    \end{excer}
+
+    \chapter{Tercer Examen Parcial}
+
+    \section{Ejercicios}
+    
+    \begin{excer}
+        
+    \end{excer}
+
+    \chapter{ETS Ordinario}
+
+    \section{Ejercicios}
+
+    \begin{excer}
+        Sea $A=\left\{\sin n\Big|n\in\mathbb{N} \right\}$. Pruebe que $\Cls{A}=[-1,1]$ en $(\mathbb{R},\tau_u)$.
+    \end{excer}
+
+    \begin{proof}
+        Notemos que $A=\sin(\mathbb{N})$. Sea $C=\sin(\mathbb{Z})$.
+
+        Es claro que $C\subseteq[-1,1]$ donde $[-1,1]$ es un cerrado en $(\mathbb{R},\tau_u)$, por tanto $\Cls{C}\subseteq[-1,1]$, veremos que se cumple la otra contención. Sea $x\in[-1,1]$,
+        \begin{itemize}
+            \item Si $x\in C$,  es claro que $x\in\Cls{C}$ ya que $C\subseteq\Cls{C}$.
+            \item Si $x\notin C$, como la función $t\mapsto\sen t$ de $\mathbb{R}$ a $[-1,1]$ es suprayectiva, entonces existe $\theta\in\mathbb{R}$ tal que $\sin\theta=x$.
+            
+            Ahora, por la proposición 4.2.2, el conjunto
+            \begin{equation*}
+                B=\left\{a+2\pi b\Big|a,b\in\mathbb{Z} \right\}
+            \end{equation*}
+            es denso en $\mathbb{R}$ por ser $2\pi$ irracional. Entonces, para cada $n\in\mathbb{N}$ existe $\theta_n=a_n+2\pi b_n\in B$ tal que $\abs{\theta-\theta_n}<\frac{1}{n}$, es decir que la sucesión $\left\{\theta_n \right\}_{n=1}^\infty$ converge a $\theta$. Como $t\mapsto\sin t$ es continua, entonces:
+            \begin{equation*}
+                \begin{split}
+                    \lim_{n\rightarrow\infty }\abs{\sin\theta-\sin\theta_n}=&0\\
+                    \Rightarrow \lim_{n\rightarrow\infty }\abs{x-\sin\left(a_n+2\pi b_n \right)}=&0\\
+                \end{split}
+            \end{equation*}
+            pero,
+            \begin{equation*}
+                \begin{split}
+                    \sin\left(a_n+2\pi b_n \right)=&\sin\left(a_n\right)\cos\left(2\pi b_n\right)+\cos\left(a_n\right)\sin\left(2\pi b_n \right)\\
+                    =&\sin\left(a_n\right)\\
+                \end{split}
+            \end{equation*}
+            pues $\cos(2\pi k)=1$ y $\sin(2\pi k)=0$, para todo $k\in\mathbb{Z}$. Luego,
+            \begin{equation*}
+                \begin{split}
+                    \lim_{n\rightarrow\infty }\abs{x-\sin a_n}=&0\\
+                \end{split}
+            \end{equation*}
+            es decir que para $\varepsilon>0$ existe $n\in\mathbb{N}$ tal que $\abs{x-\sin a_n}<\varepsilon$, donde $a_n\in\mathbb{Z}$. 
+        \end{itemize}
+        Por los dos incisos anterioes, se sigue que lo que $\Cls{C}\subseteq[-1,1]\Rightarrow \Cls{C}=[-1,1]$, es decir que $\sin(\mathbb{Z})$ es denso en $[-1,1]$, pero $t\mapsto\sin t$ es continua y periódica entre $[-1,1]$, por tanto de la proposición 4.2.3 se sigue que $A=\sin(\mathbb{N})$ es denso en $[-1,1]$.
+    \end{proof}
+
+    \section{Resultados Preeliminares}
+    
+    \begin{propo}
+        Considere al grupo aditivo $(\mathbb{R},+)$. Entonces todo subgrupo $H$ de éste es denso en la topología $(\mathbb{R},\tau_u)$ ó es cíclico.
+    \end{propo}
+
+    \begin{proof}
+        Se tienen que probar dos cosas:
+        \begin{enumerate}
+            \item Suponga que $G$ es denso. Se probará que $G$ no puede ser cíclico. En efecto, si $G$ fuera cíclico, existiría $g\in G$ tal que
+            \begin{equation*}
+                G=\gen{g}
+            \end{equation*}
+            es claro que $g\neq 0$, pues en caso contrario se tendría que $G=\left\{0\right\}$, que no puede suceder ya que $G$ es denso en $\mathbb{R}$, así $g>0$; además, existe $h\in G$ tal que $0<h<g$ ya que el conjunto $]0,g[$ es abierto en $\mathbb{R}$.
+
+            Como $G=\gen{g}$ existe entonces $n\in\mathbb{N}$ tal que $g=hn$ (por ser $h,g>0$), es decir que $g\leq h$\contradiction, pues $h<g$. Por tanto, $G$ no es cíclico.
+
+            \item Suponga que $G$ no es denso. Probaremos que $G$ es cíclico, sea
+            \begin{equation*}
+                g=\inf\left\{x\in G\Big|x>0 \right\}
+            \end{equation*}
+            Se tienen dos casos. Afirmamos que $g>0$. En efecto, suponga que $g=0$, sea $U\subseteq\mathbb{R}$ abierto no vacío y, $x\in\mathbb{R}$ y $\varepsilon>0$ tales que $]x-\varepsilon,x+\varepsilon[\subseteq U$. Como $g=0$, existe $g_\varepsilon\in G$ tal que $0<g_\varepsilon<\varepsilon$, sea ahora $k\in\mathbb{Z}$ tal que:
+            \begin{equation*}
+                kg_\varepsilon\leq x<(k+1)g_\varepsilon
+            \end{equation*}
+            es claro que $kg_\varepsilon\in G$, y además:
+            \begin{equation*}
+                \begin{split}
+                    0\leq&x-kg_\varepsilon\\
+                    <&(k+1)g_\varepsilon-kg_\varepsilon\\
+                    =&g_\varepsilon\\
+                    <&\varepsilon\\
+                \end{split}
+            \end{equation*}
+            es decir, $\abs{x-kg_\varepsilon}<\varepsilon$ y por ende $kg_\varepsilon\in U$. Por tanto, $G$ es denso en $\mathbb{R}$\contradiction. Por tanto, $g>0$. Veamos ahora que $g\in G$.
+            
+            Suponga que $g\notin G$, entonces existen $h_1,h_2\in G$ positivos tales que:
+            \begin{equation*}
+                g<h_1<h_2<2g
+            \end{equation*}
+            (por propiedades del ínfimo), luego $h_2-h_1\in G$ y son tales que $0<h_2-h_1<g$\contradiction, pues $g$ es el ínfimo. Luego, $g\in G$.
+
+            Sea $x\in G$, entonces existe $k\in\mathbb{Z}$ tal que
+            \begin{equation*}
+                kg\leq x< (k+1)g
+            \end{equation*}
+            Así, $kg\in G$ lo cual implica que $x-kg\in H$, por ende:
+            \begin{equation*}
+                \begin{split}
+                    0\leq& x-kg\\
+                    <&(k+1)g-kg\\
+                    =g&
+                \end{split}
+            \end{equation*}
+            al ser $g$ el ínfimo, debe suceder que $x-kg=0$, es decir que $x=kg$. Por tanto, $G=\gen{g}$.
+        \end{enumerate}
+        por los dos incisos anteriores, se sigue que $G$ es denso ó es cíclico.
+    \end{proof}
+
+    \begin{propo}
+        Sea $\alpha\in\mathbb{R}$. Entonces el conjunto:
+        \begin{equation*}
+            A=\left\{a+b\alpha\Big|a,b\in\mathbb{Z} \right\}
+        \end{equation*}
+        es denso en $\mathbb{R}$ con la topología usual.
+    \end{propo}
+
+    \begin{proof}
+        Afirmamos que $A$ es un subgrupo de $\mathbb{R}$ el cual no es cíclico, por tanto, de la proposición anterior, se sigue que $A$ es denso en $\mathbb{R}$ con la topología usual.
+
+        Es claro que $A$ es subgrupo de $(\mathbb{R},+)$, pues si $a_1+b_1\alpha,a_2+b_2\alpha\in A$, se tiene que el elemento $(a_1-a_2)+(b_1-b_2)\alpha\in A$ ya que $a_1-a_2,b_1-b_2\in\mathbb{Z}$.
+
+        Ahora, supongamos que $A$ es cíclico, entonces existiría $a+b\alpha\in A$ positivo (lo podemos elegir positivo y no puede ser cero ya que $\alpha\in A$) tal que $A=\gen{a+b\alpha}$. En particular, $\alpha\in A$, por tanto, existe $m\in\mathbb{Z}$ tal que
+        \begin{equation*}
+            \begin{split}
+                \alpha=&m(a+b\alpha)\\
+                \Rightarrow (1-mb)\alpha=&ma\\
+            \end{split}
+        \end{equation*}
+        entonces, $mb=1$, lo cual implica que $m=b=\pm 1$ (en caso contrario, un lado de la ecuación sería irracional y el otro entero), y que $a=0$. Por tanto, $A=\gen{\alpha}=\gen{-\alpha}$, pero esto no puede suceder pues el elemento $1+2\alpha\notin\gen{\alpha}$, pero $1+2\alpha\in A$\contradiction.
+
+        Por tanto, $A$ no es cíclico. Luego, de la proposición anterior, se sigue que $A$ es denso en $\mathbb{R}$ con la topología usual.
+    \end{proof}
+    
+    \begin{propo}
+        Sea $\cf{f}{\mathbb{R}}{[-1,1]}$ función continua y periódica de período $T>0$. Entonces, si $f(\mathbb{Z})$ es denso en $(\mathbb{R},\tau_u)$, entonces $f(\mathbb{N})$ también lo es.
+    \end{propo}
+
+    \begin{proof}
+        Si $T$ es racional, entonces $f(\mathbb{Z})={T}$ el cual no es denso en $[-1,1]$, por tanto, $T$ debe ser irracional. Como $f$ es continua y acotada, entonces es uniformemente continua en $\mathbb{R}$.
+
+        Sea $x\in[-1,1]$ y $\varepsilon>0$, entonces existe $m\in\mathbb{Z}$ tal que $\abs{f(m)-x}<\frac{\varepsilon}{2}$. Como $f$ es uniformemente continua, existe $\delta>0$ tal que si $\abs{u-v}<\delta$ entones $\abs{f(u)-f(v)}<\frac{\varepsilon}{2}$.
+
+        Si $m\in\mathbb{N}$, se tiene el resultado. Suponga que $m\leq 0$. Existen $p,q\in\mathbb{N}$ tales que
+        \begin{equation*}
+            \abs{p-Tq}<\delta
+        \end{equation*}
+        donde $p>-m$ y $q>1/\delta$, esto pues el conjunto $]T,\infty[\cap\mathbb{Q}$ es denso en $[T,\infty[$. Entonces:
+        \begin{equation*}
+            \begin{split}
+                \abs{f(m+p)-\alpha}&\leq\abs{f(m+p)-f(m)}+\abs{f(m)-\alpha} \\
+                &\leq\abs{f(m+(p-Tq))-f(m)}+\abs{f(m)-\alpha} \\
+                &<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}\\
+                &=\varepsilon\\
+            \end{split}
+        \end{equation*}
+        con $p+m\in\mathbb{N}$. Luego $f(\mathbb{N})$ es denso en $[-1,1]$.
+
+    \end{proof}
+
+\end{document}
