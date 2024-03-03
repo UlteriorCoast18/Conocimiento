@@ -242,7 +242,47 @@
             \end{equation*}
         \end{itemize}
 
-        De (ii): 
+        De (ii): Probaremos las dos igualdades.
+        \begin{enumerate}
+            \item $\adj{T_1+T_2}=\adj{T_1}+\adj{T_2}$. Tenemos que:
+            \begin{equation*}
+                \pint{\vec{x}}{\adj{T_1}\vec{x'}}=\pint{T_1\vec{x}}{\vec{x'}}\quad\textup{y}\quad\pint{\vec{x}}{\adj{T_2}\vec{x'}}=\pint{T_2\vec{x}}{\vec{x'}},\quad\forall\vec{x}\in H,\vec{x'}\in H'
+            \end{equation*}
+            por tanto
+            \begin{equation*}
+                \begin{split}
+                    \pint{\vec{x}}{\adj{T_1}\vec{x'}}+\pint{\vec{x}}{\adj{T_2}\vec{x'}}=&\pint{T_1\vec{x}}{\vec{x'}}+\pint{T_2\vec{x}}{\vec{x'}}\quad\forall\vec{x}\in H,\vec{x'}\in H'\\
+                    \Rightarrow\pint{\vec{x}}{\adj{T_1}\vec{x'}+\adj{T_2}\vec{x'}}=&\pint{T_1\vec{x}+T_2\vec{x}}{\vec{x'}}\quad\forall\vec{x}\in H,\vec{x'}\in H'\\
+                    \Rightarrow \pint{\vec{x}}{(\adj{T_1}+\adj{T_2})\vec{x'}}=&\pint{(T_1+T_2)\vec{x}}{\vec{x'}}\quad\forall\vec{x}\in H,\vec{x'}\in H'\\
+                \end{split}
+            \end{equation*}
+            de la unicidad de la adjunta, se sigue que $\adj{T_1+T_2}=\adj{T_1}+\adj{T_2}$.
+            \item $\adj{\alpha T}=\conj{\alpha}\adj{T}$. Es similar al caso anterior.
+        \end{enumerate}
+        De los dos incisos anteriores se sigue el resultado.
+
+        De (iii): Se tiene que:
+        \begin{equation*}
+            \pint{\vec{x}}{\adj{T}\vec{x'}}=\pint{T\vec{x}}{\vec{x'}}\quad\textup{y}\quad\pint{\vec{x'}}{\adj{U}\vec{x''}}=\pint{U\vec{x'}}{\vec{x''}},\quad\forall\vec{x}\in H,\vec{x'}\in H',\vec{x''}\in H''
+        \end{equation*}
+        debemos probar que:
+        \begin{equation*}
+            \pint{\vec{x}}{(\adj{T}\circ\adj{U})\vec{x''}}=\pint{(U\circ T)\vec{x}}{\vec{x''}}\quad\forall\vec{x}\in H,\vec{x''}\in H''
+        \end{equation*}
+        para usar la unicidad y de forma inmediata dedudcir el resultado.
+        Sean $\vec{x}\in H$ y $\vec{x''}\in H''$. Como $\adj{U}\vec{x''}T\vec{x} \in H'$, tenemos que:
+        \begin{equation*}
+            \pint{\vec{x}}{\adj{T}(\adj{U}\vec{x''})}=\pint{T\vec{x}}{\adj{U}\vec{x''}}\quad\textup{y}\quad\pint{T\vec{x}}{\adj{U}\vec{x''}}=\pint{U(T\vec{x})}{\vec{x''}}
+        \end{equation*}
+        por tanto:
+        \begin{equation*}
+            \begin{split}
+                \pint{\vec{x}}{\adj{T}(\adj{U}\vec{x''})}=&\pint{U(T\vec{x})}{\vec{x''}}\\
+                \Rightarrow \pint{\vec{x}}{(\adj{T}\circ \adj{U})\vec{x''}}=&\pint{(U\circ T)\vec{x}}{\vec{x''}}\\
+            \end{split}
+        \end{equation*}
+        lo cual prueba el resultado al ser los vectores arbitrarios.
+
     \end{proof}
 
     \begin{excer}
@@ -329,9 +369,15 @@
                 \iff&\pint{\left[T-\adj{T}\right]\vec{x}}{\vec{x}}=0,\forall\vec{x}\in H\\
             \end{split}
         \end{equation*}
-        Veamos que $\pint{\left[T-\adj{T}\right]\vec{x}}{\vec{x}}=0,\forall\vec{x}\in H$ si y sólo si $T=\adj{T}$. La vuelta es inmediata.
+        Veamos que $\pint{\left[T-\adj{T}\right]\vec{x}}{\vec{x}}=0,\forall\vec{x}\in H$ si y sólo si $T=\adj{T}$.
 
-        %Falta%
+        $\Rightarrow)$ Suponga que $\pint{\left[T-\adj{T}\right]\vec{x}}{\vec{x}}=0,\forall\vec{x}\in H$. Esto es inmediato, pues se tiene que: $Q_{T-\adj{T}}(\vec{x})=0$, para todo $\vec{x}\in H$, luego
+        \begin{equation*}
+            \pint{\left[T-\adj{T}\right]\vec{x}}{\vec{y}}=0,\quad\forall\vec{x},\vec{y}\in H
+        \end{equation*}
+        en particular para $\vec{x}$ fijo, $\pint{\left[T-\adj{T}\right]\vec{x}}{\vec{y}}=0$ para todo $\vec{y}\in H$, luego $\left[T-\adj{T}\right]\vec{x}=\vec{0}$. Como fue arbitrario se sigue entonces que $T=\adj{T}$.
+
+        $\Leftarrow)$ Suponga que $T=\adj{T}$. De forma inmediata se sigue que $\pint{\left[T-\adj{T}\right]\vec{x}}{\vec{x}}=0,\forall\vec{x}\in H$.
 
     \end{sol}
 
@@ -376,7 +422,54 @@
         \end{equation*}
         luego, $\norm{A}$ es cota superior del conjunto. Por tanto $\alpha\leq\norm{A}$.
 
-        De (ii): Suponga que $A$ es autoadjunto
+        De (ii): Suponga que $A$ es autoadjunto. Sean $\vec{x}\in H$ y $\lambda>0$. Entonces:
+        \begin{equation*}
+            \begin{split}
+                Q_A(\lambda\vec{x}+\lambda^{-1}A\vec{x})=&\pint{A(\lambda\vec{x}+\lambda^{-1}A\vec{x})}{\lambda\vec{x}+\lambda^{-1}A\vec{x}} \\
+                =&\pint{\lambda A\vec{x}+\lambda^{-1}(A\circ A)\vec{x}}{\lambda\vec{x}+\lambda^{-1}A\vec{x}} \\
+                =&\pint{\lambda A\vec{x}+\lambda^{-1}(A\circ A)\vec{x}}{\lambda\vec{x}}+\pint{\lambda A\vec{x}+\lambda^{-1}(A\circ A)\vec{x}}{\lambda^{-1}A\vec{x}}\\
+                =&\pint{\lambda A\vec{x}}{\lambda\vec{x}}+\pint{\lambda^{-1}(A\circ A)\vec{x}}{\lambda\vec{x}}+\pint{\lambda A\vec{x}}{\lambda^{-1}A\vec{x}}+\pint{\lambda^{-1}(A\circ A)\vec{x}}{\lambda^{-1}A\vec{x}}\\
+            \end{split}
+        \end{equation*}
+        y
+        \begin{equation*}
+            \begin{split}
+                Q_A(\lambda\vec{x}-\lambda^{-1}A\vec{x})=&\pint{A(\lambda\vec{x}-\lambda^{-1}A\vec{x})}{\lambda\vec{x}-\lambda^{-1}A\vec{x}} \\
+                =&\pint{\lambda A\vec{x}-\lambda^{-1}(A\circ A)\vec{x}}{\lambda\vec{x}-\lambda^{-1}A\vec{x}} \\
+                =&\pint{\lambda A\vec{x}-\lambda^{-1}(A\circ A)\vec{x}}{\lambda\vec{x}}-\pint{\lambda A\vec{x}-\lambda^{-1}(A\circ A)\vec{x}}{\lambda^{-1}A\vec{x}}\\
+                =&\pint{\lambda A\vec{x}}{\lambda\vec{x}}-\pint{\lambda^{-1}(A\circ A)\vec{x}}{\lambda\vec{x}}-\pint{\lambda A\vec{x}}{\lambda^{-1}A\vec{x}}+\pint{\lambda^{-1}(A\circ A)\vec{x}}{\lambda^{-1}A\vec{x}}\\
+            \end{split}
+        \end{equation*}
+        por tanto:
+        \begin{equation*}
+            \begin{split}
+                Q_A(\lambda\vec{x}+\lambda^{-1}A\vec{x})-Q_A(\lambda\vec{x}-\lambda^{-1}A\vec{x})=&2(\pint{\lambda^{-1}(A\circ A)\vec{x}}{\lambda\vec{x}}+\pint{\lambda A\vec{x}}{\lambda^{-1}A\vec{x}})\\
+                =&2(\pint{(A\circ A)\vec{x}}{\vec{x}}+\pint{A\vec{x}}{A\vec{x}})\\
+                =&2(\pint{A\vec{x}}{A\vec{x}}+\pint{A\vec{x}}{A\vec{x}})\\
+                =&4\pint{A\vec{x}}{A\vec{x}}\\
+            \end{split}
+        \end{equation*}
+        pues, $A$ es autoadjunto. Luego:
+        \begin{equation*}
+            \pint{A\vec{x}}{A\vec{x}}=\frac{1}{4}(Q_A(\lambda\vec{x}+\lambda^{-1}A\vec{x})-Q_A(\lambda\vec{x}-\lambda^{-1}A\vec{x}))
+        \end{equation*}
+        por tanto:
+        \begin{equation*}
+            \begin{split}
+                \norm{A\vec{x}}^2=&\frac{1}{4}\abs{Q_A(\lambda\vec{x}+\lambda^{-1}A\vec{x})-Q_A(\lambda\vec{x}-\lambda^{-1}A\vec{x})}\\
+                \leq&\frac{1}{4}\abs{Q_A(\lambda\vec{x}+\lambda^{-1}A\vec{x})}+\frac{1}{4}\abs{Q_A(\lambda\vec{x}-\lambda^{-1}A\vec{x})}\\
+                \leq&\frac{1}{4}\norm{\lambda\vec{x}+\lambda^{-1}A\vec{x}}^2+\frac{1}{4}\norm{\lambda\vec{x}-\lambda^{-1}A\vec{x}}^2 \\
+                =&\frac{1}{2}(\norm{\lambda\vec{x}}^2+\norm{\lambda^{-1}A\vec{x}}^2) \\
+                =&\frac{1}{2}(\lambda^2\norm{\vec{x}}^2+\frac{1}{\lambda^2}\norm{A\vec{x}}^2) \\
+                \Rightarrow \norm{A\vec{x}}^2\leq&\frac{1}{2}(\lambda^2\norm{\vec{x}}^2+\frac{1}{\lambda^2}\norm{A\vec{x}}^2) \\
+                \Rightarrow 2\norm{A\vec{x}}^2-\frac{1}{\lambda^2}\norm{A\vec{x}}^2\leq&\lambda^2\norm{\vec{x}}^2\\
+                \Rightarrow \left(2-\frac{1}{\lambda^2}\right)\norm{A\vec{x}}^2\leq&\lambda^2\norm{\vec{x}}^2\\
+                \Rightarrow \left(\frac{2\lambda^2-1}{\lambda^2}\right)\norm{A\vec{x}}^2\leq&\lambda^2\norm{\vec{x}}^2\\
+                \Rightarrow \norm{A\vec{x}}^2\leq&\left(\frac{\lambda^4}{2\lambda^2-1}\right)\norm{\vec{x}}^2\\
+                \Rightarrow \norm{A\vec{x}}\leq&\left(\frac{\lambda^2}{\sqrt{2\lambda^2-1}}\right)\norm{\vec{x}}\\
+            \end{split}
+        \end{equation*}
+        por Cauchy-Schwartz y usando la identidad del paralelogramo y, tomando
     \end{proof}
 
     \begin{excer}
@@ -384,11 +477,33 @@
         \begin{equation*}
             T=A+iB
         \end{equation*}
-        donde $A$ y $B$ son endomorfismos adjuntos de $H$.
+        donde $A$ y $B$ son endomorfismos autoadjuntos de $H$.
     \end{excer}
 
     \begin{proof}
-        
+        Tomemos $A=\frac{1}{2}(T+\adj{T})$ y $B=\frac{1}{2i}(T-\adj{T})$, siendo $\cf{\adj{T}}{H}{H}$ la adjunta de $T$. Es claro que $T=A+iB$ y, que tanto $A$ como $B$ son adjuntos, pues:
+        \begin{equation*}
+            \begin{split}
+                \adj{A}=&\adj{\frac{1}{2}(T+\adj{T})} \\
+                =&\frac{1}{2}\adj{(T+\adj{T})} \\
+                =&\frac{1}{2}(\adj{T}+\adj{\adj{T}}) \\
+                =&\frac{1}{2}(T+\adj{T}) \\
+                =&A\\
+            \end{split}
+        \end{equation*}
+        y
+        \begin{equation*}
+            \begin{split}
+                \adj{B}=&\adj{\frac{1}{2i}(T-\adj{T})} \\
+                =&\adj{\frac{-i}{2}(T-\adj{T})} \\
+                =&\conj{-\frac{i}{2}}\adj{(T-\adj{T})} \\
+                =&\frac{i}{2}(\adj{T}-\adj{\adj{T}}) \\
+                =&-\frac{1}{2i}(\adj{T}-T) \\
+                =&\frac{1}{2i}(T-\adj{T}) \\
+                =&B \\
+            \end{split}
+        \end{equation*}
+        además, son endomorfismos. Para ello, basta ver que $T+\adj{T}$ y $T-\adj{T}$ lo son. En efecto, si 
     \end{proof}
 
     \begin{excer}
@@ -431,7 +546,7 @@
         \begin{enumerate}
             \item \textbf{Muestre} que en todo espacio prehilbertiano real se cumple
             \begin{equation*}
-                \pint{\vec{x}}{\vec{y}}=\frac{1}{4}\left(\norm{\vec{x}+vec{y}}^2-\norm{\vec{x}-\vec{y}}^2 \right)
+                \pint{\vec{x}}{\vec{y}}=\frac{1}{4}\left(\norm{\vec{x}+\vec{y}}^2-\norm{\vec{x}-\vec{y}}^2 \right)
             \end{equation*}
             y en todo espacio prehilbertiano complejo se cumple
             \begin{equation*}
