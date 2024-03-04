@@ -1376,4 +1376,128 @@
         Si $\mathcal{R}$ es una relación de orden lineal definida sobre el conjunto $A$, diremos que $(A,\mathcal{R})$ es un \textbf{conjunto ordenado}.
     \end{mydef}
 
+    \begin{propo}
+        Sea $(X,\mathcal{R})$ un conjunto ordenado y sea $B\subseteq X$.
+        \begin{enumerate}
+            \item Si existe $b\in B$ tal que $\forall x\in B-\left\{b\right\}$, $b\mathcal{R} x$, entonces $b$ es único y se dice el \textbf{elemento mínimo} (a veces también llamado \textbf{primer elemento}) de $B$.
+            \item Si existe $b\in B$ tal que $\forall x\in B-\left\{b\right\}$, $x\mathcal{R} b$, entonces $b$ es único y se dice el \textbf{elemento máximo} (a veces también llamado \textbf{último elemento}) de $B$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{obs}
+        Si $(X,\prec)$ es un conjunto ordenado y $a,b\in X$, escribimos $a\preceq b$ si $a\prec b$ o $a=b$.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $(A,\prec)$ un conjunto ordenado y $B\subseteq A$. 
+        \begin{enumerate}
+            \item Si existe $a\in A$ tal que para todo $x\in B$ se cumple que $a\preceq x$, diremos que $B$ está \textbf{acotado inferiormente por $A$}. En este caso, $a$ se dice una \textbf{cota inferior de $B$}.
+            \item Si existe $a'\in A$ tal que para todo $x\in B$ se cumple que $x\preceq a'$, diremos que $B$ está \textbf{acotado superiormente por $A$}. En este caso, $a'$ se dice una \textbf{cota superior de $B$}.
+            \item Si $B$ está acotado inferiormente y el conjunto de cotas inferiores de $B$ tiene elemento máximo, diremos que tal elemento es \textbf{la máxima cota inferior de $B$} (abreviado \textbf{máx. c.i.}).
+            \item Si $B$ está acotado superiormente y el conjunto de cotas superiores de $B$ tiene elemento mínimo, diremos que tal elemento es \textbf{la mínima cota superior de $B$} (abreviado \textbf{mín. c.s.}).
+            \item Si cada subconjunto no vacío acotado superiormente (resp. inferiormente) del conjunto ordenado $(A,\prec)$ tiene mínima cota superior (resp. máxima cota inferior), se dice que $(A,\prec)$ tiene la propiedad de la \textbf{mínima cota superior} (resp. \textbf{máxima cota inferior}).
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{mydef}
+        Un conjunto ordenado $(A,\prec)$ es un \textbf{continuum lineal} si cumple:
+        \begin{enumerate}
+            \item $(A,\prec)$ tiene la propiedad de la mínima cota superior.
+            \item Si $a,b\in A$ tales que $a\prec b$, entonces existe $c\in A$ tal que $a\prec c$ y $c\prec b$ (a veces escrito como $a\prec c\prec b$).
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $(A,\prec)$ un conjunto ordenado y sean $a,b\in A$ tales que $a\prec b$. Definimos los siguientes conjuntos:
+        \begin{enumerate}
+            \item $(a,b)=\left\{x\in A\Big|a\prec x\prec b \right\}$, llamado el \textbf{intervalo abierto con extremos $a$ y $b$}.
+            \item Si $(a,b)=\emptyset$, $a$ se dice el \textbf{predecesor inmediato de $b$}, y $b$ el \textbf{sucedor inmediato de $a$}.
+            \item $[a,b]=\left\{x\in A\Big|a\preceq x\preceq b \right\}$, llamado el \textbf{intervalo cerrado con extremos $a$ y $b$}.
+            \item $(a,b]=\left\{x\in A\Big|a\prec x\preceq b \right\}$, llamado el \textbf{intervalo abierto por la izquierda y cerrado por la derecha con extremos $a$ y $b$}.
+            \item $[a,b)=\left\{x\in A\Big|a\preceq x\prec b \right\}$, llamado el \textbf{intervalo abierto por la derecha y cerrado por la izquierda con extremos $a$ y $b$}.
+            \item Los siguientes cuatro conjuntos se llaman \textbf{rayos determinados por el elemento $a$}:
+            \begin{enumerate}
+                \item $(a,+\infty)=\left\{x\in A\Big|a\prec x \right\}$.
+                \item $[a,+\infty)=\left\{x\in A\Big|a\preceq x \right\}$.
+                \item $(-\infty,a)=\left\{x\in A\Big|x\prec a \right\}$.
+                \item $(-\infty, a]=\left\{x\in A\Big|x\preceq a \right\}$.
+            \end{enumerate}
+            \item Al rayo $(-\infty, a)$ también se le conoce como la \textbf{sección definida por el elemento $a$}, y se escribe $\mathcal{S}_a$, es decir:
+            \begin{equation*}
+                \mathcal{S}_a=\left\{x\in A\Big|x\prec a \right\}
+            \end{equation*}
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{propo}
+        Sea $(X,\prec)$ un conjunto ordenado y sea $\mathcal{B}$ la colección de todos los subconjuntos de $X$ de los siguientes tipos:
+        \begin{enumerate}
+            \item Todos los intervalos abiertos de $X$.
+            \item Todos los invervalos de la forma $[a_0,b)$ donde $a_0$ es el elemento mínimo de $(X,\prec)$ (si es que tal $a_0$ existe).
+            \item Todos los invervalos de la forma $(a,b_0]$ donde $b_0$ es el elemento máximo de $(X,\prec)$ (si es que tal $b_0$ existe).
+        \end{enumerate}
+        Entonces, $\mathcal{B}$ es una base para una topología sobre $X$, la cual llamaremos la \textbf{topología del orden} y se denota por $\tau_\prec$.
+
+        Tenemos además, que la colección $\mathcal{S}_a$ de todos los rayos de la forma $(a,+\infty)$ con $a\in X$ es una sub-base para $\tau_\prec$.
+    \end{propo}
+    
+    \begin{proof}
+        Tenemos cuatro casos:
+        \begin{enumerate}
+            \item \textbf{$X$ tiene elemento máximo y mínimo}. Se tienen que verificar dos cosas:
+        \end{enumerate}
+    \end{proof}
+
+    \begin{mydef}
+        Sean $(A,\prec_A)$ y $(B,\prec_B)$ dos conjuntos ordenados. definimos la relación $\prec$ sobre $A\times B$ de la siguiente manera
+        \begin{equation*}
+            (a,b)\prec(c,d)\iff a\prec_A c\textup{ o, }a = c \textup{ y }b\prec_B d
+        \end{equation*}
+        esta relación es un orden definido sobre $A\times B$ y se dice el \textbf{orden del diccionario}.
+    \end{mydef}
+
+    \begin{proof}
+        Se deben cumplir tres cosas:
+        \begin{enumerate}
+            \item Sean $(a,b),(c,d)\in A\times B$ y suponga que $(a,b)\neq(c,d)$, se tienen dos casos:
+            \begin{enumerate}
+                \item $a\neq c$, entonces $a\prec_A c$ ó $a\prec c$. En el primer caso se tiene que $(a,b)\prec(c,d)$. En caso contrario se tendría que $(c,d)\prec(a,b)$.
+                \item $a=c$, entonces, puede suceder $b\prec_B d$ ó $d\prec_B b$ ó $b=d$, por tanto $(a,b)\prec(c,d)$ ó $(c,d)\prec(a,b)$ ó $(a,b)=(c,d)$, en cuyo caso los elementos son iguales, cosa que no puede suceder. Por tanto solo puede suceder que $b\prec_B d$ ó $d\prec_B b$.
+            \end{enumerate}
+            por tanto, $(a,b)\prec(c,d)$ o $(c,d)\prec(a,b)$.
+            \item Como $\prec_A$ y $\prec_B$ son antireflexivos, entonces siempre se tiene que $(a,b)\nprec (a,b)$.
+            \item Sean $(x_1,y_1),(x_2,y_2),(x_3,y_3)\in A\times B$ tales que $(x_1,y_1)\prec(x_2,y_2)$ y $(x_2,y_2)\prec(x_3,y_3)$. Entonces
+            \begin{equation*}
+                \begin{split}
+                    &(x_1\prec_A x_2 \textup{ ó } x_1=x_2 \textup{ y } y_1\prec_B y_2)\textup{ y }(x_2\prec_A x_3 \textup{ ó } x_2=x_3 \textup{ y } y_2\prec_B y_3)\\
+                    \Rightarrow &[(x_1\prec_A x_2 \textup{ ó } x_1=x_2 \textup{ y } y_1\prec_B y_2)\textup{ y }x_2\prec_A x_3]\textup{ ó }\\
+                    &[(x_1\prec_A x_2 \textup{ ó } x_1=x_2 \textup{ y } y_1\prec_B y_2)\textup{ y }(x_2=x_3 \textup{ y } y_2\prec_B y_3)]\\
+                    \Rightarrow &[(x_1\prec_A x_2\textup{ y }x_2\prec_A x_3)\textup{ ó }(x_1=x_2 \textup{ y } y_1\prec_B y_2\textup{ y }x_2\prec_A x_3)]\textup{ ó }\\
+                    &[(x_1\prec_A x_2\textup{ y }x_2=x_3 \textup{ y } y_2\prec_B y_3)\textup{ ó }(x_1=x_2 \textup{ y } y_1\prec_B y_2\textup{ y }x_2=x_3 \textup{ y } y_2\prec_B y_3)]\\
+                    \Rightarrow &[(x_1\prec_A x_3)\textup{ ó }(x_1\prec_A x_3)]\textup{ ó }\\
+                    &[(x_1\prec_A x_3)\textup{ ó }(x_1=x_3 \textup{ y } y_1\prec_B y_3)]\\
+                    \Rightarrow &x_1\prec_A x_3\textup{ ó }x_1=x_3 \textup{ y } y_1\prec_B y_3\\
+                    \Rightarrow &(x_1,y_2)\prec (x_3,y_3)\\
+                \end{split}
+            \end{equation*}
+            por los tres incisos anteriores, se sigue que $\prec$ es un orden en $A\times B$.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{mydef}
+        Un conjunto ordenado $(X,\mathcal{R})$ se dice que está \textbf{bien ordenado} si todo subconjunto no vacío de $X$ tiene primer elemento o elemento mínimo.
+    \end{mydef}
+
+    \begin{propo}
+        Existe un conjunto bien ordenado no numerable, en el cual toda sección de él es numerable.
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
 \end{document}
