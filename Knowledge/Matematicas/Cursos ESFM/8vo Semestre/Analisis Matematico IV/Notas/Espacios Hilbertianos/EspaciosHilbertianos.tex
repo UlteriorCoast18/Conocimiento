@@ -121,6 +121,7 @@
 \newcommand\ora[1]{\ensuremath{\vec{#1}}}
 \newcommand\pint[2]{\ensuremath{\left(#1\big| #2\right)}}
 \newcommand\conj[1]{\ensuremath{\overline{#1}}}
+\newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -1407,7 +1408,7 @@
         \begin{equation*}
             M=\overline{\mathcal{L}((\vec{u_\alpha})_{\alpha\in\Omega})}
         \end{equation*}
-        es completo (lo cual se cumple en particular si $H$ es hilbertiano). Entonces la aplicación $\vec{x}\mapsto\hat{x}$ es suprayectiva de $H$ sobre $l_2(\Omega,\mathbb{K})$. Más precisamente, dado $\varphi\in l_2(\Omega,\mathbb{K})$ existe un único $\vec{x_0}\in M$ tal que sus coeficientes de Fourier son, i.e. $\hat{x_0}=\varphi$.
+        es completo (lo cual se cumple en particular si $H$ es hilbertiano). Entonces la aplicación $\vec{x}\mapsto\hat{x}$ es suprayectiva de $H$ sobre $l_2(\Omega,\mathbb{K})$. Más precisamente, dado $\varphi\in l_2(\Omega,\mathbb{K})$ existe un único $\vec{x_0}\in M$ tal que sus coeficientes de Fourier coinciden con $\varphi$, i.e. $\hat{x_0}=\varphi$.
         
         Además, para cualquier $\vec{x}\in H$ se cumple que $\hat{x}=\varphi$ si y sólo si $\vec{x}-\vec{x_0}\perp M$. 
     \end{theor}
@@ -1452,7 +1453,7 @@
                     \pint{\sum_{i=1 }^{m}\varphi(\alpha)\vec{u_{\alpha(i)}}}{\vec{u_{\alpha}}}=\varphi(\alpha(k)),\quad\forall m\in\mathbb{N} \\
                 \end{split}
             \end{equation*}
-            tomando límite cuando $m\rightarrow\infty$ y usando la continuidad de $\pint{}{}$ se obtiene que:
+            tomando límite cuando $m\rightarrow\infty$ y usando la continuidad de $\pint{\cdot}{\cdot}$ se obtiene que:
             \begin{equation*}
                 \Rightarrow \hat{x_0}(\alpha)=\pint{\vec{x_0}}{\vec{u_{\alpha}}}=\varphi(\alpha)
             \end{equation*}
@@ -1470,6 +1471,200 @@
 
             Recíprocamente, si $\vec{x}-\vec{x_0}\perp M$, es claro que $\hat{0}=\widehat{x-x_0}=\hat{x}-\hat{x_0}=\hat{x}-\varphi$. Por tanto, $\hat{x}=\varphi$. En particular, si $x\in M$ y $\hat{x}=\varphi$, resulta que $\vec{x}-\vec{x_0}\in M$ y $\vec{x}-\vec{x_0}\perp M$, luego $\vec{x}-\vec{x_0}$, o sea $\vec{x}=\vec{x_0}$, es decir que el $\vec{x_0}$ es único.
         \end{enumerate}
+    \end{proof}
+
+    \begin{obs}
+        La unicidad de $\hat{x_0}\in M$ implica que $\sum_{i=1}^{\infty}\varphi(\alpha(i))\vec{u_{\alpha(i)}}$ es independiente de la biyección elegida $i\mapsto \alpha(i)$ de $\mathbb{N}$ sobre $\Omega_0$. Abusando de la notación se escribe
+        \begin{equation*}
+            \hat{x_0}=\sum_{\alpha\in\Omega}\varphi(\alpha)\vec{u_\alpha}
+        \end{equation*}
+    \end{obs}
+
+    ¿Cuándo el subespacio $M$ coincide con $H$?
+
+    \begin{mydef}
+        Una familia O.N. de vectores $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ se dice \textbf{maximal} si no existe una familia O.N. que la contenga propiamente. Es decir, $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ es O.N. maximal si y sólo si
+        \begin{equation*}
+            \vec{x}\perp\vec{u_\alpha},\forall\alpha\in\Omega\quad\Rightarrow\vec{x}=\vec{0}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{theor}[\textbf{Teorema de Parseval}]
+        Sea $H$ hilbertiano, y sea $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ una familia O.N. de vectores en $H$. Son equivalentes las siguientes afirmaciones:
+        \begin{enumerate}
+            \item $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ es maximal.
+            \item $\overline{\mathcal{L}\left(\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}\right)}=H$.
+            \item Para todo $\vec{x}\in H$, $\N{2}{\hat{x}}=\norm{\vec{x}}$, o sea que $\sum_{\alpha\in\Omega}\abs{\hat{x}(\alpha)}^2=\norm{\vec{x}}^2$.
+            \item Para todo $\vec{x},\vec{y}\in H$,
+            \begin{equation*}
+                \pint{\hat{x}}{\hat{y}}=\pint{\vec{x}}{\vec{y}}
+            \end{equation*}
+            o sea
+            \begin{equation*}
+                \sum_{\alpha\in\Omega}x(\alpha)\conj{y(\alpha)}=\pint{\vec{x}}{\vec{y}}
+            \end{equation*}
+        \end{enumerate}
+
+    \end{theor}
+
+    \begin{proof}
+        $1)\Rightarrow 2)$: Suponga que 2. es falso, entonces,
+        \begin{equation*}
+            M=\overline{\mathcal{L}\left(\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}\right)}\neq H
+        \end{equation*}
+        es decir que existe $\vec{x}\in H$ tal que $\vec{x}\notin M$. Como $M$ es un subesapcio cerrado de $H$ hilbertiano, entonces es ditinguido, luego existe la proyección ortogonal de $\vec{x}$ sobre $M$, digamos $\vec{x_0}$, entonces $\vec{x}-\vec{x_0}\neq\vec{0}$, pues $\vec{x}\notin M$ y en particular
+        \begin{equation*}
+            \vec{x}-\vec{x_0}\perp M
+        \end{equation*}
+        en particular
+        \begin{equation*}
+            \vec{x}-\vec{x_0}\perp\vec{u_\alpha}\quad\forall\alpha\in\Omega
+        \end{equation*}
+        es decir que la familia $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ no es maximal.
+
+        $2)\Rightarrow 3)$: Ya se sabe que $\N{2}{\hat{x}}\leq\norm{\vec{x}}$ por la desigualdad de Bessel.
+        Sea $\vec{x}\in H$ y $\varepsilon>0$. Como $\overline{\mathcal{L}\left(\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}\right)}= H$, existen $J\subseteq \mathcal{F}(\Omega)$ y $\left(\lambda_\alpha \right)_{\alpha\in J }$ en $\mathbb{K}$ tales que:
+        \begin{equation}
+            \norm{\vec{x}-\sum_{\alpha\in J }\lambda_\alpha\vec{u_\alpha}}<\varepsilon
+        \end{equation}
+        Sea $M_J=\mathcal{L}\left(\left(\vec{u_\alpha} \right)_{ \alpha\in J} \right)$, el cual es de dimensión finita, luego cerrado. Por tanto, de la ecuación anterior se sigue que:
+        \begin{equation*}
+            d(\hat{x},M_J)\leq\varepsilon
+        \end{equation*}
+        Si $\hat{x_0}=\sum_{\alpha\in J}\hat{x}(\alpha)\vec{u_\alpha}$, entonces $\vec{x_0}$ es la proyección ortogonal de $\vec{x}$ sobre $M_J$, luego:
+        \begin{equation*}
+            \begin{split}
+                d(\vec{x},M_J)^2&=\norm{\vec{x}}^2-\norm{\vec{x_0}}^2\\
+                &\leq\varepsilon\\
+            \end{split}
+        \end{equation*}
+        así pues:
+        \begin{equation*}
+            \begin{split}
+                \norm{\vec{x}}^2-\varepsilon&=\norm{\vec{x_0}}^2 \\
+                &=\sum_{\alpha\in J}\abs{\hat{x}(\alpha)}^2\norm{\vec{u_\alpha}}^2\\
+                &=\sum_{\alpha\in J}\abs{\hat{x}(\alpha)}^2\\
+                &\leq\N{2}{\hat{x}}^2
+            \end{split}
+        \end{equation*}co
+        Como $\varepsilon>0$ es arbitrario, se sigue que
+        \begin{equation*}
+            \norm{\vec{x}}\leq\N{2}{\hat{x}}
+        \end{equation*}
+        por tanto, $\norm{\vec{x}}=\N{2}{\hat{x}}$.
+
+        $3)\Rightarrow 4)$: La identidad $\norm{\vec{x}}=\N{2}{\hat{x}}$ puede ser reescrita como:
+        \begin{equation*}
+            \pint{\hat{x}}{\hat{x}}=\pint{\vec{x}}{\vec{x}},\quad\forall\vec{x}\in H
+        \end{equation*}
+        entonces, para todo $\vec{x},\vec{y}\in H$ y para todo $\lambda\in\mathbb{K}$:
+        \begin{equation*}
+            \begin{split}
+                \pint{\hat{x}+\lambda\hat{y}}{\hat{x}+\lambda\hat{y}}&=\pint{\vec{x}+\lambda\vec{y}}{\vec{x}+\lambda\vec{y}}\\
+                \Rightarrow \conj{\lambda}\pint{\hat{x}}{\hat{y}}+\lambda(\hat{y},\hat{x})&=\conj{\lambda}\pint{\vec{x}}{\vec{y}}+\lambda(\vec{y},\vec{x})\\
+            \end{split}
+        \end{equation*}
+        tomando $\lambda=1$ y $\lambda=i$, lo anterior muestra que $\pint{\vec{x}}{\vec{y}}$ y $\pint{\hat{x}}{\hat{y}}$ tienen las mismas parte real e imaginaria, por tanto son iguales.
+
+        $4)\Rightarrow 1)$: Supongamos que 1. es falso. Entonces, existe $\vec{x}\in H\backslash\left\{\vec{0} \right\}$ tal que $\vec{x}\perp\vec{u_\alpha}$ para todo $\alpha\in\Omega$, es decir que:
+        \begin{equation*}
+            \hat{x}(\alpha)=\pint{\vec{x}}{\vec{u_\alpha}},\quad\forall\alpha\in\Omega
+        \end{equation*}
+        al tomar $\vec{x}=\vec{y}$, resulta que:
+        \begin{equation*}
+            \pint{\hat{x}}{\hat{x}}=0
+        \end{equation*}
+        siendo que $\pint{\vec{x}}{\vec{x}}\neq0$. Luego, se tiene el resultado.
+    \end{proof}
+
+    \begin{obs}
+        Las identidades en 3. y 4. son llamadas \textbf{identidades de Parseval}.
+    \end{obs}
+
+    \begin{obs}
+        Si $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ es un sistema ortonormal maximal en un espacio hilbertiano $H$, entonces $\vec{x}\mapsto\hat{x}$ es una isometría lineal de $H$ en $l_2(\Omega,\mathbb{K})$. Pero, por el teorema de Riesz-Fischer esta aplicación es suprayectiva, luego $H$ y $l_2(\Omega,\mathbb{K})$ son linealmente isométricos. La isometría inversa es: dada $\varphi\in l_2(\Omega,\mathbb{K})$:
+        \begin{equation*}
+            \varphi\mapsto\sum_{\alpha\in\Omega}\varphi(\alpha)\vec{u_\alpha}
+        \end{equation*}
+    \end{obs}
+
+    \begin{theor}
+        En todo espacio prehilbertiano $H$ existe una familia O.N. maximal.
+    \end{theor}
+
+    \begin{proof}
+        Sea $\mathcal{O}$ la colección de todas las familias ortonormales de vectores en $H$. La relación inclusión $\subseteq$ hace de $\mathcal{O}$ un conjunto ordenado (no totalmente ordenado). Se verá que $\mathcal{O}$ es inductivo. Sea $\left(\mathcal{F}_i \right)_{i\in J}$ una cadena en $\mathcal{O}$, es decir, $\left(\mathcal{F}_i \right)_{i\in J}$ es una familia de sistemas O.N. tales que:
+        \begin{equation*}
+            \mathcal{F}_i\subseteq\mathcal{F}_j\quad\textup{o}\quad\mathcal{F}_j\subseteq\mathcal{F}_i
+        \end{equation*}
+        para todo $i,j\in J$. Sea $\mathcal{F}=\bigcup_{ i\in J}\mathcal{F}_i$. Si $\vec{u_\alpha},\vec{u_\varepsilon}\in\mathcal{F}$, entonces existe $i\in J$ tal que $\vec{u_\alpha},\vec{u_\varepsilon}\in\mathcal{F}_i$, luego $\pint{\vec{u_\alpha}}{\vec{u_\beta}}=\delta_{\alpha\beta}$, por tanto $\mathcal{F}$ es un sistema O.N, el cual es un mayorante de la cadena $\left(\mathcal{F}_i \right)_{i\in J}$ (es decir que tiene un elemento máximo).
+        
+        Así pues, $\mathcal{O}$ es un conjunto ordenado inductivo. Por el lema de Zorn, $\mathcal{O}$ contiene un elemento maximal. Este es un sistema ortonormal maximal.
+    \end{proof}
+
+    \begin{theor}
+        En un espacio hilbertiano $H$, dos familias O.N. maximales tienen la misma cardinalidad.
+    \end{theor}
+
+    \begin{proof}
+        Sean $\mathcal{A},\mathcal{B}$ dos familias ortonormales maximales en $H$. Se tienen dos casos:
+        \begin{enumerate}
+            \item $\mathcal{A}$ es finito, digamos que $\mathcal{A}=\left(\vec{u_1},...,\vec{u_n} \right)$. Por Parseval:
+            \begin{equation*}
+                H=\overline{\mathcal{L}(\vec{u_1},...,\vec{u_n})}=\mathcal{L}(\vec{u_1},...,\vec{u_n})
+            \end{equation*}
+            pues la dimensión del generado es finita, por tanto el generado es cerrado. Así pues, $H$ es de dimensión finita.
+            
+            Como los elementos de $\mathcal{B}$ son l.i. entonces $\mathcal{B}$ también debe ser finito y cumplen que si $\mathcal{B}=\left\{\vec{v_1},...,\vec{v_m} \right\}$:
+            \begin{equation*}
+                H=\overline{\left\{\vec{v_1},...,\vec{v_m} \right\}}=\left\{\vec{v_1},...,\vec{v_m} \right\}
+            \end{equation*}
+            es decir que $m=n$ por ser bases de $H$. Luego $\abs{\mathcal{A}}=\abs{\mathcal{B}}$.
+            \item Suponga que $\mathcal{A}$ es infinito. Por 1. también debe suceder que $\mathcal{B}$ sea infinito. Para todo $\vec{a}\in\mathcal{A}$ se define:
+            \begin{equation*}
+                \mathcal{B}_{\vec{a}}=\left\{\vec{b}\in\mathcal{B}\Big|\hat{a}(\vec{b})=\pint{\vec{a}}{\vec{b}}\neq0 \right\}
+            \end{equation*}
+            se sabe que $\mathcal{B}_{\vec{a}}$ es a lo sumo numerable. Por otra parte, por la identidad de Parseval:
+            \begin{equation*}
+                \begin{split}
+                    1&=\norm{\vec{b}}^2\\
+                    &=\N{2}{\hat{b}}^2\\
+                    &=\sum_{\vec{a}\in\mathcal{A}}\pint{\vec{b}}{\vec{a}}^2\\
+                    &=\sum_{\vec{a}\in\mathcal{A}}\abs{\hat{b}(\vec{a})}^2\\
+                \end{split}
+            \end{equation*}
+            así que, debe existir $\vec{a}\in\mathcal{A}$ tal que $\pint{\vec{b}}{\vec{a}}\neq0$, es decir que
+            \begin{equation*}
+                \mathcal{B}=\bigcup_{\alpha\in\mathcal{A}}\mathcal{B}_\alpha
+            \end{equation*}
+            Entonces,
+            \begin{equation*}
+                \begin{split}
+                    \abs{\mathcal{B}}&=\abs{\bigcup_{\alpha\in\mathcal{A}}\mathcal{B}_\alpha}\\
+                    &\leq\abs{\mathcal{A}}\aleph_0\\
+                    &\leq\abs{\mathcal{A}}\\
+                \end{split}
+            \end{equation*}
+            pues, $\abs{\mathcal{B}_{\vec{a}}}\leq\aleph_0$, para todo $\vec{a}\in\mathcal{A}$. Por simetría se obtiene también que $\abs{\mathcal{A}}\leq\abs{\mathcal{B}}$. Por tanto, $\abs{\mathcal{A}}=\abs{\mathcal{B}}$.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema de Clasificación de espacios Hilbertianos}]
+        Todo espacio hilbertiano es linealmente isométrico a algún $l_2(\Omega,\mathbb{K})$. Además, $l_2(\Omega,\mathbb{K})$ y $l_2(\Omega',\mathbb{K})$ son linealmente isométricos si y sólo si $\abs{\Omega}=\abs{\Omega'}$.
+    \end{theor}
+
+    \begin{proof}
+        Para la primera parte, sea $H$ hilbertiano. Por un teorema anterior, $H$ posee una familia O.N. maximal, digamos $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$, entonces, por otro teorema $H$ debe ser linealmente isométrico a $l_2(\Omega,\mathbb{K})$.
+
+        Para la segunda parte, sea $\Omega$ arbitrario. Para cada $\alpha\in\Omega$ se define $\varphi_\alpha\in l_2(\Omega,\mathbb{K})$ como:
+        \begin{equation*}
+            \varphi_{\alpha}(\beta)=\delta_{\alpha\beta},\quad\forall\alpha\beta\in\Omega
+        \end{equation*}
+        Claramente $\left(\varphi_\alpha \right)_{\alpha\in\Omega}$ es un sistema O.N. en $l_2(\Omega,\mathbb{K})$.
+
+        Sea $\Omega'$ otro conjunto tal que $\abs{\Omega'}\neq\abs{\Omega}$. Si $l_2(\Omega,\mathbb{K})$ y $l_2(\Omega',\mathbb{K})$ fuesen linealmente isométricos, se tendrían dos sistemas O.N. maximales en $l_2(\Omega,\mathbb{K})$ con diferente cardinalidad, a saber $\left(\varphi_\alpha \right)_{\alpha\in\Omega}$ y el inducido por el de $l_2(\Omega',\mathbb{K})$ a través de la isometría, lo cual no es posible por un teorema anterior.
+
+        Si $\abs{\Omega}=\abs{\Omega'}$ entonces, existe existe $\cf{h}{\Omega}{\Omega'}$ biyección. En este caso, la aplicación $f\mapsto f\circ h$ sería una isometría lineal de $l_2(\Omega',\mathbb{K})$ en $l_2(\Omega,\mathbb{K})$.
     \end{proof}
 
 \end{document}
