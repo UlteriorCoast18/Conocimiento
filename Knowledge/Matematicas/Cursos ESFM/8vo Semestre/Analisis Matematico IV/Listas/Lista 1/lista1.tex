@@ -633,14 +633,138 @@
             \end{equation*}
             \textbf{Pruebe} la relación:
             \begin{equation}
-                \pint{\vec{x}}{\vec{y}}=\pint{\vec{x}}{\vec{y}}_\mathbb{R}+i\pint{i\vec{x}}{i\vec{y}}_\mathbb{R}
+                \pint{\vec{x}}{\vec{y}}=\pint{\vec{x}}{\vec{y}}_\mathbb{R}+i\pint{\vec{x}}{i\vec{y}}_\mathbb{R}
             \end{equation}
             \item Sea $H$ un espacio vectorial complejo. Se supone que $H_\mathbb{R}$ está provisto de un producto escalar $(\vec{x},\vec{y})\mapsto\pint{\vec{x}}{\vec{y}}_\mathbb{R}$ que hace de $H_\mathbb{R}$ un espacio prehilbertiano real. Se supone también que $\pint{i\vec{x}}{i\vec{y}}_\mathbb{R}=\pint{\vec{x}}{\vec{y}}_\mathbb{R}$, para todo $\vec{x},\vec{y}\in H$. Se define en $H$ un producto $\pint{\vec{x}}{\vec{y}}$ por la fórmula (1.1). \textbf{Demuestre} que $(\vec{x},\vec{y})\mapsto\pint{\vec{x}}{\vec{y}}$ es un producto escalar complejo que hace de $H$ un espacio prehilbertiano complejo. 
         \end{enumerate}
     \end{excer}
 
     \begin{proof}
+        De (i): Hay que verificar que se cumplen cuatro condiciones:
+        \begin{enumerate}
+            \item Para todo $\vec{y}\in H_{\mathbb{R}}$ fijo, la aplicación $\vec{x} \mapsto\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}$ es lineal de $H_{\mathbb{R}}$ en $\mathbb{R}$. En efecto, sea $\vec{y}\in H_{\mathbb{R}}$. Si $\vec{x_1},\vec{x_2},\vec{x} \in H_{\mathbb{R}}$ y $\alpha\in\mathbb{R}$, tenemos que
+            \begin{equation*}
+                \begin{split}
+                    \pint{\vec{x_1}+\vec{x_2}}{\vec{y}}_{\mathbb{R}}&=\Re\pint{\vec{x_1}+\vec{x_2}}{\vec{y}}\\
+                    &=\Re[\pint{\vec{x_1}}{\vec{y}}+\pint{\vec{x_2}}{\vec{y}}]\\
+                    &=\Re\pint{\vec{x_1}}{\vec{y}}+\Re\pint{\vec{x_2}}{\vec{y}}\\
+                    &=\pint{\vec{x_1}}{\vec{y}}_{\mathbb{R}}+\Re\pint{\vec{x_2}}{\vec{y}}_{\mathbb{R}}\\
+                \end{split}
+            \end{equation*}
+            y,
+            \begin{equation*}
+                \begin{split}
+                    \pint{\alpha\vec{x}}{\vec{y}}_{\mathbb{R}}&=\Re\pint{\alpha\vec{x}}{\vec{y}}\\
+                    &=\Re\alpha\pint{\vec{x}}{\vec{y}}\\
+                    &=\alpha\Re\pint{\vec{x}}{\vec{y}}\\
+                    &=\alpha\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}\\
+                \end{split}
+            \end{equation*}
+            con lo cual, la aplicación es lineal.
+            \item $\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}=\conj{\pint{\vec{y}}{\vec{x}}_{\mathbb{R}}}=\pint{\vec{y}}{\vec{x}}_{\mathbb{R}}$, para todo $\vec{x},\vec{y}\in H_{\mathbb{R}}$. En efecto, sean $\vec{x},\vec{y}\in H_{\mathbb{R}}$, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    \pint{\vec{x}}{\vec{y}}_{\mathbb{R}}&=\Re\pint{\vec{x}}{\vec{y}} \\
+                    &=\Re\conj{\pint{\vec{y}}{\vec{x}}} \\
+                    &=\Re\pint{\vec{y}}{\vec{x}} \\
+                    &=\pint{\vec{y}}{\vec{x}}_{\mathbb{R}}\\
+                    &=\conj{\pint{\vec{y}}{\vec{x}}_{\mathbb{R}}}\\
+                \end{split}
+            \end{equation*}
+            pues, el producto escalar toma valores reales.
+            \item $\pint{\vec{x}}{\vec{x}}_{\mathbb{R}}\geq0$, para todo $\vec{x}\in H_{\mathbb{R}}$. En efecto, como $\pint{\cdot}{\cdot}$ es un producto escalar sobre $H$, se cumple que $\pint{\vec{x}}{\vec{x}}\geq0$, por ende $\pint{\vec{x}}{\vec{x}}_{\mathbb{R}}=\pint{\vec{x}}{\vec{x}}\geq0$.
+            \item Sea $\vec{x}\in H_{\mathbb{R}}$, entonces $\pint{\vec{x}}{\vec{x}}_{\mathbb{R}}=0$ si y sólo si $\vec{x}=\vec{0}$. La vuelta es inmediata, suponga que $\pint{\vec{x}}{\vec{x}}_{\mathbb{R}}=0$, como $\pint{\vec{x}}{\vec{x}}_{\mathbb{R}}=\Re\pint{\vec{x}}{\vec{x}}=\pint{\vec{x}}{\vec{x}}$, se sigue que $\vec{x}=\vec{0}$.
+        \end{enumerate}
+        con lo cual, por los 4 incisos anteriores se sigue que $\pint{\cdot}{\cdot}_{\mathbb{R}}$ es un producto escalar sobre $H_{\mathbb{R}}$, es decir que $H_{\mathbb{R}}$ es un espacio prehilbertiano real.
         
+        Verifiquemos que se cumple que:
+        \begin{equation*}
+            \pint{i\vec{x}}{i\vec{y}}_{\mathbb{R}}=\pint{\vec{x}}{\vec{y}}_{\mathbb{R}},\quad\forall\vec{x},\vec{y}\in H_{\mathbb{R}}
+        \end{equation*}
+        en efecto, si $\vec{x},\vec{y}\in H_{\mathbb{R}}$, entonces:
+        \begin{equation*}
+            \begin{split}
+                \pint{i\vec{x}}{i\vec{y}}_{\mathbb{R}}&=\Re\pint{i\vec{x}}{i\vec{y}}\\
+                &=\Re(i\cdot(-i))\pint{\vec{x}}{\vec{y}}\\
+                &=\Re(-(-1))\pint{\vec{x}}{\vec{y}}\\
+                &=\Re\pint{\vec{x}}{\vec{y}}\\
+                &=\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}\\
+            \end{split}
+        \end{equation*}
+        con lo que se verifica la igualdad. Probemos la relación. Sean $\vec{x},\vec{y}\in H$, se tiene entonces que:
+        \begin{equation*}
+            \begin{split}
+                \pint{\vec{x}}{\vec{y}}&=\Re\pint{\vec{x}}{\vec{y}}+i\Im\pint{\vec{x}}{\vec{y}}\\
+                &=\Re\pint{\vec{x}}{\vec{y}}+i\Re(-i\pint{\vec{x}}{\vec{y}})\\
+                &=\Re\pint{\vec{x}}{\vec{y}}+i\Re(\conj{i}\pint{\vec{x}}{\vec{y}})\\
+                &=\Re\pint{\vec{x}}{\vec{y}}+i\Re(\pint{\vec{x}}{i\vec{y}})\\
+                &=\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}+i\pint{\vec{x}}{i\vec{y}}_{\mathbb{R}}\\
+            \end{split}
+        \end{equation*}
+        lo cual prueba la relación.
+
+        De (ii): Hay que verificar que se cumplen cuatro condiciones:
+        \begin{enumerate}
+            \item Para todo $\vec{y}\in H$ fijo, la aplicación $\vec{x}\mapsto\pint{\vec{x}}{\vec{y}}$ es lineal de $H$ en $\mathbb{C}$. En efecto, sea $\vec{y}\in H$. Si $\vec{x_1},\vec{x_2},\vec{x}\in H$ y $\alpha=a+ib\in\mathbb{C}$, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    \pint{\vec{x_1}+\vec{x_2}}{\vec{y}}&=\pint{\vec{x_1}+\vec{x_2}}{\vec{y}}_{\mathbb{R}}+i\pint{\vec{x_1}+\vec{x_2}}{i\vec{y}}_{\mathbb{R}}\\
+                    &=\pint{\vec{x_1}}{\vec{y}}_{\mathbb{R}}+\pint{\vec{x_2}}{\vec{y}}_{\mathbb{R}}+i\pint{\vec{x_1}}{i\vec{y}}_{\mathbb{R}}+i\pint{\vec{x_2}}{i\vec{y}}_{\mathbb{R}}\\
+                    &=(\pint{\vec{x_1}}{\vec{y}}_{\mathbb{R}}i\pint{\vec{x_1}}{i\vec{y}}_{\mathbb{R}})+(\pint{\vec{x_2}}{\vec{y}}_{\mathbb{R}}+i\pint{\vec{x_2}}{i\vec{y}}_{\mathbb{R}})\\
+                    &=\pint{\vec{x_1}}{\vec{y}}+\pint{\vec{x_2}}{\vec{y}}\\
+                \end{split}
+            \end{equation*}
+            y,
+            \begin{equation*}
+                \begin{split}
+                    \pint{\alpha\vec{x}}{\vec{y}}&=\pint{\alpha\vec{x}}{\vec{y}}_{\mathbb{R}}+i\pint{\alpha\vec{x}}{i\vec{y}}_{\mathbb{R}}\\
+                    &=\pint{[a+ib]\vec{x}}{\vec{y}}_{\mathbb{R}}+i\pint{[a+ib]\vec{x}}{i\vec{y}}_{\mathbb{R}}\\
+                    &=\pint{a\vec{x}}{\vec{y}}_{\mathbb{R}}+\pint{ib\vec{x}}{\vec{y}}_{\mathbb{R}}+i\pint{a\vec{x}}{i\vec{y}}_{\mathbb{R}}+i\pint{ib\vec{x}}{i\vec{y}}_{\mathbb{R}}\\
+                    &=a\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}+b\pint{i\vec{x}}{\vec{y}}_{\mathbb{R}}+ia\pint{\vec{x}}{i\vec{y}}_{\mathbb{R}}+ib\pint{i\vec{x}}{i\vec{y}}_{\mathbb{R}}\\
+                    &=a\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}-b\pint{\vec{x}}{i\vec{y}}_{\mathbb{R}}+ia\pint{\vec{x}}{i\vec{y}}_{\mathbb{R}}+ib\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}\\
+                    &=(a+ib)\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}+(ia-b)\pint{\vec{x}}{i\vec{y}}_{\mathbb{R}}\\
+                    &=(a+ib)\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}+i(a+ib)\pint{\vec{x}}{i\vec{y}}_{\mathbb{R}}\\
+                    &=\alpha\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}+i\alpha\pint{\vec{x}}{i\vec{y}}_{\mathbb{R}}\\
+                    &=\alpha(\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}+i\pint{\vec{x}}{i\vec{y}}_{\mathbb{R}})\\
+                    &=\alpha\pint{\vec{x}}{\vec{y}}
+                \end{split}
+            \end{equation*}
+            por tanto, es lineal de $H$ en $\mathbb{C}$.
+            \item Sean $\pint{\vec{x}}{\vec{y}}=\conj{\pint{\vec{y}}{\vec{x}}}$, para todo $\vec{x},\vec{y}\in H$. En efecto, si $\vec{x},\vec{y}\in H$, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    \pint{\vec{x}}{\vec{y}}&=\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}+i\pint{\vec{x}}{i\vec{y}}_{\mathbb{R}}\\
+                    &=\pint{\vec{y}}{\vec{x}}_{\mathbb{R}}+i\pint{i\vec{x}}{-\vec{y}}_{\mathbb{R}}\\
+                    &=\pint{\vec{y}}{\vec{x}}_{\mathbb{R}}-i\pint{\vec{y}}{i\vec{x}}_{\mathbb{R}}\\
+                    &=\conj{\pint{\vec{y}}{\vec{x}}_{\mathbb{R}}+i\pint{\vec{y}}{i\vec{x}}_{\mathbb{R}}}\\
+                    &=\conj{\pint{\vec{y}}{\vec{x}}}\\
+                \end{split}
+            \end{equation*}
+            \item $\pint{\vec{x}}{\vec{x}}\geq 0$ para todo $\vec{x}\in H$. En efecto, si $\vec{x}\in H$, se tiene primeramente que:
+            \begin{equation*}
+                \begin{split}
+                    \pint{\vec{x}}{i\vec{x}}&=\pint{i\vec{x}}{-\vec{x}}\\
+                    &=-\pint{i\vec{x}}{\vec{x}}\\
+                    &=-\pint{\vec{x}}{i\vec{x}}\\
+                    \Rightarrow \pint{\vec{x}}{i\vec{x}} &=0\\
+                \end{split}
+            \end{equation*}
+            por tanto,
+            \begin{equation*}
+                \begin{split}
+                    \pint{\vec{x}}{\vec{x}}&=\pint{\vec{x}}{\vec{x}}_{\mathbb{R}}+i\pint{\vec{x}}{i\vec{x}}_{\mathbb{R}}\\
+                    &=\pint{\vec{x}}{\vec{x}}_{\mathbb{R}}\\
+                    &\geq0\\
+                \end{split}
+            \end{equation*}
+            donde $\pint{\vec{x}}{\vec{x}}_{\mathbb{R}}\geq0$. Luego se tiene el resultado.
+            \item Sea $\vec{x}\in H$. Entonces, $\pint{\vec{x}}{\vec{x}}=0$ si y sólo si $\vec{x}=\vec{0}$. La vuelta es inmediata. Suponga que $\pint{\vec{x}}{\vec{x}}=0$, entonces:
+            \begin{equation*}
+                0=\pint{\vec{x}}{\vec{x}}=\pint{\vec{x}}{\vec{x}}_{\mathbb{R}}
+            \end{equation*}
+            usando lo obtenido en (iii), pero $\pint{\vec{x}}{\vec{x}}=0$ implica $\vec{x}=\vec{0}$, luego $\vec{x}=\vec{0}$ con lo que se tiene el resultado.
+        \end{enumerate}
+        por los cuatro incisos se sigue que $\pint{\cdot}{\cdot}$ es un producto escalar complejo sobre $H$ que hace de él un espacio prehilbertiano complejo.
     \end{proof}
 
     \begin{excer}
