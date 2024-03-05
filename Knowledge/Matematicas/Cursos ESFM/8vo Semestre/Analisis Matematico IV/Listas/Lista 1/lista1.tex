@@ -144,6 +144,7 @@
             \begin{equation*}
                 \pint{\vec{x}}{\adj{T}\vec{x'}}=\pint{T\vec{x}}{\vec{x'}},\quad\forall\vec{x}\in H\textup{ y }\forall\vec{x'}\in H'
             \end{equation*}
+            \textbf{Pruebe} también que $\adj{T}$ es continua, $\adj{\adj{T}}=T$ y $\norm{\adj{T}}=\norm{T}$. El operador $\adj{T}$ se llama la \textbf{adjunta de $T$}.
             \item \textbf{Demuestre} las reglas:
             \begin{equation*}
                 \adj{T_1+T_2}=\adj{T_1}+\adj{T_2}\quad\textup{y}\quad\adj{\alpha T}=\conj{\alpha}\adj{T}
@@ -241,6 +242,36 @@
                 \pint{T\vec{x}}{\vec{x'}}=\pint{\vec{x}}{\adj{T} \vec{x'}}
             \end{equation*}
         \end{itemize}
+
+        Veamos ahora que es continua, en efecto, por Cauchy-Schwartz se tiene que para todo $\vec{x'}\in H'\backslash\left\{\vec{0} \right\}$:
+        \begin{equation*}
+            \begin{split}
+                \norm{\adj{T}\vec{x'}}^2&=\pint{\adj{T}\vec{x'}}{\adj{T}\vec{x'}}\\
+                &=\pint{T(\adj{T}\vec{x'})}{\vec{x'}}\\
+                &\leq\abs{\pint{T(\adj{T}\vec{x'})}{\vec{x'}}}\\
+                &\leq\norm{T(\adj{T}\vec{x'})}\norm{\vec{x'}} \\
+                &\leq\norm{T}\norm{\adj{T}\vec{x'}}\norm{\vec{x'}} \\
+            \end{split}
+        \end{equation*}
+        si $\vec{x'}\in\ker \adj{T}$ es claro que
+        \begin{equation*}
+            0=\norm{\adj{T}\vec{x'}}\leq\norm{T}\norm{\vec{x'}}
+        \end{equation*}
+        y, en caso de que no esté, por la ecuación anterior se sigue que:
+        \begin{equation*}
+            \Rightarrow \norm{\adj{T} \vec{x'}}\leq\norm{T}\norm{\vec{x'}}
+        \end{equation*}
+        En cuyo caso se sigue que $\adj{T}$ es continua y tal que $\norm{\adj{T}}\leq\norm{T}$. Para ver la igualdad se intercambian los papeles de $T$ y $\adj{T}$ en las desigualdades anteriores, con lo que se obtiene que $\norm{T}\leq\norm{\adj{T}}$.
+
+        Y, para ver que $\adj{\adj{T}}$, notemos que para todo $\vec{x}\in H$ y $\vec{x'}\in H'$
+        \begin{equation*}
+            \pint{\adj{\adj{T}}\vec{x}}{\vec{x'}}=\pint{\vec{x}}{\adj{T}\vec{x'}}=\pint{T\vec{x}}{\vec{x'}}
+        \end{equation*}
+        por ende
+        \begin{equation*}
+            \pint{\adj{\adj{T}}\vec{x}}{\vec{x'}}=\pint{T\vec{x}}{\vec{x'}}
+        \end{equation*}
+        pero, por unicidad de la adjunta debe suceder que $\adj{\adj{T}}=T$.
 
         De (ii): Probaremos las dos igualdades.
         \begin{enumerate}
@@ -458,12 +489,53 @@
             \begin{split}
                 \norm{A\vec{x}}^2=&\frac{1}{4}\abs{Q_A(\lambda\vec{x}+\lambda^{-1}A\vec{x})-Q_A(\lambda\vec{x}-\lambda^{-1}A\vec{x})}\\
                 \leq&\frac{1}{4}(\abs{Q_A(\lambda\vec{x}+\lambda^{-1}A\vec{x})}+\abs{Q_A(\lambda\vec{x}-\lambda^{-1}A\vec{x})})\\
-                =&\frac{1}{4}(\abs{\pint{A(\lambda\vec{x}+\lambda^{-1}A\vec{x})}{\lambda\vec{x}+\lambda^{-1}A\vec{x}}}+\abs{\pint{A(\lambda\vec{x}-\lambda^{-1}A\vec{x})}{\lambda\vec{x}-\lambda^{-1}A\vec{x}}})\\
-                \leq&\frac{1}{4}(\norm{A(\lambda\vec{x}+\lambda^{-1}A\vec{x})}\norm{\lambda\vec{x}+\lambda^{-1}A\vec{x}}+\norm{A(\lambda\vec{x}-\lambda^{-1}A\vec{x})}\norm{\lambda\vec{x}-\lambda^{-1}A\vec{x}})\\
-                \leq&\frac{1}{4}(\norm{A}\norm{\lambda\vec{x}+\lambda^{-1}A\vec{x}}^2+\norm{A}\norm{\lambda\vec{x}-\lambda^{-1}A\vec{x}}^2)\\
+                =&\frac{1}{4}(\frac{\norm{\lambda\vec{x}+\lambda^{-1}A\vec{x}}^2}{\norm{\lambda\vec{x}+\lambda^{-1}A\vec{x}}^2} \abs{Q_A(\lambda\vec{x}+\lambda^{-1}A\vec{x})}+\frac{\norm{\lambda\vec{x}-\lambda^{-1}A\vec{x}}^2}{\norm{\lambda\vec{x}-\lambda^{-1}A\vec{x}}^2}\abs{Q_A(\lambda\vec{x}-\lambda^{-1}A\vec{x})})\\
+                \leq&\frac{1}{4}(\alpha\norm{\lambda\vec{x}+\lambda^{-1}A\vec{x}}^2+\alpha\norm{\lambda\vec{x}-\lambda^{-1}A\vec{x}}^2)\\
+                =&\frac{\alpha}{4}(\pint{\lambda\vec{x}+\lambda^{-1}A\vec{x}}{\lambda\vec{x}+\lambda^{-1}A\vec{x}}+\pint{\lambda\vec{x}-\lambda^{-1}A\vec{x}}{\lambda\vec{x}-\lambda^{-1}A\vec{x}})\\
+                =&\frac{\alpha}{4}(\pint{\lambda\vec{x}+\lambda^{-1}A\vec{x}}{\lambda\vec{x}}+\pint{\lambda\vec{x}+\lambda^{-1}A\vec{x}}{\lambda^{-1}A\vec{x}}+\pint{\lambda\vec{x}-\lambda^{-1}A\vec{x}}{\lambda\vec{x}}-\pint{\lambda\vec{x}-\lambda^{-1}A\vec{x}}{\lambda^{-1}A\vec{x}})\\
+                =&\frac{\alpha}{4}(\lambda^2\pint{\vec{x}}{\vec{x}}+\pint{A\vec{x}}{\vec{x}}+\pint{\vec{x}}{A\vec{x}}+\lambda^{-2}\pint{A\vec{x}}{A\vec{x}}+\lambda^2\pint{\vec{x}}{\vec{x}}-\pint{A\vec{x}}{\vec{x}}-\pint{\vec{x}}{A\vec{x}}+\lambda^{-2}\pint{A\vec{x}}{A\vec{x}})\\
+                =&\frac{\alpha}{2}(\lambda^2\pint{\vec{x}}{\vec{x}}+\lambda^{-2}\pint{A\vec{x}}{A\vec{x}})\\
+                =&\frac{\alpha}{2}(\lambda^2\norm{\vec{x}}^2+\lambda^{-2}\norm{A\vec{x}}^2)\\
             \end{split}
         \end{equation*}
-        por Cauchy-Schwartz y usando la identidad del paralelogramo y, tomando
+        por Cauchy-Schwartz y usando la definición de $\alpha$. Por tanto, si consideramos que $\alpha>0$:
+        \begin{equation*}
+            \begin{split}
+                \norm{A\vec{x}}^2&\leq\frac{\alpha}{2}(\lambda^2\norm{\vec{x}}^2+\lambda^{-2}\norm{A\vec{x}}^2)\\
+                \Rightarrow \left(1-\frac{\alpha}{2\lambda^2}\right)\norm{A\vec{x}}^2&\leq\frac{\alpha\lambda^2}{2}\norm{\vec{x}}^2\\
+                \Rightarrow \frac{2\lambda^2-\alpha}{2\lambda^2}\norm{A\vec{x}}^2&\leq\frac{\alpha\lambda^2}{2}\norm{\vec{x}}^2\\
+                \Rightarrow \norm{A\vec{x}}^2&\leq\frac{2\alpha\lambda^4}{2(2\lambda^2-\alpha)}\norm{\vec{x}}^2\\
+                \Rightarrow \norm{A\vec{x}}^2&\leq\frac{\alpha\lambda^4}{2\lambda^2-\alpha}\norm{\vec{x}}^2\\
+            \end{split}
+        \end{equation*}
+        tomemos $\lambda>0$ tal que:
+        \begin{equation*}
+            \begin{split}
+                \alpha^2=\frac{\alpha\lambda^4}{2\lambda^2-\alpha}&\iff\alpha=\frac{\lambda^4}{2\lambda^2-\alpha}\\
+                &\iff\alpha(2\lambda^2-\alpha)=\lambda^4\\
+                &\iff0=\lambda^4-2\alpha\lambda^2+\alpha^2\\
+                &\iff0=\left(\lambda^2-\alpha\right)^2 \\
+                &\iff0=\left(\lambda^2-\alpha\right)^2 \\
+                &\iff0=\lambda^2-\alpha \\
+                &\iff\sqrt{\alpha}=\lambda \\
+            \end{split}
+        \end{equation*}
+        de esta forma:
+        \begin{equation*}
+            \begin{split}
+                \norm{A\vec{x}}^2&\leq\alpha^2\norm{\vec{x}}^2 \\
+                \norm{A\vec{x}}&\leq\alpha\norm{\vec{x}}\\
+            \end{split}
+        \end{equation*}
+        es decir que $\norm{A}\leq\alpha$ y por ende $\alpha=\norm{A}$, esto si $\alpha>0$. Si $\alpha=0$, entonces:
+        \begin{equation*}
+            \begin{split}
+                \frac{\abs{Q_A(\vec{x})}}{\norm{\vec{x}}^2}=&0\quad\forall\vec{x}\in H\\
+                \Rightarrow \abs{Q_A(\vec{x})}=&0\quad\forall\vec{x}\in H\\
+                \Rightarrow \pint{A\vec{x}}{\vec{x}}=&0\quad\forall\vec{x}\in H\\
+            \end{split}
+        \end{equation*}
+        pero, por (i) de 1.4 se sigue que $A=0$, pues $\pint{A\vec{x}}{\vec{y}}=0$ para todo $\vec{x},\vec{y}\in H\backslash\left\{\vec{0} \right\}$. En este caso $\alpha=0=\norm{A}$. En cualquier caso, se concluye que $\alpha=\norm{A}$.
     \end{proof}
 
     \begin{excer}

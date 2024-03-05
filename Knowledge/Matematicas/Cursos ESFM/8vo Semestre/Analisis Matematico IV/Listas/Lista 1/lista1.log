@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.12) (preloaded format=pdflatex 2024.1.11)  3 MAR 2024 13:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.12) (preloaded format=pdflatex 2024.1.11)  4 MAR 2024 20:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -731,62 +731,83 @@ Package mdframed Info: mdframed detected package amsthm
 (mdframed)              on input line 140.
 [2
 
-] [3]
+] [3] [4]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 288.
- [4]
-Package mdframed Info: Not enough space on this page on input line 305.
- [5]
+(mdframed)              on input line 319.
+
+
+Package mdframed Warning: You got a bad break
+(mdframed)                because the last box will be empty
+(mdframed)                you have to change it manually
+(mdframed)                by changing the text, the space
+(mdframed)                or something else on input line 336.
+
+Package mdframed Info: You first box width is to small
+ mdframed fixed it
+(mdframed)              on input line 336.
+[5]
+
+Package mdframed Warning: You got a bad break
+(mdframed)                because the last split box is empty
+(mdframed)                You have to change the settings on input line 336.
+
+[6]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 384.
-Package mdframed Info: Box was splittet wrong
- starting loop to iterate the splitting point
-(mdframed)              on input line 405.
- [6]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 469.
-Package mdframed Info: Not enough space on this page on input line 475.
+(mdframed)              on input line 415.
  [7]
-Package mdframed Info: Not enough space on this page on input line 475.
+Overfull \hbox (18.27785pt too wide) detected at line 500
+[]
+ []
+
+[8]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 503.
- [8]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 551.
-Package mdframed Info: Box was splittet wrong
- starting loop to iterate the splitting point
-(mdframed)              on input line 568.
+(mdframed)              on input line 541.
  [9]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 574.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 603.
+(mdframed)              on input line 575.
  [10]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 621.
+(mdframed)              on input line 623.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 646.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 669.
+ [11]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 675.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 693.
 
-Overfull \hbox (6.78214pt too wide) in paragraph at lines 624--625
+Overfull \hbox (6.78214pt too wide) in paragraph at lines 696--697
 []\OT1/cmr/m/it/12 Indicaci^^Son. \OT1/cmr/m/n/12 Tome $\OML/cmm/m/it/12 H \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 L[]\OT1/cmr/m/n/12 ([0\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 1]\OML/cmm/m/it/12 ; \U/msb/m/n/12 K\OT1/cmr/m/n/12 )$ y considere funciones caracter^^S^^Psticas de ciertos subconjuntos
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 631.
+(mdframed)              on input line 703.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 717.
+[12]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 651.
+(mdframed)              on input line 723.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 665.
-[11] [12] (lista1.aux
+(mdframed)              on input line 737.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 787.
+ [13] [14] (lista1.aux
 LaTeX Info: Redefining \. on input line 9.
 LaTeX Info: Redefining \% on input line 9.
 )
@@ -796,17 +817,17 @@ L3 programming layer <2023-12-11>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 18087 strings out of 476430
- 356833 string characters out of 5795980
+ 18091 strings out of 476430
+ 356928 string characters out of 5795980
  1965457 words of memory out of 5000000
- 39776 multiletter control sequences out of 15000+600000
+ 39780 multiletter control sequences out of 15000+600000
  567779 words of font info for 73 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
  104i,21n,115p,801b,1080s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on lista1.pdf (13 pages, 230675 bytes).
+Output written on lista1.pdf (15 pages, 238065 bytes).
 PDF statistics:
- 133 PDF objects out of 1000 (max. 8388607)
+ 139 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
