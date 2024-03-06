@@ -569,7 +569,24 @@
                 =&B \\
             \end{split}
         \end{equation*}
-        además, son endomorfismos. Para ello, basta ver que $T+\adj{T}$ y $T-\adj{T}$ lo son. En efecto, si $\vec{y}\in H$, entonces 
+        además, son endomorfismos (pues van de $H$ en $H$). Veamos que éstos son únicos. En efecto, si $\cf{A',B'}{H}{H}$ son lineales adjuntos tales que
+        \begin{equation*}
+            T=A'+iB'
+        \end{equation*}
+        se tiene que:
+        \begin{equation*}
+            i(B'-B)=A-A'
+        \end{equation*}
+        en particular, son continuos, por lo cual podemos tomar la adjunta de ambos lados:
+        \begin{equation*}
+            \begin{split}
+                \adj{i(B'-B)}&=\adj{A-A'} \\
+                \Rightarrow -i\adj{(B'-B)}&=A-A'\\
+                \Rightarrow -i(B'-B)&=A-A'\\
+                \Rightarrow -i(B'-B)&=i(B'-B)\\
+            \end{split}
+        \end{equation*}
+        ya que son adjuntos. Por tanto $B'-B=0\Rightarrow B'=B$, con lo cual $A=A'$.
     \end{proof}
 
     \begin{excer}
@@ -617,7 +634,7 @@
         \begin{equation*}
             \pint{\hat{x}}{\hat{y}}=\lim_{n\rightarrow\infty }\pint{\vec{x_n}}{\vec{y_n}}
         \end{equation*}
-
+        %TODO%
     \end{proof}
 
     \begin{excer}
@@ -782,7 +799,7 @@
             \begin{equation*}
                 \norm{\vec{x}+\vec{y}}^2+\norm{\vec{x}-\vec{y}}^2=2(\norm{\vec{x}}^2+\norm{\vec{y}}^2)
             \end{equation*}
-            \textbf{Pruebe} que se puede definir de manera única un producto escalar $\pint{ }{ }$ sobre $E$ que hace de $E$ un espacio prehilbertiano real para el cual $\norm{\vec{x}}^2=\pint{\vec{x}}{\vec{x}}$, $\forall\vec{x}\in E$.
+            \textbf{Pruebe} que se puede definir de manera única un producto escalar $\pint{\cdot}{\cdot}$ sobre $E$ que hace de $E$ un espacio prehilbertiano real para el cual $\norm{\vec{x}}^2=\pint{\vec{x}}{\vec{x}}$, $\forall\vec{x}\in E$.
 
             \textit{Indicación.} Defina $\pint{\vec{x}}{\vec{y}}$ por la primera fórmula del inciso (i). Usando la fórmula del paralelogramo compruebe que $\pint{\vec{x}}{2\vec{y}}=2\pint{\vec{x}}{\vec{y}}$. Transforme $\pint{\vec{x_1}}{\vec{y_1}}+\pint{\vec{x_2}}{\vec{y_2}}$ por la identidad del paralelogramo y deduzca la fórmula $\pint{\vec{x_1}}{\vec{y}}+\pint{\vec{x_2}}{\vec{y}}=\pint{\vec{x_1}+\vec{x_2}}{\vec{y}}$.
 
@@ -798,10 +815,44 @@
             \begin{split}
                 \frac{1}{4}\left(\norm{\vec{x}+\vec{y}}^2-\norm{\vec{x}-\vec{y}}^2 \right)
                 &=\frac{1}{4}\left(\pint{\vec{x}+\vec{y}}{\vec{x}+\vec{y}}-\pint{\vec{x}-\vec{y}}{\vec{x}-\vec{y}} \right) \\
-                &=\frac{1}{4}\left(\pint{\vec{x}}{\vec{x}}+\pint{\vec{y}}{\vec{x}}+\pint{\vec{y}}{\vec{x}}+\pint{\vec{y}}{\vec{y}}-\pint{\vec{x}}{\vec{x}} \right) \\
+                &=\frac{1}{4}\left(\pint{\vec{x}}{\vec{x}}+\pint{\vec{x}}{\vec{y}}+\pint{\vec{y}}{\vec{x}}+\pint{\vec{y}}{\vec{y}}-\pint{\vec{x}}{\vec{x}}+\pint{\vec{x}}{\vec{y}}+\pint{\vec{y}}{\vec{x}}-\pint{\vec{y}}{\vec{y}} \right) \\
+                &=\frac{1}{4}\left(2\pint{\vec{x}}{\vec{y}}+2\pint{\vec{y}}{\vec{x}}\right) \\
+                &=\frac{1}{4}\left(4\pint{\vec{x}}{\vec{y}}\right) \\
+                &=\pint{\vec{x}}{\vec{y}}\\
             \end{split}
         \end{equation*}
-        %falta desarrollar en la ecuación anterior.
+        para un espacio prehilbertiano complejo, sean $\vec{x},\vec{y}\in H$. Por el ejercicio 1.1.6 (i) se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \pint{\vec{x}}{\vec{y}}&=\pint{\vec{x}}{\vec{y}}_{\mathbb{R}}+i\pint{\vec{x}}{i\vec{y}}_{\mathbb{R}}\\
+                &=\frac{1}{4}\left(\norm{\vec{x}+\vec{y}}_{\mathbb{R}}^2-\norm{\vec{x}-\vec{y}}_{\mathbb{R}}^2 \right)+i\frac{1}{4}\left(\norm{\vec{x}+i\vec{y}}_{\mathbb{R}}^2-\norm{\vec{x}-i\vec{y}}_{\mathbb{R}}^2 \right)\\
+                &=\frac{1}{4}\left(\norm{\vec{x}+\vec{y}}^2-\norm{\vec{x}-\vec{y}}^2+i\norm{\vec{x}+i\vec{y}}^2-i\norm{\vec{x}-i\vec{y}}^2 \right)\\
+            \end{split}
+        \end{equation*}
+        pues, $\norm{\cdot}_{\mathbb{R}}=\norm{\cdot}$.
+
+        De (ii). Defina:
+        \begin{equation*}
+            \pint{\vec{x}}{\vec{y}}=\frac{1}{4}\left(\norm{\vec{x}+\vec{y}}^2-\norm{\vec{x}-\vec{y}}^2 \right),\quad\forall\vec{x},\vec{y}\in H
+        \end{equation*}
+        veamos que $(\vec{x},\vec{y})\mapsto\pint{\vec{x}}{\vec{y}}$ verifica las cuatro condiciones para ser producto escalar real sobre $H$:
+
+        Notemos antes que si $\vec{x},\vec{y}\in H$:
+        \begin{equation*}
+            \begin{split}
+                2\pint{\vec{x}}{\vec{y}}&=\frac{1}{4}\left(2\norm{\vec{x}+\vec{y}}^2-2\norm{\vec{x}-\vec{y}}^2 \right) \\
+                =\frac{1}{4}\left(2\norm{\vec{x}+\vec{y}}^2-2\norm{\vec{x}-\vec{y}}^2 \right) \\
+            \end{split}
+        \end{equation*}
+        %TODO
+        \begin{enumerate}
+            \item Sea $\vec{y}\in H$. Hay que ver que la función $\vec{x}\mapsto\pint{\vec{x}}{\vec{y}}$ es lineal. En efecto, sean $\vec{x},\vec{x_1},\vec{x_2}\in H$ y $\alpha\in\mathbb{R}$, tenemos que:
+            \begin{equation*}
+                \begin{split}
+                    \pint{\vec{x_1}+\vec{x_2}}{\vec{y}}&=\frac{1}{4}\left(\norm{\vec{x_1}+\vec{x_2}+\vec{y}}^2-\norm{\vec{x_1}+\vec{x_2}-\vec{y}}^2 \right) \\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
     \end{sol}
 
     \begin{excer}
@@ -819,7 +870,140 @@
     \end{excer}
 
     \begin{proof}
-        
+        Para la primera parte, notemos que por linealidad de la integral, basta probar que este mapeo tiene sentido para las funciones $u_s$. Sean $r,s\in\mathbb{R}$, entonces:
+        \begin{equation*}
+            \begin{split}
+                \pint{u_s}{u_r}&=\lim_{R\rightarrow\infty}\frac{1}{2R}\int_{-R}^{R}u_s(x)\conj{u_r(x)}dx \\
+                &=\lim_{R\rightarrow\infty}\frac{1}{2R}\int_{-R}^{R}e^{isx}\conj{e^{irx}}dx \\
+                &=\lim_{R\rightarrow\infty}\frac{1}{2R}\int_{-R}^{R}e^{isx}e^{-irx}dx \\
+                &=\lim_{R\rightarrow\infty}\frac{1}{2R}\int_{-R}^{R}e^{i(s-r)x}dx \\
+            \end{split}
+        \end{equation*}
+        si $s=r$, entonces
+        \begin{equation*}
+            \begin{split}
+                \pint{u_s}{u_r}&=\lim_{R\rightarrow\infty}\frac{1}{2R}\int_{-R}^{R}dx \\
+                &=\lim_{R\rightarrow\infty}\frac{1}{2R}2R\\
+                &=\lim_{R\rightarrow\infty}1\\
+                &=1\\
+            \end{split}
+        \end{equation*}
+        si $s\neq r$, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \pint{u_s}{u_r}&=\lim_{R\rightarrow\infty}\frac{1}{2R}\frac{e^{i(s-r)x}}{i(s-r)}\Big|_{x=-R}^{x=R } \\
+                &=\lim_{R\rightarrow\infty}\frac{1}{2R}\frac{e^{i(s-r)R}-e^{-i(s-r)R}}{i(s-r)}\\
+                &=\lim_{R\rightarrow\infty}\frac{1}{2R}\frac{\cos((s-r)R)+i\sen((s-r)R)-\cos(-(s-r)R)-i\sin(-(s-r)R)}{i(s-r)}\\
+                &=\lim_{R\rightarrow\infty}\frac{1}{2R}\frac{\cos((s-r)R)+i\sen((s-r)R)-\cos((s-r)R)+i\sin((s-r)R)}{i(s-r)}\\
+                &=\lim_{R\rightarrow\infty}\frac{1}{2R}\frac{2i\sin((s-r)R)}{i(s-r)}\\
+                &=\lim_{R\rightarrow\infty}\frac{\sin((s-r)R)}{(s-r)R}\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        (usar teorema del emparedado para verificar que ese es el límite). Por tanto, $\pint{\cdot}{\cdot}$ está bien definida.
+
+        Veamos ahora que esa aplicación es un producto escalar sobre $X$. En efecto, se deben verificar cuatro condiciones:
+        \begin{enumerate}
+            \item Sea $g\in X$ fijo, hay que ver que la aplicación $f\mapsto \pint{f}{g}$ es lineal. En efecto, sean $f,f_1,f_2\in X$ y $\alpha\in \mathbb{C}$, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    \pint{f_1+f_2}{g}&=\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}(f_1+f_2)\conj{g}\\
+                    &=\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}f_1\conj{g}+f_2\conj{g}\\
+                    &=\lim_{R\rightarrow\infty }\left(\frac{1}{2R}\int_{-R}^{R}f_1\conj{g}+\frac{1}{2R}\int_{-R}^{R}f_2\conj{g}\right)\\
+                    &=\lim_{R\rightarrow\infty}\frac{1}{2R}\int_{-R}^{R}f_1\conj{g}+\lim_{R\rightarrow\infty}\frac{1}{2R}\int_{-R}^{R}f_2\conj{g}\\
+                    &=\pint{f_1}{g}+\pint{f_2}{g}\\
+                \end{split}
+            \end{equation*}
+            pues, ambos límites existen. Además:
+            \begin{equation*}
+                \begin{split}
+                    \pint{\alpha f}{g}&=\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}\alpha f\conj{g}\\
+                    &=\lim_{R\rightarrow\infty }\frac{\alpha}{2R}\int_{-R}^{R} f\conj{g}\\
+                    &=\alpha\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R} f\conj{g}\\
+                    &=\alpha\pint{f}{g}\\
+                \end{split}
+            \end{equation*}
+            por tanto, esa aplicación es lineal.
+            \item $\pint{g}{f}=\conj{\pint{f}{g}}$, para todo $f,g\in X$. En efecto, sean $f,g\in X$, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    \conj{\pint{f}{g}}&=\conj{\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}f\conj{g}} \\
+                    &=\lim_{R\rightarrow\infty }\conj{\frac{1}{2R}\int_{-R}^{R}f\conj{g}} \\
+                    &=\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}\conj{f\conj{g}} \\
+                    &=\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}\conj{f}g \\
+                    &=\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}g\conj{f} \\
+                    &=\pint{g}{f}\\
+                \end{split}
+            \end{equation*}
+            con lo que se tiene el resultado.
+            \item $\pint{f}{f}\geq0$, para todo $f\in X$. En efecto, sea $f\in X$, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    \pint{f}{f}&=\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}f\conj{f}\\
+                    &=\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}\abs{f}^2 \\
+                    &\geq0\\
+                \end{split}
+            \end{equation*}
+            pues $\abs{f}^2\geq0$.
+            \item $\pint{f}{f}=0$ si y sólo si $f=0$. La vuelta es inmediata, suponga que $\pint{f}{f}=0$, digamos que $f=\lambda_1 u_{s_1}+...+\lambda_nu_{s_n}$ donde $\lambda_i\in\mathbb{C}$ y $s_i\in\mathbb{R}$ para todo $i\in\left[|1,n|\right]$, se tiene entonces que:
+            \begin{equation*}
+                \begin{split}
+                    \pint{f}{f}&= \lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}f\conj{f}\\
+                    &= \lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}(\lambda_1 u_{s_1}+...+\lambda_nu_{s_n})\conj{\lambda_1 u_{s_1}+...+\lambda_nu_{s_n}}\\
+                    &= \lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}(\lambda_1 u_{s_1}+...+\lambda_nu_{s_n})(\conj{\lambda_1} u_{-s_1}+...+\conj{\lambda_n}u_{-s_n})\\
+                    &= \lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}(\lambda_1 u_{s_1}+...+\lambda_nu_{s_n})(\conj{\lambda_1} u_{-s_1}+...+\conj{\lambda_n}u_{-s_n})\\
+                    &= \lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}\sum_{i,j=1 }^n \lambda_i u_{s_i }\conj{\lambda_j}u_{ -s_j} \\
+                    &= \lim_{R\rightarrow\infty }\sum_{i,j=1 }^n\lambda_i\conj{\lambda_j}\frac{1}{2R}\int_{-R}^{R}  u_{s_i }u_{ -s_j} \\
+                    &= \sum_{i,j=1 }^n\lambda_i\conj{\lambda_j}\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R} u_{s_i }u_{ -s_j} \\
+                \end{split}
+            \end{equation*}
+            sean $i,j\in\left[|1,n|\right]$, se tienen dos casos, $i\neq j$ o $i=j$. Por lo analizado anteriormente si $i\neq j$ se sigue que
+            \begin{equation*}
+                \lambda_i\conj{\lambda_j}\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}u_{s_i }u_{ -s_j}=0
+            \end{equation*}
+            y, si $i=j$:
+            \begin{equation*}
+                \lambda_i\conj{\lambda_i}\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}u_{s_i }u_{ -s_i}=\abs{\lambda_i}^2
+            \end{equation*}
+            Por tanto:
+            \begin{equation*}
+                \pint{f}{f}=\sum_{ i=1}^n\abs{\lambda_i}^2=0
+            \end{equation*}
+            esto ocurre si y sólo si $\lambda_i=0$ para todo $i\in\left[|1,n|\right]$, es decir si $f=0$.
+        \end{enumerate}
+        por los cuatro incisos anteriores, se sigue que $\pint{\cdot}{\cdot}$ es un producto escalar sobre $X$ que lo hace un espacio prehilbertiano.
+
+        Para la segunda parte, al inicio ya se vió que $\left(u_s \right)_{s\in\mathbb{R}}$ es un sistema O.N. de vectores en $X$. Para ver que no es separable, considere la familia de bolas:
+        \begin{equation*}
+            \mathcal{B}=\left\{B_s\Big|s\in\mathbb{R}^+ \right\}
+        \end{equation*}
+        donde $B_s=\left\{f\in H\Big|\norm{f-u_s}<\frac{1}{2} \right\}$, para todo $s\in\mathbb{R}^+$. Afirmamos que estas bolas son disjuntas a pares, en efecto, sean $s,r\in\mathbb{R}^+$ con $s\neq r$. Si $f\in B_s$ y $f\in B_r$, entonces:
+        \begin{equation*}
+            \norm{f-u_s}<\frac{1}{2} \quad\textup{y}\quad\norm{f-u_r}<\frac{1}{2}
+            \Rightarrow  \norm{u_s-u_r}\leq\norm{u_s-f}+\norm{f-u_r}<1
+        \end{equation*}
+        pero,
+        \begin{equation*}
+            \begin{split}
+                \pint{u_s-u_r}{u_s-u_r}&=\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}(u_s-u_r)\conj{(u_s-u_r)}\\
+                &=\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}(u_s-u_r)(u_{-s}-u_{-r})\\
+                &=\lim_{R\rightarrow\infty }\frac{1}{2R}\int_{-R}^{R}\left(u_s u_{-s} - u_s u_{-r} - u_r u_{-s} + u_{-s}u_{-r}\right) \\
+                &=1+0+0+1\\
+                &=2\\
+                \Rightarrow \norm{u_s-u_r}&=\sqrt{2}\\
+            \end{split}
+        \end{equation*}
+        el cual no es menor que 1, por tanto tal $f$ no puede existir, así $B_s\cap B_r=\emptyset$. Con lo que $\mathcal{B}$ es una familia no numerable de bolas abiertas disjuntas a pares, por una proposición de análisis I debe suceder que $H$ no es separable.
+
+        Veamos que $\left(u_s \right)_{s\in\mathbb{R}}$ es O.N. maximal. Ya se vió que es O.N., veamos que es maximal. Por el teorema de Parserval al ser $H$ hilbertiano, basta con ver que:
+        \begin{equation*}
+            \overline{\mathcal{L}\left(\left(u_s \right)_{s\in\mathbb{R}}\right)}=H
+        \end{equation*}
+        esto es inmediato, pues $\mathcal{L}\left(\left(u_s \right)_{s\in\mathbb{R}}\right)=X$ ya que el conjunto de la izquierda es el generado por todas las combinaciones lineales finitas de elementos de $\left(u_s \right)_{s\in\mathbb{R}}$, y el conjunto $i(X)$ es denso en $H$ (usando la notación del ejercicio 1.1.5), luego se tiene que:
+        \begin{equation*}
+            \overline{i(X)}=H\Rightarrow\overline{\mathcal{L}\left(\left(u_s \right)_{s\in\mathbb{R}}\right)}=H
+        \end{equation*}
+        pues, $i(u_s)=u_s$. Por tanto, $\left(u_s \right)_{s\in\mathbb{R}}$ es O.N. maximal.
     \end{proof}
 
     \begin{excer}
@@ -829,7 +1013,27 @@
     \end{excer}
 
     \begin{proof}
-        
+        Consideremos primero $H=L_2([0,1],\mathbb{K})$. Sea $\cf{\gamma}{[0,1]}{H}$ dada por:
+        \begin{equation*}
+            \gamma(x)=\chi_{[0,x]},\quad\forall x\in[0,1]
+        \end{equation*}
+        es claro que $\gamma$ es inyectiva. Además, si $0\leq a\leq b\leq c\leq d\leq 1$, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \gamma(b)-\gamma(a)&=\chi_{[0,b]}-\chi_{[0,a]}\\
+                &=\chi_{]a,b]}\\
+            \end{split}
+        \end{equation*}
+        y, $\gamma(d)-\gamma(c)=\chi_{]c,d]}$. Por tanto:
+        \begin{equation*}
+            \begin{split}
+                \pint{\gamma(b)-\gamma(a)}{\gamma(d)-\gamma(c)}&=\int_{0}^{1}\chi_{]a,b]}\conj{\chi_{]c,d]}}\\
+                &=\int_{0}^{1}\chi_{]a,b]}\chi_{]c,d]}\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        por tanto, $\gamma(b)-\gamma(a)$ y $\gamma(d)-\gamma(c)$ son ortogonales.
+        %TODO
     \end{proof}
 
     \begin{excer}
@@ -842,14 +1046,15 @@
             \textbf{Muestre} que los vectores $\vec{y_\nu}$ son ortogonales a pares y que $\left\{\norm{\vec{x_\nu}} \right\}_{\nu=1}^\infty$ es una sucesión creciente de números no negativos.
             \item Sea $\left\{\vec{y_\nu} \right\}_{\nu=1}^\infty$ una sucesión de vectores en $H$ ortogonales a pares. Se define
             \begin{equation*}
-                \vec{x_\nu}=\sum{k=1}^\nu\vec{y_k},\quad\forall\nu\in\mathbb{N}.
+                \vec{x_\nu}=\sum_{k=1}^\nu\vec{y_k},\quad\forall\nu\in\mathbb{N}.
             \end{equation*}
             \textbf{Pruebe} que $\left\{\vec{y_\nu} \right\}_{\nu=1}^\infty$ es una martingala.
         \end{enumerate}
     \end{excer}
 
     \begin{proof}
-        
+        De (i): Procederemos por inducción sobre $\nu$. Para $\nu=2$ el resultado se cumple, pues
+        %TODO
     \end{proof}
 
     \begin{excer}
@@ -917,5 +1122,28 @@
             y use (iii).
         \end{enumerate}
     \end{excer}
+
+    \begin{proof}
+        De (i): Sea $n\in\mathbb{N}$. Veamos que:
+        \begin{equation*}
+            \begin{split}
+                \varphi_n'(x)
+                &=\frac{d}{dx}\left((-1)^ne^{-\frac{x^2}{2}D^ne^{-x^2}} \right)\\
+                &=(-1)^n\frac{d}{dx}\left(e^{-\frac{x^2}{2}}D^n e^{-x^2}\right)\\
+                &=(-1)^n\left[\frac{d}{dx}\left(e^{-\frac{x^2}{2}}\right)D^n e^{-x^2}+e^{-\frac{x^2}{2}}\frac{d}{dx}\left(D^n e^{-x^2}\right)\right] \\
+                &=(-1)^n\left[-xe^{-\frac{x^2}{2}}D^n e^{-x^2}+e^{-\frac{x^2}{2}}D^{n+1 } e^{-x^2}\right] \\
+            \end{split}
+        \end{equation*}
+        por tanto:
+        \begin{equation*}
+            \begin{split}
+                \varphi_n''(x)
+                &=(-1)^n\frac{d}{dx}\left[-xe^{-\frac{x^2}{2}}D^n e^{-x^2}+e^{-\frac{x^2}{2}}D^{n+1 } e^{-x^2}\right] \\
+                &=(-1)^n\left[\frac{d}{dx}(-xe^{-\frac{x^2}{2}})D^n e^{-x^2}-xe^{-\frac{x^2}{2}}D^{n+1}e^{-x^2}+\frac{d}{dx}(e^{-\frac{x^2}{2}})D^{n+1 } e^{-x^2}+e^{-\frac{x^2}{2}}D^{n+2 } e^{-x^2}\right] \\
+                &=(-1)^n\left[(x^2-1)e^{-\frac{x^2}{2}}D^n e^{-x^2}-xe^{-\frac{x^2}{2}}D^{n+1}e^{-x^2}-xe^{-\frac{x^2}{2}}D^{n+1 } e^{-x^2}+e^{-\frac{x^2}{2}}D^{n+2 } e^{-x^2}\right] \\
+                &=(-1)^n\left[(x^2-1)e^{-\frac{x^2}{2}}D^n e^{-x^2}-2xe^{-\frac{x^2}{2}}D^{n+1}e^{-x^2}+e^{-\frac{x^2}{2}}D^{n+2 } e^{-x^2}\right] \\
+            \end{split}
+        \end{equation*}
+    \end{proof}
 
 \end{document} 
