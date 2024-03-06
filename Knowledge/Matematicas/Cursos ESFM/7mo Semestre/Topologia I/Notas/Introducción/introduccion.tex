@@ -1492,12 +1492,114 @@
         Un conjunto ordenado $(X,\mathcal{R})$ se dice que está \textbf{bien ordenado} si todo subconjunto no vacío de $X$ tiene primer elemento o elemento mínimo.
     \end{mydef}
 
+    \section{Estudio del espacio topológico $(\Cls{\mathcal{S}_\Omega},\tau_\prec)$}
+
     \begin{propo}
         Existe un conjunto bien ordenado no numerable, en el cual toda sección de él es numerable.
     \end{propo}
 
     \begin{proof}
+        Sean $X=\left\{1,2\right\}$ y $\alpha=(1,2)$. Tenemos que $(X,\alpha)$ es un conjunto bien ordenado. Tomemos ahora sea $Y$ un conjunto no numerable y sea $\beta$ un buen orden definido sobre $Y$, luego la pareja $(Y,\beta)$ es un conjunto bien ordenado.
+
+        Sea $Z=X\times Y$ y consideremos la relación $\prec$ definida sobre $Z$ de la siguiente manera:
+        \begin{equation*}
+            (a,b)\prec(c,d)\iff a\alpha c\textup{ ó }a = c\textup{ y } b\beta d
+        \end{equation*}
+        Ya tenemos que $(Z,\prec)$ es un conjunto ordenado (por la proposición anterior), el cual es no numerable.
+
+        Veamos que $(Z,\prec)$ está bien ordenado. Sea $A\subseteq Z$ no vacío. Se tienen dos casos:
+        \begin{enumerate}
+            \item Suponga que existe $y\in Y$ tal que $(1,y)\in A$. Entonces, el conjunto:
+            \begin{equation*}
+                \mathcal{B}=\left\{l\in Y\Big|(1,l)\in A \right\}
+            \end{equation*}
+            este conjunto es no vacío pues $(1,y)\in\mathcal{B}$. Sea $m$ el primer elemento de $\mathcal{B}$, el cual existe por ser $Y$ bien ordenado. Veamos que $(1,m)$ es el primer elemento de $A$. Como $m\in B$, tenemos que $(1,m)\in A$. Sea $(x,y)\in A$, se tienen dos casos:
+            \begin{enumerate}
+                \item $x=1$, en cuyo caso $y\in \mathcal{B}$ y, por ende $m\beta y$ o $m=\beta$, lo cual implica que $(1,m)\preceq(x,y)$.
+                \item $x=2$, en cuyo caso se tiene que $1\alpha x$ y, por ende, $(1,m)\prec(x,y)$.
+            \end{enumerate}
+            en cualquier caso, $(1,m)\preceq(x,y)$. Luego este elemento es el primer elemento de $A$.
+            \item Suponga que para todo $(x,y)\in A$, $x=2$. Sea
+            \begin{equation*}
+                \mathcal{C}=\left\{l\in Y\Big|(2,l)\in A \right\}
+            \end{equation*}
+            el cual es no vacío pues $A\neq\emptyset$. $\mathcal{C}\subseteq Y$ no vacío el cual es bien ordenado, luego tiene primer elemento, digamos $m\in\mathcal{C}$. Por tanto, $(2,m)\in A$ y afirmamos que es el primer elemento de $A$, pues si $(x,y)\in A$ se tiene que $x=2$ y, por definición de $\mathcal{C}$ se sigue que $m\beta y$ o $m=y$, en cuyo caso se tiene que $(2,m)\preceq (x,y)$, lo cual prueba la afirmación.
+        \end{enumerate}
+        por ambos incisos, se sigue que $A$ tiene primer elemento. Por ser $A$ no vacío arbitrario, se tiene que $(Z,\prec)$ es un conjunto no numerable bien ordenado.
+
+        Además, tenemos que para todo $y\in Y$, $\mathcal{S}_{(2,y)}$ es una sección de $(Z,\prec)$ no numerable, pues si $l\in Y$, entonces $(1,l)\prec (2,y)$, es decir que para todo $l\in Y$, $(1,l)\in\mathcal{S}_{(2,y)}$, con lo cual esta sección es no numerable. Sea
+        \begin{equation*}
+            \mathcal{W}=\left\{z\in Z\Big|S_z\textup{ es una sección no numerable de }(Z,\prec) \right\}
+        \end{equation*}
+        por lo anterior, $\mathcal{W}\neq\emptyset$. Sea $\omega$ el primer elemento de $\mathcal{W}$, es decir que la sección $S_\omega$ es no numerable y, para todo $z\in Z$, $w\preceq z$.
         
+        Tenemos que la pareja $(S_\omega, \prec)$ es un conjunto bien ordenado no numerable en el que toda sección de él es numerable. Recordemos que:
+        \begin{equation*}
+            \mathcal{S}_\omega=\left\{z\in Z\Big|z\prec\omega \right\}
+        \end{equation*}
+        y este conjunto es bien ordenado por $\prec$, pues es subconjunto de $Z$ y es no numerable por como se eligió. Vamos a ver que toda sección de él es numerable.
+
+        Sea $r\in\mathcal{S}_\omega$, entonces:
+        \begin{equation*}
+            \mathcal{S}_r=\left\{z\in\mathcal{S}_\omega\Big|z\prec r \right\}
+        \end{equation*}
+        como $r\prec\omega$ se tiene que por elección de $\omega$ debe suceder que $\mathcal{S}_r$ no puede ser no numerable, es decir que es a lo sumo numerable.
+
+        Veamos que es numerable. En efecto, suponga que existe $p\in\mathcal{S}_\omega$ tal que $\mathcal{S}_p$ es una sección finita. Se tiene entonces que
     \end{proof}
+
+    \begin{obs}
+        Denotaremos por $\Cls{\mathcal{S}_\omega}=\mathcal{S}_\omega\cup\left\{\omega \right\}$, es decir:
+        \begin{equation*}
+            \Cls{\mathcal{S}_\omega}=\left\{z\in Z\Big|z\preceq\omega \right\}
+        \end{equation*}
+        Sea $\tau_\prec$ la topología generada por el buen orden $\prec$ en $Z$, y considere a $\Cls{\mathcal{S}_\omega}$ con la topología del subespacio $\tau_{\prec_{\Cls{\mathcal{S}_\omega}}}$, la cual denotaremos simplemente por $\tau_\prec$.
+    \end{obs}
+
+    \begin{propo}
+        Si $A\subseteq \mathcal{S}_\omega$ numerable, entonces existe $s\in\mathcal{S}_\omega$ tal que para todo $a\in A$, $a\prec s$.
+    \end{propo}
+
+    \begin{proof}
+        Tenemos que para todo $a\in A$, el conjunto $\mathcal{S}_a$ es numerable, luego
+        \begin{equation*}
+            B=\bigcup_{ a\in A}\mathcal{S}_a
+        \end{equation*}
+        es numerable. Por lo tanto, existe $s\in\mathcal{S}_\omega-(A\cup B)$. Veamos que para todo $a\in A$, $a\prec s$. Suponga que $s\prec k$ para algún $k\in A$, es decir que $s\in \mathcal{S}_k\subseteq B$, luego $s\in A\cup B$\contradiction. Por tanto, tal $s$ cumple lo deseado.
+    \end{proof}
+
+    \begin{propo}
+        $(\Cls{\mathcal{S}_\omega},\tau_\prec)$ es un espacio de Hausdorff.
+    \end{propo}
+
+    \begin{proof}
+        Sea $p$ el primer elemento de $\Cls{\mathcal{S}_\omega}$. Además, sean $a,b\in\Cls{\mathcal{S}_\omega}$ tales que $a\prec b$. Se tienen dos casos:
+        \begin{enumerate}
+            \item Suponga que $b=\omega$, entonces existe $c\in S_\omega$ tal que $a\prec c\prec b$ (en caso contrario se tendría que $\mathcal{S}_\omega=\mathcal{S}_a\cup\left\{a\right\}$, donde un lado es no numerable y el otro sí, lo cual no puede suceder). Entonces:
+            \begin{equation*}
+                a\in [p,c)\quad\textup{y}b\in(c,\omega]
+            \end{equation*}
+            donde $[p,c),(c,\omega]\in\tau_\prec$ y su intersección es vacía.
+            \item Suponga que $b\prec\omega$:
+            \begin{enumerate}
+                \item Si no existe $c\in\mathcal{S}_\omega$ tal que $a\prec c$ y $c\prec b$, entonces $a\in [p,b)$ y $b\in (a,\omega]$ y, $[p,b),(a,\omega]\in\tau_\prec$ son disjuntos.
+                \item Si existe $c\in\mathcal{S}_\omega$ tal que $a\prec c\prec b$, entonces $a\in [p,c)$ y $b\in (c,\omega]$, donde $[p,c),(c,\omega]\in\tau_\prec$ son disjuntos.
+            \end{enumerate}
+        \end{enumerate}
+        por los dos incisos anteriores, se sigue que el espacio es de Hausdorff.
+    \end{proof}
+
+    \begin{propo}
+        $\omega$ es un punto de acumulación de $\mathcal{S}_\omega$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $B$ un básico de $\tau_\prec$ tal que $\omega\in B$, entonces existe $a\in\mathcal{S}_\omega$ tal que $(a,\omega]\subseteq B$. Suponga que $B\cap \mathcal{S}_\omega=\emptyset$, en particular $(a,\omega]\cap\mathcal{S}_\omega=\emptyset$, es decir que:
+        \begin{equation*}
+            \mathcal{S}_\omega=\mathcal{S}_a\cup\left\{a\right\}
+        \end{equation*}
+        lo cual no puede suceder ya que entonces se tendría que $\mathcal{S}_\omega$ es numerable\contradiction. Por tanto, la intersección es no vacía, es decir que existe $x\in \mathcal{S}_\omega$ tal que $x\in B$.
+    \end{proof}
+
 
 \end{document}
