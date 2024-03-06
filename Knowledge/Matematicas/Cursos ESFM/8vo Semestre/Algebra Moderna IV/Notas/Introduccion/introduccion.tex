@@ -512,10 +512,82 @@
         luego, $f'$ es homomorfismo que, al ser biyectivo es homomorfismo biyectivo. 
     \end{proof}
 
+    De forma natural, uno puede hacer una analogía de este tipo de objetos con las funciones inyectivas, suprayectivas y biyectivas, respectivamente. Pero surge la cuestión: ¿Todo isomorfismo es monomorfismo y epimorfismo? y viceversa? Una repuesta parcial la da la siguiente proposición:
+
+    \begin{propo}
+        Sea $\mathcal{C}$ una categoría y $A,B\in\Obj{\mathcal{C}}$ objetos isomorfos, entonces los isomorfismos $f\in\Hom{\mathcal{C}}{A}{B}$ y $f'\in\Hom{\mathcal{C}}{B}{A}$ tales que:
+        \begin{equation*}
+            f\circ f'=1_B\quad\textup{y}\quad f'\circ f=1_A
+        \end{equation*}
+        son monomorfismos y epimorfismos.
+    \end{propo}
+    
+    \begin{proof}
+        Basta probar el resultado para $f$, pues por simetría se tiene de forma inmediata que, al cumplirse para $f$ también se cumple para $f'$.
+        \begin{enumerate}
+            \item Sean $g_1,g_2\in\Hom{\mathcal{C}}{C}{A}$ tales que $f\circ g_1=f\circ g_2$. Entonces:
+            \begin{equation*}
+                \begin{split}
+                    f'\circ (f\circ g_1)&=f'\circ(f\circ g_2)\\
+                    \Rightarrow(f'\circ f)\circ g_1&=(f'\circ f)\circ g_2\\
+                    \Rightarrow 1_A\circ g_1&=1_A\circ g_2\\
+                    \Rightarrow g_1&= g_2\\
+                \end{split}
+            \end{equation*}
+            pues, la ley de composición es asociativa, luego por la hipótesis y finalmente por ser el morfismo identidad.
+            \item Es análogo a la parte anterior.
+        \end{enumerate}
+        Por ambos incisos, se sigue que $f$ es monomorfismo y epimorfismo.
+
+    \end{proof}
+
+    Surgen muchas dudas, todo morfismo que es monomorfismo y epimorfismo, es isomorfismo? Esa duda se responderá más adelante, ahora veamos un resultado que puede ser de utilidad a la hora de determinar si en un tipo particular de categoría, un morfismo es un monomorfismo, epimorfismo o isomorfismo.
+
+    \begin{propo}
+        Sea $\mathcal{C}$ una categoría donde las morfismos son (en particular) funciones que van de un conjunto a otro y la ley de composición coincide con la composición usual de funciones. Entonces se cumple lo siguiente:
+        \begin{enumerate}
+            \item Las funciones inyectivas son monomorfismos.
+            \item Las funciones suprayectivas son epimorfismos.
+            \item Las funciones biyectivas $f$ para las cuales se cumple que $f\in \Hom{\mathcal{C}}{A}{B}$ si y sólo si $f^{-1}\in\Hom{\mathcal{C}}{B}{A}$, son isomorfismos. 
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): Sean $A,B\in\Obj{\mathcal{C}}$ y $f\in\Hom{\mathcal{C}}{A}{B}$ una función inyectiva, entonces se cumple que:
+        \begin{equation*}
+            f(a)=f(a')\Rightarrow a=a'
+        \end{equation*}
+        para todo $a\in D(f)$ (aclarar porqué no necesariamente el dominio de $f$ es $A$, ver ejemplo 2.1.1 de la categoría creada a partir de un conjunto). Entonces, si $g_1,g_2\in \Hom{\mathcal{C}}{C}{A}$, se tiene que:
+        \begin{equation*}
+            f\circ g_1(c)=f\circ g_2(c)\Rightarrow g_1(c)=g_2(c)
+        \end{equation*}
+        para todo $c\in D(g_1)=D(g_2)$ (lo anterior debe suceder para que esté bien definida la ley de composición de morfismos en la categoría). Es decir, que $g_1=g_2$.
+
+        De (2): Ejercicio.
+
+        De (3): Ejercicio.
+    \end{proof}
+
+    Más adelante se verá que la recíproca de la proposición anterior no es cierta en general. Antes de llegar a ello, posiblemente surgió la duda: en una categoría donde los morfismos son funciones, ¿todo monomorfismo (respectivamente, epimorfismo e isomorfismo) es inyectivo (respectivamente, suprayectivo e inyectivo)? La respuesta a esta pregunta es que no, analizaremos 3 ejemplos donde esto no es cierto. 
+
     \begin{mydef}
         Sea $(G,+)$ un grupo abeliano. Decimos que $G$ es un \textbf{grupo divisible} si para cualesquiera $n\in\mathbb{N}$ y $g\in G$ existe $h\in H$ tal que $nh=g$.
     \end{mydef}
 
+    \begin{exa}
+        $\langle 0\rangle$, $(\mathbb{Q},+)$ y $(\mathbb{R},+)$ son grupos divisibles.
+    \end{exa}
+
+    No digas el siguiente ejemplo:
+
+    \begin{exa}
+        Sea $p\in\mathbb{N}$ primo y considere el siguiente subconjunto del grupo cociente $\mathbb{Q}/\mathbb{Z}$:
+        \begin{equation*}
+            Z(p^\infty)=\left\{\left[\frac{a}{b} \right]\in\mathbb{Q}/\mathbb{Z} \Big|a,b\in\mathbb{Z},b=p^i\textup{ para algún }i\geq0 \right\}
+        \end{equation*}
+        entonces, $(Z(p^\infty),+)$ es grupo divisible.
+    \end{exa}
+    
     \begin{exa}
         En la categoría $\Cat{Div}$ de grupos divisibles, el mapeo cociente $\cf{q}{\mathbb{Q}}{\mathbb{Q}/\mathbb{Z}}$ entre los grupos $(\mathbb{Q},+)$ y $(\mathbb{Q}/\mathbb{Z},+)$ no es inyectivo pero es un monomorfismo.
     \end{exa}
@@ -573,11 +645,11 @@
     \end{sol}
     
     \begin{exa}
-        El mapeo inclusión $\cf{i}{\mathbb{Z}}{\mathbb{Q}}$ es un monomorfismo en la categoría  $\Cat{Ring}^c$ y también por el ejemplo anterior, es un epimorfismo. Pero, no es un isomorfismo.
+        El mapeo inclusión $\cf{i}{\mathbb{Z}}{\mathbb{Q}}$ es un monomorfismo en la categoría  $\Cat{Ring}^c$ y también por el ejemplo anterior, un epimorfismo. Pero, no es un isomorfismo.
     \end{exa}
 
     \begin{proof}
-        Veamos que es un epimorfismo, para ello hay que probar que si $\cf{f,g}{R}{\mathbb{Z}}$ son tales que
+        Veamos que es un monomorfismo, para ello hay que probar que si $\cf{f,g}{R}{\mathbb{Z}}$ son tales que
         \begin{equation*}
             i\circ f=i\circ g
         \end{equation*}
@@ -593,33 +665,6 @@
 
     \end{proof}
 
-    \begin{propo}
-        Sea $\mathcal{C}$ una categoría y $A,B\in\Obj{\mathcal{C}}$ objetos isomorfos, entonces los isomorfismos $f\in\Hom{\mathcal{C}}{A}{B}$ y $f'\in\Hom{\mathcal{C}}{B}{A}$ tales que:
-        \begin{equation*}
-            f\circ f'=1_B\quad\textup{y}\quad f'\circ f=1_A
-        \end{equation*}
-        son monomorfismos y epimorfismos.
-    \end{propo}
-
-    \begin{proof}
-        Basta probar el resultado para $f$, pues por simetría se tiene de forma inmediata que, al cumplirse para $f$ también se cumple para $f'$.
-        \begin{enumerate}
-            \item Sean $g_1,g_2\in\Hom{\mathcal{C}}{C}{A}$ tales que $f\circ g_1=f\circ g_2$. Entonces:
-            \begin{equation*}
-                \begin{split}
-                    f'\circ (f\circ g_1)&=f'\circ(f\circ g_2)\\
-                    \Rightarrow(f'\circ f)\circ g_1&=(f'\circ f)\circ g_2\\
-                    \Rightarrow 1_A\circ g_1&=1_A\circ g_2\\
-                    \Rightarrow g_1&= g_2\\
-                \end{split}
-            \end{equation*}
-            pues, la ley de composición es asociativa, luego por la hipótesis y finalmente por ser el morfismo identidad.
-            \item Es análogo a la parte anterior.
-        \end{enumerate}
-        Por ambos incisos, se sigue que $f$ es monomorfismo y epimorfismo.
-
-    \end{proof}
-
-    La recíproca de la proposición anterior no es cierta en general, como prueba el ejemplo anterior. Lo cual da pie a la siguiente definición:
+    Todo lo anterior da pie a la siguiente definición:
 
 \end{document}
