@@ -113,7 +113,7 @@
 
 %En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
 
-\newcommand\abs[1]{\ensuremath{\biglvert#1\bigrvert}}
+\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
@@ -121,10 +121,13 @@
 \newcommand{\Hom}[3]{\ensuremath{\textup{Hom}_{#1}\left(#2,#3\right)}}
 
 \newcommand{\Cat}[1]{\ensuremath{\textup{\textbf{#1}}}}
+\newcommand{\Iso}[3]{\ensuremath{\textup{I}_{\textup{SO}_{#1}}\left(#2,#3\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
 \begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
     \title{Notas de Álgebra Moderna IV.
     
     Una introducción a la teoría de categorías.}
@@ -666,5 +669,91 @@
     \end{proof}
 
     Todo lo anterior da pie a la siguiente definición:
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría. Un morfismo $f$ de $\mathcal{C}$ se dice \textbf{bimorfismo} si es un epimorfismo y un monomorfismo.
+
+        Además, diremos que una categoría $\mathcal{C}$ se dice \textbf{balanceada} si todo bimorfismo es un isomorfismo.
+    \end{mydef}
+
+    \begin{exa}
+        Las categorías $\Cat{Set},\Cat{Grp}$ son balanceada.
+    \end{exa}
+
+    \begin{exa}
+        Las cateogrías $\Cat{Div}$ y $\Cat{Ring}^c$ no son balanceadas, pues en embas no todo bimorfismo es isomorfismo (revisar ejemplos 2.2.6 a 2.2.8).
+    \end{exa}
+
+    \begin{exa}
+        La categoría $\Cat{Top}$ no es balanceada.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, sea $X$ un conjunto tal que $\abs{X}\geq 2$. Considere a $\tau_D$ la topología discreta sobre $X$, y sea $\tau$ una topología diferente a la discreta. Es claro que $\tau\subsetneq\tau_D$. Tomemos $\cf{f}{(X,\tau_D)}{(X,\tau)}$ tal que $x\mapsto x$. Esta función es inyectiva y sobreyectiva. Además, es continua pues la imagen inversa de todo abierto en $(X,\tau)$ es abierta en $(X,\tau_D)$.
+
+        Por tanto, $f$ (visto en la categoría $\Cat{Top}$) es bimorfismo, pero no es isomorfismo ya que su inversa $f^{-1}$ no es continua, y por ende no puede ser un morfismo en $\Hom{\Cat{Top}}{(X,\tau)}{(X,\tau_D)}$.
+
+        Luego, $\Cat{Top}$ no es balanceada.
+    \end{proof}
+
+    \begin{mydef}
+        Una categoría $\mathcal{C}$ se dice que es un \textbf{grupoide} si para todo morfismo entre dos objetos $A$ y $B$, este es un isomorfismo.
+    \end{mydef}
+
+    \begin{exa}
+        Sea $(G,\cdot)$ grupo. Denotamos por $\mathcal{C}_G$ a la categoría cuyos objetos son $\Obj{\mathcal{C}_G}=\left\{\cdot \right\}$ (donde $e$ denota la identidad del grupo) y, el conjunto de morfismos $\Hom{\mathcal{C}_G}{\cdot}{\cdot}=G$ en el cual $e=1_e\in\Hom{\mathcal{C}_G}{\cdot}{\cdot}$, en donde la Ley de composición está dada por:
+        \begin{equation*}
+            \forall x,y\in\Hom{\mathcal{C}_G}{\cdot}{\cdot}, x\circ y =xy
+        \end{equation*}
+        en esta categoría, todo morfismo es un isomorfismo, a saber si $x\in\Hom{\mathcal{C}_G}{\cdot}{\cdot}$, $x^{-1}$ es su isomorfismo inverso. Luego, $\mathcal{C}_G$ es una categoría que es además, un grupoide.
+
+        Este ejemlo es básicamente una particularización del ejemplo de la categoría constriuda a partir de un monoide, en esa categoría lo que faltaba para que fuera grupoide es que cada elemento fuera invertible, lo cual es garantizado por las propiedades del grupo $(G,\cdot)$.
+    \end{exa}
+
+    \begin{exa}
+        A cada categoría $\mathcal{C}$ se le puede asociar un grupoide, el cual es una subcategoría de ella misma. A saber, se definen para cualesquiera $A,B\in\Obj{\mathcal{C}}$ el conjunto de isomorfismos:
+        \begin{equation*}
+            \Iso{\mathcal{C}}{A}{B}=\left\{f\in\Hom{\mathcal{C}}{A}{B}\Big| f\textup{ es isomorfismo} \right\}
+        \end{equation*}
+        tomamos a la categoría $\mathcal{C}'$ tal que $\Obj{\mathcal{C}'}=\Obj{\mathcal{C}}$ y $\forall A,B\in\Obj{\mathcal{C}'}$, $\Hom{\mathcal{C}'}{A}{B}=\Iso{\mathcal{C}}{A}{B}$, donde la ley de correspondencia es la misma que la de $\mathcal{C}$.
+
+        Es claro que $\mathcal{C}'$ es un grupoide.
+    \end{exa}
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría y $A\in\Obj{\mathcal{C}}$.
+        \begin{enumerate}
+            \item $A$ es llamado \textbf{objeto inicial} si para cada $B\in\Obj{\mathcal{C}}$, el conjunto $\Hom{\mathcal{C}}{A}{B}$ consta de un único elemento.
+            \item $A$ es llamado \textbf{objeto final} si para cada $C\in\Obj{\mathcal{C}}$, el conjunto $\Hom{\mathcal{C}}{C}{A}$ consta de un único elemento.
+            \item $A$ es llamado un \textbf{objeto cero} si $A$ es un objeto inicial y final.
+        \end{enumerate}
+        Si la categoría $\mathcal{C}$ admite un objeto cero, decimos que $\mathcal{C}$ es una categoría \textbf{puntuada}.
+    \end{mydef}
+
+    \begin{obs}
+        Sea $\mathcal{C}$ una categoría. Si $\mathcal{C}$ es puntuada, entonces para cualesquier $A,B\in\Obj{\mathcal{C}}$, el conjunto $\Hom{\mathcal{C}}{A}{B}\neq\emptyset$ (de $A$ nos movemos al objeto cero, y del objeto cero a $B$, luego por la ley de composición se sigue que este conjunto contiene al menos a este morfismo).
+    \end{obs}
+
+    \begin{propo}
+        Sea $\mathcal{C}$ una categoría. Si $A$ y $B$ son objetos iniciales (respectivamente, finales) de $\mathcal{C}$, entonces $A$ es isomorfo a $B$.
+    \end{propo}
+
+    \begin{proof}
+        Si $A$ y $B$ son objetos iniciales o finales, ya sabe que existen únicos morfismos $f\in\Hom{\mathcal{C}}{A}{B}$ y $g\in\Hom{\mathcal{C}}{B}{A}$ (por ser ambos objetos iniciales o finales). Entonces, $g\circ f\in \Hom{\mathcal{C}}{A}{A}$ $f\circ g\in \Hom{\mathcal{C}}{B}{B}$, pero $\Hom{\mathcal{C}}{A}{A}$ y $\Hom{\mathcal{C}}{B}{B}$ tienen un solo elemento, a saber $1_A$ y $1_B$ (por ser ambos objetos iniciales o finales).
+        
+        Luego:
+        \begin{equation*}
+            g\circ f =1_A\quad\textup{y}\quad f\circ g=1_B
+        \end{equation*}
+        por ende, $f$ y $g$ son isomorfismos, lo que implica que $A$ y $B$ son isomorfos.
+    \end{proof}
+
+    \begin{cor}
+        Sea $\mathcal{C}$ una categoría puntuada. Entonces, los objetos de $\mathcal{C}$ son únicos hasta isomorfismos.
+    \end{cor}
+
+    \begin{proof}
+        Es inmedaita de la proposición anterior.
+    \end{proof}
 
 \end{document}
