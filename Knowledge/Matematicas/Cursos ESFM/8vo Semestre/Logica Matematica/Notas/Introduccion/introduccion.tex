@@ -1025,4 +1025,125 @@
         \end{center}
     \end{excer}
 
+    %Pasar notas martes%
+
+    \begin{mydef}
+        
+    \end{mydef}
+
+    \begin{theor}[\textbf{Teorema de Completud}]
+        Cualquier conjunto de fórmulas $\Gamma$ que sea consistente, es satisfacible.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{cor}
+        Si $\Gamma$ es un conjunto de fórmulas, entonces $\Gamma\vDash\varphi$ implica $\Gamma\vdash\varphi$. 
+    \end{cor}
+
+    \begin{proof}
+        
+        Ya construimo sun conjunto $\Gamma_\infty$ con $\Gamma\subseteq\Gamma_\infty$ tal que:
+        \begin{enumerate}
+            \item $\Gamma_\infty$ es consistente.
+            \item Para toda fórmula $\varphi$, o bien $\varphi\in\Gamma_\infty$ ó $\neg\varphi\in\Gamma_\infty$.
+            \item $\varphi\in\Gamma_\infty$ si y sólo si $\Gamma_\infty\vdash\varphi$, y $\varphi\notin\Gamma_\infty$ si y sólo si $\neg\varphi\in\Gamma_\infty$, si y sólo si $\Gamma_\infty\nvdash\varphi$ si y sólo si $\Gamma_\infty\vdash\neg\varphi$.
+        \end{enumerate}
+
+        Definimos $\cf{M}{\textup{Var}}{\left\{V,F\right\}}$ de tal forma que $m(p_k)=V$ si y sólo si $p_k\in\Gamma_\infty$ (de forma análoga, $m(p_k)=F$ si y sólo si $p_k\notin\Gamma_\infty$).
+
+        Afirmamos que para toda fórmula $\varphi$, se tiene que $\overline{m}(\varphi)=V$ si y sólo s i$\varphi\in\Gamma_\infty$. Procederemos por inducción sobre $\varphi$.
+        \begin{enumerate}
+            \item Si $\varphi$ es atómica, entonces se cumple por definición.
+            \item Paso inductivo: supongamos que se cumple para $\varphi$ y $\psi$. Entonces,
+            \begin{equation*}
+                \begin{split}
+                    \overline{m}(\neg\varphi)=V&\iff \overline{m}(\varphi)=F\\
+                    &\iff \neg\varphi\in\Gamma\\
+                \end{split}
+            \end{equation*}
+            además,
+            \begin{equation*}
+                \begin{split}
+                    \overline{m}(\varphi\Rightarrow\psi)=F&\iff\overline{m}(\varphi)=V\textup{ y } \overline{m}(\psi)=F\\
+                    &\iff \varphi\in\Gamma_\infty\textup{ y } \neg\psi\in\Gamma_\infty\\
+                    &\iff \varphi\Rightarrow\psi\notin \Gamma_\infty\\
+                \end{split}
+            \end{equation*}
+            probaremos una doble implicación.
+            
+            $\Rightarrow)$: Suponga que $\varphi,\neg\psi\in\Gamma_\infty$. Si $\varphi\Rightarrow\psi\in\Gamma_\infty$, entonces $\varphi\Rightarrow\psi\notin\Gamma_\infty$.
+
+            $\Leftarrow)$: Suponga que $\varphi\Rightarrow\psi\notin\Gamma_\infty$, entonces $\neg(\varphi\Rightarrow\psi)\in\Gamma_\infty$, por lo cual $\neg(\varphi\Rightarrow\neg\neg \psi)\in\Gamma_\infty$, es decir que $\varphi\land\neg\psi\in\Gamma_\infty$, luego $\Gamma_\infty\vdash\varphi$ y $\Gamma_\infty\vdash\neg\psi$.
+        \end{enumerate}
+        por tanto, usando inducción se cumple que $m\vDash\Gamma_\infty$, en particular $m\vDash\Gamma$.
+    \end{proof}
+
+    \chapter{Lógica de primer orden}
+
+    \section{Fundamentos}
+
+    \begin{mydef}
+        Un \textbf{lenguaje de primer orden} cuenta con un alfabeto que consta de lo siguiente:
+        \begin{enumerate}
+            \item \textit{Variables} (denotadas por $\textup{Var}$), denotadas por $v_1,v_2,...$ (a lo sumo una cantidad numerable).
+            \item \textit{Conectivas lógicas} $\neg,\Rightarrow$.
+            \item \textit{Símbolo de igualdad} $=$.
+            \item \textit{Cuantificador} $\forall$, denominado \textbf{para todo}.
+            \item \textit{Símbolos de predicado} (o \textit{Símbolo de relación}), $P_1,P_2,...$.
+            \item \textit{Símbolos de función}, $f_1,F_2,...$.
+            \item \textit{Símbolos de constante} $c_1,c_2,...$.
+        \end{enumerate}
+        los primeros cuatro son llamados \textbf{símbolos lógicos},y los últimos tres son llamados \textbf{símbolos no lógicos}. Puede que un lenguaje de primer orden no conste con alguno de los elementos de 5. a 7. o que conste de una cantidad finita. Cada uno de los 5. a 7. tiene asociada una \textbf{aridad} (que es un número entero).
+    \end{mydef}
+
+    Para que la idea quede más afianzada, se verán algunos ejemplos.
+
+    \begin{exa}
+        El lenguaje de la Teoría de Grupos consta de $\left\{*,(\cdot)^{-1}, e\right\}$ donde $*$ es una función binaria, $(\cdot)^{-1}$ es una función unaria y $e$ es una constante.
+    \end{exa}
+
+    \begin{exa}
+        El lenguaje de la Teoría de Anillos consta de $\left\{\cdot,+,0,1 \right\}$ donde $\cdot$ y $+$ son función binaria, y $0,1$ son constantes.
+    \end{exa}
+
+    \begin{exa}
+        El lenguaje de la Aritmética consta de $\left\{+,\cdot,s,<,1 \right\}$, donde $+,\cdot$ son funciones binarias, $s$ es una función unaria, $<$ es una relación binaria y $1$ es una constante.
+    \end{exa}
+
+    \begin{exa}
+        El lenguaje de la Teoría de Conjuntos, consta de $\left\{\in \right\}$, la cual es una relación binaria.
+    \end{exa}
+
+    \begin{mydef}
+        Definimos lo siguiente:
+        \begin{enumerate}
+            \item \textbf{Términos} son:
+            \begin{enumerate}
+                \item $v_i$ y $c_i$ son términos.
+                \item Si $F_i$ es un símbolo de función $n$-aria, y $t_1,...,t_n$ son términos, entonces $F_i t_1\cdots t_n$ es un término (en notación polaca),
+            \end{enumerate}
+            \item \textbf{Fórmulas} son:
+            \begin{enumerate}
+                \item Si $t_1,t_2$ son términos, entonces $=t_1t_2$ es una fórmula.
+                \item Si $R_i$ es un símbolo de relación de aridad $n$ y tengo $n$-términos, entonces $R_1t_1\cdots t_n$ es una fórmula.
+                \item Si $\varphi,\psi$ son fórmulas y $v_i$ es una variable, entonces $\neg\varphi$, $\Rightarrow\varphi\psi$ y $\forall v_i\varphi$ son fórmulas.
+            \end{enumerate}
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        La asociatividad se puede escribir como la siguiente fórmula:
+        \begin{equation*}
+            \forall x\forall y\forall z=**xyz*x*yz
+        \end{equation*}
+        que básicamente es decir que:
+        \begin{equation*}
+            \forall x,y,z, (x*y)*z=x*(y*z)
+        \end{equation*}
+        en un grupo cualquiera.
+    \end{exa}
+
 \end{document}
