@@ -123,10 +123,13 @@
 \newcommand{\eul}[1]{\ensuremath{\mathbb{#1}}}
 \newcommand{\natint}[1]{\ensuremath{\left[\big|#1\big|\right]}}
 \newcommand{\contradiction}{\ensuremath{\#_c}}
+\newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
 \begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
     \title{Grupos Topológicos}
     \author{Cristo Daniel Alvarado}
     \maketitle
@@ -664,12 +667,86 @@
         \end{equation*}
         por tanto, $\varphi$ es continua en $g$.
 
-        Para la segunda parte debemos probar que dado un abierto $O$ en $G$, su imagen respecto a $\varphi$ es abierta en $H$.
+        Para (2), debemos probar que dado un abierto $O$ en $G$, su imagen respecto a $\varphi$ es abierta en $H$.
 
-        Sea entonces $O$ abierto en $G$ y $h\in\varphi(O)$; entonces $h=\varphi(g)$ para alguna $g\in G$. Por lo anteiror, $g^{-1}O$ es una vecindad de $e_G$, aunado con la condición (2) se sigue que existe una vecindad $W$.
-
-        %Me quedé en a página 35 del pdf y me faltan cosas de antes%
-
+        Sea entonces $O$ abierto en $G$ y $h\in\varphi(O)$; entonces $h=\varphi(g)$ para alguna $g\in G$. Por lo anteiror, $g^{-1}O$ es una vecindad de $e_G$, aunado con la condición (2) se sigue que existe una vecindad $W$ de $e_H$ tal que $W\subseteq \varphi^{-1}(g^{-1}O)=\varphi^{-1}(g)\varphi(O)$, por lo cual $hW=\varphi(g)W\subseteq\varphi(O)$, siendo $hW$ vecindad de $h$.
     \end{proof}
+
+    ¿Existen homomorfismos entre grupos topológicos que no sean abiertos? La respuesta a esta pregunta es que sí.
+
+    \begin{exa}
+        Sea $(G,\tau)$ un grupo topológico no discreto. Considere los grupos $(G,\tau)$ y $(G,\tau_D)$, donde $\tau_D$ es la topología discreta sobre $G$. Entonces la función identidad $\cf{id_G}{G}{G}$ es un homomorfismo de $G$ sobre sí mismo el cual es continuo, pero no es un mapeo abierto entre los grupos topológicos $(G,\tau_D)$ y $(G,\tau)$.
+    \end{exa}
+
+    \section{Subgrupos topológicos y grupo cociente}
     
+    Una nueva forma de producir grupos topológicos es mediante los subgrupos de un grupo topológico y, mediante el grupo cociente (dotado de la toplogía cociente). Se pretende estudiar estas estructuras con el afán de producir más grupos de este tipo.
+
+    \begin{mydef}
+        Sea $G$ un grupo topológico; un subconjunto no vacío $H$ de $G$ se llama  \textbf{subgrupo topológico} de $G$ si
+        \begin{enumerate}
+            \item $H$ es subgrupo de $G$.
+            \item $H$ es un subespacio con la topología inducida por $G$.
+        \end{enumerate}
+    \end{mydef}
+
+    El siguiente resultado justifica la definción de subgrupo topológico en el sentido de que este último es por sí mismo un grupo topológico.
+    
+    \begin{propo}
+        Sean $G$ un grupo topológico y $H$ un subgrupo topológico de $G$. Entonces, $H$ es un grupo topológico con la topología que hereda de $G$.
+    \end{propo}
+
+    \begin{proof}
+        Es inmediata del hecho de que la función $(x,y)\mapsto xy^{-1}$ es continua reestringiada a $H\times H$, y va en $H$.
+    \end{proof}
+
+    Se presentan ahora propiedades generales de cerradura dentro de un grupo topológico.
+
+    \begin{propo}
+        Si $A$ y $B$ son subconjuntos de un grupo topológico $G$, entonces:
+        \begin{enumerate}
+            \item $\Cls{A}\cdot\Cls{B}\subseteq \Cls{AB}$.
+            \item $(\Cls{A})^{-1}=\Cls{A^{-1}}$
+            \item $x\Cls{A}y=\Cls{xAy}$, para cualesquier $x,y\in G$.
+            \item Si $ab=ba$ para toda $a\in A$ y $b\in B$, entonces $ab=ba$ para toda $a\in\Cls{A}$ y $b\in\Cls{B}$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): Sean $x\in \Cls{A}$ y $y\in \Cls{B}$ y $W$ un abierto tal que $xy\in W$. Debemos probar que $W\cap (AB)\neq\emptyset$. En efecto, como $(x,y)\mapsto x\cdot y$ es continua, existen $V_1$ y $V_2$ vecindades de $x$ y $y$, respectivamente, tales que $V_1\cdot V_2\subseteq W$. Por como se eligieron $x$ y $y$, existen $a\in V_1$ y $b\in V_2$ tales que $a\in A$ y $b\in B$, luego $ab\in (AB)\cap W$, pues $ab\in V_1\cdot V_2=W$. Así, $xy\in \Cls{AB}$.
+
+        De (2) y (3): Son inmediatas del hecho de que para cualquier homeomorfismo $\cf{f}{G}{G}$ se tiene que $f(\Cls{A})=\Cls{f(A)}$, siendo $A\subseteq G$ arbitrario, en particular tomamos como $f$ a las funciones $z\mapsto z^{-1}$ y $z\mapsto xzy$, siendo $x,y\in G$ arbitrarios fijos.
+
+        De (4): Considere $\cf{h}{G\times G}{G}$ tal que $(a,b)\mapsto aba^{-1}b^{-1}$. Esta función es contiua, por lo cual el conjunto:
+        \begin{equation*}
+            \begin{split}
+                H&= h^{-1}(e_G)\\
+                &=\left\{(a,b)\in G\times\Big| h(a,b)=e_G \right\}\\
+                &=\left\{(a,b)\in G\times\Big| aba^{-1}b^{-1}=e_G \right\}\\
+            \end{split}
+        \end{equation*}
+        es cerrado. Además, $A\times B\subseteq H$, por lo cual $\Cls{A\times B} \subseteq H$. Además, ya se sabe que $\Cls{A\times B}=\Cls{A}\times \Cls{B}$, por tanto $\Cls{A}\times\Cls{B}\subseteq H$, es decir que para todo $a\in\Cls{A}$ y $b\in\Cls{B}$, $ab=ba$.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $G$ grupo y $N$ un subgrupo de $H$. Decimos que \textbf{$N$ es subgrupo normal de $G$}, si $a^{-1}Na\subseteq N$, para todo $a\in G$.
+
+        Esto es equivalente a que $a^{-1}Na=N$, para todo $a\in G$.
+    \end{mydef}
+
+    \begin{propo}
+        Sean $G$ grupo topológico y $H,N$ subgrupos de $G$. Entonces
+        \begin{enumerate}
+            \item $\Cls{H}$ es subgrupo de $G$.
+            \item Si $N$ es subgrupo normal de $G$, entonces $\Cls{N}$ también es subgrupo normal de $G$.
+            \item $H$ es abierto si y sólo si su interior es no vacío.
+            \item Si $H$ es abierto, entonces $\Cls{H}=H$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        %TODO%
+        %me quedé en la página 38.
+    \end{proof}
+
 \end{document}
