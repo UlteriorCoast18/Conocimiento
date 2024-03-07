@@ -1755,4 +1755,196 @@
         Si $\abs{\Omega}=\abs{\Omega'}$ entonces, existe existe $\cf{h}{\Omega}{\Omega'}$ biyección. En este caso, la aplicación $f\mapsto f\circ h$ sería una isometría lineal de $l_2(\Omega',\mathbb{K})$ en $l_2(\Omega,\mathbb{K})$.
     \end{proof}
 
+    \section{Espacios Separables}
+
+    \begin{mydef}
+        Un número complejo $\lambda$ se llama \textbf{complejo racional} si su parte real e imaginaria son racionales.
+    \end{mydef}
+
+    \begin{theor}
+        Un espacio hilbertiano $H$ es separable si y sólo si $H$ posee una familia ortonormal maximal a lo sumo numerable.
+    \end{theor}
+
+    \begin{proof}
+        $\Rightarrow)$: Suponga que $H$ es separable (de dimensión infinita, si es dimensión finita el resultado es inmediato). Sea $\left(\vec{x_i} \right)_{i\in\mathbb{N}}$ una sucesión densa en $H$ (la cual existe por ser separable). Sea ahora $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ una familia O.N. maximal. Para obtener el resultado, se debe probar que $\Omega$ es numerable.
+
+        Sea
+        \begin{equation*}
+            A_i=\left\{\alpha\in\Omega\Big|\pint{\vec{x_i}}{\vec{u_\alpha}}\neq0 \right\}
+        \end{equation*}
+        Se sabe que $A_i$ es a lo sumo numerable (ya que coincide con los coeficientes de Fourier de $\vec{x_i}$). Para que $\Omega$ sea numerable, basta probar con que:
+        \begin{equation*}
+            \Omega=\bigcup_{ i=1}^\infty A_i
+        \end{equation*}
+        Una contención se tiene por definición de los $A_i$. Sea $\alpha\in\Omega$ arbitrario. Como $\left(\vec{x_i} \right)_{i\in\mathbb{N}}$ es densa, existe $l\in\mathbb{N}$ tal que:
+        \begin{equation*}
+            \norm{\vec{x_l}-\vec{u_\alpha}}<1
+        \end{equation*}
+        Si fuera que $\pint{\vec{\vec{x_l}}}{u_\alpha}=0$, entonces
+        \begin{equation*}
+            \begin{split}
+                \norm{\vec{x_l}-\vec{u_\alpha}}^2&=\norm{\vec{u_\alpha}}^2+\norm{\vec{x_\alpha}}^2\\
+                &\geq 1\\
+                \Rightarrow \norm{\vec{x_l}-\vec{u_\alpha}}&\geq1
+            \end{split}
+        \end{equation*}
+        lo cual no puede suceder por la elección del $l$. Por tanto, $\pint{\vec{x_i}}{\vec{u_\alpha}}\neq0$, es decir que $\alpha\in A_l$.
+
+        $\Leftarrow)$: Suponga que $\left(\vec{u_n} \right)_{n\in\mathbb{N} }$ es O.N. maximal. Sea $S$ la colección de todas las sumas finitas de la forma 
+        \begin{equation*}
+            \sum_{ i\in J}\alpha_i\vec{u_i}
+        \end{equation*}
+        con $\alpha_i$ complejo racional (o racional en caso de que el campo sea $\mathbb{R}$) y $J\in\mathcal{F}(\mathbb{N})$.Se sabe que $S$ es numerable. Como $H=\overline{\mathcal{L}(\left(\vec{u_n} \right)_{n\in\mathbb{N} })}$, dado $\vec{x}\in H$ y $\varepsilon>0$ existe $\sum_{ i=1}^{n}\beta_i\vec{u_i}$ con $\beta_i\in\mathbb{K}$ tal que
+        \begin{equation*}
+            \norm{\vec{x}-\sum_{i=1 }^{n}\beta_i\vec{u_i}}<\frac{\varepsilon}{2}
+        \end{equation*}
+        Ahora, para cada $i\in\left[|1,n|\right]$ existe $\alpha_i$ racional compljeto (o racional) tal que:
+        \begin{equation*}
+            \abs{\beta_i-\alpha_i}<\frac{\varepsilon}{2n}
+        \end{equation*}
+        Entonces:
+        \begin{equation*}
+            \begin{split}
+                \norm{\vec{x}-\sum_{i=1 }^{n}\alpha_i\vec{u_i}}&\leq\norm{\vec{x}-\sum_{i=1 }^{n}\beta_i\vec{u_i}}+\norm{\sum_{ i=1}^{n}(\beta_i-\alpha_i)\vec{u_i}}\\
+                &<\frac{\varepsilon}{2}+\sum_{ i=1}^{n}\abs{\beta_i-\alpha_i}\norm{\vec{u_i}}\\
+                &=\frac{\varepsilon}{2}+\sum_{ i=1}^{n}\abs{\beta_i-\alpha_i}\\
+                &<\frac{\varepsilon}{2}+\frac{\varepsilon}{2} \\
+                &=\varepsilon\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \begin{obs}
+        La prueba de la ida de la prueba anterior la hizo un alumno de la ESFM. Su nombre era \textit{Nunez Esquer}.
+    \end{obs}
+
+    \begin{cor}
+        Un espacio hilbertiano de dimensión infinita es separable si y sólo si es linealmente isométrico a $l_2(\mathbb{N},\mathbb{K})$:
+        \begin{equation*}
+            l_2(\mathbb{N},\mathbb{K})=\left\{\left\{a_n \right\}_{n=1 }^\infty\Big|a_n\in\mathbb{K},\forall n\in\mathbb{N}\textup{ tal que }\sum_{ n=1}^{\infty}\abs{a_n}<\infty \right\}
+        \end{equation*}
+        provisto del producto escalar:
+        \begin{equation*}
+            \pint{\vec{a}}{\vec{b}}=\sum_{ n=1}^{\infty}a_n\conj{b_n}
+        \end{equation*}
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato del teorema anterior.
+    \end{proof}
+
+    \begin{exa}
+        En particular con el corolario anterior, como $L_2(S,\mathbb{K})$ es separable (siendo $S\subseteq\mathbb{R}^n$ medible), entonces
+        \begin{equation*}
+            L_2(S,\mathbb{K}) \equiv l_2(\mathbb{N},\mathbb{K})
+        \end{equation*}
+        Notemos que para tener la isometría lineal, necesitamos a la familia O.N. maximal $(f_n)_{ n\in\mathbb{N}}$ de tal suerte que $f\in\mathcal{L}_2(S,\mathbb{K})\mapsto \hat{f}=(\pint{f}{f_n})_{n\in\mathbb{N} }$ y la función inversa es $\varphi\in l_2(\mathbb{N},\mathbb{K})\mapsto f=\sum_{ n=1}^{\infty}\varphi(n)f_n=f$.
+    \end{exa}
+
+    \section{$L_\infty$ como dual de $L_1$}
+
+    \begin{lema}[\textbf{Lema de los promedios}]
+        Sea $S\subseteq\mathbb{R}^n$ medible, y sea $\cf{f}{S}{\mathbb{K}}$ medible e integrable en todo cojunto medible con medida finita dentro de $S$. Sea $F$ un conjunto cerrado en $\mathbb{K}$. Se supone que para todo $A\subseteq S$ medible tal que $0<m(A)<\infty$ se cumple lo siguiente:
+        \begin{equation*}
+            \frac{1}{m(A)}\int_A f\in F
+        \end{equation*}
+        Entonces, $f(x)\in F$ c.t.p. en $S$.
+    \end{lema}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Sea $C$ una bola cerrada en $\mathbb{K}\backslash F$ de centro $u$ y radio $r>0$ tal que $C\cap F=\emptyset$. Se afirma que $f^{-1}(C)$ es despreciable en $S$. En efecto, escriba
+            \begin{equation*}
+                f^{-1}(C)=\bigcup_{ k=1}^\infty\left[f^{-1}(C)\cap P_k \right]
+            \end{equation*}
+            donde $P_k=\left[-k,k\right]^n$, para todo $k\in\mathbb{N}$. Basta probar que
+            \begin{equation*}
+                A_k=f^{-1}(C)\cap P_k
+            \end{equation*}
+            es despreciable para todo $k\in\mathbb{N}$. Se tiene que $m(A_k)$ es finita. Si $m(A_k)>0$, entonces por la hipótesis se tiene que
+            \begin{equation*}
+                \frac{1}{m(A_k)}\int_{A_k}f\in F
+            \end{equation*}
+            Pero,
+            \begin{equation*}
+                \begin{split}
+                    \abs{\frac{1}{m(A_k)}\int_{A_k}f-u}&=\frac{1}{m(A_k)}\abs{\int_{A_k}(f(x)-u)dx}\\
+                    &\leq \frac{1}{m(A_k)}\int_{A_k}\abs{f(x)-u}dx\\
+                    &\leq r m(A_k)\frac{1}{m(A_k)}\\
+                    &=r\\
+                \end{split}
+            \end{equation*}
+            por tanto, $\frac{1}{m(A_k)}\int_{A_k}f\in C$\contradiction ya que $F\cap C=\emptyset$. Luego, $A_k$ tiene medida cero, así $f^{-1}(C)$ es despreciable.
+
+            \item Resta probar que $f^{-1}(\mathbb{K}\backslash F)$ es despreciable. Como $F$ es cerrado, entonces para todo $x\in\mathbb{K}\backslash F$ existe una bola cerrada de centro $x$ y radio $r_x>0$ tal que
+            \begin{equation*}
+                F\cap C_x=\emptyset
+            \end{equation*}
+            Note que $\left(\mathring{C_x} \right)_{ x\in\mathbb{K}\backslash F}$ forman un recubrimiento abierto de $\mathbb{K}\backslash F$. Ya que $\mathbb{K}$, y por tanto $\mathbb{K}\backslash F$ es separable, existe un recubrimiento numerable $\left(\mathring{C_n} \right)_{ n\in\mathbb{K}\backslash F}$ de $\mathbb{K}\backslash F$ (por el T. de Lindelöf). Entonces:
+            \begin{equation*}
+                f^{-1}(\mathbb{K}\backslash F)=\bigcup_{ n=1}^\infty f^{-1}(\mathring{C_n})
+            \end{equation*}
+            es despreciable por (1).
+        \end{enumerate}
+        Por ambos incisos, se sigue que $f(x)\in F$ para casi todo $x\in S$.
+    \end{proof}
+
+    \begin{cor}
+        Sea $S\subseteq\mathbb{R}^n$ medible y $\cf{f}{S}{\mathbb{K}}$ medible e integrable en todo subconjunto de $S$ con medida finita. Se supone que $\forall A\subseteq S$ con medida finita:
+        \begin{equation*}
+            \int_A f=0
+        \end{equation*}
+        entonces $f(x)=0$ para casi toda $x\in S$.
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{cor}
+        Sean $S$ y $f$ como en el corolario anterior. Se supone que existe $b\geq 0$ tal que:
+        \begin{equation*}
+            \abs{\int_A f}\leq b m(A)
+        \end{equation*}
+        para todo $A\subseteq S$ con medida finita. Entonces, $\abs{f(x)}$ para casi toda $x\in S$.
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{theor}
+        Sea $S\subseteq\mathbb{R}^n$ medible. Para cada $g\in\mathcal{L}_\infty(S,\mathbb{K})$ se define $\phi_g$ como la función de $\mathcal{L}_1(S,\mathbb{K})$ en $\mathbb{K}$ dada como sigue:
+        \begin{equation*}
+            \phi_g(f)=\int_S fg,\quad\forall f,g\in\mathcal{L}_1(S,\mathbb{K})
+        \end{equation*}
+        Entonces, $\phi_g$ es un funcional lineal continuo sobre $L_1(S,\mathbb{K})$. Además, la aplicación $\phi:g\mapsto \phi_g$ es una isometría lineal de $L_\infty(S,\mathbb{K})$ sobre $L_1(\mathbb{N},\mathbb{K})^*$.
+    \end{theor}
+
+    \begin{proof}
+        Note que nada cambia si se reemplazan $f$ o $g$ por funciones equivalentes (es decir que la norma de sus diferencias esa 0), luego es indistinto usar las notaciones $\mathcal{L}_1$ o $L_1$
+        y $\mathcal{L}_\infty$ o $L_\infty$.
+
+        Sea $g\in\mathcal{L}_\infty(S,\mathbb{K})$. Claramente $\phi_g$ es un funcional lineal sobre $L_1(S,\mathbb{K})$. Además, 
+        \begin{equation*}
+            \abs{\phi_g(f)}\leq\abs{\int_S fg}\leq\int_S\abs{f}\abs{g}\leq \N{\infty}{g}\N{1}{f}
+        \end{equation*}
+        por tanto, $\phi_g\in L_1(\mathbb{N},\mathbb{K})^*$, y $\norm{\phi_g}\leq\N{\infty}{g}$.
+
+        Si $A\subseteq S$ es medible de medida finita, entonces
+        \begin{equation*}
+            \begin{split}
+                \abs{\int_A g}=&\abs{\int_S g\chi_A}\\
+                =&\abs{\phi_g(\chi_A)} \\
+                \leq&\norm{\phi_g}\N{1}{\chi_A} \\
+                =&\norm{\phi_g}m(A)\\
+            \end{split}
+        \end{equation*}
+        por el corolario anterior se sigue que
+        \begin{equation*}
+            \abs{g(x)}\leq\norm{\phi_g},\textup{ para casi toda }x\in S
+        \end{equation*}
+        por ende, $\N{\infty}{g}\leq\norm{\phi_g}$. Finalmente, se sigue que $\norm{\phi_g}=\N{\infty}{g}$ (es decir que es isometría) y, claramente es lineal.
+    \end{proof}
+
 \end{document}
