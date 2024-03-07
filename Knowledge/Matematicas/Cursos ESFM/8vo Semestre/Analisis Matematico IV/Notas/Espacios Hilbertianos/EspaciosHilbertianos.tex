@@ -1042,7 +1042,7 @@
 
     \end{proof}
 
-    \begin{cor}][Propiedad de conmutatividad para series]
+    \begin{cor}[Propiedad de conmutatividad para series]
         Sea $\left\{a_n \right\}_{n=1}^\infty$ en $[0,\infty]$, y sea $\sigma$ una biyección de $\mathbb{N}$ sobre $\mathbb{N}$. Entonces:
         \begin{equation*}
             \sum_{n=1}^{\infty}a_n=\sum_{n=1}^{\infty}a_{\sigma(n) }
@@ -1050,7 +1050,7 @@
     \end{cor}
 
     \begin{proof}
-        
+        Es inmediata del teorema anterior y de la propiedad de conmutatividad general.
     \end{proof}
 
     \begin{cor}
@@ -1068,7 +1068,7 @@
     \end{cor}
 
     \begin{proof}
-        
+        Es inmediata del teorema de sumación por paquetes de familias.
     \end{proof}
 
     \begin{theor}
@@ -1116,11 +1116,11 @@
     \end{mydef}
 
     \begin{propo}
-        Sea $\left(u_\alpha \right)_{\alpha\in\Omega}$ una familia sumable de números complejos. Sea:
+        Sea $\left(u_\alpha \right)_{\alpha\in\Omega}$ una familia sumable de números complejos. Defina:
         \begin{equation*}
             \Omega_0=\left\{\alpha\in\Omega\Big|u_\alpha\neq0 \right\}
         \end{equation*}
-        entonces $\Omega_0$ es a lo sumo numerable. Además, si $i\mapsto\alpha(i)$ es una biyección de $\mathbb{N}$ sobre $\Omega_0$, entonces la serie
+        entonces $\Omega_0$ es a lo sumo numerable. Además, si $i\mapsto\alpha(i)$ es una biyección de $\mathbb{N}$ sobre $\Omega_0$, la serie
         \begin{equation*}
             \sum_{i=1 }^{\infty}a_{\alpha(i)}
         \end{equation*}
@@ -1135,8 +1135,16 @@
     \end{propo}
 
     \begin{proof}
-        %TODO%
-        Solo se probará la penúltima parte. Sea $i\mapsto\beta(i)$ otra biyección de $\mathbb{N}$ sobre $\Omega_0$. Hay que probar que:
+        Para la primera parte. Como $\left(u_\alpha \right)_{\alpha\in\Omega}$ es sumable, entonces la familia de módulos $\left(\abs{u_\alpha} \right)_{\alpha\in\Omega}$ es sumable. Por la proposición anterior, el conjunto:
+        \begin{equation*}
+            \begin{split}
+                \Omega_0&=\left\{\alpha\in\Omega\Big|\abs{u_\alpha}>0 \right\}\\
+                &=\left\{\alpha\in\Omega\Big|u_\alpha\neq0 \right\}\\
+            \end{split}
+        \end{equation*}
+        es a lo sumo numerable. Claramente se tiene que la serie $\sum_{i=1 }^{\infty}u_{\alpha(i)}$ es absolutamente convergente (nuevamente, pues la familia de los módulos es sumable).
+
+        Ahora, sea $i\mapsto\beta(i)$ otra biyección de $\mathbb{N}$ sobre $\Omega_0$. Hay que probar que:
         \begin{equation*}
             s=\sum_{i=1 }^{\infty}u_{\alpha(i)}=\sum_{i=1 }^{\infty}u_{\beta(i)}=t
         \end{equation*}
@@ -1203,8 +1211,8 @@
         Defina $\Omega_0=\Omega_1\cup\Omega_2$. $\Omega_0,\Omega_1$ y $\Omega_2$ son a lo sumo numerables. Sea $i\mapsto\alpha(i)$ una biyección de $\mathbb{N}$ sobre $\Omega_0$. Entonces:
         \begin{equation*}
             \begin{split}
-                \sum_{\alpha\in\Omega }(f+g)(\alpha)=&\sum_{i=1 }^\infty(f+g)(\alpha)\\
-                =&\sum_{i=1 }^\infty f(\alpha)+\sum_{i=1 }^\infty g(\alpha)\\
+                \sum_{\alpha\in\Omega }(f+g)(\alpha)=&\sum_{i=1 }^\infty(f+g)(\alpha(i))\\
+                =&\sum_{i=1 }^\infty f(\alpha(i))+\sum_{i=1 }^\infty g(\alpha(i))\\
                 =&\sum_{\alpha\in\Omega }f(\alpha)+\sum_{\alpha\in\Omega }g(\alpha)\\
             \end{split}
         \end{equation*}
@@ -1219,7 +1227,31 @@
     \end{theor}
 
     \begin{proof}
-        (Se seguirá adaptando la demostración correspondiente para $l_2$).
+        Sea $\left\{f_\nu \right\}_{\nu=1}^\infty$ una sucesión de Cauchy en $l_1(\Omega,\mathbb{K})$, y sea $\varepsilon>0$. Existe entonces $n_0\geq 0$ tal que:
+        \begin{equation}
+            \mathcal{N}_2(f_p-f_q)<\varepsilon,\quad\forall p,q\geq n_0
+        \end{equation}
+        en particular, para cada $\alpha\in\Omega$:
+        \begin{equation*}
+            \abs{f_p(\alpha)-f_q(\alpha)}\leq\mathcal{N}_2(f_p-f_1)<\varepsilon,\quad\forall p,q\geq n_0
+        \end{equation*}
+        entonces, la sucesión $\left\{f_\nu(\alpha) \right\}_{\nu=1}^\infty$ es de Cauchy en $\mathbb{K}$. Por tanto, al ser $\mathbb{K}$ completo, entonces para cada $\alpha\in\Omega$ existe $f(\alpha)\in\mathbb{K}$ tal que:
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}f_\nu(\alpha)=f(\alpha)
+        \end{equation*}
+        defina $\cf{f}{\Omega}{\mathbb{K}}$ la función tal que $\alpha\mapsto f(\alpha)$. Veamos que la sucesión $\left\{f_\nu \right\}_{\nu=1}^\infty$ converge a $f$. En efecto, se tiene por (1.12) que si $J\in\mathcal{F}(\Omega)$:
+        \begin{equation*}
+            \sum_{ \alpha\in J}\abs{f_p(\alpha)-f_q(\alpha)}<\varepsilon,\quad\forall p,q\geq n_0
+        \end{equation*}
+        tomemos $p\geq n_0$ fijo y tomemos el límite cuando $q\rightarrow\infty$, se tiene que:
+        \begin{equation*}
+            \sum_{ \alpha\in J}\abs{f_p(\alpha)-f(\alpha)}\leq\varepsilon
+        \end{equation*}
+        por ser $J$ finito arbitrario, se sigue que $f_p-f\in l_1(\Omega,\mathbb{K})$, de donde se sigue que $f\in l_1(\Omega,\mathbb{K})$ y:
+        \begin{equation*}
+            \mathcal{N}_2(f_p-f)\leq\varepsilon,\quad\forall p\geq n_0
+        \end{equation*}
+        luego, $l_1(\Omega,\mathbb{K})$ es completo, es decir que es de Banach.
     \end{proof}
 
     \begin{theor}
@@ -1231,7 +1263,7 @@
         \begin{equation*}
             \pint{f}{g}=\sum_{\alpha\in\Omega}f(\alpha)\conj{g(\alpha)}
         \end{equation*}
-        La aplicación $(f,g)\mapsto\pint{f}{g}$ hace de $l_2(\Omega,\mathbb{K})$ un espacio hilbertiano. La norma inducida por este producto escalar es $\mathcal{N}_2$.
+        La aplicación $(f,g)\mapsto\pint{f}{g}$ hace de $l_2(\Omega,\mathbb{K})$ un espacio hilbertiano en el cual la norma inducida por este producto escalar es $\mathcal{N}_2$.
     \end{theor}
 
     \begin{proof}
@@ -1248,7 +1280,7 @@
         \begin{equation*}
             \sum_{\alpha\in J}\abs{\lambda f(\alpha)}^2\leq\abs{\lambda}^2\sum_{\alpha\in J}\abs{f(\alpha)}^2\leq\abs{\lambda}^2\mathcal{N}_2(f)^2
         \end{equation*}
-        tomando supremos se sigue que $\lambda f\in l_2(\Omega,\mathbb{K})$, y que $\mathcal{N}_2(\lambda f)=\abs{\lambda}\mathcal{N}_2(f)$.
+        tomando supremos se sigue que $\lambda f\in l_2(\Omega,\mathbb{K})$, y que $\mathcal{N}_2(\lambda f)\leq\abs{\lambda}\mathcal{N}_2(f)$ (para la igualdad hay que fijarse en la desigualdad conversa, partiendo de $\mathcal{N}_2(f)$).
 
         Sean $f,g\in l_2(\Omega,\mathbb{K})$. Para todo $J\in\mathcal{F}(\Omega)$ se tiene que:
         \begin{equation*}
@@ -1258,11 +1290,11 @@
                 \leq& \mathcal{N}_2(f)+\mathcal{N}_2(g)+2\mathcal{N}_1(fg)
             \end{split}
         \end{equation*}
-        tomando supremos respecto a $J$ se sigue que $f+g\in l_2(\Omega,\mathbb{K})$.
+        tomando supremo respecto a $J$ se sigue que $f+g\in l_2(\Omega,\mathbb{K})$.
 
         La definición $\pint{f}{g}=\sum_{\alpha\in\Omega}f(\alpha)\conj{g(\alpha)}$ tiene sentido pues $f,g\in l_2(\Omega,\mathbb{K})$ implica que $fg\in l_1(\Omega,\mathbb{K})$. Se verifica de inmediato que $\pint{f}{g}$ es un producto escalar el cual induce $\mathcal{N}_2$.
 
-        Ahora probaremos que es completo. Sea $\left\{f_\nu \right\}$ una sucesión de Cauchy en $l_2(\Omega,\mathbb{K})$. Sea $\varepsilon>0$. Existe $n_0\in\mathbb{N}$ tal que:
+        Ahora probaremos que es completo. Sea $\left\{f_\nu \right\}_{\nu=1}^\infty$ una sucesión de Cauchy en $l_2(\Omega,\mathbb{K})$. Sea $\varepsilon>0$. Existe $n_0\in\mathbb{N}$ tal que:
         \begin{equation*}
             \mathcal{N}_2(f_p-f_q)<\varepsilon,\quad\forall p,q\geq n_0
         \end{equation*}
@@ -1312,6 +1344,8 @@
     \end{eqnarray}
     (esto por Pitágoras), la cual es 0 si todos los $\alpha_i$ son cero, es decir si los vectores son l.i.
 
+    ¿Cuando un espacio hilbertiano o prehilbertiano posee una base O.N.?
+
     \begin{propo}
         Se cumple lo siguiente:
         \begin{enumerate}
@@ -1327,13 +1361,13 @@
         De (1): La prueba se hará por inducción sobre la dimensión de $H$.
         \begin{itemize}
             \item Suponga que la dimensión es 1. Existe $\vec{u}\in H$ tal que $\vec{u}\neq\vec{0}$. Una base O.N. de $H$ es $(\frac{\vec{u}}{\norm{\vec{u}}})$.
-            \item Suponga que el resultado es cierto para dimensión $n-1$. Sea $H$ de dimensión $n$. Sea $\vec{u}\in H$ diferente de $\vec{0}$, defina:
+            \item Suponga que el resultado es cierto para dimensión $n-1$. Sea $H$ de dimensión $n$, y $\vec{u}\in H$ diferente de $\vec{0}$, defina:
             \begin{equation*}
                 \vec{e_1}=\frac{\vec{u}}{\norm{\vec{u}}}
             \end{equation*}
-            Sea $M=\mathcal{L}(\vec{e_1})$. Ya que $H=M\oplus M^\perp$ (ya que $M$ es distinguido), necesariamente $\dim M^\perp = n-1$. Por hipótesis inductiva $M^\perp$ posee una base O.N. digamos $(\vec{e_2},...,\vec{e_n})$.
+            Sea $M=\mathcal{L}(\vec{e_1})$. Ya que $H=M\oplus M^\perp$ (ya que $M$ es distinguido por ser de dimensión finita), necesariamente $\dim M^\perp = n-1$. Por hipótesis inductiva $M^\perp$ posee una base O.N. digamos $(\vec{e_2},...,\vec{e_n})$.
             
-            Entonces, $(\vec{e_1},...,\vec{e_n})$ es base O.N. de $H$.
+            Entonces, es claro que $(\vec{e_1},...,\vec{e_n})$ es base O.N. de $H$.
         \end{itemize}
         aplicando inducción se sigue el resultado.
 
@@ -1372,7 +1406,7 @@
     \end{theor}
 
     \begin{proof}
-        Sea $J\in\mathcal{F}(\Omega)$ y defina $M_J=\mathcal{L}((\vec{u_\alpha})_{\alpha\in\Omega})$. Entonces $M_J$ es un subespacio de dimensión finita de $H$ provisto de la base O.N. $(\vec{u_\alpha})_{\alpha\in J}$. Entonces, la proyección ortogonal de $\vec{x}$ sobre $M_J$ debe ser:
+        Sea $J\in\mathcal{F}(\Omega)$ y defina $M_J=\mathcal{L}((\vec{u_\alpha})_{\alpha\in J})$. Entonces $M_J$ es un subespacio de dimensión finita de $H$ provisto de la base O.N. $(\vec{u_\alpha})_{\alpha\in J}$. Entonces, la proyección ortogonal de $\vec{x}$ sobre $M_J$ debe ser:
         \begin{equation*}
             \vec{x_0}=\sum_{\alpha\in J }\pint{\vec{x}}{\vec{u_\alpha}}\vec{u_\alpha}=\sum_{\alpha\in J }\hat{x}(\alpha)\vec{u_\alpha}
         \end{equation*}
@@ -1380,7 +1414,14 @@
         \begin{equation*}
             \sum_{\alpha\in J}\abs{\hat{x}(\alpha)}^2=\norm{\sum_{\alpha\in J}\hat{x}(\alpha)\vec{u_\alpha}}^2=\norm{\vec{x_0}}^2=\norm{\vec{x}}^2-d(\vec{x},M)^2\leq\norm{\vec{x}}^2
         \end{equation*}
-        tomando supremos respecto a $J$ se tiene el resultado.
+        tomando supremos respecto a $J$ se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \mathcal{N}_2(\hat{x})^2&\leq\norm{\vec{x}}^2\\
+                \Rightarrow \mathcal{N}_2(\hat{x})&\leq\norm{\vec{x}}\\
+            \end{split}
+        \end{equation*}
+        lo cual prueba el resultado.
     \end{proof}
 
     \begin{cor}
@@ -1388,7 +1429,25 @@
     \end{cor}
 
     \begin{proof}
-        
+        Veamos que es lineal. Sean $\vec{x},\vec{x_1},\vec{x_2}\in H$ y $a\in\mathbb{K}$. Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \widehat{x_1+x_2}(\alpha)&=\pint{\vec{x_1}+\vec{x_2}}{\vec{u_\alpha}}\\
+                &=\pint{\vec{x_1}}{\vec{u_\alpha}}+\pint{\vec{x_1}+\vec{x_2}}{\vec{u_\alpha}}\\
+                &=\hat{x_1}(\alpha)+\hat{x_2}(\alpha)
+            \end{split}
+        \end{equation*}
+        para todo $\alpha\in\Omega$. Por tanto, $\widehat{x_1+x_2}=\hat{x_1}+\hat{x_2}$.
+
+        Además,
+        \begin{equation*}
+            \begin{split}
+                \widehat{a x}(\alpha)&=\pint{a\vec{x}}{\vec{u_\alpha}}\\
+                &=a\pint{\vec{x}}{\vec{u_\alpha}}\\
+                &=a\hat{x}(\alpha) \\
+            \end{split}
+        \end{equation*}
+        para todo $\alpha\in\Omega$. Por tanto, $\widehat{a x}=a\hat{x}$. Luego, $\vec{x}\mapsto\hat{x}$ es lineal y continua por la desigualdad de Bessel, donde se deduce de forma inmediata que la norma de esta aplicación lineal es menor o igual que uno.
     \end{proof}
         
     \begin{cor}
@@ -1400,7 +1459,15 @@
     \end{cor}
 
     \begin{proof}
-        
+        Sea
+        \begin{equation*}
+            \begin{split}
+                \Omega_0
+                &=\left\{\alpha\in\Omega\Big| \pint{\vec{x}}{\vec{u_\alpha}} \neq0 \right\}\\
+                &=\left\{\alpha\in\Omega\Big| \hat{x}(\alpha)\neq0 \right\}\\
+            \end{split}
+        \end{equation*}
+        como la familia $\left\{\hat{x}(\alpha) \right\}_{\alpha\in\Omega}$ es sumable, el conjunto $\Omega_0$ es a lo sumo numerable, es decir que $\pint{\vec{x}}{\vec{u_\alpha}}\neq0$ para una cantidad a lo sumo numerable de $\alpha\in\Omega$.
     \end{proof}
 
     \begin{theor}[Teorema de Riesz-Fischer]
@@ -1416,7 +1483,7 @@
     \begin{proof}
         Se harán varias cosas:
         \begin{enumerate}
-            \item Sea $\varphi\in l_2(\Omega,\mathbb{K})$ y sea $\Omega_0=\left\{\alpha\in\Omega\Big|\varphi(\alpha)\neq0 \right\}$ el cual es a lo sumo numerable. Suponiendo que $\Omega_0$ es a lo sumo numerable, sea $i\mapsto\alpha(i)$ una biyección de $\mathbb{N}$ sobre $\Omega_0$.
+            \item Sea $\varphi\in l_2(\Omega,\mathbb{K})$ y sea $\Omega_0=\left\{\alpha\in\Omega\Big|\varphi(\alpha)\neq0 \right\}$ el cual es a lo sumo numerable. Sea $i\mapsto\alpha(i)$ una biyección de $\mathbb{N}$ sobre $\Omega_0$.
             
             Considere la serie
             \begin{equation*}
@@ -1429,7 +1496,9 @@
             dado $\varepsilon>0$ existe $n_0\in\mathbb{N}$ tal que si $q>p\geq n_0$:
             \begin{equation*}
                 \begin{split}
-                    \norm{\sum_{i=p }^{q}\varphi(\alpha(i))\vec{u_{\alpha(i)}}}^2=&\sum_{i=p }^{q}\abs{\varphi(\alpha(i))^2}\\
+                    \norm{\sum_{i=p }^{q}\varphi(\alpha(i))\vec{u_{\alpha(i)}}}^2
+                    =&\sum_{i=p }^{q}\abs{\varphi(\alpha(i))^2}\norm{\vec{u_{\alpha(i)}}}^2 \\
+                    =&\sum_{i=p }^{q}\abs{\varphi(\alpha(i))^2}\\
                     \leq&\varepsilon^2 \\
                 \end{split}
             \end{equation*}
@@ -1443,14 +1512,14 @@
                     \pint{\sum_{i=1 }^{m}\varphi(\alpha)\vec{u_{\alpha(i)}}}{\vec{u_{\alpha(k)}}}=\varphi(\alpha(k)),\quad\forall m\geq k \\
                 \end{split}
             \end{equation*}
-            tomando límite cuando $m\rightarrow\infty$ y usando la continuidad de $\pint{}{}$:
+            tomando límite cuando $m\rightarrow\infty$ y usando la continuidad de $\pint{\cdot}{\cdot}$:
             \begin{equation*}
                 \Rightarrow \hat{x_0}(\alpha(k))=\pint{\vec{x_0}}{\vec{u_{\alpha(k)}}}=\varphi(\alpha(k)),\quad\forall k\in\mathbb{N}
             \end{equation*}
             Sea $\alpha\in\Omega\backslash\Omega_0$. Se tiene:
             \begin{equation*}
                 \begin{split}
-                    \pint{\sum_{i=1 }^{m}\varphi(\alpha)\vec{u_{\alpha(i)}}}{\vec{u_{\alpha}}}=\varphi(\alpha(k)),\quad\forall m\in\mathbb{N} \\
+                    \pint{\sum_{i=1 }^{m}\varphi(\alpha)\vec{u_{\alpha(i)}}}{\vec{u_{\alpha}}}=0=\varphi(\alpha(k)),\quad\forall m\in\mathbb{N} \\
                 \end{split}
             \end{equation*}
             tomando límite cuando $m\rightarrow\infty$ y usando la continuidad de $\pint{\cdot}{\cdot}$ se obtiene que:
@@ -1467,12 +1536,12 @@
             \begin{equation*}
                 \pint{\vec{x}-\vec{x_0}}{\vec{u_\alpha}}=0\quad\forall\alpha\in\Omega
             \end{equation*}
-            Así pues, $\vec{x}-\vec{x_0}\perp\mathcal{L}((\vec{u_\alpha})_{\alpha\in\Omega})$. Siendo los elementos de $M$ límites de sucesiones en $\mathcal{L}((\vec{u_\alpha})_{\alpha\in\Omega})$, por la continuidad de $\pint{}{}$ se tiene que $\vec{x}-\vec{x_0}\perp M$.
+            Así pues, $\vec{x}-\vec{x_0}\perp\mathcal{L}((\vec{u_\alpha})_{\alpha\in\Omega})$. Siendo los elementos de $M$ límites de sucesiones en $\mathcal{L}((\vec{u_\alpha})_{\alpha\in\Omega})$, por la continuidad de $\pint{\cdot}{\cdot}$ se tiene que $\vec{x}-\vec{x_0}\perp M$.
 
-            Recíprocamente, si $\vec{x}-\vec{x_0}\perp M$, es claro que $\hat{0}=\widehat{x-x_0}=\hat{x}-\hat{x_0}=\hat{x}-\varphi$. Por tanto, $\hat{x}=\varphi$. En particular, si $x\in M$ y $\hat{x}=\varphi$, resulta que $\vec{x}-\vec{x_0}\in M$ y $\vec{x}-\vec{x_0}\perp M$, luego $\vec{x}-\vec{x_0}$, o sea $\vec{x}=\vec{x_0}$, es decir que el $\vec{x_0}$ es único.
+            Recíprocamente, si $\vec{x}-\vec{x_0}\perp M$, es claro que $\hat{0}=\widehat{x-x_0}=\hat{x}-\hat{x_0}=\hat{x}-\varphi$. Por tanto, $\hat{x}=\varphi$. En particular, si $\vec{x}\in M$ y $\hat{x}=\varphi$, resulta que $\vec{x}-\vec{x_0}\in M$ y $\vec{x}-\vec{x_0}\perp M$, luego $\vec{x}-\vec{x_0}\perp\vec{x}-\vec{x_0}$, o sea $\vec{x}-\vec{x_0}=\vec{0}\Rightarrow \vec{x}=\vec{x_0}$, es decir que el $\vec{x_0}$ es único.
         \end{enumerate}
     \end{proof}
-
+ 
     \begin{obs}
         La unicidad de $\hat{x_0}\in M$ implica que $\sum_{i=1}^{\infty}\varphi(\alpha(i))\vec{u_{\alpha(i)}}$ es independiente de la biyección elegida $i\mapsto \alpha(i)$ de $\mathbb{N}$ sobre $\Omega_0$. Abusando de la notación se escribe
         \begin{equation*}
@@ -1485,7 +1554,7 @@
     \begin{mydef}
         Una familia O.N. de vectores $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ se dice \textbf{maximal} si no existe una familia O.N. que la contenga propiamente. Es decir, $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ es O.N. maximal si y sólo si
         \begin{equation*}
-            \vec{x}\perp\vec{u_\alpha},\forall\alpha\in\Omega\quad\Rightarrow\vec{x}=\vec{0}
+            \vec{x}\perp\vec{u_\alpha},\forall\alpha\in\Omega\Rightarrow\vec{x}=\vec{0}
         \end{equation*}
     \end{mydef}
 
@@ -1512,11 +1581,11 @@
         \begin{equation*}
             M=\overline{\mathcal{L}\left(\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}\right)}\neq H
         \end{equation*}
-        es decir que existe $\vec{x}\in H$ tal que $\vec{x}\notin M$. Como $M$ es un subesapcio cerrado de $H$ hilbertiano, entonces es ditinguido, luego existe la proyección ortogonal de $\vec{x}$ sobre $M$, digamos $\vec{x_0}$, entonces $\vec{x}-\vec{x_0}\neq\vec{0}$, pues $\vec{x}\notin M$ y en particular
+        es decir que existe $\vec{x}\in H$ tal que $\vec{x}\notin M$. Como $M$ es un subesapcio cerrado de $H$ hilbertiano, entonces es ditinguido, luego existe la proyección ortogonal de $\vec{x}$ sobre $M$, digamos $\vec{x_0}$, entonces $\vec{x}-\vec{x_0}\neq\vec{0}$, pues $\vec{x}\notin M$ y, en particular
         \begin{equation*}
             \vec{x}-\vec{x_0}\perp M
         \end{equation*}
-        en particular
+        luego,
         \begin{equation*}
             \vec{x}-\vec{x_0}\perp\vec{u_\alpha}\quad\forall\alpha\in\Omega
         \end{equation*}
@@ -1525,11 +1594,11 @@
         $2)\Rightarrow 3)$: Ya se sabe que $\N{2}{\hat{x}}\leq\norm{\vec{x}}$ por la desigualdad de Bessel.
         Sea $\vec{x}\in H$ y $\varepsilon>0$. Como $\overline{\mathcal{L}\left(\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}\right)}= H$, existen $J\subseteq \mathcal{F}(\Omega)$ y $\left(\lambda_\alpha \right)_{\alpha\in J }$ en $\mathbb{K}$ tales que:
         \begin{equation}
-            \norm{\vec{x}-\sum_{\alpha\in J }\lambda_\alpha\vec{u_\alpha}}<\varepsilon
+            \norm{\vec{x}-\sum_{\alpha\in J }\lambda_\alpha\vec{u_\alpha}}<\sqrt{\varepsilon}
         \end{equation}
         Sea $M_J=\mathcal{L}\left(\left(\vec{u_\alpha} \right)_{ \alpha\in J} \right)$, el cual es de dimensión finita, luego cerrado. Por tanto, de la ecuación anterior se sigue que:
         \begin{equation*}
-            d(\hat{x},M_J)\leq\varepsilon
+            d(\hat{x},M_J)\leq\sqrt{\varepsilon}
         \end{equation*}
         Si $\hat{x_0}=\sum_{\alpha\in J}\hat{x}(\alpha)\vec{u_\alpha}$, entonces $\vec{x_0}$ es la proyección ortogonal de $\vec{x}$ sobre $M_J$, luego:
         \begin{equation*}
@@ -1546,7 +1615,7 @@
                 &=\sum_{\alpha\in J}\abs{\hat{x}(\alpha)}^2\\
                 &\leq\N{2}{\hat{x}}^2
             \end{split}
-        \end{equation*}co
+        \end{equation*}
         Como $\varepsilon>0$ es arbitrario, se sigue que
         \begin{equation*}
             \norm{\vec{x}}\leq\N{2}{\hat{x}}
@@ -1557,14 +1626,33 @@
         \begin{equation*}
             \pint{\hat{x}}{\hat{x}}=\pint{\vec{x}}{\vec{x}},\quad\forall\vec{x}\in H
         \end{equation*}
-        entonces, para todo $\vec{x},\vec{y}\in H$ y para todo $\lambda\in\mathbb{K}$:
+        entonces, para todo $\vec{x},\vec{y}\in H$ y para todo $\lambda\in\mathbb{K}$ se cumple:
         \begin{equation*}
             \begin{split}
                 \pint{\hat{x}+\lambda\hat{y}}{\hat{x}+\lambda\hat{y}}&=\pint{\vec{x}+\lambda\vec{y}}{\vec{x}+\lambda\vec{y}}\\
-                \Rightarrow \conj{\lambda}\pint{\hat{x}}{\hat{y}}+\lambda(\hat{y},\hat{x})&=\conj{\lambda}\pint{\vec{x}}{\vec{y}}+\lambda(\vec{y},\vec{x})\\
+                \Rightarrow \conj{\lambda}\pint{\hat{x}}{\hat{y}}+\lambda\pint{\hat{y}}{\hat{x}} &=\conj{\lambda}\pint{\vec{x}}{\vec{y}}+\lambda\pint{\vec{y}}{\vec{x}} \\
             \end{split}
         \end{equation*}
-        tomando $\lambda=1$ y $\lambda=i$, lo anterior muestra que $\pint{\vec{x}}{\vec{y}}$ y $\pint{\hat{x}}{\hat{y}}$ tienen las mismas parte real e imaginaria, por tanto son iguales.
+        tomando $\lambda=1$ y $\lambda=i$ tenemos las siguientes igualdades:
+        \begin{equation*}
+            \begin{split}
+                \pint{\hat{x}}{\hat{y}}+\pint{\hat{y}}{\hat{x}} &=\pint{\vec{x}}{\vec{y}}+\pint{\vec{y}}{\vec{x}}\\
+                \Rightarrow \pint{\hat{x}}{\hat{y}}+\conj{\pint{\hat{y}}{\hat{x}}}&=\pint{\vec{x}}{\vec{y}}+\conj{\pint{\vec{x}}{\vec{y}}} \\
+                \Rightarrow 2\Re\pint{\hat{x}}{\hat{y}}&=2\Re\pint{\vec{x}}{\vec{y}}\\
+                \Rightarrow \Re\pint{\hat{x}}{\hat{y}}&=\Re\pint{\vec{x}}{\vec{y}}\\
+            \end{split}
+        \end{equation*}
+        y
+        \begin{equation*}
+            \begin{split}
+                i\pint{\hat{x}}{\hat{y}}-i\pint{\hat{y}}{\hat{x}}&=i\pint{\vec{x}}{\vec{y}}-i\pint{\vec{y}}{\vec{x}}\\
+                \Rightarrow i\pint{\hat{x}}{\hat{y}}+\conj{i\pint{\hat{x}}{\hat{y}}}&=i\pint{\vec{x}}{\vec{y}}+\conj{i\pint{\vec{y}}{\vec{x}}}\\
+                \Rightarrow 2\Re i\pint{\hat{x}}{\hat{y}} &=2\Re i\pint{\vec{x}}{\vec{y}} \\
+                \Rightarrow -\Im \pint{\hat{x}}{\hat{y}} &=-\Im \pint{\vec{x}}{\vec{y}} \\
+                \Rightarrow \Im \pint{\hat{x}}{\hat{y}} &=\Im \pint{\vec{x}}{\vec{y}} \\
+            \end{split}
+        \end{equation*}
+        lo anterior muestra que $\pint{\vec{x}}{\vec{y}}$ y $\pint{\hat{x}}{\hat{y}}$ tienen las mismas parte real e imaginaria, por tanto son iguales.
 
         $4)\Rightarrow 1)$: Supongamos que 1. es falso. Entonces, existe $\vec{x}\in H\backslash\left\{\vec{0} \right\}$ tal que $\vec{x}\perp\vec{u_\alpha}$ para todo $\alpha\in\Omega$, es decir que:
         \begin{equation*}
@@ -1582,7 +1670,7 @@
     \end{obs}
 
     \begin{obs}
-        Si $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ es un sistema ortonormal maximal en un espacio hilbertiano $H$, entonces $\vec{x}\mapsto\hat{x}$ es una isometría lineal de $H$ en $l_2(\Omega,\mathbb{K})$. Pero, por el teorema de Riesz-Fischer esta aplicación es suprayectiva, luego $H$ y $l_2(\Omega,\mathbb{K})$ son linealmente isométricos. La isometría inversa es: dada $\varphi\in l_2(\Omega,\mathbb{K})$:
+        Si $\left(\vec{u_\alpha} \right)_{\alpha\in\Omega}$ es un sistema ortonormal maximal en un espacio hilbertiano $H$, entonces $\vec{x}\mapsto\hat{x}$ es una isometría lineal de $H$ en $l_2(\Omega,\mathbb{K})$. Pero, por el teorema de Riesz-Fischer esta aplicación es suprayectiva, luego $H$ y $l_2(\Omega,\mathbb{K})$ son linealmente isométricos (en particular, son isomorfos). La isometría inversa está dada por: para todo $\varphi\in l_2(\Omega,\mathbb{K})$,
         \begin{equation*}
             \varphi\mapsto\sum_{\alpha\in\Omega}\varphi(\alpha)\vec{u_\alpha}
         \end{equation*}
@@ -1597,9 +1685,9 @@
         \begin{equation*}
             \mathcal{F}_i\subseteq\mathcal{F}_j\quad\textup{o}\quad\mathcal{F}_j\subseteq\mathcal{F}_i
         \end{equation*}
-        para todo $i,j\in J$. Sea $\mathcal{F}=\bigcup_{ i\in J}\mathcal{F}_i$. Si $\vec{u_\alpha},\vec{u_\varepsilon}\in\mathcal{F}$, entonces existe $i\in J$ tal que $\vec{u_\alpha},\vec{u_\varepsilon}\in\mathcal{F}_i$, luego $\pint{\vec{u_\alpha}}{\vec{u_\beta}}=\delta_{\alpha\beta}$, por tanto $\mathcal{F}$ es un sistema O.N, el cual es un mayorante de la cadena $\left(\mathcal{F}_i \right)_{i\in J}$ (es decir que tiene un elemento máximo).
+        para todo $i,j\in J$. Sea $\mathcal{F}=\bigcup_{ i\in J}\mathcal{F}_i$. Si $\vec{u_\alpha},\vec{u_\beta}\in\mathcal{F}$, entonces existe $i\in J$ tal que $\vec{u_\alpha},\vec{u_\beta}\in\mathcal{F}_i$, luego $\pint{\vec{u_\alpha}}{\vec{u_\beta}}=\delta_{\alpha\beta}$, por tanto $\mathcal{F}$ es un sistema O.N, el cual es un mayorante de la cadena $\left(\mathcal{F}_i \right)_{i\in J}$ (es decir que tiene un elemento máximo).
         
-        Así pues, $\mathcal{O}$ es un conjunto ordenado inductivo. Por el lema de Zorn, $\mathcal{O}$ contiene un elemento maximal. Este es un sistema ortonormal maximal.
+        Así pues, $\mathcal{O}$ es un conjunto ordenado inductivo. Por el lema de Zorn, $\mathcal{O}$ contiene un elemento maximal. Este elemento es un sistema ortonormal maximal.
     \end{proof}
 
     \begin{theor}
@@ -1613,16 +1701,16 @@
             \begin{equation*}
                 H=\overline{\mathcal{L}(\vec{u_1},...,\vec{u_n})}=\mathcal{L}(\vec{u_1},...,\vec{u_n})
             \end{equation*}
-            pues la dimensión del generado es finita, por tanto el generado es cerrado. Así pues, $H$ es de dimensión finita.
+            pues la dimensión del generado es finita por tanto, el generado es cerrado. Así pues, $H$ es de dimensión finita.
             
             Como los elementos de $\mathcal{B}$ son l.i. entonces $\mathcal{B}$ también debe ser finito y cumplen que si $\mathcal{B}=\left\{\vec{v_1},...,\vec{v_m} \right\}$:
             \begin{equation*}
-                H=\overline{\left\{\vec{v_1},...,\vec{v_m} \right\}}=\left\{\vec{v_1},...,\vec{v_m} \right\}
+                H=\overline{\mathcal{L}\left\{\vec{v_1},...,\vec{v_m} \right\}}=\mathcal{L}\left\{\vec{v_1},...,\vec{v_m} \right\}
             \end{equation*}
             es decir que $m=n$ por ser bases de $H$. Luego $\abs{\mathcal{A}}=\abs{\mathcal{B}}$.
             \item Suponga que $\mathcal{A}$ es infinito. Por 1. también debe suceder que $\mathcal{B}$ sea infinito. Para todo $\vec{a}\in\mathcal{A}$ se define:
             \begin{equation*}
-                \mathcal{B}_{\vec{a}}=\left\{\vec{b}\in\mathcal{B}\Big|\hat{a}(\vec{b})=\pint{\vec{a}}{\vec{b}}\neq0 \right\}
+                \mathcal{B}_{\vec{a}}=\left\{\vec{b}\in\mathcal{B}\Big|\hat{a}\left(\vec{b}\right) =\pint{\vec{a}}{\vec{b}}\neq0 \right\}
             \end{equation*}
             se sabe que $\mathcal{B}_{\vec{a}}$ es a lo sumo numerable. Por otra parte, por la identidad de Parseval:
             \begin{equation*}
@@ -1645,7 +1733,7 @@
                     &\leq\abs{\mathcal{A}}\\
                 \end{split}
             \end{equation*}
-            pues, $\abs{\mathcal{B}_{\vec{a}}}\leq\aleph_0$, para todo $\vec{a}\in\mathcal{A}$. Por simetría se obtiene también que $\abs{\mathcal{A}}\leq\abs{\mathcal{B}}$. Por tanto, $\abs{\mathcal{A}}=\abs{\mathcal{B}}$.
+            pues, $\abs{\mathcal{B}_{\vec{a}}}\leq\aleph_0$, para todo $\vec{a}\in\mathcal{A}$. Por simetría se obtiene también que $\abs{\mathcal{A}}\leq\abs{\mathcal{B}}$. Por tanto, por Cantor-Bernstein se sigue que $\abs{\mathcal{A}}=\abs{\mathcal{B}}$.
         \end{enumerate}
     \end{proof}
 
@@ -1658,11 +1746,11 @@
 
         Para la segunda parte, sea $\Omega$ arbitrario. Para cada $\alpha\in\Omega$ se define $\varphi_\alpha\in l_2(\Omega,\mathbb{K})$ como:
         \begin{equation*}
-            \varphi_{\alpha}(\beta)=\delta_{\alpha\beta},\quad\forall\alpha\beta\in\Omega
+            \varphi_{\alpha}(\beta)=\delta_{\alpha\beta},\quad\forall\alpha,\beta\in\Omega
         \end{equation*}
         Claramente $\left(\varphi_\alpha \right)_{\alpha\in\Omega}$ es un sistema O.N. en $l_2(\Omega,\mathbb{K})$.
 
-        Sea $\Omega'$ otro conjunto tal que $\abs{\Omega'}\neq\abs{\Omega}$. Si $l_2(\Omega,\mathbb{K})$ y $l_2(\Omega',\mathbb{K})$ fuesen linealmente isométricos, se tendrían dos sistemas O.N. maximales en $l_2(\Omega,\mathbb{K})$ con diferente cardinalidad, a saber $\left(\varphi_\alpha \right)_{\alpha\in\Omega}$ y el inducido por el de $l_2(\Omega',\mathbb{K})$ a través de la isometría, lo cual no es posible por un teorema anterior.
+        Sea $\Omega'$ otro conjunto tal que $\abs{\Omega'}\neq\abs{\Omega}$. Si $l_2(\Omega,\mathbb{K})$ y $l_2(\Omega',\mathbb{K})$ fuesen linealmente isométricos, se tendrían dos sistemas O.N. maximales en $l_2(\Omega,\mathbb{K})$ con misma cardinalidad, a saber $\left(\varphi_\alpha \right)_{\alpha\in\Omega}$ y el inducido por el de $l_2(\Omega',\mathbb{K})$ a través de la isometría, lo cual no es posible por un teorema anterior.
 
         Si $\abs{\Omega}=\abs{\Omega'}$ entonces, existe existe $\cf{h}{\Omega}{\Omega'}$ biyección. En este caso, la aplicación $f\mapsto f\circ h$ sería una isometría lineal de $l_2(\Omega',\mathbb{K})$ en $l_2(\Omega,\mathbb{K})$.
     \end{proof}
