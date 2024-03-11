@@ -125,6 +125,7 @@
 \newcommand{\natint}[1]{\ensuremath{\left[|#1|\right]}}
 \newcommand{\floor}[1]{\ensuremath{\lfloor#1\rfloor}}
 \newcommand{\Card}[1]{\ensuremath{\textup{Card}\left(#1\right)}}
+\newcommand{\Pot}[1]{\ensuremath{\mathcal{P}\left(#1\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -1492,7 +1493,7 @@
         Un conjunto ordenado $(X,\mathcal{R})$ se dice que está \textbf{bien ordenado} si todo subconjunto no vacío de $X$ tiene primer elemento o elemento mínimo.
     \end{mydef}
 
-    \section{Estudio del espacio topológico $(\Cls{\mathcal{S}_\Omega},\tau_\prec)$}
+    \section{Estudio del espacio topológico $(\Cls{\mathcal{S}_\omega},\tau_\prec)$}
 
     \begin{propo}
         Existe un conjunto bien ordenado no numerable, en el cual toda sección de él es numerable.
@@ -1577,7 +1578,7 @@
         \begin{enumerate}
             \item Suponga que $b=\omega$, entonces existe $c\in S_\omega$ tal que $a\prec c\prec b$ (en caso contrario se tendría que $\mathcal{S}_\omega=\mathcal{S}_a\cup\left\{a\right\}$, donde un lado es no numerable y el otro sí, lo cual no puede suceder). Entonces:
             \begin{equation*}
-                a\in [p,c)\quad\textup{y}b\in(c,\omega]
+                a\in [p,c)\quad\textup{y}\quad b\in(c,\omega]
             \end{equation*}
             donde $[p,c),(c,\omega]\in\tau_\prec$ y su intersección es vacía.
             \item Suponga que $b\prec\omega$:
@@ -1601,5 +1602,120 @@
         lo cual no puede suceder ya que entonces se tendría que $\mathcal{S}_\omega$ es numerable\contradiction. Por tanto, la intersección es no vacía, es decir que existe $x\in \mathcal{S}_\omega$ tal que $x\in B$.
     \end{proof}
 
+    \section{Funciones Continuas}
+
+    \begin{mydef}
+        Sean $(X,d)$ y $(Y,\rho)$ dos espacios métricos, y $\cf{f}{(X,d)}{(Y,\rho)}$ una función. La función $f$ se dice una \textbf{función continua} si dado $x_0\in X$ y $\varepsilon\in\mathbb{R}^+$, existe $\delta\in\mathbb{R}^+$ tales que si
+        \begin{equation*}
+            x\in B_d(x_0,\delta)\Rightarrow f(x)\in B_\rho(f(x_0),\varepsilon)
+        \end{equation*}
+        que es equivalente a decir que $f(B_d(x_0,\delta))\subseteq B_\rho(f(x_0),\varepsilon)$.
+    \end{mydef}
+
+    \begin{propo}
+        Sean $(X,d)$ y $(Y,\rho)$ dos espacios métricos, y $\cf{f}{(X,d)}{(Y,\rho)}$ una función. Entonces, $f$ es una función continua si y sólo si dado $U\subseteq Y$ abierto, $f^{-1}(U)\subseteq X$ es abierto.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow)$: Suponga que $f$ es continua y sea $U\subseteq Y$ abierto. Si $x\in f^{-1}(U)$, entonces $f(x)\in U$. Como $U$ es abierto, existe $\varepsilon\in\mathbb{R}^+$ tal que $B_\rho(f(x),\varepsilon)\subseteq U$. Pero, como $f$ es continua entonces existe $\delta\in\mathbb{R}^+$ tal que 
+        \begin{equation*}
+            f(B_d(x,\delta))\subseteq B_\rho(f(x),\varepsilon)\subseteq U
+        \end{equation*}
+        es decir que $B_d(x,\delta)\subseteq f^{-1}(U)$. Por tanto, al ser $x\in f^{-1}(U)$ arbitrario, se sigue que $f^{-1}(U)$ es abierto.
+
+        $\Leftarrow)$: Suponga que para todo $U\subseteq Y$ abierto, $f^{-1}(U)$ es abierto en $X$. Sean ahora $x_0\in X$ y $\varepsilon\in\mathbb{R}^+$. Como el conjunto $B_\rho(f(x_0),\varepsilon)$ es abierto, entonces $f^{-1}(B_\rho(f(x_0),\varepsilon))$ donde $x_0\in f^{-1}(B_\rho(f(x_0),\varepsilon))$, por ende existe $\delta\in\mathbb{R}^+$ tal que
+        \begin{equation*}
+            \begin{split}
+                B_d(x_0,\delta)&\subseteq f^{-1}(B_\rho(f(x_0),\varepsilon))\\
+                \Rightarrow f(B_d(x_0,\delta))&\subseteq B_\rho(f(x_0),\varepsilon)\\
+            \end{split}
+        \end{equation*}
+        por tanto, como el $x_0\in X$ fue arbitrario se sigue que $f$ es continua en $X$.
+    \end{proof}
+
+    \begin{mydef}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios topológicos y $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ una función. Decimos que $f$ es una \textbf{función continua} si para todo $U\in\tau_2$ se tiene que $f^{-1}(U)\in\tau_1$ (imágenes inversas de abiertos son abiertas).
+    \end{mydef}
+
+    \begin{exa}
+        Sea $(X_1,\tau_1)$ un espacio topológico tal que $\tau_1$ es la topología discreta, es decir que $\tau_1=\mathcal{P}(X)$. Sea $(X_2,\tau_2)$ un espacio topológico arbitrario. Entonces, toda función $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es continua.
+    \end{exa}
+
+    \begin{exa}
+        Sea $(X_1,\tau_1)$ un espacio toplógico arbitrario y, sea $(X_2,\tau_2)$ un espacio topológico tal que $\tau_2=\tau_I$. Entonces, toda función $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es continua.
+    \end{exa}
+
+    \begin{propo}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios topológicos y $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ una función. Entonces, $f$ es una función continua si y sólo si dados $x\in X_1$ y $V\in\V{f(x)}$ existe $U\in\V{x}$ tal que $f(U)\subseteq V$.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow)$: Suponga que $f$ es continua. Sea $x\in X_1$ y $V\in\V{f(x)}$, entonces existe $W\in\tau_2$ tal que $f(x)\in W\subseteq V$, es decir que $x\in f^{-1}(W)$ donde al ser $f$ continua se tiene que $f^{-1}(W)\in\tau_1$, esto es que $U=f^{-1}(W)\in\V{x}$. Además, $U=f^{-1}(W)\subseteq f(V)$.
+
+        $\Leftarrow)$: Sea $V\in\tau_2$ y sea $x\in f^{-1}(V)$, entonces $f(x)\in V$ donde $V\in\V{f(x)}$. Así, por la tesis existe $U\in \V{x}$ tal que $f(U)\subseteq V$, lo cual implica que:
+        \begin{equation*}
+            x\in U\subseteq f^{-1}(f(U))\subseteq f^{-1}(V)
+        \end{equation*}
+        por tanto, $f^{-1}(V)\in\tau_1$.
+    \end{proof}
+
+    \begin{cor}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios topológicos y $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ una función. Entonces, $f$ es continua si y sólo si dado $x\in X_1$ y dado $V\in\tau_2$ tales que $f(x)\in V$ existe $U\in\tau_1$ tal que $x\in U$ y $f(U)\subseteq V$.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato de la proposición anterior.
+    \end{proof}
+
+    \begin{propo}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios topológicos, $\mathcal{B}$ una base para $\tau_2$ y $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ una función. Entonces, $f$ es continua si y sólo si para todo $B\in\mathcal{B}$ se tiene que $f^{-1}(B)\in\tau_1$.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow)$: Es inmediata.
+
+        $\Leftarrow)$: Sea $U\in\tau_2$, como $\mathcal{B}$ es base, entonces existe $\left\{B_\alpha \right\}_{\alpha\in I}\subseteq\mathcal{B}$ tal que
+        \begin{equation*}
+            U=\bigcup_{\alpha\in I}B_\alpha
+        \end{equation*}
+        por lo cual:
+        \begin{equation*}
+            f^{-1}(U)=f^{-1}\left(\bigcup_{\alpha\in I}B_\alpha\right)=\bigcup_{\alpha\in I}f^{-1}(B_\alpha)
+        \end{equation*}
+        donde $f^{-1}(B_\alpha)\in\tau_1$, para todo $\alpha\in I$. Luego, $f^{-1}(U)\in\tau_1$.
+    \end{proof}
+
+    \begin{propo}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios topológicos y, $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ una función. Entonces, lo siguientes enunciados son equivalentes:
+        \begin{enumerate}
+            \item $f$ es continua.
+            \item $\forall A\subseteq X_1$, $f(\Cls{A})\subseteq\Cls{f(A)}$.
+            \item Si $A\subseteq X_2$ cerrado, entonces $f^{-1}(A)$ es cerrado de $X_1$. 
+        \end{enumerate}
+        
+        \begin{proof}
+            $1)\Rightarrow 2)$: Sea $A\subseteq X_1$ y $x\in \Cls{A}$. Queremos ver que dado $V\subseteq X_2$ abierto tal que $f(x)\in X_2$ contiene puntos de $f(A)$, i.e. $V\cap f(A)\neq\emptyset$.
+            
+            Como $f$ es continua, entonces $f^{-1}(V)$ es abierto en $X_1$, luego como $x\in\Cls{A}$ entonces $f^{-1}(V)\cap A\neq\emptyset$, así existe $a\in f^{-1}(V)\cap A$ por lo cual $f(A)\in V$ y $f(a)\in f(A)$, así $V\cap f(A)\neq\emptyset$. Finalmente, se sigue que $f(\Cls{A})\subseteq\Cls{f(A)}$.
+
+            $2)\Rightarrow 3)$: Sea $A\subseteq X_2$ cerrado. Por (2) se tiene que
+            \begin{equation*}
+                \Cls{f^{-1}(A)}\subseteq f^{-1}(f(\Cls{f^{-1}(A)}))\subseteq f^{-1}(\Cls{f(f^{-1}(A))})\subseteq f^{-1}(\Cls{A})=f^{-1}(A)
+            \end{equation*}
+            (la segunda contención se da por (2)) y pues $f(f^{-1}(A))\subseteq A$.
+            
+            $3)\Rightarrow 1)$: Sea $U\in\tau_2$, entonces $X_2-U$ es cerrado en $X_2$, luego $f^{-1}(X_2-U)=X_1-f^{-1}(U)$ siendo $f^{-1}(U)$ cerrado, luego $f^{-1}(U)\in\tau_1$.
+        \end{proof}
+    \end{propo}
+
+    \begin{exa}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios topológicos y $y_0\in X_2$. Definimos la función $\cf{\underline{y_0}}{(X_1,\tau_1)}{(X_2,\tau_2)}$ tal que $\forall x\in X_1$ se tiene que $\underline{y_0}(x)=y_0$. Esta función es una función continua y se llama una \textbf{función constante}.
+
+        Sea $\cf{f}{(\mathbb{R},\tau_u)}{(\mathbb{R},\tau_I)}$ tal que para todo $x\in\mathbb{R}$, $f(x)=4$ (esto es que $f=\underline{4}$). Por lo anterior esta es una función continua. Se tiene por ende que:
+        \begin{equation*}
+            \Cls{f(\mathbb{N})}=\mathbb{R}\quad\textup{y}\quad f(\Cls{N})=4
+        \end{equation*}
+        es decir que $\Cls{f(\mathbb{N})}\nsubseteq f(\Cls{\mathbb{N}})$.
+    \end{exa}
 
 \end{document}
