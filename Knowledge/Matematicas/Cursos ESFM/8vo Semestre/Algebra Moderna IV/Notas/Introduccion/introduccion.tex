@@ -122,6 +122,7 @@
 
 \newcommand{\Cat}[1]{\ensuremath{\textup{\textbf{#1}}}}
 \newcommand{\Iso}[3]{\ensuremath{\textup{I}_{\textup{SO}_{#1}}\left(#2,#3\right)}}
+\newcommand{\SO}[1]{\ensuremath{\textup{SO}\left(#1\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -755,5 +756,136 @@
     \begin{proof}
         Es inmedaita de la proposición anterior.
     \end{proof}
+
+    \begin{exa}
+        Considere la categoría $\Cat{Set}$. Se tiene que el conjunto vacío es un objeto inicial de esta categoría.
+    \end{exa}
+
+    \begin{sol}
+        En efecto, sean $A,B\in\Obj{\Cat{Set}}$, tal que $B=\left\{b_1,b_2 \right\}$. Tenemos que las funciones $\cf{f_1}{A}{B}$ y $\cf{f_2}{A}{B}$ dadas por $a\mapsto b_1$ y $a\mapsto b_2$, respectivamente. $A$ no puede ser un objeto inicial ya que $\abs{\Hom{\Cat{Set}}{A}{B}}\geq 2$, esto si $A$ es no vacío.
+
+        Por lo cual, $A$ tiene que ser vacío para que en este conjunto haya solamente una función, a saber la función vacía, que tiene como dominio al vacío.
+    \end{sol}
+
+    \begin{exa}
+        En la categoría del ejemplo anterior, los conjuntos que constan de un solo elemento son objetos finales de esta categoría.
+
+        Luego, por el ejemplo anterior al tenerse que el único objeto inicial es el vacío, y este no puede ser objeto final, se sigue que $\Cat{Set}$ no tiene objetos cero.
+    \end{exa}
+
+    \begin{exa}
+        En las categorías $\Cat{Grp},\Cat{Ab}$ y $_R\mathcal{M}$, el grupo trivial, respectivamente el módulo trivial, son objetos cero.
+    \end{exa}
+
+    \begin{exa}
+        En la categoría $\Cat{Field}$ (los morfismos son homomorfismos de campos que mandan al $1$ en el $1$) no existen objetos iniciales ni finales.
+    \end{exa}
+
+    \begin{sol}
+        En efecto, sean $E,F\in\Obj{\Cat{Field}}$ tales que $\textup{Car}(E)\neq\textup{Car}(F)$. Supongamos que $\cf{f}{E}{F}$ es un homomorfismo tal que $f(1)=1$. Se tienen los siguientes casos:
+        \begin{enumerate}
+            \item $\textup{Car}(E)=0$. En este caso, se tiene que $\textup{Car}(F)>0$, digamos que $q=\textup{Car}(F)$. Se tiene que:
+            \begin{equation*}
+                1=f(1)=f(q\cdot 1)=f(\underbrace{1+...+1}_{q-veces})=qf(1)=0=f(0)
+            \end{equation*}
+            por tanto, $1=0$\contradiction, ya que estaríamos diciendo que $0=q\cdot 1$.
+            \item $\textup{Car}(E)=p$. Es análogo al anterior.
+        \end{enumerate}
+    \end{sol}
+
+    \begin{obs}
+        En la categoría $\Cat{Field}$ no se toma en cuenta el campo trivial con la conidición de que $f(1)=1$ ya que se llega a una contradicción. Así lo que sucede con el campo que solo contiene al $\left\{0\right\}$ no hay homomorfismos más que consigo misma.
+    \end{obs}
+
+    \begin{exa}
+        En la categoría $\Cat{Ring}$ el anillo $\mathbb{Z}$ es un objeto inicial.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, sea $R\in\Obj{\Cat{Ring}}$. y $\cf{f}{\mathbb{Z}}{R}$ un homomorfismo. Entonces se tiene para todo $n\in\mathbb{Z}$ que:
+        \begin{equation*}
+            f(n)=nf(1)=n1_R
+        \end{equation*}
+        es decir, que queda unívocamente determinada la $f$ por el $1_R$.Así esta función queda determinada únicamente por el campo $R$. Así, solo puede haber un homomorfismo de $\mathbb{Z}$ en $R$.
+    \end{proof}
+
+    \begin{mydef}
+        Sean $\mathcal{C}$ una categoría y $C\in\Obj{\mathcal{C}}$. Si $A,B\in\Obj{\mathcal{C}}$ y, $f,g$ son monomorfismos tales que $f\in\Hom{\mathcal{C}}{A}{C}$ y $g\in\Hom{\mathcal{C}}{B}{C}$, diremos entonces que $f$ y $g$ son \textbf{equivalentes} si existe un isomorfismo $u\in\Hom{\mathcal{C}}{A}{B}$ tal que
+        \begin{equation*}
+            g\circ u=f
+        \end{equation*}
+        es decir, hace del diagrama de abajo un diagrama conmutativo.
+
+        La relación de ser equivalentes es una relación de equivalencia sobre la clase de todos los monomorfimos con contradominio $C$.
+    \end{mydef}
+
+    \begin{proof}
+        Se tienen que verificar tres cosas:
+        \begin{enumerate}
+            \item \textbf{Reflexividad}. Si $f\in\Hom{\mathcal{C}}{A}{C}$ es monomorfismo, entonces $f$ es equivalente a sí misma ya que:
+            \begin{equation*}
+                f\circ 1_A=f
+            \end{equation*}
+            donde $1_A\in\Hom{\mathcal{C}}{A}{A}$ es un isomorfismo de $A$ en $A$.
+            \item \textbf{Simetría}. Si $f\in\Hom{\mathcal{C}}{A}{C}$ y $g\in\Hom{\mathcal{C}}{B}{C}$ son monomorfismos tales que existe $u\in\Hom{\mathcal{C}}{A}{B}$ isomorfismo que cumple:
+            \begin{equation*}
+                g\circ u=f
+            \end{equation*}
+            como $u$ es isomorfismo, existe $u^*\in\Hom{\mathcal{C}}{B}{A}$ tal que:
+            \begin{equation*}
+                u^*\circ u=1_A \quad\textup{y}\quad u\circ u^*=1_B
+            \end{equation*}
+            se tiene entonces que:
+            \begin{equation*}
+                \begin{split}
+                    f\circ u^*&=(f)\circ u^*\\
+                    &=(g\circ u)\circ u^*\\
+                    &=g\circ(u\circ u^*)\\
+                    &=g\\
+                \end{split}
+            \end{equation*}
+            luego, $g$ y $f$ son equivalentes.
+            \item \textbf{Transitividad}. Sean $f\in\Hom{\mathcal{C}}{A}{C}$, $g\in\Hom{\mathcal{C}}{B}{C}$ y $h\in\Hom{\mathcal{C}}{D}{C}$ monomorfismos tales que existen $u\in\Hom{\mathcal{C}}{A}{B}$ y $v\in\Hom{\mathcal{C}}{B}{D}$ isomorfismos con:
+            \begin{equation*}
+                g\circ u=f\quad\textup{y}\quad h\circ v=g
+            \end{equation*}
+            veamos que $v\circ u$ es un isomorfismo. En efecto, por ser cada uno isomorfismos, existen $u^*\in\Hom{\mathcal{C}}{B}{A}$ y $v^*\in\Hom{\mathcal{C}}{D}{B}$ tales que:
+            \begin{equation*}
+                u^*\circ u=1_A\quad\textup{y}\quad u\circ u^*=1_B
+            \end{equation*}
+        \end{enumerate}
+        por los tres incisos anteriores, esta relación es una relación de equivalencia.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría y $C\in\Obj{\mathcal{C}}$. A las clases de equivalencia de la relación anterior las llamaremos los \textbf{sub-objetos} de $C$.
+    \end{mydef}
+
+    \begin{exa}
+        Consideremos las categorías $\Cat{Set}$ y sea $X\in\Obj{\Cat{Set}}$ fijo. Definimos la siguiente función:
+        \begin{equation*}
+            \begin{split}
+                \psi_X:\mathcal{P}(X)&\rightarrow \SO{X}\\
+                Y&\mapsto \hat{i_Y}\\
+            \end{split}
+        \end{equation*}
+        para cada $Y\subseteq X$, donde $\SO{X}$ denota la clase de sub-objetos de $X$ y, $i_Y$ es la función dada por la inclusión $\cf{i_Y}{Y}{X}$, y el sombrerito denota su clase de equivalencia.
+    \end{exa}
+
+    \begin{sol}
+        Claramente esta función está bien definida. Afirmamos que $\psi_X$ es una biyección. En efecto, sea $Y\subseteq X$, $V\Obj{\Cat{Set}}$ y $\cf{f}{V}{X}$ un monomorfismo tal que $f(V)=Y$. Como $f$ es una función inyectiva, la función $\cf{u}{V}{Y}$ tal que $v\mapsto f(v)$ es una función biyectiva, y
+        \begin{equation*}
+            i_Y\circ u=f
+        \end{equation*}
+        luego, $\hat{i_Y}=\hat{f}$. De aquí se deduce que $\psi_X$ es suprayectiva.
+
+        Veamos que es inyectiva. Sean $Y,Z\subseteq X$ tales que $\hat{i_Y}=\hat{i_Z}$, luego existe una función biyectiva $\cf{u}{Y}{Z}$ tal que:
+        \begin{equation*}
+            i_Z\circ u = i_Y
+        \end{equation*}
+        Sea $y\in Y$, entonces por la igualdad $y=i_Y(y)=i_Z(u(y))=u(y)\in Z$. Por tanto, $Y\subseteq Z$. Considerando la inversa de $u$ se llega a la otra contención, así $Y=Z$.
+
+        Por tanto, $\psi_X$ es biyección.
+    \end{sol}
 
 \end{document}
