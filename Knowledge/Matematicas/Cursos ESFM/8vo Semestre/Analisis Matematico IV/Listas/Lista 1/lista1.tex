@@ -1013,31 +1013,61 @@
     \end{excer}
 
     \begin{proof}
-        Consideremos primero $H=L_2([0,1],\mathbb{K})$. Sea $\cf{\gamma}{[0,1]}{H}$ dada por:
+        Consideremos primero $H'=L_2([0,1],\mathbb{K})$. Sea $\cf{\gamma'}{[0,1]}{H'}$ dada por:
         \begin{equation*}
-            \gamma(x)=\chi_{[0,x]},\quad\forall x\in[0,1]
+            \gamma'(x)=\chi_{[0,x]},\quad\forall x\in[0,1]
         \end{equation*}
-        es claro que $\gamma$ es inyectiva. Además, si $0\leq a\leq b\leq c\leq d\leq 1$, se tiene que:
+        es claro que $\gamma'$ es inyectiva. Además, si $0\leq a\leq b\leq c\leq d\leq 1$, se tiene que:
         \begin{equation*}
             \begin{split}
-                \gamma(b)-\gamma(a)&=\chi_{[0,b]}-\chi_{[0,a]}\\
+                \gamma'(b)-\gamma'(a)&=\chi_{[0,b]}-\chi_{[0,a]}\\
                 &=\chi_{]a,b]}\\
             \end{split}
         \end{equation*}
-        y, $\gamma(d)-\gamma(c)=\chi_{]c,d]}$. Por tanto:
+        y, $\gamma'(d)-\gamma'(c)=\chi_{]c,d]}$. Por tanto:
         \begin{equation*}
             \begin{split}
-                \pint{\gamma(b)-\gamma(a)}{\gamma(d)-\gamma(c)}&=\int_{0}^{1}\chi_{]a,b]}\conj{\chi_{]c,d]}}\\
+                \pint{\gamma'(b)-\gamma'(a)}{\gamma'(d)-\gamma'(c)}&=\int_{0}^{1}\chi_{]a,b]}\conj{\chi_{]c,d]}}\\
                 &=\int_{0}^{1}\chi_{]a,b]}\chi_{]c,d]}\\
                 &=0\\
             \end{split}
         \end{equation*}
-        por tanto, $\gamma(b)-\gamma(a)$ y $\gamma(d)-\gamma(c)$ son ortogonales.
-        %TODO
+        por tanto, $\gamma'(b)-\gamma'(a)$ y $\gamma'(d)-\gamma'(c)$ son ortogonales.
+
+        Ahora, sea $H$ un espacio hilbertiano arbitrario de dimensión infinita. Entonces, existe $\Omega$ tal que $H\equiv l_2(\Omega,\mathbb{K})$, sea $\cf{F}{l_2(\Omega,\mathbb{K})}{H}$ la isometría suprayectiva entre estos dos espacios (en particular, es biyectiva por lo que es un isomorfismo de espacios hilbertianos).
+        
+        Notemos que como $H'=L_2([0,1],\mathbb{K})$ siendo $[0,1]\subseteq\mathbb{R}$ medible, entonces $H'$ es separable, es decir que $H'\equiv l_2(\mathbb{N},\mathbb{K})$ (son isométricos), sea $\cf{G}{H'}{l_2(\mathbb{N},\mathbb{K})}$ la isometría suprayectiva entre estos dos espacios (nuevamente, se tiene que en particular es biyectiva, por lo que es un isomorfismo de espacios hilbertianos).
+
+        Como $\Omega$ es infinito (ya que el espacio $H$ es de dimensión infinita, luego la familia O.N. maximal debe ser infinita, es decir a lo sumo numerable) existe una subfamilia $\left\{\omega_n \right\}_{n=1}^\infty$ numerable de elementos de $\Omega$, defina así $\cf{j}{\mathbb{N}}{\Omega}$ tal que $n\mapsto \omega_n$. Definimos con esto la función $\cf{J}{l_2(\mathbb{N},\mathbb{K})}{l_2(\Omega,\mathbb{K})}$ tal que:
+        \begin{equation*}
+            \left\{x(n) \right\}_{n\in\mathbb{N}}\mapsto\left\{y(\omega) \right\}_{\omega\in\Omega}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            y(\omega)=\left\{
+                \begin{array}{lr}
+                    x(n) & \textup{ si }\omega=\omega_n\textup{ para algún }n\in\mathbb{N}\\
+                    0 & \textup{ en otro caso} \\
+                \end{array}
+            \right.
+            ,\quad\forall\omega\in\Omega
+        \end{equation*}
+        Esta función está bien definida y es claro que es inyectiva (más aún, es una isometría). Por lo cual la función
+        \begin{equation*}
+            \gamma=F\circ J\circ G\circ \gamma':[0,1]\rightarrow H
+        \end{equation*}
+        es inyectiva, y cumple que (al ser $F$, $J$ y $G$ isometrías):
+        \begin{equation*}
+            \begin{split}
+                \pint{\gamma(b)-\gamma(a)}{\gamma(d)-\gamma(d)}&=\pint{\gamma'(b)-\gamma'(a)}{\gamma'(d)-\gamma'(d)}\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        para todo $0\leq a\leq b\leq c\leq d\leq 1$ (pues, $F\circ J\circ G$ es una isometría por lo cual preserva el producto escalar). Así, $\gamma$ es la función buscada.
     \end{proof}
 
     \begin{excer}
-        Sea $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ una sucesión de elementos de un espacio hilbertiano $H$. La sucesión $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ se llama \textbf{martingala} (en el sentido amplio) si, $\forall\nu\in\mathbb{N}$, $\vec{x_\nu}$ es el vector de $\mathcal{L}(\vec{x_1},...,\vec{x_\nu})$ menos alejado de $\vec{x_{\nu+1}}$.
+        Sea $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ una sucesión de elementos de un espacio hilbertiano $H$. La sucesión $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ se llama \textbf{martingala} (en el sentido amplio) si, $\forall\nu\in\mathbb{N}$, $\vec{x_\nu}$ es el vector de $\mathcal{L}(\vec{x_1},...,\vec{x_\nu})$ menos alejado de $\vec{x_{\nu+1}}$ (básicamente $\vec{x_v}$ es la proyección ortogonal de $\vec{x_{v+1}}$ sobre el subespacio generado por los vectores anteriores).
         \begin{enumerate}
             \item Sea $\left\{\vec{x_\nu} \right\}_{\nu=1}^\infty$ una martingala. Se definen:
             \begin{equation*}
@@ -1053,14 +1083,42 @@
     \end{excer}
 
     \begin{proof}
-        De (i): Procederemos por inducción sobre $\nu$. Para $\nu=2$ el resultado se cumple, pues
-        %TODO
+        De (i): Procederemos por inducción sobre $\nu$. Para $\nu=2$ el resultado se cumple, pues notemos que $\vec{x_1}$ es el vector de $\mathcal{L}(\vec{x_1})$ menos alejado de $\vec{x_{2}}$, es decir que $\vec{x_1}$ es la proyección ortogonal de $\vec{x_2}$, luego $\vec{x_1}\perp \vec{x_2}-\vec{x_1}$, es decir que $\vec{y_1}\perp\vec{y_2}$. Además, por este hecho (y, usando Pitágoras) se sigue que:
+        \begin{equation*}
+            \begin{split}
+                \norm{\vec{x_1}}^2+\norm{\vec{x_2}-\vec{x_1}}^2&=\norm{\vec{x_2}}^2\\
+                \Rightarrow \norm{\vec{x_1}}\leq\norm{\vec{x_2}}
+            \end{split}
+        \end{equation*}
+
+        Suponga que el resultado se cumple para algún $\nu$. Veamos que se cumple para $\nu+1$. En efecto, ya se tiene que $\vec{y_1},...,\vec{y_\nu}$ son ortogonales a pares. Como $\vec{x_\nu}$ es el vector menos alejado de $\vec{x_{\nu+1}}$, es decir que es su proyección ortogonal sobre $\mathcal{L}(\vec{x_1},...,\vec{x_\nu})$, por ende, $\vec{y_{\nu+1}}=\vec{x_{\nu+1}}-\vec{x_\nu}\perp \mathcal{L}(\vec{x_1},...,\vec{x_\nu})$, en particular, $\vec{y_1},...,\vec{y_\nu}\in\mathcal{L}(\vec{x_1},...,\vec{x_\nu})$, luego los vectores $\vec{y_1},...,\vec{y_{\nu+1}}$ son ortogonales a pares.
+        
+        Además, como en el paso inductivo, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \norm{\vec{x_{\nu}}}^2+\norm{\vec{x_{\nu+1}}-\vec{x_{\nu}}}^2&=\norm{\vec{x_{\nu+1}}}^2\\
+                    \Rightarrow \norm{\vec{x_{\nu}}}\leq\norm{\vec{x_{\nu+1}}}
+            \end{split}
+        \end{equation*}
+        
+        Aplicando inducción, el resultado se tiene para todo $\nu\in\mathbb{N}$.
+
+        De (ii): Sea $\nu\in\mathbb{N}$. Hay que probar que $\vec{x_\nu}$ es la proyección de $\vec{x_{\nu+1}}$ sobre $\mathcal{L}(\vec{x_1},...,\vec{x_\nu})$. En efecto, veamos que
+        \begin{equation*}
+            \begin{split}
+                \vec{x_{\nu+1}}&=\sum_{ k=1}^{\nu+1}\vec{y_{k}}\\
+                &=\sum_{ k=1}^\nu\vec{y_{k}}+\vec{y_{\nu+1}} \\
+                &=\vec{x_\nu}+\vec{y_{\nu+1}} \\
+            \end{split}
+        \end{equation*}
+        siendo $\vec{y_\nu+1}\perp M=\mathcal{L}(\vec{x_1},...,\vec{x_\nu})$, por tanto al ser $M$ distinguido (por ser de dimensión finita), se sigue que esta descomposición es única, es decir que el vector $\vec{x_\nu}$ es la proyección ortogonal de $\vec{x_{\nu+1}}$ sobre $M$, que es lo que se quería demostrar.
+
     \end{proof}
 
     \begin{excer}
         Sea $\cf{f}{\mathbb{R}^n}{\mathbb{K}}$ una función medible, integrable en todo subconjunto de $\mathbb{R}^n$ de medida finita. Si
         \begin{equation*}
-            \int f=0,\quad\forall\textup{ rectángulo acotado }P,
+            \int f=0,\quad\forall\textup{ rectángulo acotado }P\subseteq\mathbb{R}^n,
         \end{equation*}
         \textbf{demuestre} que $f=0$ c.t.p. en $\mathbb{R}^n$.
         
@@ -1068,7 +1126,63 @@
     \end{excer}
 
     \begin{proof}
-        
+        Sea $P\subseteq\mathbb{R}^n$ rectángulo acotado con medida positiva, es decir, $m(P)>0$. Probaremos que:
+        \begin{equation*}
+            \int_P\abs{f}=0
+        \end{equation*}
+        en efecto, como $f$ es integrable en $\mathbb{R}^n$ en todo subconjunto con medida finita, entonces $\abs{f}$ también lo es. Además:
+        \begin{equation*}
+            \int_P f=\int_{P}f^++\int_{P}f^-=0
+        \end{equation*}
+        si $\int_{P}f^+=\int_{P}f^-=0$, ya se tiene el resultado. Suponga que alguna de las dos integrales es positiva, digamos
+        \begin{equation*}
+            \int_{P}f^+>0
+        \end{equation*}
+        entonces, el conjunto:
+        \begin{equation*}
+            A=\left\{x\in P\Big|f(x)>0 \right\}
+        \end{equation*}
+        tiene medida positiva. Se tiene que:
+        \begin{equation*}
+            A=\bigcup_{ \nu=1}^\infty A_\nu
+        \end{equation*}
+        donde $A_\nu=\left\{x\in P\Big|f(x)\geq\frac{1}{\nu}\right\}$. Por el teorema de continuidad, existe $\nu_0\in\mathbb{N}$ tal que $m(A_{\nu_0})>0$. Ahora, como todas las normas sobre $\mathbb{R}^n$ son equivalentes, existe $r>0$ tal que:
+        \begin{equation*}
+            B_\infty(x_0,r)=\left\{x\in\mathbb{R}^n\Big|\norm{x_0-x}_{\infty}<r \right\}\subseteq A_{\nu_0}
+        \end{equation*}
+        (donde $\norm{\cdot}_{\infty}$ es la norma infinito sobre $\mathbb{R}^n$ y $x_0\in A_{\nu_0}$). Este conjunto es un rectángulo acotado en el que se cumple que:
+        \begin{equation*}
+            \int_{A_{\nu_0}} f^+=\int_{A_{\nu_0}} f\geq \int_{B_\infty(x_0,r)}f\geq \frac{1}{\nu_0}\int_{B_\infty(x_0,r)}dx=\frac{1}{\nu_0}m(B_\infty(x_0,r))>0
+        \end{equation*}
+        lo cual contradice la hipótesis. Por tanto,
+        \begin{equation*}
+            \int_{P}f^+=\int_{P}f^-=0
+        \end{equation*}
+        es decir, que
+        \begin{equation*}
+            \int_{P}\abs{f}=0
+        \end{equation*}
+        siendo $P$ un rectángulo acotado con medida positiva. Notemos que si la medida de este rectangulo fuese $0$, el resultado seguiría siendo válido. Por ende:
+        \begin{equation*}
+            \int \abs{f}=0,\quad\forall\textup{ rectángulo acotado }P\subseteq\mathbb{R}^n,
+        \end{equation*}
+        Sea $A\subseteq\mathbb{R}^n$ conjunto medible tal que $0<m(A)<\infty$. Por un resultado de Análisis II, existe $\left\{P_\nu \right\}_{\nu=1}^\infty$ sucesión de rectángulos acotados disjuntos con medida finita tales que:
+        \begin{equation*}
+            A\subseteq \bigcup_{\nu=1}^\infty P_\nu=P
+        \end{equation*}
+        donde $m(P)<\infty$. Se tiene entonces que, al ser $\abs{f}\geq 0$:
+        \begin{equation*}
+            0\leq\frac{1}{m(A)} \int_{A}\abs{f}\leq \frac{1}{m(P)}\int_{P}\abs{f}
+        \end{equation*}
+        pero, por un corolario de Beppo-Levi, se tiene que:
+        \begin{equation*}
+            \int_{P}\abs{f}=\int_{\bigcup_{\nu=1}^\infty P_\nu}\abs{f}=\sum_{\nu=1}^\infty\int_{P_\nu}\abs{f}=0
+        \end{equation*}
+        por lo probado anteriormente, luego:
+        \begin{equation*}
+            \frac{1}{m(A)}\int_{A}\abs{f}=0\in F
+        \end{equation*}
+        donde $F=\left\{ 0\right\}$ es cerrado. Por el lema de los promedios se sigue que $f=0$ c.t.p. en $\mathbb{R}^n$.
     \end{proof}
 
     \begin{excer}[\textbf{Funciones de Hermite}]
@@ -1082,7 +1196,7 @@
         \end{equation*}
         equivalentemente,
         \begin{equation*}
-            \varphi_n(x)=(-1)^ne^{-\frac{x^2}{2}}D^ne^{-x^2},\quad n=0,1,2,...
+            \varphi_n(x)=(-1)^ne^{\frac{x^2}{2}}D^ne^{-x^2},\quad n=0,1,2,...
         \end{equation*}
         \begin{enumerate}
             \item \textbf{Demuestre} que las funciones de Hermite satisfacen la relación:
@@ -1124,26 +1238,66 @@
     \end{excer}
 
     \begin{proof}
-        De (i): Sea $n\in\mathbb{N}$. Veamos que:
+        De (i): Sea $n\in\mathbb{N}^*$. Veamos que:
         \begin{equation*}
             \begin{split}
                 \varphi_n'(x)
-                &=\frac{d}{dx}\left((-1)^ne^{-\frac{x^2}{2}D^ne^{-x^2}} \right)\\
-                &=(-1)^n\frac{d}{dx}\left(e^{-\frac{x^2}{2}}D^n e^{-x^2}\right)\\
-                &=(-1)^n\left[\frac{d}{dx}\left(e^{-\frac{x^2}{2}}\right)D^n e^{-x^2}+e^{-\frac{x^2}{2}}\frac{d}{dx}\left(D^n e^{-x^2}\right)\right] \\
-                &=(-1)^n\left[-xe^{-\frac{x^2}{2}}D^n e^{-x^2}+e^{-\frac{x^2}{2}}D^{n+1 } e^{-x^2}\right] \\
+                &=\frac{d}{dx}\left((-1)^ne^{\frac{x^2}{2}}D^ne^{-x^2} \right)\\
+                &=(-1)^n\frac{d}{dx}\left(e^{\frac{x^2}{2}}D^n e^{-x^2}\right)\\
+                &=(-1)^n\left[\frac{d}{dx}\left(e^{\frac{x^2}{2}}\right)D^n e^{-x^2}+e^{\frac{x^2}{2}}\frac{d}{dx}\left(D^n e^{-x^2}\right)\right] \\
+                &=(-1)^n\left[xe^{\frac{x^2}{2}}D^n e^{-x^2}+e^{\frac{x^2}{2}}D^{n+1 } e^{-x^2}\right] \\
             \end{split}
         \end{equation*}
         por tanto:
         \begin{equation*}
             \begin{split}
                 \varphi_n''(x)
-                &=(-1)^n\frac{d}{dx}\left[-xe^{-\frac{x^2}{2}}D^n e^{-x^2}+e^{-\frac{x^2}{2}}D^{n+1 } e^{-x^2}\right] \\
-                &=(-1)^n\left[\frac{d}{dx}(-xe^{-\frac{x^2}{2}})D^n e^{-x^2}-xe^{-\frac{x^2}{2}}D^{n+1}e^{-x^2}+\frac{d}{dx}(e^{-\frac{x^2}{2}})D^{n+1 } e^{-x^2}+e^{-\frac{x^2}{2}}D^{n+2 } e^{-x^2}\right] \\
-                &=(-1)^n\left[(x^2-1)e^{-\frac{x^2}{2}}D^n e^{-x^2}-xe^{-\frac{x^2}{2}}D^{n+1}e^{-x^2}-xe^{-\frac{x^2}{2}}D^{n+1 } e^{-x^2}+e^{-\frac{x^2}{2}}D^{n+2 } e^{-x^2}\right] \\
-                &=(-1)^n\left[(x^2-1)e^{-\frac{x^2}{2}}D^n e^{-x^2}-2xe^{-\frac{x^2}{2}}D^{n+1}e^{-x^2}+e^{-\frac{x^2}{2}}D^{n+2 } e^{-x^2}\right] \\
+                &=(-1)^n\frac{d}{dx}\left[xe^{\frac{x^2}{2}}D^n e^{-x^2}+e^{\frac{x^2}{2}}D^{n+1 } e^{-x^2}\right] \\
+                &=(-1)^n\left[\frac{d}{dx}(xe^{\frac{x^2}{2}})D^n e^{-x^2}+xe^{\frac{x^2}{2}}D^{n+1}e^{-x^2}+\frac{d}{dx}(e^{\frac{x^2}{2}})D^{n+1 } e^{-x^2}+e^{\frac{x^2}{2}}D^{n+2 } e^{-x^2}\right] \\
+                &=(-1)^n\left[(x^2+1)e^{\frac{x^2}{2}}D^n e^{-x^2}+xe^{\frac{x^2}{2}}D^{n+1}e^{-x^2}+xe^{\frac{x^2}{2}}D^{n+1 } e^{-x^2}+e^{\frac{x^2}{2}}D^{n+2 } e^{-x^2}\right] \\
+                &=(-1)^n\left[(x^2+1)e^{\frac{x^2}{2}}D^n e^{-x^2}+2xe^{\frac{x^2}{2}}D^{n+1}e^{-x^2}+e^{\frac{x^2}{2}}D^{n+2 } e^{-x^2}\right] \\
+                &=(-1)^ne^{\frac{x^2}{2}}\left[(x^2+1)D^n e^{-x^2}+2xD^{n+1}e^{-x^2}+D^{n+2 } e^{-x^2}\right] \\
             \end{split}
         \end{equation*}
+        por la regla general de Leibniz para la derivada de un producto, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                D^{n+2}e^{-x^2}&=D^{n+1}(D(e^{-x^2})) \\
+                &=D^{n+1}(-2xe^{-x^2}) \\
+                &=\sum_{ k=0}^{n+1} \binom{n +1}{k} (D^{n+1-k}e^{-x^2})(-2D^k x)\\
+                &=-2xD^{n+1}e^{-x^2}-2(n+1)D^{n}e^{-x^2}
+            \end{split}
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            \begin{split}
+                \varphi_n''(x)&=(-1)^ne^{\frac{x^2}{2}}\left[(x^2+1)D^ne^{-x^2}+2xD^{n+1}e^{-x^2}-2xD^{n+1}e^{-x^2}-2(n+1)D^ne^{-x^2} \right]\\
+                &=(-1)^ne^{\frac{x^2}{2}}\left[(x^2+1)D^ne^{-x^2}-2(n+1)D^ne^{-x^2} \right]\\
+                &=(-1)^ne^{\frac{x^2}{2}}D^ne^{-x^2} \left[x^2+1-2n-2 \right]\\
+                &=(x^2-2n-1)(-1)^ne^{\frac{x^2}{2}}D^ne^{-x^2}\\
+                &=(x^2-2n-1)\varphi_n(x),\quad\forall x\in\mathbb{R}\\ 
+            \end{split}
+        \end{equation*}
+        como se quería probar.
+
+        De (ii): Observemos que si $m,n\in\mathbb{N}^*$:
+        \begin{equation*}
+            \begin{split}
+                \varphi_n''(x)\varphi_m(x)-\varphi_m''(x)\varphi_n(x)&=(x^2-2n-1)\varphi_n(x)\varphi_m(x)-(x^2-2m-1)\varphi_n(x)\varphi_m(x) \\
+                &=(x^2-2n-1-x^2+2m+1)\varphi_n(x)\varphi_m(x) \\ 
+                &=2(m-n)\varphi_n(x)\varphi_m(x),\quad\forall x\in\mathbb{R} \\ 
+            \end{split}
+        \end{equation*}
+        Por tanto, si $m\neq n$, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \pint{\varphi_n}{\varphi_m}&=\int_{\mathbb{R}}\varphi_n(x)\conj{\varphi_m(x)}dx\\
+                &=\int_{\mathbb{R}}\varphi_n(x)\varphi_m(x)dx\\
+                &=\frac{1}{2(m-n)} \int_{\mathbb{R}}\left[\varphi_n''(x)\varphi_m(x)-\varphi_m''(x)\varphi_n(x)\right]dx\\
+            \end{split}
+        \end{equation*}
+        donde:
+
     \end{proof}
 
 \end{document} 
