@@ -745,9 +745,139 @@
     \end{propo}
 
     \begin{proof}
-        Nosé
-        %TODO%
-        %me quedé en la página 38
+        De (1): Veamos que $\Cls{H}$ es un subgrupo de $G$. En efecto, como $H$ es un subgrupo de $G$, entonces $H^2\subseteq H$ y, por (1) de la proposición anterior, $\left(\Cls{H}\right)^2\subseteq\Cls{H^2}\subseteq \Cls{H}$ (es decir que $\Cls{H}$ es cerrado bajo el producto). Además, $H^{-1}\subseteq H$ y, por (2) de la proposición anterior, $\Cls{H}^{-1}=\Cls{H^{-1}}\subseteq \Cls{H}$ (es decir que $\Cls{H}$ es cerrado bajo inversos). Luego, $\Cls{H}$ es subgrupo de $G$ (por ser $H$ subgrupo, $\Cls{H}$ es no vacío).
+
+        De (2): Como $N$ es subgrupo normal de $G$, en particular es subgrupo de $G$, luego $\Cls{N}$ es subgrupo de $G$ (por (1)). Para ver que es subgrupo normal de $G$ hay que verificar la contención:
+        \begin{equation*}
+            a\Cls{N}a^{-1}\subseteq\Cls{N},\quad\forall a\in G
+        \end{equation*}
+        pero, por hipótesis y usando (3) de la proposición anterior, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                aNa^{-1}&\subseteq N,\quad\forall a\in G\\
+                \Rightarrow \Cls{aNa^{-1}}&\subseteq \Cls{N},\quad\forall a\in G\\
+                \Rightarrow a\Cls{N}a^{-1}&\subseteq \Cls{N},\quad\forall a\in G\\
+            \end{split}
+        \end{equation*}
+        por tanto, $\Cls{N}$ es subgrupo normal de $G$.
+
+        De (3): Proabremos la doble implicación:
+
+        $\Rightarrow)$: Suponga que $H$ es abierto, entonces es claro que su interior es no vacío ya que todos los puntos de $H$ son puntos interiores del mismo.
+
+        $\Leftarrow)$: Suponga que $H$ tiene interior no vacío, sea $x\in H$ un punto interior, entonce existe $U$ vecindad de $e_G$ tal que $xU\subseteq H$. Ahora, para todo $y\in H$ se tiene que:
+        \begin{equation*}
+            yU= (yx^{-1})xU\subseteq yx^{-1}H=H
+        \end{equation*}
+        por tanto, $yU$ es una vecindad de $y$ contenida en $H$, luego $y$ es un punto interior. Por lo cual, $H$ es abierto ya que está contenido en su interior.
+
+        De (4): Suponga que $H$ es abierto. Se tiene que el conjunto:
+        \begin{equation*}
+            G-H=\bigcup_{x\in G-H}Hx
+        \end{equation*}
+        es abierto, pues $Hx$ es abierto para cada $x\in G-H$. Luego $H$ es cerrado, es decir que $H=\Cls{H}$.
+
     \end{proof}
+
+    El próximo resultado tiene como objetivo generar subgrupos abiertos a partir de vecindades de la identidad.
+
+    \begin{theor}
+        Sean $G$ un grupo topológico y $U$ cualquier vecindad abierta de $e_G$. Entonces, el conjunto:
+        \begin{equation*}
+            L=\bigcup_{n=1}^\infty U^n
+        \end{equation*}
+        es un subgrupo abierto y cerrado de $G$.
+    \end{theor}
+
+    \begin{proof}
+        Es claro que $L\neq\emptyset$ ya que $e_G\in L$. Sean ahora $x,y\in G$, entonces existen $k,l\in\mathbb{N}$ tales que $x\in U^k$ y $y\in U^l$ luego, $xy\in U^{k+l}$ y $x^{-1}\in \left(U^{k}\right)^{-1}=(U^{-1})^k= U^k$, es decir que $xy,x^{-1}\in L$. Por tanto, $L$ es subgrupo de $G$.
+
+        Además, es abierto por ser unión arbitraria de abiertos, y cerrado por el inciso (4) de la proposición anterior.
+    \end{proof}
+
+    \begin{obs}
+        Un subespacio topológico de un espacio topológico es \textbf{discreto} si todos los puntos del subespacio son aislados, que es lo mismo que decir que está dotado de la topología discreta.
+    \end{obs}
+
+    \begin{propo}
+        Un subgrupo $H$ de un grupo topológico $G$ es discreto si y sólo si tiene un punto aislado.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow)$: Se tiene que $H$ es un subgrupo discreto, es decir que está dotado de la topología discreta luego, el conjunto $\left\{e_G\right\}$ es una vecindad abierta de $e_G$ para la cual se cumple que $\left\{e_G\right\}\cap H=\left\{e_G\right\}$, es decir que es un punto aislado de $H$.
+
+        $\Leftarrow)$: Sea $x\in H$ un punto aislado de $H$; es decir que existe una vecindad abierta $U$ de $e_G$ tal que $xU\cap H=\left\{x\right\}$. Si ahora $y\in H$, se tiene entonces que:
+        \begin{equation*}
+            yU\cap H=yU\cap yx^{-1}H=yx^{-1}(xU\cap H)=yx^{-1}\left\{x\right\}=\left\{y\right\}
+        \end{equation*}
+        es decir, que todos los puntos de $H$ son aislados. Por tanto, $H$ es discreto.
+    \end{proof}
+
+    El siguiente lema proporciona una condición suficiente para probar que un subgrupo topológico es cerrado.
+
+    \begin{lema}
+        Sean $G$ un grupo topológico y $H$ un subgrupo de $G$ tales que $\Cls{U}\cap H$ es cerrado en $G$ para alguna vecindad abierta $U$ de $e_G$. Entonces, $H$ es cerrado.
+    \end{lema}
+
+    \begin{proof}
+        Sea $U$ una vecindad abierta de $e_G$ tal que $\Cls{U}\cap H$ es cerrado, y sea $V$ una vecindad abierta de $e_G$ tal que $V^{2}\subseteq U$. Probaremos que $H=\Cls{H}$.
+
+        En efecto, sea $x\in \Cls{H}$, entonces el conjunto $xV\cap H\neq\emptyset$, sea $y\in xV\cap H$. Afirmamos que $xy\in \Cls{U}\cap H$. En efecto, suponga que esto no es cierto, entonces al ser este un conjunto cerrado, existiría una vecindad abierta $W$ de $e_G$ tal que
+        \begin{equation*}
+            Wxy\cap \Cls{U}\cap H=\emptyset
+        \end{equation*}
+        Ahora, es claro que $x\in (W\cap V)x$ y, como $x\in\Cls{H}$, entonces existiría $z\in (W\cap V)x\cap H$. Este elemento cumple que:
+        \begin{itemize}
+            \item $zy\in HH=H$.
+            \item $zy\in Vxx^{-1}V=V^{2}\subseteq U\subseteq\Cls{U}$.
+            \item $zy\in (Wx)y=Wxy$
+        \end{itemize}
+        por ende, $zy\in Wxy\cap \Cls{U}\cap H$\contradiction, pues hemos dicho que tal conjunto es vacío. Luego $xy\in\Cls{U}\cap H$, en particular $xy\in H$. Como $y^{-1}\in H^{-1}\subseteq H$ se sigue que $x=(xy)y^{-1}\in HH=H$, lo cual termina la demostración.
+    \end{proof}
+
+    Este siguiente teorema presenta una propiedad exclusiva de los grupos topológicos, pues no todo subespacio discreto de un espacio topológico es cerrado.
+
+    \begin{propo}
+        Todo subgrupo discreto $H$ de un grupo topológico $G$ es cerrado.
+    \end{propo}
+
+    \begin{proof}
+        Sea $U$ una vecindad abierta de $e_G$ tal que $U\cap H=\left\{e_G\right\}$. Por un lema anterior existe $V$ vecindad de $e_G$ tal que $\Cls{V}\subseteq U$. Por tanto:
+        \begin{equation*}
+            \Cls{V}\cap H=\left\{e_G\right\}
+        \end{equation*}
+        donde, por ser $G$ un espacio de Hausdorff se sigue que $\left\{e_G\right\}$ es cerrado en $G$. Por tanto, del lema anterior se sigue que $H$ es cerrado.
+    \end{proof}
+
+    \section{Grupos cocientes}
+
+    Se estudiarán ahora el grupo cociente de un grupo topológico. 
+
+    Recordemos que si $G$ es un grupo y $H$ un subgrupo de $H$, entonces se define una relación de equivalencia en $G$ como sigue:
+    \begin{equation*}
+        a\sim b\textup{ si y sólo si }ab^{-1}\in H
+    \end{equation*}
+    Las clases de equivalencia de esta relación reciben el nombre de \textbf{clases laterales derechas de $H$}. Denotaremos por $G/_DH$ al conjunto formado formado por las clases laterales derechas, es decir:
+    \begin{equation*}
+        G/_DH=\left\{Ha\Big|a\in G \right\}
+    \end{equation*}
+    de manera similar se definen las clases laterales laterales izquierdas de $H$. Se denota por $G/_I H$ al conjunto:
+    \begin{equation*}
+        G/_IH=\left\{aH\Big|a\in G \right\}
+    \end{equation*}
+    En caso de que el grupo sea normal, se tiene que $G/_IH=G/_DH=G/H$. Los siguientes resultados se establecen para clases laterales derechas y de forma análoga se cumplen para clases laterales izquierdas.
+
+    Introducimos ahora en $G/H$ una topología de la siguiente manera. Sea $\mathcal{B}$ una base del grupo topológico $G$ y $H$ un subgrupo de $G$. Para cada $U\in\mathcal{B}$ definamos:
+    \begin{equation*}
+        U^*=\left\{ Hx\Big|x\in U \right\}
+    \end{equation*}
+    y:
+    \begin{equation*}
+        \mathcal{B}^*=\left\{U^*\Big|U\in\mathcal{B} \right\}
+    \end{equation*}
+
+    \begin{propo}
+        
+    \end{propo}
 
 \end{document}

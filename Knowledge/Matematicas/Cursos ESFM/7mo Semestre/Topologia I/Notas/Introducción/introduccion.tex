@@ -1143,11 +1143,11 @@
         Verifiquemos que se cumplen las tres condiciones:
         \begin{enumerate}
             \item Es claro que $\emptyset\in\tau_Y$, pues $\emptyset=Y\cap\emptyset$ donde $\emptyset\in\tau$. Además, $Y\in\tau_Y$ pues $Y=Y\cap X$ con $X\in\tau$.
-            \item Sea $\left\{A_\alpha \right\}_{\alpha\in I}\subseteq\tau_Y$ una coleccíón no vacía. Entonces, para cada $\alpha\in I$ existe $U_\alpha\in\tau$ tal que
+            \item Sea $\left\{A_\alpha \right\}_{\alpha\in I}\subseteq\tau_Y$ una subcoleccíón no vacía de elementos de $\tau_Y$. Entonces, para cada $\alpha\in I$ existe $U_\alpha\in\tau$ tal que
             \begin{equation*}
                 A_\alpha=Y\cap U_\alpha
             \end{equation*}
-            Por lo cual:
+            por lo cual:
             \begin{equation*}
                 \begin{split}
                     \bigcup_{\alpha\in I }A_\alpha=&\bigcup_{\alpha\in I }\left(Y\cap U_\alpha \right) \\
@@ -1155,7 +1155,7 @@
                 \end{split}
             \end{equation*}
             donde $\bigcup_{\alpha\in I } U_\alpha\in\tau$. Por tanto, $\bigcup_{\alpha\in I }A_\alpha\in\tau_Y$.
-            \item Sean $A,B\in\tau_Y$, entonces existen $U,V\in\tau$ tales que:
+            \item Sean $A,B\in\tau_Y$ entonces, existen $U,V\in\tau$ tales que:
             \begin{equation*}
                 A=Y\cap U\quad\textup{y}\quad B=Y\cap V
             \end{equation*}
@@ -1168,8 +1168,9 @@
                     =&Y\cap (U\cap V)\\
                 \end{split}
             \end{equation*}
-            donde $U\cap V\in\tau$. Por tanto, $A\cap B\in\tau_Y$.
+            donde $U\cap V\in\tau$. Así $A\cap B\in\tau_Y$.
         \end{enumerate}
+        por los tres incisos anteriores se sigue que $\tau_Y$ es una topología sobre $Y$.
     \end{proof}
     
     \begin{mydef}
@@ -1189,7 +1190,7 @@
         \end{equation*}
         donde $]-1,\frac{1}{2}[\in\tau_u$, por ende $A\in\tau_Y$, pero $A$ no es abierto en $(\mathbb{R},\tau_u)$.
 
-        Se tiene además que $\Int{A}=]0,\frac{1}{2}[$ y, como $A\in\tau_Y$, entonces $\Int{A}^Y=[0,\frac{1}{2}[$.
+        Se tiene además que $\Int{A}=]0,\frac{1}{2}[$ y, como $A\in\tau_Y$, entonces $\Int{A}^Y=A=[0,\frac{1}{2}[$.
     \end{exa}
 
     \begin{exa}
@@ -1209,7 +1210,7 @@
     \end{exa}
 
     \begin{propo}
-        Sea $(X,\tau)$ un espacio topológico y sea $Y\subseteq X$.
+        Sean $(X,\tau)$ un espacio topológico y $Y\subseteq X$.
         \begin{enumerate}
             \item Si $Y$ es abierto (respectivamente, cerrado) en $(X,\tau)$ y $U\subseteq Y$ es un conjunto abierto (respectivamente, cerrado) en $(Y,\tau_Y)$, entonces $U$ es abierto (respectivamente, cerrado) en $(X,\tau)$.
             \item Si $\mathcal{B}$ es una base para $\tau$, entonces la colección:
@@ -1217,7 +1218,7 @@
                 \mathcal{B}_Y=\left\{Y\cap B\Big| B\in\mathcal{B} \right\}
             \end{equation*}
             es una base para la topología $\tau_Y$.
-            \item Sea $A\subseteq Y$. Entonces $A$ es cerrado en $Y$ si y sólo si existe $C\subseteq X$ cerrado en $X$ tal que $A=Y\cap C$.
+            \item Sea $A\subseteq Y$. Entonces, $A$ es cerrado en $Y$ si y sólo si existe $C\subseteq X$ cerrado en $X$ tal que $A=Y\cap C$.
             \item Sea $B\subseteq Y$. Si $\Cls{B}$ es la cerradura de $B$ en $X$, entonces la cerradura de $B$ en $Y$, denotada por $\Cls{B}^Y$, es $Y\cap \Cls{B}$.
             \item Sea $A\subseteq Y$, si $\Int{\widehat{A}}^Y$ denota al interior de $A$ en $Y$, entonces $Y\cap\Int{A}\subseteq \Int{\widehat{A}}^Y$.
             \item Sea $A\subseteq Y$, si $\Fr{A}_Y$ es la frontera de $A$ en $Y$, entonces $\Fr{A}_Y\subseteq Y\cap \Fr{A}$.
@@ -1258,7 +1259,7 @@
             \end{split}
         \end{equation*}
 
-        Prueba alternativa de la igualdad de conjuntos. Sea $a\in A$, en particular $a\in Y$. Si $a\in U$, entonces $a\notin A$, luego esto contradice el hecho de que $Y-A=Y\cap U$, por tanto $a\in C$. Así, $a\in C\cap Y$.
+        \textit{Prueba alternativa de la igualdad de conjuntos}. Sea $a\in A$, en particular $a\in Y$. Si $a\in U$, entonces $a\notin A$, luego esto contradice el hecho de que $Y-A=Y\cap U$, por tanto $a\in C$. Así, $a\in C\cap Y$.
 
         Si $p\in Y\cap C$, entonces $p\in Y$ y $p\notin U$, luego $p\notin Y-A$, es decir $p\in A$.
 
@@ -1304,7 +1305,7 @@
         \begin{equation*}
             (Y\cap U)\cup (Y\cap C)=Y
         \end{equation*}
-        pues, $U\cap C = X$ donde $U$ y $C$ son disjuntos, luego $Y\cap U$ y $Y\cap C$ lo son , así $Y-Y\cap U=Y\cap C$. Esto justifica un paso en la demostración de la vuelta de (3).
+        pues, $U\cup C = X$ donde $U$ y $C$ son disjuntos, luego $Y\cap U$ y $Y\cap C$ lo son , así $Y-Y\cap U=Y\cap C$. Esto justifica un paso en la demostración de la vuelta de (3).
     \end{obs}
 
     \begin{exa}
@@ -1330,6 +1331,8 @@
             \item Sea $K\in \tau_{Y_Z}$, entonces existe $L\in\tau_Y$ tal que $K=Z\cap L$, pero como $L\in\tau_Y$ entonces existe $U\in\tau$ tal que $L=Y\cap U$, por tanto: $K=Z\cap(Y\cap U)=Z\cap U$ pues $Z\subseteq Y$, luego $K\in\tau_Z$.
         \end{itemize}
         por ambos incisos, se sigue la igualdad.
+
+        El objetivo de esta aclaración es que podamos considerar de forma más sencillas subespacios dentro de subespacios.
     \end{obs}
 
     \begin{mydef}
@@ -1359,7 +1362,34 @@
     \end{excer}
 
     \begin{proof}
-        
+        Sea $(X,\tau)$ un espacio topológico metrizable, entonces existe una métrica $\cf{d}{X\times X}{\mathbb{R}}$ tal que $\tau_d=\tau$.
+
+        Sea ahora $(Y,\tau_Y)$ un subespacio de $(X,\tau)$. Considere la restricción de $d$ a $Y\times Y$, es decir:
+        \begin{equation*}
+            \rho=d\Big|_{Y\times Y}
+        \end{equation*}
+        es claro que $\rho$ es una métrica sobre $Y$. Para ver que $(Y,\tau_Y)$ es metrizable, hay que ver que:
+        \begin{equation*}
+            \tau_\rho=\tau_Y
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \tau_\rho=\left\{A\subseteq Y\Big|\forall x\in A\exists r_x\in\mathbb{R}^+\textup{ tal que }B_\rho(x,r_x)\subseteq A \right\}
+        \end{equation*}
+        Sea $A\in\tau_\rho$, entonces para cada $x\in A$ existe $r_x\in\mathbb{R}^+$ tal que $B_\rho(x,r_x)\subseteq A$, esto es:
+        \begin{equation*}
+            A=\bigcup_{x\in A}B_\rho(x,r_x)
+        \end{equation*}
+        pero, notemos que:
+        \begin{equation*}
+            \begin{split}
+                B_\rho(x,r_x)&=\left\{y\in Y\Big|\rho(x,y)<r_x \right\}\\
+                &=\left\{y\in Y\Big|d(x,y)<r_x \right\}\\
+                &=\left\{u\in X\Big|d(x,u)<r_x \right\}\cap Y \\
+                &= B_d(x,r_x)\cap Y
+            \end{split}
+        \end{equation*}
+        %TODO
     \end{proof}
 
     \section{Relaciones de orden y la topología del orden}
@@ -1386,7 +1416,20 @@
     \end{propo}
 
     \begin{proof}
-        
+        De 1): Suponga que existe $b\in B$ tal que:
+        \begin{equation*}
+            b\mathcal{R}x,\quad\forall x\in B-\left\{b\right\}
+        \end{equation*}
+        si $b'\in B$ es diferente de $b$ y tal que
+        \begin{equation*}
+            b'\mathcal{R}x,\quad\forall x\in B-\left\{b'\right\}
+        \end{equation*}
+        entonces se tendría que $b\mathcal{R}b'$ y $b'\mathcal{R}b$, lo cual es una contradicción ya que $\mathcal{R}$ es un orden lineal.
+
+        Por tanto, tal $b$ es único.
+
+        De 2): Es análoga a (1)
+
     \end{proof}
 
     \begin{obs}
@@ -1449,7 +1492,23 @@
     \begin{proof}
         Tenemos cuatro casos:
         \begin{enumerate}
-            \item \textbf{$X$ tiene elemento máximo y mínimo}. Se tienen que verificar dos cosas:
+            \item \textbf{$X$ no tiene elemento máximo y mínimo}. Se tienen que verificar dos cosas:
+            \begin{enumerate}
+                \item Si $(a_1,b_1),(a_2,b_2)$ es un intervalo abierto en $X$, entonces la intersección de ambos es unión de intervalos abiertos. En efecto, si la intersección es no vacía, entonces:
+                \begin{equation*}
+                    (a_1,b_1)\cap(a_2,b_2)=(\max\left\{a_1,a_2\right\},\min\left\{b_1,b_2\right\})
+                \end{equation*}
+                el cual es un intervalo abierto. 
+                \item $X$ es unión de intevalos abiertos. En efecto, sea
+                \begin{equation*}
+                    \mathcal{A}=\left\{(a,b)\Big|a,b\in X, a\prec b \right\}
+                \end{equation*}
+                entonces:
+                \begin{equation*}
+                    X=\bigcup\mathcal{A}
+                \end{equation*}
+            \end{enumerate}
+            \item \textbf{$X$ tiene elemento máximo pero no mínimo}.
         \end{enumerate}
     \end{proof}
 
@@ -1713,7 +1772,7 @@
 
         Sea $\cf{f}{(\mathbb{R},\tau_u)}{(\mathbb{R},\tau_I)}$ tal que para todo $x\in\mathbb{R}$, $f(x)=4$ (esto es que $f=\underline{4}$). Por lo anterior esta es una función continua. Se tiene por ende que:
         \begin{equation*}
-            \Cls{f(\mathbb{N})}=\mathbb{R}\quad\textup{y}\quad f(\Cls{N})=4
+            \Cls{f(\mathbb{N})}=\mathbb{R}\quad\textup{y}\quad f(\Cls{\mathbb{N}})=4
         \end{equation*}
         es decir que $\Cls{f(\mathbb{N})}\nsubseteq f(\Cls{\mathbb{N}})$.
     \end{exa}
