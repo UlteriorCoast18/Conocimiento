@@ -175,7 +175,31 @@
     \end{excer}
 
     \begin{sol}
-        No creo, pa. Ahí para la otra te contesto, padre.
+        Considere el grupo $(\mathbb{S}^1,\cdot)$ donde:
+        \begin{equation*}
+            \mathbb{S}^1=\left\{e^{ix}\in\mathbb{C} \Big|x\in\mathbb{R} \right\}
+        \end{equation*}
+        donde el producto $\cdot$ es el producto usual de $\mathbb{C}$, dado por:
+        \begin{equation*}
+            e^{ix}\cdot e^{iy}=e^{i(x+y)}
+        \end{equation*}
+        dotado de la topología $\tau_{\mathbb{S}^1}$
+        \begin{equation*}
+            \tau_{\mathbb{S}^1}=\left\{U\cap\mathbb{S}^1\Big| U\textup{ es abierto en }\mathbb{C} \right\}
+        \end{equation*}
+        es claro que las funciones $\cf{f}{\mathbb{S}^1 \times \mathbb{S}^1}{\mathbb{S}^1}$ tales que $(e^{ix},e^{iy})\mapsto e^{i(x+y)}$ y, $\cf{g}{\mathbb{S}^1}{\mathbb{S}^1}$ tales que $e^{ ix}\mapsto e^{-ix}$ son continuas ya que son reestricciones de funciones continuas de $\mathbb{C}\backslash\left\{ 0\right\}$ a $\mathbb{C}\backslash\left\{ 0\right\}$. Es claro que el conjunto:
+        \begin{equation*}
+            \mathbb{H}^1=\left\{e^{2\pi ir}\in\mathbb{S}^1\Big|r\in\mathbb{Q} \right\}
+        \end{equation*}
+        es subgrupo de $(\mathbb{S}^1,\cdot)$, el cual es denso en $\mathbb{S}^1$, para el que se cumple que todo elemento es de orden finito, pues si $r=\frac{p}{q}\in\mathbb{Q}$:
+        \begin{equation*}
+            (e^{2\pi ir})^q=e^{2\pi ip}=1
+        \end{equation*}
+        donde $1$ es la identidad de $(\mathbb{S}^1,\cdot)$. Por ende, todo elemento del subgrupo denso $\mathbb{H}^1$ es de orden finito, pero $G$ no es de torsión, ya que el elemento
+        \begin{equation*}
+            e^{i}
+        \end{equation*}
+        no es de orden finito.
     \end{sol}
 
     \begin{excer}
@@ -188,5 +212,103 @@
 
     %página 58 del pdf
     
+    \begin{excer}
+        Sea $G$ un grupo topológico. ¿Es $G'=\left\{xyx^{-1}y^{-1}\in G\Big|x,y\in G \right\}$ un subgrupo de $G$? ¿Es $G'$ cerrado en $G$?
+    \end{excer}
+
+    \begin{sol}
+        Afirmamos que $G'$ no es subgrupo de $G$. En efecto, es claro que $e\in G'$, pero... (hay algo con el producto que falla)
+        %TODO
+
+        Es cerrado, ya que si $\cf{f}{G\times G}{G}$ es tal que $(x,y)\mapsto xyx^{-1}y^{-1}$, se tiene que $f$ es una función continua para la cual
+        \begin{equation*}
+            \begin{split}
+                G'&=\left\{xyx^{-1}y^{-1}\in G\Big|x,y\in G \right\}\\
+                &=\left\{f(x,y)\in G\Big|(x,y)\in G\times G \right\}\\
+                &=f^{-1}(G)
+            \end{split}
+        \end{equation*}
+        es decir, que $G'$ es la imagen inversa de un cerrado (el conjunto $G$) y, por ende es cerrado.
+    \end{sol}
+
+    \begin{excer}
+        Pruebe que si $G$ es un grupo topológico, entonces el conjunto
+        \begin{equation*}
+            H=\left\{g\in G\Big|gx=xg,\forall x\in G \right\}
+        \end{equation*}
+        es un subgrupo cerrado normal de $G$.
+    \end{excer}
+
+    \begin{proof}
+        Veamos que es subgrupo. En efecto, es claro que $e_G\in H$. Sean ahora $g,h\in G$, entonces se tiene que $g^{-1}\in G$, pues:
+        \begin{equation*}
+            \begin{split}
+                gx&=xg\\
+                \Rightarrow gxg^{-1}&=x\\
+                \Rightarrow xg^{-1}&=g^{-1}x\\
+                \Rightarrow g^{-1}x&=xg^{-1}\\\
+            \end{split}
+        \end{equation*}
+        $\forall x\in G$ y, además:
+        \begin{equation*}
+            (gh)x=g(hx)=g(xh)=(gx)h=x(gh),\quad\forall x\in G
+        \end{equation*}
+        por tanto, $gh\in H$. Se sigue entonces que $H$ es subgrupo de $G$.
+
+        Veamos que es normal. Sea $g\in G$ y $h\in G$, hay que ver que $ghg^{-1}\in H$. En efecto, veamos que:
+        \begin{equation*}
+            (ghg^{-1})x=(gg^{-1})hx=(e_G)xh=x(he_G)=x(hgg^{-1})=x(ghg^{-1}),\quad\forall x\in G
+        \end{equation*}
+        por tanto, $ghg^{-1}\in H$. Luego, $H$ es normal en $G$.
+
+        Ahora, como $H$ es subgrupo, entonces $\Cls{H}$ también lo es...
+        %TODO
+    \end{proof}
+
+    \begin{excer}
+        Sea $G$ un grupo tal que todos sus elementos son de orden $2$. Demuestre que $G$ tiene que ser abeliano. Pruebe que si $G$ es infinito, entonces admite una topología de Hausdorff no discreta.
+    \end{excer}
+
+    \begin{proof}
+        Veamos que $G$ es abeliano. En efecto, sean $a,b\in G$, se tiene entonces que:
+        \begin{equation*}
+            (ab)^2=(ab)(ab)=e_G
+        \end{equation*}
+        es decir, que $ab=(ab^{-1})=b^{-1}a^{-1}$, pero $a^{-1}=a$ y $b^{-1}=b$. Por ende, $ab=ba$ luego, $G$ es abeliano.
+
+        Suponga que $G$ es infinito. (no sé).
+    \end{proof}
+
+    \begin{excer}
+        Dé un ejemplo de grupo que admite al menos dos topologías de Hausdorff de grupo distintas. 
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Sea $G=\mathbb{R}\backslash\left\{0\right\}$ el grupo multiplicativo de los números reales con la topología usual, y sean $G'=\left\{-1,1\right\}$ y $G''=\left\{x\in \mathbb{R}\Big|x>0 \right\}$.
+        \begin{enumerate}
+            \item Pruebe que $G'$ y $G''$ son subgrupos de $G$.
+            \item Pruebe que existe un isomorfismo topológico entre $G/G'$ y $G''$.
+            \item Pruebe que $G$ y $G'\oplus G''$ son topológicamente isomorfos.
+            \item Pruebe que $G'\cong \mathbb{Z}_2$, $G''\cong \mathbb{R}$ y, deduzca que $G\cong \mathbb{Z}_2\oplus \mathbb{R}$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        De (1): Es claro que son subgrupos de $G$.
+
+        De (2): Notemos que:
+        \begin{equation*}
+            \begin{split}
+                G/G'&=\left\{ G'a\Big|a\in G \right\}\\
+                &=\left\{ \left\{-1,1\right\}a\Big|a\in G \right\}\\
+                &=\left\{ \left\{-a,a\right\}\Big|a\in G \right\}\\
+            \end{split}
+        \end{equation*}
+        Defina $\cf{f}{G''}{G/G'}$ tal que $a\mapsto \left\{-a,a\right\}$
+    \end{proof}
 
 \end{document}
