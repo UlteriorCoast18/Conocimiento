@@ -877,7 +877,54 @@
     \end{equation*}
 
     \begin{propo}
+        Para todo subgrupo $H$ de $G$, $\mathcal{B}^*$ es una base de una topología sobre $G/_DH$. Si $H$ es cerrado, entonces esta topología sobre $G/_DH$ es $T_1$.
+    \end{propo}
+
+    \begin{proof}
+        Para la primera parte se deben verificar dos condiciones:
+        \begin{enumerate}
+            \item Sean $U^*,V^*\in\mathcal{B}^*$. Si $Ha\in U^*\cap V^*$ debemos encontrar $W^*\in\mathcal{B}^*$ tal que $Ha\in W^*\subseteq U^*\cap V^*$.
+            
+            Como $U^*,V^*\in\mathcal{B}^*$, entonces existe $u\in U$ y $v\in V$ tales que:
+            \begin{equation*}
+                Ha=Hu=Hv
+            \end{equation*}
+            por lo cual, $Ha\subseteq HU,HV$, es decir que $Ha\subseteq HU\cap HV$. Además, $HU\cap HV$ es un conjunto abierto (por ser intersección de dos abiertos). Como $u\in HU\cap HV$, entonces existe $W\in\mathcal{B}$ tal que:
+            \begin{equation*}
+                u\in W\subseteq HU\cap HV
+            \end{equation*}
+            Claramente se tiene que $Ha=Hu\in W^*$. Veremos que $W^*\subseteq U^*\cap V^*$. En efecto, sea $Hw\in W^*$, es decir que $w\in W$. Por la contención anterior, $w\in HU\cap HV$, es decir que existen $h_1,h_2\in H$, $u_1\in U$ y $v_1\in V$ tales que:
+            \begin{equation*}
+                w=h_1u_1=h_2v_1
+            \end{equation*}
+            Luego:
+            \begin{equation*}
+                Hw=Hh_1u_1=Hu_1\in U^*\quad\textup{y}\quad Hw=Hh_2v_1=Hv_1\in V^*
+            \end{equation*}
+            Por lo cual, $Hw\in U^*\cap V^*$. Finalmente, se sigue que $W^*\subseteq U^*\cap V^*$.
+
+            \item Sea $Hx\in G/_DH$. Como $\mathcal{B}$ es base para $G$, entonces existe $U\in\mathcal{B}$ tal que $x\in U$, luego $Hx\in U^*$. Así que
+            \begin{equation*}
+                G/_DH=\bigcup\mathcal{B}^*
+            \end{equation*}
+        \end{enumerate}
+        por ambos incisos, se sigue que $\mathcal{B}^*$ es base de una topología sobre $G/_DH$.
+
+        Para la otra parte, suponga que $H$ es cerrado. Sean $Ha\neq Hb$ dos elementos de $G/_DH$. Como $Ha$ es cerrado (pues $H$ es cerrado) y $b\notin Ha$, entonces existe $U\in\mathcal{B}$ tal que $b\in U$ y $U\cap Ha=\emptyset$ (pues, $G$ es un espacio $T_3$). Entonces, $Hb\in U^*$ y $Ha\notin U^*$. Por tanto, $G/_DH$ es un espacio $T_1$.
+    \end{proof}
+
+    \begin{obs}
+        El espacio topológico $G/H$ así construido recibe el nombre de \textbf{espacio cociente de $G$ entre $H$}, o \textbf{grupo cociente de $G$ entre $H$}, si $H$ es cerrado y normal en $G$.
+    \end{obs}
+
+    Ahora se estudian las propiedades de la función canónica $\cf{\pi}{G}{G/_DH}$, tal que $x\mapsto Hx$.
+
+    \begin{propo}
         
     \end{propo}
+
+    \begin{proof}
+        %me quedé en la página 41
+    \end{proof}
 
 \end{document}

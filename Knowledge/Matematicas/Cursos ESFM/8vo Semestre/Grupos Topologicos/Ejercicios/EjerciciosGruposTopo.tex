@@ -1,0 +1,192 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand{\N}[1]{\ensuremath{\mathscr{N}(#1)}}
+\newcommand{\Ns}[1]{\ensuremath{\mathscr{N}^*(#1)}}
+\newcommand{\piz}[1]{\ensuremath{\mathscr{#1}}}
+\newcommand{\eul}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\natint}[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand{\contradiction}{\ensuremath{\#_c}}
+\newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Ejercicios Grupos Topológicos}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \chapter{Ejercicios Capítulo 1}
+
+    \begin{excer}
+        Sea $H$ un subgrupo denso abeliano de un grupo topológico $G$. Entonces, $G$ es abeliano.
+    \end{excer}
+
+    \begin{proof}
+        Por la proposición 1.3.2 (4), como $ab=ba$ para todo $a,b\in H$, entonces se sigue que $ab=ba$ para todo $a,b\in\Cls{H}$. Como $H$ es denso en $G$ es tiene entonces que $\Cls{H}=G$, es decir:
+        \begin{equation*}
+            ab=ba,\quad\forall a,b\in G
+        \end{equation*}
+        por tanto, $G$ es abeliano.
+    \end{proof}
+
+    \begin{excer}
+        Suponga que $H$ es un subgrupo denso de un grupo topológico $G$ y $n\in\mathbb{N}$. Pruebe que si $x^n=e_G$ para todo $x\in H$, entonces los elementos del grupo $G$ satisfacen la misma ecuación.
+    \end{excer}
+
+    \begin{proof}
+        Sea $\cf{f}{G}{G}$ tal que $x\mapsto x^n$. Esta es una función continua para la que cual se tiene que el conjunto
+        \begin{equation*}
+            \begin{split}
+                A=&f^{-1}(e_G)\\
+                =&\left\{x\in G\Big|f(x)=e_G \right\} \\
+                =&\left\{x\in G\Big|x^n=e_G \right\} \\
+            \end{split}
+        \end{equation*}
+        es cerrado, pero $H\subseteq A$, luego $G=\Cls{H}\subseteq A$, es decir que
+        \begin{equation*}
+            x^n=e_g,\quad\forall x\in G
+        \end{equation*}
+    \end{proof}
+
+    \begin{mydef}
+        Sea $G$ un grupo. Decimos que $G$ es \textbf{grupo de torsión} si para todo $g\in G$ existe $n_g\in G$ tal que $g^{n_g}=e_G$.
+    \end{mydef}
+
+    \newpage
+
+    \begin{excer}
+        Sean $G$ un grupo topológico y $H$ un subgrupo denso de $G$ tal que todo elemento $h\in H$ es de orden finito. ¿Es $G$ de torsión?
+    \end{excer}
+
+    \begin{sol}
+        No creo, pa. Ahí para la otra te contesto, padre.
+    \end{sol}
+
+    \begin{excer}
+        Demuestre que si $S$ es denso en un grupo topológico $G$ y $O$ es abierto no vacío en $G$, entonces $O\cdot S=S\cdot O= G$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    %página 58 del pdf
+    
+
+\end{document}
