@@ -1916,9 +1916,9 @@
     \begin{theor}
         Sea $S\subseteq\mathbb{R}^n$ medible. Para cada $g\in\mathcal{L}_\infty(S,\mathbb{K})$ se define $\phi_g$ como la función de $\mathcal{L}_1(S,\mathbb{K})$ en $\mathbb{K}$ dada como sigue:
         \begin{equation*}
-            \phi_g(f)=\int_S fg,\quad\forall f,g\in\mathcal{L}_1(S,\mathbb{K})
+            \phi_g(f)=\int_S fg,\quad\forall f\in\mathcal{L}_1(S,\mathbb{K})
         \end{equation*}
-        Entonces, $\phi_g$ es un funcional lineal continuo sobre $L_1(S,\mathbb{K})$ tal que $\norm{\phi_g}=\N{\infty}{g}$. Además, la aplicación $\phi:g\mapsto \phi_g$ es una isometría lineal de $L_\infty(S,\mathbb{K})$ sobre $L_1(\mathbb{N},\mathbb{K})^*$.
+        Entonces, $\phi_g$ es un funcional lineal continuo sobre $L_1(S,\mathbb{K})$ tal que $\norm{\phi_g}=\N{\infty}{g}$. Además, la aplicación $\phi:g\mapsto \phi_g$ es una isometría lineal de $L_\infty(S,\mathbb{K})$ sobre $L_1(S,\mathbb{K})^*$.
     \end{theor}
 
     \begin{proof}
@@ -1929,7 +1929,7 @@
         \begin{equation*}
             \abs{\phi_g(f)}\leq\abs{\int_S fg}\leq\int_S\abs{f}\abs{g}\leq \N{\infty}{g}\N{1}{f}
         \end{equation*}
-        por tanto, $\phi_g\in L_1(\mathbb{N},\mathbb{K})^*$, y $\norm{\phi_g}\leq\N{\infty}{g}$.
+        por tanto, $\phi_g\in L_1(S,\mathbb{K})^*$, y $\norm{\phi_g}\leq\N{\infty}{g}$.
 
         Si $A\subseteq S$ es medible de medida finita, entonces
         \begin{equation*}
@@ -1955,21 +1955,28 @@
             \end{equation*}
             Entonces:
             \begin{equation*}
-                \abs{\varphi(f)}\leq\norm{\varphi}\N{1}{f}\leq\norm{\varphi}m(S)^{1/2}\N{2}{f},\quad\forall f\in\mathcal{L}_2(S,\mathbb{K})
+                \begin{split}
+                    \abs{\varphi(f)}&\leq\norm{\varphi}\N{1}{f}\\
+                    &\leq\norm{\varphi}m(S)^{1/2}\N{2}{f},\quad\forall f\in\mathcal{L}_2(S,\mathbb{K})\\
+                \end{split}
             \end{equation*}
-            Así pues, la reestricción de $\varphi$ a $L_1(S,\mathbb{K})$ es lineal continua, es decir, $\varphi\in L_2(S,\mathbb{K})^*$. Por la autodualida de $L_2(S,\mathbb{K})$, existe $g\in\mathcal{L}_2(S,\mathbb{K})$ tal que:
+            Así pues, la reestricción de $\varphi$ a $L_2(S,\mathbb{K})$ es lineal continua, es decir, $\varphi\in L_2(S,\mathbb{K})^*$. Por la autodualidad de $L_2(S,\mathbb{K})$, existe $g\in\mathcal{L}_2(S,\mathbb{K})$ tal que:
             \begin{equation}
                 \varphi(f)=\int_Sfg,\quad\forall f\in\mathcal{L}_2(S,\mathbb{K})
             \end{equation}
             se afirma que $g\in \mathcal{L}_\infty(S,\mathbb{K})$. En efecto, sea $A\subseteq S$ medible. Entonces:
             \begin{equation*}
-                \abs{\int_Ag}\leq \abs{g\chi_A}=\abs{\varphi(\chi_A)}\leq\norm{\varphi}\N{1}{\chi_A}=\norm{\varphi}m(A)
+                \begin{split}
+                    \abs{\int_Ag}&=\abs{\varphi(\chi_A)}\\
+                    &\leq \norm{\varphi}\N{1}{\chi_A}\\
+                    &=\norm{\varphi}m(A)\\
+                \end{split}
             \end{equation*}
             luego, por el lema de los promedios:
             \begin{equation*}
                 \abs{g(x)}\leq\norm{\varphi}
             \end{equation*}
-            c.t.p. $x\in S$. Por ende, $g\in \mathcal{L}_\infty(S,\mathbb{K})$.
+            para casi todo $x\in S$. Por ende, $g\in \mathcal{L}_\infty(S,\mathbb{K})$.
 
             Para esta $g$ se tiene definido el correspondiente funcional lineal $\phi_g$ sobre $L_1(S,\mathbb{K})$. De acuerdo a la ecuación anterior se tiene que:
             \begin{equation*}
@@ -1977,7 +1984,7 @@
             \end{equation*}
             En particular, ambos operadores lineales continuos coinciden en el conjunto de las funciones escalonadas, denso en $L_1(S,\mathbb{K})$. Por el principio de ampliación de identidades, $\varphi$ y $\phi_g$ coinciden en todo $L_1(S,\mathbb{K})$.
 
-            \item $\varphi$ es suprayectiva. Escriba $S$ en la forma:
+            \item $\phi_g$ es suprayectiva en el caso general. Escriba $S$ en la forma:
             \begin{equation*}
                 S=\bigcup_{ k=1}^\infty S_k
             \end{equation*}
@@ -2012,7 +2019,7 @@
             \end{equation*}
             Defina $g=\sum_{ k=1}^{\infty}g_k$. Esta es una función de $S$ en $\mathbb{K}$ en todo punto de $S$. Es claro que esta función está bien definida ya que los $S_k$ son disjuntos a pares. Por (1):
             \begin{equation*}
-                \N{\infty}{g}=\norm{\phi_{g_k}}=\norm{\varphi_k}\leq\norm{\varphi}
+                \N{\infty}{g_k}=\norm{\phi_{g_k}}=\norm{\varphi_k}\leq\norm{\varphi}
             \end{equation*}
             es decir, para casi toda $x\in S_k$, $\abs{g_k(x)}\leq\norm{\varphi}$. Luego, para casi toda $x\in S$,
             \begin{equation*}
@@ -2043,29 +2050,29 @@
 
     \chapter{Convolución}
     
-    Se sabe que el producto puntual de dos funciones integrables no necesariamente es una función integrable (por ejemplo, $f(x)=g(x)=\frac{1}{\sqrt{x}}\chi_]0,1[$). Sin embargo, es posible definir un auténtico producto en $L_1(\mathbb{R}^n,\mathbb{K})$ que sea compatible con la adición y el producto por escalares, con el cual $L_1(\mathbb{R}^n,\mathbb{K})$ sea un \textbf{álgebra de Banach conmutativa sin elemento identidad}. Tal operación se llama la \textbf{convolución}.
+    Se sabe que el producto puntual de dos funciones integrables no necesariamente es una función integrable (por ejemplo, $f(x)=g(x)=\frac{1}{\sqrt{x}}\chi_{]0,1[}$). Sin embargo, es posible definir un auténtico producto en $L_1(\mathbb{R}^n,\mathbb{K})$ que sea compatible con la adición y el producto por escalares, con el cual $L_1(\mathbb{R}^n,\mathbb{K})$ sea un \textbf{álgebra de Banach conmutativa sin elemento identidad}. Tal operación se llama la \textbf{convolución}.
 
     \section{Preliminares}
 
     \begin{lema}
-        Si $M$ es un subconjunto despreciable de $\mathbb{R}^n$, entonces $M$ es despreciable en $\mathbb{R}^{n+m}$.
+        Si $M$ es un subconjunto despreciable de $\mathbb{R}^n$, entonces $M\times\mathbb{R}^m$ es despreciable en $\mathbb{R}^{n+m}$.
     \end{lema}
 
     \begin{proof}
-        Escriba a $R^m$ como unión numerable de rectángulos acotados. Basta probar que si $Q$ es un rectángulo acotado en $R^m$, entonces $M\times Q$ es despreciable en $\mathbb{R}^{ n+m}$.
+        Escriba a $\mathbb{R}^m$ como unión numerable de rectángulos acotados disjuntos. Basta probar que si $Q$ es un rectángulo acotado en $\mathbb{R}^m$, entonces $M\times Q$ es despreciable en $\mathbb{R}^{ n+m}$.
 
-        Sea $\varepsilon>0$. ¨Por definición de medida exterior, existe $\left\{P_\nu \right\}_{\nu=1}^\infty$ sucesión de rectángulos acotados tales que $M\subseteq \bigcup_{ \nu=1}^\infty P_\nu$ y:
+        Sea $\varepsilon>0$. Por definición de medida exterior, existe $\left\{P_\nu \right\}_{\nu=1}^\infty$ sucesión de rectángulos acotados tales que $M\subseteq \bigcup_{ \nu=1}^\infty P_\nu$ y:
         \begin{equation*}
             \sum_{ \nu=1}^{\infty}\textup{Vol}(P_\nu)<\varepsilon
         \end{equation*}
-        Entonces, $\left\{P_\nu\times Q \right\}_{\nu=1}^\infty$ es una sucesión de rectángulos acotados en $\mathbb{R}^{n+m}$ tales que $M\times Q\subseteq \bigcup_{ \nu=1}^\infty P_\nu\times Q$
+        Entonces, $\left\{P_\nu\times Q \right\}_{\nu=1}^\infty$ es una sucesión de rectángulos acotados en $\mathbb{R}^{n+m}$ tales que $M\times Q\subseteq \bigcup_{ \nu=1}^\infty P_\nu\times Q$, y
         \begin{equation*}
             \begin{split}
                 \sum_{ \nu=1}^{\infty}\textup{Vol}(P_\nu\times Q)&=\textup{Vol}(Q)\cdot\sum_{ \nu=1}^{\infty}\textup{Vol}(P_\nu)\\
                 &<\textup{Vol}(Q)\varepsilon\\
             \end{split}
         \end{equation*}
-        luego se tiene el resultado.
+        (en caso de que $\textup{Vol}(Q)>0$), luego, el conjunto $M\times Q$ es despreciable, con lo cual el conjunto $M\times\mathbb{R}^m$ también lo es.
     \end{proof}
 
     \begin{mydef}
@@ -2076,12 +2083,12 @@
     \end{mydef}
 
     \begin{propo}
-        Si $\cf{f}{\mathbb{R}^p}{\mathbb{K}}$ y $\cf{g}{\mathbb{R}^q}{\mathbb{K}}$ son medibles, entonces $\cf{f\otimes g}{\mathbb{R}}^{ p+q}{\mathbb{K}}$ es medible.
+        Si $\cf{f}{\mathbb{R}^p}{\mathbb{K}}$ y $\cf{g}{\mathbb{R}^q}{\mathbb{K}}$ son funciones medibles, entonces $\cf{f\otimes g}{\mathbb{R}^{ p+q}}{\mathbb{K}}$ es medible.
     \end{propo}
 
     \begin{proof}
         \begin{enumerate}
-            \item El resultaod es cierto para funciones escalonadas $\cf{\varphi}{\mathbb{R}^p}{\mathbb{K}}$ y $\cf{\psi}{\mathbb{R}^q}{\mathbb{K}}$ escritas canónicamente como:
+            \item Afirmamos que el resultado es cierto para funciones escalonadas $\cf{\varphi}{\mathbb{R}^p}{\mathbb{K}}$ y $\cf{\psi}{\mathbb{R}^q}{\mathbb{K}}$ escritas canónicamente como:
             \begin{equation*}
                 \varphi=\sum_{ i=1}^{r}c_i\chi_{ P_i}\quad\textup{y}\quad\psi=\sum_{ j=1}^{s}d_j\chi_{ Q_j}
             \end{equation*}
@@ -2092,7 +2099,7 @@
                     &=\sum_{ i=1}^{r}\sum_{ j=1}^{s}c_id_j\chi_{ P_i\times Q_j}(x,y)\\
                 \end{split}
             \end{equation*}
-            la cual es una función escalonada en $\mathbb{R}^{ p+q}$ luego, medible.
+            la cual es una función escalonada en $\mathbb{R}^{ p+q}$, luego medible.
             \item En el caso general, se sabe que existen $\left\{ \varphi_\nu\right\}_{ \nu=1}^\infty$ en $\mathcal{E}(\mathbb{R}^p,\mathbb{K})$ y $\left\{\psi_\nu \right\}_{ \nu=1}^\infty$ en $\mathcal{E}(\mathbb{R}^q,\mathbb{K})$ y conjuntos despreciables $M\subseteq \mathbb{R}^p$, $N\subseteq \mathbb{R}^q$ tales que:
             \begin{equation*}
                 \lim_{ \nu\rightarrow\infty}\varphi_\nu(x)=f(x),\quad\forall x\in \mathbb{R}^p\backslash M
@@ -2108,12 +2115,12 @@
                     &=f(x)g(y)\\
                 \end{split}
             \end{equation*}
-            para todo $(x,y)\in \mathbb{R}^{ p+q}\backslash\left[M\times\mathbb{R}^q\cup\mathbb{R}^p\times N \right]$. Por el lema anterior se tine que $M\times\mathbb{R}^q\cup\mathbb{R}^p\times N$ es despreciable en $\mathbb{R}^{ p+q}$. Como $\varphi_\nu\otimes \psi\nu$ son medibles, entonces $f\otimes g$ es medible.
+            para todo $(x,y)\in \mathbb{R}^{ p+q}\backslash\left[M\times\mathbb{R}^q\cup\mathbb{R}^p\times N \right]$. Por el lema anterior se tine que $M\times\mathbb{R}^q\cup\mathbb{R}^p\times N$ es despreciable en $\mathbb{R}^{ p+q}$. Como $\varphi_\nu\otimes \psi_\nu$ son medibles para todo $\nu\in\mathbb{N}$, entonces $f\otimes g$ es medible.
         \end{enumerate}
     \end{proof}
 
     \begin{cor}
-        Si $\cf{f}{\mathbb{R}^p}{\mathbb{K}}$ y $\cf{F}{\mathbb{R}^{ p+q}}{\mathbb{K}}$ se define como:
+        Si $\cf{f}{\mathbb{R}^p}{\mathbb{K}}$ es medible, entonces $\cf{F}{\mathbb{R}^{ p+q}}{\mathbb{K}}$ dada como:
         \begin{equation*}
             F(x,y)=f(x),\quad\forall (x,y)\in\mathbb{R}^{ p+q}
         \end{equation*}
@@ -2121,7 +2128,8 @@
     \end{cor}
 
     \begin{proof}
-        Es inmediata de la proposición anterior.
+        Es inmediata de la proposición anterior tomando a $f$ y $g=\chi_{\mathbb{R}^q}$.
+        
     \end{proof}
 
     \begin{cor}
@@ -2132,7 +2140,7 @@
     \end{cor}
 
     \begin{proof}
-        
+        Es inmediato del teorema de Tonelli.
     \end{proof}
 
     \section{Convolución}
