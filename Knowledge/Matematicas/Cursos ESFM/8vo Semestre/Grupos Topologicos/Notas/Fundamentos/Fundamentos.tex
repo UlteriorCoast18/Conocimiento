@@ -920,11 +920,54 @@
     Ahora se estudian las propiedades de la función canónica $\cf{\pi}{G}{G/_DH}$, tal que $x\mapsto Hx$.
 
     \begin{propo}
-        
+        Sean $G$ un grupo topológico, $H$ un subgrupo cerrado de $G$ y $\cf{\pi}{G}{G/_DH}$ la función canónica tal que $x\mapsto Hx$. Entonces, $\pi$ es continua y abierta.
     \end{propo}
 
     \begin{proof}
-        %me quedé en la página 41
+        Sea $x\in G$ y $U\subseteq G$ un abierto tal que $\pi(x)=Hx\in U^*$. Para probar que $\pi$ es continua, hay que encontrar un abierto $V$ en $G$ tal que
+        \begin{equation*}
+            \pi(V)\subseteq U^*
+        \end{equation*}
+        tomemos $V=HU$, el cual es abierto por ser $U$ abierto en $G$, además $x\in V$ y:
+        \begin{equation*}
+            \pi(V)=\pi(HU)=\pi(U)=U^*
+        \end{equation*}
+        por tanto, $\pi$ es continua.
+
+        Veamos ahora que es un mapeo abierto. Sea $U\subseteq G$ abierto y tomemos $\mathcal{B}$ una base de la topología de $G$; entonces:
+        \begin{equation*}
+            U=\bigcup_{ j\in J}B_j
+        \end{equation*}
+        donde $\left\{B_j \right\}_{j\in J}\subseteq \mathcal{B}$. Tenemos que:
+        \begin{equation*}
+            \pi(U)=\pi(\bigcup_{ j\in J}B_j)=\bigcup_{ j\in J}\pi(B_j)=\bigcup_{ j\in J}B_j^*
+        \end{equation*}
+        donde $B_j^*\in\mathcal{B}^*$, para todo $j\in J$. Luego, $\pi(U)$ es un mapeo abierto.
     \end{proof}
+
+    En general la función canónica $\cf{\pi}{G}{G/_DH}$ no es cerrada como lo muestra el siguiente ejemplo. Sin embargo, si $H$ es compacto entonces la función sí es cerrada (esto se verá en el siguiente capítulo).
+
+    \begin{exa}
+        Considere $G=\mathbb{R}$ como grupo aditivo de los reales dotado de la topología usual, y $H=\mathbb{Z}$ el subgrupo de los números enteros. Entonces, definimos la función $\cf{\psi}{\mathbb{R}/\mathbb{Z}}{[0,1[}$
+        dada por:
+        \begin{equation*}
+            \psi(\mathbb{Z}+x)=x-[x]
+        \end{equation*}
+        donde $[x]$ denota a la parte entera de $x$. Esta función es biyectiva (más aún, es un isomorfismo de grupos, dotando a $[0,1[$ con cierta operación binaria que lo haga grupo) y es un homeomofismos si se le dota a este conjunto de la topolgía usual de $[0,1[$.
+
+        Se tiene además, que el conjunto $A=\left\{2+\frac{1}{2},...,n+\frac{1}{n},... \right\}$ es cerrado en $\mathbb{R}$, pero su imagen bajo la función canónica es $\pi(A)=\left\{\mathbb{Z}+\frac{1}{2},...,\mathbb{Z}+\frac{1}{n},... \right\}$, el cual es homeomorfo a $\left\{\frac{1}{2},...,\frac{1}{n},... \right\}$ no es cerrado en $[0,1[$, por lo cual no el conjunto $\pi(A)$ no es cerrado en $\mathbb{R}/\mathbb{Z}$.
+    \end{exa}
+
+    El siguiente resultado muestra que las propiedades topológicas locales del espacio cociente de $G$ en $H$ también se pueden estudiar en un solo punto.
+
+    \begin{propo}
+        Sean $G$ un grupo topológico y $H$ un subgrupo cerrado de $G$. Entonces, $G/H$ es un espacio homogéneo.
+    \end{propo}
+
+    \begin{proof}
+        %TODO página 42 pdf.
+    \end{proof}
+
+
 
 \end{document}

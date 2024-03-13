@@ -1291,12 +1291,125 @@
         Por tanto, si $m\neq n$, se tiene que:
         \begin{equation*}
             \begin{split}
-                \pint{\varphi_n}{\varphi_m}&=\int_{\mathbb{R}}\varphi_n(x)\conj{\varphi_m(x)}dx\\
-                &=\int_{\mathbb{R}}\varphi_n(x)\varphi_m(x)dx\\
-                &=\frac{1}{2(m-n)} \int_{\mathbb{R}}\left[\varphi_n''(x)\varphi_m(x)-\varphi_m''(x)\varphi_n(x)\right]dx\\
+                \pint{\varphi_n}{\varphi_m}&=\int_{-\infty}^\infty \varphi_n(x)\conj{\varphi_m(x)}dx\\
+                &=\int_{-\infty}^\infty\varphi_n(x)\varphi_m(x)dx\\
+                &=\frac{1}{2(m-n)} \int_{-\infty}^\infty\left[\varphi_n''(x)\varphi_m(x)-\varphi_m''(x)\varphi_n(x)\right]dx\\
+                &=\frac{1}{2(m-n)} \lim_{R\rightarrow\infty} \int_{-R}^R\left[\varphi_n''(x)\varphi_m(x)-\varphi_m''(x)\varphi_n(x)\right]dx\\
             \end{split}
         \end{equation*}
         donde:
+        \begin{equation*}
+            \begin{split}
+                \int_{-R}^R&\left[\varphi_n''(x)\varphi_m(x)-\varphi_m''(x) \varphi_n(x)\right]dx\\
+                &=\left[\varphi_n'(x)\varphi_m(x)-\varphi_m'(x)\varphi_n(x)\right]\Big|_{-R}^{R}-\int_{-R}^R(\varphi_n'(x)\varphi_m'(x)-\varphi_m'(x)\varphi_n'(x))dx\\
+                &=\left[\varphi_n'(R)\varphi_m(R)-\varphi_m'(R)\varphi_n(R)-\varphi_n'(-R)\varphi_m(-R)+\varphi_m'(-R)\varphi_n(-R)\right] \\
+            \end{split}
+        \end{equation*}
+        además,
+        \begin{equation*}
+            \begin{split}
+                \varphi_n'(x)&=\frac{d}{dx}\left(H_n(x)e^{-\frac{x^2}{2}} \right)\\
+                &=H_n'(x)e^{-\frac{x^2}{2}}-2xH_n(x)e^{-\frac{x^2}{2}}\\
+                &=e^{-\frac{x^2}{2}}\left[H_n'(x)-2xH_n(x)\right] \\
+            \end{split}
+        \end{equation*}
+        Por lo cual:
+        \begin{equation*}
+            \varphi_n'(x)\varphi_m(x)=e^{-x^2}\left[H_n'(x)-2xH_n(x)\right]H_m(x)
+        \end{equation*}
+        luego, al tomar el límite cuando $R\rightarrow\infty$, se tiene que el término $e^{-x^2}$ domina a lo que sea que valga el producto de polinomios de la derecha con lo cual, se sigue que:
+        \begin{equation*}
+            \lim_{R\rightarrow\infty}\left[\varphi_n'(R)\varphi_m(R)-\varphi_m'(R)\varphi_n(R)-\varphi_n'(-R)\varphi_m(-R)+\varphi_m'(-R)\varphi_n(-R)\right]=0
+        \end{equation*}
+        y, por ende:
+        \begin{equation*}
+            \lim_{R\rightarrow\infty} \int_{-R}^R\left[\varphi_n''(x)\varphi_m(x)-\varphi_m''(x) \varphi_n(x)\right]dx=0
+        \end{equation*}
+        así, se tiene que:
+        \begin{equation*}
+            \pint{\varphi_n}{\varphi_m}=0
+        \end{equation*}
+        Por tanto, el sistema $\left(\varphi_n \right)_{ n\in\mathbb{N}^*}$ es un sistema ortogonal en $L_2(\mathbb{R},\mathbb{K})$.
+
+        De (iii): Sea $n\in\mathbb{N}$, entonces:
+        \begin{equation*}
+            \begin{split}
+                \varphi_n(x)&=\varphi_n(x)\\
+                \Rightarrow H_n(x)e^{-\frac{x^2}{2}}&=(-1)^{n}e^{\frac{x^2}{2}}D^ne^{-x^2}\\
+                \Rightarrow H_n(x)&=(-1)^{n}e^{x^2} D^ne^{-x^2}\\
+            \end{split}
+        \end{equation*}
+        derivando se tiene que:
+        \begin{equation*}
+            \begin{split}
+                H_n'(x)&=\frac{d}{dx}\left((-1)^{n}e^{x^2} D^ne^{-x^2}\right) \\
+                &=(-1)^{n}\left[\frac{d}{dx}\left(e^{x^2}\right)D^ne^{-x^2}+e^{x^2}D^{n+1} e^{-x^2}\right] \\
+                &=(-1)^{n}\left[2xe^{x^2}D^ne^{-x^2}+e^{x^2}D^{n+1} e^{-x^2}\right] \\
+                &=(-1)^{n}e^{x^2}\left[2D^ne^{-x^2}+D^{n+1} e^{-x^2}\right] \\
+            \end{split}
+        \end{equation*}
+        con:
+        \begin{equation*}
+            \begin{split}
+                D^{n+1} e^{-x^2}&=D^n(-2xe^{-x^2})\\
+                &=\sum_{ k=0}^n \binom{n}{k}(D^{ n-k}e^{-x^2})(D^k(-2x)) \\
+                &=-2x D^ne^{-x^2}-2nD^{ n-1}e^{-x^2}\\
+            \end{split}
+        \end{equation*}
+        por tanto:
+        \begin{equation*}
+            \begin{split}
+                H_n'(x)&=(-1)^{n}e^{x^2}\left[2xD^ne^{-x^2}+D^{n+1} e^{-x^2}\right] \\
+                &=(-1)^{n}e^{x^2}\left[2xD^ne^{-x^2}-2x D^ne^{-x^2}-2nD^{ n-1}e^{-x^2}\right] \\
+                &=(-1)^{n-1}e^{x^2}\left[2nD^{ n-1}e^{-x^2}\right] \\
+                &=2n\left[(-1)^{n-1}e^{x^2}D^{ n-1}e^{-x^2}\right] \\
+                &=2nH_{n-1}(x)\\
+            \end{split}
+        \end{equation*}
+        como se quería demostrar.
+
+        De (iv): Sea $n\in\mathbb{N}$. Entonces:
+        \begin{equation*}
+            \begin{split}
+                \int_{ -\infty}^\infty\varphi_n(x)^2dx&=\int_{ -\infty}^\infty \overbrace{\left(H_n(x)e^{-\frac{x^2}{2}}\right)}^{\varphi_n(x)} \overbrace{\left((-1)^ne^{\frac{x^2}{2}}D^ne^{-x^2} \right)}^{\varphi_n(x)} dx\\
+                &=(-1)^n\int_{ -\infty}^\infty H_n(x)D^ne^{-x^2}dx\\
+                &=(-1)^n\lim_{R\rightarrow\infty}\int_{ -R}^R H_n(x)D^ne^{-x^2}dx\\
+                &=(-1)^n\lim_{R\rightarrow\infty}\left[H_n(x)D^{n-1} e^{-x^2}\Big|_{x=-R}^{x=R}-\int_{-R}^R H_n'(x)D^{n-1}e^{-x^2} \right]\\
+                &=(-1)^n\lim_{R\rightarrow\infty}\left[(-1)^{n-1}H_n(x)H_{ n-1}(x)e^{-x^2} \Big|_{x=-R}^{x=R}-\int_{-R}^R H_n'(x)D^{n-1}e^{-x^2} \right]\\
+            \end{split}
+        \end{equation*}
+        pero:
+        \begin{equation*}
+            \lim_{R\rightarrow\infty}(-1)^{n-1}H_n(x)H_{ n-1}(x)e^{-x^2} \Big|_{x=-R}^{x=R}=\lim_{R\rightarrow\infty} P(R)e^{-R^2}
+        \end{equation*}
+        donde $P(x)=(-1)^{n-1}\left(H_n(x)H_{ n-1}(x)-H_n(-x)H_{ n-1}(-x)\right)$. Luego el límite anterior es cero, pues la función exponencial tiende a 0 más rápido. Usando además lo obtenido en (iii), se sigue que:
+        \begin{equation*}
+            \begin{split}
+                \int_{ -\infty}^\infty\varphi_n(x)^2dx&=(-1)^{n-1}\lim_{R\rightarrow\infty}\int_{-R}^R H_n'(x)D^{n-1}e^{-x^2}\\
+                &=2n(-1)^{n-1}\lim_{R\rightarrow\infty}\int_{-R}^R H_{ n-1}(x)D^{n-1}e^{-x^2}\\
+                &=2n(-1)^{n-1}\int_{-\infty}^\infty H_{ n-1}(x)D^{n-1}e^{-x^2}\\
+                &=2n\int_{ -\infty}^\infty\varphi_{ n-1}(x)^2dx\\
+                \Rightarrow \int_{ -\infty}^\infty\varphi_n(x)^2dx&=2n\int_{ -\infty}^\infty\varphi_{ n-1}(x)^2dx\\
+            \end{split}
+        \end{equation*}
+        para probar la otra parte, veamos que:
+        \begin{equation*}
+            \begin{split}
+                \int_{-\infty}^\infty\varphi_0(x)^2dx&=\int_{-\infty}^\infty\left((-1)^0e^{\frac{x^2}{2}}e^{-x^2}\right)^2 dx\\
+                &=\int_{-\infty}^\infty\left(e^{-\frac{x^2}{2}}\right)^2 dx\\
+                &=\int_{-\infty}^\infty e^{-x^2} dx\\
+                &=\pi^{1/2}\\
+            \end{split}
+        \end{equation*}
+        Por inducción (no es tan complicado), se prueba que:
+        \begin{equation*}
+            \int_{ -\infty}^\infty\varphi_n(x)^2dx=\pi^{1/2}2^n n!
+        \end{equation*}
+        con lo cual, el sistema formado por:
+        \begin{equation*}
+            \psi_n=\frac{\varphi_n}{\pi^{1/2}2^n n!}
+        \end{equation*}
+        para todo $n\in\mathbb{N}^*$ es un sistema ortonormal sobre $L_2(\mathbb{R},\mathbb{K})$, como se quería demostrar.
 
     \end{proof}
 
