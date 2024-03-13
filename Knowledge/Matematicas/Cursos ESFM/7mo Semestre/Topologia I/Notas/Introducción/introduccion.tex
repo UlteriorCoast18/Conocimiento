@@ -1777,4 +1777,148 @@
         es decir que $\Cls{f(\mathbb{N})}\nsubseteq f(\Cls{\mathbb{N}})$.
     \end{exa}
 
+    \begin{exa}
+        Sean $(X_1,\tau_1)$, $(X_2,\tau_2)$ y $(X_3,\tau_3)$ tres espacios topológicos.
+        \begin{enumerate}
+            \item Tomemos $A\subseteq X_1$, y sea $\cf{i_A}{(A,\tau_{1_A})}{(X_1,\tau_1)}$ la función definida de por:
+            \begin{equation*}
+                \forall a\in A, i_A(a)=a
+            \end{equation*}
+            tenemos que esta función es una función continua y se llama \textbf{la función inclusión de $A$ en $X_1$}. Además, tenemos que para $U\in \tau_1$, $i^{-1}(U)=U\cap A\in\tau_{1_A}$.
+            \item Sea $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ una función continua.
+            \begin{enumerate}
+                \item Si $B\subseteq X_2$ cumple que $f(X_1)=B$, entonces, la función $\cf{F}{(X_1,\tau_1)}{(B,\tau_{2_B})}$ definida para todo $x\in X_1$, $F(x)=f(x)$ es continua. $F$ se dice que es \textbf{una reestricción del rango de $f$}.
+                
+                La continuidad se sigue del hecho de que si $U\in\tau_{2_B}$, entonces existe $V\in\tau_2$ tal que $U=V\cap B$, luego
+                \begin{equation*}
+                    F^{-1}(U)=f^{-1}(U)=f^{-1}(V\cap B)=f^{-1}(V)\cap f^{-1}(B)=f^{-1}(V)\cap X_1=f^{-1}(V)
+                \end{equation*}
+                donde el miembro de la derecha está en $\tau_1$. Por tanto, $F$ es continua.
+                \item Si $(X_3,\tau_3)$ es un espacio topológico que tiene a $(X_2,\tau_2)$ como subespacio, entonces la función $\cf{F}{(X_1,\tau_1)}{(X_3,\tau_3)}$ tal que $\forall x\in X_1$, $F(x)=f(x)$ se llama \textbf{una expansión del rango de $f$}.
+                
+                La continuidad se sigue del hecho de que si $U\in\tau_3$, entonces:
+                \begin{equation*}
+                    F^{-1}(U)=F^{-1}(U\cap X_2)\cup F^{-1}(U\cap (X_3-X_2))=F^{-1}(U\cap X_2)\cup\emptyset=f^{-1}(U\cap X_2)
+                \end{equation*}
+                donde el mimebro de la derecha está en $\tau_1$ ya que $U\cap X_2$ está en $\tau_2$ por ser $f$ continua.
+
+                \item Si $A\subseteq X_1$, entonces la función $\cf{f_A}{(A,\tau_{1_A})}{(X_2,\tau_2)}$ tal que para todo $x\in A$, $f_A(x)=f(x)$ es una función continua y se dice \textbf{la función reestringida (del dominio) de $f$ al conjunto $A$}. Esta función también es continua.
+            \end{enumerate}
+            \item Si $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es una función y $\left\{A_\alpha\right\}_{ \alpha\in I}\subseteq \tau_1$ tal que:
+            \begin{equation*}
+                \bigcup_{\alpha\in I}A_\alpha=X_1
+            \end{equation*}
+            entonces, $f$ es continua si y sólo si $\forall \alpha\in I$, $\cf{f_{A_\alpha}}{(A_\alpha,\tau_{1_{A_\alpha}})}{(X_2,\tau_2)}$ es una función continua.
+            \item Si $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es una función y $\left\{ C_\alpha\right\}_{\alpha\in I}$ es una familia \textit{finita} de conjuntos cerrado sen $(X_1,\tau_1)$, tal que
+            \begin{equation*}
+                \bigcup_{\alpha\in I}C_\alpha=X_1
+            \end{equation*}
+            entonces, $f$ es continua si y sólo si $\forall \alpha\in I$, $\cf{f_{C_\alpha}}{(C_\alpha,\tau_{1_{C_\alpha}})}{(X_2,\tau_2)}$ es una función continua.
+
+            \item Sean $A,B$ subconjuntos abiertos (respectivamente, cerrados) de $(X_1,\tau_1)$ tales que $X_1=A\cup B$. Si $\cf{f_1}{(A,\tau_{1_A})}{(X_2,\tau_2)}$ y $\cf{f_2}{(B,\tau_{1_B})}{(X_2,\tau_2)}$ son funciones continuas tales que para todo $x\in A\cap B$ se tiene que $f_1(x)=f_2(x)$, entonces, la función $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ definida como:
+            \begin{equation*}
+                \forall x\in X_1,\quad f(x)=\left\{ \begin{array}{lcr}
+                    f_1(x) &\textup{ si }& x\in A\\
+                    f_2(x) &\textup{ si }& x\in B\\
+                \end{array}\right.
+            \end{equation*}
+            es una función continua.
+
+            \item Si $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ y $\cf{g}{(X_2,\tau_2)}{(X_3,\tau_3)}$ son funciones continuas, entonces $\cf{g\circ f}{(X_1,\tau_1)}{(X_3,\tau_3)}$ es continua.
+        \end{enumerate}
+    \end{exa}
+
+    \begin{proof}
+        De (3): La necesidad es inmediata del inciso anterior.
+
+        Para la suficiencia, suponga que para todo $\alpha\in I$, la función $f_{A_\alpha}$ es continua. Sea $U\in\tau_2$, entonces por hipótesis se tiene que $f_{A_\alpha}^{-1}(U)\in\tau_{1_{A_\alpha}}$, por tanto:
+        \begin{equation*}
+            \forall \alpha\in I, f^{-1}(U)\cap A_\alpha\in \tau_{1_{A_\alpha}}
+        \end{equation*}
+        por otro lado,
+        \begin{equation*}
+            f^{-1}(U)=f^{-1}(U)\cap X_1=f^{-1}(U)\cap\left(\bigcup_{\alpha\in I}A_\alpha \right)=\left(\bigcup_{\alpha\in I}f^{-1}(U)\cap A_\alpha \right)
+        \end{equation*}
+        donde todos los miembros de unión en la derecha están en $\tau_1$ ya que cada $A_\alpha$ es abierto, y, al ser $f^{-1}(U)$ abierto en $\tau_{A_\alpha}$, se sigue que $f^{-1}(U)$ debe ser elemento de $\tau_1$. Por tanto, $f^{-1}(U)$ es abierto.
+
+        De (4): La necesidad es inmediata de un inciso anterior.
+
+        Para la suficiencia... %TODO
+
+        De (5): Supongamos que $A,B$ son abiertos. Sea $U\in\tau_2$. Como $f_1$ y $f_2$ son continuas, entonces $f_1^{-1}(U)\in\tau_{1_A}$ y $f_2^{-1}(U)\in\tau_{1_B}$, como $A$ y $B$ son abiertos en $(X_1,\tau_1)$, entonces $f_1^{-1}(U)$ y $f_2^{-1}(U)$ son abiertos en $(X_1,\tau_1)$. Por tanto,
+        \begin{equation*}
+            f^{-1}(U)=f_1^{-1}(U)\cup f_2^{-1}(U)\in\tau_1
+        \end{equation*}
+        se sigue entonces que $f$ es continua.
+
+        De (6): Sea $U\in\tau_3$, entonces $g^{-1}(U)\in \tau_2$, por lo cual $f^{-1}(g^{-1}(U))\in\tau_1$. Como:
+        \begin{equation*}
+            (g\circ f)^{-1}(U)=f^{-1}(g^{-1}(U))\in\tau_1
+        \end{equation*}
+        entonces, se sigue que $g\circ f$ es continua.
+    \end{proof}
+
+    \section{Funciones abiertas, cerradas y homemorfismos}
+
+    \begin{mydef}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos y $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ una función entre ellas.
+        \begin{enumerate}
+            \item Decimos que $f$ es una \textbf{función abierta}, si para todo $U\in\tau_1$, $f(U)\in\tau_2$.
+            \item Decimos que $f$ es una \textbf{función cerrada}, si para todo $X_1-U\in\tau_1$, $X_2-f(U)\in\tau_2$ (en otras palabras, si $U\subseteq X_1$ es cerrado, entonces $f(U)\subseteq X_2$ es cerrado).
+        \end{enumerate}
+    \end{mydef}
+
+    Veamos ejemplos de funciones que sean abiertas, cerradas y continuas.
+
+    Considere $X=\left\{a,b \right\}$ con $a\neq b$, $\tau_1=\left\{ X,\emptyset,\left\{a\right\} \right\}$ y $\tau_2=\left\{ X,\emptyset,\left\{b\right\} \right\}$
+
+    \begin{enumerate}
+        \item Tomemos $\cf{id}{(X,\tau_1)}{(X,\tau_2)}$. Esta función no es continua, tampoco es abierta ni cerrada.
+        \item Tomemos $\cf{id}{(X,\tau_I=\left\{X,\emptyset \right\})}{(X,\tau_D)}$. Esta función no es continua, pero si es abierta y cerrada.
+        \item Tomemos $\cf{id=id^{-1}}{(X,\tau_D)}{(X,\tau_I=\left\{X,\emptyset \right\})}$. Esta función es continua, pero no es abierta ni cerrada.
+        \item Tomemos $\cf{id=id^{-1}}{(X,\tau_1)}{(X,\tau_1)}$. Esta función es continua, abierta y cerrada.
+        \item Tomemos $\cf{\underline{a}}{(X,\tau_D)}{(X,\tau_1)}$. Esta función es continua, abierta pero no es cerrada.
+        \item Tomemos $\cf{\underline{b}}{(X,\tau_D)}{(X,\tau_1)}$. Esta función es continua, pero no es abierta y sí es cerrada.
+        \item Tomemos $\cf{f}{(X,\tau_D)}{(\mathbb{R},\tau_u)}$ tal que $f(a)=0$ y $f(b)=1$. Esta función es continua, pero no abierta ni cerrada.
+    \end{enumerate}
+
+    Los ejemplos anteriores se resumen en la siguinte tabla.
+
+    \begin{center}
+        \begin{tabular}{c|c|c|c}
+            Ejemplo & Continua & Abierta & Cerrada \\
+            \hline
+            1 & $\times$ & $\times$ & $\times$ \\
+            2 & $\times$ & $\surd$ & $\surd$ \\
+            3 & $\surd$ & $\times$ & $\times$ \\
+            4 & $\surd$ & $\surd$ & $\surd$ \\
+            5 & $\surd$ & $\surd$ & $\times$ \\
+            6 & $\surd$ & $\times$ & $\surd$ \\
+            7 & $\surd$ & $\times$ & $\times$ \\
+        \end{tabular}
+    \end{center}
+
+    \begin{mydef}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos. Se dice que los espacios topológicos son \textbf{homeomorfos}, si existe una función $\cf{h}{(X_1,\tau_1)}{(X_2,\tau_2)}$ biyectiva tal que $h$ y $h^{-1}$ son continuas y, en tal caso, se dice que $h$ es un \textbf{homeomorfismo entre los espacios $(X_1,\tau_1)$ y $(X_2,\tau_2)$}, o simplemente un \textbf{homeomorfismo}, y se escribe
+        \begin{equation*}
+            (X_1,\tau_1) \simeq (X_2,\tau_2)
+        \end{equation*}
+    \end{mydef}
+    
+    \begin{propo}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos, y $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ una función biyectiva. Entonces, los siguientes enunciados son equivalentes:
+        \begin{enumerate}
+            \item $f$ es un homeomorfismo.
+            \item $f$ es continua y abierta.
+            \item $f$ es continua y cerrada.
+            \item $A\subseteq X_2$ es cerrado si y sólo si $f^{-1}(A)\subseteq X_2$ es cerrado.
+            \item $A\in\tau_2$ si y sólo si $f^{-1}(A)\in\tau_1$.
+            \item Si $\mathcal{B}$ es una base para $\tau_1$, entonces la colección
+            \begin{equation*}
+                f^{-1}(\mathcal{B}):=\left\{f(B)\Big|B\in\mathcal{B} \right\}
+            \end{equation*}
+            es una base para $\tau_2$.
+        \end{enumerate}
+    \end{propo}
+
 \end{document}
