@@ -311,4 +311,140 @@
         Defina $\cf{f}{G''}{G/G'}$ tal que $a\mapsto \left\{-a,a\right\}$. Afirmamos que esta función es continua. En efecto, 
     \end{proof}
 
+    \begin{excer}
+        Sea $GL(n,\mathbb{R})$ el grupo lineal general con la topología definida en un ejemplo anterior. Introduzcamos los siguientes subconjuntos de $GL(n,\mathbb{R})$; el conjunto $SL(n,\mathbb{R})$ de las matrices con determinante igual a $1$; el conjunto $TL(n,\mathbb{R})$ de las matrices triangulares superiores con los elementos de la diagonal principal iguales a $1$; el conjunto $O(n,\mathbb{R})$ de las matrices ortogonales. Pruebe lo siguiente:
+        \begin{enumerate}
+            \item Cada uno de los conjuntos $SL(n,\mathbb{R})$, $TL(n,\mathbb{R})$, $O(n,\mathbb{R})$ es un subgrupo cerrado de $GL(n,\mathbb{R})$.
+            \item $SL(n,\mathbb{R})$ es un subgrupo normal de $GL(n,\mathbb{R})$, pero $TL(n,\mathbb{R})$ y $O(n,\mathbb{R})$ no lo son si $n\geq 2$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        De (1): Primero, ya se sabe que $GL(n,\mathbb{R})$ es grupo con el producto usual de matrices. Veamos que es grupo topológico con la topología dotada por la métrica:
+        \begin{equation*}
+            d(A,B)=\sqrt{\sum_{i,j=1}^n\abs{A_{i,j}-B_{i,j}}^2}
+        \end{equation*}
+        ya que, la función $(A,B)\mapsto AB^{-1}$ es continua (podemos verla como una función de $\mathbb{R}^{ n^2}$ a $\mathbb{R}^n$ donde solo se involucran sumas, productos, cuadrados y diferencias de elementos de $\mathbb{R}$, por ende, es continua). Luego, es grupo topológico.
+
+        Ya se sabe que $SL(n,\mathbb{R})$, $TL(n,\mathbb{R})$, $O(n,\mathbb{R})$ son subgrupos de $GL(n,\mathbb{R})$. Veamos que son cerrados.
+        \begin{enumerate}
+            \item $SL(n,\mathbb{R})$ es cerrado. En efecto, la función determinante $\cf{\det}{GL(n,\mathbb{R})}{\mathbb{R}}$ es continua (vista como función de $\mathbb{R}^{ n^2}$ a $\mathbb{R}$ lo es), además:
+            \begin{equation*}
+                \begin{split}
+                    SL(n,\mathbb{R})&=\left\{A\in GL(n,\mathbb{R})\Big|\det(A)=1 \right\}\\
+                    &=\textup{det}^{-1}(1) \\
+                \end{split}
+            \end{equation*}
+            donde $\left\{1\right\}\subseteq\mathbb{R}$ es cerrado, luego $SL(n,\mathbb{R})$ es cerrado.
+
+            \item $TL(n,\mathbb{R})$ es cerrado. En efecto, la función s
+        \end{enumerate}
+    \end{proof}
+
+    \begin{excer}
+        Sea $G$ un grupo topológico abeliano. Pruebe que para todo $n\in\mathbb{N}$, $G_n=\left\{g\in G\Big|g^n=e_G \right\}$ es un subgrupo cerrado de $G$. ¿Es válida la conclusión si el grupo $G$ no es abeliano?
+
+        \textit{Sugerencia}. Considere el grupo $G=O(2,\mathbb{R})$.
+    \end{excer}
+
+    \begin{proof}
+        Veamos que es subgrupo. Sea $n\in\mathbb{N}$, es claro que $e_G\in G_n$. Además, si $x,y\in G_n$, entonces:
+        \begin{equation*}
+            \left(xy^{-1}\right)^n=x^ny^{-n}=e_G
+        \end{equation*}
+        pues, como $y^n=e_G$, entonces $y^{-n}=e_G$. Luego, $xy^{-1}\in G_n$. Por ende, $G_n$ es subgrupo de $G$.
+
+        Veamos ahora que es cerrado. En efecto, notemos que la función $\cf{f}{G}{G}$ tal que $x\mapsto x^n$ es una función continua, y
+        \begin{equation*}
+            \begin{split}
+                G_n&=\left\{g\in G\Big| x^n=e_G \right\}\\
+                &=\left\{g\in G\Big| f(x)=e_G \right\}\\
+                &=\left\{g\in G\Big| f(x)\in\left\{e_G\right\} \right\}\\
+                &=f^{-1}(e_G)\\
+            \end{split}
+        \end{equation*}
+        donde el conjunto $\left\{e_G\right\}$ es cerrado, luego $G_n$ es cerrado.
+
+        Para la otra parte, considere $G=O(2,\mathbb{R})$, se tiene entonces que:
+        \begin{equation*}
+            asd
+        \end{equation*} 
+    \end{proof}
+
+    \begin{excer}
+        Sea $S(X)$ el grupo de todas las permutaciones de un conjunto dado $X$, es decir, $S(X)$ consta de todas las funciones biyectivas de $X$ en $X$. Si $n\in\mathbb{N}$ y $x_1,...,x_n\in X$, y $y_1,...,y_n\in X$, denotemos:
+        \begin{equation*}
+            U(x_1,...,x_n,y_1,...,y_n)=\left\{f\in S(X)\Big| f(x_i)=y_i\textup{ para todo }i\in\natint{1,n} \right\}
+        \end{equation*}
+        Demuestre que la familia de todos los conjuntos $U(x_1,...,x_n,y_1,...,y_n)$ forma base de una topología de grupo Hausdorff $\mathcal{P}$ en $S(X)$. La topología $\mathcal{P}$ se llama \textbf{topología de la convergencia puntual en $S(X)$}.
+    \end{excer}
+
+    \begin{proof}
+        Denotemos por $\mathcal{U}$ a la familia de todos estos conjuntos. Si el conjunto es vacío, esta familia es vacía, por lo que no tiene sentido analizar este caso particular, suponga entonces que $X\neq\emptyset$.
+
+        Hay que verificar que se cumplen dos condiciones:
+        \begin{enumerate}
+            \item Sean $m,n\in\mathbb{N}$, y $x_1,...,x_n,y_1,...,y_n,z_1,...,z_m,u_1,...,u_m\in X$. Queremos ver que el conjunto:
+            \begin{equation*}
+                U(x_1,...,x_n,y_1,...,y_n)\cap U(z_1,...,z_m,u_1,...,u_m)
+            \end{equation*}
+            se expresa como unión de elementos de $\mathcal{U}$. En efecto, si $f$ está en la intersección si y sólo si
+            \begin{equation*}
+                f(x_i)=y_i\quad\textup{y}\quad f(z_j)=u_j
+            \end{equation*}
+            $\forall i\in\natint{1,n},j\in\natint{1,m}$, es decir que
+            \begin{equation*}
+                f\in U(x_1,...,x_n,z_1,...,z_m,y_1,...,y_n,u_1,...,u_m)
+            \end{equation*}
+            por tanto, se tiene que
+            \begin{equation*}
+                U(x_1,...,x_n,y_1,...,y_n)\cap U(z_1,...,z_m,u_1,...,u_m)=U(x_1,...,x_n,z_1,...,z_m,y_1,...,y_n,u_1,...,u_m)
+            \end{equation*}
+            (podemos renombrar los $x_i$ y $z_j$ como algún $\alpha_k$ y de manera análoga con los otros elementos de $X$, pero no es muy relevante a la demostración tal procedimiento).
+            
+            \item $X$ es unión de elementos de esta familia. En efecto, como $X$ es no vacío, existe $x_0\in X$, sea $\mathcal{X}_{x_0}=\left\{U(x_0,y)\Big|y\in X \right\}$. Se tiene entonces que:
+            \begin{equation*}
+                \bigcup_{U\in \mathcal{X}_{x_0}}U=X
+            \end{equation*}
+            en efecto, una contención es inmediata. Sea $f\in S(X)$, entonces $f(x_0)\in X$, luego $f\in U(x_0,f(x_0))\subseteq \bigcup_{U\in \mathcal{X}}U$.
+        \end{enumerate}
+        Luego, $\mathcal{U}$ es base de una topología sobre $S(X)$.
+
+        Además, es Hausdorff. En efecto, sean $f,g\in S(X)$ tales que $f\neq g$, entonces existe $x\in X$ tal que $f(x)\neq g(x)$. Tenemos que:
+        \begin{equation*}
+            f\in U(x,f(x))\quad\textup{y}\quad g\in U(x,g(x))
+        \end{equation*}
+        se tiene que $U(x,f(x))\cap U(x,g(x))=\emptyset$ ya que los elementos de $S(X)$ son funciones. Por ende, estos son dos abiertos disjuntos que contienen a $f$ y $g$. Por tanto, el espacio es Hausdorff.
+    \end{proof}
+
+    \begin{excer}
+        Sea $S_f(X)$ el subgrupo de $S(X)$ que consiste en todas las permutaciones de $X$ que mueven a lo más un número finito de puntos. Pruebe que $S_f(X)$ es denso en $S(X)$.
+    \end{excer}
+
+    \begin{proof}
+        Hay que probar que todo abierto no vacío en $S(X)$ dotado de la topología $\mathcal{P}$ del inciso anterior, contiene puntos de $S_f(X)$.
+        
+        En efecto, sea $U\subseteq S(X)$ abierto no vacío y $f\in U$. Por el ejercicio anterior, como $\mathcal{U}$ es base de la topología $\mathcal{P}$ sobre $S(X)$, existen $n\in\mathbb{N}$ y $x_1,...,x_n,y_1,...,y_m\in X$ tales que
+        \begin{equation*}
+            f\in U(x_1,...,x_n,y_1,...,y_m)\subseteq U
+        \end{equation*}
+        es decir, que $f(x_i)=y_i$ para todo $i\in\natint{1,n}$. Se tiene entones que la función:
+        \begin{equation*}
+            i_n(x)=\left\{
+                \begin{array}{lcr}
+                    y_i & \textup{ si } & x=x_i\textup{ para algún }i\in\natint{1,n} \\
+                    x & \textup{ si } & x\neq x_i\textup{ para todo }i\in\natint{1,n}\\
+                \end{array}
+            \right.
+        \end{equation*}
+        está en $S_f(X)$ y, más aún, en $U(x_1,...,x_n,y_1,...,y_m)$, luego $f\in U$. Por tanto, $U\cap S_f(X)\neq\emptyset$.
+
+        Finalmente, se sigue que $S_f(X)$ es denso en $S(X)$.
+
+    \end{proof}
+
+    \begin{excer}[Nombre]
+        
+    \end{excer}
+
 \end{document}
