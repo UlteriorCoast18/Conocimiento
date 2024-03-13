@@ -355,67 +355,27 @@
         
     \end{excer}
 
+     \section{Conceptos Elementales}
 
-    \appendix
+     \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico. Pruebe que $G$ es abierto en $X$, si y sólo si $\Cls{G\cap\Cls{A}}=\Cls{G\cap A}$ para todo $A\subseteq X$.
+     \end{excer}
 
-    \chapter{Exámenes Topología I Salvador Quintín Flores García}
+    \begin{proof}
+        Se probará la doble implicación.
 
-    \section{Primer Examen}
+        $\Rightarrow)$: Suponga que $G$ es abierto, Como $A\subseteq \Cls{A}$ para todo $A\in X$, se tiene entonces que:
+        \begin{equation*}
+            \begin{split}
+                G\cap A&\subseteq G\cap \Cls{A}\\
+                \Rightarrow \Cls{G\cap A}&\subseteq \Cls{G\cap \Cls{A}} \\
+            \end{split}
+        \end{equation*}
+        por lo cual basta probar la otra contención. Si $x\in\Cls{G\cap \Cls{A}}$, entonces para toda vecindad $U$ de $x$ se cumple que $U\cap (G\cap \Cls{A})\neq\emptyset$
+    \end{proof}
 
     \begin{excer}
-        Sean $X=\mathbb{R}$ y $\tau=\left\{X,\emptyset \right\}\cup\left\{B_q\right\}_{q\in\mathbb{Q}}$, donde $B_q=(q,\infty)\cap\mathbb{Q}$. ¿Es $(\mathbb{R},\tau)$ un espacio topológico? Demuestre su respuesta.
-    \end{excer}
-
-    \begin{sol}
         
-    \end{sol}
-
-    \begin{excer}
-        ¿La familia $\left\{[a,b[\big| a,b\in\mathbb{Q}, a<b \right\}$ es base en $(X,\tau_S)$? Justifique su respuesta.
-    \end{excer}
-
-    \begin{sol}
-        
-    \end{sol}
-
-    \begin{excer}
-        Sea $(X,\tau)$ un espacio topológico y $R$ una relación de equivalencia sobre $X$, y $\cf{p}{X}{X/R}$ la función que a cada elemento $x\mapsto [x]$ lo asigna a su clase de equivalencia. Haga lo siguiente:
-        \begin{enumerate}
-            \item Demuestre que la colección de todos los conjuntos cerrados en $(X/R,\tau/R)$ es:
-            \begin{equation*}
-                \left\{F\subseteq X/R\big| p^{-1}(F) \textup{ es cerrado en }X \right\}
-            \end{equation*}
-            \item Demuestre que la colección de todos los conjuntos cerrados en $(X/R, \tau/R)$ es igual a la familia:
-            \begin{equation*}
-                \left\{p(F)\subseteq X/R\big| F\textup{ es cerrado en }(X,\tau)\textup{ y }p^{-1}(p(F))=F \right\}
-            \end{equation*}
-        \end{enumerate}
-    \end{excer}
-
-    \begin{sol}
-        
-    \end{sol}
-
-    \begin{excer}
-        En el espacio $(X,\tau_{cf})$ y tomando $A=(0,1)$, obtener:
-        \begin{enumerate}
-            \item $\Int{A}$.
-            \item $\Cls{A}$.
-            \item $\Fr{A}$.
-            \item $\Ext{A}=\Int{\widehat{X-A}}$.
-        \end{enumerate}
-    \end{excer}
-
-    \begin{sol}
-        
-    \end{sol}
-
-    \begin{excer}
-        Sea $(X,\tau)$ un espacio topológico, para cada $A\subseteq X$ definimos $\alpha(A)=\Int{\Cls{A}}$, y $\beta(A)=\Cls{\Int{A}}$. Demuestre o refute:
-        \begin{enumerate}
-            \item $\alpha(\alpha(A))=\alpha(A)$, para cada $A\subseteq X$.
-            \item $\beta(\beta(A))=\Cls{A}$, para cada $A\subseteq X$.
-        \end{enumerate}
     \end{excer}
 
 \end{document}
