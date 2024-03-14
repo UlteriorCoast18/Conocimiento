@@ -1,0 +1,499 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
+\newcommand\norm[1]{\ensuremath{\|#1\|}}
+\newcommand\ora[1]{\ensuremath{\vec{#1}}}
+\newcommand\pint[2]{\ensuremath{\left(#1\big| #2\right)}}
+\newcommand\conj[1]{\ensuremath{\overline{#1}}}
+\newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas de Análisis Matemático IV}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \setcounter{chapter}{1} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+ 
+    \chapter{Convolución}
+    
+    Se sabe que el producto puntual de dos funciones integrables no necesariamente es una función integrable (por ejemplo, $f(x)=g(x)=\frac{1}{\sqrt{x}}\chi_{]0,1[}$). Sin embargo, es posible definir un auténtico producto en $L_1(\mathbb{R}^n,\mathbb{K})$ que sea compatible con la adición y el producto por escalares, con el cual $L_1(\mathbb{R}^n,\mathbb{K})$ sea un \textbf{álgebra de Banach conmutativa sin elemento identidad}. Tal operación se llama la \textbf{convolución}.
+
+    \section{Preliminares}
+
+    \begin{lema}
+        Si $M$ es un subconjunto despreciable de $\mathbb{R}^n$, entonces $M\times\mathbb{R}^m$ es despreciable en $\mathbb{R}^{n+m}$.
+    \end{lema}
+
+    \begin{proof}
+        Escriba a $\mathbb{R}^m$ como unión numerable de rectángulos acotados disjuntos. Basta probar que si $Q$ es un rectángulo acotado en $\mathbb{R}^m$, entonces $M\times Q$ es despreciable en $\mathbb{R}^{ n+m}$.
+
+        Sea $\varepsilon>0$. Por definición de medida exterior, existe $\left\{P_\nu \right\}_{\nu=1}^\infty$ sucesión de rectángulos acotados tales que $M\subseteq \bigcup_{ \nu=1}^\infty P_\nu$ y:
+        \begin{equation*}
+            \sum_{ \nu=1}^{\infty}\textup{Vol}(P_\nu)<\varepsilon
+        \end{equation*}
+        Entonces, $\left\{P_\nu\times Q \right\}_{\nu=1}^\infty$ es una sucesión de rectángulos acotados en $\mathbb{R}^{n+m}$ tales que $M\times Q\subseteq \bigcup_{ \nu=1}^\infty P_\nu\times Q$, y
+        \begin{equation*}
+            \begin{split}
+                \sum_{ \nu=1}^{\infty}\textup{Vol}(P_\nu\times Q)&=\textup{Vol}(Q)\cdot\sum_{ \nu=1}^{\infty}\textup{Vol}(P_\nu)\\
+                &<\textup{Vol}(Q)\varepsilon\\
+            \end{split}
+        \end{equation*}
+        (en caso de que $\textup{Vol}(Q)>0$), luego, el conjunto $M\times Q$ es despreciable, con lo cual el conjunto $M\times\mathbb{R}^m$ también lo es.
+    \end{proof}
+
+    \begin{mydef}
+        Si $\cf{f}{\mathbb{R}^p}{\mathbb{K}}$ y $\cf{g}{\mathbb{R}^q}{\mathbb{K}}$, se define el \textbf{producto tensorial de $f$ y $g$} como la función: $\cf{f\otimes g}{\mathbb{R}^{ p+q}}{\mathbb{K}}$, dada por:
+        \begin{equation*}
+            f\otimes g(x,y)=f(x)g(y),\quad\forall (x,y)\in\mathbb{R}^{ p+q}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        Si $\cf{f}{\mathbb{R}^p}{\mathbb{K}}$ y $\cf{g}{\mathbb{R}^q}{\mathbb{K}}$ son funciones medibles, entonces $\cf{f\otimes g}{\mathbb{R}^{ p+q}}{\mathbb{K}}$ es medible.
+    \end{propo}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Afirmamos que el resultado es cierto para funciones escalonadas $\cf{\varphi}{\mathbb{R}^p}{\mathbb{K}}$ y $\cf{\psi}{\mathbb{R}^q}{\mathbb{K}}$ escritas canónicamente como:
+            \begin{equation*}
+                \varphi=\sum_{ i=1}^{r}c_i\chi_{ P_i}\quad\textup{y}\quad\psi=\sum_{ j=1}^{s}d_j\chi_{ Q_j}
+            \end{equation*}
+            donde los $P_i$ y $Q_j$ son rectángulos acotados disjuntos. En este caso:
+            \begin{equation*}
+                \begin{split}
+                    \varphi\otimes \psi(x,y)&=\sum_{ i=1}^{r}\sum_{ j=1}^{s}c_id_j\chi_{ P_i}(x)\chi_{ Q_j}(y)\\
+                    &=\sum_{ i=1}^{r}\sum_{ j=1}^{s}c_id_j\chi_{ P_i\times Q_j}(x,y)\\
+                \end{split}
+            \end{equation*}
+            la cual es una función escalonada en $\mathbb{R}^{ p+q}$, luego medible.
+            \item En el caso general, se sabe que existen $\left\{ \varphi_\nu\right\}_{ \nu=1}^\infty$ en $\mathcal{E}(\mathbb{R}^p,\mathbb{K})$ y $\left\{\psi_\nu \right\}_{ \nu=1}^\infty$ en $\mathcal{E}(\mathbb{R}^q,\mathbb{K})$ y conjuntos despreciables $M\subseteq \mathbb{R}^p$, $N\subseteq \mathbb{R}^q$ tales que:
+            \begin{equation*}
+                \lim_{ \nu\rightarrow\infty}\varphi_\nu(x)=f(x),\quad\forall x\in \mathbb{R}^p\backslash M
+            \end{equation*}
+            y,
+            \begin{equation*}
+                \lim_{ \nu\rightarrow\infty}\psi_\nu(x)=g(x),\quad\forall x\in \mathbb{R}^q\backslash N
+            \end{equation*}
+            luego, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    \lim_{ \nu\rightarrow\infty}\varphi_\nu\otimes \psi_\nu(x,y)&=\lim_{ \nu\rightarrow\infty}\varphi_\nu(x)\psi_\nu(y)\\
+                    &=f(x)g(y)\\
+                \end{split}
+            \end{equation*}
+            para todo $(x,y)\in \mathbb{R}^{ p+q}\backslash\left[M\times\mathbb{R}^q\cup\mathbb{R}^p\times N \right]$. Por el lema anterior se tine que $M\times\mathbb{R}^q\cup\mathbb{R}^p\times N$ es despreciable en $\mathbb{R}^{ p+q}$. Como $\varphi_\nu\otimes \psi_\nu$ son medibles para todo $\nu\in\mathbb{N}$, entonces $f\otimes g$ es medible.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{cor}
+        Si $\cf{f}{\mathbb{R}^p}{\mathbb{K}}$ es medible, entonces $\cf{F}{\mathbb{R}^{ p+q}}{\mathbb{K}}$ dada como:
+        \begin{equation*}
+            F(x,y)=f(x),\quad\forall (x,y)\in\mathbb{R}^{ p+q}
+        \end{equation*}
+        es medible.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediata de la proposición anterior tomando a $f$ y $g=\chi_{\mathbb{R}^q}$.
+        
+    \end{proof}
+
+    \begin{cor}
+        Si $f\in\mathcal{L}_1(\mathbb{R}^p,\mathbb{K})$, $g\in\mathcal{L}_1(\mathbb{R}^q,\mathbb{K})$, entonces $f\otimes g\in \mathcal{L}_1(\mathbb{R}^{p+q},\mathbb{K})$ y:
+        \begin{equation*}
+            \int_{\mathbb{R}^{p}+q }f\otimes g=\int_{\mathbb{R}^p}f\cdot\int_{\mathbb{R}^q}g
+        \end{equation*}
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato del teorema de Tonelli.
+    \end{proof}
+
+    \section{Convolución}
+
+    \begin{mydef}
+        Sean $\cf{f,g}{\mathbb{R}^n}{\mathbb{K}}$ funciones medibles. La \textbf{convolución de $f$ por $g$} se define como la función de $\mathbb{R}^n$ en $\mathbb{K}$ tal que:
+        \begin{equation*}
+            f*g(x)=\int_{\mathbb{R}^n}f(y)g(x-y)dy
+        \end{equation*}
+        para toda $x\in\mathbb{R}^n$ tal que la integral exista.
+    \end{mydef}
+
+    \begin{exa}
+        Considere la función:
+        \begin{equation*}
+            f(x)=\left\{ 
+            \begin{array}{lcr}
+                1 & \textup{ si } & 0\leq x\leq 1\\
+                0 & & \textup{ en caso contrario} \\
+            \end{array}
+            \right.
+        \end{equation*}
+        y
+        \begin{equation*}
+            g(x)=\left\{ 
+            \begin{array}{lcr}
+                x & \textup{ si } & 0\leq x\leq 1\\
+                0 & & \textup{ en caso contrario} \\
+            \end{array}
+            \right.
+        \end{equation*}
+        entonces,
+        \begin{equation*}
+            f*g(x)=\int_{- \infty}^\infty f(y)g(x-y)dx=\int_{0}^\infty f(y)g(x-y)dx
+        \end{equation*}
+        se tienen dos casos, por como están dadas las funciones $f$ y $g$:
+        \begin{equation*}
+            \begin{split}
+                \int_{0}^\infty f(y)g(x-y)dx&=
+                \left\{
+                    \begin{array}{lcr}
+                       0 & \textup{ si } & 0\leq x \\
+                       \int_{0}^x f(y)g(x-y)dy & \textup{ si }& x>0\\
+                    \end{array}
+                \right. \\
+                &=\left\{
+                    \begin{array}{lcr}
+                       0 & \textup{ si } & 0\leq x \\
+                       \int_{0}^x f(y)g(x-y)dy & \textup{ si }& 0<x<1 \\
+                       \int_{0}^1 f(y)g(x-y)dy & \textup{ si }& x\geq1\\
+                    \end{array}
+                \right. \\
+                &=\left\{
+                    \begin{array}{lcr}
+                       0 & \textup{ si } & 0\leq x \\
+                       \int_{0}^x g(x-y)dy & \textup{ si }& 0<x<1 \\
+                       \int_{0}^1 g(x-y)dy & \textup{ si }& x\geq1\\
+                    \end{array}
+                \right. \\
+                &=\left\{
+                    \begin{array}{lcr}
+                       0 & \textup{ si } & 0\leq x \\
+                       \int_{0}^x g(x-y)dy & \textup{ si }& 0<x<1 \\
+                       \int_{0}^1 g(x-y)dy & \textup{ si }& x\geq1\\
+                    \end{array}
+                \right. \\
+                &=\left\{
+                    \begin{array}{lcr}
+                       0 & \textup{ si } & 0\leq x \\
+                       \int_{0}^x g(x-y)dy & \textup{ si }& 0<x<1 \\
+                       \int_{0}^1 g(x-y)dy & \textup{ si }& 1\leq x\leq 2 \\
+                       \int_{0}^1 g(x-y)dy & \textup{ si }& x>2\\
+                    \end{array}
+                \right. \\
+            \end{split}
+        \end{equation*}
+
+        \begin{equation*}
+            \begin{split}
+                \Rightarrow\int_{0}^\infty f(y)g(x-y)dx&=\left\{
+                    \begin{array}{lcr}
+                       0 & \textup{ si } & 0\leq x \\
+                       \int_{0}^x (x-y) dy & \textup{ si }& 0<x<1 \\
+                       \int_{x-1 }^1 g(x-y)dy & \textup{ si }& 1\leq x\leq 2 \\
+                       0 & \textup{ si }& x>2\\
+                    \end{array}
+                \right. \\
+                &=\left\{
+                    \begin{array}{lcr}
+                       0 & \textup{ si } & 0\leq x \\
+                       -\frac{(x-y)^2}{2}\Big|_{0}^x & \textup{ si }& 0<x<1 \\
+                       \int_{x-1 }^1 (x-y)dy & \textup{ si }& 1\leq x\leq 2 \\
+                       0 & \textup{ si }& x>2\\
+                    \end{array}
+                \right. \\
+                &=\left\{
+                    \begin{array}{lcr}
+                       0 & \textup{ si } & 0\leq x \\
+                       \frac{x^2}{2} & \textup{ si }& 0<x<1 \\
+                       -\frac{(x-y)^2}{2}\Big|_{ x-1}^1 & \textup{ si }& 1\leq x\leq 2 \\
+                       0 & \textup{ si }& x>2\\
+                    \end{array}
+                \right. \\
+                &=\left\{
+                    \begin{array}{lcr}
+                       0 & \textup{ si } & 0\leq x \\
+                       \frac{x^2}{2} & \textup{ si }& 0<x<1 \\
+                       -\frac{(x-1)^2}{2}+\frac{1}{2} & \textup{ si }& 1\leq x\leq 2 \\
+                       0 & \textup{ si }& x>2\\
+                    \end{array}
+                \right. \\
+                &=\left\{
+                    \begin{array}{lcr}
+                       0 & \textup{ si } & 0\leq x \\
+                       \frac{x^2}{2} & \textup{ si }& 0<x<1 \\
+                       -\frac{x^2}{2}+x & \textup{ si }& 1\leq x\leq 2 \\
+                       0 & \textup{ si }& x>2\\
+                    \end{array}
+                \right. \\
+            \end{split}
+        \end{equation*}
+    \end{exa}
+
+    \begin{obs}
+        Note que la función $f*g$ es continua. (esto servirá para ver que la convolución obtenida es correcta).
+    \end{obs}
+
+    \begin{exa}
+        Recuerde la fórmula de Cauchy para la $n$-ésima integral reiterada:
+        \begin{equation*}
+            \int_{ 0}^xdx_1\int_0^{x_1}dx_2\cdots \int_0^{ x_{n-1}}f(x_n)dx_n=\frac{1}{(n-1)!}\int_0^x\frac{f(t)}{(x-t)^{1-n}}dt
+        \end{equation*}
+        la igualdad anterior es la misma que la de la función:
+        \begin{equation*}
+            \int_0^xf(t)\frac{dt}{\Gamma(n)(x-t)^{n-1}}=f*g(x)
+        \end{equation*}
+        donde
+        \begin{equation*}
+            g(x)=\left\{
+                \begin{array}{lcr}
+                    0 & \textup{ si }&x\leq 0\\
+                    \frac{1}{\Gamma(n)x^{n-1}} & \textup{ si }& x>0\\
+                \end{array}
+            \right.
+        \end{equation*}
+        Si $0<\alpha\leq 1$, definimos:
+        \begin{equation*}
+            \int_0^xf(t)\frac{dx}{\Gamma(\alpha)(x-t)^{1-\alpha}}=I^{\alpha}_0[f](x)
+        \end{equation*}
+        llamada la \textbf{integral fraccional de orden $\alpha$ de $f$ en $x$}. Por ejemplo:
+        \begin{equation*}
+            I^{1/2}_0[t](x)=\frac{4}{3\sqrt{\pi}}x^{3/2}
+        \end{equation*}
+        \begin{equation*}
+            I^{1/2}_0\left[\frac{4}{3\sqrt{\pi}}t^{3/2}\right](x)=\frac{x^2}{2}
+        \end{equation*}
+        que concuerda con la integral normal de $t$.
+    \end{exa}
+
+    Ahora estudiaremos algunas propiedades de este operador.
+
+    \begin{propo}[\textbf{Asociatividad y conmutatividad de la convolución}]
+        Sean $\cf{f,g,h}{\mathbb{R}^n}{\mathbb{K}}$ medibles.
+        \begin{enumerate}
+            \item Si para algún $x\in\mathbb{R}^n$ existe la convolución $f*g(x)$, entonces también existe $g*f(x)$, y,
+            \begin{equation*}
+                f*g(x)=g*f(x)
+            \end{equation*}
+            \item Si la función $\abs{f}*\abs{g}$ está definida c.t.p. en $\mathbb{R}^n$ y, para algún $x\in\mathbb{R}^n$ existe $(\abs{f}*\abs{g})*\abs{h}(x)$, entonces existen $(f*g)*h(x)$, $f*(g*h)(x)$ y,
+            \begin{equation*}
+                (f*g)*h(x)=f*(g*h)(x)
+            \end{equation*}
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): Se tiene que:
+        \begin{equation*}
+            f*g(x)=\int_{\mathbb{R}^n }f(y)g(x-y)dy=\int_{ \mathbb{R}^n}f(x-y)g(u)du=\int_{ \mathbb{R}^n}g(u)f(x-y)du=g*f(x)
+        \end{equation*}
+        por el cambio de variable $u=x-y$, de Jacobiano $\abs{(-1)^n}=1$.
+
+        En particular, esto garantiza la existencia de $g*f(x)$.
+
+        De (2): Se demostrará primero que la función
+        \begin{equation*}
+            (y,z)\mapsto f(x)g(y-z)h(x-y)
+        \end{equation*} es medible como función de $\mathbb{R}^n\times\mathbb{R}^n$ en $\mathbb{K}$, para un $x\in\mathbb{R}^n$ fijo. Ya se sabe que $(y,z)\mapsto f(z)$ es medible (por una proposición sobre productos tensoriales).
+
+        Se afirma que la función $(y,z)\mapsto h(x-y)$ es medible. En efecto, $u\mapsto h(u)$ es medible. Por el cambio de variable $u=x-y$, la función $y\mapsto h(x-y)$ también es medible (por el teorema de cambio de variable). Luego, como con $f$, se sigue que $(y,z)\mapsto h(x-y)$ es medible.
+
+        También $(y,z)\mapsto g(y-z)$ es medible. Por productos tensoriales:
+        \begin{equation*}
+            G(u,v)=g(u)
+        \end{equation*}
+        es medible. La función $\Phi(r,s)=(r-s,s)$ es un isomorfismo $C^\infty$ de $\mathbb{R}^n\times\mathbb{R}^n$ sobre $\mathbb{R}^n\times\mathbb{R}^n$. Por el teorema de cambio de variable se sigue que es medible la función:
+        \begin{equation*}
+            G\circ \Phi(y,z)=g(y-z)
+        \end{equation*}
+
+        Por lo tanto, la función inicial es medible.
+
+        Puesto que para $x\in\mathbb{R}^n$:
+        \begin{equation*}
+            \int_{ \mathbb{R}^n}\abs{h(x-y)}dy\int_{\mathbb{R}^n}\abs{f(z)}\abs{g(y-z)}dz=\int_{\mathbb{R}^n}\abs{h(x-y)}(\abs{f}*\abs{g})(y)dy=(\abs{f}*\abs{g})*\abs{h}(x)<\infty
+        \end{equation*}
+        (para los $x$ en que esté definida la función), entonces por Tonelli la función $(y,z)\mapsto f(z)g(y-z)h(x-y)$ es integrable, y por Fubini:
+        \begin{equation*}
+            (f*g)*h(x)=\int_{ \mathbb{R}^n}h(x-y)dy\int_{\mathbb{R}^n}f(z)g(y-z)dz
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                \int_{ \mathbb{R}^n\times \mathbb{R}^n}h(x-y)f(z)g(y-z)dydz&=\int_{ \mathbb{R}^n}f(z)dx\int_{ \mathbb{R}^n}h(x-y)g(y-z)dy\\
+                &=\int_{ \mathbb{R}^n}f(z)dz\int_{ \mathbb{R}^n}h((x-z)-u)g(y-z)dy\\
+                &=\int_{ \mathbb{R}^n}f(z)(g*h)(x-z)dz\\
+                &=f*(g*h)(x)\\
+            \end{split}
+        \end{equation*}
+        En particular, existen y son iguales $f*(g*h)(x)$ y $(f*g)*h(x)$.
+    \end{proof}
+
+    \begin{theor}
+        Si $f,g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$, se cumplen las afirmaciones siguientes.
+        \begin{enumerate}
+            \item Para casi toda $x\in\mathbb{R}^n$, existe $f*g(x)$.
+            \item La función $f*g$, definida c.t.p. en $\mathbb{R}^n$, es integrable en $\mathbb{R}^n$.
+            \item $\int_{ \mathbb{R}^n}f*g=\left(\int_{ \mathbb{R}^n}f\right)\left(\int_{ \mathbb{R}^n}g\right)$.
+            \item $\N{1}{f*g}\leq\N{1}{\abs{f}*\abs{g}}=\N{1}{f}\N{1}{g}$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De (1): Ya se sabe que la función $(x,y)\mapsto f(y)g(x-y)$ es medible (ver la proposición anterior). Como
+        \begin{equation*}
+            \int_{\mathbb{R}^n}\abs{f(y)}dy\int_{\mathbb{R}^n}\abs{g(x-y)}dx=\left(\int_{\mathbb{R}^n}\abs{f(y)}dy \right)\left(\int_{\mathbb{R}^n}\abs{g(z)}dz \right)<\infty
+        \end{equation*}
+        haciendo el cambio de variable $x=y+z$ y por ser $f,g$ integrables, entonces la función $(x,y)\mapsto f(y)g(x-y)$ es integrable en $\mathbb{R}^n\times \mathbb{R}^n$. Por el teorema de Fubini, la función $y\mapsto f(y)g(x-y)$ es integrable para casi toda $x\in\mathbb{R}^n$, lo cual prueba el primer inciso.
+
+        De (2): Además, por Fubini nuevamente, la función $x\mapsto f*g(x)=\int_{\mathbb{R}^n}f(y)g(x-y)dy$ definida c.t.p. en $\mathbb{R}^n$ también es integrable, lo cual prueba el segundo inciso.
+
+        De (3): Y, por Fubini:
+        \begin{equation*}
+            \begin{split}
+                \int_{\mathbb{R}^n}(f*g)(x)dx&=\int_{ \mathbb{R}^n\times\mathbb{R}^n}f(y)g(x-y)dxdy\\
+                &=\int_{\mathbb{R}^n}f(y)dy\int_{\mathbb{R}^n}g(x-y)dx\\
+                &=\int_{\mathbb{R}^n}f(y)dy\int_{\mathbb{R}^n}g(u)du\\
+                &=\left(\int_{\mathbb{R}^n}f(y)dy\right)\left(\int_{\mathbb{R}^n}g(u)du\right) \\
+            \end{split}
+        \end{equation*}
+        lo cual prueba el tercer inciso.
+
+        De (4): Aplicando (3) a $\abs{f},\abs{g}$, resulta que:
+        \begin{equation*}
+            \begin{split}
+                \N{1}{f*g}&=\int_{\mathbb{R}^n}\abs{f*g}(x)dx\\
+                &=\int_{\mathbb{R}^n}\abs{\int_{\mathbb{R}^n}f(y)g(x-y)}dx\\
+                &\leq\int_{\mathbb{R}^n}\int_{\mathbb{R}^n}\abs{f(y)g(x-y)}dx\\
+                &=\int_{\mathbb{R}^n}(\abs{f}*\abs{g})(x)dx\\
+                &=\N{1}{\abs{f}*\abs{g}}\\
+                &=\left(\int_{\mathbb{R}^n}\abs{f} \right)\left(\int_{\mathbb{R}^n}\abs{g} \right)\\
+                &=\N{1}{f}\N{1}{g}\\
+            \end{split}
+        \end{equation*}
+        lo cual prueba el cuarto inciso.
+    \end{proof}
+
+\end{document}
