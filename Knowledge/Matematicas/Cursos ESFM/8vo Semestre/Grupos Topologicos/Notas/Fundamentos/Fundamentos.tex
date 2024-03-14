@@ -961,13 +961,133 @@
     El siguiente resultado muestra que las propiedades topológicas locales del espacio cociente de $G$ en $H$ también se pueden estudiar en un solo punto.
 
     \begin{propo}
-        Sean $G$ un grupo topológico y $H$ un subgrupo cerrado de $G$. Entonces, $G/H$ es un espacio homogéneo.
+        Sean $G$ un grupo topológico y $H$ un subgrupo cerrado de $G$. Entonces, $G/_DH$ es un espacio homogéneo.
     \end{propo}
 
     \begin{proof}
-        %TODO página 42 pdf.
+        Hay que probar que para todo para de puntos $Ha,Hb\in G/_DH$ existe un homeomorfismo $f$ de $G_D/H$ en sí mismo tal que $f(Ha)=Hb$.
+        
+        Sea $\cf{\psi_a}{G_D/H}{G_D/H}$ dada por: $Hx\mapsto H(xa)$. Es claro que esta función está bien definida y, afirmamos que es un homeomorfismo. 
+        
+        Veamos que es inyectiva, en efecto, si $\psi_a(Hx)=\psi_a(Hy)$, entonces $H(xa)=H(ya)$, luego $(xa)(ya)^1=xaa^{-1}y^{-1}=xy^{-1}\in H$, luego $Hx=Hy$.
+
+        Y, es suprayectiva, pues para todo $x\in G$, $\psi_a(H(xa^{-1}))=Hx$.
+
+        Además, tiene como función inversa a $(\psi_a)^{-1}=\psi_{a^{-1}}$. Por lo cual, para ver que es un homeomorfismo, basta con ver que ella y su inversa son mapeos inversos, pero, por como está dada la función inversa, es suficiente con ver que $\psi_a$ es abierta (ya que, el $a\in G$ fue arbitrario).
+
+        Considere $\cf{\pi}{G}{G/_DH}$ la función canónica, y sea $U\subseteq G$ abierto,entonces $U^=\pi(U)*$ es abierto en $G/_DH$. Entonces, 
+        \begin{equation*}
+            \begin{split}
+                \psi_a(U^*)&=\left\{\psi_a(Hx)\Big| Hx\in U^* \right\}\\
+                &=\left\{H(xa) \Big| x\in U \right\}\\
+                &=\left\{Hy \Big| y\in Ua \right\}\\
+                &=\pi(Ua)\\
+            \end{split}
+        \end{equation*}
+        donde, como $U$ es abierto en $G$, entonces $Ua$ también lo es y, al ser $\pi$ un mapeo abierto, se sigue que $\psi_a(U^*)$ es abierta. 
+
+        Por tanto, $\psi_a$ es homeomorfismo. Obsevemos ahora que si $Ha,Hb\in G/_DH$, entonces:
+        \begin{equation*}
+            \psi_{a^{-1}b}(Ha)=H(aa^{-1}b)=Hb
+        \end{equation*}
+        con lo que se tiene que $G/_DH$ es un espaico homogéneo.
     \end{proof}
 
+    El siguiente resultado es un lema auxiliar que nos permitirá establecer dos propiedades topológicas de $G/_DH$.
 
+    \begin{lema}
+        Sean $G$ un grupo topológico y $H$ un subgrupo cerrado de $G$, $U,V$ vecindades abiertas de $e_G$ en $G$ tales que $VV^{-1}\subseteq U$; entonces, si $\cf{\pi}{G}{G/_DH}$ es la función canónica, se cumple que
+        \begin{equation*}
+            \Cls{\pi(V)}\subseteq\pi(U)
+        \end{equation*}
+    \end{lema}
+
+    \begin{proof}
+        Sea $Hx\in\Cls{\pi(V)}$ donde $x\in G$; entonces, $\pi(xV)$ es una vecindad abierta que contiene a $Hx$ y, por ende, contiene puntos de $\pi(V)$. Esto es que la intersección:
+        \begin{equation*}
+            \pi(xV)\cap\pi(V)
+        \end{equation*}
+        es no vacía, luego existen, $v_1,v_2\in V$ tales que
+        \begin{equation*}
+            Hxv_1=Hv_2
+        \end{equation*}
+        esto es, que $Hx=Hv_2v_1^{-1}\in H(VV^{-1})\subseteq H(U)$. Por tanto se sigue la contención deseada.
+    \end{proof}
+
+    \begin{theor}
+        Sean $G$ un grupo topológico y $H$ un subgrupo cerrado de $G$. Entonces,
+        \begin{enumerate}
+            \item $G/_DH$ es un espacio regular y por tanto de Hausdorff.
+            \item $G/_DH$ es un espacio discreto si y sólo si $H$ es abierto en $G$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De (1): Por hipótesis, $H$ es cerrado en $G$, luego el conjunto $Ha$ es cerrado en $G$, para todo $a\in G$. Sea $a\in G$, se tiene que el conjunto:
+        \begin{equation*}
+            G/_DH\backslash\left\{Ha \right\}=\left\{Hx\in G_D/H\Big|Hx\neq Ha \right\}=\pi(G\backslash Ha)
+        \end{equation*}
+        es abierto, pues es la imagen de un abierto y el mapeo $\pi$ es abierto, luego cada punto $\left\{Ha \right\}$ es un conjunto cerrado en $G/_DH$, es decir que $G/_DH$ es $T_2$, en particular es $T_1$. Para probar que es regular (es decir, $T_3$).
+
+        Para ello, es suficiente probar que para todo abierto $U^*$ en $G/_DH$ tal que $H\in U^*$ (basta hacerlo aquí pues, el espacio es homogéneo) existe una vecindad $V^*$ de $H$ tal que $\Cls{V^*}\subseteq U^*$. En efecto, si $U^*$ es un abierto tal que $H\in U^*$, entonces existe $U\subseteq G$ abierto tal que $\pi(U)=U^*$.
+
+        En particular, se tiene que $e_G\in U$, luego por un lema anterior existe $V\subseteq G$ vecindad abierta de $e_G$ tal que:
+        \begin{equation*}
+            VV^{-1}\subseteq U
+        \end{equation*}
+        por el lema anterior, se sigue que $\Cls{\pi(V)}\subseteq \pi(U)$, es decir que $\Cls{V^*}\subseteq U^*$, donde $V^*$ es un abierto que contiene a $H$.
+
+        De (2): Se probará la doble implicación.
+
+        $\Rightarrow)$: Si $G/_DH$ es discreto, entonces el conjunto $\left\{H\right\}=\left\{He_G\right\}$ es abierto, luego su imagen inversa bajo $\pi$, $\pi^{-1}(He_G)=H$ es abierta en por ser $\pi$ una función continua, es decir que $H$ es abierto en $G$.
+
+        $\Leftarrow)$: Si $H$ es abierto, como $\pi$ es un mapeo abierto, se sigue que $\pi(H)=\left\{H\right\}$ es abierto en $G/_DH$, esto es, es un punto aislado de $G/_DH$, luego el espacio $G/_DH$ es discreto ya que es homogéneo.
+    \end{proof}
+
+    En el caso particular de que $N$ sea un subgrupo normal de $G$, de modo que $G/N$ sea grupo, se tiene el siguiente resultado:
+    
+    \begin{theor}
+        Sean $G$ un grupo topológico y $N$ un subgrupo cerrado normal de $G$; entonces
+        \begin{enumerate}
+            \item $G/N$ con la topología cociente es un grupo topológico.
+            \item La función continua $\cf{\pi}{G}{G/N}$ es un homomorfismo abierto y continuo.
+            \item El grupo $G/N$ es un espacio $T_1$ y por tanto, regular.
+            \item El grupo $G/N$ es discreto si y sólo si $N$ es abierto.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De (1): Hay que probar que la función $(Na,Nb)\mapsto Nab^{-1}$ es continua. En efecto, sean $a,b\in G$ y $W^*=\pi(W)\subseteq G/N$ un abierto (siendo $W\subseteq G$ abierto) tal que $Nab^{-1}\in W^*$ (se sigue que $ab^{-1}\in W$).
+
+        Como la función $(a,b)\mapsto ab^{-1}$ es continua, entonces existen $U,V\subseteq G$ abiertos tales que $a\in U$ ,$b\in V$ y
+        \begin{equation*}
+            UV^{-1}\subseteq W
+        \end{equation*}
+        por tanto, si $u\in U$ y $v\in V$, se tiene que $Nu\in U^*$, $Nv\in V^*$, con:
+        \begin{equation*}
+            (Nu)(Nv)^{-1}=Nuv^{-1}\in W^*
+        \end{equation*}
+        pues, $uv^{-1}\in W$. Por ende, $U^*(V^*)^{-1}\subseteq W^*$. Por tanto, la función establecida originalmente es continua.
+        
+        De (2): Ya se sabe que la función canónica $\pi$ es continua y abierta. Además, es homomorfismo por ser $N$ subgrupo normal de $G$.
+
+        De (3) Es inmediato del teorema anterior.
+
+        De (4) Es inmediato del teorema anterior.
+    \end{proof}
+
+    Resulta que, podemos establecer el primer teorema de isomorfismos en la parte de grupos topológicos, haciendo ciertas limitaciones correspondientes para que todo funcione adecuadamente.
+
+    \begin{theor}
+        Sean $G$ y $G'$ dos grupos topológicos y sea $\cf{f}{G}{G'}$ un epimorfismo continuo y abierto con kernel $N=\ker(f)$. Entonces, $N$ es un subgrupo normal y cerrado de $G$ y, el isomorfismo $h$ de $G/N$ en $G'$ dado por:
+        \begin{equation*}
+            h(Nx)=f(x)
+        \end{equation*}
+        para todo $Nx\in G/N$, es un isomorfismo topológico entre $G/N$ y $G'$.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
 
 \end{document}
