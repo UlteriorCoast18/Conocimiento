@@ -896,6 +896,76 @@
 
     \chapter{Funciones Cardinales}
 
+     El objetivo de las funciones cardinales es aquel de extender conceptos conocidos en topología general, como la propiedad de ser primero o segundo numerable. Estas funciones permiten realizar comparaciones cuantitativas entre algunas propiedades topológicas.
+     
+    \begin{mydef}
+        Una \textbf{función cardinal} es una función definida en la clase de todos los espacios topológicos que toma valores en la clase de todos los cardinales y asigna a todo espacio topológico $X$ un número cardinal $f(X)$ tla que $f(X)=f(Y)$ para cualquier par $X,Y$ de espacios homeomórficos.
+    \end{mydef}
+
+    \begin{obs}
+        En la definición anterior, técnicamente lo que tenemos no es una función, ya que las funciones sólo están deifnidas de un conjunto en un conjunto, pero, considerando los axiomas de NBG (con o sin el axioma de elección), uno puede formar funciones que vayan de una clase en otra (de hecho, propiamente dicho, las funciones son subclases del producto cartesiano de dos clases).
+    \end{obs}
+
+    \begin{exa}
+        El ejemplo más obvio de esta función cardinal es la cardinalidad usual de un espacio topológico $X$.
+    \end{exa}
+
+    Nosotros a lo largo del libro tenemos interés en espacios infinitos y, por lo tanto, es más adecuado si obligamos que estas funciones SÓLO tomen valores infinitos.
+
+    A continuación, se presentan algunas funciones cardinales que son de utilidad práctica.
         
+    \begin{mydef}
+        El \textbf{peso} de un espacio topolǵico $X$, está definido por:
+        \begin{equation*}
+            w(X)=\min\left\{\abs{\mathcal{B}}\Big|\mathcal{B}\textup{ es una base de }X \right\}+\aleph_0
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        La cardinalidad y el peso de un espacio topológico no presentan una relación simple entre sí, es decir, no es cierto que alguno de los dos sea mayor o igual que el otro.
+
+        En espacios compactos o metrizables sí ocurre que $w(X)\leq\abs{X}$.
+
+        Ocasionalmente, (por ejemplo, para esapcios numerables que no son primero numerables) se cumple que $\abs{X}\leq w(X)$.
+
+        Y, en general, para espacios regulares $X$ se tiene que $\abs{X}\leq 2^{w(X)}$.
+    \end{obs}
+
+    \begin{mydef}
+        Se define una función denominada \textbf{densidad} de $X$ como:
+        \begin{equation*}
+            d(X)=\min\left\{\abs{D}\Big|D\textup{ es un subconjunto denso en }X \right\}+\aleph_0
+        \end{equation*}
+        para cada espacio topológico $X$.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $X$ un espacio topológico. Una familia $\mathcal{U}$ de abiertos no vacíos es llamada \textbf{familia celular} si estos abiertos son mutuamente ajenos (o ajenos a pares).
+    \end{mydef}
+
+    Con la definición anterior, se introduce la siguiente definición:
+
+    \begin{mydef}
+        Sea $X$ un espacio topológico. Se define la \textbf{celularidad de $X$}, como:
+        \begin{equation*}
+            c(X)=\sup\left\{\abs{\mathcal{V}}\Big|\mathcal{V}\textup{ es una familia celular en }X \right\}+\aleph_0
+        \end{equation*}
+        si $c(X)=\aleph_0$, decimos que $X$ \textbf{satisface la ccc}, o que \textbf{tiene l apropiedade de Souslin}.
+    \end{mydef}
+
+    A partir de las definiciones anteriores, se ve de forma inmediata que:
+    \begin{equation*}
+        c(X)\leq d(X)\leq w(X)
+    \end{equation*}
+    donde puede ocurrir que $c(X)<d(X)$.
+
+    La noción de espacio de Lindelöf da lugar a una nueva función cardinal.
+
+    \begin{mydef}
+        Sea $X$ un espacio topológico. Se define el \textbf{número de Lindelöf} de un espaci $X$ como:
+        \begin{equation*}
+            l(X)=\left\{ \right\}
+        \end{equation*}
+    \end{mydef}
 
 \end{document}
