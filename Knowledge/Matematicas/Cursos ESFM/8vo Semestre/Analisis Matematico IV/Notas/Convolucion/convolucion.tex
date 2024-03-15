@@ -496,4 +496,215 @@
         lo cual prueba el cuarto inciso.
     \end{proof}
 
+    \begin{obs}
+        \begin{enumerate}
+            \item La existencia y el valor de la convolución dependen solamente de las clases de equivalencia de $f$ y $g$, se puede pues considerar la convolución como una aplicación de $L_1(\mathbb{R}^n,\mathbb{k})\times L_1(\mathbb{R}^n,\mathbb{K})$ en $L_1(\mathbb{R}^n,\mathbb{K})$, tal que:
+            \begin{equation*}
+                \N{1}{f*g}\leq \N{1}{f}\N{1}{g}
+            \end{equation*}
+            \item Es claro que:
+            \begin{equation*}
+                (\alpha_1f_1+\alpha_2f_2)*g=\alpha_1(f_1*g)+\alpha_2(f_2*g)
+            \end{equation*}
+            y
+            \begin{equation*}
+                f*(\beta_1g_1+\beta_2g_2)=\beta_1(f*g_1)+\beta(f*g_2)
+            \end{equation*}
+            o sea, que la convolución es un aplicación bilineal y asociativa.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{mydef}
+        Un \textbf{Álgebra de Banach} es un espacio de Banach $(E,\norm{\cdot})$ provisto de un producto $(x,y)\mapsto x\cdot y$. Este producto es bilineal y, además,
+        \begin{equation*}
+            \norm{x\cdot y}\leq \norm{x}\norm{y}
+        \end{equation*}
+        si el producto es conmutativo, se dice que el álgebra de Banach es \textbf{conmutativa}.
+    \end{mydef}
+
+    \begin{excer}
+        En un álgebra de Banach, la función $(x,y)\mapsto x\cdot y$ es continua del espacio normado producto $E\times E$ en $E$.
+    \end{excer}
+
+    \begin{proof}
+        Sea $\varepsilon>0$ y $(x_0,y_0)\in E\times E$. Tomemos $\delta=\sqrt{\varepsilon}$, entonces, si $(x,y)\in E\times E$ es tal que:
+        \begin{equation*}
+            \norm{(x_0,y_0)-(x,y)}<\delta
+        \end{equation*}
+        entonces,
+        \begin{equation*}
+            \norm{x_0-x}<\delta\quad\textup{y}\quad\norm{y_0-y}<\delta
+        \end{equation*}
+        luego, se tiene que:
+    \end{proof}
+
+    \begin{exa}
+        Considere $\mathbb{K}$ como espacio vectorial sobre sí mismo con la norma usual y, provisto de la multiplicación usual en $\mathbb{K}$, es un álgebra de Banach conmutativa con elemento uno.
+    \end{exa}
+    
+    \begin{exa}
+        Sea $S$ un conjunto no vacío. El espacio vectorial $\mathcal{B}(S,\mathbb{K})$ de las funciones acotadas de $S$ en $\mathbb{K}$, provisto de la norma uniforme $\norm{\cdot}_\infty$ y con la multiplicación definida puntualmente, es un álgebra de Banach conmutativa con elemento uno (la función constante de valor uno).
+    \end{exa}
+
+    \begin{exa}
+        Sea $S$ un espacio métrico. El subespacio $\mathcal{BC}(S,\mathbb{K})$ de las funciones continuas y acotadas de $S$ en $\mathbb{K}$ es una sub-álgebra de Banach del ejemplo anterior con elemento uno.
+    \end{exa}
+
+    \begin{exa}
+        El subespacio $\mathcal{C}(\mathbb{R}^n,\mathbb{K})$ de $\mathcal{B}(\mathbb{R}^n,\mathbb{K})$ de las funciones continuas nulas en infinito es una sub-álgebra de Banach de $\mathcal{B}(\mathbb{R}^n,\mathbb{K})$ sin elemento uno.
+    \end{exa}
+
+    \begin{exa}
+        Sea $E$ un espacio de Banach. El espacio normado $\textup{End}(E)$ de todos los endomorfismos continuos de $E$ provisto del producto $(A,B)\mapsto A\circ B $ es un álgebra de Banach no conmutativa con elemento uno.
+    \end{exa}
+
+    \begin{exa}
+        $L_1(\mathbb{R}^n,\mathbb{K})$ provisto de la convolución también es un álgebra de Banach conmutativa (¿con elemento identidad?).
+    \end{exa}
+
+    \section{Convolución en $\mathcal{L}_p$}
+
+    \begin{theor}[\textbf{Desigualdad de Hölder Generalizada}]
+        Sean $p_1,...,p_m$ números positivos tales que:
+        \begin{equation*}
+            \frac{1}{p_1}+\frac{1}{p_2}+\cdots+\frac{1}{p_m}=1
+        \end{equation*}
+        entonces, si $f_1\in\mathcal{L}_{p_1}(\mathbb{R}^n,\mathbb{K}),f_2\in\mathcal{L}_{p_2}(\mathbb{R}^n,\mathbb{K}),...,f_n\in\mathcal{L}_{p_m}(\mathbb{R}^n,\mathbb{K})$, entonces $f_1\cdot f_2\cdots f_m\in \mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$, y
+        \begin{equation*}
+            \N{1}{f_1\cdot f_2\cdots f_m}\leq \N{p_1}{f_1}\N{p_2}{f_2}\cdots\N{p_m}{f_m}
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{propo}
+        Si $\cf{f}{\mathbb{R}^{p+q}}{\mathbb{K}}$ es medible, se cumple lo siguiente:
+        \begin{enumerate}
+            \item Para casi toda $x\in\mathbb{R}^p$, la función $f_x(y)=f(x,y)$ de $\mathbb{R}^q$ en $\mathbb{K}$ es medible.
+            \item Si para casi toda $x\in\mathbb{R}^p$, la función $f_x$ es integrable en $\mathbb{R}^q$, entonces:
+            \begin{equation*}
+                g(x)=\int_{\mathbb{R}^q}f_x=\int_{R^q}f(x,y)dy
+            \end{equation*}
+            definida c.t.p. es medible.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema de Young}]
+        Sean $p,q\in [1,\infty[$ tales que $\frac{1}{p}+\frac{1}{q}>1$ y defina $r$ como sigue:
+        \begin{equation*}
+            \frac{1}{r}=\frac{1}{p}+\frac{1}{q}-1
+        \end{equation*}
+        Entonces, si $f\in\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$ y $g\in\mathcal{L}_q(\mathbb{R}^n,\mathbb{K})$, se cumple lo siguiente:
+        \begin{enumerate}
+            \item Para casi toda $x\in\mathbb{R}^n$, existe la convolución $f*g$, es decir:
+            \begin{equation*}
+                f*g(x)=\int_{\mathbb{R}^n}f(y)g(x-y)dy
+            \end{equation*}
+            para casi toda $x\in\mathbb{R}^n$.
+            \item $f*g\in\mathcal{L}_r(\mathbb{R}^n,\mathbb{K})$.
+            \item $\N{r}{f*g}\leq \N{p}{f}\N{q}{g}$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        Observemos primero que los números $p,q,r$ satisfacen lo siguiente:
+        \begin{equation*}
+            r>1,\quad\frac{1}{p}-\frac{1}{r}\geq 0,\quad\frac{1}{q}-\frac{1}{r}\geq0
+        \end{equation*}
+        En efecto,
+        \begin{equation*}
+            \frac{1}{r}=\frac{1}{p}+\frac{1}{q}-1\leq 2-1=1\Rightarrow r\geq 1
+        \end{equation*}
+        las otras dos son inmediatas, ya que:
+        \begin{equation*}
+            \frac{1}{p}-\frac{1}{r}>1-\frac{1}{q}\geq0\quad\textup{y}\quad \frac{1}{q}-\frac{1}{r}>1-\frac{1}{p}\geq0
+        \end{equation*}
+        Se verá que para casi toda $x\in\mathbb{R}^n$, la función $y\mapsto f(y)g(x-y)$ es integrable en $\mathbb{R}^n$. Por un teorema anterior, ya se sabe que dicha función es medible.
+        Escriba
+        \begin{equation*}
+            \abs{f(y)}\abs{g(x-y)}=\left(\abs{f(y)}^p\abs{g(x-y)}^q\right)^{\frac{1}{r}}\left(\abs{f(y)}^p \right)^{\frac{1}{p}-\frac{1}{r}}\left(\abs{g(x-y)}^q \right)^{\frac{1}{q}-\frac{1}{r}}
+        \end{equation*}
+        Para probar el resultado, se probarán dos casos:
+        \begin{enumerate}
+            \item $p>1$ y $q>1$ En este caso, $\frac{1}{p}-\frac{1}{r}>0$ y $\frac{1}{q}-\frac{1}{r}>0$. Si
+            \begin{equation*}
+                \frac{1}{\alpha}=\frac{1}{r},\quad \frac{1}{\beta}=\frac{1}{p}-\frac{1}{r},\quad \frac{1}{\gamma}=\frac{1}{q}-\frac{1}{r}
+            \end{equation*}
+            entonces,
+            \begin{equation*}
+                \frac{1}{\alpha}+\frac{1}{\beta}+\frac{1}{\gamma}=\frac{1}{p}+\frac{1}{q}-\frac{1}{r}=1
+            \end{equation*}
+            La función $y\mapsto \left(\abs{f(y)}^p\abs{g(x-y)}^q\right)^{\frac{1}{r}}$ está en $\mathcal{L}_\alpha(\mathbb{R}^n,\mathbb{K})$ (pues, existe la convolución $\abs{f}^p*\abs{g}^q(x)$ para casi toda $x\in\mathbb{R}^n$). También, $y\mapsto \left(\abs{f(y)}^p \right)^{\frac{1}{p}-\frac{1}{r}}$ está en $\mathcal{L}_\beta(\mathbb{R}^n,\mathbb{K})$ y $y\mapsto \left(\abs{g(x-y)}^q \right)^{\frac{1}{q}-\frac{1}{r}}$ está en $\mathcal{L}_\gamma(\mathbb{R}^n,\mathbb{K})$.
+
+            Por Hölder generalizado, se tiene que $y\mapsto \abs{f(x)}\abs{g(x-y)}$ es integrable, en particular, existe la convolución $f*g$, lo que prueba (1). Además,
+            \begin{equation*}
+                \begin{split}
+                    \abs{f*g}(x)&\leq \int_{\mathbb{R}^n}\abs{f(y)}\abs{g(x-y)}dy\\
+                    &\leq \left[\int_{\mathbb{R}^n}\abs{f(y)}^p\abs{g(x-y)}^qdy\right]^{\frac{1}{r}} \left[\int_{\mathbb{R}^n}\abs{f(y)}^pdy \right]^{\frac{1}{p}-\frac{1}{r}}\left[\int_{\mathbb{R}^n}\abs{g(x-y)}^qdy \right]^{\frac{1}{q}-\frac{1}{r}}\\
+                    &=\left[\abs{f}^p*\abs{g}^q(x) \right]^{\frac{1}{r}}\N{p}{f}^{1-\frac{p}{r}}\N{q}{g}^{1-\frac{q}{r}}\\
+                \end{split}
+            \end{equation*}
+            luego,
+            \begin{equation*}
+                \abs{f*g}^r(x)\leq \N{p}{f}^{r-p}\N{q}{g}^{r-q}\left(\abs{f}^p*\abs{g}^q(x) \right)
+            \end{equation*}
+            por el teorema anterior (el cual asegura que $\abs{f}^p*\abs{g}^q$ es integrable), implica que $\abs{f}*\abs{g}\in\mathcal{L}_3(\mathbb{R}^n,\mathbb{K})$, lo cual prueba (2).
+
+            Finalmente,
+            \begin{equation*}
+                \begin{split}
+                    \N{r}{f*g}^r&=\int_{\mathbb{R}^n}\abs{f*g(x)}^rdx\\
+                    &\leq \N{p}{f}^{r-q}\N{g}{ r-p}\int_{\mathbb{R}^n}\abs{f}^p*\abs{g}^q(x)dx\\
+                    &=\N{p}{f}^{r-q}\N{g}{ r-p}\left(\int_{\mathbb{R}^n}\abs{f}^p\right)\left(\int_{\mathbb{R}^n}\abs{g}^q\right) \\
+                    &=\N{p}{f}^{r-q}\N{g}{ r-p}\N{p}{f}^{p}\N{g}{q}\\
+                    &=\left(\N{p}{f}\N{q}{g}\right)^r \\
+                    \Rightarrow \N{r}{f*g}&\leq \N{p}{f}\N{q}{g}\\
+                \end{split}
+            \end{equation*}
+
+            \item $p>1$, $q=1$. En este caso, $r=p$, luego se sigue que:
+            \begin{equation*}
+                \frac{1}{\alpha}=\frac{1}{r}=\frac{1}{p},\quad \frac{1}{\beta}=\frac{1}{p}-\frac{1}{r}=0,\quad \frac{1}{\gamma}=\frac{1}{q}-\frac{1}{r}=1-\frac{1}{r}=\frac{1}{p^*}
+            \end{equation*}
+            Luego, si $x\in\mathbb{R}^n$, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    \abs{f(y)}\abs{g(x-y)}&=\left(\abs{f(y)}^p\abs{g(x-y)}^q\right)^{\frac{1}{r}}\left(\abs{f(y)}^p \right)^{\frac{1}{p}-\frac{1}{r}}\left(\abs{g(x-y)}^q \right)^{\frac{1}{q}-\frac{1}{r}}\\
+                    &=\left(\abs{f(y)}^p\abs{g(x-y)}\right)^{\frac{1}{p}}\left(\abs{f(y)}^p \right)^{0}\left(\abs{g(x-y)}^q \right)^{\frac{1}{p^*}}\\
+                    &=\left(\abs{f(y)}^p\abs{g(x-y)}\right)^{\frac{1}{p}}\left(\abs{g(x-y)}^q \right)^{\frac{1}{p^*}}\\
+                \end{split}
+            \end{equation*}
+            Como $y\mapsto \left(\abs{f(y)}^p\abs{g(x-y)}\right)^{\frac{1}{p}}$ está en $\mathcal{L}_p(\mathbb{R},\mathbb{K})$ (pues existe $\abs{f}^p*\abs{g}(x)$ para casi toda $x\in\mathbb{R}^n$) y $y\mapsto \left(\abs{g(x-y)}^q \right)^{\frac{1}{p^*}}$ está en $\mathcal{L}_{p^*}(\mathbb{R}^n,\mathbb{K})$, entonces por Hölder y la ecuación anterior, se sigue que $y\mapsto \abs{f(y)g(x-y)}$ es integrable en $\mathbb{R}^n$, luego existe $\abs{f}*\abs{g}(x)$ para casi toda $x\in\mathbb{R}^n$, lo que prueba (1). Además,
+            \begin{equation*}
+                \begin{split}
+                    \abs{f*g}(x)&\leq\int_{\mathbb{R}^n}\abs{f(y)}\abs{g(x-y)}dy\\
+                    &\leq\left[\int_{\mathbb{R}^n}\abs{f(y)}^p\abs{g(x-y)}dy \right]^{\frac{1}{p}}\left[\int_{\mathbb{R}^n}\abs{g(x-y)}dy \right]^{\frac{1}{p^*}}\\
+                    &=\left[\abs{f}^p*\abs{g}(x) \right]^{\frac{1}{p}}\N{1}{g}^{\frac{1}{p^*}=1-\frac{1}{p^*}}\\
+                    \Rightarrow \abs{f*g}^p(x)&\leq \left[\abs{f}^p*\abs{g}(x) \right]\N{1}{g}^{1-p}\\
+                \end{split}
+            \end{equation*}
+            luego, $f*g\in\mathcal{L}_r(\mathbb{R}^n,\mathbb{K})$ (recuerde que $r=p$) lo cual prueba (2), y
+            \begin{equation*}
+                \begin{split}
+                    \int_{\mathbb{R}^n}\abs{f*g}^p(x)dx&\leq\N{1}{g}^{p-1}\left(\int_{\mathbb{R}^n}\abs{f}^p \right)\left(\int_{\mathbb{R}^n}\abs{g} \right)\\
+                    &\leq\N{1}{g}^{p-1}\left(\int_{\mathbb{R}^n}\abs{f}^p \right)\N{1}{q}\\
+                    &\leq\N{p}{f}^p\N{1}{g}^{p} \\
+                \end{split}
+            \end{equation*}
+            lo cual prueba (3).
+        \end{enumerate}
+
+        El caso $p=q=1$ es el teorema anterior, y por la conmutatividad de la convolución, no es necesaroi probar el caso $q=1$, $p>1$.
+    \end{proof}
+
+    \begin{obs}
+        El caso $q=1$ y $r=p$ es importante, dice: Si $f\in\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$ y $g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ entonces, para casi toda $x\in\mathbb{R}^n$ existe $f*g(x)\in\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$ y $\N{p}{f*g}\leq\N{p}{f}\N{1}{g}$.
+    \end{obs}
+
 \end{document}
