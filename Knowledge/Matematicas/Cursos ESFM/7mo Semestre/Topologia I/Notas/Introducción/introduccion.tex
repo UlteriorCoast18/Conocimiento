@@ -126,6 +126,7 @@
 \newcommand{\floor}[1]{\ensuremath{\lfloor#1\rfloor}}
 \newcommand{\Card}[1]{\ensuremath{\textup{Card}\left(#1\right)}}
 \newcommand{\Pot}[1]{\ensuremath{\mathcal{P}\left(#1\right)}}
+\newcommand{\id}[1]{\ensuremath{\textup{id}_{#1}}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -1911,14 +1912,179 @@
             \item $f$ es un homeomorfismo.
             \item $f$ es continua y abierta.
             \item $f$ es continua y cerrada.
-            \item $A\subseteq X_2$ es cerrado si y sólo si $f^{-1}(A)\subseteq X_2$ es cerrado.
+            \item $A\subseteq X_2$ es cerrado si y sólo si $f^{-1}(A)\subseteq X_1$ es cerrado.
             \item $A\in\tau_2$ si y sólo si $f^{-1}(A)\in\tau_1$.
             \item Si $\mathcal{B}$ es una base para $\tau_1$, entonces la colección
             \begin{equation*}
-                f^{-1}(\mathcal{B}):=\left\{f(B)\Big|B\in\mathcal{B} \right\}
+                f(\mathcal{B}):=\left\{f(B)\Big|B\in\mathcal{B} \right\}
             \end{equation*}
             es una base para $\tau_2$.
         \end{enumerate}
     \end{propo}
+
+    \begin{proof}
+        $1)\Rightarrow 2)$: Es claro que $f$ es continua. Por ser homeomorfismo, se sigue que $f^{-1}$ también es abierta. Para ver que $f$ es abierta, sea $U\in\tau_1$, entonces
+        \begin{equation*}
+            f(U)=(f^{-1})^{-1}(U)
+        \end{equation*}
+        luego, como $f^{-1}$ es continua, se sigue que $f(U)\in\tau_2$.
+
+        $2)\Rightarrow 3)$: Ya se tiene que $f$ es continua. Sea $C\subseteq X_1$ cerrado. Como $f$ es abierta, entonces el conjunto $X_2-f(U)\in\tau_2$, luego $f(U)$ es cerado.
+
+        $3)\Rightarrow 4)$: Haremos la doble implicación.
+
+        $\Rightarrow)$: Sea $A\subseteq X_2$ cerrado, como $f$ es continua, entonces $f^{-1}(A)\subseteq X_1$ es cerrado.
+
+        $\Leftarrow)$: Sea $A\subseteq X_2$ tal que $f^{-1}(A)\subseteq X_1$ es cerrado. Como $f$ es cerrada, entonces $f(f^{-1}(A))=A$ (pues es biyección) es cerrado.
+
+        $4)\Rightarrow 5)$: $A\in\tau_2$ sii $X_2-A$ es un cerrado sii $f^{-1}(X_2-A)$ es un cerrado sii $X_1-f^{-1}(A)$ es cerrado sii $f^{-1}(A)\in\tau_1$.
+
+        $5)\Rightarrow 6)$: Sea $\mathcal{B}$ una base de $\tau_1$. Tenemos que dado $B\in\mathcal{B}$, $B\in\tau_1$. Como $f$ es biyectiva, entonces $B=f^{-1}(f(B))$, luego $f(B)\in\tau_2$.
+
+        Por tanto, $f(\mathcal{B})\subseteq \tau_2$. Ahora, si $A\in\tau_2$, por lo anterior se tiene que $f^{-1}(A)\in\tau_1$, luego existe una subcolección $\left\{B_\alpha \right\}_{\alpha\in I}$ tal que:
+        \begin{equation*}
+            f^{-1}(A)=\bigcup_{\alpha\in I}B_\alpha
+        \end{equation*}
+        luego:
+        \begin{equation*}
+            A=f(f^{-1}(A))=f\left(\bigcup_{\alpha\in I}B_\alpha\right)=\bigcup_{\alpha\in I}f(B_\alpha)
+        \end{equation*}
+        donde $f(B_\alpha)\in f(\mathcal{B})$ para todo $\alpha\in I$. Por tanto, $f(\mathcal{B})$ es una base para $\tau_2$.
+
+        $6)\Rightarrow 1)$: Sea $\mathcal{B}$ una base para $\tau_1$. Por hipótesis se tiene que $f(\mathcal{B})$ es una base de $\tau_2$.
+
+        Sea ahora $U\in\tau_2$, entonces existe $\left\{B_\alpha \right\}_{\alpha\in I}\subseteq\mathcal{B}$ tal que 
+        \begin{equation*}
+            U=\bigcup_{\alpha\in I}f(B_\alpha)
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            f^{-1}(U)=f^{-1}\left(\bigcup_{\alpha\in I}f(B_\alpha)\right)=\bigcup_{\alpha\in I}f^{-1}(f(B_\alpha))=\bigcup_{\alpha\in I}B_\alpha
+        \end{equation*}
+        donde el lado de la derecha es abierto por ser $\mathcal{B}$ base de $\tau_1$. Así, $f$ es continua.
+
+        Sea ahora $V\in\tau_1$, luego existe $\left\{B_\beta \right\}_{\beta\in J}$ tal que:
+        \begin{equation*}
+            V=\bigcup_{\beta\in J}B_\beta
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            f(V)=f\left(\bigcup_{\beta\in J}B_\beta\right)=\bigcup_{\beta\in J}f(B_\beta)
+        \end{equation*}
+        donde los elementos de la izquierda están en $f(\mathcal{B})$, así $f(V)=(f^{-1})^{-1}(V)$ es abierto en $X_2$. Por ende, $f^{-1}$ es continua.
+
+        Como ambas funciones $f$ y $f^{-1}$ son continuas, se sigue que $f$ es homeomorfismo.
+    \end{proof}
+
+    \begin{cor}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos, y $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ una función biyectiva. Entonces, $f$ es un homeomorfismo $\iff$ $f$ es continua y abierta $\iff$ $f$ es continua y cerrada.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato del teorema anterior.
+    \end{proof}
+
+    \begin{excer}
+        Sea $X$ un conjunto y $\tau_1,\tau_2$ dos topologías sobre $X$. Sea $\cf{\id{X}}{(X,\tau_1)}{(X,\tau_2)}$. Entonces, $\id{X}$ es homeomorfismo si y sólo si $\tau_1=\tau_2$.
+    \end{excer}
+
+    \begin{proof}
+        Se probarán las dos implcaciones.
+
+        $\Rightarrow)$: 
+
+        $\Leftarrow)$:
+
+    \end{proof}
+
+    \begin{mydef}
+        Las propiedades de los espacios topológicos que se pueden definir por medio de sus subconjuntos abiertos (de forma equivalente, cerrados), son llamados \textbf{invariantes con respecto a homeomorfismos}.
+
+        Así, diremos que una propiedad $P$ que cumple un espacio topológico es una \textbf{propiedad topológica} si todo espacio topológico que es homeomorfo a $(X,\tau)$ posee esa propiedad, es decir $P$ puede considerarse como una propiedad de la clase de los espacios topológicamente equivalentes a $(X,\tau)$.
+    \end{mydef}
+
+    \begin{propo}
+        La propiedad de ser un espacio de Hausdorff es topológica.
+    \end{propo}
+
+    \begin{proof}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos, $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ un homeomorfismo entre ellos. Supongamos que $(X_1,\tau_1)$ es Hausdorff, probaremos que $(X_2,\tau_2)$ también lo es.
+
+        En efecto, sean $p,q\in X_2$, $p\neq q$. Como $f^{-1}(p),f^{-1}(q)\in X_1$ son distintos por ser $f$ biyectiva y al ser $(X_1,\tau_1)$ Hausdorff, entonces existen abiertos $V_1,V_2\in\tau_1$ tales que
+        \begin{equation*}
+            f^{-1}(p)\in V_1,\quad f^{-1}(q)\in V_2,\quad V_1\cap V_2=\emptyset
+        \end{equation*}
+        Tomemos $U_1=f(V_1)$ y $U_2=f(V_2)$ abiertos en $(X_1,\tau_1)$ ya que $f$ es una función abierta. Se tiene que $p\in U_1$, $q\in U_2$ y:
+        \begin{equation*}
+            U_1\cap U_2=f(V_1)\cap f(V_2)=f(V_1\cap V_2)=f(\emptyset)=\emptyset
+        \end{equation*}
+        por tanto, el espacio $(X_2,\tau_2)$ es Hausdorff.
+    \end{proof}
+
+    \begin{excer}
+        La propiedad de ser un espacio metrizable es topológica.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        La propiedad de tener una base numerable es topológica.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \section{Topología Producto}
+
+    \begin{propo}
+        Sean $Y$ un conjunto y $(X,\tau)$ un espacio topológico. Si $\cf{f}{Y}{X}$ es una función, entonces
+        \begin{equation*}
+            \tau'=\left\{f^{-1}(U)\Big|U\in\tau \right\}
+        \end{equation*}
+        es una topología sobre $Y$ y es la topología más gruesa definida sobre $Y$ tal que $\cf{f}{(Y,\tau')}{(X,\tau)}$ es una función continua.
+    \end{propo}
+
+    \begin{proof}
+        Primero veremos que $\tau'$ es una topología sobre $Y$.
+        \begin{enumerate}
+            \item Es claro que $Y=f^{-1}(X),\emptyset=f^{-1}(\emptyset)\in\tau'$ ya que $X,\emptyset\in\tau$.
+            \item Sean $M_1,M_2\in\tau'$, entonces existen $U_1,U_2\in\tau$ tales que $M_1=f^{-1}(U_1)$ y $M_2=f^{-1}(U_2)$, luego:
+            \begin{equation*}
+                M_1\cap M_2=f^{-1}(U_1)\cap f^{-1}(U_2)=f^{-1}(U_1\cap U_2)\in\tau'
+            \end{equation*}
+            pues, $U_1\cap U_2\in\tau$.
+            \item  Sea $\left\{M_\alpha \right\}_{\alpha\in I}=\mathcal{A}\subseteq\tau'$ una colección de elementos de $\tau'$, entonces existe $\left\{U_\alpha \right\}_{\alpha\in I}\subseteq \tau$ tal que
+            \begin{equation*}
+                M_\alpha=f^{-1}(U_\alpha),\quad\forall\alpha\in I
+            \end{equation*}
+            luego,
+            \begin{equation*}
+                \begin{split}
+                    \bigcup_{\alpha\in I}M_\alpha&=\bigcup_{\alpha\in I}M_\alpha\\
+                    &=\bigcup_{\alpha\in I}f^{-1}(U_\alpha)\\
+                    &=f^{-1}\left(\bigcup_{\alpha\in I}U_\alpha \right)\\
+                \end{split}
+            \end{equation*}
+            donde $\bigcup_{\alpha\in I}U_\alpha\in\tau$, por ende $\bigcup_{\alpha\in I}M_\alpha\in\tau'$.
+        \end{enumerate}
+        por los tres incisos anteriores, se sigue que $\tau'$ es una topología sobre $Y$.
+
+        Es claro que la función $f$ es continua (pues imagen inversa de abiertos simpre es abierta). Sea ahora $\sigma$ una topología sobre $Y$ tal que $\cf{f}{(Y,\tau)}{(X,\tau)}$ es una función continua. Hay que probar que $\tau'\subseteq\sigma$. En efecto, ...
+    \end{proof}
+
+    \begin{mydef}
+        Sean $\left\{X_\alpha \right\}_{\alpha\in I}$ una familia no vacía de subconjuntos de $X$ y $\cf{x}{I}{\bigcup_{\alpha\in I}X_\alpha}$ tal que para todo $\alpha\in I$, $x(\alpha)\in X_\alpha$. Denotamos a
+        \begin{equation*}
+            x(\alpha):=x_\alpha,\quad\forall \alpha\in I
+        \end{equation*}
+        y, a la función $x$ la denotaremos simplemente por $\left(x_\alpha \right)_{\alpha\in I}$. Formamos así el conjunto:
+        \begin{equation*}
+            \prod_{\alpha\in I}X_\alpha=\left\{\cf{x}{I}{\bigcup_{\alpha\in I}X_\alpha}\Big|x\textup{ es una función tal que para todo }\alpha\in I,x_\alpha\in X_\alpha \right\}
+        \end{equation*}
+        le llamaremos el \textbf{producto cartesiano de la famila $\left\{X_\alpha \right\}_{\alpha\in I}$}.
+    \end{mydef}
 
 \end{document}

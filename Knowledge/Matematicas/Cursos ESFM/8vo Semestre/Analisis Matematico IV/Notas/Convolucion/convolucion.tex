@@ -660,9 +660,9 @@
             \begin{equation*}
                 \begin{split}
                     \N{r}{f*g}^r&=\int_{\mathbb{R}^n}\abs{f*g(x)}^rdx\\
-                    &\leq \N{p}{f}^{r-q}\N{g}{ r-p}\int_{\mathbb{R}^n}\abs{f}^p*\abs{g}^q(x)dx\\
-                    &=\N{p}{f}^{r-q}\N{g}{ r-p}\left(\int_{\mathbb{R}^n}\abs{f}^p\right)\left(\int_{\mathbb{R}^n}\abs{g}^q\right) \\
-                    &=\N{p}{f}^{r-q}\N{g}{ r-p}\N{p}{f}^{p}\N{g}{q}\\
+                    &\leq \N{p}{f}^{r-q}\N{q}{g}^{r-p}\int_{\mathbb{R}^n}\abs{f}^p*\abs{g}^q(x)dx\\
+                    &=\N{p}{f}^{r-q}\N{q}{g}^{r-p}\left(\int_{\mathbb{R}^n}\abs{f}^p\right)\left(\int_{\mathbb{R}^n}\abs{g}^q\right) \\
+                    &=\N{p}{f}^{r-q}\N{q}{g}^{r-p}\N{p}{f}^{p}\N{q}{g}^q\\
                     &=\left(\N{p}{f}\N{q}{g}\right)^r \\
                     \Rightarrow \N{r}{f*g}&\leq \N{p}{f}\N{q}{g}\\
                 \end{split}
