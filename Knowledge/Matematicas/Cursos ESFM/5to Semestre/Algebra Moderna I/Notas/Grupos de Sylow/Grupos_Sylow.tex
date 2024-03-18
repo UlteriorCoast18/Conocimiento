@@ -1,0 +1,288 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\square$}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\lvert#1\rvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \title{Teoría de Grupos}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \setcounter{chapter}{6}
+
+    \chapter{Grupos de Sylow}
+    
+    \section{Los $p$-grupos}
+    
+    Cuando tenemos un grupo finito $G$, para analizar su estructura surgen problemas ya que, mientras más complicada sea su descomposición en primos, más complicado es entender su estructura (casi por norma general). Por ello, se estudiará en caso particular en que el orden de $G$ es una potencia de un número primo.
+
+    \begin{propo}
+        Sean $p$ un número primo, $G$ un grupo de orden $p^n$, con $n\in\mathbb{N}$, actuando $G$ sobre un conjunto no vacío. Entonces,
+        \begin{equation*}
+            |X|\equiv|X^G|\mod p
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Sea $R$ un conjunto completo de representantes bajo la relación de acción de $G$ sobre $X$. Claro que $X^G\subseteq R$, y por ende, la ecuación de clase generalizada está dada por:
+        \begin{equation*}
+            |X|=|X^G|+\sum_{x\in R\backslash X^G}|G\cdot x|
+        \end{equation*}
+        donde $p$ divide a $|G\cdot x|$, para cada $x\in R\backslash X^G$. Por tanto, se sigue que $|X|\equiv|X^G|\mod p$.
+    \end{proof}
+
+    A continuación, analizaremos un ejemplo que nos servirá para entender la teoría de más adelante.
+
+    \begin{exa}
+        Sean $G$ un grupo finito, $p$ un número primo, y $H$ un subgrupo de $G$ tal que $|H|=p^m$, donde $m\in\mathbb{Z}_{\geq0}$. Sea $X$ el conjunto
+        \begin{equation*}
+            X=\left\{gH| g\in G \right\}
+        \end{equation*}
+        es decir, $X$ es el conjunto de clases laterales izquierdas de $H$ en $G$. Tenemos que $H$ actúa sobre $X$ por traslación izquierda, dada la acción:
+        \begin{equation*}
+            h\cdot gH = hgH
+        \end{equation*}
+        para todo $h\in H$. Por definición, es inmediato que $\left[G:H\right]=|X|$, y además:
+        \begin{equation*}
+            X^H=\left\{gH|g\in N_G\left(H\right) \right\}
+        \end{equation*}
+        ya que, si $g\in N_G\left(H\right)$, entonces $gh=hg$, para todo $h\in H$. Luego:
+        \begin{equation*}
+            h\cdot gH = hgH=ghH=gH,\quad\forall h\in H
+        \end{equation*}
+        por tanto, $gH\in X^H$. De esta forma $|X^H|=[N_G(H):H]$. Por la proposición 7.1.1, se tiene que
+        \begin{equation*}
+            [G:H]\equiv[N_G(H):H]\mod p
+        \end{equation*}
+        en particular, si $p|[G:H]$, entonces $p|[N_G(H):H]$ lo cual implica que la contención de $H$ en $N_G(H)$ es propia.
+    \end{exa}
+
+    \begin{theor}[\textbf{Teorema de Cauchy}]
+        Sean $p$ un número primo y $G$ un grupo finito tal que $p$ divide a $|G|$. Enotnces existe un elemento de orden $p$ en $G$.
+    \end{theor}
+
+    \begin{proof}
+        Sea
+        \begin{equation*}
+            X=\left\{(x_1,\dots,x_p)|x_i\in G,\forall i\in [|1,p|]\textup{ \& }x_1\cdots x_p=e \right\}
+        \end{equation*}
+        $X$ es no vacío, pues $(e,\dots,e)\in X$. Definamos la función 
+        \begin{equation*}
+            \begin{split}
+                f:X\rightarrow& \overbrace{G\times\cdots\times G}^{p\textup{-veces}}\\
+                (x_1,\dots,x_p) \mapsto& (x_1,\dots,x_{p-1})\\
+            \end{split}
+        \end{equation*}
+        Afirmamos que $f$ es biyectiva. En efecto, veamos que
+        \begin{enumerate}
+            \item \textbf{$f$ es suprayectiva}. Sea $(x_1,\dots,x_{p-1})\in G^{p-1}$. Tomemos $x_p=(x_1\cdots x_{p-1})^{-1}=x_{p-1}^{-1}\cdots x_1^{-1}$. Se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    x_1\cdots x_{p-1}\cdot x_p&=x_1\cdots x_{p-1}\cdot(x_{p-1}^{-1}\cdots x_1^{-1})\\
+                    &=e\\
+                \end{split}
+            \end{equation*}
+            por lo cual, $(x_1,\dots,x_{p-1},x_p)\in X$. Y,
+            \begin{equation*}
+                f(x_1,\dots,x_{p-1},x_p)=(x_1,\dots,x_{p-1})
+            \end{equation*}
+            Así, $f$ es suprayectiva.
+
+            \item \textbf{$f$ es inyectiva}. Sean $Z=(z_1,\dots,z_p),Y=(y_1,\dots,y_p)\in X$ tales que $f(z_1,\dots,z_p)=f(y_1,\dots,y_p)$, es decir
+            \begin{equation*}
+                (z_1,\dots,z_{p-1})=(y_1,\dots,y_{p-1})
+            \end{equation*}
+            Pero, como $Z,Y\in X$, debe de suceder que
+            \begin{equation*}
+                \begin{split}
+                    z_1\cdots z_p&=e\\
+                    y_1\cdots y_p&=e\\
+                \end{split}
+            \end{equation*}
+            por lo cual
+            \begin{equation*}
+                \begin{split}
+                    z_p&=z_{p-1}^{-1}\cdots z_1^{-1}\\
+                    y_p&=y_{p-1}^{-1}\cdots y_1^{-1}\\
+                \end{split}
+            \end{equation*}
+            pero, como $(z_1,\dots,z_{p-1})=(y_1,\dots,y_{p-1})$ entonces $z_p=y_p$. Por tanto, $Z=Y$. Así, $f$ es inyectiva.
+        \end{enumerate}
+        por (1) y (2), $f$ es biyectiva, luego $|X|=|G|^{p-1}$. Como $p\divides|G|$, entonces $p\divides |X|$, es decir
+        \begin{equation*}
+            |X|\equiv 0\mod p
+        \end{equation*}
+        Ahora hacemos actuar al grupo cíclico $\mathbb{Z}/p\mathbb{Z}$ en el conjunto $X$ a través de la acción cíclica. Si $(x_1,\dots,x_p)\in X$, su órbita está dada por el conjunto:
+        \begin{equation*}
+            \mathbb{Z}/p\mathbb{Z}\cdot(x_1,\dots,x_p)=\left\{(x_1,\dots,x_p),(x_2,\dots,x_p,x_1),\dots(x_p,x_1,\dots,x_{p-1}) \right\}
+        \end{equation*}
+        Luego, dado $(x_1,\dots,x_p)\in X$, se tiene que $(x_1,\dots,x_p)\in X^{\mathbb{Z}/p\mathbb{Z}}$ si, y solo si $x_1=x_2=\cdots=x_p$. Ahora bien, por la proposición 7.1.1,
+        \begin{equation*}
+            |G|^{p-|}=|X|\equiv|X^{\mathbb{Z}/p\mathbb{Z}}|\mod p
+        \end{equation*}
+        donde $\mathbb{Z}/p\mathbb{Z}\neq \emptyset$, pues $(e,\dots, e)\in X$. Por tanto, $p\divides |X^{\mathbb{Z}/p\mathbb{Z}}|$, es decir $|X^{\mathbb{Z}/p\mathbb{Z}}|=pr>1$, donde $r\in\mathbb{N}$. Por lo cual, existe un elemento $a\in G\backslash\left\{e\right\}$ tal que $a^p=e$. 
+    \end{proof}
+
+    Este teorema se usa para probar el teorema que sigue de esta definición.
+
+    \begin{mydef}
+        Sea $p$ un número primo. Todo grupo $G$ se dice que es \textbf{$p$-grupo}, si todo elemento de $G$ es del orden $p^t$, donde $t\in\mathbb{Z}_{\geq0}$.
+    \end{mydef}
+
+    Notemos que la identidad $e$ de un grupo $G$ es de orden $1=p^0$ para cada $p\in\mathbb{N}$ número primo. Si $H$ es un subgrupo de $G$ tal que $H$ es $p$-grupo, diremos que \textbf{$H$ es $p$-subgrupo de $G$}. Por lo cual, $\langle e\rangle$ es un $p$-subgrupo de $G$.
+
+    \begin{propo}
+        Sea $p$ un número primo. Un grupo finito $G$ es $p$-grupo si, y solo si $G$ es del orden una potencia de $p$.
+    \end{propo}
+
+    \newpage
+
+    \begin{theor}[Nombre]
+        Teorema
+    \end{theor}
+
+    \begin{propo}[Nombre]
+        Proposición
+    \end{propo}
+
+    \begin{cor}[Nombre]
+        Corolario
+    \end{cor}
+
+    \begin{lema}[Nombre]
+        Lema
+    \end{lema}
+
+    \begin{mydef}[Nombre]
+        Definición
+    \end{mydef}
+
+    \begin{obs}[Nombre]
+        Observación
+    \end{obs}
+
+    \begin{exa}[Nombre]
+        Ejemplo
+    \end{exa}
+
+    \begin{excer}[Nombre]
+        Ejercicio
+    \end{excer}
+
+\end{document}

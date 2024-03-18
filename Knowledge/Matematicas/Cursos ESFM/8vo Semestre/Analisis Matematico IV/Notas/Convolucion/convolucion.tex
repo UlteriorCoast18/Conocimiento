@@ -138,7 +138,7 @@
  
     \chapter{Convolución}
     
-    Se sabe que el producto puntual de dos funciones integrables no necesariamente es una función integrable (por ejemplo, $f(x)=g(x)=\frac{1}{\sqrt{x}}\chi_{]0,1[}$). Sin embargo, es posible definir un auténtico producto en $L_1(\mathbb{R}^n,\mathbb{K})$ que sea compatible con la adición y el producto por escalares, con el cual $L_1(\mathbb{R}^n,\mathbb{K})$ sea un \textbf{álgebra de Banach conmutativa sin elemento identidad}. Tal operación se llama la \textbf{convolución}.
+    Se sabe que el producto puntual de dos funciones integrables no necesariamente es una función integrable (por ejemplo, $f(x)=g(x)=\frac{1}{\sqrt{x}}\chi_{]0,1[}$). Sin embargo, es posible definir un auténtico producto en $L_1(\mathbb{R}^n,\mathbb{K})$ que sea compatible con la adición y el producto por escalares, con el cual $L_1(\mathbb{R}^n,\mathbb{K})$ sea un \textbf{álgebra de Banach conmutativa sin elemento identidad}. Tal operación se llama \textbf{convolución}.
 
     \section{Preliminares}
 
@@ -149,22 +149,23 @@
     \begin{proof}
         Escriba a $\mathbb{R}^m$ como unión numerable de rectángulos acotados disjuntos. Basta probar que si $Q$ es un rectángulo acotado en $\mathbb{R}^m$, entonces $M\times Q$ es despreciable en $\mathbb{R}^{ n+m}$.
 
-        Sea $\varepsilon>0$. Por definición de medida exterior, existe $\left\{P_\nu \right\}_{\nu=1}^\infty$ sucesión de rectángulos acotados tales que $M\subseteq \bigcup_{ \nu=1}^\infty P_\nu$ y:
+        Sea $\varepsilon>0$. Si $\textup{Vol}(Q)=0$, el resultado es inmediato, pues se sigue que $\textup{Vol}(P\times Q)=0$. Suponga que $\textup{Vol}(Q)>0$, se tiene para $M\subseteq\mathbb{R}^n$ que por definición de medida exterior existe $\left\{P_\nu \right\}_{\nu=1}^\infty$ sucesión de rectángulos acotados disjuntos tales que $M\subseteq \bigcup_{ \nu=1}^\infty P_\nu$ y:
         \begin{equation*}
-            \sum_{ \nu=1}^{\infty}\textup{Vol}(P_\nu)<\varepsilon
+            \sum_{ \nu=1}^{\infty}\textup{Vol}(P_\nu)<\frac{\varepsilon}{\textup{Vol}(Q)}
         \end{equation*}
         Entonces, $\left\{P_\nu\times Q \right\}_{\nu=1}^\infty$ es una sucesión de rectángulos acotados en $\mathbb{R}^{n+m}$ tales que $M\times Q\subseteq \bigcup_{ \nu=1}^\infty P_\nu\times Q$, y
         \begin{equation*}
             \begin{split}
                 \sum_{ \nu=1}^{\infty}\textup{Vol}(P_\nu\times Q)&=\textup{Vol}(Q)\cdot\sum_{ \nu=1}^{\infty}\textup{Vol}(P_\nu)\\
-                &<\textup{Vol}(Q)\varepsilon\\
+                &<\textup{Vol}(Q)\cdot\frac{\varepsilon}{\textup{Vol}(Q)} \\
+                &=\varepsilon\\
             \end{split}
         \end{equation*}
-        (en caso de que $\textup{Vol}(Q)>0$), luego, el conjunto $M\times Q$ es despreciable, con lo cual el conjunto $M\times\mathbb{R}^m$ también lo es.
+        luego, el conjunto $M\times Q$ es despreciable, con lo cual el conjunto $M\times\mathbb{R}^m$ también lo es.
     \end{proof}
 
     \begin{mydef}
-        Si $\cf{f}{\mathbb{R}^p}{\mathbb{K}}$ y $\cf{g}{\mathbb{R}^q}{\mathbb{K}}$, se define el \textbf{producto tensorial de $f$ y $g$} como la función: $\cf{f\otimes g}{\mathbb{R}^{ p+q}}{\mathbb{K}}$, dada por:
+        Si $\cf{f}{\mathbb{R}^p}{\mathbb{K}}$ y $\cf{g}{\mathbb{R}^q}{\mathbb{K}}$ son funciones, se define el \textbf{producto tensorial de $f$ y $g$} como la función: $\cf{f\otimes g}{\mathbb{R}^{ p+q}}{\mathbb{K}}$, dada por:
         \begin{equation*}
             f\otimes g(x,y)=f(x)g(y),\quad\forall (x,y)\in\mathbb{R}^{ p+q}
         \end{equation*}
@@ -175,12 +176,13 @@
     \end{propo}
 
     \begin{proof}
+        Se probarán dos casos:
         \begin{enumerate}
             \item Afirmamos que el resultado es cierto para funciones escalonadas $\cf{\varphi}{\mathbb{R}^p}{\mathbb{K}}$ y $\cf{\psi}{\mathbb{R}^q}{\mathbb{K}}$ escritas canónicamente como:
             \begin{equation*}
                 \varphi=\sum_{ i=1}^{r}c_i\chi_{ P_i}\quad\textup{y}\quad\psi=\sum_{ j=1}^{s}d_j\chi_{ Q_j}
             \end{equation*}
-            donde los $P_i$ y $Q_j$ son rectángulos acotados disjuntos. En este caso:
+            donde los $P_i$ y $Q_j$ son rectángulos acotados disjuntos. En efecto, en este caso:
             \begin{equation*}
                 \begin{split}
                     \varphi\otimes \psi(x,y)&=\sum_{ i=1}^{r}\sum_{ j=1}^{s}c_id_j\chi_{ P_i}(x)\chi_{ Q_j}(y)\\
@@ -223,7 +225,7 @@
     \begin{cor}
         Si $f\in\mathcal{L}_1(\mathbb{R}^p,\mathbb{K})$, $g\in\mathcal{L}_1(\mathbb{R}^q,\mathbb{K})$, entonces $f\otimes g\in \mathcal{L}_1(\mathbb{R}^{p+q},\mathbb{K})$ y:
         \begin{equation*}
-            \int_{\mathbb{R}^{p}+q }f\otimes g=\int_{\mathbb{R}^p}f\cdot\int_{\mathbb{R}^q}g
+            \int_{\mathbb{R}^{p+q}}f\otimes g=\int_{\mathbb{R}^p}f\cdot\int_{\mathbb{R}^q}g
         \end{equation*}
     \end{cor}
 
@@ -359,11 +361,11 @@
     \begin{exa}
         Recuerde la fórmula de Cauchy para la $n$-ésima integral reiterada:
         \begin{equation*}
-            \int_{ 0}^xdx_1\int_0^{x_1}dx_2\cdots \int_0^{ x_{n-1}}f(x_n)dx_n=\frac{1}{(n-1)!}\int_0^x\frac{f(t)}{(x-t)^{1-n}}dt
+            \int_{ 0}^xdx_1\int_0^{x_1}dx_2\cdots \int_0^{ x_{n-1}}f(x_n)dx_n=\frac{1}{(n-1)!}\int_0^x\frac{f(t)}{(x-t)^{n-1}}dt
         \end{equation*}
         la igualdad anterior es la misma que la de la función:
         \begin{equation*}
-            \int_0^xf(t)\frac{dt}{\Gamma(n)(x-t)^{n-1}}=f*g(x)
+            \int_0^x\frac{f(t)dt}{\Gamma(n)(x-t)^{n-1}}=f*g(x)
         \end{equation*}
         donde
         \begin{equation*}
@@ -376,7 +378,7 @@
         \end{equation*}
         Si $0<\alpha\leq 1$, definimos:
         \begin{equation*}
-            \int_0^xf(t)\frac{dx}{\Gamma(\alpha)(x-t)^{1-\alpha}}=I^{\alpha}_0[f](x)
+            \int_0^x\frac{f(t)dt}{\Gamma(\alpha)(x-t)^{1-\alpha}}=I^{\alpha}_0[f](x)
         \end{equation*}
         llamada la \textbf{integral fraccional de orden $\alpha$ de $f$ en $x$}. Por ejemplo:
         \begin{equation*}
@@ -391,7 +393,7 @@
     Ahora estudiaremos algunas propiedades de este operador.
 
     \begin{propo}[\textbf{Asociatividad y conmutatividad de la convolución}]
-        Sean $\cf{f,g,h}{\mathbb{R}^n}{\mathbb{K}}$ medibles.
+        Sean $\cf{f,g,h}{\mathbb{R}^n}{\mathbb{K}}$ funciones medibles.
         \begin{enumerate}
             \item Si para algún $x\in\mathbb{R}^n$ existe la convolución $f*g(x)$, entonces también existe $g*f(x)$, y,
             \begin{equation*}
@@ -407,15 +409,13 @@
     \begin{proof}
         De (1): Se tiene que:
         \begin{equation*}
-            f*g(x)=\int_{\mathbb{R}^n }f(y)g(x-y)dy=\int_{ \mathbb{R}^n}f(x-y)g(u)du=\int_{ \mathbb{R}^n}g(u)f(x-y)du=g*f(x)
+            f*g(x)=\int_{\mathbb{R}^n }f(y)g(x-y)dy=\int_{ \mathbb{R}^n}f(x-u)g(u)du=\int_{ \mathbb{R}^n}g(u)f(x-u)du=g*f(x)
         \end{equation*}
-        por el cambio de variable $u=x-y$, de Jacobiano $\abs{(-1)^n}=1$.
-
-        En particular, esto garantiza la existencia de $g*f(x)$.
+        por el cambio de variable $u=x-y$, de Jacobiano $\abs{(-1)^n}=1$. En particular, esto garantiza la existencia de $g*f(x)$.
 
         De (2): Se demostrará primero que la función
         \begin{equation*}
-            (y,z)\mapsto f(x)g(y-z)h(x-y)
+            (y,z)\mapsto f(z)g(y-z)h(x-y)
         \end{equation*} es medible como función de $\mathbb{R}^n\times\mathbb{R}^n$ en $\mathbb{K}$, para un $x\in\mathbb{R}^n$ fijo. Ya se sabe que $(y,z)\mapsto f(z)$ es medible (por una proposición sobre productos tensoriales).
 
         Se afirma que la función $(y,z)\mapsto h(x-y)$ es medible. En efecto, $u\mapsto h(u)$ es medible. Por el cambio de variable $u=x-y$, la función $y\mapsto h(x-y)$ también es medible (por el teorema de cambio de variable). Luego, como con $f$, se sigue que $(y,z)\mapsto h(x-y)$ es medible.
@@ -435,11 +435,11 @@
         \begin{equation*}
             \int_{ \mathbb{R}^n}\abs{h(x-y)}dy\int_{\mathbb{R}^n}\abs{f(z)}\abs{g(y-z)}dz=\int_{\mathbb{R}^n}\abs{h(x-y)}(\abs{f}*\abs{g})(y)dy=(\abs{f}*\abs{g})*\abs{h}(x)<\infty
         \end{equation*}
-        (para los $x$ en que esté definida la función), entonces por Tonelli la función $(y,z)\mapsto f(z)g(y-z)h(x-y)$ es integrable, y por Fubini:
+        (para los $x$ en que esté definida la función), entonces por Tonelli la función $(y,z)\mapsto f(z)g(y-z)h(x-y)$ es integrable y, por Fubini:
         \begin{equation*}
             (f*g)*h(x)=\int_{ \mathbb{R}^n}h(x-y)dy\int_{\mathbb{R}^n}f(z)g(y-z)dz
         \end{equation*}
-        y,
+        además,
         \begin{equation*}
             \begin{split}
                 \int_{ \mathbb{R}^n\times \mathbb{R}^n}h(x-y)f(z)g(y-z)dydz&=\int_{ \mathbb{R}^n}f(z)dx\int_{ \mathbb{R}^n}h(x-y)g(y-z)dy\\
@@ -497,8 +497,9 @@
     \end{proof}
 
     \begin{obs}
+        Se tiene lo siguiente:
         \begin{enumerate}
-            \item La existencia y el valor de la convolución dependen solamente de las clases de equivalencia de $f$ y $g$, se puede pues considerar la convolución como una aplicación de $L_1(\mathbb{R}^n,\mathbb{k})\times L_1(\mathbb{R}^n,\mathbb{K})$ en $L_1(\mathbb{R}^n,\mathbb{K})$, tal que:
+            \item La existencia y el valor de la convolución dependen solamente de las clases de equivalencia de $f$ y $g$, se puede pues considerar la convolución como una aplicación de $L_1(\mathbb{R}^n,\mathbb{K})\times L_1(\mathbb{R}^n,\mathbb{K})$ en $L_1(\mathbb{R}^n,\mathbb{K})$, tal que:
             \begin{equation*}
                 \N{1}{f*g}\leq \N{1}{f}\N{1}{g}
             \end{equation*}
@@ -527,15 +528,28 @@
     \end{excer}
 
     \begin{proof}
-        Sea $\varepsilon>0$ y $(x_0,y_0)\in E\times E$. Tomemos $\delta=\sqrt{\varepsilon}$, entonces, si $(x,y)\in E\times E$ es tal que:
+        Sean $\varepsilon>0$ y $(x_0,y_0)\in E\times E$. Tomemos $\delta=\min\left\{\frac{\varepsilon}{2(\norm{x_0}+1)},\frac{\varepsilon}{2(\norm{y_0}+1)},1\right\}>0$, entonces, si $(x,y)\in E\times E$ es tal que:
         \begin{equation*}
             \norm{(x_0,y_0)-(x,y)}<\delta
         \end{equation*}
         entonces,
         \begin{equation*}
-            \norm{x_0-x}<\delta\quad\textup{y}\quad\norm{y_0-y}<\delta
+            \norm{x_0-x}<\delta\quad\textup{y}\quad\norm{y_0-y}<\delta\Rightarrow\norm{y}<1+\norm{y_0}
         \end{equation*}
         luego, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \norm{x_0\cdot y_0-x\cdot y}&=\norm{x_0\cdot y_0-x_0\cdot y+ x_0\cdot y-x\cdot y}\\
+                &\leq\norm{x_0\cdot(y_0-y)}+\norm{(x_0-x)\cdot y}\\
+                &\leq\norm{x_0}\norm{y_0-y}+\norm{x_0-x}\norm{y}\\
+                &<\norm{y_0-y}(\norm{x_0}+1)+\norm{x_0-x}(\norm{y_0}+1)\\
+                &<\frac{\varepsilon}{2(\norm{x_0}+1)}(\norm{x_0}+1)+\frac{\varepsilon}{2(\norm{y_0}+1)}(\norm{y_0}+1)\\
+                &=\frac{\varepsilon}{2}+\frac{\varepsilon}{2}\\
+                &=\varepsilon\\
+            \end{split}
+        \end{equation*}
+        por tanto, $(x,y)\mapsto x\cdot y$ es continua en $(x_0,y_0)\in E\times E$. Por ser este elemento de $E\times E$ arbitrario, se sigue que es continua en todo $E\times E$.
+
     \end{proof}
 
     \begin{exa}
@@ -569,14 +583,27 @@
         \begin{equation*}
             \frac{1}{p_1}+\frac{1}{p_2}+\cdots+\frac{1}{p_m}=1
         \end{equation*}
-        entonces, si $f_1\in\mathcal{L}_{p_1}(\mathbb{R}^n,\mathbb{K}),f_2\in\mathcal{L}_{p_2}(\mathbb{R}^n,\mathbb{K}),...,f_n\in\mathcal{L}_{p_m}(\mathbb{R}^n,\mathbb{K})$, entonces $f_1\cdot f_2\cdots f_m\in \mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$, y
+        entonces, si $f_1\in\mathcal{L}_{p_1}(\mathbb{R}^n,\mathbb{K}),f_2\in\mathcal{L}_{p_2}(\mathbb{R}^n,\mathbb{K}),...,f_m\in\mathcal{L}_{p_m}(\mathbb{R}^n,\mathbb{K})$, entonces $f_1\cdot f_2\cdots f_m\in \mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$, y
         \begin{equation*}
             \N{1}{f_1\cdot f_2\cdots f_m}\leq \N{p_1}{f_1}\N{p_2}{f_2}\cdots\N{p_m}{f_m}
         \end{equation*}
     \end{theor}
 
     \begin{proof}
-        
+        Procederemos por inducción sobre $m\in\mathbb{N}$, $m\geq 2$. El caso $n=2$ es inmediato de la desigualdad de Hölder clásica.
+
+        Suponga que el resultado se cumple para algún $m\in\mathbb{N}$, $m\geq 2$. Veamos que se cumple para $m+1$. En efecto, sean $f_1\in\mathcal{L}_{p_1}(\mathbb{R}^n,\mathbb{K}),f_2\in\mathcal{L}_{p_2}(\mathbb{R}^n,\mathbb{K}),...,f_{m+1}\in\mathcal{L}_{p_{m+1}}(\mathbb{R}^n,\mathbb{K})$ con $p_1,...,p_{m+1}$ números positivos tales que:
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{p_1}+\frac{1}{p_2}+\cdots+\frac{1}{p_{m+1}}&=1\\
+                \Rightarrow \frac{1}{p_{m+1}^*}=1-\frac{1}{p_1}+\frac{1}{p_2}+\cdots+\frac{1}{p_{m}} \\
+            \end{split}
+        \end{equation*}
+        afirmamos que $f_1\cdots f_m\in\mathcal{L}_{p_{m+1}^*}(\mathbb{R}^n,\mathbb{K})$. En efecto, observemos que:
+        \begin{equation*}
+            \int_{\mathbb{R}^n}\abs{}
+        \end{equation*}
+
     \end{proof}
 
     \begin{propo}
