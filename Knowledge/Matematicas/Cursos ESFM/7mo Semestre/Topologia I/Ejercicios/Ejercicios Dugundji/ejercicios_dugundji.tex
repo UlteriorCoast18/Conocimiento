@@ -635,11 +635,124 @@
     \end{proof}
 
     \begin{excer}
-        Sean $(X,\tau)$ un espacio topológico y $\mathcal{B}$ una sub-base para $\tau$, y $D\subseteq X$ tal que $D\cap B\neq\emptyset$ para todo $B\in\mathcal{B}$ ¿Esto implica que $D$ es denso en $X$?
+        Sean $(X,\tau)$ un espacio topológico y $\mathcal{S}$ una sub-base para $\tau$, y $D\subseteq X$ tal que $D\cap S\neq\emptyset$ para todo $S\in\mathcal{S}$ ¿Esto implica que $D$ es denso en $X$?
     \end{excer}
 
     \begin{proof}
-            
+        Como $\mathcal{S}$ es una sub-base de $\tau$, entonces la colección formada por todas las intersecciones finitas de elementos de $\mathbb{S}$, forman una base de la topología $\tau$.
+        No necesariamente se tiene que $D$ es denso en $X$, pues si $B\in\mathcal{B}$ es un básico, entonces existen $S_1,...,S_n\in\mathcal{S}$ tales que:
+        \begin{equation*}
+            B=\bigcap_{i=1}^nS_i
+        \end{equation*}
+        Luego, $D\cap S_i$ es no vacío para todo $i\in\natint{1,n}$, pero no necesariamente $D\cap\bigcap_{ i=1}^nS_i\neq\emptyset$.
+
+        En efecto, considere el espacio $X=\left\{a,e,i,o,u \right\}$ y $\mathcal{S}=\left\{\left\{ a,e\right\},\left\{ e,i\right\} \right\}$. Se tiene que $\mathcal{S}$ es subbase de de la topología $\tau=\tau(\mathcal{S})=\left\{X,\left\{ a,e,i\right\},\left\{ a,e\right\},\left\{ e,i\right\},\left\{e\right\},\emptyset \right\}$. En el espacio topológico $(X,\tau)$, el conjunto $D=\left\{a,i\right\}$ cumple que $D\cap S\neq\emptyset$ para todo $S\in\mathcal{S}$, pero $D$ no es denso en $X$ ya que el abierto $\left\{e\right\}$ no contiene puntos de $D$.
+    \end{proof}
+
+    \begin{excer}
+        
+    \end{excer}
+
+    \begin{excer}
+        
+    \end{excer}
+    
+    \begin{excer}
+        
+    \end{excer}
+
+    \begin{excer}
+        Se define el \textbf{exterior de un conjunto $A\subseteq X$},denotado por $\Ext{A}$, como el conjunto $\Ext{A}=\Int{\overbrace{X-A}}$. Pruebe lo siguiente:
+        \begin{enumerate}
+            \item $\Ext{A\cup B}=\Ext{A}\cap\Ext{B}$.
+            \item $A\cap\Ext{A}=\emptyset$.
+            \item $X=\Ext{\emptyset}$.
+            \item $\Ext{X-\Ext{A}}=\Ext{A}$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        De (1): Notemos que:
+        \begin{equation*}
+            \begin{split}
+                \Ext{A\cup B}&=\Int{\overbrace{X-A\cup B}}\\
+                &=\Int{\overbrace{(X-A)\cap(X-B)}}\\
+                &=\Int{\overbrace{X-A}}\cap\Int{\overbrace{X-B}}\\
+                &=\Ext{A}\cap\Ext{B}\\
+            \end{split}
+        \end{equation*}
+        
+        De (2): Sea $A\subseteq X$, se tiene que $\Int{\overbrace{X-A}}\subseteq X-A$, por tanto, $A\cap\Ext{A}\subseteq A\cap (X-A)=\emptyset$. Luego, $A\cap\Ext{A}=\emptyset$.
+
+        De (3): Notemos que:
+        \begin{equation*}
+            \begin{split}
+                \Ext{\emptyset}&=\Int{\overbrace{X-\emptyset}}\\
+                &=\Int{X}\\
+                &=X\\
+            \end{split}
+        \end{equation*}
+        pues, el conjunto $X$ es abierto.
+
+        De (4): Sea $A\subseteq X$. Entonces:
+        \begin{equation*}
+            \begin{split}
+                \Ext{X-\Ext{A}}&=\Int{\overbrace{X-\Ext{A}}}\\
+                &=\Int{\overbrace{X-(X-\Ext{A})}}\\
+                &=\Int{\Ext{A}}\\
+                &=\Ext{A}\\
+            \end{split}
+        \end{equation*}
+        pues, $\Ext{A}$ es un conjunto abierto.
+    \end{proof}
+
+    \begin{excer}
+        
+    \end{excer}
+
+    \begin{excer}
+        
+    \end{excer}
+
+    \begin{excer}
+        
+    \end{excer}
+
+    \begin{excer}
+        Un conjunto abierto $U\subseteq X$ de un espacio topológico $(X,\tau)$ es llamado \textbf{abierto regular} si $U=\Int{\Cls{U}}$; un conjunto cerrado $C\subseteq X$ es llamado \textbf{cerrado regular}, si $C=\Cls{\Int{C}}$. Pruebe lo siguiente:
+        \begin{enumerate}
+            \item Si $A$ es cerrado, entonces $\Int{A}$ es un conjunto abierto regular.
+            \item Si $U$ es abierto, entonces $\Cls{U}$ es un conjunto cerrado regular.
+            \item El complemento de un conjunto abierto regular (resp. cerrado) es un conjunto cerrado regular (resp. abierto).
+            \item Si $U,V\subseteq X$ son conjuntos abiertos regulares, entonces $U\subseteq V$ si y sólo si $\Cls{U}\subseteq \Cls{V}$.
+            \item Si $A,B\subseteq X$ son conjuntos cerrados regulares, entonces $A\subseteq B$ si y sólo si $\Int{A}\subseteq \Int{B}$.
+            \item Si $U,V\subseteq X$ son abiertos regulares, entonces $U\cap V$ también es abierto regular.
+            \item Si $A,B\subseteq X$ son cerrados regulares, entonces $A\cup B$ también es cerrado regular.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        De (1): Sea $A\subseteq X$ un conjunto cerrado. Hay que probar que $\Int{A}$ es abierto regular, es decir, que:
+        \begin{equation*}
+            \Int{A}=\Int{\Cls{\Int{A}}}
+        \end{equation*}
+        Notemos que
+        \begin{equation*}
+            \begin{split}
+                \Int{A}&\subseteq A\\
+                \Rightarrow \Cls{\Int{A}}&\subseteq \Cls{A}=A\\
+                \Rightarrow \Int{\Cls{\Int{A}}}&\subseteq \Int{A}\\
+            \end{split}
+        \end{equation*}
+        para la otra contención analicemos. $\Cls{\Int{A}}$ es un cerrado para el que se cumple que $\Int{A}\subseteq\Cls{\Int{A}}$, luego sacando interior de ambos lados, se sigue que:
+        \begin{equation*}
+            \Int{A}=\Int{\Int{A}}\subseteq\Int{\Cls{\Int{A}}}
+        \end{equation*}
+        por tanto, de las dos contenciones se sigue que:
+        \begin{equation*}
+            \Int{A}=\Int{\Cls{\Int{A}}}
+        \end{equation*}
+        luego, $\Int{A}$ es un abierto regular.
     \end{proof}
 
     \newpage
