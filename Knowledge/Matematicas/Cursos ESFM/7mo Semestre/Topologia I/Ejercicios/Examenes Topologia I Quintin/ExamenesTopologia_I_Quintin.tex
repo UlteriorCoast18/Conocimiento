@@ -129,7 +129,7 @@
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
     \setlength{\parindent}{12pt} % Pone la sangría como me gusta
-    \title{Exámenes Parciales Topología I Quintín}
+    \title{Exámenes Parciales y ETS Topología I Quintín}
     \author{Cristo Daniel Alvarado}
     \maketitle
 
@@ -206,7 +206,27 @@
     \section{Ejercicios}
 
     \begin{excer}
-        
+        Sean $S=\left\{(x,y)\in\mathbb{R}^2\Big|1\leq x^2+y^2\leq 4 \right\}$ y $P=\left\{(x,y,z)\in\mathbb{R}^3\Big|x^2+y^2=1\textup{ y }0\leq z\leq 1 \right\}$. Los espacios $(S,\tau_{u_S})$ y $(P,\tau_{u_P})$ son homeomorfos? Demuestre que su respuesta es correcta.
+    \end{excer}
+
+    \begin{excer}
+        Sea $\beta$ un número irracional arbitrario pero fijo. Demuestre que el conjunto 
+        \begin{equation*}
+            G=\left\{a\beta+b\Big|a\in\mathbb{N},b\in\mathbb{Z} \right\}
+        \end{equation*}
+        es denso en $(\mathbb{R},\tau_u)$.
+    \end{excer}
+
+    \begin{excer}
+        Considere los espacios topológicos $(\mathbb{R},\tau_{cf})$ y $(\mathbb{R},\tau_{cf}')$ donde $\tau_{cf}$ y $\tau_{cf}'$ son la topología de los complementos finitos en $\mathbb{R}$ y $\mathbb{R}^2$, respectivamente. ¿Es cierto que $\tau_{cf}\times\tau_{cf}=\tau_{cf}'$? Demuestre su respuesta.
+    \end{excer}
+
+    \begin{excer}
+        Sea $n\mapsto r_n$ una biyección de $\mathbb{N}$ sobre $\mathbb{Q}\cap [0,1]$. Definimos la función $\cf{f}{([0,1],\tau_{u_{[0,1]}})}{(\mathbb{R},\tau_u)}$ como sigue; para cada $x\in [0,1]$ tomamos 
+        \begin{equation*}
+            f(x)=\sum_{n\in\mathcal{N}(x) }\frac{1}{2^n}
+        \end{equation*}
+        donde $\mathcal{N}(x)=\left\{n\in\mathbb{R}^n\Big|x<r_n \right\}$. Demuestre que la reestricción de $f$ al conjunto $B$ de todos los números irracionales $x$ en $[0,1]$ es continua.
     \end{excer}
 
     \chapter{Tercer Examen Parcial}
@@ -262,6 +282,42 @@
         Por los dos incisos anterioes, se sigue que lo que $\Cls{C}\subseteq[-1,1]\Rightarrow \Cls{C}=[-1,1]$, es decir que $\sin(\mathbb{Z})$ es denso en $[-1,1]$, pero $t\mapsto\sin t$ es continua y periódica entre $[-1,1]$, por tanto de la proposición 4.2.3 se sigue que $A=\sin(\mathbb{N})$ es denso en $[-1,1]$.
     \end{proof}
 
+    \begin{excer}
+        Para cada par de enteros positivos primos relativos $a,b\in\mathbb{N}$ definimos:
+        \begin{equation*}
+            N_{a.b}=\left\{a+kb\Big|k\in\mathbb{N}^* \right\}
+        \end{equation*}
+        \begin{enumerate}
+            \item Demuestre que la familia $B=\left\{N_{ a,b}\Big|a,b\in\mathbb{N}\textup{ tales que }(a,b)=1 \right\}$ es base de una topología sobre $\mathbb{N}$.
+            \item $(\mathbb{N},\tau(B))$ es Hausdorff (donde $\tau(B)$ representa a la topología generada por la base $B$).
+            \item Cualquier múltiplo de $b$ pertenece a $\Cls{N_{ a,b}}$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{excer}
+        Demuestre que una bola en $(\mathbb{R}^2,\tau_u|^{\mathbb{R}^2})$ no es igual al producto cartesiano de dos subconjuntos de $(\mathbb{R},\tau_u|^{\mathbb{R}})$.
+    \end{excer}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio Hausdorff compacto. Si $(X,\tau)$ no tiene puntos aislados, demuestre que $X$ no es a lo sumo numerable.
+    \end{excer}
+
+    \begin{excer}
+        Sean
+        \begin{equation*}
+            \begin{split}
+                X&=\left\{(x,z)\in\mathbb{R}^2\Big|x=0,0\leq z\leq 1 \right\}\\
+                Y&=\left\{(x,z)\in\mathbb{R}^2\Big|x^2+\left(z-\frac{1}{4} \right)^2=\frac{1}{16},x\geq 0 \right\}\\
+                Z&=\left\{(x,z)\in\mathbb{R}^2\Big| x^2+\left(z-\frac{3}{4} \right)^2=\frac{1}{16},x\geq0 \right\}\\
+                B&=X\cup Y\cup Z\\
+                O&=\left\{(x,z)\in\mathbb{R}^2\Big|\left(x-\frac{1}{2} \right)^2+\left(z-\frac{1}{2} \right)^2=\frac{1}{4} \right\}\\
+            \end{split}
+        \end{equation*}
+        ¿Son los espacios $(B,\tau_{ u_{B}}|^{\mathbb{R}^2})$ y $(O,\tau_{ u_{O}}|^{\mathbb{R}^2})$ homeomorfos? En caso de que su repuesta sea sí, construya explícitamente una función biyectiva y continua $\cf{f}{B}{O}$ y también exhiba su inversa mostrando también que es continua.
+
+        En caso de que su respuesta sea negativa, justifique detalladamente porque no son homeomorfos.
+    \end{excer}
+    
     \section{Resultados Preeliminares}
     
     \begin{propo}

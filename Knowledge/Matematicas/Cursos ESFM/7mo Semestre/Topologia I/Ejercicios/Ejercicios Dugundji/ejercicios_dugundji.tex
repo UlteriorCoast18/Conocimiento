@@ -349,13 +349,23 @@
 
     \setcounter{section}{2}
 
+    \newpage
+
     \section{Creación de topologías dados conjuntos}
 
+    Mis ejercicios de la sección: 5 y 9.
+    
     \begin{excer}
         
     \end{excer}
 
+    \newpage
+
      \section{Conceptos Elementales}
+
+     Mis ejercicios de la sección: 8, 10, 14, 18, 22.
+
+    \setcounter{excer}{3}
 
      \begin{excer}
         Sea $(X,\tau)$ un espacio topológico. Pruebe que $G$ es abierto en $X$, si y sólo si $\Cls{G\cap\Cls{A}}=\Cls{G\cap A}$ para todo $A\subseteq X$.
@@ -371,11 +381,307 @@
                 \Rightarrow \Cls{G\cap A}&\subseteq \Cls{G\cap \Cls{A}} \\
             \end{split}
         \end{equation*}
-        por lo cual basta probar la otra contención. Si $x\in\Cls{G\cap \Cls{A}}$, entonces para toda vecindad $U$ de $x$ se cumple que $U\cap (G\cap \Cls{A})\neq\emptyset$
+        por lo cual basta probar la otra contención. Si $x\in\Cls{G\cap \Cls{A}}$, entonces para toda vecindad $U$ de $x$ se cumple que $U\cap (G\cap \Cls{A})\neq\emptyset$, sea $y\in U\cap (G\cap \Cls{A})$ entonces, como el conjunto $U\cap G$ es una vecindad de $y$, se tiene que $U\cap (G\cap A)\neq\emptyset$, es decir que existe un elemento $z\in U$ tal que $z\in G\cap A$, pero $U$ originalmente era una vecindad de $x$, luego $x\in\Cls{G\cap A }$, lo cual prueba la otra contención.
     \end{proof}
 
     \begin{excer}
-        
+        Pruebe que si $(X,\tau)$ es un espacio topológico, entonces si $A\subseteq X$ tal que $A'=\emptyset$ implica que $A$ es cerrado.
     \end{excer}
 
+    \begin{proof}
+        Sea $A\subseteq X$ tal que $A'=0$. Como
+        \begin{equation*}
+            \Cls{A}=A\cup A'=A
+        \end{equation*}
+        se tiene entonces que $A$ coincide con su cerradura, la cual es cerrada. Por tanto, $A$ es cerrado.
+    \end{proof}
+
+    \begin{excer}
+        Sea $A=\left\{\frac{1}{n}+\frac{1}{m}\Big|m,n\in\mathbb{N} \right\}\subseteq\mathbb{E}^1$. Pruebe que $A'=\left\{\frac{1}{n}\Big|n\in\mathbb{N} \right\}\cup\left\{0\right\}$ y que $A''=\left\{0\right\}$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $\left\{A_\alpha \right\}_{\alpha\in I}$ una familia de subconjuntos de $X$. Suponga que $\bigcup_{\alpha\in I}\Cls{A_\alpha}$ es cerrado. Pruebe que $\bigcup_{\alpha\in I}\Cls{A_\alpha}=\Cls{\bigcup_{\alpha\in I}A_\alpha}$.
+    \end{excer}
+
+    \begin{proof}
+        Ya se sabe que
+        \begin{equation*}
+            \bigcup_{\alpha\in I}\Cls{A_\alpha}\subseteq\Cls{\bigcup_{\alpha\in I}A_\alpha}
+        \end{equation*}
+        Hay que ver la otra contención. Observemos que $\bigcup_{\alpha\in I}\Cls{A_\alpha}$ es un cerrado que contiene a $\bigcup_{\alpha\in I}A_\alpha$, luego, por minimalidad de la cerradura, debe suceder que:
+        \begin{equation*}
+            \Cls{\bigcup_{\alpha\in I}A_\alpha}\subseteq\bigcup_{\alpha\in I}\Cls{A_\alpha}
+        \end{equation*}
+        pues, la cerradura de un conjunto debe estar contenida en cualquier cerrado que contenga al conjnunto. Luego, por las dos contenciones, se sigue que:
+        \begin{equation*}
+            \bigcup_{\alpha\in I}\Cls{A_\alpha}=\Cls{\bigcup_{\alpha\in I}A_\alpha}
+        \end{equation*}
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que $\Fr{A}=\emptyset$ si y sólo si $A$ es abierto y cerrado.
+    \end{excer}
+
+    \begin{proof}
+        $\Rightarrow):$ Suponga que $\Fr{A}=\emptyset$. Se tiene entonces que:
+        \begin{equation*}
+            \emptyset = \Fr{A}=\Cls{A}\cap\Cls{X-A}
+        \end{equation*}
+        Afirmamos que $A=\Cls{A}$ y que $X-A=\Cls{X-A}$. En efecto, ya se sabe que $A\subseteq \Cls{A}$.
+
+        Suponga que existe $x\in\Cls{A}$ tal que $x\notin A$, como $X=A\cup (X-A)$, se sigue que $x\in X-A\subseteq \Cls{X-A}$, luego $x\in \Cls{A}\cap\Cls{X-A}$\contradiction lo cual contradice la igualdad anterior. Por tanto, $\Cls{A}\subseteq A$, se decir que $A=\Cls{A}$.
+
+        De forma análoga se prueba que $X-A=\Cls{X-A}$. Entonces, $A$ es un conjunto cerrado, ya que coincide con su cerradura, y abierto ya que su complemento es cerrado. Por ende, $A$ es abierto y cerrado.
+
+        $\Leftarrow):$ Suponga que $A$ es abierto y cerrado, entonces se tiene que $A=\Cls{A}$ y $X-A\Cls{X-A}$. Por ende:
+        \begin{equation*}
+            \Fr{A}=\Cls{A}\cap\Cls{X-A}=A\cap(X-A)=\emptyset
+        \end{equation*}
+        como se quería demostrar.
+
+    \end{proof}
+
+    \begin{excer}
+        Pruebe las siguientes fórmulas:
+        \begin{enumerate}
+            \item $\Fr{\Fr{\Fr{A}}}=\Fr{\Fr{A}}$.
+            \item $\Fr{\Int{A}}\subseteq\Fr{A}$.
+            \item $\Int{\overbrace{A-B}}\subseteq\Int{A}-\Int{B}$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        De (1): Sea $B\subseteq X$. Entonces,
+        \begin{equation*}
+            \Fr{B}=\Cls{B}\cap\Cls{X-B}
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \begin{split}
+                \Fr{\Fr{B}}&=\Cls{\Cls{B}\cap\Cls{X-B}}\cap\Cls{X-\Cls{B}\cap\Cls{X-B}}\\
+                &=(\Cls{B}\cap\Cls{X-B})\cap\Cls{X-\Cls{B}\cap\Cls{X-B}}\\
+                &=\Fr{B}\cap\Cls{X-\Fr{B}}\\
+            \end{split}
+        \end{equation*}
+        por tanto, $\Fr{\Fr{B}}\subseteq \Fr{B}$. En particular, para $A\subseteq X$ se sigue que $\Fr{\Fr{\Fr{A}}}\subseteq\Fr{\Fr{A}}$ (tomando $B=\Fr{A}$).
+
+        Ahora, tenemos que:
+        \begin{equation*}
+            \Fr{\Fr{\Fr{A}}}=\Fr{\Fr{A}}\cap\Cls{X-\Fr{\Fr{A}}}
+        \end{equation*}
+
+        Probaremos la otra contención. Afirmamos que $\Fr{\Fr{A}}\subseteq\Cls{X-\Fr{\Fr{A}}}$. En efecto, si $x\in $
+        
+        Suponga que $x\in\Fr{\Fr{A}}$ es tal que $x\notin\Cls{X-\Fr{\Fr{A}}}$. Entonces, existe $U\subseteq X$ abierto que contiene a $x$ tal que:
+        \begin{equation*}
+            U\cap(X-\Fr{\Fr{A}})=\emptyset
+        \end{equation*}
+        por tanto, $U\subseteq\Fr{\Fr{A}}$. De esta forma, al ser $x$ arbitrario, se sigue que el conjunto $\Fr{\Fr{A}}-\Cls{X-\Fr{\Fr{A}}}$ es abierto, en particular, $\Fr{\Fr{A}}-\Cls{X-\Fr{\Fr{A}}}\subseteq\Int{\overbrace{\Fr{\Fr{A}}}}$.
+
+        De (2): Se tiene que
+        \begin{equation*}
+            \Int{A}\subseteq A\subseteq \Cls{A}
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            \Cls{\Int{A}}\subseteq\Cls{A}
+        \end{equation*}
+        Además,
+        \begin{equation*}
+            \begin{split}
+                X-A\subseteq& X-\Int{A}\\
+                \Rightarrow\Cls{X-A}\subseteq\Cls{X-\Int{A}}\\
+            \end{split}
+        \end{equation*}
+        pero, $X-\Int{A}$ es cerrado, luego $X-\Int{A}=\Cls{X-\Int{A}}$. Por ende:
+        \begin{equation*}
+            \Cls{X-A}\subseteq X-\Int{A}
+        \end{equation*}
+        Para probar el resultado, basta con probar que $\Cls{X-A}=X-\Int{A}$. Si $x\in X-\Int{A}$ entonces, $x\notin\Int{A}$ por tanto, para todo abierto $U\subseteq X$ tal que $x\in U$, se tiene que:
+        \begin{equation*}
+            U\nsubseteq A
+        \end{equation*}
+        por tanto, $U\cap (X-A)\neq\emptyset$. Se sigue entonces que $x\in \Cls{X-A}$, de donde se sigue que $X-\Int{A}\subseteq\Cls{X-A}$. Por la contención anterior, se tiene que $\Cls{X-A}=X-\Int{A}$. Así:
+        \begin{equation*}
+            \begin{split}
+                \Fr{\Int{A}}&=\Cls{\Int{A}}\cap\Cls{X-\Int{A}}\\
+                &=\Cls{\Int{A}}\cap(X-\Int{A})\\
+                &=\Cls{\Int{A}}\cap\Cls{X-A} \\
+                &\subseteq\Cls{A}\cap\Cls{X-A} \\
+                &=\Fr{A}\\
+                \Rightarrow \Fr{\Int{A}}&\subseteq\Fr{A}\\
+            \end{split}
+        \end{equation*}
+
+        De (3): 
+
+    \end{proof}
+
+    \begin{excer}
+        Suponga que $\Fr{A}\cap\Fr{B}=\emptyset$. Pruebe que $\Int{\overbrace{A\cup B}}=\Int{A}\cup\Int{B}$ y que $\Fr{A\cap B}=\left[\Cls{A}\cap\Fr{B} \right]\cup\left[\Fr{A}\cap\Cls{B} \right]$.
+    \end{excer}
+
+    \begin{proof}
+        Ya se sabe que $\Int{A}\cup\Int{B}\subseteq\Int{\overbrace{A\cup B}}$. Probemos la otra contención.
+
+        Suponga que existe $x\in\Int{\overbrace{A\cup B}}$ tal que $x\notin\Int{A}\cup\Int{B}$, es decir que $x\in X-(\Int{A}\cup\Int{B})=(X-\Int{A})\cap(X-\Int{B})$.
+
+        Por tanto, para todo abierto $U\subseteq X$ tal que $x\in U$ se tiene que $U\nsubseteq A$ y $U\nsubseteq B$. Se tienen tres casos:
+        \begin{enumerate}
+            \item $x\in A\cap B$: En tal caso, se sigue que $x\in\Fr{A}\cap\Fr{B}$, ya que los conjuntos:
+            \begin{equation*}
+                U\cap A,U\cap (X-A),U\cap B,U\cap(X-B)\neq\emptyset
+            \end{equation*}
+            son no vacíos, para todo $U$ abierto que contiene a $x$, pero esto es una contradicción, ya que $\Fr{A}\cap\Fr{B}=\emptyset$\contradiction.
+            \item $x\in A-B$. Como $x\in\Int{\overbrace{A\cup B}}$, existe un abierto $V\subseteq X$ que contiene a $x$ tal que $V\subseteq A\cup B$. Sea $U\subseteq X$ abierto que contiene a $x$. Se tiene que:
+            \begin{equation*}
+                U\cap A, U\cap (X-B)\neq\emptyset
+            \end{equation*}
+            pues, $x$ está en ambos conjuntos. Ahora, como $U\nsubseteq A$, entonces la intersección $U\cap (X-A)\neq\emptyset$, luego $x\in \Fr{A}$.
+
+            Considere al abierto $U_0=U\cap V$. Este es un abierto que contiene a $x$ tal que $U_0\subseteq A\cup B$ (pues, $V\subseteq A\cup B$). Pero, como $U_0\nsubseteq A$, debe tenerse que existe $y\in U_0$ tal que $y\in B$. Luego, la intersección:
+            \begin{equation*}
+                U_0\cap B\neq\emptyset\Rightarrow U\cap B\neq\emptyset
+            \end{equation*}
+            por ende, $x\in\Fr{B}$, de donde se sigue que $x\in\Fr{A}\cap\Fr{B}$, pero esto es una contradicción, ya que $\Fr{A}\cap\Fr{B}=\emptyset$\contradiction.
+            \item $x\in B-A$. De forma similar al caso anterior, se llega a que $x\in \Fr{A}\cap\Fr{B}$\contradiction.
+        \end{enumerate}
+        los tres incisos llevan a que $x\in\Fr{A}\cap\Fr{B}$\contradiction. Por tanto, $x\in\Int{A}\cup\Int{B}$.
+
+        Para la segunda parte, observemos que:
+        \begin{equation*}
+            \begin{split}
+                \Fr{A\cap B}&=\Cls{A\cap B}\cap\Cls{X-A\cap B}\\
+                &=\Cls{A\cap B}\cap\Cls{(X-A)\cup(X-B)}\\
+                &=\Cls{A\cap B}\cap(\Cls{(X-A)}\cup\Cls{X-B})\\
+                &=(\Cls{A\cap B}\cap\Cls{(X-A)})\cup(\Cls{A\cap B}\cap\Cls{X-B})\\
+            \end{split}
+        \end{equation*}
+        para probar el resultado, basta con probar que $\Cls{A\cap B}=\Cls{A}\cap\Cls{B}$. Para ello, probaremos que si $C\subseteq X$, entonces:
+        \begin{equation*}
+            X-\Cls{C}=\Int{\overbrace{X-C}}
+        \end{equation*}
+        En efecto, como $X-\Cls{C}\subseteq X-C$ siendo el primer conjunto abierto, se sigue que $X-\Cls{C}\subseteq\Int{\overbrace{X-C}}$. Ahora, el conjunto $X-\Int{\overbrace{X-C}}$ es un cerrado que contiene a $C$. En efecto, es cerrado por ser el complemento de un abierto.
+
+        Ahora, si $x\in C$, entonces $x\in X-(X-C)$. Como $\Int{\overbrace{X-C}}\subseteq X-C$, se sigue que $x\in X-\Int{\overbrace{X-C}}$. Por tanto, $C\subseteq X-\Int{\overbrace{X-C}}$. Luego, por minimalidad de la cerradura, se sigue que $\Cls{C}\subseteq X-\Int{\overbrace{X-C}}$, es decir que $\Int{\overbrace{X-C}}=X-(X-\Int{\overbrace{X-C}})\subseteq X-\Cls{C}$.
+
+        Se tienen las contenciones $X-\Cls{C}\subseteq\Int{\overbrace{X-C}}$ y $\Int{\overbrace{X-C}}\subseteq X-\Cls{C}$, por tanto, se sigue que $X-\Cls{C}=\Int{\overbrace{X-C}}$.
+
+        Con esto probado, tomemos $C=A\cap B$, entonces:
+        \begin{equation*}
+            \begin{split}
+                X-\Cls{A\cap B}&=\Int{\overbrace{X-A\cap B}}\\
+                &=\Int{\overbrace{(X-A)\cup (X-B)}}\\
+                &=\Int{\overbrace{X-A}}\cup\Int{\overbrace{X-B}}\\
+                &=(X-\Cls{A})\cup(X-\Cls{B})\\
+                &=X-\Cls{A}\cap\Cls{B}\\
+                \Rightarrow \Cls{A\cap B}&=\Cls{A}\cap\Cls{B}\\
+            \end{split}
+        \end{equation*}
+        donde, el paso de la segunda a la tercera igualdad se da ya que $\Fr{X-A}\cap\Fr{X-B}=\Fr{A}\cap\Fr{B}=\emptyset$. Luego, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \Fr{A\cap B}&=(\Cls{A\cap B}\cap\Cls{(X-A)})\cup(\Cls{A\cap B}\cap\Cls{X-B})\\
+                &=(\Cls{A}\cap\Cls{B} \cap\Cls{(X-A)})\cup(\Cls{A}\cap\Cls{B}\cap\Cls{X-B})\\
+                &=([\Cls{A}\cap\Cls{X-A}]\cap\Cls{B})\cup(\Cls{A}\cap[\Cls{B}\cap\Cls{X-B}])\\
+                &=(\Fr{A}\cap\Cls{B})\cup(\Cls{A}\cap\Fr{B})\\
+                &=\left[\Cls{A}\cap\Fr{B}\right]\cup\left[\Fr{A}\cap\Cls{B}\right]\\
+            \end{split}
+        \end{equation*}
+        lo cual prueba el resultado.
+    \end{proof}
+
+    \begin{excer}
+        ¿Para qué espacios topológicos $(X,\tau)$ el único conjunto denso es $X$?
+    \end{excer}
+
+    \begin{proof}
+        Sea $(X,\tau)$ un espacio topológico tal que $X$ es es el único conjunto denso en sí mismo. Si $x\in X$, entonces el conjunto $X-\left\{x \right\}$ no es denso en $X$, por lo cual:
+        \begin{equation*}
+            \Cls{X-\left\{x\right\}}=X-\left\{x\right\}
+        \end{equation*}
+        luego, $X-\left\{x \right\}$ es cerrado en $X$, es decir que $\left\{x\right\}$ es abierto. Como $x\in X$ fue arbitrario, se sigue que $\left\{ x\right\}$ es abierto, para todo $x\in X$. Por ende, $\tau=\tau_D$ (en caso que de $X$ no sea vacío).
+
+        Por tanto, los únicos espacios en los que ocurre esto, son aquellos en los que la topología es la discreta.
+    \end{proof}
+
+    \begin{excer}
+        Sea $(X,\tau)$ espacio topológico y $E,G\subseteq X$ abiertos densos en $X$. Pruebe que $E\cap G$ es denso en $X$.
+    \end{excer}
+
+    \begin{proof}
+        Sea $U\subseteq X$ abierto. Para probar el resultado, debemos probar que $U\cap (E\cap G)\neq\emptyset$. Como $U\cap E$ es abierto, entonces $(U\cap E)\cap G=U\cap (E\cap G)\neq\emptyset$.
+
+        En este caso, no es necesario que los dos sean abiertos a la vez, basta con que uno de ellos lo sea.
+    \end{proof}
+
+    \begin{excer}
+        Sean $(X,\tau)$ un espacio topológico y $D\subseteq X$ un conjunto denso en $X$. Pruebe que $\Cls{D\cap G}=\Cls{G}$, para todo $G\subseteq X$ abierto.
+    \end{excer}
+
+    \begin{proof}
+        Sea $G\subseteq X$ abierto. Ya se tiene que:
+        \begin{equation*}
+            \Cls{D\cap G}\subseteq\Cls{G}
+        \end{equation*}
+        pues, $D\cap G\subseteq G$. Se ahora $x\in\Cls{G}$, entonces si $U\subseteq X$ es abierto, se tiene que $U\cap G\neq\emptyset$. Como $D$ es denso en $X$, entonces $U\cap(D\cap G)=U\cap(G\cap D)=(U\cap G)\cap D\neq\emptyset$, es decir que $x\in\Cls{G\cap D}$.
+
+        De aquí se sigue la otra contención. Por las dos, se tiene que $\Cls{D\cap G}=\Cls{G}$.
+    \end{proof}
+
+    \begin{excer}
+        Sean $(X,\tau)$ un espacio topológico y $\mathcal{B}$ una sub-base para $\tau$, y $D\subseteq X$ tal que $D\cap B\neq\emptyset$ para todo $B\in\mathcal{B}$ ¿Esto implica que $D$ es denso en $X$?
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \newpage
+
+    \section{Creando topologías a partir de operaciones elementales}
+
+    Mis ejercicios de la sección: 3d).
+
+    \newpage
+
+    \section{$G_\delta$, $F_\sigma$ y conjuntos de Borel}
+
+    Mis ejercicios de la sección: 4.
+
+    \newpage
+
+    \section{Relativización}
+
+    Mis ejercicios de la sección: 2, 7 y 12.
+
+    \newpage
+
+    \section{Funciones continuas}
+
+    Mis ejercicios de la sección: 6 y 10.
+
+    \newpage
+
+    \section{Definición por partes de funciones}
+
+    Mis ejercicios de la sección: 2.
+
+    \newpage
+
+    \section{Funciones continuas en $\mathbb{E}^1$}
+
+    \newpage
+
+    \section{Funciones abiertos y cerradas}
+
+    \newpage
+
+    \section{Homeomorfismos}
+    
 \end{document}
