@@ -122,6 +122,7 @@
 \newcommand\pint[2]{\ensuremath{\left(#1\big| #2\right)}}
 \newcommand\conj[1]{\ensuremath{\overline{#1}}}
 \newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
+\newcommand{\GenSpace}[4]{\ensuremath{\mathcal{#1}_{#2}\left(#3,#4\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -738,15 +739,22 @@
     \end{theor}
 
     \begin{proof}
-        La función $y\mapsto f(y)$ est+a en $\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$ y para cada $x\in\mathbb{R}^n$, $y\mapsto g(x-y)$ est'aen $\mathcal{L}_{ p^*}(\mathbb{R}^n,\mathbb{K})$. Entonces, $y\mapsto f(y)g(x-y)$ es integrable, luego existe $f*g(x)$ y, por Hölder:
+        La función $y\mapsto f(y)$ está en $\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$ y, para cada $x\in\mathbb{R}^n$, $y\mapsto g(x-y)$ está en $\mathcal{L}_{ p^*}(\mathbb{R}^n,\mathbb{K})$. Entonces, $y\mapsto f(y)g(x-y)$ es integrable, luego existe $f*g(x)$ y, por Hölder:
         \begin{equation*}
-            \abs{f*g(x)}=\abs{\int_{\mathbb{R}^n}f(y)g(x-y)dx}\leq\int_{\mathbb{R}^n}\abs{f(y)}\abs{g(x-y)}dy\leq\N{p}{f}\N{p^*}{g}
+            \begin{split}
+                \abs{f*g(x)}=
+                &\abs{\int_{\mathbb{R}^n}f(y)g(x-y)dx}\\
+                &\leq\int_{\mathbb{R}^n}\abs{f(y)}\abs{g(x-y)}dy\\
+                &=\N{p}{f}\left(\int_{\mathbb{R}^n}\abs{g(x-y)}^{ p^*}dy \right)^{1/p^*}\\
+                &= \N{p}{f}\left(\int_{\mathbb{R}^n}\abs{g(z)}^{ p^*}dz \right)^{1/p^*}\textup{ por T.C.V. con }z=x-y \\
+                &\leq\N{p}{f}\N{p^*}{g}\\
+            \end{split}
         \end{equation*}
-        Esto prueba que $f*g$ es acotada y:
+        Esto prueba que $f*g$ es acotada y, tomando supremos:
         \begin{equation*}
             \sup_{x\in\mathbb{R}^n}\abs{f*g(x)}\leq\N{p}{f}\N{p^*}{g}
         \end{equation*}
-        además, por un resultado anterior, $f*g$ es medible
+        además, por un resultado anterior, $f*g$ es medible.
     \end{proof}
 
     \begin{obs}
@@ -762,27 +770,25 @@
         \begin{enumerate}
             \item Por el teorema de cambio de variable, para todo $h\in\mathbb{R}^n$, $f_h$ es medible y
             \begin{equation*}
-                \int_{\mathbb{R}^n}\abs{f(y)}^pdy=\int_{\mathbb{R}^n}\abs{f(x+h)}^pdy=\int_{\mathbb{R}^n}\abs{f_h(y)}p^dy
+                \int_{\mathbb{R}^n}\abs{f(y)}^pdy=\int_{\mathbb{R}^n}\abs{f(x+h)}^pdy=\int_{\mathbb{R}^n}\abs{f_h(y)}^pdy
             \end{equation*}
             por tanto, $f_h\in\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$ y, más aún, $\N{p}{f}=\N{p}{f_h}$.
-            \item Se prueba que si $g\in\mathcal{C}_c(\mathbb{R}^n,\mathbb{K})$, entonces $h\mapsto g_h$ de $\mathbb{R}^n$ en el subespacio denso $\mathcal{C}_c(\mathbb{R}^n,\mathbb{K})$ en $\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$ es uniformemente continua.
+            \item Se prueba que si $g\in\mathcal{C}_c(\mathbb{R}^n,\mathbb{K})$, entonces $h\mapsto g_h$ de $\mathbb{R}^n$ en el subespacio denso $\GenSpace{\mathcal{C}}{c}{\mathbb{R}^n}{\mathbb{K}}$ en $\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$ es uniformemente continua.
             
-            Sea $\varepsilon>0$ y $K=\textup{Spt}(K)$. Entonces, $K$ es compacto en $\mathbb{R}^n$. Existe un rectángulo acotado $P\subseteq\mathbb{R}^n$ tal que $K\subseteq\mathring{P}$.
+            Sea $\varepsilon>0$ y $K=\textup{Spt}(K)$. Entonces, $K$ es compacto en $\mathbb{R}^n$. Existe un rectángulo acotado con medida positiva $P\subseteq\mathbb{R}^n$ tal que $K\subseteq\mathring{P}$.
 
-            Sea $\norm{\cdot}$ una norma de $\mathbb{R}^n$ y $d$ la correspondiente distancia inducida.
-
-            Entonces, $d(K,\mathbb{R}^n\backslash\mathring{P})>0$. Como $g$ es uniformemente continua en $\mathbb{R}^n$ (¿Porqué?) existe $0<\delta<d(K,\mathbb{R}^n\backslash\mathring{P})$ tal que:
+            Sea $\norm{\cdot}$ una norma de $\mathbb{R}^n$ y $d$ la correspondiente distancia inducida. Entonces, $d(K,\mathbb{R}^n\backslash\mathring{P})>0$. Como $g$ es uniformemente continua en $\mathbb{R}^n$ (pues es continua en un conjunto compacto, a saber, $\overline{P}$ y fuera de este conjunto es nula) existe $0<\delta<d(K,\mathbb{R}^n\backslash\mathring{P})$ tal que:
             \begin{equation*}
                 x_1,y_1\in\mathbb{R}^n,\norm{x_1-y_1}<\delta\Rightarrow \abs{g(x_1)-g(y_1)}<\frac{\varepsilon}{(\textup{Vol}(P))^{1/p}}
             \end{equation*}
-            Sean $s,t\in\mathbb{R}^n$ tales que $\norm{s-t}z\delta$. Entonces,
+            Sean $s,t\in\mathbb{R}^n$ tales que $\norm{s-t}<\delta$. Entonces,
             \begin{equation*}
                 \begin{split}
                     \N{p}{g_s-g_t}&=\left[\int_{\mathbb{R}^n}\abs{g(x+s)-g(x+t)}^pdx \right]^{1/p}\\
                     &=\left[\int_{\mathbb{R}^n}\abs{g(y+s-y)-g(y)}^pdy \right]^{1/p}\\
                 \end{split}
             \end{equation*}
-            haciendo el cambio de variable $x=y-t$ y, como para $y\in\mathbb{R}^n\backslash\mathring{P}$ se tiene que $y+s-k\notin K$ (pues, $\norm{s-t}<d(K,\mathbb{R}^n\backslash\mathring{P})$) luego, el integrando se anula fuera de $P$. De donde:
+            haciendo el cambio de variable $x=y-t$ y, como para $y\in\mathbb{R}^n\backslash\mathring{P}$ se tiene que $y+s-k\notin K$ (pues, $\norm{s-t}<d(K,\mathbb{R}^n\backslash\mathring{P})$) luego, el integrando se anula fuera de $P$. Se sigue que:
             \begin{equation*}
                 \begin{split}
                     \N{p}{g_s-g_t}&=\left[\int_{P}\abs{g(y+s-y)-g(y)}^pdy \right]^{1/p}\\
@@ -800,7 +806,7 @@
             \begin{equation*}
                 s,t\in\mathbb{R}^n,\norm{s-t}<\delta\Rightarrow\N{p}{g_s-g_t}<\frac{\varepsilon}{3}
             \end{equation*}
-            Dados $s,t\in\mathbb{R}^n$ tales que $\norm{s-t}<\delta$, se tiene que:
+            Dados $s,t\in\mathbb{R}^n$ tales que $\norm{s-t}<\delta$ se tiene que:
             \begin{equation*}
                 \begin{split}
                     \N{p}{f_s-f_t}&\leq\N{p}{f_s-g_s}+\N{p}{g_s-g_t}+\N{p}{f_t-g_t}\\
@@ -808,7 +814,7 @@
                     &=\varepsilon\\
                 \end{split}
             \end{equation*}
-            lo cual prueba la continuidad uniforme de esta función.
+            lo cual prueba la continuidad uniforme de $h\mapsto f_h$.
         \end{enumerate}
     \end{proof}
 
@@ -827,11 +833,19 @@
                 &=\N{p}{f}\N{p^*}{g_s-g_t}\\
             \end{split}
         \end{equation*}
-        haciendo el cambio de variable $y=-x$. Por la continuidad uniforme de $h\mapsto f_h$, se tiene que $f*g$ también debe ser uniformemente continua.
+        haciendo el cambio de variable $y=-x$. Por la continuidad uniforme de $h\mapsto f_h$, se tiene que $f*g$ también debe ser uniformemente continua. En efecto, sea $\varepsilon>0$, como $h\mapsto g_h$ es uniformemente continua, (usando el teorema anterior y ya que $p^*<\infty$), existe $\delta>0$ tal que si $s,t\in\mathbb{R}^n$ son tales que:
+        \begin{equation*}
+            \norm{s-t}<\delta\Rightarrow\N{p^*}{g_s-g_t}<\frac{\varepsilon}{\N{p}{f}+1}
+        \end{equation*}
+        Luego,
+        \begin{equation*}
+            \norm{s-t}<\delta\Rightarrow\abs{f*g(s)-f*g(t)}<\left(\N{p}{f}+1 \right)\cdot\frac{\varepsilon}{\N{p}{f}+1}=\varepsilon
+        \end{equation*}
+        lo que prueba la continuidad uniforme de $f*g$.
     \end{proof}
 
     \begin{propo}
-        Fije $p\in]1,\infty[$. Si $f\in\mathcal{L}_p(\mathbb{R}^n)$ y $g\in\mathcal{L}_{ p^*}(\mathbb{R}^n,\mathbb{K})$, entonces:
+        Fije $p\in ]1,\infty[$. Si $f\in\mathcal{L}_p(\mathbb{R}^n)$ y $g\in\mathcal{L}_{ p^*}(\mathbb{R}^n,\mathbb{K})$, entonces:
         \begin{equation*}
             \lim_{x\rightarrow\infty}f*g(x)=0
         \end{equation*}
@@ -850,9 +864,9 @@
         \begin{equation*}
             \lim_{ M\rightarrow\infty}\int_{\norm{y}>M}\abs{f(y)}^pdy=0
         \end{equation*}
-        Fije $M>0$ tal que
+        Entonces, existe $M>0$ tal que
         \begin{equation*}
-            \left[\int_{ \norm{y}>M}\abs{f(y)}^pdy \right]^{1/p}<\varepsilon
+            \left[\int_{ \norm{y}>M}\abs{f(y)}^pdy \right]^{1/p}<\frac{\varepsilon}{1+\N{p}{f}+\N{p^*}{g}}
         \end{equation*}
         Por el cambio de variable $y=x-z$, resulta lo siguiente:
         \begin{equation*}
@@ -866,7 +880,7 @@
         \end{equation*}
         Entonces, para $\varepsilon>0$ existe $R>0$ tal que si $\norm{z}>R$, entonces:
         \begin{equation*}
-            \int_{ \norm{z}>R}\abs{g(z)}^{p^*}dz<\varepsilon
+            \int_{ \norm{z}>R}\abs{g(z)}^{p^*}dz<\frac{\varepsilon}{1+\N{p}{f}+\N{p^*}{g}}
         \end{equation*}
         Ahora, como 
         \begin{equation*}
@@ -874,17 +888,23 @@
         \end{equation*}
         tomando $x\in\mathbb{R}^n$ tal que $\norm{x}>R+M$, se sigue que:
         \begin{equation*}
-            \int_{\norm{x-z}\leq M }\abs{g(z)}^{ p^*}dz\leq\int_{\norm{z}> R }\abs{g(z)}^{ p^*}dz<\varepsilon
+            \int_{\norm{x-z}\leq M }\abs{g(z)}^{ p^*}dz\leq\int_{\norm{z}> R }\abs{g(z)}^{ p^*}dz<\frac{\varepsilon}{1+\N{p}{f}+\N{p^*}{g}}
         \end{equation*}
         Por tanto, tomando $\norm{x}>R+M$ se sigue que:
         \begin{equation*}
-            \abs{f*g(x)}<\left[\N{p}{f}+\N{p^*}{g} \right]\cdot\varepsilon 
+            \begin{split}
+                \abs{f*g(x)}&\leq\left[\N{p}{f}+\N{p^*}{g} \right]\cdot\frac{\varepsilon}{1+\N{p}{f}+\N{p^*}{g}}\\
+                &<\varepsilon\\
+            \end{split}
         \end{equation*}
-        lo que prueba el resultado.
+        por tanto:
+        \begin{equation*}
+            \lim_{x\rightarrow\infty}f*g(x)=0
+        \end{equation*}
     \end{proof}
 
     \begin{obs}
-        El resultado anterior no se generaliza al caso $p>1$ y $p^*=\infty$. En efecto, si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ con $\int_{\mathbb{R}^n}f\neq0$ y $g$ es la constante 1, entonces:
+        El resultado anterior no se generaliza al caso $p>1$ y $p^*=\infty$. En efecto, si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ con $\int_{\mathbb{R}^n}f\neq0$ y $g=\chi_{\mathbb{R}^n}$, entonces:
         \begin{equation*}
             f*g(x)=\int_{\mathbb{R}^n}f(y)g(x-y)dy=\int_{\mathbb{R}^n}f(y)dy\neq0
         \end{equation*}
@@ -911,9 +931,9 @@
                 &\leq\N{\infty}{g}\int_{\norm{y}\leq M }\abs{f(x-y)}dy+\N{1}{f}\sup_{ \norm{y}>M}\abs{g(y)}\\
             \end{split}
         \end{equation*}
-        Sea $\varepsilon>0$. Fije $M>0$ tal que:
+        Sea $\varepsilon>0$. Existe $M>0$ tal que:
         \begin{equation*}
-            \sup_{ \norm{y}>M}\abs{g(y)}<\varepsilon
+            \sup_{ \norm{y}>M}\abs{g(y)}<\frac{\varepsilon}{1+\N{1}{f}+\N{\infty}{g}}
         \end{equation*}
         lo cual sucede, ya que $\lim_{y\rightarrow\infty} g(y)=0$. Ahora, se tiene que:
         \begin{equation*}
@@ -923,18 +943,21 @@
         \end{equation*}
         Por Lebesgue, existe $R>0$ tal que:
         \begin{equation*}
-            \int_{\norm{z}>R }\abs{f(z)}dz<\varepsilon
+            \int_{\norm{z}>R }\abs{f(z)}dz<\frac{\varepsilon}{1+\N{1}{f}+\N{\infty}{g}}
         \end{equation*}
-        si $\norm{x}<R+M$, entocnes:
+        si $\norm{x}>R+M$, entocnes:
         \begin{equation*}
             \begin{split}
                 \int_{\norm{y}\leq M } \abs{f(x-y)} dy &\leq\int_{\norm{z}>R }\abs{f(z)}dz\\
-                &<\varepsilon\\
+                &<\frac{\varepsilon}{1+\N{1}{f}+\N{\infty}{g}}\\
             \end{split}
         \end{equation*}
         Por tanto, si $\norm{x}>R+M$:
         \begin{equation*}
-            \abs{f*g(x)}\leq\left[\N{1}{f}+\N{\infty}{g} \right]\varepsilon
+            \begin{split}
+                \abs{f*g(x)}&\leq\left[\N{1}{f}+\N{\infty}{g} \right]\cdot \frac{\varepsilon}{1+\N{1}{f}+\N{\infty}{g}}\\
+                &<\varepsilon\\
+            \end{split}
         \end{equation*}
         lo cual prueba el resultado.
     \end{proof}
