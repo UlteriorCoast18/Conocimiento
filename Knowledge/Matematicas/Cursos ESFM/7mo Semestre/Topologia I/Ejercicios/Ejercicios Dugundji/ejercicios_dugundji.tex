@@ -753,6 +753,58 @@
             \Int{A}=\Int{\Cls{\Int{A}}}
         \end{equation*}
         luego, $\Int{A}$ es un abierto regular.
+
+        De (2): Sea $U\subseteq X$ abierto. Hay que probar que:
+        \begin{equation*}
+            \Cls{U}=\Cls{\Int{\Cls{U}}}
+        \end{equation*}
+        En efecto, veamos que:
+        \begin{equation*}
+            \begin{split}
+                \Int{\Cls{U}}&\subseteq\Cls{U}\\
+                \Rightarrow \Cls{\Int{\Cls{U}}}&\subseteq\Cls{\Cls{U}}=\Cls{U}\\
+            \end{split}
+        \end{equation*}
+        Ahora, 
+        \begin{equation*}
+            \begin{split}
+                \begin{split}
+                    U&\subseteq\Cls{U}\\\
+                    \Rightarrow U=\Int{U}&\subseteq\Int{\Cls{U}}\\
+                    \Rightarrow \Cls{U}&\subseteq \Cls{\Int{\Cls{U}}}\\
+                \end{split}
+            \end{split}
+        \end{equation*}
+        lo cual prueba la otra contención, así $\Cls{U}=\Cls{\Int{\Cls{U}}}$. Luego, $\Cls{U}=\Cls{\Int{\Cls{U}}}$ por lo cual, $\Cls{U}$ es cerrado regular.
+
+        De (3): Basta con probar que el complemento de un conjunto abierto regular es un conjunto cerrado regular. Sea $U\subseteq X$ abierto regular, es decir que:
+        \begin{equation*}
+            U=\Int{\Cls{U}}
+        \end{equation*}
+        Entonces, su complemento $C=X-U$ cumple que:
+        \begin{equation*}
+            \Int{C}\subseteq C
+            \Rightarrow \Cls{\Int{C}}\subseteq C
+        \end{equation*}
+        Si $x\in C$, entonces $x\in X-U=X-\Int{\Cls{U}}$, luego $x\notin\Int{\Cls{U}}$, por tanto, para todo abierto $V\subseteq X$ que contiene a $x$ se tiene que $V\nsubseteq\Cls{U}$, es decir, que existe un $y\in V$ tal que $y\notin \Cls{U}$ esto es $y\in X-\Cls{U}$.
+
+        Pero, $X-\Cls{U}=\Int{\overbrace{X-U}}$ (esto se probó en un ejercicio anterior), es decir que $y\in\Int{C}$. Por tanto, $V\cap\Int{C}\neq\emptyset$. Luego, $x\in \Cls{\Int{C}}$.
+
+        Así, se tiene la contención $C\subseteq\Cls{\Int{C}}$. Por esta y otra contención, se sigue que $C=\Cls{\Int{C}}$, es decir que $X-U$ es cerrado regular.
+
+        De (4): La ida es inmediata. Suponga que $\Cls{U}\subseteq\Cls{V}$, tomando interiores se sigue que $U=\Int{\Cls{U}}\subseteq\Int{\Cls{V}}=V$, lo cual pruebra el resultado.
+
+        De (5): Es análogo a (4).
+
+        De (6): Sean $U,V\subseteq X$ abiertos regulares, es decir que: $U=\Int{\Cls{U}}$ y $V=\Int{\Cls{V}}$. Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \Int{\overbrace{\Cls{U\cap V}}}&\subseteq\Int{\overbrace{\Cls{U}\cap\Cls{V}}}\\
+                &=\Int{\Cls{U}}\cap\Int{\Cls{V}}\\
+                &=U\cap V
+            \end{split}
+        \end{equation*}
+        para ver la otra contención, 
     \end{proof}
 
     \newpage
