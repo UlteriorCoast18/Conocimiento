@@ -1188,7 +1188,7 @@
     \begin{proof}
         De (1):
         \begin{center}
-            \begin{tabular}{ c  l  l  c  }
+            \begin{tabular}{ c  l  l  r  }
                 \hline
                 No. &  &  &  \\
                 \hline
@@ -1208,7 +1208,7 @@
 
         De (2):
         \begin{center}
-            \begin{tabular}{ c  l  l  c  }
+            \begin{tabular}{ c  l  l  r  }
                 \hline
                 No. &  &  &  \\
                 \hline
@@ -1226,7 +1226,7 @@
 
         De (3):
         \begin{center}
-            \begin{tabular}{ c  l  l  c  }
+            \begin{tabular}{ c  l  l  r  }
                 \hline
                 No. &  &  &  \\
                 \hline
@@ -1249,7 +1249,7 @@
         Alternativa (y correcta):
 
         \begin{center}
-            \begin{tabular}{ c  l  l  c  }
+            \begin{tabular}{ c  l  l  r  }
                 \hline
                 No. &  &  &  \\
                 \hline
@@ -1267,8 +1267,206 @@
     \end{proof}
 
     \begin{obs}
-        S.H. siginifca silogismo hipotético. El I.U y G.E son:
+        S.H. siginifca silogismo hipotético. El I.U (Instanciación universal) y G.E (generalización existencial) son:
         $(\forall x)\varphi\Rightarrow \varphi[t/x]$ y $\varphi[t/x]\Rightarrow (\exists x)\varphi$.
     \end{obs}
+
+    Faltan dos reglas por demostrar. Consdiere $\Sigma$ un conjunto de fórmulas.
+    \begin{enumerate}
+        \item \textbf{Generalización universal} (G.U.) Si $x$ no aparece libre en ninguna fórmula de $\Sigma$, se tiene que $\varphi\Rightarrow\forall x\varphi$.
+        \item \textbf{Instanciación existencial} (I.E.) Se expresa en tabla como sigue:
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $\exists x\varphi$ &  &  \\
+                2) & $\varphi[w/x]$ &  &  \\
+                \vdots & \vdots &  &  \\
+                n) & $\psi$ &  & $w$ no es libre en ninguna fórmula de $\Gamma$ ni en $\exists x\varphi$ y $\psi$\\
+                \hline
+                n+1) & $\psi$ &  &  \\
+                \hline
+                  &  &  $\therefore \psi $ &  \\
+            \end{tabular}
+        \end{center}
+    \end{enumerate}
+
+    \begin{lema}[Lema al metateoreama]
+        Si $\Gamma$ es un conjunto de fórmulas tal que $\Gamma\vdash (\forall y)\varphi$ y $\zeta$ no aparece libre en $\Gamma$ y es sustituible en $\varphi$, entonces $\Gamma\vdash(\forall \zeta)\varphi[\zeta/x]$.
+    \end{lema}
+
+    \begin{proof}
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                \vdots & \vdots  &  & Premisas de $\Gamma$  \\
+                $k$) & $(\forall x)\varphi$ &  &  \\
+                $k+1$) & $\varphi[\zeta/x]$ &  & I.U. \\
+                $k+2$) & $(\forall\zeta)\varphi[\zeta/x]$ &  & G.U. \\
+                \hline
+                  &  &  $\therefore(\forall\zeta)\varphi[\zeta/x]$ &  \\
+            \end{tabular}
+        \end{center}
+    \end{proof}
+
+    \begin{theor}[Metateorema]
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item Si $\Gamma$ es un conjunto de fórmulas, $x$ es una variable que no aparece libre en $\Gamma$ y $\Gamma\vdash\varphi$, entonces $\Gamma\vdash(\forall x)\varphi$.
+            \item Si $\Gamma\cup\left\{\varphi[w/x] \right\}\vdash\psi$ entonces, $\Gamma\cup\left\{(\exists x)\varphi \right\}\vdash\psi$ siempre y cuando $w$ no aparezca libre en $\Gamma$ ni en $\psi$.
+        \end{enumerate}        
+    \end{theor}
+
+    \begin{proof}
+        De (1): Mostraremos que el conjunto
+        \begin{equation*}
+            \left\{\varphi\Big|\Gamma\vdash(\forall x)\varphi \right\}
+        \end{equation*}
+        incluye a $\Gamma$, todos los axiomas lógicos y, además, es cerrado bajo M.P.
+        \begin{itemize}
+            \item \textbf{Axiomas Lógicos}: Por definición si $\varphi$ es axioma lógico entonces $(\forall x)\varphi$ también lo es.
+            \item \textbf{Elementos de $\Gamma$}. Entonces,
+            \begin{center}
+                \begin{tabular}{ c  l  l  r  }
+                    \hline
+                    No. &  &  &  \\
+                    \hline
+                    1) & $\varphi$ &  & Premisa \\
+                    2) & $\varphi\Rightarrow(\forall x)\varphi$ &  & Ax.2  \\
+                    3) & $(\forall x)\varphi$ &  & 1,2 M.P.  \\
+                    \hline
+                      &  &  $\therefore(\forall x)\varphi$ &  \\
+                \end{tabular}
+            \end{center}
+            \item \textbf{Cerrado bajo M.P.} Supongamos que
+            \begin{equation*}
+                \Gamma\vdash(\forall x)\varphi\quad\Gamma\vdash(\forall x)(\varphi\Rightarrow\psi)
+            \end{equation*}
+            Es decir:
+            \begin{center}
+                \begin{tabular}{ c  l  l  r  }
+                    \hline
+                    No. &  &  &  \\
+                    \hline
+                    \vdots & \vdots  &  & \vdots  \\
+                    $k$) & $(\forall x)\varphi$ &  &   \\
+                    \vdots & \vdots  &  & \vdots  \\
+                    $n$) & $(\forall x)(\varphi\Rightarrow\psi)$ &  &   \\
+                    \vdots & \vdots  &  & \vdots  \\
+                    $n+1$) & $(\forall x)(\varphi\Rightarrow\psi)$ & $\Rightarrow((\forall x)\varphi\Rightarrow(\forall x)\psi)$  &  Ax.1 \\
+                    $n+2$) & $(\forall x)\varphi\Rightarrow(\forall x)\psi$ &  &  M.P. \\
+                    $n+3$) & $(\forall x)\psi$ &  &  M.P. \\
+                    \hline
+                      &  &  $\therefore(\forall x)\psi$ &  \\
+                \end{tabular}
+            \end{center}
+            lo cual prueba la cerradura.
+        \end{itemize}
+        Luego, por todos los casos, se sigue que $\Gamma\vdash(\forall x)\varphi$.
+
+        De (2): Procederemos por contradicción.
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                \vdots & \vdots  &  & Premisas de $\Gamma$  \\
+                $k$) & $(\exists x)\varphi$ &  &   \\
+                $k+1$) & $\neg\psi$ &  & Suposición \\
+                \vdots & \vdots  &  & Lineas para probar lo de abajo  \\
+                $n$) & $\varphi[w/x]\Rightarrow\psi$ &  & Prueba condicional \\
+                $n+1$) & $\neg\varphi[w/x]$ &  & M.T. \\
+                $n+2$) & $(\forall w)\neg\varphi[w/x]$ &  & G.U. \\
+                $n+3$) & $(\exists w)\varphi[w/x]$ &  & Por $k$ y el lema anterior \\
+                $n+4$) & $\psi$ &  & Contradicción $k+1$)-$n+3)$ \\
+                \hline
+                  &  &  $\therefore\psi$ &  \\
+            \end{tabular}
+        \end{center}
+    \end{proof}
+
+    \begin{excer}
+        Muestre que existe una demostración en las siguientes fórmulas.
+    \end{excer}
+
+    \begin{proof}
+        a):
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $(\forall x)(Px\Rightarrow Qx)$  &  & Premisa\\
+
+                2) & $Sx$  &  & Suposición\\
+                3) &  $(\forall y)(Sy\Rightarrow Py)$ &  & Suposición \\
+                4) &  $Sx\Rightarrow Px$ &  &  \\
+                5) &  $Px$ &  &  \\
+                6) & $Px\Rightarrow Qx$  &  &  \\
+                7) & $Qx$  &  &  \\
+                8) &  $(\forall y)(Sy\Rightarrow Py)$ & $\Rightarrow Qx$  & P.C. \\
+                9) &  $Sx\Rightarrow((\forall y)(Sy\Rightarrow Py)\Rightarrow Qx)$ &  & P.C. \\
+                10) &  $(\forall x)(Sx\Rightarrow((\forall y)(Sy\Rightarrow Py)\Rightarrow Qx))$ &  & G.U. \\
+                \hline
+                  &  &  $\therefore(\forall z)(Sz\Rightarrow ((\forall y)(Sy\Rightarrow Py)\Rightarrow Qx))$ &  \\
+            \end{tabular}
+        \end{center}
+        b):
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $(\forall x)(Px\Rightarrow Qx)$  &  & Premisa\\
+                2) & $(\forall x)(Sx\Rightarrow Tx)$  &  & Premisa\\
+                3) & $(\forall x)(Qx\Rightarrow Sx)$  &  & Suposición\\
+                4) & $Qy\Rightarrow Sy$  &  & I.U \\
+                5) & $Py\Rightarrow Qy$  &  & I.U.\\
+                6) & $Py\Rightarrow Sy$  &  & \\
+                7) & $Sy\Rightarrow Ty$  &  & I.U.\\
+                8) & $Py\Rightarrow Ty$  &  & \\
+                9) & $(\forall y)(Py\Rightarrow Ty)$  &  & G.U.\\
+                10) & $(\forall x)(Qx\Rightarrow Sx)$  & $\Rightarrow(\forall y)(Py\Rightarrow Ty)$ & 3-10 P.C.\\
+
+                \hline
+                  &  &  $\therefore(\forall x)(Qx\Rightarrow Sx)\Rightarrow(\forall y)(Py\Rightarrow Ty)$ &  \\
+            \end{tabular}
+        \end{center}
+        c):
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $(\exists x)Px$ & $\Rightarrow(\forall y)((Py\lor Qy)\Rightarrow Sy)$ & Premisa\\
+                2) & $(\exists x)Px\land(\exists x)Sx$ &  & Premisa\\
+                3) & $(\exists x)Px$ &  & Simp. \\
+                4) & $Pz$ &  &  I.U.\\
+                5) & $(\forall y)((Py\lor Qy)\Rightarrow Sy)$ & & M.P.\\
+                6) & $(Pz\lor Qz)\Rightarrow Sz$ & & I.U.\\
+                7) & $(Pz\lor Qz)$ & & Ad.\\
+                8) & $Sz$ & & M.P. \\
+                9) & $Pz\land Sz$ & & Conj.\\
+                10) & $(\exists x)(Px\land Sx)$ & & G.E. \\
+                11) & $(\exists x)(Px\land Sx)$ & & 5-10 I.E. \\
+                \hline
+                  &  &  $\therefore(\exists x)(Px\land Sx)$ &  \\
+            \end{tabular}
+        \end{center}
+        d):
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $(\exists x)Px$ & $\Rightarrow(\forall y)(Qy\Rightarrow Sy)$ & Premisa\\
+                \hline
+                  &  &  $\therefore(\exists x)(Px\land Qx)\Rightarrow(\exists y)(Py\land Sy)$ &  \\
+            \end{tabular}
+        \end{center}
+    \end{proof}
 
 \end{document}

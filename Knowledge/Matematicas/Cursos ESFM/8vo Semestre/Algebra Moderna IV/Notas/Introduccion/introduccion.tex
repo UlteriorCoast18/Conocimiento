@@ -888,4 +888,69 @@
         Por tanto, $\psi_X$ es biyección.
     \end{sol}
 
+    \section{Construcción de Categorías}
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría, llamaremos por \textbf{Categoría dual u opuesta}, denotada como $\mathcal{C}^{op}$,
+        \begin{enumerate}
+            \item $\Obj{\mathcal{C}^{op}}=\Obj{\mathcal{C}}$.
+            \item \item $\Hom{\mathcal{C}^{op}}{A}{B}=\Hom{\mathcal{C}}{B}{A}$, para todo $A,B\in\Obj{\mathcal{C}^{op}}$.
+            \item $\cf{\circ^{op}}{\Hom{\mathcal{C}^{op}}{A}{B}\times \Hom{\mathcal{C}^{op}}{B}{C}}{\Hom{\mathcal{C}^{op}}{A}{C}}$ está dada por: si $g^{op}\in\Hom{\mathcal{C}^{op}}{A}{B}$ y $f^{op}\in\Hom{\mathcal{C}^{op}}{B}{C}$, entonces se corresponde a $f^{op}$ y $g^{op}$ dos morfismos $f\in\Hom{\mathcal{C}}{C}{B}$ y $g\in\Hom{\mathcal{C}}{B}{A}$ tales que:
+            \begin{equation*}
+                f^{op}=f\quad\textup{ y }g^{op}=g
+            \end{equation*}
+            se tiene que:
+            \begin{equation*}
+                g^{op}\circ^{op} f^{op}=(f\circ g)^{op}
+            \end{equation*}
+            \item $1_A^{op}=1_A$, para todo $A\in\Obj{\mathcal{C}^{op}}$
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        Se cumple lo siguiente:
+        \begin{enumerate}
+            \item $(\mathcal{C}^{op})^{op}=\mathcal{C}$.
+            \item $\Cat{PoSet}(X,\subseteq)^{op}=\Cat{PoSet}(X,\supseteq)$.
+        \end{enumerate}
+    \end{exa}
+
+    \begin{propo}[\textbf{Propiedades duales de los morfismos}]
+        Sea $\mathcal{C}$ una categoría.
+        \begin{enumerate}
+            \item $f$ es monomorfismo de $\mathcal{C}$ si y sólo si $f^{op}$ es epimorfismo de $\mathcal{C}^{op}$.
+            \item $I$ es elemento inicial de $\mathcal{C}$ si y sólo si $I$ es elemento final de $\mathcal{C}^{op}$.
+            \item $f$ es isomorfismo en $\mathcal{C}$ si y sólo si $f^{op}$ es isomorfismo de $\mathcal{C}^{op}$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Sean $A,B\in\Obj{\mathcal{C}}$. Entonces $f\in\Hom{\mathcal{C}}{A}{B}$ es monomorfismo si y sólo si para todo $C\in\Obj{\mathcal{C}}$ se tiene que si $g,h\in\Hom{\mathcal{C}}{B}{C}$ son tales que:
+        \begin{equation*}
+            f\circ 
+        \end{equation*}
+    \end{proof}
+
+    \begin{mydef}
+        Sean $\mathcal{C},\mathcal{D}$ categorías. Llamaremos su \textbf{Categoría Producto}, denotada por $\mathcal{C}\times\mathcal{D}$ a:
+        \begin{enumerate}
+            \item $\Obj{\mathcal{C}\times\mathcal{D}}=\Obj{\mathcal{C}}\times\Obj{\mathcal{D}}$.
+            \item Sean $(C,D),(C',D')\in\Obj{\mathcal{C}\times\mathcal{D}}$, entonces $\Hom{\mathcal{C}\times\mathcal{D}}{(C,D)}{(C',D')}=\Hom{\mathcal{C}}{C}{C}\times\Hom{\mathcal{D}}{D}{D'}$.
+            \item $\cf{\circ_{\mathcal{C}\times\mathcal{D}}}{\Hom{\mathcal{C}\times\mathcal{D}}{(C,D)}{(C',D')}\times\Hom{\mathcal{C}\times\mathcal{D}}{(C',D')}{(C'',D'')}}{\Hom{\mathcal{C}\times\mathcal{D}}{(C,D)}{(C'',D'')}}$ dada como:
+            \begin{equation*}
+                (f',g')\circ_{\mathcal{C}\times\mathcal{D}}(f,g)=(f'\circ_{\mathcal{C}} f,g'\circ_{\mathcal{D}} g)
+            \end{equation*}
+            \item $1_{C\times D}=(1_C,1_D)$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        Sean $G_1,G_2$ grupos y $\mathcal{G}_1,\mathcal{G}_2$ son sus categorías respectivas (formadas como con el monoide), donde:
+        \begin{enumerate}
+            \item $\Obj{\mathcal{G}_i}=\left\{\cdot_i \right\}$.
+            \item $\Hom{\mathcal{G}_i}{\cdot_i}{\cdot_i}=G_i$.
+        \end{enumerate}
+        para $i=1,2$. Entonces, en la categoría producto $\mathcal{G}_1\times\mathcal{G}_2$ el único objeto es $(\cdot_1,\cdot_2)$. En este caso, esta categoría se identifica con la categoría del producto directo de los grupos $G_1$ y $G_2$.
+    \end{exa}
+
 \end{document}
