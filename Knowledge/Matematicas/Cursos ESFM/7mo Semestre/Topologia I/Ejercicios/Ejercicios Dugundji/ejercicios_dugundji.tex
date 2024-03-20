@@ -804,14 +804,139 @@
                 &=U\cap V
             \end{split}
         \end{equation*}
-        para ver la otra contención, 
+        para ver la otra contención, notemos que
+        \begin{equation*}
+            \begin{split}
+                U\cap V&\subseteq U\cap V\\
+                \Rightarrow U\cap V&\subseteq \Cls{U\cap V}\\
+                \Rightarrow U\cap V=\Int{\overbrace{U\cap V}} &\subseteq \Int{\overbrace{\Cls{U\cap V}}}\\
+            \end{split}
+        \end{equation*}
+        de las dos contenciones se sigue que $U\cap V = \Int{\overbrace{\Cls{U\cap V}}}$.
+
+        De (7): Es análogo a (6).
     \end{proof}
 
     \newpage
 
     \section{Creando topologías a partir de operaciones elementales}
 
-    Mis ejercicios de la sección: 3d).
+    \begin{excer}
+        Sean $X$ un conjunto, y $A\mapsto u(A)$, $A\mapsto v(A)$ dos operaciones de cerradura, es decir que cumplen que:
+        \begin{enumerate}
+            \item $u(\emptyset)=\emptyset$.
+            \item $A\subseteq u(A)$, para todo $A\subseteq X$.
+            \item $u\circ u(A)=u(A)$, para todo $A\subseteq X$.
+            \item $u(A\cup B)=u(A)\cup u(B)$, para todos $A,B\subseteq X$.
+        \end{enumerate}
+        (por un resultado anterior, la familia $\tau_u=\left\{X-u(A)\Big|A\subseteq X \right\}$ es una topología sobre $X$. Lo análogo se cumple para $v$).
+
+        Suponga que se cumple que $v\circ u(A)$ es $u$-cerrado para todo $A\subseteq X$. Pruebe que $A\mapsto v\circ u(A)$ es una operación de cerradura y que $v\circ u(A)$ es de hecho la intersección de todos los conjuntos que contienen a $A$ que son cerrados tanto en $v$ como en $u$.
+
+        Finalmente, muestre que $u\circ v(A)\subseteq v\circ u(A)$.
+    \end{excer}
+
+    \begin{proof}
+        Probaremos varias cosas:
+        \begin{enumerate}
+            \item $A\mapsto v\circ u(A)$ es una operación de cerradura. En efecto, hay que verificar que se cumplen varias condiciones:
+            \begin{enumerate}
+                \item Se tiene que:
+                \begin{equation*}
+                    \begin{split}
+                        v\circ u(\emptyset)&=v(u(\emptyset))\\
+                        &=v(\emptyset)\\
+                        &=\emptyset\\
+                    \end{split}
+                \end{equation*}
+                \item Sea $A\subseteq X$. Se tiene que $A\subseteq u(A)$, luego $v(A)\subseteq v\circ u(A)$, como $A\subseteq v(A)$, entonces se sigue que $A\subseteq v\circ u(A)$.
+                \item Sea $A\subseteq X$. Como $v\circ u(A)$ es $u$-cerrado, entonces $u((v\circ u)(A))=v\circ u(A)$, aplicando $v$ se sigue que $(v\circ u)\circ(v\circ u)(A)=v\circ (v\circ u)(A)=(v\circ v)\circ u(A)=v\circ u(A)$.
+                \item Sean $A,B\subseteq X$, entonce:
+                \begin{equation*}
+                    \begin{split}
+                        v\circ u(A\cup B)&=v(u(A\cup B))\\
+                        &=v(u(A)\cup u(B))\\
+                        &=v(u(A))\cup v(u(B))\\
+                        &=v\circ u(A)\cup v\circ u(B)\\
+                    \end{split}
+                \end{equation*}
+            \end{enumerate}
+            por los incisos i)-iv) se sigue que $A\mapsto v\circ u(A)$ es una operación de cerradura.
+
+            \item Sea $A\subseteq X$. El conjunto $v\circ u(A)$ es $v$-cerrado y, por hipótesis es $u$-cerrado.
+        
+            Sea
+            \begin{equation*}
+                \mathcal{C}=\left\{C\subseteq X\Big|C\textup{ es $u$-cerrado y $v$-cerrado y }A\subseteq C \right\}
+            \end{equation*}
+            Tomemos $\widehat{C}=\bigcap\mathcal{C}$. Por la observación anterior, como $A\subseteq v\circ u(A)\in\mathcal{C}$ (por ser operación de cerradura), se tiene que $\widehat{C}\subseteq v\circ u(A)$ ya que $v\circ u(A)\in\mathcal{C}$.
+
+            Sea ahora $C\in\mathcal{C}$. Para probar el resultado, hay que ver que $v\circ u(A)\subseteq C$. Como $C$ es $u$-cerrado, y $A\subseteq C$, entocnes $u(A)\subseteq u(C)=C$. Pero, además $C$ es $v$-cerrado, por lo cual $v\circ u(A)\subseteq v(C)=C$.
+
+            Por tanto, $v\circ u(A)=\widehat{C}$.
+
+            \item Sea $A\subseteq X$, entonces $A\subseteq u(A)$ y, por ende $v(A)\subseteq v\circ u(A)$. Como $v\circ u(A)$ es $u$-cerrado, entonces:
+            \begin{equation*}
+                u\circ v(A)\subseteq u(v\circ u(A))=v\circ u(A)
+            \end{equation*}
+            como se quería demostrar.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{excer}
+        Sean $X,Y$ conjuntos y $\cf{\varphi}{X}{\mathcal{P}(Y)}$ una función. Para $A\subseteq X$, defina:
+        \begin{equation*}
+            \varphi(A)=\bigcup\left\{\varphi(x)\Big|x\in A \right\}
+        \end{equation*}
+        y, para $B\subseteq Y$, sea $\varphi^{-1}(B)=\left\{\varphi(x)\subseteq B\textup{ y }\varphi(x)\neq\emptyset \right\}$. Pruebe que $u(A)=\varphi\circ\varphi^{-1}(A)$ satisface lo siguiente:
+        \begin{enumerate}
+            \item $u(\emptyset)=\emptyset$.
+            \item $A\subseteq u(A)$, para todo $A\subseteq X$.
+            \item $u\circ u(A)=u(A)$, para todo $A\subseteq X$.
+            \item $(A\subseteq B)\Rightarrow(u(A)\subseteq u(B))$, para todo $A,B\subseteq X$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico, y sea $\cf{\tau}{\mathcal{P}(X)\times\mathcal{P}(X)}{\mathcal{P}(X)}$ una función que cumple lo siguiente:
+        \begin{enumerate}
+            \item $\tau(A,B\cup C)\cup\tau(B,C\cup A)=\tau(A\cup B, C)\cup\tau(A,B)$
+            \item $\tau(\emptyset, X)=\emptyset$.
+            \item $\tau(\Cls{A},\Cls{X-A})\subseteq\Cls{A}$.
+            \item $\tau(A,B)\subseteq A\cup B$.
+        \end{enumerate}
+        Pruebe que $\tau(A,B)=(A\cap\Cls{B})\cup(\Cls{A}\cap B)$.
+    \end{excer}
+
+    \begin{proof}
+        %TODO este ejercicio es para reflexionar.
+        Veamos que propiedades cumple esta operación. Sean $A,B,C\subseteq X$. Se cumple que:
+        \begin{equation*}
+            \begin{split}
+                \tau(A,A)&\subseteq A\cup A\\
+                &=A\\
+                \Rightarrow \tau(A,A)&\subseteq A\\
+            \end{split}
+        \end{equation*}
+        Además,
+        \begin{equation*}
+            \begin{split}
+                \tau(\emptyset,B\cup C)\cup\tau(B, C)
+                &=\tau(\emptyset,B\cup C)\cup\tau(B, C\cup\emptyset)\\
+                &=\tau(\emptyset\cup B,C)\cup\tau(\emptyset, B) \\
+            \end{split}
+        \end{equation*}
+        Tomando $B=X$ se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \tau(\emptyset,X\cup C)\cup\tau(X, C)
+            \end{split}
+        \end{equation*}
+    \end{proof}
 
     \newpage
 
