@@ -2087,4 +2087,126 @@
         le llamaremos el \textbf{producto cartesiano de la famila $\left\{X_\alpha \right\}_{\alpha\in I}$}.
     \end{mydef}
 
+    \begin{propo}
+        $\prod_{\alpha\in I}X_\alpha\neq\emptyset$ si y sólo si $\forall\alpha\in I$, $X_\alpha\neq\emptyset$
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Suponga que el producto cartesiano es no vacío, entonces existe $x\in\prod_{\alpha\in I}X_\alpha$. Para esta se cumple que $x(\alpha)\in X_\alpha$ para todo $\alpha\in I$, Luego $X_\alpha\neq\emptyset$ para todo $\alpha\in I$.
+
+        $\Leftarrow):$
+
+        %Usar axioma de elección
+    \end{proof}
+
+    \begin{mydef}
+        Sea $\left\{X_\alpha \right\}_{\alpha\in I}$ una familia de conjuntos. Para cada $\beta\in I$ definimos la función $\cf{p_\beta}{\prod_{\alpha\in I}X_\alpha}{X_\beta}$ dada por:
+        \begin{equation*}
+            p_\beta(x)=x(\beta)=x_\beta,\quad\forall x\in\prod_{\alpha\in I}X_\alpha
+        \end{equation*} 
+        esta función es llamada la \textup{$\beta$-ésima proyección}.
+    \end{mydef}
+
+    Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{ \alpha\in I}$ una familia de espacios topológicos. Denotamos por $X=\prod_{\alpha\in I}X_\alpha$. Dado $\beta\in I$, consideramos la función $\cf{p_\beta}{X}{X_\beta}$. Ya sabemos que la topología
+    \begin{equation*}
+        \mathcal{S}_\beta=\left\{p_\beta^{-1}(U)\Big|U\in\tau_\beta \right\}
+    \end{equation*}
+    es la topología más gruesa definida sobre $X$ tal que $\cf{p_\beta}{(X,\mathcal{S}_\beta)}{(X_\beta,\tau_\beta)}$ es continua.
+
+    Además, dados $A_1,...,A_k\in\mathcal{S}_\beta$, tenemos que $A_1\cap\cdots\cap A_k\in\mathcal{S}_\beta$.
+
+    ¿Cómo podemos encontrar una topología $\tau$ sobre $X=\prod_{\alpha\in I}X_\alpha$ tal que para todo $\alpha\in I$, $\cf{p_\alpha}{X}{X_\alpha}$ sea continua?
+
+    Sea $\mathcal{S}=\bigcup_{\alpha\in I}\mathcal{S}_\alpha$. Sabemos que $\tau(\mathcal{S})$ es la topología más gruesa que tiene como abiertos a los elementos de $\mathcal{S}$. Se cumple lo siguiente:
+    \begin{enumerate}
+        \item $\mathcal{S}\subseteq\tau(\mathcal{S})$.
+        \item $\mathcal{S}_\alpha\subseteq\tau(\mathcal{S})$ para todo $\alpha\in I$.
+        \item $\cf{p_\alpha}{(X,\tau(\mathcal{S}))}{(X_\alpha,\tau_\alpha)}$ es continua para todo $\alpha\in I$.
+        \item $\mathcal{B}=\left\{S_1\cap\cdots\cap S_k\Big|S_i\in \mathcal{S}\textup{ para todo }i\in\natint{1,k};k\in\mathbb{N} \right\}$ es una base de $\tau(\mathcal{S})$.
+        \item Dado $B\in\mathcal{B}$ existen $\alpha_1,...,\alpha_k\in I$ con $\alpha_i\neq\alpha_j$ si $i\neq j$ y $U_i\in \tau_ {\alpha_i}$ para cada $i\in\natint{1,k}$ tales que $B=p_{\alpha_1}^{-1}(U_1)\cap\cdots\cap p_{\alpha_k}^{-1}(U_k)$.
+        \item Sea $\beta\in I$ y considere $\cf{p_\beta}{X}{X_\beta}$. Si $M\subseteq X_\beta$ y $p_{\beta}^{-1}(M)\subseteq X$ debe tenerse que:
+        \begin{equation*}
+            p_{\beta}^{-1}(M)=\prod_{\alpha\in I}Y_\alpha
+        \end{equation*}
+        donde
+        \begin{equation*}
+            Y_\alpha=\left\{
+            \begin{array}{lcr}
+                M & \textup{ si }&\alpha = \beta\\
+                X_\alpha & \textup{ si }&\alpha \neq \beta\\
+            \end{array}
+            \right.,\quad\forall\alpha\in I
+        \end{equation*}
+        \item Sea $B\in\mathcal{B}$, entonces existen $\alpha_1,...,\alpha_k\in I$ con $\alpha_i\neq\alpha_k$ si $i\neq j$ y $U_i\in\tau_{\alpha_i}$ tales que $B=p_{\alpha_1}^{-1}(U_1)\cap\cdots\cap p_{\alpha_k}^{-1}(U_k)$. 
+        Se tiene entonces que $B=\prod_{\alpha\in I}L_\alpha$ con:
+        \begin{equation*}
+            L_\alpha=\left\{
+            \begin{array}{lcr}
+                U_i & \textup{ si }&\alpha = \alpha_i\\
+                X_\alpha & \textup{ si }&\alpha\notin\left\{\alpha_1,...,\alpha_k \right\} \\
+            \end{array}
+            \right.,\quad\forall\alpha\in I
+        \end{equation*}
+        Es decir que todo básico es producto cartesiano de una cantidad finita de abiertos y todo lo demás, del espacio correspondiente.
+        \item Sea $B\in\mathcal{B}$. Entonces, $B=\prod_{\alpha}W_\alpha$ tal que para todo $\alpha\in I$, $W_\alpha\in\tau_\alpha$ y $W_\alpha=X_\alpha$ para casi todo salvo una cantidad finita de índices $\alpha$.
+    \end{enumerate}
+
+    \begin{mydef}
+        Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{ \alpha\in I}$ una familia de espacios topológicos. A la topología $\tau(\mathcal{S})$ sobre $X=\prod_{\alpha\in I}X_\alpha$ la llamaremos la \textbf{topología producto} y la denotaremos por $\beta_p$. A la base $\mathcal{B}$ la denotaremos por $\mathcal{B}_p$.
+    \end{mydef}
+
+    Considere la colección
+    \begin{equation}
+        \mathcal{B}_c=\left\{\prod_{\alpha\in I}U_\alpha\Big|\forall \alpha\in I, U_\alpha\in\tau_\alpha \right\}
+    \end{equation}
+    Esta es una base para una topología sobre el producto cartesiano de espacios topológicos. En efecto, se tiene:
+    \begin{enumerate}
+        \item $X=\prod_{\alpha\in I}X_\alpha$ donde $X_\alpha\in\tau_\alpha$.
+        \item Sean $U=\prod_{\alpha\in I}U_\alpha,V=\prod_{\alpha\in I}V_\alpha \in\mathcal{B}_c$. Entonces $U\cap V=\prod_{\alpha\in I}U_\alpha\cap V_\alpha\in\mathcal{B}_c$.
+    \end{enumerate}
+
+    \begin{mydef}
+        Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{ \alpha\in I}$ una familia de espacios topológicos. A la topología generada por la base $\mathcal{B}_c$ hecha anteriormente, la llamaremos \textbf{la topología de caja de $X$}, y se denota por $\tau_c$.
+    \end{mydef}
+
+    \begin{propo}
+        Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{ \alpha\in I}$ una familia de espacios topológicos y sea $X=\prod_{\alpha\in I}X_\alpha$.
+        \begin{enumerate}
+            \item $\mathcal{B}_p\subseteq\mathcal{B}_c$.
+            \item $\tau_p\subseteq\tau_c$.
+            \item Si $|I|<\infty$, entonces $\tau_p=\tau_c$.
+            \item Si para todo $\alpha\in I$, $\mathcal{B}_\alpha$ es una base para la topología $\tau_\alpha$, entonces
+            \begin{equation*}
+                \mathcal{B}_1=\left\{\prod_{\alpha\in I}A_\alpha\Big|\forall \alpha\in I, A_\alpha\in\mathcal{B}_\alpha \right\}
+            \end{equation*}
+            es una base para la topología $\tau_c$ y,
+            \begin{equation*}
+                \mathcal{B}_2=\left\{\prod_{\alpha\in I}B_\alpha\Big|B_\alpha\in\mathcal{B}_\alpha\textup{ para una canitdad finita de } \alpha\in I,\textup{ y }B_\alpha=X_\alpha\textup{ para los $\alpha$ restantes}  \right\}
+            \end{equation*}
+            \item Dado $\beta\in I$, $\cf{p_\beta}{(X,\tau)}{(X_\beta,\tau_\beta)}$ es continua, abierta y suprayectiva con $\tau=\tau_p$ o $\tau=\tau_c$.
+            \item Dado $\beta\in I$, el espacio $(X_\alpha,\tau_\beta)$ es homeomorfo a un subespacio de $(X,\tau)$ con $\tau=\tau_p$ o $\tau=\tau_c$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): Sea $B\in\mathcal{B}_p$, entonces $B=\prod_{\alpha\in I}U_\alpha$ con $U_\alpha\in\tau_\alpha$ para todo $\alpha\in I$, luego $B\in\mathcal{B}_c$.
+
+        De (2): Es inmediato de (1).
+
+        De (3): Es inmediata, pues si $B\in\mathcal{B}_c$, entonces $B=\prod_{\alpha\in I}U_\alpha$ con $U_\alpha\in\tau_\alpha$ donde se cumple que una cantidad finita de ellos no es necesariamente $X_\alpha$ (pues $I$ es finito). Luego, $B\in\mathcal{B}_p$.
+
+        De (4): %TODO
+
+        De (5): Sea $\beta\in I$. Por construcción se tiene que $\cf{p_\beta}{(X,\tau)}{(X_\beta,\tau_b)}$ es continua si $\tau=\tau_p$. Como $\tau_p\subseteq\tau_c$, entonces $p_\beta$ también es continua con $\tau=\tau_c$.
+
+        Sea $L=\prod_{\alpha\in I}L_\alpha\in\mathcal{B}$ ($\mathcal{B}$ puede ser la base de la topología producto o de la de caja). Entonces:
+        \begin{equation}
+            p_\beta(L)=L_\beta\in\tau_\beta
+        \end{equation}
+        es decir, que si $K\in\tau$, entonces existe una familia $\left\{B_\gamma \right\}_{\gamma\in J}\subseteq\mathcal{B}$ tal que $K=\bigcup_{\gamma\in J}B_\gamma$. Por ende:
+        \begin{equation*}
+            p_{\beta}(K)=\bigcup_{\gamma\in J}p_\beta(B_\gamma)
+        \end{equation*}
+    \end{proof}
+
 \end{document}
