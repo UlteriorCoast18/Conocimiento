@@ -962,4 +962,228 @@
         lo cual prueba el resultado.
     \end{proof}
 
+    \section{Convolución y diferenciación}
+
+    \begin{propo}
+        Sea $\cf{f}{\mathbb{R}^n}{\mathbb{K}}$ es integrable (está en $\mathcal{L}_1$) y $\cf{g}{\mathbb{R}^n}{\mathbb{K}}$ es de clase $C^r$ de tal suerte que $g$ y todas sus derivadas parciales hasta el orden $r$ (incluive) son acotadas, entonces $f*g$ es de clase $C^r$.
+
+        Además, si $D=\partial_{\alpha_1}\cdots\partial_{\alpha_k}$ con $\alpha_1,\alpha_2,...,\alpha_k\in\left\{1,...,n \right\}$ y $k\in\left\{1,...,r \right\}$, se tiene:
+        \begin{equation*}
+            D(f*g)=f*Dg
+        \end{equation*}
+
+    \end{propo}
+
+    \begin{proof}
+        Como $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ y $g\in\mathcal{L}_\infty(\mathbb{R}^n,\mathbb{K})$, entonces existen $f*g$ y $f*Dg$ (pues, tanto $g$ como $Dg$ son acotadas) en todo punto de $\mathbb{R}^n$.
+
+        Se afirma que $D(f*g)=f*Dg$. Procederemos por inducción sobre $k$, basta probar que
+        \begin{equation*}
+            \partial_{\alpha_k}(f*g)=(f*\partial_{\alpha_k})g
+        \end{equation*}
+        (si se puede para una derivada parcial, se puede continuar con las demás derivadas parciales para obtener el operador $D$). Se tiene que:
+        \begin{equation*}
+            f*g(x)=\int_{\mathbb{R}^n}f(y)g(x-y)dy
+        \end{equation*}
+        y
+        \begin{equation*}
+            (f*\partial_{\alpha_k}g)(x)=\int_{\mathbb{R}^n}f(y)\partial_{\alpha_k}g(x-y)dy
+        \end{equation*}
+        Si $M=\sup_{z\in\mathbb{R}^n}\abs{\partial_{\alpha_k}g(z)}$, entonces
+        \begin{equation*}
+            \abs{f(y)\partial_{\alpha_k}g(x-y)}\leq M\abs{f(y)},\quad\forall y\in\mathbb{R}^n
+        \end{equation*}
+        donde la función de la derecha es integrable e independiente de $x$. Por el teorema de derivación de funciones definidas por integrales, existe $\partial_{\alpha_k}(f*g)$ y su valor es:
+        \begin{equation*}
+            \partial_{\alpha_k}(f*g)=\int_{\mathbb{R}^n}f(y)\partial_{\alpha_k}g(x-y)dy=(f*\partial_{\alpha_k}g)(x)
+        \end{equation*}
+        para todo $x\in\mathbb{R}^n$.
+    \end{proof}
+
+    \begin{mydef}
+        Se dice que una función $\cf{f}{\mathbb{R}^n}{\mathbb{K}}$ es \textbf{localmente integrable}, si $f$ es integrable en todo compacto de $\mathbb{R}^n$. Se denota por $\mathcal{L}_1^{loc}(\mathbb{R}^n,\mathbb{K})$ al espacio vectorial de estas funciones.
+    \end{mydef}
+
+    \begin{obs}
+        Toda función integrable es localmente integrable, pero no viceversa. En particular, $\mathcal{C}(\mathbb{R}^n,\mathbb{K})\subseteq\mathcal{L}_1^{loc}(\mathbb{R}^n,\mathbb{K})$ y, en particular, todos los polinomios están en $\mathcal{L}_1^{loc}(\mathbb{R}^n,\mathbb{K})$.
+
+        Podemos entonces definir al espacio $\mathcal{L}_p^{loc}(\mathbb{R}^n,\mathbb{K})$ de todas las funciones tales que su módulo a la $p$ están en $\mathcal{L}_1^{loc}(\mathbb{R}^n,\mathbb{K})$. Pero, en particular se tendría que:
+        \begin{equation*}
+            \mathcal{L}_p^{loc}(\mathbb{R}^n,\mathbb{K})\subseteq\mathcal{L}_1^{loc}(\mathbb{R}^n,\mathbb{K})
+        \end{equation*}
+        para todo $p\in[1,\infty[$.
+        %TODO
+    \end{obs}
+
+    \begin{propo}
+        Si $f\in\mathcal{L}_1^{loc}(\mathbb{R}^n,\mathbb{K})$ y $g\in\mathcal{C}_c^r(\mathbb{R}^n,\mathbb{K})$, entonces $f*g$ existe en todo punto de $\mathbb{R}^n$, es de clase $C^r$ ($g$ es de clase $C^r$) y para todo $D=\partial_{\alpha_1}\cdots\partial_{\alpha_k}$, con $\alpha_1,\alpha_2,...,\alpha_k\in\left\{1,...,n \right\}$ y $k\in\left\{1,...,r \right\}$, se tiene:
+        \begin{equation*}
+            D(f*g)=f*D(g)
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Sea $K\subseteq\mathbb{R}^n$ el soporte de $g$ (el cual es compacto). Para cada $x\in\mathbb{R}^n$, existe la integral:
+        \begin{equation*}
+            f*g(x)=\int_{\mathbb{R}^n}f(y)g(x-y)dy
+        \end{equation*}
+        Esa integral es no cero si $x-y\in K$, es decir si $y\in x-K$. Por ende:
+        \begin{equation*}
+            f*g(x)=\int_{x-K}f(y)g(x-y)dy
+        \end{equation*}
+        el conjunto $x-K$ es compacto. Como $f$ es localmente integrable, es integrable en $x-K$ y $g$ es medible acotada, luego está en $\mathcal{L}_\infty^{loc}(x-K,\mathbb{K})$.
+
+        Sea $\norm{\cdot}$ una norma en $\mathbb{R}^n$. Entonces:
+        \begin{equation*}
+            f*g(x)=\int_{\mathbb{R}^n}\underbrace{f(y)\chi_{ x-K}(y)}_{\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})}g(x-y)dy=\int_{\mathbb{R}^n}f_1(y)g(x-y)dy
+        \end{equation*}
+        no se puede usar directamente el teorema de derivación, ya que $f_1(y)=f(y)\chi_{ x-K}(y)$ depende de $x$. Para ello, sea $R>0$ y
+        \begin{equation*}
+            B_R'=\left\{x\in\mathbb{R}^n\Big|\norm{x}\leq R \right\}
+        \end{equation*}
+        Para cada $x\in B_R'$, $x-K\subseteq B_R'+(-K)$ y:
+        \begin{equation*}
+            \begin{split}
+                f*g(x)&=\int_{\mathbb{R}^n}f(y)g(x-y)dy\\
+                &=\int_{B_R'+(-K)}f(y)g(x-y)dy\\
+                &=\int_{\mathbb{R}^n}\left[f(y)\chi_{B_R'+(-K)}(y) \right]g(x-y)dy\\
+                &=\int_{\mathbb{R}^n}f_1(y)g(x-y)dy\\
+                &=f_1*g(x)\\
+            \end{split}
+        \end{equation*}
+        para todo $x\in B_R'$. Por la proposición anterior, $f_1*g$ es de clase $C^r$ en $\mathbb{R}^n$, luego $f*g$ es de clase $C^r$ en $B_R'$. Además, para cada $x\in B_R'$,
+        \begin{equation*}
+            D(f*g)(x)=D(f_1*g)(x)=(f_1*Dg)(x)
+        \end{equation*}
+        y
+        \begin{equation*}
+            \begin{split}
+                (f_1*g)(x)&=\int_{\mathbb{R}^n}f_1(y)Dg(x-y)dy\\
+                &=\int_{ B_R'+(-K)}f(y)Dg(x-y)dy\\
+                &=\int_{ x-K}f(y)Dg(x-y)dy\\
+                &=f*Dg(x)\\
+                \Rightarrow D(f*g)(x)&=f*Dg(x)\\
+            \end{split}
+        \end{equation*}
+        pues, $Dg$ es nula fuera de $K$. Como el $R>0$ fue arbitrario, se sigue que el resultado anterior es válido para todo $x\in\mathbb{R}^n$.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $p\in[1,\infty[$ y $\cf{f}{\mathbb{R}^n}{\mathbb{K}}$. Se dice que $f\in\mathcal{L}_p^{loc}(\mathbb{R}^n,\mathbb{K})$ si la reestricción de $f$ a cada compacto $C\subseteq\mathbb{R}^n$ pertenece a $\mathcal{L}_p(C,\mathbb{K})$.
+    \end{mydef}
+
+    \begin{obs}
+        Es claro que si $f\in\mathcal{L}_p^{loc}(\mathbb{R}^n,\mathbb{K})$, entonces $f\in \mathcal{L}_1^{loc}(\mathbb{R}^n,\mathbb{K})$ (pues, para todo compacto $C\subseteq\mathbb{R}^n$, se tiene que $\mathcal{L}_p(C,\mathbb{K})\subseteq\mathcal{L}_1(C,\mathbb{K})$). Y $\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})\subseteq\mathcal{L}_p^{loc}(\mathbb{R}^n,\mathbb{K})$
+
+        Así pues, el último resultado es válido con la hipótesis alternativa de que $f\in\mathcal{L}_p^{loc}(\mathbb{R}^n,\mathbb{K})$, en particular, de que $f\in\mathcal{L}_p^(\mathbb{R}^n,\mathbb{K})$
+    \end{obs}
+
+    \section{Sucesiones de Dirac}
+
+    El álgebra de Banach $L_1(\mathbb{R}^n,\mathbb{C})$ no posee elemento uno, es decir, no existe $\delta\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ tal que
+    \begin{equation*}
+        f*\delta=f\textup{ c.t.p. en }\mathbb{R}^n\quad\forall f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})
+    \end{equation*}
+    tampoco existe $\delta\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ tal que:
+    \begin{equation*}
+        f*\delta=f\textup{ c.t.p. en }\mathbb{R}^n\quad\forall f\in\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})
+    \end{equation*}
+
+    \begin{proof}
+        En efecto, suponga que exista tal $\delta>0$. Sea $P\subseteq\mathbb{R}^n$ un rectángulo acotado tal que $\mathring{P}\neq\emptyset$. Se sabe que
+        \begin{equation*}
+            \delta*\chi_P=\chi_P\textup{ c.t.p. en }\mathbb{R}^n
+        \end{equation*}
+        por un resultado anterior, $\delta*\chi_P$ es una función continua en $\mathbb{R}^n$ ($\delta\in\mathcal{L}_1$ y $\chi_P\in\mathcal{L}_\infty$). Entonces:
+        \begin{equation*}
+            \delta*\chi_p=\chi_P=1\textup{ c.t.p. en }\mathbb{R}^n
+        \end{equation*}
+        como ambas son cintunas, entonces:
+        \begin{equation*}
+            \delta*\chi_P(x)=\chi_P(x)=1,\quad\forall x\in \mathring{P}
+        \end{equation*}
+        y
+        \begin{equation*}
+            \delta*\chi_P(x)=\chi_P(x)=0,\quad\forall x\in\mathbb{R}^n\backslash\overline{P}
+        \end{equation*}
+        esto contradeciría la continuidad de $\delta*\chi_P$ en $\mathbb{R}^n$.
+    \end{proof}
+
+    Las sucesiones de Dirac hacen el papel del elemento uno.
+
+    \renewcommand{\theenumi}{\roman{enumi}}
+
+    \begin{mydef}
+        Una sucesión $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ se dice que es una \textbf{sucesión de Dirac} si satisface lo siguiente:
+        \begin{enumerate}
+            \item $\rho_\nu\geq0$ para todo $\nu\in\mathbb{N}$.
+            \item $\int_{\mathbb{R}^n}\rho_\nu=1$, para todo $\nu\in\mathbb{N}$.
+            \item Para todo $\delta>0$, $\lim_{\nu\rightarrow\infty}\int_{\norm{x}<\delta}\rho_\nu(x)dx=1$.
+        \end{enumerate}
+        usar (ii) y (iii), (iii) es equivalente a:
+        \begin{enumerate}
+            \setcounter{enumi}{3}
+            \item Para todo $\delta>0$, $\lim_{\nu\rightarrow\infty}\int_{\norm{x}\geq\delta}\rho_\nu(x)dx=0$.
+        \end{enumerate}
+        Esta definición es independiente de la norma elegida.
+    \end{mydef}
+
+    \begin{exa}
+        Considere la sucesión de picos (especificar). Para todo $\nu\in\mathbb{N}$, $\rho_\nu$ es la función cuya gráfica es triangular de base $\left[\frac{1}{\nu},-\frac{1}{\nu} \right]$ sobre el eje $x$ y cuyo vértice está en el punto $(0,\nu)$ sobre el eje $y$ y que es cero fuera del intervalo.
+
+        Entonces, $\left\{\rho_\nu \right\}$ es una sucesión de dirac en $\mathcal{L}_1(\mathbb{R},\mathbb{R})$.
+    \end{exa}
+
+    \begin{exa}
+        Sea $\cf{\delta}{\mathbb{R}^n}{\mathbb{R}}$ una función no negativa tal que $\int_{\mathbb{R}^n}\rho_\nu=1$. Para cada $\nu\in\mathbb{N}$ se define:
+        \begin{equation*}
+            \rho_\nu(x)=\nu^n\rho_\nu(\nu x),\quad\forall x\in\mathbb{R}^n
+        \end{equation*}
+        Entonces, $\left\{\rho_\nu \right\}$ es una sucesión de Dirac en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$.
+
+        Claramente cumple (i). Para (ii), veamos que:
+        \begin{equation*}
+            \int_{\mathbb{R}^n}\rho_\nu(x)dx=\int_{\mathbb{R}^n}\nu^n\rho(\nu x)dx=\int_{\mathbb{R}^n}\rho(y)dy=1
+        \end{equation*}
+        haciendo el cambio de variable $x=\frac{y}{\nu}$ de Jacobiano $\frac{1}{\nu^n}$.
+
+        De (iii). Por el mismo cambio de variable:
+        \begin{equation*}
+            \int_{\norm{x}>\delta }\rho_\nu(x)dx=\nu^n\int_{\norm{x}>\delta}\rho(\nu x)dx=\int_{\norm{y}>\nu\delta}\rho(y)dy\longrightarrow_{\nu\rightarrow\infty}0
+        \end{equation*}
+        por el Teorema de Lebesgue. Luego, $\left\{\rho_\nu \right\}$ es una sucesión de Dirac.
+    \end{exa}
+
+    \subsection{Convolución de sucesiones de Dirac con funciones en $\mathcal{L}_p$, $1\leq p<\infty$}
+
+    \begin{theor}[\textbf{Desigualdad de Jensen}]
+        Sean $E\subseteq\mathbb{R}^n$ y $\cf{\rho}{E}{\mathbb{R}}$ tal que $\rho\geq0$, para todo $x\in E$, $\rho$ integrable en $E$ y
+        \begin{equation*}
+            \int_E\rho=1
+        \end{equation*}
+        Sea $I\subseteq\mathbb{R}$ un intervalo en $\mathbb{R}$, $\cf{f}{E}{I}$ una función y $\cf{\varphi}{I}{\mathbb{R}}$ uan función convexa. Si $f\cdot\rho$ y $(\varphi\circ f)\rho$ son integrables en $E$, entonces
+        \begin{equation*}
+            \int_{E}f\cdot\rho\in I
+        \end{equation*}
+        y
+        \begin{equation*}
+            \varphi\left(\int_{E}f\cdot\rho \right)\leq\int_E(\varphi\circ f)\rho
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{exa}
+        Suponga que $I=[0,\infty[$ en el teorema anterior, luego $f$ debe ser no negativa en $E$.
+        \begin{enumerate}
+            \item Si $\varphi(t)=t^p$, $t\geq0$ con $p\geq 1$, la desigualdad de Jensen dice que
+            \begin{equation*}
+                \left(\int_{E}f\cdot\rho \right)^p\leq\int_Ef^p\cdot\rho
+            \end{equation*}
+            siempre que las integrales existan. La conclusión persiste si $f$ es medible no negativa y $\int_Ef\cdot\rho<\infty$ y $\int_Ef^p\cdot\rho\leq\infty$.
+        \end{enumerate}
+    \end{exa}
+
 \end{document}

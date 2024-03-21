@@ -1,0 +1,236 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\biglvert#1\bigrvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Lista 2 de Ejercicios 
+    
+    Análisis Matemático IV
+    }
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Ejercicios Convolución}
+    
+    \setcounter{section}{1}
+
+    \renewcommand{\theenumi}{\roman{enumi}}
+
+    \begin{excer}
+        Sean $\cf{f,g}{\mathbb{R}}{\mathbb{K}}$ funciones nulas en $]-\infty,0[$. Si existe $f*g(x)$, demuestre que:
+        \begin{equation*}
+            f*g(x)=\left\{
+                \begin{array}{lcr}
+                    \int_{0}^\infty f(y)g(x-y)dy & \textup{ si } & x\geq0\\
+                    0 & \textup{ si }&x<0\\
+                \end{array}
+            \right.
+        \end{equation*}
+        En los casos siguientes $f$ y $g$ son nulas en $]-\infty.0[$ y sus valores en $[0,\infty[$ se indican abajo. Calcule $f*g$.
+        \begin{enumerate}
+            \item $f(x)=e^{-x}$ y $g(x)=\left\{
+                    \begin{array}{lcr}
+                        x & \textup{ si } & 0\leq x\leq 1 \\
+                        0 & \textup{ si }&x>1\\
+                    \end{array}
+                \right.$
+            \item $f(x)=g(x)=e^{-x}$.
+            \item $f(x)=\left\{
+                \begin{array}{lcr}
+                    1 & \textup{ si } & 0\leq x\leq 1 \\
+                    0 & \textup{ si }&x>1\\
+                \end{array}
+            \right.$ y $g(x)=\left\{
+                \begin{array}{lcr}
+                    x & \textup{ si } & 0\leq x\leq 1 \\
+                    0 & \textup{ si }&x>1\\
+                \end{array}
+            \right.$
+            \item $f(x)=g(x)=\left\{
+                \begin{array}{lcr}
+                    x & \textup{ si } & 0\leq x\leq 1 \\
+                    0 & \textup{ si }&x>1\\
+                \end{array}
+            \right.$
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+    
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item Para toda $m\in\mathbb{N}$ se define $\cf{e_m}{\mathbb{R}}{\mathbb{R}}$ como:
+            \begin{equation*}
+                e_m(x)=\left\{
+                    \begin{array}{lcr}
+                        \frac{x^{m-1}}{(m-1)!} & \textup{ si } & x\geq 0 \\
+                        0 & \textup{ si }&x<0\\
+                    \end{array}
+                \right.
+            \end{equation*}
+            \textbf{Pruebe} que
+            \begin{equation*}
+                e_p*e_q=e_{p+q}
+            \end{equation*}
+            \item Sea $\cf{f}{\mathbb{R}}{\mathbb{K}}$ integrable en todo intervalo acotado tal que $f(x)=0$ para todo $x\leq a$. \textbf{Muestre} que
+            \begin{equation*}
+                e_m*f(x)=\left\{
+                    \begin{array}{lcr}
+                        \int_{a}^x\frac{(x-y)^{m-1}}{(m-1)!}f(y)dy & \textup{ si } & x\geq 0 \\
+                        0 & \textup{ si }&x<0\\
+                    \end{array}
+                \right.
+            \end{equation*}
+            \item \textbf{Deduzca} que para $x\geq a$ se cumple la siguiente \textbf{fórmula de Cauchy para la $n$-ésima integral indefinida}
+            \begin{equation*}
+                \int_{a}^xdx_{ m-1}\int_a^{ x_{m-1}}dx_{m-2}\cdots\int_{a}^{x_{2}} dx_{1}\int_a^{ x_1}f(x_0)dx_0=\int_a^x\frac{(x-y)^{m-1}}{(m-1)!}f(y)dy
+            \end{equation*}
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        La integral fraccional de orden $\alpha>0$ sobre un intervalo $[a,x]$ de una función medible $f$ se define como:
+        \begin{equation*}
+            I_a^x[f](x)=\frac{1}{\Gamma(\alpha)}\int_a^x\frac{f(t)}{(x-t)^{1-\alpha}}dt
+        \end{equation*}
+        para toda $x\geq a$ tal que la integral exista.
+        \begin{enumerate}
+            \item Fije $a,b\in\mathbb{R}$, $a<b$. Para cada $\alpha>0$ se define
+            \begin{equation*}
+                g_\alpha(x)=\frac{1}{\Gamma(\alpha)}\frac{1}{x^{1-\alpha}}\chi_{]0,b-a[}(x),\quad\forall x\in\mathbb{R}
+            \end{equation*}
+            \textbf{Pruebe} que si $f\in\mathcal{C}([a,b],\mathbb{K})$, entonces existe la convolución $\widetilde{f}*g_\alpha$. Calcule $\widetilde{f}*g_\alpha$.
+        \end{enumerate}
+    \end{excer}
+
+\end{document}
