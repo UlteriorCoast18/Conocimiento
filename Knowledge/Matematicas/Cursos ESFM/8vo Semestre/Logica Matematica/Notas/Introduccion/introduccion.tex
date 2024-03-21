@@ -1154,7 +1154,7 @@
         \item $(\forall x)(\varphi\Rightarrow \psi)\Rightarrow (\forall x\varphi\Rightarrow\forall x\psi)$.
         \item $\varphi\Rightarrow\forall x\varphi$ si $x$ no es libre en $\varphi$.
         \item $x=x$.
-        \item $z=y\Rightarrow(\varphi\Rightarrow\varphi\left[y/x\right])$ si $\varphi$ es atómica.
+        \item $x=y\Rightarrow(\varphi\Rightarrow\varphi\left[y/x\right])$ si $\varphi$ es atómica, esta sustitución es para algunas $x$.
         \item $\forall x\varphi\Rightarrow\varphi\left[t/x \right]$ si $t$ es sustitubile por $x$.
     \end{enumerate}
 
@@ -1463,8 +1463,124 @@
                 No. &  &  &  \\
                 \hline
                 1) & $(\exists x)Px$ & $\Rightarrow(\forall y)(Qy\Rightarrow Sy)$ & Premisa\\
+                2) & $(\exists x)(Px\land Qx)$ & & Sup\\
+                3) & $Pu\land Qu$ & & I.E.\\
+                4) & $Pu$ & & Simp\\
+                5) & $(\exists x)Px$ & & G.E.\\
+                6) & $(\forall y)(Qy\Rightarrow Sy)$ & & M.P.\\
+                7) & $Qu\Rightarrow Su$ & & M.P.\\
+                8) & $Qu$ & & M.P.\\
+                9) & $Su$ & & Simp.\\
+                10) & $Pu\land Su$ & & Ad.\\
+                11) & $(\exists y)(Py\land Sy)$ & & I.E.\\
+                12) & $(\exists x)(Px\land Qx)$ & $\Rightarrow(\exists y)(Py\land Sy)$  & P.C.\\
                 \hline
                   &  &  $\therefore(\exists x)(Px\land Qx)\Rightarrow(\exists y)(Py\land Sy)$ &  \\
+            \end{tabular}
+        \end{center}
+        e):
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $(\forall x)(\exists y)(Px\lor Qy)$ & & Premisa\\
+                1) & $\neg(\forall x)Px$ & & Sup.\\
+                1) & $(\exists x)\neg Px$ & & \\
+                1) & $\neg Px$ & & \\
+                1) & $(\exists y)(Px\lor Qy)$ & & \\
+                1) & $Px\lor Qy$ & & \\
+                1) & $Qy$ & & \\
+                1) & $(\exists y)Qy$ & & I.E.\\
+                1) & $\neg(\forall x)Px$ & $\Rightarrow(\exists y)Qy$ & I.E.\\
+                1) & $(\forall x)Px\lor (\exists y)Qy$ & & P.C.\\
+                \hline
+                  &  &  $\therefore(\forall x)Px\lor(\exists y)Qy$ &  \\
+            \end{tabular}
+        \end{center}
+        f):
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $(\exists x)Px\lor(\forall y)(Py\Rightarrow Qy)$ & & Premisa\\
+                2) & $(\forall x)(Sx\Rightarrow\neg Px)$ & & Premisa\\
+                3) & $(\forall x)(Px\Rightarrow Sx)$ & & Sup.\\
+                4) & $Py\Rightarrow Sy$ & & I.U\\
+                5) & $Py$ & & Sup.\\
+                6) & $Sy$ & & \\
+                7) & $Sy\Rightarrow \neg Py$ & & \\
+                8) & $\neg Py$ & & \\
+                9) & $Py\land\neg Py$ & & \\
+                10) & $\neg Py$ & & P.I.\\
+                11) & $(\forall y)\neg Py$ & & I.U.\\
+                12) & $\neg (\exists x)Px$ & & 11\\
+                13) & $(\forall y)(Py\Rightarrow Qy)$ & & \\
+                14) & $(\forall x)(Px\Rightarrow Sx)$ & $\Rightarrow(\forall y)(Py\Rightarrow Qy)$ & \\
+                \hline
+                  &  &  $\therefore(\forall x)(Px\Rightarrow Sx)\Rightarrow(\forall y)(Py\Rightarrow Qy)$ &  \\
+            \end{tabular}
+        \end{center}
+        g):
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $(\exists x)Px\lor(\exists y)Qy$ & & Premisa\\
+                1) & $(\forall x)(Px\Rightarrow Qx)$ & & Premisa\\
+                1) & $\neg(\exists y)Qy$ & & Sup.\\
+                1) & $(\exists x)Px$ & & \\
+                1) & $Pu$ & & \\
+                1) & $Pu\Rightarrow Qu$ & & \\
+                1) & $Qu$ & & \\
+                1) & $(\exists y)Qy$ & & \\
+                1) & $(\exists y)Qy\land\neg(\exists y)Qy$ & & \\
+                1) & $(\exists y)Qy$ & & P.I\\
+                \hline
+                  &  &  $\therefore(\exists y)Qy$ &  \\
+            \end{tabular}
+        \end{center}
+        h):
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $x=x$ & & Ax. 4\\
+                1) & $(\forall x)x=x$ & & G.U.\\
+                \hline
+                  &  &  $(\forall x)(x=x)$ &  \\
+            \end{tabular}
+        \end{center}
+        i):
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $x=y$ & & Sup.\\
+                1) & $(\forall x)(x=x)$ & & \\
+                1) & $x=x$ & & \\
+                1) & $x=x$ & $\Rightarrow(y=x)$& Ax. \\
+                1) & $y=x$&  & M.P. \\
+                1) & $(x=y)$ & $\Rightarrow(y=x)$ & P.C. \\
+                1) & $(\forall y)(x=y)\Rightarrow(y=x)$ & & G.U. \\
+                1) & $(\forall x)(\forall y)(x=y)\Rightarrow(y=x)$ & & G.U. \\
+                \hline
+                  &  &  $(\forall x)(\forall y)(x=y\Rightarrow y=x)$ &  \\
+            \end{tabular}
+        \end{center}
+        j):
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $x=y$ & & Sup.\\
+                \hline
+                  &  &  $(\forall x)(\forall y)(\forall z)(z=y\Rightarrow (y=z\Rightarrow z=x))$ & \\
             \end{tabular}
         \end{center}
     \end{proof}

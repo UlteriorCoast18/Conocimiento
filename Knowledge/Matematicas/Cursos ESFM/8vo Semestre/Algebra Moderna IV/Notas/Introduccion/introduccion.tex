@@ -123,6 +123,7 @@
 \newcommand{\Cat}[1]{\ensuremath{\textup{\textbf{#1}}}}
 \newcommand{\Iso}[3]{\ensuremath{\textup{I}_{\textup{SO}_{#1}}\left(#2,#3\right)}}
 \newcommand{\SO}[1]{\ensuremath{\textup{SO}\left(#1\right)}}
+\newcommand{\Quo}[1]{\ensuremath{\textup{Quo}\left(#1 \right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -887,6 +888,45 @@
 
         Por tanto, $\psi_X$ es biyección.
     \end{sol}
+
+    Recordemos lo hecho anteriormente. Sean $\mathcal{C}$ una categoría y $D\in\Obj{\mathcal{C}}$, a lo que llamamos el sub-objeto de $D$ es una clase de equivalencia de monomorfismos cuyo codiminio es es propio objeto $D$. Tenemos que si $f,g$ son monomorfismos con $f\in\Hom{\mathcal{C}}{A}{D}$ y $g\in\Hom{\mathcal{C}}{B}{D}$, entonces se dice que son equivalentes $f$ y $g$ (siendo $A,B\in\Obj{\mathcal{C}}$) si existe un $u$ isomorfismo en $\Hom{\mathcal{C}}{A}{B}$ tal que:
+    \begin{equation*}
+        g\circ u = f
+    \end{equation*}
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría y $D\in\Obj{\mathcal{C}}$. Definimos el \textbf{cociente de $D$} como la equivalencia de epimorfismos cuyo dominio es $D$, es decir, sean $f,g$ epimorfismos con $f\in\Hom{\mathcal{C}}{D}{A}$ y $g\in\Hom{\mathcal{C}}{D}{B}$ con $A,B\in\Obj{\mathcal{C}}$. Enotnces, se dice que $f$ y $g$ son \textbf{equivalentes} si existe un $u\in\Hom{\mathcal{C}}{A}{B}$ isomorfismo y
+        \begin{equation*}
+            u\circ f = g
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        Se denota por $\Quo{D}$ como la clase cuyos elementos son todos los cocientes de $D$.
+    \end{obs}
+
+    \begin{obs}
+        Considere $\mathcal{C}$ categoría no pequeña y $\Quo{D}$ con $D\in\Obj{\mathcal{C}}$, luego $\Quo{D}$ no es necesariamente un conjunto, esto es debido a que como $\Obj{\mathcal{C}}$ es una clase, los objetos de $\mathcal{C}$ puede que sean demasiados para formar un conjunto.
+        Así, cualesquiera $A,B\in\Obj{\mathcal{C}}$, si $f\in\Hom{\mathcal{C}}{A}{B}$ entonces, $\Hom{\mathcal{C}}{A}{B}$ no es necesariamente un conjunto.
+    \end{obs}
+
+    \begin{exa}
+        Por ejemplo, en la categoría $\Cat{Set}$, sean $A,B\in\Obj{\Cat{Set}}$. Sabemos que $f\in\Hom{\Cat{Set}}{A}{B}$ es monomorfismo si $f$ es inyectiva y es epimorfismo si es suprayectiva.
+
+        Ahora, sean $A,B,D\in\Obj{\Cat{Set}}$ tales que $A$ y $B$ son particiones de $D$, esto es:
+        \begin{equation*}
+            \bigcup A = D\quad\bigcup B = D
+        \end{equation*}
+        Sean $\mathcal{R}_1$ y $\mathcal{R}_2$ relaciones de equivalencia tales que $\mathcal{R}_1$ induce a la partición $A$ y $\mathcal{R}_2$ a la partición $B$.
+
+        Definimos $f,g$ epimorfismos, con $f\in\Hom{\Cat{Set}}{D}{A}$ y $g\Hom{\Cat{Set}}{D}{B}$, tales que $x\mapsto \left[x \right]_{ \mathcal{R}_1}$ y $x\mapsto \left[x \right]_{ \mathcal{R}_2}$, respectivamente. Es claro que son isomorfismos y están bien definidas.
+
+        El morfismo $u\in\Hom{\Cat{Set}}{A}{B}$ tal que $\left[x \right]_{\mathcal{R}_1}\mapsto \left[y \right]_{\mathcal{R}_2}$, es un isomorfismo. En efecto,
+        \begin{enumerate}
+            \item \textbf{$u$ está bien definida}. En efecto, sean $x_1,x_2\in D$ tales que $\left[x_1 \right]_{\mathcal{R}_1}=\left[ x_2\right]_{\mathcal{R}_2}$
+        \end{enumerate}
+
+    \end{exa}
 
     \section{Construcción de Categorías}
 

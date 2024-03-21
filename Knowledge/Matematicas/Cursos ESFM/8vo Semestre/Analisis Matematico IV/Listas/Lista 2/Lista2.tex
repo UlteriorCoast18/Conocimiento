@@ -116,6 +116,7 @@
 \newcommand\abs[1]{\ensuremath{\biglvert#1\bigrvert}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand{\Vol}[1]{\ensuremath{\textup{Vol}\left(#1\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -221,7 +222,7 @@
     \begin{excer}
         La integral fraccional de orden $\alpha>0$ sobre un intervalo $[a,x]$ de una función medible $f$ se define como:
         \begin{equation*}
-            I_a^x[f](x)=\frac{1}{\Gamma(\alpha)}\int_a^x\frac{f(t)}{(x-t)^{1-\alpha}}dt
+            I_a^\alpha[f](x)=\frac{1}{\Gamma(\alpha)}\int_a^x\frac{f(t)}{(x-t)^{1-\alpha}}dt
         \end{equation*}
         para toda $x\geq a$ tal que la integral exista.
         \begin{enumerate}
@@ -229,7 +230,75 @@
             \begin{equation*}
                 g_\alpha(x)=\frac{1}{\Gamma(\alpha)}\frac{1}{x^{1-\alpha}}\chi_{]0,b-a[}(x),\quad\forall x\in\mathbb{R}
             \end{equation*}
-            \textbf{Pruebe} que si $f\in\mathcal{C}([a,b],\mathbb{K})$, entonces existe la convolución $\widetilde{f}*g_\alpha$. Calcule $\widetilde{f}*g_\alpha$.
+            \textbf{Pruebe} que si $f\in\mathcal{C}([a,b],\mathbb{K})$, entonces existe la convolución $\widetilde{f}*g_\alpha$. \textbf{Calcule} $\widetilde{f}*g_\alpha$.
+
+            \item \textbf{Calcule} $I_0^{1/2}[t](x)$ y $I_0^{1/2}[I_0^{1/2}[t]](x)$. ¿\textbf{Conclusión}? Justifique.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Para todo $p>0$ se define:
+        \begin{equation*}
+            f_p(t)=\left\{\begin{array}{lcr}
+                t^{p-1}e^{-t} & \textup{ si }& t>0\\
+                0 & \textup{ si } & t\leq 0\\
+            \end{array}
+            \right.
+        \end{equation*}
+        Calculando de dos modos distintos la integral $\int_{-\infty}^\infty f_p*f_q$ con $p,q>0$, \textbf{pruebe} la fórmula
+        \begin{equation*}
+            B(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)},
+        \end{equation*}
+        donde $B(p,q)$ es la función beta y $\Gamma(q)$ es la función gama.
+    \end{excer}
+    
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $\cf{f}{\mathbb{R}}{\mathbb{K}}$ una función localmente integrable en $\mathbb{R}$. Defina para todo $h>0$, la función
+        \begin{equation*}
+            J_hf=f*\left(\frac{1}{h}\chi_{]-h,0[}\right)
+        \end{equation*}
+        \begin{enumerate}
+            \item \textbf{Muestre} que, $\forall x\in\mathbb{R}$,
+            \begin{equation*}
+                J_hf(x)=\frac{1}{h}\int_0^hf(x+y)dy
+            \end{equation*}
+            y que $J_hf$ es continua en $\mathbb{R}$.
+            \item Si $f$ es integrable en $\mathbb{R}$, \textbf{pruebe} que también lo es $J_hf$ y que
+            \begin{equation*}
+                \int_\mathbb{R}J_hf=\int_{\mathbb{R}}f
+            \end{equation*}
+            \item Si $f$ es de clase $C^r$ en $\mathbb{R}$, \textbf{muestre} que también lo es $J_hf$ y que $\left(J_hf\right)^{(k)}=J_hf^{(k)}$ para $k=1,...,r$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Sea $\cf{f}{\mathbb{R}^n}{\mathbb{K}}$ una función localmente integrable en $\mathbb{R}^n$. Sea $B=\left\{x\in\mathbb{R}^n\Big|\|x\|\leq R \right\}$. Defina:
+        \begin{equation*}
+            \mathcal{M}_Rf=f*\frac{\chi_B}{\Vol{B}}
+        \end{equation*}
+        \begin{enumerate}
+            \item \textbf{Muestre} que, para todo $x\in\mathbb{R}^n$:
+            \begin{equation*}
+                \mathcal{M}_Rf(x)=\frac{1}{\Vol{B}}\int_{\|x-y\|\leq R}f(y)dy
+            \end{equation*}
+            y que $\mathcal{M}_Rf$ es continua en $\mathbb{R}^n$.
+            \item Si $f$ es integrable en $\mathbb{R}^n$, \textbf{pruebe} que también lo es $\mathcal{M}_Rf$ y que:
+            \begin{equation*}
+                \int_{\mathbb{R}^n}\mathcal{M}_Rf=\int_{\mathbb{R}^n}f
+            \end{equation*}
+            \item Si $f$ es de clase $C^r$ en $\mathbb{R}^n$, \textbf{muestre} que también lo es $\mathcal{M}_Rf$ y que $D(\mathcal{M}_Rf)=\mathcal{M}_R(Df)$ para todo opeardor $D=\partial_{\alpha_1}\cdots\partial_{\alpha_k}$, con $k\in\left\{1,...,r \right\}$.
         \end{enumerate}
     \end{excer}
 
