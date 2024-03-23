@@ -113,10 +113,11 @@
 
 %En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
 
-\newcommand\abs[1]{\ensuremath{\biglvert#1\bigrvert}}
+\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand{\Vol}[1]{\ensuremath{\textup{Vol}\left(#1\right)}}
+\newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -301,5 +302,99 @@
             \item Si $f$ es de clase $C^r$ en $\mathbb{R}^n$, \textbf{muestre} que también lo es $\mathcal{M}_Rf$ y que $D(\mathcal{M}_Rf)=\mathcal{M}_R(Df)$ para todo opeardor $D=\partial_{\alpha_1}\cdots\partial_{\alpha_k}$, con $k\in\left\{1,...,r \right\}$.
         \end{enumerate}
     \end{excer}
+    
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item Sean $f$ y $g$ dos funciones en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$. Sea $\lambda\in\mathbb{K}$ tal que $\N{1}{f}<1/\abs{\lambda}$. \textbf{Demuestre} que la ecuación
+            \begin{equation*}
+                x=\lambda x*f+g
+            \end{equation*}
+            admite una solución $x\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ salvo equivalencias. \textbf{Muestre} que la solución puede ser representada en forma de una serie
+            \begin{equation*}
+                x=\sum_{\nu=0}^\infty \lambda^\nu g*\underbrace{f*\cdots*f}_{\nu\textup{-veces}}
+            \end{equation*}
+            que es convergente en el espacio de Banach $L_1(\mathbb{R}^n,\mathbb{K})$.
+
+            \item Al suponer $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ y $g\in\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$, estudie la misma ecuación con la incógnita $x$ en $\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item Sea $\cf{g}{\mathbb{R}^n}{\mathbb{K}}$ una función medible. \textbf{Muestre} que existe una función medible acotada $\cf{\alpha}{\mathbb{R}^n}{\mathbb{K}}$ tal que $\abs{g}=\alpha g$ en todo punto de $\mathbb{R}^n$.
+            
+            \textit{Sugerencia.} Intente con la función $\frac{g+\chi_S}{\abs{g+\chi_S}}$ donde $S=\left\{x\in\mathbb{R}^n\Big|g(x)=0 \right\}$.
+
+            \item Sean $1<p<\infty$ y $g\in\mathcal{L}_{p^*}(\mathbb{R}^n,\mathbb{K})$. Defina $\cf{\phi_g}{\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})}{\mathbb{K}}$ como:
+            \begin{equation*}
+                \phi_g(f)=\int_{\mathbb{R}^n}fg,\quad\forall f\in\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})
+            \end{equation*}
+            \textbf{Pruebe} que $\phi_g$ es una aplicación lineal continua sobre $L_p(\mathbb{R}^n,\mathbb{K})$ y que $\|\phi_g\|=\N{p^*}{g}$.
+
+            Así pues, la aplicación $g\mapsto\phi_g$ es una isometría de $\mathcal{L}_{p^*}(\mathbb{R}^n,\mathbb{K})$ en $\mathcal{L}_{p^*}(\mathbb{R}^n,\mathbb{K})$ (dicha isometría también es suprayectiva, pero este hecho más profundo no se pide probar aquí).
+
+            \textit{Sugerencia.} Para probar la desigualdad $\N{p^*}{g}\leq\|\phi_g\|$ considere la función $f=\alpha\abs{g}^{p^*-1}$, donde $\alpha$ es la función del inciso (i).
+
+            \item Sea $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ una sucesión de Dirac en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$. Se quiere demostrar, sin usar la desigualdad de Jensen, que si $1\leq p<\infty$ y $f\in\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$, entonces
+            \begin{equation*}
+                \lim_{\nu\rightarrow\infty}\N{p}{f-\rho_\nu*f}=0
+            \end{equation*}
+            Defina $g_\nu=f-\rho_\nu*f$ y considere la aplicación lineal $\phi_{g_\nu}\in L_{p}(\mathbb{R}^n,\mathbb{K})^*$, donde
+            \begin{equation*}
+                \phi_{g_\nu}(h)=\int_{\mathbb{R}^n}hg_\nu,\quad\forall h\in \mathcal{L}_p(\mathbb{R}^n,\mathbb{K})
+            \end{equation*}
+            \textbf{Establezca} la desigualdad
+            \begin{equation*}
+                \abs{\phi_{g_\nu}}\leq\N{p^*}{h}\int_{\mathbb{R}^n}\rho_\nu(y)\N{p}{f_{-y}-f}dy
+            \end{equation*}
+            Sea $\varepsilon>0$. \textbf{Demuestre} que para $\nu$ suficientemente grande,
+            \begin{equation*}
+                \abs{\phi_{g_\nu}}\leq\N{p^*}{h}\varepsilon
+            \end{equation*}
+            Utilizando el inciso (ii) termine la demostración.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Demuestre que el sistema de potencias enteras $\left\{x^\nu\Big|\nu\in\mathbb{N}^* \right\}$ es total en $L_p([a,b],\mathbb{C})$ para $p\in[1,\infty[$.
+
+        \textit{Sugerencia.} Basta demostrarlo para $L_1([-\pi,\pi],\mathbb{C})$. El sistema trigonométrico es total en este espacio. Desarrolle $e^{ik\pi}$ en serie de potencias de Maclaurin.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Demuestre que el sistema de potencias enteras $\left\{x^\nu\Big|\nu\in\mathbb{N}^* \right\}$ es completo en $L_p([a,b],\mathbb{C})$ para $p\in[1,\infty[$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sean $E\subseteq\mathbb{R}^n$ un conjunto medible con medida finita y $1<p<\infty$. \textbf{Muestre} que si una familia de funciones $\left\{\varphi_i\Big|i\in I \right\}$ es completa en $L_p(E,\mathbb{K})$, entonces dicha familia es total en $L_{p^*}(E,\mathbb{K})$.
+
+        \textit{Sugerencia.} Sea $f\in\mathcal{L}_{p^*}(\mathbb{R}^n,\mathbb{K})$. Se supone que $\int_Ef\varphi_i=0$ para toda $i\in I$. Sea $\alpha$ una función medible acotada tal que $\abs{f}=\alpha f$. Por hipótesis existe una sucesión de funciones $\left\{\psi_\nu \right\}_{\nu=1}^\infty$ en $\mathcal{L}(\left\{\varphi_i\Big|i\in I \right\})$ tal que $\lim_{\nu\rightarrow\infty}\N{p}{\alpha-\psi_\nu}=0$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
 
 \end{document}
