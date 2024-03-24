@@ -123,6 +123,7 @@
 \newcommand\conj[1]{\ensuremath{\overline{#1}}}
 \newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
 \newcommand{\GenSpace}[4]{\ensuremath{\mathcal{#1}_{#2}\left(#3,#4\right)}}
+\newcommand{\Spt}[1]{\ensuremath{\textup{Spt}\left(#1\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -1161,7 +1162,7 @@
         \begin{equation*}
             \int_E\rho=1
         \end{equation*}
-        Sea $I\subseteq\mathbb{R}$ un intervalo en $\mathbb{R}$, $\cf{f}{E}{I}$ una función y $\cf{\varphi}{I}{\mathbb{R}}$ uan función convexa. Si $f\cdot\rho$ y $(\varphi\circ f)\rho$ son integrables en $E$, entonces
+        Sea $I\subseteq\mathbb{R}$ un intervalo en $\mathbb{R}$, $\cf{f}{E}{I}$ una función y $\cf{\varphi}{I}{\mathbb{R}}$ una función convexa. Si $f\cdot\rho$ y $(\varphi\circ f)\rho$ son integrables en $E$, entonces
         \begin{equation*}
             \int_{E}f\cdot\rho\in I
         \end{equation*}
@@ -1171,9 +1172,109 @@
         \end{equation*}
     \end{theor}
 
+    \renewcommand{\theenumi}{\arabic{enumi}}
+
     \begin{proof}
-        
+        Se probarán dos cosas:
+        \begin{enumerate}
+            \item Veamos que $\int_{E}f\cdot\rho\in I$. En efecto, analicemos por casos:
+            \begin{enumerate}
+                \item Suponga que para algún $\alpha\in\mathbb{R}$, $f(x)\geq\alpha$, para todo $x\in E$ (en este caso, se tiene que $I$ es cerrado por la izquierda). Entonces, $f(x)\rho(x)\geq \alpha\rho(x)$ para todo $x\in E$, luego
+                \begin{equation*}
+                    \int_Ef\cdot\rho\geq\int_E\alpha\rho=\alpha
+                \end{equation*}
+                Suponga ahora que $f(x)>\alpha$, para todo $x\in E$ (en este caso, se tiene que $I$ es abierto por la izquierda). Entonces
+                \begin{equation*}
+                    \int_Ef\cdot\rho\geq\alpha
+                \end{equation*}
+                si $\int_Ef\cdot\rho=\alpha$, debe suceder entonces que $\int_E(f\cdot\rho-\alpha\rho)=0$, por lo cual $f\cdot\rho-\alpha\rho=0$ c.t.p. en $E$, de donde $f(x)-\alpha=0$ para casi toda $x\in S$, donde
+                \begin{equation*}
+                    S=\left\{y\in E\Big|\rho(y)>0 \right\}
+                \end{equation*}
+                Como $m(S)>0$ ya que $\int_E\rho=\int_S\rho=1$, entonces existe $x_0\in E$ tal que $f(x_0)=\alpha$, lo cual contradice el hecho de que $f(x)>\alpha$ para toda $x\in E$. Por tanto:
+                \begin{equation*}
+                    \int_Ef\cdot\rho>\alpha
+                \end{equation*}
+                \item De forma análoga al inciso anterior, se prueba que si $f(x)\leq \beta$ para toda $x\in E$, entonces $\int_Ef\cdot\rho\leq \beta$ y, si $f(x)< \beta$ para toda $x\in E$, entonces $\int_Ef\cdot\rho<\beta$
+            \end{enumerate}
+            por los dos incisos anteriores, se concluye que $\int_Ef\cdot\rho\in I$.
+
+            \item Defina $c=\int_Ef\cdot\rho\in I$. Se tienen dos casos:
+            \begin{enumerate}
+                \item Suponga que $c\in\mathring{I}$. Como $\varphi$ es convexa en $I$, si $s,t\in I$ son tales que $s<c<t$, entonces:
+                \begin{equation*}
+                    \frac{\varphi(c)-\varphi(s)}{c-s}\leq\frac{\varphi(t)-\varphi(c)}{t-c}
+                \end{equation*}
+                sea $\alpha=\sup\left\{\frac{\varphi(c)-\varphi(s)}{c-s}\Big|s<c \right\}$. Entonces si $s\in I$,
+                \begin{equation*}
+                    \begin{split}
+                        \frac{\varphi(c)-\varphi(s)}{c-s}&\leq\alpha,\quad\forall s<c\\
+                        \Rightarrow \varphi(c)+\alpha\cdot(s-c)&\leq\varphi(s),\quad\forall s\leq c \\
+                    \end{split}
+                \end{equation*}
+                Como $t\in I$ es tal que $c<t$, entonces por ser $\alpha$ el supremo, debe suceder que
+                \begin{equation*}
+                    \begin{split}
+                        \alpha&\leq\frac{\varphi(t)-\varphi(c)}{t-c},\quad\forall t>c\\
+                        \Rightarrow \varphi(c)+\alpha\cdot(t-c)&\leq\varphi(t),\quad\forall t\geq c\\
+                    \end{split}
+                \end{equation*}
+                Por tanto, de las dos desigualdades anteriores, se sigue que:
+                \begin{equation*}
+                    \varphi(c)+\alpha\cdot(u-c)\leq\varphi(u),\quad\forall u\in I
+                \end{equation*}
+                como $f(x)\in I$ para todo $x\in E$, se sigue que:
+                \begin{equation*}
+                    \begin{split}
+                        \varphi(c)+\alpha\cdot(f(x)-c)&\leq\varphi(f(x)),\quad\forall x\in E\\
+                        \Rightarrow \varphi(c)\rho(x)+\alpha\cdot(f(x)-c)\rho(x)&\leq\varphi(f(x))\rho(x),\quad\forall x\in E\\
+                    \end{split}
+                \end{equation*}
+                de esta forma, integrando ambos lados:
+                \begin{equation*}
+                    \begin{split}
+                        \Rightarrow \int_E\varphi(c)\rho(x)dx+\int_E\alpha\cdot(f(x)-c)\rho(x)dx&\leq\int_E\varphi(f(x))\rho(x)dx\\
+                        \Rightarrow \varphi(c)\int_E\rho(x)dx+\alpha\int_E(f(x)-c)\rho(x)dx&\leq\int_E\varphi(f(x))\rho(x)dx\\
+                        \Rightarrow \varphi(c)\cdot1+\alpha\int_Ef(x)\rho(x)dx-\alpha\cdot c\int_E\rho(x)dx&\leq\int_E\varphi(f(x))\rho(x)dx\\
+                        \Rightarrow \varphi(\int_Ef(x)\rho(x))dx+\alpha\int_Ef(x)\rho(x)dx-\alpha\cdot\int_Ef(x)\rho(x)dx&\leq\int_E\varphi(f(x))\rho(x)dx\\
+                        \Rightarrow \varphi(\int_Ef(x)\rho(x))dx&\leq\int_E\varphi(f(x))\rho(x)dx\\
+                    \end{split}
+                \end{equation*}
+                por lo tanto:
+                \begin{equation*}
+                    \varphi\left(\int_Ef\cdot\rho \right)\leq\int_E(\varphi\circ f)\rho
+                \end{equation*}
+                que es lo que se quería probar.
+
+                \item Suponga que $a=\int_Ef\cdot\rho$ (en este caso, la integral coincide con el valor del extremo izquierdo del intervalo $I$), luego $a\in I$.
+                
+                Se tiene entonces que $f(x)\geq a$ para todo $x\in E$. Luego, $\int_E(f-a)\rho=0$, por ende $f(x)=a$ para casi todo $x\in S$, donde
+                \begin{equation*}
+                    S=\left\{x\in E\Big|\rho(x)>0 \right\}
+                \end{equation*}
+                así pues
+                \begin{equation*}
+                    \begin{split}
+                        \int_E(\varphi\circ f)\rho&=\int_S(\varphi\circ f)\rho\\
+                        &=\int_S\varphi(a)\cdot\rho\\
+                        &=\varphi(a)\int_S\rho\\
+                        &=\varphi(a)\int_E\rho\\
+                        &=\varphi(a)\\
+                        &=\varphi\left(\int_Ef\cdot\rho\right)\\
+                        \Rightarrow \int_E(\varphi\circ f)\rho&=\varphi\left(\int_Ef\cdot\rho\right)\\
+                    \end{split}
+                \end{equation*}
+                lo que prueba el resultado.
+
+                \item El caso $b=\int_Ef\cdot\rho$ es análogo al anterior.
+            \end{enumerate}
+        \end{enumerate}
+        Por los incisos anteriores, se sigue el resultado de la prueba.
     \end{proof}
+
+    \begin{obs}
+        Note que $\int_Ef\cdot\rho$ representa un promedio de los valores de $f$, por lo cual el hecho de que $a=\int_Ef\cdot\rho$ sea un extremo del intervalo $I$ implica que $f$ debe tomar el valor constante $a$ c.t.p. en $E$.
+    \end{obs}
 
     \begin{exa}
         Suponga que $I=[0,\infty[$ en el teorema anterior, luego $f$ debe ser no negativa en $E$.
@@ -1183,7 +1284,106 @@
                 \left(\int_{E}f\cdot\rho \right)^p\leq\int_Ef^p\cdot\rho
             \end{equation*}
             siempre que las integrales existan. La conclusión persiste si $f$ es medible no negativa y $\int_Ef\cdot\rho<\infty$ y $\int_Ef^p\cdot\rho\leq\infty$.
+
+            \item Si $\alpha\in\mathbb{R}$:
+            \begin{equation*}
+                e^{\alpha\int_E f\cdot\rho}\leq\int_E e^{\alpha f}\rho
+            \end{equation*}
+            Igual que en caso anterior, si $f$ es medible no negativa y $\int_E f\cdot\rho$, la conclusión persiste.
+
+            \item Si $m(E)=1$ y $\rho$ es tal que $\rho(x)=1$ para todo $x\in E$, se tiene que:
+            \begin{equation*}
+                \varphi\left(\int_E f(x)dx \right)\leq\int_E\varphi(f(x))dx
+            \end{equation*}
         \end{enumerate}
     \end{exa}
+
+    \begin{theor}
+        Sean $1\leq p\leq\infty$ y $f\in L_p(\mathbb{R}^n,\mathbb{K})$. Si $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ es una sucesión de Dirac en $L_1(\mathbb{R}^n,\mathbb{K})$ entoces, $\left\{\rho_\nu*f \right\}_{\nu=1}^\infty$ converge a $f$ en $p$-promedio.
+    \end{theor}
+
+    \begin{proof}
+        Como $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ es una sucesión de Dirac, entonces
+        \begin{equation*}
+            f(x)=\int_{\mathbb{R}^n}f(x)\rho_\nu(y)dy,\quad\forall x\in\mathbb{R}^n
+        \end{equation*}
+        para todo $\nu\in\mathbb{N}$. Además,
+        \begin{equation*}
+            f*\rho_\nu(x)=\int_{\mathbb{R}^n}f(y)\rho_\nu(x-y)dy=\int_{\mathbb{R}^n}f(x-y)\rho_\nu(y)dy,\quad\forall x\in\mathbb{R}^n
+        \end{equation*}
+        para todo $\nu\in\mathbb{N}$. Por ende:
+        \begin{equation*}
+            \begin{split}
+                (f-f*\rho_\nu)(x)&=\int_{\mathbb{R}^n}\left(f(x)-f(x-y)\right)\rho_\nu(y)dy\\
+                \Rightarrow \abs{(f-f*\rho_\nu)(x)}^p&=\abs{\int_{\mathbb{R}^n}\left(f(x)-f(x-y)\right)\rho_\nu(y)dy}^p\\
+                &\leq\left[\int_{\mathbb{R}^n}\abs{f(x)-f(x-y)}\rho_\nu(y)dy\right]^p \\
+                &\leq\int_{\mathbb{R}^n}\abs{f(x)-f(x-y)}^p\rho_\nu(y)dy,\quad\forall x\in\mathbb{R}^n\textup{ y }\forall\nu\in\mathbb{N}\\
+            \end{split}
+        \end{equation*}
+        donde la primera desigualdad es por desigualdad del triángulo, la segunda por desigualdad de Jensen, tomando $\varphi(t)=t^p$ para todo $t\geq 0$, tratando al segundo miembro como una función medible no negativa. Integrando respecto a $x\in\mathbb{R}^n$ se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \N{p}{f-f*\rho_\nu}^p&\leq\int_{\mathbb{R}^n}dx\int_{\mathbb{R}^n}\abs{f(x)-f(x-y)}^p\rho_\nu(y)dy\\
+                &=\int_{\mathbb{R}^n}\rho_\nu(y)dy\int_{\mathbb{R}^n}\abs{f(x)-f(x-y)}^pdx\\
+                &=\int_{\mathbb{R}^n}\rho_\nu(y)\N{p}{f-f_{-y}}^pdy,\quad\forall\nu\in\mathbb{N}\\
+            \end{split}
+        \end{equation*}
+        Donde $f_{-y}(x)=f(x-y)$ para todo $x\in\mathbb{R}^n$. Como la función $y\mapsto f_{-y}$ de $\mathbb{R}^n$ en $\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$ es continua (pues es uniformemente continua), dado $\varepsilon>0$ existe $\delta>0$ tal que si $\norm{y}<\delta$ entonces
+        \begin{equation*}
+            \N{p}{f-f_{-y}}<\frac{\varepsilon}{2^{1/p}}
+        \end{equation*}
+        Luego,
+        \begin{equation*}
+            \begin{split}
+                \N{p}{f-f*\rho_\nu}^p&\leq\int_{\mathbb{R}^n}\rho_\nu(y)\N{p}{f-f_{-y}}^pdy\\
+                &=\int_{\norm{y}<\delta}\rho_\nu(y)\N{p}{f-f_{-y}}^pdy+\int_{\delta\leq\norm{y}}\rho_\nu(y)\N{p}{f-f_{-y}}^pdy\\
+                &\leq\int_{\norm{y}<\delta}\rho_\nu(y)\frac{\varepsilon^p}{2}dy+\int_{\delta\leq\norm{y}}\rho_\nu(y)\N{p}{f-f_{-y}}^pdy\\
+                &=\frac{\varepsilon^p}{2}\int_{\norm{y}<\delta}\rho_\nu(y)dy+\int_{\delta\leq\norm{y}}\rho_\nu(y)\N{p}{f-f_{-y}}^pdy\\
+                &\leq\frac{\varepsilon^p}{2}+\int_{\delta\leq\norm{y}}\rho_\nu(y)\N{p}{f-f_{-y}}^pdy,\quad\forall\nu\in\mathbb{N}\\
+            \end{split}
+        \end{equation*}
+        además,
+        \begin{equation*}
+            \begin{split}
+                \int_{\delta\leq\norm{y}}\rho_\nu(y)\N{p}{f-f_{-y}}^pdy&\leq\int_{\delta\leq\norm{y}}\rho_\nu(y)\left[\N{p}{f}+\N{p}{f_{-y}}\right]^pdy\\
+                &=\left[2\N{p}{f}\right]^p\int_{\delta\leq\norm{y}}\rho_\nu(y)dy\\
+                &=2^p\N{p}{f}^p\int_{\delta\leq\norm{y}}\rho_\nu(y)dy,\quad\forall\nu\in\mathbb{N} \\
+            \end{split}
+        \end{equation*}
+        Como $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ es sucesión de Dirac, por (iv) se tiene que existe $\nu_0\in\mathbb{N}$ tal que si $\nu\geq\nu_0$, entonces:
+        \begin{equation*}
+            2^p\N{p}{f}^p\int_{\delta\leq\norm{y}}\rho_\nu(y)dy<\frac{\varepsilon^p}{2}
+        \end{equation*}
+        Por tanto, si $\nu\geq\nu_0$, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \Rightarrow \N{p}{f-f*\rho_\nu}^p&\leq\frac{\varepsilon^p}{2}+2^p\N{p}{f}^p\int_{\delta\leq\norm{y}}\rho_\nu(y)dy\\
+                &<\frac{\varepsilon^p}{2}+\frac{\varepsilon^p}{2}\\
+                &=\varepsilon^p\\
+                \Rightarrow \N{p}{f-f*\rho_\nu}&<\varepsilon\\
+            \end{split}
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\N{p}{f-f*\rho_\nu}=0
+        \end{equation*}
+        lo que prueba el resultado.
+    \end{proof}
+
+    \begin{lema}
+        Si $\cf{f.g}{\mathbb{R}^n}{\mathbb{K}}$ son funciones de soporte compacto y $f*g$ está definida c.t.p. en $\mathbb{R}^n$ entonces, $f*g$ tiene soporte compacto, más precisamente, existe un compacto en $\mathbb{R}^n$ fuera del cual $f*g$ existe y se anula. 
+    \end{lema}
+
+    \begin{proof}
+        Notemos que $f*g(x)$ existe para algún $x\in\mathbb{R}^n$ si y sólo si existe y se cumple:
+        \begin{equation*}
+            f+g(x)=\int_{\mathbb{R}^n}f(y)g(x-y)dy=\int_{\Spt{f}}f(y)g(x-y)dy
+        \end{equation*}
+        Se afirma que si $x\notin\Spt{f}+\Spt{g}$ entonces existe la convolución $f*g(x)$ y vale cero. En efecto, sea $x\notin \Spt{f}+\Spt{g}$ entonces, $x-y\notin\Spt{g}$ para todo $y\in\Spt{f}$. De donde:
+        \begin{equation*}
+            \int_{\Spt{f}}f(y)g(x-y)dy=0,\quad\forall x\notin\Spt{f}+\Spt{g}
+        \end{equation*}
+        Por ende, $\Spt{f*g}\subseteq\Spt{f}+\Spt{g}$. Note que $\Spt{f*g}$ es un cerrado en un compacto (ya que la suma de dos compactos es compacto), luego compacto para el cual $f*g$ se anula.
+    \end{proof}
 
 \end{document}
