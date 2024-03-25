@@ -2203,10 +2203,135 @@
         \begin{equation}
             p_\beta(L)=L_\beta\in\tau_\beta
         \end{equation}
-        es decir, que si $K\in\tau$, entonces existe una familia $\left\{B_\gamma \right\}_{\gamma\in J}\subseteq\mathcal{B}$ tal que $K=\bigcup_{\gamma\in J}B_\gamma$. Por ende:
+        es decir, que si $U\in\tau$, entonces existe una familia $\left\{B_\gamma \right\}_{\gamma\in J}\subseteq\mathcal{B}$ tal que $U=\bigcup_{\gamma\in J}B_\gamma$. Por ende:
         \begin{equation*}
-            p_{\beta}(K)=\bigcup_{\gamma\in J}p_\beta(B_\gamma)
+            p_{\beta}(U)=\bigcup_{\gamma\in J}p_\beta(B_\gamma)\in\tau
         \end{equation*}
+        luego, $p_\beta$ es un mapeo abierto.
+
+        Ahora probaremos que $p_\beta$ es suprayectiva. En efecto, sea $t\in X_\beta$, definamos:
+        \begin{equation*}
+            x_\gamma=\left\{
+                \begin{array}{lcr}
+                    t & \textup{ si } & \gamma=\alpha\\
+                    y_\gamma & \textup{ si } & y_\gamma\in X_\gamma\\
+                \end{array}
+            \right.
+        \end{equation*}
+        (donde el $y_\gamma$ es un elemento arbitrario de $X_\gamma$ fijo y único, que puede ser elegido por el axioma de elección). Por tanto, $x_\gamma\in\prod_{\alpha\in I}X_\alpha$ y este elemento es tal que:
+        \begin{equation*}
+            p_\beta(x_\gamma)=x_\alpha=t
+        \end{equation*}
+        por ende, $p_\beta$ es suprayectiva.
+
+        De (6): Sea $\beta\in I$. Probaremos que el espacio $(X_\beta,\tau_\beta)$ es homeomorfo a un subespacio de $(X,\tau)$ con $\tau=\tau_\beta$ o $\tau=\tau_\alpha$.
+
+        Para cada $\alpha\in I$ con $\alpha\neq\beta$, elegimos $y_\alpha\in X_\alpha$ (por el axioma de elección). Definimos así el producto $Y=\prod_{\alpha\in I}Y_\alpha$, donde:
+        \begin{equation*}
+            Y_\alpha=\left\{
+                \begin{array}{lcr}
+                    \left\{y_\alpha\right\} & \textup{ si } & \alpha\neq\beta\\
+                    X_\beta & \textup{ si } & \alpha=\beta\\
+                \end{array}
+            \right.
+        \end{equation*}
+        y la función $\cf{F}{(X_\beta,\tau_\beta)}{(X,\tau)}$ tal que $x\mapsto F(x)=\left\{\zeta_\alpha \right\}_{\alpha\in I}$, donde:
+        \begin{equation*}
+            \zeta_\alpha=\left\{
+                \begin{array}{lcr}
+                    y_\alpha & \textup{ si } & \alpha\neq\beta\\
+                    x & \textup{ si } & \alpha=\beta\\
+                \end{array}
+            \right.
+        \end{equation*}
+        Afirmamos que la función $F$ es inyectiva y continua.
+        \begin{enumerate}
+            \item \textbf{$F$ es inyectiva}. Si $u,v\in X$ son tales que $u\neq v$, entonces $F(u)\neq F(v)$ ya que $F(u)_\alpha\neq F(v)_\alpha$, de donde se sigue el resultado.
+            \item \textbf{$F$ es continua}. Sea $U=\prod_{\alpha\in I}U_\alpha$ básico de $\tau$. Se tienen dos casos:
+            \begin{enumerate}
+                \item Suponga que $\forall\alpha\in I$, $\alpha\neq\beta$ se tiene que $y_\alpha\in U_\alpha$, entonces $F^{-1}(U)=U_\beta\in\tau_\beta$.
+                \item Suponga que existe $\alpha_0\in I$ con $\alpha\neq\beta$ tal que $y_{\alpha_0}\notin U_{\alpha_0}$ luego, $F^{-1}(U)=\emptyset\in\tau_\beta$.
+            \end{enumerate}
+            En los dos casos, se sigue que $F^{-1}(U)$ es abierto en $\tau_\beta$, luego $F$ es continua.
+            \item Defina $\cf{F'}{(X_\beta,\tau_\beta)}{(Y,\tau_Y)}$ la función definida por $F'(x)=F(x)$, para todo $x\in X_\beta$. Tenemos que $F'$ es inyectiva y continua y, por la forma en que se construyó, es suprayectiva (pues, $F'(X_\beta)=Y$).
+            
+            Para ver que $F'$ es homeomorfismo, basta con mostrar que $F'$ es abierta. Sea $U_\beta\in\tau_\beta$, se tiene que:
+            \begin{equation*}
+                F'(U)=Y\cap\left(\prod_{\alpha\in I}W_\alpha \right)
+            \end{equation*}
+            donde
+            \begin{equation*}
+                W_\alpha=\left\{
+                    \begin{array}{lcr}
+                        X_\alpha & \textup{ si } & \alpha\neq\beta\\
+                        U & \textup{ si } & \alpha=\beta\\
+                    \end{array}
+                \right.
+            \end{equation*}
+            luego, $F'(U)\in\tau_Y$. Así, $F'$ es un mapeo abierto.
+        \end{enumerate}
+        Por los tres incisos anteriores, se sigue que $F'$ es homeomorfismo entre $(X_\beta,\tau_\beta)$ y $(Y,\tau_Y)$, donde $(Y,\tau_Y)$ es subespacio topológico de $(X,\tau)$.
+    \end{proof}
+
+    \begin{exa}
+        Considere los espacios topológicos $(\mathbb{R},\tau_u)$, $(\mathbb{R}^2,\tau_u)$ y al conjunto
+        \begin{equation*}
+            A=\left\{(x,y)\in\mathbb{R}^2\Big|y=\frac{1}{x},x\in\mathbb{R}^+ \right\}
+        \end{equation*}
+        $A$ es un conjunto cerrado en $\mathbb{R}^2$. La función $\cf{p_1}{\mathbb{R}^2}{\mathbb{R}}$, cumple que $p_1(A)=]0,\infty[\in\tau_u$, luego las funciones proyección no necesariamente son cerradas.
+    \end{exa}
+
+    \begin{propo}
+        Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{\alpha\in I}$ una familia de espacios topológicos y, para cada $\alpha\in I$ sea $A_\alpha\subseteq X_\alpha$. Definamos $A=\prod_{\alpha\in I}A_\alpha$ considerándolo como subconjunto de $(X,\tau)$ donde $X=\prod_{\alpha\in I}X_\alpha$ y, $\tau=\tau_p$ o $\tau=\tau_c$. Entonces,
+        \begin{enumerate}
+            \item $\Cls{\prod_{\alpha\in I}A_\alpha}=\prod_{\alpha\in I}\Cls{A_\alpha}$.
+            \item $A$ es un conjunto cerrado de $(X,\tau)$ si y sólo si para todo $\alpha\in I$, $A_\alpha$ es un conjunto cerrado de $(X_\alpha,\tau_\alpha)$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): Probaremos la doble contención.
+        \begin{itemize}
+            \item Sea
+            \begin{equation*}
+                \Cls{\prod_{\alpha\in I}A_\alpha}=\prod_{\alpha\in I}Z_\alpha
+            \end{equation*}
+            (donde podemos elegir los $Z_\alpha$ por construcción del producto cartesiano) por tanto, para todo $\beta\in I$
+            \begin{equation*}
+                Z_\beta=_\beta(\Cls{\prod_{\alpha\in I}A_\alpha})\subseteq\Cls{p_\beta(\prod_{\alpha\in I}A_\alpha)}=\Cls{A_\beta}
+            \end{equation*}
+            (pues, la función $p_\beta$ es continua). Luego,
+            \begin{equation*}
+                \Cls{\prod_{\alpha\in I}A_\alpha}\subseteq\prod_{\alpha\in I}\Cls{A_\alpha}
+            \end{equation*}
+            \item Sea $x\in\prod_{\alpha\in I}\Cls{A_\alpha}$, es decir que $x_\alpha\in\Cls{A_\alpha}$. Por tanto, para todo $\alpha\in I$, si $U_\alpha\in\tau_\alpha$ es tal que $x_\alpha\in\tau_\alpha$ se tiene que $U_\alpha\cap A_\alpha\neq\emptyset$.
+            
+            Sea $V=\prod_{\alpha\in I}V_\alpha$ un básico de $\tau$ tal que $x\in V$, entonces $x_\alpha\in V_\alpha\in\tau_\alpha$ para todo $\alpha\in I$, luego $V_\alpha\cap A_\alpha\neq\emptyset$ para todo $\alpha\in I$, es decir que $V\cap\left(\prod_{\alpha\in I}A_\alpha\right)\neq\emptyset$. Por ende, $x\in\prod_{\alpha\in I}\Cls{A_\alpha}$.
+        \end{itemize}
+        Por los dos incisos se sigue la doble contención, de donde se tiene la igualdad.
+
+        De (2): Es inmediato de (1).
+    \end{proof}
+
+    \begin{mydef}
+        Sea $\left\{X_\alpha \right\}_{\alpha\in I}$ una familia de conjuntos y sea $Y$ un conjunto. Dada una función $\cf{g}{Y}{\prod_{\alpha\in I}X_\alpha}$, para cada $\beta\in I$ se define la función $\cf{g_\beta}{Y}{X_\beta}$ por
+        \begin{equation*}
+            g_\beta=p_\beta\circ g
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        Sea $\left\{(X_\alpha,\tau_\alpha)\right\}_{\alpha\in I}$ una familia de espacios topológicos y, sea $(Y,\tau)$ un espacio topológico. Si $\cf{g}{Y}{\prod_{\alpha\in I}X_\alpha}$ es una función, entonces
+        \begin{equation*}
+            \cf{g}{(Y,\tau)}{\left(\prod_{\alpha\in I}X_\alpha,\tau_p\right)}
+        \end{equation*}
+        es continua si y sólo si para todo $\alpha\in I$, $\cf{g_\alpha}{(Y,\tau)}{(X_\alpha,\tau_\alpha)}$ es una función continua.
+    \end{propo}
+
+    \begin{proof}
+        La necesidad es inmediata del hecho de que la composición de funciones continuas es continua.
+
+        Para la suficiencia, 
     \end{proof}
 
 \end{document}
