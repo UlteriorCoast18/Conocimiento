@@ -1087,6 +1087,111 @@
     \end{theor}
 
     \begin{proof}
+        El conjunto $N$ es un subgrupo normal de $G$ pues es el núcleo del homomorfismo $f$. Además, $N$ es cerrado ya que es la imágen inversa del cerrado $\left\{e'\right\}\subseteq G'$.
+
+        Sea $\cf{\pi}{G}{G/N}$ el homomorfismo canónico. Conviene notar que $h$ se ha definido de tal manera que $f=h\circ\pi$. Veamos que $h$ es una biyección continua y abierta (con lo cual, se sigue que $h$ es isomorfismo topológico ya que es homomorfismo y homeomorfismo). En efecto, probar que $h$ es biyección no es complicado, al igua que probar que es homomorfismo (ver la demostración del primer teorema de isomorfismo de grupos). Veamos que es abierta y continua:
+        \begin{itemize}
+            \item \textbf{$h$ es continua}. En efecto, sea $V\subseteq G'$ abierto. Afirmamos que:
+            \begin{equation}
+                h^{-1}(V)=\pi(f^{-1}(V))
+            \end{equation}
+            en efecto, se tiene que:
+            \begin{equation*}
+                f^{-1}(V)=(h\circ \pi)^{-1}(V)=\pi^{-1}(h^{-1}(V))
+            \end{equation*}
+            Como $\pi$ es suprayectiva, se cumple entonces que:
+            \begin{equation*}
+                \pi(f^{-1}(V))=\pi(\pi^{-1}(h^{-1}(V)))=h^{-1}(V)
+            \end{equation*}
+            con lo que se tiene la afirmación. Como $f$ es continua, entonces $f^{-1}(V)$ es abierto en $G$ luego, al ser $\pi$ un mapeo abierto, se tiene que $\pi(f^{-1}(V))=h^{1}(V)$ es abierto. Por ende, $h$ es continua.
+            \item \textbf{$h$ es abierta}. En efecto, sea $U\subseteq G/N$ abierto, entonces existe $V\subseteq G$ abierto tal que $\pi(V)=U$. Por ende:
+            \begin{equation*}
+                h(U)=h(\pi(V))=f(V)
+            \end{equation*}
+            donde el miembro de la izquierda es abierto ya que $f$ es función abierta. Por tanto, $h$ es abierto.
+        \end{itemize}
+        Luego, $h$ es isomorfismo topológico.
+    \end{proof}
+
+    %disertación para estblecer relación entre subgrupos normales cerrados de un homomorfismo.
+
+    \begin{mydef}
+        El \textbf{grupo del círculo} se define como:
+        \begin{equation*}
+            \mathbb{T}=\mathbb{R}/\mathbb{Z}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        Como $\mathbb{Z}$ es un subgrupo cerrado y normal de $\mathbb{R}$, entonces $\mathbb{T}$ es grupo topológico. Un conjunto completo de representantes es $R=[0,1[$, es decir:
+        \begin{equation*}
+            \mathbb{T}=\left\{r+\mathbb{Z}\Big|r\in R \right\}
+        \end{equation*} 
+        donde $r+\mathbb{Z}=\left[r\right]$ es la clase de equivalencia con representante $r$.
+        Considere ahora a la circunferencia unitaria
+        \begin{equation*}
+            S^1=\left\{e^{2\pi ix}\in\mathbb{C}\Big|x\in[0,1[ \right\}
+        \end{equation*}
+        Sea $\cf{f}{\mathbb{R}}{S^1}$ tal que $x\mapsto e^{2\pi ix}$. Es claro que $f$ es un epimorfismo continuo y abierto (no es difícil de probar). Por tanto, como $\ker\left(f\right)=\mathbb{Z}$, se sigue que $\mathbb{T}$ y $S^1$ son topológicamente isomorfos.
+
+        Además como $\cf{\pi}{\mathbb{R}}{\mathbb{T}}$ es continua, como $[0,1]$ es compacto, se sigue que $\pi([0,1])=\mathbb{T}$ también es compacto.
+    \end{obs}
+
+    \section{Productos Directos}
+
+    Sea $\left\{G_i \right\}_{i\in I}$ una familia de grupos topológicos. Damos una estructura de grupo la conjunto $G=\prod_{i\in I}G_i$, definiendo:
+    \begin{equation*}
+        \left(x_i\right)_{ i\in I}\cdot\left(y_i\right)_{ i\in I}=\left(x_iy_i\right)_{ i\in I}
+    \end{equation*}
+    Si para cada $i\in I$, $e_i\in G_i$ es el elemento identidad, entonces $e=\left(e_i \right)_{ i\in I}$ es el elemento identidad de $G$, y 
+    \begin{equation*}
+        \left(x_i\right)_{ i\in I}^{-1}=\left(x_i^{-1}\right)_{ i\in I}
+    \end{equation*}
+    para cada $\left(x_i\right)_{ i\in I}\in G$. La topología producto es compatible con esta estructura de grupo pues, la función $\cf{h}{G\times G}{G}$ dada por:
+    \begin{equation*}
+        \left(\left(x_i\right)_{ i\in I},\left(y_i\right)_{ i\in I} \right)\mapsto \left(x_iy_i^{-1}\right)_{ i\in I}
+    \end{equation*}
+    es la composición de las funciones $\left((x_i,y_i)\right)_{i\in I}\mapsto \left(x_iy_i^{-1}\right)_{ i\in I}$ de $\prod_{ i\in I}\left(G_i\times G_i \right)$ en $G$ y, la proyección $\left(\left(x_i\right)_{ i\in I},\left(y_i\right)_{ i\in I}\right)\mapsto\left(\left(x_i,y_i\right) \right)_{i\in I}$ de $G\times G$ en $\prod_{ i\in I}\left(G_i\times G_i \right)$ son continuas (esto en la topología producto).
+
+    \begin{mydef}
+        Sea $\left\{G_i \right\}_{i\in I}$ una familia de grupos topológicos. El \textbf{producto directo} de los grupos topológicos $\left\{G_i\Big|i\in I \right\}$ se obtiene al dar al producto
+        \begin{equation*}
+            G=\prod_{i\in I}G_i
+        \end{equation*}
+        la topología producto.
+    \end{mydef}
+
+    \begin{propo}[\textbf{Asociatividad del producto directo de grupos}]
+        Sea $\left\{G_i \right\}_{i\in I}$ una familia de grupos topológicos. Si $\left\{I_x \right\}_{x\in K}$ es una partición de $I$ entonces, $G$ es isomorfo al producto de los grupos topológicos $\prod_{i\in I_x}G_i$, es decir:
+        \begin{equation*}
+            G=\prod_{i\in I}G_i\equiv\prod_{x\in L}\prod_{i\in I_x}G_i
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        La prueba no se hace en el libro, pero se deja pendiente.
+    \end{proof}
+
+    \begin{obs}
+        Para cada $j\in I$, la función \textbf{proyección natural}, $\cf{\pi_j}{G}{G_j}$ tal que $\pi_j(x)=x_j$, para todo $x=\left(x_i\right)_{i\in I}$ es un homomorfismo continuo. Este último hecho se deduce de la construcción de la topología producto sobre $G$.
+
+        Más aún, la función $\cf{\phi_j}{G_j}{G}$ definida por $\phi_j(x)=\left(y_i \right)_{ i\in I}$, donde:
+        \begin{equation*}
+            y_i=\left\{
+                \begin{array}{lcr}
+                    e_i & \textup{ si } & i \neq j.\\
+                    x & \textup{ si } & i = j.\\
+                \end{array}
+            \right.\quad\forall y\in I
+        \end{equation*}
+        es un isomorfismo topológico entre $G_j$ y $N_j=\phi_j(G_j)$. Es decir, $\phi_j$ es una inmersión de $G_j$ en $G$.
+    \end{obs}
+
+    \begin{theor}
+        Sea $\left\{G_i \right\}_{ i\in I}$ una familia de grupos topológicos y sea $H$ el subconjunto de $G=\prod_{ i\in I}G_i$ que consta de todos los $x=\left(x_i \right)_{ i\in I}$ tales que $x_i$ es el elemento identidad de $G_i$ para todo $i\in I$ salvo un número finito de índices; $H$ es entones un subgrupo normal denso en $G$.
+    \end{theor}
+
+    \begin{proof}
         
     \end{proof}
 

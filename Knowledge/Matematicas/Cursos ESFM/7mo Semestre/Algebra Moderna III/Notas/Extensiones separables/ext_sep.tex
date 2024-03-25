@@ -836,4 +836,36 @@
         Sea $E/F$ una extensión finita con $\car(F)=p>0$. Si $p\nmid [E:F]$ entonces $[E:F]_i=1$, es decir la extensión $E/F$ es separable.
     \end{obs}
 
+    \begin{propo}
+        Sea $F$ un campo, $\alpha_1,...,\alpha_n,\beta\in\bar{F}$ tales que $\alpha_1,...,\alpha_n$ son separables sobre $F$. Si $F$ es infinito entonces, existe $\theta\in\bar{F}$ tal que:
+        \begin{equation*}
+            F(\alpha_1,...,\alpha_n,\beta)=F(\theta)
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Procederemos por inducción sobre $n$. Para $n=1$, suponemos que tenemos la extensión $F(\alpha_1,\beta)/F$ donde $\alpha_1$ es separable sobre $F$ y $\beta$ simplemente es algebraico sobre $F$. Denotemos por $f(X)=\irr\left(\alpha_1,F,X \right)$ y $g(X)=\irr\left(\beta,F,X \right)$, con $m=\deg f$ y $k=\deg g$.
+
+        Sean $\alpha_1,...,\alpha_m$ y $\beta_1,...,\beta_r$ las raíces distintas de $f(X)$ y $g(X)$, respectivamente, donde $r\leq k$.
+        Consideremos las ecuaciones lineales siguientes:
+        \begin{equation*}
+            \alpha_1X+\beta_1=\alpha_iX+\beta_j
+        \end{equation*}
+        con $i\in\natint{2,m}$ y $j\in\natint{1,r}$. Si $\alpha_1$ fuera la única raíz de $f(X)$, entonces $f(X)=X-\alpha_1\in F[X]$, luego $\alpha_1\in F$. Por ende, $F(\alpha_1,\beta)=F(\beta)$. Así, basta tomar $\theta=\beta$.
+
+        Supongamos que $\alpha_1$ no es la única raíz de $f(X)$, es decir que $m\geq 2$ y, que las ecuaciones anteriores están bien determinadas.
+
+        Elegimos un elemento $a\in F$ tal que
+        \begin{equation*}
+            a\alpha_1+\beta_1\neq a\alpha_i+\beta_j
+        \end{equation*}
+        para todo $i\in\natint{1,m}$ y $j\in\natint{1,r}$. Tal elemento existe ya que $F$ es infinito. Definimos
+        \begin{equation*}
+            \tau=a\alpha_1+\beta_1\in F(\alpha_1,\beta)
+        \end{equation*}
+        probemos que $F(\alpha_1,\beta)=F(\theta)$. Por lo de arriba, se sigue que $F(\theta)\subseteq F(\alpha_1,\beta)$. Basta probar que $\alpha_1,\beta\in F(\theta)$. Para ello, consideremos el polinomio $h(X)=g(\theta-aX)\in F(\theta)[X]$.
+
+        Notemos que $h(\alpha_1)=g(a\alpha_1+\beta_1-a\alpha_1)=g(\beta)=0$ y $h()$
+    \end{proof}
+
 \end{document}
