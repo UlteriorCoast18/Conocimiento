@@ -133,7 +133,9 @@
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
     \setlength{\parindent}{12pt} % Pone la sangría como me gusta
-    \title{Notas del curso Topología I}
+    \title{Notas del curso Topología I
+    
+    Fundamentos, Bases y Homeomorfismos}
     \author{Cristo Daniel Alvarado}
     \maketitle
 
@@ -2331,7 +2333,54 @@
     \begin{proof}
         La necesidad es inmediata del hecho de que la composición de funciones continuas es continua.
 
-        Para la suficiencia, 
+        Para la suficiencia, suponga que para todo $\alpha\in I$, $\cf{g_\alpha}{(Y,\tau)}{(X_\alpha,\tau_\alpha)}$ es continua. Sea $U=\prod_{\alpha\in I}U_\alpha$ un básico de $\tau_p$, es decir que para todo $\alpha\in I$, $U_\alpha\in\tau_\alpha$.
+
+        Además, existen $\left\{\alpha_1,...,\alpha_n \right\}\subseteq I$ tales que $U=p_{\alpha_1}^{-1}(U_{\alpha_1})\cap\cdots\cap p_{\alpha_n}^{-1}(U_{\alpha_n})$, por lo cual:
+        \begin{equation}
+            \begin{split}
+                g^{-1}(U)&=\left(p_{\alpha_1}\circ g \right)^{-1}(U_{\alpha_1})\cap\cdots\cap\left(p_{\alpha_n}\circ g \right)^{-1}(U_{\alpha_n})\\
+                &=g_{\alpha_1}^{-1}(U_{\alpha_1})\cap\cdots\cap g_{\alpha_n}^{-1}(U_{\alpha_n})\in\tau \\
+            \end{split}
+        \end{equation}
+        por ser intersección finita de abiertos. Luego, $g$ es continua.
+    \end{proof}
+
+    \begin{obs}
+        La hipótesis de que el espacio producto esté dotado de la topología producto no puede ser eliminada ya que, en caso contrario puede que se tenga una intersección arbitraria de abiertos (la cual no necesariamente va a ser abierta).
+    \end{obs}
+
+    \begin{exa}
+        Considere la familia de espacios topológicos $\left\{(X_m,\tau_m) \right\}_{m\in\mathbb{N}}$ donde $X_m=\mathbb{R}$ y $\tau_m=\tau_u$, para todo $m\in\mathbb{N}$. Definamos la función $\cf{g}{(\mathbb{R},\tau_u)}{\left(\prod_{m\in\mathbb{N}}X_m,\tau_c \right)}$ tal que $x\mapsto g(x)=\left(x_m \right)_{m\in\mathbb{N}}$, donde $x_m=x$ para todo $m\in\mathbb{N}$.
+
+        Entonces, para todo $m\in\mathbb{N}$, $\cf{g_m}{(\mathbb{R},\tau_u)}{(\mathbb{R},\tau_u)}$ es la función identidad, que es continua.
+
+        Suponga que $g$ es continua. Sea $U=\prod_{n\in\mathbb{N}}\left(-\frac{1}{n},\frac{1}{n}\right)\in\tau_c$, entonces $g^{-1}(U)\in\tau_u$ y, $0\in g^{-1}(U)$, por lo cual existe $k\in\mathbb{N}$ tal que $0\in\left(-\frac{1}{k},\frac{1}{k} \right)\subseteq g^{-1}(U)$. Por ende, $g\left(-\frac{1}{k},\frac{1}{k} \right)\subseteq U$.
+
+        Luego, $p_m\left(g\left(-\frac{1}{k},\frac{1}{k} \right)\right)\subseteq p_m(U)$, para todo $m\in\mathbb{N}$, es decir que $p_m\circ g\left(-\frac{1}{k},\frac{1}{k} \right)\subseteq p_m(U)\subseteq\left(-\frac{1}{m},\frac{1}{m} \right)$, para todo $m\in\mathbb{N}$. Luego:
+        \begin{equation*}
+            p_m\circ g\left(-\frac{1}{k},\frac{1}{k} \right)\subseteq\bigcap_{ m\in\mathbb{N}}\left(-\frac{1}{m},\frac{1}{m} \right)
+        \end{equation*}
+        en particular, para todo $m\in\mathbb{N}$, $\frac{1}{k}\leq\frac{1}{m}$\contradiction. Luego, $g$ no es continua.
+    \end{exa}
+
+    \begin{propo}
+        Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{\alpha\in I}$ es una familia arbitraria de espacios topológicos y, $X=\prod_{\alpha\in I}X_\alpha$. Entonces, $(X,\tau_p)$ es de Hausdorff si y sólo si $(X_\alpha,\tau_\alpha)$ es espacio topológico Hausdorff, para todo $\alpha\in I$.
+    \end{propo}
+
+    \begin{proof}
+        Se probarán las dos implicaciones:
+        
+        $\Rightarrow):$ Suponga que $(X,\tau_p)$ es de Hausdorff. Recordemos que la propiedad de ser un espacio de Hausdorff se hereda y es topológica.
+
+        Por tanto, si $\alpha\in I$, entonces por una proposición anterior se tiene que $(X_\alpha,\tau_\alpha)$ es homeomorfo a un subespacio de $(X,\tau_p)$, el cual es de Hausdorff ya que $(X,\tau_p)$ lo es. Por tanto, $(X_\alpha,\tau_\alpha)$ es de Hausdorff.
+
+        $\Leftarrow):$ Suponga que $(X_\alpha,\tau_\alpha)$ es de Hausdorff, para todo $\alpha\in I$. Sean $x=\left(x_\alpha \right)_{\alpha\in I}, y=\left(y_\alpha\right)_{\alpha\in I}\in X$ tales que $x\neq y$, es decir existe $\alpha_0\in X$ tal que $x_{\alpha_0}\neq y_{\alpha_0}$. Como $(X_{\alpha_0},\tau_{\alpha_0})$ es de Hausdorff, existen dos abiertos $U_{\alpha_0},V_{\alpha_0}\in\tau_{\alpha_0}$ tales que:
+        \begin{equation}
+            x_{\alpha_0}\in U_{\alpha_0},y_{\alpha_0}\in V_{\alpha_0}\textup{ y } U_{\alpha_0}\cap V_{\alpha_0}=\emptyset
+        \end{equation}
+        Tomemos $U=\prod_{\alpha\in I}U_\alpha$, donde $U_\alpha=X_\alpha$ para todo $\alpha\neq\alpha_0$, $\alpha\in I$ y $V=\prod_{\alpha\in I}V_\alpha$, donde $V_\alpha=X_\alpha$ para todo $\alpha\neq\alpha_0$, $\alpha\in I$. Estos dos conjuntos son básicos y, se tiene que $x\in U$, $y\in V$. Como $U_{\alpha_0}\cap V_{\alpha_0}=\emptyset$, se sigue que $U\cap V=\emptyset$.
+
+        Por tanto, $(X,\tau_p)$ es de Hausdorff.
     \end{proof}
 
 \end{document}

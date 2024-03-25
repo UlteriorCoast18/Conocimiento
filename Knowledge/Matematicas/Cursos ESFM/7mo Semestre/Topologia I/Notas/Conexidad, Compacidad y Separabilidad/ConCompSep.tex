@@ -1,0 +1,203 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\biglvert#1\bigrvert}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand{\V}[1]{\ensuremath{\mathcal{V}(#1)}}
+\newcommand{\Int}[1]{\ensuremath{\mathring{#1}}}
+\newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\Fr}[1]{\ensuremath{\textup{Fr}(#1)}}
+\newcommand{\natint}[1]{\ensuremath{\left[|#1|\right]}}
+\newcommand{\floor}[1]{\ensuremath{\lfloor#1\rfloor}}
+\newcommand{\Card}[1]{\ensuremath{\textup{Card}\left(#1\right)}}
+\newcommand{\Pot}[1]{\ensuremath{\mathcal{P}\left(#1\right)}}
+\newcommand{\id}[1]{\ensuremath{\textup{id}_{#1}}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas curso Topología I.
+    
+    Conexidad, Compacidad y Separabilidad}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \setcounter{chapter}{1} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Separabilidad}
+    
+    \section{Axiomas de separación}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico.
+        \begin{enumerate}
+            \item $(X,\tau)$ se dice un \textbf{espacio $T_0$} si dados $a,b\in X$ con $a\neq b$ existe un abierto que contiene a alguno de los dos puntos, pero no contiene al otro.
+            \item $(X,\tau)$ se dice un \textbf{espacio $T_1$} si dados $a,b\in X$ con $a\neq b$ existen $U,V\subseteq X$ abiertos tales que $a\in U$, $b\in V$ y, $a\notin V$, $b\notin U$.
+            \item $(X,\tau)$ se dice un \textbf{espacio $T_2$} si dados $a,b\in X$ con $a\neq b$ existen $U,V\subseteq X$ abiertos tales que $a\in U$, $b\in V$ y, $U\cap V=\emptyset$. Esto es equivalente a que el espacio sea de Hausdorff.
+            \item $(X,\tau)$ se dice un \textbf{espacio $T_3$} si dados $p\in X$ y $A\subseteq X$ cerrado tal que $p\notin A$, existen $U,V\in\tau$ tales que $p\in U$, $A\subseteq V$ y $U\cap V=\emptyset$.
+            \item $(X,\tau)$ se dice un \textbf{espacio $T_4$} si dados $A,B\subseteq X$ cerrados y disjuntos, existen $U,V\in\tau$ tales que $A\subseteq U$, $B\subseteq V$ y, $U\cap V=\emptyset$.
+            \item $(X,\tau)$ se dice un \textbf{espacio regular} si es un espacio $T_3$ y $T_1$.
+            \item $(X,\tau)$ se dice un \textbf{espacio normal} si es un espacio $T_4$ y $T_1$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        Notemos que:
+        \begin{equation*}
+            T_2\Rightarrow T_1\Rightarrow T_0
+        \end{equation*}
+    \end{obs}
+
+    \begin{exa}
+        Considere al conjunto $X=\left\{1,2 \right\}$ y $\tau=\left\{X,\emptyset,\left\{1 \right\} \right\}$. Afirmamos que $(X,\tau)$ es $T_0$, pero no es $T_1$ y, por ende tampoco puede ser $T_2$.
+    \end{exa}
+
+    
+    \begin{exa}
+        Sea $(\mathbb{R},\tau_{cf})$. Afirmamos que $(\mathbb{R},\tau_u)$ es $T_1$. En efecto, sean $r,s\in\mathbb{R}$ tales que $r\neq s$. Los conjuntos $U=\mathbb{R}-\left\{s \right\},V=\mathbb{R}-\left\{r \right\}\in\tau_{cf}$ pues sus complementos son finitos, además:
+        \begin{equation*}
+            r\in U\quad\textup{y}\quad s\in V
+        \end{equation*}
+        además, $r\notin V$ y $s\notin U$. Por tanto, el espacio de $T_1$. Pero no es $T_2$.
+
+        En efecto, suponga que existen $U,V\in\tau_{cf}$ abiertos tales que $\varphi=\frac{1+\sqrt{5}}{2}\in U$, $\frac{1}{\pi}\in V$ y $U\cap V=\emptyset$. En particular, se tiene que $\mathbb{R}-U$ y $\mathbb{R}-V$ son finitos. Por tanto:
+        \begin{equation*}
+            \begin{split}
+                (\mathbb{R}-U)\cup(\mathbb{R}-V)&=\mathbb{R}-(U\cap V)\\
+                &=\mathbb{R}\\
+            \end{split}
+        \end{equation*}
+        es finito, por tanto, $\mathbb{R}$ es finito\contradiction.
+    \end{exa}
+
+    \begin{exa}
+        Considere al espacio $(\mathbb{R},\tau_I=\left\{X,\emptyset \right\})$. Afirmamos que $(\mathbb{R},\tau_I)$ es $T_4$ y $T_3$, pero NO es $T_0$, pues si $\varphi=\frac{1+\sqrt{5}}{2},\frac{1}{\pi}\in\mathbb{R}$, solo hay un abierto que contiene a alguno de los dos puntos, el cual es $\mathbb{R}$, que siempre tiene a los dos puntos. Por ende, el espacio no es $T_0$.        
+    \end{exa}
+
+    \begin{propo}
+        $T_4$ y $T_1\Rightarrow T_3$ y $T_1\Rightarrow T_2\Rightarrow T_1\Rightarrow T_0$.
+    \end{propo}
+
+    \begin{proof}
+        La prueba se hará más adelante.
+    \end{proof}
+
+\end{document}
