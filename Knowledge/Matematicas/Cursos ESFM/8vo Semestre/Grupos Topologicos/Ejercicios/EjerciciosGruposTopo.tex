@@ -488,7 +488,7 @@
     \end{proof}
 
     \begin{excer}
-        Sea $G$ un grupo abeliano libre de torsión. Muestre que si $g$ y $g$ son elementos distintos de $G$ entonces, existe un homomorfismo $\phi$ de $G$ en $\mathbb{R}$ tal que $\phi(h)\neq\phi(g)$. Use este homomorfismo para definir una topología en $G$ que sea Hausdorff.
+        Sea $G$ un grupo abeliano libre de torsión. Muestre que si $g$ y $h$ son elementos distintos de $G$ entonces, existe un homomorfismo $\phi$ de $G$ en $\mathbb{R}$ tal que $\phi(g)\neq\phi(h)$. Use este homomorfismo para definir una topología en $G$ que sea Hausdorff.
     \end{excer}
 
     \begin{proof}
@@ -500,10 +500,41 @@
         \begin{equation*}
             \abs{G}=\abs{\prod_{ i\in I}\mathbb{Z}}=\abs{I}\cdot\abs{\mathbb{Z}}=\abs{I}\cdot\aleph_0=\abs{I}
         \end{equation*}
-        Luego, $\abs{G}=\aleph_2$. Es claro que $G$ es abeliano. Veamos que es libre de torsión. En efecto, si $x=\left\{x_i \right\}_{ i\in I}\neq0$ es tal que $x_i\in\mathbb{Z}$, entonces como
+        Luego, $\abs{G}=\aleph_2$. Es claro que $G$ es abeliano. Veamos que es libre de torsión. En efecto, si $x=\left\{x_i \right\}_{ i\in I}\neq0$ es tal que $x_i\in\mathbb{Z}$ para todo $i\in I$, entonces existe $i_0\in I$ tal que $x_{i_0}\neq0$. Por ende:
         \begin{equation*}
-            x_{\left\{0 \right\}}^m
+            mx_{\left\{0 \right\}}=(\cdots,mx_{i_0},\cdots)\neq0
         \end{equation*}
+        para todo $m\in\mathbb{N}$. Por ende, $G$ es libre de torsión. Por Cantor-Bernstein, no puede existir una función inyectiva de $G$ en $\mathbb{R}$, en particular, no puede existir el homomorfismo pedido.
+
+        Para que tal homomorfismo exista, hay que pedir de forma adicional que $\abs{G}\leq\aleph_1$.
     \end{proof}
+
+    \begin{excer}
+        Demuestre que para cualquier número natural $n\in\mathbb{N}$ distinto de cero, el grupo $\mathbb{T}^n$ es topológicamente isomorfo a $\mathbb{R}^n/\mathbb{Z}^n$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sean $G$ y $H$ grupos topológicos y sea $\phi$ un homomorfismo de $H$ al grupo de automorfismos de $G$. Definimos una multiplicación de grupo en $G\times H$ mediante
+        \begin{equation*}
+            (g_1,h_1)\star(g_2,h_2)=(g_1\phi(h_1)(g_2),h_1h_2)
+        \end{equation*}
+        Muestre que
+        \begin{enumerate}
+            \item Cada $\phi(h)$ es un homeomorfismo de $G$ sobre sí misimo.
+            \item Con la topología producto y la multiplicación, $G\times H$ es un grupo topológico. Esta estructura se llama \textbf{producto semidirecto} de $G$ por $H$ determinado por $\phi$ y se denota como $G\times_{\phi}H$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Demuestre que todo subgrupo no discreto $G$ de $\mathbb{R}$ es denso en $\mathbb{R}$.
+    \end{excer}
 
 \end{document}

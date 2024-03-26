@@ -1578,11 +1578,98 @@
                 \hline
                 No. &  &  &  \\
                 \hline
-                1) & $x=y$ & & Sup.\\
+                1) & $u=v$ & & Sup.\\
+                2) & $v=w$ & & Sup.\\
+                3) & $u=u$ & & Ax.\\
+                4) & $u=v$ & & Ax.\\
+                5) & $u=w$ & & Ax.\\
+                6) & $v=w\Rightarrow u=w$ & & P.C.\\
+                7) & $u=v\Rightarrow(v=w\Rightarrow u=w)$ & & P.C.\\
+                8) & $(\forall z)(u=v\Rightarrow(v=z\Rightarrow u=z))$ & & G.U.\\
+                9) & $(\forall y)(\forall z)(u=y\Rightarrow(y=z\Rightarrow u=z))$ & & G.U.\\
+                10) & $(\forall x)(\forall y)(\forall z)(x=y\Rightarrow(y=z\Rightarrow x=z))$ & & G.U.\\
                 \hline
-                  &  &  $(\forall x)(\forall y)(\forall z)(z=y\Rightarrow (y=z\Rightarrow z=x))$ & \\
+                  & $\therefore(\forall x)(\forall y)(\forall z)(x=y\Rightarrow (y=z\Rightarrow x=z))$ &  & \\
             \end{tabular}
         \end{center}
+        k):
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $x=z$ & & Sup.\\
+                1) & $y=w$ & & Sup.\\
+                1) & $P(x,y)$ & & Sup.\\
+                1) & $P(z,y)$ & & Ax. 4\\
+                1) & $P(z,w)$ & & Ax. 4\\
+                1) & $P(x,y)\Rightarrow P(z,w)$ & & P.C.\\
+                1) & $y=w\Rightarrow(P(x,y)\Rightarrow P(z,w))$ & & P.C.\\
+                1) & $x=z\Rightarrow(y=w\Rightarrow(P(x,y)\Rightarrow P(z,w)))$ & & P.C.\\
+                1) & $(\forall w)(x=z\Rightarrow(y=w\Rightarrow(P(x,y)\Rightarrow P(z,w))))$ & & G.U.\\
+                1) & $(\forall z)(\forall w)(x=z\Rightarrow(y=w\Rightarrow(P(x,y)\Rightarrow P(z,w))))$ & & G.U.\\
+                1) & $(\forall y)(\forall z)(\forall w)(x=z\Rightarrow(y=w\Rightarrow(P(x,y)\Rightarrow P(z,w))))$ & & G.U.\\
+                1) & $(\forall x)(\forall y)(\forall z)(\forall w)(x=z\Rightarrow(y=w\Rightarrow(P(x,y)\Rightarrow P(z,w))))$ & & G.U.\\
+                \hline
+                  & $\therefore(\forall x)(\forall y)(\forall z)(\forall w)(x=z\Rightarrow (y=w\Rightarrow(P(x,y)\Rightarrow P(z,w))))$ &  &  \\
+            \end{tabular}
+        \end{center}
+        l):
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $x=z$ & & Sup.\\
+                1) & $y=w$ & & Sup.\\
+                1) & $f(x,y)=f(x,y)$ & & Ax.4\\
+                1) & $f(x,y)=f(z,y)$ & & Ax.5\\
+                1) & $f(x,y)=f(z,w)$ & & Ax.5\\
+                1) & $y=w\Rightarrow(f(x,y)=f(z,w))$ & & P.C.\\
+                1) & $x=z\Rightarrow(y=w\Rightarrow(f(x,y)=f(z,w)))$ & & P.C.\\
+                1) & $(\forall w)(x=z\Rightarrow(y=w\Rightarrow(f(x,y)=f(z,w))))$ & & G.U.\\
+                1) & $(\forall z)(\forall w)(x=z\Rightarrow(y=w\Rightarrow(f(x,y)=f(z,w))))$ & & G.U.\\
+                1) & $(\forall y)(\forall z)(\forall w)(x=z\Rightarrow(y=w\Rightarrow(f(x,y)=f(z,w))))$ & & G.U.\\
+                1) & $(\forall x)(\forall y)(\forall z)(\forall w)(x=z\Rightarrow(y=w\Rightarrow(f(x,y)=f(z,w))))$ & & G.U.\\
+                \hline
+                  & $(\forall x)(\forall y)(\forall z)(\forall w)(x=z\Rightarrow (y=w\Rightarrow(f(x,y)=f(z,w))))$ &  &  \\
+            \end{tabular}
+        \end{center}
+        m):
+        \begin{center}
+            \begin{tabular}{ c  l  l  r  }
+                \hline
+                No. &  &  &  \\
+                \hline
+                1) & $(\exists x)(\varphi(x)\lor \psi)$ & & Sup.\\
+                2) & $\varphi(x)\lor \psi$ & & I.E.\\
+                3) & $\psi\lor\varphi(x)$ & & \\
+                4) & $\neg\psi\Rightarrow\varphi(x)$ & & \\
+                5) & $\neg\psi$ & & Sup.\\
+                6) & $\varphi(x)$ & & Sup.\\
+                7) & $(\exists x)\varphi(x)$ & & I.E.\\
+                8) & $(\exists x)\varphi(x)$ & & \\
+                9) & $\neg\psi\Rightarrow(\exists x)\varphi(x)$ & & P.C.\\
+                10) & $\psi\lor((\exists x)\varphi(x))$ & & \\
+                11) & $((\exists x)\varphi(x))\lor\psi$ & & \\
+                12) & $(\exists x)(\varphi(x)\lor \psi)\Rightarrow(((\exists x)\varphi(x))\lor\psi)$ & & P.C.\\
+                13) & $((\exists x)\varphi(x))\lor\psi$ & & Sup.\\
+                14) & $\psi\lor((\exists x)\varphi(x))$ & & \\
+                15) & $\neg\psi\Rightarrow((\exists x)\varphi(x))$ & & \\
+                16) & $\neg\psi$ & & Sup.\\
+                17) & $((\exists x)\varphi(x))$ & & M.P.\\
+                18) & $\varphi(x)$ & & I.E.\\
+                19) & $\neg\psi\Rightarrow\varphi(x)$ & & P.C.\\
+                20) & $\psi\lor\varphi(x)$ & & \\
+                21) & $(\exists x)(\psi\lor\varphi(x))$ & & G.E.\\
+                22) & $(\exists x)(\psi\lor\varphi(x))$ & & \\
+                23) & $(((\exists x)\varphi(x))\lor\psi)\Rightarrow(\exists x)(\psi\lor\varphi(x))$ & & P.C.\\
+                24) & $(\exists x)(\varphi(x)\lor \psi)\iff(((\exists x)\varphi(x))\lor\psi)$ & & \\
+                \hline
+                  & $(\exists x)(\varphi(x)\lor \psi)\iff(((\exists x)(\varphi(x)))\lor\psi)$ &  & \\
+            \end{tabular}
+        \end{center}
+        Esta también se puede hacer por contradicción.
     \end{proof}
 
 \end{document}
