@@ -1371,7 +1371,7 @@
     \end{proof}
 
     \begin{lema}
-        Si $\cf{f.g}{\mathbb{R}^n}{\mathbb{K}}$ son funciones de soporte compacto y $f*g$ está definida c.t.p. en $\mathbb{R}^n$ entonces, $f*g$ tiene soporte compacto, más precisamente, existe un compacto en $\mathbb{R}^n$ fuera del cual $f*g$ existe y se anula. 
+        Si $\cf{f.g}{\mathbb{R}^n}{\mathbb{K}}$ son funciones medibles de soporte compacto y $f*g$ está definida c.t.p. en $\mathbb{R}^n$ entonces, $f*g$ tiene soporte compacto, más precisamente, existe un compacto en $\mathbb{R}^n$ fuera del cual $f*g$ existe y se anula. 
     \end{lema}
 
     \begin{proof}
@@ -1384,6 +1384,209 @@
             \int_{\Spt{f}}f(y)g(x-y)dy=0,\quad\forall x\notin\Spt{f}+\Spt{g}
         \end{equation*}
         Por ende, $\Spt{f*g}\subseteq\Spt{f}+\Spt{g}$. Note que $\Spt{f*g}$ es un cerrado en un compacto (ya que la suma de dos compactos es compacto), luego compacto para el cual $f*g$ se anula.
+    \end{proof}
+
+    \begin{theor}
+        El $\mathcal{C}^\infty_c(\mathbb{R}^n,\mathbb{K})$ es denso en $\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$, para $1\leq p<\infty$.
+    \end{theor}
+
+    \begin{proof}
+        Sea $\cf{\varphi}{\mathbb{R}}{\mathbb{R}}$ la función tal que
+        \begin{equation*}
+            t\mapsto\left\{
+                \begin{array}{lcr}
+                    e^{-\frac{1}{1-t}} & \textup{ si } & t<1\\
+                    0 & \textup{ si }& t\geq 1\\
+                \end{array}
+            \right.
+        \end{equation*}
+        $\varphi$ es continua de clase $C^\infty$ en $\mathbb{R}$. Sea $\norm{\cdot}$ la norma euclideana. Se define $\cf{\rho}{\mathbb{R}^n}{\mathbb{R}}$ como $\rho(x)=0$ si $\norm{x}\geq 1$ y:
+        \begin{equation*}
+            \rho(x)=\frac{e^{-\frac{1}{1-\norm{x}^2}}}{\int_{\norm{x}<1}e^{-\frac{1}{1-\norm{y}^2}}dy}\textup{ si }\norm{x}<1
+        \end{equation*}
+        es decir, que $\rho(x)=c\varphi(\norm{x}^2)$, para todo $x\in\mathbb{R}^n$ con $c$ constante. Es claro que $\rho$ es de clase $C^\infty$ en $\mathbb{R}^n$, no negativa y:
+        \begin{equation*}
+            \Spt{\rho}=\left\{x\in\mathbb{R}^n\Big|\norm{x}\leq1 \right\}
+        \end{equation*}
+        y, su integral sobre $\mathbb{R}^n$ es igual a $1$. Considere la sucesión de Dirac $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ daad por:
+        \begin{equation*}
+            \rho_\nu(x)=\nu^n\rho(\nu x),\quad\forall x\in\mathbb{R}^n
+        \end{equation*}
+        Note que $\rho_\nu\in\mathcal{C}_c^\infty(\mathbb{R}^n,\mathbb{R})$, de hecho:
+        \begin{equation*}
+            \Spt{\rho_\nu}=\left\{x\in\mathbb{R}^n\Big|\norm{x}\leq\frac{1}{\nu} \right\},\quad\forall\nu\in\mathbb{N}
+        \end{equation*}
+        Sea $f\in\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$ y tomemos $\varepsilon>0$. Por la densidad de $\mathcal{E}(\mathbb{R}^n,\mathbb{K})$, en $\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$, existe $\psi\in\mathcal{E}(\mathbb{R}^n,\mathbb{K})$ tal que:
+        \begin{equation*}
+            \N{p}{f-\psi}<\frac{\varepsilon}{2}
+        \end{equation*}
+        Por el teorema anterior,
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\N{p}{\psi-\psi*\rho_\nu}=0
+        \end{equation*}
+        Fije $\nu\in\mathbb{N}$ tal que $\N{p}{\psi-\psi*\rho_\nu}<\frac{\varepsilon}{2}$. Entonces:
+        \begin{equation*}
+            \N{p}{f-\psi*\rho_\nu}\leq\N{p}{f-\psi}+\N{p}{\psi-\psi*\rho_\nu}<\varepsilon
+        \end{equation*}
+        Como $\psi\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ y $\rho_\nu$ es de clase $C^\infty$ de soporte comapcto, entonces $\psi*\rho_\nu$ es de clase $C^\infty$. Además, por el teorema anterior, $\psi*\rho_\nu$ tiene soporte compacto ya que ambas funciones, $\psi$ y $\rho_\nu$ lo tienen. Luego, se tiene el resultado.
+    \end{proof}
+
+    \section{Convolución de sucesiones de Dirac con funciones en $\mathcal{L}_\infty$}
+
+    \begin{theor}[\textbf{Teorema de Heine}]
+        Sean $X$ y $Y$ espacios métricos y $\cf{f}{X}{Y}$ continua en todo punto de un compacto $K\subseteq X$ (no basta suponer que $f\Big|_K$ es función continua). Entonces, para todo $\varepsilon>0$ existe un $\delta>0$ tal que
+        \begin{equation*}
+            x\in K\textup{ y }y\in X, d(x,y)<\delta\Rightarrow \rho(f(x),f(y))<\varepsilon
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        %TODO
+        Ejercicio.
+    \end{proof}
+
+    \begin{theor}
+        Sea $f\in\mathcal{L}_\infty(\mathbb{R}^n,\mathbb{R})$ y $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ una sucesión de Dirac en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$. Si $f$ es continua en todo punto de un compacto $K$, entonces:
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}f*\rho_\nu=f\textup{ uniformemente en }K
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Se sabe que existe la convolución $f*\rho_\nu(x)$ para todo $x\in\mathbb{R}^n$ y, para todo $\nu\in\mathbb{N}$.
+
+        Se tiene:
+        \begin{equation*}
+            \begin{split}
+                \abs{f(x)-f*\rho_\nu(x)}&\leq\int_{\mathbb{R}^n}\abs{f(x)-f(x-y)}\rho_\nu(y)dy\\
+            \end{split}
+        \end{equation*}
+        sea $\varepsilon>0$. Por el teorema de Heine, existe $\delta>0$ tal que
+        \begin{equation*}
+            x\in K,y\in\mathbb{R}^n,\norm{x-y}<\delta\Rightarrow\abs{f(x)-f(y)}<\frac{\varepsilon}{2}
+        \end{equation*}
+        Para $x\in K$, con este $\delta$ se tiene lo siguiente:
+        \begin{equation*}
+            \begin{split}
+                \abs{f(x)-f*\rho_\nu(x)}&\leq\int_{\norm{y}<\delta}\abs{f(x)-f(x-y)}\rho_\nu(y)dy+\int_{\delta\leq\norm{y}}\abs{f(x)-f(x-y)}\rho_\nu(y)dy\\
+                &<\frac{\varepsilon}{2}+\int_{\delta\leq\norm{y}}\abs{f(x)-f(x-y)}\rho_\nu(y)dy\\
+                &<\frac{\varepsilon}{2}+\int_{\delta\leq\norm{y}}\left(\abs{f(x)}+\abs{f(x-y)}\right)\rho_\nu(y)dy\\
+                &<\frac{\varepsilon}{2}+\left(\sup_{x\in K}\abs{f(x)}+\N{\infty}{f}\right)\int_{\delta\leq\norm{y}}\rho_\nu(y)dy\\
+            \end{split}
+        \end{equation*}
+        Por la condición (iv) de sucesiones de Dirac, existe $\nu_0\in\mathbb{N}$ tal que:
+        \begin{equation*}
+            \nu\geq\nu_0\Rightarrow\left[\left(\sup_{x\in K}\abs{f(x)}+\N{\infty}{f}\right)\int_{\delta\leq\norm{y}}\rho_\nu(y)dy \right]<\frac{\varepsilon}{2}
+        \end{equation*}
+        Por tanto, si $\nu\geq\nu_0$:
+        \begin{equation*}
+            \sup_{x\in K}\abs{f(x)-f*\rho_\nu(x)}\leq\varepsilon
+        \end{equation*}
+        Luego, se tiene la convergencia uniforme en $K$.
+    \end{proof}
+
+    \begin{cor}
+        Bajo las mismas condiciones del teorema, si $f$ es continua en un punto $x\in\mathbb{R}^n$, entonces
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}f*\rho_\nu(x)=f(x)
+        \end{equation*}
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato del teorema anterior tomando $K=\left\{x\right\}$.
+    \end{proof}
+
+    \begin{theor}
+        Si $\cf{f}{\mathbb{R}^n}{\mathbb{K}}$ es acotada y uniformemente continua en $\mathbb{R}^n$ y $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ es una sucesión de Dirac en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$, entonces
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}f*\rho_\nu=f\textup{ uniformemente en }\mathbb{R}^n
+        \end{equation*}
+        También, si $f\in\mathcal{L}_\infty(\mathbb{R}^n,\mathbb{K})$ y es continua en un abierto $\Omega$ y $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ es una sucesión de Dirac en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$, entonces
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}f*\rho_\nu=f\textup{ uniformemente en }C
+        \end{equation*}
+        donde $C$ es un conjunto compacto arbitrario contenido en $\Omega$.
+    \end{theor}
+
+    \begin{proof}
+        Analicemos la prueba del teorema anterior,
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema de Weierestrass}]
+        Sea $\mathcal{C}([a,b],\mathbb{K})$ el espacio vectorial de funciones continuas de $[a,b]$ en $\mathbb{K}$, provisto de la norma uniforme. Si $\mathcal{P}([a,b],\mathbb{K})$ es el espacio vectorial de todas las funciones polinómicas de $[a,b]$ en $\mathbb{K}$ entonces, $\mathcal{P}([a,b],\mathbb{K})$ es denso en $\mathcal{C}([a,b],\mathbb{K})$.
+    \end{theor}
+
+    \begin{proof}
+        Hay que hacer varias cosas:
+        \begin{enumerate}
+            \item Basta probar el resultado para $\mathcal{C}([0,1],\mathbb{K})$. En efecto, suponga cierto el teorema para este caso. Sea $\cf{f}{[a,b]}{\mathbb{K}}$ una función continua. Sea $\cf{g}{[0,1]}{\mathbb{K}}$ dada por:
+            \begin{equation*}
+                g(t)=f((1-t)a+tb)
+            \end{equation*}
+            entonces, $g\in\mathcal{C}([0,1],\mathbb{K})$. Por tanto, dado $\varepsilon>0$ existe una función polinómica $p$ tal que:
+            \begin{equation*}
+                \sup_{t\in[0,1]}\abs{g(t)-p(t)}<\varepsilon
+            \end{equation*}
+            o sea:
+            \begin{equation*}
+                \sup_{x\in[a,b]}\abs{f(x)-p\left(\frac{x-a}{b-a} \right)}<\varepsilon
+            \end{equation*}
+            tomando como polinomio a $q\in\mathcal{P}([a,b],\mathbb{K})$ tal que $q(x)=p(\frac{x-a}{b-a})$. Luego, se tiene el resultado.
+
+            \item Basta probar el resultado para el subespacio vectorial $\widetilde{\mathcal{C}}([0,1],\mathbb{K})$ de todas las funciones continuas de $[0,1]$ en $\mathbb{K}$ nulas en $0$ y $1$. En efecto, suponga el resultado probado en este caso. Sea $f\in\mathcal{C}([0,1],\mathbb{K})$. Note que la función siguiente:
+            \begin{equation*}
+                x\mapsto f(x)-f(0)-x(f(1)-f(0))
+            \end{equation*}
+            pertenece a $\widetilde{\mathcal{C}}([0,1],\mathbb{K})$. Dado $\varepsilon>0$ existe una función polinómica $p$ tal que
+            \begin{equation*}
+                \sup_{x\in[0,1]}\abs{f(x)-f(0)-x(f(1)-f(0)-p(x))}\leq\varepsilon
+            \end{equation*}
+            tomemos al polinomio $q(x)=p(x)-x(f(1)-f(0))-f(0)$ es tal que $q\in\mathcal{P}([0,1],\mathbb{K})$.
+
+            \item Resta probar que si $f\in\widetilde{\mathcal{C}}([0,1],\mathbb{K})$ y $\varepsilon>0$, existe una función polinómica $p$ tal que:
+            \begin{equation*}
+                \sup_{x\in[0,1]}\abs{f(x)-p(x)}<\varepsilon
+            \end{equation*}
+            Sea $\cf{\rho_\nu}{\mathbb{R}}{\mathbb{R}}$ la función siguiente:
+            \begin{equation*}
+                \rho_\nu(t)=\frac{(1-t^2)^\nu}{\int_{-1}^1(1-\theta^2)^\nu d\theta}\textup{ si }t\in[-1,1]
+            \end{equation*}
+            y $\rho_\nu(t)=0$ si $t\in[-1.1]$, para todo $\nu\in\mathbb{N}$. Esta sucesión es llamada el \textbf{Núcleo de Landau}.
+            Se afirma que $\left\{\rho_\nu\right\}_{\nu=\infty}^\infty$ es una sucesión de Dirac en $\mathcal{L}_1(\mathbb{R},\mathbb{R})$.
+            
+            Claramente cumplen (i) y (ii). Se verá que se cumple (iv). Usando la paridad de $\rho_\nu$, basta probar que si $0<\delta<1$, entonces:
+            \begin{equation*}
+                \lim_{\nu\rightarrow\infty}\frac{\int_\delta^1(1-t^2)^\nu dt}{\int_{-1}^1(1-\theta^2)^\nu d\theta}=0
+            \end{equation*}
+            Se tiene
+            \begin{equation*}
+                \int_{-1}^1(1-\theta^2)^\nu d\theta=2\int_0^1(1-\theta^2)^\nu d\theta=2\int_0^1(1-\theta)^\nu(1+\theta)^\nu d\theta\geq2\int_0^1(1-\theta)^\nu d\theta=\frac{2}{\nu+1}
+            \end{equation*}
+            y
+            \begin{equation*}
+                \int_\delta^1(1-t^2)^\nu dt\leq(1-\delta^2)\int_\delta^1dy=(1-\delta)(1-\delta^2)^\nu
+            \end{equation*}
+            por tanto,
+            \begin{equation*}
+                \frac{\int_\delta^1(1-t^2)^\nu dt}{\int_{-1}^1(1-\theta^2)^\nu d\theta}\leq\frac{\nu+1}{2}(1-\delta)(1-\delta^2)^\nu
+            \end{equation*}
+            donde el lado de la derecha tiende a cero si $\nu\rightarrow\infty$. Con ello, se tiene el resultado.
+
+            Ahora, si $\widetilde{f}$ es la ampliación canónica de $f\in\widetilde{\mathcal{C}}([0,1],\mathbb{K})$ entonces, es uniformemente continua en $\mathbb{R}$ y acotada. Luego, por el teorema anterior, la convolución converge a $\widetilde{f}$ en el compacto $[0,1]$.
+
+            Para $x\in[0,1]$,
+            \begin{equation*}
+                \rho_\nu*f(x)=\int_0^1f(t)\rho_\nu(x-t)dt
+            \end{equation*}
+            como $x-t\in[-1.1]$ para todo $t\in[0,1]$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    \rho_\nu*f(x)&=\int_0^1f(t)\frac{(1-(x-t)^2)^\nu}{\int_{-1}^1(1-\theta^2)^\nu d\theta}dt\\
+                    &=\int_0^1f(t)c_\nu(1-(x-t)^2)^\nu dt\\
+                \end{split}
+            \end{equation*}
+            donde $c_\nu=\frac{1}{\int_{-1}^1(1-\theta^2)}$. Siendo claramente dicha integral anterior un polinomio en la variable $x$ de grado $2\nu$, lo cual concluye la demostración.
+        \end{enumerate}
     \end{proof}
 
 \end{document}
