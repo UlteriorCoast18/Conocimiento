@@ -1068,7 +1068,7 @@
     \end{obs}
 
     \begin{excer}
-        Demuestre que las siguientes colecciones de subconjuntos de $\mathbb{R}$ son base para una topología sobre $\mathbb{R}$:
+        Demuestre que las siguientes colecciones de subconjuntos de $\mathbb{R}=X$ son base para una topología sobre $\mathbb{R}$:
         \begin{enumerate}
             \item $\mathcal{B}_1=\left\{]a,b[\Big|a,b\in\mathbb{R},a<b \right\}$.
             \item $\mathcal{B}_2=\left\{[a,b[\Big|a,b\in\mathbb{R},a<b \right\}$.
@@ -1081,8 +1081,6 @@
     \end{excer}
 
     \begin{sol}
-        %TODO (4) y (7)%
-
         La demostrción de (1)-(3) es muy similar, por lo que solo se probará para (3).
         
         De (3): Tenemos que verificar que la intersección de dos elementos de $\mathcal{B}_3$ se puede escribir como unión de elementos de $\mathcal{B}_3$ y que $\mathbb{R}$ puede ser escrito como unión de elementos de esta colección. En efecto:
@@ -1100,7 +1098,14 @@
         \end{enumerate}
         por 1) y 2) se sigue que $\mathcal{B}_3$ es una base para una topología sobre $\mathbb{R}$.
 
-        De (4): 
+        %TODO 4 y 7
+
+        De (4): Como $\mathcal{B}_1\subseteq\mathcal{B}_4$, entonces se sigue que $X=\bigcup_{B\in\mathcal{B}_4}B$.
+
+        Sean ahora $B_1,B_2\in\mathcal{B}_4$. Se tienen 4 casos:
+        \begin{itemize}
+            \item 
+        \end{itemize}
 
         La prueba de (5) y (6) es muy similar, por lo cual solo se hará la de (5).
         
@@ -1113,9 +1118,9 @@
             en efecto, si $x\in ]a,\infty[\cap]b,\infty[$, entonces $x>a$ y $x>b$, luego $x>\max\left\{a,b\right\}=c$, así pues $x\in ]c,\infty[$. Si $x\in]c,\infty[$ es claro que $x\in]a,\infty[\cap]b,\infty[$. Luego la intersección de estos dos elementos de $\mathcal{B}_5$ se escribe como unión de elementos de $\mathcal{B}_5$, pues $]c,\infty[\in\mathcal{B}_5$.
 
             \item Notemos que:
-            \begin{equation}
+            \begin{equation*}
                 \mathbb{R}=\bigcup_{m\in\mathbb{N}}]-m,\infty[
-            \end{equation}
+            \end{equation*}
             donde $]-m,\infty[\in\mathcal{B}_5$ para todo $m\in\mathbb{N}$.
         \end{enumerate}
 
@@ -1392,7 +1397,13 @@
                 &= B_d(x,r_x)\cap Y
             \end{split}
         \end{equation*}
-        %TODO
+        donde $B_d(x,r_x)\in\tau$, luego $B_\rho(x,r_x)\in\tau_Y$. Por tanto, $A\in\tau_Y$.
+
+        Si $A\in\tau_Y$, entonces existe $U\in\tau$ tal que:
+        \begin{equation}
+            A=U\cap Y
+        \end{equation}
+        luego, por una igualdad anterior, se sigue que $A\in\tau_\rho$ (pues en particular, $U\in\tau_d$). Por ende, $\tau_\rho=\tau_Y$. Así, la propiedad de ser metrizable se hereda.
     \end{proof}
 
     \section{Relaciones de orden y la topología del orden}
@@ -1812,7 +1823,7 @@
                 \bigcup_{\alpha\in I}A_\alpha=X_1
             \end{equation*}
             entonces, $f$ es continua si y sólo si $\forall \alpha\in I$, $\cf{f_{A_\alpha}}{(A_\alpha,\tau_{1_{A_\alpha}})}{(X_2,\tau_2)}$ es una función continua.
-            \item Si $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es una función y $\left\{ C_\alpha\right\}_{\alpha\in I}$ es una familia \textit{finita} de conjuntos cerrado sen $(X_1,\tau_1)$, tal que
+            \item Si $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es una función y $\left\{ C_\alpha\right\}_{\alpha\in I}$ es una familia \textit{finita} de conjuntos cerrados en $(X_1,\tau_1)$, tal que
             \begin{equation*}
                 \bigcup_{\alpha\in I}C_\alpha=X_1
             \end{equation*}
@@ -1846,7 +1857,13 @@
 
         De (4): La necesidad es inmediata de un inciso anterior.
 
-        Para la suficiencia... %TODO
+        Para la suficiencia, suponga que $f_{C_\alpha}$ es continua para todo $\alpha\in I$. Para probar que $f$ es continua, sea $C\subseteq X_2$ conjunto cerrado. Entonces:
+        \begin{equation*}
+            f^{-1}(C)=f^{-1}(C)\cap X_1=f^{-1}(C)\cap(\bigcup_{\alpha\in I}C_\alpha)=\bigcup_{\alpha\in I}f^{-1}(C)\cap C_\alpha=\bigcup_{\alpha\in I}f_{C_\alpha}^{-1}(C)\cap C_\alpha
+        \end{equation*}
+        donde, los elementos de la derecha son cerrados en $\tau_1$ ya que cada $C_\alpha$ es cerrado y, los conjuntos $f_{C_\alpha}^{-1}(C)$ son cerrados en $(C_\alpha,(\tau_1)_\alpha)$ y, como el $C_\alpha$ es cerrado, lo son en $(X_1,\tau_1)$. Por ende, al ser la unión finita de cerrados, se tiene que $f^{-1}(C)$ es cerrado.
+
+        Se sigue entonces que $f$ es continua.
 
         De (5): Supongamos que $A,B$ son abiertos. Sea $U\in\tau_2$. Como $f_1$ y $f_2$ son continuas, entonces $f_1^{-1}(U)\in\tau_{1_A}$ y $f_2^{-1}(U)\in\tau_{1_B}$, como $A$ y $B$ son abiertos en $(X_1,\tau_1)$, entonces $f_1^{-1}(U)$ y $f_2^{-1}(U)$ son abiertos en $(X_1,\tau_1)$. Por tanto,
         \begin{equation*}
@@ -2074,7 +2091,9 @@
         \end{enumerate}
         por los tres incisos anteriores, se sigue que $\tau'$ es una topología sobre $Y$.
 
-        Es claro que la función $f$ es continua (pues imagen inversa de abiertos simpre es abierta). Sea ahora $\sigma$ una topología sobre $Y$ tal que $\cf{f}{(Y,\tau)}{(X,\tau)}$ es una función continua. Hay que probar que $\tau'\subseteq\sigma$. En efecto, ...
+        Es claro que la función $f$ es continua (pues imagen inversa de abiertos simpre es abierta). Sea ahora $\sigma$ una topología sobre $Y$ tal que $\cf{f}{(Y,\sigma)}{(X,\tau)}$ es una función continua. Hay que probar que $\tau'\subseteq\sigma$. En efecto, sea $V\in\tau'$, por definición se tiene que existe $U\in\tau$ tal que $V=f^{-1}(U)$. Como $f$ es continua y $U$ es abierto, entonces $V=f^{-1}(U)\in\sigma$.
+
+        Por tanto, $\tau'\subseteq\sigma$.
     \end{proof}
 
     \begin{mydef}
@@ -2096,7 +2115,11 @@
     \begin{proof}
         $\Rightarrow):$ Suponga que el producto cartesiano es no vacío, entonces existe $x\in\prod_{\alpha\in I}X_\alpha$. Para esta se cumple que $x(\alpha)\in X_\alpha$ para todo $\alpha\in I$, Luego $X_\alpha\neq\emptyset$ para todo $\alpha\in I$.
 
-        $\Leftarrow):$
+        $\Leftarrow):$ Suponga que $X_\alpha\neq\emptyset$, para todo $\alpha\in I$. Por el axioma de elección podemos elegir $x_\alpha\in X_\alpha$, para todo $\alpha\in I$, pues todo conjunto $X_\alpha$ es no vacío. Sea
+        \begin{equation}
+            \alpha\mapsto x_\alpha
+        \end{equation}
+        la función (denotada por $x$) tal que a cada $\alpha$ lo envía a un elemento de $\bigcup_{\alpha\in I}$. Es claro que $x$ está bien definida y que $x_\alpha\in X_\alpha$, para todo $\alpha\in I$ (por la forma en que se definió la función). Por tanto, $x\in\prod_{\alpha\in I}X_\alpha$, luego $\prod_{\alpha\in I}X_\alpha\neq\emptyset$.
 
         %Usar axioma de elección
     \end{proof}
@@ -2197,7 +2220,7 @@
 
         De (3): Es inmediata, pues si $B\in\mathcal{B}_c$, entonces $B=\prod_{\alpha\in I}U_\alpha$ con $U_\alpha\in\tau_\alpha$ donde se cumple que una cantidad finita de ellos no es necesariamente $X_\alpha$ (pues $I$ es finito). Luego, $B\in\mathcal{B}_p$.
 
-        De (4): %TODO
+        De (4): 
 
         De (5): Sea $\beta\in I$. Por construcción se tiene que $\cf{p_\beta}{(X,\tau)}{(X_\beta,\tau_b)}$ es continua si $\tau=\tau_p$. Como $\tau_p\subseteq\tau_c$, entonces $p_\beta$ también es continua con $\tau=\tau_c$.
 
