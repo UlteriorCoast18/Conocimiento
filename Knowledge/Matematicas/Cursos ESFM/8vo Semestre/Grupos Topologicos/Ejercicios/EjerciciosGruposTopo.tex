@@ -586,10 +586,22 @@
     \end{excer}
 
     \begin{excer}
-        Demuestre que si $g$ es un homeomorfismo inyectivo de $\mathbb{T}$ en $\mathbb{T}$, entonces $g(x)=x$ para toda $x\in\mathbb{T}$, o $g(x)=-x$.
+        Demuestre que si $g$ es un homomorfismo inyectivo de $\mathbb{T}$ en $\mathbb{T}$, entonces $g(x)=x$ para toda $x\in\mathbb{T}$, o $g(x)=-x$.
 
         \textit{Sugerencia.} Primero observe que $g$ debe ser suprayectivo. Después, note que $\mathbb{T}$ tiene solamente dos elementos de orden 2.
     \end{excer}
+
+    \begin{proof}
+        Suponga que $g$ es un homomorfismo inyectivo de $\mathbb{T}$ en $\mathbb{T}$ diferente de la identidad. Los homomorfismos preservan el orden de los elementos del grupo, por tanto si un elemento $x\in\mathbb{T}$ es de orden 2, también $g(x)$ es de orden 2.
+
+        Afirmamos que los únicos elementos de orden 2 son la identidad y $e^{\pi i}$ (observando que $S^1$ y $\mathbb{T}$ son topológicamente isomorfos). En efecto, si $x\in[0,1[$ es tal que
+        \begin{equation*}
+            (e^{2\pi ix})^2=e^{4\pi ix}=1
+        \end{equation*}
+        entonces, debe suceder que $4\pi ix = 2\pi ki$, donde $k\in\mathbb{Z}$ es un número entero luego, debe tenerse que $2x = \mathbb{K}$, por como se eligió el $x$ debe tenerse que $x=0$ o $x=1/2$. En el primer caso, el elemento es la identidad y, en el segundo, es $e^{\pi i}$.
+
+        Así, $g([0])=[0]$ o $g([\frac{1}{2}])=[0]$ (estamos planetando en este caso que los elementos de $\mathbb{T}$ son clases de la forma $[x]$ con $x\in[0,1[$)
+    \end{proof}
 
 
 

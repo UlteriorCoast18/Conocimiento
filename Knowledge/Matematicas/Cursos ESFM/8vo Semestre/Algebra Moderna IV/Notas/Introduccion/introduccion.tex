@@ -993,4 +993,146 @@
         para $i=1,2$. Entonces, en la categoría producto $\mathcal{G}_1\times\mathcal{G}_2$ el único objeto es $(\cdot_1,\cdot_2)$. En este caso, esta categoría se identifica con la categoría del producto directo de los grupos $G_1$ y $G_2$.
     \end{exa}
 
+    \begin{mydef}
+        Un \textbf{grafo} consiste en una clase $\mathcal{V}$ coyos elementos son llamados \textit{vértices} y, para cada par $(A,B)\in\mathcal{V}\times\mathcal{V}$ existe un conjunto (posiblemente vacío) $\mathcal{E}(A,B)$ cuyos elementos son llamados \textit{aristas}. Denotamos a un grafo por $(\mathcal{V},\mathcal{E})$.
+    \end{mydef}
+
+    \begin{obs}
+        Toda categoría es un grafo.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $(\mathcal{V},\mathcal{E})$ un grafo. Un \textbf{camino} es una sucesión finita no vacía
+        \begin{equation*}
+            \left(A_1,f_1,...,A_{n-1},f_{n-1},A_n \right)
+        \end{equation*}
+        de vértices y aristas que suceden entre sí, cuyo primer y último término son vértices con $f_i\in\mathcal{E}(A_i,A_{i+1})$ para todo $i\in\left\{1,...,n-1 \right\}$.
+
+        Denotamos al conjunto de caminos de $A$ a $B$, con $A,B\in\mathcal{V}$ como $\mathcal{P}(A,B)$.
+    \end{mydef}
+
+    \begin{obs}
+        Si el camino es de la forma $(A)$, lo llamamos el \textbf{camino trivial}.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $(\mathcal{V},\mathcal{E})$ un grafo. Decimos que $(\mathcal{V},\mathcal{E})$ es un \textbf{grafo pequeño} si $\mathcal{V}$ es un conjunto.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $G=(\mathcal{V},\mathcal{E})$ un grafo pequeño. La \textbf{categoría libre en $G$} se denota por $\mathcal{G}$ y se construye como:
+        \begin{enumerate}
+            \item $\Obj{\mathcal{G}}=G$.
+            \item $\forall A,B\in\Obj{\mathcal{G}}$, $\Hom{\mathcal{G}}{A}{B}=\mathcal{P}(A,B)$.
+            \item $\forall A\in\Obj{\mathcal{G}}$, $(A)\in\Hom{\mathcal{G}}{A}{A}$.
+            \item La ley de composición como la concatenación, es decir, si
+            \begin{equation*}
+                (A_1,f_1,...,A_n)\in\mathcal{P}(A_1,A_n)\textup{ y }(A_n,f_n,...,A_m)\in\mathcal{P}(A_n,A_m)
+            \end{equation*}
+            son vértices, se define su compisición como:
+            \begin{equation*}
+                (A_n,f_n,...,A_m)\circ(A_1,f_1,...,A_n)=(A_1,f_1,...,A_n,f_n,...,A_m)\in\mathcal{P}(A_1,A_m)
+            \end{equation*}
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría. Un \textbf{diagrama} es un grafo cuyos vértices son los objetos de la categoría y las aristas son los morfismos entre los objetos de la categoría.
+
+        Se dice que el diagrama es \textbf{conmutativo} si para cada dos vértices, cada dos caminos entre ellos son iguales como morfismos.
+    \end{mydef}
+
+    \begin{exa}
+        Sea $G$ un grafo dirigido dado por:
+        \begin{equation*}
+            \nu_1\overset{a_1}{\longrightarrow} \nu_2\overset{a_2}{\longrightarrow} \nu_3
+        \end{equation*}
+        se tiene entonces para la categoría libre $\mathcal{G}$:
+        \begin{enumerate}
+            \item $\Obj{\mathcal{G}}=\left\{\nu_1,\nu_2,\nu_3\right\}$.
+            \item Para cada $\nu_1$ con $i=1,2,3$, $\Hom{\mathcal{G}}{\nu_i}{\nu_i}=\left\{(\nu_i)\right\}$.
+            
+            Además, $\Hom{\mathcal{G}}{\nu_i}{\nu_j}=\emptyset$ con $i>j$. $\Hom{\mathcal{G}}{\nu_i}{\nu_{i+1}}=\left\{(\nu_i,a_i,\nu_{i+1})\right\}$ y $\Hom{\mathcal{G}}{\nu_1}{\nu_3}=\left\{\nu_1,a_1,\nu_2,a_2,\nu_3 \right\}$.
+        \end{enumerate}
+    \end{exa}
+
+    \begin{exa}
+        Sea $\mathcal{C}$ uan categoría y $A,B,C,D\in\Obj{\mathcal{C}}$.
+        Considere lo siguiente:
+        \begin{enumerate}
+            \item \begin{equation*}
+                \begin{array}{lcccr}
+                   & A & \overset{f}{\longrightarrow} & B & \\
+                  k & \downarrow &  & \downarrow & g\\
+                  & D & \overset{h}{\longrightarrow} & C & \\
+                \end{array}
+            \end{equation*}
+            El diagrama conmuta si y sólo si
+            \begin{equation*}
+                g\circ f = h\circ k
+            \end{equation*}
+            \item \begin{equation*}
+                \begin{array}{lcccr}
+                   & A & \overset{f}{\longrightarrow} & B & \\
+                  k & \downarrow &  & \downarrow & g\\
+                  & D & \overset{h}{\longleftarrow} & C & \\
+                \end{array}
+            \end{equation*}
+            El diagrama conmuta si y sólo si
+            \begin{equation*}
+                k=h\circ g\circ f
+            \end{equation*}
+        \end{enumerate}
+    \end{exa}
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría y tomemos $\sim$ una relación de equivalencia en la clase de todos los morfismos:
+        \begin{equation*}
+            \bigcup_{A,B\in\Obj{\mathcal{C}}}\Hom{\mathcal{C}}{A}{B}
+        \end{equation*}
+        se dice que $\sim$ es una \textbf{relación de congruencia}, si cumple con lo siguiente:
+        \begin{enumerate}
+            \item Sean $A,B\in\Obj{\mathcal{C}}$, $f\in\Hom{\mathcal{C}}{A}{B}$. Si $f\sim f'$, entonces $f'\in\Hom{\mathcal{C}}{A}{B}$.
+            \item Si $f\sim f'$ y $g\sim g'$, entonces $f\circ g\sim f'\circ g'$ (en caso de que exista alguna de las dos composiciones).
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{propo}
+        Sea $\mathcal{C}$ una categoría. Definir $\sim$ una relación de congruencia en $\mathcal{C}$ es equivalente a definir una relación de equivalencia en $\sim_{A,B}$ para cada $A,B\in\Obj{\mathcal{C}}$ en $\Hom{\mathcal{C}}{A}{B}$ tales que cumplen con
+        \begin{enumerate}
+            \item Si $\cf{f,g}{A}{B}$ y $\cf{h}{B}{C}$ son tales que $f\sim_{A,B}g$, entonces $h\circ f\sim_{A,C}h\circ g$.
+            \item Si $\cf{f}{A}{B}$ y $\cf{g,h}{B}{C}$ son tales que $h\sim_{B,C}g$ entonces, $h\circ f\sim_{A,C}g\circ f$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Si $\sim$ es una relación de congruencia, restringiéndola a cada $\Hom{\mathcal{C}}{A}{B}$, se tiene de forma inmediata el resultado.
+
+        Definamos una relación de equivalencia $\sim$ a partir de $\sim_{A,B}$ en $\Hom{\mathcal{C}}{A}{B}$, siendo $A,B\in\Obj{\mathcal{C}}$ tal que cumple las condiciones (i) y (ii). En efecto, a partir de la partición que genera en cada $\Hom{\mathcal{C}}{A}{B}$, formamos una partición en la unión de todos, que a su vez induce una relación de equivalencia $\sim$ en la clase de la unión de todos los morfismos.
+
+        Afirmamos que esta relación es de congruencia. En efecto,
+        \begin{enumerate}
+            \item Sean $A,B\in\Obj{\mathcal{C}}$, $f\in\Hom{\mathcal{C}}{A}{B}$ y $f'$ tal que $f\sim f'$. Entonces, $f\sim_{A,B}f'$, en particular, $f'\in\Hom{\mathcal{C}}{A}{B}$.
+            \item Sean $f\sim f'$ y $g\sim g'$, entonces existen objetos $A,B,C$ tales que $f,f'\in\Hom{\mathcal{C}}{A}{B}$ y $g,g'\in\Hom{\mathcal{C}}{B}{C}$. Se tiene que la composición $g\circ f$ está bien definida y, por ende la otra está también bien definida. Se tiene que:
+            \begin{equation*}
+                f\sim_{A,B}f'\textup{ y }g\sim_{B,C}g'
+            \end{equation*}
+            Entonces, $g\circ f\sim_{A,C}g\circ f'$ y, $g\circ f'\sim_{A,C}g'\circ f'$. por tanto, $g\circ f\sim_{A,C}g'\circ f'$, luego $g\circ f\sim g'\circ f'$.
+        \end{enumerate}
+        por los dos incisos, se sigue que $\sim$ es una relación de congruencia en $\mathcal{C}$.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría y $\sim$ una relación de congruencia en $\mathcal{C}$. Entonces, la categoría cociente $\mathcal{C}/\sim$ está construida como:
+        \begin{enumerate}
+            \item $\Obj{\mathcal{C}/\sim}=\Obj{\mathcal{C}}$.
+            \item $\forall A,B\in\Obj{\mathcal{C}/\sim}$, $\Hom{\mathcal{C}/\sim}{A}{B}=\left\{\overline{f}\Big|f\in\Hom{\mathcal{C}}{A}{B} \right\}$, donde $\overline{f}$ es la clase de equivalencia bajo la relación $\sim$ con representante $f$.
+            \item $\forall A\in\Obj{\mathcal{C}}$, $\Hom{\mathcal{C}/\sim}{A}{A}=\left\{\bar{1_A} \right\}$.
+            \item La ley de composición $\circ_\sim$ se define como:
+            \begin{equation*}
+                \overline{f}\circ_\sim\overline{g}=\overline{f\circ g}
+            \end{equation*}
+        \end{enumerate}
+    \end{mydef}
+
 \end{document}
