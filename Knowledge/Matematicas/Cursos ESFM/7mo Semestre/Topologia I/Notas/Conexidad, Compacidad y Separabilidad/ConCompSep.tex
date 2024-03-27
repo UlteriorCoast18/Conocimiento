@@ -134,7 +134,7 @@
     \setlength{\parindent}{12pt} % Pone la sangría como me gusta
     \title{Notas curso Topología I.
     
-    Conexidad, Compacidad y Separabilidad}
+    Separabilidad, Numerabilidad y Conexidad}
     \author{Cristo Daniel Alvarado}
     \maketitle
 
@@ -199,5 +199,163 @@
     \begin{proof}
         La prueba se hará más adelante.
     \end{proof}
+
+    \section{Espacios $T_1$}
+    
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico. Entonces $(X,\tau)$ es un espacio $T_1$ si y sólo si todo subconjunto unitario de $X$ es cerrado.
+    \end{propo}
+
+    \begin{proof}
+        Se probará la doble implicación.
+
+        $\Rightarrow):$ Suponga que $(X,\tau)$ es $T_1$. Sea $x\in X$. Hay que probar que $X-\left\{x \right\}\in\tau$. En efecto, sea $y\in X-\left\{x \right\}$, entonces $x\neq y$. Como el espacio es $T_1$ existen un par de abiertos $U,V\in\tau$ tales que $x\in U$, $y\in V$ y $x\notin V$ y $y\notin U$.
+
+        Como $y\in V$ y $x\notin V$, entonces $y\in V\subseteq X-\left\{x\right\}$. Luego $X-\left\{x\right\}$ es unión arbitraria de abiertos, luego es abierto. Por ende, $\left\{x\right\}$ es cerrado.
+
+        $\Leftarrow):$ Suponga que todo subconjunto unitario de $X$ es cerrado. Sean $x,y\in X$ tales que $x\neq y$. Como $\left\{x\right\},\left\{y\right\}$ son cerrados, entonces $U=X=\left\{y\right\}$ y $V=X-\left\{x\right\}$ son abiertos y cumplen que:
+        \begin{equation*}
+            x\in U,y\in V\quad x\notin V,y\notin U
+        \end{equation*}
+        por tanto, como fueron arbitrarios los dos elementos $x,y\in X$ distintos, se sigue que $(X,\tau)$ es $T_1$.
+    \end{proof}
+
+    \begin{cor}
+        Sea $(X,\tau)$ un espacio topológico. $(X,\tau)$ es $T_1$ si y sólo si todo subconjunto finito de $X$ es cerrado.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediata de la proposición anterior.
+    \end{proof}
+
+    \begin{cor}
+        Sea $X$ un conjunto finito y $\tau$ una topología definida sobre $X$. $(X,\tau)$ es $T_1$ si y sólo $\tau=\tau_D$.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediata de la proposición anterior.
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico. Entonces, $(X,\tau)$ es $T_1$ si y sólo si $\tau_{cf}\subseteq\tau$.
+    \end{propo}
+
+    \begin{proof}
+        Se probarán las dos implicaciones.
+
+        $\Rightarrow):$ Sea $A\in\tau_{cf}$ con $A\neq\emptyset$, luego $X-A$ es un conjunto finito. Como $(X,\tau)$ es $T_1$, entonces $X-A$ es cerrado (debe serlo por ser finito), luego $A$ es abierto, es decir $A\in\tau$.
+        
+        $\Leftarrow):$ Supongamos que $\tau_{cf}\subseteq\tau$. Sean $x\in X$. El conjunto $X-\left\{x\right\}$ es finito, luego $X-\left\{x\right\}\in\tau$, por ende el conjunto $\left\{x\right\}$ es cerrado. Como el $x$ fue arbitrario, se sigue que todo conjunto unipuntual es cerrado luego, por una proposición anterior, se sigue que $(X,\tau)$ es $T_1$.
+    \end{proof}
+
+    \begin{cor}
+        La topología $\tau_{cf}$ es la topología más gruesa (o menos fina) que podemos definir sobre un conjunto para que el espacio topológico $(X,\tau_{cf})$ sea $T_1$.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediata de la proposición anterior.
+    \end{proof}
+
+    \begin{propo}
+        La propiedad de ser un espacio topológico $T_1$ es hereditaria. 
+    \end{propo}
+
+    \begin{proof}
+        Sea $(X,\tau)$ un espacio topológico $T_1$ y, tomemos $Y\subseteq X$. Formemos así al espacio $(Y,\tau_Y)$, queremos ver que este espacio es $T_1$. En efecto, sea $y\in Y$, entonces:
+        \begin{equation*}
+            \left\{y\right\}=\left\{y \right\}\cap Y
+        \end{equation*}
+        luego, $\left\{y\right\}\subseteq Y$ es un conjunto cerrado en $(Y,\tau_Y)$, ya que $\left\{y\right\}\subseteq X$ es un conjunto cerrado en $(X,\tau)$. Por ende, todo conjunto unipuntual es cerrado en $(Y,\tau_Y)$, luego este subespacio es $T_1$.
+    \end{proof}
+
+    \begin{propo}
+        La propiedad de ser un espacio topológico $T_1$ es topológica.
+    \end{propo}
+
+    \begin{proof}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos homeomorfos y, suponga que $(X_1,\tau_1)$ es un espacio $T_1$. Sea $\cf{h}{(X_1,\tau_1)}{(X_2,\tau_2)}$ el homeomorfismo entre estos dos espacios. Como esta función es homeomorfismo, es una biyección cerrada y continua. Sea $x_2\in X_2$. Entonces, existe $x_1\in X_1$ tal que:
+        \begin{equation*}
+            h(x_1)=x_2
+        \end{equation*}
+        luego, por ser biyección:
+        \begin{equation*}
+            h(\left\{x_1\right\})=\left\{x_2\right\}
+        \end{equation*}
+        donde $\left\{x_1\right\}$ es cerado en $(X_1,\tau_1)$. Como $h$ es cerrada entonces, $\left\{x_2\right\}$ es cerrado en $(X_2,\tau_2)$. Por tanto, todo conjunto unipuntual es cerrado en $(X_2,\tau_2)$, así $(X_2,\tau_2)$ es $T_1$. 
+    \end{proof}
+
+    \begin{propo}
+        Sea $\left\{(X_\alpha,\tau_\alpha)\right\}_{\alpha\in I}$ una familia de espacios topológicos. Sea
+        \begin{equation*}
+            X=\prod_{\alpha\in I}X_\alpha
+        \end{equation*}
+        entonces, $(X,\tau_p)$ es $T_1$ si y sólo si $(X_\alpha,\tau_\alpha)$ es $T_1$, para todo $\alpha\in I$.
+    \end{propo}
+
+    \begin{proof}
+        Se probarán las dos implicaciones.
+
+        $\Rightarrow):$ Suponga que $(X,\tau_p)$ es $T_1$. Como la propiedad de ser un espacio $T_1$ es hereditaria y topológica, entonces al tenerse que $(X_\alpha,\tau_\alpha)$ es homeomorfo a un subespacio de $(X,\tau_p)$, tal subespacio es $T_1$ y la propiedad se conserva bajo homeomorfismos luego, se tiene que $(X_\alpha,\tau_\alpha)$ es $T_1$, para todo $\alpha\in I$.
+
+        $\Leftarrow):$ Suponga que $(X_\alpha,\tau_\alpha)$ es $T_1$, para todo $\alpha\in I$. Sean $x=\left(x_\alpha\right)_{\alpha\in I},y=\left(y_\alpha\right)_{\alpha\in I}\in X$ con $x\neq y$. Por ser diferentes, existe $\alpha_0\in I$ tal que
+        \begin{equation*}
+            x_{\alpha_0}\neq y_{\alpha_0}
+        \end{equation*}
+        Como $(X_{\alpha_0},\tau_{\alpha_0})$ es $T_1$, existen $U,V\in\tau_{\alpha_0}$ tales que:
+        \begin{equation*}
+            x_{\alpha_0}\in U,y_{\alpha_0}\in V\quad x_{\alpha_0}\notin V,y_{\alpha_0}\notin U
+        \end{equation*}
+        tomemos $M=\prod_{\alpha\in I}M_\alpha$ y $N=\prod_{\alpha\in I}N_\alpha$, donde:
+        \begin{equation*}
+            M_\alpha=\left\{
+                \begin{array}{lcr}
+                    X_\alpha & \textup{ si } & \alpha\neq\alpha_0\\
+                    U & \textup{ si } & \alpha=\alpha_0\\
+                \end{array}
+            \right.
+        \end{equation*}
+        y
+        \begin{equation*}
+            N_\alpha=\left\{
+                \begin{array}{lcr}
+                    X_\alpha & \textup{ si } & \alpha\neq\alpha_0\\
+                    V & \textup{ si } & \alpha=\alpha_0\\
+                \end{array}
+            \right.
+        \end{equation*}
+        para todo $\alpha\in I$. Entonces, $x\in M$, $y\in N$ con $N,M\in\tau_p$, pero $x\notin N$, $y\notin M$.
+
+        Por tanto, $(X,\tau_p)$ es $T_1$.
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico, y sea
+        \begin{equation*}
+            \Delta=\left\{(x,x)\Big|x\in X \right\}
+        \end{equation*}
+        entonces, $(X,\tau)$ es $T_2$ si y sólo si $\Delta$ es un subconjunto cerrado de $(X\times X,\tau_p)$ (da igual si es la topología producto o de caja ya que ambas coinciden).
+    \end{propo}
+
+    \begin{proof}
+        Se probarán las dos implicaciones.
+
+        $\Rightarrow):$ Suponga que $(X,\tau)$ es $T_2$. Veamos que $\Delta$ es cerrado en $(X\times X,\tau_p)$. Tomemos $(a,b)\in X\times X$ tal que $(a,b)\notin\Delta$, luego $a\neq b$. Como $(X,\tau)$ es $T_2$, existen dos abiertos $U,V\in\tau$ tales que:
+        \begin{equation*}
+            a\in U,b\in V\quad U\cap V=\emptyset
+        \end{equation*}
+        Sea $L=U\times V$. Se tiene que $(a,b)\in L$ y $L\in\tau_p$. Además, $\Delta\cap L=\emptyset$. En efecto, suponga que existe un elemento $(x,x)\in L$, entonces $x\in U$ y $x\in V$, luego $U\cap V\neq\emptyset$\contradiction. Por tanto, $\Delta\cap L=\emptyset$. Así, el conjunto $X\times X-\Delta$ es abierto por ser unión arbitraria de abiertos, luego $\Delta$ es cerrado en $(X\times X,\tau_p)$.
+
+        $\Leftarrow):$ Suponga que $\Delta$ es cerrado en $(X\times X,\tau_p)$. Sean $x,y\in X$ con $x\neq y$. Entonces, $(x,y)\notin\Delta$, luego $(x,y)\in X\times X-\Delta$ el cual es abierto, luego existe un básico $B=U\times V$ tal que $(x,y)\in U\times V\subseteq X\times X-\Delta$, siendo $U,V\in\tau$.
+
+        Por la parte anterior, se tiene que $U\cap V=\emptyset$. Por tanto:
+        \begin{equation*}
+            x\in U,y\in V\quad U\cap V=\emptyset
+        \end{equation*}
+        por ende, al ser los elementos diferentes $x,y\in X$ arbitrarios, se sigue que $(X,\tau)$ es $T_2$.
+    \end{proof}
+
+    \section{Espacios $T_3$}
+
+
 
 \end{document}

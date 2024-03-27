@@ -2208,6 +2208,7 @@
             \begin{equation*}
                 \mathcal{B}_2=\left\{\prod_{\alpha\in I}B_\alpha\Big|B_\alpha\in\mathcal{B}_\alpha\textup{ para una canitdad finita de } \alpha\in I,\textup{ y }B_\alpha=X_\alpha\textup{ para los $\alpha$ restantes}  \right\}
             \end{equation*}
+            lo es para la topología $\tau_p$.
             \item Dado $\beta\in I$, $\cf{p_\beta}{(X,\tau)}{(X_\beta,\tau_\beta)}$ es continua, abierta y suprayectiva con $\tau=\tau_p$ o $\tau=\tau_c$.
             \item Dado $\beta\in I$, el espacio $(X_\alpha,\tau_\beta)$ es homeomorfo a un subespacio de $(X,\tau)$ con $\tau=\tau_p$ o $\tau=\tau_c$.
         \end{enumerate}
@@ -2220,7 +2221,10 @@
 
         De (3): Es inmediata, pues si $B\in\mathcal{B}_c$, entonces $B=\prod_{\alpha\in I}U_\alpha$ con $U_\alpha\in\tau_\alpha$ donde se cumple que una cantidad finita de ellos no es necesariamente $X_\alpha$ (pues $I$ es finito). Luego, $B\in\mathcal{B}_p$.
 
-        De (4): 
+        De (4): Probaremos que $\mathcal{B}_1$ es base para la topología $\tau_c$. En efecto, sea $U\in\tau_c$, entonces existe $\left\{L_\alpha \right\}_{\alpha\in I}\subseteq\mathcal{B}_c$ tales que:
+        \begin{equation*}
+            U=\bigcup_{\alpha\in I}L_\alpha
+        \end{equation*}
 
         De (5): Sea $\beta\in I$. Por construcción se tiene que $\cf{p_\beta}{(X,\tau)}{(X_\beta,\tau_b)}$ es continua si $\tau=\tau_p$. Como $\tau_p\subseteq\tau_c$, entonces $p_\beta$ también es continua con $\tau=\tau_c$.
 
