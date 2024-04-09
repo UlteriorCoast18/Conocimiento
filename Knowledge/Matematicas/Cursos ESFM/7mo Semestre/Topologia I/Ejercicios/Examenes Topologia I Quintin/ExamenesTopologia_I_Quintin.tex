@@ -129,7 +129,7 @@
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
     \setlength{\parindent}{12pt} % Pone la sangría como me gusta
-    \title{Exámenes Parciales y ETS Topología I Quintín}
+    \title{Exámenes Parciales y ETS Topología I}
     \author{Cristo Daniel Alvarado}
     \maketitle
 
@@ -139,7 +139,7 @@
 
     \chapter{Primer Examamen Parcial}
 
-    \section{Ejercicios}
+    \section{Ejercicios I}
 
     \begin{excer}
         Sean $X=\mathbb{R}$ y $\tau=\left\{X,\emptyset \right\}\cup\left\{B_q\right\}_{q\in\mathbb{Q}}$, donde $B_q=(q,\infty)\cap\mathbb{Q}$. ¿Es $(\mathbb{R},\tau)$ un espacio topológico? Demuestre su respuesta.
@@ -193,12 +193,75 @@
         Sea $(X,\tau)$ un espacio topológico, para cada $A\subseteq X$ definimos $\alpha(A)=\Int{\Cls{A}}$, y $\beta(A)=\Cls{\Int{A}}$. Demuestre o refute:
         \begin{enumerate}
             \item $\alpha(\alpha(A))=\alpha(A)$, para cada $A\subseteq X$.
-            \item $\beta(\beta(A))=\beta{A}$, para cada $A\subseteq X$.
+            \item $\beta(\beta(A))=\beta(A)$, para cada $A\subseteq X$.
         \end{enumerate}
     \end{excer}
 
     \begin{proof}
         
+    \end{proof}
+
+    \section{Ejercicios II}
+
+    \begin{excer}
+        Sea $\mathcal{S}=\left\{\mathbb{N},\left\{1,2 \right\},\left\{3,4,5 \right\},\left\{1,4,7 \right\} \right\}$, Encuentre explícitamente los elementos de la topología $\tau$ menos fina definida sobre $\mathbb{N}$ tal que $\mathcal{S}\subseteq\tau$ y, además, encuentre una base para $\tau$ tal que $\mathcal{B}\neq\tau$.
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Sean $(X,\tau)$ un espacio topológico, $Y$ un conjunto y $\cf{f}{X}{Y}$ una función. Demuestre que el conjunto:
+        \begin{equation*}
+            \tau_f:=\left\{U\subseteq Y\Big|f^{-1}(U)\in\tau \right\}
+        \end{equation*}
+        es una topología sobre $Y$ y es la topología más fina definida sobre $Y$ tal que la función $\cf{f}{(X,\tau)}{(Y,\tau_f)}$ es una función continua.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $(\mathbb{N},\tau_{cf})$, donde $\tau_{cf}$ es la topología de los complementos finitos. Considere el conjunto
+        \begin{equation*}
+            P=\left\{n\in\mathbb{N}\Big|\exists k\in\mathbb{N} \textup{ tal que }n=2k \right\}
+        \end{equation*}
+        encuentre $\Cls{P}, \Int{P},P'$.
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Sean $(X,\tau)$ y $(Y,\tau')$ espacios topológicos tales que $(Y,\tau')$ es un espacio topológico Hausdorff. Sean $A\subseteq X$ y $\cf{f}{(A,\tau_A)}{(Y,\tau')}$ una función continua tal que existen $\cf{g_i}{(\Cls{A},\tau_{\Cls{A}})}{(Y,\tau')}$, $i\in\left\{1,2 \right\}$ funciones continuas que cumplen:
+        \begin{equation*}
+            g_1(a)=g_2(a),\quad\forall a\in A
+        \end{equation*}
+        demuestre que $g_1=g_2$.
+    \end{excer}
+
+    \begin{proof}
+        Sea $a\in\Cls{A}$. Debemos probar que $g_1(a)=g_2(a)$. Se tienen dos casos:
+        \begin{enumerate}
+            \item $a\in A$, en cuyo caso se sigue de hipótesis que $g_1(a)=g_2(a)$.
+            \item Suponga que $a\notin A$. Si $g_1(a)\neq g_2(a)$, como el espacio $(Y,\tau')$ es Hausdorff, existen dos abiertos $M,N\in\tau'$ tales que
+            \begin{equation*}
+                g_1(a)\in M\quad g_2(a)\in N\quad M\cap N=\emptyset
+            \end{equation*}
+            por ende, los conjuntos $V=g_1^{-1}(M)$ y $U=g_2^{-1}(N)$ son dos abiertos en $(\Cls{A},\tau_{\Cls{A}})$ tales que
+            \begin{equation*}
+                a\in V\cap U
+            \end{equation*}
+            como $a\in\Cls{A}$, existe pues $a'\in A$ tal que $a\in U\cap V$, es decir:
+            \begin{equation*}
+                a\in g_1^{-1}(M)\cap g_2^{-1}(N)\Rightarrow g_1(a)\in M\quad\textup{y}\quad g_2(a)\in N\Rightarrow g_1(a)=g_2(a)\in M\cap N
+            \end{equation*}
+            pues, $a\in A$. Por tanto, $M\cap N\neq\emptyset$. Así, $g_1(a)=g_2(a)$.
+        \end{enumerate}
+        Por ambos incisos, se sigue que $g_1=g_2$.
     \end{proof}
 
     \chapter{Segundo Examen Parcial}
