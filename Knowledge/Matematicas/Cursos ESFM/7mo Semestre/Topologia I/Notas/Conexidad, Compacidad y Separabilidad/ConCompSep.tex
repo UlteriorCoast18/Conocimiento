@@ -356,6 +356,115 @@
 
     \section{Espacios $T_3$}
 
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico. Entonces, el espacio es $T_3$ si y sólo si dado $x\in X$ y $U\in\tau$ tal que $x\in U$ existe $V\in\tau$ tal que $x\in V$ y $\Cls{V}\subseteq U$.
+    \end{propo}
 
+    \begin{proof}
+        $\Rightarrow):$ Suponga que $(X,\tau)$ es $T_3$. Sea $x\in X$ y $U\in\tau$ tal que $x\in U$, luego $x\notin X-U$, el cual es cerrado, luego por ser el espacio $T_3$ existen $W,V\in\tau$ abiertos disjuntos tales que:
+        \begin{equation*}
+            x\in V\quad\textup{ y }\quad X-U\subseteq W
+        \end{equation*}
+        es claro que $V\subseteq U$ (pues, $W\subseteq X-U$ y $W\cap V=\emptyset$). Veamos que $\Cls{V}\subseteq U$. En efecto, supongamos que $y\in\Cls{V}$ y $y\notin U$, entonces $y\in W$, luego el conjunto $W\cap V\neq\emptyset$\contradiction. Por ende, $\Cls{V}\subseteq U$.
+
+        $\Leftarrow):$ Sea $x\in X$ y $F\subseteq X$ cerrado tal que $x\notin F$, entonces $x\in X-F$ el cual es abierto. Luego por hipótesis existe un cerrado $\Cls{V}$ tal que $x\in V\subseteq\Cls{V}\subseteq X-F$.
+
+        Luego, $F\subseteq X-\Cls{V}$. Tomemos $W=X-\Cls{V}$. Entonces, $V$ y $W$ son abiertos tales que $x\in V$, $F\subseteq W$ y, $W\cap V=\emptyset$. Por tanto, $(X,\tau)$ es $T_3$.
+    \end{proof}
+
+    \begin{exa}
+        Considere el espacio topológico $(X=\left\{1,2 \right\},\tau_I)$. Este espacio es $T_3$ pero no es $T_0$.
+    \end{exa}
+
+    \begin{exa}
+        Sea $K=\left\{\frac{1}{n}\Big|n\in\mathbb{N}\right\}$, tomemos $\mathcal{B}$ la colección de subconjuntos de $\mathbb{R}$ formada por los siguientes conjuntos:
+        \begin{enumerate}
+            \item Todos los intervalos abiertos $(a,b)$.
+            \item Todos los conjuntos de la forma $(a,b)-K$.
+        \end{enumerate}
+        Tenemos que $\mathcal{B}$ es una base para una topología sobre $\mathbb{R}$.
+
+        Sea $\tau_K$ la topología generada por la colección $\mathcal{B}$. Tenemos que $\tau_u\subseteq \tau_K$. Por ende, como $(\mathbb{R},\tau_u)$ es $T_2$, se sigue que $(\mathbb{R},\tau_K)$ también lo es.
+
+        Sean $l\notin\mathbb{R}-K$ y $L=(l-1,l+1)-K$. Tenemos que $l\in L$. El conjunto $L$ es un básico y, además, $L\subseteq\mathbb{R}-\mathbb{K}$. Por tanto, $\mathbb{R}-K\in\tau_K$, luego $K$ es un conjunto cerrado en $(\mathbb{R},\tau_K)$.
+
+        Tenemos que $0\notin K$. Suponga que $U,V\in\tau$ son abiertos tales que $0\in U$, $K\subseteq V$ y $U\cap V=\emptyset$. Como $0\in U$. Sea $B\in\mathcal{B}$ un básico tal que $x\in B\subseteq V$. Tenemos que, dado un intervalo abierto que contenga al $0$, este siempre contiene puntos de $K$, luego $B$ debe ser de la forma $B=(a,b)-K$.
+
+        Sea $m\in\mathbb{N}$ tal que $\frac{1}{m}\in(a,b)$. Se tiene que $\frac{1}{m}\in K\subseteq V$, luego existe un básico $(c,d)$ (debe ser de esta forma) tal que $\frac{1}{m}\in(c,d)\subseteq V$. Ahora, podemos suponer que $a<0<c<d<b$.
+        Sea $\zeta\mathbb{R}$ tal que $\zeta<\frac{1}{m}$ y $\max\left\{c,\frac{1}{m+1} \right\}<\zeta$, luego:
+        \begin{equation*}
+            c<\zeta<\frac{1}{m}
+        \end{equation*}
+        entonces, en particular, $\zeta\in(c,d)$, $\zeta\notin K$ ya que $\frac{1}{m+1}<\zeta<\frac{1}{m}$ y $\zeta\in(a,b)$. Por tanto, $\zeta\in U\cap V$\contradiction. Así, $(\mathbb{R},\tau_K)$ no es $T_3$.
+    \end{exa}
+
+    \begin{propo}
+        La propiedad de ser $T_3$ cumple:
+        \begin{enumerate}
+            \item Se hereda.
+            \item Es topológica.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): Sea $(X,\tau)$ un espacio topológico $T_3$ y sea $Y\subseteq X$. Probaremos que $(Y,\tau_Y)$ es $T_3$. Tomemos $A\subseteq Y$ cerrado con la topología $\tau_Y$ y $p\in Y-A$.
+
+        Como $A$ es cerrado en el subespacio, existe $C\subseteq X$ cerrado en $(X,\tau)$ tal que:
+        \begin{equation*}
+            A=Y\cap C
+        \end{equation*}
+        En particular, $A\subseteq C$, es decir que $Y-C\subseteq Y-A$, luego $p\notin C$. Como $(X,\tau)$ es $T_3$, existen $U,V\in\tau$ disjuntos tales que:
+        \begin{equation*}
+            p\in V\quad\textup{y}\quad C\subseteq U
+        \end{equation*}
+        luego, los conjuntos $Y\cap U,Y\cap V\in \tau_Y$ son tales que:
+        \begin{equation*}
+            p\in Y\cap V\quad\textup{y}\quad A=Y\cap C\subseteq Y\cap U
+        \end{equation*}
+        siendo estos disjuntos (pues $U$ y $V$ lo son). Por tanto, $(Y,\tau_Y)$ es $T_3$.
+
+        De (2): Sean $(X,\tau)$ y $(Y,\sigma)$ espacios topológicos homeomorfos, y $\cf{f}{(X,\tau)}{(Y,\sigma)}$ el homeomorfismo entre ambos.
+    
+        Suponga que $(X,\tau)$ es $T_3$. Probaremos que $(Y,\sigma)$ también es $T_3$. En efecto, sean $p\in Y$ y $F\subseteq Y$ cerrado tales que $p\notin F$, es decir que $p\in Y-F$.
+        Sea
+        \begin{equation*}
+            F'=f^{-1}(F)
+        \end{equation*}
+        y $p'=f^{-1}(p)$. Por ser homeomorfismo, se tiene que $F'$ es cerrado en $(X,\tau)$ y, por ser inyectiva se tiene que $p'\notin F'$. Luego, como $(X,\tau)$ es $T_3$ existen $U',V'\in\tau$ disjuntos tales que:
+        \begin{equation*}
+            p'\in V'\quad\textup{y}\quad F'\subseteq U'
+        \end{equation*}
+        Sean $U=f(U')$ y $V=f(V')$, los cuales son abiertos en $(Y,\sigma)$ tales que:
+        \begin{equation*}
+            p=f(p')\in V\quad\textup{y}\quad F=f(F')\subseteq U
+        \end{equation*}
+        siendo $U,V$ disjuntos por serlo $U',V'$. Luego, $(Y,\sigma)$ es $T_3$.
+    \end{proof}
+
+    \begin{propo}
+        Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{\alpha\in I}$ una familia de espacios topológicos, sea
+        \begin{equation*}
+            X=\prod_{\alpha\in I}X_\alpha
+        \end{equation*}
+        entonces, $(X,\tau_p)$ es $T_3$ si y sólo si $(X_\alpha,\tau_\alpha)$ es $T_3$, para todo $\alpha\in I$.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Es inmediata del hecho de que la propiedad de que un espacio sea $T_3$ es hereditaria y topológica.
+
+        $\Leftarrow):$ Suponga que para todo $\alpha\in I$, $(X_\alpha,\tau_\alpha)$ es $T_3$. Veamos que $(X,\tau_p)$ es $T_3$. Sea $x\in X$ y $U\in\tau_p$ un abierto tal que $x\in U$.
+
+        Como $U\in\tau_p$, podemos encontrar un básico $B$, que podemos expresar como $B=\prod_{\alpha\in I}B_\alpha$, donde $B_\alpha=X_\alpha$ para casi todo salvo una cantidad finita de $\alpha\in I$, y $B_\alpha$ es abierto en $(X_\alpha,\tau_\alpha)$ para todo $\alpha\in I$.
+
+        Como cada $(X_\alpha,\tau_\alpha)$ es $T_3$, entonces para cada $B_\alpha$ existe $V_\alpha\in\tau_\alpha$ tal que $x_\alpha\in V_\alpha$ y $\Cls{V_\alpha}\subseteq B_\alpha$, para todo $\alpha\in I$.
+
+        Si $B_\alpha=X_\alpha$, tomemos $V_\alpha=X_\alpha$, en caso contrario lo dejamos igual. Entonces, el conjunto $V=\prod_{\alpha\in I}V_\alpha$ es un básico, en particular, abierto, tal que $x\in V$, y
+        \begin{equation*}
+            \Cls{V}=\Cls{\prod_{\alpha\in I}V_\alpha}=\prod_{\alpha\in I}\Cls{V_\alpha}\subseteq\prod_{\alpha\in I}B_\alpha=B\subseteq U
+        \end{equation*}
+        por tanto, $(X,\tau_p)$ es $T_3$.
+    \end{proof}
+
+    
 
 \end{document}
