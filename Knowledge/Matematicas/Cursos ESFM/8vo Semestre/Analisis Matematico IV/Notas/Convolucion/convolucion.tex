@@ -124,6 +124,7 @@
 \newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
 \newcommand{\GenSpace}[4]{\ensuremath{\mathcal{#1}_{#2}\left(#3,#4\right)}}
 \newcommand{\Spt}[1]{\ensuremath{\textup{Spt}\left(#1\right)}}
+\newcommand{\natint}[1]{\ensuremath{[\![#1]\!]}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -1587,6 +1588,235 @@
             \end{equation*}
             donde $c_\nu=\frac{1}{\int_{-1}^1(1-\theta^2)}$. Siendo claramente dicha integral anterior un polinomio en la variable $x$ de grado $2\nu$, lo cual concluye la demostración.
         \end{enumerate}
+    \end{proof}
+
+    \section{Los espacios $\mathcal{L}_p^T$ de funciones periódicas}
+
+    \begin{mydef}
+        Se dice que una función $\cf{f}{\mathbb{R}}{\mathbb{K}}$ es \textbf{periódica con período $T>0$}, si
+        \begin{equation*}
+            f(x+T)=f(x),\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        En tal caso, tal función queda completamente determinada por su reestricción a cualquier intervalo de longitud $T$, es decir de la forma: $\left[\alpha,\alpha+T \right]$, siendo $\alpha\in\mathbb{R}$.
+    \end{mydef}
+
+    \begin{obs}
+        Sea $\cf{f}{\mathbb{R}}{\mathbb{K}}$ una función periódica. Entonces
+        \begin{enumerate}
+            \item $f$ es medible si y sólo si $f\chi_{\left[\alpha,\alpha+T \right]}$ para algún $\alpha\in\mathbb{R}$.
+            \item Si $f$ es integrable en todo intervalo de la forma $\left[\alpha,\alpha+T \right]$, entonces lo es en todo intervalo de esa forma, y sus integrales son iguales en todo $\left[\alpha,\alpha+T \right]$.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{proof}
+        De (2): En efecto, ya se tiene que $f$ es integrable en todo intervalo de la forma $\left[\alpha,\alpha+T \right]$ (por traslación). Veamos que la integral es la misma. Para ello, se probará que:
+        \begin{equation*}
+            \int_0^Tf=\int_a^{a+T}f
+        \end{equation*}
+        en efecto, veamos que si $a\in\mathbb{R}$, entonces debe existir un entero $k$ tal que:
+        \begin{equation*}
+            \alpha\leq kT<\alpha+T
+        \end{equation*}
+        Luego:
+        \begin{equation*}
+            \begin{split}
+                \int_a^{a+T}f(x)dx&=\int_a^{kT}f(x)dx+\int_{kT}^{a+T}f(x)dx\\
+                &=\int_{a+T}^{kT+T}f(y-T)dy+\int_{kT}^{a+T}f(x)dx\\
+                &=\int_{a+T}^{(k+1]T}f(y)dy+\int_{kT}^{a+T}f(x)dx\\
+                &=\int_{kT}^{(k+1)T}f(x)dx\\
+                &=\int_{0}^{T}f(x)dx\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \begin{mydef}
+        Sea $1\leq p<\infty$. Se denota por $\mathcal{L}_p^T$ al espacio vectorial de todas las funciones periódicas $\cf{f}{\mathbb{R}}{\mathbb{K}}$ periódicas de período $T>0$ tal que $\abs{f}^p$ es integrable en $\left[-\frac{T}{2},\frac{T}{2} \right[$.
+
+        Si $f\in\mathcal{L}_p^T$, se define
+        \begin{equation*}
+            \N{p}{f}=\left[\int_{-\frac{T}{2}}^{\frac{T}{2}}\abs{f}^p \right]^{ 1/p}
+        \end{equation*}
+        Se denota por $\mathcal{L}_\infty^T$ al espacio vectorial de todas las funciones $\cf{f}{\mathbb{R}}{\mathbb{K}}$ periódicas de período $T>0$ tales que $f$ es medible y esencialmente acotada en $\mathbb{R}$, equivalentemente en $\left[-\frac{T}{2},\frac{T}{2} \right[$. Si $f\in\mathcal{L}_\infty^T$, se define
+        \begin{equation*}
+            \N{\infty}{f}=\textup{supesc}_{\left[-\frac{T}{2},\frac{T}{2} \right[}\abs{f}
+        \end{equation*}
+    \end{mydef}
+    
+    \begin{obs}
+        Sea $1\leq p<\infty$. La aplicación que a cada $f\in\mathcal{L}_p^T$ le asigna su reestricción a $\left[-\frac{T}{2},\frac{T}{2} \right[$, es un isomorfismo de $\mathcal{L}_p^T$ sobre $\mathcal{L}_p(\left[-\frac{T}{2},\frac{T}{2} \right[,\mathbb{K})$. A través de este isomorfismo se verifica de inmediato que $\N{p}{\cdot}$ es una seminorma sobre $\mathcal{L}_p^T$, convirtiendo a este isomorfismo en una isometría.
+    \end{obs}
+
+    Sea $L_p^T$ el espacio normado asociado a $\mathcal{L}_p^T$, donde $\N{p}{\cdot}$ denota la norma correspondiente. La isometría anterior induce una isometría entre $L_p^T$ sobre $L_p(\left[-\frac{T}{2},\frac{T}{2} \right[,\mathbb{K})$.
+
+    Se concluye de lo anterior lo siguiente:
+    \begin{enumerate}
+        \item $L_p^T$ es un espacio de Banach.
+        \item $L_2^T$ es un espacio Hilbertiano.
+    \end{enumerate}
+    Ya que la clase de equivalencia de una función $f\in\mathcal{L}_p^T$ depende solamente de la reestricción de $f$ a $\left[-\frac{T}{2},\frac{T}{2} \right[$ o $\left]-\frac{T}{2},\frac{T}{2} \right[$ o $\left[-\frac{T}{2},\frac{T}{2} \right]$, $L_p^T$ se puede identificar también con $L_p(S,\mathbb{K})$, donde $S$ es uno de los conjuntos anteriores.
+
+    Como $\left]-\frac{T}{2},\frac{T}{2} \right[$ tiene medida finita, entonces si $q>p$ de forma inmediata se tiene que $L_q^T\subseteq L_p^T$.
+
+    En particular, $L_p^T\subseteq L_1^T$, para todo $p\in\left[1,\infty \right]$.
+
+    \begin{mydef}
+        Se denota por $\mathcal{E}^T$ al espacio vectorial de todas las funciones periódicas con período $T>0$ tales que su reestricción a $\left]-\frac{T}{2},\frac{T}{2} \right[$ es escalonada en $\left]-\frac{T}{2},\frac{T}{2} \right[$.
+
+        También, se denota por $\mathcal{C}^T$ al espacio vectorial de funciones $\cf{f}{\mathbb{R}}{\mathbb{K}}$ periódicas de período $T>0$ que son continuas en $\mathbb{R}$, equivalentemente en $\left[-\frac{T}{2},\frac{T}{2} \right]$
+    \end{mydef}
+
+    \begin{obs}
+        Recuerde que una función $\cf{\varphi}{\Omega}{\mathbb{K}}$ donde $\Omega\subseteq\mathbb{R}^n$ es un conjunto abierto, se dice que es escalonada en el abierto $\Omega$, si es de la forma:
+        \begin{equation*}
+            \varphi=\sum_{k=1}^r\alpha_k\chi_{A_k}
+        \end{equation*}
+        donde $\alpha_1,...,\alpha_r\in\mathbb{K}$ y $A_1,...,A_r\subseteq\mathbb{R}^n$ son rectángulos acotados disjuntos tales que:
+        \begin{equation*}
+            \overline{A_r}\subseteq\Omega,\forall k\in\natint{1,r}
+        \end{equation*}
+    \end{obs}
+
+    \begin{lema}
+        Toda función en $\mathcal{C}^T$ es uniformemente continua en $\mathbb{R}$.
+    \end{lema}
+
+    \begin{proof}
+        Sea $f\in\mathcal{C}^T$ es continua en $[0,3T]$, dado $\varepsilon>0$ existe $\delta>0$, donde $0<\delta<T$ con la siguiente propiedad:
+        \begin{equation*}
+            x,y\in[0,3T]\textup{ y }\abs{x-y}<\delta\Rightarrow\abs{f(x)-f(y)}<\varepsilon
+        \end{equation*}
+        sean ahora $x,y\in\mathbb{R}$ tal que $\abs{x-y}<\delta$, es decir que
+        \begin{equation*}
+            x-\delta<y<x+\delta
+        \end{equation*}
+        de donde:
+        \begin{equation*}
+            x-T<y<x+T
+        \end{equation*}
+        existe un $k\in\mathbb{Z}$ tal que:
+        \begin{equation*}
+            kT\leq x<(k+1)T
+        \end{equation*}
+        entonces,
+        \begin{equation*}
+            (k-1)T<y<(k+2)T
+        \end{equation*}
+        Luego,
+        \begin{equation*}
+            0\leq y-(k-1)T\leq 3T
+        \end{equation*}
+        y
+        \begin{equation*}
+            0\leq x-(k-1)T\leq 2T<3T
+        \end{equation*}
+        luego, $x-(k-1)T,y-(k-1)T\in[0,3T]$ y, además:
+        \begin{equation*}
+            \abs{x-(k-1)T-(y-(k-1)T)}=\abs{x-y}<\delta
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \abs{f(x)-f(y)}=\abs{f(x-(k-1)T)-f(y-(k-1)T)}<\varepsilon
+        \end{equation*}
+        Por tanto, $f$ es uniformemente continua.
+    \end{proof}
+
+    \begin{theor}
+        Sean $1\leq p<\infty$ y $\Omega\subseteq\mathbb{R}^n$ abierto. Entonces, el espacio vectorial $\mathcal{E}(\Omega,\mathbb{K})$ (funciones escalonadas en el abierto $\Omega$) es denso en $L_p(\Omega,\mathbb{K})$.
+    \end{theor}
+
+    \begin{proof}
+        Sea $f\in\mathcal{L}_p(\Omega,\mathbb{K})$ y $\varepsilon>0$. Como $\widetilde{f}\in\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$ y $\mathcal{E}(\mathbb{R}^n,\mathbb{K})$ es denso en $L_p(\mathbb{R}^n,\mathbb{K})$, existe $\psi\in\mathcal{E}(\mathbb{R}^n,\mathbb{K})$ tal que:
+        \begin{equation*}
+            \N{p}{\widetilde{f}-\psi}<\frac{\varepsilon}{2}
+        \end{equation*}
+        Escriba a $\Omega$ como unión a lo sumo numerable de cubos disjuntos $C_\nu$ tales que $\overline{C_\nu}\subseteq\Omega$, para toda $\nu\in\mathbb{N}$, y defina
+        \begin{equation*}
+            Q_k=\bigcup_{\nu=1}^kC_\nu,\quad\forall k\in\mathbb{N}
+        \end{equation*}
+        Observe que $Q_k$ es un conjunto elemental tal que $\overline{Q_k}\subseteq\Omega$. Se tiene
+        \begin{equation*}
+            \lim_{k\rightarrow\infty}\widetilde{f}\chi_{Q_k}=\widetilde{f}
+        \end{equation*}
+        puntualmente en $\mathbb{R}^n$, y $\abs{\widetilde{f}\xi_{Q_k}}\leq\abs{f}$, para todo $k\in\mathbb{N}$, siendo $\abs{\widetilde{f}}\in\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$ independiente de $k$. Por el teorema de Lebesgue en $L_p(\mathbb{R}^n,\mathbb{K})$
+        \begin{equation*}
+            \lim_{k\rightarrow\infty}\N{p}{\widetilde{f}-\widetilde{f}\chi_{Q_k}}=0
+        \end{equation*}
+        Fijemos $k\in\mathbb{N}$ tal que:
+        \begin{equation*}
+            \N{p}{\widetilde{f}-\widetilde{f}\chi_{Q_k}}<\frac{\varepsilon}{2}
+        \end{equation*}
+        Como
+        \begin{equation*}
+            \begin{split}
+                \N{p}{\widetilde{f}\chi_{Q_k}-\psi\chi_{Q_k}}&=\left[\int_{\mathbb{R}^n}\chi_{Q_k}\abs{\widetilde{f}-\psi}^p \right]^{1/p}\\
+                &\leq\left[\int_{\mathbb{R}^n}\abs{\widetilde{f}-\psi}^p \right]^{1/p}\\
+                &=\N{p}{\widetilde{f}-\psi}\\
+                &<\frac{\varepsilon}{2}\\
+            \end{split}
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \N{p}{f-\psi\chi_{Q_k}}<\varepsilon
+        \end{equation*}
+        La demostración concluye porque la reestricción $\varphi$ de $\psi\chi_{Q_k}$ a $\Omega$ es una función continua escalonada en el abierto $\Omega$.
+    \end{proof}
+
+    \begin{theor}
+        Sean $1\leq p<\infty$ y $\Omega\subseteq\mathbb{R}^n$ un abierto. Entonces, el espacio vectorial $\mathcal{C}_c^\infty(\Omega,\mathbb{K})$ de funciones de clase $C^\infty$ de $\Omega$ en $\mathbb{K}$ de soporte compacto contenido en $\Omega$, es denso en $L_p(\Omega,\mathbb{K})$.
+    \end{theor}
+
+    \begin{proof}
+        Sea $\cf{\varphi}{\mathbb{R}}{\mathbb{R}}$ la función
+        \begin{equation*}
+            \varphi(t)=\left\{
+                \begin{array}{lcr}
+                    e^{-\frac{1}{1-t}} & \textup{ si } & t<1\\
+                    0 & \textup{ si } & t\geq 1\\
+                \end{array}
+            \right.
+        \end{equation*}
+        entonces, $\varphi$ es de clase $C^\infty$ en $\mathbb{R}$. Sea $\norm{\cdot}$ la norma euclideana en $\mathbb{R}^n$. Defina $\cf{\rho}{\mathbb{R}^n}{\mathbb{R}}$ como $\rho(x)=0$ si $\norm{x}\geq 1$ y
+        \begin{equation*}
+            \rho(x)=\frac{e^{-\frac{1}{1-\norm{x}^2}}}{\int_{\norm{x}\leq 1}e^{-\frac{1}{1-\norm{y}^2}}dy},\quad\textup{ si }\norm{x}<1
+        \end{equation*}
+        Es decir, $\rho(x)=c\cdot\varphi(\norm{x}^2)$, para todo $x\in\mathbb{R}^n$ (con constante). Entonces, $\rho$ es de clase $C^\infty$ en $\mathbb{R}^n$, no negativa, y
+        \begin{equation*}
+            \Spt{\rho}=\left\{x\in\mathbb{R}^n\Big|\norm{x}\leq1 \right\}
+        \end{equation*}
+        y, la integral de $\rho$ sobre $\mathbb{R}^n$ es $1$.
+
+        Considere la sucesión de Dirac $\left\{\rho_\nu\right\}_{\nu=1}^\infty$ dada por
+        \begin{equation*}
+            \rho_\nu(x)=\nu^n\rho(\nu x),\quad\forall x\in\mathbb{R}^n\textup{ y }\forall\nu\in\mathbb{N}
+        \end{equation*}
+        Note que $\rho_\nu\in\mathcal{C}_c^\infty(\mathbb{R}^n,\mathbb{R})$. De hecho,
+        \begin{equation*}
+            \Spt{\rho_\nu}=\left\{x\in\mathbb{R}^n\Big|\norm{x}\leq\frac{1}{\nu} \right\}=B_{\frac{1}{\nu}},\quad\forall\nu\in\mathbb{N}
+        \end{equation*}
+        Sea $\varepsilon>0$ y $f\in\mathcal{L}_p(\Omega,\mathbb{K})$. Por el resultado anterior, existe $\psi\in\mathcal{E}(\Omega,\mathbb{K})$ tal que
+        \begin{equation*}
+            \N{p}{f-\psi}<\frac{\varepsilon}{2}
+        \end{equation*}
+        Por un resultado anterior
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\N{p}{\widetilde{\psi}-\widetilde{\psi}*\rho_\nu}=0
+        \end{equation*}
+        Existe $\nu_0\in\mathbb{N}$ tal que
+        \begin{equation*}
+            \N{p}{\widetilde{\psi}-\widetilde{\psi}*\rho_{\nu}}<\frac{\varepsilon}{2},\quad\forall \nu\geq\nu_0
+        \end{equation*}
+        Note que
+        \begin{equation*}
+            \Spt{\widetilde{\psi*\rho_\nu}}\subseteq\Spt{\widetilde{\psi}}+\Spt{\widetilde{\rho_\nu}}\subseteq\Spt{\psi}+B_{\frac{1}{\nu}}=\left\{x\in\mathbb{R}^n\Big|d(x,K)\leq\frac{1}{\nu} \right\},\quad\forall\nu\in\mathbb{N}
+        \end{equation*}
+        donde $K=\Spt{\psi}$. Como $K$ es compacto contenido en el abierto $\Omega$, exsite $N\geq\nu_0$ tal que
+        \begin{equation*}
+            \Spt{\psi}+B_{\frac{1}{N}}\subseteq\Omega
+        \end{equation*}
+        Sea $\varphi$ la restricción de $\rho_n*\widetilde{\psi}$ a $\Omega$. Entonces, $\varphi$ es de clase $C^\infty$ de soporte compacto contenido en $\Omega$. Además,
+        \begin{equation*}
+            \N{p}{f-\varphi}\leq\N{p}{f-\psi}+\N{p}{\psi-\varphi}<\frac{\varepsilon}{2}+\N{p}{\widetilde{\psi}+\widetilde{\psi}*\rho_N}<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon
+        \end{equation*}
     \end{proof}
 
 \end{document}

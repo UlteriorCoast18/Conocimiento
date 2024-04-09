@@ -1,0 +1,2222 @@
+\documentclass[12pt]{article}
+\usepackage{lingmacros}
+\usepackage{tree-dvips}
+\usepackage{ragged2e}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{enumerate}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{multicol}
+\usetikzlibrary{scopes}
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+
+\begin{document}
+\title{Resolución C I. Lista 1}
+\author{Alvarado Cristo Daniel}
+\date{Septiembre de 2023}
+\maketitle
+
+Los presentes ejercicios fueron diseñados para ser resueltos conforme el lector vaya comprendiendo los conceptos y resultados dados en la teoría, si se tiene alguna duda sobre alguno(s) de ellos se recomienda sea disipada de inmediato. Se sugiere al lector redactar, según su criterio, una guía que contenga aquellos conceptos y resultados del capítulo que considere más importantes y/o útiles como referencia
+rápida de consulta para la solución de los problemas.
+
+%\renewcommand\qedsymbol{$\square$}%
+\renewcommand{\labelenumi}{\textbf{1.\theenumi.}}
+\renewcommand{\labelenumii}{\textbf{\Roman{enumii}.}}
+\providecommand{\abs}[1]{\left| #1 \right|}
+\def\proof{\textit{Solución:}\\}
+
+\begin{enumerate}
+    \item \textbf{Demuestre} las afirmaciones siguientes usando esencialmente los axiomas de campo.
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $-0=0$.
+            \item $1^{-1}=1$.
+            \item $-\left(a+b\right)=-a-b$.
+            \item $-\left(a-b\right)=-a+b$.
+            \item $\left(a-b\right)+\left(b-c\right)=a-c$.
+            \item $\forall b\neq 0, \quad -\frac{a}{b}=\frac{-a}{b}=\frac{a}{-b}$.
+            \item $\forall x\neq 0, \quad \frac{a\cdot x}{b \cdot x}=\frac{a}{b}$.
+            \item $\left(ab\right)^2=a^2b^2$.
+            \item $\left(ab\right)^3=a^3b^3$.
+            \item $\left(a+b\right)^2=a^2+2ab+b^2$.
+            \item $\left(a+b\right)^3=a^3+3a^2b+3ab^2+b^3$.
+            \item $x^2-y^2=\left(x-y\right)\left(x+y\right)$.
+            \item $x^2=y^2\quad \iff \quad x=y \textup{ o } x=-y$.
+            \item $x^3-y^3 = \left(x-y\right)\left(x^2+xy+y^2\right)$.
+            \item $x^3+y^3 = \left(x+y\right)\left(x^2-xy+y^2\right)$
+        \end{enumerate}
+    \end{multicols}
+    \begin{proof}
+        De (I): De los axiomas de campo se tiene que:
+        \begin{equation*}
+            0+0=0
+        \end{equation*}
+        Por unicidad de los inversos aditivos, debe suceder que $-0=0$.
+        
+        De (II): De los axiomas de campo, se tiene que:
+        \begin{equation*}
+            1\cdot1=1
+        \end{equation*}
+        Por unicidad de los inversos multiplicativos, debe suceder que $1^{-1}=1$.
+        
+        De (III): Sean $a,b\in\mathbb{R}$. Notemos que:
+        \begin{equation*}
+            \begin{split}
+                \left(a+b\right)+(-a-b)&=\left(b+a\right)+\left(-a-b\right)\\
+                &=b+\left(a+\left[-a-b\right]\right)\\
+                &=b+\left(\left[a-a\right]-b\right)\\
+                &=b+\left(0-b\right)\\
+                &=b+\left(-b\right)\\
+                &=0
+            \end{split}
+        \end{equation*}
+        Por unicidad de los inversos aditivos, $-\left(a+b\right)=-a-b$.
+
+        De (IV): Es análogo a (III).
+
+        De (V): Sean $a,b,c\in\mathbb{R}$. Veamos que:
+        \begin{equation*}
+            \begin{split}
+                \left(a-b\right)+\left(b-c\right)&=a+\left(-b+\left[b-c\right]\right)\\
+                &=a+\left(\left[-b+b\right]-c\right)\\
+                &=a+\left(0-c\right)\\
+                &=a-c
+            \end{split}
+        \end{equation*}
+
+        De (VI): Sean $a,b\in\mathbb{R}$, $b\neq0$. Entonces:
+        \begin{equation*}
+            \begin{split}
+                (ab^{-1})+([-a]b^{-1})&=\left(a-a\right)b^{-1}\\
+                &=0\cdot b^{-1}\\
+                &=0
+            \end{split}
+        \end{equation*}
+        Por unicidad de los inversos aditivos, se tiene que $(-a)b^{-1}=-(ab^{-1})$, es decir:
+        \begin{equation*}
+            \frac{-a}{b}=-\frac{a}{b}
+        \end{equation*}
+        La otra igualdad se obtiene de forma análoga.
+
+        De (VII): Sean $a,b,x\in\mathbb{R}$, $b,x\neq0$. Entonces:
+        \begin{equation*}
+            \begin{split}
+                (a\cdot x)\cdot(b\cdot x)^{-1}&=(a\cdot x)\cdot(x^{-1}\cdot b^{-1})\\
+                &=a\cdot(x\cdot[x^{-1}\cdot b^{-1}])\\
+                &=a\cdot([x\cdot x^{-1}]\cdot b^{-1})\\
+                &=a\cdot(1\cdot b^{-1})\\
+                &=a\cdot b^{-1}
+            \end{split}
+        \end{equation*}
+        Por tanto: $\frac{a\cdot x}{b \cdot x}=\frac{a}{b}$.
+
+        De (VIII): Sean $a,b\in\mathbb{R}$, entonces:
+        \begin{equation*}
+            \begin{split}
+                (ab)^2&=(ab)(ab)\\
+                &=a(b[ab])\\
+                &=a([ab]b)\\
+                &=a(a[b\cdot b])\\
+                &=a(ab^2)\\
+                &=(a\cdot a)b^2\\
+                &=a^2b^2
+            \end{split}
+        \end{equation*}
+
+        De (IX): Es análogo a (VIII).
+
+        De (X): Sean $a,b\in\mathbb{R}$, entonces:
+        \begin{equation*}
+            \begin{split}
+                (a+b)^2&=(a+b)(a+b)\\
+                &=a(a+b)+b(a+b)\\
+                &=(a^2+ab)+(ba+b^2)\\
+                &=a^2+ab+ba+b^2\\
+                &=a^2+ab+ab+b^2\\
+                &=a^2+2ab+b^2
+            \end{split}
+        \end{equation*}
+
+        De (XI): Es análogo a (X).
+
+        De (XII): Sean $x,y\in\mathbb{R}$, entonces:
+        \begin{equation*}
+            \begin{split}
+                x^2-y^2&=x^2-xy+xy-y^2\\
+                &=x(x-y)+y(x-y)\\
+                &=(x+y)(x-y)\\
+                &=(x-y)(x+y)
+            \end{split}
+        \end{equation*}
+
+        De (XIII): Sean $x,y\in\mathbb{R}$:
+        \begin{equation*}
+            \begin{split}
+                x^2=y^2&\iff x^2-y^2=0\\
+                &\iff (x-y)(x+y) = 0\\
+                &\iff x-y=0 \textup{ o } x+y=0\\
+                &\iff x=y \textup{ o } x=-y
+            \end{split}
+        \end{equation*}
+
+        De (XIV): Sean $x,y\in\mathbb{R}$, entonces:
+        \begin{equation*}
+            \begin{split}
+                x^3-y^3&=x^3+x^2y+xy^2-x^2y-xy^2-y^3\\
+                &=x(x^2+xy+y^2)-y(x^2+xy+y^2)\\
+                &=(x-y)(x^2+xy+y^2)
+            \end{split}
+        \end{equation*}
+
+        De (XV): Es análogo a (XIV).
+        \qed
+    \end{proof}
+    \item \textbf{Encuentre} el(los) error(es) en la "demostración" siguiente. Si $x=y$ entonces:
+    \begin{equation*}
+        \begin{split}
+            x^2 &= xy \\
+            x^2-y^2&=xy-y^2 \\
+            \left(x+y\right)\left(x-y\right)&=y\left(x-y\right) \\
+            x+y&=y \\
+            2y&=y \\
+            2&=1
+        \end{split}
+    \end{equation*}
+    \begin{proof}
+        Tanto la primera como la segunda y tercera línea son correctas. El problema es que en el paso de la tercera a la cuarta línea se hace la cancelación del término $x-y$, cuyo valor es 0 pues $x=y$, lo cual es incorrecto pues las leyes de cancelación del producto solo se pueden aplicar cuando los términos son no cero. El otro error viene en el paso de la quinta a la sexta línea, pues estamos cancelando la $y$ sin conocer si su valor es diferente de 0.
+        \qed
+    \end{proof}
+    \item 
+        \begin{enumerate}
+            \item \textbf{Pruebe} que si $x,y\in\mathbb{R}$ no son ambos cero, entonces
+                \begin{equation*}
+                    x^2+xy+y^2>0
+                \end{equation*}
+            \item Si $a,b\in\mathbb{R}$ satisfacen la condición $b>a>0$, \textbf{demuestre} que
+            \begin{equation*}
+                a<\sqrt{ab}<\frac{a+b}{2}<b
+            \end{equation*}
+        \end{enumerate}
+        \begin{proof}
+            De (I): Sin pérdida de generalidad podemos suponer que $x\neq0$. Entonces: $x^2>0$ y $y^2\geq0$. Por tanto:
+            \begin{equation*}
+                \frac{x^2}{2}+\frac{y^2}{2}>0
+            \end{equation*}
+            Además, tenemos:
+            \begin{equation*}
+                \begin{split}
+                    \left(x+y\right)^2\geq0 &\Rightarrow x^2+2xy+y^2\geq0 \\
+                    &\Rightarrow \frac{1}{2}\cdot\left(x^2+2xy+y^2\right)\geq\frac{1}{2}\cdot0 \\
+                    &\Rightarrow \frac{x^2}{2}+xy+\frac{y^2}{2}\geq0 \\
+                \end{split}
+            \end{equation*}
+            Sumando las dos desigualdaes obtenemos
+            \begin{equation*}
+                x^2+xy+y^2>0
+            \end{equation*}
+            De (II): Como $b>a>0$, tenemos que $ab>a^2>0$ (multiplicando la desigualdad por $a$). Sacando raíces obtenemos:
+            \begin{equation*}
+                \begin{split}
+                    \sqrt{ab}&>\sqrt{a^2}\\
+                    &=\abs{a}\\
+                    &=a\\
+                    \Rightarrow \sqrt{ab}&>a
+                \end{split}
+            \end{equation*}
+            Pues $a>0$. Ahora, como $b>a>0$, entonces $b-a>0$. Por tanto:
+            \begin{equation*}
+                \begin{split}
+                    (b-a)^2&>0\\
+                    \rightarrow (a-b)^2&>0\\
+                    \Rightarrow a^2-2ab+b^2&>0\\
+                    \Rightarrow a^2+2ab+b^2&>4ab\textup{ sumando de ambos lados $4ab$}\\
+                    \Rightarrow \abs{a+b}&>\sqrt{4ab}\\
+                    \Rightarrow a+b&>2\sqrt{ab}\\
+                    \Rightarrow \frac{a+b}{2}&>\sqrt{ab}
+                \end{split}
+            \end{equation*}
+            Finalmente
+            \begin{equation*}
+                \begin{split}
+                    b&>a\\
+                    \Rightarrow b+b&>a+b\\
+                    \Rightarrow 2b&>a+b\\
+                    \Rightarrow b&>\frac{a+b}{2}
+                \end{split}
+            \end{equation*}
+            Juntando las 3 desigualdades obtenemos lo deseado:
+            \begin{equation*}
+                b>\frac{a+b}{2}>\sqrt{ab}>a
+            \end{equation*}
+            \qed
+        \end{proof}
+    \item \textbf{Muestre} que
+    \begin{equation*}
+        \abs{\frac{a}{1+a^2}-\frac{b}{1+b^2}} \leq \abs{a-b}, \quad \forall a,b\in\mathbb{R}
+    \end{equation*}
+    \begin{proof}
+        Sean $a,b\in\mathbb{R}$. Tenemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{a}{1+a^2}-\frac{b}{1+b^2}} &= \abs{\frac{a\left(1+b^2\right)-b\left(1+a^2\right)}{\left(1+a^2\right)\left(1+b^2\right)}} \\
+                &= \abs{\frac{\left(a-b\right)+\left(ab^2-a^2b\right)}{\left(1+a^2\right)\left(1+b^2\right)}} \\
+                &= \abs{\frac{\left(a-b\right)+ab\left(b-a\right)}{\left(1+a^2\right)\left(1+b^2\right)}} \\
+                &= \abs{\frac{\left(a-b\right)-ab\left(a-b\right)}{\left(1+a^2\right)\left(1+b^2\right)}} \\
+                &= \frac{\abs{a-b}\abs{1-ab}}{\abs{\left(1+a^2\right)\left(1+b^2\right)}} \\
+            \end{split}
+        \end{equation*}
+        Como $a^2,b^2\geq0$, entonces $\abs{\left(1+a^2\right)\left(1+b^2\right)}=\left(1+a^2\right)\left(1+b^2\right)$ y $a^2b^2\geq0$. Además, tenemos que:
+        \begin{equation*}
+            \begin{split}
+                a^2+2ab+b^2 = \left(a+b\right)^2\geq0 &\Rightarrow a^2+b^2 \geq -2ab \\
+                &\Rightarrow \frac{a^2}{2}+\frac{b^2}{2} \geq -ab \\
+                &\Rightarrow 1+\frac{a^2}{2}+\frac{b^2}{2} \geq 1-ab \\
+                &\Rightarrow 1+a^2+b^2+a^2b^2 \geq 1-ab \\
+                &\Rightarrow \left(1+a^2\right)\left(1+b^2\right) \geq 1-ab
+            \end{split}
+        \end{equation*}
+        De forma similar, obtenemos también que:
+        \begin{equation*}
+            -\left(1+a^2\right)\left(1+b^2\right) \leq 1-ab
+        \end{equation*}
+        Por tanto:
+        \begin{equation*}
+            \abs{1-ab}\leq\left(1+a^2\right)\left(1+b^2\right)
+        \end{equation*}
+        Dividiendo ambos lados por $\left(1+a^2\right)\left(1+b^2\right)>0$, se tiene:
+        \begin{equation*}
+            \frac{\abs{1-ab}}{\left(1+a^2\right)\left(1+b^2\right)}\leq1
+        \end{equation*}
+        De esta forma, sustituyendo en la primera parte:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{a}{1+a^2}-\frac{b}{1+b^2}} &= \frac{\abs{a-b}\abs{1-ab}}{\abs{\left(1+a^2\right)\left(1+b^2\right)}} \\
+                &\leq \abs{a-b}\cdot1 \\
+                &= \abs{a-b}
+            \end{split}
+        \end{equation*}
+        \qed
+    \end{proof}
+    \item \textbf{Determine} el connjunto de los $x\in\mathbb{R}$ para los que se cumple la desigualdad indicada.
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $4x+3 > 2x-5$.
+            \item $\frac{x-1}{x+1}>0$.
+            \item $x^2-4x+3>0$.
+            \item $x^2-7x+10<0$.
+            \item $\abs{x-7}=8$.
+            \item $\abs{x-3}<8$.
+            \item $\frac{3}{x}-\frac{2}{x-1}>0$.
+            \item $\abs{x^2-x}\leq 1$.
+        \end{enumerate}
+    \end{multicols}
+    \begin{proof}
+        De (I): Observemos que:
+        \begin{equation*}
+            \begin{split}
+                4x+3 > 2x-5 &\iff 4x > 2x-8 \\
+                &\iff 2x > -8\\
+                &\iff x>-4
+            \end{split}
+        \end{equation*}
+        Por lo tanto el conjunto de los $x$ que cumplen la desigualdad es: 
+        \begin{equation*}
+            X = \left\{x\in\mathbb{R}|x>-4\right\}
+        \end{equation*}
+        De (II): Observemos que:
+        \begin{equation*}
+            \begin{split}
+                \frac{x-1}{x+1}>0 &\iff \left(x-1 > 0 \textup{ y } x+1 > 0\right) \textup{ o } \left(x-1 < 0 \textup{ y } x+1 < 0\right)\\
+                &\iff \left(x > 1 \textup{ y } x > -1\right) \textup{ o } \left(x < 1 \textup{ y } x < -1\right) \\
+                &\iff \left(x > 1\right) \textup{ o } \left(x < -1\right) \\
+                &\iff x>1 \textup{ o }x < -1
+            \end{split}
+        \end{equation*}
+        Por lo tanto el conjunto de los $x$ que cumplen la desigualdad es: 
+        \begin{equation*}
+            X = \left\{x\in\mathbb{R}|x>1 \textup{ o } x < -1\right\}
+        \end{equation*}
+        De (III): Observemos que:
+        \begin{equation*}
+            \begin{split}
+                x^2-4x+3>0 &\iff \left(x-3\right)\left(x-1\right)>0\\
+                &\iff \left[x-3 > 0 \textup{ y } x-1 > 0\right] \textup{ o } \left[x-3 < 0 \textup{ y } x-1 < 0\right] \\
+                &\iff \left[x > 3 \textup{ y } x > 1\right] \textup{ o } \left[x < 3 \textup{ y } x < 1\right] \\
+                &\iff \left[x > 3\right] \textup{ o } \left[x < 1\right] \\
+                &\iff x > 3 \textup{ o } x < 1
+            \end{split}
+        \end{equation*}
+        Por lo tanto el conjunto de los $x$ que cumplen la desigualdad es: 
+        \begin{equation*}
+            X = \left\{x\in\mathbb{R}|x>3 \textup{ o } x < 1\right\}
+        \end{equation*}
+        De (IV): Observemos que:
+        \begin{equation*}
+            \begin{split}
+                x^2-7x+10<0 &\iff \left(x-2\right)\left(x-5\right) < 0\\
+                &\iff \left[x-2 > 0 \textup{ y } x-5 < 0\right] \textup{ o } \left[x-2 < 0 \textup{ y } x-5 > 0\right] \\
+                &\iff \left[x > 2 \textup{ y } x < 5\right] \textup{ o } \left[x < 2 \textup{ y } x > 5\right] \\
+                &\iff \left[2 < x < 5\right] \\
+                &\iff 2 < x < 5
+            \end{split}
+        \end{equation*}
+        Pues, no puede suceder que $x < 2$ y $x > 5$. Por lo tanto el conjunto de los $x$ que cumplen la desigualdad es: 
+        \begin{equation*}
+            X = \left\{x\in\mathbb{R}|2 < x < 5\right\}
+        \end{equation*}
+        De (V): Observemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{x-7}=8 &\iff x-7=8 \textup{ o }x-7=-8\\
+                &\iff x=15 \textup{ o }x=-1\\
+            \end{split}
+        \end{equation*}
+        (Usando el hecho de que $\abs{x}=y\iff x=y$ o $x=-y$). Por lo tanto el conjunto de los $x$ que cumplen la igualdad es:
+        \begin{equation*}
+            X = \left\{x\in\mathbb{R}|x = 15 \textup{ o } x = -1\right\}
+        \end{equation*}
+        De (VI): Observemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{x-3}<8&\iff -8<x-3<8\\
+                &\iff -8+3<x<8+3\\
+                &\iff -5<x<11
+            \end{split}
+        \end{equation*}
+        (Usando el hecho de que $\abs{x}<y\iff -y<x<y$). Por lo tanto el conjunto de los $x$ que cumplen la desigualdad es:
+        \begin{equation*}
+            X = \left\{x\in\mathbb{R}|-5<x<11\right\}
+        \end{equation*}
+        De (VII): Observemos que:
+        \begin{equation*}
+            \begin{split}
+                \frac{3}{x}-\frac{2}{x-1}>0&\iff\frac{3(x-1)-2(x)}{x(x-1)}>0\\
+                \iff&\frac{3x-3-2x}{x(x-1)}>0\\
+                \iff&\frac{x-3}{x(x-1)}>0 \\
+                \iff&[x-3>0 \textup{ y }x(x-1)>0]\textup{ o }[x-3<0 \textup{ y }x(x-1)<0]\\
+                \iff&[x>3 \textup{ y }(\left\{x>0\textup{ y }x-1>0\right\}\textup{ o }\left\{x<0\textup{ y }x-1<0\right\})]\\
+                &\textup{o }[x<3 \textup{ y }(\left\{x>0\textup{ y }x-1<0\right\}\textup{ o }\left\{x<0\textup{ y }x-1>0\right\})]\\
+                \iff&[x>3 \textup{ y }(\left\{x>0\textup{ y }x>1\right\}\textup{ o }\left\{x<0\textup{ y }x<1\right\})]\\
+                &\textup{o }[x<3 \textup{ y }(\left\{x>0\textup{ y }x<1\right\}\textup{ o }\left\{x<0\textup{ y }x>1\right\})]\\
+                \iff&[x>3 \textup{ y }(x>1\textup{ o }x<0)]\textup{ o }[x<3 \textup{ y }0<x<1]\\
+                \iff&[(x>3\textup{ y }x>1)\textup{ o }(x>3\textup{ y }x<0)]\textup{ o }[x<3 \textup{ y }0<x<1]\\
+                \iff&[x>3]\textup{ o }[0<x<1]\\
+                \iff&x>3\textup{ o }0<x<1
+            \end{split}
+        \end{equation*}
+        Por lo tanto el conjunto de los $x$ que cumplen la desigualdad es:
+        \begin{equation*}
+            X = \left\{x\in\mathbb{R}|0<x<1\textup{ o }3<x\right\}
+        \end{equation*}
+        De (VIII): Observemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{x^2-x}\leq1\iff&-1\leq x^2-x\leq1\\
+                \iff&-1+\frac{1}{4}\leq x^2-x+\frac{1}{4}\leq1+\frac{1}{4}\\
+                \iff&-\frac{3}{4}\leq \left(x-\frac{1}{2}\right)^2\leq \frac{5}{4}\\
+                \iff&0\leq \left(x-\frac{1}{2}\right)^2\leq \frac{5}{4}\\
+                \iff&\abs{x-\frac{1}{2}}\leq \frac{\sqrt{5}}{2}\\
+                \iff&-\frac{\sqrt{5}}{2}\leq x-\frac{1}{2}\leq\frac{\sqrt{5}}{2}\\
+                \iff&\frac{1-\sqrt{5}}{2}\leq x\leq\frac{1+\sqrt{5}}{2}
+            \end{split}
+        \end{equation*}
+        Por lo tanto el conjunto de los $x$ que cumplen la desigualdad es:
+        \begin{equation*}
+            X = \left\{x\in\mathbb{R}\Big| \frac{1-\sqrt{5}}{2}\leq x\leq\frac{1+\sqrt{5}}{2}\right\}
+        \end{equation*}
+        \qed
+    \end{proof}
+    \item Denote por $\max\left\{x,y\right\}$ y $\min\left\{x,y\right\}$ al valor máximo y al valor mínimo de $x$ y $y$, respectivamente. \textbf{Pruebe} que
+    \begin{equation*}
+        \max\left\{x,y\right\} = \frac{x+y+\abs{x-y}}{2} \qquad \textup{y} \qquad \min\left\{x,y\right\} = \frac{x+y-\abs{x-y}}{2}
+    \end{equation*}
+    \begin{proof}
+        Sea $x,y\in\mathbb{R}$. Tenemos dos casos:
+        \begin{itemize}
+            \item $x\leq y$. Si esto sucede, entonces $\max\left\{x,y\right\}=y$ y $\min\left\{x,y\right\}=x$. Como $x\leq y\Rightarrow y-x\geq0\Rightarrow\abs{x-y}=y-x$. Por tanto:
+            \begin{equation*}
+                \begin{split}
+                    \frac{x+y+\abs{x-y}}{2}=&\frac{x+y+y-x}{2}\\
+                    =&\frac{2y}{2}\\
+                    =&y\\
+                    =&\max\left\{x,y\right\}
+                \end{split}
+            \end{equation*}
+            y
+            \begin{equation*}
+                \begin{split}
+                    \frac{x+y-\abs{x-y}}{2}=&\frac{x+y-(y-x)}{2}\\
+                    =&\frac{x+y-y+x}{2}\\
+                    =&\frac{2x}{2}\\
+                    =&x\\
+                    =&\min\left\{x,y\right\}
+                \end{split}
+            \end{equation*}
+            \item $x>y$. Si esto sucede, entonces $\max\left\{x,y\right\}=x$ y $\min\left\{x,y\right\}=y$. Como $x>y\Rightarrow x-y>0\Rightarrow\abs{x-y}=x-y$. Por tanto:
+            \begin{equation*}
+                \begin{split}
+                    \frac{x+y+\abs{x-y}}{2}=&\frac{x+y+x-y}{2}\\
+                    =&\frac{2x}{2}\\
+                    =&x\\
+                    =&\max\left\{x,y\right\}
+                \end{split}
+            \end{equation*}
+            y
+            \begin{equation*}
+                \begin{split}
+                    \frac{x+y-\abs{x-y}}{2}=&\frac{x+y-(x-y)}{2}\\
+                    =&\frac{x+y-x+y}{2}\\
+                    =&\frac{2y}{2}\\
+                    =&y\\
+                    =&\min\left\{x,y\right\}
+                \end{split}
+            \end{equation*}
+        \end{itemize}
+        Por tanto, en ambos casos se tiene que:
+        \begin{equation*}
+            \max\left\{x,y\right\} = \frac{x+y+\abs{x-y}}{2} \qquad \textup{y} \qquad \min\left\{x,y\right\} = \frac{x+y-\abs{x-y}}{2}
+        \end{equation*}
+        \qed
+    \end{proof}
+    \item Fije $y\in\mathbb{R}$.
+    \begin{enumerate}
+        \item Si $x\in\mathbb{R}$ satisface $\abs{x-y}\leq 1$, \textbf{pruebe} que
+        \begin{equation*}
+            \abs{x^2-y^2}\leq\left(1+2\abs{y}\right)\abs{x-y}
+        \end{equation*}
+        \item Fije $\varepsilon>0$. \textbf{Deduzca} de (I) que si $x\in\mathbb{R}$ satisface
+        \begin{equation*}
+            \abs{x-y}\leq\min\left\{\frac{1}{1+2\abs{y}}\varepsilon,1\right\},
+        \end{equation*}
+        entonces $\abs{x^2-y^2}\leq\varepsilon$
+        \end{enumerate}
+    \begin{proof}
+        De (I): Como $\abs{x-y}\leq1$, entonces:
+        \begin{equation*}
+            \begin{split}
+                \abs{x-y}\leq1\Rightarrow&\abs{x}-\abs{y}\leq1.\\
+                \Rightarrow&\abs{x}\leq1+\abs{y}\\
+                \Rightarrow &\abs{x}+\abs{y}\leq1+2\abs{y}
+            \end{split}
+        \end{equation*}
+        Pues $\abs{x}-\abs{y}\leq\abs{x-y}$. Además:
+        \begin{equation*}
+            \begin{split}
+                \abs{x^2-y^2}=&\abs{x+y}\abs{x-y}\\
+                \leq&\left(\abs{x}+\abs{y}\right)\abs{x-y}\\
+                \leq&\left(1+\abs{y}+\abs{y}\right)\abs{x-y}\\
+                =&\left(1+2\abs{y}\right)\abs{x-y}
+            \end{split}
+        \end{equation*}
+        Por tanto:
+        \begin{equation*}
+            \abs{x^2-y^2}\leq\left(1+2\abs{y}\right)\abs{x-y}
+        \end{equation*}
+        De (II): Como $\abs{x-y}\leq\min\left\{\frac{1}{1+2\abs{y}}\varepsilon,1\right\}$, en particular $\abs{x-y}\leq1$. Por tanto se sigue de (I) que:
+        \begin{equation*}
+            \abs{x^2-y^2}\leq\left(1+2\abs{y}\right)\abs{x-y}
+        \end{equation*}
+        Pero también $\abs{x-y}\leq\frac{1}{1+2\abs{y}}\varepsilon$. Por tanto:
+        \begin{equation*}
+            \begin{split}
+                \abs{x^2-y^2}=&\left(1+2\abs{y}\right)\abs{x-y}\\
+                \leq&\left(1+2\abs{y}\right)\left(\frac{1}{1+2\abs{y}}\varepsilon\right)\\
+                =&\varepsilon
+            \end{split}
+        \end{equation*}
+        Luego $\abs{x^2-y^2}\leq\varepsilon$.
+        \qed
+    \end{proof}
+    \item Fije $y>0$.
+    \begin{enumerate}
+        \item Si $x>0$ satisface $\abs{x-y}\leq \frac{y}{2}$, \textbf{demuestre} que
+        \begin{equation*}
+            \abs{\sqrt{x}-\sqrt{y}}\leq\frac{2\abs{x-y}}{3\sqrt{y}}
+        \end{equation*}
+        \item Fije $\varepsilon>0$. \textbf{Deduzca} de (I) que si $x>0$ satisface
+        \begin{equation*}
+            \abs{x-y}\leq\min\left\{\frac{3\sqrt{y}}{2}\varepsilon,\frac{y}{2}\right\}
+        \end{equation*}
+        entonces $\abs{\sqrt{x}-\sqrt{y}}\leq\varepsilon$.
+    \end{enumerate}
+    \begin{proof}
+        De (I): Observemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{\sqrt{x}-\sqrt{y}}=&\abs{\sqrt{x}-\sqrt{y}}\cdot\frac{\abs{\sqrt{x}+\sqrt{y}}}{\abs{\sqrt{x}+\sqrt{y}}}\\
+                =&\frac{\abs{x-y}}{\abs{\sqrt{x}+\sqrt{y}}}\\
+                =&\abs{x-y}\frac{1}{\abs{\sqrt{x}+\sqrt{y}}}
+            \end{split}
+        \end{equation*}
+        Pero también como $\abs{x-y}\leq\frac{y}{2}$:
+            \begin{equation*}
+                \begin{split}
+                    \abs{x-y}\leq\frac{y}{2}\Rightarrow&-\frac{y}{2}\leq x-y\leq\frac{y}{2}\\
+                        \Rightarrow&\frac{y}{2}\leq x\leq\frac{3y}{2}\\
+                        \Rightarrow&\frac{\sqrt{y}}{\sqrt{2}}\leq \sqrt{x}\\
+                        \Rightarrow&\frac{\sqrt{y}}{2}\leq \sqrt{x}\\
+                        \Rightarrow&\frac{3\sqrt{y}}{2}\leq \sqrt{x}+\sqrt{y}\\
+                        \Rightarrow&\frac{1}{\abs{\sqrt{x}+\sqrt{y}}}\leq\frac{2}{3\sqrt{y}}
+                \end{split}
+            \end{equation*}
+            Pues $\abs{\sqrt{x}+\sqrt{y}}=\sqrt{x}+\sqrt{y}>0$ y $\sqrt{2}\leq2\Rightarrow\frac{1}{2}\leq\frac{1}{\sqrt{2}}\Rightarrow\frac{\sqrt{y}}{2}\leq\frac{\sqrt{y}}{\sqrt{2}}$. Por tanto:
+            \begin{equation*}
+                \begin{split}
+                    \abs{\sqrt{x}-\sqrt{y}}\leq&\abs{x-y}\cdot\frac{2}{3\sqrt{y}}\\
+                    =&\frac{2\abs{x-y}}{3\sqrt{y}}
+                \end{split}
+            \end{equation*}
+            De (II): Como $\abs{x-y}\leq\min\left\{\frac{3\sqrt{y}}{2}\varepsilon,\frac{y}{2}\right\}$, en particular $\abs{x-y}\leq\frac{y}{2}$. Por tanto, de (I) tenemos que:
+            \begin{equation*}
+                \abs{\sqrt{x}-\sqrt{y}}\leq\frac{2\abs{x-y}}{3\sqrt{y}}
+            \end{equation*}
+            También, $\abs{x-y}\leq\frac{3\sqrt{y}}{2}\varepsilon$. Por tanto:
+            \begin{equation*}
+                \begin{split}
+                    \abs{\sqrt{x}-\sqrt{y}}\leq&\frac{2\abs{x-y}}{3\sqrt{y}}\\
+                    \leq&\frac{2}{3\sqrt{y}}\cdot\frac{3\sqrt{y}}{2}\varepsilon\\
+                    =&\varepsilon\\
+                    \Rightarrow\abs{\sqrt{x}-\sqrt{y}}\leq&\varepsilon
+                \end{split}
+            \end{equation*}
+            \qed
+    \end{proof}
+    \item Fije $y\neq0$.
+    \begin{enumerate}
+        \item Si $x\neq0$ satisface $\abs{x-y}\leq\abs{y}/2$, \textbf{demuestre} que
+        \begin{equation*}
+            \abs{\frac{1}{x}-\frac{1}{y}}\leq\frac{2}{y^2}\abs{x-y}
+        \end{equation*}
+        \item Fije $\varepsilon>0$. \textbf{Deduzca} de (I) que si $x\neq0$ satisface
+        \begin{equation*}
+            \abs{x-y}\leq\min\left\{\frac{y^2}{2}\varepsilon,\frac{\abs{y}}{2}\right\}
+        \end{equation*}
+        entonces $\abs{1/x-1/y}\leq\varepsilon$.
+    \end{enumerate}
+    \begin{proof}
+        De (I): Observemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{x}-\frac{1}{y}}=&\abs{\frac{y-x}{xy}}\\
+                =&\frac{\abs{x-y}}{\abs{xy}}\\
+                =&\frac{1}{\abs{xy}}\abs{x-y}
+            \end{split}
+        \end{equation*}
+        Ahora, como $\abs{x-y}\leq\frac{\abs{y}}{2}$, entonces:
+        \begin{equation*}
+            \begin{split}
+                \abs{x-y}\leq\frac{\abs{y}}{2}\Rightarrow&\abs{\abs{x}-\abs{y}}\leq\frac{\abs{y}}{2}\\
+                \Rightarrow&-\frac{\abs{y}}{2}\leq\abs{x}-\abs{y}\leq\frac{\abs{y}}{2}\\
+                \Rightarrow&\frac{\abs{y}}{2}\leq\abs{x}\\
+                \Rightarrow&\frac{1}{\abs{x}}\leq\frac{2}{\abs{y}}\\
+                \Rightarrow&\frac{1}{\abs{xy}}\leq\frac{2}{\abs{y}^2}\\
+                \Rightarrow&\frac{1}{\abs{xy}}\leq\frac{2}{y^2}
+            \end{split}
+        \end{equation*}
+        Pues $\abs{\abs{x}-\abs{y}}\leq\abs{x-y}$. Por tanto:
+        \begin{equation*}
+            \abs{\frac{1}{x}-\frac{1}{y}}\leq\frac{2}{y^2}\abs{x-y}
+        \end{equation*}
+        De (II): Como $\abs{x-y}\leq\min\left\{\frac{y^2}{2}\varepsilon,\frac{\abs{y}}{2}\right\}$, en particular $\abs{x-y}\leq\frac{\abs{y}}{2}$. Por tanto, de la parte (I) tenemos que:
+        \begin{equation*}
+            \abs{\frac{1}{x}-\frac{1}{y}}\leq\frac{2}{y^2}\abs{x-y}
+        \end{equation*}
+        Pero también $\abs{x-y}\leq\frac{y^2}{2}\varepsilon$. Por tanto:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{x}-\frac{1}{y}}\leq&\frac{2}{y^2}\cdot\frac{y^2}{2}\varepsilon\\
+                =&\varepsilon\\
+                \Rightarrow\abs{\frac{1}{x}-\frac{1}{y}}\leq&\varepsilon
+            \end{split}
+        \end{equation*}
+        \qed
+    \end{proof}
+    \item Fije $y>0$.
+    \begin{enumerate}
+        \item Si $x>0$ satisface $\abs{x-y}\leq\frac{y}{2}$, \textbf{demuestre} que
+        \begin{equation*}
+            \abs{\frac{1}{\sqrt{x}}-\frac{1}{\sqrt{y}}}\leq\frac{2\abs{x-y}}{y^{3/2}}
+        \end{equation*}
+        \item Fije $\varepsilon>0$. \textbf{Deduzca} de (I) que si $x>0$ satisface
+        \begin{equation*}
+            \abs{x-y}\leq\min\left\{\frac{y^{3/2}}{2}\varepsilon,\frac{y}{2}\right\}
+        \end{equation*}
+        entonces $\abs{\frac{1}{\sqrt{x}}-\frac{1}{\sqrt{y}}}\leq\varepsilon$.
+    \end{enumerate}
+    \begin{proof}
+        De (I): Observemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{\sqrt{x}}-\frac{1}{\sqrt{y}}}=&\abs{\frac{\sqrt{y}-\sqrt{x}}{\sqrt{xy}}}\\
+                =&\frac{\abs{\sqrt{x}-\sqrt{y}}}{\sqrt{xy}}\\
+                =&\frac{\abs{\sqrt{x}-\sqrt{y}}}{\sqrt{xy}}\cdot\frac{\abs{\sqrt{x}+\sqrt{y}}}{\abs{\sqrt{x}+\sqrt{y}}}\\
+                =&\frac{\abs{x-y}}{\sqrt{xy}(\sqrt{x}+\sqrt{y})}\\
+                \leq&\frac{\abs{x-y}}{\sqrt{x}y}\\
+                =&\frac{1}{\sqrt{x}}\cdot\frac{\abs{x-y}}{y}
+            \end{split}
+        \end{equation*}
+        Pues $\sqrt{y}\leq\sqrt{x}+\sqrt{y}\Rightarrow\frac{1}{\sqrt{x}+\sqrt{y}}\leq\frac{1}{\sqrt{y}}$. Además:
+        \begin{equation*}
+            \begin{split}
+                \abs{x-y}\leq\frac{y}{2}\Rightarrow&-\frac{y}{2}\leq x-y\frac{y}{2}\\
+                \Rightarrow&\frac{y}{2}\leq x\\
+                \Rightarrow&\frac{\sqrt{y}}{\sqrt{2}}\leq \sqrt{x}\\
+                \Rightarrow&\frac{\sqrt{y}}{2}\leq \sqrt{x}\\
+                \Rightarrow&\frac{1}{\sqrt{x}}\leq\frac{2}{\sqrt{y}}
+            \end{split}
+        \end{equation*}
+        Pues $\frac{1}{2}\leq\frac{1}{\sqrt{2}}$. Por tanto:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{\sqrt{x}}-\frac{1}{\sqrt{y}}}\leq&\frac{2}{\sqrt{y}}\cdot\frac{\abs{x-y}}{y}\\
+                =&\frac{2\abs{x-y}}{y^{3/2}}\\
+                \Rightarrow\abs{\frac{1}{\sqrt{x}}-\frac{1}{\sqrt{y}}}\leq&\frac{2\abs{x-y}}{y^{3/2}}
+            \end{split}
+        \end{equation*}
+        De (II): Como $\abs{x-y}\leq\min\left\{\frac{y^{3/2}}{2}\varepsilon,\frac{y}{2}\right\}$, en particular $\abs{x-y}\leq\frac{y}{2}$. Por la parte (I), tenemos que:
+        \begin{equation*}
+            \abs{\frac{1}{\sqrt{x}}-\frac{1}{\sqrt{y}}}\leq\frac{2\abs{x-y}}{y^{3/2}}
+        \end{equation*}
+        Además, $\abs{x-y}\leq\frac{y^{3/2}}{2}\varepsilon$. Por tanto:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{\sqrt{x}}-\frac{1}{\sqrt{y}}}\leq&\frac{2\abs{x-y}}{y^{3/2}}\\
+                \leq&\frac{2}{y^{3/2}}\cdot\frac{y^{3/2}}{2}\varepsilon\\
+                =&\varepsilon\\
+                \Rightarrow\abs{\frac{1}{\sqrt{x}}-\frac{1}{\sqrt{y}}}\leq&\varepsilon
+            \end{split}
+        \end{equation*}
+        \qed
+    \end{proof}
+    \item \begin{enumerate}
+        \item Si $x\neq\sqrt{5/2},-\sqrt{5/2}$ satisface $\abs{x-2}\leq1/4$, \textbf{demuestre} que
+        \begin{equation*}
+            \abs{\frac{1}{2x^2-5}-\frac{1}{3}}\leq\frac{68}{27}\abs{x-2}
+        \end{equation*}
+        \item Fije $\varepsilon>0$. \textbf{Deduzca} de (I) que si $x\neq\sqrt{5/2},-\sqrt{5/2}$ satisface
+        \begin{equation*}
+            \abs{x-2}\leq\min\left\{\frac{27}{68}\varepsilon,\frac{1}{4}\right\},
+        \end{equation*}
+        entonces $\abs{1/\left(2x^2-5\right)-1/3}\leq\varepsilon$.
+    \end{enumerate}
+    \begin{proof}
+        De (I): Observemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{2x^2-5}-\frac{1}{3}}=&\abs{\frac{3-2x^2+5}{3(2x^2-5)}}\\
+                =&\frac{\abs{2x^2-8}}{3\abs{2x^2-5}}\\
+                =&\frac{2\abs{x^2-4}}{3\abs{2x^2-5}}\\
+                =&\frac{2\abs{x+2}\abs{x-2}}{3\abs{2x^2-5}}\\
+                =&\frac{2\abs{x+2}}{3\abs{2x^2-5}}\cdot\abs{x-2}\\
+                \leq&\frac{2(\abs{x}+2)}{3\abs{2x^2-5}}\cdot\abs{x-2}
+            \end{split}
+        \end{equation*}
+        Pues $\abs{x+2}\leq\abs{x}+2$. Ahora como $\abs{x-2}\leq1/4$, entonces:
+        \begin{equation*}
+            \begin{split}
+                \abs{x-2}\leq\frac{1}{4}\Rightarrow&-\frac{1}{4}\leq x-2\leq\frac{1}{4}\\
+                \Rightarrow&\frac{7}{4}\leq x\leq\frac{9}{4}\\
+                \Rightarrow&\frac{7}{4}\leq \abs{x}\leq\frac{9}{4}\\
+                \Rightarrow&\frac{7}{4}\leq \abs{x}+2\leq\frac{17}{4}
+            \end{split}
+        \end{equation*}
+        Por tanto:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{2x^2-5}-\frac{1}{3}}\leq&\frac{17}{4}\cdot\frac{2}{3\abs{2x^2-5}}\cdot\abs{x-2}\\
+                =&\frac{17}{6\abs{2x^2-5}}\abs{x-2}\\
+                =&\frac{17}{6}\frac{1}{\abs{2x^2-5}}\abs{x-2}
+            \end{split}
+        \end{equation*}
+        Además:
+        \begin{equation*}
+            \begin{split}
+                2\abs{x^2}-5\leq\abs{2x^2-5}\Rightarrow&2\cdot\frac{49}{16}-5\leq\abs{2x^2-5}\\
+                \Rightarrow&\frac{98-80}{16}\leq\abs{2x^2-5}\\
+                \Rightarrow&\frac{18}{16}\leq\abs{2x^2-5}\\
+                \Rightarrow&\frac{9}{8}\leq\abs{2x^2-5}\\
+                \Rightarrow&\frac{1}{\abs{2x^2-5}}\leq\frac{8}{9}
+            \end{split}
+        \end{equation*}
+        Pues $\frac{49}{16}\leq\abs{x}^2$ (usando la parte anterior). Luego:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{2x^2-5}-\frac{1}{3}}\leq&\frac{17}{6}\frac{1}{\abs{2x^2-5}}\abs{x-2}\\
+                \leq&\frac{17}{6}\cdot\frac{8}{9}\abs{x-2}\\
+                =&\frac{17\cdot4}{3\cdot9}\abs{x-2}\\
+                =&\frac{68}{27}\abs{x-2}\\
+                \Rightarrow\abs{\frac{1}{2x^2-5}-\frac{1}{3}}\leq&\frac{68}{27}\abs{x-2}
+            \end{split}
+        \end{equation*}
+        De (II): Como $\abs{x-2}\leq\min\left\{\frac{27}{68}\varepsilon,\frac{1}{4}\right\}$, en particular $\abs{x-2}\leq1/4$. Por (I) se cumple que:
+        \begin{equation*}
+            \abs{\frac{1}{2x^2-5}-\frac{1}{3}}\leq\frac{68}{27}\abs{x-2}
+        \end{equation*}
+        Además, $\abs{x-2}\leq\frac{27}{68}\varepsilon$. Por tanto:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{2x^2-5}-\frac{1}{3}}\leq&\frac{68}{27}\abs{x-2}\\
+                \leq&\frac{68}{27}\cdot\frac{27}{68}\varepsilon\\
+                =&\varepsilon\\
+                \Rightarrow\abs{\frac{1}{2x^2-5}-\frac{1}{3}}\leq&\varepsilon
+            \end{split}
+        \end{equation*}
+        \qed
+    \end{proof}
+    \item \begin{enumerate}
+        \item \textbf{Demuestre} que para cualquier $x\in\mathbb{R}$ se cumple la desigualdad
+        \begin{equation*}
+            \abs{\left(-x^3-2x^2+x+1\right)-\left(-3\right)}\geq2-\abs{1-x^2}\abs{x+2}
+        \end{equation*}
+        \item \textbf{Pruebe} que para cualquier $x\in\mathbb{R}$ que satisfaga $\abs{x+2}\leq1$, se cumple la desigualdad
+        \begin{equation*}
+            \abs{1-x^2}\leq8
+        \end{equation*}
+        \item \textbf{Deduzca} de (I) y (II) que para cualquier $x\in\mathbb{R}$ que satisfaga $\abs{x+2}\leq1/8$, se cumple la desigualdad
+        \begin{equation*}
+            \abs{\left(-x^3-2x^2+x+1\right)-\left(-3\right)}\geq1
+        \end{equation*}
+    \end{enumerate}
+    \begin{proof}
+        De (I): Sea $x\in\mathbb{R}$. Entonces:
+        \begin{equation*}
+            \begin{split}
+                \abs{-x^3-2x^2+x+1-(-3)}=&\abs{-x^3-2x^2+x+4}\\
+                =&\abs{2-(x^3+2x^2-x-2)}\\
+                \geq&\abs{2}-\abs{x^3+2x^2-x-2}\\
+                =&2-\abs{x^2(x+2)-x-2}\\
+                =&2-\abs{(x^2-1)(x+2)}\\
+                =&2-\abs{x^2-1}\abs{x+2}\\
+                =&2-\abs{1-x^2}\abs{x+2}\\
+                \Rightarrow\abs{-x^3-2x^2+x+1-(-3)}\geq&2-\abs{1-x^2}\abs{x+2}
+            \end{split}
+        \end{equation*}
+        De (II): Sea $x\in\mathbb{R}$ tal que $\abs{x+2}\leq1$. Entonces:
+        \begin{equation*}
+            \begin{split}
+                \abs{x+2}\leq1\Rightarrow&-1\leq x+2\leq1\\
+                \Rightarrow&-3\leq x\leq-1\\
+                \Rightarrow&1\leq x^2\leq9\\
+                \Rightarrow&0\leq x^2-1\leq8\\
+                \Rightarrow&-8\leq x^2-1\leq8\\
+                \Rightarrow&\abs{x^2-1}\leq8\\
+                \Rightarrow&\abs{1-x^2}\leq8
+            \end{split}
+        \end{equation*}
+        De (III): Sea $x\in\mathbb{R}$ tal que $\abs{x-2}\leq1/8$. Por (I), como $x\in\mathbb{R}$ se cumple:
+        \begin{equation*}
+            \abs{\left(-x^3-2x^2+x+1\right)-\left(-3\right)}\geq2-\abs{1-x^2}\abs{x+2}
+        \end{equation*}
+        y, como $\abs{x-2}\leq1/8<1$, por (II): $\abs{1-x^2}\leq8\Rightarrow-8\leq-\abs{1-x^2}$. Por tanto:
+        \begin{equation*}
+            \begin{split}
+                \abs{\left(-x^3-2x^2+x+1\right)-\left(-3\right)}\geq&2-\abs{1-x^2}\abs{x+2}\\
+                \geq&2-8\abs{x+2}\\
+                \geq&2-8\frac{1}{8}\\
+                =&2-1\\
+                =&1\\
+                \Rightarrow \abs{\left(-x^3-2x^2+x+1\right)-\left(-3\right)}\geq&1
+            \end{split}
+        \end{equation*}
+        \qed
+    \end{proof}
+    \item \begin{enumerate}
+        \item \textbf{Demuestre} que para cualquier $x\in\mathbb{R}/\left\{1\right\}$, se cumple la desigualdad
+        \begin{equation*}
+            \abs{\frac{x^2-3}{1-x}-2}\geq5-\frac{\abs{x}\abs{x-3}}{\abs{1-x}}.
+        \end{equation*}
+        \item \textbf{Pruebe} que para cualquier $x\in\mathbb{R}$ que satisfaga $\abs{x-3}\leq3/2$, se cumple la desigualdad
+        \begin{equation*}
+            \frac{\abs{x}}{\abs{1-x}}\leq9.
+        \end{equation*}
+        \item \textbf{Deduzca} de (I) y (II) que para cualquier $x\in\mathbb{R}$ que satisfaga $\abs{x-3}\leq4/9$, se cumple la desigualdad
+        \begin{equation*}
+            \abs{\frac{x^2-3}{1-x}-2}\geq1.
+        \end{equation*}
+    \end{enumerate}
+    \begin{proof}
+        De (I): Sea $x\in\mathbb{R}/\{1\}$. Observemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{x^2-3}{1-x}-2}&=\abs{\frac{x^2-3-2+2x}{1-x}}\\
+                &=\abs{\frac{x^2+2x-5}{1-x}}\\
+                &=\abs{\frac{x^2+2x-5+5x-5x}{1-x}}\\
+                &=\abs{\frac{x^2-3x-5+5x}{1-x}}\\
+                &\geq\frac{\abs{5x-5}-\abs{x^2-3x}}{\abs{1-x}}\\
+                &=\frac{5\abs{x-1}-\abs{x(x-3)}}{\abs{1-x}}\\
+                &=5-\frac{\abs{x}\abs{x-3}}{\abs{1-x}}\\
+                \Rightarrow \abs{\frac{x^2-3}{1-x}-2}&\geq5-\frac{\abs{x}\abs{x-3}}{\abs{1-x}}
+            \end{split}
+        \end{equation*}
+        De (II): Sea $x\in\mathbb{R}/\{1\}$ tal que $\abs{x-3}\leq3/2$, observemos:
+        \begin{equation*}
+            \begin{split}
+                \abs{x-3}\leq\frac{3}{2}\iff&-\frac{3}{2}\leq x-3\leq\frac{3}{2}\\
+                \iff&-\frac{3}{2}+3\leq x\leq\frac{3}{2}+3\\
+                \iff&\frac{3}{2}\leq x\leq\frac{9}{2}\\
+                \Rightarrow& -\frac{9}{2}\leq x\leq\frac{9}{2}\\
+                \Rightarrow& \abs{x}\leq\frac{9}{2}
+            \end{split}
+        \end{equation*}
+        Además:
+        \begin{equation*}
+            \begin{split}
+                \abs{x-3}\leq\frac{3}{2}\iff&\abs{3-x}\leq\frac{3}{2}\\
+                \iff&-\frac{3}{2}\leq 3-x\leq\frac{3}{2}\\
+                \iff&-\frac{3}{2}-2\leq 1-x\leq\frac{3}{2}-2\\
+                \iff&-\frac{7}{2}\leq 1-x\leq-\frac{1}{2}\\
+                \Rightarrow&1-x\leq-\frac{1}{2}\\
+                \Rightarrow&\frac{1}{2}\leq\abs{1-x}\\
+                \Rightarrow&\frac{1}{\abs{1-x}}\leq2
+            \end{split}
+        \end{equation*}
+        Con estas dos desigualdades, tenemos entonces que:
+        \begin{equation*}
+            \begin{split}
+                \frac{\abs{x}}{\abs{1-x}}\leq&\frac{9}{2}\cdot2\\
+                =&9\\
+                \Rightarrow\frac{\abs{x}}{\abs{1-x}}\leq&9
+            \end{split}
+        \end{equation*}
+        De (III): Sea $x\in\mathbb{R}/\{1\}$ tal que $\abs{x-3}\leq4/9$. En particular como $4/9<3/2$ entonces $\abs{x-3}\leq3/2$. Por tanto, usando la parte (II) obtenemos que:
+        \begin{equation*}
+                \frac{\abs{x}}{\abs{1-x}}\leq9\Rightarrow-\frac{\abs{x}}{\abs{1-x}}\geq-9
+        \end{equation*}
+        Por la parte (I), siendo que $x\in\mathbb{R}/\{1\}$, tenemos que:
+        \begin{equation*}
+            \abs{\frac{x^2-3}{1-x}-2}\geq5-\frac{\abs{x}\abs{x-3}}{\abs{1-x}}.
+        \end{equation*}
+        Usando la desigualdad anterior, obtenemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{x^2-3}{1-x}-2}\geq&5-\frac{\abs{x}\abs{x-3}}{\abs{1-x}}\\
+                =&5-\frac{\abs{x}}{\abs{1-x}}\abs{x-3}\\
+                \geq&5-9\cdot\abs{x-3}\\
+                =&5+9\cdot(-\abs{x-3})\\
+                \geq&5+9\cdot\left(-\frac{4}{9}\right)\\
+                =&5-4\\
+                =&1\\
+                \Rightarrow\abs{\frac{x^2-3}{1-x}-2}\geq&1
+            \end{split}
+        \end{equation*}
+        Pues $\abs{x-3}\leq4/9\Rightarrow-\abs{x-3}\geq-4/9$.
+        \qed
+    \end{proof}
+    \item \textbf{Muestre} que
+    \begin{equation*}
+        \abs{a\sen x+b\cos x}\leq\sqrt{a^2+b^2}, \quad \forall a,b,x\in\mathbb{R}.
+    \end{equation*}
+    \begin{proof}
+        Sean $a,b,x\in\mathbb{R}$. Notemos que la desigualdad anterior es equivalente a: 
+        \begin{equation*}
+            \begin{split}
+                \abs{a\sen x+b\cos x}\leq\sqrt{a^2+b^2}\iff&\left(a\sen x+b\cos x\right)^2\leq a^2+b^2\\
+                \iff&a^2\sen^2 x+2ab\sen x\cos x+b^2\cos^2 x\leq a^2+b^2\\
+                \iff&2ab\sen x\cos x\leq a^2\left(1-\sen^2x\right)+b^2\left(1-\cos^2x\right)\\
+                \iff&2ab\sen x\cos x\leq a^2\cos^2x+b^2\sen^2x\\
+                \iff&0\leq a^2\cos^2x-2ab\sen x\cos x+b^2\sen^2x\\
+                \iff&0\leq \left(a\cos x-b\sen x\right)^2
+            \end{split}
+        \end{equation*}
+        Pues $\abs{a\sen x+b\cos x}\geq0$. Por lo anterior, basta entonces probar que $\left(a\cos x-b\sen x\right)^2\geq0$, lo cual es cierto por propiedades de cuadrados. Por tanto, usando la equivalencia anterior tenemos:
+        \begin{equation*}
+            \Rightarrow\abs{a\sen x+b\cos x}\leq\sqrt{a^2+b^2}
+        \end{equation*}
+        \qed
+    \end{proof}
+    \item \textbf{Demuestre} por inducción que, para todo número natural $n$, el número $x_n=7^n-1$ es divisible por seis.
+    
+    \begin{proof}
+        Procederemos por inducción sobre $n$. Para $n=1$ el resultado es claro, pues $x_1=7^1-1=6$ y $6|6$.
+        Suponga el resultado cierto para $n=k$. Probaremos que se cumple para $n=k+1$, en efecto:
+        \begin{equation*}
+            \begin{split}
+                7^{k+1}-1=&7^{k+1}-7^k+7^k-1\\
+                =&7^k\cdot\left(7-1\right)+1\cdot\left(7^k-1\right)\\
+                =&7^k\cdot6+1\cdot\left(7^k-1\right)
+            \end{split}
+        \end{equation*}
+        Donde $6|6$ y $6|\left(7^k-1\right)$ (por hipótesis de inducción). Por tanto, $6$ debe dividir a cualquier combinación lineal de estos dos números. Así
+        \begin{equation*}
+                6|\left[7^k\cdot6+1\cdot\left(7^k-1\right)\right]\Rightarrow6|\left(7^{k+1}-1\right)
+        \end{equation*}
+        De esta forma, el resultado se cumple para $n=k+1$. Aplicando inducción, el resultado se cumple para toda $n\in\mathbb{N}$.
+        \qed
+    \end{proof}
+    \item \begin{enumerate}
+        \item Si $x,y\in\mathbb{R}$, \textbf{pruebe} la desigualdad
+        \begin{equation*}
+            \frac{\abs{x+y}}{1+\abs{x+y}}\leq\frac{\abs{x}}{1+\abs{x}}+\frac{\abs{y}}{1+\abs{y}}.
+        \end{equation*}
+        \textit{Sugerencia.} Escriba $\frac{\abs{x+y}}{1+\abs{x+y}}=\frac{1}{\frac{1}{\abs{x+y}}+1}$, la desigualdad del triángulo.
+        \item Para cualquier sucesión $\left\{a_n\right\}^\infty_{n=1}$ de números reales, \textbf{pruebe} por inducción la desigualdad
+        \begin{equation*}
+            \frac{\abs{a_1+\cdots+a_n}}{1+\abs{a_1+\cdots+a_n}}\leq\frac{\abs{a_1}}{1+\abs{a_1}}+\cdots+\frac{\abs{a_n}}{1+\abs{a_n}}, \quad \forall n\in\mathbb{N}, n\geq2.
+        \end{equation*}
+    \end{enumerate}
+    \begin{proof}
+        De (I): Sean $x,y\in\mathbb{R}$. Si $x=-y$ o, $x = 0$ y $y = 0$, el resultado es inmediato, pues en ambos casos:
+        \begin{equation*}
+                \frac{\abs{x+y}}{1+\abs{x+y}}=0
+                \Rightarrow\frac{\abs{x+y}}{1+\abs{x+y}}\leq\frac{\abs{x}}{1+\abs{x}}+\frac{\abs{y}}{1+\abs{y}}
+        \end{equation*}
+        Suponga que $x\neq y$ y que ambos no son cero (esto es, si uno es cero el otro no lo es). Observemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{x+y}\leq\abs{x}+\abs{y}\Rightarrow&\frac{1}{\abs{x+y}}\leq\frac{1}{\abs{x}+\abs{y}}\\
+                \Rightarrow&\frac{1}{\abs{x}+\abs{y}}+1\leq\frac{1}{\abs{x+y}}+1\\
+                \Rightarrow&\frac{1}{\frac{1}{\abs{x+y}}+1}\leq\frac{1}{\frac{1}{\abs{x}+\abs{y}}+1}
+            \end{split}
+        \end{equation*}
+        Usando la sugerencia, se obtiene que:
+        \begin{equation*}
+            \begin{split}
+                \frac{\abs{x+y}}{1+\abs{x+y}}\leq&\frac{1}{\frac{1}{\abs{x}+\abs{y}}+1}\\
+                =&\frac{\abs{x}+\abs{y}}{1+\abs{x}+\abs{y}}\\
+                =&\frac{\abs{x}}{1+\abs{x}+\abs{y}}+\frac{\abs{y}}{1+\abs{x}+\abs{y}}\\
+                \leq&\frac{\abs{x}}{1+\abs{x}}+\frac{\abs{y}}{1+\abs{y}}\\
+                \Rightarrow\frac{\abs{x+y}}{1+\abs{x+y}}\leq&\frac{\abs{x}}{1+\abs{x}}+\frac{\abs{y}}{1+\abs{y}}
+            \end{split}
+        \end{equation*}
+        Pues $1+\abs{x}\leq1\abs{x}+\abs{y}\Rightarrow\frac{1}{1+\abs{x}+\abs{y}}\leq\frac{1}{1+\abs{x}}$ (de forma análoga con $\abs{y}$).
+
+        De (II): Procedamos por inducción sobre $n$. El caso $n=2$ se probó en la parte (I). Suponga que el resultado se cumple para $n=k$. Probaremos que se cumple para $n=k+1$. En efecto, veamos que:
+        \begin{equation*}
+            \frac{\abs{a_1+\cdots+a_{k+1}}}{1+\abs{a_1+\cdots+a_{k+1}}}\leq\frac{\abs{a_1+\cdots+a_k}}{1+\abs{a_1+\cdots+a_k}}+\frac{\abs{a_{k+1}}}{1+\abs{a_{k+1}}}
+        \end{equation*}
+        aplicando el caso $n=2$ a $a_1+\cdots+a_{k}$ y $a_{k+1}$. Usando la hipótesis de inducción se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \frac{\abs{a_1+\cdots+a_{k+1}}}{1+\abs{a_1+\cdots+a_{k+1}}}\leq&\frac{\abs{a_1+\cdots+a_k}}{1+\abs{a_1+\cdots+a_k}}+\frac{\abs{a_{k+1}}}{1+\abs{a_{k+1}}}\\
+                \leq&\frac{\abs{a_1}}{1+\abs{a_1}}+\cdots+\frac{\abs{a_k}}{1+\abs{a_k}}+\frac{\abs{a_{k+1}}}{1+\abs{a_{k+1}}}\\
+                \Rightarrow\frac{\abs{a_1+\cdots+a_{k+1}}}{1+\abs{a_1+\cdots+a_{k+1}}}\leq&\frac{\abs{a_1}}{1+\abs{a_1}}+\cdots+\frac{\abs{a_{k+1}}}{1+\abs{a_{k+1}}}
+            \end{split}
+        \end{equation*}
+        De esta forma, el resultado se cumple para $n=k+1$. Aplicando inducción, el resultado se cumple para toda $n\in\mathbb{N}$, $n\geq2$.
+        \qed
+    \end{proof}
+    \item \begin{enumerate}
+        \item Si $a,b\geq0$, \textbf{muestre} que
+        \begin{equation*}
+            \sqrt[m]{a+b}\leq\sqrt[m]{a}+\sqrt[m]{b} \qquad \textup{y} \qquad \abs{\sqrt[m]{a}-\sqrt[m]{b}}\leq\sqrt[m]{\abs{a-b}}, \quad \forall m\in\mathbb{N}.
+        \end{equation*}
+        \item \textbf{Demuestre} que si $a\geq-1$, entonces
+        \begin{equation*}
+            \sqrt[m]{1+a}\leq1+\frac{a}{m},\quad\forall m\in\mathbb{N}.
+        \end{equation*}
+    \end{enumerate}
+    \begin{proof}
+        De (I): Para la primera desigualdad, observemos $\forall m\in\mathbb{N}$ que:
+        \begin{equation*}
+            \begin{split}
+                a+b\leq& a+\sum_{k=1}^{m-1}{m \choose k}\left(\sqrt[m]{a}\right)^k\left(\sqrt[m]{b}\right)^{m-k}+b\\
+                =& {m \choose 0}\left(\sqrt[m]{a}\right)^m+\sum_{k=1}^{m-1}{m \choose k}\left(\sqrt[m]{a}\right)^k\left(\sqrt[m]{b}\right)^{m-k}+{m \choose m}\left(\sqrt[m]{b}\right)^m\\
+                =&\sum_{k=0}^{m}{m \choose k}\left(\sqrt[m]{a}\right)^k\left(\sqrt[m]{b}\right)^{m-k}\\
+                =&\left(\sqrt[m]{a}+\sqrt[m]{b}\right)^m\\
+                \Rightarrow \sqrt[m]{a+b}\leq&\sqrt[m]{a}+\sqrt[m]{b}
+            \end{split}
+        \end{equation*}
+        Pues $a+b\geq0$ y el término $\sum_{k=1}^{m-1}{m \choose k}\left(\sqrt[m]{a}\right)^k\left(\sqrt[m]{b}\right)^{m-k}\geq0$ y ${m \choose 0}=1={m \choose m}$. Para la segunda desigualdad, sea $m\in\mathbb{N}$. Por la parte anterior, si $x,y\in\mathbb{R}$ son tales que $x,y\geq 0$, entonces:
+        \begin{equation*}
+            \Rightarrow \sqrt[m]{x+y}\leq\sqrt[m]{x}+\sqrt[m]{y}
+        \end{equation*}
+        Para $a$ y $b$ tenemos dos casos: $a>b$ y $a<b$ (el caso $a=b$ es inmediato, pues la desigualdad se cumple de forma inmediata).
+        \begin{itemize}
+            \item Si $a>b$, entonces $a-b> 0\Rightarrow \abs{a-b}=a-b$. Tomando $x=a-b$ y $y=b$ en la desigualdad anterior se obtiene que:
+            \begin{equation*}
+                \begin{split}
+                    \Rightarrow \sqrt[m]{a}\leq&\sqrt[m]{a-b}+\sqrt[m]{b}\\
+                    \Rightarrow \sqrt[m]{a}-\sqrt[m]{b}\leq&\sqrt[m]{a-b}
+                \end{split}
+            \end{equation*}
+            Por el ejercicio 1.24 de esta lista, al ser $a,b\geq 0$, y como $a>b$, entonces $\sqrt[m]{a}>\sqrt[m]{b}$. Por tanto:
+            \begin{equation*}
+                \begin{split}
+                    \Rightarrow 0\leq\sqrt[m]{a}-\sqrt[m]{b}\leq&\sqrt[m]{a-b}\\
+                    \Rightarrow -\sqrt[m]{a-b}\leq\sqrt[m]{a}-\sqrt[m]{b}\leq&\sqrt[m]{a-b}\\
+                    \Rightarrow \abs{\sqrt[m]{a}-\sqrt[m]{b}}\leq&\sqrt[m]{a-b}\\
+                    \Rightarrow \abs{\sqrt[m]{a}-\sqrt[m]{b}}\leq&\sqrt[m]{\abs{a-b}}\\
+                \end{split}
+            \end{equation*}
+            \item $a<b$ es análogo al anterior intercambiando el papel de $a$ y $b$. 
+        \end{itemize}
+        De (II): Sea $m\in\mathbb{N}$, usando el binomio de Newton, para $m=1$ el resultado es inmediato, pues:
+        \begin{equation*}
+            \begin{split}
+                \sqrt[1]{1+a}=&1+a\\
+                \leq&1+\frac{a}{1}
+            \end{split}
+        \end{equation*}
+        Suponga que $m\geq2$, entonces:
+        \begin{equation*}
+            \begin{split}
+                \left(1+\frac{a}{m}\right)^m=&\sum_{k=0}^{m} {m \choose k} 1^k\cdot \left(\frac{a}{m}\right)^{m-k}\\
+                =&\sum_{k=0}^{m-2} {m \choose k} \left(\frac{a}{m}\right)^{m-k}+{m \choose m-1}\frac{a}{m}+1\\
+                =&\sum_{k=0}^{m-2} {m \choose k} \left(\frac{a}{m}\right)^{m-k}+m\cdot\frac{a}{m}+1\\
+                =&\sum_{k=0}^{m-2} {m \choose k} \left(\frac{a}{m}\right)^{m-k}+a+1\\
+            \end{split}
+        \end{equation*}
+        Tenemos 3 casos con $a$:
+        \begin{itemize}
+            \item $a\geq0$, en este caso, el término $\frac{a}{n}\geq0$, por tanto la sumatoria:
+            \begin{equation*}
+                \sum_{k=0}^{m-2} {m \choose k} \left(\frac{a}{m}\right)^{m-k}\geq0
+            \end{equation*}
+            Luego, usando la igualdad anterior:
+            \begin{equation*}
+                \begin{split}
+                    \left(1+\frac{a}{m}\right)^m\geq&1+a\\
+                    \Rightarrow \sqrt[m]{1+a}\leq&1+\frac{a}{m}
+                \end{split}
+            \end{equation*}
+            Pues el término $1+a\geq0$.
+            \item $a=-1$. En este caso la desigualdad es inmediata, pues:
+            \begin{equation*}
+                \begin{split}
+                    \sqrt[m]{1+a}=&\sqrt[m]{0}\\
+                    =&0\\
+                    \leq& 1-\frac{1}{m}\\
+                    =&1+\frac{a}{m}\\
+                    \Rightarrow\sqrt[m]{1+a}\leq&1+\frac{a}{m}
+                \end{split}
+            \end{equation*}
+            \item $0> a> -1$. El caso $m=1$ es inmediato. Suponga $m\geq2$, basta probar que $\sum_{k=2}^{m}{m \choose k}\left(\frac{a}{m}\right)^k\geq 0$, ya que
+            \begin{equation*}
+                \begin{split}
+                    \sqrt[m]{1+a}\leq 1+\frac{a}{m}\iff&1+a\leq \sum_{k=0}^{m}{m \choose k}\left(\frac{a}{m}\right)^k\\
+                    \iff&1+a\leq1+a+\sum_{k=2}^{m}{m \choose k}\left(\frac{a}{m}\right)^k\\
+                    \iff&0\leq\sum_{k=2}^{m}{m \choose k}\left(\frac{a}{m}\right)^k\\
+                \end{split}
+            \end{equation*}
+            En efecto, procedamos por inducción sobre $m$. Para $m=2$ el resultado es inmediato, pues
+            \begin{equation*}
+                \begin{split}
+                    \sum_{k=2}^{2}{2 \choose k}\left(\frac{a}{2}\right)^k=\frac{a^2}{4}\geq0\\
+                \end{split}
+            \end{equation*}
+            Para $m=3$ el resultado también se cumple, ya que
+            \begin{equation*}
+                \begin{split}
+                    \sum_{k=2}^{3}{3 \choose k}\left(\frac{a}{3}\right)^k=&{3 \choose 2}\left(\frac{a}{3}\right)^2+{3 \choose 3}\left(\frac{a}{3}\right)^3\\
+                    =&3\frac{a^2}{9}+\frac{a^3}{27}\\
+                    =&\frac{9a^2}{27}+\frac{a^3}{27}\\
+                    =&\frac{9a^2+a^3}{27}\\
+                    =&\frac{a^2\left(9+a\right)}{27}\\
+                \end{split}
+            \end{equation*}
+            Donde $9+a\geq 9+(-1)=8\geq 0$. Por tanto la sumatoria anterior es no negativa.
+
+            Suponga que el resultado se cumple para $n-1, n\in\mathbb{N}$, $n-1\geq2$. Probaremos que se cumple para $n+1$. Si $n$ es impar, entonces $n+1$ es par, luego el término
+            \begin{equation*}
+                \left(\frac{a}{n+1}\right)^{n+1}\geq0
+            \end{equation*}
+            De esta forma, como
+            \begin{equation*}
+                \begin{split}
+                    \sum_{k=2}^{n}{n \choose k}\left(\frac{a}{n}\right)^k\geq0\Rightarrow&\sum_{k=2}^{n}\frac{n!}{k!(n-k)!}\left(\frac{a}{n}\right)^k\geq0\\
+                    \Rightarrow&\sum_{k=2}^{n}\frac{n!}{k!(n-k)!}\cdot\frac{n+1}{n+1-k}\left(\frac{a}{n+1}\right)^k\geq0\\
+                    \Rightarrow&\sum_{k=2}^{n}\frac{(n+1)!}{k!(n+1-k)!}\left(\frac{a}{n+1}\right)^k\geq0\\
+                    \Rightarrow&\sum_{k=2}^{n}{n+1 \choose k}\left(\frac{a}{n+1}\right)^k\geq0\\
+                    \Rightarrow&\sum_{k=2}^{n}{n+1 \choose k}\left(\frac{a}{n+1}\right)^k\geq0+\left(\frac{a}{n+1}\right)^{n+1}\\
+                    \Rightarrow&\sum_{k=2}^{n+1}{n+1 \choose k}\left(\frac{a}{n+1}\right)^k\geq0\\
+                \end{split}
+            \end{equation*}
+            el resultado se cumple. Si $n$ es par, entonces $n+1$ es impar. Ahora, de manera similar a la parte anterior se tiene que:
+            \begin{equation*}
+                \sum_{k=2}^{n-1}{n+1 \choose k}\left(\frac{a}{n+1}\right)^k\geq0
+            \end{equation*}
+            Por lo que para probar el resultado basta con ver que ${n+1 \choose n}\left(\frac{a}{n+1}\right)^n+{n+1 \choose n+1}\left(\frac{a}{n+1}\right)^{n+1}\geq0$. En efecto, se tiene que
+            \begin{equation*}
+                \begin{split}
+                    {n+1 \choose n}\left(\frac{a}{n+1}\right)^n+{n+1 \choose n+1}\left(\frac{a}{n+1}\right)^{n+1}=&(n+1)\frac{a^n}{(n+1)^n}+\frac{a^{n+1}}{(n+1)^{n+1}}\\
+                    =&\frac{(n+1)^2a^n}{(n+1)^{n+1}}+\frac{a^{n+1}}{(n+1)^{n+1}}\\
+                    =&\frac{(n+1)^2a^n+a^{n+1}}{(n+1)^{n+1}}\\
+                    =&\frac{a^n[(n+1)^2+a]}{(n+1)^{n+1}}\\
+                \end{split}
+            \end{equation*}
+            Por tanto como $a^n\geq0$ y $(n+1)^2+a\geq (n+1)^2-1\geq(1+1)^2-1=3\geq0$, se tiene entonces que
+            \begin{equation*}
+                \sum_{k=2}^{n+1}{n+1 \choose k}\left(\frac{a}{n+1}\right)^k\geq0
+            \end{equation*}
+            Lo cual prueba el resultado. Aplicando inducción se tiene que se cumple para todo $m\geq2$. De esta forma, por el sí y sólo si anterior se sigue que
+            \begin{equation*}
+                \sqrt[m]{1+a}\leq 1+\frac{a}{m}
+            \end{equation*}
+            para todo $m\in\mathbb{N}$.
+        \end{itemize}
+        \qed
+    \end{proof}
+    \item \textbf{Demuestre} por inducción que, para toda $n\in\mathbb{N}$, se cumplen las identidades siguientes.
+    \begin{enumerate}
+        \item $1^2+2^2+\cdots+n^2=\frac{n\left(n+1\right)\left(2n+1\right)}{6}$.
+        \item $1^3+2^3+\cdots+n^3=\frac{n^2\left(n+1\right)^2}{4}$.
+        \item $\frac{1}{1\cdot2\cdot3}+\frac{1}{2\cdot3\cdot4}+\cdots+\frac{1}{n\left(n+1\right)\left(n+2\right)}=\frac{1}{4}-\frac{1}{2\left(n+1\right)\left(n+2\right)}$.
+        \item $\frac{1}{1\cdot3}+\frac{1}{2\cdot4}+\cdots+\frac{1}{n\left(n+2\right)}=\frac{n\left(3n+5\right)}{4\left(n+1\right)\left(n+2\right)}$.
+    \end{enumerate}
+    \begin{proof}
+        De (I): Procedamos por inducción sobre $n$. EL caso $n=1$ es inmediato, pues:
+        \begin{equation*}
+            \begin{split}
+                1^2=&\frac{1\cdot2\cdot3}{6}\\
+                =&\frac{(1)\cdot(1+1)\cdot(2\cdot1+1)}{6}
+            \end{split}
+        \end{equation*}
+        Supongamos que el resultado se cumple para $n=k$. Probaremos que se cumple para $n=k+1$. En efecto, usando la hipótesis de inducción obtenemos que:
+        \begin{equation*}
+            \begin{split}
+                1^2+2^2+\cdots+k^2+(k+1)^2=&\frac{k(k+1)(2k+1)}{6}+(k+1)^2\\
+                =&\frac{k(k+1)(2k+1)+6(k+1)^2}{6}\\
+                =&\frac{(k+1)[k(2k+1)+6(k+1)]}{6}\\
+                =&\frac{(k+1)[2k^2+k+6k+6]}{6}\\
+                =&\frac{(k+1)[2k^2+7k+6]}{6}\\
+                =&\frac{(k+1)[2k^2+4k+3k+6]}{6}\\
+                =&\frac{(k+1)[2k(k+2)+3(k+2)]}{6}\\
+                =&\frac{(k+1)[(k+2)(2k+3)]}{6}\\
+                =&\frac{(k+1)([k+1]+1)(2[k+1]+1)}{6}
+            \end{split}
+        \end{equation*}
+        De esta forma, el resultado se cumple para $n=k+1$. Aplicando inducción, el resultado se cumple para toda $n\in\mathbb{N}$.
+        
+        De (II): Procedamos por inducción sobre $n$. El caso $n=1$ es inmediato, pues:
+        \begin{equation*}
+            \begin{split}
+                1^3=&\frac{1\cdot 4}{4}\\
+                =&\frac{1^2\cdot (1+1)^2}{4}
+            \end{split}
+        \end{equation*}
+        Supongamos que el resultado se cumple para $n=k$. Probaremos que se cumple para $n=k+1$. En efecto, usando la hipótesis de inducción obtenemos que:
+        \begin{equation*}
+            \begin{split}
+                1^3+2^3+\cdots+k^3+(k+1)^3=&\frac{k^2\left(k+1\right)^2}{4}+(k+1)^3\\
+                =&\frac{k^2\left(k+1\right)^2+4(k+1)^3}{4}\\
+                =&\frac{(k+1)^2(k^2+4[k+1])}{4}\\
+                =&\frac{(k+1)^2(k^2+4k+4)}{4}\\
+                =&\frac{(k+1)^2(k+2)^2}{4}\\
+                =&\frac{(k+1)^2([k+1]+1)^2}{4}
+            \end{split}
+        \end{equation*}
+        De esta forma, el resultado se cumple para $n=k+1$. Aplicando inducción, el resultado se cumple para toda $n\in\mathbb{N}$.
+        
+        De (III): Procedamos por inducción sobre $n$. El caso $n=1$ es inmediato, pues:
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{1\cdot2\cdot3}=&\frac{1}{6}\\
+                =&\frac{1}{4}-\frac{1}{12}\\
+                =&\frac{1}{4}-\frac{1}{2(2)(3)}\\
+                =&\frac{1}{4}-\frac{1}{2(1+1)(1+2)}
+            \end{split}
+        \end{equation*}
+        Supongamos que el resultado se cumple para $n=k$. Probaremos que se cumple para $n=k+1$. En efecto, usando la hipótesis de inducción obtenemos que:
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{1\cdot2\cdot3}+\cdots+\frac{1}{(k+1)(k+2)(k+3)} = &\frac{1}{4}-\frac{1}{2\left(k+1\right)\left(k+2\right)}+\frac{1}{(k+1)\left(k+2\right)\left(k+3\right)}\\
+                =&\frac{1}{4}-\frac{1}{2\left(k+1\right)\left(k+2\right)}+\frac{1}{(k+1)\left(k+2\right)\left(k+3\right)}\\
+                =&\frac{1}{4}-\frac{k+3}{2\left(k+1\right)\left(k+2\right)(k+3)}+\frac{2}{2(k+1)\left(k+2\right)\left(k+3\right)}\\
+                =&\frac{1}{4}-\frac{k+3-2}{2\left(k+1\right)\left(k+2\right)(k+3)}\\
+                =&\frac{1}{4}-\frac{k+1}{2\left(k+1\right)\left(k+2\right)(k+3)}\\
+                =&\frac{1}{4}-\frac{1}{2\left(k+2\right)(k+3)}\\
+                =&\frac{1}{4}-\frac{1}{2\left([k+1]+1\right)([k+1]+2)}
+            \end{split}
+        \end{equation*}
+        De esta forma, el resultado se cumple para $n=k+1$. Aplicando inducción, el resultado se cumple para toda $n\in\mathbb{N}$.
+        
+        De (IV): Es análogo a (III).
+        \qed
+    \end{proof}
+    \item Utilice la fórmula del binomio de Newton para \textbf{demostrar} que, para toda $n\in\mathbb{N}$, se cumplen las identidades siguientes:
+    \begin{enumerate}
+        \item ${n \choose 0} + {n \choose 1} + \cdots + {n \choose n} = 2^n$.
+        \item ${n \choose 0} - {n \choose 1} + {n \choose 2} - \cdots + \left(-1\right)^n {n \choose n} = 0$.
+    \end{enumerate}
+    \begin{proof}
+        De (I): Sea $n\in\mathbb{N}$. Entonces:
+        \begin{equation*}
+            \begin{split}
+                2^n=&(1+1)^n\\
+                =&\sum_{k=0}^{n}{n \choose k}1^k1^{n-k}\\
+                =&\sum_{k=0}^{n}{n \choose k}\\
+                =&{n \choose 0} + {n \choose 1} + \cdots + {n \choose n}
+            \end{split}
+        \end{equation*}
+        De (II): Sea $n\in\mathbb{N}$. Entonces:
+        \begin{equation*}
+            \begin{split}
+                0=&(-1+1)^n\\
+                =&\sum_{k=0}^{n}{n \choose k}(-1)^k1^{n-k}\\
+                =&\sum_{k=0}^{n}(-1)^k{n \choose k}\\
+                =&{n \choose 0} - {n \choose 1} + \cdots (-1)^n{n \choose n}
+            \end{split}
+        \end{equation*}
+        \qed
+    \end{proof}
+    \item \textbf{Demuestre} por inducción que, para toda $n\in\mathbb{N}$ tal que $n\geq2$, se cumplen las identidades siguientes:
+    \begin{enumerate}
+        \item $\left(1-\frac{1}{4}\right)\left(1-\frac{1}{9}\right)\cdots\left(1-\frac{1}{n^2}\right)=\frac{n+1}{2n}$.
+        \item $\left(1-\frac{1}{2}\right)\left(1-\frac{1}{3}\right)\cdots\left(1-\frac{1}{n}\right) = \frac{1}{n}$.
+    \end{enumerate}
+    \begin{proof}
+        De (I): Procedamos por inducción sobre $n$. Para $n=2$ el resultado es inmediato, pues
+        \begin{equation*}
+            \begin{split}
+                1-\frac{1}{2^2}=&1-\frac{1}{4}\\
+                =&\frac{3}{4}\\
+                =&\frac{2+1}{2\cdot2}
+            \end{split}
+        \end{equation*}
+        Supongamos que el resultado se cumple para $n=k$. Probaremos que se cumple para $n=k+1$. En efecto, usando la hipótesis de inducción obtenemos que:
+        \begin{equation*}
+            \begin{split}
+                \left(1-\frac{1}{4}\right)\left(1-\frac{1}{9}\right)\cdots\left(1-\frac{1}{k^2}\right)\left(1-\frac{1}{(k+1)^2}\right)=&\left(\frac{k+1}{2k}\right)\left(1-\frac{1}{(k+1)^2}\right)\\
+                =&\left(\frac{k+1}{2k}\right)\left(\frac{k^2+2k+1-1}{(k+1)^2}\right)\\
+                =&\left(\frac{k+1}{2k}\right)\left(\frac{k^2+2k}{(k+1)^2}\right)\\
+                =&\left(\frac{k+1}{2k}\right)\left(\frac{k(k+2)}{(k+1)^2}\right)\\
+                =&\frac{k(k+1)(k+2)}{2k(k+1)^2}\\
+                =&\frac{k+2}{2(k+1)}\\
+                =&\frac{(k+1)+1}{2(k+1)}
+            \end{split}
+        \end{equation*}
+        De esta forma, el resultado se cumple para $n=k+1$. Aplicando inducción, el resultado se cumple para toda $n\in\mathbb{N}$, $n\geq2$.
+
+        De (II): Procedamos por inducción sobre $n$. Para $n=2$ el resultado es inmediato, pues:
+        \begin{equation*}
+            1-\frac{1}{2}=\frac{1}{2}
+        \end{equation*}
+        Supongamos que el resultado se cumple para $n=k$. Probaremos que se cumple para $n=k+1$. En efecto, usando la hipótesis de inducción obtenemos que:
+        \begin{equation*}
+            \begin{split}
+                \left(1-\frac{1}{2}\right)\left(1-\frac{1}{3}\right)\cdots\left(1-\frac{1}{k}\right)\left(1-\frac{1}{k+1}\right)=&\frac{1}{k}\cdot\left(1-\frac{1}{k+1}\right)\\
+                =&\frac{1}{k}\cdot\frac{k+1-1}{k+1}\\
+                =&\frac{1}{k}\cdot\frac{k}{k+1}\\
+                =&\frac{1}{k+1}
+            \end{split}
+        \end{equation*}
+        De esta forma, el resultado se cumple para $n=k+1$. Aplicando inducción, el resultado se cumple para toda $n\in\mathbb{N}$, $n\geq2$.
+        \qed
+    \end{proof}
+    \item Fije $a,\alpha>0$. Se define inductivamente una sucesión $\left\{a_n\right\}^{\infty}_{n=1}$ en $\mathbb{R}$ de la siguiente manera: $a_1 = a$ y $a_{n+1}=\alpha/\left(1+a_n\right), \forall n\in\mathbb{N}$. \textbf{Demuestre} por inducción que
+    \begin{equation*}
+        \abs{a_{n+1}-a_n}\leq\left(\frac{\alpha}{\alpha+1}\right)^{n-1}\abs{a_2-a_2},\quad\forall n\in\mathbb{N}.
+    \end{equation*}
+    \begin{proof}
+        Procedamos por inducción sobre $n$. Para $n=1$ el resultado es inmediato, pues:
+        \begin{equation*}
+            \begin{split}
+                \abs{a_2-a_1}\leq&1\cdot\abs{a_2-a_1}\\
+                =&\left(\frac{\alpha}{\alpha+1}\right)^0\abs{a_2-a_1}\\
+                =&\left(\frac{\alpha}{\alpha+1}\right)^{1-1}\abs{a_2-a_1}
+            \end{split}
+        \end{equation*}
+        Siendo que $\frac{\alpha}{\alpha+1}>0$. Supongamos que el resultado se cumple para $n=k$. Probaremos que se cumple para $n=k+1$. En efecto, usando la hipótesis de inducción obtenemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{a_{k+2}-a_{k+1}}=&\abs{\frac{\alpha}{1+a_{k+1}}-\frac{\alpha}{1+a_{k}}}\\
+                =&\abs{\frac{\alpha(1+a_{k})}{(1+a_{k+1})(1+a_{k})}-\frac{\alpha(1+a_{k+1})}{(1+a_{k+1})(1+a_{k})}}\\
+                =&\abs{\frac{\alpha(1+a_{k})-\alpha(1+a_{k+1})}{(1+a_{k})(1+a_{k+1})}}\\
+                =&\abs{\frac{\alpha(a_{k}-a_{k+1})}{(1+a_{k})(1+a_{k+1})}}\\
+                =&\alpha\abs{\frac{(a_{k}-a_{k+1})}{(1+a_{k})(1+a_{k+1})}}\\
+                =&\alpha{\frac{\abs{a_{k}-a_{k+1}}}{\abs{(1+a_{k})(1+a_{k+1})}}}\\
+                \leq&\alpha\left(\frac{\alpha}{\alpha+1}\right)^{k-1}{\frac{1}{\abs{(1+a_{k})(1+a_{k+1})}}}\abs{a_2-a_1}\\
+            \end{split}
+        \end{equation*}
+        Llamémos a la ecuación anterior (1). Por otra parte, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                a_{k+1}=&\frac{\alpha}{1+a_{k}}\\
+                \Rightarrow 1+a_{k+1}=&1+\frac{\alpha}{1+a_{k}}\\
+                \Rightarrow 1+a_{k+1}=&1+\frac{\alpha+1+a_k}{1+a_{k}}\\
+                \Rightarrow 1=&\frac{\alpha+1+a_k}{1+a_{k}(1+a_{k+1})}\\
+                \Rightarrow \frac{1}{\alpha+1+a_k}=&\frac{1}{1+a_{k}(1+a_{k+1})}\\
+                \Rightarrow \frac{1}{(1+a_{k})(1+a_{k+1})}=&\frac{1}{\alpha+1+a_k}\\
+                \Rightarrow \frac{1}{(1+a_{k})(1+a_{k+1})}\leq&\frac{1}{\alpha+1}\\
+                \Rightarrow \frac{1}{\abs{(1+a_{k})(1+a_{k+1})}}\leq&\frac{1}{\alpha+1}
+            \end{split}
+        \end{equation*}
+        Pues $\frac{1}{\alpha+1+a_k}\leq\frac{1}{\alpha+1}$, ya que $a_m>0\forall m\in\mathbb{N}$. En efecto, pues para $m=1$, $a_1=a>0$. Supongamos que se cumple para $m=l$, entonces $a_l>0$, en particular $\frac{\alpha}{1+a_l}>0$, pues $\alpha>0$, así $a_{l+1}>0$. Aplicando inducción, se tiene que $a_m>0\forall m\in\mathbb{N}$.
+        Luego, sustituyendo en (1):
+        \begin{equation*}
+            \begin{split}
+                \Rightarrow \abs{a_{k+2}-a_{k+1}}\leq&\alpha\left(\frac{\alpha}{\alpha+1}\right)^{k-1}{\frac{1}{\abs{(1+a_{k})(1+a_{k+1})}}}\abs{a_2-a_1}\\
+                \leq&\alpha\left(\frac{\alpha}{\alpha+1}\right)^{k-1}\frac{1}{\alpha+1}\abs{a_2-a_1}\\
+                =&\left(\frac{\alpha}{\alpha+1}\right)^{k-1}\frac{\alpha}{\alpha+1}\abs{a_2-a_1}\\
+                =&\left(\frac{\alpha}{\alpha+1}\right)^{k}\abs{a_2-a_1}\\
+                =&\left(\frac{\alpha}{\alpha+1}\right)^{(k+1)-1}\abs{a_2-a_1}\\
+                \Rightarrow \abs{a_{k+2}-a_{k+1}}\leq&\left(\frac{\alpha}{\alpha+1}\right)^{(k+1)-1}\abs{a_2-a_1}
+            \end{split}
+        \end{equation*}
+        De esta forma, el resultado se cumple para $n=k+1$. Aplicando inducción, el resultado se cumple para toda $n\in\mathbb{N}$.
+        \qed
+    \end{proof}
+    \item Fije $a,\lambda>0$. Se define inductivamente una sucesión $\left\{a_n\right\}^{\infty}_{n=1}$ en $\mathbb{R}$ de la siguiente manera: $a_1 = a$ y $a_{n+1}=\lambda a_{n}, \forall n\in\mathbb{N}$. \textbf{Demuestre} por inducción que
+    \begin{equation*}
+        \abs{a_{n+1}-a_n}\leq\abs{\lambda}^{n-1}\abs{a_2-a_1}, \quad \forall n\in\mathbb{N}.
+    \end{equation*}
+    \begin{proof}
+        Procedamos por inducción sobre $n$. Para $n=1$ el resultado es inmediato, pues:
+        \begin{equation*}
+            \begin{split}
+                \abs{a_2-a_1}=& 1\cdot \abs{a_2-a_1}\\
+                =& \abs{\lambda}^0\cdot \abs{a_2-a_1}\\
+                =& \abs{\lambda}^{1-1}\cdot \abs{a_2-a_1}\\
+                \Rightarrow \abs{a_2-a_1}\leq&\abs{\lambda}^{1-1}\cdot \abs{a_2-a_1}
+            \end{split}
+        \end{equation*}
+        Supongamos que el resultado se cumple para $n=k$. Probaremos que se cumple para $n=k+1$. En efecto, usando la hipótesis de inducción obtenemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{a_{k+2}-a_{k+1}}=& \abs{\lambda a_{k+1}-\lambda a_{k}}\\
+                =& \abs{\lambda}\abs{a_{k+1}-a_{k}}\\
+                \leq& \abs{\lambda}\cdot\abs{\lambda}^{k-1}\abs{a_2-a_1}\\
+                =& \abs{\lambda}^{(k+1)-1}\abs{a_2-a_1}\\
+                \Rightarrow \abs{a_{k+2}-a_{k+1}}\leq&\abs{\lambda}^{(k+1)-1}\abs{a_2-a_1}
+            \end{split}
+        \end{equation*}
+        De esta forma, el resultado se cumple para $n=k+1$. Aplicando inducción, el resultado se cumple para toda $n\in\mathbb{N}$.
+        \qed
+    \end{proof}
+    \item Se define inductivamente una sucesión $\left\{a_n\right\}^{\infty}_{n=1}$ en $\mathbb{R}$ como:
+    \begin{equation*}
+        a_1=3 \qquad \textup{y} \qquad a_{n+1}=\frac{3\left(1+a_n\right)}{3+a_n},\quad\forall n \in \mathbb{N}.
+    \end{equation*}
+    \textbf{Demuestre} por indución que
+    \begin{equation*}
+        a_n \geq \sqrt{3}, \quad \forall n\in\mathbb{N}.
+    \end{equation*}
+    \begin{proof}
+        Procederemos por inducción sobre $n\in\mathbb{N}$. El caso $n=1$ es inmediato, pues:
+        \begin{equation*}
+            \begin{split}
+                a_1=&3\\
+                \geq&\sqrt{3}
+            \end{split}
+        \end{equation*}
+        Suponga que el resultado se cumple para $n=k$, es decir $a_k\geq\sqrt{3}$, entonces:
+        \begin{equation*}
+            \begin{split}
+                a_k\geq\sqrt{3}\Rightarrow&a_k+3\geq\sqrt{3}+3\\
+                \Rightarrow&\frac{1}{\sqrt{3}+3}\geq\frac{1}{a_k+3}\\
+                \Rightarrow&\frac{6}{\sqrt{3}+3}\geq\frac{6}{a_k+3}\\
+                \Rightarrow&-\frac{6}{a_k+3}\geq-\frac{6}{\sqrt{3}+3}
+            \end{split}
+        \end{equation*}
+        Ahora, veamos que:
+        \begin{equation*}
+            \begin{split}
+                a_{k+1}=&\frac{3(1+a_k)}{3+a_k}\\
+                =&\frac{3(3+a_k)}{3+a_k}-\frac{3\cdot2}{3+a_k}\\
+                =&3-\frac{6}{3+a_k}\\
+                \geq&3-\frac{6}{\sqrt{3}+3}\\
+                =&\frac{3\sqrt{3}+9-6}{\sqrt{3}+3}\\
+                =&\frac{3\sqrt{3}+3}{\sqrt{3}+3}\cdot\frac{\sqrt{3}-3}{\sqrt{3}-3}\\
+                =&\frac{9+3\sqrt{3}-9\sqrt{3}-9}{3-9}\\
+                =&\frac{-6\sqrt{3}}{-6}\\
+                =&\sqrt{3}\\
+                \Rightarrow a_{k+1}\geq \sqrt{3}
+            \end{split}
+        \end{equation*}
+        De esta forma, el resultado se cumple para $n=k+1$. Aplicando inducción, el resultado se cumple para toda $n\in\mathbb{N}$.
+        \qed
+    \end{proof}
+    \item \textbf{Pruebe} que si $x,y>0$ y $n\in\mathbb{N}$, entonces:
+    \begin{equation*}
+        x>y\qquad\textup{ si y sólo si }\qquad x^n>y^n
+    \end{equation*}
+    \begin{proof}
+        Antes de hacer la prueba, observemos que si $n\in\mathbb{N}$, entonces:
+        \begin{equation*}
+            x^n-y^n=\left(x-y\right)\left(x^{n-1}+x^{n-2}y+\cdots+xy^{n-2}+y^{n-1}\right)
+        \end{equation*}
+        $\left(\Rightarrow\right)$ Si $x>y$ entonces $x-y>0$. Como $x,y>0$, entonces el término:
+        \begin{equation*}
+            \left(x^{n-1}+x^{n-2}y+\cdots+xy^{n-2}+y^{n-1}\right)>0
+        \end{equation*}
+        para toda $n\in\mathbb{N}$. De esta forma se debe tener:
+        \begin{equation*}
+            x^n-y^n>0
+        \end{equation*}
+        $\left(\Leftarrow\right)$ Procederemos probando la contrapositiva, es decir, $x\leq y\Rightarrow x^n\leq y^n$, para toda $n\in\mathbb{N}$. Suponga que $x\leq y$, entonces $x-y\leq0$. Como $x,y>0$, entonces el término
+        \begin{equation*}
+            \left(x^{n-1}+x^{n-2}y+\cdots+xy^{n-2}+y^{n-1}\right)>0    
+        \end{equation*}
+        para toda $n\in\mathbb{N}$. Por tanto:
+        \begin{equation*}
+            x^n-y^n\leq 0
+        \end{equation*}
+        \qed
+    \end{proof}
+    \item \begin{enumerate}
+        \item \textbf{Muestre} que $\sqrt{x^2}=\abs{x},\forall x\in\mathbb{R}$.
+        \item Usando la parte precedente, \textbf{pruebe} que si $x,a\in\mathbb{R}$, entonces
+        \begin{equation*}
+            x^2=a^2 \qquad \textup{implica} \qquad x=1 \quad \textup{ó} \quad x=-a.
+        \end{equation*}
+    \end{enumerate}
+    \begin{proof}
+        De (I): Se $x\in\mathbb{R}$. Tenemos dos casos:
+        \begin{itemize}
+            \item $x\geq0$. En este caso, $\sqrt{x^2}=x=\abs{x}$, pues $x\geq0$.
+            \item $x<0$. En este caso, $\sqrt{x^2}=-x=\abs{x}$, pues $x<0$.
+        \end{itemize}
+        En cualquier caso: $\sqrt{x^2}=\abs{x}$.
+        
+        De (II): Sean $x,a\in\mathbb{R}$ tales que $x^2=a^2$, entonces por la parte (I): $\sqrt{x^2}=\sqrt{a^2}$ (pues la relación $x\longmapsto \sqrt{x}$ es función). Por tanto $\abs{x}=\abs{a}$.
+        De esta igualdad se tienen dos posibles resultados: $\abs{x}=a$ o $\abs{x}=-a$, luego $x=a$ o $-x=a$ o $x=-a$ o $-x=-a$, lo cual implica que $x=a$ o $x=-a$.
+        \qed
+    \end{proof}
+    \item \textbf{Muestre} por inducción la identidad
+    \begin{equation*}
+        \frac{1}{2}+\cos t +\cos 2t +\cdots+\cos nt = \frac{\sen \frac{2n+1}{2}t}{2\sen \frac{t}{2}},
+    \end{equation*}
+    para todo entero $n\geq0$ y para todo número real $t$ que no sea múltiplo entero de $2\pi$.
+    
+    \begin{proof}
+        Procederemos por inducción sobre $n$. Sea $t\in\mathbb{R}$ no múltiplo entero de $2\pi$, el resultado para $n=0$ es inmediato, pues:
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{2}=&\frac{\sen \frac{1}{2}t}{2\sen \frac{1}{2}t}\\
+                =&\frac{\sen \frac{2\cdot 0 + 1}{2}t}{2\sen \frac{1}{2}t}\\
+            \end{split}
+        \end{equation*}
+        Suponga el resultado cierto para $n=k$. Probaremos que se cumple para $n=k+1$. En efecto, usando la hipótesis de inducción obtenemos que:
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{2}+\cos t+\cdots+\cos \left(k+1\right)t=&\frac{\sen \frac{2k+1}{2}t}{2\sen \frac{t}{2}}+\cos \left(k+1\right)t\\
+                =&\frac{\sen \frac{2k+1}{2}t+2\sen \frac{t}{2} \cos \left(\frac{2k+1}{2}t+\frac{t}{2}\right)}{2\sen \frac{t}{2}}\\
+                =&\frac{\sen \frac{2k+1}{2}t+2\sen \frac{t}{2}\left(\cos \frac{2k+1}{2}t\cos \frac{t}{2}-\sen\frac{2k+1}{2}t\sen \frac{t}{2}\right)}{2\sen \frac{t}{2}}\\
+                =&\frac{\sen \frac{2k+1}{2}t+2\sen \frac{t}{2}\cos \frac{2k+1}{2}t\cos \frac{t}{2}-2\sen\frac{2k+1}{2}t\sen^2 \frac{t}{2}}{2\sen \frac{t}{2}}\\
+                =&\frac{\sen\frac{2k+1}{2}t\left(1-\sen^2\frac{t}{2}\right)+2\sen\frac{t}{2}\cos\frac{t}{2}\cos\frac{2k+1}{2}t-\sen\frac{2k+1}{2}t\sen^2\frac{t}{2}}{2\sen\frac{t}{2}}\\
+                =&\frac{\sen\frac{2k+1}{2}t\cos^2\frac{t}{2}+\sen t\cos\frac{2k+1}{2}t-\sen\frac{2k+1}{2}t\sen^2\frac{t}{2}}{2\sen\frac{t}{2}}\\
+                =&\frac{\sen\frac{2k+1}{2}t\cos^2\frac{t}{2}-\sen\frac{2k+1}{2}t\sen^2\frac{t}{2}+\sen t\cos\frac{2k+1}{2}t}{2\sen\frac{t}{2}}\\
+                =&\frac{\sen\frac{2k+1}{2}t\left(\cos^2\frac{t}{2}-\sen^2\frac{t}{2}\right)+\sen t\cos\frac{2k+1}{2}t}{2\sen\frac{t}{2}}\\
+                =&\frac{\sen\frac{2k+1}{2}t\cos t+\sen t\cos\frac{2k+1}{2}t}{2\sen\frac{t}{2}}\\
+                =&\frac{\sen\left(\frac{2k+1}{2}t+t\right)}{2\sen\frac{t}{2}}\\
+                =&\frac{\sen\frac{2k+3}{2}t}{2\sen\frac{t}{2}}\\
+                =&\frac{\sen\frac{2(k+1)+1}{2}t}{2\sen\frac{t}{2}}\\
+            \end{split}
+        \end{equation*}
+        De esta forma, el resultado se cumple para $n=k+1$. Aplicando inducción, el resultado se cumple para toda $n\in\mathbb{N}$.
+        \qed
+    \end{proof}
+    \item \textbf{Determine} cuáles de los siguientes subconjuntos de $\mathbb{R}$ están acotado superiormente y/o inferiormente y \textbf{calcule} su supremo y/o ínfimo. \textbf{(Justifique)}.
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $\left\{x\in\mathbb{R}|a<x<b\right\}\quad a,b\in\mathbb{R}$.
+            \item $\left\{x\in\mathbb{Q}|x\geq0, x^2<2\right\}$.
+            \item $\left\{\frac{3}{\sqrt{n}+4}|n\in\mathbb{N}\right\}$.
+            \item $\left\{x\in\mathbb{R}|x^2+x+1\geq 0\right\}$.
+            \item $\left\{n^3-n^2|n\in\mathbb{N}\right\}$.
+            \item $\left\{x\in\mathbb{R}|x<0,x^2-1<0\right\}$.
+            \item $\left\{\frac{1}{n}+\left(-1\right)^n|n\in\mathbb{N}\right\}$.
+            \item $\left\{x\in\mathbb{R}|\frac{3}{x}-\frac{2}{x-1}>0\right\}$.
+            \item $\left\{x\in\mathbb{R}|\abs{x^2-x}\leq1\right\}$.
+            \item $\left\{x\in\mathbb{R}|\frac{x-1}{x+1}>2\right\}$.
+            \item $\left\{\frac{2}{x+1}|x\in\mathbb{R},x\neq -1\right\}$.
+            \item $\left\{\frac{x}{x+1}|x>0\right\}$.
+            \item $\left\{x^2-4x+5|x\in\mathbb{R}\right\}$.
+            \item $\left\{2x-x^2|-1<x<2\right\}$.
+        \end{enumerate}
+    \end{multicols}
+    \begin{proof}
+        De (I): Afirmamos que el conjunto:
+        \begin{equation*}
+            A = \left\{x\in\mathbb{R}|a<x<b\right\}
+        \end{equation*}
+        Es acotado tanto superior como inferiormente para toda $a,b\in\mathbb{R}$. Sean $a,b\in\mathbb{R}$. Si $a>b$, entonces el conjunto anterior es vacío, pues ningún elemento en $\mathbb{R}$ cumple que $x>a>b>x$, esto es, $x>x$. Por tanto, como es vacío, es trivialmente acotado.
+        Si $a<b$, entonces el conjunto es no vacío, pues por un ejercicio de la lista, el elemento $\frac{a+b}{2}$ está en el conjunto.
+        
+        Se cumple entonces que:
+        \begin{equation*}
+            a<x<b\qquad\forall x\in A
+        \end{equation*}
+        Por tanto, $a$ es una cota inferior del conjunto y $b$ es una cota superior del mismo. Al ser $A$ no vacío y ser acotado (tanto superior como inferiormente), el axioma del supremo nos garantiza la existencia del ínfimo y supremo.
+
+        Afirmamos que:
+        \begin{equation*}
+            a=\inf A\qquad b=\sup A
+        \end{equation*}
+
+        En efecto, sea $\varepsilon > 0$. Tome $\varepsilon' = \min\left\{b-a,\varepsilon\right\}>0$. Los elementos $a+\frac{\varepsilon'}{2},b-\frac{\varepsilon'}{2}\in A$, pues:
+        \begin{equation*}
+            \begin{split}
+                a < &a+\frac{\varepsilon'}{2}\\
+                \leq&a+\frac{b-a}{2}\\
+                =&\frac{a+b}{2}\\
+                <& b\\
+                \Rightarrow a<&a+\frac{\varepsilon'}{2}<b
+            \end{split}
+        \end{equation*}
+        (de forma similar con $b-\frac{\varepsilon'}{2}$). Llamémos $x=a+\frac{\varepsilon'}{2}$ y $y=b-\frac{\varepsilon'}{2}$. Se cumple además que:
+        \begin{equation*}
+            \begin{split}
+                x-\varepsilon=&a+\frac{\varepsilon'}{2}-\varepsilon\\
+                \leq&a+\frac{\varepsilon}{2}-\varepsilon\\
+                =&a-\frac{\varepsilon}{2}\\
+                <&a\\
+                \Rightarrow x-\varepsilon <&a\\
+            \end{split}
+        \end{equation*}
+        (de forma similar con $y$, $b<y+\varepsilon$). Por tanto, usando un teorema, $a$ es el ínfimo de $A$ y $b$ es su supremo.
+
+        De (II): Afirmamos que el conjunto:
+        \begin{equation*}
+            A = \left\{x\in\mathbb{Q}|x\geq0, x^2<2\right\}
+        \end{equation*}
+        Está acotado superior e inferiormente, y es no vacío. En efecto, veamos que:
+        \begin{equation*}
+            \begin{split}
+                A=&\left\{x\in\mathbb{Q}|x\geq0, x^2<2\right\}\\
+                =&\left\{x\in\mathbb{Q}|x\geq0, -\sqrt{2}<x<\sqrt{2}\right\}\\
+                =&\left\{x\in\mathbb{Q}|0\leq x<\sqrt{2}\right\}\\
+            \end{split}
+        \end{equation*}
+        Claramente $0\leq x <\sqrt{2}$, $\forall x\in A$. Por tanto, $A$ es acotado superior e inferiormente. Además es no vacío, pues $\frac{\sqrt{2}}{2}\in A$, luego tiene ínfimo y supremo. Afirmamos que $\sup A=\sqrt{2}$ y $\inf A = 0$.
+
+        En efecto, se tiene que $0\leq x$, para todo $x\in A$ y $0\in A$, pues $0\leq 0<\sqrt{2}$. Por tanto $\inf A = 0$. Ahora para el supremo, sea $\varepsilon > 0$, tomemos $\varepsilon'=\min\left\{\varepsilon, \frac{\sqrt{2}}{2}\right\}>0$, entonces por la densidad de los racionales, existe un racional $r\in\mathbb{Q}$ tal que
+        \begin{equation*}
+            \begin{split}
+                \Rightarrow &\sqrt{2}-\varepsilon'<r<\sqrt{2}\\
+                \Rightarrow &0<\frac{\sqrt{2}}{2}\leq r<\sqrt{2}\\
+            \end{split}
+        \end{equation*}
+        es decir, $r\in A$, y además, se cumple que
+        \begin{equation*}
+            \begin{split}
+                \Rightarrow &\sqrt{2}-\varepsilon'<r<\sqrt{2}\\
+                \Rightarrow &\sqrt{2}-\varepsilon<r\\
+            \end{split}
+        \end{equation*}
+        y $x<\sqrt{2}$, para todo $x\in A$. Por tanto, $\sup A = \sqrt{2}$.
+        De (III): Sea
+        \begin{equation*}
+            A = \left\{\frac{3}{\sqrt{n}+4}|n\in\mathbb{N}\right\}
+        \end{equation*}
+        $A\neq \emptyset$, pues $\frac{3}{5}\in A$. Afirmamos que $A$ es acotado, en efecto:
+        \begin{equation*}
+            0\leq \frac{3}{\sqrt{n}+4}\leq \frac{3}{5},\qquad\forall n\in\mathbb{N}
+        \end{equation*}
+        Luego, $A$ es acotado, así $A$ admite supremo e ínfimo. Afirmamos que $\sup A = \frac{3}{5}$ y $\inf A = 0$. En efecto, para el supremo:
+
+        Se tiene que $\frac{3}{5}\in A$ y además $\frac{3}{5}$ es cota superior de $A$. Por tanto, $\sup A = \frac{3}{5}$.
+
+        Para el ínfimo, sea $\varepsilon > 0$, por la propiedad arquimediana existe $N\in\mathbb{N}$ tal que $\frac{1}{N}<\frac{\varepsilon^2}{3^2}$ (ya que $\varepsilon > 0$ entonces $\frac{\varepsilon^2}{3^2} > 0$). Es decir:
+        \begin{equation*}
+            \begin{split}
+                \Rightarrow &\frac{1}{\sqrt{N}}<\frac{\varepsilon}{3} \\
+                \Rightarrow &\frac{3}{\sqrt{N}}< \varepsilon \\
+                \Rightarrow &\frac{3}{\sqrt{N}+4}< \varepsilon \\
+                \Rightarrow &\frac{3}{\sqrt{N}+4}< 0+\varepsilon \\
+            \end{split}
+        \end{equation*}
+        Como $0$ es cota inferior, y para $\varepsilon>0$ existe $\frac{3}{\sqrt{N}+4}\in A$ tal que se cumple la desigualdad anterior, se tiene entonces que $\inf A = 0$.
+        De (IV): Sea
+        \begin{equation*}
+            A = \left\{x\in\mathbb{R}|x^2+x+1\geq 0\right\}
+        \end{equation*}
+        Afirmamos que $A$ no es acotado ni superior ni inferiormente. En efecto, $A\neq \emptyset$, pues $3\in A$. Ahora, por un ejercicio anterior, si $x,y\in\mathbb{R}$ no son ambos cero, entonces el número $x^2+xy+y^2>0$. Tomemos $y=1$, se tiene que:
+        \begin{equation*}
+            x^2+x+1>0,\qquad\forall x\in\mathbb{R}
+        \end{equation*}
+        pues $0<1$. De esta forma, la desigualdad se cumple para todo número real, es decir $A=\mathbb{R}$. $\mathbb{R}$ no es acotado ni superior ni inferiormente, luego $A$ tampoco lo es. Así $A$ no tiene supremo ni ínfimo.
+        De (V): Sea
+        \begin{equation*}
+            A =  \left\{n^3-n^2|n\in\mathbb{N}\right\}
+        \end{equation*}
+        $A\neq \emptyset$, pues $0=1^3-1^2\in A$. Afirmamos que $A$ es acotado inferiormente pero no superiormente. En efecto, si $n\in\mathbb{N}$
+        \begin{equation*}
+            \begin{split}
+                1&\leq n\\
+                \Rightarrow n&\leq n^2\\
+                \Rightarrow n^2&\leq n^3\\
+                \Rightarrow 0&\leq n^3-n^2\\
+                \Rightarrow 0&\leq n^3-n^2, \quad \forall n\in\mathbb{N}\\
+            \end{split}
+        \end{equation*}
+        Por tanto, $0$ es cota inferior del conjunto $A$. Por tanto $A$ tiene ínfimo. Como $0\in A$, se tiene que $\inf A = 0$. Ahora para ver que no es acotado superiormente, sea $y\in\mathbb{R}$. Probaremos que existe un $N\in\mathbb{N}$ tal que $N^3-N^2\geq y$.
+        Por la propiedad arquimediana, existe $N\in\mathbb{N}$ tal que $y<N-1$, luego como $1\leq N^2$, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                &1\cdot y \leq N^2\cdot \left(N-1\right)\\
+                \Rightarrow &y\leq N^3-N^2\\
+            \end{split}
+        \end{equation*}
+        Por tanto, $A$ no es acotado superiormente. Así $A$ no tiene supremo.
+
+        De (VI): Sea
+        \begin{equation*}
+            \begin{split}
+                A &= \left\{x\in\mathbb{R}|x<0,x^2-1<0\right\}\\
+                &= \left\{x\in\mathbb{R}|x<0 \textup{ y }(x+1)(x-1)<0\right\}\\
+                &= \left\{x\in\mathbb{R}|x<0 \textup{ y }\left[\left(x+1 < 0 \textup{ y } x-1>0\right)\textup{ o }\left(x+1 > 0 \textup{ y } x-1<0\right)\right]\right\}\\
+                &= \left\{x\in\mathbb{R}|x<0 \textup{ y }\left[\left(x<-1 \textup{ y } x>1\right)\textup{ o }\left(x>-1 \textup{ y } x<1\right)\right]\right\}\\
+                &= \left\{x\in\mathbb{R}|x<0 \textup{ y }x>-1 \textup{ y } x<1\right\}\\
+                &= \left\{x\in\mathbb{R}|x<0 \textup{ y }-1<x\right\}\\
+                &= \left\{x\in\mathbb{R}|-1<x<0\right\}\\
+                &= \left(-1,0\right)\\
+            \end{split}
+        \end{equation*}
+        Por tanto, usando el ejercicio anterior se tiene que $A$ es no vacío y acotado (pues $-\frac{1}{2}\in A$). Por tanto $A$ tiene supremo e ínfimo, luego $\sup A = 0$ e $\inf A = -1$.
+
+        De (VII): Sea
+        \begin{equation*}
+            A = \left\{\frac{1}{n}+\left(-1\right)^n|n\in\mathbb{N}\right\}
+        \end{equation*}
+        $A\neq \emptyset$ pues $0=1-1=\frac{1}{1}+(-1)^1\in A$. Afirmamos que $A$ es acotado, pues
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{n}+\left(-1\right)^n}\leq &\abs{\frac{1}{n}}+\abs{(-1)^n}\\
+                \leq &\frac{1}{n}+1\\
+                \leq &1+1\\
+                \leq &2, \qquad\forall n\in\mathbb{N}\\
+                \Rightarrow \abs{\frac{1}{n}+\left(-1\right)^n}\leq &2, \qquad\forall n\in\mathbb{N}\\
+            \end{split}
+        \end{equation*}
+        Por tanto $A$ tiene supremo e ínfimo. Afirmamos que $\sup A = \frac{3}{2}$ e $\inf A = -1$. En efecto, antes notemos que podemos escribir a $A$ como:
+        \begin{equation*}
+            \begin{split}
+                A =& \left\{\frac{1}{2n-1}+(-1)^{2n-1}|n\in\mathbb{N}\right\}\cup\left\{\frac{1}{2n}+(-1)^{2n}|n\in\mathbb{N}\right\}\\
+                =& \left\{\frac{1}{2n-1}-1|n\in\mathbb{N}\right\}\cup\left\{\frac{1}{2n}+1|n\in\mathbb{N}\right\}\\
+            \end{split}
+        \end{equation*}
+        Veamos que $\frac{3}{2}$ es cota superior de $A$, pues
+        \begin{equation*}
+            \frac{1}{2n}+1\leq \frac{1}{2}+1=\frac{3}{2}
+        \end{equation*}
+        y
+        \begin{equation*}
+            \frac{1}{2n-1}-1\leq 0\leq\frac{3}{2}
+        \end{equation*}
+        para todo $n\in\mathbb{N}$. Además $\frac{3}{2}=\frac{1}{2}+1\in A$, luego $\sup A = \frac{3}{2}$.
+        Para el ínfimo, sea $\varepsilon > 0$. Por la propiedad arquimediana existe $N\in\mathbb{N}$ tal que
+        \begin{equation*}
+            \frac{1}{2N-1}<\varepsilon
+        \end{equation*}
+        Entonces:
+        \begin{equation*}
+            \frac{1}{2N-1}-1<\varepsilon-1
+        \end{equation*}
+        Por tanto, para $\varepsilon>0$ existe un elemento $\frac{1}{2N-1}-1\in A$ tal que se cumple la desigualdad anterior. Además, se tiene $-1$ es cota inferior de $A$ pues:
+        \begin{equation*}
+            -1\leq 0\leq \frac{1}{2n}+1
+        \end{equation*}
+        y
+        \begin{equation*}
+            -1\leq \frac{1}{2n-1}-1
+        \end{equation*}
+        Luego $\inf A = -1$.
+        
+        De (VIII): Sea
+        \begin{equation*}
+            A = \left\{x\in\mathbb{R}|\frac{3}{x}-\frac{2}{x-1}>0\right\}
+        \end{equation*}
+        Por un ejercicio anterior, vimos que $A = \left\{x\in\mathbb{R}|0<x<1 \textup{ o } 3 < x\right\}$. Claramente $A$ es no vacío y acotado inferiormente, pero no superiormente. En efecto, se tiene que $\frac{1}{2}\in A$ y:
+        \begin{equation*}
+            0< x, \quad \forall x \in A
+        \end{equation*}
+        Por tanto $0$ es cota inferior de $A$. Afirmamos que $\inf A = 0$. En efecto, sea $\varepsilon > 0$. Tomemos $\varepsilon' = \min \left\{\varepsilon, 1\right\}>0$, entonces se tiene que el elemento $x_0=\frac{\varepsilon'}{2}$ cumple:
+        \begin{equation*}
+            \begin{split}
+                x_0 &= \frac{\varepsilon'}{2}\\
+                \Rightarrow 0 < x_0 &= \frac{1}{2} < 1\\
+                \Rightarrow 0 < x_0 &< 1\\
+            \end{split}
+        \end{equation*}
+        Luego $x_0\in A$. Además:
+        \begin{equation*}
+            \begin{split}
+                x_0 &= \frac{\varepsilon'}{2}\\
+                &\leq \frac{\varepsilon}{2}\\
+                &< \varepsilon\\
+                &= \varepsilon + 0\\
+                \Rightarrow x_0 &< \varepsilon + 0\\
+            \end{split}
+        \end{equation*}
+        Por tanto, al ser $0$ cota inferior de $A$ y cumplirse la desigualdad anterior, se sigue que $\inf A = 0$.
+
+        Además $A$ no es acotado superiromente, pues si $y\in\mathbb{R}$, entonces $\abs{y}+4\in A$ y se tiene que $y\leq \abs{y}+4$.
+
+        De (IX): Sea
+        \begin{equation*}
+            A = \left\{x\in\mathbb{R}|\abs{x^2-x}\leq1\right\}
+        \end{equation*}
+        Por un ejercicio anterior, vimos que
+        \begin{equation*}
+            A = \left\{x\in\mathbb{R}\Big| \frac{1-\sqrt{5}}{2}\leq x\leq\frac{1+\sqrt{5}}{2}\right\}
+        \end{equation*}
+        Por tanto $A$ es no vacío (pues $\frac{1}{2}\in A$) y acotado. Luego tiene supremo e ínfimo. Como $\frac{1-\sqrt{5}}{2}\in A$ y $\frac{1+\sqrt{5}}{2}\in A$ donde
+        \begin{equation*}
+            \frac{1-\sqrt{5}}{2}\leq x\leq\frac{1+\sqrt{5}}{2}\quad\forall x \in A
+        \end{equation*}
+        entonces se tiene que $\inf A = \frac{1-\sqrt{5}}{2}$ y $\sup A = \frac{1+\sqrt{5}}{2}$.
+
+        De (X): Sea
+        \begin{equation*}
+            A = \left\{x\in\mathbb{R}|\frac{x-1}{x+1}>2\right\}
+        \end{equation*}
+        Podemos reescribir a $A$ como sigue:
+        \begin{equation*}
+            \begin{split}
+                x\in A \iff& \frac{x-1}{x+1}>2\\
+                \iff& \frac{x+1-1-1}{x+1}>2\\
+                \iff& \frac{x+1}{x+1}-\frac{2}{x+1}>2\\
+                \iff& 1-\frac{2}{x+1}>2\\
+                \iff& -2+1>\frac{2}{x+1}\\
+                \iff& -1>\frac{2}{x+1}\\
+                \iff& -\frac{1}{2}>\frac{1}{x+1}\quad \textup{ en particular, }x+1<0\\
+                \iff& -x-1<2\textup{ y }x<-1\\
+                \iff& -3<x\textup{ y }x<-1\\
+                \iff& -3<x<-1\\
+            \end{split}
+        \end{equation*}
+        Por tanto:
+        \begin{equation*}
+            A = \left\{x\in\mathbb{R}|-3<x<-1\right\}
+        \end{equation*}
+        De esta forma, por el ejercicio (I) $A$ al ser acotado y no vacío ($-2\in A$), tiene supremo e ínfimo, los cuales son: $\inf A = -3$, $\sup A = -1$.
+
+        De (XI): Sea
+        \begin{equation*}
+            A = \left\{\frac{2}{x+1}|x\in\mathbb{R},x\neq -1\right\}
+        \end{equation*}
+        Afirmamos que $A$ es no vacío y no es acotado ni inferior ni superiormente. En efecto, $1=\frac{2}{1+1}\in A$, luego $A$ es no vacío. Sea $y\in\mathbb{R}$. Probaremos que existen $x_1,x_2\in A$ tales que: $x_1\leq y\leq x_2$. En efecto, si $y=0$ tomando $x_1=1\in A$ y $x_2=-1=\frac{2}{-3+1}\in A$ se tiene el resultado.
+        
+        Suponga entonces que $y\neq 0$. Si $\frac{4}{y}\neq -1$, observamos que
+        \begin{equation*}
+            \begin{split}
+                \frac{y}{2}<&y\\
+                \Rightarrow \frac{2}{4\cdot \frac{1}{y}}<&y\\
+                \Rightarrow \frac{2}{\frac{4}{y}+1}<&y\\
+            \end{split}
+        \end{equation*}
+        Por tanto, tomando $x_1=\frac{2}{\frac{4}{\abs{y}}+1}$ se sigue que $x_1\leq y$. Si $\frac{4}{y}= -1\Rightarrow y=-4$, tomando $x_1 = \frac{2}{-\frac{7}{5}+2}=-5$ se tiene la desigualdad.
+        
+        Ahora para $x_2$. Observamos que $y\leq\abs{y}$. Vemos que:
+        \begin{equation*}
+            \begin{split}
+                \abs{y}\leq& \frac{1}{\frac{1}{\abs{y}}}\\
+                \Rightarrow\abs{y}<& \frac{2}{\frac{1}{\abs{y}}}\\
+                \Rightarrow\abs{y}<& \frac{2}{\left(\frac{1}{\abs{y}}-1\right)+1}\\
+                \Rightarrow y<& \frac{2}{\left(\frac{1}{\abs{y}}-1\right)+1}\\
+            \end{split}
+        \end{equation*}
+        Tomando $x_2 = \frac{2}{\left(\frac{1}{\abs{y}}-1\right)+1}$ se tiene $y\leq x_2$. 
+
+        De esta forma, $A$ no es acotado ni superior ni inferiormente.
+
+        De (XII): Sea
+        \begin{equation*}
+            A = \left\{\frac{x}{x+1}|x>0\right\}
+        \end{equation*}
+        $A\neq \emptyset$, pues $\frac{1}{2}\in A$. Afirmamos que $A$ es acotado tanto superior como inferiormente, en efecto, veamos que:
+        \begin{equation*}
+            0= \frac{0}{x+1}\leq \frac{x}{x+1}\leq \frac{x+1}{x+1}=1
+        \end{equation*}
+        Para todo $x>0$. Entonces por ser $A$ no vacío y acotado, tiene supremo e ínfimo. Probaremos que $\inf A = 0$ y $\sup A = 1$. En efecto, sea $\varepsilon > 0$. Observemos que:
+        \begin{equation*}
+            \frac{\varepsilon}{1+\varepsilon}< \frac{\varepsilon}{1}=\varepsilon=\varepsilon+0
+        \end{equation*}
+        y como $0$ es cota inferior de $A$, se sigue que $\inf A = 0$. Para el supremo, sea $\varepsilon'=\min\left\{\varepsilon,1\right\}$. Entonces:
+        \begin{equation*}
+            \begin{split}
+                1-\varepsilon =& \frac{\left(1-\varepsilon\right)\left(1+\frac{1}{\varepsilon}\right)}{1+\frac{1}{\varepsilon}}\\
+                =& \frac{1-\varepsilon+\frac{1}{\varepsilon}-1}{1+\frac{1}{\varepsilon}}\\
+                =& \frac{\frac{1}{\varepsilon}-\varepsilon}{1+\frac{1}{\varepsilon}}\\
+                <& \frac{\frac{1}{\varepsilon}}{1+\frac{1}{\varepsilon}}\\
+            \end{split}
+        \end{equation*}
+        Donde $\frac{\frac{1}{\varepsilon}}{1+\frac{1}{\varepsilon}}\in A$. Por tanto, como $1$ es cota superior del conjunto, se sigue que $\sup A = 1$.
+
+        De (XIII): Sea
+        \begin{equation*}
+            A = \left\{x^2-4x+5|x\in\mathbb{R}\right\}
+        \end{equation*}
+        Claramente $A\neq \emptyset$, pues $2\in A$. Afirmamos que $A$ es acotado inferiormente pero no superiormente. En efecto, observamos que:
+        \begin{equation*}
+            \begin{split}
+                x^2-4x+4=(x-2)^2\geq0
+                \Rightarrow x^2-4x+5=(x-2)^2+1\geq1
+            \end{split}
+        \end{equation*}
+        Para todo $x\in\mathbb{R}$. Por tanto, $1$ es cota inferior de $A$ y además $1=2^2-4\cdot8-5\in A$. Por tanto, $\inf A = 1$. Ahora, sea $y\in\mathbb{R}$. Se tiene que:
+        \begin{equation*}
+            y\leq \abs{y}< \abs{y}+1
+        \end{equation*}
+        Ahora, la ecuación $x^2-4x+5=\abs{y}+1\Rightarrow x^2-4x+4-\abs{y}=0$ tiene como una solución:
+        \begin{equation*}
+            \begin{split}
+                x_0=&\frac{4+\sqrt{16-4(4-\abs{y})}}{2}\\
+                =&\frac{4+\sqrt{16-16+4\abs{y}}}{2}\\
+                =&\frac{4+\sqrt{4\abs{y}}}{2}\\
+                =&2+\sqrt{\abs{y}}\\
+            \end{split}
+        \end{equation*}
+        Es decir, $x_0^2-4x_0+5=\abs{y}+1>y$, con $x_0\in\mathbb{R}$. Por tanto, $A$ no es acotado superiormente.
+
+        De (XIV): Sea
+        \begin{equation*}
+            A = \left\{2x-x^2|-1<x<2\right\}
+        \end{equation*}
+        $A\neq\emptyset$, pues $0\in A$. Afirmamos que $A$ es acotado. En efecto, observemos que
+        \begin{equation*}
+            \begin{split}
+                \abs{2x-x^2}<&\abs{2x}+\abs{x^2}\\
+                =&2\abs{x}+x^2\\
+                \leq&2\cdot2+4\\
+                =&8
+            \end{split}
+        \end{equation*}
+        Por tanto, $A$ tiene supremo e ínfimo. Probaremos que $\sup A = 1$ e $\inf A = -2$. En efecto, para el supremo, observemos que $1\in A$, pues $2\cdot 1-1^2=2-1=1\in A$ (tomando $x=1$). Probaremos que $2x-x^2\leq 1$, para todo $x\in\mathbb{R}$. En efecto, veamos que 
+        \begin{equation*}
+            \begin{split}
+                2x-x^2-1=&-1+2x-x^2\\
+                =&-(1+x)^2\\
+                \leq& 0 \\
+                \Rightarrow 2x-x^2-1\leq& 0\\
+                \Rightarrow 2x-x^2\leq& 1,\quad \forall x\in\mathbb{R}.\\
+            \end{split}
+        \end{equation*}
+        En particular, se cumple para todo $-1<x<2$. Luego $1\in A$ es cota superior de $A$, así se debe tener que $\sup A = 1$.
+
+        Para el ínfimo, veamos que $-2\in\mathbb{R}$ es cota inferior de $A$. En efecto, 
+        \begin{equation*}
+            \begin{split}
+                2x-x^2\geq& 2(-1)-(0)^2\\
+                =& -2, \forall -1<x<2.
+            \end{split}
+        \end{equation*}
+        Sea $\varepsilon > 0$, tomemos $\varepsilon' = \min\left\{1, \frac{\varepsilon}{8}\right\}>0$. Tomemos $y=-1+\varepsilon'$, tenemos entonces que
+        \begin{equation*}
+            -1<y\leq 0 < 2
+        \end{equation*}
+        Por tanto, $2y-y^2\in A$. Además como $-3=2(-1)-(-1)^2$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                2y-y^2-(-3)=&2y-y^2-(2(-1)-(-1)^2)\\
+                =&2y+2-y^2+1\\
+                =&2(y+1)+(-y+1)(y+1)\\
+                =&(2-y+1)(y+1)\\
+                =&(3-y)(y+1)\\
+            \end{split}
+        \end{equation*}
+        Pero como $-1<y\leq0$, entonces $0\leq -y<1$, luego:
+        \begin{equation*}
+            \begin{split}
+                \Rightarrow 2y-y^2-(-3)\leq&(3+1)(y+1)\\
+                =&4(y+1)\\
+            \end{split}
+        \end{equation*}
+        Pero $y=-1+\varepsilon'\Rightarrow y+1=\varepsilon'\leq\frac{\varepsilon}{8}$, así $2y-y^2-(-3)\leq4\cdot \frac{\varepsilon}{8}=\frac{\varepsilon}{2}$. Por tanto:
+        \begin{equation*}
+            \begin{split}
+                2y-y^2-(-3)\leq \frac{\varepsilon}{2}\Rightarrow& 2y-y^2-(-3)<\varepsilon\\
+                \Rightarrow& 2y-y^2<-3+\varepsilon\\
+            \end{split}
+        \end{equation*}
+        Donde $2y-y^2\in A$. Por una proposición se sigue que $-3=\inf A$.
+        \qed
+    \end{proof}
+    \item \textbf{Demuestre} que para todo $a>0$ existe un único $b>0$ tal que $b^2=a$.
+    
+    \begin{proof}
+        Probaremos primero la unicidad (suponiendo la existencia). Si $b_1,b_2>0$ son tales que $b_1^2=a=b_2^2$, entonces: $b_1^2-b_2^2=0\Rightarrow b_1 = -b_2$ o $b_1 = b_2$. Si $b_1 = -b_2$, como $b_2 > 0$ se tendría que $b_1 < 0$, lo cual no puede suceder pues $b_1 > 0$. Por tanto, $b_1 = b_2$
+
+        Probaremos ahora la existencia. Sea
+        \begin{equation*}
+            A = \left\{x\in\mathbb{R}|x > 0 \textup{ y } x^2< a\right\}
+        \end{equation*}
+        Si $a=1$, el resultado es inmediato, pues tomando $b=1$ se tiene que $b^2=1^2=1=a$.
+        Supongamos entonces que $a\neq 1$. Afirmamos que $A$ es no vacío y acotado superiormente. En efecto, se tiene que $\min\left\{a,1\right\}\in A$ ya que si $0<a<1$, entonces $\left(\min\left\{1,a\right\}\right)^2=a^2<a<1$.
+        Si ahora $1 < a$, entonces $\min\left\{1,a\right\}=1$, y $\left(\min\left\{1,a\right\}\right)^2=1^2=1<a$. En ambos casos se sigue que $A\neq\emptyset$.
+        
+        Veamos ahora que es acotado, $\max\left\{1,a\right\}$ es cota superior de $A$, pues para $x\in A$ se tienen dos casos: $0<x<1$ o $1\leq x$. Si sucede lo primero, se tiene que $0<x<1\leq \max\left\{1,a\right\}$. En el segundo caso $x\leq x^2<a\leq \max\left\{1,a\right\}$.
+        
+        Por tanto, $A\neq\emptyset$ y acotado superiormente, por el axioma del supremo, existe $b=\sup A$. Observemos que $b>0$ ya que por ser cota de $A$ en particular se tiene que $b>\min\left\{1,a\right\}>0$. Se probará que $b^2=a$.
+        
+        En efecto, sea $\varepsilon > 0$ tal que $0<\varepsilon<b$. Afirmamos que
+        \begin{equation*}
+            \left(b-\varepsilon\right)^2<a
+        \end{equation*}
+        En efecto, por ser $b$ el supremo existe $x\in A$ tal que $x>b-\varepsilon$, luego:
+        \begin{equation*}
+            \left(b-\varepsilon\right)^2<x^2<a
+        \end{equation*}
+        de donde se sigue la desigualdad. Ahora, observemos que:
+        \begin{equation*}
+            \begin{split}
+                \left(b-\varepsilon\right)^2=&b^2-2b\varepsilon+\varepsilon^2\\
+                >&b^2-2b\varepsilon\\
+                >&b^2-3b\varepsilon\\
+                \Rightarrow \left(b-\varepsilon\right)^2 > &b^2-3b\varepsilon\\
+            \end{split}
+        \end{equation*}
+        Por tanto, $a>b^2-3b\varepsilon\Rightarrow a-b^2>-3b\varepsilon$. Por otro lado, como $b$ es el supremo de $A$, $b+\varepsilon\notin A$, es decir:
+        \begin{equation*}
+            \begin{split}
+                a \leq& (b+\varepsilon)^2\\
+                =&b^2+2b\varepsilon+\varepsilon^2\\
+                <&b^2+2b\varepsilon+b\varepsilon\\
+                =&b^2+3b\varepsilon\\
+            \end{split}
+        \end{equation*}
+        ya que $\varepsilon^2 < b\varepsilon$. Por lo tanto $a<b^2+3b\varepsilon\Rightarrow a-b^2<3b\varepsilon$. Se obtuvieron entonces las dos desigualdades:
+        \begin{equation*}
+            -3b\varepsilon<a-b^2\textup{y}\qquad a-b^2<3b\varepsilon
+        \end{equation*}
+        Lo cual implica que:
+        \begin{equation*}
+            \begin{split}
+                &0\leq\abs{a-b^2}<3b\varepsilon\\
+                \Rightarrow &0\leq \frac{\abs{a-b^2}}{3b}<\varepsilon
+            \end{split}
+        \end{equation*}
+        Como el $\varepsilon>0$ fue arbitrario (entre $0$ y $b$), debe suceder entones que $a-b^2=0$, es decir $a=b^2$.
+        \qed
+    \end{proof}
+    
+    \item Si $A$ es un subconjunto no vacío de $\mathbb{R}$, se define el conjunto
+    \begin{equation*}
+        -A=\left\{ -x|x\in A \right\}.
+    \end{equation*}
+    \textbf{Muestre} que si $A$ está acotado inferiormente, entonces $-A$ está acotado superiormente, y
+    \begin{equation*}
+        \inf A = -\sup \left(-A\right).
+    \end{equation*}
+    \begin{proof}
+        Supongamos que $A$ está acotado inferiormente, entonces al ser no vacío se cumple que $\exists b\in\mathbb{R}$ tal que:
+        \begin{equation*}
+            \begin{split}
+                \Rightarrow b\leq& x\qquad \forall x\in A\\
+                \Rightarrow -x\leq& -b\qquad \forall x\in A
+            \end{split}
+        \end{equation*}
+        Por tanto, $-A$ está acotado superiormente. Como $A$ es no vacío, $-A$ es no vacío (pues si $x\in A$  entonces $-x\in -A$). Por tanto el supremo de $-A$ existe. Probaremos que:
+        \begin{equation*}
+            \inf A = -\sup (-A)
+        \end{equation*}
+        En efecto, como $\inf A \leq x, \forall x\in A$, entonces $-x\leq -\inf A, \forall x\in A$, es decir $x\leq -\inf A, \forall x\in -A$. Por tanto $\inf A$ es cota superior de $-A$. Por minimalidad del supremo debe suceder que $\sup (-A) \leq -\inf A$.
+        
+        Probaremos la igualdad. Procederemos por contradicción: supongamos que $\sup(-A)<-\inf A$, entonces $0<-\inf A-\sup(-A)$. Por un teorema, para $-\inf A-\sup(-A)>0$ existe un $x\in A$ tal que:
+        \begin{equation*}
+            \begin{split}
+                x <& \inf A + -\inf A-\sup(-A)\\
+                =& -\sup(-A)\\
+                \Rightarrow x <& -\sup(-A)\\
+                \Rightarrow \sup(-A) <& -x\\
+            \end{split}
+        \end{equation*}
+        Donde $-x\in -A$. Lo anterior es una contradicción pues se supone que $-x\leq \sup(-A)$ (por definición de supremo). Por tanto debe suceder que $\sup(-A)=-\inf A$, es decir:
+        \begin{equation*}
+            \inf A = -\sup (-A)
+        \end{equation*}
+        \qed
+    \end{proof}
+    \item Si $A$ y $B$ son dos subconjuntos no vacíos de $\mathbb{R}$ tales que $x\leq y,\forall x\in A$ y $y\in B$, \textbf{demuestre} que
+    \begin{equation*}
+        \sup A \leq y, \quad \forall y\in B.
+    \end{equation*}
+    \textbf{Deduzca} que
+    \begin{equation*}
+        \sup A \leq \inf B.
+    \end{equation*}
+    \begin{proof}
+        Como $A$ es no vacío y acotado superiormente, pues se cumple que $x\leq y,\forall x\in A$ y $y\in B$ (siendo $B$ no vacío), entonces $A$ tiene supremo, de esta forma:
+        \begin{equation*}
+            x\leq \sup A,\qquad \forall x\in A
+        \end{equation*}
+        Sea $y\in B$. Como $x\leq y,\forall x\in A$, entonces $y$ es cota superior de $A$. Por minimalidad del supremo debe suceder que $\sup A\leq y$. Siendo $y$ arbitrario debe suceder que:
+        \begin{equation*}
+            \sup A \leq y,\quad \forall y\in B
+        \end{equation*}
+        Como se quería demostrar. Para la otra parte, por lo anterior $B$ está acotado inferiormente y no vacío, por tanto tiene ínfimo, así $\inf B \leq y, \forall y\in B$. Como $\sup A$ es cota inferior de $B$, se debe tener por minimalidad del ínfimo que:
+        \begin{equation*}
+            \sup A \leq \inf B
+        \end{equation*}
+        \qed
+    \end{proof}
+    \item Dados dos subconjutos no vacíos $A$ y $B$ de $\mathbb{R}$, se define el conjunto
+    \begin{equation*}
+        A+B=\left\{ a+b|a\in A, b\in B\right\}.
+    \end{equation*}
+    Si $A$ y $B$ están acotados superiormente, \textbf{pruebe} que $A+B$ está acotado superiormente y
+    \begin{equation*}
+        \sup \left(A+B\right)=\sup A +\sup B.
+    \end{equation*}
+    \begin{proof}
+        Como $A$ y $B$ están acotados superiormente, existen $M,N\in\mathbb{R}$ tales que:
+        \begin{equation*}
+            a\leq M \quad \textup{ y } \quad b\leq N, \quad \forall a\in A \quad \textup{ y } \quad \forall b\in B
+        \end{equation*}
+        Sea $x\in A+B$, por definición existen $a\in A$ y $b\in B$ tales que $x=a+b$. Por la ecuación anterior se tiene que $x\leq M+N$. Como el $x$ fue arbitrario, entonces se cumple que:
+        \begin{equation*}
+            x\leq M+N,\quad \forall x\in A+B
+        \end{equation*}
+        Luego, $A+B$ está acotado superiormente. Siendo que $A$, $B$ y $A+B$ son todos no vacíos, por el axioma del supremo existen $\sup A, \sup B, \sup (A+B)\in\mathbb{R}$ tales que:
+        \begin{equation*}
+            a\leq \sup A \textup{, } b\leq \sup B \textup{ y } x\leq \sup \left(A+B\right) \quad \forall a\in A \textup{, } \forall b\in B \textup{ y }\forall x\in A+B
+        \end{equation*}
+        En particular, $\sup A + \sup B$ es cota superior del conjunto $A+B$, luego por minimalidad del supremo debe suceder que $\sup (A+B)\leq \sup A + \sup B$. Probaremos la igualdad, sean $a\in A$ y $b\in B$ (fijando b), entonces afirmamos que $a\leq \sup (A+B)-b$. En efecto, por definición de supremo, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                a+b\leq& \sup (A+B)\\
+                \Rightarrow a \leq& \sup(A+B)-b\\
+            \end{split}
+        \end{equation*}
+        Como el $a$ fue arbitrario y el $b$ es fijo, entonces $\sup(A+B)-b$ es cota superior de $a$, por minimalidad debe suceder que $\sup A \leq \sup (A+B) - b$. Como el $b$ fue arbitrario, entonces:
+        \begin{equation*}
+            b\leq \sup(A+B)-\sup A
+        \end{equation*}
+        Por tanto $\sup B \leq \sup (A+B) - \sup A$. Así $\sup A+ \sup B \leq \sup (A+B)$. Como antes se tenía la otra desigualdad, debe suceder que $\sup (A+B) = \sup A + \sup B$.
+        \qed
+    \end{proof}
+    \item \begin{enumerate}
+        \item Si $a\in\mathbb{Q}$ y $b\in\mathbb{I}$ ¿Es $ab$ necesariamente racional o irracional?
+        \item Si $a\in\mathbb{Q}$ y $b\in\mathbb{I}$ ¿Es $a+b$ necesariamente racional o irracional?
+        \item ¿Existe algún número real $a$ tal que $a^2\in\mathbb{I}$ pero $a^4\in\mathbb{Q}$?
+        \item ¿Existen dos números irracionales tales que su suma y su producto sean racionales?
+    \end{enumerate}
+    \begin{proof}
+        De (I): Afirmamos que necesariamente debe ser irracional si $a\neq0$. En efecto, sean $a\in\mathbb{Q}/\left\{0\right\}$ y $b\in\mathbb{I}$. Si $ab\in\mathbb{Q}$, entonces como $\mathbb{Q}$ es cerrado bajo el producto, se tendría que $a^{-1}ab\in\mathbb{Q}\Rightarrow b\in\mathbb{Q}$, lo cual es una contradicción. Por tanto, $ab\in\mathbb{I}$. Si $a=0$, entonces $ab=0\in\mathbb{Q}$, para todo $b\in\mathbb{I}$.
+        
+        De (II): Afirmamos que necesariamente debe ser irracional. En efecto, sean $a\in\mathbb{Q}$ y $b\in\mathbb{I}$. Si $a+b\in\mathbb{Q}$, entonces como $\mathbb{Q}$ es cerrado bajo la suma, se tendría que $(a+b)-a\in\mathbb{Q}\Rightarrow b\in\mathbb{Q}$, lo cual es una contradicción. Por tanto, $a+b\in\mathbb{I}$.
+
+        De (III): Si, tomemos $a=\sqrt[4]{2}\in\mathbb{R}$, se tiene que: $a^2=\sqrt{2}\in\mathbb{I}$ y $a^4=2\in\mathbb{Q}$.
+
+        De (IV): Si, tome $a=\frac{\sqrt{2}}{2}$ y $b=-\frac{\sqrt{2}}{2}$, entonces $a\cdot b=-\frac{1}{2}$ y $a+b=0$, siendo ambos números racionales.
+        \qed
+    \end{proof}
+    \item Si $x\in\mathbb{Q}\ \left\{0\right\}$ y $y\in\mathbb{I}$, \textbf{pruebe} que
+    \begin{equation*}
+        x+y, \quad x-y, \quad xy, \quad x/y, \quad \textup{y} \quad y/x
+    \end{equation*}
+    son todos irracionales.
+    \begin{proof}
+        Por el ejercicio anterior, tanto $x+y,x-y,xy\in\mathbb{I}$. Probaremos para los demás. Si $x/y\in\mathbb{Q}$, entonces $\exists p\in\mathbb{Q}$ tal que $xy^{-1}=p$, luego como $y\neq 0$ y $p\neq0$ (pues $x\neq 0$), se tiene que $y=p^{-1}x\in\mathbb{Q}$, lo cual es una contradicción. Por tanto $x/y\in\mathbb{I}$.
+        
+        De forma análoga se procede para probar que $y/x\in\mathbb{I}$.
+        \qed
+    \end{proof}
+    \item Fije $p,q\in\mathbb{Q}\cap \left]0,\infty\right[$ y defina $x=p+\sqrt{q}$. \textbf{Demuestre} que para toda $m\in\mathbb{N}$ existen $a,b\in\mathbb{Q}$ tales que
+    \begin{equation*}
+        x^m=a+b\sqrt{q}
+    \end{equation*}
+    \begin{proof}
+        Procederemos por inducción sobre $m$. Para $m=1$ el resultado es inmediato tomando $a=p,b=1\in\mathbb{Q}$. Suponga que el resultado se cumple para $m=k$, es decir, $\exists a_0,b_0\in\mathbb{Q}$ tales que
+        \begin{equation*}
+            x^k=a_0+b_0\sqrt{q}
+        \end{equation*}
+        Probaremos el resultado para $m=k+1$. En efecto, observemos que:
+        \begin{equation*}
+            \begin{split}
+                x^{k+1}=&x^k\cdot x\\
+                =&\left(a_0+b_0\sqrt{q}\right)\cdot (p+\sqrt{q})\\
+                =&a_0p+a_0\sqrt{q}+b_0p\sqrt{q}+b_0q\\
+                =&\left(a_0p+b_0q\right)+\left(a_0+b_0p\right)\sqrt{q}\\
+            \end{split}
+        \end{equation*}
+        Por tanto, como $\mathbb{Q}$ es cerrado bajo el producto y suma, basta tomar $a=a_0p+b_0q,b=a_0+b_0p\in\mathbb{Q}$.
+        
+        Aplicando inducción, el resultado se cumple para toda $m\in\mathbb{N}$.
+        \qed
+    \end{proof}
+    \item Si $x\in\mathbb{R}$, \textbf{muestre} que existen $m,n\in\mathbb{Z}$ tales que
+    \begin{equation*}
+        m\leq x<n.
+    \end{equation*}
+    \begin{proof}
+        Tenemos dos casos, $x\geq 0$ y $x<0$.
+        
+        Si $x\geq 0$, veamos que el conjunto:
+        \begin{equation*}
+            \begin{split}
+                A=&\left\{m\in\mathbb{N}|m+1-x> 0\right\}\\
+            \end{split}
+        \end{equation*}
+        es un subconjunto de los naturales no vacío, pues como los naturales no son acotados, existe un $u\in\mathbb{N}$ tal que $x\leq u$, así $u+1-x> 0\Rightarrow u\in A$. Por tanto, este conjunto tiene un primer elemento, digamos $m\in\mathbb{N}$, es decir:
+        \begin{equation*}
+            m+1-x>0\Rightarrow m+1>x
+        \end{equation*}
+        es decir, si $l\in\mathbb{Z}$ es tal que $l<m$, $l\leq x$, en particular $m\leq x$, por tanto:
+        \begin{equation*}
+            m\leq x < m+1
+        \end{equation*}
+        Tomando $n=m+1$ se tiene que $m\leq x < n$.
+        Si $x<0$, entonces $0<-x$. Por la parte anterior existen $u,v\in\mathbb{Z}$ tales que
+        \begin{equation*}
+            u\leq -x<v\Rightarrow -v<x\leq-u
+        \end{equation*}
+        Donde $-v,-u\in\mathbb{Z}$. Si $x=-u$, tomando $m=-u$ y $n=-u+1$ se obtiene que $m\leq x < n$. Si $x<-u$ tomando $m=-v$ y $n=-u$ obtenemos que $m\leq x<n$.
+        \qed
+    \end{proof}
+    \item \textbf{Pruebe} que $\sqrt{3}, \sqrt{5}, \sqrt{6}$ son números irracionales.
+    
+    \textit{Sugerencia.} Intente adaptar la demostración hecha en clase de que $\sqrt{2}$ es irracional para probar que $\sqrt{3}$ y $\sqrt{5}$ son irracionales.
+
+    \begin{proof}
+        Probaremos que $\sqrt{3}$ es irracional. Suponga que $\sqrt{3}$ es racional, entonces existen $a,b\in\mathbb{N}$ tales que $\left(a,b\right)=1$ y $\sqrt{3}=\frac{a}{b}$.
+        Entonces
+        \begin{equation*}
+            3=\frac{a^2}{b^2}\Rightarrow 3b^2=a^2
+        \end{equation*}
+        Entonces $3|a^2$, pero como $3$ es primo debe suceder que $3|a$, luego existe $q\in\mathbb{Z}$ tal que $3q=a\Rightarrow 9q^2=a^2$. Por tanto:
+        \begin{equation*}
+            3b^2=9q^2\Rightarrow b^2=3q^2
+        \end{equation*}
+        Por el mismo argumento que con $a$, $b=3p$, donde $p\in\mathbb{Z}$. Pero si esto sucediera entonces se tendría que $(a,b)\geq 3$, lo cual es una contradicción ya que $(a,b)=1$. Por tanto, $\sqrt{3}$ es irracional.
+
+        Para $\sqrt{5}$ se hace lo mismo que con $\sqrt{3}$, usando el hecho de que $5$ es número primo.
+
+        Para $\sqrt{6}$. Suponga que $\sqrt{6}$ es racional, entonces existen $a,b\in\mathbb{N}$ tales que $(a,b)=1$ y
+        \begin{equation*}
+            \begin{split}
+                \sqrt{6}=\frac{a}{b}\Rightarrow& 6b^2=a^2\\
+                \Rightarrow& 2\cdot 3b^2=a^2\\
+            \end{split}
+        \end{equation*}
+        En particular, $2|a^2$ y $3|a^2$. Por tanto debe suceder que $2|a$ y $3|a$, así $6|a$, existe entonces $q\in\mathbb{Z}$ tal que $a=6q\Rightarrow a^2=36q^2$, luego:
+        \begin{equation*}
+            6b^2=36q^2\Rightarrow b^2=6q^2
+        \end{equation*}
+        Luego como con $a$, $6|b$, así $(a,b)\geq 6$, lo cual es una contradicción pues $(a,b)=1$. Por tanto, $\sqrt{6}$ es irracional.
+        \qed
+    \end{proof}
+    \item \textbf{Demuestre} que $\sqrt{2}+\sqrt{3}$ y $\sqrt{6}-\sqrt{2}-\sqrt{3}$ son números irracionales.
+    
+    \begin{proof}
+        Probaremos que $\sqrt{2}+\sqrt{3}$ es irracional. Observemos que:
+        \begin{equation*}
+            \begin{split}
+                \left(\sqrt{2}+\sqrt{3}\right)^2=&2+2\sqrt{2}\cdot\sqrt{3}+3\\
+                =&5+2\sqrt{6}\\
+            \end{split}
+        \end{equation*}
+        Si $\sqrt{2}+\sqrt{3}$ fuera racional, su cuadrado también lo sería, es decir $5+2\sqrt{6}$ sería racional, entonces existirían $a,b\in\mathbb{N}$ tales que:
+        \begin{equation*}
+            \begin{split}
+                5+2\sqrt{6}=&\frac{a}{b}\\
+                \Rightarrow \sqrt{6}=&\frac{a-5b}{2b}\\
+            \end{split}
+        \end{equation*}
+        Donde $a-5b,2b\in\mathbb{Z}$, por tanto $\sqrt{6}$ sería racional, lo cual contradice el ejercicio anterior. Por tanto, $\sqrt{2}+\sqrt{3}$ es irracional.
+
+        Para probar que $\sqrt{6}-\sqrt{2}-\sqrt{3}$ es irracional, supongamos que es racional, entonces existe $r\in\mathbb{Q}$ tal que:
+        \begin{equation*}
+            \begin{split}
+                \sqrt{6}-\sqrt{2}-\sqrt{3} =& r\\
+                \Rightarrow \sqrt{6}-\sqrt{2} =& r+\sqrt{3}\\
+                \Rightarrow 6-2\sqrt{12}+2 =& r^2+2r\sqrt{3}+3\\
+                \Rightarrow 8-4\sqrt{3} =& r^2+2r\sqrt{3}+3\\
+                \Rightarrow 5 =& r^2+2r\sqrt{3}+4\sqrt{3}\\
+                \Rightarrow 5-r^2 =& (2r+4)\sqrt{3}\\
+            \end{split}
+        \end{equation*}
+        Como $r\neq -2$, pues se tiene que $\sqrt{6}-\sqrt{2}-\sqrt{3}>\sqrt{4}-\sqrt{2}-\sqrt{4}=-\sqrt{2}>-2$, entonces:
+        \begin{equation*}
+            \Rightarrow \sqrt{3}=\frac{5-r^2}{2r+4}
+        \end{equation*}
+        Donde $\frac{5-r^2}{2r+4}\in\mathbb{Q}$, lo cual es una contradicción ya que $\sqrt{3}$ es irracional. Por tanto, $\sqrt{6}-\sqrt{2}-\sqrt{3}$ es irracional.
+        \qed
+    \end{proof}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,1086 @@
+\documentclass[12pt]{article}
+\usepackage{lingmacros}
+\usepackage{tree-dvips}
+\usepackage{ragged2e}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{enumerate}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{multicol}
+\usetikzlibrary{scopes}
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+
+\begin{document}
+\title{Resolución C I. Lista 2}
+\author{Alvarado Cristo Daniel}
+\date{Octubre de 2023}
+\maketitle
+
+Los presentes ejercicios fueron diseñados para ser resueltos conforme el lector vaya comprendiendo los conceptos y resultados dados en la teoría, si se tiene alguna duda sobre alguno(s) de ellos se recomienda sea disipada de inmediato. Se sugiere al lector redactar, según su criterio, una guía que contenga aquellos conceptos y resultados del capítulo que considere más importantes y/o útiles como referencia
+rápida de consulta para la solución de los problemas. UwU
+
+%\renewcommand\qedsymbol{$\square$}%
+\renewcommand{\labelenumi}{\textbf{2.\theenumi.}}
+\renewcommand{\labelenumii}{\textbf{\Roman{enumii}.}}
+\providecommand{\abs}[1]{\left| #1 \right|}
+\def\proof{\textit{Solución:}\\}
+
+\begin{enumerate}
+    \item Usando la definición de límite, \textbf{demuestre} que
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item 
+                \begin{equation*}
+                    \lim_{n\rightarrow \infty}\frac{1}{\sqrt{n}}=0.
+                \end{equation*}
+            \item 
+                \begin{equation*}
+                    \lim_{n\rightarrow \infty}\frac{1}{\sqrt{n-1}}=0.
+                \end{equation*}
+        \end{enumerate}
+    \end{multicols}
+    \begin{proof}
+        De (I): Sea $\varepsilon>0$. Por la propiedad arquimediana existe $N\in\mathbb{N}$ tal que $0<\frac{1}{N}\leq\varepsilon^2\Rightarrow \frac{1}{\sqrt{N}}\leq\varepsilon$. Por tanto, si $n\geq N$, entonces $\sqrt{n}\geq\sqrt{N}\Rightarrow \frac{1}{\sqrt{n}}\leq\frac{1}{\sqrt{N}}$. Luego:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{\sqrt{n}}-0}=&\frac{1}{\sqrt{n}}\\
+                \leq&\frac{1}{\sqrt{N}}\\
+                <&\varepsilon
+            \end{split}
+        \end{equation*}
+        Por tanto, de la definición de límite se sigue que $\lim_{n\rightarrow\infty}\frac{1}{\sqrt{n}}=0$.
+        
+        De (II): Sea $\varepsilon>0$. Por la propiedad arquimediana existe $N\in\mathbb{N}$ ($N>1$) tal que $0<\frac{1}{N-1}\leq\varepsilon^2\Rightarrow \frac{1}{\sqrt{N-1}}\leq\varepsilon$. Por tanto, si $n\geq N$, entonces $\sqrt{n-1}\geq\sqrt{N-1}\Rightarrow \frac{1}{\sqrt{n-1}}\leq\frac{1}{\sqrt{N-1}}$. Luego:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{\sqrt{n-1}}-0}=&\frac{1}{\sqrt{n-1}}\\
+                \leq&\frac{1}{\sqrt{N-1}}\\
+                <&\varepsilon
+            \end{split}
+        \end{equation*}
+        Por tanto, de la definición de límite se sigue que $\lim_{n\rightarrow\infty}\frac{1}{\sqrt{n-1}}=0$.
+        \qed
+    \end{proof}
+    \item \textbf{Muestre} que
+        \begin{equation*}
+            \abs{\frac{1}{\sqrt{3n^2-1}}-0}\leq \frac{1}{\sqrt{2}n},\quad \forall n\geq1.
+        \end{equation*}
+        Usando esto y la definición de límite, \textbf{demuestre} que
+        \begin{equation*}
+            \lim_{n\rightarrow \infty}\frac{1}{\sqrt{3n^2-1}}=0.
+        \end{equation*}
+    \begin{proof}
+        Sea $n\in\mathbb{N}$, observemos que
+        \begin{equation*}
+            \begin{split}
+                2n^2+1\leq2n^2+n^2\Rightarrow& 2n^2+1\leq3n^2\\
+                \Rightarrow& 0\leq2n^2\leq3n^2-1\\
+                \Rightarrow& \sqrt{2n^2}\leq\sqrt{3n^2-1}\\
+                \Rightarrow& \frac{1}{\sqrt{3n^2-1}}\leq\frac{1}{\sqrt{2n^2}}\\
+                \Rightarrow& \frac{1}{\sqrt{3n^2-1}}\leq\frac{1}{\sqrt{2}n}\\
+            \end{split}
+        \end{equation*}
+        pues, $n\geq1$. Por tanto se tiene que
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{\sqrt{3n^2-1}}-0}=&\frac{1}{\sqrt{3n^2-1}}\\
+                \leq&\frac{1}{\sqrt{2}n}, \quad \forall n\in\mathbb{N}\\
+            \end{split}
+        \end{equation*}
+        Como se quería demostrar. Sea $\varepsilon>0$, por la propiedad arquimediana existe $N\in\mathbb{N}$ tal que $\frac{1}{N}<\varepsilon$, entonces como $\frac{1}{\sqrt{2}}<1$, se sigue que $\frac{1}{\sqrt{2}N}<\varepsilon$. Por tanto, si $n\geq N$ se tiene que $\frac{1}{\sqrt{2}n}\leq\frac{1}{\sqrt{2}N}$. Por tanto para todo $n\geq N$ se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{1}{\sqrt{3n^2-1}}-0}\leq&\frac{1}{\sqrt{2}n}\\
+                \leq&\frac{1}{\sqrt{2}N}\\
+                <\varepsilon
+            \end{split}
+        \end{equation*}
+        por tanto, de la definición de límite se sigue que $\lim_{n\rightarrow\infty}\frac{1}{\sqrt{3n^2-1}}=0$.
+        \qed
+    \end{proof}
+    \item Sea $\left\{x_n\right\}_{n=1}^{\infty}$ una sucesión de números reales que converge a cero. Usando la definición de límite, \textbf{pruebe} que
+    \begin{equation*}
+        \lim_{n\rightarrow \infty}\sqrt{\abs{x_n}}=0.
+    \end{equation*}
+    \begin{proof}
+        Sea $\varepsilon>0$, para $\varepsilon^{2}>0$ existe $N\in\mathbb{N}$ tal que $n\geq N$ implica que
+        \begin{equation*}
+            \begin{split}
+                0\leq\abs{x_n-0}&\leq \varepsilon^2\\
+                \sqrt{\abs{x_n}}&\leq \varepsilon\\
+            \end{split}
+        \end{equation*}
+        Pero como $\sqrt{\abs{x_n}}=\abs{\sqrt{\sqrt{\abs{x_n}}}}=\abs{\sqrt{\abs{x_n}}-0}$ (ya que $\sqrt{\abs{x_n}}\geq0$), entonces $n\geq N$ implica
+        \begin{equation*}
+            \abs{\sqrt{\abs{x_n}}-0}<\varepsilon
+        \end{equation*}
+        por tanto, de la definición de límite se sigue que $\lim_{n\rightarrow\infty}\sqrt{\abs{x_n}}=0$.
+        \qed
+    \end{proof}
+    \item \begin{enumerate}
+        \item \textbf{Demuestre} que
+            \begin{equation*}
+                \abs{\sqrt{n+1}-\sqrt{n}}\leq\frac{1}{2\sqrt{n}},\quad \forall n\geq 1.
+            \end{equation*}
+            \textit{Sugerencia.} Use el truco de multiplicar y dividir el lado izquierdo por una misma cantidad.
+        \item Usando (I) y la definición de límite, \textbf{muestre} que
+            \begin{equation*}
+                \lim_{n\rightarrow\infty}\left(\sqrt{n+1}-\sqrt{n}\right)=0.
+            \end{equation*}
+        \end{enumerate}
+    \begin{proof}
+        De (I): Sea $n\in\mathbb{N}$. Observemos que
+        \begin{equation*}
+            \begin{split}
+                \abs{\sqrt{n+1}-\sqrt{n}}=&\sqrt{n+1}-\sqrt{n}\\
+                =&\left(\sqrt{n+1}-\sqrt{n}\right)\cdot\frac{\sqrt{n+1}+\sqrt{n}}{\sqrt{n+1}+\sqrt{n}}\\
+                =&\frac{n+1-n}{\sqrt{n+1}+\sqrt{n}}\\
+                =&\frac{1}{\sqrt{n+1}+\sqrt{n}}\\
+                \leq&\frac{1}{\sqrt{n}+\sqrt{n}}\\
+                =&\frac{1}{2\sqrt{n}}\\
+            \end{split}
+        \end{equation*}
+        como se quería demostrar.
+
+        De (II): Sea $\varepsilon>0$, por la propiedad arquimediana de los números reales, existe $N\in\mathbb{N}$ tal que $\frac{1}{N}< \varepsilon^2$ (donde $\varepsilon^2>0$), es decir, $\frac{1}{\sqrt{N}}< \varepsilon$. Por tanto, si $n\in \mathbb{N}$ es tal que $n\geq N$, entonces
+        \begin{equation*}
+            \begin{split}
+                \abs{\sqrt{n+1}-\sqrt{n}-0}=&\abs{\sqrt{n+1}-\sqrt{n}}\\
+                \leq&\frac{1}{2\sqrt{n}}\\
+                \leq&\frac{1}{2\sqrt{N}}\\
+                <&\frac{1}{2}\varepsilon\\
+                <&\varepsilon
+            \end{split}
+        \end{equation*}
+        \qed
+    \end{proof}
+    \item Usando la definición de límite, \textbf{pruebe} que
+        \begin{equation}
+            \lim_{n\rightarrow\infty}\left(\sqrt[8]{n^2+1}-\sqrt[4]{n+1}\right)=0.
+        \end{equation}
+        \textit{Sugerencia.} Observe que $\sqrt[8]{n^2+1}-\sqrt[4]{n+1}=\left[\sqrt[8]{n^2+1}-\sqrt[8]{n^2}\right]+\left[\sqrt[4]{n}-\sqrt[4]{n+1}\right]$. Proceda ahora de manera similar al Problema \textbf{2.4}.
+        
+        \begin{proof}
+            Sea $n\in\mathbb{N}$. Observemos que
+            \begin{equation*}
+                \sqrt[8]{n^2+1}-\sqrt[4]{n+1}=\left[\sqrt[8]{n^2+1}-\sqrt[8]{n^2}\right]+\left[\sqrt[4]{n}-\sqrt[4]{n+1}\right]
+            \end{equation*}
+            de donde
+            \begin{equation*}
+                \begin{split}
+                    0\leq\sqrt[8]{n^2+1}-\sqrt[8]{n^2}=&\left(\sqrt[8]{n^2+1}-\sqrt[8]{n^2}\right)\cdot\frac{\sqrt[8]{n^2+1}+\sqrt[8]{n^2}}{\sqrt[8]{n^2+1}+\sqrt[8]{n^2}}\\
+                    =&\frac{\sqrt[4]{n^2+1}-\sqrt[4]{n^2}}{\sqrt[8]{n^2+1}+\sqrt[8]{n^2}}\\
+                    =&\frac{\sqrt[4]{n^2+1}-\sqrt[4]{n^2}}{\sqrt[8]{n^2+1}+\sqrt[8]{n^2}}\cdot\frac{\sqrt[4]{n^2+1}+\sqrt[4]{n^2}}{\sqrt[4]{n^2+1}+\sqrt[4]{n^2}}\\
+                    =&\frac{\sqrt[2]{n^2+1}-\sqrt[2]{n^2}}{(\sqrt[8]{n^2+1}+\sqrt[8]{n^2})(\sqrt[4]{n^2+1}+\sqrt[4]{n^2})}\\
+                    =&\frac{\sqrt[2]{n^2+1}-n}{(\sqrt[8]{n^2+1}+\sqrt[8]{n^2})(\sqrt[4]{n^2+1}+\sqrt[4]{n^2})}\\
+                    =&\frac{\sqrt[2]{n^2+1}-n}{(\sqrt[8]{n^2+1}+\sqrt[8]{n^2})(\sqrt[4]{n^2+1}+\sqrt[4]{n^2})}\cdot\frac{\sqrt[2]{n^2+1}+n}{\sqrt[2]{n^2+1}+n}\\
+                    =&\frac{n^2+1-n^2}{(\sqrt[8]{n^2+1}+\sqrt[8]{n^2})(\sqrt[4]{n^2+1}+\sqrt[4]{n^2})(\sqrt[2]{n^2+1}+n)}\\
+                    =&\frac{1}{(\sqrt[8]{n^2+1}+\sqrt[8]{n^2})(\sqrt[4]{n^2+1}+\sqrt[4]{n^2})(\sqrt[2]{n^2+1}+n)}\\
+                    \leq&\frac{1}{\sqrt[2]{n^2}+n}\\
+                    =&\frac{1}{2n}\\
+                    \leq&\frac{1}{2\sqrt{n}}\\
+                    \Rightarrow \abs{\sqrt[8]{n^2+1}-\sqrt[8]{n^2}}\leq&\frac{1}{2\sqrt{n}}\\
+                \end{split}
+            \end{equation*}
+            y
+            \begin{equation*}
+                \begin{split}
+                    0\leq\sqrt[4]{n+1}-\sqrt[4]{n}=&\left(\sqrt[4]{n+1}-\sqrt[4]{n}\right)\cdot\frac{\sqrt[4]{n+1}+\sqrt[4]{n}}{\sqrt[4]{n+1}+\sqrt[4]{n}}\\
+                    =&\frac{\sqrt[2]{n+1}-\sqrt[2]{n}}{\sqrt[4]{n+1}+\sqrt[4]{n}}\\
+                    =&\frac{\sqrt[2]{n+1}-\sqrt[2]{n}}{\sqrt[4]{n+1}+\sqrt[4]{n}}\cdot\frac{\sqrt[2]{n+1}+\sqrt[2]{n}}{\sqrt[2]{n+1}+\sqrt[2]{n}}\\
+                    =&\frac{n+1-n}{(\sqrt[4]{n+1}+\sqrt[4]{n})(\sqrt[2]{n+1}+\sqrt[2]{n})}\\
+                    =&\frac{1}{(\sqrt[4]{n+1}+\sqrt[4]{n})(\sqrt[2]{n+1}+\sqrt[2]{n})}\\
+                    \leq&\frac{1}{\sqrt[2]{n}+\sqrt[2]{n}}\\
+                    =&\frac{1}{2\sqrt{n}}\\
+                    \Rightarrow \abs{\sqrt[4]{n}-\sqrt[4]{n+1}}=&\frac{1}{2\sqrt{n}}\\
+                \end{split}
+            \end{equation*}
+            Por tanto, como el $n\in\mathbb{N}$ fue arbitrario, las desigualdades anteriores se cumplen para todo $n\in\mathbb{N}$. Luego,
+            \begin{equation*}
+                \begin{split}
+                    \abs{\sqrt[8]{n^2+1}-\sqrt[4]{n+1}}=&\abs{\left[\sqrt[8]{n^2+1}-\sqrt[8]{n^2}\right]+\left[\sqrt[4]{n}-\sqrt[4]{n+1}\right]}\\
+                    \leq&\abs{\left[\sqrt[8]{n^2+1}-\sqrt[8]{n^2}\right]}+\abs{\left[\sqrt[4]{n}-\sqrt[4]{n+1}\right]}\\
+                    \leq&\frac{1}{2\sqrt{n}}+\frac{1}{2\sqrt{n}}\\
+                    \leq&\frac{1}{\sqrt{n}},\quad\forall n\in\mathbb{N}\\
+                \end{split}
+            \end{equation*}
+            Por el \textbf{Problema I, I)}, para $\varepsilon>0$ existe $N\in\mathbb{N}$ tal que si $n\geq N$:
+            \begin{equation*}
+                \frac{1}{\sqrt{n}}=\abs{\frac{1}{\sqrt{n}}-0}<\varepsilon
+            \end{equation*}
+            Por tanto, por la desigualdad anterior, para todo $n\geq N$, se tiene que
+            \begin{equation*}
+                \begin{split}
+                    \abs{\sqrt[8]{n^2+1}-\sqrt[4]{n+1}-0}\leq&\frac{1}{n}\\
+                    <&\varepsilon\\
+                    \Rightarrow \abs{\sqrt[8]{n^2+1}-\sqrt[4]{n+1}-0}<&\varepsilon\\
+                \end{split}
+            \end{equation*}
+            Luego, de la definición de límite se sigue que
+            \begin{equation*}
+                \lim_{n\rightarrow\infty}\left(\sqrt[8]{n^2+1}-\sqrt[4]{n+1}\right)=0
+            \end{equation*}
+            \qed
+        \end{proof}
+    \item \textbf{Pruebe} por inducción que
+        \begin{equation*}
+            \frac{n!}{n^n}\leq\frac{1}{n},\quad\forall n\in\mathbb{N}.
+        \end{equation*}
+        Usando esto y la definición de límite, \textbf{pruebe} que
+        \begin{equation*}
+            \lim_{n\rightarrow\infty}\frac{n!}{n^n}=0.
+        \end{equation*}
+        
+        \begin{proof}
+            Procedamos por inducción sobre $n$. Para $n=1$ el resultado es inmediato, pues
+            \begin{equation*}
+                \begin{split}
+                    \frac{1!}{1^1}=\frac{1}{1}\\
+                \end{split}
+            \end{equation*}
+            Suponga el resultado válido para algún $n=k$, es decir
+            \begin{equation*}
+                \begin{split}
+                    \frac{k!}{k^k}&\leq\frac{1}{k}\\
+                    \iff k!&\leq k^{k-1}\\
+                \end{split}
+            \end{equation*}
+            Probaremos que se cumple para $n=k+1$. En efecto, veamos que
+            \begin{equation*}
+                \begin{split}
+                    (k+1)!=&(k+1)k!\\
+                    \leq&(k+1)k^{k-1}\\
+                    \leq&(k+1)\cdot(k+1)^{k-1}\\
+                    \leq&(k+1)^k\\
+                    \Rightarrow \frac{(k+1)!}{(k+1)^{k+1}}\leq&\frac{1}{k+1}\\
+                \end{split}
+            \end{equation*}
+            De esta forma, el resultado se cumple para $n=k+1$. Aplicando inducción, el resultado se cumple para todo $n\in\mathbb{N}$. Probaremos ahora el otro resultado. Sea $\varepsilon>0$, por la propiedad arquimediana existe $N\in\mathbb{N}$ tal que $n\geq N$ implica
+            \begin{equation*}
+                \frac{1}{n}\leq\frac{1}{N}<\varepsilon
+            \end{equation*}
+            Por lo anterior, en particular se tiene que para todo $n\geq N$
+            \begin{equation*}
+                \frac{n!}{n^n}\leq\frac{1}{n}
+            \end{equation*}
+            Es decir, para todo $n\geq N$
+            \begin{equation*}
+                \begin{split}
+                    \abs{\frac{n!}{n^n}-0}=&\frac{n!}{^n}\\
+                    \leq&\frac{1}{n}\\
+                    \leq&\frac{1}{N}\\
+                    <\varepsilon\\
+                    \Rightarrow \abs{\frac{n!}{^n}-0}<&\varepsilon\\
+                \end{split}
+            \end{equation*}
+            Por tanto, de la definición de límite se sigue que
+            \begin{equation*}
+                \lim_{n\rightarrow\infty}\frac{n!}{n^n}=0
+            \end{equation*}
+            \qed
+        \end{proof}
+    \item \textbf{Muestre} que si $\lim_{n\rightarrow\infty}a_n=0$ y si $\left\{b_n\right\}_{n=1}^{\infty}$ es acotada, entonces
+        \begin{equation*}
+            \lim_{n\rightarrow\infty}a_nb_n=0.
+        \end{equation*}
+        \begin{proof}
+            Como $\left\{b_n\right\}_{n=1}^{\infty}$ es acotada, entonces existe una $M\in\mathbb{R}$, $M\geq0$ tal que
+            \begin{equation*}
+                \begin{split}
+                    &\abs{b_n}\leq M,\quad \forall n\in\mathbb{N}\\
+                    \Rightarrow&\abs{b_n}< M+1,\quad \forall n\in\mathbb{N}\\
+                \end{split}
+            \end{equation*}
+            donde $M+1>0$. Sea $\varepsilon>0$, como $\left\{a_n\right\}_{n=1}^{\infty}$ converge a $0$, para $\frac{\varepsilon}{M+1}>0$ existe un $N\in\mathbb{N}$ tal que $n\geq N$ implica
+            \begin{equation*}
+                \begin{split}
+                    \abs{a_n-0}<&\frac{\varepsilon}{M+1}\\
+                    \Rightarrow \abs{a_n}\abs{b_n}<&\frac{\varepsilon}{M+1}\abs{b_n}<\frac{\varepsilon}{M+1}\left(M+1\right)\\
+                    \Rightarrow \abs{a_n b_n}<&\varepsilon\\
+                    \Rightarrow \abs{a_n b_n-0}<&\varepsilon\\
+                \end{split}
+            \end{equation*}
+            Por la definición de límite, se tiene que
+            \begin{equation*}
+                \lim_{n\rightarrow\infty}a_n b_n = 0
+            \end{equation*}
+            \qed
+        \end{proof}
+    \item \textbf{Pruebe} que si $\left\{a_n\right\}_{n=1}^{\infty}$ y $\left\{b_n\right\}_{n=1}^{\infty}$ convergen a un mismo número, entonces tamién converge a ese número la sucesión
+        \begin{equation*}
+            a_1,b_1,a_2,b_2,\dots
+        \end{equation*}
+        \begin{proof}
+            Sea $\left\{x_n\right\}_{n=1}^{\infty}$ la sucesión de estos términos. Observamos que los términos impares corresponden a la sucesión $\left\{a_n\right\}_{n=1}^{\infty}$, y los impares a $\left\{b_n\right\}_{n=1}^{\infty}$, esto es:
+            \begin{equation*}
+                x_{2n-1}=a_n\quad\textup{y}\quad x_{2n}=b_n,\quad \forall n\in\mathbb{N}
+            \end{equation*}
+            Sea $\varepsilon>0$. Como ambas sucesiones convergen al mismo número real (digamos $l\in\mathbb{R}$), entonces para este $\varepsilon>0$ existen $N_1,N_2\in\mathbb{N}$ tales que $n_1\geq N_1$ y $n_2\geq N_2$ implican:
+            \begin{equation*}
+                \abs{a_{n_1}-l}<\varepsilon\quad\textup{y}\quad\abs{b_{n_2}-l}<\varepsilon
+            \end{equation*}
+            Sea $N=2\max\left\{N_1,N_2\right\}$. Si $n\geq N$, tenemos dos casos para $n$:
+            \begin{itemize}
+                \item $n$ es impar, entonces existe un $m\in\mathbb{N}$ tal que $n=2m-1$. En particular $x_n=x_{2m-1}=a_m$. Como $n\geq N$, entonces $2m-1\geq2\max\left\{N_1,N_2\right\}$, es decir
+                \begin{equation*}
+                    \begin{split}
+                        2m-1\geq2\max\left\{N_1,N_2\right\}&\Rightarrow2m-1\geq2\max\left\{N_1,N_2\right\}-1\\
+                        &\Rightarrow2m\geq2\max\left\{N_1,N_2\right\}\\
+                        &\Rightarrow m\geq\max\left\{N_1,N_2\right\}\\
+                        &\Rightarrow m\geq N_1\\
+                    \end{split}
+                \end{equation*}
+                Por lo tanto, por la parte anterior se tiene que
+                \begin{equation*}
+                    \begin{split}
+                        &\abs{a_m-l}<\varepsilon\\
+                        \Rightarrow &\abs{x_{2m-1}-l}<\varepsilon\\
+                        \Rightarrow &\abs{x_n-l}<\varepsilon\\
+                    \end{split}
+                \end{equation*}
+                \item $n$ es par, entonces existe $m\in\mathbb{N}$ tal que $n=2m$. En particular $x_n=x_{2m}=b_m$. Como $n\geq N$, entonces
+                \begin{equation*}
+                    \begin{split}
+                        2m\geq N\Rightarrow&2m\geq2\max\left\{N_1,N_2\right\}\\
+                        \Rightarrow&m\geq\max\left\{N_1,N_2\right\}\\
+                        \Rightarrow&m\geq N_2\\
+                    \end{split}
+                \end{equation*}
+                Por lo tanto, por la parte anterior se tiene que
+                \begin{equation*}
+                    \begin{split}
+                        &\abs{b_m-l}<\varepsilon\\
+                        \Rightarrow &\abs{x_{2m}-l}<\varepsilon\\
+                        \Rightarrow &\abs{x_n-l}<\varepsilon\\
+                    \end{split}
+                \end{equation*}
+            \end{itemize}
+            En cualquier caso, se concluyó que si $n\geq N$, entonces
+            \begin{equation*}
+                \abs{x_n-l}<\varepsilon
+            \end{equation*}
+            Luego, por definición de límite se sigue que la sucesión $\left\{x_n\right\}_{n=1}^{\infty}$ también debe converger a $l$.
+            \qed
+        \end{proof}
+    \item Sean $\left\{x_n\right\}_{n=1}^{\infty}$ y $\left\{y_n\right\}_{n=1}^{\infty}$ dos sucesiones tales que $\left\{x_n\right\}_{n=1}^{\infty}$ y $\left\{x_n+y_n\right\}_{n=1}^{\infty}$ son convergentes. \textbf{Demuestre} que $\left\{y_n\right\}_{n=1}^{\infty}$ es convergente.
+    
+    \begin{proof}
+        Sea $\varepsilon>0$. Digamos que $\left\{x_n\right\}_{n=1}^{\infty}$ y $\left\{x_n+y_n\right\}_{n=1}^{\infty}$ convergen a $l_1\in\mathbb{R}$ y $l_2\in\mathbb{R}$, respectivamente. Entonces, para $\frac{\varepsilon}{2}>0$ existen $N_1,N_2\in\mathbb{N}$ tales que $n_1\geq N_1$ y $n_2\geq N_2$ implican
+        \begin{equation*}
+            \begin{split}
+                &\abs{x_{n_1}-l_1}<\frac{\varepsilon}{2}\quad \textup{y}\quad \abs{x_{n_2}+y_{n_2}-l_2}<\frac{\varepsilon}{2}\\
+                \Rightarrow&\abs{-x_{n_1}+l_1}<\frac{\varepsilon}{2}\quad \textup{y}\quad \abs{x_{n_2}+y_{n_2}-l_2}<\frac{\varepsilon}{2}\\
+            \end{split}
+        \end{equation*}
+        Sea $N=\max\left\{N_1,N_2\right\}$. Si $n\geq N$, entonces $n\geq N_1$ y $n\geq N_2$. Por lo anterior tenemos que
+        \begin{equation*}
+            \abs{-x_{n}+l_1}<\frac{\varepsilon}{2}\quad \textup{y}\quad \abs{x_{n}+y_{n}-l_1}<\frac{\varepsilon}{2}
+        \end{equation*}
+        se sigue entonces que
+        \begin{equation*}
+            \begin{split}
+                \abs{y_n-(l_2-l_1)}=&\abs{y_n-l_2+l_1+x_n-x_n}\\
+                =&\abs{-x_n+l_1+x_n+y_n-l_2}\\
+                \leq&\abs{-x_n+l_1}+\abs{x_n+y_n-l_2}\\
+                <&\frac{\varepsilon}{2}+\frac{\varepsilon}{2}\\
+                =&\varepsilon\\
+            \end{split}
+        \end{equation*}
+        Por tanto, $\left\{y_n\right\}_{n=1}^{\infty}$ es convergente y lo hace a $l_2-l_1$.
+        \qed
+    \end{proof}
+    \item \textbf{Encuentre} el límite de la sucesión y use algunos teoremas sobre límites para mostrar que el número encontrado es efectivamente el límite.
+        \begin{multicols}{2}
+            \begin{enumerate}
+                \item \begin{equation*}
+                        \lim_{n\rightarrow\infty}\frac{n}{n+1}.
+                    \end{equation*}
+                \item \begin{equation*}
+                        \lim_{n\rightarrow\infty}\frac{5n+1}{7n-2}.
+                    \end{equation*}
+                \item \begin{equation*}
+                        \lim_{n\rightarrow\infty}\frac{n+3}{n^3+4}.
+                    \end{equation*}
+                \item \begin{equation*}
+                        \lim_{n\rightarrow\infty}\frac{2n^2+5}{3n^3-1}.
+                    \end{equation*}
+                \item \begin{equation*}
+                        \lim_{n\rightarrow\infty}\frac{1^2+2^2+\cdots+n^2}{n^3}.
+                    \end{equation*}
+                \item \begin{equation*}
+                        \lim_{n\rightarrow\infty}\sqrt[5]{\left(3+\frac{1}{n}\right)^2}.
+                    \end{equation*}
+                \item \begin{equation*}
+                        \lim_{n\rightarrow\infty}\frac{\left(-1\right)^nn}{n^2+2}.
+                    \end{equation*}
+                \item \begin{equation*}
+                        \lim_{n\rightarrow\infty}\frac{2^{3n}}{3^{2n}}.
+                    \end{equation*}
+                \item \begin{equation*}
+                        \lim_{n\rightarrow\infty}\frac{n^3}{b^n}, \quad b>1.
+                    \end{equation*}
+                \item \begin{equation*}
+                        \lim_{n\rightarrow\infty}\frac{b^n}{n!}, \quad b>1.
+                    \end{equation*}
+            \end{enumerate}
+        \end{multicols}
+        
+        \begin{proof}
+            \begin{enumerate}
+                \item Observemos que
+                \begin{equation*}
+                    \begin{split}
+                        \frac{n}{n+1}=&\frac{n}{n+1}\cdot\frac{\frac{1}{n}}{\frac{1}{n}}\\
+                        =&\frac{1}{1+\frac{1}{n}}\\
+                    \end{split}
+                \end{equation*}
+                Como $\lim_{n\rightarrow\infty}1=1$ y $\lim_{n\rightarrow\infty}\frac{1}{n}=0$, entonces $\lim_{n\rightarrow\infty}\left(1+\frac{1}{n}\right)$ existe y su valor es
+                \begin{equation*}
+                    \lim_{n\rightarrow\infty}\left(1+\frac{1}{n}\right)=1\neq0
+                \end{equation*}
+                Por un teorema de límites, existe $\lim_{n\rightarrow\infty}\frac{1}{1+\frac{1}{n}}$ y su valor es
+                \begin{equation*}
+                    \begin{split}
+                        \lim_{n\rightarrow\infty}\frac{n}{n+1}=&\lim_{n\rightarrow\infty}\frac{1}{1+\frac{1}{n}}\\
+                        =&\frac{\lim_{n\rightarrow\infty}1}{\lim_{n\rightarrow\infty}\left(1+\frac{1}{n}\right)}\\
+                        =&\frac{1}{1}\\
+                        =&1
+                    \end{split}
+                \end{equation*}
+                \item Observemos que
+                \begin{equation*}
+                    \frac{5n+1}{7n-2}=\frac{5+\frac{1}{n}}{7-\frac{2}{n}}
+                \end{equation*}
+                Como $\lim_{n\rightarrow\infty}\left(5+\frac{1}{n}\right)=5$, $\lim_{n\rightarrow\infty}\frac{2}{n}=0$ y $\lim_{n\rightarrow\infty}\left(7-\frac{2}{n}\right)=7\neq0$, se tiene entonces que
+                \begin{equation*}
+                    \begin{split}
+                        \lim_{n\rightarrow\infty}\frac{5n+1}{7n-2}=&\lim_{n\rightarrow\infty}\frac{5+\frac{1}{n}}{7-\frac{2}{n}}\\
+                        =&\frac{\lim_{n\rightarrow\infty}\left(5+\frac{1}{n}\right)}{\lim_{n\rightarrow\infty}\left(7-\frac{2}{n}\right)}\\
+                        =&\frac{5}{7}
+                    \end{split}
+                \end{equation*}
+                \item Observemos que
+                \begin{equation*}
+                    \begin{split}
+                        \frac{n+3}{n^3+4}=&\frac{\frac{1}{n^2}+\frac{3}{n^3}}{1+\frac{4}{n^3}}\\
+                    \end{split}
+                \end{equation*}
+                Sea $k\in\mathbb{N}$. Se tiene que
+                \begin{equation*}
+                    0<\frac{1}{n^k}\leq\frac{1}{n},\quad \forall n\in\mathbb{N}.
+                \end{equation*}
+                Por tanto, sacando límites se llega a
+                \begin{equation*}
+                    0\leq \lim_{n\rightarrow\infty}\frac{1}{n^k}\leq\lim_{n\rightarrow\infty}\frac{1}{n}=0\Rightarrow \lim_{n\rightarrow\infty}\frac{1}{n^k}=0
+                \end{equation*}
+                luego, los límites $\lim_{n\rightarrow\infty}\left(\frac{1}{n^2}+\frac{3}{n^3}\right)=0$ y $\lim_{n\rightarrow\infty}\left(1+\frac{4}{n^3}\right)=4$ existen, donde 
+                \begin{equation*}
+                    \lim_{n\rightarrow\infty}\left(1+\frac{4}{n^3}\right)\neq0
+                \end{equation*}
+                Por lo tanto:
+                \begin{equation*}
+                    \begin{split}
+                        \lim_{n\rightarrow\infty}\frac{n+3}{n^3+4}=&\lim_{n\rightarrow\infty}\frac{\frac{1}{n^2}+\frac{3}{n^3}}{1+\frac{4}{n^3}}\\
+                        =&\frac{\lim_{n\rightarrow\infty}\left(\frac{1}{n^2}+\frac{3}{n^3}\right)}{\lim_{n\rightarrow\infty}\left(1+\frac{4}{n^3}\right)}\\
+                        =&\frac{0}{1}\\
+                        &=0\\
+                    \end{split}
+                \end{equation*}
+                \item Observemos que
+                \begin{equation*}
+                    \frac{2n^2+5}{3n^3-1}=\frac{\frac{2}{n}+\frac{5}{n^3}}{3-\frac{1}{n^3}}
+                \end{equation*}
+                Como $\lim_{n\rightarrow\infty}\frac{c}{n}=0$, $\lim_{n\rightarrow\infty}\frac{c}{n^3}=0$, para todo $c\in\mathbb{R}$, entonces los siguientes límites existen
+                \begin{equation*}
+                    \lim_{n\rightarrow\infty}\left(\frac{2}{n}+\frac{5}{n^3}\right)=\lim_{n\rightarrow\infty}\frac{2}{n}+\lim_{n\rightarrow\infty}\frac{5}{n^3}=0+0=0
+                \end{equation*}
+                y
+                \begin{equation*}
+                    \lim_{n\rightarrow\infty}\left(3-\frac{1}{n^3}\right)=\lim_{n\rightarrow\infty}3-\lim_{n\rightarrow\infty}\frac{1}{n^3}=3-0=3\neq0
+                \end{equation*}
+                Por tanto, de un teorema de límites se sigue que
+                \begin{equation*}
+                    \begin{split}
+                        \lim_{n\rightarrow\infty}\frac{2n^2+5}{3n^3-1}=&\lim_{n\rightarrow\infty}\frac{\frac{2}{n}+\frac{5}{n^3}}{3-\frac{1}{n^3}}\\
+                        =&\frac{\lim_{n\rightarrow\infty}\frac{2}{n}+\frac{5}{n^3}}{\lim_{n\rightarrow\infty}3-\frac{1}{n^3}}\\
+                        =&\frac{0}{3}\\
+                        =&0\\
+                        \Rightarrow \lim_{n\rightarrow\infty}\frac{2n^2+5}{3n^3-1}=&0\\
+                    \end{split}
+                \end{equation*}
+                \item En la lista de ejercicios anterior, se probó que para todo $n\in\mathbb{N}$
+                \begin{equation*}
+                    1^2+2^2+\cdots+n^2=\frac{n(n+1)(2n+1)}{2}
+                \end{equation*}
+                de esta forma
+                \begin{equation*}
+                    \frac{1^2+2^2+\cdots+n^2}{n^3}=\frac{n(n+1)(2n+1)}{2n^3}
+                \end{equation*}
+                reescribiendo de forma apropiada se obtiene que
+                \begin{equation*}
+                    \begin{split}
+                        \frac{n(n+1)(2n+1)}{2n^3}=&\frac{n(2n^2+3n+1)}{2n^3}\\
+                        =&\frac{2n^3+3n^2+n}{2n^3}\\
+                        =&1+\frac{3}{2n}+\frac{1}{2n^2}\\
+                        =&1+\frac{3}{2}\cdot\frac{1}{n}+\frac{1}{2}\cdot\frac{1}{n^2}\\
+                    \end{split}
+                \end{equation*}
+                por tanto
+                \begin{equation*}
+                    \begin{split}
+                        \lim_{n\rightarrow\infty}\frac{1^2+2^2+\cdots+n^2}{n^3}=&\lim_{n\rightarrow\infty}\left(1+\frac{3}{2}\cdot\frac{1}{n}+\frac{1}{2}\cdot\frac{1}{n^2}\right)\\
+                        =&\lim_{n\rightarrow\infty}1+\lim_{n\rightarrow\infty}\frac{3}{2}\cdot\frac{1}{n}+\lim_{n\rightarrow\infty}\frac{1}{2}\cdot\frac{1}{n^2}\\
+                        =&1+\frac{3}{2}\cdot\lim_{n\rightarrow\infty}\frac{1}{n}+\frac{1}{2}\cdot\lim_{n\rightarrow\infty}\frac{1}{n^2}\\
+                        =&1\\
+                    \end{split}
+                \end{equation*}
+                \item 
+                \qed
+            \end{enumerate}
+        \end{proof}
+    \item Usando la definición de límite, \textbf{pruebe} que la sucesión $\left\{\frac{2}{n^2}\right\}_{n=1}^{\infty}$ tiene las propiedades siguientes.
+        \begin{enumerate}
+            \item No converge a 2.
+                
+                \textit{Sugerencia.} Pruebe y use la desigualdad $\abs{\left(2/n^2\right)-2}\geq 1/2$, $\forall n\geq2$.
+            \item No converge a -1.
+                
+                \textit{Sugerencia.} Pruebe y use la desigualdad $\abs{\left(2/n^2\right)+1}\geq 1$, $\forall n\geq1$.
+            \item No converge a 1/10.
+                
+                \textit{Sugerencia.} Pruebe y use la desigualdad $\abs{\left(2/n^2\right)-\left(1/10\right)}\geq 2/45$, $\forall n\geq6$.
+            \item Converge a 0.
+        \end{enumerate}
+        \begin{proof}
+            \begin{enumerate}
+                \item Veamos que la condición es equivalente a:
+                \begin{equation*}
+                    \begin{split}
+                        \abs{\left(\frac{2}{n^2}\right)-2}\geq \frac{1}{2}\iff& \frac{1}{\abs{\left(\frac{2}{n^2}\right)-2}}\leq 2\\
+                        \iff& \frac{n^2}{\abs{2-2n^2}}\leq 2\\
+                        \iff& \frac{n^2}{n^2-1}\leq 4\\
+                    \end{split}
+                \end{equation*}
+                Pero, se tiene que $\forall, n\geq2$:
+                \begin{equation*}
+                    \begin{split}
+                        \frac{1}{n^2}\leq \frac{1}{4}\leq \frac{3}{4}\iff& 1-\frac{3}{4}\leq 1-\frac{1}{n^2}\\
+                        \iff& \frac{1}{1-\frac{1}{n^2}}\leq \frac{1}{1-\frac{3}{4}}\\
+                        \iff& \frac{1}{1-\frac{1}{n^2}}\leq 4\\
+                    \end{split}
+                \end{equation*}
+                Por ende, para todo $n\geq2$:
+                \begin{equation*}
+                    \abs{\left(\frac{2}{n^2}\right)-2}\geq\frac{1}{2}
+                \end{equation*}
+                Tome $\varepsilon_0 = \frac{1}{2}$, entonces para este epsilon existe un conjunto $J\subset\mathbb{N}$ no acotado, dado como
+                \begin{equation*}
+                    J=\left\{n\in\mathbb{N}|n\geq 2\right\}
+                \end{equation*}
+                tal que para todo $n\in J$ se tiene que
+                \begin{equation*}
+                    \abs{\left(\frac{2}{n^2}\right)-2}\geq\frac{1}{2}=\varepsilon_0
+                \end{equation*}
+                Luego, la sucesión no converge a 2.
+                \item Sea $n\in\mathbb{N}$. Observemos que
+                \begin{equation*}
+                    \begin{split}
+                        \abs{\frac{2}{n^2}+1}\geq& 1-\frac{2}{n^2}\\
+                        \geq& 1-0\\
+                        \geq& 1\\
+                    \end{split}
+                \end{equation*}
+                Tome $\varepsilon_0=1$, entonces para este epsilon existe un conjunto $J=\left\{n\in\mathbb{N}|n\geq1\right\}$ no acotado tal que para todo $n\in J$ se tiene que
+                \begin{equation*}
+                    \abs{\frac{2}{n^2}+1}\geq1=\varepsilon_0
+                \end{equation*}
+                Luego, la sucesión no converge a 1.
+                \item Sea $n\geq6$. Tenemos que
+            \end{enumerate}
+            \qed
+        \end{proof}
+    \item Usando la definición de límite, \textbf{demuestre} que la sucesión $\left\{\frac{43}{\sqrt{n+1}}\right\}_{n=1}^{\infty}$ tiene las propiedades siguientes.
+        \begin{enumerate}
+            \item No converge a 1.
+
+                \textit{Sugrencia.} Pruebe y use la desigualdad $\abs{\left(43/\sqrt{n+1}\right)-1}\geq 1/44$, $\forall n\geq 44^2-1$.
+            \item No converge a -1/2.
+
+                \textit{Sugrencia.} Pruebe y use la desigualdad $\abs{\left(43/\sqrt{n+1}\right)+\left(1/2\right)}\geq 1/2$, $\forall n\geq1$.
+            \item No converge a $1/10^6$.
+            \item Converge a 0.
+        \end{enumerate}
+    \item \textbf{Proporcione} un ejemplo de dos sucesiones $\left\{x_n\right\}_{n=1}^{\infty}$ y $\left\{y_n\right\}_{n=1}^{\infty}$ que no sean convergentes pero tales que $\left\{x_n+y_n\right\}_{n=1}^{\infty}$ satisfaga las condiciones siguientes:
+        \begin{multicols}{2}
+            \begin{enumerate}
+                \item Es convergente.
+                \item No es convergente.
+            \end{enumerate}
+        \end{multicols}
+    \item \textbf{Dar} un ejemplo de dos sucesiones $\left\{x_n\right\}_{n=1}^{\infty}$ y $\left\{y_n\right\}_{n=1}^{\infty}$ que no sean convergentes pero tales que $\left\{x_n/y_n\right\}_{n=1}^{\infty}$ satisfaga las condiciones siguientes.
+        \begin{multicols}{2}
+            \begin{enumerate}
+                \item Es convergente.
+                \item No es convergente.
+            \end{enumerate}
+        \end{multicols}
+    \item \textbf{Proporcione} un ejemplo de tres sucesiones, $\left\{x_n\right\}_{n=1}^{\infty}$, $\left\{y_n\right\}_{n=1}^{\infty}$ y $\left\{z_n\right\}_{n=1}^{\infty}$ tales que $\lim_{n\rightarrow\infty}y_n\neq\lim_{n\rightarrow\infty}z_n$, $y_n\leq x_n\leq z_n$, $\forall n\geq1$ y que $\left\{x_n\right\}_{n=1}^{\infty}$ cumpla las condiciones siguientes:
+        \begin{multicols}{2}
+            \begin{enumerate}
+                \item Es convergente.
+                \item No es convergente.
+            \end{enumerate}
+        \end{multicols}
+    \item Sea $\left\{x_n\right\}_{n=1}^{\infty}$ ua sucesión de números reales tal que $\lim_{n\rightarrow\infty}x_n=\infty$. \textbf{Muestre} que
+        \begin{equation*}
+            \lim_{n\rightarrow\infty}\left(1+\frac{1}{x_n}\right)^{x_n}=e
+        \end{equation*}
+        \textit{Sugerencia.} Demuestre que la función $f(x)=(1+1/x)^x$ es creciente en el intervalo $[0,\infty[$ (puede usar herramientas de cálculo diferencial) y utilice el resultado ya demostrado para el caso $x_n=n$, $\forall n\geq1$.
+    \item Sean $\left\{x_n\right\}_{n=1}^{\infty}$ una sucesión  tal que $\lim_{n\rightarrow\infty}x_n=0$ y $\left\{y_n\right\}_{n=1}^{\infty}$ una sucesión arbitraria. ¿Se puede concluir que
+        \begin{equation*}
+            \lim_{n\rightarrow\infty}y_nx_n=0\textup{?}
+        \end{equation*}
+        Suponga ahora que se cumpla la sola condición anterior. ¿Se cumplirá necesariamente que
+        \begin{equation*}
+            \lim_{n\rightarrow\infty}y_n=0\qquad\textup{o}\qquad\lim_{n\rightarrow\infty}y_n
+        \end{equation*}
+        \textbf{Pruebe o de contraejemplos.}
+    \item \textbf{Encuentre} todos los puntos de adherencia de la sucesión
+        \begin{equation*}
+            1,-1,1,-1,1,-1,\dots
+        \end{equation*}
+    \item \textbf{Demuestre} que hay una infinidad de puntos de adherencia de la sucesión
+        \begin{equation*}
+            1,2,1,2,3,1,2,3,4,1,2,3,4,5,\dots
+        \end{equation*}
+        \textit{Sugerencia.} Se pueden construir subsucesiones $\left\{x_n\right\}_{\alpha_k\left(n\right)=0}^{\infty}$ de tal suerte que $\lim_{n\rightarrow\infty}x_{\alpha_k\left(n\right)}=k$, $\forall k\in\mathbb{N}$. Más precisamente, tomando como referencia la figura
+        \begin{equation*}
+            \begin{split}
+                1,2,3,4,5,6,\dots \\
+                1,2,3,4,5,6,\dots \\
+                1,2,3,4,5,6,\dots \\
+                1,2,3,4,5,6,\dots \\
+                \cdots\cdots\cdots\cdots\ddots\\
+            \end{split}
+        \end{equation*}
+        cómo podría reconstruir la sucesión dada y cómo identificar las subsucesiones $\left\{x_n\right\}_{\alpha_k\left(n\right)=0}^{\infty}$ pedidas.
+    \item Considere el conjunto A de puntos de adherencia de una sucesión arbitraria $\left\{x_n\right\}_{n=1}^{\infty}$ ¿Es necesariamente A distinto del vacío? \textbf{Justifique.}
+    \item \textbf{Muestre} que una sucesión convergente arbitraria alcanza en alguno de sus términos ya sea el ínfimo de los valores de todos sus términos o el supreo de los valores de todos sus términos o ambos.
+    \item Usando la definición de límite, \textbf{pruebe} que si $\left\{x_n\right\}_{\alpha_k\left(n\right)=0}^{\infty}$ es una sucesión tal que $\lim_{n\rightarrow\infty}x_n=\infty$, entonces
+        \begin{equation*}
+            \lim_{n\rightarrow\infty}\sqrt[n]{x_1\cdots x_n}=\infty
+        \end{equation*}
+        \textit{Sugerencia. } Recuerde que si $a>0$ es fijo, entonces $\lim_{k\rightarrow\infty}\sqrt[k]{a}=1$, $\lim_{n\rightarrow\infty}\ln x_n=\infty$ y utilice el ejercicio 21.
+    \item Use subsucesiones para \textbf{demostrar} que las sucesiones siguientes no son convergentes.
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item \begin{equation*}
+                    \left\{\frac{1}{n^2+1}+(-1)^n2\right\}_{n=1}^{\infty}
+                \end{equation*}
+            \item \begin{equation*}
+                    \left\{\frac{5-n^{(-1)^n}}{n+2}\right\}_{n=1}^{\infty}
+                \end{equation*}
+        \end{enumerate}
+    \end{multicols}
+    \item \textbf{Calcule} (si existe)
+    \begin{equation*}
+        \lim_{n\rightarrow\infty}\left[\frac{1}{1\cdot2\cdot3}+\frac{1}{2\cdot3\cdot4}+\cdots+\frac{1}{(n-2)\cdot(n-1)\cdot n}\right]
+    \end{equation*}
+    \item \textbf{Muestre} que las sucesiones siguientes no son convergentes.
+        \begin{multicols}{2}
+            \begin{enumerate}
+                \item \begin{equation*}
+                        \left\{\frac{n^4-1}{2n-3n^3}\right\}_{n=1}^{\infty}
+                    \end{equation*}
+                \item \begin{equation*}
+                        \left\{\frac{(-1)^n2n^3-n}{3n^2+2n+5}\right\}_{n=1}^{\infty}
+                    \end{equation*}
+            \end{enumerate}
+        \end{multicols}
+    \item Sean $a,b>0$. \textbf{Pruebe} que
+    \begin{equation*}
+        \lim_{n\rightarrow\infty}\left(a^n+b^n\right)^{1/n}=\max\left\{a,b\right\}.
+    \end{equation*}
+        \textit{Sugerencia.} Suponga que $a\geq b$. Defina $x_n=(a^n+b^n)^{1/n}-a$, $\forall n\in\mathbb{N}$. Muestre que $x_n>0$, $\forall n\in\mathbb{N}$. Use la fórmula del binomio de Newton para deducir que $a^n+a^{n-1}x_n\leq \left(a+x_n\right)^n=a^n+b^n\leq 2a^n$.
+    \item Use el teorema de comparación para \textbf{demostrar} que
+    \begin{equation*}
+        \lim_{n\rightarrow\infty}\frac{\sqrt[n]{n}}{n!}=0.
+    \end{equation*}
+    \item Defina inductivamente la sucesión $\left\{a_n\right\}_{n=1}^{\infty}$ como sigue. Sea $a_1>0$ fijo y defina
+    \begin{equation*}
+        a_{n+1}=6\frac{1+a_n}{7+a_n},\quad \forall n\geq 1.
+    \end{equation*}
+    \textbf{Muestre} que la sucesión $\left\{a_n\right\}_{n=1}^{\infty}$ es convergente y \textbf{calcule} su límite.
+    
+    \textit{Sugerencia.} Reescriba $a_{n+1}=6(1-6/(7+a_n))$.
+    \item Sean $a_1>0$ y
+    \begin{equation*}
+        a_{n+1}=\frac{a_n}{1+a_n},\quad\forall n\geq 1.
+    \end{equation*}
+    \textbf{Pruebe} que la sucesión $\left\{a_n\right\}_{n=1}^{\infty}$ es convergente y \textbf{calcule} su límite.
+    
+    \textit{Sugerencia.} Pruebe que $\left\{a_n\right\}_{n=1}^{\infty}$ es convergente mostrando que $a_n>0$ y que $a_{n+1}<a_n$, $\forall n\geq 1$. Calcule límites ahora.
+    \item \begin{enumerate}
+        \item Sea $\left\{a_n\right\}_{n=1}^{\infty}$ una sucesión de términos positivos. \textbf{Demuestre} que $\left\{a_n\right\}_{n=0}^{\infty}$ es creciente si y sólo si $a_{n+1}/a_n\geq1$, $\forall n\geq1$ y que $\left\{a_n\right\}_{n=1}^{\infty}$ es decreciente si y sólo si $a_{n+1}/a_n\leq1$, $\forall n\geq1$.
+        \item Sea $p>0$ y sea
+        \begin{equation*}
+            a_n=\abs{\left[p(p-1)\cdots(p-n+1)\right]/n!},\quad \forall n\in\mathbb{N}
+        \end{equation*}
+        \textbf{Muestre} que $\left\{a_n\right\}_{n=1}^{\infty}$ es una sucesión eventualmente decreciente y acotada inferiormente, luego convergente.
+    \end{enumerate}
+    \item \textbf{Pruebe} que si una sucesión monótona tiene una subsucesión convergente, entonces es convergente.
+    \item \textbf{Demuestre} que si una sucesión diverge a infinito, entonces el mínimo valor de los términos de la sucesión alcanza en alguno de sus términos.
+    \item \textbf{Muestre} que la sucesión
+    \begin{equation*}
+        \sqrt{2}, \sqrt{2+\sqrt{2}}, \sqrt{2+\sqrt{2+\sqrt{2}}}
+    \end{equation*}
+    es convergente y \textbf{calcule} su límite.
+    \item \textbf{Enuncie} la definición de sucesión de Cauchy. \textbf{Niegue} ahora esta definición y encuentre un criterio para determinar cuando una sucesión no es de Cauchy. Relacione todo lo anterior con la convergencia o la no convergencia de una sucesión.
+    \item Usando la definición de sucesión de Cauchy, \textbf{pruebe} que las sucesiones siguientes son de Cauchy.
+    \begin{multicols}{3}
+        \begin{enumerate}
+            \item \begin{equation*}
+                \left\{\frac{(-1)^n}{n}\right\}_{n=1}^{\infty}
+            \end{equation*}
+            \item \begin{equation*}
+                \left\{\frac{1}{2^n}\right\}_{n=1}^{\infty}
+            \end{equation*}
+            \item \begin{equation*}
+                \left\{1-\frac{2}{\sqrt{n}}\right\}_{n=1}^{\infty}
+            \end{equation*}
+        \end{enumerate}
+    \end{multicols}
+    \item Usando la definición de sucesión de Cauchy, \textbf{demuestre} que al sucesiones siguientes no son de Cauchy.
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item \begin{equation*}
+                \left\{(-1)^n\right\}_{n=1}^{\infty}
+            \end{equation*}
+            \item \begin{equation*}
+                \left\{n^2\right\}_{n=1}^{\infty}
+            \end{equation*}
+        \end{enumerate}
+    \end{multicols}
+    \item \begin{enumerate}
+        \item \textbf{Proporcione} un ejemplo de una sucesión no acotada que tenga una subsucesión convergente.
+        \item \textbf{Dar} un ejemplo de una sucesión no acotada tal que ninguna de sus subsucesiones sea convergente.
+    \end{enumerate}
+    \item Sea $\left\{a_n\right\}_{n=1}^{\infty}$ una sucesión contenida en un intervalo acotado $J$ y sea $\left\{a_{\alpha(n)}\right\}_{n=1}^{\infty}$ una subsucesión convergente de $\left\{\right\}_{n=1}^{\infty}$.
+    \begin{enumerate}
+        \item \textbf{Muestre} que si el intervalo $J$ es cerrado, entonces el límite de $\left\{a_{\alpha(n)}\right\}_{n=1}^{\infty}$ debe ser un elemento de $J$.
+        \item \textbf{Dar} un ejemplo en el que el intervalo $J$ no sea cerrado y dónde el límite de $\left\{a_{\alpha(n)}\right\}_{n=1}^{\infty}$ no pertenezca al intervalo $J$.
+    \end{enumerate}
+    \item Considere $\left\{a_n\right\}_{n=1}^{\infty}$ una sucesión tal que $\lim_{n\rightarrow\infty}a_n=a$. \textbf{Calcule} (si existe)
+    \begin{equation*}
+        \lim_{n\rightarrow\infty}\frac{a_n}{a_n-1}.
+    \end{equation*}
+    \item \begin{enumerate}
+        \item \textbf{Pruebe} que si $\lim_{n\rightarrow\infty}x_n=\infty$ y $c<0$, entonces
+        \begin{equation*}
+            \lim_{n\rightarrow\infty}(cx_n)=-\infty.
+        \end{equation*}
+        En particular, $\lim_{n\rightarrow\infty}(-x_n)=-\infty$. \textbf{Viceversa}, si $\lim_{n\rightarrow\infty}x_n=-\infty$ y $c<0$, entonces
+        \begin{equation*}
+            \lim_{n\rightarrow\infty}(cx_n)=\infty
+        \end{equation*}
+        En particular, $\lim_{n\rightarrow\infty}(-x_n)=\infty$.
+        \item Sean $a>1$ y $N\in\mathbb{N}$ fijo. \textbf{Muestre} que
+        \begin{equation*}
+            \lim_{n\rightarrow\infty}\frac{a^n}{n^N}=\infty
+        \end{equation*}
+        \textit{Sugerencia.} Revise el ejemplo donde se prueba que $\lim_{n\rightarrow\infty}a^n=\infty$.
+        \item Recuerde que si $\lim_{n\rightarrow\infty}a_n=\infty$, entonces $\lim_{n\rightarrow\infty}\frac{a_1+\cdots+a_n}{n}=\infty$. \textbf{Deduzca} que si $\lim_{n\rightarrow\infty}a_n=-\infty$, entonces
+        \begin{equation*}
+            \lim_{n\rightarrow\infty}\frac{a_1+\cdots+a_n}{n}=-\infty
+        \end{equation*}
+    \end{enumerate}
+    \item Usando algunos resultados del curso relacionados con promedios geométricos de sucesiones de términos positivos, \textbf{demuestre} las identidades siguientes.
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item \begin{equation*}
+                \lim_{n\rightarrow\infty}\sqrt[n]{a}=1, a>0.
+            \end{equation*}
+            \item \begin{equation*}
+                \lim_{n\rightarrow\infty}\sqrt[n]{a^n+b^n}=\max\left\{a,b\right\}, a,b>0.
+            \end{equation*}
+            \item \begin{equation*}
+                \lim_{n\rightarrow\infty}\sqrt[n]{n^2+n}=1.
+            \end{equation*}
+            \item \begin{equation*}
+                \lim_{n\rightarrow\infty} \frac{\sqrt[n]{n!}}{n}=\frac{1}{e}.
+            \end{equation*}
+        \end{enumerate}
+    \end{multicols}
+    \item \textbf{Determine} la convergencia o la no convergencia de las siguientes sucesiones.
+    \begin{multicols}{3}
+        \begin{enumerate}
+            \item \begin{equation*}
+                \left\{\left(1+\frac{2}{n}^n\right)\right\}_{a=1}^{\infty}.
+            \end{equation*}
+            \item \begin{equation*}
+                \left\{\left(1+\frac{1}{n^2}\right)^n\right\}_{a=1}^{\infty}.
+            \end{equation*}
+            \item \begin{equation*}
+                \left\{\left(1+\frac{1}{n}\right)^{n^2}\right\}_{a=1}^{\infty}
+            \end{equation*}
+        \end{enumerate}
+    \end{multicols}
+    \item Se sabe que si $\abs{t}<1$, entonces
+    \begin{equation*}
+        \sum_{n=0}^{\infty}t^n=\frac{1}{1-t}
+    \end{equation*}
+    y que si $\abs{t}\geq1$, la serie $\sum_{n=0}^{\infty}t^n$ no es convergente. Al reemplazar $t$ por otro número o expresión apropiada, \textbf{deduzca} de la ecuación anterior las identidades siguientes.
+    \begin{enumerate}
+        \item \begin{equation*}
+            1+x^2+x^4+x^6+\cdots+x^{2n}+\cdots=\frac{1}{1-x^2}\quad\textup{si}\quad\abs{x}<1.
+        \end{equation*}
+        \item \begin{equation*}
+            x+x^3+x^5+\cdots=\frac{x}{1-x^2}\quad\textup{si}\quad\abs{x}<1.
+        \end{equation*}
+        \item \begin{equation*}
+            1-x+x^2-x^3+\cdots=\frac{1}{1+x}\quad\textup{si}\quad\abs{x}<1.
+        \end{equation*}
+        \item \begin{equation*}
+            1-x^2+x^4-x^6+\cdots=\frac{1}{1+x^2}\quad\textup{si}\quad\abs{x}<1.
+        \end{equation*}
+        \item \begin{equation*}
+            x-x^3+x^5-x^7+\cdots=\frac{x}{1+x^2}\quad\textup{si}\quad\abs{x}<1.
+        \end{equation*}
+        \item \begin{equation*}
+            1+4x^2+4^2x^4+\cdots=\frac{1}{1-4x^2}\quad\textup{si}\quad\abs{x}<\frac{1}{2}.
+        \end{equation*}
+        \item \begin{equation*}
+            1-x^{1/2}+x-x^{3/2}+\cdots=\frac{1}{1+x^{1/2}}\quad\textup{si}\quad0\leq x<1.
+        \end{equation*}
+        \item \begin{equation*}
+            1+\sen^2(x)+\sen^4(x)+\cdots=\sec^2(x)\quad\textup{si}\quad\abs{x}<\frac{\pi}{2}.
+        \end{equation*}
+    \end{enumerate}
+    \item \textbf{(Series Telescópicas)} Sean $\left\{a_n\right\}_{n=1}^{\infty}$ y $\left\{b_n\right\}_{n=1}^{\infty}$ dos sucesione de números reales tales que $a_n=b_n-b_{n+1}$, $\forall n\in\mathbb{N}$. \textbf{Demuestre} que la serie $\sum_{n=1}^{\infty}a_n$ es convergente sí y sólo si la sucesión $\left\{b_n\right\}_{n=1}^{\infty}$ es convergente. Además, si $L=\lim_{n\rightarrow\infty}b_n$, entonces
+    \begin{equation*}
+        \sum_{n=1}^{\infty}a_n=b_1-L.
+    \end{equation*}
+    \textit{Sugerencia.} Simplifique $s_n=\sum_{k=1}^{n}a_k$, $\forall n\geq1$, para calcula rla suma de la serie.
+    \begin{enumerate}
+        \item Usando series telescópicas, \textbf{muestre} que
+        \begin{equation*}
+            \sum_{n=1}^{\infty}\frac{1}{n(n+1)}=1.
+        \end{equation*}
+        \textit{Sugerencia.} Observe que
+        \begin{equation*}
+            \frac{1}{n(n+1)}=\frac{1}{n}-\frac{1}{n+1}.
+        \end{equation*}
+        Defina $b_n=1/n$.
+        \item Sea $x$ un número real que no es un entero negativo. Usando series telescópicas, \textbf{pruebe} que
+        \begin{equation*}
+            \sum_{n=1}^{\infty}\frac{1}{(n+x)(n+x+1)(n+x+2)}=\frac{1}{2(x+1)(x+2).}
+        \end{equation*}
+        \textit{Sugerencia.} Observe que
+        \begin{equation*}
+            \frac{1}{(n+x)(n+x+1)(n+x+2)}=\frac{1}{2(n+x)(n+x+1)}-\frac{1}{2(n+x+1)(n+x+2)}.
+        \end{equation*}
+        \item \textbf{Deduzca} que
+        \begin{equation*}
+            \sum_{n=1}^{\infty}\frac{1}{(n+1)(n+2)}=\frac{1}{2}.
+        \end{equation*}
+    \end{enumerate}
+    \item Cada uan de las siguientes series es una serie telescópica, una serie geométrica o alguna serie relacionad con ellas cuyas sumas parciales pueden ser simplificadas. En cada caso, \textbf{pruebe} que la serie converge y que converge a la suma que se indica.
+    \begin{enumerate}
+        \item \begin{equation*}
+            \sum_{n=1}^{\infty}\frac{1}{(2n-1)(2n+1)}=\frac{1}{2}.
+        \end{equation*}
+        \textit{Sugerencia.} Observe que $\frac{1}{(2n-1)(2n+1)}=\frac{1/2}{2n-1}-\frac{1/2}{2n+1}$.
+        \item \begin{equation*}
+            \sum_{n=1}^{\infty}\frac{2}{3^{n-1}}=3.
+        \end{equation*}
+        \item \begin{equation*}
+            \sum_{n=2}^{\infty}\frac{1}{n^2-1}=\frac{3}{4}.
+        \end{equation*}
+        \textit{Sugerencia.} Observe que
+        \begin{equation*}
+            \frac{1}{n^2-1}=\frac{1}{2(n-1)}-\frac{1}{2(n+1)}=\left(\frac{1}{2(n-1)}-\frac{1}{2n}\right)+\left(\frac{1}{2n}-\frac{1}{2(n+1)}\right).
+        \end{equation*}
+        \item \begin{equation*}
+            \sum_{n=1}^{\infty}\frac{2^n+3^n}{6^n}=\frac{3}{2}.
+        \end{equation*}
+        \item \begin{equation*}
+            \sum_{n=1}^{\infty}\frac{\sqrt{n+1}-\sqrt{n}}{\sqrt{n^2+n}}=1.
+        \end{equation*}
+        \item \begin{equation*}
+            \sum_{n=1}^{\infty}\frac{n}{(n+1)(n+2)(n+3)}=\frac{1}{4}.
+        \end{equation*}
+        \textit{Sugerencia.} Observe que
+        \begin{equation*}
+            \frac{n}{(n+1)(n+2)(n+3)}=-\left[\frac{1/2}{(n+1)(n+2)}-\frac{1/2}{(n+2)(n+3)}\right]+\frac{1}{(n+2)(n+3)}.
+        \end{equation*}
+        \item \begin{equation*}
+            \sum_{n=1}^{\infty}\frac{2n+1}{n^2(n+1)^2}=1.
+        \end{equation*}
+        \textit{Sugerencia.} Observe que $\frac{2n+1}{n^2(n+1)^2}=-\left[\frac{1}{n^2}-\frac{1}{(n+1)^2}\right]$.
+        \item \begin{equation*}
+            \sum_{n=1}^{\infty}\frac{2^n+n^2+n}{2^{n+1}n(n+1)}=1.
+        \end{equation*}
+    \end{enumerate}
+    \item \textbf{Dar} un ejemplo de una serie convergente $\sum_{n=1}^{\infty}a_n$ tal que $\sum_{n=1}^{\infty}a_n^{2}$ diverja a infinito.
+    \item Usando el teorema de comparación. \textbf{Determine} si las siguientes series de términos positivos son convergentes o divergentes a infinito.
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{1}{n^2+1}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{2+(-1)^n}{2^n}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{n!}{(n+2)!}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{1}{\sqrt{n(n+1)}}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{n^2}{2n^2+1}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{\sqrt{n+1}-\sqrt{n-1}}{n}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{\abs{a_n}}{10^n}, \quad \abs{a_n}<10,\forall n\in\mathbb{N}.
+            \end{equation*}
+        \end{enumerate}
+    \end{multicols}
+    \item Sean $\sum_{n=1}^{\infty}a_n$ y $\sum_{n=1}^{\infty}b_n$ dos serie de términos positivos que sean convergentes. \textbf{Muestre} que es convergente también la serie
+    \begin{equation*}
+        \sum_{n=1}^{\infty}a_n^{1/2}b_n^{1/2}.
+    \end{equation*}
+    \textit{Sugerencia.} Pruebe y use la desigualdad $2xy\leq x^2+y^2,\forall x,y\in\mathbb{R}$.
+    \item \textbf{Construya} una sucesión de términos no negativos $\left\{a_n\right\}_{n=1}^{\infty}$ tal que la serie $\sum_{n=1}^{\infty}a_n$ sea convergente pero que $\left\{na_n\right\}_{n=1}^{\infty}$ no converja a cero.
+    \item Sea $\left\{a_n\right\}_{n=1}^{\infty}$ una sucesión acotada, positiva y creciente. \textbf{Demuestre} que es convergente la serie de términos positivos
+    \begin{equation*}
+        \sum_{n=1}^{\infty}\left[1-\frac{a_n}{a_{n+1}}\right]
+    \end{equation*}
+    \textit{Sugerencia.} Compárese con la serie $\sum_{n=1}^{\infty}(a_{n+1}-a_n)/a_1$.
+    \item Sea $\sum_{n=1}^{\infty}a_n$ una serie convergente de términos positivos. \textbf{Determine} si es o no convergente la serie
+    \begin{equation*}
+        \sum_{n=1}^{\infty}\frac{a_1+\cdots+a_n}{n}.
+    \end{equation*}
+    \textit{Sugerencia.} Use la sucesión de sumas parciales de ambos lados y un teorema.
+    \item Sea $\left\{a_n\right\}_{n=1}^{\infty}$ una sucesión que converge a cero y sean $a,b,c\in\mathbb{R}$ tales que $a+b+c\neq0$. \textbf{Muestre} que ambas series
+    \begin{equation*}
+        \sum_{n=1}^{\infty}a_n\qquad\textup{y}\qquad\sum_{n=1}^{\infty}\left[aa_n+ba_{n+1}+ca_{n+2}\right]
+    \end{equation*}
+    simultáneamente convergen o no convergen.
+
+    \textit{Sugerencia.} Use la sucesión de sumas parciales de ambas series.
+    \item Sea $\left\{a_n\right\}_{n=1}^{\infty}$ una sucesión tal que $\lim_{n\rightarrow\infty}a_n=l$, para algún $l\neq0$.\textbf{Pruebe} que ambas series
+    \begin{equation*}
+        \sum_{n=1}^{\infty}\left[a_{n+1}-a_n\right]\quad\textup{y}\quad\sum_{n=1}^{\infty}\left[\frac{1}{a_{n+1}}-\frac{1}{a_n}\right]
+    \end{equation*}
+    simultáneamente convergen absolutamente o no convergen absolutamente.
+    \textit{Sugerencia.} Determine constantes positivas $C$ y $K$ tales que
+    \begin{equation*}
+        C\abs{a_{n+1}-a_n}\leq \abs{\frac{1}{a_{n+1}-\frac{1}{a_n}}}\leq K\abs{a_{n+1}-a_{n}}, \quad\forall n\in\mathbb{N}.
+    \end{equation*}
+    y aplique el teorema de comparación.
+    \item Usando la prueba del cociente, \textbf{determine} si las siguientes series de términos positivos son convergentes o divergentes a infinito.
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{n^2}{2^n}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{2^nn!}{n^n}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{3^nn!}{n^n}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{2\cdot4\cdot6\cdots(2n+2)}{1\cdot4\cdot7\cdots(3n+1)}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{(n!)^2}{(2n)!}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{n!}{3^n}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{\abs{x}^n}{n!}, \quad x\in\mathbb{R}.
+            \end{equation*}
+        \end{enumerate}
+    \end{multicols}
+    \item Usando la prueba de la raíz, \textbf{determine} la convergencia o divergencia a infinito de las siguientes series de términos positivos.
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\left(n^{1/n}-1\right)^n.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}e^{-n^2}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\left[\frac{1}{n}-3^{-n^2}\right].
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{\abs{x}^n}{n!},\quad x\in\mathbb{R}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{n^{\frac{n+1}{n}}}{\left(n+\frac{1}{n}\right)^n}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{3^nn!}{n^n}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{n^2\left[\sqrt{2}+(-1)^n\right]^n}{3^n}.
+            \end{equation*}
+        \end{enumerate}
+    \end{multicols}
+    \textit{Sugerencias.} Para (III) utilice el resultado de (II). Para (VII), primero vea si la serie $\sum_{n=1}^{\infty}\frac{n^2\left[\sqrt{2}+1\right]^n}{3^n}$ es o no convergente, aplique entonces el teorema de comparación.
+    \item \textbf{Determine} si las siguientes series son o no son absolutamente convergentes y si son o no son convergentes.
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{\sqrt{n}}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{(-1)^n}{\sqrt[n]{n}}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}(-1)^n\frac{n^2}{1+n^2}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}(-1)^{n+1}\frac{n^3}{3^n}.
+            \end{equation*}
+            \item \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{(-1)^n}{n+1+(-1)^n}.
+            \end{equation*}
+        \end{enumerate}
+    \end{multicols}
+    \textit{Sugerencias.} Para el (IV) use, por ejemplo, prueba del cociente para ver la convergencia absoluta. Para (V), observe que las sumas parciales son parecidas a las sumas parciale sde la serie $\sum_{n=1}^{\infty}(-1)^n/n$. Haga que sean iguales sumando y restando alguna constante.
+    \item \begin{enumerate}
+        \item \textbf{Determine} una serie de potencias cuya suma sea
+        \begin{equation*}
+            \frac{1}{2-x}.
+        \end{equation*}
+        y \textbf{calcule} el intervalo de convergencia de esta serie.
+        \item Haga lo mismo con
+        \begin{equation*}
+            \frac{1}{(2-x)(3-x)}.
+        \end{equation*}
+        \textit{Sugerencia.} Use series geométricas.
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item Aplique resultados sobre expansiones decimales para \textbf{demostrar} que todo número real debe ser el límite de alguna sucesión de números racionales.
+        \item Utilizando algún resultado del Capítulo I, \textbf{muestre} que todo número real debe ser el límite de una sucesión de números racionales y también el límite de una sucesión de números irracionales.
+    \end{enumerate}
+    \textit{Sugerencia.} Sea $a\in\mathbb{R}$. Para cada $n\in\mathbb{N}$, el invervalo $(a-1/n,a+1/n)$ contiene tanto un racional $x_n$ como un irracional $y_n$. ¿Cuáles deben ser $\lim_{n\rightarrow\infty}\abs{a-x_n}$ y $\lim_{n\rightarrow\infty}\abs{a-y_n}$?
+    \item \textbf{Pruebe} que la serie
+    \begin{equation*}
+        1+\frac{1}{10^2}+\frac{1}{10^5}+\cdots+\frac{1}{10^{\frac{1}{2}n(n+1)-1}}+\cdots
+    \end{equation*}
+    converge a un número irracional.
+    \textit{Sugerencia.} Si la serie convergiera a algún número racional, debería ser una expansión decimal periódica. Llegue a una contradicción.
+\end{enumerate}
+\end{document}
