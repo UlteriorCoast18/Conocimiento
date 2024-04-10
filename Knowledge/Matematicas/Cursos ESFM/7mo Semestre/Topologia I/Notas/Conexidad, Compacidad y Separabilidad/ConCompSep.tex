@@ -134,7 +134,7 @@
     \setlength{\parindent}{12pt} % Pone la sangría como me gusta
     \title{Notas curso Topología I.
     
-    Separabilidad, Numerabilidad y Conexidad}
+    Separabilidad, Filtros}
     \author{Cristo Daniel Alvarado}
     \maketitle
 
@@ -465,6 +465,164 @@
         por tanto, $(X,\tau_p)$ es $T_3$.
     \end{proof}
 
-    
+    \begin{cor}
+        Sea $(X,\tau)$ un espacio topológico.
+        \begin{enumerate}
+            \item Si $(X,\tau)$ es regular, entonces y $Y\subseteq X$, entonces $(Y,\tau_Y)$ es regular.
+            \item Si $(X,\tau)$ y $(X',\tau')$ son espacios homeomorfos y, $(X,\tau)$ es regular, entonces $(X',\tau')$ es regular.
+            \item Si $\left\{(X_\alpha,\tau_\alpha) \right\}_{\alpha\in I}$ es una familia de espacios topológicos. Si $X=\prod_{\alpha\in I}$, entonces $(X,\tau_p)$ es regular si y sólo si $(X_\alpha,\tau_\alpha)$ es regular, para todo $\alpha\in I$.
+        \end{enumerate}
+    \end{cor}
+
+    \begin{proof}
+        Son inmediatas del hecho que la propiedad de ser $T_1$ y $T_3$ se hereda y es topológicsa y, de que esta propiedad se preserva bajo productos y elementos del producto.
+    \end{proof}
+
+    \section{Espacios $T_4$}
+
+    \begin{propo}
+        Sea $(X.\tau)$ un espacio topológico. Entonces, $(X,\tau)$ es $T_4$ si y sólo si dados $A\subseteq X$ cerrado y $U\in\tau$ tales que $A\subseteq U$, existe un abierto $V$ tal que $A\subseteq V$ y $\Cls{V}\subseteq U$. 
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Supongamos que $(X,\tau)$ es $T_4$. Sean $A\subseteq X$ cerrado y $U\in\tau$ tal que $A\subseteq U$. El conjunto $B=X-U$ es un cerrado tal que $A\cap B=\emptyset$. Como el espacio $(X,\tau)$ es $T_4$, existen dos abiertos $V,W\in\tau$ tales que:
+        \begin{equation*}
+            A\subseteq V\quad\textup{y}\quad B\subseteq W
+        \end{equation*}
+        y, $V\cap W=\emptyset$. Como $V\cap W=\emptyset$, entonces $V\subseteq X-W\subseteq X-B= U$. Afirmamos que $\Cls{V}\subseteq U$. En efecto, notemos que $X-W$ es un cerrado que contiene a $V$, por ende $\Cls{V}\subseteq X-W\subseteq U$, luego $\Cls{V}\subseteq U$. Con lo cual se sigue el resultado.
+        
+        $\Leftarrow):$ Sean $A,B\subseteq X$ cerrados tales que $A\cap B=\emptyset$. Se tiene entonces que:
+        \begin{equation*}
+            A\subseteq X-B
+        \end{equation*}
+        donde $X-B\in\tau$, luego por hipótesis existe $U\in\tau$ abierto tal que:
+        \begin{equation*}
+            \begin{split}
+                A\subseteq U\subseteq\Cls{U}\subseteq X-B
+            \end{split}
+        \end{equation*}
+        el conjunto $V=X-\Cls{U}$ es un abierto para el cual, se tiene que $B\subseteq V$. Luego, $U,V\in\tau$ son tales que $A\subseteq U$, $B\subseteq V$ y $U\cap V=\emptyset$. Luego el espacio es $T_4$.
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio $T_4$ y sea $A\subseteq X$ un conjunto cerrado. Entonces, $(A,\tau_A)$ es $T_4$.
+    \end{propo}
+
+    \begin{proof}
+        Sean $M,N\subseteq(A,\tau_A)$ cerrados tales que $M\cap N=\emptyset$. Como $A$ es cerrado en $(X,\tau)$, entonces $M,N$ son cerrados en $(X,\tau)$. Luego, como $(X,\tau)$ es $T_4$, existen dos abiertos $U',V'\in\tau$ tales que
+        \begin{equation*}
+            M\subseteq U',\quad N\subseteq V',\quad U'\cap V'=\emptyset
+        \end{equation*}
+        Luego, los conjuntos $U=A\cap U',V=A\cap V'\in\tau_A$ son disjuntos tales que $M\subseteq U$ y $N\subseteq V$, ya que $M,N\subseteq A$. Así, $(A,\tau_A)$ es $T_4$.
+    \end{proof}
+
+    \begin{lema}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios topológicos homeomorfos. Entonces, si $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es el homeomorfismo entre ambos espacios, se tiene que $f(\Cls{A})=f(\Cls{A})$, para todo $A\subseteq X_1$.
+    \end{lema}
+
+    \begin{proof}
+        Como $f$ es homeomorfismo, en particular es continua
+    \end{proof}
+
+    \begin{propo}
+        La propiedad de ser $T_4$ es topológica.
+    \end{propo}
+
+    \begin{proof}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos homeomorfos tales que $(X_1,\tau_1)$ es $T_4$. Sea $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ el homeomorfismo entre ellos.
+
+        Veamos que $(X_2,\tau_2)$ es $T_4$. En efecto, sea $A\subseteq X_2$ cerrado y $U\in\tau_2$ abierto tal que $A\subseteq U$. Como $f$ es homeomorfismo, entonces
+        $f^{-1}(A)\subseteq X_1$ es cerrado y, $f^{-1}(U)\in\tau_1$ son tales que:
+        \begin{equation*}
+            f^{-1}(A)\subseteq f^{-1}(U)
+        \end{equation*}
+        Luego, como $(X_1,\tau_1)$ es $T_4$, existe $W\in\tau_1$ tal que:
+        \begin{equation*}
+            f^{-1}(A)\subseteq W\subseteq\Cls{W}\subseteq f^{-1}(U)
+        \end{equation*}
+        Sea $V=f(W)$. Como $f$ es homeomorfismo, es una función abierta, luego $V\in\tau_2$, para la cual se cumple que:
+        \begin{equation*}
+            A\subseteq V\subseteq U
+        \end{equation*}
+        pero, $f(\Cls{V})=\Cls{f(V)}$ (por ser $f$ homeomorfismo), se tiene que:
+        \begin{equation*}
+            A\subseteq V\subseteq \Cls{V}\subseteq U
+        \end{equation*}
+        por tanto, $(X_2,\tau_2)$ es $T_4$.
+    \end{proof}
+
+    \begin{lema}[\textbf{Lema de Urysohn}]
+        Sea $(X,\tau)$ un espacio topológico. Entonces, $(X,\tau)$ es $T_4$ si y sólo si para todos $A,B\subseteq X$ cerrados disjuntos, existe una función continua $\cf{f}{(X,\tau)}{([0,1],\tau_u)}$ tal que $f(A)=\left\{1\right\}$ y $f(B)=\left\{0\right\}$.
+    \end{lema}
+
+    \begin{proof}
+        $\Rightarrow):$ ...
+
+        $\Leftarrow):$ Sean $A,B\subseteq X$ cerrados disjuntos. Por hipótesis existe una función continua $\cf{f}{(X,\tau)}{([0,1],\tau_u)}$ tal que $f(A)=1$ y $f(B)=0$. Los conjuntos $U=f^{-1}((r,1])$ $V=f^{-1}([0,r))$, donde $r\in(0,1)$, son dos abiertos (ya que $f$ es continua y $[0,r),(r,1],\in\tau_u$) tales que:
+        \begin{equation*}
+            A\subseteq U\quad B\subseteq V
+        \end{equation*}
+        y, $U\cap V=\emptyset$.
+    \end{proof}
+
+    \chapter{Filtros}
+
+    \section{Conceptos Fundamentales}
+
+    \begin{mydef}
+        Sean $X$ un conjunto no vacío y $\mathcal{F}$ una familia no vacía de subconjuntos no vacíos de $X$. $\mathcal{F}$ se dice que es un \textbf{filtro} si cumple lo siguiente:
+        \begin{enumerate}
+            \item $\emptyset\notin\mathcal{F}$.
+            \item Si $F_1,F_2\in\mathcal{F}$, entonces $F_1\cap F_2\in\mathcal{F}$.
+            \item Si $K\subseteq X$ y $F\subseteq K$ para algún $F\in\mathcal{F}$, entonces $K\subseteq F$. (\textit{Propiedad de absorción}).
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        Sea $X$ un conjunto no vacío. Entonces, $\left\{X\right\}$ es un filtro sobre $X$.
+    \end{exa}
+
+    \begin{obs}
+        Si $\mathcal{F}$ es un filtro sobre un conjunto no vacío $X$ entonces, se cumple lo siguiente:
+        \begin{enumerate}
+            \item $\forall A,B\in\mathcal{F}$, $A\cap B\neq\emptyset$.
+            \item Si $A_1,...,A_n\in\mathcal{F}$, entonces $\bigcap_{i=1}^nA_i\in\mathcal{F}$ y es no vacía.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{exa}
+        Sea $X$ un conjunto no vacío y $A\subseteq X$ no vacío. Entonces,
+        \begin{equation*}
+            \mathcal{F}_A=\left\{M\subseteq X\Big|A\subseteq M \right\}
+        \end{equation*}
+        es un filtro sobre $X$.
+    \end{exa}
+
+    \begin{obs}
+        Si $A=\left\{ x\right\}$, escribiremos $\mathcal{F}_{x}$ en vez de $\mathcal{F}_{\left\{x\right\}}$.
+    \end{obs}
+
+    \begin{exa}
+        Sea $(X,\tau)$ un espacio topológico con $X$. Sea
+        \begin{equation*}
+            \xi_x=\left\{V\subseteq X\Big|V\in\V{x}\right\}
+        \end{equation*}
+        con $x\in X$ (recordando que $\V{x}$ es el conjunto de todas las vecindades de $x$). Entonces, $\xi_x$ es un filtro sobre $X$. Este filtro es llamado el \textbf{filtro de vecindades sobre el punto $x$}.
+    \end{exa}
+
+    \begin{proof}
+        Tenemos que verificar 4 condiciones:
+        \begin{enumerate}
+            \item $X\in\xi_x$.
+            \item $\emptyset\notin\xi_x$.
+            \item $M,N\in\V{x}$ implica que $M\cap N\in\V{x}$.
+            \item Seea $L\subseteq X$ tal que $V\in\V{x}$ cumple que $V\subseteq L$, entonces $L\in\V{x}$.
+        \end{enumerate}
+        Luego, $\xi_x$ es un filtro sobre $X$.
+    \end{proof}
+
+    \begin{obs}
+        Si $\mathcal{F}$ es un filtro sobre $X$, entonces $X\in\mathcal{F}$.
+    \end{obs}
 
 \end{document}
