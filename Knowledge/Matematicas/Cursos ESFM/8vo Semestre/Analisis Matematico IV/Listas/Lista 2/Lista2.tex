@@ -314,7 +314,65 @@
     \end{excer}
 
     \begin{proof}
-        
+        De (1): Sean $p,q\in\mathbb{N}$. Entonces:
+        \begin{equation*}
+            e_p(x)=\left\{
+                    \begin{array}{lcr}
+                        \frac{x^{p-1}}{(p-1)!} & \textup{ si } & x\geq 0 \\
+                        0 & \textup{ si }&x<0\\
+                    \end{array}
+                \right.
+            \quad\textup{y}\quad
+            e_q(x)=\left\{
+                    \begin{array}{lcr}
+                        \frac{x^{q-1}}{(q-1)!} & \textup{ si } & x\geq 0 \\
+                        0 & \textup{ si }&x<0\\
+                    \end{array}
+                \right.
+        \end{equation*}
+        Por lo tanto,
+        \begin{equation*}
+            \begin{split}
+                e_p*e_q(y)&=\int_{-\infty}^\infty e_p(x)\cdot e_q(y-x)dx\\
+                &=\int_{0}^\infty\frac{x^{p-1}}{(p-1)!}\cdot e_q(y-x)dx\\ 
+            \end{split}
+        \end{equation*}
+        analicemos dos casos:
+        \begin{itemize}
+            \item $y<0$: Entonces, para todo $x\geq 0$, se sigue que $-x\leq 0$, luego $y-x<0$. Por ende, $e(y-x)=0$. Luego:
+            \begin{equation*}
+                e_p*e_q(y)=0=e_{p+q}(y)
+            \end{equation*}
+            \item $y\geq 0$: Entonces, $y-x\geq 0$ si y sólo si $x\in[0,y]$. Por tanto, la integral se vuelve en:
+            \begin{equation*}
+                \begin{split}
+                    e_p*e_q(y)&=\int_{0}^y\frac{x^{p-1}}{(p-1)!}\cdot e_q(y-x)dx\\
+                    &=\int_{0}^y\frac{x^{p-1}}{(p-1)!}\cdot\frac{(y-x)^{q-1}}{(q-1)!}dx\\
+                    &=\frac{1}{(p-1)!(q-1)!}\cdot\int_{0}^y x^{p-1}(y-x)^{q-1}dx\\
+                \end{split}
+            \end{equation*}
+            donde:
+            \begin{equation*}
+                \begin{split}
+                    \int_{0}^y x^{p-1}(y-x)^{q-1}dx&=\int_0^yx^{p-1}\sum_{k=0}^{q-1}\binom{q-1}{k}(-1)^{q-1}x^k(-y)^{q-1-k}dx\\
+                    &=(-1)^{q-1}\int_0^y\sum_{k=0}^{q-1}\binom{q-1}{k}x^{p+k-1}(-y)^{q-1-k}dx\\
+                    &=(-1)^{q-1}\sum_{k=0}^{q-1}\binom{q-1}{k}(-y)^{q-1-k}\int_0^yx^{p+k-1}dx\\
+                    &=(-1)^{q-1}\sum_{k=0}^{q-1}\binom{q-1}{k}(-y)^{q-1-k}\left[\frac{x^{p+k}}{p+k} \right]_0^y \\
+                    &=(-1)^{q-1}\sum_{k=0}^{q-1}\binom{q-1}{k}(-y)^{q-1-k}\frac{y^{p+k}}{p+k} \\
+                    &=(-1)^{2q-2}\sum_{k=0}^{q-1}\binom{q-1}{k}\frac{(-1)^ky^{p+q-1}}{p+k} \\
+                    &=y^{p+q-1}\sum_{k=0}^{q-1}\binom{q-1}{k}\frac{(-1)^k}{p+k} \\
+                \end{split}
+            \end{equation*}
+            veamos que:
+            \begin{equation*}
+                \begin{split}
+                    \frac{1}{(p-1)!(q-1)!}\sum_{k=0}^{q-1}\binom{q-1}{k}\frac{(-1)^k}{p+k}
+                    &=\frac{1}{(p-1)!(q-1)!}\sum_{k=0}^{q-1}\frac{(q-1)!}{k!(q-1-k)!}\cdot\frac{(-1)^k}{p+k}\\
+                    &=\frac{1}{(p-1)!(q-1)!}\sum_{k=0}^{q-1}\frac{(-1)^k(q-1)!}{k!(q-1-k)!(p+k)} \\
+                    &=\frac{1}{(p-1)!}\sum_{k=0}^{q-1}\frac{(-1)^k}{k!(q-1-k)!(p+k)} \\
+                \end{split}
+            \end{equation*}
+        \end{itemize}
     \end{proof}
 
     \begin{excer}

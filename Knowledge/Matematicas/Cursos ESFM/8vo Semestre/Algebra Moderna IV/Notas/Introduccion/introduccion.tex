@@ -901,6 +901,8 @@
         \end{equation*}
     \end{mydef}
 
+    Esta equivalencia es una relación de equivalencia sobre la clase formada por la unión de todos los elementos del conjunto de morfismos.
+
     \begin{obs}
         Se denota por $\Quo{D}$ como la clase cuyos elementos son todos los cocientes de $D$.
     \end{obs}
@@ -910,22 +912,28 @@
         Así, cualesquiera $A,B\in\Obj{\mathcal{C}}$, si $f\in\Hom{\mathcal{C}}{A}{B}$ entonces, $\Hom{\mathcal{C}}{A}{B}$ no es necesariamente un conjunto.
     \end{obs}
 
+    Definimos al conjunto $H$ como sigue:
+    \begin{equation*}
+        \begin{split}
+            H&=\left\{ f\Big|f\textup{ es epimorfismo y, tiene como dominio a }f \right\}\\
+            &=\bigcup_{A\in\Obj{\mathcal{C}}}\Hom{\mathcal{C}}{D}{A}\\            
+        \end{split}
+    \end{equation*}
+    donde la unión se hace sobre todos los epimorfismos $f$. Si $f\in H$, se define su clase de equivalencia bajo la relación anterior, está dada por:
+    \begin{equation*}
+        \left[f\right]_{\sim}=\left\{g\in H\Big|f\sim g \right\}
+    \end{equation*}
+    A lo anterior se le llama un \textbf{cociente de $D$}. Así, el conjunto
+    \begin{equation*}
+        \Quo{D}=H/\sim=\left\{\left[f\right]_{\sim}\Big|\left[f\right]_{\sim}\textup{ es cociente de }D\right\}
+    \end{equation*}
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría y $D\in\Obj{\mathcal{C}}$ un objeto arbitrario de la categoría. Se dice que $\mathcal{C}$ es \textbf{bien potenciada} si $\SO{D}$ es un conjunto y, se dice que es \textbf{co-bien potenciada} si $\Quo{D}$ es un conjunto.
+    \end{mydef}
+
     \begin{exa}
-        Por ejemplo, en la categoría $\Cat{Set}$, sean $A,B\in\Obj{\Cat{Set}}$. Sabemos que $f\in\Hom{\Cat{Set}}{A}{B}$ es monomorfismo si $f$ es inyectiva y es epimorfismo si es suprayectiva.
-
-        Ahora, sean $A,B,D\in\Obj{\Cat{Set}}$ tales que $A$ y $B$ son particiones de $D$, esto es:
-        \begin{equation*}
-            \bigcup A = D\quad\bigcup B = D
-        \end{equation*}
-        Sean $\mathcal{R}_1$ y $\mathcal{R}_2$ relaciones de equivalencia tales que $\mathcal{R}_1$ induce a la partición $A$ y $\mathcal{R}_2$ a la partición $B$.
-
-        Definimos $f,g$ epimorfismos, con $f\in\Hom{\Cat{Set}}{D}{A}$ y $g\Hom{\Cat{Set}}{D}{B}$, tales que $x\mapsto \left[x \right]_{ \mathcal{R}_1}$ y $x\mapsto \left[x \right]_{ \mathcal{R}_2}$, respectivamente. Es claro que son isomorfismos y están bien definidas.
-
-        El morfismo $u\in\Hom{\Cat{Set}}{A}{B}$ tal que $\left[x \right]_{\mathcal{R}_1}\mapsto \left[y \right]_{\mathcal{R}_2}$, es un isomorfismo. En efecto,
-        \begin{enumerate}
-            \item \textbf{$u$ está bien definida}. En efecto, sean $x_1,x_2\in D$ tales que $\left[x_1 \right]_{\mathcal{R}_1}=\left[ x_2\right]_{\mathcal{R}_2}$
-        \end{enumerate}
-
+        En la categoría $\Cat{Set}$, para todo $D\in\Obj{\mathcal{C}}$, $\SO{D}$ es un conjunto. También, $\Quo{D}$ es un conjunto.
     \end{exa}
 
     \section{Construcción de Categorías}
@@ -934,7 +942,7 @@
         Sea $\mathcal{C}$ una categoría, llamaremos por \textbf{Categoría dual u opuesta}, denotada como $\mathcal{C}^{op}$,
         \begin{enumerate}
             \item $\Obj{\mathcal{C}^{op}}=\Obj{\mathcal{C}}$.
-            \item \item $\Hom{\mathcal{C}^{op}}{A}{B}=\Hom{\mathcal{C}}{B}{A}$, para todo $A,B\in\Obj{\mathcal{C}^{op}}$.
+            \item $\Hom{\mathcal{C}^{op}}{A}{B}=\Hom{\mathcal{C}}{B}{A}$, para todo $A,B\in\Obj{\mathcal{C}^{op}}$.
             \item $\cf{\circ^{op}}{\Hom{\mathcal{C}^{op}}{A}{B}\times \Hom{\mathcal{C}^{op}}{B}{C}}{\Hom{\mathcal{C}^{op}}{A}{C}}$ está dada por: si $g^{op}\in\Hom{\mathcal{C}^{op}}{A}{B}$ y $f^{op}\in\Hom{\mathcal{C}^{op}}{B}{C}$, entonces se corresponde a $f^{op}$ y $g^{op}$ dos morfismos $f\in\Hom{\mathcal{C}}{C}{B}$ y $g\in\Hom{\mathcal{C}}{B}{A}$ tales que:
             \begin{equation*}
                 f^{op}=f\quad\textup{ y }g^{op}=g
