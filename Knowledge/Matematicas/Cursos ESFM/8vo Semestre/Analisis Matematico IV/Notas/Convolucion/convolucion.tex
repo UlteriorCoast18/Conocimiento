@@ -1807,7 +1807,7 @@
         \end{equation*}
         Note que
         \begin{equation*}
-            \Spt{\widetilde{\psi*\rho_\nu}}\subseteq\Spt{\widetilde{\psi}}+\Spt{\widetilde{\rho_\nu}}\subseteq\Spt{\psi}+B_{\frac{1}{\nu}}=\left\{x\in\mathbb{R}^n\Big|d(x,K)\leq\frac{1}{\nu} \right\},\quad\forall\nu\in\mathbb{N}
+            \Spt{\widetilde{\psi}*\rho_\nu}\subseteq\Spt{\widetilde{\psi}}+\Spt{{\rho_\nu}}\subseteq\Spt{\psi}+B_{\frac{1}{\nu}}=\left\{x\in\mathbb{R}^n\Big|d(x,K)\leq\frac{1}{\nu} \right\},\quad\forall\nu\in\mathbb{N}
         \end{equation*}
         donde $K=\Spt{\psi}$. Como $K$ es compacto contenido en el abierto $\Omega$, exsite $N\geq\nu_0$ tal que
         \begin{equation*}
@@ -1816,6 +1816,245 @@
         Sea $\varphi$ la restricción de $\rho_n*\widetilde{\psi}$ a $\Omega$. Entonces, $\varphi$ es de clase $C^\infty$ de soporte compacto contenido en $\Omega$. Además,
         \begin{equation*}
             \N{p}{f-\varphi}\leq\N{p}{f-\psi}+\N{p}{\psi-\varphi}<\frac{\varepsilon}{2}+\N{p}{\widetilde{\psi}+\widetilde{\psi}*\rho_N}<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon
+        \end{equation*}
+    \end{proof}
+
+    \begin{theor}
+        Si $1\leq p<\infty$, entonces $R\mathcal{E}^T$ y $\mathcal{C}^T$ son subespacios densos de $\mathcal{L}_p^T$.
+    \end{theor}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Sean $f\in\mathcal{L}_p^T$ y $\varepsilon>0$. Sea $f_1$ la reestricción de $f$ al intervalo $\left]-\frac{T}{2},\frac{T}{2} \right[$. Existe entonces $\varphi\in\mathcal{E}(\left]-\frac{T}{2},\frac{T}{2} \right[,\mathbb{K})$ tal que
+            \begin{equation*}
+                \N{p}{f-\varphi}<\varepsilon
+            \end{equation*}
+            ampliando $\varphi$ a $\mathbb{R}$ de modo que sea periódica con período $T>0$, es decir, definiendo $\varphi(-\frac{T}{2})=0$ y, $\varphi(x+kT)=\varphi(x)$, para todo $x\in\left]-\frac{T}{2},\frac{T}{2} \right[$ y para todo $k\in\mathbb{Z}$, entonces $\varphi\in\mathcal{E}^T$ y
+            \begin{equation*}
+                \N{p}{f-\varphi}=\left[\int_{-\frac{T}{2}}^{\frac{T}{2}}\abs{f-\varphi}^p \right]^{1/p}=\N{p}{f_1-\varphi}<\varepsilon
+            \end{equation*}
+            \item Sean $f$ y $f_1$ como en 1). Se sabe que existe una función $g\in\mathcal{C}_c^\infty$ de soporte compacto contenido en el abierto $\left]-\frac{T}{2},\frac{T}{2} \right[$ tal que
+            \begin{equation*}
+                \N{p}{f-g}<\varepsilon
+            \end{equation*}
+            Ampliando $g$ a todo $\mathbb{R}$ del tal modo que sea periódica de período $T>0$, es decir
+            \begin{equation*}
+                g\left(-\frac{T}{2}\right)=0
+            \end{equation*}
+            y
+            \begin{equation*}
+                g(x+kT)=g(x),\quad\forall x\in\left]-\frac{T}{2},\frac{T}{2} \right[,\quad\forall k\in\mathbb{Z}
+            \end{equation*}
+            entonces, $g$ es una función continua periódica y
+            \begin{equation*}
+                \N{p}{f-g}=\left[\int_{-\frac{T}{2}}^{\frac{T}{2}}\abs{f-g}^p \right]^{1/p}=\N{p}{f_1-g}<\varepsilon
+            \end{equation*}
+        \end{enumerate}
+        De ambos incisos se sigue el resultado.
+    \end{proof}
+
+    \begin{propo}
+        Si $1\leq p<\infty$ y $f\in\mathcal{L}_p^T$ entonces, la función $h\mapsto f_h$ de $\mathbb{R}$ en $\mathcal{L}_p^T$ es uniformemente continua en $\mathbb{R}$ y, además
+        \begin{equation*}
+            \N{p}{f_h}=\N{p}{f},\quad\forall h\in\mathbb{R}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Claramente esta función está bien definida, ya que $f_h\in\mathcal{L}_p^T$, para todo $h\in\mathbb{R}$ y, por un cambio de variable tenemos lo siguiente:
+        \begin{equation*}
+            \begin{split}
+                \N{p}{f_h}^p&=\int_{-\frac{T}{2}}^{\frac{T}{2}}\abs{f_h(y)}^pdy\\
+                &=\int_{-\frac{T}{2}}^{\frac{T}{2}}\abs{f(y+h)}^pdy\\
+                &=\int_{-\frac{T}{2}+h}^{\frac{T}{2}+h}\abs{f(z)}^pdz\\
+                &=\int_{-\frac{T}{2}}^{\frac{T}{2}}\abs{f(y)}^pdy\\
+                &=\N{p}{f}^p\\
+                \Rightarrow \N{p}{f_h}&=\N{p}{f}\\
+            \end{split}
+        \end{equation*}
+        Para la continuidad uniforme, sea $\varepsilon>0$. Existe $g\in\mathcal{C}^T$ tal que
+        \begin{equation*}
+            \N{p}{f-g}<\frac{\varepsilon}{3}
+        \end{equation*}
+        Por un lema anterior, $g$ es uniformemente continua en $\mathbb{R}$. Luego, existe $\delta>0$ tal que
+        \begin{equation*}
+            x_1,x_2\in\mathbb{R}\textup{ tales que }\abs{x_1-x_2}<\delta\Rightarrow\abs{g(x_1)-g(x_2)}<\frac{\varepsilon}{3T^{1/p}}
+        \end{equation*}
+        Sean $s,t\in\mathbb{R}$ tales que $\abs{s-t}<\delta$. Entonces
+        \begin{equation*}
+            \begin{split}
+                \N{p}{g_s-g_t}&=\left[\int_{-\frac{T}{2}}^{\frac{T}{2}}\abs{g(s+x)-g(t+x)}^pdx \right]^{1/p}\\
+                &=\left[\int_{-\frac{T}{2}}^{\frac{T}{2}}\frac{\varepsilon^p}{3^pT} dx \right]^{1/p}\\
+                &=\frac{\varepsilon}{3}\\
+            \end{split}
+        \end{equation*}
+        Así pues
+        \begin{equation*}
+            \begin{split}
+                \N{p}{f_s-g_t}&\leq\N{p}{f_s-g_s}+\N{p}{g_s-g_t}+\N{p}{f_t-g_t}\\
+                &<\frac{\varepsilon}{3}+\frac{\varepsilon}{3}+\frac{\varepsilon}{3}\\
+                &=\varepsilon
+            \end{split}
+        \end{equation*}
+        con lo que se tiene el resultado.
+    \end{proof}
+
+    \section{Convolución de funciones periódicas}
+
+    \begin{mydef}
+        Sean $f,g$ dos funciones periódicas de periodo $T>0$. Se define la convolución de $f$ y $g$ como
+        \begin{equation*}
+            f*g(x)=\int_{-\frac{T}{2}}^{\frac{T}{2}}f(y)g(x-y)dy
+        \end{equation*}
+        para toda $x\in\mathbb{R}$ tal que la integral exista.
+    \end{mydef}
+
+    \begin{propo}
+        Se cumple lo siguiente:
+        \begin{enumerate}
+            \item Si existe $f*g(x)$ en $x\in\mathbb{R}$, entonces existe $g*f(x)$ y $f*g(x)=g*f(x)$.
+            \item Si existe $[\abs{f}*\abs{g}]*\abs{h}(x)$ en $x\in\mathbb{R}$, entonces existen las convoluciones $(f*g)*h(x)$, $f(g*h)(x)$ y $(f*g)*h(x)=f(g*h)(x)$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{theor}
+        Si $f,g\in\mathcal{L}_1^T$, entonces para casi toda $x\in\mathbb{R}$ existe la convolución $f*g(x)$, $f*g\in\mathcal{L}_1^T$ y,
+        \begin{equation*}
+            \int_{-\frac{T}{2}}^{\frac{T}{2}}f*g(x)dx=\left(\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)dx \right)\cdot\left(\int_{-\frac{T}{2}}^{\frac{T}{2}}g(x)dx\right)
+        \end{equation*}
+        además,
+        \begin{equation*}
+            \N{1}{f*g}\leq\N{1}{\abs{f}*\abs{g}}\leq\N{1}{f}\cdot\N{1}{g}
+        \end{equation*}
+        Así pues, $L_1^T$ provisto de la convolución es un álgebra de Banach conmutativa.
+    \end{theor}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{theor}
+        Sean $p,q\in[1,\infty[$ tales que $\frac{1}{p}+\frac{1}{q}>1$ y, defina
+        \begin{equation*}
+            \frac{1}{r}=\frac{1}{p}+\frac{1}{q}-1
+        \end{equation*}
+        Si $f\in\mathcal{L}_p^T$ y $g\in\mathcal{L}_q^T$, entonces para casi toda $x\in\mathbb{R}$ existe $f*g(x)$. Además, la función $f*g\in\mathcal{L}_r^T$ y
+        \begin{equation*}
+            \N{r}{f*g}\leq\N{p}{f}\cdot\N{q}{g}
+        \end{equation*}
+        En particular, si $q=1$, entonces $f*g\in\mathcal{L}_p^T$ y, además
+        \begin{equation*}
+            \N{p}{f*g}\leq\N{p}{f}\cdot\N{1}{g}
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{theor}
+        Sea $1\leq p\leq \infty$. Si $f\in\mathcal{L}_p^T$ y $g\in\mathcal{L}_{p^*}^T$ entonces, $f*g(x)$ existe en todo punto $x\in\mathbb{R}$ y, además $f*g\in\mathcal{C}^T$.
+    \end{theor}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \section{Sucesiones de Dirac de funciones periódicas}
+
+    \begin{mydef}
+        Una sucesión $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ se dice que es de \textbf{Dirac de periodo $T>0$} si:
+        \begin{enumerate}
+            \item $\rho_\nu\geq0$, para todo $\nu\in\mathbb{N}$.
+            \item $\int_{-\frac{T}{2}}^{\frac{T}{2}}\rho_\nu(x)dx=1$, para todo $\nu\in\mathbb{N}$.
+            \item Para todo $0<\delta<\frac{T}{2}$,
+            \begin{equation*}
+                \lim_{\nu\rightarrow\infty}\int_{\abs{x}<\delta}\rho_\nu(x)dx=1
+            \end{equation*}
+            o sea,
+            \begin{equation*}
+                \lim_{\nu\rightarrow\infty}\int_{\delta<\abs{x}<-\frac{T}{2}}\rho_\nu(x)dx=0
+            \end{equation*}
+        \end{enumerate}
+        la sucesión $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ será llamada \textbf{sucesión de Dirac fuerte} si $\rho_\nu\in\mathcal{L}_\infty^T$ para todo $\nu\in\mathbb{N}$, se cumplen (i), (ii) y
+        \begin{enumerate}
+            \item Se tiene que
+            \begin{equation*}
+                \lim_{\nu\rightarrow\infty}\textup{supesc}_{\delta<\abs{x}<\frac{T}{2}}\rho_\nu(x)=0
+            \end{equation*}
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        Toda sucesión de Dirac fuerte es una sucesión de Dirac.
+    \end{obs}
+
+    \begin{proof}
+        En efecto, veamos que
+        \begin{equation*}
+            \int_{\delta<\abs{x}<-\frac{T}{2}}\rho_\nu(x)dx\leq\int_{\delta<\abs{x}<-\frac{T}{2}}\textup{supesc}_{\delta<\abs{x}<\frac{T}{2}}\rho_\nu(x)dx=\left[\textup{supesc}_{\delta<\abs{x}<\frac{T}{2}}\rho_\nu(x) \right]\cdot\left(T-2\delta \right)
+        \end{equation*}
+        lo cual tiende a cero a medida que $\nu\rightarrow\infty$.
+    \end{proof}
+
+    \begin{theor}
+        Sea $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ una sucesión de Dirac de periodo $T>0$.
+        \begin{enumerate}
+            \item  Si $1\leq p<\infty$ y $f\in\mathcal{L}_p^T$, entonces
+            \begin{equation*}
+                \lim_{\nu\rightarrow\infty}\N{p}{f-f*\rho_\nu}=0
+            \end{equation*}
+            \item Si $f\in\mathcal{L}_\infty^T$ y $f$ es continua en un punto $x\in\mathbb{R}$, entonces
+            \begin{equation*}
+                \lim_{\nu\rightarrow\infty}\rho_\nu*f(x)=f(x)
+            \end{equation*}
+            \item Si $f\in\mathcal{L}_\infty^T$ y $f$ es continua en un abierto $J\subseteq\mathbb{R}$, entonces $\left\{\rho_\nu*f\right\}_{\nu=1}^\infty$ converge a $f$ uniformemente en todo compacto contenido en $J$.
+            \item Si $f\in\mathcal{C}^T$, entonces $\left\{\rho_\nu*f\right\}_{\nu=1}^\infty$ converge uniformemente en $\mathbb{R}$.
+        \end{enumerate}
+        Los incisos (ii) y (iii) subsisten si $\left\{ \rho_\nu\right\}_{\nu=1}^\infty$ es una sucesión de Dirac fuerte y $f\in\mathcal{L}_1^T$.
+    \end{theor}
+
+    \begin{proof}
+        Solo se probará (iii) al suponer que $\left\{ \rho_\nu\right\}_{\nu=1}^\infty$ es una sucesión de Dirac fuerte y $f\in\mathcal{L}_1^T$.
+
+        La convolución $\rho_\nu*f$ existe en todo punto de $\mathbb{R}$ y es continua. Suponga que $f$ es continua en un abierto $J$. Sea $K\subseteq J$ compacto y, defina
+        \begin{equation*}
+            \alpha=d(K,\mathbb{R}-J)>0
+        \end{equation*}
+        y, definamos $K'=\left\{x\in\mathbb{R}\Big|d(x,K)<\frac{\alpha}{2} \right\}$ ($K'$ es una vecindad cerrada de $K$). Se sabe que $K'$ es un compacto en $\mathbb{R}$, además
+        \begin{equation*}
+            K\subseteq K'\subseteq J
+        \end{equation*}
+        Sea $\varepsilon>0$. Como $f$ es uniformemnte continua en $K'$, existe $0<\delta<\min\left\{\frac{T}{2},\frac{\alpha}{2}\right\}$ tal que
+        \begin{equation*}
+            x-1,x_2\in K'\textup{ y }\abs{x_1-x_2}<\delta\Rightarrow\abs{f(x_1)-f(x_2)}<\varepsilon
+        \end{equation*}
+        Fije $x\in K$ arbitrario. Se tiene
+        \begin{equation*}
+            \begin{split}
+                \abs{f(x)-\rho_\nu*f(x)}&=\int_{-\frac{T}{2}}^{\frac{T}{2}}\abs{f(x)-f(x-y)}\rho_\nu(y)dy\\
+                &=\int_{-\delta}^{\delta}\abs{f(x)-f(x-y)}\rho_\nu(y)dy+\int_{\delta<\abs{y}<\frac{T}{2}}\abs{f(x)-f(x-y)}\rho_\nu(y)dy\\
+            \end{split}
+        \end{equation*}
+        Si $\abs{y}<\delta$, entonces $x-y\in K'$, luego
+        \begin{equation*}
+            \int_{-\delta}^{\delta}\abs{f(x)-f(x-y)}\rho_\nu(y)dy\leq\varepsilon\int_{-\delta}^{\delta}\rho_\nu(y)dy<\varepsilon
+        \end{equation*}
+        Sean $A=\max_{x\in K}\abs{f(x)}$ y $M_\nu(\delta)=\textup{supesc}_{\delta<\abs{y}<\frac{T}{2}}\rho_\nu(x)$. Entonces,
+        \begin{equation*}
+            \begin{split}
+                \int_{\delta<\abs{y}<\frac{T}{2}}\abs{f(x)-f(x-y)}\rho_\nu(y)dy&\leq A\int_{\delta<\abs{y}<\frac{T}{2}}\rho_\nu(y)dy+M_\nu(\delta)\int_{\delta<\abs{y}<\frac{T}{2}}\abs{f(x-y)}dy\\
+                &\leq A\cdot M_\nu(\delta)(T-2\delta)+M_\nu((\delta))\cdot\N{1}{f}\\
+                &= M_\nu(\delta)\left(A\cdot (T-2\delta)+\N{1}{f} \right)\\
+            \end{split}
+        \end{equation*}
+        lo cual tiende a cero conforme a $\nu\rightarrow\infty$ uniformemente en $x\in K$. Por tanto,
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\rho_\nu*f=f\textup{ uniformemente en }K
         \end{equation*}
     \end{proof}
 
