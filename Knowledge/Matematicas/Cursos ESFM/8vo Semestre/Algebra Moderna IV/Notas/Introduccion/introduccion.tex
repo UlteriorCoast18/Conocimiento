@@ -1105,6 +1105,12 @@
         \end{enumerate}
     \end{mydef}
 
+    \begin{obs}
+        Observe que si $f\in\Hom{\mathcal{C}}{A}{B}\cap\Hom{\mathcal{C}}{C}{D}$ para algunos $A,B,C,D\in\Obj{\mathcal{C}}$ y $f\sim f'$, de la definición de relación de congruencia se debe tener que $f'\in\Hom{\mathcal{C}}{A}{B}\cap\Hom{\mathcal{C}}{C}{D}$.
+
+        Es decir, que las clases de equivalencia están contienidas en la interseccción de los morfismos (lo cual justifica que la partición se pueda hacer en cada conjunto de morfismos).
+    \end{obs}
+
     \begin{propo}
         Sea $\mathcal{C}$ una categoría. Definir $\sim$ una relación de congruencia en $\mathcal{C}$ es equivalente a definir una relación de equivalencia en $\sim_{A,B}$ para cada $A,B\in\Obj{\mathcal{C}}$ en $\Hom{\mathcal{C}}{A}{B}$ tales que cumplen con
         \begin{enumerate}
@@ -1128,6 +1134,36 @@
             Entonces, $g\circ f\sim_{A,C}g\circ f'$ y, $g\circ f'\sim_{A,C}g'\circ f'$. por tanto, $g\circ f\sim_{A,C}g'\circ f'$, luego $g\circ f\sim g'\circ f'$.
         \end{enumerate}
         por los dos incisos, se sigue que $\sim$ es una relación de congruencia en $\mathcal{C}$.
+
+        Se hará una prueba alternativa de la suficiencia, para que en caso de que los conjuntos de morfismos se intersecten, no haya problemas definiendo la relación $\sim$ (lo hecho anteriormente es válido en el caso de que los conjuntos de morfismos sean disjuntos a pares). Para ello, defina la relación $\sim$ sobre $\bigcup_{A,B\in\Obj{\mathcal{C}}}\Hom{\mathcal{C}}{A}{B}$ como sigue
+        \begin{equation*}
+            f\sim g\iff \forall (A,B\in\Obj{\mathcal{C}}(f\in\Hom{\mathcal{C}}{A}{B}\iff g\in\Hom{\mathcal{C}}{A}{B})\textup{ y }(f\in\Hom{\mathcal{C}}{A}{B}\Rightarrow f\sim_{A,B}g))
+        \end{equation*}
+        Veamos que esta relación es de equivalencia.
+        \begin{itemize}
+            \item \textit{Reflexiva}. Sea $f\in\bigcup_{A,B\in\Obj{\mathcal{C}}}\Hom{\mathcal{C}}{A}{B}$. Entonces, para todo $A,B\in\Obj{\mathcal{C}}$, $f\in\Hom{\mathcal{C}}{A}{B}\iff f\in\Hom{\mathcal{C}}{A}{B}$ y, $f\in\Hom{\mathcal{C}}{A}{B}\Rightarrow f\sim_{A,B}f$ por la reflexividad de $\sim_{A,B}$.
+            \item \textit{Simétrica}. Si $f\sim g$ entonces $f\in\Hom{\mathcal{C}}{A}{B}\iff g\in\Hom{\mathcal{C}}{A}{B}$ y, si $f\in\Hom{\mathcal{C}}{A}{B}$, entonces $f\sim_{A,B}g$.
+            
+            Por tanto, $g\in\Hom{\mathcal{C}}{A}{B}\iff f\in\Hom{\mathcal{C}}{A}{B}$ y, si $g\in\Hom{\mathcal{C}}{A}{B}$, entonces $f\in\Hom{\mathcal{C}}{A}{B}$ lo cual implica que $f\sim_{A,B}g\Rightarrow g\sim_{A,B}f$.
+
+            \item \textit{Transitiva}. Si $f\sim g$ y $g\sim h$. Claramente se tiene que $f\in\Hom{\mathcal{C}}{A}{B}\iff h\in\Hom{\mathcal{C}}{A}{B}$ y, por la transitividad de $\sim_{A,B}$, se sigue que $f\sim_{A,B}g$, además, $g\in\Hom{\mathcal{C}}{A}{B}$ por lo cual $g\sim_{A,B}h$. Por ende, $f\sim_{A,B}h$.
+        \end{itemize}
+        Por los tres incisos, se sigue que $\sim$ es una relación de equivalencia.
+
+        Veamos que es relación de congruencia.
+        \begin{enumerate}
+            \item Si $f\in\Hom{\mathcal{C}}{A}{B}$ y $f\sim f'$, entonces por la definición de $\sim$, se sigue que $f'\in\Hom{\mathcal{C}}{A}{B}$.
+            \item Suponga que $f\sim f'$ y $g\sim g'$ y, además, existe $g\circ f$. Entonces, $g\circ f\in\Hom{\mathcal{C}}{A}{C}$ y, $f\in\Hom{\mathcal{C}}{A}{B}$ y $g\in\Hom{\mathcal{C}}{B}{C}$ si y sólo $f'\in\Hom{\mathcal{C}}{A}{B}$, $g'\in\Hom{\mathcal{C}}{B}{C}$ si y sólo si $g'\circ f'\in\Hom{\mathcal{C}}{A}{C}$.
+            
+            Además, si $g\circ f\in\Hom{\mathcal{C}}{A}{C}$, entonces $f,f'\in\Hom{\mathcal{C}}{A}{B}$ y, $g,g'\in\Hom{\mathcal{C}}{B}{C}$, luego $f\sim_{A,B}f'$ y $g\sim_{B,C}g'$. Por hipótesis se tiene entonces que
+            \begin{equation*}
+                g\circ f\sim_{A,C}g\circ f'\textup{ y }g\circ f'\sim_{A,C}g'\circ f'
+            \end{equation*}
+            por ende, $g\circ f\sim_{A,C}g'\circ f'$.
+
+            Por tanto, de los dos párrafos anteriores se sigue que $g\circ f\sim g'\circ f'$.
+        \end{enumerate}
+        De estos dos incisos, se sigue que $\sim$ es una relación de congruencia sobre $\bigcup_{A,B\in\Obj{\mathcal{C}}}\Hom{\mathcal{C}}{A}{B}$.
     \end{proof}
 
     \begin{mydef}
@@ -1146,5 +1182,23 @@
     \begin{proof}
         
     \end{proof}
+
+    \begin{exa}
+        Considere $G$ un grupo y $\mathcal{G}$ su categoría asociada. Entonces, existe una biyección entre los subgrupos normales de $G$ y las congruencias sobre $\mathcal{G}$. Más aún, si $N$ es un subgrupo normal de $G$ entonces, si $\sim_N$ es la relación de congruencia inducida por $N$, se tiene que $\mathcal{G}/\sim_N$ es la categoría asociada al grupo cociente $G/N$.
+    \end{exa}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{mydef}
+        Dados $(X,\tau_X),(Y,\tau_Y)$ espacios topológicos y, $\cf{f,g}{(X,\tau_X)}{(Y,\tau_Y)}$ funciones continuas,
+    \end{mydef}
+
+    \begin{exa}
+        Consideremos la categoría $\Cat{Top}$. Recordemos una definición.
+    \end{exa}
+
+
 
 \end{document}
