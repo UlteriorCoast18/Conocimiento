@@ -301,8 +301,8 @@
             \begin{equation*}
                 e_m*f(x)=\left\{
                     \begin{array}{lcr}
-                        \int_{a}^x\frac{(x-y)^{m-1}}{(m-1)!}f(y)dy & \textup{ si } & x\geq 0 \\
-                        0 & \textup{ si }&x<0\\
+                        \int_{a}^x\frac{(x-y)^{m-1}}{(m-1)!}f(y)dy & \textup{ si } & x\geq a \\
+                        0 & \textup{ si }&x<a\\
                     \end{array}
                 \right.
             \end{equation*}
@@ -314,7 +314,7 @@
     \end{excer}
 
     \begin{proof}
-        De (1): Sean $p,q\in\mathbb{N}$. Entonces:
+        De (i): Sean $p,q\in\mathbb{N}$. Entonces:
         \begin{equation*}
             e_p(x)=\left\{
                     \begin{array}{lcr}
@@ -370,19 +370,101 @@
                     &=\frac{1}{(p-1)!(q-1)!}\sum_{k=0}^{q-1}\frac{(q-1)!}{k!(q-1-k)!}\cdot\frac{(-1)^k}{p+k}\\
                     &=\frac{1}{(p-1)!(q-1)!}\sum_{k=0}^{q-1}\frac{(-1)^k(q-1)!}{k!(q-1-k)!(p+k)} \\
                     &=\frac{1}{(p-1)!}\sum_{k=0}^{q-1}\frac{(-1)^k}{k!(q-1-k)!(p+k)} \\
+                    &=...\\
+                    &=\frac{1}{(p-1)!}\cdot\frac{(p-1)!}{(p+q-1)!} \\
+                    &=\frac{1}{(p+q-1)!}\\
                 \end{split}
             \end{equation*}
+            por tanto,
+            \begin{equation*}
+                e_p*e_q(y)=\frac{y^{p+q-1}}{(p+q-1)!}=e_{p+q}(y)
+            \end{equation*}
         \end{itemize}
+        por ambos incisos, se sigue que $e_p*e_q=e_{p+q}$.
+
+        De (ii): Veamos que:
+        \begin{equation*}
+            f*e_m(x)=\int_{-\infty}^{\infty}f(y)e_m(x-y)dy
+        \end{equation*}
+        Como $f(y)=0$ para todo $y\leq a$, se sigue que:
+        \begin{equation*}
+            f*e_m(x)=\int_{a}^{\infty}f(y)e_m(x-y)dy
+        \end{equation*}
+        Se tienen dos casos:
+        \begin{itemize}
+            \item Si $x<a$, entonces para todo $a\leq y$ se tiene que $x-y<0$, luego $e_m(x-y)=0$. Por tanto:
+            \begin{equation*}
+                f*e_m(x)=0
+            \end{equation*}
+            \item Si $a\leq x$, entonces $x-y\geq 0$ si y sólo si $a\leq y\leq x$. Por tanto,
+            \begin{equation*}
+                \begin{split}
+                    f*e_m(x)&=\int_{a}^{x}f(y)e_m(x-y)dy\\
+                    &=\int_{a}^{x}f(y)\frac{(y-x)^{m-1}}{(m-1)!}dy\\
+                    &=\int_{a}^{x}\frac{(y-x)^{m-1}}{(m-1)!}f(y)dy\\
+                \end{split}
+            \end{equation*}
+            donde, esta integral existe, pues la función $y\mapsto (x-y)^{m-1}$ es acotada en $[a,x]$ y, $y\mapsto f(y)$ es integrable en este intervalo acotado.
+        \end{itemize}
+        Por ambos incisos, se sigue que la convolución existe para todo $x\in\mathbb{R}$ y, su valor es:
+        \begin{equation*}
+            f*e_m(x)=e_m*f(x)=\left\{
+                \begin{array}{lcr}
+                    \int_{a}^x\frac{(x-y)^{m-1}}{(m-1)!}f(y)dy & \textup{ si } & x\geq a \\
+                    0 & \textup{ si }&x<a\\
+                \end{array}
+            \right.
+        \end{equation*}
+        De (iii): Procederemos por inducción sobre $m$. 
+        \begin{itemize}
+            \item Para $m=1$ el resultado es inmediato, pues
+            \begin{equation*}
+                \begin{split}
+                    \int_{a}^{ x}f(x_0)dx_0&=\int_{a}^{ x}\frac{1}{1}f(y)dy\\
+                    &=\int_{a}^{ x}\frac{(x-y)^{1-1}}{(1-1!)}f(y)dy\\
+                \end{split}
+            \end{equation*}
+            \item Suponga el resultado válido para algún $m\in\mathbb{N}$. Probaremos que se cumple para $m+1$. En efecto, primero notemos que la función $e_m*f$ es una función integrable en todo intervalo acotado (ya que la integral de la convolución es el producto de las integrales de las funciones en la convolución), nula para todo $x\leq a$. Por ende:
+            \begin{equation*}
+                (e_m*f)*e_1(x)=\left\{
+                    \begin{array}{lcr}
+                        \int_{a}^x\frac{(x-y)^{1-1}}{(1-1)!}(e_m*f)(y)dy & \textup{ si } & x\geq a \\
+                        0 & \textup{ si }&x<a\\
+                    \end{array}
+                \right.
+            \end{equation*}
+            en el caso que $x\geq a$:
+            \begin{equation*}
+                (e_m*f)*e_1(x)=\int_{a}^x\frac{(x-y)^{1-1}}{(1-1)!}(e_m*f)(y)dy
+            \end{equation*}
+            Por tanto, se sigue que
+            \begin{equation*}
+                \begin{split}
+                    \int_{a}^xdx_{ m}\int_a^{ x_{m}}dx_{m-1}\cdots\int_{a}^{x_{2}} dx_{1}\int_a^{ x_1}f(x_0)dx_0&=\int_{a}^xdx_{ m}\int_a^{x_m}\frac{(x_m-y)^{m-1}}{(m-1)!}f(y)dy\\
+                    &=\int_{a}^x(e_m*f)(x_m)dx_m\\
+                    &=\int_{a}^x\frac{(x-y)^{1-1}}{(1-1)!}(e_m*f)(y)dy\\
+                    &=(e_m*f)*e_1(x)\\
+                    &=(f*e_m)*e_1(x)\\
+                    &=f*(e_m*e_1)(x)\\
+                    &=f*e_{ m+1}(x)\\
+                    &=\int_a^xf(y)\frac{(x-y^m)}{m!}dy\\
+                    &=\int_a^x\frac{(x-y)^m}{m!}f(y)dy\\
+                    &=\int_a^x\frac{(x-y)^{m+1-1}}{(m+1-1)!}f(y)dy\\
+                \end{split}
+            \end{equation*}
+            por lo cual, el resultado se cumple para $m+1$.
+        \end{itemize}
+        Aplicando inducción, se obtiene lo deseado.
     \end{proof}
 
     \begin{excer}
-        La integral fraccional de orden $\alpha>0$ sobre un intervalo $[a,x]$ de una función medible $f$ se define como:
+        La integral fraccional de orden $1\geq\alpha>0$ sobre un intervalo $[a,x]$ de una función medible $f$ se define como:
         \begin{equation*}
             I_a^\alpha[f](x)=\frac{1}{\Gamma(\alpha)}\int_a^x\frac{f(t)}{(x-t)^{1-\alpha}}dt
         \end{equation*}
         para toda $x\geq a$ tal que la integral exista.
         \begin{enumerate}
-            \item Fije $a,b\in\mathbb{R}$, $a<b$. Para cada $\alpha>0$ se define
+            \item Fije $a,b\in\mathbb{R}$, $a<b$. Para cada $1\geq\alpha>0$ se define
             \begin{equation*}
                 g_\alpha(x)=\frac{1}{\Gamma(\alpha)}\frac{1}{x^{1-\alpha}}\chi_{]0,b-a[}(x),\quad\forall x\in\mathbb{R}
             \end{equation*}
@@ -393,7 +475,10 @@
     \end{excer}
 
     \begin{proof}
-        
+        De (i): Sea $f\in\mathcal{C}([a,b],\mathbb{K})$. Veamos que existe la convolución. En efecto, se tiene que $\widetilde{f}\in\mathcal{L}_p(\mathbb{R},\mathbb{K})$, para todo $p\in[1,\infty]$. Ahora, notemos que:
+        \begin{equation*}
+            1-\alpha\geq0
+        \end{equation*}
     \end{proof}
 
     \begin{excer}
@@ -413,7 +498,25 @@
     \end{excer}
     
     \begin{proof}
-        
+        Sean $p,q>0$. Como las funciones $f_p,f_q\in\mathcal{L}_1(\mathbb{R},\mathbb{K})$ (ver la definición de la función Gamma) entonces, por el teorema de Young, $f_p*f_q\in\mathcal{L}_1(\mathbb{R},\mathbb{K})$. Ahora, se tiene además que:
+        \begin{equation*}
+            \int_{-\infty}^\infty f_p*f_q(y)dy=\left(\int_{-\infty}^\infty f_p(y)dy \right)\cdot\left(\int_{-\infty}^\infty f_p(y)dy \right)=\Gamma(p)\Gamma(q)
+        \end{equation*}
+        (ya que $\int{-\infty}^\infty f_p=\int_0^\infty t^{ p-1}e^{-t}dt=\Gamma(p)$). Ahora, si $y\in\mathbb{R}$ se tiene que:
+        \begin{equation*}
+            \begin{split}
+                f_p*f_q(y)&=\int_{-\infty}^\infty f_p(t)f_q(y-t)dt\\
+                &=\int_{0}^\infty t^{p-1}e^{-t}f_q(y-t)dt\\
+            \end{split}
+        \end{equation*}
+        Por un ejercicio anterior, si $y\leq 0$, la convolución es cero. Entonces, $y-t>0$ si y sólo si $y>t$. Por ende:
+        \begin{equation*}
+            \begin{split}
+                f_p*f_q(y)&=\int_{0}^y t^{p-1}e^{-t}f_q(y-t)dt\\
+                &=\int_{0}^y t^{p-1}e^{-t}(y-t)^{q-1}e^{-y+t}dt\\
+                &=e^{-y}\int_{0}^y t^{p-1}(y-t)^{q-1}dt\\
+            \end{split}
+        \end{equation*}
     \end{proof}
 
     \begin{excer}
