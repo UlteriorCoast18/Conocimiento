@@ -125,6 +125,7 @@
 \newcommand{\GenSpace}[4]{\ensuremath{\mathcal{#1}_{#2}\left(#3,#4\right)}}
 \newcommand{\Spt}[1]{\ensuremath{\textup{Spt}\left(#1\right)}}
 \newcommand{\natint}[1]{\ensuremath{[\![#1]\!]}}
+\newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -2056,6 +2057,207 @@
         \begin{equation*}
             \lim_{\nu\rightarrow\infty}\rho_\nu*f=f\textup{ uniformemente en }K
         \end{equation*}
+    \end{proof}
+
+    \begin{propo}
+        Sea $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ una sucesión de Dirac de periodo $T>0$. Se supone que las funciones $\rho_\nu$ son pares, para todo $\nu\in\mathbb{N}$. Sea $f\in\mathcal{L}_{\infty}^T$. Si en un punto $x\in\mathbb{R}$ existen los límites laterales $f(x^+)$ y $f(x^-)$ entonces,
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\rho_\nu*f(x)=\frac{f(x^+)+f(x^-)}{2}
+        \end{equation*}
+        la conclusión persiste si la sucesión es de Dirac fuerte y $f\in\mathcal{L}_1^T$.
+    \end{propo}
+
+    \begin{proof}
+        Sólo se probará la última parte. Suponga que existen los límites laterales. Se tiene lo siguiente
+        \begin{equation*}
+            \begin{split}
+                \rho_\nu*f(x)&=\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x-y)\rho_\nu(y)dy\\
+                &=\int_{-\frac{T}{2}}^{0}f(x-y)\rho_\nu(y)dy+\int_{0}^{\frac{T}{2}}f(x-y)\rho_\nu(y)dy\\
+                &=\int_{0}^{\frac{T}{2}}f(x+y)\rho_\nu(-y)dy+\int_{0}^{\frac{T}{2}}f(x-y)\rho_\nu(y)dy\\
+                &=\int_{0}^{\frac{T}{2}}\left[f(x+y)+f(x-y) \right]\rho_\nu(y)dy\\
+            \end{split}
+        \end{equation*}
+        pues, $\rho_\nu$ es una función par. Por otra parte, 
+        \begin{equation*}
+            \int_{0}^{\frac{T}{2}}\rho_\nu(y)dy=\frac{1}{2}
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \frac{f(x^+)+f(x^-)}{2}=\int_0^{\frac{T}{2}}(f(x^+)+f(x^-))\rho_\nu(y)dy
+        \end{equation*}
+        de donde
+        \begin{equation*}
+            \rho_\nu*f(x)-\frac{f(x^+)+f(x^-)}{2}=\int_0^{\frac{T}{2}}\left[f(x+y)-f(x^+)\right]\rho_\nu(y)dy+\int_0^{\frac{T}{2}}\left[f(x-y)-f(x^-)\right]\rho_\nu(y)dy
+        \end{equation*}
+        Se probará que
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\int_0^{\frac{T}{2}}\left[f(x+y)-f(x^+)\right]\rho_\nu(y)dy=0
+        \end{equation*}
+        En efecto, sea $\varepsilon>0$. Por definición de $f(x^+)$ existe $0<\delta<\frac{T}{2}$ tal que
+        \begin{equation*}
+            0<h<\delta\Rightarrow\abs{f(x+h)-f(x^+)}<\varepsilon
+        \end{equation*}
+        Luego, tenemos que
+        \begin{equation*}
+            \begin{split}
+                \int_0^{\frac{T}{2}}\abs{f(x+y)-f(x^+)} \rho_\nu(y)dy&=\int_0^{\delta}\abs{f(x+y)-f(x^+)}\rho_\nu(y)dy+\int_{\delta}^{\frac{T}{2}}\abs{f(x+y)-f(x^+)}\rho_\nu(y)dy\\
+                &<\varepsilon\int_0^{\delta}\rho_\nu(y)dy+M_\nu(\delta)\int_{\delta}^{\frac{T}{2}}f(x+y)dy+\abs{f(x^+)}\int_{\delta}^{\frac{T}{2}}\rho_\delta(y)dy\\
+                &\leq \frac{\varepsilon}{2}+\abs{f(x^+)}M_\nu(\delta)\left(\frac{T}{2}-\delta \right)+M_\nu(\delta)\N{1}{f}\\
+                &= \frac{\varepsilon}{2}+M_\nu(\delta)\left(\abs{f(x^+)}(\delta)\left[\frac{T}{2}-\delta\right]+\N{1}{f} \right) \\
+            \end{split}
+        \end{equation*}
+        donde, $M_\nu(\delta)=\textup{supesc}_{\delta<y<\frac{T}{2}}\rho_\nu(y)$. Por ser una sucesión de Dirac fuerte, existe $\nu_0\in\mathbb{N}$ tal que
+        \begin{equation*}
+            \nu\geq\nu_0\Rightarrow \left(\abs{f(x^+)}\left[\frac{T}{2}-\delta\right]+\N{1}{f}\right)M_\nu(\delta)<\frac{\varepsilon}{2}
+        \end{equation*}
+        luego
+        \begin{equation*}
+            \nu\geq\nu_0\Rightarrow \int_0^{\frac{T}{2}}\abs{f(x+y)-f(x^+)} \rho_\nu(y)dy<\varepsilon
+        \end{equation*}
+        Así,
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\int_0^{\frac{T}{2}}\left[f(x+y)-f(x^+)\right]\rho_\nu(y)dy=0
+        \end{equation*}
+        El otro límite es análogo.
+    \end{proof}
+
+    \section{Sistemas Trigonométricos}
+
+    \begin{mydef}
+        Sea $E$ un espacio normado y $S\subseteq E$. Se denota por $\mathcal{L}(S)$ al \textbf{subespacio vectorial de $E$ generado por $S$}. Se dice que el conjunto $S$ \textbf{está completo} en $E$, si $\Cls{\mathcal{L}(S)}=E$.
+    \end{mydef}
+
+    En esta parte se consideran funcoines periódicas de periodo $2\pi$ (al final se trata el caso general).
+
+    \begin{mydef}
+        Se define lo siguiente
+        \begin{enumerate}
+            \item Se llama \textbf{sistema trigonométrico real} al sistema $\tau_{\mathbb{R}}$ formado por
+            \begin{enumerate}
+                \item $x\mapsto\cos(kx)$, con $k=0,1,2,...$
+                \item $x\mapsto\sin(kx)$, con $k=1,2,3,...$
+            \end{enumerate}
+            \item Se llama \textbf{sistema trigonométrico complejo} al sistema $\tau_{\mathbb{C}}$ formado por
+            \begin{equation*}
+                x\mapsto e^{ikx},\quad k\in\mathbb{Z}
+            \end{equation*}
+            \item Las combinaciones lineales fintas de $\tau_{\mathbb{R}}$ de coeficientes reales se llaman \textbf{polinomios trigonométricos reales}.
+            \item Las combinaciones lineales de funciones en $\tau_{\mathbb{R}}$ con coeficientes complejos son las mismas que las combinaciones lineales de funciones en $\tau_{\mathbb{C}}$ con coeficientes complejos, se llaman \textbf{polinomios trigonométricos complejos}.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{theor}
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item Sea $1\leq p<\infty$. Entonces
+            \begin{enumerate}
+                \item $\tau_{\mathbb{R}}$ es (está) completo en $\mathcal{L}_p^{2\pi}(\mathbb{R})$.
+                \item $\tau_{\mathbb{R}}$ y $\tau_{\mathbb{C}}$ son (están) completos en $\mathcal{L}_p^{2\pi}(\mathbb{C})$.
+            \end{enumerate}
+            \item Se cumplen
+            \begin{enumerate}
+                \item $\tau_{\mathbb{R}}$ es (está) completo en $\mathcal{C}^{2\pi}(\mathbb{R})$ provisto de la norma uniforme.
+                \item $\tau_{\mathbb{R}}$ y $\tau_{\mathbb{C}}$ son (están) completos en $\mathcal{C}^{2\pi}(\mathbb{C})$ provisto de la norma uniforme.
+            \end{enumerate}
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        Sea $f\in\mathcal{L}_p^{2\pi}(\mathbb{K})$. Si $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ es una sucesión de Dirac fuerte periódica de periodo $2\pi$, se sabe que
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\N{p}{f-\rho_\nu*f}=0
+        \end{equation*}
+        también se sabe que si $f\in\mathcal{C}^{2\pi}(\mathbb{K})$, entonces
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\rho_\nu*f=f\textup{ uniformemente en }\mathbb{R}
+        \end{equation*}
+        El teorema quedará probado si se encuentra una sucesión de Dirac fuerte de periodo $2\pi$ tal que $\rho_\nu*f$ es un polinomio trigonométrico (real o complejo, según sea $f$), para todo $\nu\in\mathbb{N}$.
+
+        Se define
+        \begin{equation*}
+            \rho_\nu(x)=\frac{(1+\cos(x))^\nu}{\int_{-\pi}^\pi(1+\cos(t))^\nu dy}=\frac{\cos{^2\nu}\frac{x}{2}}{\int_{-\pi}^\pi\cos^{2\nu}\frac{t}{2}dt},\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        para todo $\nu\in\mathbb{N}$. Claramente se cumplen de (i) y (ii) de sucesiones de Dirac. Se verificará que se cumple (iii').
+
+        Sea $0<\delta<\pi$, Entonces,
+        \begin{equation*}
+            \begin{split}
+                \int_{-\pi}^{\pi}\cos^{2\nu}\frac{t}{2}dt&=2\int_0^{\pi/2} \cos^{2\nu}\frac{t}{2}dt\\
+                &=4\int_0^\pi\cos^{2\nu}udu\\
+                &\geq 4\int_0^{\frac{\delta}{4}}\cos^{2\nu}udu\\
+                &\geq\delta\cos^{2\nu}\frac{\delta}{4}\\
+            \end{split}
+        \end{equation*}
+        pues, la función $u\mapsto\cos^{2\nu}u$ es decreciente en $\left[0,\frac{\delta}{4}\right]$. Por la misma última razón
+        \begin{equation*}
+            \begin{split}
+                \textup{supesc}_{\delta<x<\pi}\rho_\nu(x)\leq\frac{\cos^{2\nu}\frac{\delta}{2}}{\cos^{2\nu}\frac{\delta}{4}}
+            \end{split}
+        \end{equation*}
+        lo cual tiende a cero cuando $\nu\rightarrow\infty$, pues $\cos\frac{\delta}{4}>\cos\frac{\delta}{2}$ (ya que $u\mapsto \cos u$ es estrictamente decreciente en $[0,\pi]$). Por tanto, $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ es una sucesión de Dirac fuerte.
+
+        Ahora, se tiene lo siguiente
+        \begin{equation*}
+            \begin{split}
+                \rho_\nu*f(x)&=\frac{1}{c_\nu}\int_{-\pi}^\pi f(y)\left(1+\cos(x-y)\right)^\nu dy\\
+            \end{split}
+        \end{equation*}
+        donde $c_\nu=\int_{-\pi}^\pi(1+\cos(t))^\nu dy$. Por la fórmula del binomio
+        \begin{equation*}
+            \left(1+\cos(x-y)\right)^\nu=\sum_{k=0}^\nu\binom{n}{k}\cos^k(x-y)
+        \end{equation*}
+
+        Usando alguna identidad trigonométrica e inducción, se demuestra que $\cos^k(x-y)$ es combinación lineal con coeficientes racionales de funciones
+        \begin{equation*}
+            x\mapsto \cos m(x-y),\quad m=0,1,2,...
+        \end{equation*}
+        A su vez,
+        \begin{equation*}
+            \cos m(x-y)=\cos mx\cos my+\sin mx\sin my
+        \end{equation*}
+        así pues, $(1+\cos (x-y))^\nu$ aparece como combinación lineal de fucniones $x\mapsto\cos mx$ para $m=0,...,\nu$ y $x\mapsto\sen nx$ con $n=1,...,\nu$ con coeficientes que son funciones de $y$. Al calcular la integral de la convolución, $\rho_\nu*f(x)$ resulta ser un polinomio trigonométrico real o complejo (según sea $f$).
+    \end{proof}
+
+    \begin{mydef}
+        Sea $1\leq p<\infty$. Sea $\mathcal{F}$ una familia de funciones en $\mathcal{L}_{ p^*}^T$. Se dice que la familia $\mathcal{F}$ es \textbf{total} en $\mathcal{L}_{p}^T$ si
+        \begin{equation*}
+            f\in\mathcal{L}_p^T \textup{ y }\int_{-\frac{T}{2}}^{\frac{T}{2}}f\cdot\varphi=0\quad\forall\varphi\in\mathcal{F} \Rightarrow f=0\textup{ c.t.p. en }\mathbb{R}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{theor}
+        Sea $1\leq p<\infty$. Entonces
+        \begin{enumerate}
+            \item $\tau_{\mathbb{R}}$ es total en $\mathcal{L}_p^{2\pi}(\mathbb{R})$.
+            \item $\tau_{\mathbb{R}}$ y $\tau_\mathbb{C}$ son totales en $\mathcal{L}_p^{2\pi}(\mathbb{C})$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        Basta probar el resultado para $\mathcal{L}_1^T$. Considere la misma sucesión de Dirac fuerte $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ de la demostración anterior. Sea pues $f\in\mathcal{L}_1^{2\pi}$ tal que
+        \begin{equation*}
+            \left\{
+                \begin{array}{cr}
+                    \int_{-\pi}^{\pi}f(y)\cos(ny)dy=0 & n=0,1,...\\
+                    \int_{-\pi}^{\pi}f(y)\sin(ny)dy=0 & n=1,2,...\\
+                \end{array}
+            \right.
+        \end{equation*}
+        se sabe que
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\N{p}{f-\rho_\nu*f}=0
+        \end{equation*}
+    
+        Basta con probar que $\rho_\nu+f=0$ c.t.p. en $\mathbb{R}$. Intercambiando los papeles de $x$ y $y$ en la demostración anterior, se concluye que $(1+\cos(x-y))^\nu$ es combinación lineal de funciones $y\mapsto\cos ny$ y $y\mapsto\sen ny$ con coeficientes que dependen de $x$. Se sigue pues que al integrar el producto de $f$ con $\cos$ o $\sin$, que
+        \begin{equation*}
+            \rho_\nu*f=0
+        \end{equation*}
+        para todo $\nu\in\mathbb{N}$. Luego
+        \begin{equation*}
+            \N{p}{f}=0
+        \end{equation*}
+        es decir, $f=0$ c.t.p. en $\mathbb{R}$.
+        
     \end{proof}
 
 \end{document}
