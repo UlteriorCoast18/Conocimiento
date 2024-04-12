@@ -509,12 +509,35 @@
                 &=\int_{0}^\infty t^{p-1}e^{-t}f_q(y-t)dt\\
             \end{split}
         \end{equation*}
-        Por un ejercicio anterior, si $y\leq 0$, la convolución es cero. Entonces, $y-t>0$ si y sólo si $y>t$. Por ende:
+        Por un ejercicio anterior, si $y\leq 0$, la convolución es cero (suponemos entonces que $y>0$). Entonces, $y-t>0$ si y sólo si $y>t$. Por ende:
         \begin{equation*}
             \begin{split}
                 f_p*f_q(y)&=\int_{0}^y t^{p-1}e^{-t}f_q(y-t)dt\\
                 &=\int_{0}^y t^{p-1}e^{-t}(y-t)^{q-1}e^{-y+t}dt\\
                 &=e^{-y}\int_{0}^y t^{p-1}(y-t)^{q-1}dt\\
+            \end{split}
+        \end{equation*}
+        haciendo el cambio de variable $x=\frac{t}{y}$, obtenemos que
+        \begin{equation*}
+            \begin{split}
+                e^{-y}\int_{0}^y t^{p-1}(y-t)^{q-1}dt&=e^{-y}\int_{0}^1 (xy)^{p-1}(y-xy)^{q-1}ydx\\
+                &=e^{-y}y^{ p+q-1}\int_{0}^1 x^{p-1}(1-x)^{q-1}dx\\
+                &=e^{-y}y^{ p+q-1}B(p,q)\\
+            \end{split}
+        \end{equation*}
+        Por lo tanto,
+        \begin{equation*}
+            \begin{split}
+                \int_{-\infty}^\infty f_p*f_q(y)dy&=\int_0^\infty e^{-y}y^{ p+q-1}B(p,q)dy \\
+                &=B(p,q)\int_0^\infty e^{-y}y^{ p+q-1}dy \\
+                &=B(p,q)\Gamma(p+q) \\
+            \end{split}
+        \end{equation*}
+        de ambas igualdades, se sigue que
+        \begin{equation*}
+            \begin{split}
+                \Gamma(p)\Gamma(q)&=B(p,q)\Gamma(p+q)\\
+                \Rightarrow B(p,q)&=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}\\
             \end{split}
         \end{equation*}
     \end{proof}
@@ -539,7 +562,50 @@
     \end{excer}
 
     \begin{sol}
+        De (i): Sea $x\in\mathbb{R}$. Calculemos $J_hf$, para ello, calcularemos $\left(\frac{1}{h}\chi_{ ]-h,0[} \right)*f(x)$. Veamos que
+        \begin{equation*}
+            \begin{split}
+                \left(\frac{1}{h}\chi_{ ]-h,0[} \right)*f(x)&=\int_{-\infty}^\infty\frac{1}{h}\chi_{ ]-h,0[}(y) f(x-y)dy\\
+                &=\frac{1}{h}\int_{-h}^0f(x-y)dy\\
+                &=\frac{1}{h}\int_{0}^hf(x+u)du\\
+            \end{split}
+        \end{equation*}
+        pues, como $f$ es localmente integrable, se sigue que la función $y\mapsto f(x-y)$ también lo es y, haciendo el cambio de variable $u=-y$. 
         
+        Veamos la continuidad, en efecto, sea $x_0\in\mathbb{R}$. Queremos que
+        \begin{equation*}
+            \begin{split}
+                \abs{J_hf(x_0)-J_hf(x)}&=\frac{1}{h}\cdot\abs{\int_0^hf(x_0+y)-f(x+y)dy}\\
+                &\leq\frac{1}{h}\cdot\int_0^h\abs{f(x_0+y)-f(x+y)}dy\\
+            \end{split}
+        \end{equation*}
+        \dots
+
+        De (ii): Suponga que $f$ es integrable en $\mathbb{R}$, es decir que $f\in\mathcal{L}_1(\mathbb{R},\mathbb{R})$, como la función $x\mapsto \frac{1}{h}\chi_{]-h,0[}(x)$ es una función acotada nula fuera de un conjunto con medida finita así, está en $\mathcal{L}_1(\mathbb{R},\mathbb{R})$, luego por el teorema de Young se sigue que $J_hf=f*\left(\frac{1}{h}\chi_{]-h,0[}\right)$ es una función definida c.t.p. en $\mathbb{R}$ la cual es integrable, para la que se tiene que
+        \begin{equation*}
+            \int_\mathbb{R} J_hf(y)dy=\left(\int_\mathbb{R}f(y)dy \right)\cdot\left(\int_\mathbb{R}\frac{1}{h}\chi_{]-h,0[}(y)dy \right)=\int_\mathbb{R}f(y)dy
+        \end{equation*}
+
+        De (iii): Como $f$ es de clase $C^r$, en particular hasta la $r$-ésima derivada es una función continua. Luego, las funciones $f^{(k)}$ con $k=0,1,...,r$ son continuas en $\mathbb{R}$, en particular, localmente integrables en $\mathbb{R}$. Luego, por (i) las convoluciones $J_hf^{(k)}$ existen en todo $\mathbb{R}$ y son funciones continuas. Para probar el resultado, basta con ver que
+        \begin{equation*}
+            (J_hf)^{(1)}=J_hf^{(1)}
+        \end{equation*}
+        (aplicando inducción sobre $r$, se obtendría que $J_hf$ es una función clase $C^r$ tal que $\left(J_hf\right)^{(k)}=J_hf^{(k)}$, para todo $k=1,...,r$). En efecto, sea $x\in\mathbb{R}$ y considere la vecindad $]x-h,x+h[$ de $x$. Se tiene que:
+        \begin{equation*}
+            J_hf^{(1)}(x)=\frac{1}{h}\int_0^hf^{(1)}(x+y)dy
+        \end{equation*}
+        donde, $y\mapsto f^{(1)}(x+y)$ es una función continua, en particular alcanza su máximo en todo intervalo compacto. Observemos que si $M=\sup\left\{\abs{f^{(1)}(z)}\Big|z\in ]x-h,x+y[ \right\} $, se tiene que:
+        \begin{equation*}
+            \abs{\chi_{ [0,h]}(y)f(x+y)}\leq M\chi_{[0,h]}(y),\quad\forall y\in\mathbb{R}
+        \end{equation*}
+        donde $y\mapsto M\chi_{[0,h]}(y)$ es una función integrable independiente de $x$. Luego, por el teorema de derivación, se sigue del teorema de derivación de funciones definidas por integrales, que existe $(J_hf)^{(1)}$ en $\left]x-h,x+h\right[$ y, su valor es:
+        \begin{equation*}
+            (J_hf)^{(1)}(z)=J_hf^{(1)}(z)\quad\forall x\in\left]x-h,x+h\right[
+        \end{equation*}
+        Como el $x\in\mathbb{R}$ fue arbitrario y esto se cumple para la vecindad $\left]x-h,x+h\right[$ de $x$, entonces el resultado se cumple para todo $\mathbb{R}$, es decir que:
+        \begin{equation*}
+            (J_hf)^{(1)}=J_hf^{(1)}
+        \end{equation*}
     \end{sol}
 
     \begin{excer}
@@ -564,6 +630,25 @@
     \begin{sol}
         
     \end{sol}
+
+    \begin{mydef}
+        Sea $\cf{F}{X}{X}$ con $(X,d)$ espacio métrico. Se dice que $F$ es una \textbf{función contractante} si existe $\alpha\in]0,1[$ tal que
+        \begin{equation*}
+            d(F(x),F(y))\leq \alpha\cdot d(x,y),\quad\forall x,y\in X
+        \end{equation*}
+        claramente, $F$ es lipschitziana y, por lo tanto, uniformemente continua.
+    \end{mydef}
+
+    \begin{theor}[Teorema del punto fijo]
+        Si $F$ es una función contractante de un espacio métrico completo $(X,d)$ en sí mismo, entonces $F$ posee un único punto fijo, es decir $\exists! x_0\in X$ tal que
+         \begin{equation*}
+            F(x_0)=x_0
+         \end{equation*}
+         Además, si $x\in X$ es arbitrario, entonces
+         \begin{equation*}
+            x_0=\lim_{ n\rightarrow\infty}F^n(x)
+         \end{equation*}
+    \end{theor}
 
     \begin{excer}
         Haga lo siguiente:
