@@ -21,13 +21,19 @@
 \maketitle
 
 Los presentes ejercicios fueron diseñados para ser resueltos conforme el lector vaya comprendiendo los conceptos y resultados dados en la teoría, si se tiene alguna duda sobre alguno(s) de ellos se recomienda sea disipada de inmediato. Se sugiere al lector redactar, según su criterio, una guía que contenga aquellos conceptos y resultados del capítulo que considere más importantes y/o útiles como referencia
-rápida de consulta para la solución de los problemas. UwU
+rápida de consulta para la solución de los problemas.
 
 %\renewcommand\qedsymbol{$\square$}%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
 \renewcommand{\labelenumi}{\textbf{3.\theenumi.}}
 \renewcommand{\labelenumii}{\textbf{\Roman{enumii}.}}
 \providecommand{\abs}[1]{\left| #1 \right|}
-\def\proof{\textit{Solución:}\\}
 \newcommand{\cf}[3]{\ensuremath{#1:#2\rightarrow#3}}
 
 \begin{enumerate}
@@ -45,8 +51,78 @@ rápida de consulta para la solución de los problemas. UwU
     \begin{enumerate}
         \item ¿\textbf{Cuál} es el dominio de $f$? \textbf{Calcule}: $f(2),f(3/2),f(\sqrt{2}),f(-1/2),f(-\sqrt{2}/2),f(-2)$. \textbf{Bosqueje} la gráfica de $f$.
         \item Defina $h(x)=f(x+1)$. \textbf{Determine} el dominio de $h$. \textbf{Calcule}: $h(1),h(1/2),h(\sqrt{2}-1),h(-3/2),h(-1-\sqrt{2}/2)$ y $h(-3)$. \textbf{Bosqueje} la gráfica de $h$. ¿Existe alguna relación entre la gráfica de $f$ y la gráfica de $h$? \textbf{Explique}.
-        \item Defina $k(x)=f(x)+1$. \textbf{Determine} el dominio de $k$. \textbf{Calcule} $k(2),k(3/2),k(\sqrt{2}),k(-1/2),k(-\sqrt{2}/2)$ y $k(-2)$. \textbf{Bosqueje} la gráfica de $j$. ¿Existe alguna relación entre la gráfica de $f$ y la gráfica de $k$? \textbf{Explique}.
+        \item Defina $k(x)=f(x)+1$. \textbf{Determine} el dominio de $k$. \textbf{Calcule} $k(2),k(3/2),k(\sqrt{2}),k(-1/2)$ ,$k(-\sqrt{2}/2)$ y $k(-2)$. \textbf{Bosqueje} la gráfica de $k$. ¿Existe alguna relación entre la gráfica de $f$ y la gráfica de $k$? \textbf{Explique}.
     \end{enumerate}
+
+    \begin{sol}
+        De (i): Los posibles valores que $f$ toma son cuando $-3\leq x <-1$, $-1\leq x<0$, $x=\frac{1}{2}$ o $1\leq x<3$, esto es, el dominio de $f$ es el conjunto:
+        \begin{equation*}
+            D_f=[-3,0[\cup\left\{\frac{1}{2}\right\}\cup[1,3[
+        \end{equation*}
+        y, se tiene que:
+        \begin{itemize}
+            \item $f(2)=2^2=4$.
+            \item $f(3/2)=\left(3/2\right)^2=9/4$.
+            \item $f(\sqrt{2})=\left(\sqrt{2} \right)^2=2$.
+            \item $f(-1/2)=\abs{-1/2}=1/2$.
+            \item $f(-\sqrt{2}/2)=1$.
+            \item $f(-2)=1$.
+        \end{itemize}
+        La gráfica de $f$ está dada como se muestra en la figura 1:
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_1.pdf}
+            \end{center}
+            \caption{Plot de la función $f$.}
+        \end{figure}
+
+        De (ii): El dominio de $h$ son los puntos $x\in\mathbb{R}$ para los cuales $f(x+1)$ está definido, es decir que $x+1\in D_f$, por tanto el dominio de $h$ es el conjunto
+        \begin{equation*}
+            D_h=[-4,-1[\cup\left\{-\frac{1}{2}\right\}\cup[0,2[
+        \end{equation*}
+        y, se tiene que
+        \begin{itemize}
+            \item $h(1)=f(1+1)=2^2=4$.
+            \item $h(1/2)=f(1/2+1)=f(3/2)=\left(3/2\right)^2=9/4$.
+            \item $h(\sqrt{2}-1)=f(\sqrt{2})=\left(\sqrt{2} \right)^2=2$.
+            \item $h(-3/2)=f(-1/2)=\abs{-1/2}=1/2$.
+            \item $h(-1-\sqrt{2}/2)=f(-\sqrt{2}/2)=1$.
+            \item $h(-3)=f(-2)=1$.
+        \end{itemize}
+        La gráfica de $h$ está dada como se muestra en la figura 2.
+
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_1_2.pdf}
+            \end{center}
+            \caption{Plot de la función $h$.}
+        \end{figure}
+        
+        donde, podemos observar que lo que se hace con respecto a la gráfica de $f$, es recorrer la gráfica en el sentido horizontal una unidad hacia la izquierda.
+
+        De (iii): El dominio de $k$ son los posibles valores para los que $f(x)+1$ está definido, es decir para cuando $f$ está definido, por lo cual
+        \begin{equation*}
+            D_k=D_f=[-3,0[\cup\left\{\frac{1}{2}\right\}\cup[1,3[
+        \end{equation*}
+        y, se tiene que
+        \begin{itemize}
+            \item $k(2)=f(2)+1=2^2+1=5$.
+            \item $k(3/2)=f(3/2)+1=\left(3/2\right)^2+1=13/4$.
+            \item $k(\sqrt{2})=f(\sqrt{2})+1=\left(\sqrt{2} \right)^2+1=3$.
+            \item $k(-1/2)=f(-1/2)+1=\abs{-1/2}+1=3/2$.
+            \item $k(-\sqrt{2}/2)+1=f(-\sqrt{2}/2)+1=2$.
+            \item $k(-2)=f(-2)+1=2$.
+        \end{itemize}
+        La gráfica de $k$ está dada como se muestra en la figura 3:
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_1_3.pdf}
+            \end{center}
+            \caption{Plot de la función $k$.}
+        \end{figure}
+
+        donde, podemos observar que lo que se hace con respecto a la gráfica de $f$, es recorer la gráfica verticalmente una unidad hacia arriba.
+    \end{sol}
 
     \item \textbf{Analice} la variación de las siguientes funciones (dominio natural, raíces, intervalos de monotonía, comportamiento en los extremos de dichos intervalos, cuadro de variación y gráfica):
     \begin{enumerate}
@@ -54,6 +130,34 @@ rápida de consulta para la solución de los problemas. UwU
         \item $g(x)=\frac{x-1}{2x+2}$.
         \item $h(x)=\abs{x}$.
     \end{enumerate}
+
+    \begin{sol}
+        De (i): La gráfica de la función $f$ es la de la mostrada en la figura 4:
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_2_1.pdf}
+            \end{center}
+            \caption{Plot de la función $f$.}
+        \end{figure}
+
+        De (ii): La gráfica de la función $g$ es la de la mostrada en la figura 5:
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_2_2.pdf}
+            \end{center}
+            \caption{Plot de la función $g$.}
+        \end{figure}
+
+        De (iii): La gráfica de la función $h$ es la de la mostrada en la figura 6:
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_2_3.pdf}
+            \end{center}
+            \caption{Plot de la función $h$.}
+        \end{figure}
+
+    \end{sol}
+
     \item \textbf{Determine} el dominio natrual de las siguientes funciones:
     \begin{enumerate}
         \item $x\mapsto \sqrt{3-x^2}$.
@@ -62,13 +166,50 @@ rápida de consulta para la solución de los problemas. UwU
         \item $u\mapsto\sqrt{1-u^2}+\sqrt{u^2-1}$.
         \item $t\mapsto\sqrt{1-t}+\sqrt{t-2}$.
     \end{enumerate}
+
+    \begin{sol}
+        
+    \end{sol}
+
     \item \begin{enumerate}
         \item \textbf{Muestre} que si $\abs{x-1}\leq 1$, entonces $\abs{x^2+3x-4}\leq 6\abs{x-1}$.
         \item Sea $\varepsilon>0$. Use el inciso anterior para \textbf{probar} que si $\abs{x-1}<\min\left\{1,\frac{\varepsilon}{6} \right\}$, entonces $\abs{x^2+3x-4}\leq\varepsilon$. Aplique la definición de límite para \textbf{concluir} que
         \begin{equation*}
             \lim_{x\rightarrow1}x^2+3x=4
         \end{equation*}
-    \end{enumerate} 
+    \end{enumerate}
+
+    \begin{proof}
+        De (i): Sea $x\in\mathbb{R}$ tal que $\abs{x-1}\leq 1$, entonces $\abs{x}-1\leq1\Rightarrow \abs{x}\leq2$. Con esto, se sigue que:
+        \begin{equation*}
+            \begin{split}
+                \abs{x^2+3x-4}&=\abs{(x+4)(x-1)}\\
+                &=\abs{x-1}\abs{x+4}\\
+                &\leq\abs{x-1}\left(\abs{x}+4\right) \\
+                &\leq\abs{x-1}\left(2+4\right)\\
+                &\leq6 \abs{x-1}\\
+                \Rightarrow \abs{x^2+3x-4}&\leq6 \abs{x-1}\\ 
+            \end{split}
+        \end{equation*}
+
+        De (ii): Sea $x\in\mathbb{R}$ tal que $\abs{x-1}<\min\left\{1,\frac{\varepsilon}{6} \right\}$, es decir que
+        \begin{equation*}
+            \abs{x-1}<1\quad\textup{y}\quad\abs{x-1}<\frac{\varepsilon}{6}
+        \end{equation*}
+        por la parte (i), se sigue que $\abs{x^2-3x-4}\leq 6\abs{x-1}$ y, por la segunda desigualdad, se sigue que
+        \begin{equation*}
+            \abs{x^2-3x-4}\leq 6\abs{x-1}<6\cdot\frac{\varepsilon}{6}=\varepsilon
+        \end{equation*}
+        por tanto, $\abs{x^2-3x-4}<\varepsilon$. Ahora, como para todo $\varepsilon>0$ existe $\delta=\min\left\{1,\frac{\varepsilon}{6} \right\}>0$ tal que
+        \begin{equation*}
+            \abs{x-1}<\delta\Rightarrow \abs{x^2-3x-4}<\varepsilon
+        \end{equation*}
+        se sigue que
+        \begin{equation*}
+            \lim_{x\rightarrow 1}x^2-3x=4
+        \end{equation*}
+    \end{proof}
+
     \item Usando la definición de límite, \textbf{demuestre} las afirmaciones siguientes.
     \begin{enumerate}
         \item $\lim_{x\rightarrow-1}\abs{x^3}=1$.
@@ -81,6 +222,46 @@ rápida de consulta para la solución de los problemas. UwU
             1 & \textup{ si } & x=0 \\
         \end{array} \right.$? \textbf{Justifique}.
     \end{enumerate}
+
+    \begin{proof}
+        De (i): Sea $\varepsilon>0$. Observemos que si $\abs{x+1}\leq1$:
+        \begin{equation*}
+            \begin{split}
+                \abs{\abs{x^3}-1}&\leq\abs{-x^3-1}\\
+                &\leq\abs{(x+1)(x^2-x+1)}\\
+                &\leq\abs{x+1}\abs{x^2-x+1}\\
+            \end{split}
+        \end{equation*}
+        entonces, como $\abs{x}-\abs{-1}\leq\abs{x-(-1)}$, se sigue que $\abs{x}\leq2$. Luego
+        \begin{equation*}
+            \begin{split}
+                \abs{x^2+x+1}&\leq\abs{x^2}+\abs{x}+1\\
+                &\leq 2^2+2+1\\
+                &=7\\
+                \Rightarrow \abs{\abs{x^3}-1}&\leq7\abs{x+1}
+            \end{split}
+        \end{equation*}
+        tomemos entonces $\delta=\min\left\{1,\frac{\varepsilon}{7}\right\}>0$. Se tiene entonces que si $\abs{x+1}<\delta$, por lo anterior, que 
+        \begin{equation*}
+            \abs{\abs{x^3}-1}\leq7\abs{x+1}
+        \end{equation*}
+        además, $\abs{x+1}<\frac{\varepsilon}{7}$, por lo cual
+        \begin{equation*}
+            \begin{split}
+                \abs{\abs{x^3}-1}&<7\cdot\frac{\varepsilon}{7}\\
+                &=\varepsilon\\
+                \Rightarrow \abs{\abs{x^3}-1}<\varepsilon \\
+                \therefore \abs{x-(-1)}<\delta\Rightarrow \abs{\abs{x^3}-1}<\varepsilon \\
+            \end{split}
+        \end{equation*}
+        Luego, de la definición de límite por $\varepsilon-\delta$ se sigue que
+        \begin{equation*}
+            \lim_{ x\rightarrow-1}\abs{x^3}=1
+        \end{equation*}
+
+        De (ii): 
+    \end{proof}
+
     \item Usando primero la definición de límite, luego algunos teoremas sobre límites y finalmente la caracterización de límites con sucesiones, \textbf{determine} los límites siguientes.
     \begin{enumerate}
         \item $\lim_{t\rightarrow-4}\frac{t^2-t-20}{t+4}$.
@@ -306,6 +487,57 @@ rápida de consulta para la solución de los problemas. UwU
         \item $f(x)=\sqrt{x}$ y $g(x)=x^2+1$.
     \end{enumerate}
 
-    \item 
+    \item \textbf{Represente} las siguientes funciones usando operaciones algebraicas y la composición de funciones. \textbf{Determine} el conjuto de puntos de continuidad en cada caso. \textbf{Justifique}.
+    \begin{enumerate}
+        \item $f(x)=\frac{3\sen^2(x+\pi)-2}{\sen(x+\pi)+1}$.
+        \item $f(x)=\left\{
+            \begin{array}{lcr}
+                \sen^2\left(\frac{1}{x-1} \right) & \textup{ si } & x\neq 1,\\
+                0 & \textup{ si } & x = 1.\\
+            \end{array}
+        \right.$.
+        \item $f(x-1)=x^2$. ¿Quiénes son $f(x)$ y $f(x+1)$?
+    \end{enumerate}
+    
+    \item  \textbf{Determine (justificando)} el dominio natural de las siguientes funciones e indique su conjunto de puntos de continuidad.
+    \begin{enumerate}
+        \item $f(x)=\frac{\sen}{\frac{1}{x-1}}$.
+        \item $f(x)=\cos^{1/2}x$.
+        \item $f(x)=\frac{1}{x}-\tan^2x$.
+    \end{enumerate}
+
+    \item Si $\cf{f}{\mathbb{R}}{\mathbb{R}}$ es una función continua que satisface la condición $f(x+y)=f(x)+f(y)$, $\forall x,y\in\mathbb{R}$, \textbf{pruebe} que existe un número $a\in\mathbb{R}$ tal que $f(x)=ax$ para todo $x\in\mathbb{R}$.
+
+    \textit{Sugerencia.} Primero pruebe que $f(0)=0$. Observe que si $f(x)$ v a ser igual a $ax$, para todo $x\in\mathbb{R}$, entonces $f(1)=a$. A continuación, demuestre que la fórmula $f(x)=ax$, para todo $x\in\mathbb{N}$, luego para todo $\mathbb{Q}+$ y, usando la continuidad de $f$ pruebe el resultado para toda $x\in\mathbb{I}^+$. Concluta que se cumple para $\mathbb{R}$.
+
+    \item Considere la función $\cf{f}{]0,1[}{\mathbb{R}}$ definida como
+    \begin{equation*}
+        f(x)=\left\{\begin{array}{lcl}
+            0 & \textup{ si } & x\in]0,1[\backslash\mathbb{Q}\\
+            \frac{1}{q} & \textup{ si } & x=\frac{p}{q}, \textup{ donde }p,q\in\mathbb{N}\textup{ son primos relativos.}
+        \end{array} \right.
+    \end{equation*}
+    \textbf{Pruebe} que $f$ es continua en todo punto de $]0,1[\backslash\mathbb{Q}$ y discontinua en todo punto de $]0,1[\cap\mathbb{Q}$.
+
+    \item \textbf{Calcule (justificando)} los siguientes límites:
+    \begin{enumerate}
+        \item $\lim_{x\rightarrow0}\frac{\sen^2x}{x}$.
+        \item $\lim_{x\rightarrow0}\frac{1-\cos x}{x^2}$.
+        \item $\lim_{x\rightarrow0}\frac{\tan^2x+2x}{x+x^2}$.
+        \item $\lim_{x\rightarrow1}(x^2-1)\sen\frac{1}{x-1}$.
+        \item $\lim_{x\rightarrow\infty}x\sen^2x$.
+        \item $\lim_{x\rightarrow1}(x^2-1)\sen\frac{1}{(x-1)^2}$.
+    \end{enumerate}
+
+    \item \textbf{Determine (justificando)} el conjunto de puntos de continuidad de las siguientes funciones:
+    \begin{enumerate}
+        \item $f(x)=x\sen x$.
+        \item $f(x)=\frac{x}{\tan x}$.
+        \item $f(x)=\sen x\cos\theta+\sen\theta\cos x$ (donde $\theta\in\mathbb{R}$ es una constante).
+        \item $f(x)=\sqrt{\frac{1+\cos x}{2}}$.
+    \end{enumerate}
+    
+
+
 \end{enumerate}
 \end{document}

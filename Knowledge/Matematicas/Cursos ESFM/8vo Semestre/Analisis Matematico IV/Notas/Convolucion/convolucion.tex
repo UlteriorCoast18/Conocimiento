@@ -126,6 +126,7 @@
 \newcommand{\Spt}[1]{\ensuremath{\textup{Spt}\left(#1\right)}}
 \newcommand{\natint}[1]{\ensuremath{[\![#1]\!]}}
 \newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\supesc}[1]{\ensuremath{\mathop{\textup{supesc}}_{#1}}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -580,7 +581,7 @@
         $L_1(\mathbb{R}^n,\mathbb{K})$ provisto de la convolución también es un álgebra de Banach conmutativa (¿con elemento identidad?).
     \end{exa}
 
-    \section{Convolución en $\mathcal{L}_p$}
+    \subsection{Convolución en $\mathcal{L}_p$}
 
     \begin{theor}[\textbf{Desigualdad de Hölder Generalizada}]
         Sean $p_1,...,p_m$ números positivos tales que:
@@ -1081,7 +1082,7 @@
         Así pues, el último resultado es válido con la hipótesis alternativa de que $f\in\mathcal{L}_p^{loc}(\mathbb{R}^n,\mathbb{K})$, en particular, de que $f\in\mathcal{L}_p^(\mathbb{R}^n,\mathbb{K})$
     \end{obs}
 
-    \section{Sucesiones de Dirac}
+    \subsection{Sucesiones de Dirac}
 
     El álgebra de Banach $L_1(\mathbb{R}^n,\mathbb{C})$ no posee elemento uno, es decir, no existe $\delta\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ tal que
     \begin{equation*}
@@ -1433,7 +1434,7 @@
         Como $\psi\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ y $\rho_\nu$ es de clase $C^\infty$ de soporte comapcto, entonces $\psi*\rho_\nu$ es de clase $C^\infty$. Además, por el teorema anterior, $\psi*\rho_\nu$ tiene soporte compacto ya que ambas funciones, $\psi$ y $\rho_\nu$ lo tienen. Luego, se tiene el resultado.
     \end{proof}
 
-    \section{Convolución de sucesiones de Dirac con funciones en $\mathcal{L}_\infty$}
+    \subsection{Convolución de sucesiones de Dirac con funciones en $\mathcal{L}_\infty$}
 
     \begin{theor}[\textbf{Teorema de Heine}]
         Sean $X$ y $Y$ espacios métricos y $\cf{f}{X}{Y}$ continua en todo punto de un compacto $K\subseteq X$ (no basta suponer que $f\Big|_K$ es función continua). Entonces, para todo $\varepsilon>0$ existe un $\delta>0$ tal que
@@ -2074,26 +2075,26 @@
                 \rho_\nu*f(x)&=\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x-y)\rho_\nu(y)dy\\
                 &=\int_{-\frac{T}{2}}^{0}f(x-y)\rho_\nu(y)dy+\int_{0}^{\frac{T}{2}}f(x-y)\rho_\nu(y)dy\\
                 &=\int_{0}^{\frac{T}{2}}f(x+y)\rho_\nu(-y)dy+\int_{0}^{\frac{T}{2}}f(x-y)\rho_\nu(y)dy\\
-                &=\int_{0}^{\frac{T}{2}}\left[f(x+y)+f(x-y) \right]\rho_\nu(y)dy\\
+                &=\int_{0}^{\frac{T}{2}}\left[f(x+y)+f(x-y) \right]\rho_\nu(y)dy,\quad\forall\nu\in\mathbb{N} \\
             \end{split}
         \end{equation*}
-        pues, $\rho_\nu$ es una función par. Por otra parte, 
+        pues, $\rho_\nu$ es una función par para todo $\nu\in\mathbb{N}$. Por otra parte, 
         \begin{equation*}
             \int_{0}^{\frac{T}{2}}\rho_\nu(y)dy=\frac{1}{2}
         \end{equation*}
-        Entonces,
+        Pues, $\int_{-\frac{T}{2}}^{\frac{T}{2}}\rho_\nu(y)dy=1$. Entonces,
         \begin{equation*}
             \frac{f(x^+)+f(x^-)}{2}=\int_0^{\frac{T}{2}}(f(x^+)+f(x^-))\rho_\nu(y)dy
         \end{equation*}
-        de donde
+        se sigue entonces que
         \begin{equation*}
             \rho_\nu*f(x)-\frac{f(x^+)+f(x^-)}{2}=\int_0^{\frac{T}{2}}\left[f(x+y)-f(x^+)\right]\rho_\nu(y)dy+\int_0^{\frac{T}{2}}\left[f(x-y)-f(x^-)\right]\rho_\nu(y)dy
         \end{equation*}
-        Se probará que
+        Para probar el resultado, basta con probar que
         \begin{equation*}
-            \lim_{\nu\rightarrow\infty}\int_0^{\frac{T}{2}}\left[f(x+y)-f(x^+)\right]\rho_\nu(y)dy=0
+            \lim_{\nu\rightarrow\infty}\int_0^{\frac{T}{2}}\left[f(x+y)-f(x^+)\right]\rho_\nu(y)dy=0=\lim_{\nu\rightarrow\infty}\int_0^{\frac{T}{2}}\left[f(x-y)-f(x^-)\right]\rho_\nu(y)dy
         \end{equation*}
-        En efecto, sea $\varepsilon>0$. Por definición de $f(x^+)$ existe $0<\delta<\frac{T}{2}$ tal que
+        En efecto. Probaremos solamente que el primer límite es cero, sea $\varepsilon>0$. Por definición de $f(x^+)$ existe $0<\delta<\frac{T}{2}$ tal que
         \begin{equation*}
             0<h<\delta\Rightarrow\abs{f(x+h)-f(x^+)}<\varepsilon
         \end{equation*}
@@ -2106,9 +2107,9 @@
                 &= \frac{\varepsilon}{2}+M_\nu(\delta)\left(\abs{f(x^+)}(\delta)\left[\frac{T}{2}-\delta\right]+\N{1}{f} \right) \\
             \end{split}
         \end{equation*}
-        donde, $M_\nu(\delta)=\textup{supesc}_{\delta<y<\frac{T}{2}}\rho_\nu(y)$. Por ser una sucesión de Dirac fuerte, existe $\nu_0\in\mathbb{N}$ tal que
+        donde, $M_\nu(\delta)=\supesc{\delta<y<\frac{T}{2}}\rho_\nu(y)$. Por ser una sucesión de Dirac fuerte, existe $\nu_0\in\mathbb{N}$ tal que
         \begin{equation*}
-            \nu\geq\nu_0\Rightarrow \left(\abs{f(x^+)}\left[\frac{T}{2}-\delta\right]+\N{1}{f}\right)M_\nu(\delta)<\frac{\varepsilon}{2}
+            \nu\geq\nu_0\Rightarrow M_\nu(\delta)\left(\abs{f(x^+)}\left[\frac{T}{2}-\delta\right]+\N{1}{f}\right)<\frac{\varepsilon}{2}
         \end{equation*}
         luego
         \begin{equation*}
@@ -2124,7 +2125,7 @@
     \section{Sistemas Trigonométricos}
 
     \begin{mydef}
-        Sea $E$ un espacio normado y $S\subseteq E$. Se denota por $\mathcal{L}(S)$ al \textbf{subespacio vectorial de $E$ generado por $S$}. Se dice que el conjunto $S$ \textbf{está completo} en $E$, si $\Cls{\mathcal{L}(S)}=E$.
+        Sea $E$ un espacio normado y $S\subseteq E$. Se denota por $\mathcal{L}(S)$ al \textbf{subespacio vectorial de $E$ generado por $S$}. Se dice que el conjunto $S$ \textbf{es (está) completo} en $E$, si $\Cls{\mathcal{L}(S)}=E$.
     \end{mydef}
 
     En esta parte se consideran funcoines periódicas de periodo $2\pi$ (al final se trata el caso general).
@@ -2139,10 +2140,10 @@
             \end{enumerate}
             \item Se llama \textbf{sistema trigonométrico complejo} al sistema $\tau_{\mathbb{C}}$ formado por
             \begin{equation*}
-                x\mapsto e^{ikx},\quad k\in\mathbb{Z}
+                x\mapsto e^{ikx},\quad \forall k\in\mathbb{Z}
             \end{equation*}
             \item Las combinaciones lineales fintas de $\tau_{\mathbb{R}}$ de coeficientes reales se llaman \textbf{polinomios trigonométricos reales}.
-            \item Las combinaciones lineales de funciones en $\tau_{\mathbb{R}}$ con coeficientes complejos son las mismas que las combinaciones lineales de funciones en $\tau_{\mathbb{C}}$ con coeficientes complejos, se llaman \textbf{polinomios trigonométricos complejos}.
+            \item Las combinaciones lineales finitas de funciones en $\tau_{\mathbb{R}}$ con coeficientes complejos son las mismas que las combinaciones lineales de funciones en $\tau_{\mathbb{C}}$ con coeficientes complejos, se llaman \textbf{polinomios trigonométricos complejos}.
         \end{enumerate}
     \end{mydef}
 
@@ -2175,7 +2176,7 @@
 
         Se define
         \begin{equation*}
-            \rho_\nu(x)=\frac{(1+\cos(x))^\nu}{\int_{-\pi}^\pi(1+\cos(t))^\nu dy}=\frac{\cos{^2\nu}\frac{x}{2}}{\int_{-\pi}^\pi\cos^{2\nu}\frac{t}{2}dt},\quad\forall x\in\mathbb{R}
+            \rho_\nu(x)=\frac{(1+\cos(x))^\nu}{\int_{-\pi}^\pi(1+\cos(t))^\nu dy}=\frac{\cos^{2\nu}\frac{x}{2}}{\int_{-\pi}^\pi\cos^{2\nu}\frac{t}{2}dt},\quad\forall x\in\mathbb{R}
         \end{equation*}
         para todo $\nu\in\mathbb{N}$. Claramente se cumplen de (i) y (ii) de sucesiones de Dirac. Se verificará que se cumple (iii').
 
@@ -2191,7 +2192,7 @@
         pues, la función $u\mapsto\cos^{2\nu}u$ es decreciente en $\left[0,\frac{\delta}{4}\right]$. Por la misma última razón
         \begin{equation*}
             \begin{split}
-                \textup{supesc}_{\delta<x<\pi}\rho_\nu(x)\leq\frac{\cos^{2\nu}\frac{\delta}{2}}{\cos^{2\nu}\frac{\delta}{4}}
+                \supesc{\delta<x<\pi}\rho_\nu(x)\leq\frac{1}{\delta}\cdot\frac{\cos^{2\nu}\frac{\delta}{2}}{\cos^{2\nu}\frac{\delta}{4}}=\frac{1}{\delta}\cdot\left(\frac{\cos\frac{\delta}{2}}{\cos\frac{\delta}{4}}\right)^{2\nu}
             \end{split}
         \end{equation*}
         lo cual tiende a cero cuando $\nu\rightarrow\infty$, pues $\cos\frac{\delta}{4}>\cos\frac{\delta}{2}$ (ya que $u\mapsto \cos u$ es estrictamente decreciente en $[0,\pi]$). Por tanto, $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ es una sucesión de Dirac fuerte.
@@ -2215,11 +2216,11 @@
         \begin{equation*}
             \cos m(x-y)=\cos mx\cos my+\sin mx\sin my
         \end{equation*}
-        así pues, $(1+\cos (x-y))^\nu$ aparece como combinación lineal de fucniones $x\mapsto\cos mx$ para $m=0,...,\nu$ y $x\mapsto\sen nx$ con $n=1,...,\nu$ con coeficientes que son funciones de $y$. Al calcular la integral de la convolución, $\rho_\nu*f(x)$ resulta ser un polinomio trigonométrico real o complejo (según sea $f$).
+        así pues, $(1+\cos (x-y))^\nu$ aparece como combinación lineal de fucniones $x\mapsto\cos mx$ para $m=0,...,\nu$ y $x\mapsto\sen nx$ con $n=1,...,\nu$ con coeficientes que son funciones de $y$. Al calcular la integral de la convolución, $\rho_\nu*f(x)$ resulta ser un polinomio trigonométrico real o complejo (según sea $f$). Así, queda probado el resultado.
     \end{proof}
 
     \begin{mydef}
-        Sea $1\leq p<\infty$. Sea $\mathcal{F}$ una familia de funciones en $\mathcal{L}_{ p^*}^T$. Se dice que la familia $\mathcal{F}$ es \textbf{total} en $\mathcal{L}_{p}^T$ si
+        Sean $1\leq p<\infty$ y $\mathcal{F}$ una familia de funciones en $\mathcal{L}_{ p^*}^T$. Se dice que la familia $\mathcal{F}$ es \textbf{total} en $\mathcal{L}_{p}^T$ si
         \begin{equation*}
             f\in\mathcal{L}_p^T \textup{ y }\int_{-\frac{T}{2}}^{\frac{T}{2}}f\cdot\varphi=0\quad\forall\varphi\in\mathcal{F} \Rightarrow f=0\textup{ c.t.p. en }\mathbb{R}
         \end{equation*}
@@ -2234,7 +2235,7 @@
     \end{theor}
 
     \begin{proof}
-        Basta probar el resultado para $\mathcal{L}_1^T$. Considere la misma sucesión de Dirac fuerte $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ de la demostración anterior. Sea pues $f\in\mathcal{L}_1^{2\pi}$ tal que
+        Basta probar el resultado para $\mathcal{L}_1^T(\mathbb{K})$. Considere la misma sucesión de Dirac fuerte $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ de la demostración anterior. Sea pues $f\in\mathcal{L}_1^{2\pi}$ tal que
         \begin{equation*}
             \left\{
                 \begin{array}{cr}
@@ -2248,15 +2249,15 @@
             \lim_{\nu\rightarrow\infty}\N{1}{f-\rho_\nu*f}=0
         \end{equation*}
     
-        Basta con probar que $\rho_\nu*f=0$ c.t.p. en $\mathbb{R}$. Intercambiando los papeles de $x$ y $y$ en la demostración anterior, se concluye que $(1+\cos(x-y))^\nu$ es combinación lineal de funciones $y\mapsto\cos ny$ y $y\mapsto\sen ny$ con coeficientes que dependen de $x$. Se sigue pues que al integrar el producto de $f$ con $\cos$ o $\sin$, que
+        Basta con probar que $\rho_\nu*f=0$ c.t.p. en $\mathbb{R}$. Intercambiando los papeles de $x$ y $y$ en la demostración anterior, se concluye que $(1+\cos(x-y))^\nu$ es combinación lineal de funciones $y\mapsto\cos ny$ y $y\mapsto\sen ny$ con coeficientes que dependen de $x$. Se sigue pues que al integrar el producto de $f$ con las funciones $\cos$ y $\sin$, que
         \begin{equation*}
             \rho_\nu*f=0
         \end{equation*}
         para todo $\nu\in\mathbb{N}$. Luego
         \begin{equation*}
-            \N{1}{f}=0
+            \N{1}{f}=0\Rightarrow \int_{-\pi}^{\pi} \abs{f}=0
         \end{equation*}
-        es decir, $f=0$ c.t.p. en $\mathbb{R}$.
+        por tanto, $f=0$ c.t.p. en $\mathbb{R}$. Así, el sistema $\tau_{\mathbb{K}}$ es total en $\mathcal{L}_p^{2\pi}(\mathbb{K})$.
     \end{proof}
 
 \end{document}

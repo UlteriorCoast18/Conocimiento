@@ -1,0 +1,33 @@
+\documentclass{standalone} 
+\usepackage{tzplot}
+\usepackage{tikz}
+\begin{document}
+    \begin{tikzpicture}
+        \tzaxes(-4,-4)(5,5){$x$}{$y$}
+        \foreach \x in {-4,-3,-2,-1,0,1,2,3,4}
+            \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {};
+        \foreach \y in {-4,-3,-2,-1,0,1,2,3,4}
+            \draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east] {};
+        
+        \node[circle] (o) at (1/4,-1/4){$O$};
+        \node[circle,
+        draw=blue,
+        fill=blue,
+        inner sep=0pt,minimum size=3pt] (a) at (-4,1){};
+        \tzfn[blue]{1}[-4:-2]
+        \tzfn[blue]{-\x-1}[-2:-1]
+        \node[circle,
+        draw=blue,
+        fill=blue,
+        inner sep=0pt,minimum size=3pt] (b) at (-1/2,1){};
+        \node[circle,
+        draw=blue,
+        fill=white,
+        inner sep=0pt,minimum size=3pt] (c) at (-1,0){};
+        \node[circle,
+        draw=blue,
+        fill=blue,
+        inner sep=0pt,minimum size=3pt] (b) at (0,1){};
+        \tzfn[blue]{(\x+1)^2}[0:1.25]{$h(x)$}[br]
+    \end{tikzpicture}
+\end{document}
