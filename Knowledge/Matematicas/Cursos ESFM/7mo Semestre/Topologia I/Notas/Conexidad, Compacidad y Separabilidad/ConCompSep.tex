@@ -625,4 +625,166 @@
         Si $\mathcal{F}$ es un filtro sobre $X$, entonces $X\in\mathcal{F}$.
     \end{obs}
 
+    \begin{propo}
+        Sean $X$ un conjunto no vacío y $\left\{\mathcal{F}_\alpha\right\}_{\alpha\in I}$ una familia de filtros sobre $X$. Entonces, $\bigcap_{\alpha\in I}\mathcal{F}_\alpha$ es un filtro en $X$.
+    \end{propo}
+
+    \begin{proof}
+        Sea
+        \begin{equation*}
+            \mathcal{K}=\bigcap_{\alpha\in I}\mathcal{F}_\alpha
+        \end{equation*}
+        \begin{enumerate}
+            \item $\mathcal{K}\neq\emptyset$, pues $X\in\mathcal{F}_\alpha$, para todo $\alpha\in I$.
+            \item $\emptyset\notin\mathcal{K}$, pues $\emptyset\notin\mathcal{F}_\alpha$ para todo $\alpha\in I$.
+            \item Sean $A,B\in\mathcal{K}$, entonces $A,B\in\mathcal{F}_\alpha$ para todo $\alpha\in I$. Por ser filtros se sigue que $A\cap B\in\mathcal{F}_\alpha$ para todo $\alpha\in I$, luego $A\cap B\in\mathcal{K}$.
+            \item Sea $M\subseteq X$ y sea $L\in\mathcal{K}$ tal que $L\subseteq M$, entonces $L\in\mathcal{F}_\alpha$ para todo $\alpha\in I$. Como cada $\mathcal{F}_\alpha$ cumple la propiedad de absorción, se tiene que $M\in\mathcal{F}_\alpha$ para todo $\alpha\in I$, luego $M\in\mathcal{K}$.
+        \end{enumerate}
+        Por los 4 incisos anteriores, se sigue que $\mathcal{K}$ es un filtro sobre $X$.
+    \end{proof}
+
+    \begin{exa}
+        Sea $X=\left\{a,b \right\}$ con $a\neq b$. Tomemos $\mathcal{F}_1=\left\{X,\left\{ a\right\} \right\}$ y $\mathcal{F}_2=\left\{X,\left\{ b\right\} \right\}$. Entonces $\mathcal{F}_1\cup\mathcal{F}_2$ no es un filtro, ya que en caso contario se tendría que $\left\{a \right\}\cap\left\{b \right\}=\emptyset\in\mathcal{F}_1\cap\mathcal{F}_2$, lo cual no puede ser.
+
+        Así, la unión de filros no necesariamente es un filtro.
+    \end{exa}
+
+    \begin{propo}
+        Si $\left\{\mathcal{F}_\alpha \right\}_{\alpha\in I}$ es una familia de filtros sobre $X$ tal que dados $\alpha,\beta\in I$ se tiene que
+        \begin{equation*}
+            \mathcal{F}_\alpha\subseteq\mathcal{F}_\beta\textup{ o }\mathcal{F}_\beta\subseteq\mathcal{F}_\alpha
+        \end{equation*}
+        entonces $\mathcal{F}=\bigcup_{\alpha\in I}\mathcal{F}_\alpha$ es un filtro.
+    \end{propo}
+
+    \begin{proof}
+        En efecto, veamos que $\mathcal{F}$ es un filtro.
+        \begin{enumerate}
+            \item $\mathcal{F}\neq\emptyset$ ya que $X\in\mathcal{F}_\alpha$ para algún $\alpha\in I$.
+            \item $\emptyset\notin\mathcal{F}$, pues $\emptyset\notin\mathcal{F}_\alpha$ para todo $\alpha\in I$.
+            \item Sean $A,B\in\mathcal{F}$. Entonces, existen $\alpha,\beta\in I$ tales que $A\in\mathcal{F}_\alpha$ y $B\in\mathcal{F}_\beta$, entonces se tiene una de las dos contenciones:
+            \begin{equation*}
+                \mathcal{F}_\alpha\subseteq\mathcal{F}_\beta\textup{ o }\mathcal{F}_\beta\subseteq\mathcal{F}_\alpha
+            \end{equation*}
+            supongamos que $\mathcal{F}_\alpha\subseteq\mathcal{F}_\beta$, entonces $A,B\in\mathcal{F}_\beta$. Por tanto, $A\cap B\in\mathcal{F}_\beta$. Así, $A\cap B\in\mathcal{F}$.
+            \item Sea $M\subseteq X$ y $L\in\mathcal{F}$ tal que $L\subseteq M$. Como $L\in\mathcal{F}$ existe $\alpha\in I$ tal que $L\in\mathcal{F}_\alpha$, luego por la propiedad de absorción $M\in\mathcal{F}_\alpha$. Por tanto, $M\in\mathcal{F}$.
+        \end{enumerate}
+        Por los cuatro incisos anteriores, se sigue que $\mathcal{F}$ es un filtro sobre $X$.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $\mathcal{F}$ un filtro sobre $X$. Una familia no vacía $\mathcal{B}$ de subconjuntos de $X$ de $X$ es \textbf{una base para el filtro $\mathcal{F}$} si se cumple lo siguiente:
+        \begin{enumerate}
+            \item $\mathcal{B}\subseteq\mathcal{F}$.
+            \item $\forall F\in\mathcal{F}$ existe $B\in\mathcal{B}$ tal que $B\subseteq F$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        Observamos que
+        \begin{enumerate}
+            \item Si $\mathcal{F}$ es un filtro sobre un conjunto $X$, entonces $\mathcal{F}$ es una base para sí mismo.
+            \item Si $\mathcal{B}$ es una base para el filtro $\mathcal{F}$ sobre $X$ y, $B_1,B_2\in\mathcal{B}$, entonces existe $B_3\in\mathcal{B}$ tal que $B_3\subseteq B_1\cap B_2$.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{mydef}
+        Sea $X$ un conjunto no vacío y $\mathcal{B}$ una familia no vacía de subconjuntos no vacíos de $X$. Se dice que $\mathcal{B}$ es \textbf{una base de filtro en $X$}, si se cumple lo siguiente: Dados $B_1,B_2\in\mathcal{B}$ existe $B_3\in\mathcal{B}$ tal que $B_3\subseteq B_1\cap B_2$. 
+    \end{mydef}
+
+    \begin{propo}
+        Sea $X$ un conjunto no vacío y $\mathcal{B}$ una base de filtro en $X$. Entonces:
+        \begin{equation*}
+            \mathcal{B}^+=\left\{A\subseteq X\Big|\exists B\in\mathcal{B}\textup{ tal que }B\subseteq A \right\}
+        \end{equation*}
+        es un filtro en $X$ y este se dice \textbf{el filtro generado por la base $\mathcal{B}$}. Además, $\mathcal{B}$ es una base para $\mathcal{B}^+$.
+    \end{propo}
+
+    \begin{proof}
+        Se tienen que probar dos cosas:
+        \begin{enumerate}
+            \item Es claro que $\mathcal{B}\subseteq\mathcal{B}^+$. Por tanto, $\mathcal{B}^+\neq\emptyset$.
+            \item $\emptyset\notin\mathcal{B}^+$ es cierto pues $\emptyset\notin\mathcal{B}$, ya que $\mathcal{B}$ es una subcolección no vacía de conjuntos no vacíos.
+            \item Tomemos $K,M\in\mathcal{B}^+$ luego, existen $B_1,B_2\in\mathcal{B}$ tal que $B_1\subseteq K$ y $B_2\subseteq M$. Por tanto, $B_1\cap B_2\subseteq K\cap M$. Por ser $\mathcal{B}$ base para un filtro sobre $X$, existe $B_3\in\mathcal{B}$ tal que $B_3\subseteq B_1\cap B_2\subseteq K\cap M$. Luego, $K\cap M\in\mathcal{B}^+$.
+            \item Sea $W\subseteq X$ y $L\in\mathcal{B}^+$ tal que $L\subseteq W$. Existe $B\in\mathcal{B}$ tal que $B\subseteq L\subseteq W$, luego $B\subseteq W$. Por tanto, $W\in\mathcal{B}^+$.
+        \end{enumerate}
+        Por los cuatro incisos anteriores, se sigue que $\mathcal{B}^+$ es un filtro sobre $X$.
+    \end{proof}
+
+    \begin{propo}
+        Sea $\mathcal{F}$ un filtro sobre $X$ y $A\subseteq X$ tal que $\forall F\in\mathcal{F}$, $A\cap F\neq\emptyset$. Entonces
+        \begin{equation*}
+            \mathcal{B}=\left\{A\cap F\Big|F\in\mathcal{F} \right\}
+        \end{equation*}
+        es una base de filtro y, el filtro generado por ella $\mathcal{B}^+$ cumple lo siguiente:
+        \begin{enumerate}
+            \item $\mathcal{F}\subseteq\mathcal{B}^+$.
+            \item $A\in\mathcal{B}^+$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Se deben cumplir varios incisos:
+        \begin{enumerate}
+            \item $\mathcal{B}\neq\emptyset$, pues el conjunto $A\cap X=A\in\mathcal{B}$ ya que $X\in\mathcal{F}$.
+            \item $\emptyset\notin\mathcal{B}$ ya que se contradeciría la hipótesis de que $A\cap F=\emptyset$ para todo $F\in\mathcal{F}$.
+            \item $B_1,B_2\in\mathcal{B}$ implica que existen $F_1,F_2\in\mathcal{F}$ tales que $B_1=A\cap F_1$ y $B_2= A\cap F_2$. Por tanto
+            \begin{equation*}
+                B_1\cap B_2=A\cap (F_1\cap F_2)
+            \end{equation*}
+            donde, $A\cap(F_1\cap F_2)\in\mathcal{B}$ pues, $\mathcal{F}$ es un filtro sobre $X$. Luego, tomando $B_3=B_1\cap B_2\in\mathcal{B}$, se sigue que $B_3\subseteq B_1\cap B_2$.
+        \end{enumerate}
+        por los tres incisos anteriores, se sigue que $\mathcal{B}$ es base para un filtro sobre $X$. Ya se tiene que $A\in\mathcal{B}^+$, pues $\mathcal{B}\subseteq\mathcal{B}^+$.
+
+        Sea ahora $F\in\mathcal{F}$. Entonces, $F\cap A\in\mathcal{B}^+$. Por propiedad de absorción se debe tener que como $F\cap A\subseteq F$, entonces $F\in\mathcal{B}^+$.
+    \end{proof}
+
+    \begin{propo}
+        Sean $X$ y $Y$ dos conjuntos no vacíos. Sea $\mathcal{F}$ un filtro en $X$ y $\cf{f}{X}{Y}$ una función. Entonces,
+        \begin{equation*}
+            \mathcal{B}=\left\{f(A)\Big|A\in\mathcal{F} \right\}
+        \end{equation*}
+        es una base de filtro en $Y$. En este caso, se denotará por $f(\mathcal{F})$ a $\mathcal{B}^+$, esto es $f(\mathcal{F})=\mathcal{B}^+$.
+    \end{propo}
+
+    \begin{proof}
+        Se deben verificar tres condiciones
+        \begin{enumerate}
+            \item $\mathcal{B}\neq\emptyset$, pues $f(X)\in\mathcal{B}$.
+            \item Todos los elementos de $\mathcal{B}$ son no vacíos, pues como $\mathcal{F}$ es un filtro sobre $X$, todos sus elementos son no vacíos, así $f(F)\neq\emptyset$ para todo $F\in\mathcal{F}$.
+            \item Si $B_1,B_2\in\mathcal{B}$, entonces existen $F_1,F_2\in\mathcal{F}$ tales que $B_1=f(F_1)$ y $B_2=f(F_2)$. Por tanto, el conjunto
+            \begin{equation*}
+                B_3=f(F_1\cap F_2)\subseteq f(F_1)\cap f(F_2)=B_1\cap B_2
+            \end{equation*}
+            es tal que $B_3\in\mathcal{B}$, ya que $F_1\cap F_2\in\mathcal{F}$.
+        \end{enumerate}
+        por los incisos anteriores, se sigue que $\mathcal{B}$ es base de un filtro en $Y$.
+    \end{proof}
+
+    \begin{exa}
+        Considere $X=\left\{a,b \right\}$, $a\neq b$. Sea $\cf{f}{X}{X}$ dada como sigue:
+        \begin{equation*}
+            f(a)=a=f(b)
+        \end{equation*}
+        el conjunto $\mathcal{F}=\left\{X,\left\{a\right\} \right\}$ es un filtro sobre $X$. la colección
+        \begin{equation*}
+            f(\mathcal{F})=\left\{\left\{a\right\} \right\}
+        \end{equation*}
+        no es un filtro en $X$ ya que $X\notin f(\mathcal{F})$.
+    \end{exa}
+
+    \begin{propo}
+        Sean $X$ y $Y$ dos conjuntos no vacíos, $\mathcal{F}$ un filtro en $X$ y $\cf{f}{X}{Y}$ una función. Entonces, $f$ es una función suprayectiva si y sólo si $\left\{f(F)\Big|F\in\mathcal{F} \right\}$ es un filtro en $Y$.
+    \end{propo}
+
+    \begin{proof}
+        Necesidad: Suponga que $f$ es suprayectiva. Ya se sabe que
+        \begin{equation*}
+            \mathcal{B}=\left\{f(F)\Big|F\in\mathcal{F} \right\}
+        \end{equation*}
+        es una base de filtro.
+
+        \textit{Sugerencia: $f(f^{-1}(A))=A$}.
+    \end{proof}
+
 \end{document}
