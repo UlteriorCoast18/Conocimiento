@@ -1192,13 +1192,157 @@
     \end{proof}
 
     \begin{mydef}
-        Dados $(X,\tau_X),(Y,\tau_Y)$ espacios topológicos y, $\cf{f,g}{(X,\tau_X)}{(Y,\tau_Y)}$ funciones continuas,
+        Dados $(X,\tau_X),(Y,\tau_Y)$ espacios topológicos y, $\cf{f,g}{(X,\tau_X)}{(Y,\tau_Y)}$ funciones continuas. Diremos que \textbf{$f$ es homotópica a $g$} si existe una función continua $\cf{F}{X\times[0,1]}{Y}$ tal que
+        \begin{equation*}
+            F(x,0)=f(x),\quad\textup{y}\quad F(x,1)=g(x)\quad\forall x\in X
+        \end{equation*}
     \end{mydef}
 
+    \begin{obs}
+        La relación de que dos funciones sean homotópicas es una relación de equivalencia.
+    \end{obs}
+
+    \begin{propo}
+        Para todo $X,Y\in\Obj{\Cat{Top}}$, la relación $\sim_{X,Y}$ de ser homotópicas, define una relación de equivalencia sobre $\Hom{\Cat{Top}}{X}{Y}$.
+    \end{propo}
+
     \begin{exa}
-        Consideremos la categoría $\Cat{Top}$. Recordemos una definición.
+        Consideremos la categoría $\Cat{Top}$. En virtud de la proposición anterior, si se satisfacen las condiciones (1) y (2), se exhibirá la existencia de una congruencia sobre $\Cat{Top}$.
+
+        Sean $f,f'\in\Hom{\Cat{Top}}{X}{Y}$ y $g,g'\in\Hom{\Cat{Top}}{Y}{Z}$, con $X,Y,Z\in\Obj{\Cat{Top}}$. Si $f\sim_{X,Y}f'$, entonces existe $\cf{F}{X\times[0,1]}{Y}$ continua tal que 
+        \begin{equation*}
+            F(x,0)=f(x),\quad\textup{y}\quad F(x,1)=f'(x)\quad\forall x\in X
+        \end{equation*}
+        Defina la función $\cf{G}{X\times[0,1]}{Z}$ dada como sigue
+        \begin{equation*}
+            G(x,t)=g\circ F
+        \end{equation*}
+        $G$ es una función continua por ser composición de funciones continuas. Además
+        \begin{equation*}
+            G(x,0)=g(f(x)),\quad\textup{y}\quad F(x,1)=g(f'(x))\quad\forall x\in X
+        \end{equation*}
+        luego, $g\circ f\sim_{X,Z}g\circ f'$. Para la segunda condición, suponga que $g\sim_{Y,Z}g'$, entonces existe una fucnión $\cf{G}{Y\times[0,1]}{Z}$ continua tal que
+        \begin{equation*}
+            G(x,0)=g(x),\quad\textup{y}\quad G(x,1)=g'(x)\quad\forall x\in X
+        \end{equation*}
+        definamos $\cf{H}{X\times[0,1]}{Z}$ dada como sigue
+        \begin{equation*}
+            H(x,t)=G(f(x),t)
+        \end{equation*}
+        note que $H$ es continua por ser composición de $G$ y la función $(x,t)\mapsto(f(x),t)$ son continuas, ya que en la segunda las funciones componentes son continuas. Además,
+        \begin{equation*}
+            G(x,0)=G(f(x),0)=g(f(x)),\quad\textup{y}\quad H(x,1)=G(f'(x),1)=g'(f'(x))\quad\forall x\in X
+        \end{equation*}
+        por tanto, $g\circ f\sim_{X,Z}g'\circ f$.
+
+        Se satisfacen así las dos condiciones con esta relación de equivalencia. Por tanto, de una proposición anterior, existe una relación $\sim$ de congruencia sobre $\Cat{Top}$. A la categoría cociente $\Cat{Top}/\sim$ se le llamará \textbf{la categoría de Homotopía} y se denota por $\Cat{HTop}$. 
     \end{exa}
 
+    \begin{exa}
+        Consideremos las categorías $\Cat{A}$ y $\Cat{Top}$. Definimos la categoría $\Cat{AbTop}$ como sigue:
+        \begin{enumerate}
+            \item $\Obj{\Cat{AbTop}}=\left[\Obj{\Cat{Ab}}\backslash\Obj{\Cat{Top}}\right]\dot{\cup}\left[\Obj{\Cat{Top}}\backslash\Obj{\Cat{Ab}}\right]$.
+            \item Para todo $A,B\in\Obj{\Cat{AbTop}}$, se define
+            \begin{equation*}
+                \Hom{\Cat{AbTop}}{A}{B}=\left\{
+                    \begin{array}{lcr}
+                       \Hom{\Cat{Ab}}{A}{B} & \textup{ si } & A,B\in\Obj{\Cat{Ab}}\\
+                       \Hom{\Cat{Top}}{A}{B} & \textup{ si } & A,B\in\Obj{\Cat{Top}}\\
+                       \emptyset & \textup{ e.o.c. } &  \\
+                    \end{array}
+                \right.
+            \end{equation*}
+            \item La Ley de composición es la composición usual de funciones.
+            \item Las identidades de $\Cat{AbTop}$ son las mismas que en $\Cat{Ab}$ o en $\Cat{Top}$, según el caso.
+        \end{enumerate}
+    \end{exa}
 
+    \begin{obs}
+        La unión en los objetos de $\Cat{AbTop}$ es disjunta, pues se debe hacer de esta manera para eliminar los posibles grupos topológicos que puedan estar en las categorías $\Cat{Ab}$ y $\Cat{Top}$.
+    \end{obs}
+
+    \begin{obs}
+        Si $f\in\Hom{\Cat{AbTop}}{(A,\cdot_A)}{(B,\cdot_B)}$ donde $A,B\in\Obj{\Cat{AbTop}}$ son grupos abelianos, entonces $\cf{f}{A}{B}$ es una función tal que
+        \begin{equation*}
+            f(x\cdot_Ay)=f(x)\cdot_bf(y),\quad\forall x,y\in A
+        \end{equation*}
+        podemos tomar a $f\in\Hom{\Cat{AbTop}}{(A,\tau_A)}{(B,\tau_B)}$ donde $A,B\in\Obj{\Cat{AbTop}}$ son espacios topológicos, haciendo que la función $\cf{f}{A}{B}$ cumpla
+        \begin{equation*}
+            f^{-1}(V)\in\tau_A\quad\forall V\in\tau_B
+        \end{equation*}
+        (se puede hacer definiendo topologías sobre $A$ y $B$). Luego, $f\in\Hom{\Cat{AbTop}}{(A,\cdot_A)}{(B,\cdot_B)}\cap\Hom{\Cat{AbTop}}{(A,\tau_A)}{(B,\tau_B)}$. Definamos $\sim$ congruencia sobre $\Cat{AbTop}$ como sigue:
+        \begin{enumerate}
+            \item Si $f,g\in\Hom{\Cat{AbTop}}{(A,\cdot_A)}{(B,\cdot_B)}$ se establece como sigue:
+            \begin{equation*}
+                f\sim_{A,B}g\iff f,g\in \Hom{\Cat{AbTop}}{(A,\cdot_A)}{(B,\cdot_B)}
+            \end{equation*}
+            Claramente $\sim_{A,B}$ es rel. de equivalencia que satisface (1) y (2).
+            \item Si $f,g\in\Hom{\Cat{AbTop}}{(A,\tau_A)}{(B,\tau_B)}$, del ejemplo anterior, la relación $\sim_{A,B}$ es una relación de equivalencia sobre $\Hom{\Cat{AbTop}}{(A,\tau_A)}{(B,\tau_B)}$ que satisface (1) y (2).
+        \end{enumerate}
+        Por tanto $\sim$ es una congruencia sobre $\Cat{AbTop}$.
+    \end{obs}
+
+    \chapter{Funtores}
+
+    \section{Conceptos Fundamentales}
+    
+    \begin{mydef}
+        Sean $\mathcal{C}$ y $\mathcal{D}$ dos categorías. Un \textbf{funtor covariante} (respectivamente, \textbf{funtor contravariante}), denotado por $\cf{F}{\mathcal{C}}{\mathcal{D}}$, consta de
+        \begin{enumerate}
+            \item Un mapeo $\cf{F}{\Obj{\mathcal{C}}}{\mathcal{D}}$ tal que $A\mapsto F(A)$.
+            \item Para cualesquier dos pares de objetos $A,B\in\Obj{\mathcal{C}}$, un mapeo $\cf{F}{\Hom{\mathcal{C}}{A}{B}}{\Hom{\mathcal{D}}{F(A)}{F(B)}}$ (resp. $\cf{F}{\Hom{\mathcal{C}}{A}{B}}{\Hom{\mathcal{D}}{F(B)}{F(A)}}$) tal que $f\mapsto F(f)$, que cumple las condiciones siguientes:
+            \begin{enumerate}
+                \item Para cada $A\in\Obj{\mathcal{C}}$, $F(1_A)=1_{F(A)}$.
+                \item Para cada $f\in\Hom{\mathcal{C}}{A}{B}$ y $g\in\Hom{\mathcal{C}}{B}{C}$, se tiene que
+                \begin{equation*}
+                    F(g\circ f)=F(g)\circ F(f)
+                \end{equation*}
+                (resp. $F(g\circ f)=F(f)\circ F(g)$).
+            \end{enumerate}
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{mydef}
+        la \textbf{imagen de un funtor $F$ entre las categorías $\mathcal{C}$ y $\mathcal{D}$}, consta de una clase $\left\{F(C)\Big|C\in\Obj{\mathcal{C}} \right\}$ junto con todos los conjuntos $\left\{F(f)\Big|f\in\Hom{\mathcal{C}}{A}{B}\textup{ con }A,B\in\Obj{\mathcal{C}} \right\}$.
+    \end{mydef}
+
+    \begin{obs}
+        La imagen de un funtor no necesariamente es una categoría.
+    \end{obs}
+
+    \begin{proof}
+        En efecto, sean $\mathcal{C}$ y $\mathcal{D}$ dos categorías. Para cualesquiera $C_1,C_2,C_3,C_4\in\Obj{\mathcal{C}}$ y $D_1,D_2,D_3\in\Obj{\mathcal{D}}$, $f\in\Hom{\mathcal{C}}{C_1}{C_2}$ y $g\in\Hom{\mathcal{C}}{C_3}{C_4}$, $h\in\Hom{\mathcal{D}}{D_1}{D_2}$ y $k\in\Hom{\mathcal{D}}{D_2}{D_3}$. Se tiene lo siguiente:
+        \begin{equation*}
+            \begin{split}
+                C_1\longrightarrow C_2\textup{ y }C_3\longrightarrow C_4\\
+                D_1\longrightarrow D_2\longrightarrow D_3\\
+            \end{split}
+        \end{equation*}
+        la imagen de $\cf{F}{\mathcal{C}}{\mathcal{D}}$ noes una categoría, pues si hacemos que
+        \begin{equation*}
+            F(C_1)=D_1, F(C_2)=F(C_3)=D_2\textup{ y }F(C_4)=D_4
+        \end{equation*}
+        haciendo
+        \begin{equation*}
+            F(f)=h,F(g)=k
+        \end{equation*}
+        además,
+        \begin{equation*}
+            F(1_{C_1})=1_{D_1}\quad F(1_{C_2})=F(1_{C_3})=1_{D_2}\quad F(1_{C_4})=1_{D_3} 
+        \end{equation*}
+        pues, $h$ y $k$ paretenecen a la imagen de $F$, pero su composición no lo está.
+    \end{proof}
+
+    \begin{obs}
+        Si $F$ es inyectiva, entonces la imagen de $F$ será una categoría.
+    \end{obs}
+
+    \begin{propo}
+        Si $\cf{F}{\mathcal{C}}{\mathcal{D}}$ es un funtor covariante (resp. contravariante), entonces $\cf{F'}{\mathcal{C}}{\mathcal{D}}$ es un funtor contravariante (resp. covariante).
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
 
 \end{document}
