@@ -121,9 +121,10 @@
 \newcommand{\Ns}[1]{\ensuremath{\mathscr{N}^*(#1)}}
 \newcommand{\piz}[1]{\ensuremath{\mathscr{#1}}}
 \newcommand{\eul}[1]{\ensuremath{\mathbb{#1}}}
-\newcommand{\natint}[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand{\natint}[1]{\ensuremath{[\!\left[#1\right]\!]}}
 \newcommand{\contradiction}{\ensuremath{\#_c}}
 \newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\id}[1]{\ensuremath{\textup{id}_{#1}}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -1188,8 +1189,121 @@
     \end{obs}
 
     \begin{theor}
-        Sea $\left\{G_i \right\}_{ i\in I}$ una familia de grupos topológicos y sea $H$ el subconjunto de $G=\prod_{ i\in I}G_i$ que consta de todos los $x=\left(x_i \right)_{ i\in I}$ tales que $x_i$ es el elemento identidad de $G_i$ para todo $i\in I$ salvo un número finito de índices; $H$ es entones un subgrupo normal denso en $G$.
+        Sea $\left\{G_i \right\}_{ i\in I}$ una familia de grupos topológicos y sea $H$ el subconjunto de $G=\prod_{ i\in I}G_i$ que consta de todos los $x=\left(x_i \right)_{ i\in I}$ tales que $x_i$ es el elemento identidad de $G_i$ para todo $i\in I$ salvo un número finito de índices; $H$ es entonces un subgrupo normal denso en $G$.
     \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    El objetivo de este teorema es el de determinar bajo que condiciones se puede agregar la parte topológica al concpeto de descomposición algebraica de un grupo en subgrupos. Sea $\left\{G_i \right\}_{i=1}^n$ una familia finita de grupos topológicos y $G$ su producto directo. Es fácil ver que para vecindades arbitrarias $U_1,...,U_n$ de $e_1,...,e_n$ relativas a $G_1,...,G_n$, respectivamnete, el producto $U_1\times\cdots\times U_n$ es una vecindad de $e_G$ en la topología de grupo $G$. Por todo esto, podemos plantear una definición de producto interno de grupos topológicos. Por todo esto, podemos plantear una definición de producto interno de grupos topológicos.
+
+    \begin{mydef}
+        Sea $G$ un grupo topológico y $N_1,...,N_n$ subgrupos cerrados normales de $G$. Diremos que el grupo topológico $G$ se \textbf{descompone topológicamente en el producto directo de los subgrupos $N_1,...,N_n$} si $G$ se descompone (en el sentido algebraico) el en producto directo de estos subgrupos y, además, para cualquier colección de vecindades abiertas $U_1,...,U_n$ de $e$, relativas a $N_1,...,N_n$, existe una vecindad de $e$ relativa a todo el grupo $G$ tal que
+        \begin{equation*}
+            U\subseteq U_1\cdot...\cdot U_n
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        Supongamos que el grupo topológico $G$ se descompone topológicamente en el producto directo de los subgrupos $N_1,...,N_n$, y sea $H$ el producto directo de estos subgrupos. A cada elemento $x=(x_1,...,x_n)\in H$ le asociamos el elemento $\psi(x)=x_1\cdot...\cdot x_n\in G$. Entonces, $\psi$ es un isomorfismo topológico entre $G$ y $H$. Además, $\psi\circ\phi_j=\id{N_j}$, donde las $\phi_j$ están dadas por $\phi_j(x)=\left(y_i \right)_{i=1}^n$, siendo
+        \begin{equation*}
+            y_i=\left\{
+                \begin{array}{lcr}
+                    e_i & \textup{ si } & i\neq j\\
+                    x & \textup{ si } & i=j\\
+                \end{array}
+             \right\},\quad\forall i\in\natint{1,n}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Ya se sabe de la parte algebraica que $\psi$ es un isomorfismo de grupos entre $G$ y $H$. Observemos que
+        \begin{equation*}
+            \begin{split}
+                \psi\circ\phi_j(x)&=\psi(\phi_j(n))\\
+                &=\psi\left(\left(y_i \right)_{ i=1}^n\right)\\
+                &=y_1\cdot...\cdot y_n \\
+                &=e\cdot...\cdot e\cdot x\cdot e\cdot...\cdot e\\
+                &= x\\
+                &= \id{N_j}(x) \\
+            \end{split}
+        \end{equation*}
+        para todo $x\in N_j$, $j\in\natint{1,n}$, siendo $x$ el $j$-ésimo elemento del producto en la tercera linea de la igualdad. Por tanto, $\psi\circ\phi_j=\id{N_j}$ para todo $j\in\natint{1,n}$. Para terminar de probar el resultado, basta con probar que $\psi$ es un homeomorfismo. Como es biyectivo, solo hay que probar que es una función continua y abierta.
+        \begin{enumerate}
+            \item \textup{$\psi$ es continua}. Sea $U\subseteq G$ una vecindad arbitraria de $e$ en $G$ y $V\subseteq G$ otra vecindad de $e$ tal que $V^n\subseteq U$. Definimos
+            \begin{equation*}
+                V_i=N_i\cap V,\quad\forall i\in\natint{1,n}
+            \end{equation*}
+            Es claro que $V_i$ es una vecindad de $e$ en $N_i$, para todo $i\in\natint{1,n}$. Tomemos
+            \begin{equation*}
+                V'=\left\{(x_1,...,x_n)\in H\Big|x_i\in V_i,\textup{ para todo }i\in\natint{1,n} \right\}
+            \end{equation*}
+            Este conjunto cumple que es una vecindad de la identidad de $H$ (pues, $V'=V_1\times...\times V_n$ es un elemento básico de la topología producto). Además,
+            \begin{equation*}
+                \begin{split}
+                    \psi(V')&=\psi(V_1\times...\times V_n)\\
+                    &=V_1\cdot...\cdot V_n \\
+                    &\subseteq \underbrace{V\cdot...\cdot V}_{n\textup{-veces}}\\
+                    &=V^n\\
+                    &\subseteq U\\
+                    \Rightarrow \psi(V')&\subseteq U\\
+                \end{split}
+            \end{equation*}
+            por tanto, $\psi$ es continua.
+            \item \textbf{$\psi$ es abierta}. Sea $W$ una vecindad abierta de la identidad, entonces contiene un conjunto de la forma $V_1\times...\times V_n$, donde cada $V_i$ es un conjunto abierto, vecindad de la identidad en $N_i$. Por hipótesis, existe una vecindad $U$ abierta de la identidad tal que
+            \begin{equation*}
+                U\subseteq V_1\cdot... \cdot V_n=\psi(V)
+            \end{equation*}
+            por tanto, $\psi$ es abierta ¿?
+            %TODO no entendí pq es abierta.
+        \end{enumerate}
+    \end{proof}
+
+    \section{Cardinales invariantes elementales}
+
+    Ahora se estudiarán algunas propieades de las funciones cardinales definidas en grupos.
+
+    La primera propiedad, respecto a las funciones cardinales, que encuentra una expresión muy especial en el caso de grupos topolǵocis se describe en el corolario que sigue a estos dos resultados.
+
+    \begin{lema}
+        Sea $G$ un grupo topológico. Suponga que $D$ es un subconjunto denso en $G$ y que $U$ es una vecindad de la identidad en $e_G$; entonces, $G=DU$.
+    \end{lema}
+
+    \begin{proof}
+        Es claro que $DU\subseteq G$. Probaremos que $G\subseteq DU$. Sea $g\in G$. Dado que $D$ es denso y $gU^{-1}$ es un conjunto abierto no vacío que contiene a $g$, existe un elemento $x\in D\cap gU^{-1}$. Por tanto, $g\in xU\subseteq DU$. Por tanto, $G\subseteq DU$.
+
+        Por ambas contenciones, se sigue que $G=DU$.
+    \end{proof}
+
+    \begin{theor}
+        Sea $G$ un grupo topológico y $\mathcal{B}$ una base local para $e_G$. Suponga que para cada $B\in\mathcal{B}$ existe $D_B\subseteq G$ tal que $G=D_BB$. Entonces el conjunto
+        \begin{equation*}
+            \left\{xB\Big|x\in D_b\textup{ con }B\in\mathcal{B}\right\}
+        \end{equation*}
+        es una base para $G$.
+    \end{theor}
+
+    \begin{proof}
+        Sea $g\in G$ y $U$ un abierto en $G$ que contiene a $g$. Por un teorema existe una vecindad $V$ de la identidad tal que
+        \begin{equation*}
+            gV\subseteq U
+        \end{equation*}
+        Considere una vecindad de $e_G$, $W$ tal que
+        \begin{equation*}
+            W^{-1}W\subseteq V
+        \end{equation*}
+        (esta existe por un teorema), existe pues un elemento $B\in\mathcal{B}$ tal que $B\subseteq W$. Como $G=D_BB$, existe $x\in D_B$ tal que $g\in xB$. Por tanto,
+        \begin{equation*}
+            g\in xB\subseteq gB^{-1}B\subseteq gW^{-1}W\subseteq gV\subseteq U
+            \Rightarrow g\in xB\subseteq U
+        \end{equation*}
+        Así, el conjunto anterior es base para la topología definida sobre $G$.
+    \end{proof}
+
+    \begin{cor}
+        Si $G$ es un grupo topológico, entonces $w(G)=d(G)\cdot\chi(G)$.
+    \end{cor}
 
     \begin{proof}
         
