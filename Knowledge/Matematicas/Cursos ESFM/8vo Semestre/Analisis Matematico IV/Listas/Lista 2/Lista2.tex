@@ -118,6 +118,7 @@
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand{\Vol}[1]{\ensuremath{\textup{Vol}\left(#1\right)}}
 \newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
+\newcommand{\norm}[1]{\ensuremath{\|#1\|}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -653,7 +654,7 @@
     \begin{excer}
         Haga lo siguiente:
         \begin{enumerate}
-            \item Sean $f$ y $g$ dos funciones en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$. Sea $\lambda\in\mathbb{K}$ tal que $\N{1}{f}<1/\abs{\lambda}$. \textbf{Demuestre} que la ecuación
+            \item Sean $f$ y $g$ dos funciones en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$. Sea $\lambda\in\mathbb{K}\backslash\left\{ 0\right\}$ tal que $\N{1}{f}<1/\abs{\lambda}$. \textbf{Demuestre} que la ecuación
             \begin{equation*}
                 x=\lambda x*f+g
             \end{equation*}
@@ -668,7 +669,63 @@
     \end{excer}
 
     \begin{proof}
+        De (i): Sea $\cf{F}{\mathcal{L}_1(\mathbb{R},\mathbb{K})}{\mathcal{L}_1(\mathbb{R},\mathbb{K})}$ la función tal que
+        \begin{equation*}
+            x\mapsto F(x)=\lambda x*f+g
+        \end{equation*}
+        Podemos considerar a esta función del espacio de Banach $\mathcal{L}_1(\mathbb{R},\mathbb{K})$ en sí mismo. Para probar el resultado, usaremos el teorema del punto fijo, con lo cual se probará la existencia de $x\in\mathcal{L}_1(\mathbb{R},\mathbb{K})$ tal que
+        \begin{equation*}
+            x=\lambda x*f+g
+        \end{equation*}
+        el cual es único salvo equivalencias (esto, pues la solución es única en el espacio de Banach $L_1(\mathbb{R},\mathbb{K})$). En efecto, para esto basta con probar que $F$ es contractante. Veamos que si $x_1,x_2\in\mathcal{L}_1(\mathbb{R},\mathbb{K})$, entonces
+        \begin{equation*}
+            \begin{split}
+                \N{1}{F(x_1)-F(x_2)}&=\N{1}{\lambda x_1*f+g-\lambda x_2*f-g}\\
+                &=\abs{\lambda}\N{1}{x_1*f-x_2*f}\\
+                &=\abs{\lambda}\N{1}{(x_1-x_2)*f}\\
+                &\leq\abs{\lambda}\N{1}{f}\N{1}{x_1-x_2}\\
+            \end{split}
+        \end{equation*}
+        donde, $0\leq\lambda\N{1}{f}<1$. Por tanto, $F$ es contractante. Luego existe tal $x\in\mathcal{L}_1(\mathbb{R},\mathbb{K})$.
+
+        Veamos que la solución puede ser representada en forma de la serie:
+        \begin{equation*}
+            x=\sum_{\nu=0}^\infty\lambda^\nu g*\underbrace{f*\cdots*f}_{\nu-\textup{veces}}
+        \end{equation*}
         
+        Por el teorema del punto fijo, sabemos que la solución está dada por:
+        \begin{equation*}
+            x=\lim_{\nu\rightarrow\infty}F^\nu(y)
+        \end{equation*}
+        donde $y\in\mathcal{L}_1(\mathbb{R},\mathbb{K})$ es un elemento arbitrario de este espacio. Tomando $y=g$, obtenemos que
+        \begin{equation*}
+            x=\lim_{k\rightarrow\infty}F^k(g)
+        \end{equation*}
+        donde $F^k$ es la composición de $F$ $k$-veces. Afirmamos que
+        \begin{equation*}
+            F^k(g)=\sum_{\nu=0}^k\lambda^\nu g*\underbrace{f*\cdots*f}_{\nu-\textup{veces}}
+        \end{equation*}
+        En efectom procederemos por inducción sobre $k$. Para $k=1$ el resultado es inmediato de la definición de $F$. Suponga que el resultado se cumple para algún $k\in\mathbb{N}$. Veamos que se cumple para $k+1$. En efecto, notemos que
+        \begin{equation*}
+            \begin{split}
+                F^{k+1}(g)&=F(F^k(g))\\
+                &=F\left(\sum_{\nu=0}^k\lambda^\nu g*\underbrace{f*\cdots*f}_{\nu-\textup{veces}} \right)\\
+                &=\lambda\left(\sum_{\nu=0}^k\lambda^\nu g*\underbrace{f*\cdots*f}_{\nu-\textup{veces}}\right)*f+g\\
+                &=\sum_{\nu=0}^k\lambda^{\nu+1} g*\underbrace{f*\cdots*f}_{\nu+1-\textup{veces}}+g\\
+                &=\sum_{\nu=1}^{k+1}\lambda^{\nu} g*\underbrace{f*\cdots*f}_{\nu-\textup{veces}}+g\\
+                &=\sum_{\nu=0}^{k+1}\lambda^{\nu} g*\underbrace{f*\cdots*f}_{\nu-\textup{veces}}\\
+            \end{split}
+        \end{equation*}
+        lo cual prueba el resultado. Por tanto:
+        \begin{equation*}
+            \begin{split}
+                x&=\lim_{ k\rightarrow\infty}F^k(g)\\
+                &=\lim_{ k\rightarrow\infty}\sum_{\nu=0}^{k}\lambda^{\nu} g*\underbrace{f*\cdots*f}_{\nu-\textup{veces}}\\
+                &=\sum_{\nu=0}^{\infty}\lambda^{\nu} g*\underbrace{f*\cdots*f}_{\nu-\textup{veces}}\\
+            \end{split}
+        \end{equation*}
+        
+        De (ii): 
     \end{proof}
 
     \begin{excer}
@@ -676,7 +733,7 @@
         \begin{enumerate}
             \item Sea $\cf{g}{\mathbb{R}^n}{\mathbb{K}}$ una función medible. \textbf{Muestre} que existe una función medible acotada $\cf{\alpha}{\mathbb{R}^n}{\mathbb{K}}$ tal que $\abs{g}=\alpha g$ en todo punto de $\mathbb{R}^n$.
             
-            \textit{Sugerencia.} Intente con la función $\frac{g+\chi_S}{\abs{g+\chi_S}}$ donde $S=\left\{x\in\mathbb{R}^n\Big|g(x)=0 \right\}$.
+            \textit{Sugerencia.} Intente con la función $\frac{\abs{g+\chi_S}}{g+\chi_S}$ donde $S=\left\{x\in\mathbb{R}^n\Big|g(x)=0 \right\}$.
 
             \item Sean $1<p<\infty$ y $g\in\mathcal{L}_{p^*}(\mathbb{R}^n,\mathbb{K})$. Defina $\cf{\phi_g}{\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})}{\mathbb{K}}$ como:
             \begin{equation*}
@@ -698,17 +755,93 @@
             \end{equation*}
             \textbf{Establezca} la desigualdad
             \begin{equation*}
-                \abs{\phi_{g_\nu}}\leq\N{p^*}{h}\int_{\mathbb{R}^n}\rho_\nu(y)\N{p}{f_{-y}-f}dy
+                \abs{\phi_{g_\nu}(h)}\leq\N{p^*}{h}\int_{\mathbb{R}^n}\rho_\nu(y)\N{p}{f_{-y}-f}dy
             \end{equation*}
             Sea $\varepsilon>0$. \textbf{Demuestre} que para $\nu$ suficientemente grande,
             \begin{equation*}
-                \abs{\phi_{g_\nu}}\leq\N{p^*}{h}\varepsilon
+                \abs{\phi_{g_\nu}(h)}\leq\N{p^*}{h}\varepsilon
             \end{equation*}
             Utilizando el inciso (ii) termine la demostración.
         \end{enumerate}
     \end{excer}
 
     \begin{proof}
+        De (i): Tomemos la función $\cf{\alpha}{\mathbb{R}^n}{\mathbb{K}}$ dada como sigue
+        \begin{equation*}
+            \alpha=\frac{\abs{g+\chi_S}}{g+\chi_S}
+        \end{equation*}
+        donde $S=\left\{x\in\mathbb{R}^n\Big|g(x)=0 \right\}$. Esta función está bien definida y cumple que $\abs{g}=\alpha g$, pues si $x\in\mathbb{R}^n$, se tienen dos casos:
+        \begin{itemize}
+            \item $x\in\mathbb{R}^n\backslash S$, en este caso $\chi_S(x)=0$ y $g(x)\neq0$. Por tanto,
+            \begin{equation*}
+                \alpha(x)=\frac{\abs{g(x)}}{g(x)}\Rightarrow \abs{g(x)}=\alpha g(x)
+            \end{equation*}
+            \item $x\in S$, en cuyo caso se tiene que $\chi_S(x)=1$ y, $g(x)=0$. Por lo cual
+            \begin{equation*}
+                \alpha(x)=\frac{1}{1}=1\Rightarrow\abs{g(x)}=0=\alpha g(x)=0
+            \end{equation*}
+        \end{itemize}
+        así, $\alpha$ está bien definida y cumple lo deseado. Además, es medible por ser el cociente de dos funciones medibles. También es acotada, ya que por los dos incisos anteriores se tiene que
+        \begin{equation*}
+            \abs{\alpha}=1
+        \end{equation*}
+
+        De (ii): Es claro por la linealidad de la integral y por Hölder que $\varphi_g$ es un operador lineal, para todo $g\in\mathcal{L}_{p^*}(\mathbb{R}^n,\mathbb{K})$. Veamos que es continuo, en efecto, por Hölder se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \abs{\phi_g(f)}&=\abs{\int_{\mathbb{R}^n}fg}\\
+                 &\leq\int_{\mathbb{R}^n}\abs{fg}\\
+                 &=\N{1}{fg}\\
+                 &\leq\N{p}{f}\N{p^*}{g}\\
+                 &=\N{p^*}{g}\N{p}{f}\\
+            \end{split}
+        \end{equation*}
+        por tanto, $\phi_g$ es acotado, luego continuo. Se tiene entonces que
+        \begin{equation*}
+            \|\phi_g\|\leq\N{p^*}{g}
+        \end{equation*}
+        Probaremos la otra desigualdad. Se tiene que $\alpha\abs{g}^{ p^*-1}\in\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$. En efecto, veamos que
+        \begin{equation*}
+            \begin{split}
+                \abs{\alpha\abs{g}^{ p^*-1}}^p&=\abs{g}^{ pp^*-p}\\
+                &=\abs{g}^{p^*}\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K}) \\
+            \end{split}
+        \end{equation*}
+        pues, $g\in\mathcal{L}_{ p^*}(\mathbb{R}^n,\mathbb{K})$ y, por definición de $p,p^*\in]0,\infty[$. Luego $\alpha\abs{g}^{ p^*-1}\in\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$. Se sigue entonces que
+        \begin{equation*}
+            \begin{split}
+                \abs{\phi_g(\alpha\abs{g}^{p^*-1})}&=\abs{\int_{\mathbb{R}}\alpha\abs{g}^{ p^*-1}g}\\
+                &=\abs{\int_{\mathbb{R}}\abs{g}\abs{g}^{ p^*-1}}\\
+                &=\abs{\int_{\mathbb{R}}\abs{g}^{ p^*}}\\
+                &=\int_{\mathbb{R}}\abs{g}^{ p^*}\\
+                &=\N{p^*}{g}^{p^*}\\
+            \end{split}
+        \end{equation*}
+        y, además
+        \begin{equation*}
+            \begin{split}
+                \N{p}{\alpha\abs{g}^{p^*-1}}&=\left(\int_{\mathbb{R}}\abs{\alpha}^p\abs{g}^{pp^*-p} \right)^{1/p}\\
+                &=\left(\int_{\mathbb{R}}\abs{g}^{p^*} \right)^{1/p}\\
+                &=\N{p^*}{g}^{p^*/p}\\
+            \end{split}
+        \end{equation*}
+        por tanto, al tenerse que
+        \begin{equation*}
+            \begin{split}
+                \abs{\phi_g(\alpha\abs{g}^{p^*-1})}&\leq\|\phi_g\|\N{p}{\alpha\abs{g}^{p^*-1}}\\
+                \Rightarrow \N{p^*}{g}^{p^*}&\leq\|\phi_g\|\N{p^*}{g}^{p^*/p}\\
+            \end{split}
+        \end{equation*}
+        si $\N{p^*}{g}=0$, es claro que $\abs{\phi_g}=\N{p^*}{g}$. En caso contrario, se sigue de la ecuación anterior que
+        \begin{equation*}
+            \begin{split}
+                \Rightarrow \N{p^*}{g}^{p^*-\frac{p^*}{p}}&\leq\|\phi_g\|\\
+                \Rightarrow \N{p^*}{g}&\leq\|\phi_g\|\\
+            \end{split}
+        \end{equation*}
+        Por ambas desigualdades, se sigue que $\abs{\phi_g}=\N{p^*}{g}$.
+
+        De (iii): Veamos que
         
     \end{proof}
 

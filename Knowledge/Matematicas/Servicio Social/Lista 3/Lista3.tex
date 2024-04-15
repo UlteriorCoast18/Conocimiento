@@ -168,7 +168,32 @@ rápida de consulta para la solución de los problemas.
     \end{enumerate}
 
     \begin{sol}
-        
+        De (i): La función $x\mapsto\sqrt{3-x^2}$ está definida si y sólo si $3-x^2\geq0$, esto es $x^2\leq3$ lo cual ocurre si y sólo si $-\sqrt{3}\leq x\leq\sqrt{3}$.
+
+        Así, el dominio natural de esta función es $[-\sqrt{3},\sqrt{3}]$.
+
+        De (ii): La función $y\mapsto\sqrt{1-\sqrt{1-y^2}}$ está definida si y sólo si $1-\sqrt{1-y^2}\geq0$, es decir si y sólo si $\sqrt{1-y^2}\leq1$, esto es cuando $0\leq1-y^2\leq 1$ y,
+        \begin{equation*}
+            \begin{split}
+                0\leq1-y^2\leq 1&\iff 0\leq y^2\leq1\\
+                &\iff -1\leq y\leq1\\
+            \end{split}
+        \end{equation*}
+        por tanto, el dominio natural de esta función es $[-1,1]$.
+
+        De (iii): La función $\omega\mapsto\frac{1}{\omega-1}+\frac{1}{\omega-2}$ está definida cuando $\omega-1\neq 0$ y $\omega-2\neq0$, esto es:
+        \begin{equation*}
+            \omega\neq1,2
+        \end{equation*}
+        luego, el dominio natural de esta función es $\mathbb{R}\backslash\left\{1,2 \right\}$.
+
+        De (iv): La función $u\mapsto\sqrt{1-u^2}+\sqrt{u^2-1}$ está definida si y sólo si $1-u^2,u^2-1\geq0$, esto es:
+        \begin{equation*}
+            1\leq u^2\quad\textup{y}\quad u^2\geq1
+        \end{equation*}
+        y, esto sólo ocurre cuando $u=\pm1$. Por tanto, el dominio natrual de $f$ es $\left\{-1,1 \right\}$.
+
+        De (v): 
     \end{sol}
 
     \item \begin{enumerate}
@@ -202,7 +227,7 @@ rápida de consulta para la solución de los problemas.
         \end{equation*}
         por tanto, $\abs{x^2-3x-4}<\varepsilon$. Ahora, como para todo $\varepsilon>0$ existe $\delta=\min\left\{1,\frac{\varepsilon}{6} \right\}>0$ tal que
         \begin{equation*}
-            \abs{x-1}<\delta\Rightarrow \abs{x^2-3x-4}<\varepsilon
+            \forall x\in\mathbb{R},x\neq1\textup{ tal que } \abs{x-1}<\delta \Rightarrow \abs{x^2-3x-4}<\varepsilon
         \end{equation*}
         se sigue que
         \begin{equation*}
