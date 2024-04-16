@@ -2260,4 +2260,95 @@
         por tanto, $f=0$ c.t.p. en $\mathbb{R}$. Así, el sistema $\tau_{\mathbb{K}}$ es total en $\mathcal{L}_p^{2\pi}(\mathbb{K})$.
     \end{proof}
 
+    \begin{theor}
+        Sea $\tilde{\tau}_{\mathbb{R}}$ el sistema de funciones siguientes:
+        \begin{enumerate}
+            \item La constante $\frac{1}{\sqrt{2\pi}}$.
+            \item $x\mapsto\frac{1}{\sqrt{\pi}}\cos kx$ con $k\in\mathbb{N}$.
+            \item $x\mapsto\frac{1}{\sqrt{\pi}}\sin kx$ con $k\in\mathbb{N}^*$.
+        \end{enumerate}
+        Sea $\tilde{\tau}_{\mathbb{C}}$ el sistema $x\mapsto\frac{1}{\sqrt{2\pi}}e^{ikx}$, con $k\in\mathbb{Z}$. Entonces,
+        \begin{enumerate}
+            \item El sistema $\tilde{\tau}_\mathbb{R}$ es un sistema O.N. maximal en $L_2^{ 2\pi}(\mathbb{R})$.
+            \item $\tilde{\tau}_{\mathbb{R}}$ y $\tilde{\tau}_{\mathbb{C}}$ son sistemas O.N. maximales en $L_2^{2\pi}(\mathbb{R})$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        Se tiene que
+        \begin{equation*}
+            \int_{-\pi}^\pi e^{ ikx}e^{ -ihx}dx=\left\{
+                \begin{array}{lcr}
+                    0 & \textup{ si } & k\neq h \\
+                    2\pi & \textup{ si } & k=h \\
+                \end{array}
+            \right.
+        \end{equation*}
+        También, para todo $h=0,1,2,...$ se tiene que 
+        \begin{equation*}
+            \int_{-\pi}^\pi\cos kx\cos hxdx=\left\{
+                \begin{array}{lcr}
+                    0 & \textup{ si } & k\neq h\\
+                    \pi & \textup{ si } & k= h\neq0 \\
+                    2\pi & \textup{ si } & k= h=0 \\
+                \end{array}
+            \right\}
+        \end{equation*}
+        también,
+        \begin{equation*}
+            \int_{-\pi}^\pi\sin kx\sin hxdx=\left\{
+                \begin{array}{lcr}
+                    0 & \textup{ si } & k\neq h\\
+                    \pi & \textup{ si } & k= h\neq0 \\
+                    0 & \textup{ si } & k= h=0 \\
+                \end{array}
+            \right\}
+        \end{equation*}
+        y
+        \begin{equation*}
+            \int_{-\pi}^\pi\cos kx\sin hxdx=0,\forall h,k
+        \end{equation*}
+        De estos cálculos se deduce que $\tilde{\tau}_{\mathbb{R}}$ y $\tilde{\tau}_{\mathbb{C}}$ son sistemas O.N. maximales en $L_2^{ 2\pi}(\mathbb{R})$, ya que tanto $\tilde{\tau}_{\mathbb{R}}$ como $\tilde{\tau}_{\mathbb{C}}$ son totales en $L_2^{2\pi}(\mathbb{R})$, se sigue que ambos ssitemas son O.N. maximales en $L_2^{2\pi}(\mathbb{R})$
+    \end{proof}
+
+    \section{Caso de periodo $T>0$ arbitrario}
+
+    \begin{mydef}
+        Sean $T>0$ y $\tau_{\mathbb{R}}^T$ el sistema de funciones
+        \begin{enumerate}
+            \item $x\mapsto \cos \frac{2\pi k}{T}x$, $k\in\mathbb{N}^*$.
+            \item $x\mapsto \sin \frac{2\pi k}{T}x$, $k\in\mathbb{N}$.
+        \end{enumerate}
+        y $\tau_{\mathbb{C}}^T$ el sistema
+        \begin{equation*}
+            x\mapsto e^{i\frac{2\pi k}{T}x },\quad\forall k\in\mathbb{Z}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        Haciendo un cambio de variables adecuado se concluye que
+        \begin{itemize}
+            \item El sistema $\tau_{\mathbb{R}}^T$ es completo en $\mathcal{L}_p^T(\mathbb{R})$ con $1\leq p<\infty$.
+            \item $\tau_{\mathbb{R}}^T$ y $\tau_{\mathbb{C}}^T$ son completos en $\mathcal{L}_p^T(\mathbb{C})$, $1\leq p<\infty$.
+            \item $\tau_{\mathbb{R}}^T$ es completo en $\mathcal{C}^T(\mathbb{R})$ con la norma uniforme.
+            \item $\tau_{\mathbb{R}}^T$ y $\tau_{\mathbb{C}}^T$ son completos en $\mathcal{C}^T(\mathbb{C})$ con la norma uniforme.
+            \item El sistema $\tau_{\mathbb{R}}^T$ es total en $\mathcal{L}_p^T(\mathbb{R})$ con $1\leq p<\infty$.
+            \item $\tau_{\mathbb{R}}^T$ y $\tau_{\mathbb{C}}^T$ son totales en $\mathcal{L}_p^T(\mathbb{C})$, $1\leq p<\infty$.
+        \end{itemize}
+    \end{obs}
+
+    \begin{obs}
+        Sea $\tilde{\tau}_{\mathbb{R}}^T$ el sistema formado por las funciones:
+        \begin{enumerate}
+            \item $x\mapsto\frac{1}{\sqrt{T}}$.
+            \item $x\mapsto\sqrt{\frac{2}{T}}\cos \frac{2\pi k}{T}x$, con $k\in\mathbb{N}^*$.
+            \item $x\mapsto\sqrt{\frac{2}{T}}\sin \frac{2\pi k}{T}x$, con $k\in\mathbb{N}$.
+        \end{enumerate}
+        Sea $\tilde{\tau}^T_{\mathbb{C}}$ el sistema de funciones
+        \begin{equation*}
+            x\mapsto\frac{1}{\sqrt{T}}e^{i\frac{2\pi k}{T}x},\quad\forall k\in\mathbb{Z}
+        \end{equation*}
+        Entonces, $\tilde{\tau}^T_{\mathbb{R}}$ es un sistema O.N. maximal en $L_2^{T}(\mathbb{R})$ y, $\tilde{\tau}^T_{\mathbb{R}}$ y $\tilde{\tau}^T_{\mathbb{C}}$ son sistemas O.N. maximales en $L_2^T(\mathbb{C})$.
+    \end{obs}
+
 \end{document}

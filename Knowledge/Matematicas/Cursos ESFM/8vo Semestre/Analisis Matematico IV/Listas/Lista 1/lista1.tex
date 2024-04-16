@@ -836,23 +836,116 @@
             \pint{\vec{x}}{\vec{y}}=\frac{1}{4}\left(\norm{\vec{x}+\vec{y}}^2-\norm{\vec{x}-\vec{y}}^2 \right),\quad\forall\vec{x},\vec{y}\in H
         \end{equation*}
         veamos que $(\vec{x},\vec{y})\mapsto\pint{\vec{x}}{\vec{y}}$ verifica las cuatro condiciones para ser producto escalar real sobre $H$:
-
-        Notemos antes que si $\vec{x},\vec{y}\in H$:
-        \begin{equation*}
-            \begin{split}
-                2\pint{\vec{x}}{\vec{y}}&=\frac{1}{4}\left(2\norm{\vec{x}+\vec{y}}^2-2\norm{\vec{x}-\vec{y}}^2 \right) \\
-                =\frac{1}{4}\left(2\norm{\vec{x}+\vec{y}}^2-2\norm{\vec{x}-\vec{y}}^2 \right) \\
-            \end{split}
-        \end{equation*}
-        %TODO
         \begin{enumerate}
-            \item Sea $\vec{y}\in H$. Hay que ver que la función $\vec{x}\mapsto\pint{\vec{x}}{\vec{y}}$ es lineal. En efecto, sean $\vec{x},\vec{x_1},\vec{x_2}\in H$ y $\alpha\in\mathbb{R}$, tenemos que:
+            \item Hay que probar que para todo $\vec{y}\in E$ fijo, $\vec{x}\mapsto\pint{\vec{x}}{\vec{y}}$ es una aplicación lineal de $E$ en $\mathbb{R}$. En efecto, veamos que se cumplen dos cosas:
+            \begin{enumerate}
+                \item Sea $\vec{y}\in H$. Hay que ver que la función $\vec{x}\mapsto\pint{\vec{x}}{\vec{y}}$ separa sumas. En efecto, sean $\vec{x},\vec{x_1},\vec{x_2}\in H$ y $\alpha\in\mathbb{R}$, tenemos que:
+                \begin{equation*}
+                    \begin{split}
+                        \pint{\vec{x_1}+\vec{x_2}}{\vec{y}}&=\frac{1}{4}\left(\norm{\vec{x_1}+\vec{x_2}+\vec{y}}^2-\norm{\vec{x_1}+\vec{x_2}-\vec{y}}^2 \right)\\
+                    \end{split}
+                \end{equation*}
+                de la identidad del paralelogramo obtenemos que:
+                \begin{equation*}
+                    \begin{split}
+                        &\left\{
+                            \begin{array}{rl}
+                                \norm{\vec{x_1}+\vec{x_2}+\vec{y}}^2+\norm{\vec{x_1}-\vec{x_2}-\vec{y}}^2&=2\norm{\vec{x_1}}^2+2\norm{\vec{x_2}+\vec{y}}^2\\
+                                \norm{\vec{x_1}+\vec{x_2}-\vec{y}}^2+\norm{\vec{x_1}-\vec{x_2}+\vec{y}}^2&=2\norm{\vec{x_1}-\vec{x_2}}^2+2\norm{-\vec{y}}^2\\
+                            \end{array}
+                        \right.\\
+                    \end{split}
+                \end{equation*}
+                %TODO
+            \item Notemos antes que si $\vec{x},\vec{y}\in H$:
+                \begin{equation*}
+                    \begin{split}
+                        \pint{2\vec{x}}{\vec{y}}&=\frac{1}{4}\left(\norm{2\vec{x}+\vec{y}}^2-\norm{2\vec{x}-\vec{y}}^2 \right) \\
+                        &=\frac{1}{4}\left(\norm{2\vec{x}+\vec{y}}^2-\norm{2\vec{x}-\vec{y}}^2 \right) \\
+                    \end{split}
+                \end{equation*}
+                de la identidad del paralelogramo obtenemos que
+                \begin{equation*}
+                    \begin{split}
+                        &\left\{
+                            \begin{array}{rl}
+                                \norm{\vec{x}+\vec{x}+\vec{y}}^2+\norm{\vec{x}-\vec{x}-\vec{y}}^2&=2\norm{\vec{x}}^2+2\norm{\vec{x}+\vec{y}}^2\\
+                                \norm{\vec{x}+\vec{x}-\vec{y}}^2+\norm{\vec{x}-\vec{x}+\vec{y}}^2&=2\norm{\vec{x}}^2+2\norm{\vec{x}-\vec{y}}^2\\
+                            \end{array}
+                        \right.\\
+                        \Rightarrow&\left\{
+                            \begin{array}{rl}
+                                \norm{2\vec{x}+\vec{y}}^2+\norm{\vec{y}}^2&=2\norm{\vec{x}}^2+2\norm{\vec{x}+\vec{y}}^2\\
+                                \norm{2\vec{x}-\vec{y}}^2+\norm{\vec{y}}^2&=2\norm{\vec{x}}^2+2\norm{\vec{x}-\vec{y}}^2\\
+                            \end{array}
+                        \right.\\
+                        \Rightarrow&\left\{
+                            \begin{array}{rl}
+                                \norm{2\vec{x}+\vec{y}}^2&=2\norm{\vec{x}}^2+2\norm{\vec{x}+\vec{y}}^2-\norm{\vec{y}}^2\\
+                                \norm{2\vec{x}-\vec{y}}^2&=2\norm{\vec{x}}^2+2\norm{\vec{x}-\vec{y}}^2-\norm{\vec{y}}^2\\
+                            \end{array}
+                        \right.\\
+                    \end{split}
+                \end{equation*}
+                por tanto,
+                \begin{equation*}
+                    \begin{split}
+                        \pint{2\vec{x}}{\vec{y}}&=\frac{1}{4}(2\norm{\vec{x}}^2+2\norm{\vec{x}+\vec{y}}^2-\norm{\vec{y}}^2-2\norm{\vec{x}}^2-2\norm{\vec{x}-\vec{y}}^2+\norm{\vec{y}}^2)\\
+                        &=\frac{2}{4}(\norm{\vec{x}+\vec{y}}^2-\norm{\vec{x}-\vec{y}}^2)\\
+                        &=2\pint{\vec{x}}{\vec{y}}\\
+                    \end{split}
+                \end{equation*}
+                Queremos ver que este producto interno saca escalares. Por inducción se prueba rápidamente que
+                \begin{equation*}
+                    \pint{n\vec{x}}{\vec{y}}=n\pint{\vec{x}}{\vec{y}},\quad\forall n\in\mathbb{N}
+                \end{equation*}
+                y, tomando $\vec{x}=-\vec{u}$, el resultado es válido para todo $n\in\mathbb{Z}$, esto es
+                \begin{equation*}
+                    \pint{m\vec{x}}{\vec{y}}=m\pint{\vec{x}}{\vec{y}},\quad\forall m\in\mathbb{Z}
+                \end{equation*}
+                Ahora, para el vector $\frac{1}{n}\vec{x}$ se tiene que
+                \begin{equation*}
+                    \begin{split}
+                        n\pint{\frac{1}{n}\vec{x}}{\vec{y}}&=\pint{\frac{n}{n}\vec{x}}{\vec{y}}\\
+                        &=\pint{\vec{x}}{\vec{y}}\\
+                        \Rightarrow \pint{\frac{1}{n}\vec{x}}{\vec{y}}&=\frac{1}{n}\pint{\vec{x}}{\vec{y}},\quad\forall n\in\mathbb{N}\\
+                    \end{split}
+                \end{equation*}
+                luego, por el resultado anterior se tiene que 
+                \begin{equation*}
+                    \pint{r\vec{x}}{\vec{y}}=r\pint{\vec{x}}{\vec{y}}\quad\forall r\in\mathbb{Q}
+                \end{equation*}
+                y, para todo $\vec{x},\vec{y}\in\mathbb{R}$. Veamos que se cumple para todo $r\in\mathbb{R}$. En efecto, como las aplicaciones $r\mapsto \pint{r\vec{x}}{\vec{y}}$ y $r\mapsto r\pint{\vec{x}}{\vec{y}}\quad$ son continuas (pues, son composición de funciones continuas) y, son iguales en $\mathbb{Q}$ el cual es tal que $\overline{\mathbb{Q}}=\mathbb{R}$, por un teorema de análsis matemático I se sigue que
+                \begin{equation*}
+                    \pint{\alpha \vec{x}}{\vec{y}}=\alpha\pint{\vec{x}}{\vec{y}},\quad\forall\vec{x},\vec{y}\in E,\quad\forall \alpha\in\mathbb{R}
+                \end{equation*}
+            \end{enumerate}
+            \item Sean $\vec{x},\vec{y}\in E$. Se tiene que 
             \begin{equation*}
                 \begin{split}
-                    \pint{\vec{x_1}+\vec{x_2}}{\vec{y}}&=\frac{1}{4}\left(\norm{\vec{x_1}+\vec{x_2}+\vec{y}}^2-\norm{\vec{x_1}+\vec{x_2}-\vec{y}}^2 \right) \\
+                    \pint{\vec{y}}{\vec{x}}&=\frac{1}{4}\left(\norm{\vec{y}+\vec{x}}^2-\norm{\vec{y}-\vec{x}}^2 \right)\\
+                    &=\frac{1}{4}\left(\norm{\vec{x}+\vec{y}}^2-\norm{-\vec{y}+\vec{x}}^2 \right)\\
+                    &=\frac{1}{4}\left(\norm{\vec{x}+\vec{y}}^2-\norm{\vec{x}-\vec{y}}^2 \right)\\
+                    &=\pint{\vec{x}}{\vec{y}}\\
+                    \Rightarrow \pint{\vec{y}}{\vec{x}}&=\pint{\vec{x}}{\vec{y}}\\
                 \end{split}
             \end{equation*}
+            \item Sea $\vec{x}\in E$, entonces
+            \begin{equation*}
+                \begin{split}
+                    \pint{\vec{x}}{\vec{x}}&=\frac{1}{4}\left(\norm{\vec{x}+\vec{x}}^2-\norm{\vec{x}-\vec{x}}^2 \right)\\
+                    &=\frac{1}{4}\norm{2\vec{x}}^2\\
+                    &=\frac{4}{4}\norm{\vec{x}}^2\\
+                    &=\norm{\vec{x}}^2\\
+                    &\geq0\\
+                    \Rightarrow \pint{\vec{x}}{\vec{x}}&\geq 0\\
+                \end{split}
+            \end{equation*}
+            \item Es claro que si $\vec{x}=\vec{0}$, entonces $\pint{\vec{x}}{\vec{x}}=0$. El converso es inmediato del hecho que $\norm{\cdot}$ es una norma sobre $E$.
         \end{enumerate}
+        por los cuatro incisos anteriores, se sigue que $\pint{\cdot}{\cdot}$ es un producto escalar real sobre $E$ tal que $\pint{\vec{x}}{\vec{x}}=\norm{\vec{x}}$ para todo $\vec{x}\in E$.
+
+        De (iii): Es análogo a (ii) usando hechos del problema 1.6.
     \end{sol}
 
     \begin{excer}

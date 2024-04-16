@@ -1,0 +1,280 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas Análisis Matemático IV}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \setcounter{chapter}{2}
+
+    \chapter{Series de Fourier}
+    
+    \section{Series de Fourier de funciones en $\mathcal{L}_1^{2\pi}$}
+    
+    \begin{mydef}
+        Se llama \textbf{serie de Fourier trigonométrica} a una serie de funciones de $\mathbb{R}$ en $\mathbb{C}$ de la forma
+        \begin{equation}
+            \sum_{k\in\mathbb{Z}}c_k e^{ ikx}
+        \end{equation}
+        donde $c_k\in\mathbb{C}$ para todo $k\in\mathbb{Z}$ son coeficientes constantes. Por definición, las \textbf{sumas parciales} de la serie son:
+        \begin{equation*}
+            s_m(x)=\sum_{ k=-m}^{m} c_{k}e^{ikx},\forall m\in\mathbb{N}^*
+        \end{equation*}
+        Se dice que la serie \textbf{converge en un punto $x$ a una suma $f(x)$}, si
+        \begin{equation*}
+            f(x)=\lim_{ m\rightarrow\infty}s_m(x)=\lim_{ m\rightarrow\infty}\sum_{ k=-m}^m c_k e^{ikx }
+        \end{equation*}
+        En este caso,
+        \begin{equation*}
+            f(x)=\sum_{ k\in\mathbb{Z}}c_ke^{ ikx}=\sum_{ k=-\infty}^\infty c_ke^{ ikx}
+        \end{equation*}
+        Usando la identidad $e^{ ikx}=\cos kx+i\sen kx$, podemos reescribir $s_m$ como
+        \begin{equation}
+            s_m(x)=c_0+\sum_{ k=1}^m(c_k+c_{ -k})\cos kx+i\sum_{ k=1}^m(c_k-c_{ -k})\sen kx,\quad\forall m\in\mathbb{N}^*
+        \end{equation}
+        definamos
+        \begin{equation*}
+            a_k=c_k+c_{ -k}\quad\textup{y}\quad b_k=c_k-c_{ -k},\quad\forall k\in\mathbb{Z}
+        \end{equation*}
+        es claro que
+        \begin{equation*}
+            a_{ -k}=a_k\quad\textup{y}\quad b_{-k}=-b_k,\quad\forall k\in\mathbb{Z}
+        \end{equation*}
+        conociendo los coeficientes $a_k$ y $b_k$ se recobran los $c_k$ por las fórmulas
+        \begin{equation*}
+            c_k=\frac{a_k-ib_k}{2},\quad\forall k\in\mathbb{Z}\backslash\left\{0 \right\}
+        \end{equation*}
+        y, $c_0=\frac{a_0}{2}$. En términos de los $a_k$ y $b_k$, las funciones (2) y (1) pueden ser reescritas como sigue:
+        \begin{equation}
+            s_m(x)=\frac{a_0}{2}+\sum_{ k=1}^m a_k\cos kx+\sum_{ k=1}^m b_k\sin kx,\quad\forall m\in\mathbb{N}^*
+        \end{equation}
+        y,
+        \begin{equation}
+            \sum_{k\in\mathbb{Z}}c_k e^{ ikx}=\frac{a_0}{2}+\sum_{ k=1}^\infty a_k\cos kx+\sum_{ k=1}^\infty b_k\sin kx
+        \end{equation}
+    \end{mydef}
+
+    \begin{mydef}
+        Se dice que la serie trigonométrica es \textbf{real} si $s_m(x)\in\mathbb{R}$ para todo $m\in\mathbb{N}^*$ y para toda $x\in\mathbb{R}$. Se sigue de (3.2) que la serie es real si y sólo si $a_k,b_k\in\mathbb{R}$, para todo $k\in\mathbb{N}^*$.
+        
+        Esta condición es equivalente a que
+        \begin{equation*}
+            c_{-k}=\overline{c_k},\quad\forall k\in\mathbb{Z}
+        \end{equation*}
+    \end{mydef}
+
+    ¿Qué relación hay entre $f$ y los coeficientes $c_k$?
+    
+    \begin{propo}
+        Considere una serie trigonométrica $\sum_{k\in\mathbb{Z}}c_k e^{ ikx}$. Suponga que esta serie converge uniformemente en $\mathbb{R}$ a alguna función $f$. Entonces, $f\in\mathcal{C}^{2\pi}$ y
+        \begin{equation*}
+            c_n=\frac{1}{2\pi}\int_{-\pi}^\pi f(x)e^{ -inx}dx,\quad\forall n\in\mathbb{Z}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Se supone que $f(x)=\sum_{k\in\mathbb{Z}}c_k e^{ ikx}$ uniformemente en $\mathbb{R}$. Como el límite uniforme de una sucesión de funciones continuas es continua, se tiene entonces que $f\in\mathcal{C}^{2\pi}$. Para un $n\in\mathbb{Z}$
+        \begin{equation}
+            \begin{split}
+                f(x)e^{ -inx}=\sum_{k\in\mathbb{Z}}c_k e^{ i(k-n)x}\textup{ uniformemente en }\mathbb{R}
+            \end{split}
+        \end{equation}
+        pues,
+        \begin{equation*}
+            \abs{f(x)e^{ -inx}-s_m(x)e^{-inx}}=\abs{f(x)-s_m(x)},\quad\forall m\in\mathbb{N}^*
+        \end{equation*}
+        Se puede pues integrar término por término (3.5) en el compacto $[-\pi,\pi]$. Veamos que
+        \begin{equation*}
+            \begin{split}
+                \int_{ -\pi}^{\pi}e^{ i(n-k)x}dx=\left\{
+                    \begin{array}[pos]{lcr}
+                        2\pi & \textup{ si } & n=k\\
+                        0 & \textup{ si } & n\neq k\\
+                    \end{array}
+                \right.
+            \end{split}
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \begin{split}
+                \int_{-\pi}^\pi f(x)e^{ -inx}dx&=\sum_{ k\in\mathbb{Z}}\int_{-\pi}^\pi e^{ i(k-n)x}dx\\
+                &= 2\pi c_n\\
+                \Rightarrow c_n&=\frac{1}{2\pi}\int_{-\pi}^\pi f(x)e^{ -inx}dx\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+    
+    Este resultado sugiere la definición siguiente:
+
+    \begin{mydef}
+        Para todo $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$ se define
+        \begin{equation*}
+            c_k=\frac{1}{2\pi}\int_{ -\pi}^\pi f(x)e^{ -ikx}dx,\quad\forall k\in\mathbb{Z}
+        \end{equation*}
+        en particular, $c_0=\frac{1}{2\pi}\int_{ -\pi}^{\pi}f(x)dx$. Los coeficientes $c_k$ se llaman \textbf{los coeficientes de Fourier trigonométricos de $f$} y, la serie
+        \begin{equation*}
+            \sum_{ k\in\mathbb{Z}}c_k e^{ ikx}
+        \end{equation*}
+        se llama \textbf{serie de Fourier trigonométrica de $f$}.
+    \end{mydef}
+
+    \begin{obs}
+        Los correspondientes coeficientes $a_k$ y $b_k$ son los siguientes:
+        \begin{equation*}
+            a_0=\frac{1}{\pi}\int_{-\pi}^\pi f(x)dx
+        \end{equation*}
+        también,
+        \begin{equation*}
+            a_k=\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos kxdx\quad\textup{y}\quad b_k=\frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin kxdx
+        \end{equation*}
+        para todo $k\in\mathbb{Z}$ (esto se obtiene usando la igualdad entre los $c_k$ y $a_k,b_k$).
+    \end{obs}
+
+    \begin{obs}
+        Para fines prácticos, conviene tener en cuenta lo siguiente.
+        Si $f$ es una función impar en $]-\pi,\pi[$, entonces
+        \begin{equation*}
+            a_k=0\quad\forall k\in\mathbb{N}^*
+        \end{equation*}
+        y,
+        \begin{equation*}
+            b_k=\frac{2}{\pi}\int_{0}^{\pi}f(x)\sen kx,\quad\forall k\in\mathbb{N}
+        \end{equation*}
+        Si $f$ es una funció npar en $]-\pi,\pi[$ se invierte el resultado, es decir
+        \begin{equation*}
+            a_k=\frac{2}{\pi}\int_{0}^{\pi}f(x)\cos kx,\quad\forall k\in\mathbb{N}^*
+        \end{equation*}
+        y,
+        \begin{equation*}
+            b_k=0\quad\forall k\in\mathbb{N}
+        \end{equation*}
+    \end{obs}
+
+
+
+\end{document}
