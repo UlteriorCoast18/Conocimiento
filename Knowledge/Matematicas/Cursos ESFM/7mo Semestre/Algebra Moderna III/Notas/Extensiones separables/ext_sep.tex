@@ -117,7 +117,7 @@
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
-\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
 
 \DeclareMathOperator{\car}{car}
 \DeclareMathOperator{\irr}{irr}
@@ -837,7 +837,7 @@
     \end{obs}
 
     \begin{propo}
-        Sea $F$ un campo, $\alpha_1,...,\alpha_n,\beta\in\bar{F}$ tales que $\alpha_1,...,\alpha_n$ son separables sobre $F$. Si $F$ es infinito entonces, existe $\theta\in\bar{F}$ tal que:
+        Sea $F$ un campo, $\alpha_1,...,\alpha_n,\beta\in\bar{F}$ tales que $\alpha_1,...,\alpha_n$ son separables sobre $F$. Si $F$ es infinito entonces, existe $\theta\in F(\alpha_1,...,\alpha_n,\beta)$ tal que:
         \begin{equation*}
             F(\alpha_1,...,\alpha_n,\beta)=F(\theta)
         \end{equation*}
@@ -846,26 +846,175 @@
     \begin{proof}
         Procederemos por inducción sobre $n$. Para $n=1$, suponemos que tenemos la extensión $F(\alpha_1,\beta)/F$ donde $\alpha_1$ es separable sobre $F$ y $\beta$ simplemente es algebraico sobre $F$. Denotemos por $f(X)=\irr\left(\alpha_1,F,X \right)$ y $g(X)=\irr\left(\beta,F,X \right)$, con $m=\deg f$ y $k=\deg g$.
 
-        Sean $\alpha_1,...,\alpha_m$ y $\beta_1,...,\beta_r$ las raíces distintas de $f(X)$ y $g(X)$, respectivamente, donde $r\leq k$.
+        Sean $\delta_1,...,\delta_m$ y $\beta_1,...,\beta_r$ las raíces distintas de $f(X)$ y $g(X)$, respectivamente, donde $r\leq k$.
         Consideremos las ecuaciones lineales siguientes:
         \begin{equation*}
-            \alpha_1X+\beta_1=\alpha_iX+\beta_j
+            \delta_1X+\beta_1=\delta_iX+\beta_j
         \end{equation*}
-        con $i\in\natint{2,m}$ y $j\in\natint{1,r}$. Si $\alpha_1$ fuera la única raíz de $f(X)$, entonces $f(X)=X-\alpha_1\in F[X]$, luego $\alpha_1\in F$. Por ende, $F(\alpha_1,\beta)=F(\beta)$. Así, basta tomar $\theta=\beta$.
+        con $i\in\natint{2,m}$ y $j\in\natint{1,r}$. Si $\delta_1$ fuera la única raíz de $f(X)$, esto es $m=1$, entonces $f(X)=X-\delta_1\in F[X]$, luego $\alpha_1=\delta_1=\in F$. Por ende, $F(\alpha_1,\beta)=F(\beta)$. Así, basta tomar $\theta=\beta$.
 
-        Supongamos que $\alpha_1$ no es la única raíz de $f(X)$, es decir que $m\geq 2$ y, que las ecuaciones anteriores están bien determinadas.
+        Supongamos que $\delta_1$ no es la única raíz de $f(X)$, es decir que $m\geq 2$. Hacemos $\delta_1=\alpha_1$ y $\beta_1=\beta$. Se tiene que las ecuaciones anteriores están bien determinadas.
 
         Elegimos un elemento $a\in F$ tal que
         \begin{equation*}
-            a\alpha_1+\beta_1\neq a\alpha_i+\beta_j
+            \begin{split}
+                a\delta_1+\beta_1&\neq a\delta_i+\beta_j\\
+                \Rightarrow a\alpha_1+\beta&\neq a\delta_i+\beta_j\\
+            \end{split}
         \end{equation*}
-        para todo $i\in\natint{1,m}$ y $j\in\natint{1,r}$. Tal elemento existe ya que $F$ es infinito. Definimos
+        para todo $i\in\natint{1,m}$ y para todo $j\in\natint{1,r}$. Tal elemento existe ya que $F$ es infinito. Definimos
         \begin{equation*}
-            \tau=a\alpha_1+\beta_1\in F(\alpha_1,\beta)
+            \theta=a\delta_1+\beta\in F(\alpha_1,\beta)
         \end{equation*}
-        probemos que $F(\alpha_1,\beta)=F(\theta)$. Por lo de arriba, se sigue que $F(\theta)\subseteq F(\alpha_1,\beta)$. Basta probar que $\alpha_1,\beta\in F(\theta)$. Para ello, consideremos el polinomio $h(X)=g(\theta-aX)\in F(\theta)[X]$.
+        probemos que $F(\alpha_1,\beta)=F(\theta)$. Por lo de arriba se sigue que $F(\theta)\subseteq F(\alpha_1,\beta)$. Basta probar que $\alpha_1,\beta\in F(\theta)$. Para ello, consideremos el polinomio $h(X)=g(\theta-aX)\in F(\theta)[X]$.
 
-        Notemos que $h(\alpha_1)=g(a\alpha_1+\beta_1-a\alpha_1)=g(\beta)=0$ y $h()$
+        Notemos que $h(\alpha_1)=g(a\alpha_1+\beta_1-a\alpha_1)=g(\beta)=0$ y,
+        \begin{equation*}
+            \begin{split}
+                h(\delta_i)&=g(\theta-a\delta_i)\\
+                &=g((a\delta_1+\beta_1)-a\delta_i)\\
+                &\neq 0,\quad\forall i\in\natint{2,m} \\
+            \end{split}
+        \end{equation*}
+        pues, $(a\delta_1+\beta_1)-a\delta_\neq\beta_j$ para todo $j\in\natint{1,m}$, es decir que nunca puede ser alguna raíz de $g$. Así pues, $h$ y $f$ tienen solamente una raíz en común, a saber, $\alpha_1$, donde $h(X),f(X)\in F(\theta)[X]$.
+
+        Sea $d(X)\in F(\theta)[X]$ el máximo común divisor de $h(X)$ y $f(X)$ (el cual existe pues este anillo es dominio euclideano), donde
+        \begin{equation*}
+            d(X)=l(X)h(X)+t(X)f(X)
+        \end{equation*}
+        siendo $l(X),t(X)\in F(\theta)[X]$. Notemos de la ecuación anterior que
+        \begin{equation*}
+            d(\alpha_1)=0
+        \end{equation*}
+        y, toda raíz de $d(X)$ es raíz de $f(X)$ y $h(X)$ (pues es el M.C.D.) pero, como $f(X)$ y $h(X)$ tienen a $\alpha_1$ como única raíz, entonces $d(X)$ solo tiene como raíz a $\alpha_1$. Por ende,
+        \begin{equation*}
+            d(X)=X-\alpha_1
+        \end{equation*}
+        (el coeficiente lider es $1$ ya que $f(X)$ es separable y $d(X)\divides f(X)$). Por tanto,
+        \begin{equation*}
+            X-\alpha_1=l(X)h(X)+t(X)f(X)\in F(\theta)[X]
+        \end{equation*}
+        por tanto, $\alpha_1\in F(\theta)$. En particular, como $a\in F$ entonces $a\alpha\in F(\theta)$, luego
+        \begin{equation*}
+            \beta=(a\alpha+\beta)-a\alpha=\theta-a\alpha\in F(\theta)
+        \end{equation*}
+        por tanto, $\alpha_1,\beta\in F(\theta)$. Finalmente se tiene que
+        \begin{equation*}
+            F(\theta)=F(\alpha_1,\beta)
+        \end{equation*}
+
+        De aquí que la proposición se cumple para $n=1$. Suponga que se cumple para algún $n\in\mathbb{N}$, probaremos que se cumple para $n+1$. En efecto, sean $\alpha_1,...,\alpha_{ n+1}\in\bar{F}$ separables sobre $F$ y $\beta\in\bar{F}$ algebraico.
+
+        Por hipótesis de inducción, existe $\theta_1\in F(\alpha_1,...,\alpha_n,\beta)$ tal que
+        \begin{equation*}
+            F(\theta_1)=F(\alpha_1,...,\alpha_n,\beta)
+        \end{equation*}
+        y, por el caso $n=1$ existe $\theta\in F(\alpha_1,...,\alpha_{ n+1},\beta)$ tal que
+        \begin{equation*}
+            F(\theta)=F(\alpha_{n+1},\theta_1)
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            \begin{split}
+                F(\theta)&=F(\alpha_{n+1},\theta_1)\\
+                &=F(\theta_1)(\alpha_{ n+1})\\
+                &=F(\alpha_1,...,\alpha_n,\beta)(\alpha_{ n+1})\\
+                &=F(\alpha_1,...,\alpha_{ n+1},\beta)\\
+                \Rightarrow F(\theta)&=F(\alpha_1,...,\alpha_{ n+1},\beta)\\
+            \end{split}
+        \end{equation*}
+        lo que prueba el caso $n+1$.
     \end{proof}
+
+    \begin{cor}
+        Sea $F$ un campo perfecto. Entonces, toda extensión $E/F$ finita es simple.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediata.
+    \end{proof}
+
+    \begin{cor}
+        Si $F$ es un campo de característica cero, entonces toda extensión $E/F$ finita es simple.
+    \end{cor}
+
+    \begin{proof}
+        Todo campo de característica cero es perfecto.
+    \end{proof}
+
+    \begin{exa}
+        Toda extensión $E/\mathbb{Q}$ finita es simple. En particular, $\mathbb{Q}(\sqrt{2},\sqrt{3})=\mathbb{Q}(\sqrt{2}+\sqrt{3})$. En este caso, $\alpha_1=\sqrt{2}$ y $\beta=\sqrt{3}$ (en realidad da igual cual elijamos ya que cualquiera de estos dos elementos son separables sobre $\mathbb{Q}$ por ser este de característica cero). Así,
+        \begin{equation*}
+            \alpha_1=\delta_1=\sqrt{2}\quad\textup{y}\quad\delta_2=-\sqrt{2}
+        \end{equation*}
+        además,
+        \begin{equation*}
+            \beta=\beta_1=\sqrt{3}\quad\textup{y}\quad\beta_2=-\sqrt{3}
+        \end{equation*}
+        uno de los posibles $a\in\mathbb{Q}$ que nos sirven es $a=1$, ya que las ecuaciones que tenemos son:
+        \begin{equation*}
+            \left\{
+                \begin{array}[]{rl}
+                    \sqrt{2}X+\sqrt{3}&=-\sqrt{2}X+\sqrt{3}\\
+                    \sqrt{2}X+\sqrt{3}&=-\sqrt{2}X-\sqrt{3}\\
+                \end{array}
+            \right.
+        \end{equation*}
+        siendo $X=a=1$ el que hace que no se cumpla la ecuación. Luego es por ello que tomamos $\theta=1\cdot\sqrt{2}+\sqrt{3}=\sqrt{2}+\sqrt{3}$.
+    \end{exa}
+
+    \begin{lema}
+        Para $n\in\mathbb{N}$:
+        \begin{equation*}
+            n=\sum_{d| n\textup{ y }d\geq 1}\varphi(d)
+        \end{equation*}
+        donde $\varphi$ es la función de Euler.
+    \end{lema}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{lema}
+        Sea $G$ un grupo abeliano finito y multiplicativo tal que la ecuación $X^{m}=e$ tiene a lo más $m$ soluciones en $G$. Entonces, $G$ es grupo cíclico.
+    \end{lema}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{propo}
+        Si $F$ es un campo, entonces $F^*$ es un grupo multiplicativo y cada subgrupo finito de $F^*$ es cíclico.
+    \end{propo}
+
+    \begin{proof}
+        Se sigue del lema anterior.
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema del elemento primitivo}]
+        Toda extensión finita y separable de campos es simple.
+    \end{theor}
+
+    \begin{proof}
+        Sea $E/F$ una extensión finita y separable. Si $F$ es un campo infinito, tenemos que $E/F$ es f.g. con elementos separables y $F$ finito. Por tanto, $E/F$ es simple.
+
+        Si $F$ es finito, $E$ también es finito. Más aún,
+        \begin{equation*}
+            |E|=n|F|
+        \end{equation*}
+        entonces, $E^*$ es grupo multiplicativo abeliano y finito. Luego por una proposición anterior, es cíclico (visto como grup multiplicativo). Sea $\theta\in E^*$ tal que
+        \begin{equation*}
+            \begin{split}
+                E^*&=\langle\theta \rangle\\
+                &=\left\{\theta^t\Big|t\in\mathbb{N} \right\}
+            \end{split}
+        \end{equation*}
+        luego, $E=F(\theta)$. Así, la extensión $E/F$ es simple.
+
+    \end{proof}
+
+    \begin{obs}
+        El $\theta$ de la proposición anterior es llamado \textbf{elemento primitivo}.
+    \end{obs}
 
 \end{document}
