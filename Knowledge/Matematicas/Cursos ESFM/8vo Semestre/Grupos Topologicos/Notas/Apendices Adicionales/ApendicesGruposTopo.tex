@@ -950,7 +950,7 @@
         \begin{equation*}
             c(X)=\sup\left\{\abs{\mathcal{V}}\Big|\mathcal{V}\textup{ es una familia celular en }X \right\}+\aleph_0
         \end{equation*}
-        si $c(X)=\aleph_0$, decimos que $X$ \textbf{satisface la ccc}, o que \textbf{tiene l apropiedade de Souslin}.
+        si $c(X)=\aleph_0$, decimos que $X$ \textbf{satisface la ccc}, o que \textbf{tiene la propiedad de Souslin}.
     \end{mydef}
 
     A partir de las definiciones anteriores, se ve de forma inmediata que:
@@ -962,10 +962,187 @@
     La noción de espacio de Lindelöf da lugar a una nueva función cardinal.
 
     \begin{mydef}
-        Sea $X$ un espacio topológico. Se define el \textbf{número de Lindelöf} de un espaci $X$ como:
+        Sea $X$ un espacio topológico. Se define el \textbf{número de Lindelöf} $l(X)$ de un espacio $X$ como el número cardinal más pequeño $\kappa$ tal que toda cubierta abierta tiene una subcubierta de cardinalidad no mayor a $\kappa$
+    \end{mydef}
+
+    De la definición anterior se deduce de forma inmediata que un espaci oes Lindelöf si y sólo si $l(X)\leq\aleph_0$. Cualquier espacio compacto o $\sigma$-compacto es de Lindelöf.
+
+    Ahora se describirán varias funciones cardinales relativas a propiedades de bases y bases locales o similares.
+
+    \begin{mydef}
+        Una \textbf{red} en un espacio topológico $X$ es una familia $\mathcal{N}$ de subconjuntos de $X$ tales que todo conjunto abierto no vacío en $X$ es la unión de elementos de $\mathcal{N}$.
+    \end{mydef}
+
+    \begin{obs}
+        Una red es casi lo mismo que una base; la diferencia consiste en que los miembros de la red no son abiertos necesariamente. En particular, toda base es una red. Un ejemplo de red para un espacio $X$ es:
         \begin{equation*}
-            l(X)=\left\{ \right\}
+            \left\{\left\{p \right\}\Big| p\in X \right\}
+        \end{equation*}
+        Es fácil probar que un espacio con una red numerable es separable. En cambio, el recíproco es falso.
+    \end{obs}
+
+    Un hecho muy importante relativo a redes es que un espacio compacto con una red de cardilaidad $\kappa$ tiene una base de cardinalidad $\kappa$.
+
+    \begin{mydef}
+        Se define el \textbf{peso de red de un espacio $X$} como:
+        \begin{equation*}
+            nw(X)=\min\left\{\abs{\mathcal{N}}\Big|\mathcal{N}\textup{ es una red en }X \right\}+\aleph_0
         \end{equation*}
     \end{mydef}
+
+    \begin{obs}
+        En resumen, se verifica que $nw(X)\leq\abs{X}$ para todo espacio $X$, y $w(X)=nw(X)$ para todo espacio compacto $X$.
+    \end{obs}
+
+    \begin{mydef}
+        Una \textbf{$\pi$-base en $X$} es una familia $\mathcal{V}$ de abiertos no vacíos en $X$ tales que si $U$ es abierto y no vacío en $X$, entonces $V\subseteq U$ para alguna $V\in\mathcal{V}$. El \textbf{$\pi$-peso de $X$} se define a como:
+        \begin{equation*}
+            \pi w(X)=\min\left\{\abs{\mathcal{V}}\Big|\mathcal{V}\textup{ es una $\pi$-base en }X \right\}+\aleph_0
+        \end{equation*}
+    \end{mydef}
+    
+    \begin{obs}
+        Se tiene que
+        \begin{equation*}
+            d(X)\leq \pi w(X)\leq w(X)
+        \end{equation*}
+        En general, el peso de red y el $\pi$-peso no se pueden comparar directamente; hay ejemplos de espacios $X$ tales que $nw(X)<\pi w(X)$ y otros espacios $Y$ tales que $\pi w(Y)<nw(Y)$. Sin embargo, siempre se cumple que $d(X)\leq \pi w(X)$.
+    \end{obs}
+
+    Hasta ahora se ha definido funciones globales, es decir, que nos dan información de todo el espacio. A continuación definiremos funciones cardinales que nos dan información de propiedades locales de espacios.
+
+    \begin{mydef}
+        Sean $X$ un espacio, $\mathcal{V}$ una familia de abiertos no vacíos en $X$ y $p\in X$. Entonces, $\mathcal{V}$ es una \textbf{$\pi$-base local en $p$} si para cada vecindad $U$ de $p$ existe $V\in\mathcal{V}$ tal que $V\subseteq U$.
+
+        Finalmente, si $\cap\left\{V\Big|V\in\mathcal{V} \right\}=\left\{p \right\}$, decimos que $\mathcal{V}$ es una \textbf{seudobase} para $p$. Con esto, podemos definir las siguientes funciones cardinales:
+        \begin{equation*}
+            \begin{split}
+                \chi(p,X)&=\min\left\{\abs{\mathcal{V}}\Big|\mathcal{V}\textup{ es una base local en }p \right\};\\
+                \pi\chi(p,X)&=\min\left\{\abs{\mathcal{V}}\Big|\mathcal{V}\textup{ es una $\pi$-base local en }p \right\};\\
+                \psi(p,X)&=\min\left\{\abs{\mathcal{V}}\Big|\mathcal{V}\textup{ es una seudobase para }p \right\};\\
+            \end{split}
+        \end{equation*}
+        El \textbf{carácter}, el \textbf{$\pi$-carácter} y el \textbf{seudocarácter} se definen respectivamente como sigue:
+        \begin{equation*}
+            \begin{split}
+                \chi(X)&=\sup\left\{\chi(p,X)\Big|p\in X \right\}+\aleph_0;\\
+                \pi\chi(X)&=\sup\left\{\pi\chi(p,X)\Big|p\in X \right\}+\aleph_0;\\
+                \psi(X)&=\sup\left\{\psi(p,X)\Big|p\in X \right\}+\aleph_0;\\
+            \end{split}
+        \end{equation*}
+        la \textbf{estrechez o el ajuste de un punto $x$} en un espacio topológico $X$ es el cardinal infinito más pequeño $\tau$ con la propiedad de que si $x\in\overline{C}$, $C\subseteq X$, existe $F\subseteq C$ tal que $x\in\overline{F}$ y $\abs{F}\leq\tau$. Este número cardilan se denota como $t(x,X)$. La \textbf{estrechez o el ajuste de un espacio $X$} es el supremo de todos los números $t(x,X)$ para $x\in X$; este número cardinal se denota por $t(X)$.
+    \end{mydef}
+
+    \begin{obs}
+        Se verifica que $t(X)\leq\chi(X)$. Además, $X$ es primero numerable si y sólo si $\chi(X)=\aleph_0$.
+    \end{obs}
+
+    \begin{mydef}
+        Diremos que $X$ tiene \textbf{$\pi$-carácter numerable} si $\pi\chi(X)=\aleph_0$, \textbf{seudocarácter numerable} si $\psi(X)=\aleph_0$ y \textbf{estrechez numerable} si $t(X)=\aleph_0$. Observe que el seudocarácter está definido solo para espacios $T_1$.
+    \end{mydef}
+    
+    La cardinalidad de los conjuntos abiertos no vacíos en un espacio da lugar a la función cardinal \textbf{grado de dispersión} de un espacio $X$, que se define como
+    \begin{equation*}
+        \Delta(X)=\min\left\{\abs{U}\Big|U\textup{ es abierto y no vacío en }X \right\}+\aleph_0
+    \end{equation*}
+
+    \section{Relaciones cardinales básicas}
+
+    Una vez definidas las principales funciones cardinales, podemos encontrar algunos invariantes y desigualdades cardinales asociadas con espacios topológicos. Comenzaremos con algunas cotas para la cardinalidad de un espacio.
+    
+    Uno de los resultados más importantes es el siguiente teorema:
+
+    \begin{theor}[\textbf{Teorema de Arkhangel'skii}]
+        Si $X$ es un espacio Hausdorff, entonces $\abs{X}\leq 2^{l(X)\cdot\chi(X)}$. En particular, todo espacio Lindelöf primero numerable tiene cardilaidad a lo sumo $2^{\aleph_0}$.
+    \end{theor}
+
+    El teorema anterior se puede generalizar a
+    \begin{equation*}
+        \abs{X}\leq 2^{ l(X)\cdot\psi(X)\cdot t(X)}
+    \end{equation*}
+    para todo espacio Hausdorff.
+
+    En el caso de espacios regulares tenemos el siguiente resultado:
+
+    \begin{theor}
+        Si $X$ es regular, entonces
+        \begin{equation*}
+            \abs{X}\leq 2^{d(X)\cdot\psi(X)}
+        \end{equation*}
+        En particular, todo espacio regular es separable con seudocarácter numerable tiene cardilaidad no mayor que $\mathfrak{c}$.
+    \end{theor}
+
+    Si $X$ es Hausdorff, Pospisil demostró la siguiente desigualdad:
+
+    \begin{theor}
+        Para todo espacio Hausdorff $X$ se cumple que
+        \begin{equation*}
+            \abs{X}\leq d(X)^{\chi(X)}
+        \end{equation*}
+        En particular, todo espacio Hausdorff primero numerable con un subconjunto denso de cardinalidad no mayor que $\mathfrak{c}$ tiene una cardinalidad que no excede a $\mathfrak{c}$.
+    \end{theor}
+
+    Usando la celularidad y el carácter, podemos obtener una cota en la cardinalidad de un espacio Hausdorff.
+
+    \begin{theor}
+        Si $X$ es un espacoi Hausdorff, entonces $\abs{X}\leq 2^{ c(X)\chi(X)}$. En particular, todo espacio primero numerable, con la propiedad de Souslin, tiene una cardinalidad que no supera a $\mathfrak{c}$.
+    \end{theor}
+
+    En cuanto a los espacios que tienen propiedades relacionadas con la compacidad, contamos con los siguientes eventos,
+
+    Un resultado muy importante para espacios localmente compactos es el teorema de Cech-Popsil relativo a la cardilanidad de espacios compactos.
+
+    \begin{theor}[\textbf{Teorema de Cech-Popsil}]
+        Sea $X$ un espacio localmente compacto tal que $\chi(x,X)\geq\kappa\geq\aleph_0$ para todo $x\in X$; entonces, $\abs{X}\geq 2^{\kappa}$.
+    \end{theor}
+
+    Con este resultado y uno anterior se obtiene el teorema siguiente:
+    
+    \begin{cor}
+        Todo espacio compacto, primero numerable es numerable o tiene cardinalidad $\mathfrak{c}$.
+    \end{cor}
+
+    En espacios localmnte compactos se alcanza la igualdad entre el peso y el peso de red.
+
+    \begin{theor}
+        Sea $X$ un espacio localmente compacto; entonces, $nw(X)=w(X)$.
+    \end{theor}
+
+    Al relacionar el número de Lindelöf y el peso de red, obtenemos lo siguiente:
+
+    \begin{theor}
+        Para todo espacio $X$ se cumple que $l(X)\leq nw(X)$. Además, $l(Y)\leq nw(X)$ para todo subespacio $Y\subseteq X$.
+    \end{theor}
+
+    Con respecto a espacios producto, se tiene el siguiente resultado fundamental:
+
+    \begin{theor}[\textbf{Teorema de Hewitt-Marczewski-Pondiczery}]
+        Si $\kappa$ es un cardinal infinito, $d(X_i)\leq\kappa$ para todo $i\in I$ y $\abs{I}\leq 2^{\kappa}$, entonces $d\left(\prod_{ i\in I}X_i\right)\leq\kappa$.
+    \end{theor}
+    
+    Como corolario obtenemos
+
+    \begin{cor}
+        El producto de a lo sumo $\mathfrak{c}$ espacios separables es separable.
+    \end{cor}
+
+    La celularidad no necesariamente se preserva en prodcutos. Sin embargo, si la densidad de los factores está acotada, la situación mejora notablemente.
+
+    \begin{theor}
+        Si $d(X)\leq\kappa\geq\aleph_0$ para toda $i\in I$, entonces $c\left(\prod_{ i\in I}X_i \right)\leq\kappa$.
+    \end{theor}
+
+    Respecto a espacios métricos se tiene el siguiente resultado:
+
+    \begin{theor}
+        Para todo espacio métrizable $X$ y cualquier cardinal $\kappa$, las siguientes afirmaciones son equivalentes:
+        \begin{enumerate}
+            \item $w(X)\leq\kappa$.
+            \item $nw(X)\leq\kappa$.
+            \item $d(X)\leq\kappa$.
+            \item $l(X)\leq\kappa$.
+            \item $c(X)\leq\kappa$.
+        \end{enumerate}
+    \end{theor}
 
 \end{document}
