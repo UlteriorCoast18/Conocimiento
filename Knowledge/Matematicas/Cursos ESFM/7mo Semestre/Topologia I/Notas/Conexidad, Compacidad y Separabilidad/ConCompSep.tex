@@ -556,7 +556,110 @@
     \end{lema}
 
     \begin{proof}
-        $\Rightarrow):$ ...
+        $\Rightarrow):$ Para probar el resultado, debemos hacer varias cosas antes:
+        \begin{enumerate}
+            \item Sea
+            \begin{equation*}
+                P=\mathbb{Q}\cap[0,1]
+            \end{equation*}
+            Nuestro objetivo es que para cada $p\in P$ le asignemos un conjunto abierto $U_p\subseteq X$ tal que si $p,q\in P$ son tales que
+            \begin{equation*}
+                p<q\Rightarrow \Cls{U}_p \subseteq U_q
+            \end{equation*}
+            de esta forma, la familia $\left\{U_p\Big|p\in P \right\}$ estará simplemente ordenada de la misma forma en la que sus subíndices lo están en $P$. Como el conjunto $P$ es numerable, podemos usar inducción para definir cada uno de los $U_p$. Ordenemos los elementos de $P$ en una sucesión de tal forma que los números $0$ y $1$ son los primeros de la sucesión (denotada de ahora en adelante por $\left\{p_n \right\}_{n=1}^\infty$).
+
+            Definiremos ahora los conjuntos $U_p$ como sigue: defina
+            \begin{equation*}
+                U_1=X-B
+            \end{equation*}
+            Como $A$ es un cerrado contenido en $U_1$, por ser $(X,\tau)$ $T_4$, se tiene que existe un conjunto abierto $U_0\subseteq X$ tal que
+            \begin{equation*}
+                A\subseteq U_0\quad\textup{y}\quad\Cls{U}_0\subseteq U_1
+            \end{equation*}
+            En general, sea $P_n$ el conjunto de los primeros $n$ números racionales en la sucesión de los elementos de $P$. Suponga que $U_p$ está definido para cada $p\in P_n$ y, satisface la condición:
+            \begin{equation*}
+                p,q\in P_n\textup{ tal que }p<q\Rightarrow \Cls{U}_p\subseteq U_q
+            \end{equation*}
+            Sea $r$ el siguiente número racional en la sucesión $\left\{p_n \right\}_{n=1}^\infty$, esto es $r=p_{ n+1}$. Definiremos $U_r$.
+
+            Considere el conjunto
+            \begin{equation*}
+                P_{ n+1}=P_n\cup\left\{r \right\}
+            \end{equation*}
+            Este es un subconjunto finito del intervalo $[0,1]$ y, tiene un orden simple derivado del orden simple $<$ de $[0,1]$.
+
+            En un conjunto finito simplemente ordenado, todo elemento tiene un predecesor inmediato y un sucesor inmediato. El número $0$ es el elemento más pequeño y, $1$ es el elemento más grande de $P_{n+1}$ y, $r$ no es $0$ o $1$. Por tanto, $r$ tiene un sucesor y un predecesor inmediato, denotados respectivamente por $q$ y $p$. Los conjuntos $U_p$ y $U_q$ están definidos y son tlaes que
+            \begin{equation*}
+                \Cls{U}_p\subseteq U_q
+            \end{equation*}
+            por hipótesis de inducción. Como $(X,\tau)$ es $T_4$, entonces existe un conjunto abierto $U_r\subseteq X$ tal que
+            \begin{equation*}
+                \Cls{U}_p\subseteq U_r\quad\textup{y}\quad\Cls{U}_r\subseteq U_q
+            \end{equation*}
+            Es claro (pues los conjuntos $U_p$ con $p\in P_n$ están ordenados por la contención), que
+            \begin{equation*}
+                p,q\in P_{ n+1}\textup{ tal que }p<q\Rightarrow \Cls{U}_p\subseteq U_q
+            \end{equation*}
+            Usando inducción, tenemos definidos los conjuntos $U_p$, para todo $p\in P$.
+
+            \item Ahora que se tiene definido $U_p$ para todo número en $\mathbb{Q}\cap[0,1]$, extenderemos esta definición a todo $\mathbb{Q}$, haciendo
+            \begin{equation*}
+                \begin{split}
+                    U_p&=\emptyset,\quad p<0\\
+                    U_p&=X,\quad 1<p\\
+                \end{split}
+            \end{equation*}
+            para todo $p\in\mathbb{Q}$. Se sigue cumpliendo que para todo $p,q\in\mathbb{Q}$
+            \begin{equation*}
+                p<q\Rightarrow \Cls{U}_p\subseteq U_q
+            \end{equation*}
+            \item Dado un punto $p\in X$, definamos el conjunto $\mathbb{Q}(x)$ como el conjunto de todos los números racionales $p\in\mathbb{Q}$ tales que los correspondientes $U_p$ contengan a $x$, es decir:
+            \begin{equation*}
+                \mathbb{Q}(x)=\left\{p\in\mathbb{Q}\Big|x\in U_p \right\}
+            \end{equation*}
+            Este conjunto no contiene a ningún número menor que $0$ ya que $x\notin U_p$ para todo $p\in\mathbb{Q}^-$, además, contiene a todo número mayor que $1$, pues $x\in U_p$ para todo $p\in\mathbb{Q}$, $p>1$. Por tanto, $\mathbb{Q}(x)$ es acotado inferiormente y no vacío, luego tiene ínfimo en el intervalo $[0,1]$. Defina
+            \begin{equation*}
+                f(x)=\inf\mathbb{Q}(x)=\inf\left\{p\in\mathbb{Q} \Big| x\in U_p \right\}
+            \end{equation*}
+            \item Afirmamos que $f$ es la función deseada. Si $x\in A$, entonces $x\in U_p$ para todo $p\in\mathbb{Q}_{\geq0}$, luego
+            \begin{equation*}
+                f(x)=\inf\mathbb{Q}(x)=0
+            \end{equation*}
+            Similarmente, si $x\in B$, entonces $x\notin U_p$ para todo $p\in\mathbb{Q}$ con $p\leq 1$. Luego, $\mathbb{Q}(x)$ consiste de todos los números racionales mayores a $1$ y, por ende, $f(x)=1$.
+
+            Probaremos que $f$ es continua. Para ello, probaremos que se cumplen dos cosas:
+            \begin{enumerate}
+                \item $x\in\Cls{U}_r$ implica que $f(x)\leq r$.
+                \item $x\notin U_r$ implica que $f(x)\geq r$.
+            \end{enumerate}
+            Para probar (1), notemos que si $x\in\Cls{U}_r$, entonces $x\in U_s$, para todo $s>r$. Entonces, $\mathbb{Q}(x)$ contiene a todos los números racionales mayores que $r$, así que, por definición tenemos que
+            \begin{equation*}
+                f(x)=\inf\mathbb{Q}(x)\leq r
+            \end{equation*}
+
+            Para probar (2), notemos que si $x\notin U_r$, entonces $x$ no está en $U_s$ para todo $s<r$. Por tanto, $\mathbb{Q}(x)$ no contiene números racionales menores que $r$, por lo cual
+            \begin{equation*}
+                f(x)=\inf\mathbb{Q}(x)\geq r
+            \end{equation*}
+            Ahora probaremos la continuidad de $f$. Sea $x_0\in X$ y un intervalo abierto $(c,d)$ en $\mathbb{R}$ tal que
+            \begin{equation*}
+                c<f(x_0)<d
+            \end{equation*}
+            podemos encontrar números racionales $p,q\in\mathbb{Q}$ tales que
+            \begin{equation*}
+                c<p<f(x_0)<q<d
+            \end{equation*}
+            Afirmamos que el conjunto
+            \begin{equation*}
+                U=U_q-\Cls{U}_p
+            \end{equation*}
+            es un abierto que cumple que $f(U)\subseteq(c,d)$ y es tal que $x_0\in U$. En efecto, notemos que $x_0\in U_q$ pues $f(x_0)<q$ implica por (2) que $f(x_0)\in U_q$ y, como $p<f(x_0)$, implica por (1) que $f(x_0)\notin \Cls{U}_p$. Por tanto, $f(x_0)\in U$.
+
+            Sea $x\in U$, entonces $x\in U_q\subseteq \Cls{U}_q$, por lo cual de (1), $f(x)\leq q$ y, $x\notin \Cls{U}_p$ implica que $x\notin\Cls{U}_p$ por lo cual de (2) se sigue que $p\leq f(x)$. Por tanto, $f(x)\in[p,q]\subseteq (c,d)$.
+
+            Luego, $f(U)\subseteq(c,d)$. Así, $f$ es continua en $x_0\in X$. Como el punto fue arbitrario, se sigue que $f$ es continua en $X$.
+        \end{enumerate}
+        Por los 4 incisos anteriores, se sigue el resultado.
 
         $\Leftarrow):$ Sean $A,B\subseteq X$ cerrados disjuntos. Por hipótesis existe una función continua $\cf{f}{(X,\tau)}{([0,1],\tau_u)}$ tal que $f(A)=1$ y $f(B)=0$. Los conjuntos $U=f^{-1}((r,1])$ $V=f^{-1}([0,r))$, donde $r\in(0,1)$, son dos abiertos (ya que $f$ es continua y $[0,r),(r,1],\in\tau_u$) tales que:
         \begin{equation*}
