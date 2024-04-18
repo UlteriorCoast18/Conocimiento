@@ -275,9 +275,12 @@ rápida de consulta para la solución de los problemas.
             \begin{split}
                 \abs{\abs{x^3}-1}&<7\cdot\frac{\varepsilon}{7}\\
                 &=\varepsilon\\
-                \Rightarrow \abs{\abs{x^3}-1}<\varepsilon \\
-                \therefore \abs{x-(-1)}<\delta\Rightarrow \abs{\abs{x^3}-1}<\varepsilon \\
+                \Rightarrow \abs{\abs{x^3}-1}&<\varepsilon \\
             \end{split}
+        \end{equation*}
+        es decir:
+        \begin{equation*}
+            \therefore \forall x\in\mathbb{R}\textup{ tal que }x\neq-1\textup{ con } \abs{x-(-1)}<\delta\Rightarrow \abs{\abs{x^3}-1}<\varepsilon
         \end{equation*}
         Luego, de la definición de límite por $\varepsilon-\delta$ se sigue que
         \begin{equation*}
@@ -296,12 +299,95 @@ rápida de consulta para la solución de los problemas.
         \item $\lim_{x\rightarrow0}\frac{1}{x^2}\left(\frac{2}{x-5}-\frac{2}{x^2+x-5} \right)$.
     \end{enumerate}
 
-    \item Suponga que no existen los límites $\lim{x\rightarrow a}f(x)$ y $\lim{x\rightarrow a}g(x)$. ¿Pueden existir $\lim{x\rightarrow a}(f(x)+g(x))$ ó $\lim{x\rightarrow a}f(x)g(x)$? \textbf{Justifique} formalmente sus respuestas o dando contraejemplos.
+    \begin{proof}
+        De (i): 
+        De (ii): 
+        De (iii): 
+        De (vi): 
+        De (v):  
+    \end{proof}
+
+    \item Suponga que no existen los límites $\lim_{x\rightarrow a}f(x)$ y $\lim_{x\rightarrow a}g(x)$. ¿Pueden existir $\lim_{x\rightarrow a}(f(x)+g(x))$ o $\lim_{x\rightarrow a}f(x)g(x)$? \textbf{Justifique} formalmente sus respuestas o dando contraejemplos.
+    \begin{sol}
+        \begin{enumerate}
+            \item Analicemos primero el límite de la suma. Considere las funciones $f(x)=\frac{1}{x}$ y $g(x)=-\frac{1}{x}$, para todo $x\in\mathbb{R}\backslash\left\{0 \right\}$. Se tiene que los límites
+            \begin{equation*}
+                \lim_{x\rightarrow 0}f(x)\textup{ y }\lim_{x\rightarrow 0}g(x)
+            \end{equation*}
+            no existen, sin embargo
+            \begin{equation*}
+                f(x)+g(x)=\frac{1}{x}-\frac{1}{x}=0\quad\forall x\in\mathbb{R}\backslash\left\{0 \right\}
+            \end{equation*}
+            por tanto,
+            \begin{equation*}
+                \begin{split}
+                    \lim_{x\rightarrow0 }(f(x)+g(x))&=\lim_{x\rightarrow0 }0\\
+                    &=0\\
+                \end{split}
+            \end{equation*}
+            es decir, el límite de la suma si existe.
+
+            \item Analicemos ahora el límite del producto. Considere las funciones
+            \begin{equation*}
+                f(x)=g(x)=\left\{
+                    \begin{array}{lcr}
+                        1 & \textup{ si } & x\in\mathbb{Q}\\
+                        -1 & \textup{ si } & x\in\mathbb{R}\backslash\mathbb{Q} \\
+                    \end{array}
+                \right.,\quad\forall x\in\mathbb{R}
+            \end{equation*}
+            se tiene que no existen los límites de $f$ y $g$ cuando $x\rightarrow 0$, sin embargo:
+            \begin{equation*}
+                f(x)g(x)=1,\quad\forall x\in\mathbb{R}
+            \end{equation*}
+            por lo cual, $\lim_{x\rightarrow 0}f(x)g(x)=1$. Es decir, el límite del producto si existe.
+        \end{enumerate}
+    \end{sol}
     \item \begin{enumerate}
-        \item \textbf{Demuestre} que si exiten los límites $\lim{x\rightarrow a}(f(x)+g(x))$ y $\lim{x\rightarrow a}f(x)$, entonces también existe $\lim{x\rightarrow a}g(x)$.
-        \item \textbf{Pruebe} que si existen los límites $\lim{x\rightarrow a}f(x)g(x)$ y, además, $\lim{x\rightarrow a}f(x)\neq 0$, entonces también existe $\lim{x\rightarrow a}g(x)$.
+        \item \textbf{Demuestre} que si exiten los límites $\lim_{x\rightarrow a}(f(x)+g(x))$ y $\lim_{x\rightarrow a}f(x)$, entonces también existe $\lim_{x\rightarrow a}g(x)$.
+        \item \textbf{Pruebe} que si existen los límites $\lim_{x\rightarrow a}f(x)g(x)$ y, además, $\lim_{x\rightarrow a}f(x)\neq 0$, entonces también existe $\lim_{x\rightarrow a}g(x)$.
     \end{enumerate}
-    \item Suponga que exista el límite $\lim{x\rightarrow a}f(x)g(x)$ y, además, $\lim{x\rightarrow a}f(x)=0$. ¿Puede existir $\lim{x\rightarrow a}g(x)$? \textbf{Justifique} formalmente sus respuestas o dando contraejemplos.
+
+    \begin{proof}
+        De (i): Supongamos que $\cf{f,g}{S\subseteq\mathbb{R}}{\mathbb{R}}$ y, sea $\varepsilon>0$. Como existen los límites
+        \begin{equation*}
+            \lim_{x\rightarrow a}(f(x)+g(x))=l_1\textup{ y }\lim_{x\rightarrow a}f(x)=l_2
+        \end{equation*}
+        entonces para $\frac{\varepsilon}{2}>0$ existen $\delta_1,\delta_2>0$ tales que
+        \begin{equation*}
+            \begin{split}
+                \forall x\in S\backslash\left\{a \right\} \textup{tal que }\abs{x-a}<\delta_1&\Rightarrow \abs{f(x)+g(x)-l_1}<\frac{\varepsilon}{2}\\
+                \forall x\in S\backslash\left\{a \right\} \textup{tal que }\abs{x-a}<\delta_1&\Rightarrow \abs{f(x)-l_2}<\frac{\varepsilon}{2}\\
+            \end{split}
+        \end{equation*}
+        sea $l=l_1-l_2\in\mathbb{R}$. Tomemos $\delta=\min\left\{\delta_1,\delta_2 \right\}>0$. Si $x\in S\backslash\left\{a \right\}$ es tal que
+        \begin{equation*}
+            \abs{x-a}<\delta\Rightarrow \abs{x-a}<\delta_1\textup{ y }\abs{x-a}<\delta_2
+        \end{equation*}
+        por lo anterior se sigue que
+        \begin{equation*}
+            \abs{f(x)+g(x)-l_1}<\frac{\varepsilon}{2}\textup{ y }\abs{f(x)-l_2}<\frac{\varepsilon}{2}
+        \end{equation*}
+        luego
+        \begin{equation*}
+            \begin{split}
+                \abs{g(x)-l}&=\abs{g(x)+f(x)-f(x)-l_1+l_2}\\
+                &=\abs{f(x)+g(x)-l_1-(f(x)-l_2)}\\
+                &\leq\abs{f(x)+g(x)-l_1}+\abs{f(x)-l_2}\\
+                &<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}\\
+                &=\varepsilon\\
+            \end{split}
+        \end{equation*}
+        por tanto
+        \begin{equation*}
+            \forall x\in S\backslash\left\{a \right\} \textup{tal que }\abs{x-a}<\delta\Rightarrow \abs{g(x)-l}<\varepsilon
+        \end{equation*}
+        de la definición de límite se sigue que $\lim_{x \rightarrow a}g(x)=l=l_1-l_2$.
+
+        De (ii): 
+    \end{proof}
+
+    \item Suponga que exista el límite $\lim_{x\rightarrow a}f(x)g(x)$ y, además, $\lim_{x\rightarrow a}f(x)=0$. ¿Puede existir $\lim_{x\rightarrow a}g(x)$? \textbf{Justifique} formalmente sus respuestas o dando contraejemplos.
     \item \begin{enumerate}
         \item \textbf{Pruebe} que si $\abs{x-2}\leq1$, entonces $\abs{x^2+3x-1}\geq1$.
         \item Sea $\delta>0$. Use el inciso anterior para \textbf{probar} que si $x=\min\left\{5/2,2+\delta/2 \right\}$, entonces $\abs{x^2+3x-1}\geq1$. Aplique la definición de límite para \textbf{concluir} que $\lim_{x\rightarrow2}x^2+3x\neq1$.
