@@ -127,8 +127,6 @@
     \maketitle
 
     \tableofcontents %Con este comando se genera el índice general del libro%
-
-    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
     
     \setcounter{chapter}{2}
 
@@ -140,6 +138,7 @@
         Se llama \textbf{serie de Fourier trigonométrica} a una serie de funciones de $\mathbb{R}$ en $\mathbb{C}$ de la forma
         \begin{equation}
             \sum_{k\in\mathbb{Z}}c_k e^{ ikx}
+            \label{eq:fourier_1}
         \end{equation}
         donde $c_k\in\mathbb{C}$ para todo $k\in\mathbb{Z}$ son coeficientes constantes. Por definición, las \textbf{sumas parciales} de la serie son:
         \begin{equation*}
@@ -156,31 +155,37 @@
         Usando la identidad $e^{ ikx}=\cos kx+i\sen kx$, podemos reescribir $s_m$ como
         \begin{equation}
             s_m(x)=c_0+\sum_{ k=1}^m(c_k+c_{ -k})\cos kx+i\sum_{ k=1}^m(c_k-c_{ -k})\sen kx,\quad\forall m\in\mathbb{N}^*
+            \label{eq:fourier_2}
         \end{equation}
         definamos
-        \begin{equation*}
+        \begin{equation}
             a_k=c_k+c_{ -k}\quad\textup{y}\quad b_k=c_k-c_{ -k},\quad\forall k\in\mathbb{Z}
-        \end{equation*}
-        es claro que
+            \label{eq:coef_fourier_1}
+        \end{equation}
+        de la definición es claro que
         \begin{equation*}
             a_{ -k}=a_k\quad\textup{y}\quad b_{-k}=-b_k,\quad\forall k\in\mathbb{Z}
         \end{equation*}
-        conociendo los coeficientes $a_k$ y $b_k$ se recobran los $c_k$ por las fórmulas
-        \begin{equation*}
+        conociendo los coeficientes $a_k$ y $b_k$ se recobran los $c_k$ mediante las fórmulas
+        \begin{equation}
             c_k=\frac{a_k-ib_k}{2},\quad\forall k\in\mathbb{Z}\backslash\left\{0 \right\}
-        \end{equation*}
-        y, $c_0=\frac{a_0}{2}$. En términos de los $a_k$ y $b_k$, las funciones (2) y (1) pueden ser reescritas como sigue:
+            \label{eq:coef_fourier_2}
+        \end{equation}
+        y, $c_0=\frac{a_0}{2}$. En términos de los $a_k$ y $b_k$, las sumas \ref{eq:fourier_2} y \ref{eq:fourier_1} pueden ser reescritas como sigue:
         \begin{equation}
             s_m(x)=\frac{a_0}{2}+\sum_{ k=1}^m a_k\cos kx+\sum_{ k=1}^m b_k\sin kx,\quad\forall m\in\mathbb{N}^*
+            \label{eq:fourier_3}
         \end{equation}
         y,
         \begin{equation}
             \sum_{k\in\mathbb{Z}}c_k e^{ ikx}=\frac{a_0}{2}+\sum_{ k=1}^\infty a_k\cos kx+\sum_{ k=1}^\infty b_k\sin kx
+            \label{eq:fourier_4}
         \end{equation}
+        respectivamente.
     \end{mydef}
 
     \begin{mydef}
-        Se dice que la serie trigonométrica es \textbf{real} si $s_m(x)\in\mathbb{R}$ para todo $m\in\mathbb{N}^*$ y para toda $x\in\mathbb{R}$. Se sigue de (3.2) que la serie es real si y sólo si $a_k,b_k\in\mathbb{R}$, para todo $k\in\mathbb{N}^*$.
+        Se dice que la serie trigonométrica es \textbf{real} si $s_m(x)\in\mathbb{R}$ para todo $m\in\mathbb{N}^*$ y para toda $x\in\mathbb{R}$. Se sigue de \ref{eq:fourier_2} que la serie es real si y sólo si $a_k,b_k\in\mathbb{R}$, para todo $k\in\mathbb{N}^*$.
         
         Esta condición es equivalente a que
         \begin{equation*}
@@ -188,7 +193,7 @@
         \end{equation*}
     \end{mydef}
 
-    ¿Qué relación hay entre $f$ y los coeficientes $c_k$?
+    Es válido preguntarnos ahora: ¿Qué relación hay entre $f$ y los coeficientes $c_k$?
     
     \begin{propo}
         Considere una serie trigonométrica $\sum_{k\in\mathbb{Z}}c_k e^{ ikx}$. Suponga que esta serie converge uniformemente en $\mathbb{R}$ a alguna función $f$. Entonces, $f\in\mathcal{C}^{2\pi}$ y
@@ -198,17 +203,18 @@
     \end{propo}
 
     \begin{proof}
-        Se supone que $f(x)=\sum_{k\in\mathbb{Z}}c_k e^{ ikx}$ uniformemente en $\mathbb{R}$. Como el límite uniforme de una sucesión de funciones continuas es continua, se tiene entonces que $f\in\mathcal{C}^{2\pi}$. Para un $n\in\mathbb{Z}$
+        Se supone que $f(x)=\sum_{k\in\mathbb{Z}}c_k e^{ ikx}$ uniformemente en $\mathbb{R}$. Como el límite uniforme de una sucesión de funciones continuas es continua, se tiene entonces que $f\in\mathcal{C}^{2\pi}$. Para un $n\in\mathbb{Z}$:
         \begin{equation}
             \begin{split}
                 f(x)e^{ -inx}=\sum_{k\in\mathbb{Z}}c_k e^{ i(k-n)x}\textup{ uniformemente en }\mathbb{R}
             \end{split}
+            \label{eq:p_3_1_1}
         \end{equation}
         pues,
         \begin{equation*}
             \abs{f(x)e^{ -inx}-s_m(x)e^{-inx}}=\abs{f(x)-s_m(x)},\quad\forall m\in\mathbb{N}^*
         \end{equation*}
-        Se puede pues integrar término por término (3.5) en el compacto $[-\pi,\pi]$. Veamos que
+        Se puede pues integrar término por término \ref{eq:p_3_1_1} en el compacto $[-\pi,\pi]$. Antes veamos que
         \begin{equation*}
             \begin{split}
                 \int_{ -\pi}^{\pi}e^{ i(n-k)x}dx=\left\{
@@ -233,9 +239,10 @@
 
     \begin{mydef}
         Para todo $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$ se define
-        \begin{equation*}
+        \begin{equation}
             c_k=\frac{1}{2\pi}\int_{ -\pi}^\pi f(x)e^{ -ikx}dx,\quad\forall k\in\mathbb{Z}
-        \end{equation*}
+            \label{eq:coef_fourier_3}
+        \end{equation}
         en particular, $c_0=\frac{1}{2\pi}\int_{ -\pi}^{\pi}f(x)dx$. Los coeficientes $c_k$ se llaman \textbf{los coeficientes de Fourier trigonométricos de $f$} y, la serie
         \begin{equation*}
             \sum_{ k\in\mathbb{Z}}c_k e^{ ikx}
@@ -247,6 +254,7 @@
         Los correspondientes coeficientes $a_k$ y $b_k$ son los siguientes:
         \begin{equation*}
             a_0=\frac{1}{\pi}\int_{-\pi}^\pi f(x)dx
+            \label{eq:coef_fourier_4}
         \end{equation*}
         también,
         \begin{equation*}
@@ -265,7 +273,7 @@
         \begin{equation*}
             b_k=\frac{2}{\pi}\int_{0}^{\pi}f(x)\sen kx,\quad\forall k\in\mathbb{N}
         \end{equation*}
-        Si $f$ es una funció npar en $]-\pi,\pi[$ se invierte el resultado, es decir
+        Si $f$ es una función par en $]-\pi,\pi[$ se invierte el resultado, es decir
         \begin{equation*}
             a_k=\frac{2}{\pi}\int_{0}^{\pi}f(x)\cos kx,\quad\forall k\in\mathbb{N}^*
         \end{equation*}
