@@ -116,6 +116,11 @@
 \newcommand\abs[1]{\ensuremath{\big|#1\big|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\norm[1]{\ensuremath{\|#1\|}}
+\newcommand\ora[1]{\ensuremath{\vec{#1}}}
+\newcommand\pint[2]{\ensuremath{\left(#1\big| #2\right)}}
+\newcommand\conj[1]{\ensuremath{\overline{#1}}}
+\newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -283,6 +288,201 @@
         \end{equation*}
     \end{obs}
 
+    \begin{theor}
+        Las aplicaciones $f\mapsto \left\{c_k \right\}_{ k\in\mathbb{Z}}$ y, $f\mapsto\left\{a_0,a_1,b_1,... \right\}$ son aplicaciones lineales inyectivas de $L_1^{2\pi}$ en el espacio de sucesiones complejas y reales, respectivamente. En particular, si $f,g\in\mathcal{L}_1^{2\pi}$ tienen los mismos coeficientes de Fourier trigonométricos, entonces $f=g$ c.t.p. en $\mathbb{R}$.
+    \end{theor}
 
+    \begin{proof}
+        Por la forma en que se definen los coeficientes de Fourier de una función integrable, es claro que dichas aplicaciones son lineales.
 
+        Resta probar que su kernel es $\left\{0\right\}$. Sea $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$ tal que
+        \begin{equation*}
+            c_n=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{ inx}dx=0,\quad\forall n\in\mathbb{Z}
+        \end{equation*}
+        dado que el sistema trigonométrico $\tau_{\mathbb{C}}$ es total en $\mathcal{L}_1^{2\pi}(\mathbb{C})$, necesariamente $f=0$ c.t.p. en $\mathbb{R}$.
+
+        Similarmente se prueba la otra afirmación.
+    \end{proof}
+
+    \begin{propo}
+        Sean $f,g\in\mathcal{L}_1^{2\pi}(\mathbb{C})$ y $\left\{c_k \right\}_{k\in\mathbb{Z}}$ y $\left\{d_k \right\}_{ k\in\mathbb{Z}}$ los coeficientes de Fourier trigonométricos de $f$ y $g$, respectivamente. Entonces, los coeficientes de Fourier $\left\{\gamma_k \right\}$ de $f*g$ son $\left\{2\pi c_kd_k \right\}_{ k\in\mathbb{Z}}$.
+    \end{propo}
+
+    \begin{proof}
+        Para todo $k\in\mathbb{Z}$ fijo se tiene lo siguiente:
+        \begin{equation*}
+            \begin{split}
+                \gamma_k&=\frac{1}{2\pi}\int_{-\pi}^\pi f*g(x)e^{ -ikx}dx\\
+                &=\frac{1}{2\pi}\int_{-\pi}^\pi e^{ -ikx}dx\int_{-\pi}^\pi f(y)g(x-y)dy\\
+            \end{split}
+        \end{equation*}
+        como la función $(x,y)\mapsto e^{ -ikx}f(y)g(x-y)$ es integrable en $]-\pi,\pi[\times]-\pi,\pi[$ (pues la función es medible y su módulo es el mismo que el de $(x,y)\mapsto f(y)g(x-y)$, la cual es integrable por un teorema de convolución), se puede invertir del orden de integración:
+        \begin{equation*}
+            \begin{split}
+                \gamma_k&=\frac{1}{2\pi}\int_{-\pi}^\pi f(y)dy\int_{-\pi}^\pi g(x-y)e^{ -ikx}dx\\
+                &=\frac{1}{2\pi}\int_{-\pi}^\pi f(y)dy\int_{-\pi-y}^{\pi-y} g(z)e^{ -ik(z+y)}dz\\
+                &=\frac{1}{2\pi}\int_{-\pi}^\pi f(y)e^{ -iky}dy\int_{-\pi-y}^{\pi-y} g(z)e^{ -ikz}dz\\
+                &=\frac{1}{2\pi}\int_{-\pi}^\pi f(y)e^{ -iky}dy\int_{-\pi}^{\pi} g(z)e^{ -ikz}dz\\
+                &=c_k\cdot\left(2\pi d_k \right)\\
+                &=2\pi c_kd_k\\
+            \end{split}
+        \end{equation*}
+        pues, las funciones son periódicas. Se tieene entonces con lo anterior el resultado para todo $k\in\mathbb{Z}$.
+    \end{proof}
+
+    \section{Series de Fourier de funciones en $\mathcal{L}_2^{2\pi}$}
+
+    Recuerde que las funciones
+    \begin{equation*}
+        \varphi_k(x)=\frac{1}{\sqrt{2\pi}}e^{ ikx},\quad\forall k\in\mathbb{Z}
+    \end{equation*}
+    constituyen un sistema ortonormal maximal en el espacio Hilbertiano $L_2^{2\pi}(\mathbb{C})$. En el sentido \"Hilbertiano\", los coeficientes de Fourier de algún vector $f\in\mathcal{L}_2^{2\pi}(\mathbb{C})$ con respecto a dicho sistema ortonormal son los siguientes:
+    \begin{equation*}
+        \begin{split}
+            \hat{f}(x)&=\pint{f}{\varphi_k}\\
+            &=\frac{1}{\sqrt{2\pi}}\int_{-\pi}^{\pi}f(x)e^{ -ikx}dx\\
+            &=\sqrt{2\pi}c_k\\
+        \end{split}
+    \end{equation*}
+    luego, 
+    \begin{equation*}
+        \begin{split}
+            \hat{f}(x)\varphi_k(x)&=\sqrt{2\pi}c_k\frac{1}{\sqrt{2\pi}}e^{ ikx}\\
+            &=c_ke^{ ikx},\quad\forall k\in\mathbb{Z}\\
+        \end{split}
+    \end{equation*}
+    La serie de Fourier hilbertiana de $f$ sería:
+    \begin{equation*}
+        \sum_{ k\in\mathbb{Z}}\hat{f}(x)\varphi_k(x)=\sum_{k\in\mathbb{Z}}c_ke^{ ikx}
+    \end{equation*}
+    que corresponde a al serie de Fourier trigonométrica de $f$. También, las funciones
+    \begin{equation*}
+        \frac{1}{\sqrt{2\pi}},\quad \eta_k(x)=\frac{1}{\sqrt{\pi}}\cos kx,\quad\theta_k(x)=\frac{1}{\sqrt{\pi}}\sin kx,\quad \forall k\in\mathbb{Z}
+    \end{equation*}
+    forman otro sistema O.N. maximal en $L_2^{2\pi}(\mathbb{K})$. Los correspondientes coeficientes de Fourier de $f$ con respecto a este sistema O.N. maximal serían:
+    \begin{equation*}
+        \left\{
+            \begin{array}{rl}
+                \pint{f}{\frac{1}{\sqrt{2\pi}}}&=\frac{1}{\sqrt{\pi}}\int_{-\pi}^{\pi}f(x)dx\\
+                \pint{f}{\eta_k}&=\frac{1}{\sqrt{\pi}}\int_{-\pi}^{\pi}f(x)\cos kxdx \\
+                \pint{f}{\theta_k}&=\frac{1}{\sqrt{\pi}}\int_{-\pi}^{\pi}f(x)\sen kxdx \\
+            \end{array}
+        \right.
+    \end{equation*}
+    La serie de Fourier hilbertiana de $f$ será:
+    \begin{equation*}
+        \begin{split}
+            \pint{f}{\frac{1}{\sqrt{2\pi}}}+\sum_{ k=1}^\infty \pint{f}{\eta_k}\eta_k+\sum_{ k=1}^\infty \pint{f}{\theta_k}\theta_k=\frac{a_0}{2}+\sum_{ k=1}^\infty\left[a_k\cos kx+b_k\sin kx \right]
+        \end{split}
+    \end{equation*}
+    Recuerde también que por el teorema de Riesz-Fischer que si $\left\{\vec{u}_\alpha \right\}_{\alpha\in\Omega}$ es un sistema O.N. maximal en un espacio hilbertiano $H$, entonces la aplicación $\vec{x}\mapsto\left\{\hat{x}(\alpha) \right\}$ es una isometría lineal de $H$ en $l_2(\Omega)$. La isometría inversa es:
+    \begin{equation*}
+        \varphi\mapsto \sum_{\alpha\in\Omega}\varphi(\alpha)\vec{u}_\alpha
+    \end{equation*}
+
+    Aplicacndo este resultado al primer caso se tiene que
+
+    \begin{theor}
+        Las aplicaciones
+        \begin{equation*}
+            f\mapsto \left\{\sqrt{2\pi}c_k \right\}_{k\in\mathbb{Z}}\quad\textup{y}\quad f\mapsto\left\{\sqrt{2\pi}\frac{a_0}{2},\sqrt{\pi}a_1,\sqrt{\pi}b_1 \right\}
+        \end{equation*}
+        son isometrías lineales de $L_2^{2\pi}$ sobre $l_2(\mathbb{Z})$ o $l_2(\mathbb{N})$, respectivamente. Se tienen las identidades siguientes de Parseval:
+        \begin{equation*}
+            \begin{split}
+                \sum_{ k\in\mathbb{Z}}\abs{c_k}^2&=\frac{1}{2\pi}\int_{-\pi}^{\pi}\abs{f(x)}^2dx\\
+                \frac{\abs{a_0}^2}{2}+\sum_{ k\in\mathbb{Z}}\left[\abs{a_k}^2+\abs{b_k}^2 \right]&=\frac{1}{\pi}\int_{-\pi}^{\pi}\abs{f(x)}^2dx\\
+            \end{split}
+        \end{equation*}
+        Más generalmente, si $f,g\in\mathcal{L}_2^{2\pi}(\mathbb{K})$ con coeficientes de Fourier trigonométricos $\left\{c_k \right\}_{k\in\mathbb{Z}}$ y $\left\{d_k \right\}_{k\in\mathbb{Z}}$, entonces
+        \begin{equation*}
+            \sum_{ k\in\mathbb{Z}}c_k\overline{d_k}=\int_{-\pi}^{\pi}f(x)\overline{g(x)}dx
+        \end{equation*}
+        para los correspondientes coeficientes $\left\{a_k,b_k \right\}$ y  $\left\{\alpha_k,\beta_k \right\}$ se tiene
+        \begin{equation*}
+            \frac{a_0\overline{\alpha_k}}{2}+\sum_{ k\in\mathbb{Z}}\left[a_k\overline{\alpha_k}+b_k\overline{\beta_k} \right]=\int_{-\pi}^{\pi}f(x)\overline{g(x)}dx
+        \end{equation*}
+        Además, $f$ es igual al promedio cuadrádtico de su serie de Fourier:
+        \begin{equation*}
+            \lim_{ m\rightarrow\infty}\N{2}{f-s_m}=0
+        \end{equation*}
+    \end{theor}
+    
+    \begin{proof}
+        Es inmediata de las observaciones hechas anteriormente y del teorema de Riesz-Fischer, junto con las identidades de Parserval.
+    \end{proof}
+
+    \begin{obs}
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item La suprayectividad de $f\mapsto\left\{\sqrt{2\pi}c_k \right\}_{ k\in\mathbb{Z}}$ de $L_2^{2\pi}(\mathbb{C})$ sobre $l_2(\mathbb{Z})$ es consecuencia del teorema de Riesz-Fischer, es decir, de la completez de $L_2^{2\pi}$. Dice que dada una sucesión arbitraria $\left\{c_k\right\}_{k\in\mathbb{Z}}$ en $l_2(\mathbb{Z})$ existe una función $f\in\mathcal{L}_2^{2\pi}$ única salvo equivalencias cuyos coeficientes de Fourier son la sucesión dada.
+            
+            Este resultado fue históricamente un éxito para la integral de Lebesgue.
+
+            \item Carleson demostró en 1966 que para cada $f\in\mathcal{L}_2^{2\pi}$ la serie de Fourier de $f$ converge a $f$ c.t.p. en $\mathbb{R}$. Sin embargo, para funciones en $\mathcal{L}_1^{2\pi}$ ésta no será la misma historia.
+        \end{enumerate}
+    \end{obs}
+
+    \section{Series de Fourier de funciones de periodo $T>0$}
+
+    Sea $f\in\mathcal{L}_1^T$. Defina
+    \begin{equation*}
+        g(y)=f\left(\frac{T}{2\pi}y\right),\quad\forall y\in\mathbb{R}
+    \end{equation*}
+    entonces, $g\in\mathcal{L}_1^{2\pi}$. Por definición, los coeficientes de Fourier de $f$ van a ser los de $g$, estos son
+    \begin{equation*}
+        c_k=\frac{1}{2\pi}\int_{-\pi}^\pi g(y)e^{ iky}dy
+    \end{equation*}
+    Por el cambio de variable $y=\frac{2\pi}{T}x$, podemos reescribirlos de la siguiente forma:
+    \begin{equation*}
+        \begin{split}
+            c_k=\frac{1}{T}\int_{ -\frac{T}{2}}^{\frac{T}{2}}f(x)e^{ i\frac{2\pi k}{T}x}dx
+        \end{split}
+    \end{equation*}
+    en particular, $c_0=\frac{1}{T}\int_{ -\frac{T}{2}}^{\frac{T}{2}}f(x)dx$. Los correspondientes $a_k$ y $b_k$ son 
+    \begin{equation*}
+        \begin{split}
+            a_0&=\frac{2}{T}\int_{ -\frac{T}{2}}^{\frac{T}{2}}f(x)dx\\
+            a_k&=\frac{1}{T}\int_{ -\frac{T}{2}}^{\frac{T}{2}}f(x)\cos\left(\frac{2\pi k}{T}x \right)dx\\
+            b_k&=\frac{1}{T}\int_{ -\frac{T}{2}}^{\frac{T}{2}}f(x)\sin\left(\frac{2\pi k}{T}x \right)dx\\
+        \end{split}
+    \end{equation*}
+    Las series de Fourier trigonométricas correspondientes son
+    \begin{equation*}
+        \sum_{ k\in\mathbb{Z}}c_ke^{i\frac{2\pi k}{T}x}=\frac{a_0}{2}+\sum_{ k=1}^\infty\left[a_k\cos\left(\frac{2\pi k}{T}x \right)+b_k\sin\left(\frac{2\pi k}{T}x \right)\right]
+    \end{equation*}
+    Sea ahora $f\in\mathcal{L}_2^T$. Los coeficientes de Fourier de $f$ con respecto al sistema O.N. maximal formado por
+    \begin{equation*}
+        \varphi_k(x)=\frac{1}{\sqrt{T}}e^{ i\frac{2\pi k}{T}x},\quad\forall k\in\mathbb{Z}
+    \end{equation*}
+    son
+    \begin{equation*}
+        \pint{f}{\varphi_k}=\sqrt{T}c_k\quad\forall k\in\mathbb{Z}
+    \end{equation*}
+    si se usa el sistema O.N. maximal formado por
+    \begin{equation*}
+        \frac{1}{\sqrt{T}},\quad\eta_k(x)=\sqrt{\frac{2}{T}}\cos\left(\frac{2\pi k}{T}x \right),\quad\theta_k(x)=\sqrt{\frac{2}{T}}\sin\left(\frac{2\pi k}{T}x \right),\quad\forall k\in\mathbb{N}
+    \end{equation*}
+    se obtienen
+    \begin{equation*}
+        \begin{split}
+            \pint{f}{\frac{1}{\sqrt{T}}}&=\sqrt{T}\frac{a_0}{2}\\
+            \pint{f}{\eta_k}&=\sqrt{\frac{T}{2}}a_k\\
+            \pint{f}{\theta_k}&=\sqrt{\frac{T}{2}}b_k\\
+        \end{split}
+    \end{equation*}
+    para todo $k\in\mathbb{N}$. Las series de Fourier correspondientes serían
+    \begin{equation*}
+        \sum_{ k\in\mathbb{Z}}\pint{f}{\varphi_k}\varphi_k=\sum_{ k\in\mathbb{Z}}e^{ i\frac{2\pi k}{T}x}=\frac{a_0}{2}+\sum_{ k=1}^\infty\left[a_k\cos\left(\frac{2\pi k}{T}x \right)+b_k\sin\left(\frac{2\pi k}{T}x \right) \right]
+    \end{equation*}
+    Se tienen las identidades de Parserval
+    \begin{equation*}
+        \begin{split}
+            \sum_{ k\in\mathbb{Z}}\abs{c_k}^2&=\frac{1}{T}\int_{ -\frac{T}{2}}^{\frac{T}{2}}\abs{f(x)}^2\\
+            \frac{\abs{a_0}^2}{2}+\sum_{ k=1}^\infty\left[\abs{a_k}^2+\abs{b_k}^2 \right]&=\frac{T}{2}\int_{ -\frac{T}{2}}^{\frac{T}{2}}\abs{f(x)}dx\\
+            \sum_{ k\in\mathbb{Z}}c_k\overline{d_k}&=\frac{1}{T}\int_{ -\frac{T}{2}}^{\frac{T}{2}}f(x)\overline{g(x)}dx\\
+            \frac{a_0\overline{\alpha_0}}{2}+\sum_{ k=1}^\infty\left[a_k\overline{\alpha_k}+b_k\overline{\beta_k} \right]&=\frac{2}{T}\int_{ -\frac{T}{2}}^{\frac{T}{2}}f(x)\overline{g(x)}dx
+        \end{split}
+    \end{equation*}
+    por lo cual, en lo sucesivo se trabajará únicamente con funciones de periodo $2\pi$ (la traducción al periodo $T>0$ es un ejercicio).
 \end{document}
