@@ -1306,7 +1306,98 @@
     \end{cor}
 
     \begin{proof}
+        Ya se sabe que
+        \begin{equation*}
+            \left\{
+                \begin{array}{rl}
+                    d(G)&\leq w(G)\\
+                    \chi(G)&\leq w(G)\\
+                \end{array}
+            \right.
+        \end{equation*}
+        (la primera se da por definición y, la segunda por el hecho de que estmaos considerando grupos topológicos que son $T_0$, en particular, son Hausdorff, luego se tiene la desigualdad) por tanto $d(G)\cdot\chi(G)\leq w(G)$. Para la otra desigualdad, considere un conjunto $D$ denso en $G$ de cardinalidad $d(G)$. Sea $\mathcal{B}$ una base local para $e_G$ tal que
+        \begin{equation*}
+            \abs{\mathcal{B}}=\chi(G)
+        \end{equation*}
+        Por el lema anterior se sabe que $G=BD$, para todo $B\in\mathcal{B}$ y, del teorema anterior se deduce que la familia
+        \begin{equation*}
+            \mathcal{V}=\left\{xB\Big|x\in D\textup{ y }B\in\mathcal{B} \right\}
+        \end{equation*}
+        es una base para $G$, con cardinalidad no mayor a $d(G)\cdot\chi(G)$. Por ende, $w(G)\leq d(G)\cdot\chi(G)$.
+
+        De ambas desigualdades se sigue que $w(G)=d(G)\cdot\chi(G)$.
+    \end{proof}
+
+    \begin{theor}
+        Sea $G$ un grupo topológico. Entonces
+        \begin{enumerate}
+            \item $\pi\chi(G)=\chi(G)$.
+            \item $\pi w(G)=w(G)$.
+        \end{enumerate}      
+    \end{theor}
+
+    \begin{proof}
+        Para evitar situaciones obvias, supondremos que $G$ no es discreto.
+        
+        De (1): Como toda base local es una $\pi$-base local, se sigue que
+        \begin{equation*}
+            \pi\chi(x,G)\leq\chi(x,G),\quad\forall x\in G
+        \end{equation*}
+        (pues estamos sacando mínimos) por tanto, sacando supremo en $G$ se sigue que
+        \begin{equation*}
+            \pi\chi(G)\leq\chi(G)
+        \end{equation*}
+        Para la otra desigualdad, basta con probar que si $\mathcal{B}$ es una $\pi$-base local en $e_G$, entonces el conjunto
+        \begin{equation*}
+            \left\{BB^{-1}\Big|B\in\mathcal{B} \right\}
+        \end{equation*}
+        es una base local en $e_G$. En efecto, sea $U$ una vecindad de $e_G$, entonces existe otra vecindad $V$ de $e_G$ tal que
+        \begin{equation*}
+            V\subseteq VV^{-1}\subseteq U
+        \end{equation*}
+        por ser $\mathcal{B}$ una $\pi$-base local, existe $B\in\mathcal{B}$ tal que
+        \begin{equation*}
+            B\subseteq V
+        \end{equation*}
+        luego, $e_G\in BB^{-1}\subseteq VV^{-1}\subseteq U$ siendo $BB^{-1}$ abierto. Por tanto, esta familia es una base local en $e_G$.
+
+        Así, toda $\pi$-base local induce una base local de misma cardinalidad. Se sigue entonces que
+        \begin{equation*}
+            \chi(G)\leq\pi\chi(G)
+        \end{equation*}
+
+        De (2): De (1) y del corolario anterior se tiene que
+        \begin{equation*}
+            \begin{split}
+                w(G)&\leq d(G)\cdot\chi(G)\\
+                &\leq\pi w(G)\cdot \pi\chi(G)\\
+                &\leq\pi w(G)\cdot\pi w(G)\\
+                &=\pi w(G)\\
+                \Rightarrow w(G)&\leq \pi w(G)\\
+            \end{split}
+        \end{equation*}
+        y, como en todo espacio topológico se tiene que $w\pi(G)\leq w(G)$, se sigue entonces que
+        \begin{equation*}
+            w\pi(G)= w(G) 
+        \end{equation*}
+    \end{proof}
+
+    Se presenta ahora una desigualdad cardinal válida en cualquier grupo topológico.
+    
+    \begin{propo}
+        Sean $G$ un grupo topológico y $H$ un subgrupo normal cerrado de $G$. Entonces, $w(H)\leq w(G)$ y $w(G/H)\leq w(G)$.
+
+        Además, $\chi(G/H)\leq\chi(G)$.
+    \end{propo}
+
+    \begin{proof}
         
     \end{proof}
+
+    Ahora demostraremos un resultado un poco sorprendente, el cual es válido sólo en grupos topológicos.
+
+    \begin{theor}
+        Sea $G$ un grupo topológico tal que $d(G)<\abs{G}$. Entonces, $\Delta(G)=\abs{G}$.
+    \end{theor}
 
 \end{document}
