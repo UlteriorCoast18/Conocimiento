@@ -121,7 +121,7 @@
 \newcommand{\Int}[1]{\ensuremath{\mathring{#1}}}
 \newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
 \newcommand{\Fr}[1]{\ensuremath{\textup{Fr}(#1)}}
-\newcommand{\natint}[1]{\ensuremath{\left[|#1|\right]}}
+\newcommand{\natint}[1]{\ensuremath{\left[\!\left[#1\right]\!\right]}}
 \newcommand{\floor}[1]{\ensuremath{\lfloor#1\rfloor}}
 \newcommand{\Card}[1]{\ensuremath{\textup{Card}\left(#1\right)}}
 \newcommand{\Pot}[1]{\ensuremath{\mathcal{P}\left(#1\right)}}
@@ -883,11 +883,162 @@
     \begin{proof}
         Necesidad: Suponga que $f$ es suprayectiva. Ya se sabe que
         \begin{equation*}
-            \mathcal{B}=\left\{f(F)\Big|F\in\mathcal{F} \right\}
+            \mathcal{K}=\left\{f(F)\Big|F\in\mathcal{F} \right\}
         \end{equation*}
-        es una base de filtro.
+        es una base de filtro. Se tiene que por ser $f$ suprayectiva que
+        \begin{equation*}
+            f(f^{-1}(A))=A,\quad\forall A\subseteq Y
+        \end{equation*}
+        Se cumplen tres condiciones:
+        \begin{enumerate}
+            \item $\mathcal{K}\neq\emptyset$ pues, $f(X)\in\mathcal{K}$.
+            \item Como $\mathcal{F}$ no contiene al vacío, entonces $\mathcal{K}$ tampoco lo contiene.
+            \item Sea $L\subseteq Y$ tal que existe $F\in\mathcal{F}$ con $f(F)\subseteq L$. Entonces:
+            \begin{equation*}
+                F\subseteq f^{-1}(f(F))\subseteq f^{-1}(L)
+            \end{equation*}
+            por ser $\mathcal{F}$ un filtro, luego: $f^{-1}(L)\in\mathcal{F}$. Así, $L=f(f^{-1}(L))\in\mathcal{K}$.
+            \item Sean $F_1,F_2\in\mathcal{F}$. Se tiene que $f(F_1),f(F_2)\in\mathcal{K}$. Luego:
+            \begin{equation*}
+                \begin{split}
+                    F_1\cap F_2\in\mathcal{F}
+                \end{split}
+            \end{equation*}
+            además, $f(F_1\cap F_2)\subseteq f(F_1)\cap f(F_2)$. Luego, por la propiedad anterior se sigue que $f(F_1)\cap f(F_2)\in\mathcal{K}$ ya que $f(F_1\cap F_2)\in\mathcal{K}$.
+        \end{enumerate}
+        Por los 4 incisos anteriores se sigue que $\mathcal{K}$ es un filtro.
 
-        \textit{Sugerencia: $f(f^{-1}(A))=A$}.
+        Suficiencia: Es inmediata del hecho de que $Y$ está en la familia $f(\mathcal{F})$, luego $f(X)=Y$.
+
     \end{proof}
+
+    \begin{mydef}
+        Sea $X$ un conjunto no vacío. Un \textbf{ultrafiltro} $\mathcal{F}$ en $X$ es un filtro maximal respecto a la inclusión.
+    \end{mydef}
+
+    \begin{propo}
+        Sea $X$ un conjunto no vacío y sea $\xi$ un filtro en $X$. Entonces existe un ultrafiltro $\mathcal{U}$ en $X$ tal que
+        $\xi\subseteq\mathcal{U}$. 
+    \end{propo}
+
+    \begin{proof}
+        Considere la familia
+        \begin{equation*}
+            \mathcal{L}=\left\{\xi_\alpha\Big|\alpha\in I \right\}
+        \end{equation*}
+        de todos los filtros $\xi_\alpha$ en $X$ que contienen a $\xi$. Esta familia es no vacía ya que $\xi\in\mathcal{L}$. Además, esta familia está parcialmente ordenada bajo la relación $\subseteq$. Sea $\mathcal{C}$ una cadena de $(\mathcal{L},\subseteq )$. Tomemos
+        \begin{equation*}
+            \rho=\bigcup_{\xi\in\mathcal{L}}\xi
+        \end{equation*}
+        por tanto, $\rho$ es un filtro en $X$ (ver observación anterior para garantizar que la unión de filtros sea un filtro); además, $\xi\subseteq\rho$. Tenemos que $\rho\in\mathcal{L}$ y, por construcción para todo $\mathcal{F}\in\mathcal{C}$, $\mathcal{F}\subseteq\rho$.
+
+        Por el lema de Zorn existe un elemento maximal $\mathcal{U}$ de $(\mathcal{L},\subseteq )$ el cual es el ultrafiltro buscado que contiene a $\xi$.
+    \end{proof}
+
+    \begin{exa}
+        Sea $X=\left\{a,b \right\}$ con $a\neq b$. Tomemos al filtro
+        \begin{equation*}
+            \mathcal{F}=\left\{X \right\},\quad\mathcal{U}_1=\left\{X,\left\{a\right\} \right\}\quad\mathcal{U}_2=\left\{X,\left\{b\right\} \right\}
+        \end{equation*}
+        se tiene que $\mathcal{F}$ es un filtro y, $\mathcal{U}_1,\mathcal{U}_2$ son ultrafiltros en $X$. Además $\mathcal{F}\subseteq\mathcal{U}_1$ y $\mathcal{F}\subseteq\mathcal{U}_2$.
+
+        Es decir, la existencia del ultrafiltro no es única.
+    \end{exa}
+
+    \begin{propo}
+        Sea $\xi$ un ultrafiltro en el conjunto no vacío $X$. Entonces se cumple lo siguiente:
+        \begin{enumerate}
+            \item Si $A,B\subseteq X$ y $A\cup B\in\xi$, entonces alguno de los dos $A,B$ es elemento del filtro.
+            \item Si $A_1,...,A_k\subseteq X$ tales que $\bigcup_{ i=1}^k A_i\in\xi$, entoncex existe $l\in\natint{1,k}$ tal que $A_l\in\xi$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): Sean $A,B\subseteq X$ tales que $A\cup B\in\xi$. Se tienen varios casos:
+        \begin{enumerate}
+            \item Suoponga que para todo $C\in\xi$ se tiene que $C\cap A\neq\emptyset$. Entonces, el conjunto
+            \begin{equation*}
+                \mathcal{B}=\left\{C\cap A\Big|A\in\xi \right\}
+            \end{equation*}
+            es una base de filtro y, $\mathcal{B}$ cumple que $\xi\subseteq\mathcal{B}$. Por tanto, $\xi=\mathcal{B}$. Pero, $A\in\mathcal{B}$, luego $A\in\mathcal{B}$.
+            \item Suponga que existe $C_0\in\xi$ tal que $C_0\cap A=\emptyset$. Entonces:
+            \begin{equation*}
+                \begin{split}
+                    C\cap B&=\left(C\cap A \right)\cup\left(C\cap B \right)\\
+                    &=C\cap\left(A\cup B \right)\\
+                \end{split}
+            \end{equation*}
+            donde $C\in\xi$ y $A\cup B\in\xi$. Por tanto, $C\cap B\in\xi$. Pero, $C\cap B\subseteq B$, luego por absorción se sigue que $B\in\xi$.
+        \end{enumerate}
+
+        De (2): Se hace usando inducción sobre $k$.
+    \end{proof}
+
+    \begin{propo}
+        Sea $\xi$ un filtro en $X$. Entonces, $\xi$ es un ultrafiltro si y sólo si para todo subconjunto $A\subseteq X$, $A\in\xi$ ó $X-A\in\xi$.
+    \end{propo}
+
+    \begin{proof}
+        Necesidad: Sea $A\subseteq X$. Escribimos $X=A\cup(X-A)$. Como $\xi$ es un filtro, entonces $X\in\xi$. Por la proposición anterior se tiene que $A\in\xi$ ó $X-A\in\xi$.
+
+        Suficiencia: Sea $\eta$ un filtro en $X$ tal que $\xi\subseteq \eta$. Tomemos $A\subseteq X$ tal que $A\in\eta$. Entonces, $X-A\notin\eta$, luego $X-A\notin\xi$. Por hipótesis, debe suceder que $A\in\xi$. De esta forma, $\xi=\eta$.
+
+        Luego, $\xi$ es un ultrafiltro.
+    \end{proof}
+
+    \begin{excer}
+        Sean $X$ y $Y$ conjuntos, $\xi$ un ultrafiltro de $X$ y sea $\cf{f}{X}{Y}$ una función suprayectiva. Entonces, $f(\xi)$ es un ultrafiltro en $Y$.
+    \end{excer}
+
+    \begin{proof}
+        Ya se tiene que $f(\xi)$ es un filtro en $Y$. 
+    \end{proof}
+
+    \begin{exa}
+        Sea $X$ un conjunto no vacío y sea $\left\{x_n \right\}_{n\in\mathbb{N}}$ una sucesión de puntos en $X$, entonces
+        \begin{equation*}
+            \rho=\left\{A\subseteq X\Big|\exists N\in\mathbb{N}\textup{ tal que }\forall k\geq N, x_{k}\in A \right\}
+        \end{equation*}
+        es un filtro en $X$ y, se dice el \textbf{filtro asociado a la sucesión}.
+    \end{exa}
+
+    \begin{proof}
+        Hay que verificar 4 condiciones:
+        \begin{enumerate}
+            \item $\emptyset\notin\rho$.
+            \item $X\in\rho$ ya que la sucesión está en $X$.
+            \item Sean $A,B\in\rho$. Entonces, existen $N,M\in\mathbb{N}$ tales que $k\geq N\Rightarrow x_k\in A$ y, $k\geq M\Rightarrow x_k\in B$. Sea
+            \begin{equation*}
+                N_0=\max\left\{N,M \right\}\in\mathbb{N}
+            \end{equation*}
+            entonces, si $k\geq N_0$ se tiene que $x_k\in A$ y $x_k\in B$, luego $x_k\in A\cap B$. Por ende, $A\cap B\in \rho$.
+            \item Sea $L\subseteqq X$ y $A\in\rho$ tal que $A\subseteq L$. Como $A\in\rho$ entonces existe $N\in\mathbb{N}$ tal que si $k\geq N\Rightarrow x_k\in A\subseteq L$. Por ende, $L\in\rho$.
+        \end{enumerate}
+        por los incisos anteriores, se sigue que $\rho$ es un filtro en $X$.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico. Una sucesión de puntos de $X$, $\left\{x_n \right\}_{ n\in\mathbb{N}}$ se dice que \textbf{converge} a un punto $l\in X$ si para todo $U\in\tau$ tal que $l\in U$ existe $N\in\mathbb{N}$ tal que para todo $k\geq N$, $x_k\in U$.
+    \end{mydef}
+
+    \begin{propo}
+        Sea $\left\{x_n \right\}_{ n\in\mathbb{N}}$ una sucesión de puntos de $X$ y sea $\rho$ el filtro asociado a la sucesión. Sea $l\in X$, entonces $\left\{x_n \right\}_{ n\in\mathbb{N}}$ converge al punto $l$ si y sólo si $\xi_l\subseteq \rho$.        
+    \end{propo}
+
+    \begin{proof}
+        Necesidad: Suponga que la sucesión converge a $l\in X$. Sea $V\in\xi_l$, entonces existe un abierto $U\subseteq X$ tal que $l\in U\subseteq V$. Como la sucesión converge a $l$ y $U$ es abierto, existe $N\in\mathbb{N}$ tal que para todo $k\geq N$ se tiene que $x_k\in U\subseteq V$. Por tanto, $V\in\rho$.
+
+        Luego, $\xi_l\subseteq\rho$.
+
+        Suficiencia: Suponga que $\xi_l\subseteq\rho$. Si $U\subseteq X$ es abierto tal que $l\in U$, entonces $U\in\xi_l\subseteq \rho$, luego existe $N\in\mathbb{N}$ tal que $k\geq N$ implica que $x_k\in U$.
+
+        Así, la sucesión $\left\{x_n \right\}_{ n\in\mathbb{N}}$ converge a $l$.
+    \end{proof}
+
+    \begin{exa}
+        Sea $X=\left\{1,2,3 \right\}$ y considere la topología $\tau=\left\{X,\emptyset,\left\{1,2 \right\},\left\{3\right\} \right\}$. Para cada $n\in\mathbb{N}$ se define $X_n=1$.
+
+        Se tiene que la sucesión $\left\{x_n\right\}_{ n\in\mathbb{N}}$ converge a $1$ y $2$.
+    \end{exa}
 
 \end{document}
