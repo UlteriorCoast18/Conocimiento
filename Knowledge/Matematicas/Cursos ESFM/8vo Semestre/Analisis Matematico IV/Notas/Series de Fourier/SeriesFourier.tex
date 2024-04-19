@@ -485,4 +485,215 @@
         \end{split}
     \end{equation*}
     por lo cual, en lo sucesivo se trabajará únicamente con funciones de periodo $2\pi$ (la traducción al periodo $T>0$ es un ejercicio).
+
+    \section{Convergencia de series de Fourier de integrales indefinidas}
+
+    \begin{obs}
+        Sea $f\in\mathcal{L}_1^{2\pi}(\mathbb{K})$. Considere la integral indefinida $\cf{F}{\mathbb{R}}{\mathbb{K}}$ dada como sigue
+        \begin{equation*}
+            F(x)=c+\int_0^xf(t)dt,\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        (en otras palabras $F$ es absolutamente continua y $f$ es su derivada c.t.p. en $\mathbb{R}$). Se sabe que $F$ es continua en $\mathbb{R}$. Una condición necesaria y suficiente para que también $F$ sea periódica es la siguiente:
+        \begin{equation*}
+            \begin{split}
+                F(x-2\pi)-F(x)&=\int_x^{ x+2\pi}f(t)dt\\
+                &=\int_{-\pi}^{\pi}f(t)dt\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        por tanto, $F\in\mathcal{C}^{2\pi}$ si y sólo si $\int_{-\pi}^\pi f(t)dt=0$.
+    \end{obs}
+
+    \begin{theor}
+        Sea $f\in\mathcal{L}_2^{2\pi}(\mathbb{K})$ tal que $\int_{-\pi}^\pi f(t)dt=0$ y sea $\cf{F}{\mathbb{R}}{\mathbb{K}}$ la integral indefinida de $f$ dada por:
+        \begin{equation*}
+            F(x)=c+\int_{ 0}^xf(t)dt,\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        donde $c\in\mathbb{K}$. Entonces, $F\in\mathcal{C}^{2\pi}(\mathbb{K})$ y la serie de Fourier de $F$ converge a $F$ uniformemente en $\mathbb{R}$.
+    \end{theor}
+
+    \begin{proof}
+        Ya se sabe que $F\in\mathcal{C}^{2\pi}(\mathbb{K})$. Sean $\left\{c_k \right\}_{ k\in\mathbb{Z}}$ y $\left\{c_k' \right\}_{ k\in\mathbb{Z}}$ los coeficientes de Fourier de $F$ y $f$, respectivamente. Note que
+        \begin{equation*}
+            c_0'=\frac{1}{2\pi}\int_{ -\pi}^{\pi}f(t)dt=0
+        \end{equation*}
+        Integrando por partes se tiene que
+        \begin{equation*}
+            \begin{split}
+                c_k'&=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{ -ikx}dx\\
+                &=\frac{1}{2\pi}\left[F(x)e^{ -ikx}\Big|_{-\pi}^{\pi}+ik\int_{-\pi}^{\pi}F(x)e^{ -ikx}dx \right]\\
+                &=\frac{ik}{2\pi}\int_{-\pi}^{\pi}F(x)e^{ -ikx}dx\\
+                &=ikc_k,\quad\forall k\in\mathbb{Z}\backslash\left\{0 \right\} \\
+            \end{split}
+        \end{equation*}
+        Por tanto, en particular se tiene que
+        \begin{equation*}
+            \abs{c_k}=\frac{\abs{c_k'}}{\abs{k}},\quad\forall k\in\mathbb{Z}\backslash\left\{0 \right\}
+        \end{equation*}
+        Se tiene
+        \begin{equation*}
+            \begin{split}
+                \abs{c_k}&=\frac{\abs{c_k'}}{\abs{k}}\\
+                &\leq\frac{1}{2}\cdot\left[\abs{c_k'}^2+\frac{1}{k^2} \right],\quad\forall k\in\mathbb{Z}\backslash\left\{0 \right\}\\
+            \end{split}
+        \end{equation*}
+        como $f\in\mathcal{L}_2^{2\pi}(\mathbb{K})$, entonces $\left\{\abs{c_k'} \right\}_{ k\in\mathbb{Z}}\in l_2(\mathbb{Z})$ de donde $\sum_{k\in\mathbb{Z}}\abs{c_k´}^2<\infty$. Se sigue de la ecuación anterior que la serie $\sum_{ k\in\mathbb{Z}}c_k$ es absolutamente convergente en $\mathbb{K}$. Ya que
+        \begin{equation*}
+            \sum_{ k\in\mathbb{Z}}\abs{c_ke^{ ikx}}\leq\sum_{ k\in\mathbb{Z}}\abs{c_k'}
+        \end{equation*}
+        se sigue del critero $M$ de Weierestrass que la serie de Fourier de $F$ converge absoluta y uniformemente en $\mathbb{R}$. Resta probar que la suma de esta serie es $F$. Sea
+        \begin{equation*}
+            G(x)=\sum_{ k\in\mathbb{Z}}\textup{ uniformemente en }\mathbb{R}
+        \end{equation*}
+        Entonces, $G\in\mathcal{C}^{2\pi}(\mathbb{K})$. Además,
+        \begin{equation*}
+            G(x)e^{ -inx}=\sum_{ k\in\mathbb{Z}}c_ke^{ i(k-n)x}\textup{ uniformemente en }\mathbb{R}
+        \end{equation*}
+        Se puede pues integrar término por término en $[-\pi,\pi]$. Resulta:
+        \begin{equation*}
+            \int_{ -\pi}^\pi G(x)e^{ -inx}dx=\sum_{ k\in\mathbb{Z}}c_k\int_{ -\pi}^\pi e^{ i(k-n)x}dx=2\pi c_n
+        \end{equation*}
+        por tanto, $F$ y $G$ tienen los mismos coeficientes de Fourier. Se sabe entonces que $F=G$ c.t.p. en $\mathbb{R}$ siendo ambas continuas, necesariamente $F=G$ en $\mathbb{R}$.
+    \end{proof}
+
+    \begin{cor}
+        Si $\cf{F}{\mathbb{R}}{\mathbb{K}}$ es una función de clase $C^1$ periódica de periodo $2\pi$, entonces la serie de Fourier de $F$ converge a $F$ uniformemente en $\mathbb{R}$.
+    \end{cor}
+
+    \begin{proof}
+        Por el teorema fundamental del cálculo, podemos escribir
+        \begin{equation*}
+            F(x)=F(0)+\int_{0}^xf(t)dt,\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        donde $f(x)=F'(x)$ para todo $x\in\mathbb{R}$ es una función continua. Por el teorema anterior, el resultado estará probado si se muestra que $f$ es periódica de periodo $2\pi$.
+
+        Ya que $F(x)=F(x+2\pi)$, entonces del teorema fundamental
+        \begin{equation*}
+            \begin{split}
+                \int_{x}^{ x+2\pi}f(t)dt=0,\quad\forall x\in\mathbb{R}
+            \end{split}
+        \end{equation*}
+        en particular, $\int_{ -\pi}^{\pi}f(t)dt=0$. Para todo $a<b$ se tiene lo siguiente:
+        \begin{equation*}
+            \begin{split}
+                \int_a^bf(x+2\pi)dx&=\int_{ a+2\pi}^{ b+2\pi}f(t)dt\\
+                &=\int_{ a+2\pi}^{a}f(t)dt+\int_a^bf(t)dt+\int_b^{ b+2\pi}f(t)dt \\
+                &=\int_a^bf(t)dt\\
+                \Rightarrow \int_{ a}^b\left[f(x+2\pi)-f(x) \right]dx&=0,\quad\forall a,b\in\mathbb{R}, a<b \\
+            \end{split}
+        \end{equation*}
+        Por el lema de los promedios, se sigue que $f(x+2\pi)-f(x)=0$ para casi toda $x\in\mathbb{R}$. Siendo ambas funciones continuas, se sigue que
+        \begin{equation*}
+            f(x+2\pi)=f(x),\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        por tanto $f$ es periódica de periodo $2\pi$.
+    \end{proof}
+
+    \begin{obs}
+        Como $c_k=\frac{c_k'}{ik}$ para todo $k\in\mathbb{Z}\backslash\left\{0 \right\}$, el término $c_ke^{ ikx}$ de la serie de Fourier de $F$ es una primitiva del térmio $c_k'e^{ ikx}$ de la serie de Fourier de $f$. En este caso $c_0$ juega el papel de constante de integración.
+        
+        Al considerar los coeficientes $a_k$, $b_k$ y $a_k'$, $b_k'$ resulta lo siguiente:
+        \begin{equation*}
+            \begin{split}
+                a_k-ib_k&=\frac{a_k'-ib_k'}{ik},\quad\forall k\in\mathbb{Z}\backslash\left\{0 \right\} \\
+            \end{split}
+        \end{equation*}
+        cambiando a $k$ por $-k$:
+        \begin{equation*}
+            a_k+ib_k=\frac{a_k'+ib_k'}{ik},\quad\forall k\in\mathbb{Z}\backslash\left\{0 \right\}
+        \end{equation*}
+        resulta de estos sistemas de ecuaciones que
+        \begin{equation*}
+            a_k=-\frac{b_k'}{k}\quad\textup{y}\quad b_k=\frac{a_k'}{k}
+        \end{equation*}
+        para todo $k\in\mathbb{N}$. Así pues, $a_k\cos kx$ es una primitiva de $b_k'\sen kx$ y que $b_k\sen kx$ es una primitiva de $a_k\cos kx$.
+    \end{obs}
+
+    Se verá más adelante que la conclusión del teorema anterior es válida si $f\in\mathcal{L}_1^{2\pi}(\mathbb{K})$.
+
+    \begin{exa}
+        Sea $n\in\mathbb{N}^*$. Considere las funciones $\cf{f,g}{\mathbb{R}}{\mathbb{R}}$ las funciones siguiente:
+        \begin{equation*}
+            f(x)=\cos nx\quad\textup{y}\quad g(x)=\sen nx,\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        Claramente $f$ y $g$ son funciones de clase $C^1$ en $\mathbb{R}$ periódicas de periodo $2\pi$. Por el último corolario las series de Fourier de $f$ y $g$ convergen a $f$ y $g$ respectivamente, uniformemente en $\mathbb{R}$. Los correspondientes coeficientes de Fourier de $f$ y $g$ serían:
+        \begin{equation*}
+            \begin{split}
+                \frac{a_0}{2}\sum_{ k=1}^\infty\left[a_k\cos kx+b_k\sin kx \right]
+            \end{split}
+        \end{equation*}
+        como $f$ es par, entonces $b_k=0$ para todo $k\in\mathbb{N}$. Además,
+        \begin{equation*}
+            \begin{split}
+                a_k&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos kxdx\\
+                &=\frac{1}{\pi}\int_{-\pi}^{\pi}\cos nx \cos kxdx\\
+                &=\frac{1}{\pi}\pint{\cos nx}{\cos kx}\\
+                &=\left\{
+                    \begin{array}{lcr}
+                       0 & \textup{ si } & k\neq n\\
+                       1 & \textup{ si } & k=n\\ 
+                    \end{array}
+                \right. \\
+            \end{split}
+        \end{equation*}
+        por tanto, $f(x)=\cos nx=\frac{a_0}{2}+\sum_{ k=1}^\infty \cos kx=\cos nx$. Similarmente se prueba que $g(x)=\sen nx$ es su desarrollo en serie de Fourier.
+    \end{exa}
+
+    \begin{exa}
+        Considere la función $\cf{F}{\mathbb{R}}{\mathbb{R}}$ dada como sigue
+        \begin{equation*}
+             F(x)=\sen^3 x,\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        $F$ es de clase $C^1$ y periódica de periodo $2\pi$. Por el corolario, la serie de Fourier de $F$ converge a $F$ uniformemente en $\mathbb{R}$. Como $F$ es impar, $a_k=0$ para todo $k\in\mathbb{N}^*$.
+
+        Se tiene que
+        \begin{equation*}
+            \begin{split}
+                b_1&=\frac{1}{\pi}\int_{ -\pi}^\pi \sen^3 x\sen xdx\\
+                &=\frac{1}{\pi}\int_{ -\pi}^\pi \sen^4 xdx\\
+                &=\frac{1}{\pi}\int_{ -\pi}^\pi \left(\frac{1-\cos 2x}{2} \right)^2 xdx\\
+                &=\frac{1}{4\pi}\int_{ -\pi}^\pi 1-\cos 2x+\cos^2 2x xdx\\
+                &=\frac{1}{4\pi}\left[2\pi-\pint{2}{\cos 2x}+\int_{ -\pi}^\pi\cos^2 2xdx \right] \\
+                &=\frac{1}{2}+\frac{1}{4\pi}\int_{ -\pi}^\pi\frac{1+\cos 4x}{2}dx\\
+                &=\frac{1}{2}+\frac{1}{8\pi}\left[2\pi+\pint{1}{\cos 4x} \right] \\
+                &=\frac{3}{4}\\
+            \end{split}
+        \end{equation*}
+        en general
+        \begin{equation*}
+            \begin{split}
+                b_k&=\frac{1}{\pi}\int_{-\pi}^\pi\sen^3x\sen kxdx\\
+                &=\frac{1}{\pi}\int_{-\pi}^\pi\sen^2x\sen x \sen kxdx\\
+                &=\frac{1}{\pi}\int_{-\pi}^\pi\frac{1-\cos 2x}{2}\sen x\sen x \sen kxdx\\
+                &=\frac{1}{2\pi}\pint{\sen x}{\sen kx}-\frac{1}{2\pi}\int_{-\pi}^\pi\cos2x\sen x\sen kxdx\\
+                &=-\frac{1}{4\pi}\int_{-\pi}^\pi\left[\cos(k-1)x+\cos(k+1)x \right]\cos 2xdx \\
+                &=\frac{1}{2\pi}\pint{\cos (k+1)x}{\cos 2x}-\frac{1}{4}\pint{\frac{\cos (k-1)x}{\sqrt{\pi}}}{\frac{\cos 2x}{\sqrt{\pi}}}\\
+                &=\left\{
+                    \begin{array}{lcr}
+                        0 & \textup{ si } & k=2,4,5,...\\
+                        -\frac{1}{4} & \textup{ si } & k=3\\
+                    \end{array}
+                \right.
+            \end{split}
+        \end{equation*}
+        luego, $F(x)=\frac{3}{4}\sen x-\frac{1}{4}\sen 3x$ para todo $x\in\mathbb{R}$.
+    \end{exa}
+
+    \begin{exa}
+        ¿Qué pasa con la función $x\mapsto\abs{\sen x}$ y su serie de Fourier?
+    \end{exa}
+
+    \section{Teorema fundamental para la convergencia puntual de series de Fourier en $\mathcal{L}_1^{2\pi}$}
+
+    \begin{theor}[\textbf{Teorema de Riemman-Lebesgue}]
+        Sean $a,b\in\mathbb{R}$ con $a<b$. Si $f\in\mathcal{L}_1(]a,b[,\mathbb{K})$, entonces
+        \begin{equation*}
+            \lim_{\lambda\in\mathbb{R},|\lambda|\rightarrow\infty }\int_{a}^bf(x)e^{ i\lambda x}dx=0
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
 \end{document}
