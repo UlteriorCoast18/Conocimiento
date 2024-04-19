@@ -161,11 +161,11 @@
     \end{mydef}
 
     \begin{mydef}
-        la \textbf{imagen de un funtor $F$ entre las categorías $\mathcal{C}$ y $\mathcal{D}$}, consta de una clase $\left\{F(C)\Big|C\in\Obj{\mathcal{C}} \right\}$ junto con todos los conjuntos $\left\{F(f)\Big|f\in\Hom{\mathcal{C}}{A}{B}\textup{ con }A,B\in\Obj{\mathcal{C}} \right\}$.
+        La \textbf{imagen de un funtor $F$ entre las categorías $\mathcal{C}$ y $\mathcal{D}$}, consta de una clase $\left\{F(C)\Big|C\in\Obj{\mathcal{C}} \right\}$ junto con todos los conjuntos $\left\{F(f)\Big|f\in\Hom{\mathcal{C}}{A}{B}\textup{ con }A,B\in\Obj{\mathcal{C}} \right\}$.
     \end{mydef}
 
     \begin{obs}
-        La imagen de un funtor no necesariamente es una categoría.
+        La imagen de un funtor no necesariamente es una categoría. En cambio, si el funtor es inyectivo sobre objetos, se tiene que la imagen de un funtor si es una categoría.
     \end{obs}
 
     \begin{proof}
@@ -196,11 +196,102 @@
     \end{obs}
 
     \begin{propo}
-        Si $\cf{F}{\mathcal{C}}{\mathcal{D}}$ es un funtor covariante (resp. contravariante), entonces $\cf{F'}{\mathcal{C}}{\mathcal{D}}$ es un funtor contravariante (resp. covariante).
+        Si $\cf{F}{\mathcal{C}}{\mathcal{D}}$ es un funtor covariante (resp. contravariante), entonces $\cf{F'}{\mathcal{C}^{op}}{\mathcal{D}}$ es un funtor contravariante (resp. covariante).
     \end{propo}
 
     \begin{proof}
-        
+        Se hará el segundo caso. Sean $\mathcal{C}$ y $\mathcal{D}$ dos categorías y $\cf{F}{\mathcal{C}}{\mathcal{D}}$ un funtor contravariante. Definimos $F'$ tal que
+        \begin{equation*}
+            F(A)=F'(A),\quad\forall A\in\Obj{\mathcal{C}^{op}}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            F(1_A)=F'(1_A),\quad\forall A\in\Obj{\mathcal{C}^{op}}
+        \end{equation*}
+        \begin{enumerate}
+            \item Sea $f$ un morfismo de $A$ en $B$, con $A,B\in\Obj{\mathcal{C}^{op}}=\Obj{\mathcal{C}}$. Entonces su respectivo elemento $f^{op}$ el $\mathcal{C}$
+            \begin{equation*}
+                F(f)=F'(f^{op})
+            \end{equation*}
+            Claramente esto está bien definido. Con lo cual se tiene que $\cf{F'(f^{op})}{F(B)}{F(A)}$, que es la primera parte para probar que $F$ es funtor covariante.
+            \item Sean $f^{op}\in\Hom{\mathcal{C}^{op}}{B}{A}$ y $g^{op}\in\Hom{\mathcal{C}^{op}}{C}{B}$. Entonces, existen $f\in\Hom{\mathcal{C}}{A}{B}$ y $g\in\Hom{\mathcal{C}}{B}{C}$. Se tiene entonces que
+            \begin{equation*}
+                \begin{split}
+                    F'(f^{op}\circ g^{op})&=F'((g\circ f)^{op})\\
+                    &=F(g\circ f)\\
+                    &=F(f)\circ F(g)\\
+                    &=F'(f^{op})\circ F'(g^{op})\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+        por tanto, de los dos incisos anteriores se sigue que $F'$ es un funtor covariante.
     \end{proof}
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría.
+        \begin{enumerate}
+            \item Si $\mathcal{C}'$ es una subcategoría de $\mathcal{C}$, definimos el \textbf{funtor inclusión} $\cf{I}{\mathcal{C}'}{\mathcal{C}}$ el cual asigna a cada objeto y cada morfismo a sí mismo. En el caso que $\mathcal{C}'=\mathcal{C}$ ,tendremos simplemente que $\cf{I}{\mathcal{C}}{\mathcal{C}}$ es el \textbf{funtor identidad}, denotado por $1_{\mathcal{C}}$.
+            \item Sea $\sim$ una congruencia en $\mathcal{C}$ categoría y, $\mathcal{C}/\sim$ la categoría cociente correspondiente. Se define el \textbf{funtor cociente}, denotado por $\cf{\pi}{\mathcal{C}}{\mathcal{C}/\sim}$ de la siguiente manera:
+            \begin{itemize}
+                \item $\pi(C)=C$ para todo $C\in\Obj{\mathcal{C}}$.
+                \item $\pi(f)=\overline{f}$ para todo morfismo $f$ en la categoría $\mathcal{C}$.
+            \end{itemize}
+            donde $\overline{f}$ denota a la clase de equivalencia de los morfismos de $f$ en $\mathcal{C}$.
+
+            Además, si $\cf{f}{A}{B}$ y $\cf{g}{B}{C}$ son morfismos en $\mathcal{C}$, con $A,B\in\Obj{\mathcal{C}}$, se tiene que
+            \begin{equation*}
+                \pi(g\circ f)=\overline{g\circ f}=\overline{g}\circ\overline{f}=\pi(g)\circ\pi(f)
+            \end{equation*}
+            \item Si $\cf{F}{\mathcal{C}}{\mathcal{D}}$ y $\cf{G}{\mathcal{D}}{\mathcal{E}}$ son dos funtores, siendo $\mathcal{C},\mathcal{D},\mathcal{E}$ categorías, podemos definirl el \textbf{funtor composición puntual} $\cf{G\circ F}{\mathcal{C}}{\mathcal{E}}$ como sigue:
+            \begin{equation*}
+                G\circ F(C)=G(F(C)),\quad\forall C\in\Obj{\mathcal{C}}
+            \end{equation*}
+            y,
+            \begin{equation*}
+                G\circ F(f)=G(F(f)),\quad\forall f\textup{ morfismo en }\mathcal{C}
+            \end{equation*}
+            \begin{enumerate}
+                \item Si $F$ y $G$ son ambos covariantes ó contravariantes, entonces $G\circ F$ es un funtor covariante.
+                \item Si uno de ellos es covariante y el otro contravariante, entonces $G\circ F$ es contravariante. 
+            \end{enumerate}
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{proof}
+        Verifiquemos en 3 que es un funtor. En efecto, claramente manda objetos en objetos y morfismos en morfismos de $\mathcal{C}$ en $\mathcal{E}$.
+        
+        Suponga que $F$ y $G$ son ambos contravariantes (el caso en el que son covariantes es inmediato). Entonces para $\cf{F}{A}{B}$ morfismo en $\mathcal{C}$:
+        \begin{equation*}
+            \begin{split}
+                &\cf{F(f)}{F(B)}{F(A)}\\
+                \Rightarrow &\cf{G(F(f))}{G(F(A))}{G(F(B))}\\
+            \end{split}
+        \end{equation*}
+        además, si $f,g$ son morifsmos en $\mathcal{C}$:
+        \begin{equation*}
+            \begin{split}
+                G\circ F(g\circ f)&=G(F(g\circ f))\\
+                &=G(F(f)\circ F(g))\\
+                &=G(F(g))\circ G(F(f))\\
+            \end{split}
+        \end{equation*}
+        luego, el funtor composición puntual es covariante.
+
+        Para el caso en el que uno sea covariante y otro contravariante, el caso es similar.
+    \end{proof}
+
+    \begin{mydef}
+        Sean $\mathcal{C}$ y $\mathcal{D}$ dos categorías.
+        \begin{enumerate}
+            \item Fijemos un objeto $D_0\in\Obj{\mathcal{D}}$. Definimos el \textbf{funtor constante}, $\cf{A_{D_0}}{\mathcal{D}}{\mathcal{C}}$ el cual asigna a cada objeto $C\in\Obj{\mathcal{C}}$ al objeto $D_0$ y a cada morfismo $f$ de $\mathcal{C}$ el morfismo $1_{D_0}$ de $\mathcal{D}$.
+            \item Considere la categoría producto $\mathcal{C}\times\mathcal{D}$. Definimos los \textbf{funtores proyección} de la siguiente mantera:
+            \begin{equation*}
+                \begin{split}
+                    \cf{\rho_{\mathcal{C}}}{\mathcal{C}\times\mathcal{D}}{\mathcal{C}}, &\quad(C,D)\mapsto C\quad (f,g)\mapsto f \\
+                    \cf{\rho_{\mathcal{D}}}{\mathcal{C}\times\mathcal{D}}{\mathcal{D}}, &\quad(C,D)\mapsto D\quad (f,g)\mapsto g \\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+    \end{mydef}
 
 \end{document}

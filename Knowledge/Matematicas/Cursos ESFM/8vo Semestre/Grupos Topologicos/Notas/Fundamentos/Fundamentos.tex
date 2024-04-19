@@ -1391,7 +1391,15 @@
     \end{propo}
 
     \begin{proof}
-        
+        De la definición de peso es inmediato que
+        \begin{equation*}
+            w(H)\leq w(G/H)
+        \end{equation*}
+        para la otra desigualdad, note que si $U\subseteq G$ es abierto, entonces su correspondiente conjunto en $G/H$, $U^*=\pi(U)$, es abierto en $G/H$ (siendo $\cf{\pi}{G}{G/H}$) el mapeo cociente). Además, si $\mathcal{B}$ es una base para $G$, el conjunto
+        \begin{equation*}
+            \pi(\mathcal{B})=\left\{\pi(U)\Big|U\in\mathcal{B} \right\}
+        \end{equation*}
+        es una base en $G/H$. Luego, $w(G/H)\leq w(G)$. La desigualdad $\chi(G/H)\leq\chi(G)$ se prueba de forma análoga tomando una base local para la identidad.
     \end{proof}
 
     Ahora demostraremos un resultado un poco sorprendente, el cual es válido sólo en grupos topológicos.
@@ -1399,5 +1407,32 @@
     \begin{theor}
         Sea $G$ un grupo topológico tal que $d(G)<\abs{G}$. Entonces, $\Delta(G)=\abs{G}$.
     \end{theor}
+
+    \begin{proof}
+        Para el caso, recordemos que estamos trabajando en grupos infinitos. Sea $D'\subseteq G$ un conjunto denso en $G$ de cardinalidad $d(G)$. Considere
+        \begin{equation*}
+            D=\langle D'\rangle
+        \end{equation*}
+        $D$ es un subgrupo de $G$ tal que
+        \begin{equation*}
+            \begin{split}
+                \abs{D}&=\abs{\langle D'\rangle}\\
+                &=\aleph_0\cdot\abs{D'}\\
+                &=\abs{D'}\\
+                &=d(G)\\
+            \end{split}
+        \end{equation*}
+        (pues al menos $D'$ es de cardinalidad $\aleph_0$). Como $d(G)<\abs{G}$, entonces el conjunto $G\backslash D\neq\emptyset$. Sea $g_1\in G\backslash D$ y, tomemos $D_0=D$.
+
+        Definamos con ello $D_1=g_1D_0$. $D_1$ es un conjunto denso ajeno a $D_0$ en $G$ y de cardinalidad $d(G)$. Supongamos de esta forma que hemos construido conjuntos densos $D_\alpha$ para toda $\alpha<\beta$, con $\beta<\abs{G}$. Sea $g_\beta\in G\backslash\left(\bigcup_{ \alpha<\beta}D_\alpha \right)$. Podemos encontrar tal $g_\beta$, pues
+        \begin{equation*}
+            \begin{split}
+                \abs{\bigcup_{\alpha<\beta}D_\alpha}&\leq\sum_{\alpha<\beta}\abs{D_\alpha}\\
+                &\leq\beta\abs{D}\\
+                &<\abs{G}\\
+            \end{split}
+        \end{equation*}
+        siempre que $\beta<\abs{G}$. Continuando este proceso logramos $\abs{G}$ conjuntos densos ajenos entre sí. Cada denso debe intersectar a todo abierto no vacío y, por lo tanto, debe tener cardinalidad de $\abs{G}$; en consecuencia, $\Delta(G)=\abs{G}$.
+    \end{proof}
 
 \end{document}
