@@ -117,7 +117,7 @@
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
-\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[#1\right]\!\right] }}
 
 \newcommand{\Int}[1]{\ensuremath{\mathring{#1}}}
 \newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
@@ -992,8 +992,84 @@
         \end{enumerate}
     \end{excer}
 
+    \begin{proof}
+        De (1): Sea
+        \begin{equation*}
+            C=\left\{x\in X\Big|f(x)=g(x) \right\}
+        \end{equation*}
+        para probar que este conjunto es cerrado, se probará que $U=X-C$ es abierto en $(X,\tau)$. En efecto, si $x\in X-C$ se tiene que
+        \begin{equation*}
+            f(x)\neq g(x)
+        \end{equation*}
+        como el espacio $(Y,\sigma)$ es $T_2$, existen dos abiertos $U,V\subseteq Y$ tales que
+        \begin{equation*}
+            f(x)\in U,\quad g(x)\in V\quad U\cap V=\emptyset
+        \end{equation*}
+        se tiene entonces que $x\in W=f^{-1}(U)\cap g^{-1}(V)\neq\emptyset$, donde el conjunto $W\subseteq X$ es abierto por ser intersección de dos abiertos y ser las funciones $f,g$ continuas. Afirmamos que
+        \begin{equation*}
+            W\subseteq X-C
+        \end{equation*}
+        Procederemos por contradicción. Suponga que existe $y\in W$ tal que $y\notin X-C$, es decir $y\in C$. Como $y\in W$ se tiene que
+        \begin{equation*}
+            f(y)\in U,\quad g(y)\in V
+        \end{equation*}
+        además, al tenerse que $y\in C$ se sigue que $f(y)=g(y)$. Por tanto, $U\cap V\neq\emptyset$\contradiction. Luego debe suceder que $W\subseteq X-C$. Así, para cada $x\in X-C$ se tiene que existe un abierto tal que $x\in W\subseteq X-C$. Se sigue entonces que el conjunto $X-C$ es abierto, es decir que $C$ es cerrado en $(X,\tau)$.
+
+        De (2): Hay que probar que
+        \begin{equation*}
+            f(x)=g(x),\quad\forall x\in X
+        \end{equation*}
+        se tienen dos casos (en caso de que $D\subsetneqq X$, si $D=X$ el resultado es inmediato):
+        \begin{enumerate}
+            \item $x\in D$, como $f|_D=g|_D$ se sigue que $f(x)=f|_D(x)=g|_D(x)=g(x)$.
+            \item $x\in X-D$. Procederemos por contradicción. Suponga que $f(x)\neq g(x)$. Como $(Y,\sigma)$ es $T_2$ existen dos abiertos $V_1,V_2\subseteq Y$ tales que
+            \begin{equation*}
+                f(x)\in V_1,\quad g(x)\in V_2,\quad V_1\cap V_2=\emptyset
+            \end{equation*}
+            se tiene que $x\in U=f^{-1}(V_1)\cap g^{-1}(V_2)\in\tau$, pues las funciones son continuas. Como $D$ es denso en $X$ y $U\subseteq X$ es un abierto no vacío, existe un elemento $y\in D$ tal que $y\in U$, esto es que
+            \begin{equation*}
+                f(y)\in V_1\quad g(y)\in V_2
+            \end{equation*}
+            donde, al tenerse que $f(y)=g(y)$ se sigue que $V_1\cap V_2\neq\emptyset$\contradiction. Por tanto, debe suceder que $f(x)=g(x)$.
+        \end{enumerate}
+        por los dos incisos anteriores se sigue que $f=g$ en $X$.
+
+        De (3): Sea $A=X\times Y-\Gamma(f)$. Probaremos que $A$ es abierto. En efecto, si $(x,y)\in C$ se tiene que $y\neq f(x)$. Como $(Y,\sigma)$ es $T_2$ existen dos abiertos $V_1,V_2\subseteq Y$ tales que 
+        \begin{equation*}
+            y\in V_1,\quad f(x)\in V_2\quad V_1\cap V_2=\emptyset
+        \end{equation*}
+        Como $f$ es continua, el conjunto $U=f^{-1}(V_2)\subseteq X$ es abierto. Ahora, el conjunto
+        \begin{equation*}
+            W=U\times V
+        \end{equation*}
+        donde $V=V_1$ es un básico (en particular un abierto) para el cual se tiene que $(x,y)\in W$ y $W\subseteq A$. En efecto, lo primero se tiene de forma inmediata. Suponga que existe $(z,w)\in W$ tal que $(z,w)\notin A$, entonces
+        \begin{equation*}
+            z\in U,\quad w\in V,\quad\textup{y}\quad w=f(z)
+        \end{equation*}
+        es decir,
+        \begin{equation*}
+            z\in f^{-1}(V_2),\quad f(z)\in V_1
+        \end{equation*}
+        por lo cual
+        \begin{equation*}
+            f(z)\in V_2, f(z)\in V_1\Rightarrow V_1\cap V_2\neq\emptyset\contradiction
+        \end{equation*}
+        por ende, $W\subseteq A$. Luego como en (1) debe tenerse que $A$ es abierto en $(X\times Y,\tau_p)$, es decir que $\Gamma(f)$ es cerrado en $(X\times Y,\tau_p)$.
+
+        De (4): Sean $x,y\in X$ tales que $x\neq y$. Como $f$ es inyectiva se sigue que $f(x)\neq f(y)$, luego por ser $(Y,\sigma)$ $T_2$ existen dos abiertos $V_1,V_2\subseteq Y$ tales
+        que
+        \begin{equation*}
+            f(x)\in V_1,\quad f(y)\in V_2,\quad V_1\cap V_2=\emptyset
+        \end{equation*}
+        sean $U_i=f^{-1}(V_i)$ para $i=1,2$. Estos conjuntos son abiertos en $(X,\tau)$ ya que $f$ es continua. Además
+        \begin{equation*}
+            U_1\cap U_2=\emptyset
+        \end{equation*}
+        ya que en caso contrario se tendría que si $z\in U_1\cap U_2$ entonces $f(z)\in V_1\cap V_2=\emptyset$\contradiction. Por ende, $U_1\cap U_2=\emptyset$, siendo tales que $x\in U_1$ y $y\in U_2$. Por ser los $x,y$ arbitrarois en $X$ se tiene entonces que $(X,\tau)$ es $T_2$.
+    \end{proof}
+
     \begin{excer}
-        Sea $(Y,\tau)$ un espacio $T_3$ y $A\subseteq Y$ un conjunto infinito. Entonces, existe una familia
+        Sea $(Y,\tau)$ un espacio Hausdorff $T_3$ y $A\subseteq Y$ un conjunto infinito. Entonces, existe una familia
         \begin{equation*}
             \left\{U_n\subseteq Y\Big|U_n\textup{ es abierto para todo }n\in\mathbb{N}^* \right\}
         \end{equation*}
@@ -1002,6 +1078,39 @@
             A\cap U_n\neq\emptyset,\quad\forall n\in\mathbb{N}
         \end{equation*}
     \end{excer}
+
+    \begin{proof}
+        Tomemos $U_0=\emptyset$. Suponga elegidos $U_1,...,U_n\subset X$ abiertos con cerraduras disjuntas a pares tales que
+        \begin{equation*}
+            A\cap U_k=\emptyset,\quad\forall k\in\natint{1,n}
+        \end{equation*}
+        siendo el conjunto
+        \begin{equation*}
+            A_n=A-\bigcup_{ k=1}^n\Cls{U_k}
+        \end{equation*}
+        infinito. Tomemos $a,b\in A_n$ con $a\neq b$. Como el espacio es Hausdorff se tiene que $\left\{b \right\}\subseteq X$ es un conjunto cerrado y es tal que $a\notin\left\{b \right\}$. Ahora, $A-\left(\bigcup_{ k=1}^n\Cls{U_k}\cup\left\{b\right\} \right)$ es un abierto que contiene a $a$. Como el espacio es $T_3$ existe un abierto $V\subseteq X$ tal que
+        \begin{equation*}
+            a\in V\subseteq\Cls{V}\subseteq A-\left(\bigcup_{ k=1}^n\Cls{U_k}\cup\left\{b\right\} \right) 
+        \end{equation*}
+        y con ello un abierto $W\subseteq X$ tal que
+        \begin{equation*}
+            b\in W\subseteq\Cls{W}\subseteq A-\left(\bigcup_{ k=1}^n\Cls{U_k}\cup\Cls{V}\right)
+        \end{equation*}
+        definamos
+        \begin{equation*}
+            U_{ n+1}=\left\{
+                \begin{array}{lcr}
+                    V & \textup{ si } & A\cap\Cls{V}\textup{ es finito} \\
+                    W & \textup{ e.o.c} & \\
+                \end{array}
+            \right.
+        \end{equation*}
+        es claro que $U_{ n+1}$ es abierto. Se tienen dos casos:
+        \begin{enumerate}
+            \item $U_{ n+1}=V$:
+            \item $U_{ n+1}=W$: 
+        \end{enumerate}
+    \end{proof}
 
     \begin{excer}
         Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{\alpha\in I}$ una familia de espacios topológicos. Tomando
