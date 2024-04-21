@@ -116,6 +116,9 @@
 \newcommand\abs[1]{\ensuremath{\big|#1\big|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand{\natint}[1]{\left[\!\left[#1\right]\!\right]}
+\newcommand{\contradiction}{\ensuremath{\#_{c}}}
+\newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -131,8 +134,6 @@
     \setcounter{chapter}{1} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
     
     \chapter{Compacidad}
-    
-    \section{Grupos compactos y localmente compactos}
 
     En este capítulo se estudiarán algunas de las propiedades más investigadas en grupos topológicos.
 
@@ -145,6 +146,123 @@
         \begin{equation*}
             xVx^{-1}\subseteq U\quad\forall x\in F
         \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Sea $W\subseteq G$ una vecindad simétrica de $e_G$, esto es que $W^3\subseteq U$. Como
+        \begin{equation*}
+            F\subseteq\bigcup_{ x\in F}Wx
+        \end{equation*}
+        al tenerse que $F$ es compacto, existen $x_1,..,x_k\in F$ tales que
+        \begin{equation*}
+            F\subseteq \bigcup_{ i=1}^k Wx_i
+        \end{equation*}
+        Sea $V=\bigcap_{ i=1}^kx_i^{-1}Wx_i$. Es claro que $V$ es una vecindad de $e_G$ y que $V\subseteq x_i^{-1}Wx_i$, para todo $i\in\natint{1,k}$. Si $x\in F$ entonces existe $i\in\natint{1,k}$ tal que
+        \begin{equation*}
+            x\in Wx_i
+        \end{equation*}
+        es decir $x=wx_i$ para algún $w\in W$. Luego,
+        \begin{equation*}
+            \begin{split}
+                xVx^{-1}&=wx_iVx_i^{-1}w^{-1}\\
+                &\subseteq wWw^{-1}\\
+                &\subseteq W^3\\
+                &\subseteq U\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    Se sabe de la sección anterior que si $G$ es un grupo topológico y $H$ es un subgrupo cerrado de $G$, entonces la función canónica $\cf{\pi}{G}{G/H}$ es continua y abierta. En el caso en que $H$ sea compacto, este resultado puede mejorarse:
+
+    \begin{theor}
+        Sea $G$ un grupo topológico y $H$ un subgrupo compacto de $G$. Entonces, la función canónica $\cf{\pi}{G}{G/H}$ es una función cerrada.
+    \end{theor}
+
+    \begin{proof}
+        Sea $A\subseteq G$ cerrado. Para probar el resultado bastará con probar que el complemento de $\pi(A)$ es abierto en $G/H$. Sea $x\in G$ tal que $\pi(x)\notin\pi(A)$. Notemos que
+        \begin{equation*}
+            \pi(A)=AH
+        \end{equation*}
+        donde el conjunto $AH\subseteq G$ es cerrado en $G$ (ya que $A$ es cerrado y $H$ es compacto), luego como $x\notin AH$ existe un abierto $U\subseteq G$ tal que $x\in U$ y
+        \begin{equation*}
+            U\cap AH=\emptyset
+        \end{equation*}
+        Afirmamos que $U^*=\pi(U)$ es un abierto que contiene a $\pi(x)$ ajeno a $\pi(A)$. En efecto, es claro que contiene a $\pi(x)$. Suponga que existe $z\in G$ tal que $\pi(z)=zH\in \pi(U)\cap\pi(A)$, luego existen $u\in U$ y $a\in A$ tales que:
+        \begin{equation*}
+            zH=uH=aH
+        \end{equation*}
+        luego $a^{-1}u\in H$ de donde se sigue que $u\in AH$, es decir que $U\cap AH\neq\emptyset$\contradiction. Por tanto, $\pi(U)\cap \pi(A)=\emptyset$. Así, el conjunto $G/H\backslash\pi(A)$ es abierto, luego $\pi(A)$ es cerrado.
+    \end{proof}
+
+    \begin{obs}
+        Note que la condición de que $H$ sea compacto es necesaria para que el conjunto $AH$ sea cerrado.
+    \end{obs}
+
+    Las propiedades de compacidad y compacidad local se heredan a espacios cocientes de $G$ entre subgrupos cerrados $H$.
+
+    \begin{theor}
+        Sean $G$ un grupo topológico y $H$ un subgrupo cerrado de $G$. Si $G$ es compacto, entonces $H$ y $G/H$ también lo son. Si $G$ es localmente compacto, entonces $H$ y $G/H$ también lo son.
+    \end{theor}
+
+    \begin{proof}
+        Es claro que la compacidad y la compacidad local se hereda a subgrupos cerrados de $G$.
+
+        Dado que la función canónica $\cf{\pi}{G}{G/H}$ es continua y sobre, la imagen $\pi(G)=G/H$ es un conjunto compacto en $G/H$, es decir que $G/H$ es compacto.
+
+        Ahora probaremos que si $G$ es localmente compacto, entonces $G/H$ también lo es. En efecto, suponga que $G$ es localmente compacto. Sea $\pi(a)\in G/H$, debemos encontrar una vecindad compacta de $\pi(a)$. Como $a\in G$ existe una vecindad $U$ de $a$ tal que $a\in U\subseteq\Cls{U}$, siendo $\Cls{U}$ compacto en $G$.
+
+        Como $\pi$ es continua, se tiene que $\pi(\Cls{U})$ es compacto en $G/H$, en particular, cerrado. Además, como $U\subseteq\Cls{U}$, entonces
+        \begin{equation*}
+            \pi(U)\subseteq\pi(\Cls{U})\Rightarrow\Cls{\pi(U)}\subseteq\pi(\Cls{U})
+        \end{equation*}
+        es decir, que $\pi(U)$ es una vecindad de $\pi(a)$ tal que $\Cls{\pi(U)}$ es compacta (por ser un cerrado contenido en un compacto). Luego, $G/H$ es localmente compacto.
+    \end{proof}
+
+    Hemos usado el hecho de que si $\cf{\pi}{G}{G/H}$ es la función canónica y $K\subseteq G$ es compacto, entonces $\pi(K)$ es compacto en $G/H$. El recíproco de este resultado también es cierto con una hipótesis adicional: la imagen inversa de un compacto en el espacio cociente $G/H$ es compacta si $H$ es compacto. Antes de probar este resultado necesitamos de algunos hechos auxiliares.
+
+    \begin{mydef}
+        Sean $X$ y $Y$ espacios topológicos y $\cf{f}{X}{Y}$ una función continua. Decimos que $f$ es \textbf{perfecta} si $f$ es cerrada y todas las fibras $f^{-1}(y)\subseteq X$ son compactas para todo $y\in Y$.
+    \end{mydef}
+
+    El teorema 2.1.2 se puede generalizar al afirmar que la función canónica $\cf{\pi}{G}{G/H}$ es perfecta si el subgrupo $H$ de $G$ es compacto.
+
+    Se harán a continuación la prueba de algunos resultados necesarios para un teorema posterior.
+
+    \begin{propo}
+        Si $\cf{f}{X}{Y}$ es una función cerrada, entonces para cualquier subespacio $L\subseteq Y$ la reestricción $\cf{f_L=f\big|_{ f^{-1}(L)}}{f^{-1}(L)}{L}$ es cerrada.
+    \end{propo}
+
+    \begin{proof}
+        Sea $A\subseteq X$ un conjunto cerrado en $X$, entonces
+        \begin{equation*}
+            \begin{split}
+                f_L(A\cap f^{-1}(L))&=f(A\cap f^{-1}(L))\\
+                &=f(A)\cap L\\
+            \end{split}
+        \end{equation*}
+        pues, $f(f^{-1}(L))=L$. Por ende, como $f$ es cerrada se sigue que $f(A)\cap L$ es cerrado en el subespacio de $L$ de $Y$. Así, $f_L$ es cerrada.
+    \end{proof}
+
+    \begin{propo}
+        Sean $X,Y$ espacios topológicos y $\cf{f}{X}{Y}$ una función perfecta, entonces para cualquier cerrado $A\subseteq X$ y cualquier subespacio $B\subseteq Y$ las restricciones $\cf{f\big|_A}{A}{Y}$ y $\cf{f_B=f\big|_{ f^{-1}(B)}}{f^{-1}(B)}{B}$ son perfectas.
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{theor}
+        Sean $X,Y$ espacios topológicos. Si $\cf{f}{X}{Y}$ es una función perfecta, entonces para todo subconjunto compacto $Z\subseteq Y$, su imagen inversa $f^{-1}(Z)$ es compacta en $X$. En particular, si $Y$ es compacto, $X$ también lo es.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    Suponga que tenemos un grupo $G$, un subgrupo $H$ de $G$ y una propiedad topológica $\mathcal{P}$. Un problema muy conocido en la teoría de grupos topológicos es: si $G/H$ y $H$ tienen la propiedad $\mathcal{P}$, ¿también $G$ posee la propiedad $\mathcal{P}$? En este libro se responderá afirmativamente esta pregunta para varias propiedades $\mathcal{P}$, por ejemplo, conexidad, compacidad, etc... Comencemos con la compacidad.
+
+    \begin{theor}
+        
     \end{theor}
 
     \begin{proof}
