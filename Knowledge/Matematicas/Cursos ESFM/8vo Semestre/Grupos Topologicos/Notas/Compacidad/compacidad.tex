@@ -343,6 +343,51 @@
         Suponga que $G$ es localmente compacto y no es discreto. Entonces $G$ no puede tener puntos aislados (pues es homogéneo). Sea $U$ una vecindad abierta de $e_G$ tal que $K=\Cls{U}$ es compacto.
     \end{proof}
 
-    
+    Como todo espacio compacto es localmente compacto, se sigue que todo grupo topológico compacto no discreto tiene cardinalidad no menor que $\mathfrak{c}$ (por el teorema anterio). Lo mismo se cumple para los grupos numerablemente compactos (como se verá en un ejercicio posterior).
+
+    El siguiente resultado acerca de subconjuntos compactos de un grupo nos será de utliidad posteriormente.
+
+    \begin{theor}
+        Sean $G$ un grupo topológico, $F$ un subconjunto compacto de $G$, $U$ un subconjunto abierto de $G$ tal que $F\subseteq U$. Entonces existe una vecindad $V$ de $e_G$ tal que
+        \begin{equation*}
+            (FV)\cup(VF)\subseteq U
+        \end{equation*}
+        Si $G$ es localmente compacto, entonces $V$ se puede elegir de tal forma que ambos conjuntos $\Cls{FV}$ y $\Cls{VF}$ sean compactos.
+    \end{theor}
+
+    \begin{proof}
+        Como $W$ es abierto, entonces para cada $x\in F$ existe $W_x\subseteq G$ vecindad abierta de $e_G$ que
+        \begin{equation*}
+            xW_x\subseteq U
+        \end{equation*}
+        además, existe una vecindad $V_x$ de $e_G$ tal que
+        \begin{equation*}
+            V_x^2\subseteq W_x
+        \end{equation*}
+        Notemos que $\left\{xV_x \right\}_{x\in F}$ es una cubierta abierta de $F$ luego, $F$ por ser compacto existen $x_1,...,x_n\in F$ tales que
+        \begin{equation*}
+            F\subseteq \bigcup_{ i=1}^n x_iV_{ x_i}
+        \end{equation*}
+        Tomemos:
+        \begin{equation*}
+            V_1=\bigcap_{ i=1}^n V_{ x_i}
+        \end{equation*}
+        la cual es una vecindad abierta de $e_G$. Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                FV_1&\subseteq \left( \bigcup_{ i=1}^n x_iV_{ x_i}\right)V_1\\
+                &\subseteq\bigcup_{ i=1}^n x_iV_{ x_i}V_{ x_i}\\
+                &=\bigcup_{ i=1}^n x_iV_{ x_i}^2\\
+                &=\bigcup_{ i=1}^n x_iW_{ x_i}\\
+                &\subseteq U\\
+                \Rightarrow FV_1&\subseteq U\\
+            \end{split}
+        \end{equation*}
+        de forma similar obtenemos una vecindad abierta $V_2$ de $e_G$ tal que $V_2F\subseteq U$. Sea $V=V_1\cap V_2$, se obtiene con ello que
+        \begin{equation*}
+            (FV)\cup(VF)\subseteq U
+        \end{equation*}
+        Supongamos que $G$ es localmente compacto
+    \end{proof}
 
 \end{document}

@@ -158,6 +158,7 @@
                 (resp. $F(g\circ f)=F(f)\circ F(g)$).
             \end{enumerate}
         \end{enumerate}
+        Un \textbf{bifuntor} es un funtor que va del producto de dos categorías en una categoría.
     \end{mydef}
 
     \begin{mydef}
@@ -293,5 +294,152 @@
             \end{equation*}
         \end{enumerate}
     \end{mydef}
+
+    \newcommand{\HOM}[1]{\ensuremath{\textup{HOM}_{#1}}}
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría. Definimos el \textbf{bifuntor} $\cf{\HOM{\mathcal{C}}}{\mathcal{C}^{op}\times \mathcal{C}}{\Cat{Set}}$ como $\HOM{\mathcal{C}}(A,B)=\Hom{\mathcal{C}}{A}{B}$, para todo $(A,B)\in\mathcal{C}^{op}\times\mathcal{C}$.
+        
+        Además, si $(f^{op},g)\in\Hom{\mathcal{C}^{op}\times\mathcal{C}}{(A,B)}{(C,D)}$, entonces se tiene que $f\in\Hom{\mathcal{C}}{C}{A}$ y $g\in\Hom{\mathcal{C}}{B}{D}$.
+
+        Luego
+        \begin{equation*}
+            \begin{split}
+                \HOM{\mathcal{C}}:\Hom{\mathcal{C}^{op}\times\mathcal{C}}{(A,B)}{(C,D)}&\rightarrow \Hom{\Cat{Set}}{\HOM{\mathcal{C}(A,B)}}{\HOM{\mathcal{C}(C,D)}}\\
+                (f^{op},g)&\mapsto \HOM{\mathcal{C}}(f^{op},g)
+            \end{split}
+        \end{equation*}
+        donde $\HOM{\mathcal{C}}(f^{op},g)(h)=g\circ h\circ f$, para todo $h\in\Hom{\mathcal{C}}{A}{B}$.
+    \end{mydef}
+
+    \begin{proof}
+        Probaremos que $\HOM{\mathcal{C}}$ es un funtor. Hay que ver que se cumplen algunas condiciones:
+        \begin{enumerate}
+            \item $\cf{\HOM{\mathcal{C}}}{\mathcal{C}^{op}\times\mathcal{C}}{\Cat{Set}}$, tal que $(A,B)\mapsto\Hom{\mathcal{C}}{A}{B}$, y $(f^{op},g)\mapsto (h\mapsto g\circ h\circ f)$ para todo $h\in\Hom{\mathcal{C}}{A}{B}$ (siendo los $f$ y $g$ como se dió en la definición). Así, está bien definido.
+            \item Sean $(A,B)\in\mathcal{C}^{op}\times\mathcal{C}$, $h\in\Hom{\mathcal{C}}{A}{B}$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    \HOM{\mathcal{C}}((1_A,1_B))(h)&=\HOM{\mathcal{C}}((1^{op}_A,1_B))(h)\\
+                    &=1_b\circ g\circ 1_A\\
+                    &=h\\
+                    &=1_{ \Hom{\mathcal{C}}{A}{B}}(h)\\
+                    &=1_{\HOM{\mathcal{C}}(A,B)(h)}
+                \end{split}
+            \end{equation*}
+            luego manda identidades en identidades.
+            \item Sean ahora $(f^{op},g)\in\Hom{\mathcal{C}^{op}\times\mathcal{C}}{(A,B)}{(C,D)}$ y $(r^{op},t)\in\Hom{\mathcal{C}^{op}\times\mathcal{C}}{(C,D)}{(E,F)}$. Tomemos $h\in\Hom{\mathcal{C}}{A}{B}$.
+            
+            Se tiene que $\HOM{\mathcal{C}}(r^{op},t)\in\Hom{\Cat{Set}}{\Hom{\mathcal{C}}{A}{B}}{\Hom{\mathcal{C}}{E}{F}}$ y $g\circ h\circ f\in \Hom{\mathcal{C}}{C}{D}$, de manera que
+            \begin{equation*}
+                \begin{split}
+                    \HOM{\mathcal{C}}(r^{op},t)(g\circ h\circ f)&=t\circ (g\circ h\circ f)\circ r\\                    
+                \end{split}
+            \end{equation*}
+            luego,
+            \begin{equation*}
+                \begin{split}
+                    \HOM{\mathcal{C}}((r^{op},t)\circ (f^{op},g))(h)
+                    &=\HOM{\mathcal{C}}(r^{op}\circ f^{op},t\circ g)(h)\\
+                    &=\HOM{\mathcal{C}}((f\circ r)^{op},t\circ g)(h)\\
+                    &=(t\circ g)\circ h\circ (f\circ r)\\
+                    &=\HOM{\mathcal{C}}(r^{op}, t)(g\circ h\circ f)\\
+                    &=\HOM{\mathcal{C}}(r^{op},t)\circ\HOM{\mathcal{C}}(f^{op},g)(h)\\
+                    \Rightarrow \HOM{\mathcal{C}}((r^{op},t)\circ (f^{op},g))&=\HOM{\mathcal{C}}(r^{op},t)\circ\HOM{\mathcal{C}}(f^{op},g)(h)\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+        Por los incisos anteriores, se sigue que este es un bifuntor, denominado \textbf{bifuntor Hom}.
+    \end{proof}
+
+    \begin{exa}
+        Los funtores olvidados (o \textit{forgetful}). Consideremos por ejemplo a las categorías $\Cat{Rng}$ y $\Cat{Ab}$. Entonces:
+        \begin{enumerate}
+            \item $\cf{F}{\Cat{Ring}}{\Cat{Ab}}$ tal que $(A,+,\cdot)\mapsto (A,+)$ y a cada morfismo lo manda a sí mismo es un funtor, el cual "olvida" propiedades del objeto original del que partió. En este caso, olvida el producto entre dos elementos del anillo.
+            \item $\Cat{Grp}\rightarrow\Cat{Set}$. A cada grupo lo manda al conjunto de sus elementos y morfismo a la función entre grupos.
+        \end{enumerate}
+    \end{exa}
+
+    \begin{propo}
+        Las categorías pequeñas y los funtores entre ellas forman una categoría (localmente pequeña), la cual denotamos como $\Cat{Cat}$, definiendo:
+        \begin{enumerate}
+            \item $\Obj{\Cat{Cat}}=\left\{\mathcal{C}\Big|\mathcal{C}\textup{ es una categoría pequeña} \right\}$.
+            \item Para cada par de objetos $\mathcal{C},\mathcal{D}\in\Obj{\Cat{Cat}}$, el conjunto:
+            \begin{equation*}
+                \Hom{\Cat{Cat}}{\mathcal{C}}{\mathcal{D}}=\left\{F\Big|\cf{F}{\mathcal{C}}{\mathcal{D}}\textup{ es un funtor} \right\}
+            \end{equation*}
+            (como $\mathcal{C}$ y $\mathcal{D}$ son conjuntos, entonces la clase anterior debe ser un conjunto).
+            \item La composición de morfismos en esta categoría se define como la composición funtorial puntual de dos funtores. Además, la identidad es el funtor identidad de la misma categoría.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Basta con ver que la composición es asociativa en la categoría $\Cat{Cat}$. En efecto, sean $\mathcal{C},\mathcal{D},\mathcal{E},\mathcal{T}$ categorías pequeñas y, $\cf{F}{\mathcal{C}}{\mathcal{D}}$, $\cf{G}{\mathcal{D}}{\mathcal{E}}$ y $\cf{H}{\mathcal{E}}{\mathcal{T}}$ funtores. Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                (H\circ (G\circ F))(A)&=H(G\circ F(A))\\
+                &=(H\circ G) (F(A))\\
+                &=H\circ G\circ F(A)\\
+            \end{split}
+        \end{equation*}
+        (pues la composición de funtores como se definió es asociativa en objetos).
+        %TODO puede que también falte ver para que se cumpla algo con la identidad.
+    \end{proof}
+
+    \begin{propo}
+        Sea $\cf{F}{\mathcal{A}\times\mathcal{B}}{\mathcal{C}}$ un bifuntor. Entonces, para todo $A\in\Obj{\mathcal{A}}$ existe un funtor $\cf{F_A}{\mathcal{B}}{\mathcal{C}}$, llamado el \textbf{funtor asociado derecho respecto a $A$} y está definido como sigue:
+        \begin{enumerate}
+            \item $F_A(B)=F(A,B)$ para todo $B\in\Obj{\mathcal{B}}$.
+            \item $F_A(f)=F=(1_A,f)$ para todo $f$ morfismo en la categoría $\mathcal{B}$.
+        \end{enumerate}
+        Similaremente, para cada $B\in\Obj{\mathcal{B}}$, existe un funtor $\cf{F^B}{\mathcal{A}}{\mathcal{C}}$, llamado \textbf{funtor asociado izquierdo respecto a $B$}, como sigue:
+        \begin{enumerate}
+            \item $F^B(A)=F(A,B)$ para todo $A\in\Obj{\mathcal{A}}$.
+            \item $F^B(f)=F=(f,1_B)$ para todo $f$ morfismo en la categoría $\mathcal{A}$.
+        \end{enumerate}
+        Y, si $F$ es covariante (resp. contravariante), entonces $F_A$ y $F^B$ son covariantes (resp. contravariantes). 
+    \end{propo}
+
+    \begin{proof}
+        Sea $A\in\Obj{\mathcal{A}}$. Se probará que el funtor asociado derecho respecto a $A\in\Obj{\mathcal{A}}$ es un funtor. Claramente está bien definido (manda objetos de $\mathcal{A}$ en objetos de $\mathcal{C}$ y lo mismo con morfismos). Veamos que se cumplen dos condiciones:
+        \begin{enumerate}
+            \item Sea $B\in\mathcal{B}$. Entonces,
+            \begin{equation*}
+                \begin{split}
+                    F_A(1_B)&=F(1_A,1_B)\\
+                    &=1_{F(A,B)}\\
+                    &=1_{F_A(B)}\\
+                \end{split}
+            \end{equation*}
+            \item Suponga que $F$ es covariante. Sean $A,B,C\in\Obj{\mathcal{B}}$, $f\in\Hom{\mathcal{B}}{A}{B}$ y $g\in\Hom{\mathcal{B}}{B}{C}$. Entonces:
+            \begin{equation*}
+                \begin{split}
+                    F_A(g\circ f)&=F(1_A,g\circ f)\\
+                    &=F(1_A\circ 1_A,g\circ f)\\
+                    &=F((1_A,g)\circ(1_A f))\\
+                    &=F(1_A,g)\circ F(1_A,f)\\
+                    &=F_A(g)\circ F_A(f)\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+        de los incisos anteriores, se sigue que $F_A$ es un funtor covariante (los demás casos son análogos).
+    \end{proof}
+
+    \begin{exa}
+        Sea $\mathcal{C}$ una categoría  y $C\in\Obj{\mathcal{C}}$. El funtor ${\HOM{\mathcal{C}}}_C=\HOM{\mathcal{C}}(C,-)$ es el funtor asociado derecho respecto a $C$ y ${\HOM{\mathcal{C}}}^C=\HOM{\mathcal{C}}(-,C)$ es el funtor asociado izquierdo respecto a $C$.
+    \end{exa}
+
+    \begin{exa}
+        El bifuntor producto cartesiano $-\times -:\Cat{Set}\times\Cat{Set}\rightarrow\Cat{Set}$, $(-\times-)(A,B)\mapsto A\times B$ y tal que $(-\times-)(f,g)\mapsto f\times g$, donde si $(f,g)\in\Hom{\Cat{Set}}{A}{C}\times\Hom{\Cat{Set}}{B}{D}$, entonces
+        \begin{equation*}
+            \begin{split}
+                f\times g:A\times B&\rightarrow C\times D\\
+                (a,b)&\mapsto (f(a),f(b))\\ 
+            \end{split}
+        \end{equation*}
+    \end{exa}
+
+    \begin{exa}
+        Para cualquier conjunto $X$, los funtores producto cartesiano $X\times -$ y $-\times X$ son los funtores derecho e izquierdo asociados con respecto a $X$ del bifuntor producto cartesiano, respectivamnete.
+    \end{exa}
 
 \end{document}
