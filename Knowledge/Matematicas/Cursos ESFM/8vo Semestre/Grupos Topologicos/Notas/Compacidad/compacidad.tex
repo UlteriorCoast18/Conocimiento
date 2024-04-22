@@ -248,7 +248,19 @@
     \end{propo}
 
     \begin{proof}
-        
+        Es claro que la reestricción $f\big|_A$ y $f_B$ son cerradas (siendo la última por la proposición anterior). Sea ahora $y\in Y$, se tiene:
+        \begin{equation*}
+            f\big|_{A}^{-1}(y)=A\cap f^{-1}(y)
+        \end{equation*}
+        donde el conjunto de la derecha es un cerrado contenido en el compacto $f^{-1}(y)$, luego compacto. Así, $f\big|_A$ es perfecta.
+
+        Para $f_B$, veamos que si $y\in B$:
+        \begin{equation*}
+            \begin{split}
+                f_B^{-1}(y)=f^{-1}(y)
+            \end{split}
+        \end{equation*}
+        donde el conjunto de la derecha es compacto. Por tanto, $f_B$ es perfecta.
     \end{proof}
 
     \begin{theor}
@@ -256,17 +268,81 @@
     \end{theor}
 
     \begin{proof}
+        Primero notemos que si $y\in Y$ y $U\subseteq X$ es una vecindad abierta de $f^{-1}(y)$, entonces existe una vecindad $W\subseteq Y$ de $y$ tal que
+        \begin{equation*}
+            f^{-1}(W)\subseteq U
+        \end{equation*}
+        En efecto, tomemos $W=Y\backslash f(X\backslash U)$. Claramente $W$ es cerrada pues $f$ es perfecta (en particular, $f$ es cerrada) y es tal que $y\in W$. Además,
+        \begin{equation*}
+            \begin{split}
+                x\in f^{-1}(Y\backslash f(X\backslash U))&\iff f(x)\in Y\backslash f(X\backslash U)\\
+                &\iff f(x)\in Y\backslash f(X\backslash U)\\
+                &\iff f(x)\in Y\textup{ y }f(x)\notin f(X\backslash U)\\
+                &\Rightarrow x\notin X\backslash U\\
+                &\iff x\in U\\
+            \end{split}
+        \end{equation*}
+        por tanto ,$f^{-1}(W)\subseteq W$.
+
+        Ahora, por el teorema 2.1.3 es suficiente con probar que si $Y$ es compacto, entonces $X$ también lo es (esto pues podemos tomar la reestricción de $f$ a $U$ y sería una función $\cf{f\big|_U}{U}{Y}$ y el resultado se cumpliría para $U$). Sea $\mathcal{U}$ una cubierta abierta de $X$.
         
+        Sin péridida de generalidad podemos suponer que $\mathcal{U}$ es cerrada bajo uniones finitas (en caso de que no lo sea, podemos crear una cubierta más grande formada por todos los elementos de $\mathcal{U}$, al extraer la subcubierta abierta finita de esta cubierta más grande tendríamos a su vez una cubierta abierta finita del conjunto formada por una cantidad finita de elementos de $\mathcal{U}$). Sabemos que para toda $y\in Y$, el conjunto $f^{-1}(y)$ es compacto en $X$. Por ende, existe un abierto $U_y\in\mathcal{U}$ tal que
+        \begin{equation*}
+            f^{-1}(y)\subseteq U_y
+        \end{equation*}
+        por lo probado anteriormente se tiene que existe un abierto $V_y\subseteq Y$ tal que $y\in V_y$ y:
+        \begin{equation*}
+            f^{-1}(V_y)\subseteq U_y
+        \end{equation*}
+        como $Y$ es compacto y la familia $\left\{V_y\Big|y\in Y \right\}$ forma una cubierta abierta de $Y$, entonces existen $y_1,...,y_n\in Y$ tales que
+        \begin{equation*}
+            Y\subseteq \bigcup_{ i=1}^n V_{ y_i} 
+        \end{equation*}
+        Se sigue entonces que
+        \begin{equation*}
+            \begin{split}
+                X&=f^{-1}(Y)\\
+                &\subseteq f^{-1}\left(\bigcup_{ i=1}^n V_{ y_i} \right)\\
+                &\subseteq\bigcup_{ i=1}^n f^{-1}(V_{ y_i})\\
+                &\subseteq\bigcup_{ i=1}^n U_{ y_i}
+            \end{split}
+        \end{equation*}
+        luego, $X$ es compacto.
     \end{proof}
 
     Suponga que tenemos un grupo $G$, un subgrupo $H$ de $G$ y una propiedad topológica $\mathcal{P}$. Un problema muy conocido en la teoría de grupos topológicos es: si $G/H$ y $H$ tienen la propiedad $\mathcal{P}$, ¿también $G$ posee la propiedad $\mathcal{P}$? En este libro se responderá afirmativamente esta pregunta para varias propiedades $\mathcal{P}$, por ejemplo, conexidad, compacidad, etc... Comencemos con la compacidad.
 
     \begin{theor}
-        
+        Sean $G$ un grupo topológico y $H$ un subgrupo compacto de $G$. Si $Q\subseteq G/H$ es compacto, entonces $P=\pi^{-1}(Q)$ es compacto, donde $\cf{\pi}{G}{G/H}$ es la función canónica. En particular, si $G/H$ es compacto, entonces $G$ también lo es.
     \end{theor}
 
     \begin{proof}
-        
+        Por el teorema anterior, basta con probar que $\pi$ es perfecta. De un teorema anterior se tiene que $\pi$ es cerrada.
+
+        Sea $x\in G$, entonces el conjunto $\pi^{-1}(\pi(x))=xH$ que es compacto. Así, $\pi$ es perfecta.
     \end{proof}
+
+    \begin{cor}
+        Sea $G$ grupo topológico y $H$ un subgrupo cerrado de $G$. Entonces, $\cf{\pi}{G}{G/H}$ es perfecta si y sólo si $H$ es compacto.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediata de la prueba del teorema anterior, pues:
+        \begin{equation*}
+            \pi^{-1}(\pi(x))=xH
+        \end{equation*}
+    \end{proof}
+
+    Existen grupos numerables sin puntos aislados, por ejemplo, el grupo $\mathbb{Z}$ con la $p$-topología. Demostraremos que tales grupos no pueden ser localmente compactos.
+
+    \begin{theor}
+        Todo grupo topológico localmente compacto $G$ tal que $\abs{G}<\mathfrak{c}$ es discreto.
+    \end{theor}
+
+    \begin{proof}
+        Suponga que $G$ es localmente compacto y no es discreto. Entonces $G$ no puede tener puntos aislados (pues es homogéneo). Sea $U$ una vecindad abierta de $e_G$ tal que $K=\Cls{U}$ es compacto.
+    \end{proof}
+
+    
 
 \end{document}

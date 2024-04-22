@@ -1,7 +1,7 @@
-PWD /home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Topologia I/Notas/Conexidad, Compacidad y Separabilidad
+PWD /home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Topologia I/Notas/Separabilidad, Filtros
 INPUT /home/cristodanielalvarado/.miktex/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt
-INPUT /home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Topologia I/Notas/Conexidad, Compacidad y Separabilidad/ConCompSep.tex
-OUTPUT ConCompSep.log
+INPUT /home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Topologia I/Notas/Separabilidad, Filtros/sep_filtros.tex
+OUTPUT sep_filtros.log
 INPUT /usr/local/share/miktex-texmf/tex/latex/base/report.cls
 INPUT /usr/local/share/miktex-texmf/tex/latex/base/report.cls
 INPUT /usr/local/share/miktex-texmf/tex/latex/base/size12.clo
@@ -223,10 +223,10 @@ INPUT /usr/local/share/miktex-texmf/tex/generic/iftex/ifvtex.sty
 INPUT /usr/local/share/miktex-texmf/tex/latex/geometry/geometry.cfg
 INPUT /usr/local/share/miktex-texmf/tex/latex/geometry/geometry.cfg
 INPUT /usr/local/share/miktex-texmf/tex/latex/geometry/geometry.cfg
-INPUT ./ConCompSep.aux
-INPUT ./ConCompSep.aux
-INPUT ConCompSep.aux
-OUTPUT ConCompSep.aux
+INPUT ./sep_filtros.aux
+INPUT ./sep_filtros.aux
+INPUT sep_filtros.aux
+OUTPUT sep_filtros.aux
 INPUT /usr/local/share/miktex-texmf/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/share/miktex-texmf/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/share/miktex-texmf/tex/context/base/mkii/supp-pdf.mkii
@@ -253,13 +253,13 @@ INPUT /usr/local/share/miktex-texmf/tex/latex/amsfonts/umsb.fd
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-OUTPUT ConCompSep.pdf
+OUTPUT sep_filtros.pdf
 INPUT /home/cristodanielalvarado/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmbx12.tfm
-INPUT ./ConCompSep.toc
-INPUT ./ConCompSep.toc
-INPUT ConCompSep.toc
+INPUT ./sep_filtros.toc
+INPUT ./sep_filtros.toc
+INPUT sep_filtros.toc
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmr8.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmr6.tfm
@@ -278,7 +278,7 @@ INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msam7.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-OUTPUT ConCompSep.toc
+OUTPUT sep_filtros.toc
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmmi12.tfm
@@ -288,7 +288,7 @@ INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmti12.tfm
-INPUT ConCompSep.aux
+INPUT sep_filtros.aux
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
@@ -297,6 +297,8 @@ INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi12.pfb
+INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi6.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr12.pfb

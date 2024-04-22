@@ -1045,4 +1045,168 @@
         El punto al que converge una sucesión en un espacio topológico no necesariamente es único.
     \end{obs}
 
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico, $\mathcal{F}$ un filtro en $X$ y $l\in X$.
+        \begin{enumerate}
+            \item Se dice que el filtro $\mathcal{F}$ \textbf{converge al punto $l$} y se escribe $\mathcal{F}\rightarrow l$ si $\xi_l\subseteq\mathcal{F}$.
+            \item Se dice que $l$ es un \textbf{punto de acumulación} del filtro $\mathcal{F}$ si para todo $A\in\mathcal{F}$, $l\in\Cls{A}$.
+       \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        Considere $X=\left\{a,b \right\}$ con $a\neq b$ y $\tau=\left\{X,\emptyset,\left\{a\right\} \right\}$. El filtro de vecindades de $b$ es:
+        \begin{equation*}
+            \xi_b=\left\{X\right\}
+        \end{equation*}
+        y el de $a$:
+        \begin{equation*}
+            \xi_a=\left\{X,\left\{a\right\} \right\}
+        \end{equation*}
+        se tiene que $\xi_a\rightarrow a$ y $\xi\rightarrow b$.
+    \end{exa}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico, $\xi$ un filtro en $X$ y $x\in X$. Entonces $x$ es un punto de acumulación de $\xi$ si y sólo si existe un filtro $\mathcal{F}$ de $X$ tal que $\xi\subseteq\mathcal{F}$ y $\mathcal{F}\rightarrow x$.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Supongamos que $x\in X$ es un punto de acumulación de $\xi$, entonces para todo $A\in\xi$, $x\in\Cls{A}$, esto es que para todo $A\in\xi$ y $V\in\xi_x$ se tiene que $A\cap V\neq\emptyset$. Sea
+        \begin{equation*}
+            \eta=\left\{A\cap V\Big|A\in\xi,V\in\xi_x \right\}
+        \end{equation*}
+        esta colección es no vacía y no contiene al vacío por la observación anterior. Por una proposición anterior se tiene que es una base para filtro y el filtro generado por ella $\eta^+$ cumple que
+        \begin{enumerate}
+            \item $\xi\subseteq\eta^+$.
+            \item $\xi_x\subseteq\eta^+$.
+        \end{enumerate}
+        (esto por una proposición anterior) por tanto, por la segunda observación se tiene que $\eta^+\rightarrow x$.
+
+        $\Leftarrow):$ Sea $\mathcal{F}$ un filtro tal que $\xi\subseteq\mathcal{F}$ y $\mathcal{F}\rightarrow x$. Sea $U\in\tau$ tal que $x\in U$ y $A\in\xi$. Debemos probar que $U\cap A\neq\emptyset$. Como $\mathcal{F}\rightarrow x$, debe tenerse que $U\in\mathcal{F}$.
+
+        Pero, como $A\in\xi\subseteq\mathcal{F}$ entonces $U,A\in\mathcal{F}$, luego $U\cap A\in\mathcal{F}$, así $U\cap A\neq\emptyset$.
+    \end{proof}
+
+    \begin{excer}
+        Sean $(X,\tau)$ un espacio topológico, $A\subseteq X$ y $x\in X$ Entonces $x\in\Cls{A}$ si y sólo si existe un filtro $\xi$ de $X$ tal que $\xi\rightarrow x$ y $A\in\xi$. 
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico. Entonces, $(X,\tau)$ es Hausdorff (o $T_2$) si y sólo si dado $\mathcal{F}$ un filtro de $X$ que converge existe un único $l\in X$ tal que $\mathcal{F}\rightarrow l$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{propo}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios topológicos y $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ una función. Entonces, $f$ es continua en $x_0\in X_1$ si y sólo si para todo $\xi$ filtro de $X_1$ tal que $\xi\rightarrow x_0$, tenemos que $f(\xi)\rightarrow f(x_0)$.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Suponga que $f$ es continua en $x_0\in X_1$. Sea $\xi$ un filtro de $X_1$ tal que $\xi\rightarrow x_0$. Hay que demostrar que $\xi_{ f(x_0)}\subseteq f(\xi)$.
+
+        Sea $W\in\tau_2$ tal que $f(x_0)\in W$. Como $f$ es continua en $x_0$, existe un abierto $V\in\tau_1$ tal que $x_0\in V$ y $f(V)\subseteq W$. Por hipótesis, $\xi\rightarrow x_0$, luego $\xi_{ x_0}\subseteq \xi$, así $V\in\xi$, luego $f(V)\in f(\xi)$, por absorción se sigue que $W\in f(\xi)$. Por absorción se sigue que
+        \begin{equation*}
+            \xi_{ f(x_0)}\subseteq f(\xi)
+        \end{equation*}
+        por tanto, $f(\xi)\rightarrow f(x_0)$.
+
+        $\Leftarrow):$ Tenemos que $\xi_{ x_0}\rightarrow x_0$, por hipótesis se sigue que $f(\xi_{ x_0})\rightarrow f(x_0)$. Sea $W\in\tau_2$ tal que $f(x_0)\in W$, luego $W\in f(\xi_{ x_0})$, existe entonces $M\in\xi_{ x_0}$ tal que
+        \begin{equation*}
+            f(M)\subseteq W
+        \end{equation*}
+        Como $M$ es vecindad de $x_0$ existe entonces $V\in\tau_1$ tal que $x_0\in V\subseteq M$, luego
+        \begin{equation*}
+            f(U)\subseteq W
+        \end{equation*}
+        con $x_0\in V$. Por tanto, $f$ es continua en $x_0$.
+    \end{proof}
+
+    \begin{propo}
+        Sea $\left\{(X_\alpha,\tau_\alpha)\right\}_{ \alpha\in I}$ una familia de espacios topológicos, considere
+        \begin{equation*}
+            X=\prod_{\alpha\in I}X_\alpha
+        \end{equation*}
+        junto con la topología producto $\tau_p$. Sea $\xi$ un filtro en $X$ y $x_0\in X$. Entonces $\xi\rightarrow x_0$ si y sólo si para todo $\alpha\in I$ el filtro $p_\alpha(\xi)\rightarrow p_\alpha(x_0)$.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Es inmedita de la proposición anterior y del hecho de que cada función proyección es continua.
+
+        $\Leftarrow):$ Suponga que para todo $\alpha\in I$, $p_\alpha(\xi)\rightarrow p_\alpha(x_0)$. Hay que probar que
+        \begin{equation*}
+            \xi_{ x_0}\subseteq \xi
+        \end{equation*}
+        (en particular, basta con probar la contención para elementos básicos de $(X,\tau_p)$). Sea $U=\prod_{\alpha\in I}U_\alpha$ un elemento básico de $\tau_p$ tal que $x_0\in U$. Sean $\alpha_1,...,\alpha_n\in I$ tales que
+        \begin{equation*}
+            U=p_{\alpha_1}^{-1}(U_{\alpha_1})\cap\cdots\cap p_{\alpha_n}^{-1}(U_{\alpha_n}) 
+        \end{equation*}
+        con $U_{\alpha_i}\in\tau_{\alpha_i}$ para todo $i\in\natint{1,n}$. Tenemos que para todo $i\in\natint{1,n}$, ${x_0}_{\alpha_i}\in U_{\alpha_i}$.
+
+        Como para todo $\alpha\in I$, $p_\alpha(\xi)\rightarrow p_\alpha(x_0)$, es decir que para todo $i\in\natint{1,n}$, $U_{\alpha_i}\in p_{\alpha_i}(\xi)$. Por tanto, para todo $i\in\natint{1,n}$ existe $F_i\in\xi$ tal que
+        \begin{equation*}
+            \begin{split}
+                p_{\alpha_i}(F_i)&\subseteq U_{\alpha_i}\\
+                \Rightarrow p_{\alpha_i}^{-1}(p_{\alpha_i}(F_i))&\subseteq p_{\alpha_i}^{-1}(U_{\alpha_i})\\
+                \Rightarrow F_i&\subseteq p_{\alpha_i}^{-1}(U_{\alpha_i})\\
+            \end{split}
+        \end{equation*}
+        por absorción se sigue que $p_{\alpha_i}^{-1}(U_{\alpha_i})\in\xi$ para todo $i\in\natint{1,n}$, luego por ser $\xi$ filtro se sigue que $U\in\xi$.
+        Luego, se tiene que $\xi\rightarrow x_0$.
+    \end{proof}
+
+    \chapter{Espacios Compactos}
+
+    \section{Conceptos Fundamentales}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico.
+        \begin{enumerate}
+            \item Una familia $\mathcal{U}=\left\{U_\alpha \right\}_{\alpha\in I}$ formada por subconjuntos de $X$ es una \textbf{cubierta de $X$}, si
+            \begin{equation*}
+                X=\bigcup_{\alpha\in I}U_\alpha
+            \end{equation*}
+            \item Si $\mathcal{U}=\left\{U_\alpha \right\}_{\alpha\in I}$ es una cubierta de $X$ y para todo $\alpha\in I$, $U_\alpha$ es un abierto, diremos que $\mathcal{U}$ es una \textbf{cubierta abierta de $X$}.
+            \item El espacio $(X,\tau)$ es un \textbf{espacio compacto} si toda cubierta abierta $\mathcal{U}=\left\{U_\alpha \right\}_{\alpha\in I}$ de $X$ existe una subfamilia finita $\left\{U_{\alpha_1},...,U_{\alpha_n}\right\}$ de $\mathcal{U}$ tal que
+            \begin{equation*}
+                X=\bigcup_{i=1}^n U_{\alpha_i}
+            \end{equation*}
+            \item Un subconjunto $C\subseteq X$ es un \textbf{subconjunto compacto de $X$} si $(C,\tau_C)$ es un espacio compacto.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico y $\mathcal{B}$ una base para la topología $\tau$. Entonces, $(X,\tau)$ es compacto si y sólo si para cada cubierta de $X$, $\left\{B_\alpha \right\}_{\alpha\in I}$ formada por básicos de $\tau$ existen $\alpha_1,...,\alpha_n\in I$ tales que
+        \begin{equation*}
+            X=\bigcup_{ i=1}^n B_{\alpha_i}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Es inmediata del hecho de que $(X,\tau)$ es compacto.
+
+        $\Leftarrow): $ Sea $\mathcal{U}=\left\{ U_\alpha\right\}_{\alpha\in I}\subseteq\tau$ tal que
+        \begin{equation*}
+            X=\bigcup_{\alpha\in I}U_\alpha
+        \end{equation*}
+        Dado $\alpha\in I$, existe $\left\{B_{\beta}^\alpha \right\}_{\beta\in J_\alpha}$ tal que
+        \begin{equation*}
+            U_\alpha=\bigcup_{ \beta\in J_\alpha}B_\beta^\alpha
+        \end{equation*}
+        así,
+        \begin{equation*}
+            X=\bigcup_{\alpha\in I}\bigcup_{\beta\in J_\alpha}B^{\alpha}_\beta
+        \end{equation*}
+        luego, la colección formada por todos estos básicos es una cubierta de $X$. Por hipótesis, existen $\alpha_1,...,\alpha_n\in I$ tales que
+        \begin{equation*}
+            X=\bigcup_{ i=1}^n \bigcup_{\beta\in J_{\alpha_i}}B_\beta^{\alpha_i}
+            =\bigcup_{i =1}^n U_{\alpha_i}
+        \end{equation*}
+        luego, $X$ es compacto.
+    \end{proof}
+
 \end{document}
