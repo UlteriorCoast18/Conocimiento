@@ -387,7 +387,62 @@
         \begin{equation*}
             (FV)\cup(VF)\subseteq U
         \end{equation*}
-        Supongamos que $G$ es localmente compacto
+        Supongamos ahora que $G$ es localmente compacto. Entonces, en lo hecho anteriormente podemos elegir a $V$ tal que $\Cls{V}$ es un conjunto compacto en $G$. Luego, por un teorema se sigue que el conjunto $F\Cls{V}$ es compacto.
+        
+        Como $FV\subseteq F\Cls{V}$ y $F\Cls{V}$ es cerrado, entonces $\Cls{FV}\subseteq F\Cls{V}$, luego $\Cls{FV}$ es compacto. De forma análoga se deduce que $\Cls{VF}$ es compacto.
     \end{proof}
+
+    Ahora se analizarán algunos resultados sobre compacidad numerable.
+
+    \begin{obs}
+        Recordemos antes que todo espacio es compacto si y sólo si es numerablemente compacto y Lindelöf.
+    \end{obs}
+
+    \begin{theor}
+        Si $G$ es un grupo topológico que contiene un subgrupo compacto $H$ tal que el espacio cociente $G/H$ es numerablemente compacto, entonces $G$ es numerablemente compacto.
+    \end{theor}
+
+    \begin{proof}
+        Por un resultado del apéndice, basta con probar que cada subconjunto infinito de $G$ tiene un punto de acumulación (en el caso en que $\abs{G}$ sea infinito, si es finito el resultado es inmediato). Sea $X\subseteq G$ tal que
+        \begin{equation*}
+            \abs{X}=\aleph_0
+        \end{equation*}
+        (basta con este cardinal ya que para cardinales más grande siempre se puede extraer un subconjunto de cardinalidad al menos $\aleph_0$). Se tienen dos casos:
+        \begin{itemize}
+            \item Existe $g\in G$ tal que $\abs{X\cap gH}=\aleph_0$. En este caso el subconjunto $X\cap gH$ del subespacio $gH$ de $G$ debe tener un punto de acumulación (pues, el subespacio $gH$ es compacto, en particular numerablemente compacto), luego $X$ tiene un punto de acumulación en $G$.
+            \item Para toda $x\in G$, $\abs{X\cap gH}<\aleph_0$. Sea $\cf{\pi}{G}{G/H}$ la función canónica. De esta suposición se desprende que
+            \begin{equation*}
+                \abs{\pi(X)}=\aleph_0
+            \end{equation*}
+            (ya que en caso contrario, una clase lateral debería contener una cantidad numerable de elementos de $X$, cosa que no puede suceder), luego al ser $G/H$ numerablemente compacto se sigue que $\pi(X)$ tiene un punto de acumulación en $G/H$, es decir que existe $a\in G$ tal que para toda $U$ vecindad de $a$ en $G$ se cumple que
+            \begin{equation*}
+                \abs{\pi(X)\cap U^*}=\aleph_0
+            \end{equation*}
+            (donde $U^*=\pi(U)$). Probaremos que para alguna $p\in aH$, $p$ es punto de acumulación de $X$. Suponga lo contrario, es decir que para todo $p\in aH$ existe una vecindad abierta $V_p$ en $G$ de $p$ tal que
+            \begin{equation*}
+                \abs{X\cap V_p}<\aleph_0
+            \end{equation*}
+            Se tiene entonces que el conjunto $\left\{V_p \right\}_{ p\in aH}$ forma una cubierta abierta de $aH$. Por ser compacto, existen $p_1,...,p_n\in aH$ tales que
+            \begin{equation*}
+                aH\subseteq \bigcup_{ i=1}^n V_{ p_i}=V
+            \end{equation*}
+            se tiene que $V$ es una vecindad abierta de $aH$ para la cual
+            \begin{equation*}
+                \abs{X\cap V}\leq\sum_{ i=1}^n\abs{X\cap V_{ p_i}}<\aleph_0
+            \end{equation*}
+            por ser $\pi$ perfecta (por ser $H$ compacto), existe una vecindad abierta $U^*$ de $aH$ en $G/H$ tal que
+            \begin{equation*}
+                \pi^{-1}(U^*)\subseteq V
+                %TODO PORQUE?
+            \end{equation*}
+            luego,
+            \begin{equation*}
+                \abs{U^*\cap \pi(X)}\leq \abs{\pi^{-1}(U^*)\cap X}<\aleph_0
+            \end{equation*}
+            lo cual es una contradicción. Por tanto, $X$ tiene un punto de acumulación $p$ tal que $p\in aH$.
+        \end{itemize}
+    \end{proof}
+
+    
 
 \end{document}
