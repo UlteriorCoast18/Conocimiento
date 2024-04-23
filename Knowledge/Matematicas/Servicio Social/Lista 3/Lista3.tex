@@ -384,7 +384,19 @@ rápida de consulta para la solución de los problemas.
         \end{equation*}
         de la definición de límite se sigue que $\lim_{x \rightarrow a}g(x)=l=l_1-l_2$.
 
-        De (ii): 
+        De (ii): Como existen los límites
+        \begin{equation*}
+            \lim_{x\rightarrow a}f(x)g(x)=l_1\quad\textup{y}\quad\lim_{x\rightarrow a}f(x)=l_2\neq 0
+        \end{equation*}
+        (donde $l_1,l_2\in\mathbb{R}$), en particular, existe el límite siguiente y su valor es:
+        \begin{equation*}
+            \lim_{x\rightarrow a}\frac{1}{f(x)}=\frac{1}{\lim_{x\rightarrow a}f(x)}=\frac{1}{l_2}
+        \end{equation*}
+        (por el teorema de álgebra de límites) luego, se tiene que:
+        \begin{equation*}
+            \lim_{x\rightarrow a }g(x)=\lim_{x\rightarrow a }\frac{1}{f(x)}g(x)f(x)=\left(\lim_{x\rightarrow a }\frac{1}{f(x)}\right)\cdot\left(\lim_{x\rightarrow a }g(x)f(x)\right)=\frac{1}{l_2}\cdot l_1=\frac{l_1}{l_2}
+        \end{equation*}
+        (nuevamente por el teorema de álgebra de límites y pues existe cada uno de los dos límites en el producto)
     \end{proof}
 
     \item Suponga que exista el límite $\lim_{x\rightarrow a}f(x)g(x)$ y, además, $\lim_{x\rightarrow a}f(x)=0$. ¿Puede existir $\lim_{x\rightarrow a}g(x)$? \textbf{Justifique} formalmente sus respuestas o dando contraejemplos.

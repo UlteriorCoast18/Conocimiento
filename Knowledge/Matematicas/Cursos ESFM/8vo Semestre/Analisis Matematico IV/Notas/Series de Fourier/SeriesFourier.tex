@@ -693,7 +693,183 @@
     \end{theor}
 
     \begin{proof}
-        
+        Se harán varias cosas:
+        \begin{enumerate}
+            \item Suponga que $f=\chi_I$ con $I\subseteq ]a,b[$ es un intervalo de extremos $\alpha\leq\beta$. Luego,
+            \begin{equation*}
+                \begin{split}
+                    \int_{a}^b f(x)e^{ i\lambda x}dx&=\int_\alpha^\beta e^{ i\lambda x}dx\\
+                    &=\frac{1}{i\lambda}\left(e^{ i\lambda\beta}-e^{ i\lambda\alpha} \right)\\
+                    \Rightarrow \abs{\int_{a}^b f(x)e^{ i\lambda x}dx}&\leq\frac{2}{\abs{\lambda}}\\
+                \end{split}
+            \end{equation*}
+            donde el lado de la derecha tiende a cero conforme $\abs{\lambda}\rightarrow\infty$. Por tanto,
+            \begin{equation*}
+                \lim_{\lambda\in\mathbb{R},|\lambda|\rightarrow\infty }\int_{a}^bf(x)e^{ i\lambda x}dx=0
+            \end{equation*}
+            por linealidad el resultado es válido si $f$ es una función escalonada en el abierto $]a,b[$.
+            \item Suponga que $f\in\mathcal{L}_1^(]a,b[,\mathbb{K})$ y sea $\varepsilon>0$. Se sabe que existe $\varphi\in\mathcal{E}(]a,b[,\mathbb{K})$ tal que
+            \begin{equation*}
+                \N{1}{f-\varphi}<\frac{\varepsilon}{2}
+            \end{equation*}
+            También existe $R>0$ tal que
+            \begin{equation*}
+                \lambda\in\mathbb{R}, \abs{\lambda}>R\Rightarrow\abs{\int_a^b\varphi(x)e^{ i\lambda x}dx}<\frac{\varepsilon}{2}
+            \end{equation*}
+            entonces, si $\lambda\in\mathbb{R}$ y $\abs{\lambda}>R$, se tiene que
+            \begin{equation*}
+                \begin{split}
+                    \abs{\int_a^b f(x)e^{i\lambda x}dx}&\leq\abs{\int_a^b \left[f(x)-\varphi(x) \right]e^{i\lambda x}dx}+\abs{\int_a^b \varphi(x)e^{i\lambda x}dx}\\
+                    &< \int_a^b\abs{f(x)-\varphi(x)}dx+\frac{\varepsilon}{2}\\
+                    &<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}\\
+                    &=\varepsilon\\
+                \end{split}
+            \end{equation*}
+            lo que termina la prueba.
+        \end{enumerate}
     \end{proof}
+
+    \begin{obs}
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item Si $\cf{f}{]a,b[}{\mathbb{C}}$ es integrable en un conjunto medible $B\subseteq ]a,b[$ ,entonces
+            \begin{equation*}
+                \lim_{\lambda\in\mathbb{R},|\lambda|\rightarrow\infty }\int_Bf(x)e^{ i\lambda x}dx=0
+            \end{equation*}
+            pues, $f\chi_B$ es integrable en $]a,b[$.
+            \item Si $f\in\mathcal{L}_1(]a,b[,\mathbb{C})$ al escribir $e^{ i\lambda x}=\cos \lambda x+i\sen \lambda x$ el Teorema de Riemman-Lebesgue implica que
+            \begin{equation*}
+                \lim_{\lambda\in\mathbb{R},|\lambda|\rightarrow\infty }\int_Bf(x)\cos \lambda x dx=0
+            \end{equation*}
+            y
+            \begin{equation*}
+                \lim_{\lambda\in\mathbb{R},|\lambda|\rightarrow\infty }\int_Bf(x)\sin \lambda x dx=0
+            \end{equation*}
+            \item Recuerde que si $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$, se definió:
+            \begin{equation*}
+                c_n=\frac{1}{2\pi}\int_{-\pi}^\pi f(x)e^{ inx}dx,\quad\forall n\in\mathbb{Z}
+            \end{equation*}
+            Por el Teorema de Riemman-Lebesgue
+            \begin{equation*}
+                \lim_{ n\rightarrow\infty}c_n=0
+            \end{equation*}
+            además,
+            \begin{equation*}
+                \lim_{ k\rightarrow\infty}a_k=\lim_{ k\rightarrow\infty}b_k=0
+            \end{equation*}
+        \end{enumerate}
+    \end{obs}
+
+    Se denota por $c_0(\mathbb{Z})$ al espacio vectorial de todas las sucesiones $\left\{c_n \right\}_{ n\in\mathbb{Z}}$ tal que
+    \begin{equation*}
+        \lim_{|n| \rightarrow\infty}c_n=0
+    \end{equation*}
+    $c_0(\mathbb{Z})$ es un subespacio del espacio de Banach $(l_\infty(\mathbb{Z}),\N{\infty}{\cdot})$. Se demuestra que $c_0(\mathbb{Z})$ es un subespacio cerrado de $(l_\infty(\mathbb{Z}),\N{\infty}{\cdot})$, luego $(c_0(\mathbb{Z}),\N{\infty}{\cdot})$ también es de Banach.
+
+    Por cierdo, $(l_\infty(\mathbb{Z}),\N{\infty}{\cdot})\equiv(\mathcal{B}(\mathbb{Z},\mathbb{C}),\N{\infty}{\cdot})$. De hecho, $(c_0(\mathbb{Z}),\N{\infty}{\cdot})$ es un álgebra de Banach con el producto:
+    \begin{equation*}
+        \left\{c_n \right\}_{ n\in\mathbb{Z}}\cdot\left\{d_n \right\}_{ n\in\mathbb{Z}}=\left\{c_n\cdot d_n \right\}_{ n\in\mathbb{Z}}
+    \end{equation*}
+
+    \begin{propo}
+        La aplicación $f\mapsto\left\{c_k \right\}_{ k\in\mathbb{Z}}$ es una aplicación lineal continua inyectiva de $L_1^{2\pi}(\mathbb{C})$ en $c_0(\mathbb{Z})$.
+    \end{propo}
+
+    \begin{proof}
+        Ya se sabe que dicha aplicación es lineal e inyectiva. Veamos que
+        \begin{equation*}
+            \begin{split}
+                \abs{c_k}&=\abs{\frac{1}{2\pi}\int_{ -\pi}^{\pi}f(x)e^{ ikx}dx}\\
+                &\leq\frac{1}{2\pi}\int_{ -\pi}^{\pi}\abs{f(x)}dx\\
+                &=\frac{1}{2\pi}\N{1}{f},\quad\forall k\in\mathbb{Z}\\
+                \Rightarrow \N{\infty}{\left\{c_k \right\}_{ k\in\mathbb{Z}}}&\leq\frac{1}{2\pi}\N{1}{f}\\
+            \end{split}
+        \end{equation*}
+        Por tanto, esta aplicación lineal es continua y de norma menor o igual a $\frac{1}{2\pi}$.
+    \end{proof}
+
+    \begin{obs}
+        En los ejercicios se verá que dicha aplicación lineal no es suprayectiva (a diferencia del caso en $L_2^{2\pi}$).
+    \end{obs}
+
+    \section{Núcleo de Dirichlet y teorema fundamental}
+
+    Para determinar la posible convergencia puntual de una serie de Fourier se debe analizar la sucesión de sumas parciales en un punto $x\in\mathbb{R}$. Recuerde que 
+    \begin{equation*}
+        s_m(x)=\sum_{ k=-m}^m c_ke^{ ikx},\quad\forall m\in\mathbb{N}^*
+    \end{equation*}
+    Sustituyendo $c_n=\frac{1}{2\pi}\int_{-\pi}^\pi f(t)e^{ -int}dt$, se obtiene que
+    \begin{equation*}
+        \begin{split}
+            s_m(x)&=\frac{1}{2\pi}\sum_{ k=-m}^m\int_{-\pi}^\pi f(t)e^{ ik(x-t)}dt\\
+            &=\frac{1}{2\pi}\int_{-\pi}^\pi f(t)\left[\sum_{ k=-m}^m e^{ ik(x-t)}\right]dt ,\quad\forall m\in\mathbb{N}^*
+        \end{split}
+    \end{equation*}
+    Entonces,
+    \begin{equation*}
+        s_m(x)=f*D_m(x)\quad\forall m\in\mathbb{N}^*
+    \end{equation*}
+    donde
+    \begin{equation*}
+        D_m(x)=\frac{1}{2\pi}\sum_{ k=-m}^m e^{ ikx}
+    \end{equation*}
+    es el llamado \textbf{Núcleo de Dirichlet}.
+
+    Una expresión alternativa para este núcleo es
+    \begin{equation*}
+        D_m(x)=\frac{1}{2\pi}\sum_{ k=-m}^m=\frac{1}{2\pi}\left[1+\sum_{ k=1}^m\left(e^{ ikx}+e^{ -ikx} \right) \right]=\frac{1}{2\pi}\left[2\Re\left(\sum_{ k=1}^m e^{ ikx} \right)-1 \right]
+    \end{equation*}
+    para todo $m\in\mathbb{N}^*$. Se tiene
+    \begin{equation*}
+        \begin{split}
+            \sum_{ k=1}^m e^{ ikx}&=\frac{1-e^{ i(m+1)x}}{1-e^{ix}}\\
+            &=\frac{e^{ -i\frac{x}{2}}-e^{ i(m+\frac{1}{2})x}}{e^{ -i\frac{x}{2}}-e^{i\frac{x}{2}}}\\
+            &=\frac{e^{ -i\frac{x}{2}}-e^{ i(m+\frac{1}{2})x}}{-2i\sen\frac{x}{2}}\\
+            &=\frac{\cos\frac{x}{2}-\cos\left(m+\frac{1}{2}\right)x}{-2i\sen\frac{x}{2}}+i\frac{-\sen\frac{x}{2}-\sen\left(m+\frac{1}{2}\right)x}{-2i\sen\frac{x}{2}}\\
+        \end{split}
+    \end{equation*}
+    así pues,
+    \begin{equation*}
+        \begin{split}
+            \Re\left(\sum_{ k=1}^m e^{ ikx} \right)&=\frac{1}{2}\left[\frac{\sen\frac{x}{2}+\sen\left(m+\frac{1}{2} \right)x}{\sen\frac{x}{2}} \right]\\
+            &=\frac{1}{2}\left[1+\frac{\sen\left(m+\frac{1}{2} \right)x}{\sen\frac{x}{2}} \right]\\
+        \end{split}
+    \end{equation*}
+    sustituyendo en el núcleo de Dirichlet:
+    \begin{equation*}
+        D_m(x)=\frac{1}{2\pi}\frac{\sen\left(m+\frac{1}{2} \right)x}{\sen\frac{x}{2}}
+    \end{equation*}
+    si $x$ no es múltiplo entero de $2\pi$. En caso contrario obtenemos que
+    \begin{equation*}
+        D_m(x)=\frac{2m+1}{2\pi}
+    \end{equation*}
+    Note además que por definición de $D_m(x)$:
+    \begin{equation*}
+        1=\int_{-\pi}^\pi D_m(x)dx=\frac{1}{2\pi}\int_{-\pi}^{\pi}\frac{\sen\left(m+\frac{1}{2} \right)x}{\sen\frac{x}{2}}dx
+    \end{equation*}
+
+    \begin{theor}[\textbf{Teorema fundamental para la convergencia puntual de una serie de Fourier}]
+        Sea $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$ y fijemos $x\in\mathbb{R}$. Para que la serie de Fourier de $f$ converja en $x$ a una suma $s(x)$ (finita), es necesario y suficiente que para algún $0<\delta<\pi$ se cumpla alguna de las dos condiciones siguientes:
+        \begin{enumerate}
+            \item $\lim_{ m\rightarrow\infty}\int_{-\delta}^\delta \frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt=0$.
+            \item $\lim_{ m\rightarrow\infty}\int_{0}^\delta \frac{f(x+t)+f(x-t)-2s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt=0$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        Probaremos que las integrales (1) y (2) son equivalentes (es decir que son una misma integral). En efecto,
+        \begin{equation*}
+            \begin{split}
+                \int_{-\delta}^\delta \frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt&=\int_{-\delta}^0\frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt\\&+\int_0^\delta \frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt\\
+                &=\int_0^\delta \frac{f(x-u)-s(x)}{-u}\sen\left(m+\frac{1}{2} \right)(-u)du\\
+                &+\int_0^\delta \frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt\\
+                &=\int_0^\delta\frac{f(x+t)+f(x-t)-2s(x)}{t}\sen\left( m+\frac{1}{2}\right)tdt\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \begin{obs}
+        Por el teorema anterior, la convergencia de la serie de Fourier de $f$ en un punto $x$ y la eventual suma de esta serie de Fourier dependen solamente del comportamiento de $f$ en alguna vecindad arbitrariamente pequeña de $x$. A esto se le llama el \textbf{principio de localización de Riemman}. Esto es sorprendente, pues los coeficientes de Fourier de la función $f$ dependen de los valores de $f$ en todo el intervalo $[-\pi,\pi[$.
+    \end{obs}
 
 \end{document}
