@@ -1209,4 +1209,194 @@
         luego, $X$ es compacto.
     \end{proof}
 
+    \begin{propo}
+        Sea $(X,\prec)$ un conjunto ordenado tal que cada conjunto no vacío de $X$ acotado superiormente tiene una mínima cota superior. Entonces al considerar $(X,\tau_{\prec})$ se tiene que cada intervalo cerrado de $X$ es compacto.
+    \end{propo}
+
+    \begin{proof}
+        Sean $a,b\in X$ con $a\prec b$ y sea $\mathcal{U}$ una cubierta de intervalo cerrado $[a,b]$ formada por conjuntos abiertos en $[a,b]$ con la topología usual del subespacio. Se hará en varios pasos:
+        \begin{enumerate}
+            \item Veamos que dado $x\in[a,b]$ con $x\neq b$ podemos encontrar un punto $y\in[a,b]$ tal que $x\prec y$ y tal que el invervalo cerrado $[x,y]$ está contenido en la unión de uno o dos elementos de $\mathcal{U}$.
+            \begin{enumerate}
+                \item Suponga que $x$ no tiene sucesor inmediato. Sea $V\in\mathcal{U}$ tal que $x\in V$ (en particular se tiene que $V\in\tau_{\prec_{[a,b]}}$), entonces existe $c\in(a,b)$ tal que $[x,c)\subseteq V$ y $(x,c)\neq\emptyset$. Sea $y\in(x,c)$, de lo anterior se sigue que $[x,y]\subseteq V$.
+                \item Suponga que $x$ tiene sucesor inmediato. Sea $z\in X$ el sucesor inmediato de $x$, entonces $[x,z]=\left\{x,z\right\}$. Además,
+                \begin{equation*}
+                    x\prec z\preceq b
+                \end{equation*}
+                sean $U_1,U_2\in\mathcal{U}$ tales que $x\in U_1$ y $z\in U_2$. Entonces:
+                \begin{equation*}
+                    [x,z]\subseteq U_1\cup U_2
+                \end{equation*}
+            \end{enumerate}
+            \item Sea
+            \begin{equation*}
+                \mathcal{L}=\left\{x\in[a,b]\Big|a\prec x\textup{ y }[a,x]\textup{ está contenido en una unión finita de elementos de }\mathcal{U} \right\}
+            \end{equation*}
+            por (1) la familia $\mathcal{L}\neq\emptyset$. Como para todo $l\in\mathcal{L}$, $a\prec l\preceq b$, entonces $\mathcal{L}$ es un conjunto acotado superiormente y no vacío. Por hipótesis tiene mínima cota superior. Sea $c\in X$ la mínima cota superior de $\mathcal{L}$. Entonces
+            \begin{equation*}
+                a\prec c\preceq b
+            \end{equation*}
+            \item Veamos que $c\in\mathcal{L}$. Sea $A\in\mathcal{U}$ tal que $c\in A\in\tau_{\prec_{[a,b]}}$, luego existe $d\in[a,b]$ tal que $c\in (d,c]\subseteq A$. Si $\mathcal{L}\cap (d,c)=\emptyset$, entonces $d$ sería cota superior de $\mathcal{L}$ tal que $d\prec c$\contradiction. Por tanto, $\mathcal{L}\cap (d,c)\neq\emptyset$. Sea $z\in\mathcal{L}\cap (d,c)$, entonces existen $U_1,..,U_n\in\mathcal{U}$ tales que
+            \begin{equation*}
+                [a,z]\subseteq U_1\cup\cdots\cup U_n
+            \end{equation*}
+            por ende,
+            \begin{equation*}
+                [a,c]\subseteq [a,z]\cup (d,c]\subseteq U_1\cup\cdots\cup U_n\cup A 
+            \end{equation*}
+            así $c\in\mathcal{L}$.
+            \item Veamos que $c=b$. Suponga que $c\prec b$. Por (1) existe $y\in[a,b]$ tal que $c\prec y$ y $[c,y]$ y está contenido en una unión finita de elementos de $\mathcal{U}$. Como $c\in\mathcal{L}$ tenemos que
+            \begin{equation*}
+                [a,y]=[a,c]\cup[c,y]
+            \end{equation*}
+            donde $[a,y]$ está contenido en una unión finita de elementos de $\mathcal{U}$ y por lo tanto, $y\in\mathcal{L}$, pero $c\prec y$\contradiction. Por tanto, $c=b$.
+        \end{enumerate}
+        por los incisos anteriores se sigue que $[a,b]$ es compacto.
+    \end{proof}
+
+    \begin{cor}
+        Todo invervalo cerrado de $(\mathbb{R},\tau_u)$ es compacto.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato del teorema anterior.
+    \end{proof}
+
+    \begin{exa}
+        Sea $([0,1],\tau_{u_{[0,1]}})$. Considere
+        \begin{equation*}
+            \mathcal{U}=\left\{(\frac{1}{n},1]\Big|n\in\mathbb{N} \right\}\subseteq \tau_{u_{[0,1]}}
+        \end{equation*}
+        además, $(0,1]\subseteq \bigcup_{ U\in\mathcal{U}}U$. Si $m\in\mathbb{N}$ existe un número real $k\in\mathbb{R}$ tal que
+        $0<k<\frac{1}{m}$. Por ende, $\mathcal{U}$ no tiene una subcubierta abierta finita para $(0,1]$. Luego el intervalo semi-abierto $(0,1]$ no es compacto.
+
+        Este ejemplo demuestra que la propiedad de ser compacto no se hereda.
+    \end{exa}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico y sea $A\subseteq X$. Entonces $(A,\tau_A)$ es compacto si y sólo si para cada colección $\left\{U_\alpha \right\}_{\alpha\in I}$ de abiertos en $X$ tales que
+        \begin{equation*}
+            A\subseteq \bigcup_{\alpha\in I}U_\alpha
+        \end{equation*}
+        existen $\alpha_1,..,\alpha_n\in I$ tales que
+        \begin{equation*}
+            A\subseteq\bigcup_{i=1}^n U_{\alpha_i}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Sea $\left\{U_\alpha \right\}_{\alpha\in I}$ tales que
+        \begin{equation*}
+            A\subseteq\bigcup_{\alpha\in I}U_\alpha
+        \end{equation*}
+        entonces, $\left\{U_\alpha\cap A \right\}_{\alpha\in I}$ es una cubierta abierta de $(A,\tau_A)$. Como $(A,\tau_A)$ es compacto, existen $\alpha_1,...,\alpha_n\in I$ tales que
+        \begin{equation*}
+            A=\bigcup_{ i = 1}^n U_{\alpha_i}\cap A
+        \end{equation*}
+        es decir, se tiene que
+        \begin{equation*}
+            A\subseteq\bigcup_{ i =1}^n U_{\alpha_i}
+        \end{equation*}
+
+        $\Leftarrow):$ Sea $\left\{V_\alpha \right\}_{\alpha\in J}$ una cubierta abierta de $(A,\tau_A)$. Entonces, dado $\alpha\in J$ existe $U_\alpha\in \tau$ tal que
+        \begin{equation*}
+            V_\alpha=U_\alpha\cap A
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            A\subseteq \bigcup_{\alpha\in I}U_\alpha
+        \end{equation*}
+        por hipótesis existen $\alpha_1,...,\alpha_n\in I$ tales que
+        \begin{equation*}
+            A\subseteq \bigcup_{ i=1}^n U_{\alpha_i}
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            A=\bigcup_{ i=1}^n \left(U_{\alpha_i}\cap A\right)=\bigcup_{ i=1}^n V_{\alpha_i}
+        \end{equation*}
+        Así, el espacio $(A,\tau_A)$ es compacto.
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio compacto y $A\subseteq X$ cerrado. Entonces, $A$ es compacto.
+    \end{propo}
+
+    \begin{proof}
+        Sea $\left\{U_\alpha \right\}_{\alpha\in I}$ una colección de abiertos de $\tau$ tales que
+        \begin{equation*}
+            A\subseteq\bigcup_{\alpha\in I}U_\alpha
+        \end{equation*}
+        Luego
+        \begin{equation*}
+            X=\left(\bigcup_{\alpha\in I}U_\alpha\right)\cup(X-A) 
+        \end{equation*}
+        por ser $(X,\tau)$ compacto, existen $\alpha_1,...,\alpha_n\in I$ tales que
+        \begin{equation*}
+            X=\left(\bigcup_{ i =1}^n U_{\alpha_i}\right)\cup(X-A)
+        \end{equation*}
+        En particular, se tiene que
+        \begin{equation*}
+            A\subseteq\bigcup_{ i =1}^n U_{\alpha_i}
+        \end{equation*}
+        por la proposición anterior se sigue que $A$ es un subconjunto compacto de $X$.
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio Hausdorff y sea $A\subseteq X$ compacto, entonces $A$ es un cerrado de $X$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $x\in X-A$, entonces para cada $y\in A$ existen $U_y,V_u\in\tau$ tales que 
+        \begin{equation*}
+            x\in U_y\quad y\in V_y\quad U_y\cap V_y=\emptyset
+        \end{equation*}
+        (por ser $(X,\tau)$ Hausdorff). Luego,
+        \begin{equation*}
+            A\subseteq\bigcup_{ y\in A}V_y
+        \end{equation*}
+        Como $A$ es compacto existen $y_1,...,y_n\in A$ tales que
+        \begin{equation*}
+            A\subseteq\bigcup_{ i=1}^n V_{ y_i}=V
+        \end{equation*}
+        es claro que $V$ es un abierto que contiene a $A$. Definamos
+        \begin{equation*}
+            U=\bigcap_{ i =1}^n U_{ y_i}
+        \end{equation*}
+        el cual es abierto por ser intersección finita de abiertos, además cumple que $x\in U$. Por construcción se sigue que
+        \begin{equation*}
+            U\cap V=\emptyset\Rightarrow U\cap A=\emptyset
+        \end{equation*}
+        por lo cual
+        \begin{equation*}
+            x\in U\subseteq X-A
+        \end{equation*}
+        así para cada $x\in X-A$ existe un abierto $U$ tal que $x\in U\subseteq X-A$. Por tanto, $A-X$ es abierto, es decir que $A$ es cerrado.
+    \end{proof}
+
+    \begin{exa}
+        Considere $X=\left\{1,2,3 \right\}$ y considere a $\tau_I=\left\{X,\emptyset \right\}$. Se tiene que $(X,\tau_I)$ no es de Hausdorff pero $\left\{1,2\right\}$ es compacto y no es cerrado.
+    \end{exa}
+
+    \begin{propo}
+        Sean $(X,\tau)$ y $(Y,\sigma)$ espacios topológicos y $\cf{f}{(X,\tau)}{(Y,\sigma)}$ una función continua. Si $(X,\tau)$ es un espacio compacto, entonces $f(X)$ es un subconjunto compacto de $(Y,\sigma)$.
+    \end{propo}
+    
+    \begin{proof}
+        Sea $\left\{V_\alpha \right\}_{\alpha\in I}\subseteq\sigma$ tal que
+        \begin{equation*}
+            f(X)\subseteq\bigcup_{\alpha\in I}V_\alpha
+        \end{equation*}
+        luego
+        \begin{equation*}
+            \begin{split}
+                X&\subseteq f^{-1}(f(X))\\
+                \Rightarrow X&=\bigcup_{\alpha\in I}f^{-1}(V_\alpha)\\
+            \end{split}
+        \end{equation*}
+        como $(X,\tau)$ es compacto, existen $\alpha_1,...,\alpha_n\in I$ tales que
+        \begin{equation*}
+            X\subseteq\bigcup_{i=1}^n f^{-1}(V_{\alpha_i})
+        \end{equation*}
+    \end{proof}
+
 \end{document}
