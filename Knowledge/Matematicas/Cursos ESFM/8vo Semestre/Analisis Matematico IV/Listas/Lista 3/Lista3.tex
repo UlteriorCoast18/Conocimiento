@@ -135,7 +135,239 @@
     \setcounter{section}{1}
 
     \begin{excer}
-        
+        \textbf{Pruebe} que, para todo $x\in]0,2\pi[$,
+        \begin{equation*}
+            \frac{\pi-x}{2}=\sum_{ n=1}^\infty\frac{\sen nx}{n}
+        \end{equation*}
+        Usando la identidad de Parseval, \textbf{demuestre} que
+        \begin{equation*}
+            \sum_{ n=1}^\infty\frac{1}{n^2}=\frac{\pi^2}{6}.
+        \end{equation*}
     \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $f\in\mathcal{L}_2^{2\pi}(\mathbb{R})$ y sean $a_n,b_n$ los coeficientes de Fourier de $f$. \textbf{Pruebe} que
+        \begin{equation*}
+            \frac{1}{\pi}\int_0^{2\pi}xf(x)dx=\pi a_0-2\sum_{ n=1}^\infty \frac{b_n}{n}.
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $\cf{f}{\mathbb{R}}{\mathbb{R}}$ periódica de periodo $2\pi$ definida como
+        \begin{equation*}
+            f(x)=\left\{
+                \begin{array}{lcr}
+                    \pi^2 & \textup{ si } & -\pi\leq x<0,\\
+                    (x-\pi)^2 & \textup{ si } & 0\leq x <\pi.
+                \end{array}
+            \right.
+        \end{equation*}
+        calcule los coeficientes de Fourier $a_n$, con $n=0,1,2,...$ de $f$ y \textbf{pruebe} las fórmulas
+        \begin{equation*}
+            \sum_{ n=1}^\infty\frac{1}{n^2}=\frac{\pi^2}{6}\quad\textup{y}\quad\sum_{ n=1}^\infty\frac{(-1)^{ n-1}}{n^2}=\frac{\pi^2}{12}.
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        \textbf{Pruebe} que
+        \begin{equation*}
+            \frac{1}{3}x(\pi-x)(\pi-2x)=\sum_{ n=1}^\infty\frac{\sen 2nx}{n^3},\quad 0\leq x\leq \pi.
+        \end{equation*}
+        \textbf{Deduzca} el valor de
+        \begin{equation*}
+            \sum_{ n=1}^\infty\frac{(-1)^{ n-1}}{(2n-1)^3}.
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \renewcommand{\theenumi}{\textbf{\roman{enumi}}}
+    
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item \textbf{Pruebe} que
+            
+            \begin{equation*}
+                \int_0^\pi\log\sen\frac{x}{2}dx=-\pi\log2.
+            \end{equation*}
+            \textit{Sugerencia}. Haga el cambio de variables $x=2t$ y escriba $\sen t =2\sen\frac{t}{2}\cos\frac{t}{2}$.
+            \item \textbf{Muestre} que
+            \begin{equation*}
+                -\log\Big|2\sen\frac{x}{2}\Big|=\sum_{ n=1}^\infty\frac{\cos nx}{n},\quad\textup{ si }x\neq 2k\pi,k\in\mathbb{Z}.
+            \end{equation*}
+            \textit{Sugerencia.} Use el inciso (i) para probar que $a_0=0$. A fin de calcular $a_n$ para $n\in\mathbb{N}$, escriba $a_n=\frac{2}{\pi}\int_0^\pi\log\cos\frac{x}{2}dx$, efectúe una integración por partes y transforme el nuevo integrando de suerte que aparezca el núcleo de Dirichlet.
+            \item \textbf{Deduzca} de (ii) la fórmula
+            \begin{equation*}
+                \log2=\sum_{ n=1}^\infty\frac{(-1)^{ n-1}}{n}.
+            \end{equation*}
+            \item \textbf{Desarrolle} en serie de Fourier la función
+            \begin{equation*}
+                x\mapsto\log\Big|2\cos\frac{x}{2}\Big|
+            \end{equation*}
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Sea $f\in\mathcal{L}_1^{2\pi}(\mathbb{R})$ y sea $x\in\mathbb{R}$. Se supone que para algúun $\alpha>0$ se cumple
+        \begin{equation*}
+            f(x+t)-f(x)=O(\abs{t^\alpha}),\quad\textup{cuando}t\rightarrow 0
+        \end{equation*}
+        \textbf{Demuestre} que la serie de Fourier de $f$ en $x$ converge a $f(x)$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Por el problema \textbf{3.1.1} se sabe que
+        \begin{equation*}
+            \frac{\pi-x}{2}=\sum_{ n=1}^\infty\frac{\sen nx}{n}
+        \end{equation*}
+        \begin{enumerate}
+            \item Póngase
+            \begin{equation*}
+                s_n(x)=\sum_{  k=1}^\infty\frac{\sen kx}{k}.
+            \end{equation*}
+            \textbf{Muestre} que
+            \begin{equation*}
+                \frac{x}{2}+s_n(x)=\pi\int_0^\pi D_n(t)dt,
+            \end{equation*}
+            donde $D_n$ es el núcleo de Dirichlet.
+            \item Si $x\in]0,2\pi[$, \textbf{pruebe} que
+            \begin{equation*}
+                \lim_{ n\rightarrow\infty}\left[\pi\int_0^x D_n(t)dt- \int_0^x\frac{\sen nt}{t}dt \right]=0.
+            \end{equation*}
+            \item \textbf{Deduzca} una nueva demostración de la fórmula
+            \begin{equation*}
+                \int_0^{\rightarrow\infty}\frac{\sen t}{t}dt=\frac{\pi}{2}.
+            \end{equation*}
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$ y sean $\left\{c_k \right\}_{ k\in\mathbb{Z}}$ los coeficientes de Fourier de $f$. \textbf{Demuestre} que
+        \begin{equation*}
+            \int_0^x f=c+c_0x+\sum_{ k\in\mathbb{Z}\backslash\left\{0\right\}}\frac{c_ke^{ ikx}}{ik},\quad\forall x\in\mathbb{R}.
+        \end{equation*}
+        donde $c$ es una constante, la convergencia siendo uniforme en $\mathbb{R}$.
+
+        \textit{Sugerencia.} Considere la función $F(x)=\int_0^x (f-c_0)$.
+
+        \textbf{Deduzca} que los coeficientes de Fourier $b_n$ de cualquier función $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$ satisfacen la condición de que la serie
+        \begin{equation*}
+            \sum_{ n=1}^\infty\frac{b_n}{n}
+        \end{equation*}
+        es convergente. \textbf{Concluya} que la aplicación $f\mapsto\left\{c_n \right\}_{ n\in\mathbb{Z}}$ no es una aplicación suprayectiva de $\mathcal{L}_1^{2\pi}(\mathbb{C})$ en $c_0(\mathbb{Z})$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item Sea $\alpha$ un número real no entero. \textbf{Pruebe} que
+            \begin{equation*}
+                \pi\cos\alpha x=2\alpha\sen\pi\alpha\left(\frac{1}{2\alpha^2}+\sum_{ n=1}^\infty(-1)^n\frac{\cos nx}{\alpha^2-n^2} \right),\quad\forall x\in[-\pi,\pi].
+            \end{equation*}
+            De ahí obtenga las fórmulas clásicas
+            \begin{equation*}
+                \frac{\pi\alpha}{\sen\pi\alpha}=1+2\alpha^2\sum_{ n=1}^\infty\frac{(-1)^n}{\alpha^2-n^2}\quad\textup{y}\quad\pi\alpha\cot\pi\alpha=1+2\alpha^2\sum_{ n=1}^\infty\frac{1}{\alpha^2-n^2}.
+            \end{equation*}
+            \item Sea $x\in]0,1[$. \textbf{Pruebe} que la serie
+            \begin{equation*}
+                \sum_{ n=1}^\infty\frac{2\alpha}{n^2-\alpha^2}
+            \end{equation*}
+            se puede integrar término por término en el intervalo $[0,x]$. De la última fórmula del inciso (i) \textbf{deduzca} la fórmula
+            \begin{equation*}
+                \sen\pi x=\pi x\prod_{ n=1}^\infty\left(1-\frac{x^2}{n^2} \right),\quad\forall x\in]-1,1[.s
+            \end{equation*}
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Se supone que la serie de Fourier de una función $f\in\mathcal{L}_1^{2\pi}(\mathbb{K})$ converge en el sentido de Cesáro uniformemente en $\mathbb{R}$. \textbf{Pruebe} que $f$ es equivalente a una función continua de $\mathbb{R}$ en $\mathbb{K}$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $f\in\mathcal{C}^{2\pi}(\mathbb{R})$ la función
+        \begin{equation*}
+            f(x)=\pi-\abs{2x},\quad-\pi\leq x\leq\pi
+        \end{equation*}
+        Aplique el teorema 3.9 para mostrar que la serie de Fourier de $f$ converge a $f$ uniformemente en $\mathbb{R}$. \textbf{Calcule}
+        \begin{equation*}
+            \sum_{ k=1}^\infty\frac{1}{(2k-1)^2}\quad\textup{y}\quad\sum_{ k=1}^\infty\frac{1}{(2k-1)^4}.
+        \end{equation*}
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Sea $f\in\mathcal{L}_1^{2\pi}(\mathbb{R})$ la función
+        \begin{equation*}
+            f(x)=\left\{ 
+                \begin{array}{lcr}
+                    0 & \textup{ si } & -\pi\leq x<0,\\
+                    x^2 & \textup{ si } & 0\leq x<\pi.\\
+                \end{array}
+            \right\}
+        \end{equation*}
+        \textbf{Calcule} la serie de Fourier de $f$. Usando el teorema fundamental para la convergencia de una serie de Fourier, \textbf{muestre} que la serie de Fourier de $f$ converge a alguna suma $s(x)$ para todo $x\in[-\pi,\pi]$. \textbf{Calcule} $s(x)$ para todo $x\in[-\pi,\pi]$.
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Haga lo mismo que en el problema \textbf{3.12} con $f\in\mathcal{L}_1^{2\pi}(\mathbb{R})$ dada por
+        \begin{equation*}
+            f(x)=\left\{ 
+                \begin{array}{lcr}
+                    0 & \textup{ si } & -\pi\leq x<0,\\
+                    x & \textup{ si } & 0\leq x<\pi.\\
+                \end{array}
+            \right\}
+        \end{equation*}
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
 
 \end{document}
