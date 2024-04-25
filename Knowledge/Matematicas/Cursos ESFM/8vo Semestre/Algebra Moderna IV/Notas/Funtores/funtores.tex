@@ -433,7 +433,7 @@
         \begin{equation*}
             \begin{split}
                 f\times g:A\times B&\rightarrow C\times D\\
-                (a,b)&\mapsto (f(a),f(b))\\ 
+                (a,b)&\mapsto (f(a),g(b))\\ 
             \end{split}
         \end{equation*}
     \end{exa}
@@ -441,5 +441,252 @@
     \begin{exa}
         Para cualquier conjunto $X$, los funtores producto cartesiano $X\times -$ y $-\times X$ son los funtores derecho e izquierdo asociados con respecto a $X$ del bifuntor producto cartesiano, respectivamnete.
     \end{exa}
+
+    \section{Isomorfismos entre categorías}
+
+    \begin{mydef}
+        Sea $\cf{F}{\mathcal{C}}{\mathcal{D}}$ un funtor entre dos categorías $\mathcal{C}$ y $\mathcal{D}$. Diremos que $F$ es \textbf{fiel} (respectivamente, \textbf{pleno}) si para cada par de objetos $A,B\in\Obj{\mathcal{C}}$, la función
+        \begin{equation*}
+            \begin{split}
+                F_{A,B}:\Hom{\mathcal{C}}{A}{B}&\rightarrow\Hom{\mathcal{D}}{F(A)}{F(B)}\\
+                f\mapsto F(f)
+            \end{split}
+        \end{equation*}
+        es inyectiva (respectivamente, suprayectiva).
+
+        Se dirá que $F$ es \textbf{plenamente fiel} cuando sea fiel y pleno.
+    \end{mydef}
+
+    \begin{exa}
+        Si $\mathcal{C}$ es una subcategoría de una categoría $\mathcal{D}$, entonces el funtor inclusión $\cf{i}{\mathcal{C}}{\mathcal{D}}$ es un funtor fiel.
+
+        Más aún, $i$ es plenamente fiel si y sólo si $\mathcal{C}$ es subcategoría llena de $\mathcal{D}$. Particularmente,
+        \begin{equation*}
+            i:\mathcal{D}^{grp}\hookrightarrow \mathcal{D}
+        \end{equation*}
+        y, será plenamente fiel si y sólo si $\mathcal{D}$ ya es un grupoide.
+    \end{exa}
+
+    \begin{exa}
+        Sean $\mathcal{C}$ y $\sim$ una relación de congruencia en $\mathcal{C}$. Considere el mapeo proyección
+        \begin{equation*}
+            \begin{split}
+                \pi:\mathcal{C}&\rightarrow\mathcal{C}/\sim\\
+                A&\mapsto A\\
+                f&\mapsto\left[f\right]=\overline{f}\\
+            \end{split}
+        \end{equation*}
+        es un funtor pleno. En general no va a ser fiel. En particular, si tomamos
+        \begin{equation*}
+            \begin{split}
+                \pi:\Cat{Set}&\rightarrow\Cat{HTop}\\
+            \end{split}
+        \end{equation*}
+        resulta que $\pi_{(\mathbb{R},\mathbb{R})}$ no es inyectiva. Más aún, es una función constante (donde $(\mathbb{R},\mathbb{R})$ denota al conjunto de todas lsa funciones continuas de $\mathbb{R}$ en $\mathbb{R}$). En efecto, sean
+        \begin{equation*}
+            f,g\in\Hom{\Cat{Top}}{\mathbb{R}}{\mathbb{R}}
+        \end{equation*}
+        Definimos
+        \begin{equation*}
+            \begin{split}
+                F:\mathbb{R}\times[0,1]&\rightarrow\mathbb{R}\\
+                (x,t)&\mapsto (1-t)f(x)+tg(x)\\
+            \end{split}
+        \end{equation*}
+        es claro que $F$ es continua y, además,
+        \begin{equation*}
+            F(x,0)=f(x),\quad\textup{y}\quad F(x,1)=g(x)
+        \end{equation*}
+        para todo $x\in\mathbb{R}$, es decir que $f$ y $g$ son homotópicas, luego todas están en la misma clase de equivalencia, así $\pi$ de funciones de $\mathbb{R}$ en $\mathbb{R}$ no es continuo.
+    \end{exa}
+
+    \begin{exa}
+        Definimos un funtor
+        \begin{equation*}
+            U:\Cat{Ring}\rightarrow\Cat{Grp}
+        \end{equation*}
+        como sigue, para cada $R\in\Obj{\Cat{Ring}}$ (anillo conmutativo con identidad). $U(R)=R^*$. Además, si $R,S\in\Obj{\Cat{Ring}}$, para $f\in\Hom{\Cat{Ring}}{R}{S}$,
+        \begin{equation*}
+            U(f)=f\big|_{ R^*}:R^*\rightarrow S^*
+        \end{equation*}
+        (donde $S^*$ es el conjunto de todos los elementos de $R$ invertibles respecto al producto del anillo). Es claro que $U$ es un funtor, pero no es fiel ni pleno.
+    \end{exa}
+
+    \begin{proof}
+        Probaremos que $U$ no es fiel. En efecto, consideremos el anillo
+        $\mathbb{Z}_2[X]$ (siendo $\mathbb{Z}_2=\mathbb{Z}/2\mathbb{Z}$). Observemos que
+        \begin{equation*}
+            \mathbb{Z}_2[X]^*=\mathbb{Z}_2^*=\left\{[1]\right\}
+        \end{equation*}
+        (por ser $\mathbb{Z}_2$ campo) luego,
+        \begin{equation*}
+            U_{\mathbb{Z}_2[X],\mathbb{Z}_2[X]}:\Hom{\Cat{Ring}}{\mathbb{Z}_2[X]}{\mathbb{Z}_2[X]}\rightarrow\Hom{\Cat{Grp}}{\left\{[1]\right\}}{\left\{[1]\right\}}
+        \end{equation*}
+        Se afirma que $\abs{\Hom{\Cat{Ring}}{\mathbb{Z}_2[X]}{\mathbb{Z}_2[X]}}\geq 2$. En efecto, primeramente el morfismo identidad es un morfismo en la categoría $\Cat{Ring}$, pero también
+        \begin{equation*}
+            \begin{split}
+                g:\mathbb{Z}_2[X]&\rightarrow\mathbb{Z}_2[x]\\
+                p(x)&\mapsto p(x)^2\\
+            \end{split}
+        \end{equation*}
+        luego este conjunto de morfismos tiene al menos dos elementos, así que $U$ no puede ser fiel.
+
+        Veamos ahora que $U$ no es pleno. Observemos que
+        \begin{enumerate}
+            \item $\mathbb{Z}^*=\left\{-1,1 \right\}\cong\mathbb{Z}_2$.
+            \item Si $p\in\mathbb{N}$ es un número primo, entonces
+            \begin{equation*}
+                \mathbb{Z}_p^*\cong\mathbb{Z}_{ p-1}
+            \end{equation*}
+            (visto como isomorfismo de grupos).
+            \item Si $m,n\in\mathbb{N}$ con $m,n\geq 1$, entonces
+            \begin{equation*}
+                \abs{\Hom{\Cat{Grp}}{\mathbb{Z}_n}{\mathbb{Z}_m}}=(n,m)
+            \end{equation*}
+            donde $(n,m)$ es el máximo común divisor de $m$ y $n$ (basta con observar que $f(1)$ determina por completo a $f$, siendo $\cf{f}{\mathbb{Z}_m}{\mathbb{Z}_n}$ un homomorfismo).
+        \end{enumerate}
+        Volviendo al problema original. Sea $p\in\mathbb{N}$ tal que $p>2$. Se tiene que
+        \begin{equation*}
+            U_{ \mathbb{Z},\mathbb{Z}_p}:\Hom{\Cat{Ring}}{\mathbb{Z}}{\mathbb{Z}_p}\rightarrow\Hom{\Cat{Grp}}{\mathbb{Z}_2}{\mathbb{Z}_{ p-1}}
+        \end{equation*}
+        por (1), (2) y (3), $\abs{\Hom{\Cat{Grp}}{\mathbb{Z}_2}{\mathbb{Z}_{ p-1}}}=2$. Pero, como $\mathbb{Z}$ es un objeto inicial de la categoría $\Cat{Ring}$, por definición se tiene que
+        \begin{equation*}
+            \abs{\Hom{\Cat{Ring}}{\mathbb{Z}}{\mathbb{Z}_p}}=1
+        \end{equation*}
+        así, $U$ no puede ser pleno.
+    \end{proof}
+
+    \begin{mydef}
+        Se dice que una categoría $\mathcal{C}$ es concreta cuando existe un funtor fiel $\cf{F}{\mathcal{C}}{\Cat{Set}}$ (es como si pudiéramos encajar la categoría $\mathcal{C}$ en $\Cat{Set}$).
+    \end{mydef}
+
+    \begin{propo}
+        Toda categoría pequeña es concreta.
+    \end{propo}
+
+    \begin{proof}
+        Sea $\mathcal{C}$ una categoría pequeña, es decir que su clase de objetos $\Obj{\mathcal{C}}$ es un conjunto. Definimos
+        \begin{equation*}
+            F:\mathcal{C}\rightarrow\Cat{Set}
+        \end{equation*}
+        como sigue
+        \begin{enumerate}
+            \item Para cada $A\in\Obj{\mathcal{C}}$,
+            \begin{equation*}
+                F(A)=\left\{(C,\alpha)\in\Obj{\mathcal{C}}\times\textup{Hom}(\mathcal{C}) \Big|\alpha\in\Hom{\mathcal{C}}{C}{A}  \right\}
+            \end{equation*}
+            en donde
+            \begin{equation*}
+                \textup{Hom}(\mathcal{C})=\bigcup_{ C,D\in\Obj{\mathcal{C}}}\Hom{\mathcal{C}}{C}{D}
+            \end{equation*}
+            (notemos que $F(A)$ es efectivamente un conjunto, ya que tanto $\Obj{\mathcal{C}}$ como $\textup{Hom}(\mathcal{C})$ son conjuntos).
+            \item Para cada $A,B\in\Obj{\mathcal{C}}$ y $f\in\Hom{\mathcal{C}}{A}{B}$:
+            \begin{equation*}
+                \begin{split}
+                    F(f):F(A)&\rightarrow F(B)\\
+                    (C,\alpha)&\mapsto (C,f\circ \alpha)\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+        Se afirma que $F$ es un funtor fiel. En efecto,
+        \renewcommand{\theenumi}{\roman{enumi}}
+        \begin{enumerate}
+            \item Fijando $A\in\Obj{\mathcal{C}}$, queremos ver que
+            \begin{equation*}
+                F(1_A)=1_{F(A)}
+            \end{equation*}
+            Tomamos $(C,\alpha)\in F(A)$, es decir, $C\in\Obj{\mathcal{C}}$ y $\alpha\in\Hom{\mathcal{C}}{C}{A}$. Entonces,
+            \begin{equation*}
+                \begin{split}
+                    F(1_A)(C,\alpha)&=(C,1_A\circ\alpha)\\
+                    &=(C,\alpha)\\
+                    &=1_{ F(A)}(C,\alpha)\\
+                \end{split}
+            \end{equation*}
+            \item Sean $f\in\Hom{\mathcal{C}}{A}{B}$ y $g\in\Hom{\mathcal{C}}{B}{D}$. Para cada $(C,\alpha)\in F(A)$ se verifica que
+            \begin{equation*}
+                \begin{split}
+                    F(g\circ f)(C,\alpha)&=(C,g\circ f\circ \alpha)\\
+                    &=F(g)(C,f\circ\alpha)\\
+                    &=F(g)(F(f)(C,\alpha))\\
+                    &=(F(g)\circ F(f))(C,\alpha)\\
+                    \Rightarrow F(g\circ f)&=F(g)\circ F(f)\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+        por los dos incisos anteriores se sigue que $F$ es un funtor covariante.
+        Veamos que es inyectivo. En efecto, sean $A,B\in\Obj{\mathcal{C}}$. Hay que probar que
+        \begin{equation*}
+            F_{A,B}:\Hom{\mathcal{C}}{A}{B}\rightarrow\Hom{\Cat{Set}}{F(A)}{F(B)}
+        \end{equation*}
+        es inyectivo. En efecto, sean $f,g\in\Hom{\mathcal{C}}{A}{B}$ y supongamos que
+        \begin{equation*}
+            F(f)=F(g)
+        \end{equation*}
+        entonces,
+        \begin{equation*}
+            \begin{split}
+                (A,f)&=F(f)(A,1_A)\\
+                &=F(g)(A,1_A)\\
+                &=(A,1_A\circ g)\\
+                &=(A,g)\\
+                \Rightarrow f&=g\\
+            \end{split}
+        \end{equation*}
+        así pues, $f$ es inyectiva, luego $F$ es fiel.
+    \end{proof}
+
+    \renewcommand{\theenumi}{\arabic{enumi}}
+    
+    \begin{mydef}
+        Sean $\mathcal{C}$ y $\mathcal{D}$ dos categorías. Un funtor covariante (respectivamente, contravariante) $\cf{F}{\mathcal{C}}{\mathcal{D}}$ se denomina \textbf{isomorfismo} (respectivamente, \textbf{anti-isomorfismo}) de categorías si existe un funtor covariante (respectivamente, contravariante) $\cf{G}{\mathcal{D}}{\mathcal{C}}$ tal que
+        \begin{equation*}
+            G\circ F=1_{\mathcal{C}}\quad\textup{y}\quad F\circ G=1_{\mathcal{D}}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        Todo isomorfismo de categorías es plenamente fiel.
+    \end{propo}
+
+    \begin{proof}
+        Sea $\cf{F}{\mathcal{C}}{\mathcal{D}}$ un isomorfismo de categorías y $\cf{G}{\mathcal{D}}{\mathcal{C}}$ el respectivo funtor tal que
+        \begin{equation*}
+            G\circ F=1_{\mathcal{C}}\quad\textup{y}\quad F\circ G=1_{\mathcal{D}}
+        \end{equation*}
+        Tomando $A,B\in\Obj{\mathcal{C}}$ arbitrarios, se tiene que $G(F(A))=A$ y $G(F(B))=B$. Consideramos las funciones:
+        \begin{equation*}
+            \cf{F_{A,B}}{\Hom{\mathcal{C}}{A}{B}}{\Hom{\mathcal{D}}{F(A)}{F(B)}}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \cf{G_{F(A),F(B)}}{\Hom{\mathcal{D}}{F(A)}{F(B)}}{\Hom{\mathcal{C}}{A}{B}}
+        \end{equation*}
+        Para cada $f\in \Hom{\mathcal{C}}{A}{B}$,
+        \begin{equation*}
+            G_{F(A),F(B)}(F_{A,B}(f))=G(F(f))=1_{\mathcal{C}}(f)=f
+        \end{equation*}
+        por tanto, $G_{F(A),F(B)}\circ F_{A,B}=1_{\Hom{\mathcal{C}}{A}{B}}$ y, $F_{A,B}\circ G_{F(A),F(B)}=1_{\Hom{\mathcal{D}}{F(A)}{F(B)}}$. Por tanto, $F_{A,B}$ es invertible, luego biyectiva. Por tanto, $F$ es plenamente fiel.
+    \end{proof}
+
+    \begin{cor}
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item Los isomorfismos entre categorías mapean objetos finales (resp. iniciales) en objetos finales (resp. iniciales).
+            \item Los anti-isomorfismos mapean objetos iniciales (resp. finales) en objetos finales (resp. iniciales).
+        \end{enumerate}
+    \end{cor}
+
+    \begin{proof}
+        Sean $\cf{F}{\mathcal{C}}{\mathcal{D}}$ un anti-isomorfismo y $A\in\Obj{\mathcal{C}}$ un objeto inicial. Sea $D\in\Obj{\mathcal{D}}$ y $B\in\Obj{\mathcal{C}}$ tal que $F(B)=D$. Se tiene que
+        \begin{equation*}
+            \abs{\Hom{\mathcal{C}}{A}{B}}=1
+        \end{equation*}
+        Luego,
+        \begin{equation*}
+            \abs{\Hom{\mathcal{D}}{D}{F(A)}}=\abs{\Hom{\mathcal{D}}{F(B)}{F(A)}}=1
+        \end{equation*}
+        (pues existe una biyección entre estos dos conjuntos de morfismos). Así, $F(A)$ es un objeto final de $\mathcal{D}$.
+    \end{proof}
 
 \end{document}
