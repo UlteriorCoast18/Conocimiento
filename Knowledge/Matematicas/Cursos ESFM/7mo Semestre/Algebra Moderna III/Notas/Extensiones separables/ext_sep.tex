@@ -1017,4 +1017,177 @@
         El $\theta$ de la proposición anterior es llamado \textbf{elemento primitivo}.
     \end{obs}
 
+    \chapter{Teoría de Galois Finita}
+
+    \section{Conceptos Fundamentales}
+
+    \begin{obs}
+        Sea $E/F$ una extensión de campos, $\alpha\in E$, $f(X)\in E[X]$ tal que $f(\alpha)=0$ y $\cf{\varphi}{\overline{F}}{\overline{F}}$ es un $F$-homomorfismo. Entonces, $f(\varphi(\alpha))=0$
+    \end{obs}
+
+    \begin{proof}
+        En efecto, notemos que
+        \begin{equation*}
+            \begin{split}
+                0&=\varphi(0)\\
+                &=\varphi(f(\alpha))\\
+                &=f^{\varphi}(\varphi(\alpha))\\
+                &=f(\alpha)\\
+            \end{split}
+        \end{equation*}
+        por ser $\varphi$ un $F$-homomorfismo.
+    \end{proof}
+
+    De esta observación anterior se deduce que todo $F$-homomorfismo manda raíces en raíces.
+
+    \begin{obs}
+        Sea $F$ un campo, $f(X)\in F[X]\backslash F$. Supóngase que $\deg(f(X))=n\geq1$. Entonces, se tiene que en $\overline{F}$:
+        \begin{equation*}
+            f(X)=\lambda(X-\alpha_n)\cdot...\cdot(X-\alpha_n)
+        \end{equation*}
+        donde $\alpha_1,...,\alpha_n\in\overline{F}$ con $\lambda\in F$ el coefciente lider de $f(X)$. Luego, los coeficientes de $f(X)$ son los siguientes:
+        \begin{equation*}
+            \begin{split}
+                a_n&=\lambda\\
+                a_{ n-1}&=-\lambda\sum_{ i=1}^{n}\alpha_i\\
+                a_{ n-2}&=\lambda\sum_{1\leq i_1<i_2\leq n}\alpha_{ i_1}\alpha_{ i_2}\\
+                 \vdots &\\
+                a_{ n-k}&=(-1)^k\lambda\sum_{1\leq i_1<i_2<\dots<i_k\leq n }\alpha_{ i_1}\alpha_{ i_2}\cdots \alpha_{i_k}\\
+            \end{split}
+        \end{equation*}
+        con $k\in\natint{1,n}$, donde $f(X)=a_nX^n+a_{ n-1}X^{ n-1}+\cdots+a_0$. Luego, si $\cf{\varphi}{\overline{F}}{\overline{F}}$ es un $F$-automorfismo (basta con que sea $F$-homomorfismo, pues la extensión $\overline{F}/F$ es normal y en extensiones normales todo $F$-homomorfismo es un $F$-automorfismo), entonces
+        \begin{equation*}
+            \begin{split}
+                f(X)&=f^{\varphi}(X)\\
+                &=\lambda(X-\varphi(\alpha_1))\cdot...\cdot(X-\varphi(\alpha_n))\\
+                &=\lambda(X-\alpha_1)\cdot...\cdot(X-\alpha_n)\\
+                &=f(X)\\
+            \end{split}
+        \end{equation*}
+        así que $\varphi$ lo que hace es permutar las raíces de $f(X)$. En particular:
+        \begin{equation*}
+            \left\{\varphi(\alpha_1),...,\varphi(\alpha_n) \right\}=\left\{\alpha_1,...,\alpha_n\right\}
+        \end{equation*}
+    \end{obs}
+
+    \begin{obs}
+        Sea $f(X)\in F[X]\backslash F$. $f(X)$ es separable si sus factores irreducibles son separables. Si $f(X)$ es irredicible, $f(X)$ es separable si y sólo si todas sus raíces son simples. 
+    \end{obs}
+
+    \begin{obs}
+        Si $F$ es un campo tal que $\car(F)=0$, entonces todo polinomio en $f[X]$ es separable.
+    \end{obs}
+
+    \begin{obs}
+        Si $F$ es campo tal que $\car(F)=p>0$ y si $f(X)\in F[X]$ es irredicible, entonces $f(X)=\lambda(X-\alpha_1)^{ p^e}\cdot...\cdot(X-\alpha_t)^{ p^e}$, donde $e\geq 0$ es el exponente de inseparabilidad de $f(X)$.
+    \end{obs}
+
+    \begin{obs}
+        Una extensión $E/F$ es separable si y sólo si todo elemento de $\alpha\in E$ es separable sobre $F$ si y sólo si para todo $\alpha\in E$, $f(X)=\irr(\alpha,F,X)$ es separable.
+    \end{obs}
+
+    \begin{obs}
+        La extensión $E/F$ es normal si y sólo si $E$ es el campo de descomposición de una familia de polinomios $\left\{f_i(X) \right\}_{i\in I}$ con coeficientes en $F$ (es decir, que $E=F(S)$ donde $S$ es la unión de los $S_i$ con $i\in I$, siendo $S_i$ el conjunto de raíces de $f_i(X)$ para todo $i\in I$).
+    \end{obs}
+
+\newcommand{\Aut}[2]{\ensuremath{\textup{Aut}_{#1}\left(#2\right)}}
+\newcommand{\Gal}[1]{\ensuremath{\textup{Gal}\left(#1\right)}}
+
+
+    \begin{mydef}
+        Sea $F$ un campo. Se tiene que $\Aut{}{E}$ es grupo con la composición. Si $G<\Aut{}{F}$, se define el \textbf{campo fijo de $F$ por $G$} como:
+        \begin{equation*}
+            F^G=\left\{\alpha\in F\Big|\sigma(\alpha)=\alpha,\quad\forall \sigma\in G \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        En las condiciones de la definición anterior, notemos que $\emptyset\neq F^G\subseteq F$. Más aún $F^G$ es subcampo de $F$.
+    \end{obs}
+
+    \begin{proof}
+        Sean $\alpha,\beta\in F^G$ y $\sigma\in G$, entonces:
+        \begin{equation*}
+            \sigma(\alpha-\beta)=\sigma(\alpha)-\sigma(\beta)=\alpha-\beta
+        \end{equation*}
+        Además, 
+        \begin{equation*}
+            \sigma(\alpha\cdot\beta)=\sigma(\alpha)\cdot\sigma(\beta)=\alpha\cdot\beta
+        \end{equation*}
+        y,
+        \begin{equation*}
+            1=\sigma(1)=\sigma(\alpha\cdot\alpha^{-1})=\sigma(\alpha)\cdot\sigma(\alpha^{-1})=\alpha\cdot\sigma(\alpha^{-1})
+        \end{equation*}
+        por ende, $\sigma(\alpha^{-1})=\alpha^{-1}$. Por ser $\sigma\in G$ arbitrario se sigue $\alpha-\beta,\alpha\cdot\beta,\alpha^{-1}\in F^G$ y, por ende, que $F^G$ es subcampo de $F$.
+    \end{proof}
+
+    \begin{mydef}
+        Si $E/F$ es una extensión de campos, entonces denotamos por
+        \begin{equation*}
+            \Aut{F}{E}=\left\{\sigma\in\Aut{}{E}\Big|\sigma\textup{ deja fijo a }F \right\}
+        \end{equation*}
+        Se tiene que $\Aut{F}{E}<\Aut{}{E}$. Decimos que $E/F$ es de \textbf{Galois} si $E/F$ es normal y separable. Cuando esto ocurre, expresmos:
+        \begin{equation*}
+            \Gal{E/F}=\Aut{F}{E}
+        \end{equation*}
+        y es llamado el \textbf{grupo de Galois de $E/F$}.
+    \end{mydef}
+
+    \begin{propo}
+        Sea $E/F$ una extensión de campos y $G=\Aut{F}{E}$. Entonces, las siguientes condiciones son equivalentes:
+        \begin{enumerate}
+            \item $E/F$ es de Galois.
+            \item $E$ es el campo de descomposición sobre $F$ de una familia de polinomios separables (también sobre $F$).
+            \item $E^G=F$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Es claro que (1)$\iff$(2).
+
+        $(1)\Rightarrow(3):$ Suponga que $E/F$ es de Galois. Notemos que se tiene la torre de campos
+        \begin{equation*}
+            F\subseteq E^G\subseteq E
+        \end{equation*}
+        Sea $\alpha\in E^G$ con $f(X)=\irr(\alpha, F,X)$. Sea $\beta\in E$ un $F$-conjugado de $\alpha$ (es decir que son raíces del mismo polinomio $f(X)$). Entonces, $\beta\in E$. Sea $\cf{\varphi}{F(\alpha)}{F(\beta)}$ un $F$-isomorfismo tal que $\varphi(\alpha)=\beta$. Extendemos a $\varphi$ a un $F$-homomorfismo $\cf{\sigma}{E}{\overline{F}}$ de $E$ en $\overline{F}$. Por normalidad, esta extensión es un $F$-automorfismo de $E$, luego
+        \begin{equation*}
+            \sigma\in G
+        \end{equation*}
+        así,
+        \begin{equation*}
+            \beta=\varphi(\alpha)=\sigma(\alpha)=\alpha
+        \end{equation*}
+        pues, $\alpha\in E^G$. Puesto que $E/F$ es separable, entonces $f(X)=X-\alpha\in F[X]$, luego $\alpha\in F$. Por tanto, $E^G=F$.
+
+        $(3)\Rightarrow(1)$: Suponga que $E^G=F$. Sea $\alpha\in E$ y $f(X)=\irr(\alpha,F,X)$. Definamos:
+        \begin{equation*}
+            A=\left\{\sigma(\alpha)\Big|\sigma\in G \right\}
+        \end{equation*}
+        $A$ es un subconjunto de $E$ no vacío. Notemos que $A$ es un conjunto de raíces de $f(X)$ de $E$. Luego, $A$ es finito. así:
+        \begin{equation*}
+            |A|\leq\deg(f(X))
+        \end{equation*}
+        tomemos $m=|A|$ y
+        \begin{equation*}
+            A=\left\{\sigma_1(\alpha),...,\sigma_m(\alpha) \right\}
+        \end{equation*}
+        Sea $\theta\in G$. Tenemos que
+        \begin{equation*}
+            |\left\{(\theta\circ\sigma_1)(\alpha),...,(\theta\circ\sigma_m)(\alpha) \right\}|=m
+        \end{equation*}
+        (por ser biyección) con el conjunto de adentro tal que $\left\{(\theta\circ\sigma_1)(\alpha),...,(\theta\circ\sigma_m)(\alpha)\right\}\subseteq A$, así
+        \begin{equation*}
+            A=\left\{(\theta\circ\sigma_1)(\alpha),...,(\theta\circ\sigma_m)(\alpha)\right\}
+        \end{equation*}
+        es decir que $\theta$ permuta a los elementos de $A$ para todo $\theta\in G$. Definimos
+        \begin{equation*}
+            g(X)=(X-\sigma_1(\alpha))\cdot...\cdot(X-\sigma_m(\alpha))\in E[X]
+        \end{equation*}
+        Por lo anterior para cada $\theta\in G$,
+        \begin{equation*}
+            g^\theta(X)=g(X)
+        \end{equation*}
+        por tanto, $g(X)\in E^{G}[X]=F[X]$ donde $g(\alpha)=0$. Por tanto, $f(X)\divides g(X)\Rightarrow f(X)$ es separable sobre $F$ y todas las raíces de $f(X)$ están en $E$ (más aún, $g(X)=f(X)$). De esta forma se sigue $E/F$ es normal y separable, es decir, de Galois.
+    \end{proof}
+
 \end{document}
