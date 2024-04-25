@@ -629,7 +629,19 @@
     \end{excer}
     
     \begin{sol}
-        
+        El problema es probar la continuidad. Notemos que
+        \begin{equation*}
+            \mathcal{M}_Rf(x)=f*\frac{\chi_B}{\Vol{B}}(x)=\frac{1}{\Vol{B}}\int_Bf(x-y)dt=\frac{1}{\Vol{B}}\int_{\|x-y\|<R}f(z)dz=\frac{1}{\Vol{B}}\int_{\mathbb{R}^n}f(x)\chi_C(x)dx
+        \end{equation*}
+        donde
+        \begin{equation*}
+            C=\left\{y\in\mathbb{R}^n\Big|\|z-y\|\leq R \right\}
+        \end{equation*}
+        Notemos que (para probar continuidad)
+        \begin{equation*}
+            \abs{\mathcal{M}_Rf(x)-\mathcal{M}_Rf(y)}\leq\frac{1}{\Vol{B}}\int_B\abs{f(x-t)-f(y-t)}dt
+        \end{equation*}
+        Sea $C=B'(0,1)+B$ (el cual es compacto). Defina $h=f\chi_C\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$. Existe $\alpha\in\mathcal{C}^\infty_c(\mathbb{R}^n,\mathbb{K})$ tal que $\N{1}{h-\alpha}<\varepsilon$ donde $\alpha$ es uniformemente continua en $\mathbb{R}$. Usar este $\alpha$ para encontrar un $0<\delta<1$ tal que la integral de arriba se haga menor que $\epsilon$.
     \end{sol}
 
     \begin{mydef}
@@ -842,7 +854,18 @@
         Por ambas desigualdades, se sigue que $\abs{\phi_g}=\N{p^*}{g}$.
 
         De (iii): Veamos que
-        
+        %TODO
+        Expresemos como
+        \begin{equation*}
+            \begin{split}
+                \abs{\phi_{g_\nu}(h)}&\leq\int_{\mathbb{R}^n}\abs{hg_{\nu}}\\
+                &=\int_{\mathbb{R}^n}\abs{h}\abs{f-\rho_\nu*f}\\
+                &\leq\int_{\mathbb{R}^n}\abs{h(x)}dx\int_{\mathbb{R}^n}\abs{f(y)-f(x-y)}\rho_\nu(y)dy\\
+                &\leq\int_{\mathbb{R}^n}\rho_\nu(y)dy\int_{\mathbb{R}^n}\abs{h(x)}\abs{f(y)-f(x-y)}dx\\
+            \end{split}
+        \end{equation*}
+        donde se cambia el orden de integración. Se separa el producto por Hölder y se usa al continuidad uniforme de $y\mapsto f_{-y}$.
+
     \end{proof}
 
     \begin{excer}
