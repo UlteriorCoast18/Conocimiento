@@ -1399,4 +1399,182 @@
         \end{equation*}
     \end{proof}
 
+    \begin{cor}
+        La propiedad de ser compacto es topológica.
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{mydef}
+        Decimos que una colección $\mathcal{A}=\left\{A_{\alpha} \right\}_{\alpha\in I}$ de conjuntos tiene \textbf{la propiedad de la intersección finita}, si para cada subcolección finita $\left\{A_{\alpha_1},...,A_{\alpha_n} \right\}$ de $\mathcal{A}$ se tiene que
+        \begin{equation*}
+            \bigcap_{ i=1}^n A_{ \alpha_i}\neq\emptyset
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico. Entonces $(X,\tau)$ es compacto si y sólo si para cada colección $\left\{F_\alpha \right\}_{\alpha\in I}$ de conjuntos cerrados de $X$ que tiene la propiedad de intersección finita cumple que
+        \begin{equation*}
+            \bigcap_{ \alpha\in I}F_\alpha\neq\emptyset
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Sea $\left\{F_\alpha \right\}_{\alpha\in I}$ una colección de cerrados tales que tienen la propiedad de intersección finita. Queremos que
+        \begin{equation*}
+            \bigcap_{\alpha\in I}F_\alpha\neq\emptyset
+        \end{equation*}
+        Suponga que no se cumple esto, es decir que
+        \begin{equation*}
+            \bigcap_{\alpha\in I}F_\alpha=\emptyset
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            X=\bigcup_{\alpha\in I}X-F_\alpha
+        \end{equation*}
+        pero cada $F_\alpha$ es cerrado, es decir que $\left\{X-F_\alpha \right\}_{\alpha\in I}$ es una cubierta abierta de $(X,\tau)$. Por ser $(X,\tau)$ compacto, existen $\alpha_1,...,\alpha_n\in I$ tales que
+        \begin{equation*}
+            X=\bigcup_{ i=1}^n X-F_{\alpha_i}
+        \end{equation*}
+        Luego,
+        \begin{equation*}
+            \bigcap_{ i=1}^n F_{\alpha_i}=\emptyset
+        \end{equation*}
+        es decir que $\left\{F_\alpha\right\}_{\alpha\in I}$ no tiene la propiedad de intersección finita\contradiction. Por tanto,
+        \begin{equation*}
+            \bigcap_{\alpha\in I}F_\alpha\neq\emptyset
+        \end{equation*}
+
+        $\Leftarrow):$ Sea $\left\{U_\alpha \right\}_{\alpha\in I}$ una cubierta abierta de $X$, es decir que
+        \begin{equation*}
+            X=\bigcup_{\alpha\in I}U_\alpha
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            \bigcap_{\alpha\in I}X-U_\alpha=\emptyset
+        \end{equation*}
+        donde $X-U_\alpha$ es cerrado para todo $\alpha\in I$. Así, la familia $\left\{X-U_\alpha\right\}_{\alpha\in I}$ es una familia de cerrados que no puede tener la propiedad de la intersección finita. Por ende, existen $\alpha_1,...,\alpha_n\in I$ tales que
+        \begin{equation*}
+            \bigcap_{ i=1}^n X-U_{\alpha_i}=\emptyset
+        \end{equation*}
+        es decir, que
+        \begin{equation*}
+            X=\bigcup_{i=1}^n U_{\alpha_i}
+        \end{equation*}
+        por tanto, el espacio $(X,\tau)$ es compacto.
+    \end{proof}
+
+    \begin{cor}
+        Sea $C_1\supseteq C_2\supseteq...\supseteq C_n\supseteq C_{ n+1}\supseteq ...$ una sucesión de conjuntos cerrados no vacíos de un espacio topológico $(X,\tau)$ compacto. Entonces,
+        \begin{equation*}
+            \bigcap_{ n=1}^\infty C_n\neq\emptyset
+        \end{equation*}
+    \end{cor}
+
+    \begin{cor}
+        Sea $(X,\tau)$ un espacio topológico. Entonces, $(X,\tau)$ es compacto si y sólo si toda colección $\mathcal{A}$ de subconjuntos de $X$ que tiene la propiedad de intersección finita cumple que
+        \begin{equation*}
+            \bigcap_{ A\in\mathcal{A}}\Cls{A}\neq\emptyset
+        \end{equation*}
+    \end{cor}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico, entonces los siguientes enunciados son equivalentes:
+        \begin{enumerate}
+            \item $(X,\tau)$ es compacto.
+            \item Cada filtro de $X$ tiene un punto de acumulación.
+            \item Todo ultrafiltro de $X$ es convergente.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        $(1)\Rightarrow (2):$ Queremos ver que todo filtro tiene un punto de acumulación. Sea $\xi$ un filtro en $X$. Tenemos que $\xi$ satisface la propiedad de la intersección finita, luego por el corolario anterior
+        \begin{equation*}
+            \bigcap_{A\in \xi}\Cls{A}\neq\emptyset
+        \end{equation*}
+        Luego, existe $x\in X$ tal que $x\in\Cls{A}$ para todo $A\in\xi$.
+
+        $(2)\Rightarrow(3):$ Sea $\mathcal{F}$ un ultrafiltro. Por hipótesis existe $p\in X$ tal que $p$ es punto de acumulación de $\mathcal{F}$. Existe $\rho$ filtro de $x$ tal que $\mathcal{F}\subseteq\rho$ y además, $\rho\rightarrow p$. Como $\mathcal{F}$ es ultrafiltro, se sigue que $\mathcal{F}=\rho$. Por ende, $\mathcal{F}\rightarrow p$.
+
+        $(3)\rightarrow (1)$: Sea $\left\{U_\alpha \right\}_{\alpha\in I}$ una cubierta abierta de $X$. Suponga que dado $F\subseteq I$ finito, existe $x\in X$ tal que
+        \begin{equation*}
+            x\notin\bigcup_{ \alpha\in F}U_{\alpha}
+        \end{equation*}
+        La familia
+        \begin{equation*}
+            \mathcal{L}=\left\{X-\bigcup_{\alpha\in F}U_\alpha\Big|F\subseteq I \textup{ finito} \right\}
+        \end{equation*}
+        es no vacía y no contiene al vacío. En particular se tiene que es una base de filtro. Sea $\mathcal{L}^+$ el filtro generado por dicha base. Sea $\mathcal{U}$ un ultrafiltro de $X$ tal que $\mathcal{L}^+\subseteq\mathcal{U}$. Sea $p\in X$ tal que
+        \begin{equation*}
+            \mathcal{U}\rightarrow p
+        \end{equation*}
+        Sea $\alpha\in I$ tal que $p\in U_\alpha\in\mathcal{U}$ (ya que $\xi_p\subseteq\mathcal{U}$). Tenemos que $X-U_\alpha\in\mathcal{L}\subseteq\mathcal{L}^+\subseteq\mathcal{U}$. Por tanto, $U_\alpha,X-U_\alpha\in\mathcal{U}$\contradiction. Por tanto existen $\alpha_1,..,\alpha_n\in I$ tales que
+        \begin{equation*}
+            \bigcup_{ i=1}^n U_{\alpha_i}=X
+        \end{equation*}
+        luego, $(X,\tau)$ es compacto.
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema de Tychonov}]
+        Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{\alpha\in I}$ una familia de espacios topológicos arbitaria y tomemos
+        \begin{equation*}
+            X=\prod_{\alpha\in I} X_\alpha
+        \end{equation*}
+        consideramos el espacio topológico $(X,\tau_p)$. Entonces, $(X,\tau_p)$ es compacto si y sólo si $(X_\alpha,\tau_\alpha)$ es compacto, para todo $\alpha\in I$.
+    \end{theor}
+
+    \begin{proof}
+        $\Rightarrow):$ Sea $\alpha\in I$, consideremos $\cf{p_\alpha}{(X,\tau_p)}{(X_\alpha,\tau_\alpha)}$ la $\alpha$-ésima proyección. Esta función es suprayectiva y continua. Por tanto,
+        \begin{equation*}
+            p_\alpha(X)=X_\alpha
+        \end{equation*}
+        es un compacto en $(X_\alpha,\tau_\alpha)$, es decir que $(X_\alpha,\tau_\alpha)$ es compacto.
+
+        $\Leftarrow):$ Sea $\xi$ un ultrafiltro de $X$. Sea $\alpha\in I$, consideremos $p_\alpha(\xi)$ siendo $\cf{p_\alpha}{(X,\tau_p)}{(X_\alpha,\tau_\alpha)}$ la función $\alpha$-ésima proyección. Por un ejercicio se tiene que $p_\alpha(\xi)$ es un filtro de $X_\alpha$, más aún, es un ultrafiltro de $(X_\alpha,\tau_\alpha)$.
+
+        Como $(X_\alpha,\tau_\alpha)$ es compacto, entonces el filtro $p_\alpha(\xi)$ es convergente, luego existe $x_\alpha\in X_\alpha$ tal que $p_\alpha(\xi)\rightarrow x_\alpha$. Por la proposición 3.1.13 se sigue que $\xi\rightarrow x$, donde
+        \begin{equation*}
+            x=\left(x_\alpha \right)_{\alpha\in I}
+        \end{equation*}
+        Por tanto, $(X,\tau_p)$ es compacto.
+    \end{proof}
+
+    \begin{exa}
+        Sea $X=\left\{0,1\right\}$ y $\tau=\left\{X,\emptyset,\left\{0 \right\},\left\{1\right\} \right\}$. Para todo $n\in\mathbb{N}$ definimos $X_n=X$ y $\tau_n=\tau$. Tomemos
+        \begin{equation*}
+            Y=\prod_{ n=1}^\infty X_n
+        \end{equation*}
+        y consideremos $(Y,\tau_c)$. Se tiene que
+        \begin{equation*}
+            \tau_c=\tau_D
+        \end{equation*}
+        como $Y$ es no finito, entonces $(Y,\tau_c)$ no es compacto.
+    \end{exa}
+
+    \begin{theor}
+        Si $(X,\tau)$ es compacto y Hausdorff, entonces es normal.
+    \end{theor}
+
+    \begin{proof}
+        Como es Hausdorff, ya es $T_1$, por lo que basta con probar que $(X,\tau)$ es $T_4$. Se harán dos cosas:
+        \begin{enumerate}
+            \item $(X,\tau)$ es $T_3$. Sea $A\subseteq X$ cerrado y $x\in X$ tal que $x\notin A$. Como $x\notin A$ se sigue que $x\neq a$ para todo $a\in A$. Por ser $(X,\tau)$ $T_2$, existen $U_a,V_a\in\tau$ tales que
+            \begin{equation*}
+                a\in U_a\quad x\in V_a\quad U_a\cap V_a=\emptyset
+            \end{equation*}
+            Se tiene que $\left\{U_a\right\}_{a\in I}$ es una cubierta abierta de $A$. Como $(X,\tau)$ es compacto y $A$ es cerrado, $A$ es compacto, luego existen $a_1,...,a_n\in A$ tales que
+            \begin{equation*}
+                A\subseteq\bigcup_{ i=1}^n U_{a_i}
+            \end{equation*}
+            tomemos $U=\bigcup_{ i=1}^n U_{a_i}$ y $V=\bigcap_{ i=1}^n V_{a_i}$. Es claro que $U,V\in\tau$ y son tales que
+            \begin{equation*}
+                A\subseteq U,\quad x\in V,\quad U\cap V=\emptyset 
+            \end{equation*}
+            por tanto, $(X,\tau)$ es $T_3$.
+            \item Sean $A,B\subseteq X$ cerrados tales que $A\cap B=\emptyset$ (siendo ambos no vacíos). Como $(X,\tau)$ es $T_3$ entonces para cada $b\in B$.
+        \end{enumerate}
+    \end{proof}
+    
 \end{document}
