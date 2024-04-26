@@ -113,7 +113,7 @@
 
 %En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
 
-\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\norm[1]{\ensuremath{\|#1\|}}
@@ -121,6 +121,8 @@
 \newcommand\pint[2]{\ensuremath{\left(#1\big| #2\right)}}
 \newcommand\conj[1]{\ensuremath{\overline{#1}}}
 \newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
+
+\newcommand{\natint}[1]{\ensuremath{\left[\!\left[#1\right]\!\right]}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -817,9 +819,9 @@
 
     Una expresión alternativa para este núcleo es
     \begin{equation*}
-        D_m(x)=\frac{1}{2\pi}\sum_{ k=-m}^m=\frac{1}{2\pi}\left[1+\sum_{ k=1}^m\left(e^{ ikx}+e^{ -ikx} \right) \right]=\frac{1}{2\pi}\left[2\Re\left(\sum_{ k=1}^m e^{ ikx} \right)-1 \right]
+        D_m(x)=\frac{1}{2\pi}\sum_{ k=-m}^me^{ ikx}=\frac{1}{2\pi}\left[1+\sum_{ k=1}^m\left(e^{ ikx}+e^{ -ikx} \right) \right]=\frac{1}{2\pi}\left[2\Re\left(\sum_{ k=1}^m e^{ ikx} \right)-1 \right]
     \end{equation*}
-    para todo $m\in\mathbb{N}^*$. Se tiene
+    para todo $m\in\mathbb{N}^*$. Tenemos además que,
     \begin{equation*}
         \begin{split}
             \sum_{ k=1}^m e^{ ikx}&=\frac{1-e^{ i(m+1)x}}{1-e^{ix}}\\
@@ -835,9 +837,9 @@
             &=\frac{1}{2}\left[1+\frac{\sen\left(m+\frac{1}{2} \right)x}{\sen\frac{x}{2}} \right]\\
         \end{split}
     \end{equation*}
-    sustituyendo en el núcleo de Dirichlet:
+    sustituyendo en el núcleo de Dirichlet se sigue que
     \begin{equation*}
-        D_m(x)=\frac{1}{2\pi}\frac{\sen\left(m+\frac{1}{2} \right)x}{\sen\frac{x}{2}}
+        D_m(x)=\frac{1}{2\pi}\cdot\frac{\sen\left(m+\frac{1}{2} \right)x}{\sen\frac{x}{2}}
     \end{equation*}
     si $x$ no es múltiplo entero de $2\pi$. En caso contrario obtenemos que
     \begin{equation*}
@@ -849,7 +851,7 @@
     \end{equation*}
 
     \begin{theor}[\textbf{Teorema fundamental para la convergencia puntual de una serie de Fourier}]
-        Sea $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$ y fijemos $x\in\mathbb{R}$. Para que la serie de Fourier de $f$ converja en $x$ a una suma $s(x)$ (finita), es necesario y suficiente que para algún $0<\delta<\pi$ se cumpla alguna de las dos condiciones siguientes:
+        Sea $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$ y fijemos $x\in\mathbb{R}$. Para que la serie de Fourier de $f$ converja en $x$ a una suma $s(x)$ (\textit{finita}), es necesario y suficiente que para algún $0<\delta<\pi$ se cumpla alguna de las dos condiciones siguientes:
         \begin{enumerate}
             \item $\lim_{ m\rightarrow\infty}\int_{-\delta}^\delta \frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt=0$.
             \item $\lim_{ m\rightarrow\infty}\int_{0}^\delta \frac{f(x+t)+f(x-t)-2s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt=0$.
@@ -857,24 +859,25 @@
     \end{theor}
 
     \begin{proof}
-        Probaremos que las integrales (1) y (2) son equivalentes (es decir que son una misma integral). En efecto,
+        Probaremos que las integrales (1) y (2) son equivalentes (es decir que son la misma integral). En efecto,
         \begin{equation*}
             \begin{split}
-                \int_{-\delta}^\delta \frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt&=\int_{-\delta}^0\frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt\\&+\int_0^\delta \frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt\\
+                \int_{-\delta}^\delta \frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt&=\int_{-\delta}^0\frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt\\
+                +&\int_0^\delta \frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt\\
                 &=\int_0^\delta \frac{f(x-u)-s(x)}{-u}\sen\left(m+\frac{1}{2} \right)(-u)du\\
-                &+\int_0^\delta \frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt\\
+                +&\int_0^\delta \frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt\\
                 &=\int_0^\delta\frac{f(x+t)+f(x-t)-2s(x)}{t}\sen\left( m+\frac{1}{2}\right)tdt\\
             \end{split}
         \end{equation*}
-        Recordemos que
+        Para la demostración, recordemos que
         \begin{equation*}
             s_m(x)=f*D_m(x)=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x-u)\frac{\sen\left(m+\frac{1}{2} \right)u}{\sen\frac{u}{2}}du=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x+u)\frac{\sen\left(m+\frac{1}{2} \right)u}{\sen\frac{u}{2}}du
         \end{equation*}
-        también, se tiene que
+        además,
         \begin{equation*}
             s(x)=s(x)\int_{-\pi}^\pi D_m(u)du=\int_{-\pi}^{\pi}s(x)\frac{\sen\left(m+\frac{1}{2} \right)u}{\sen\frac{u}{2}}du
         \end{equation*}
-        así pues,
+        por ende,
         \begin{equation*}
             \begin{split}
                 s_m(x)-s(x)&=\frac{1}{2\pi}\int_{-\pi}^{\pi}\frac{f(x+t)-s(x)}{\sen\frac{t}{2}}\sen\left(m+\frac{1}{2} \right)tdu
@@ -883,29 +886,30 @@
         Sea $0<\delta<\pi$, sentonces
         \begin{equation*}
             \begin{split}
-                s_m(x)-s(x)&=\frac{1}{2\pi}\left[\int_{-s}^{s}\frac{f(x+t)-s(x)}{\sen\frac{t}{2}}\sen\left(m+\frac{1}{2} \right)tdt+\int_{s\leq|t|<\pi}\frac{f(x+t)-s(x)}{\sen\frac{t}{2}}\sen\left(m+\frac{1}{2} \right)tdt\right] \\
+                s_m(x)-s(x)&=\frac{1}{2\pi}\left[\int_{-\delta}^{\delta}\frac{f(x+t)-s(x)}{\sen\frac{t}{2}}\sen\left(m+\frac{1}{2} \right)tdt+\int_{\delta\leq|t|<\pi}\frac{f(x+t)-s(x)}{\sen\frac{t}{2}}\sen\left(m+\frac{1}{2} \right)tdt\right] \\
             \end{split}
         \end{equation*}
-        Como $t\mapsto\frac{f(x+t)-s(x)}{\sen\frac{t}{2}}$ es integrable en $s\leq\abs{t}<\pi$, por el teorema de Riemman-Lebesgue la segunda integral tiende a cero conforme $m\rightarrow\infty$. Por lo tanto,
+        Como $t\mapsto\frac{f(x+t)-s(x)}{\sen\frac{t}{2}}$ es integrable en $\delta\leq\abs{t}<\pi$, por el teorema de Riemman-Lebesgue la segunda integral tiende a cero conforme $m\rightarrow\infty$. Por lo tanto,
         \begin{equation*}
-            \lim_{ m\rightarrow\infty}[s_m(x)-s(x)]=0\iff\lim_{ m\rightarrow\infty}\int_{-s}^{s}\frac{f(x+t)-s(x)}{2\sen\frac{t}{2}}\sen\left(m+\frac{1}{2} \right)tdt=0
+            \lim_{ m\rightarrow\infty}[s_m(x)-s(x)]=0\iff\lim_{ m\rightarrow\infty}\int_{-\delta}^{\delta}\frac{f(x+t)-s(x)}{2\sen\frac{t}{2}}\sen\left(m+\frac{1}{2} \right)tdt=0
         \end{equation*}
-        y, veamos que
+        Veamos que
         \begin{equation*}
             \begin{split}
-                \int_{-\delta}^{\delta}\frac{f(x+t)-s(x)}{2\sen\frac{t}{2}}\sen\left(m+\frac{1}{2} \right)tdt&=\int_{-\delta}^{\delta}\frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt\\&+\int_{-\delta}^{-\delta}\left(f(x+t)-s(x)\right)\left[\frac{1}{2\sen\frac{t}{2}}-\frac{1}{t} \right]\sen\left( m+\frac{1}{2} \right)tdt\\
+                \int_{-\delta}^{\delta}\frac{f(x+t)-s(x)}{2\sen\frac{t}{2}}\sen\left(m+\frac{1}{2} \right)tdt&=\int_{-\delta}^{\delta}\frac{f(x+t)-s(x)}{t}\sen\left(m+\frac{1}{2} \right)tdt\\
+                +&\int_{-\delta}^{-\delta}\left(f(x+t)-s(x)\right)\left[\frac{1}{2\sen\frac{t}{2}}-\frac{1}{t} \right]\sen\left( m+\frac{1}{2} \right)tdt\\
             \end{split}
         \end{equation*}
         Pero,
         \begin{equation*}
             \begin{split}
                 \frac{1}{2\sen\frac{t}{2}}-\frac{1}{t}&=\frac{t-2\sen\frac{t}{2}}{2t\sen\frac{t}{2}}\\
-                t\rightarrow0=&\frac{t-2\left(\frac{t}{2}-\frac{t^3}{48}+O(t^3) \right)}{2t(\frac{t}{2}-O(t))}\\
-                t\rightarrow0=&\frac{\frac{t^3}{48}+O(t^3)}{t^2+2tO(t)}\\
-                t\rightarrow0=&\frac{\frac{t^3}{48}+O(t^3)}{t^2+O(t^2)}\\
-                t\rightarrow0=&\frac{t^3\left(\frac{1}{48}+\frac{O(t^3)}{t^2} \right)}{t^2(1+\frac{O(t^2)}{t^2})}\\
-                t\rightarrow0=&\frac{t\left(\frac{1}{48}+\frac{O(t^3)}{t^2} \right)}{1+\frac{O(t^2)}{t^2}}\\
-                t\rightarrow0=&0\\
+                &\overset{t\rightarrow0}{=}\frac{t-2\left(\frac{t}{2}-\frac{t^3}{48}+O(t^3) \right)}{2t(\frac{t}{2}-O(t))}\\
+                &\overset{t\rightarrow0}{=}\frac{\frac{t^3}{48}+O(t^3)}{t^2+2tO(t)}\\
+                &\overset{t\rightarrow0}{=}\frac{\frac{t^3}{48}+O(t^3)}{t^2+O(t^2)}\\
+                &\overset{t\rightarrow0}{=}\frac{t^3\left(\frac{1}{48}+\frac{O(t^3)}{t^2} \right)}{t^2(1+\frac{O(t^2)}{t^2})}\\
+                &\overset{t\rightarrow0}{=}\frac{t\left(\frac{1}{48}+\frac{O(t^3)}{t^2} \right)}{1+\frac{O(t^2)}{t^2}}\\
+                &\overset{t\rightarrow0}{=}0\\
             \end{split}
         \end{equation*}
         Si a la función $t\mapsto\frac{1}{2\sen\frac{t}{2}}-\frac{1}{t}$ se le asigna el valor 0 en 0, se hace continua en $[-\delta,\delta]$. Así pues,
@@ -923,7 +927,7 @@
     \end{proof}
 
     \begin{obs}
-        Por el teorema anterior, la convergencia de la serie de Fourier de $f$ en un punto $x$ y la eventual suma de esta serie de Fourier dependen solamente del comportamiento de $f$ en alguna vecindad arbitrariamente pequeña de $x$. A esto se le llama el \textbf{principio de localización de Riemman}. Esto es sorprendente, pues los coeficientes de Fourier de la función $f$ dependen de los valores de $f$ en todo el intervalo $[-\pi,\pi[$.
+        Por el teorema anterior, la convergencia de la serie de Fourier de $f$ en un punto $x$ y la eventual suma de esta serie de Fourier dependen solamente del comportamiento de $f$ en alguna vecindad arbitrariamente pequeña de $x$. A esto se le llama \textbf{el principio de localización de Riemman}. Esto es sorprendente, pues los coeficientes de Fourier de la función $f$ dependen de los valores de $f$ en todo el intervalo $[-\pi,\pi[$.
     \end{obs}
 
     \begin{theor}[\textbf{Criterio de Dini para la convergencia puntual de una serie de Fourier}]
@@ -935,16 +939,16 @@
     \end{theor}
 
     \begin{proof}
-        $\Leftarrow):$ Es inmediato del teorema de Riemman-Lebesgue y del teorema anterior.
-        
         $\Rightarrow):$ La condición $\int_{-\delta}^{\delta}\abs{\frac{f(x+t)-s(x)}{t}}dt<\infty$ implica la convergencia puntual de la serie de Fourier. En efecto,
         \begin{equation*}
             \begin{split}
                 \int_{-\delta}^0\abs{\frac{f(x+t)-s(x)}{t}}dt+\int_{0}^\delta\abs{\frac{f(x+t)-s(x)}{t}}dt&=\int_{-\delta}^{\delta}\abs{\frac{f(x+t)-s(x)}{t}}dt<\infty\\
-                \Rightarrow \int_{0}^\delta\abs{\frac{f(x-t)-s(x)}{t}}dt+\int_{0}^\delta\abs{\frac{f(x+t)-s(x)}{t}}dt&=\int_{-\delta}^{\delta}\abs{\frac{f(x+t)-s(x)}{t}}dt<\infty\\
-                \Rightarrow \int_{0}^\delta\abs{\frac{f(x+t)+f(x-t)-2s(x)}{t}}dt &=\int_{-\delta}^{\delta}\abs{\frac{f(x+t)-s(x)}{t}}dt<\infty\\
+                \Rightarrow \int_{0}^\delta\abs{\frac{f(x-u)-s(x)}{u}}du+\int_{0}^\delta\abs{\frac{f(x+t)-s(x)}{t}}dt&=\int_{-\delta}^{\delta}\abs{\frac{f(x+t)-s(x)}{t}}dt<\infty\\
+                \Rightarrow \int_{0}^\delta\abs{\frac{f(x+t)+f(x-t)-2s(x)}{t}}dt &\leq\int_{-\delta}^{\delta}\abs{\frac{f(x+t)-s(x)}{t}}dt<\infty\\
             \end{split}
         \end{equation*}
+
+        $\Leftarrow):$ Es inmediato del teorema de Riemman-Lebesgue y del teorema anterior.
     \end{proof}
 
     \begin{cor}
@@ -956,8 +960,8 @@
         \begin{equation*}
             0<t<\delta\Rightarrow\left\{
                 \begin{array}{rl}
-                    \abs{f(x+t)-d(x)}&\leq t\abs{f_d'(x)+1}\\
-                    \abs{f(x-t)-d(x)}&\leq t\abs{f_i'(x)+1}\\
+                    \abs{f(x+t)-s(x)}&\leq t\abs{f_d'(x)+1}\\
+                    \abs{f(x-t)-s(x)}&\leq t\abs{f_i'(x)+1}\\
                 \end{array}
             \right.
         \end{equation*}
@@ -972,28 +976,30 @@
 
     \section{Convergencia uniforme de una serie de Fourier}
 
+    \begin{obs}
+        Recordemos que un conjunto relativamente compacto en un espacio métrico $(X,d)$ es aquel tal que su cerradura es compacta. Equivalentemente, es totalmente acotado.
+    \end{obs}
+
     \begin{lema}[\textbf{Versión Uniforme del Teorema de Riemman-Lebesgue}]
-        Si $\mathcal{F}$ es un conjunto relativamente compacto en $L_1^{2\pi}(\mathbb{C})$, entonces para todo $\varepsilon>0$ existe $N\geq0$ tal que
+        Si $\mathcal{F}$ es un conjunto relativamente compacto en $L_1^{2\pi}(\mathbb{C})$, entonces para todo $\varepsilon>0$ existe $N>0$ tal que
         \begin{equation*}
             \lambda\in\mathbb{R},\abs{\lambda}\geq N\Rightarrow\sup_{ f\in\mathcal{F}}\abs{\int_{-\pi}^\pi f(x)e^{ i\lambda x}dx}<\varepsilon
         \end{equation*}
     \end{lema}
 
-    \newcommand{\natint}[1]{\ensuremath{\left[\!\left[#1\right]\!\right]}}
-
     \begin{proof}
-        Como $\mathcal{F}$ es relativamente compacto, entonces $\mathcal{F}$ es totalmente acotado (ya que su cerradura por definición, es compacta). Luego, dado $\varepsilon>0$ existe una familia finita de elementos de $\mathcal{F}$, digamos $f_1,...,f_r\in\mathcal{F}$ tales que las bolas abiertas $B(f_1,\frac{\varepsilon}{2}),...,B(f_r,\frac{\varepsilon}{2})$ recubren a $\mathcal{F}$. Por Riemman-Lebesgue, existe $N>0$ tal que 
+        Como $\mathcal{F}$ es relativamente compacto, entonces $\mathcal{F}$ es totalmente acotado (ya que su cerradura por definición es compacta). Luego, dado $\varepsilon>0$ existe una familia finita de elementos de $\mathcal{F}$, digamos $f_1,...,f_r\in\mathcal{F}$ tales que las bolas abiertas $B(f_1,\frac{\varepsilon}{2}),...,B(f_r,\frac{\varepsilon}{2})$ recubren a $\mathcal{F}$. Por Riemman-Lebesgue, existe $N>0$ tal que 
         \begin{equation*}
-            \lambda\in\mathbb{R},\abs{\lambda}\geq N\Rightarrow\abs{\int_{-\pi}^\pi f_k(x)e^{i\lambda x}dx}<\frac{\varepsilon}{2},\forall k\in\natint{1,r}
+            \lambda\in\mathbb{R},\abs{\lambda}\geq N\Rightarrow\abs{\int_{-\pi}^\pi f_k(x)e^{i\lambda x}dx}<\frac{\varepsilon}{2},\quad\forall k\in\natint{1,r}
         \end{equation*}
-        Sea $f\in\mathcal{F}$ arbitario. Existe $k\in\natint{1,r}$ tal que $f\in B(f_k,\frac{\epsilon}{2})$, esto es
+        Sea $f\in\mathcal{F}$ arbitario. Existe $k\in\natint{1,r}$ tal que $f\in B(f_k,\frac{\varepsilon}{2})$, esto es
         \begin{equation*}
             \N{1}{f-f_k}<\frac{\varepsilon}{2}
         \end{equation*}
         Si $\lambda\in\mathbb{R}$ es tal que $\abs{\lambda}>N$, se tiene que
         \begin{equation*}
             \begin{split}
-                \abs{\int_{-\pi}^\pi f(x)e^{ i\lambda x}dx}&\leq\abs{\int_{-\pi}^{\pi}(f(x)-f_k(x))e^{i\lambda x}dx}+\abs{\int_{-\pi}^\pi f_k(x)e^{ i\lambda x}dx}\\
+                \abs{\int_{-\pi}^\pi f(x)e^{ i\lambda x}dx}&\leq\abs{\int_{-\pi}^{\pi}\left[f(x)-f_k(x)\right]e^{i\lambda x}dx}+\abs{\int_{-\pi}^\pi f_k(x)e^{ i\lambda x}dx}\\
                 &<\N{1}{f-f_k}+\frac{\varepsilon}{2}\\
                 &<\varepsilon\\
             \end{split}
@@ -1012,13 +1018,189 @@
         \end{enumerate}
         Defina para cada $x\in E$,
         \begin{equation*}
-            \varphi_x(t)=\frac{f(x+t)-f(x)}{t},\quad\forall t\in[-\pi,\pi]
+            \varphi_x(t)=\frac{f(x+t)-f(x)}{t},\quad\forall t\in[-\pi,\pi]\backslash\left\{0 \right\}
         \end{equation*}
         y extiéndase por periodicidad a todo $\mathbb{R}$. Si $h\in\mathcal{L}_{\infty}^{2\pi}(\mathbb{C})$, entonces la familia de funciones $\left\{h\varphi_x \right\}_{x\in E}$ es relativamente compacta en $\mathcal{L}_1^{2\pi}(\mathbb{C})$.
     \end{lema}
 
     \begin{proof}
-        
+        Probaremos que la cerradura de este conjunto es secuencialmente compacto. Sea $\left\{x_n \right\}_{ n=1}^\infty$ una sucesión en $E$. Hay que probar que $\left\{h\varphi_{ x_n} \right\}_{ n=1}^\infty$ contiene una subsucesión convergente en promedio.
+
+        Como $E\subseteq[-\pi,\pi]$, entonces $\left\{x_n \right\}_{ n=1}^\infty$ contiene una subsucesión que converge a algún punto de $[-\pi,\pi]$, digamos $\left\{x_{\alpha(n)} \right\}_{ n=1}^\infty$. Ahora, $\left\{f(x_{\alpha(n)}) \right\}$ es una sucesión acotada en $\mathbb{C}$, luego posee una subsucesión $\left\{f(x_{ \beta\circ\alpha(n)}) \right\}$. Para simplificar la notación, se puede suponer que la sucesión $\left\{x_n\right\}$ original y la sucesión de valores $\left\{f(x_n) \right\}$ son convergentes (en particular, de Cauchy).
+
+        Sea $M>0$ tal que $\abs{h}\leq M$ c.t.p. en $\mathbb{R}$. Sea $\varepsilon$ y $0<\delta<\pi$ como en el enunciado. Se afirma que $\left\{h\varphi_{x_n} \right\}$ es de Cauchy en $L_1^{2\pi}$. En efecto, veamos que si $n,m\in\mathbb{N}$:
+        \begin{equation*}
+            \begin{split}
+                \N{1}{h\varphi_{x_n}-h\varphi_{x_m}}&=\int_{-\pi}^\pi\abs{h(t)}\abs{\frac{f(x_n+t)-f(x_n)-f(x_m+t)+f(x_m)}{t}}dt \\
+                &\leq M\int_{-\pi }^{\pi}\abs{\frac{f(x_n+t)-f(x_n)-f(x_m+t)+f(x_m)}{t}}dt\\
+                +&M\abs{f(x_n)-f(x_m)}\int_{ \delta\leq\abs{t}<\pi}\frac{dt}{\abs{t}}+M\int_{\delta\leq\abs{t}<\pi}\abs{\frac{f(x_n+t)-f(x_n+t)}{t}}dt\\
+            \end{split}
+        \end{equation*}
+        Por la hipótesis, la primera integral a la derecha es $<2M\varepsilon$. Como $\left\{f(x_n) \right\}$ es de Cauchy, existe $n_0\in\mathbb{N}$ tal que
+        \begin{equation*}
+            n,m\geq n_0\Rightarrow M\abs{f(x_n)-f(x_m)}\int_{\delta\leq\abs{t}<\pi}\frac{dt}{\abs{t}}<M\varepsilon
+        \end{equation*}
+        Y, la tercera integral a la derecha es menor o igual a
+        \begin{equation*}
+            \frac{M}{\delta}\int_{-\pi}^{\pi}\abs{f(x_n+t)-f(x_m+t)}dt
+        \end{equation*}
+        ya que la función $y\mapsto f_y$ es uniformemente continua de $\mathbb{R}$ en $L_1^{2\pi}(\mathbb{C})$, existe $\eta>0$ tal que
+        \begin{equation*}
+            \abs{x_n-x_m}<\eta\Rightarrow\frac{M}{\delta}\int_{-\pi}^{\pi}\abs{f(x_n+t)-f(x_m+t)}dt
+        \end{equation*}
+        Por ser la sucesión $\left\{x_n \right\}$ de Cauchy, existe $N\geq n_0$ tal que
+        \begin{equation*}
+            n,m\geq N\Rightarrow\abs{x_n-x_m}<\eta\Rightarrow\frac{M}{\delta}\int_{-\pi}^{\pi}\abs{f(x_n+t)-f(x_m+t)}dt
+        \end{equation*}
+        Por tanto, $n,m\geq N$ implica que
+        \begin{equation*}
+            \N{1}{h\varphi_{x_n}-h\varphi_{x_m}}\leq 4M\varepsilon
+        \end{equation*}
+        así, $\left\{h\varphi_{ x_n} \right\}$ es de Cauchy en $L_1^{2\pi}(\mathbb{C})$, luego convergente.
     \end{proof}
+
+    \begin{theor}[\textbf{Criterio de Dini para la convergencia uniforme de una serie de Fourier}]
+        Sean $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$ y $E\subseteq[-\pi,\pi]$. Se supone que $f$ es acotada en $E$ y que para todo $\varepsilon>0$ existe $0<\delta<\pi$ tal que
+        \begin{equation*}
+            \sup_{ x\in E}\int_{-\delta}^{\delta}\abs{\frac{f(x+t)-f(x)}{t}}dt<\varepsilon
+        \end{equation*}
+        Entonces, la serie de Fourier de $f$ converge a $f$ uniformemente en $E$.
+    \end{theor}
+
+    \begin{proof}
+        Sea $x\in E$. Se tiene que
+        \begin{equation*}
+            \begin{split}
+                \abs{s_m(x)-f(x)}&=\frac{1}{\pi}\int_{-\pi}^{\pi}\frac{f(x+t-f(x))}{2\sen\frac{t}{2}}\sen\left(m+\frac{1}{2}\right)tdt\\
+            \end{split}
+        \end{equation*}
+        Hay que probar que
+        \begin{equation*}
+            \lim_{ m\rightarrow\infty}\int_{-\pi}^\pi\frac{f(x+t)-f(x)}{2\sen\frac{t}{2}}\sen\left(m+\frac{1}{2}\right)tdt=0\textup{ uniformemente con respecto a }x\in E
+        \end{equation*}
+        Se tiene
+        \begin{equation*}
+            \begin{split}
+                \int_{-\pi}^{\pi}\frac{f(x+t-f(x))}{2\sen\frac{t}{2}}\sen\left(m+\frac{1}{2}\right)tdt&=\int_{-\pi}^{\pi}\frac{f(x+t-f(x))}{t}\sen\left(m+\frac{1}{2}\right)tdt\\+&\int_{-\pi}^{\pi}\frac{f(x+t-f(x))}{t}\left[\frac{t}{2\sen\frac{t}{2}}-1 \right] \sen\left(m+\frac{1}{2}\right)tdt\\
+            \end{split}
+        \end{equation*}
+        para $t\in[-\pi,\pi[$ se define
+        \begin{equation*}
+            h(t)=\left\{
+                \begin{array}{lcr}
+                    \frac{t}{2\sen\frac{t}{2}}-1 & \textup{ si } & t\neq 0\\
+                    0 & \textup{ si } & t=0\\
+                \end{array}
+            \right.
+        \end{equation*}
+        se verifica rápidamente que $h$ es continua en $[-\pi,\pi[$, luego acotada. Además, para cada $x\in E$ se define
+        \begin{equation*}
+            \varphi_x(t)=\frac{f(x+t)-f(x)}{t},\quad\forall t\in[-\pi,\pi[
+        \end{equation*}
+        Por el último lema, $\left\{\varphi_x \right\}_{x\in E}$ y $\left\{h\varphi_x \right\}_{x\in E}$ son relativamente compactas en $L_1^{2\pi}(\mathbb{C})$. Por la versión uniforme del teorema de Riemman-Lebesgue, entonces las dos integrales de arriba tienden a cero cuando $m\rightarrow\infty$ uniformemente con respecto a $x\in E$.
+    \end{proof}
+
+    \begin{obs}
+        Veamos como se aplica el primer lema de la sección en la demostración de este teorema.
+    \end{obs}
+
+    \begin{obs}
+        Usando la convergencia de series no se puede reconstruir en general una función $f\in\mathcal{L}_1^{2\pi}$ conociendo su serie de Fourier, de hecho, Kolmogorov demostró que existen funciones en $\mathcal{L}_1^{2\pi}$ cuyas series de Fourier divergen en todo punto. También existen funciones en $\mathcal{C}^{2\pi}$ cuyas series de Fourier divergen en algunos puntos. 
+        
+        La situación se arregla considerando un modo de convergencia distinto: la convergencia en el sentido de Cesáro.
+    \end{obs}
+
+    \section{Convergencia en sentido de Cesáro de series de Fourier en $\mathcal{L}_1^{2\pi}$}
+
+    \begin{lema}
+        Si $\left\{a_n \right\}_{ n=1}^\infty$ es una sucesión en un espacio normado $(E,\norm{\cdot})$ converge a un límite $l\in E$ y
+        \begin{equation*}
+            b_n=\frac{a_1+...+a_n}{n},\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        entonces,
+        \begin{equation*}
+            \lim_{ n\rightarrow\infty}b_n=l
+        \end{equation*}
+    \end{lema}
+
+    \begin{proof}
+        Veamos que si $n\in\mathbb{N}$:
+        \begin{equation*}
+            \begin{split}
+                \norm{b_n-l}&=\frac{1}{n}\norm{\sum_{ k=1}^na_k-l }\\
+                &=\frac{1}{n}\sum_{ k=1}^n\norm{a_k-l}\\
+            \end{split}
+        \end{equation*}
+        dado $\varepsilon>0$ existe $n_0\in\mathbb{N}$ tal que
+        \begin{equation*}
+            n\geq n_0\Rightarrow\norm{a_n-l}<\varepsilon
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \begin{split}
+                n> n_0\Rightarrow\norm{b_n-l}&\leq\frac{1}{n}\left(\sum_{ k=1}^{ n_0}\norm{a_k-l} \right)+\frac{1}{n}\sum_{ k=n_0+1}^{ n}\norm{a_k-l}\\
+                &\leq\frac{1}{n}\underbrace{\left(\sum_{ k=1}^{ n_0}\norm{a_k-l} \right)}_{cte.}+\frac{n-n_0}{n}\varepsilon\\
+            \end{split}
+        \end{equation*}
+        Además, existe $n_1\in\mathbb{N}$ tal que
+        \begin{equation*}
+            n\geq n_1\Rightarrow \frac{1}{n}\left(\sum_{ k=1}^{ n_0}\norm{a_k-l} \right)<\varepsilon
+        \end{equation*}
+        luego, $n\geq n_1$ implica que $\norm{b_n-l}<\varepsilon$.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $\sum_{ n=1}^\infty u_n$ una serie en un espacio normado. Defina
+        \begin{equation*}
+            s_n=\sum_{ k=1}^n u_k\quad\textup{y}\quad\sigma_n=\frac{1}{n}\sum_{ k=1}^n u_k
+        \end{equation*}
+        Si $\lim_{ n\rightarrow\infty}\sigma_n=s$, se dice que la sucesión \textbf{converge en el sentido de Cesáro}.
+    \end{mydef}
+
+    Por el lema, si la serie converge en el sentido usual a $s$, entonces la serie converge en el sentido de Cesáro. La recíproca no es cierta en general (basta con observar lo que sucede con $\left\{(-1)^n \right\}_{ n=1}^\infty$).
+    
+    En casos favorables la recíproca es cierta (más adelante se verá uno de esos casos).
+
+    Sea $\left\{s_m \right\}_{ m=1}^\infty$ la sucesión de sumas parciales de una serie de Fourier, se tiene que
+    \begin{equation*}
+        \sigma_n(x)=\frac{1}{n}\left[s_0(x)+...+s_{n-1}(x) \right],\quad\forall n\in\mathbb{N}^*
+    \end{equation*}
+    decir que la serie de Fourier de una función $f$ converge en un punto $x\in\mathbb{R}$ en el sentido de Cesáro a una suma $s(x)$ es decir que
+    \begin{equation*}
+        \lim_{ n\rightarrow\infty}\sigma_n(x)=s(x)
+    \end{equation*}
+
+    \subsection{Núcleo de Fejér y el Teorema de Fejér}
+
+    Es posible calcular explícitamente usando la fórmula
+    \begin{equation*}
+        s_m(x)=\frac{a_0}{2}+\sum_{ k=1}^{m}\left[a_k\cos kx+b_k\sen kx \right]
+    \end{equation*}
+    Resulta
+    \begin{equation*}
+        \begin{split}
+            \sigma_m(x)&=\frac{1}{n}\left[n\frac{a_0}{2}+\sum_{m=1}^{ n-1}\sum_{ k=1}^{m}\left[a_k\cos kx+b_k\sen kx \right] \right]\\
+            &=\frac{1}{n}[n\frac{a_0}{2}+(n-1)+(n-1)(a_1\cos x+b_1\sen x)\\
+            +&\cdots+(n-k)(a_k\cos kx+b_k\sen kx)\\
+            +&\cdots+(a_{ n-1}\cos (n-1)x+b_{ n-1}\sen(n-1)x)]\\
+        \end{split}
+    \end{equation*}
+    o sea,
+    \begin{equation*}
+        \sigma_n(x)=\frac{a_0}{2}+\sum_{ k=1}^{n-1}\left(1-\frac{k}{n} \right)\left[a_k\cos kx+b_k\sen kx \right]
+    \end{equation*}
+    Alternativamente, $\sigma_n(x)$ se puede calcular como sigue:
+    \begin{equation*}
+        \sigma_n(x)=\frac{1}{n}\left[\sum_{ k=0}^{ n-1}s_k(x) \right]=\frac{1}{n}\sum_{ m=0}^{ n-1}f*D_m(x)
+    \end{equation*}
+    donde $D_m$ es el núcleo de Dirichlet. Entonces,
+    \begin{equation*}
+        \sigma_n(x)=f*k_n(x)
+    \end{equation*}
+    donde
+    \begin{equation*}
+        k_n=\frac{1}{n}\sum_{ m=0}^{ n-1}D_m
+    \end{equation*}
+    el cual es llamado el \textbf{núcleo de Fejér}.
 
 \end{document}
