@@ -1020,19 +1020,19 @@
         \begin{equation*}
             \varphi_x(t)=\frac{f(x+t)-f(x)}{t},\quad\forall t\in[-\pi,\pi]\backslash\left\{0 \right\}
         \end{equation*}
-        y extiéndase por periodicidad a todo $\mathbb{R}$. Si $h\in\mathcal{L}_{\infty}^{2\pi}(\mathbb{C})$, entonces la familia de funciones $\left\{h\varphi_x \right\}_{x\in E}$ es relativamente compacta en $\mathcal{L}_1^{2\pi}(\mathbb{C})$.
+        y extiéndase por periodicidad a todo $\mathbb{R}$. Si $h\in\mathcal{L}_{\infty}^{2\pi}(\mathbb{C})$, entonces la familia de funciones $\left\{h\varphi_x \right\}_{x\in E}$ es relativamente compacta en $L_1^{2\pi}(\mathbb{C})$.
     \end{lema}
 
     \begin{proof}
-        Probaremos que la cerradura de este conjunto es secuencialmente compacto. Sea $\left\{x_n \right\}_{ n=1}^\infty$ una sucesión en $E$. Hay que probar que $\left\{h\varphi_{ x_n} \right\}_{ n=1}^\infty$ contiene una subsucesión convergente en promedio.
+        Probaremos que la cerradura de este conjunto es secuencialmente compacto (luego compacto). Sea $\left\{x_n \right\}_{ n=1}^\infty$ una sucesión en $E$. Hay que probar que $\left\{h\varphi_{ x_n} \right\}_{ n=1}^\infty$ contiene una subsucesión convergente en promedio.
 
-        Como $E\subseteq[-\pi,\pi]$, entonces $\left\{x_n \right\}_{ n=1}^\infty$ contiene una subsucesión que converge a algún punto de $[-\pi,\pi]$, digamos $\left\{x_{\alpha(n)} \right\}_{ n=1}^\infty$. Ahora, $\left\{f(x_{\alpha(n)}) \right\}$ es una sucesión acotada en $\mathbb{C}$, luego posee una subsucesión $\left\{f(x_{ \beta\circ\alpha(n)}) \right\}$. Para simplificar la notación, se puede suponer que la sucesión $\left\{x_n\right\}$ original y la sucesión de valores $\left\{f(x_n) \right\}$ son convergentes (en particular, de Cauchy).
+        Como $E\subseteq[-\pi,\pi]$, entonces $\left\{x_n \right\}_{ n=1}^\infty$ contiene una subsucesión que converge a algún punto de $[-\pi,\pi]$, digamos $\left\{x_{\alpha(n)} \right\}_{ n=1}^\infty$. Ahora, $\left\{f(x_{\alpha(n)}) \right\}_{ n=1}^\infty$ es una sucesión acotada en $\mathbb{C}$, luego posee una subsucesión $\left\{f(x_{ \beta\circ\alpha(n)}) \right\}_{ n=1}^\infty$ convergente. Para simplificar la notación, se puede suponer que la sucesión $\left\{x_n\right\}_{ n=1}^\infty$ original y la sucesión de valores $\left\{f(x_n) \right\}_{ n=1}^\infty$ son convergentes (en particular, de Cauchy).
 
-        Sea $M>0$ tal que $\abs{h}\leq M$ c.t.p. en $\mathbb{R}$. Sea $\varepsilon$ y $0<\delta<\pi$ como en el enunciado. Se afirma que $\left\{h\varphi_{x_n} \right\}$ es de Cauchy en $L_1^{2\pi}$. En efecto, veamos que si $n,m\in\mathbb{N}$:
+        Sea $M>0$ tal que $\abs{h}\leq M$ c.t.p. en $\mathbb{R}$. Sea $\varepsilon<0$ y $0<\delta<\pi$ como en el enunciado. Se afirma que $\left\{h\varphi_{x_n} \right\}$ es de Cauchy en $L_1^{2\pi}$. En efecto, veamos que si $n,m\in\mathbb{N}$:
         \begin{equation*}
             \begin{split}
                 \N{1}{h\varphi_{x_n}-h\varphi_{x_m}}&=\int_{-\pi}^\pi\abs{h(t)}\abs{\frac{f(x_n+t)-f(x_n)-f(x_m+t)+f(x_m)}{t}}dt \\
-                &\leq M\int_{-\pi }^{\pi}\abs{\frac{f(x_n+t)-f(x_n)-f(x_m+t)+f(x_m)}{t}}dt\\
+                &\leq M\int_{-\delta }^{\delta}\abs{\frac{f(x_n+t)-f(x_n)-f(x_m+t)+f(x_m)}{t}}dt\\
                 +&M\abs{f(x_n)-f(x_m)}\int_{ \delta\leq\abs{t}<\pi}\frac{dt}{\abs{t}}+M\int_{\delta\leq\abs{t}<\pi}\abs{\frac{f(x_n+t)-f(x_n+t)}{t}}dt\\
             \end{split}
         \end{equation*}
@@ -1044,13 +1044,13 @@
         \begin{equation*}
             \frac{M}{\delta}\int_{-\pi}^{\pi}\abs{f(x_n+t)-f(x_m+t)}dt
         \end{equation*}
-        ya que la función $y\mapsto f_y$ es uniformemente continua de $\mathbb{R}$ en $L_1^{2\pi}(\mathbb{C})$, existe $\eta>0$ tal que
+        (mayorando a $t\mapsto\frac{1}{\abs{t}}$). Ahora, ya que la función $y\mapsto f_y$ es uniformemente continua de $\mathbb{R}$ en $L_1^{2\pi}(\mathbb{C})$, existe $\eta>0$ tal que
         \begin{equation*}
-            \abs{x_n-x_m}<\eta\Rightarrow\frac{M}{\delta}\int_{-\pi}^{\pi}\abs{f(x_n+t)-f(x_m+t)}dt
+            \abs{x_n-x_m}<\eta\Rightarrow\frac{M}{\delta}\int_{-\pi}^{\pi}\abs{f(x_n+t)-f(x_m+t)}dt<\delta\cdot\varepsilon
         \end{equation*}
         Por ser la sucesión $\left\{x_n \right\}$ de Cauchy, existe $N\geq n_0$ tal que
         \begin{equation*}
-            n,m\geq N\Rightarrow\abs{x_n-x_m}<\eta\Rightarrow\frac{M}{\delta}\int_{-\pi}^{\pi}\abs{f(x_n+t)-f(x_m+t)}dt
+            n,m\geq N\Rightarrow\abs{x_n-x_m}<\eta\Rightarrow\int_{-\pi}^{\pi}\abs{f(x_n+t)-f(x_m+t)}dt<M\varepsilon
         \end{equation*}
         Por tanto, $n,m\geq N$ implica que
         \begin{equation*}
@@ -1071,7 +1071,7 @@
         Sea $x\in E$. Se tiene que
         \begin{equation*}
             \begin{split}
-                \abs{s_m(x)-f(x)}&=\frac{1}{\pi}\int_{-\pi}^{\pi}\frac{f(x+t-f(x))}{2\sen\frac{t}{2}}\sen\left(m+\frac{1}{2}\right)tdt\\
+                \abs{s_m(x)-f(x)}&=\frac{1}{\pi}\int_{-\pi}^{\pi}\frac{f(x+t)-f(x)}{2\sen\frac{t}{2}}\sen\left(m+\frac{1}{2}\right)tdt\\
             \end{split}
         \end{equation*}
         Hay que probar que
@@ -1081,7 +1081,7 @@
         Se tiene
         \begin{equation*}
             \begin{split}
-                \int_{-\pi}^{\pi}\frac{f(x+t-f(x))}{2\sen\frac{t}{2}}\sen\left(m+\frac{1}{2}\right)tdt&=\int_{-\pi}^{\pi}\frac{f(x+t-f(x))}{t}\sen\left(m+\frac{1}{2}\right)tdt\\+&\int_{-\pi}^{\pi}\frac{f(x+t-f(x))}{t}\left[\frac{t}{2\sen\frac{t}{2}}-1 \right] \sen\left(m+\frac{1}{2}\right)tdt\\
+                \int_{-\pi}^{\pi}\frac{f(x+t)-f(x)}{2\sen\frac{t}{2}}\sen\left(m+\frac{1}{2}\right)tdt&=\int_{-\pi}^{\pi}\frac{f(x+t)-f(x)}{t}\sen\left(m+\frac{1}{2}\right)tdt\\+&\int_{-\pi}^{\pi}\frac{f(x+t)-f(x)}{t}\left[\frac{t}{2\sen\frac{t}{2}}-1 \right] \sen\left(m+\frac{1}{2}\right)tdt\\
             \end{split}
         \end{equation*}
         para $t\in[-\pi,\pi[$ se define
@@ -1101,7 +1101,7 @@
     \end{proof}
 
     \begin{obs}
-        Veamos como se aplica el primer lema de la sección en la demostración de este teorema.
+        Veamos como se aplica el primer lema de la sección en la demostración de este teorema. La primera familia es relativamente compacta tomando $h=1$ y la segunda tomando a la $h$ dada, siendo ambas acotadas (por ser continuas en un compacto y ser extendidas por periodicidad a todo $\mathbb{R}$).
     \end{obs}
 
     \begin{obs}
@@ -1128,23 +1128,24 @@
         \begin{equation*}
             \begin{split}
                 \norm{b_n-l}&=\frac{1}{n}\norm{\sum_{ k=1}^na_k-l }\\
-                &=\frac{1}{n}\sum_{ k=1}^n\norm{a_k-l}\\
+                &\leq\frac{1}{n}\sum_{ k=1}^n\norm{a_k-l}\\
             \end{split}
         \end{equation*}
         dado $\varepsilon>0$ existe $n_0\in\mathbb{N}$ tal que
         \begin{equation*}
-            n\geq n_0\Rightarrow\norm{a_n-l}<\varepsilon
+            n\geq n_0\Rightarrow\norm{a_n-l}<\frac{\varepsilon}{2}
         \end{equation*}
         Entonces,
         \begin{equation*}
             \begin{split}
                 n> n_0\Rightarrow\norm{b_n-l}&\leq\frac{1}{n}\left(\sum_{ k=1}^{ n_0}\norm{a_k-l} \right)+\frac{1}{n}\sum_{ k=n_0+1}^{ n}\norm{a_k-l}\\
-                &\leq\frac{1}{n}\underbrace{\left(\sum_{ k=1}^{ n_0}\norm{a_k-l} \right)}_{cte.}+\frac{n-n_0}{n}\varepsilon\\
+                &\leq\frac{1}{n}\underbrace{\left(\sum_{ k=1}^{ n_0}\norm{a_k-l} \right)}_{cte.}+\frac{n-n_0}{n}\cdot\frac{\varepsilon}{2}\\
+                &<\frac{1}{n}\left(\sum_{ k=1}^{ n_0}\norm{a_k-l} \right)+\frac{\varepsilon}{2}\\
             \end{split}
         \end{equation*}
-        Además, existe $n_1\in\mathbb{N}$ tal que
+        Además, existe $n_1\in\mathbb{N}$ con $n_1>n_0$ tal que
         \begin{equation*}
-            n\geq n_1\Rightarrow \frac{1}{n}\left(\sum_{ k=1}^{ n_0}\norm{a_k-l} \right)<\varepsilon
+            n\geq n_1\Rightarrow \frac{1}{n}\left(\sum_{ k=1}^{ n_0}\norm{a_k-l} \right)<\frac{\varepsilon}{2}
         \end{equation*}
         luego, $n\geq n_1$ implica que $\norm{b_n-l}<\varepsilon$.
     \end{proof}
@@ -1161,11 +1162,11 @@
     
     En casos favorables la recíproca es cierta (más adelante se verá uno de esos casos).
 
-    Sea $\left\{s_m \right\}_{ m=1}^\infty$ la sucesión de sumas parciales de una serie de Fourier, se tiene que
+    Sea $\left\{s_m \right\}_{ m=1}^\infty$ la sucesión de sumas parciales de una serie de Fourier, se define
     \begin{equation*}
         \sigma_n(x)=\frac{1}{n}\left[s_0(x)+...+s_{n-1}(x) \right],\quad\forall n\in\mathbb{N}^*
     \end{equation*}
-    decir que la serie de Fourier de una función $f$ converge en un punto $x\in\mathbb{R}$ en el sentido de Cesáro a una suma $s(x)$ es decir que
+    con lo que decir que la serie de Fourier de una función $f$ converge en un punto $x\in\mathbb{R}$ en el sentido de Cesáro a una suma $s(x)$ es decir que
     \begin{equation*}
         \lim_{ n\rightarrow\infty}\sigma_n(x)=s(x)
     \end{equation*}
@@ -1180,9 +1181,9 @@
     \begin{equation*}
         \begin{split}
             \sigma_m(x)&=\frac{1}{n}\left[n\frac{a_0}{2}+\sum_{m=1}^{ n-1}\sum_{ k=1}^{m}\left[a_k\cos kx+b_k\sen kx \right] \right]\\
-            &=\frac{1}{n}[n\frac{a_0}{2}+(n-1)+(n-1)(a_1\cos x+b_1\sen x)\\
+            &=\frac{1}{n}\left[n\frac{a_0}{2}+(n-1)+(n-1)(a_1\cos x+b_1\sen x)\right.\\
             +&\cdots+(n-k)(a_k\cos kx+b_k\sen kx)\\
-            +&\cdots+(a_{ n-1}\cos (n-1)x+b_{ n-1}\sen(n-1)x)]\\
+            +&\left. \cdots+(a_{ n-1}\cos (n-1)x+b_{ n-1}\sen(n-1)x)\right] \\
         \end{split}
     \end{equation*}
     o sea,

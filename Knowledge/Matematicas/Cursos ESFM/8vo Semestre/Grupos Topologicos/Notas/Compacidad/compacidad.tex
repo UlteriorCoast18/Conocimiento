@@ -113,7 +113,7 @@
 
 %En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
 
-\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand{\natint}[1]{\left[\!\left[#1\right]\!\right]}
@@ -443,6 +443,29 @@
         \end{itemize}
     \end{proof}
 
-    
+    En este teorema anteiror no se puede debilitar la hipótesis de que $H$ a numerablemente compacto sin perder el resultado, pues existen grupos topológicos numerablemente compactos $H$ y $K$ tales que $G=H\times K$ no es numerablemente compacto. Este tipo de construcciones usan axiomas adicionales de ZFE, por ejemplo, la hipótesis del continuo o el axioma de Martin.
+
+    ¿Existen grupos topológicos numerablemente compactos que no sean compactos? La respuesta es que si, en el que se usa el $\Sigma$-producto.
+
+    \newcommand{\supp}[1]{\ensuremath{\textup{supp}\left(#1\right)}}
+
+    \begin{mydef}
+        Sea $\left\{X_i\right\}_{ i\in I}$ un conjunto de espacios topológicos. En el producto $X=\prod_{ i\in I}X_i$ considere un punto $p\in X$, es decir $p=\left(p_i \right)_{ i\in I}$. Definimos el \textbf{soporte de un punto $x\in X$ respecto a $p$} como:
+        \begin{equation*}
+            \supp{x}=\left\{i\in I\Big|x_i\neq p_i \right\}
+        \end{equation*}
+        El \textbf{$\Sigma$-producto} denotado por $\Sigma(p)$ en $X$ se define como:
+        \begin{equation*}
+            \Sigma(p)=\left\{x\in X\Big|\abs{\supp{x}}\leq\aleph_0 \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{exa}
+        Sea $\left\{G_i \right\}_{ i\in I}$ una familia de grupos topológicos compactos con $\abs{G_i}>0$ para todo $i\in I$, donde $\abs{I}>\aleph_0$. En el producto
+        \begin{equation*}
+            G=\prod_{ i\in I}G_i
+        \end{equation*}
+        considere el $\Sigma$-producto $G^*$ con la identidad $e_G$ como punto base.
+    \end{exa}
 
 \end{document}
