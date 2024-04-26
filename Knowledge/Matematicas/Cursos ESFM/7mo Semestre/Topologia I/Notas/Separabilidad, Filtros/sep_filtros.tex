@@ -1573,7 +1573,19 @@
                 A\subseteq U,\quad x\in V,\quad U\cap V=\emptyset 
             \end{equation*}
             por tanto, $(X,\tau)$ es $T_3$.
-            \item Sean $A,B\subseteq X$ cerrados tales que $A\cap B=\emptyset$ (siendo ambos no vacíos). Como $(X,\tau)$ es $T_3$ entonces para cada $b\in B$.
+            \item Sean $A,B\subseteq X$ cerrados tales que $A\cap B=\emptyset$ (siendo ambos no vacíos). Como $(X,\tau)$ es $T_3$ entonces para cada $b\in B$ existen dos abiertos $U_b,B_b\in\tau$ tales que
+            \begin{equation*}
+                A\subseteq U_b,\quad b\in V_b,\quad U_b\cap V_b=\emptyset
+            \end{equation*}
+            Entonces, $\left\{V_b \right\}_{b\in B}$ es una cubierta abierta del cerrado $B$. Como $(X,\tau)$ es compacto se sigue que $B$ es un subconjunto compacto de $X$, luego existen $b_1,...,b_n\in B$ tales que
+            \begin{equation*}
+                B\subseteq \bigcup_{ i=1}^n V_{ b_i}
+            \end{equation*}
+            Tomemos $U=\bigcap_{ i=1}^n U_{ b_i}$ y $V=\bigcup_{ i=1}^n V_{ b_i}$, se tiene entonces por la elección de los $U_b$ y $V_b$ que:
+            \begin{equation*}
+                A\subseteq U,\quad B\subseteq V,\quad U\cap V=\emptyset 
+            \end{equation*}
+            luego, el espacio $(X,\tau)$ es $T_4$.
         \end{enumerate}
     \end{proof}
     
