@@ -1078,7 +1078,45 @@
     \end{excer}
 
     \begin{proof}
-        
+        Sea
+        \begin{equation*}
+            \mathcal{F}=\left\{\varphi_i\Big|i\in I \right\}
+        \end{equation*}
+        es completa en $L_p(E,\mathbb{K})$, es decir que $\overline{\mathcal{L}(\mathcal{F})}=L_p(E,\mathbb{K})$. Hay que probar que para cada $f\in\mathcal{L}_{ p^*}(E,\mathbb{K})$ se cumple que
+        \begin{equation*}
+            \int_E f\varphi=0,\forall\varphi\in\mathcal{F} \Rightarrow f=0\textup{ c.t.p. en }E
+        \end{equation*}
+        En efecto, sea $f\in\mathcal{L}_{ p^*}(E,\mathbb{K})$ tal que se cumple que
+        \begin{equation*}
+            \int_E f\varphi=0,\forall\varphi\in\mathcal{F}
+        \end{equation*}
+        Tomemos
+        \begin{equation*}
+            \alpha=\frac{\abs{f+\chi_S}}{f+\chi_S}
+        \end{equation*}
+        donde $S=\left\{x\in E\Big|f(x)=0\right\}$. $\alpha$ es la función tal que $\abs{f}=\alpha f$ (se probó en un inciso anterior). Además, es elemento de $\mathcal{L}_1(E,\mathbb{K})$ (en particular, de $\mathcal{L}_p(E,\mathbb{K})$ pues $E$ tiene medida finita) pues es una función medible, acotada nula fuera de un conjunto con medida finita (nula fuera de $S\subseteq E$). Como la familia anterior es completa, se tiene que existe una sucesión $\left\{\psi_\nu \right\}_{ \nu=1}^\infty$ tal que
+        \begin{equation*}
+            \lim_{ \nu\rightarrow\infty}\N{p}{\alpha-\psi_\nu}=0
+        \end{equation*}
+        Sea $\varepsilon>0$, existe $N\in\mathbb{N}$ tal que
+        \begin{equation*}
+            \nu\geq N\Rightarrow \N{p}{\alpha-\psi_\nu}<\frac{\varepsilon}{1+\N{p^*}{f}}
+        \end{equation*}
+        Veamos que para todo $\nu\in\mathbb{N}$ se tiene que
+        \begin{equation*}
+            \begin{split}
+                \int_E\abs{f}&=\int_E\left[\alpha f+f\psi_\nu\right]\\
+                &\leq\int_E\abs{f}\abs{\alpha+\psi_\nu}\\
+                &=\N{1}{\abs{f}\cdot\abs{\alpha+\psi_\nu}}\\
+                &\leq\N{p^*}{f}\N{p}{\alpha+\psi_\nu}\\
+                &<\varepsilon\\
+            \end{split}
+        \end{equation*}
+        pues cada $\psi_\nu$ es combinación lineal finita de elementos de $\mathcal{F}$, por hipótesis como $\int_E f\varphi=0$ para todo $\varphi\in\mathcal{F}$, se sigue entonces que $\int_E f\psi_\nu=0$, para todo $\nu\in\mathbb{N}$. Como el $\varepsilon>0$ fue arbitrario, se sigue que
+        \begin{equation*}
+            f=0\textup{ c.t.p. en }E
+        \end{equation*}
+        luego, la familia es total en $L_{p^*}(E,\mathbb{K})$.
     \end{proof}
 
 \end{document}

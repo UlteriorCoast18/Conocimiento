@@ -1589,4 +1589,129 @@
         \end{enumerate}
     \end{proof}
     
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio $T_2$ y sea $\infty$ un elemento que no está en $X$. Definimos $\hat{X}=X\cup\left\{\infty \right\}$. Entonces, podemos dotar a $\hat{X}$ de una topología $\hat{\tau}$ al considerar todos los conjuntos:
+        \begin{enumerate}
+            \item $U$ con $U\in\tau$.
+            \item $\hat{X}-C$ con $C$ un subconjunto compacto de $(X,\tau)$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Veamos que $\hat{\tau}$ es una topología sobre $\hat{X}$. En efecto:
+        \begin{enumerate}
+            \item $\emptyset\in\hat{\tau}$ ya que $\emptyset\in\tau$. Y, $\hat{X}\in\hat{\tau}$ pues el vacío $\emptyset$ es compacto.
+            \item Sean $A,B\in\hat{\tau}$.
+            \begin{enumerate}
+                \item Si $A$ y $B$ son del tipo 1), como $\tau$ es una topología se sigue que $A\cap B\in\tau\subseteq\hat{\tau}$.
+                \item Si $A$ y $B$ son del tipo 2), existen $C,D\subseteq X$ compactos tales que
+                \begin{equation*}
+                    A=\hat{X}-C\quad\textup{y}\quad B=\hat{X}-D
+                \end{equation*}
+                entonces,
+                \begin{equation*}
+                    \begin{split}
+                        A\cap B&=(\hat{X}-C)\cap(\hat{X}-D)\\
+                        &=\hat{X}-C\cup D\\
+                    \end{split}
+                \end{equation*}
+                donde $C\cup D$ es compacto en $(X,\tau)$. Se sigue entonces que $A\cap B\in\hat{\tau}$.
+                \item Suponga que $A$ es de tipo 1) y $B$ es de tipo 2), entonces existe $C\subseteq X$ compacto tal que
+                \begin{equation*}
+                    \begin{split}
+                        B=\hat{X}-C
+                    \end{split}
+                \end{equation*}
+                Como $(X,\tau)$ es $T_2$, entonces $C$ es cerrado, luego
+                \begin{equation*}
+                    \begin{split}
+                        A\cap B&=A\cap (\hat{X}-C)\\
+                        &=A\cap (X-C)
+                    \end{split}
+                \end{equation*}
+                el cual está en $\tau$ pues $\infty\notin A$.
+            \end{enumerate}
+            \item Sea $\left\{U_\alpha \right\}_{\alpha\in I}\subseteq\hat{\tau}$.
+            \begin{enumerate}
+                \item Suponga que $\forall \alpha\in I$, $U_\alpha\in \tau$. Entonces, $\bigcup_{\alpha\in I}U_\alpha\in\tau\subseteq\hat{\tau}$.
+                \item Suponga que para todo $\alpha\in I$ existe $C_\alpha\subseteq (X,\tau)$ compacto tal que
+                \begin{equation*}
+                    U_\alpha=\hat{X}-C_\alpha
+                \end{equation*}
+                Entonces,
+                \begin{equation*}
+                    \begin{split}
+                        \bigcup_{\alpha\in I}U_\alpha&=\bigcup_{\alpha\in I}(\hat{X}-C_\alpha)\\
+                        &=\hat{X}-\bigcap_{\alpha\in I}C_\alpha\\
+                    \end{split}
+                \end{equation*}
+                luego la intersección $\bigcap_{\alpha\in I}C_\alpha$ es compacto en $(X,\tau)$ (pues al ser cada uno de los $C_\alpha$ compacto en este espacio $T_2$, se sigue que cada uno es cerrado, luego la intersección es cerrada pues es subconjunto cerrado de un compacto, digamos $C_{\alpha_0}$ para algún $\alpha_0\in I$). Así, la unión está en $\hat{\tau}$.
+                \item Sean $I_1,I_2\subseteq I$ tales que para todo $\alpha\in I_1$, $U_\alpha\in\tau$ y para todo $\alpha\in I_2$ existe $C_\alpha$ subconjunto compacto de $(X,\tau)$ tal que $U_\alpha=\hat{X}-C_\alpha$. Tenemos que
+                \begin{equation*}
+                    \bigcup_{\alpha\in I}U_\alpha=\left(\bigcup_{\beta\in I_1}U_\beta \right)\cup\left(\bigcup_{\gamma\in I_2}U_\gamma \right)
+                    =U\cup(\hat{X}-C)
+                \end{equation*}
+                con $U\in\tau$ y $C$ un subconjunto de $(X,\tau)$ compacto (esto por los incisos anteriores). Notemos que
+                \begin{equation*}
+                    \begin{split}
+                        x\in U\cup(\hat{X}-C)&\iff x\in U\textup{ o }x\in\hat{X}-C\\
+                        &\iff x\in\hat{X}-(C-U)
+                    \end{split}
+                \end{equation*}
+                pues, $C-U=C\cap (X-U)$. Pero, $C-U$ es un subconjunto cerrado del compacto $C$ (el cual es cerrado y es $T_2$ con la topología del subespacio), luego la unión de todos los $U_\alpha$ es del tipo 2), esto es
+                \begin{equation*}
+                    \bigcup_{\alpha\in I}U_\alpha\in\hat{\tau}
+                \end{equation*}
+            \end{enumerate}
+        \end{enumerate}
+        por los tres incisos, se sigue que $\hat{\tau}$ es una topología sobre $\hat{\tau}$.
+    \end{proof}
+
+    \begin{obs}
+        Tenemos que $\hat{X}=X\cup\left\{\infty\right\}$. Además, $\tau\subseteq\hat{\tau}$. Por lo tanto, $\tau\subseteq\hat{\tau}_X$.
+
+        Sea $U\in\hat{\tau}_X$. Entonces existe $U'\in\tau$ tal que $U=U'\cap X$. Se tienen dos casos:
+        \begin{enumerate}
+            \item $U'$ es del tipo 1). Entonces $U=U'\cap X=U'\in\tau$.
+            \item $U'$ es del tipo 2), es decir que existe $C\subseteq X$ compacto en $(X,\tau)$ tal que $U'=\hat{X}-C$. Luego,
+            \begin{equation*}
+                U=U'\cap X=(\hat{X}-C)\cap X=X-C
+            \end{equation*}
+            donde $C$ es cerrado pues $(X,\tau)$ es Hausdorff. Luego, $X-C\in\tau$.
+        \end{enumerate}
+        Por los dos incisos, se sigue que $\tau=\hat{\tau}_X$.
+    \end{obs}
+
+    \section{Compacidad Local}
+
+    \begin{mydef}
+        Un espacio topológico $(X,\tau)$ se dice \textbf{localmente compacto en el punto $x\in X$} si existe $C\subseteq X$ compacto tal que $C$ es una vecindad de $x$.
+
+        Si $(X,\tau)$ es localmente compacto en cada uno de sus puntos, se dice que $(X,\tau)$ es \textbf{ localmente compacto}.
+    \end{mydef}
+
+    \begin{obs}
+        Todo espacio compacto es localmente compacto.
+    \end{obs}
+
+    \begin{exa}
+        $(\mathbb{R},\tau_u)$ es localmente compacto. En efecto, para todo $r\in\mathbb{R}$, la vecindad $[r-\pi,r+\pi]$ es compacta (por ser un invervalo cerrado). Pero, este espacio no es compacto.
+    \end{exa}
+
+    \begin{exa}
+        Considere $(\mathbb{Q},\tau_{ u_{\mathbb{Q}}})$ no es localmente compacto. Sea $x\in\mathbb{Q}$ y suponga que $C$ es una vecindad compacta de $x$. Luego existe un intervalo $]a,b[\subseteq\mathbb{R}$ que contiene a $x$ tal que
+        \begin{equation*}
+            x\in ]a,b[\cap\mathbb{Q}\subseteq C
+        \end{equation*}
+        Sea $i_0\in]a,b[$ irracional, para cada $q\in C$ definimos
+        \begin{equation*}
+            U_q=\left\{
+                \begin{array}{lcr}
+                    \left\{r\in\mathbb{R}\Big|q<r \right\} & \textup{ si } & i_0<q\\
+                    \left\{r\in\mathbb{R}\Big|r<q \right\} & \textup{ si } & q<i_0\\
+                \end{array}
+            \right.
+        \end{equation*}
+    \end{exa}
+    
 \end{document}
