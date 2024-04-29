@@ -113,7 +113,7 @@
 
 %En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
 
-\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand{\Vol}[1]{\ensuremath{\textup{Vol}\left(#1\right)}}
@@ -763,7 +763,7 @@
             \end{equation*}
             Defina $g_\nu=f-\rho_\nu*f$ y considere la aplicación lineal $\phi_{g_\nu}\in L_{p}(\mathbb{R}^n,\mathbb{K})^*$, donde
             \begin{equation*}
-                \phi_{g_\nu}(h)=\int_{\mathbb{R}^n}hg_\nu,\quad\forall h\in \mathcal{L}_p(\mathbb{R}^n,\mathbb{K})
+                \phi_{g_\nu}(h)=\int_{\mathbb{R}^n}hg_\nu,\quad\forall h\in \mathcal{L}_{p^*}(\mathbb{R}^n,\mathbb{K})
             \end{equation*}
             \textbf{Establezca} la desigualdad
             \begin{equation*}
@@ -853,29 +853,175 @@
         \end{equation*}
         Por ambas desigualdades, se sigue que $\abs{\phi_g}=\N{p^*}{g}$.
 
-        De (iii): Veamos que
-        %TODO
-        Expresemos como
+        De (iii): Sea $h\in\mathcal{L}_{p^*}(\mathbb{R}^n,\mathbb{K})$, se tiene que
         \begin{equation*}
             \begin{split}
-                \abs{\phi_{g_\nu}(h)}&\leq\int_{\mathbb{R}^n}\abs{hg_{\nu}}\\
-                &=\int_{\mathbb{R}^n}\abs{h}\abs{f-\rho_\nu*f}\\
-                &\leq\int_{\mathbb{R}^n}\abs{h(x)}dx\int_{\mathbb{R}^n}\abs{f(y)-f(x-y)}\rho_\nu(y)dy\\
-                &\leq\int_{\mathbb{R}^n}\rho_\nu(y)dy\int_{\mathbb{R}^n}\abs{h(x)}\abs{f(y)-f(x-y)}dx\\
+                \abs{\phi_{ g_\nu}(h)}&=\abs{\int_{ \mathbb{R}^n}hg_\nu }\\
+                &\leq\int_{ \mathbb{R}^n}\abs{h}\abs{g_\nu}\\
+                &=\phi_{\abs{g_\nu}}(\abs{h})\\
+                &=\int_{ \mathbb{R}^n}\abs{h}(x)\abs{f-\rho_\nu*f}(x)dx\\
+                &=\int_{ \mathbb{R}^n}\abs{h(x)}\cdot\abs{f(x)-\int_{\mathbb{R}^n}f(x-y)\rho_\nu(y)dy}dx\\
+                &=\int_{ \mathbb{R}^n}\abs{h(x)}dx\int_{\mathbb{R}^n}\abs{f(x)-f(x-y)}\rho_\nu(y)dy\\
             \end{split}
         \end{equation*}
-        donde se cambia el orden de integración. Se separa el producto por Hölder y se usa al continuidad uniforme de $y\mapsto f_{-y}$.
+        donde la función $(x,y)\mapsto\abs{h(x)}\abs{f(x)-f(x-y)}\rho_\nu(y)$ es integrable en $\mathbb{R}^n\times\mathbb{R}^n$, pues $\abs{h}\in\mathcal{L}_{ p^*}(\mathbb{R}^n,\mathbb{K})$ y $\abs{g_\nu}\in\mathcal{L}_{p}(\mathbb{R}^n,\mathbb{K})$, luego $\phi_{\abs{g_\nu}}(\abs{h})<\infty$, esto por Tonelli. Por Fubini se puede cambiar el orden de integración, así:
+        \begin{equation*}
+            \begin{split}
+                \int_{ \mathbb{R}^n}\abs{h(x)}dx\int_{\mathbb{R}^n}\abs{f(x)-f(x-y)}\rho_\nu(y)dy&=\int_{ \mathbb{R}^n}\rho_\nu(y)dy\int_{\mathbb{R}^n}\abs{h(x)}\abs{f(x)-f(x-y)}dx \\
+            \end{split}
+        \end{equation*}
+        sea $y\in\mathbb{R}^n$. Observemos que por Hölder se tiene que
+        \begin{equation*}
+            \begin{split}
+                \int_{\mathbb{R}^n}\abs{h(x)}\abs{f(x)-f(x-y)}dx&=\int_{\mathbb{R}^n}\abs{h(x)}\abs{f(x)-f_{-y}(x)}dx\\
+                &=\int_{\mathbb{R}^n}\abs{h}\abs{f-f_{-y}}\\
+                &=\N{1}{h\cdot\left[f-f_{-y}\right]}\\
+                &\leq\N{p^*}{h}\cdot\N{p}{f-f_{-y}}\\
+            \end{split}
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            \begin{split}
+                \abs{\phi_{ g_\nu}(h)}&\leq\int_{\mathbb{R}^n}\N{p^*}{h}\cdot\N{p}{f-f_{-y}}\rho_\nu(y)dy\\
+                \Rightarrow\abs{\phi_{ g_\nu}(h)}&\leq\N{p^*}{h}\int_{\mathbb{R}^n}\rho_\nu(y)\N{p}{f-f_{-y}}dy\\
+            \end{split}
+        \end{equation*}
+        como se quería demostrar.
 
+        Para la otra parte, sea $\varepsilon>0$ y $\delta>0$. Observemos que
+        \begin{equation*}
+            \begin{split}
+                \abs{\phi_{ g_\nu}(h)}&\leq\N{p^*}{h}\int_{\mathbb{R}^n}\rho_\nu(y)\N{p}{f-f_{-y}}dy\\
+                &=\N{p^*}{h}\left[\int_{\norm{y}<\delta}\rho_\nu(y)\N{p}{f-f_{-y}}dy+\int_{\delta\leq\norm{y}}\rho_\nu(y)\N{p}{f-f_{-y}}dy\right]\\
+                &\leq\N{p^*}{h}\left[\int_{\norm{y}<\delta}\rho_\nu(y)\N{p}{f-f_{-y}}dy+\int_{\delta\leq\norm{y}}\rho_\nu(y)\left[\N{p}{f}+\N{p}{f_{-y}}\right]dy\right]\\
+                &=\N{p^*}{h}\left[\int_{\norm{y}<\delta}\rho_\nu(y)\N{p}{f_0-f_{-y}}dy+2\N{p}{f}\int_{\delta\leq\norm{y}}\rho_\nu(y)dy\right]\\
+            \end{split}
+        \end{equation*}
+        Se tienen dos cosas, como $y\mapsto f_y$ es una función uniformemente continua de $\mathbb{R}^n$ en $\mathcal{L}_p(\mathbb{R}^n,\mathbb{K})$, en particular es continua en $0$, luego existe $\delta_1>0$ tal que
+        \begin{equation*}
+            \norm{y}<\delta_1\Rightarrow \N{p}{f_0-f_{-y}}<\frac{\varepsilon}{2}
+        \end{equation*}
+        además, como $\left\{\rho_\nu \right\}_{ \nu=1}^\infty$ es una sucesión de Dirac, existe $N\in\mathbb{N}$ tal que
+        \begin{equation*}
+            \nu\geq N\Rightarrow\int_{\delta_1\leq\norm{y}}\rho_\nu(y)dy<\frac{\varepsilon}{2\left(2\N{p}{f}+1 \right)}
+        \end{equation*}
+        por tanto, si $\delta=\delta_1$ y $\nu\geq N$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \abs{\phi_{ g_\nu}(h)}&\leq\N{p^*}{h}\left[\int_{\norm{y}<\delta_1}\rho_\nu(y)\N{p}{f_0-f_{-y}}dy+2\N{p}{f}\int_{\delta_1\leq\norm{y}}\rho_\nu(y)dy\right]\\
+                &\leq\N{p^*}{h}\left[\frac{\varepsilon}{2}\int_{\norm{y}<\delta_1}\rho_\nu(y)dy+2\N{p}{f}\frac{\varepsilon}{2\left(2\N{p}{f}+1 \right)}\right]\\
+                &\leq\N{p^*}{f}\left[\frac{\varepsilon}{2}+\frac{\varepsilon}{2}\right]\\
+                &=\N{p^*}{f}\varepsilon\\
+            \end{split}
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \nu\geq N\Rightarrow\abs{\phi_{ g_\nu}(h)}\leq\N{p^*}{f}\varepsilon
+        \end{equation*}
+        Observemos ahora que
+        \begin{equation*}
+            \norm{\phi_{ g_\nu}}=\inf\left\{M\geq0\Big|\N{p}{\phi_{ g_\nu}(h)}\leq M\cdot\N{p^*}{h},\forall h\in\mathcal{L}_{ p^*}(\mathbb{R}^n,\mathbb{K}) \right\}
+        \end{equation*}
+        de lo anterior se deduce que $\varepsilon$ es un elemento del conjunto anterior para todo $\nu\geq N$, se sigue entonces que
+        \begin{equation*}
+            \nu\geq N\Rightarrow\norm{\phi_{g_\nu}}\leq\varepsilon
+        \end{equation*}
+        por el inciso (ii) sabemos que $\N{p}{g_\nu}=\norm{\phi_{g_\nu}}$, luego
+        \begin{equation*}
+            \nu\geq N\Rightarrow\N{p}{g_\nu}=\N{p}{f-\rho_\nu*f}\leq\varepsilon
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \lim_{ \nu\rightarrow\infty}\N{p}{f-\rho_\nu*f}=0
+        \end{equation*}
+        como se quería demostrar.
     \end{proof}
 
     \begin{excer}
-        Demuestre que el sistema de potencias enteras $\left\{x^\nu\Big|\nu\in\mathbb{N}^* \right\}$ es total en $L_p([a,b],\mathbb{C})$ para $p\in[1,\infty[$.
+        Demuestre que el sistema de potencias enteras $\left\{x\mapsto x^\nu\Big|\nu\in\mathbb{N}^* \right\}$ es total en $L_p([a,b],\mathbb{C})$ para $p\in[1,\infty[$.
 
         \textit{Sugerencia.} Basta demostrarlo para $L_1([-\pi,\pi],\mathbb{C})$. El sistema trigonométrico es total en este espacio. Desarrolle $e^{ik\pi}$ en serie de potencias de Maclaurin.
     \end{excer}
 
     \begin{proof}
-        
+        Podemos ver una función $f\in\mathcal{L}_p([a,b],\mathbb{C})$ como una función en $\mathcal{L}_p([-\pi,\pi],\mathbb{C})$, haciendo
+        \begin{equation*}
+            g=f\circ \alpha
+        \end{equation*}
+        donde $\cf{\alpha}{[-\pi,\pi]}{[a,b]}$ es una función lineal. Más aún, como $\mathcal{L}_p([a,b],\mathbb{C})\subseteq\mathcal{L}_1([-\pi,\pi],\mathbb{C})$ (pues la medida del intervalo $[-\pi,\pi]$ es finita), basta con probar el resultado para $\mathcal{L}_1([-\pi,\pi],\mathbb{C})$.
+
+        Para probar que el sistema
+        \begin{equation*}
+            \mathcal{P}=\left\{x\mapsto x^\nu\Big|\nu\in\mathbb{N}^* \right\}\subseteq \mathcal{L}_{ \infty}([-\pi,\pi],\mathbb{C})
+        \end{equation*}
+        es total en $L_1([a,b],\mathbb{C})$ (realmente sería usar funciones periódicas, pero como podemos ver una función periódica como aquella que es límitada a cierto intervalo de definición, no es necesario tomar tales funciones más que las definidas en ese intervalo), basta con probar que
+        \begin{equation*}
+            f\in\mathcal{L}_1([-\pi,\pi],\mathbb{C})\textup{ tal que }\int_{ -\pi}^\pi f\varphi=0,\forall \varphi\in\mathcal{P}\Rightarrow f=0\textup{ c.t.p. en }[-\pi,\pi]
+        \end{equation*}
+        es decir, que
+        \begin{equation*}
+            f\in\mathcal{L}_1([-\pi,\pi],\mathbb{C})\textup{ tal que }\int_{ -\pi}^\pi f(x)x^\nu dx=0,\forall x\in\mathbb{N}^* \Rightarrow f=0\textup{ c.t.p. en }[-\pi,\pi]
+        \end{equation*}
+        En efecto, sea $f\in\mathcal{L}_1([-\pi,\pi],\mathbb{C})$ y suponga que para todo $\nu\in\mathbb{N}^*$ se tiene que
+        \begin{equation*}
+            \int_{ -\pi}^\pi f(x)x^\nu dx=0
+        \end{equation*}
+        recordemos que el sistema trigonométrico complejo
+        \begin{equation*}
+            \tau_{\mathbb{C}}=\left\{x\mapsto e^{ ikx}\Big|k\in\mathbb{Z} \right\}
+        \end{equation*}
+        es total en $\mathcal{L}_1^{2\pi}(\mathbb{C})$, luego es total en $\mathcal{L}_1([-\pi,\pi],\mathbb{C})$. Sabemos que para todo $x\in[-\pi,\pi]$ y $k\in\mathbb{Z}$ se tiene que
+        \begin{equation*}
+            e^{ ikx}=\sum_{ n=0}^\infty\frac{(ikx)^n}{n!}
+        \end{equation*}
+        Probaremos que
+        \begin{equation*}
+            \int_{-\pi}^\pi f(x)e^{ ikx}dx=0,\quad\forall k\in\mathbb{Z}
+        \end{equation*}
+        En efecto, sea $k\in\mathbb{Z}$. Observemos que
+        \begin{equation*}
+            \begin{split}
+                \int_{-\pi}^\pi f(x)e^{ ikx}dx&=\int_{-\pi}^\pi f(x)\cdot\sum_{ n=0}^\infty\frac{(ikx)^n}{n!} dx\\
+                &=\int_{-\pi}^\pi\sum_{ n=0}^\infty\frac{f(x)(ikx)^n}{n!} dx\\
+                &=\int_{-\pi}^\pi\lim_{ m\rightarrow\infty} \sum_{ n=0}^m\frac{f(x)(ikx)^n}{n!} dx\\
+            \end{split}
+        \end{equation*}
+        queremos sacar el límite de la integral, para ello, considere las funciones
+        \begin{equation*}
+            g_m(x)=\sum_{ n=0}^m\frac{f(x)(ikx)^n}{n!},\quad\forall m\in\mathbb{N}^*
+        \end{equation*}
+        para todo $x\in[-\pi,\pi]$ tal que $f(x)$ esté bien definida. Estas funciones están definidas c.t.p. en $[-\pi,\pi]$. Además, es claro que
+        \begin{equation*}
+            \lim_{ m\rightarrow\infty}g_m(x)=f(x)e^{ ikx}
+        \end{equation*}
+        para casi todo $x\in[-\pi,\pi]$. También,
+        \begin{equation*}
+            \begin{split}
+                \abs{g_m}(x)&=\abs{\sum_{ n=0}^m\frac{f(x)(ikx)^n}{n!}}\\
+                &\leq\sum_{ n=0}^m\abs{\frac{f(x)(ikx)^n}{n!}}\\
+                &=\sum_{ n=0}^m\abs{f(x)}\frac{\abs{ikx}^n}{n!}\\
+                &=\abs{f(x)}\sum_{ n=0}^m\frac{\abs{kx}^n}{n!}\\
+                &\leq\abs{f(x)}\sum_{ n=0}^\infty\frac{\abs{kx}^n}{n!}\\
+                &=\abs{f(x)}e^{\abs{kx}}\\
+                &\leq\abs{f(x)}e^{\abs{k}\pi}\\
+            \end{split}
+        \end{equation*}
+        para casi todo $x\in[-\pi,\pi]$, pues $\abs{x}\mapsto e^{\abs{kx}}$ tiene un máximo en $x=\pi$ en el intervalo $[-\pi,\pi]$. Además, la función $x\mapsto \abs{f(x)}e^{\abs{k}\pi}$ está en $\mathcal{L}_1([-\pi,\pi],\mathbb{C})$, pues $f$ lo está, luego $\abs{f}$ lo está. Así, por Lebesgue se tiene que
+        \begin{equation*}
+            \int_{ -\pi}^{\pi}\lim_{ m\rightarrow\infty}g_m(x)dx=\lim_{ m\rightarrow\infty}\int_{ -\pi}^{\pi} g_m(x)dx
+        \end{equation*}
+        esto es
+        \begin{equation*}
+            \begin{split}
+                \int_{-\pi}^\pi\lim_{ m\rightarrow\infty}\sum_{ n=0}^m\frac{f(x)(ikx)^n}{n!}dx&=\lim_{ m\rightarrow\infty}\int_{ -\pi}^{\pi}\sum_{ n=0}^m\frac{f(x)(ikx)^n}{n!}dx\\
+                &=\lim_{ m\rightarrow\infty}\sum_{ n=0}^m\int_{ -\pi}^{\pi}\frac{f(x)(ikx)^n}{n!}dx\\
+                &=\lim_{ m\rightarrow\infty}\sum_{ n=0}^m\frac{(ik)^n}{n!}\int_{ -\pi}^{\pi}f(x)x^n dx\\
+                &=\lim_{ m\rightarrow\infty}\sum_{ n=0}^m\frac{(ik)^n}{n!}\cdot0 \\
+                &=0\\
+                \therefore \int_{-\pi}^\pi f(x)e^{ ikx}dx&=0\\
+            \end{split}
+        \end{equation*}
+        por la suposición hecha inicalmente. Luego, $f=0$ c.t.p. en $[-\pi,\pi]$ por ser $\tau_{\mathbb{C}}$ total en $[-\pi,\pi]$. Finalmente, se sigue que $\mathcal{P}$ es total en $L_1([-\pi,\pi],\mathbb{C})$.
     \end{proof}
 
     \begin{excer}
@@ -883,7 +1029,46 @@
     \end{excer}
 
     \begin{proof}
-        
+        Podemos ver una función $f\in\mathcal{L}_p([a,b],\mathbb{C})$ como una función en $\mathcal{L}_p([-\pi,\pi],\mathbb{C})$, haciendo
+        \begin{equation*}
+            g=f\circ \alpha
+        \end{equation*}
+        donde $\cf{\alpha}{[-\pi,\pi]}{[a,b]}$ es una función lineal. Más aún, como $\mathcal{L}_p([a,b],\mathbb{C})\subseteq\mathcal{L}_1([-\pi,\pi],\mathbb{C})$ (pues la medida del intervalo $[-\pi,\pi]$ es finita), basta con probar el resultado para $\mathcal{L}_1([-\pi,\pi],\mathbb{C})$. Debemos probar que
+        \begin{equation*}
+            \overline{\mathcal{L}(\mathcal{P})}=L_1([a,b],\mathbb{C})
+        \end{equation*}
+        es decir, que $\mathcal{L}(\mathcal{P})$ es denso en $L_1([-\pi,\pi],\mathbb{C})$. En efecto, sea $f\in\mathcal{L}_1([-\pi,\pi],\mathbb{C})$. Considere la reestricción $g=f\big|_{]-\pi,\pi[}$, es inmediato que $g\in\mathcal{L}_1(]-\pi,\pi[,\mathbb{C})$. Por un teorema existe una función $h\in\mathcal{C}_c^\infty(]-\pi,\pi,[,\mathbb{C})$ tal que
+        \begin{equation*}
+            \begin{split}
+                \N{1}{g-h}&<\frac{\varepsilon}{2}\\
+                \Rightarrow \int_{ -\pi}^{\pi}\abs{g(x)-h(x)}dx&<\frac{\varepsilon}{2}\\
+                \Rightarrow \int_{ -\pi}^{\pi}\abs{f(x)-h(x)}dx&<\frac{\varepsilon}{2}\\
+                \Rightarrow \N{1}{f-h}&<\frac{\varepsilon}{2}\\
+            \end{split}
+        \end{equation*}
+        podemos extender a $h$ a $[-\pi,\pi]$ de tal forma que sea continua. Como $h$ es continua y el intervalo $[-\pi,\pi]$ es compacto, por Wierestrass existe un polinomio $p\in\mathcal{L}(\mathcal{P})$ tal que
+        \begin{equation*}
+            \sup_{ x\in[-\pi,\pi]}\abs{h(x)-p(x)}<\frac{\varepsilon}{4\pi}
+        \end{equation*}
+        Se tiene entonces que
+        \begin{equation*}
+            \begin{split}
+                \N{1}{h-p}&=\int_{ -\pi}^\pi\abs{h(x)-p(x)}dx\\
+                &\leq\int_{-\pi}^\pi\sup_{ y\in[-\pi,\pi]}\abs{h(y)-p(y)}dx\\
+                &\leq\frac{\varepsilon}{4\pi}\int_{-\pi}^\pi dx\\
+                &=\frac{\varepsilon}{2}\\
+            \end{split}
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            \begin{split}
+                \N{1}{f-p}&\leq\N{1}{f-h}+\N{1}{g-h}\\
+                &<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}\\
+                &=\varepsilon\\
+            \end{split}
+        \end{equation*}
+        donde $p\in\mathcal{L}(\mathcal{P})$. Por tanto, $\mathcal{L}(\mathcal{P})$ es denso en $\mathcal{L}_1([-\pi,\pi],\mathbb{C})$. Así, el sistema $\mathcal{P}$ es completo en $L_1([-\pi,\pi],\mathbb{C})$.
+
     \end{proof}
 
     \begin{excer}
