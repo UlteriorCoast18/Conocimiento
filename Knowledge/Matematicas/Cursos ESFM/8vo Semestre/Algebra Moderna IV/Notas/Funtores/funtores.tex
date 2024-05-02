@@ -689,4 +689,150 @@
         (pues existe una biyección entre estos dos conjuntos de morfismos). Así, $F(A)$ es un objeto final de $\mathcal{D}$.
     \end{proof}
 
+    \begin{mydef}
+        Sea $(R,+_R,\cdot_R)$ un anillo. Definimos el \textbf{anillo opuesto} $(R^{op},+_{ R^{op}},\cdot_{ R^{op}})$ de $R$ tal que satisface lo siguiente:
+        \begin{enumerate}
+            \item $(R,+_R)=(R^{op},+_{R^{op}})$.
+            \item $\cf{\cdot_{R^{op}}}{R^{op}\times R^{op}}{R^{op}}$, $(s,t)\mapsto s\cdot_{R^{op}}t=t\cdot_{R^{op}}s$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $(R,+_R,\cdot_R)$ un anillo. Decimos que $(A,+_A,\cdot)_R$ es un \textbf{$R$-módulo izquierdo} (resp. \textbf{derecho}) si se cumple que
+        \begin{enumerate}
+            \item $(A,+_A)$ es un grupo abeliano.
+            \item $\cf{\cdot}{R\times A}{A}$, $(\alpha,x)\mapsto \alpha\cdot x$ (resp. $\cf{\cdot}{A\times R}{A}$, $(x,\alpha)\mapsto x\cdot\alpha$) satisface lo siguiente:
+            \begin{enumerate}
+                \item $\alpha\cdot(x+_A y)=\alpha\cdot x+_A \alpha\cdot y$ (resp.$(x+_A y)\cdot\alpha=x+_A\cdot\alpha+_A y\cdot\alpha$).
+                \item $(\alpha+_A\beta)\cdot x=\alpha\cdot x+_A\beta\cdot x$ (resp. $x\cdot(\alpha+_A\beta)=x\cdot\alpha+_A x\cdot\beta$).
+                \item $(\alpha\cdot_R\beta)\cdot x=\alpha\cdot(\beta\cdot x)$ (resp. $x\cdot(\alpha\cdot_R\beta)=(x\cdot\alpha)\cdot\beta$).
+            \end{enumerate}
+            para todo $\alpha,\beta\in R$ y para todo $x,y\in A$. 
+        \end{enumerate}
+        Si $R$ es un anillo con identidad, entonces $\cdot$ satisface que
+        \renewcommand{\theenumi}{\roman{enumi}}
+        \begin{enumerate}
+            \setcounter{enumi}{3}
+            \item $1_R\cdot x=x$, para todo $x\in A$.
+        \end{enumerate}
+        y diremos que es un \textbf{módulo unitario}.
+    \end{mydef}
+
+    \begin{lema}
+        Sea $(R,+_R,\cdot_R)$ un anillo y $R^{op}$ su anillo opuesto. Si $(A,+_A,\cdot_A)$ es un $R$-módulo ixquierdo (resp. derecho), entonces $(A,+_A,\cdot_{op})_{R^{op}}$ es un $R^{op}$-módulo derecho (resp. izquierdo), donde
+        \begin{equation*}
+            \begin{split}
+                \cdot_{op}:A\times R&\rightarrow A\\
+                (x,\alpha)&\mapsto x\cdot_{op}\alpha=\alpha\cdot x 
+            \end{split}
+        \end{equation*}
+    \end{lema}
+
+    \begin{proof}
+        Es inmediato de la definición de $R$-módulo.
+    \end{proof}
+
+    \begin{exa}
+        Consideremos las categorías $_R\mathcal{M}$ y $\mathcal{M}_{R^{op}}$. Definimos un funtor $\cf{F}{_R\mathcal{M}}{\mathcal{M}_{R^{op}}}$ tal que
+        \begin{equation*}
+            \begin{split}
+                F:\Obj{_R\mathcal{M}}&\rightarrow\Obj{\mathcal{M}_{R^{op}}}\\
+                (A,+_A,\cdot)_R&\mapsto(A,+_A,\cdot_{op})_{R^{op}}\\
+            \end{split}
+        \end{equation*}
+        y todo morfismo $f$ lo envía a sí mismo (esto es, $F(f)=f$). De manera similar, se define el morfismo $\cf{G}{\mathcal{M}_{R^{op}}}{_R\mathcal{M}}$ que lo haga al revés, de esta forma estos módulos son tales que
+        \begin{equation*}
+            G\circ F=1_{_R\mathcal{M}}\quad\textup{y}\quad F\circ G=1_{\mathcal{M}_{R^{op}}}
+        \end{equation*}
+    \end{exa}
+
+    \begin{exa}
+        Consideremos las categorías $\Cat{Ab}$ y $_{\mathbb{Z}}\mathcal{M}$ consideremos el funtor olvidadizo $\cf{F}{_{\mathbb{Z}}\mathcal{M}}{\Cat{Ab}}$ (este funtor olvida al producto).
+
+        Definamos $\cf{\cdot_{\mathbb{Z}}}{\mathbb{Z}\times G}{G}$ tal que
+        \begin{equation*}
+            m\cdot_{\mathbb{Z}}x=\left\{
+                \begin{array}{lcr}
+                    \underbrace{x+_G\cdots+_Gx}_{n\textup{-veces}} & \textup{ si } & m>0\\
+                    e_G & \textup{ si } & m=0\\
+                    \underbrace{(-x)+_G\cdots+_G(-x)}_{n\textup{-veces}} & \textup{ si } & m<0\\
+                \end{array}
+            \right.
+        \end{equation*}
+        Se verifica que $(G,+_G,\cdot_{\mathbb{Z}})$ es un $\mathbb{Z}$-módulo.
+    \end{exa}
+
+    \begin{exa}
+        $\Cat{Set}$ y $\Cat{Set}^{op}$ no son categorías isomorfas pues, en caso contrario, se tendría que el objeto inical $\emptyset$ sería un objeto final de $\Cat{Set}^{op}$, cosa que no puede suceder.
+    \end{exa}
+
+    \begin{exa}
+        Recordemos que $\Cat{Mat}(\mathbb{K})$ con $\mathbb{K}$ un campo es la categoría de matrices con entradas en $\mathbb{K}$, donde
+        \begin{enumerate}
+            \item $\Obj{\Cat{Mat}(\mathbb{K})}=\mathbb{N}$.
+            \item Para todo $n,m\in\mathbb{N}$, $\Hom{\Cat{Mat}(\mathbb{K})}{n}{m}=\mathbb{M}_{ n\times m}(\mathbb{K})$.
+            \item Para todo $n,m,t\in\mathbb{N}$,
+            \begin{equation*}
+                \begin{split}
+                    \Hom{\Cat{Mat}(\mathbb{K})}{n}{m}\times\Hom{\Cat{Mat}(\mathbb{K})}{m}{t}&\rightarrow\Hom{\Cat{Mat}(\mathbb{K})}{n}{t}\\
+                    (A,B)&\mapsto AB
+                \end{split}
+            \end{equation*}
+            \item Para todo $n\in\mathbb{N}$, $1_n=I_{n\times n}$.
+        \end{enumerate}
+        se tiene que esta categoría no es isomorfa a la categoría de espacios vectoriales de dimensión finita.
+    \end{exa}
+
+    \begin{mydef}
+        Se define lo siguiente:
+        \begin{enumerate}
+            \item Sea $\cf{F}{\mathcal{C}}{\mathcal{D}}$ un funtor, decimos que $F$ \textbf{ preserva una propiedad $P$ de los morfismos} si cuando $F$ la tiene, también $F(f)$ la tiene.
+            \item Se $\cf{F}{\mathcal{C}}{\mathcal{D}}$ un funtor. Decimos que $F$ \textbf{refleja una propiedad $P$ de los morfismos} si cuando $F(f)$ la tiene, también $f$ la tiene.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{propo}
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item Cualquier funtor preserva isomorfismos.
+            \item Cualquier funtor plenamente fiel refleja isomorfismos.
+            \item Cualquier funtor plenamente fiel refleja objetos finales e iniciales.
+            \item Cualquier funtor fiel refleja monomorfismos y epimorfismos.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Sean $\mathcal{C}$ y $\mathcal{D}$ dos categorías y $\cf{F}{\mathcal{C}}{\mathcal{D}}$ un funtor covariante.
+
+        De (1): Sean $A,B\in\Obj{\mathcal{C}}$ y consideremos $f\in\Hom{\mathcal{C}}{A}{B}$ tal que $f$ es isomorfismo. Entonces, existe $g\in\Hom{\mathcal{C}}{B}{A}$ tal que
+        \begin{equation*}
+            f\circ g=1_B\quad\textup{y}\quad g\circ f=1_A
+        \end{equation*}
+        Entonces $F(f)\circ F(g)=F(f\circ g)=F(1_B)=1_{F(B)}$ y $F(g)\circ F(f)=F(g\circ f)=F(1_A)=1_{F(A)}$.
+        Por tanto, $F(f)$ es un isomorfismo.
+
+        De (2): Ejercicio.
+
+        De (3): La prueba para objetos iniciales está en el libro. Sea $A\in\Obj{\mathcal{C}}$ tal que $F(A)\in\Obj{\mathcal{D}}$ es un objeto final. Tenemos que
+        \begin{equation*}
+            \abs{\Hom{\mathcal{D}}{D}{F(A)}}=1,\quad\forall D\in\Obj{\mathcal{D}}
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \abs{\Hom{\mathcal{D}}{F(B)}{F(A)}}=1,\quad\forall B\in\Obj{\mathcal{C}}
+        \end{equation*}
+        Como $F$ es plenamente fiel, entonces $\cf{F_{A,B}}{\Hom{\mathcal{C}}{B}{A}}{\Hom{\mathcal{D}}{F(B)}{F(A)}}$ es una biyección, luego
+        \begin{equation*}
+            \abs{\Hom{\mathcal{D}}{B}{A}}=1,\quad\forall B\in\Obj{\mathcal{C}}
+        \end{equation*}
+        Por tanto, $A$ es objeto final de $\mathcal{C}$.
+
+        De (4): La prueba para monomorfismos está en el libro. Sean $A,B\in\Obj{\mathcal{C}}$, $f\in\Hom{\mathcal{C}}{A}{B}$ tla que $F(f)\in\Hom{\mathcal{D}}{F(A)}{F(B)}$ es un epimorfismo, Sea $C\in\Obj{\mathcal{C}}$ y consideremos $g_1,g_2\in\Hom{\mathcal{C}}{B}{C}$. Si
+        \begin{equation*}
+            \begin{split}
+                g_1\circ f=g_2\circ f&\Rightarrow
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
 \end{document}
