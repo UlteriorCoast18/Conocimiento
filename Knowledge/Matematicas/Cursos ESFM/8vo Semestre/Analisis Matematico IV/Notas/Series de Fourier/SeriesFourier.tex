@@ -1204,4 +1204,138 @@
     \end{equation*}
     el cual es llamado el \textbf{núcleo de Fejér}.
 
+    Se tiene
+    \begin{equation*}
+        \begin{split}
+            k_n(x)&=\frac{1}{n}\sum_{ m=0}^{ n-1}D_m(x)\\
+            &=\frac{1}{n}\sum_{ m=0}^{ n-1}\frac{\sen\left(m+\frac{1}{2} \right)x}{\sen\frac{x}{2}}\\
+            &=\frac{1}{n\sen\frac{x}{2}}\sum_{ m=0}^{ n-1}\sen\left(m+\frac{1}{2} \right)x\\
+        \end{split}
+    \end{equation*}
+    donde
+    \begin{equation*}
+        \begin{split}
+            \sum_{ m=0}^{ n-1}e^{ imx}&=\frac{1-e^{ inx}}{1-e^{ ix}}\\
+            &=\frac{1-e^{ inx}}{e^{ i\frac{x}{2}}(e^{ -i\frac{x}{2}}-e^{ i\frac{x}{2}})}\\
+            \Rightarrow \sum_{ m=0}^{ n-1}e^{ imx}&=i\frac{1-e^{ inx}}{2\sen\frac{x}{2}}\\
+        \end{split}
+    \end{equation*}
+    igualando los coeficientes de $i$:
+    \begin{equation*}
+        \begin{split}
+            \sum_{ m=0}^{ n-1}\sen\left(m+\frac{1}{2} \right)x&=\frac{1-\cos nx}{2\sen\frac{x}{2}}\\
+            &=\frac{2\sen^2 n\frac{x}{2}}{2\sen\frac{x}{2}}\\
+            &=\frac{\sen^2 n\frac{x}{2}}{\sen\frac{x}{2}}\\
+            \therefore k_n(x)&=\frac{1}{2\pi n}\cdot\frac{\sen^2 n\frac{x}{2}}{\sen^2\frac{x}{2}}\\
+        \end{split}
+    \end{equation*}
+    si $x$ no es múltiplo entero de $2\pi$. Para tales $x$, se tiene que $k_n(x)=\frac{n}{2\pi}$.
+
+    \begin{propo}
+        $\left\{k_n \right\}_{ n=1}^\infty$ es una sucesión de Dirac fuerte en $\mathcal{L}_1^{2\pi}$.
+    \end{propo}
+
+    \begin{proof}
+        Claramente $k_n\geq 0$ para todo $n\in\mathbb{N}^*$. Además,
+        \begin{equation*}
+            k_n=\frac{1}{n}\left(D_0+\cdots+D_{ n-1} \right)
+        \end{equation*}
+        y
+        \begin{equation*}
+            \int_{ -\pi}^{\pi}D_m=1\Rightarrow \int_{ -\pi}^{ \pi}k_n=1
+        \end{equation*}
+        Si $0<\delta<\pi$, entonces
+        \begin{equation*}
+            \sup_{ \delta\leq x<\pi}k_n(x)\leq\frac{1}{2\pi n}\cdot\frac{1}{\sen^2\frac{\delta}{2}}\underset{n\rightarrow\infty}{\rightarrow}0
+        \end{equation*}
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema de Féjer}]
+        Sea $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$.
+        \begin{enumerate}
+            \item Si $1\leq p<\infty$ y $f\in\mathcal{L}_p^{2\pi}(\mathbb{C})$ entonces, la serie de Fourier de $f$ converge en el sentido de Cesáro a $f$ en $p$-promedio.
+            \item Si en un punto $x\in\mathbb{R}$ existen $f(x^*)$ y $f(x^-)$ (siendo ambos finitos) entonces la serie de Fourier de $f$ converge en el sentido de Cesáro en el punto $x$ a
+            \begin{equation*}
+                \frac{f(x^+)+f(x^-)}{2}
+            \end{equation*}
+            en particular, si $f$ es continua en ese punto la serie de Fourier de $f$ converge en el punto $x$ a $f(x)$ en el sentido de Cesáro.
+            \item Si $f$ es continua en $J\subseteq\mathbb{R}$ abierto, entonces la serie de Fourier de $f$ converge en el sentido de Cesáro a $f$ uniformemente en todo compacto $C\subseteq J$.
+            \item Si $f$ es continua periódica, entonces la serie de Fourier de $f$ converge en el sentido de Cesáro a $f$ uniformemente en $\mathbb{R}$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        Es inmediata de la definición del núcleo de Fejér $k_n$.
+    \end{proof}
+
+    \section{Convergencia c.t.p. en el sentido de Cesáro de series de Fourier en $\mathcal{L}_1^{2\pi}$}
+
+    \begin{mydef}
+        Sea $f\in\mathcal{L}_1^{loc}(\mathbb{R},\mathbb{C})$ localmente integrable en $\mathbb{R}$. Se dice que un punto $x\in\mathbb{R}$ es un \textbf{punto de Lebesgue} de $f$ si
+        \begin{equation*}
+            \lim_{ h\rightarrow 0}\frac{1}{h}\int_0^h\abs{f(x+t)-f(x)}dt=0
+        \end{equation*}
+        el conjunto de puntos de Lebesgue de una función $f$ se llama \textbf{conjunto de Lebesgue de $f$}.
+    \end{mydef}
+
+    \begin{exa}
+        Si $f$ es continua en $x\in\mathbb{R}$, entonces $x$ es un punto de Lebesgue.
+    \end{exa}
+
+    Más adelante se demostrará que si $f$ es localmente integrable en $\mathbb{R}$, entonces el complemento del conjunto de Lebesgue de $f$ es despreciable. Osea que casi todo punto de $\mathbb{R}$ es de Lebesgue. Por el momento no se probará este resultado.
+
+    \begin{obs}
+        Se tiene siempre lo siguiente:
+        \begin{equation*}
+            \frac{2}{\pi}x \leq \sin x\leq x,\quad\forall x\in\left[0,\frac{\pi}{2}\right]
+        \end{equation*}
+        por la concávidad de $x\mapsto \sin x$.
+    \end{obs}
+
+    \begin{theor}[\textbf{Teorema de Féjer-Lebesgue}]
+        Si $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$, entonces en todo punto de Lebesgue $x$ de $f$ (es decir, c.t.p. en $\mathbb{R}$) la serie de Fourier de $f$ converge en el sentido de Cesáro a $f(x)$.
+    \end{theor}
+
+    \begin{proof}
+        Sea $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$ y $x\in\mathbb{R}$ un punto de Lebesgue de $f$. Por el cambio de variable $t=-u$ se tiene que
+        \begin{equation*}
+            \frac{1}{h}\int_0^h\abs{f(x-t)-f(x)}dt=\frac{1}{-h}\int_0^{-h}\abs{f(x+t)-f(x)}dt
+        \end{equation*}
+        %TODO QUE
+        Por tanto, también se cumple que
+        \begin{equation*}
+            \lim_{ h\rightarrow0}\frac{1}{h}\int_0^h\abs{f(x-t)-f(x)}dt=0
+        \end{equation*}
+        Usando la paridad de $k_n$ y el cambio de variable $t=-u$,
+        \begin{equation*}
+            \begin{split}
+                \sigma_n(x)&=f*k_n(x)\\
+                &=\int_{-\pi}^{\pi}f(x-t)k_n(t)dt\\
+                &=\int_{-\pi}^{0}f(x-t)k_n(t)dt+\int_{0}^{\pi}f(x-t)k_n(t)d\\
+                &=\int_{0}^{-\pi}\left[f(x+t)+f(x-t)\right]k_n(t)dt\\
+            \end{split}
+        \end{equation*}
+        también, por l aparidad de $k_n$, $\int_{0}^{\pi}k_n(t)dt=\frac{1}{2}$, luego
+        \begin{equation*}
+            \begin{split}
+                f(x)&=\int_0^{\pi}2f(x)k_n(t)dt\\
+                \therefore \sigma_n(x)-f(x)=\int_0^{\pi}g_x(t)k_n(t)dt
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            g_x(t)=f(x+t)+f(x-t)-2f(x)
+        \end{equation*}
+        Se tiene
+        \begin{equation*}
+            \begin{split}
+                \abs{\int_0^{h}\abs{g_x(t)}dt}&\leq\abs{\int_0^h\abs{f(x+t)-f(x)}dt}+\abs{\int_0^h\abs{f(x-t)-f(x)}dt}
+            \end{split}
+        \end{equation*}
+        por ser $x$ un punto de Lebesgue de $f$, existe $0<\delta<\pi$ tal que
+        \begin{equation*}
+            0<h<\delta\Rightarrow\int_0^{h}\abs{g_x(t)}dt<h\varepsilon
+        \end{equation*}
+    \end{proof}
+    
 \end{document}
