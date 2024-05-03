@@ -588,7 +588,7 @@
             \end{equation*}
             Este es un subconjunto finito del intervalo $[0,1]$ y, tiene un orden simple derivado del orden simple $<$ de $[0,1]$.
 
-            En un conjunto finito simplemente ordenado, todo elemento tiene un predecesor inmediato y un sucesor inmediato. El número $0$ es el elemento más pequeño y, $1$ es el elemento más grande de $P_{n+1}$ y, $r$ no es $0$ o $1$. Por tanto, $r$ tiene un sucesor y un predecesor inmediato, denotados respectivamente por $q$ y $p$. Los conjuntos $U_p$ y $U_q$ están definidos y son tlaes que
+            En un conjunto finito simplemente ordenado, todo elemento tiene un predecesor inmediato y un sucesor inmediato. El número $0$ es el elemento más pequeño y, $1$ es el elemento más grande de $P_{n+1}$ y, $r$ no es $0$ o $1$. Por tanto, $r$ tiene un sucesor y un predecesor inmediato, denotados respectivamente por $q$ y $p$. Los conjuntos $U_p$ y $U_q$ están definidos y son tales que
             \begin{equation*}
                 \Cls{U}_p\subseteq U_q
             \end{equation*}
@@ -1699,7 +1699,7 @@
     \end{exa}
 
     \begin{exa}
-        Considere $(\mathbb{Q},\tau_{ u_{\mathbb{Q}}})$ no es localmente compacto. Sea $x\in\mathbb{Q}$ y suponga que $C$ es una vecindad compacta de $x$. Luego existe un intervalo $]a,b[\subseteq\mathbb{R}$ que contiene a $x$ tal que
+        Considere $(\mathbb{Q},\tau_{ u_{\mathbb{Q}}})$. Afirmamos que este espacio no es localmente compacto. Sea $x\in\mathbb{Q}$ y suponga que $C$ es una vecindad compacta de $x$ en $(\mathbb{Q},\tau_{ u_{\mathbb{Q}}})$. Luego, existe un intervalo $]a,b[\subseteq\mathbb{R}$ que contiene a $x$ tal que
         \begin{equation*}
             x\in ]a,b[\cap\mathbb{Q}\subseteq C
         \end{equation*}
@@ -1707,11 +1707,147 @@
         \begin{equation*}
             U_q=\left\{
                 \begin{array}{lcr}
-                    \left\{r\in\mathbb{R}\Big|q<r \right\} & \textup{ si } & i_0<q\\
-                    \left\{r\in\mathbb{R}\Big|r<q \right\} & \textup{ si } & q<i_0\\
+                    \left\{r\in\mathbb{R}\Big|q<r \right\} & \textup{ si } & i_0<q.\\
+                    \left\{r\in\mathbb{R}\Big|r<q \right\} & \textup{ si } & q<i_0.\\
                 \end{array}
             \right.
         \end{equation*}
+        es claro que $\left\{V_q=U_q\cap C \right\}_{ q\in C}$ es una cubierta abierta de $C$ (considerándola en el subespacio $(C,\tau_{u_C})$). Como $C$ es compacto existen $q_1,...,q_n\in C$ tales que
+        \begin{equation*}
+            C=\bigcup_{ i=1}^n V_{ q_i}
+        \end{equation*}
+        podemos suponer que
+        \begin{equation*}
+            q_1<\cdots <q_l<i_0<q_{l+1}<\cdots<q_n
+        \end{equation*}
+        En particular, se sabe que $(q_l,q_{l+1})\cap C\neq\emptyset$ (por la densidad de los racionales). Sea $t\in (q_l,q_{l+1})\cap C$, se tiene que
+        \begin{equation*}
+            t\notin V_{ q_i},\quad\forall i\in\natint{1,n}
+        \end{equation*}
+        luego $C\nsubseteq \bigcup_{ i=1}^n V_{ q_i}$\contradiction. Por tanto, la propiedad de ser localmente compacto no es hereditaria.
     \end{exa}
+
+    \begin{propo}
+        Sea $\left\{(X_1,\tau_1),...,(X_n,\tau_n) \right\}$ una familia finita de espacios localmente compactos. Tomemos
+        \begin{equation*}
+            X=\prod_{ i=1}^n X_i
+        \end{equation*}
+        entonces, $(X,\tau_p=\tau_c)$ es localmente compacto.
+    \end{propo}
+
+    \begin{proof}
+        Sea $x\in X$, digamos $x=(x_1,...,x_n)$ donde $x_i\in X_i$ para todo $i\in\natint{1,n}$. Como cada $(X_i,\tau_i)$ es localmente compacto, existe $V_i\in\tau_i$ vecindad de $x_i$ tal que $\Cls{V_i}$ es compacto.
+        
+        Tomemos $V=V_1\times\cdots\times V_n$, por lo anterior se tiene que $x\in V$, es decir
+        \begin{equation*}
+            x\in \prod_{ i=1}^n V_i\in\tau_p
+        \end{equation*}
+        si definimos $C=\prod_{ i=1}^n \Cls{V_i}$, dotándolo de la topología producto $(C,\tau_p)$ es un espacio compacto (por el teorema de Tychonov), tal que
+        \begin{equation*}
+            x\in V\subseteq C
+        \end{equation*}
+        donde $C\subseteq X$ es compacto en $(X,\tau_p)$. Luego, el espacio es localmente compacto.
+    \end{proof}
+
+    \begin{exa}
+        Para $n\in\mathbb{N}$ definimos $X_n=\mathbb{R}$ y $\tau_n=\tau_u$. Tomemos $X=\prod_{ i=1}^\infty X_n$ y considere así al espacio topológico $(X,\tau_p)$. Tenemos que para todo $n\in\mathbb{N}$, $(X_n,\tau_n)$ es localmente compacto. Mostraremos que $(X,\tau_p)$ no es localmente compacto.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, sea $x=\left(x_i \right)_{ i\in\mathbb{N}}\in X$ y suponga que existe $U\in\tau_p$ abierto y $C\subseteq X$ compacto tales que
+        \begin{equation*}
+            x\in U\subseteq C
+        \end{equation*}
+        podemos suponer que $U$ es un básico de $\tau_p$, de esta forma
+        \begin{equation*}
+            U=\prod_{ n\in\mathbb{N}}U_n
+        \end{equation*}
+        donde $U_n\in\tau_n$ para todo $n\in\mathbb{N}$ siendo $U_n\neq\mathbb{R}$ para casi todo $n\in\mathbb{N}$ salvo una cantidad finita, es decir que existe $M\subseteq \mathbb{N}$ finito tal que para todo $n\in\mathbb{N}-M$, $U_n=\mathbb{R}$. Tenemos además, que para todo $n\in\mathbb{N}$, $(X_n,\tau_n)$ es de Hausdorff, por lo tanto, $(X,\tau_p)$ es de Hausdorff. Como $C\subseteq X$ es compacto, por lo anterior debe suceder que $C$ es cerrado. Luego, el conjunto
+        \begin{equation*}
+            \Cls{U}=\Cls{\prod_{ n\in\mathbb{N}}U}_n=\prod_{ n\in\mathbb{N}}\Cls{U}_n
+        \end{equation*}
+        es compacto. Pero para $s\in\mathbb{N}-M$ se tiene que $U_s=\mathbb{R}$, es decir que $(U_s,\tau_s)=(\mathbb{R},\tau_u)$ es compacto\contradiction. Luego la propiedad de compacidad local no necesariamente se preserva bajo productos arbitrarios.
+    \end{proof}
+
+    \begin{propo}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos. Si $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es una función suprayectiva, continua y abierta siendo $(X_1,\tau_1)$ localmente compacto, entonces $(X_2,\tau_2)$ es loclamente compacto.
+    \end{propo}
+
+    \begin{proof}
+        Sea $x_2\in X_2$. Como $f$ es suprayectiva, existe $x_1\in X_1$ tal que $f(x_1)=x_2$. Al ser $(X_1,\tau_1)$ localmente compacto, existe $U\in\tau$ y $C\subseteq X$ vecindad compacta de $x_1$ tal que
+        \begin{equation*}
+            x\in U\subseteq C
+        \end{equation*}
+        luego,  $x_2=f(x_1)\in f(U)\subseteq f(C)$. Donde $f(U)\in\tau_2$ y, al ser $f$ continua se sigue que $f(C)$ es compacto en $(X_2,\tau_2)$.
+    \end{proof}
+
+    %TODO hice cosas mal
+
+    \begin{obs}
+        Nótese que en la proposición anterior se debilitó la hipótesis de que $f$ sea homomorfismo, pues no se pide que $f$ sea inyectiva para obtener el resultado.
+    \end{obs}
+
+    \begin{cor}
+        La propiedad de compacidad local es topológica.
+    \end{cor}
+
+    \begin{proof}
+        Inmediato del teorema anterior.
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico de Hausdorff localmente compacto el cual \textbf{no} es compacto. Entonces,
+        \begin{enumerate}
+            \item $\Cls{X}=\hat{X}$ en $(\hat{X},\hat{\tau})$.
+            \item $(\hat{X},\hat{\tau})$ es un espacio compacto y Hausdorff.
+        \end{enumerate}  
+    \end{propo}
+
+    \begin{proof}
+        De (1): Sea $U\in\hat{\tau}$ tal que $\infty\in U$, por tanto, $U=\hat{X}-C$ donde $C\subseteq X$ es un compacto de $(X,\tau)$. Como $(X,\tau)$ no es compacto, entonces $C\neq X$. Luego
+        \begin{equation*}
+            U\cap X=(\hat{X}-C)\cap X=X-C\neq\emptyset
+        \end{equation*}
+        así, $\infty\in\Cls{X}$. Por ende, $\Cls{X}=\hat{X}$.
+
+        De (2): Veamos que $(\hat{X},\hat{\tau})$ es de Hausdorff. En efecto, sean $x,y\in \hat{X}$ con $x\neq y$.
+        \begin{enumerate}
+            \item Si $x,y\in X$ al ser $(X,\tau)$ de Hausdorff existen dos abiertos $U,V\in\tau$ tales que
+            \begin{equation*}
+                x\in U\quad y\in V\quad\textup{y}\quad U\cap V=\emptyset
+            \end{equation*}
+            en particular, $U,V\in\hat{\tau}$.
+            \item Suponga que $x=\infty$. Como $(X,\tau)$ es localmente compacto, existe $C\subseteq X$ compacto $V\in\tau$ abierto en $(X,\tau)$ tales que
+            \begin{equation*}
+                y\in V\subseteq C
+            \end{equation*}
+            Tomemos $U=X-C$. Se tiene que $U\in\hat{\tau}$, entonces
+            \begin{equation*}
+                x\in U,\quad y\in V\quad U\cap V=\emptyset
+            \end{equation*}
+            donde $V\in\tau\subseteq\hat{\tau}$.
+        \end{enumerate}
+        Por los dos incisos anterioes, se sigue que $(\hat{X},\hat{\tau})$ es Hausdorff.
+
+        Veamos que es compacto. Sea $\mathcal{U}=\left\{U_\alpha \right\}_{\alpha\in I}$ una cubierta abierta de $(\hat{X},\hat{\tau})$. Como $\infty\notin X$ existe $\alpha_0\in I$ tal que
+        \begin{equation*}
+            \infty\in U_{\alpha_0}=\hat{X}-C_{\alpha_0}
+        \end{equation*}
+        donde $C_{\alpha_0}\subseteq X$ es compacto en $(X,\tau)$. Sea
+        \begin{equation*}
+            \mathcal{U}'=\left\{U_\alpha\cap X \right\}_{\alpha\in I}
+        \end{equation*}
+        este conjunto es una cubierta abierta de $X$ (pues, recordemos que $\hat{\tau}_X=\tau$, es decir que la topología del subespacio coincide con la de $(X,\tau)$). Como $C_{\alpha_0}$ es compacto, por un teorema existen $\alpha_1,...,\alpha_n\in I$ tales que
+        \begin{equation*}
+            C_{\alpha_0}\subseteq\bigcup_{ i=1}^n U_{\alpha_i}
+        \end{equation*}
+        Luego,
+        \begin{equation*}
+            \hat{X}=(\hat{X}-C_{\alpha_0})\cup C_{\alpha_0}=\bigcup_{ i=0}^n U_{\alpha_i}
+        \end{equation*}
+        por tanto, $(\hat{X},\hat{\tau})$ es compacto.
+    \end{proof}
+
+    
     
 \end{document}
