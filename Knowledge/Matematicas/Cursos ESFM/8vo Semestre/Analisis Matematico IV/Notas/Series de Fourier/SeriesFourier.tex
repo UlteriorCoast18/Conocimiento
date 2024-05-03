@@ -1315,7 +1315,7 @@
                 &=\int_{0}^{-\pi}\left[f(x+t)+f(x-t)\right]k_n(t)dt\\
             \end{split}
         \end{equation*}
-        también, por l aparidad de $k_n$, $\int_{0}^{\pi}k_n(t)dt=\frac{1}{2}$, luego
+        también, por la paridad de $k_n$, $\int_{0}^{\pi}k_n(t)dt=\frac{1}{2}$, luego
         \begin{equation*}
             \begin{split}
                 f(x)&=\int_0^{\pi}2f(x)k_n(t)dt\\
@@ -1332,10 +1332,75 @@
                 \abs{\int_0^{h}\abs{g_x(t)}dt}&\leq\abs{\int_0^h\abs{f(x+t)-f(x)}dt}+\abs{\int_0^h\abs{f(x-t)-f(x)}dt}
             \end{split}
         \end{equation*}
-        por ser $x$ un punto de Lebesgue de $f$, existe $0<\delta<\pi$ tal que
+        por ser $x$ un punto de Lebesgue de $f$, dado $\varepsilon>0$ existe $0<\delta<\pi$ tal que
         \begin{equation*}
             0<h<\delta\Rightarrow\int_0^{h}\abs{g_x(t)}dt<h\varepsilon
         \end{equation*}
+        Escriba $G_x(h)=\int_0^h \abs{g_x(t)}dt$, para todo $h\in\mathbb{R}$. Se tiene que
+        \begin{equation*}
+            0<h<\delta\Rightarrow G_x(h)<h\varepsilon
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            \begin{split}
+                \abs{\sigma_n(x)-f(x)}&\leq\int_0^h\abs{g_x(t)}k_n(t)dt\\
+            \end{split}
+        \end{equation*}
+        Sea $n\in\mathbb{N}$ tal que $\frac{1}{m}<\delta$. Entonces,
+        \begin{equation*}
+            \begin{split}
+                \abs{\sigma_n(x)-f(x)}&\leq\int_0^{\frac{1}{n}}\abs{g_x(t)}k_n(t)dt+\int_{\frac{1}{n}}^\delta\abs{g_x(t)}k_n(t)dt+\int_\delta^{\pi}\abs{g_x(t)}k_n(t)dt\\
+            \end{split}
+        \end{equation*}
+        Recordemos que
+        \begin{equation*}
+            k_n(t)=\frac{1}{2\pi n}\frac{\sin^2 n\frac{t}{2}}{\sin^2\frac{t}{2}}\leq\frac{1}{2\pi n}\frac{n^2\left( \frac{t}{2}\right)^2}{\left(\frac{2}{\pi} \right)^2\left(\frac{t}{2} \right)^2}=\frac{n\pi}{8}
+        \end{equation*}
+        Luego,
+        \begin{equation*}
+            \int_0^{\frac{1}{n}}\abs{g_x(t)}k_n(t)dt\leq\frac{n\pi}{8}\int_0^{\frac{1}{n}}\abs{g_x(t)}dt\leq\frac{n\pi}{8}\left(\frac{1}{n}\cdot\varepsilon \right)
+        \end{equation*}
+        si $\frac{1}{n}<t<\delta$:
+        \begin{equation*}
+            \begin{split}
+                k_n(t)&=\frac{1}{2\pi n}\frac{\sin^2\left(n\frac{t}{2} \right)}{\sin^2\frac{t}{2}}\\
+                &\leq\frac{1}{2\pi n}\frac{1}{\left(\frac{2}{\pi} \right)^2 \left(\frac{t}{2} \right)^2}\\
+                &=\frac{\pi}{2n}\frac{1}{t^2}\\
+            \end{split}
+        \end{equation*}
+        Integrando por partes,
+        \begin{equation*}
+            \begin{split}
+                \int_{\frac{1}{n}}^\delta\abs{g_x(t)}k_n(t)dt&\leq\frac{\pi}{2n}\int_{\frac{1}{n}}^\delta\abs{g_x(t)}\frac{dt}{t^2}\\
+                &=\frac{\pi}{2n}\left[\frac{G_x(t)}{t^2}\Big|_{\frac{1}{n}}^{\delta}+2\int_{\frac{1}{n}}^\delta \frac{G_x(t)}{t^3}dt\right]\\
+                &=\frac{\pi}{2n}\left[\frac{G_x(\delta)}{\delta^2}-n^2G_x(\frac{1}{n})+2\int_{\frac{1}{n}}^\delta \frac{G_x(t)}{t^3}dt\right]\\
+                &\leq\frac{\pi}{2n}\left[\frac{G_x(\delta)}{\delta^2}+2\int_{\frac{1}{n}}^\delta \frac{G_x(t)}{t^3}dt\right]\\
+                &\leq\frac{\pi}{2n}\left[\frac{\delta\varepsilon}{\delta^2}+2\int_{\frac{1}{n}}^\delta \frac{t\varepsilon}{t^3}dt\right]\\
+                &=\frac{\pi}{2n}\left[\frac{\varepsilon}{\delta}+2\varepsilon\int_{\frac{1}{n}}^\delta \frac{dt}{t^2}\right]\\
+                &=\frac{\pi}{2n}\left[\frac{\varepsilon}{\delta}+2\varepsilon\left(n-\frac{1}{\delta} \right) \right]\\
+                &\leq\frac{\pi}{2n}\left[n\varepsilon+2n\varepsilon\right]\\
+                &=\frac{2\pi}{2}\varepsilon\\
+            \end{split}
+        \end{equation*}
+        Para $\delta\leq t<\pi$ se tiene
+        \begin{equation*}
+            \begin{split}
+                k_n(t)=\frac{1}{2\pi n}\frac{\sin^2\left(n\frac{t}{2} \right)}{\sin^2\frac{t}{2}}\leq\frac{1}{2\pi n}\frac{1}{\sin^2\frac{\delta}{2}}
+            \end{split}
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \int_\delta^{\pi}\abs{g_x(t)}k_n(t)dt\leq\frac{1}{2\pi n}\frac{1}{\sin^2\left(\frac{\delta}{2} \right)}\int_\delta^{\pi}\abs{g_x(t)}dt\underset{ n\rightarrow\infty}{\rightarrow}0
+        \end{equation*}
+        pues las dos cantidades de la derecha no dependen de $\delta$ y más aún, son constantes (al menos la segunda está acotada pues la función $f$ es integrable en $[0,\pi]$). Existe pues $N>\frac{1}{\delta}$ tal que
+        \begin{equation*}
+            n\geq N\Rightarrow\frac{1}{2\pi n}\frac{1}{\sin^2\left(\frac{\delta}{2} \right)}\int_\delta^{\pi}\abs{g_x(t)}dt<\varepsilon
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            n\geq N\Rightarrow\abs{\sigma_n(x)-f(x)}<\frac{\pi}{8}\varepsilon+\frac{3\pi}{2}\varepsilon+\varepsilon
+        \end{equation*}
+        lo que prueba el resultado.
     \end{proof}
 
     \begin{cor}
@@ -1346,4 +1411,117 @@
         Por el teorema anterior, si la serie de Fourier de $f$ converge en el sentido de Cesáro a $f$ c.t.p. en $\mathbb{R}$. Como dicha serie converge en el sentido usual a $g$ c.t.p. en $\mathbb{R}$, entonces también lo hace en el sentido de Cesáro. Por tanto, $f=g$ c.t.p. en $\mathbb{R}$.
     \end{proof}
     
+    \begin{theor}[\textbf{Teorema de Hardy-Landau}]
+        Sea $\sum_{ n=1}^\infty u_n$ una serie en un espacio normado $(E,\norm{\cdot})$ que converge en el sentido de Cesáro. Si existe $A>0$ tal que
+        \begin{equation*}
+            \norm{u_n}\leq\frac{A}{n},\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        entonces, la serie converge en el sentido usual.
+    \end{theor}
+
+    \begin{proof}
+        Sea $s_m=\sum_{ k=1}^m u_k$ y $\sigma_n=\frac{1}{n}\sum_{ m=1}^n s:m$ (es decir que $\sum_{ m=1}^n s_m=n\sigma_n$), para todo $n,m\in\mathbb{N}$. Por hipótesis existe $\sigma$ tal que
+        \begin{equation*}
+            \lim_{ n\rightarrow\infty}\sigma_n=\sigma
+        \end{equation*}
+        Sea $\varepsilon>0$ menor que $1$. Entonces, existe $N\in\mathbb{N}$ tal que
+        \begin{equation*}
+            n\geq N\Rightarrow\norm{\sigma-\sigma_n}<\varepsilon
+        \end{equation*}
+        Sean $m,n\in\mathbb{N}$ tales que $m>n\geq N$. Se tiene
+        \begin{equation*}
+            \begin{array}{ccc}
+                s_m&=&u_1+\cdots+u_n+u_{ n+1}+\cdots+u_m\\
+                s_{ m-1}&=&u_1+\cdots+u_n+u_{ n+1}+\cdots+u_{ m-1}\\
+                \vdots & \vdots & \vdots \\
+                s_{ n+2}&=&u_1+\cdots+u_n+u_{ n+1}+\cdots+u_{ n+2}\\
+                s_{ n+1}&=&u_1+\cdots+u_n+u_{ n+1}\\
+            \end{array}
+        \end{equation*}
+        Sumando todo
+        \begin{equation*}
+            \begin{split}
+                (m-n)s_m&=s_m+s_{ m-1}+\cdots+s_{ n+1}+\\
+                &(m-n-1)u_m+(m-n-2)u_{ m-1}+\cdots+2u_{ n+3}+u_{ n+2}\\
+            \end{split}
+        \end{equation*}
+        de donde
+        \begin{equation*}
+            \begin{split}
+                (m-n)(s_m-\sigma)&=m(\sigma_m-\sigma)-n(\sigma_n-\sigma)+\\
+                &(m-n-1)u_m+(m-n-2)u_{ m-1}+\cdots+2u_{ n+3}+u_{ n+2}\\
+            \end{split}
+        \end{equation*}
+        Por la hipótesis se sigue que
+        \begin{equation*}
+            \begin{split}
+                (m-n)\norm{s_m-\sigma}&\leq (m+n)\varepsilon+\\
+                &(m-n-1)\frac{A}{m}+(m-n-2)\frac{A}{m-1}+\cdots+2\frac{A}{n+3}+\frac{A}{n+2}\\
+                &\leq (m+n)\varepsilon+\frac{A}{n}\left[1+2+\cdots+(m-n-1) \right]\\
+                &=(m-n)\varepsilon+2n\varepsilon+\frac{A}{n}\frac{(m-n)^2}{2}\\
+                \norm{s_m-\sigma}&\leq\varepsilon+\frac{2n\varepsilon}{m-n}+\frac{A}{2n}(m-n)\\
+                &=\varepsilon+\frac{2\varepsilon}{\left(\frac{m}{n}-1\right)}+\frac{A}{2}\left(\frac{m}{n}-1\right)\\
+            \end{split}
+        \end{equation*}
+        Suponga por el momento que para toda $m\in\mathbb{N}$ suficientemente grande se puede encontrar $n\in\mathbb{N}$ tal que
+        \begin{equation*}
+            m>n\geq N
+        \end{equation*}
+        y
+        \begin{equation*}
+            \sqrt{\varepsilon}\leq\frac{m}{n}-1\leq2\sqrt{\varepsilon}
+        \end{equation*}
+        Se seguiría que
+        \begin{equation*}
+            \norm{s_m-\sigma}<\varepsilon+2\sqrt{\varepsilon}+A\sqrt{\varepsilon}
+        \end{equation*}
+        y el teorema estaría probado. Esta condición anterior es equivalente a decir que
+        \begin{equation*}
+            \frac{m}{1+2\sqrt{\varepsilon}}\leq n<\frac{m}{1+\sqrt{\varepsilon}}
+        \end{equation*}
+        para que exista $n\in\mathbb{N}$ que cumpla lo anterior, es suficiente que
+        \begin{equation*}
+            \begin{split}
+                \frac{m}{1+\sqrt{\varepsilon}}-\frac{m}{1+2\sqrt{\varepsilon}}&\geq 1\\
+                \iff \frac{\sqrt{\varepsilon}m}{(1+\sqrt{\varepsilon})(1+2\sqrt{\varepsilon})}&\geq 1\\
+                \Leftarrow \frac{\sqrt{\varepsilon}m}{6}&\geq 1\\
+            \end{split}
+        \end{equation*}
+        Así pues, si se toma $m>\frac{6}{\sqrt{\varepsilon}}$ se cumple lo anterior y, se cumple que podemos tomar $n\in\mathbb{N}$ con $m>n$ tal que
+        \begin{equation*}
+            \sqrt{\varepsilon}\leq\frac{m}{n}-1\leq2\sqrt{\varepsilon}
+        \end{equation*}
+        ¿Qué más hay que pedir a $m$ para que se cumpla que $m>n\geq N$? Para que también se cumpla la otra condidición basta con pedir que 
+        \begin{equation*}
+            \begin{split}
+                \frac{m}{1+2\sqrt{\varepsilon}}&\geq N\\
+                \Rightarrow m&\geq(1+2\sqrt{\varepsilon})N\\
+            \end{split}
+        \end{equation*}
+        así pues, si $m\geq\max\left\{\frac{6}{\sqrt{\varepsilon}},(1+2\sqrt{\varepsilon})N \right\}$, entonces se cumplirá lo deseado.
+    \end{proof}
+
+    \begin{cor}
+        Sea $\left\{u_n \right\}_{ n=1}^\infty$ una sucesión en el espacio normado $\mathcal{B}(S,E)$ de funciones acotadas de $S$ en un espacio normado $E$, provisto de la norma uniforme. Si la serie $\sum_{ n=1}^\infty u_n$ converge en el sentido de Cesáro uniformemente en $S$ y existe $A>0$ tal que
+        \begin{equation*}
+            \norm{u_n(x)}\leq\frac{A}{n},\quad\forall x\in S \textup{ y }\forall n\in\mathbb{N}
+        \end{equation*}
+        entonces, la serie converge en el sentido usual uniformemente en $S$.
+    \end{cor}
+
+    \section{Teorema de Jordan}
+
+    Recuerde que una función $\cf{f}{[a,b]}{\mathbb{K}}$ es de variación acotada si el conjunto de sumas
+    \begin{equation*}
+        S_\Delta(f)=\sum_{ k=1}^n\abs{f(x_k)-f(x_{ k-1})}
+    \end{equation*}
+    donde $\Delta=\left\{a=x_0<x_1<\cdots<x_k=b \right\}$ es una subdivisión finita de $[a,b]$, es acotado en $\mathbb{R}$. En tal caso la variación de $f$ en $[a,b]$ se define como
+    \begin{equation*}
+        V_f([a,b])=\sup_{\Delta}S_\Delta(f)
+    \end{equation*}
+
+    Se sabe que toda función de variación acotada es acotada en $[a,b]$. En general, una función de variación acotada no necesariamente es continua en $[a,b]$ ni viceversa. Sin embargo, toda función monótona o de clase $C^1$ en $[a,b]$ es de variación acotada en $[a,b]$.
+
+    También se sabe que para una función $\cf{f}{[a,b]}{\mathbb{C}}$ es de variación acotada si y sólo si $\Re f$ e $\Im f$ lo son en $[a,b]$. Además, el conjunto de funciones de variación acotada des un álgebra con identidad sobre el campo $\mathbb{K}$. Finalmente, $\cf{f}{[a,b]}{\mathbb{R}}$ es de variación acotada en $[a,b]$ si y sólo si $f$ se puede escribir como diferencia de dos funciones monótonas.
+
 \end{document}

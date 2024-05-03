@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3) (preloaded format=pdflatex 2024.3.12)  2 MAY 2024 11:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3) (preloaded format=pdflatex 2024.3.12)  2 MAY 2024 22:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -623,8 +623,10 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \c@lema=\count333
 \c@mydef=\count334
 \c@excer=\count335
-
-No file ejercicios_dugundji.aux.
+ (ejercicios_dugundji.aux
+LaTeX Info: Redefining \. on input line 9.
+LaTeX Info: Redefining \% on input line 9.
+)
 \openout1 = `ejercicios_dugundji.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 127.
@@ -643,7 +645,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 127.
 LaTeX Font Info:    ... okay on input line 127.
 LaTeX Info: Redefining \. on input line 127.
 LaTeX Info: Redefining \% on input line 127.
-(/usr/local/share/miktex-texmf/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/local/share/miktex-texmf/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count336
 \scratchdimen=\dimen280
@@ -705,12 +707,14 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 132.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/home/cristodanielalvarado/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}]
-No file ejercicios_dugundji.toc.
+{/home/cristodanielalvarado/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}] (ejercicios_dugundji.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
 \tf@toc=\write4
 \openout4 = `ejercicios_dugundji.toc'.
 
-[1
+ [1
 
 ]
 Cap\'{\i }tulo 1.
@@ -872,30 +876,7 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 1123.
-
-/home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Topologia I/Ejercicios/Ejercicios Dugundji/ejercicios_dugundji.tex:1124: Undefined control sequence.
-<argument> \biglvert 
-                     K\bigrvert 
-l.1124 ...\in X$ y $K\subseteq X$ tal que $\abs{K}
-                                                  \geq 2$
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-/home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Topologia I/Ejercicios/Ejercicios Dugundji/ejercicios_dugundji.tex:1124: Undefined control sequence.
-<argument> \biglvert K\bigrvert 
-                                
-l.1124 ...\in X$ y $K\subseteq X$ tal que $\abs{K}
-                                                  \geq 2$
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[29] (ejercicios_dugundji.aux
+ [29] (ejercicios_dugundji.aux
 LaTeX Info: Redefining \. on input line 9.
 LaTeX Info: Redefining \% on input line 9.
 )
@@ -903,21 +884,17 @@ LaTeX Info: Redefining \% on input line 9.
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 18132 strings out of 474399
- 357614 string characters out of 5747544
- 1953187 words of memory out of 5000000
+ 18136 strings out of 474399
+ 358068 string characters out of 5747544
+ 1954187 words of memory out of 5000000
  40142 multiletter control sequences out of 15000+600000
  569324 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  104i,26n,115p,761b,1080s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on ejercicios_dugundji.pdf (30 pages, 229171 bytes).
+Output written on ejercicios_dugundji.pdf (30 pages, 230264 bytes).
 PDF statistics:
  161 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
