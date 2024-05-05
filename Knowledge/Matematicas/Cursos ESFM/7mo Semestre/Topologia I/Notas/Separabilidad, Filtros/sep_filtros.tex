@@ -172,11 +172,11 @@
 
     
     \begin{exa}
-        Sea $(\mathbb{R},\tau_{cf})$. Afirmamos que $(\mathbb{R},\tau_u)$ es $T_1$. En efecto, sean $r,s\in\mathbb{R}$ tales que $r\neq s$. Los conjuntos $U=\mathbb{R}-\left\{s \right\},V=\mathbb{R}-\left\{r \right\}\in\tau_{cf}$ pues sus complementos son finitos, además:
+        Sea $(\mathbb{R},\tau_{cf})$. Afirmamos que $(\mathbb{R},\tau_{cf})$ es $T_1$. En efecto, sean $r,s\in\mathbb{R}$ tales que $r\neq s$. Los conjuntos $U=\mathbb{R}-\left\{s \right\},V=\mathbb{R}-\left\{r \right\}\in\tau_{cf}$ pues sus complementos son finitos, además:
         \begin{equation*}
             r\in U\quad\textup{y}\quad s\in V
         \end{equation*}
-        además, $r\notin V$ y $s\notin U$. Por tanto, el espacio de $T_1$. Pero no es $T_2$.
+        donde, $r\notin V$ y $s\notin U$. Por tanto, el espacio de $T_1$. Pero no es $T_2$.
 
         En efecto, suponga que existen $U,V\in\tau_{cf}$ abiertos tales que $\varphi=\frac{1+\sqrt{5}}{2}\in U$, $\frac{1}{\pi}\in V$ y $U\cap V=\emptyset$. En particular, se tiene que $\mathbb{R}-U$ y $\mathbb{R}-V$ son finitos. Por tanto:
         \begin{equation*}
@@ -185,11 +185,11 @@
                 &=\mathbb{R}\\
             \end{split}
         \end{equation*}
-        es finito, por tanto, $\mathbb{R}$ es finito\contradiction.
+        es finito, por tanto, $\mathbb{R}$ es finito\contradiction. Así, este espacio no puede ser $T_2$.
     \end{exa}
 
     \begin{exa}
-        Considere al espacio $(\mathbb{R},\tau_I=\left\{X,\emptyset \right\})$. Afirmamos que $(\mathbb{R},\tau_I)$ es $T_4$ y $T_3$, pero NO es $T_0$, pues si $\varphi=\frac{1+\sqrt{5}}{2},\frac{1}{\pi}\in\mathbb{R}$, solo hay un abierto que contiene a alguno de los dos puntos, el cual es $\mathbb{R}$, que siempre tiene a los dos puntos. Por ende, el espacio no es $T_0$.        
+        Considere al espacio $(\mathbb{R},\tau_I=\left\{X,\emptyset \right\})$. Afirmamos que $(\mathbb{R},\tau_I)$ es $T_4$ y $T_3$, pero NO es $T_0$, pues si $\varphi=\frac{1+\sqrt{5}}{2},\frac{1}{\pi}\in\mathbb{R}$, solo hay un abierto que contiene a alguno de los dos puntos, el cual es $\mathbb{R}$, que siempre tiene a los dos puntos. Por ende, el espacio no es $T_0$ (luego no es $T_1$ ni $T_2$).
     \end{exa}
 
     \begin{propo}
@@ -211,7 +211,7 @@
 
         $\Rightarrow):$ Suponga que $(X,\tau)$ es $T_1$. Sea $x\in X$. Hay que probar que $X-\left\{x \right\}\in\tau$. En efecto, sea $y\in X-\left\{x \right\}$, entonces $x\neq y$. Como el espacio es $T_1$ existen un par de abiertos $U,V\in\tau$ tales que $x\in U$, $y\in V$ y $x\notin V$ y $y\notin U$.
 
-        Como $y\in V$ y $x\notin V$, entonces $y\in V\subseteq X-\left\{x\right\}$. Luego $X-\left\{x\right\}$ es unión arbitraria de abiertos, luego es abierto. Por ende, $\left\{x\right\}$ es cerrado.
+        Como $y\in V$ y $x\notin V$, entonces $y\in V\subseteq X-\left\{x\right\}$. Luego $X-\left\{x\right\}$ es unión arbitraria de abiertos, se sigue que también es abierto. Por ende, $\left\{x\right\}$ es cerrado.
 
         $\Leftarrow):$ Suponga que todo subconjunto unitario de $X$ es cerrado. Sean $x,y\in X$ tales que $x\neq y$. Como $\left\{x\right\},\left\{y\right\}$ son cerrados, entonces $U=X=\left\{y\right\}$ y $V=X-\left\{x\right\}$ son abiertos y cumplen que:
         \begin{equation*}
@@ -243,9 +243,9 @@
     \begin{proof}
         Se probarán las dos implicaciones.
 
-        $\Rightarrow):$ Sea $A\in\tau_{cf}$ con $A\neq\emptyset$, luego $X-A$ es un conjunto finito. Como $(X,\tau)$ es $T_1$, entonces $X-A$ es cerrado (debe serlo por ser finito), luego $A$ es abierto, es decir $A\in\tau$.
+        $\Rightarrow):$ Sea $A\in\tau_{cf}$ con $A\neq\emptyset$, luego $X-A$ es un conjunto finito. Como $(X,\tau)$ es $T_1$, entonces $X-A$ es cerrado (por ser finito), luego $A$ es abierto, es decir $A\in\tau$.
         
-        $\Leftarrow):$ Supongamos que $\tau_{cf}\subseteq\tau$. Sean $x\in X$. El conjunto $X-\left\{x\right\}$ es finito, luego $X-\left\{x\right\}\in\tau$, por ende el conjunto $\left\{x\right\}$ es cerrado. Como el $x$ fue arbitrario, se sigue que todo conjunto unipuntual es cerrado luego, por una proposición anterior, se sigue que $(X,\tau)$ es $T_1$.
+        $\Leftarrow):$ Supongamos que $\tau_{cf}\subseteq\tau$. Sean $x\in X$. El conjunto $X-\left\{x\right\}$ es finito, luego $X-\left\{x\right\}\in\tau$, por ende el conjunto $\left\{x\right\}$ es cerrado. Como el $x$ fue arbitrario, se sigue que todo conjunto unipuntual es cerrado luego, por una proposición anterior (ya que al ser el unipuntual cerrado, todo subconjunto finito de $X$ es cerrado), se sigue que $(X,\tau)$ es $T_1$.
     \end{proof}
 
     \begin{cor}
@@ -285,7 +285,7 @@
     \end{proof}
 
     \begin{propo}
-        Sea $\left\{(X_\alpha,\tau_\alpha)\right\}_{\alpha\in I}$ una familia de espacios topológicos. Sea
+        Sea $\left\{(X_\alpha,\tau_\alpha)\right\}_{\alpha\in I}$ una familia de espacios topológicos y
         \begin{equation*}
             X=\prod_{\alpha\in I}X_\alpha
         \end{equation*}
@@ -328,10 +328,12 @@
         Por tanto, $(X,\tau_p)$ es $T_1$.
     \end{proof}
 
+    \section{Espacios $T_2$}
+
     \begin{propo}
         Sea $(X,\tau)$ un espacio topológico, y sea
         \begin{equation*}
-            \Delta=\left\{(x,x)\Big|x\in X \right\}
+            \Delta=\left\{(x,x)\in X\times X\Big|x\in X \right\}
         \end{equation*}
         entonces, $(X,\tau)$ es $T_2$ si y sólo si $\Delta$ es un subconjunto cerrado de $(X\times X,\tau_p)$ (da igual si es la topología producto o de caja ya que ambas coinciden).
     \end{propo}
@@ -369,7 +371,7 @@
 
         $\Leftarrow):$ Sea $x\in X$ y $F\subseteq X$ cerrado tal que $x\notin F$, entonces $x\in X-F$ el cual es abierto. Luego por hipótesis existe un cerrado $\Cls{V}$ tal que $x\in V\subseteq\Cls{V}\subseteq X-F$.
 
-        Luego, $F\subseteq X-\Cls{V}$. Tomemos $W=X-\Cls{V}$. Entonces, $V$ y $W$ son abiertos tales que $x\in V$, $F\subseteq W$ y, $W\cap V=\emptyset$. Por tanto, $(X,\tau)$ es $T_3$.
+        Así, $F\subseteq X-\Cls{V}$. Tomemos $W=X-\Cls{V}$. Entonces, $V$ y $W$ son abiertos tales que $x\in V$, $F\subseteq W$ con $W\cap V=\emptyset$. Por tanto, $(X,\tau)$ es $T_3$.
     \end{proof}
 
     \begin{exa}

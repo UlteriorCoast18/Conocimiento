@@ -396,20 +396,162 @@ rápida de consulta para la solución de los problemas.
         \begin{equation*}
             \lim_{x\rightarrow a }g(x)=\lim_{x\rightarrow a }\frac{1}{f(x)}g(x)f(x)=\left(\lim_{x\rightarrow a }\frac{1}{f(x)}\right)\cdot\left(\lim_{x\rightarrow a }g(x)f(x)\right)=\frac{1}{l_2}\cdot l_1=\frac{l_1}{l_2}
         \end{equation*}
-        (nuevamente por el teorema de álgebra de límites y pues existe cada uno de los dos límites en el producto). Así, 
+        (nuevamente por el teorema de álgebra de límites y pues existe cada uno de los dos límites en el producto). Así, el límite anterior existe y su valor es el de la derecha.
     \end{proof}
 
     \item Suponga que exista el límite $\lim_{x\rightarrow a}f(x)g(x)$ y, además, $\lim_{x\rightarrow a}f(x)=0$. ¿Puede existir $\lim_{x\rightarrow a}g(x)$? \textbf{Justifique} formalmente sus respuestas o dando contraejemplos.
+    
+    \begin{proof}
+        No necesariamente, tomemos por ejemplo $f(x)=0$ para todo $x\in\mathbb{R}$ y
+        \begin{equation*}
+            g(x)=\left\{
+                \begin{array}{lcr}
+                    0 & \textup{ si } & x\in\mathbb{Q}\\
+                    1 & \textup{ si } & x\in\mathbb{R}\backslash\mathbb{Q}\\
+                \end{array}
+            \right.,\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        se tiene que $f(x)g(x)=0$ para todo $x\in\mathbb{R}$. Luego, los límites
+        \begin{equation*}
+            \lim_{ x\rightarrow a}f(x)=\lim_{ x\rightarrow a}f(x)g(x)=0
+        \end{equation*}
+        existen y son iguales para toda $a\in\mathbb{R}$. Pero, ya se sabe que no existe $\lim_{ x\rightarrow a}g(x)$ para toda $a\in\mathbb{R}$.
+    \end{proof}
+
     \item \begin{enumerate}
         \item \textbf{Pruebe} que si $\abs{x-2}\leq1$, entonces $\abs{x^2+3x-1}\geq1$.
         \item Sea $\delta>0$. Use el inciso anterior para \textbf{probar} que si $x=\min\left\{5/2,2+\delta/2 \right\}$, entonces $\abs{x^2+3x-1}\geq1$. Aplique la definición de límite para \textbf{concluir} que $\lim_{x\rightarrow2}x^2+3x\neq1$.
     \end{enumerate}
+
+    \begin{proof}
+        De (i): Sea $x\in\mathbb{R}$ tal que $\abs{x-2}\leq 1$, se sigue entonces que $2-\abs{x}\leq 1\Rightarrow 1\leq\abs{x}$ y que $-1\leq-\abs{x-2}$. Veamos ahora que
+        \begin{equation*}
+            \begin{split}
+                \abs{x^2+3x-1}&=\abs{x^2-2x+5x-1}\\
+                &=\abs{5x-1+x^2-2x}\\
+                &\geq\abs{5x-1}-\abs{x^2-2x}\\
+                &\geq5\abs{x}-1-\abs{x-2}\abs{x}\\
+                &\geq5-1+(-1)(1)\\
+                &\geq3\\
+                &\geq 1\\
+            \end{split}
+        \end{equation*}
+
+        De (ii): Sea $\delta>0$. Tomemos $x=\min\left\{5/2,2+\delta/2\right\}$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                x-2&\leq\frac{5}{2}-2\\
+                &=\frac{1}{2}\\
+                &\leq 1\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                x-2&\geq 2-2\\
+                &= 0\\
+                &\geq -1\\
+            \end{split}
+        \end{equation*}
+        pues, $\min\left\{5/2,2+\delta/2 \right\}>2$. Por tanto, $-1\leq x-2\leq 1$, así $\abs{x-2}\leq 1$, de (i) se sigue que $\abs{x^2+3x-1}\geq 1$.
+
+        Ahora, notemos que para $\varepsilon=1>0$ y para todo $\delta>0$ existe $x_\delta=\min\left\{5/2,2+\delta/2 \right\}>2$ tal que
+        \begin{equation*}
+            0<\abs{x_\delta-2}=x_\delta-2\leq2+\frac{\delta}{2}-2=\frac{\delta}{2}<\delta
+        \end{equation*}
+        tal que
+        \begin{equation*}
+            \abs{x^2-3x-1}\geq\varepsilon=1
+        \end{equation*}
+        luego, por la definición de límite debe suceder que
+        \begin{equation*}
+            \lim_{ x\rightarrow 2}x^2+3x\neq1
+        \end{equation*}
+    \end{proof}
+
     \item Considere las funciones $j(x)=x$, $s(x)=x^2$ y $h(x)=\sqrt{\abs{x}}$, para todo $x\in\mathbb{R}$.
     \begin{enumerate}
-        \item \textbf{Determine} el conjunto de todos los $x\in\mathbb{R}$ para los que se cumpla que $s(x)\leq j(x)$ y \textbf{haga} un dubujo en donde aparezcan simultáneamente las gráficas de $s$ y $j$.
-        \item \textbf{Determine} el conjunto de todos los $x\in\mathbb{R}$ para los que se cumpla que $h(x)\leq s(x)$ y \textbf{haga} un dubujo en donde aparezcan simultáneamente las gráficas de $h$ y $s$.
-        \item \textbf{Determine} el conjunto de todos los $x\in\mathbb{R}$ para los que se cumpla que $j(x)\leq h(x)$ y \textbf{haga} un dubujo en donde aparezcan simultáneamente las gráficas de $j$ y $h$.
+        \item \textbf{Determine} el conjunto de todos los $x\in\mathbb{R}$ para los que se cumpla que $s(x)\leq j(x)$ y \textbf{haga} un dibujo en donde aparezcan simultáneamente las gráficas de $s$ y $j$.
+        \item \textbf{Determine} el conjunto de todos los $x\in\mathbb{R}$ para los que se cumpla que $h(x)\leq s(x)$ y \textbf{haga} un dibujo en donde aparezcan simultáneamente las gráficas de $h$ y $s$.
+        \item \textbf{Determine} el conjunto de todos los $x\in\mathbb{R}$ para los que se cumpla que $j(x)\leq h(x)$ y \textbf{haga} un dibujo en donde aparezcan simultáneamente las gráficas de $j$ y $h$.
     \end{enumerate}
+
+    \begin{sol}
+        De (i): Sea
+        \begin{equation*}
+            A=\left\{x\in\mathbb{R}\Big|s(x)\leq j(x) \right\}
+        \end{equation*}
+        se tiene que para $x\in\mathbb{R}$:
+        \begin{equation*}
+            \begin{split}
+                s(x)\leq j(x)&\iff x^2\leq x\\
+                &\iff 0\leq x-x^2 \\
+                &\iff 0\leq x(1-x)\\
+                &\iff (x\geq0\textup{ y }1-x\geq0)\textup{ o }(x\leq0\textup{ y }1-x\leq0)\\
+                &\iff (x\geq0\textup{ y }1\geq x)\textup{ o }(x\leq0\textup{ y }1\leq x)\\
+                &\iff 0\leq x\leq 1 \\
+            \end{split}
+        \end{equation*}
+        por tanto, $A=[0,1]$. Se tiene el dibujo de las gráficas de $s$ y $j$ en la figura 7:
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_11_1.pdf}
+            \end{center}
+            \caption{Gráfica de $s$ y $j$.}
+        \end{figure}
+
+        De (ii): Sea
+        \begin{equation*}
+            B=\left\{x\in\mathbb{R}\Big| h(x)\leq s(x) \right\}
+        \end{equation*}
+        se tiene que para $x\in\mathbb{R}$:
+        \begin{equation*}
+            \begin{split}
+                h(x)\leq s(x)&\iff\sqrt{\abs{x}}\leq x^2\\
+                &\iff \abs{x}\leq x^4\\
+                &\iff 0\leq \abs{x}^4-\abs{x}\\
+                &\iff 0\leq \abs{x}(\abs{x}^3-1)\\
+                &\iff 0\leq \abs{x}^3-1\\
+                &\iff 1\leq \abs{x}^3\\
+                &\iff 1\leq \abs{x}\\
+                &\iff x\leq-1\textup{ o }1\leq x \\
+            \end{split}
+        \end{equation*}
+        por tanto, $B=]-\infty, -1]\cup[1,\infty[$. Se tiene el dibujo de las gráficas de $h$ y $s$ en la figura 8.
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_11_2.pdf}
+            \end{center}
+            \caption{Gráfica de $h$ y $s$.}
+        \end{figure}
+
+        De (iii): Sea
+        \begin{equation*}
+            C=\left\{x\in\mathbb{R}\Big| h(x)\leq s(x) \right\}
+        \end{equation*}
+        se tiene que para $x\in\mathbb{R}$:
+        \begin{equation*}
+            \begin{split}
+                j(x)\leq h(x)&\iff x\leq \sqrt{\abs{x}} \\
+                &\iff x<0 \textup{ ó }0\leq x\leq\sqrt{\abs{x}} \\
+                &\iff x<0 \textup{ ó }0\leq x\leq\sqrt{x} \\
+                &\iff x<0 \textup{ ó }0\leq x^2\leq x \\
+                &\iff x<0 \textup{ ó }0\leq x-x^2 \\
+                &\iff x<0 \textup{ ó }0\leq x(1-x)\\
+                &\iff x<0 \textup{ o }[(0\leq x \textup{ y }0\leq 1-x)\textup{ o }(x\leq 0\textup{ y }1-x\leq0)]\\
+                &\iff x<0 \textup{ o }[(0\leq x \textup{ y }x\leq 1)\textup{ o }(x\leq 0\textup{ y }1\leq x)]\\
+                &\iff x<0 \textup{ o } 0\leq x\leq 1)\\
+            \end{split}
+        \end{equation*}
+        por tanto, $C=]-\infty, 1]$. Se tiene el dibujo de las gráficas de $j$ y $h$ en la figura 9.
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_11_3.pdf}
+            \end{center}
+            \caption{Gráfica de $j$ y $h$.}
+        \end{figure}
+    \end{sol}
+
     \item Sea $S\subseteq\mathbb{R}$. Dadas dos funciones $\cf{f,g}{S}\mathbb{R}$ se define la \textbf{envoltura superior} de $f$ y $g$, como la función $\cf{\max\left(f,g\right)}{S}{\mathbb{R}}$ dada por
     \begin{equation*}
         \max\left(f,g\right)(x)=\max\left(f(x),g(x)\right),\quad\forall x\in S
@@ -422,6 +564,66 @@ rápida de consulta para la solución de los problemas.
         \item Reconsidere las funciones $\cf{j,s,h}{\mathbb{R}}{\mathbb{R}}$ del problema anterior. \textbf{Bosqueje} la gráfica de las funciones $\max(j,s),\min(j,s),\max(s,h),\min(s,h),\max(j,h),\min(j,h)$.
         \item \textbf{Escriba} las funciones $\max(f,g)$ y $\min(f,g)$ en términos de $f$ y $g$ y del valor absoluto.
     \end{enumerate}
+
+    \begin{proof}
+        De (i): Se tienen las siguientes gráficas de las funciones mencionadas en las figuras 10 a 15.
+
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_12_1.pdf}
+            \end{center}
+            \caption{Gráfica de $\max(j,s)$.}
+        \end{figure}
+
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_12_2.pdf}
+            \end{center}
+            \caption{Gráfica de $\min(j,s)$.}
+        \end{figure}
+
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_12_3.pdf}
+            \end{center}
+            \caption{Gráfica de $\max(s,h)$.}
+        \end{figure}
+
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_12_4.pdf}
+            \end{center}
+            \caption{Gráfica de $\min(s,h)$.}
+        \end{figure}
+
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_12_5.pdf}
+            \end{center}
+            \caption{Gráfica de $\max(j,h)$.}
+        \end{figure}
+
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1]{images/3_12_6.pdf}
+            \end{center}
+            \caption{Gráfica de $\min(j,h)$.}
+        \end{figure}
+
+        De (ii): Recordemos que si $a,b\in\mathbb{R}$ se tiene que
+        \begin{equation*}
+            \max\left(a,b \right)=\frac{a+b}{2}+\frac{\abs{a-b}}{2}\textup{ y }\min\left(a,b \right)=\frac{a+b}{2}-\frac{\abs{a-b}}{2}
+        \end{equation*}
+        usando esto, tendremos que
+        \begin{equation*}
+            \max\left(f,g \right)(x)=\frac{f(x)+g(x)}{2}+\frac{\abs{f(x)-g(x)}}{2}\textup{ y }\min\left(f,g \right)(x)=\frac{f(x)+g(x)}{2}-\frac{\abs{f(x)-g(x)}}{2}
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            \max\left(f,g \right)(x)=\frac{(f+g)(x)}{2}+\frac{\abs{f-g}(x)}{2}\textup{ y }\min\left(f,g \right)(x)=\frac{(f+g)(x)}{2}-\frac{\abs{f-g}(x)}{2}
+        \end{equation*}
+    \end{proof}
+
     \item Aplique el teorema de comparación y/o el tereoma de álgebra de límites para \textbf{calcular} los límites siguientes.
     \begin{enumerate}
         \item $\lim_{x\rightarrow0}\frac{\tan^2x}{x}$.
@@ -432,6 +634,45 @@ rápida de consulta para la solución de los problemas.
             \lim_{x\rightarrow a}f(x)g(x)=0
         \end{equation*}
     \end{enumerate}
+
+    \begin{sol}
+        De (i): Veamos que
+        \begin{equation*}
+            \begin{split}
+                \lim_{x\rightarrow0}\frac{\tan^2x}{x}&=\lim_{x\rightarrow0}\left(\frac{\sin x}{x}\cdot\frac{\sin x}{\cos^2 x}\right) \\
+            \end{split}
+        \end{equation*}
+        donde, $\lim_{x\rightarrow0}\frac{\sin x}{x}=1$ y, como $\lim_{x\rightarrow0}\cos^2 x=1$ y $\lim_{x\rightarrow0}\sin x=0$, se sigue que $\lim_{x\rightarrow0}\frac{\sin x}{\cos^2 x}=0$. Por tanto,
+        \begin{equation*}
+            \begin{split}
+                \lim_{x\rightarrow0}\frac{\tan^2x}{x}&=\left(\lim_{x\rightarrow0}\frac{\sin x}{x}\right)\cdot\left(\lim_{x\rightarrow0}\frac{\sin x}{\cos^2 x}\right)\\
+                &=1\cdot 0\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+
+        De (ii): Sea $a\in\mathbb{R}$
+
+        De (iii):
+
+        De (iv): Como $g$ es acotada en $S$, existe $M\geq0$ tal que
+        \begin{equation*}
+            \abs{g(x)}\leq M\quad\forall x\in S
+        \end{equation*}
+        Sea $\varepsilon>0$, dado que $\lim_{ x\rightarrow a}f(x)=0$, existe $\delta>0$ tal que
+        \begin{equation*}
+            x\in S\textup{ tal que }0<\abs{x-a}<\delta\Rightarrow\abs{f(x)-0}<\frac{\varepsilon}{M+1}
+        \end{equation*}
+        Como $\abs{g(x)}\leq M$ para todo $x\in S$, se tiene que
+        \begin{equation*}
+            x\in S\textup{ tal que }0<\abs{x-a}<\delta\Rightarrow\abs{f(x)g(x)-0}<\frac{M}{M+1}\cdot\varepsilon\leq\varepsilon
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            \lim_{ x\rightarrow a}f(x)g(x)=0
+        \end{equation*}
+    \end{sol}
+
     \item Use el teorema sobre la caracterización de límites de funciones por medio de sucesiones en los problemas siguientes.
     \begin{enumerate}
         \item \textbf{Calcule} $\lim_{x\rightarrow-2}\sqrt[3]{\frac{x-1}{2x+2}}$.
@@ -631,7 +872,23 @@ rápida de consulta para la solución de los problemas.
 
     \item Si $\cf{f}{\mathbb{R}}{\mathbb{R}}$ es una función continua que satisface la condición $f(x+y)=f(x)+f(y)$, $\forall x,y\in\mathbb{R}$, \textbf{pruebe} que existe un número $a\in\mathbb{R}$ tal que $f(x)=ax$ para todo $x\in\mathbb{R}$.
 
-    \textit{Sugerencia.} Primero pruebe que $f(0)=0$. Observe que si $f(x)$ v a ser igual a $ax$, para todo $x\in\mathbb{R}$, entonces $f(1)=a$. A continuación, demuestre que la fórmula $f(x)=ax$, para todo $x\in\mathbb{N}$, luego para todo $\mathbb{Q}+$ y, usando la continuidad de $f$ pruebe el resultado para toda $x\in\mathbb{I}^+$. Concluta que se cumple para $\mathbb{R}$.
+    \textit{Sugerencia.} Primero pruebe que $f(0)=0$. Observe que si $f(x)$ va a ser igual a $ax$, para todo $x\in\mathbb{R}$, entonces $f(1)=a$. A continuación, demuestre que la fórmula $f(x)=ax$, para todo $x\in\mathbb{N}$, luego para todo $\mathbb{Q}^+$ y, usando la continuidad de $f$ pruebe el resultado para toda $x\in\mathbb{I}^+$. Concluya que se cumple para $\mathbb{R}$.
+
+    \begin{proof}
+        Notemos que
+        \begin{equation*}
+            f(0+0)=f(0)+f(0)\Rightarrow f(0)=2f(0)\Rightarrow f(0)=0
+        \end{equation*}
+        ahora, sea $a=f(1)$. Se tiene que
+        \begin{equation*}
+            f(2)=f(1+1)=2f(1)=a\cdot 2
+        \end{equation*}
+        Suponga que $f(k)=a\cdot k$ para algún $k\in\mathbb{N}$, se tiene entonces que
+        \begin{equation*}
+            f(k+1)=f(k)+f(1)=a\cdot k+a=a\cdot (k+1)
+        \end{equation*}
+        por inducción se sigue que $f(x)=ax$ para todo $x\in\mathbb{N}$.
+    \end{proof}
 
     \item Considere la función $\cf{f}{]0,1[}{\mathbb{R}}$ definida como
     \begin{equation*}
@@ -642,25 +899,133 @@ rápida de consulta para la solución de los problemas.
     \end{equation*}
     \textbf{Pruebe} que $f$ es continua en todo punto de $]0,1[\backslash\mathbb{Q}$ y discontinua en todo punto de $]0,1[\cap\mathbb{Q}$.
 
+    \begin{proof}
+        Se tienen que hacer dos cosas:
+        \begin{enumerate}
+            \item $f$ es continua en $]0,1[\backslash\mathbb{Q}$. En efecto, sean $x_0\in]0,1[\backslash\mathbb{Q}$ y $\varepsilon>0$.
+        \end{enumerate}
+    \end{proof}
+
     \item \textbf{Calcule (justificando)} los siguientes límites:
     \begin{enumerate}
-        \item $\lim_{x\rightarrow0}\frac{\sen^2x}{x}$.
+        \item $\lim_{x\rightarrow0}\frac{\sin^2x}{x}$.
         \item $\lim_{x\rightarrow0}\frac{1-\cos x}{x^2}$.
         \item $\lim_{x\rightarrow0}\frac{\tan^2x+2x}{x+x^2}$.
-        \item $\lim_{x\rightarrow1}(x^2-1)\sen\frac{1}{x-1}$.
-        \item $\lim_{x\rightarrow\infty}x\sen^2x$.
-        \item $\lim_{x\rightarrow1}(x^2-1)\sen\frac{1}{(x-1)^2}$.
+        \item $\lim_{x\rightarrow1}(x^2-1)\sin\frac{1}{x-1}$.
+        \item $\lim_{x\rightarrow\infty}x\sin^2x$.
+        \item $\lim_{x\rightarrow1}(x^2-1)\sin\frac{1}{(x-1)^2}$.
     \end{enumerate}
+
+    \begin{sol}
+        De (i): Veamos que
+        \begin{equation*}
+            \begin{split}
+                \lim_{x\rightarrow 0}\frac{\sin^2 x}{x}&=\lim_{x\rightarrow 0}\left(\frac{\sin x}{x}\cdot\sin x\right)\\
+            \end{split}
+        \end{equation*}
+        como $\lim_{x\rightarrow 0}\frac{\sin x}{x}=1$ y $\lim_{x\rightarrow 0}\sin x=0$, se puede separar el límite como el producto de límite, así
+        \begin{equation*}
+            \begin{split}
+                \lim_{x\rightarrow 0}\frac{\sin^2 x}{x}&=\lim_{x\rightarrow 0}\left(\frac{\sin x}{x}\cdot\sin x\right)\\
+                &=\lim_{x\rightarrow 0}\frac{\sin x}{x}\cdot\lim_{x\rightarrow 0}\sin x\\
+                &=1\cdot 0\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+
+        De (ii): Veamos que para $x\neq k\pi+\frac{\pi}{2}$ con $k\in\mathbb{Z}$ se tiene que
+        \begin{equation*}
+            \begin{split}
+                \lim_{x\rightarrow 0}\frac{1-\cos x}{x^2}&=\lim_{x\rightarrow 0}\frac{1-\cos x}{x^2}\cdot\frac{1+\cos x}{1+\cos x}\\
+                &=\lim_{x\rightarrow 0}\frac{1-\cos x}{x^2}\cdot\frac{1+\cos x}{1+\cos x}\\
+                &=\lim_{x\rightarrow 0}\frac{1-\cos^2 x}{x^2(1+\cos x)}\\
+                &=\lim_{x\rightarrow 0}\frac{\sin^2 x}{x^2(1+\cos x)}\\
+                &=\lim_{x\rightarrow 0}\frac{\sin^2 x}{x^2}\cdot\frac{1}{1+\cos x} \\
+            \end{split}
+        \end{equation*}
+        definiendo $x\mapsto \frac{\sin^ 2 x}{x^2}\cdot\frac{1}{1+\cos x}$ en $]-\frac{\pi}{2},\frac{\pi}{2}[$, el límite siguiente se reduce por álgebra de límites al producto de los mismos, debido a que
+        \begin{equation*}
+            \lim_{x\rightarrow 0}\frac{\sin^2 x}{x^2}=\lim_{x\rightarrow 0}\frac{\sin x}{x}\cdot\lim_{x\rightarrow 0}\frac{\sin^2 x}{x^2}=1\cdot 1 =1
+        \end{equation*}
+        y
+        \begin{equation*}
+            \lim_{x\rightarrow 0}\frac{1}{1+\cos x}=\frac{1}{\lim_{x\rightarrow 0}1+\cos x }=\frac{1}{1+\cos0 }=\frac{1}{2}
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \lim_{x\rightarrow 0}\frac{1-\cos x}{x^2}=\lim_{x\rightarrow 0}\frac{\sin^2 x}{x^2}\cdot\lim_{ x\rightarrow 0}\frac{1}{1+\cos x}=1\cdot\frac{1}{2}=\frac{1}{2}
+        \end{equation*}
+
+        De (iii): 
+
+        De (iv): Como $\lim_{ x\rightarrow 1}x^2-1=0$ y la función $x\mapsto\sin\frac{1}{x-1}$ es acotada, por un ejercicio anterior se sigue que
+        \begin{equation*}
+            \lim_{ x\rightarrow 1}(x^2-1)\sin\frac{1}{x-1}=0
+        \end{equation*}
+
+        De (v): Considere las sucesiones $\left\{n\pi \right\}_{ n=1}^\infty$ y $\left\{2n\pi+\frac{\pi}{2} \right\}_{ n=1}^\infty$. Se tiene que ambas sucesiones divergen a infinito. Además,
+        \begin{equation*}
+            \lim_{n\rightarrow\infty}(n\pi)^2\sin^2(n\pi)=\lim_{n\rightarrow\infty}(n\pi)^2\cdot 0=0
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \lim_{n\rightarrow\infty}\left(2n\pi+\frac{\pi}{2}\right)^2\sin^2(2n\pi+\frac{\pi}{2})=\lim_{n\rightarrow\infty}\left(2n\pi+\frac{\pi}{2}\right)^2\cdot\sin^2(\frac{\pi}{2})=\lim_{n\rightarrow\infty}\left(2n\pi+\frac{\pi}{2}\right)^2\cdot1=\infty
+        \end{equation*}
+        por tanto, debido a la unicidad del límite, no puede existir $\lim_{ x\rightarrow\infty}x^2\sin x$.
+
+        De (vi): Análogamente a (iv), dado que $\lim_{ x\rightarrow 1}x^2-1=0$ y $x\mapsto\frac{1}{(x-1)^2}$ es una función acotada, se sigue que
+        \begin{equation*}
+            \lim_{ x\rightarrow 1}(x^2-1)\sin\frac{1}{(x-1)^2}=0
+        \end{equation*}
+    \end{sol}
 
     \item \textbf{Determine (justificando)} el conjunto de puntos de continuidad de las siguientes funciones:
     \begin{enumerate}
-        \item $f(x)=x\sen x$.
+        \item $f(x)=x\sin x$.
         \item $f(x)=\frac{x}{\tan x}$.
-        \item $f(x)=\sen x\cos\theta+\sen\theta\cos x$ (donde $\theta\in\mathbb{R}$ es una constante).
+        \item $f(x)=\sin x\cos\theta+\sin\theta\cos x$ (donde $\theta\in\mathbb{R}$ es una constante).
         \item $f(x)=\sqrt{\frac{1+\cos x}{2}}$.
     \end{enumerate}
-    
 
+    \begin{sol}
+        De (i): Afirmmamos que $f$ es continua en $\mathbb{R}$. En efecto, como las funciones $x\mapsto x$ y $x\mapsto \sin x$ son continuas en $\mathbb{R}$, entonces su producto también lo es en $\mathbb{R}$, luego $f$ es continua en $\mathbb{R}$.
+
+        De (ii): Recordemos que
+        \begin{equation*}
+            \tan k\pi=0,\quad\forall k\in\mathbb{Z}
+        \end{equation*}
+        Por tanto, la función $f$ debe tener como dominio a $\mathbb{R}\backslash K$, donde
+        \begin{equation*}
+            K=\left\{x\in\mathbb{R}\Big|\textup{ existe }k\in\mathbb{Z}\textup{ tal que }x=k\pi \right\}
+        \end{equation*}
+        Afirmamos que $f$ es continua en $\mathbb{R}\backslash K$. En efecto, si $x_0\in\mathbb{R}$, como $x\mapsto x$ es continua y $x\mapsto \tan x$ son funciones continuas en $\mathbb{R}$, se sigue que
+        \begin{equation*}
+            \begin{split}
+                \lim_{ x\rightarrow x_0}\frac{x}{\tan x}&=\frac{\lim_{ x\rightarrow x_0}x}{\lim_{ x\rightarrow x_0}\tan x}\\
+                &=\frac{x_0}{\tan x_0}\\
+            \end{split}
+        \end{equation*}
+        pues, $\tan x_0\neq 0$. Luego, $f$ es continua en $x_0$. Se sigue entonces que $f$ es continua en $\mathbb{R}\backslash K$.
+        
+        De (iii): Sea $\theta\in\mathbb{R}$. Afirmamos que $f$ es continua en $\mathbb{R}$. En efecto, como $x\mapsto \sin x$ y $x\mapsto \cos x$ son contiuas en $\mathbb{R}$ se sigue que $x\mapsto \sin x\cos\theta$ y $x\mapsto \sin\theta\cos x$ también lo son en $\mathbb{R}$. Luego, su suma
+        \begin{equation*}
+            x\mapsto f(x)=\sin x\cos\theta+\sin\theta\cos x
+        \end{equation*}
+        es continua en $\mathbb{R}$.
+
+        De (iv): Sea $x\in\mathbb{R}$. Como $g(x)=\sqrt{x}$ para todo $x\in[0,\infty[$ es continua en $[0,\infty[$ y la función $h(x)=\frac{1+\cos x}{2}$ para todo $x\in\mathbb{R}$ es continua en $\mathbb{R}$ (por ser producto y suma de funciones continuas en $\mathbb{R}$), entonces su composición
+        \begin{equation*}
+            g\circ h(x)=\sqrt{\frac{1+\cos x}{2}}=f(x)
+        \end{equation*}
+        lo es también, ya que
+        \begin{equation*}
+            \begin{split}
+                -1\leq \cos x&\Rightarrow0\leq 1+\cos x\\
+                &\Rightarrow0\leq \frac{1+\cos x}{2} \\
+            \end{split}
+        \end{equation*}
+        por tanto, $h(x)\geq 0$ para todo $x\in\mathbb{R}$. Así, $g\circ h$ está bien definida para todo $x\in\mathbb{R}$. Se sigue entonces que $f$ es continua en $\mathbb{R}$.
+    \end{sol}
 
 \end{enumerate}
 \end{document}

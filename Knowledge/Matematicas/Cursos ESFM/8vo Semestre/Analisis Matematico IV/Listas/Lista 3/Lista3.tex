@@ -146,7 +146,34 @@
     \end{excer}
 
     \begin{proof}
-        
+        Sea $\cf{f}{\mathbb{R}}{\mathbb{R}}$ tal que
+        \begin{equation*}
+            f(x)=\frac{\pi-x}{2},\quad\forall x\in[0,2\pi[
+        \end{equation*}
+        y extiéndase por periodicidad a todo $\mathbb{R}$. Es claro que $f\in\mathcal{L}_1^{2\pi}(\mathbb{R})$, sea ahora $x\in]0,2\pi[$. Por el teorema fundamental para la convergencia puntual de una serie de Fourier hay que encontrar un $0<\delta<\pi$ tal que
+        \begin{equation*}
+            \lim_{ m\rightarrow\infty}\int_{0}^\delta\frac{f(x+t)+f(x-t)-2f(x)}{t}\sin\left(m+\frac{1}{2}\right)dt
+        \end{equation*}
+        tomemos $\delta=\min\left\{x, 2\pi-x \right\}>0$. Se tienen dos casos:
+        \begin{enumerate}
+            \item $\delta=x$, entonces
+            \begin{equation*}
+                \begin{split}
+                    \int_{0}^\delta\frac{f(x+t)+f(x-t)-2f(x)}{t}&\sin\left(m+\frac{1}{2}\right)dt\\
+                    &=\int_{0}^\delta \frac{1}{t}\left[\frac{\pi-x-t}{2}+\frac{\pi-x+t}{2}-\frac{2\left(\pi-x \right)}{2}\right]\sin\left(m+\frac{1}{2}\right)dt\\
+                    &=\int_{0}^\delta \frac{1}{t}\left[\pi-x-\pi+x \right]\sin\left(m+\frac{1}{2}\right)dt\\
+                    &=\int_{0}^\delta 0\:dt\\
+                    &=0\\
+                \end{split}
+            \end{equation*}
+            por tanto, el límite cuando $m\rightarrow\infty$ resulta que da cero.
+            \item $\delta=2\pi x$. El caso es análogo al anterior.
+        \end{enumerate}
+        por ambos incisos se concluye que
+        \begin{equation*}
+            \lim_{ m\rightarrow\infty}\int_{0}^\delta\frac{f(x+t)+f(x-t)-2f(x)}{t}\sin\left(m+\frac{1}{2}\right)dt=0
+        \end{equation*}
+        por tanto, la serie de Fourier de $f$ converge a $f$ puntualmente en $x$. Computemos ahora los coeficientes de la serie de Fourier de $f$.
     \end{proof}
 
     \begin{excer}

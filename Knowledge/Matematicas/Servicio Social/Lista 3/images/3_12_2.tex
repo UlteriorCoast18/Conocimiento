@@ -1,0 +1,17 @@
+\documentclass{standalone} 
+\usepackage{tzplot}
+\usepackage{tikz}
+\begin{document}
+    \begin{tikzpicture}
+        \tzaxes(-4,-4)(5,5){$x$}{$y$}
+        \foreach \x in {-4,-3,-2,-1,0,1,2,3,4}
+            \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {};
+        \foreach \y in {-4,-3,-2,-1,0,1,2,3,4}
+            \draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east] {};
+        
+        \node[circle] (o) at (1/4,-1/4){$O$};
+        \tzfn[blue]{\x}[-4:0]
+        \tzfn[blue]{(\x)^2}[0:1]
+        \tzfn[blue]{\x}[1:4]{$\min(j,s)(x)$}[ar]
+    \end{tikzpicture}
+\end{document}
