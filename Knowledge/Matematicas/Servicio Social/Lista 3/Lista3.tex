@@ -132,6 +132,7 @@ rápida de consulta para la solución de los problemas.
     \end{enumerate}
 
     \begin{sol}
+        %TODO
         De (i): La gráfica de la función $f$ es la de la mostrada en la figura 4:
         \begin{figure}
             \begin{center}
@@ -158,7 +159,7 @@ rápida de consulta para la solución de los problemas.
 
     \end{sol}
 
-    \item \textbf{Determine} el dominio natrual de las siguientes funciones:
+    \item \textbf{Determine} el dominio natural de las siguientes funciones:
     \begin{enumerate}
         \item $x\mapsto \sqrt{3-x^2}$.
         \item $y\mapsto\sqrt{1-\sqrt{1-y^2}}$.
@@ -193,7 +194,7 @@ rápida de consulta para la solución de los problemas.
         \end{equation*}
         y, esto sólo ocurre cuando $u=\pm1$. Por tanto, el dominio natrual de $f$ es $\left\{-1,1 \right\}$.
 
-        De (v): 
+        De (v): La función $t\mapsto\sqrt{1-t}+\sqrt{t-2}$ está definida cuando $1-t\geq 0$ y $t-2\geq 0$, es decir que $t\leq 1$ y $2\leq t$, pero esto no puede suceder nunca. Por tanto, el dominio nautural de esta función es $\emptyset$.
     \end{sol}
 
     \item \begin{enumerate}
@@ -288,6 +289,7 @@ rápida de consulta para la solución de los problemas.
         \end{equation*}
 
         De (ii): 
+        %TODO
     \end{proof}
 
     \item Usando primero la definición de límite, luego algunos teoremas sobre límites y finalmente la caracterización de límites con sucesiones, \textbf{determine} los límites siguientes.
@@ -300,6 +302,7 @@ rápida de consulta para la solución de los problemas.
     \end{enumerate}
 
     \begin{proof}
+        %TODO
         De (i): 
         De (ii): 
         De (iii): 
@@ -343,6 +346,7 @@ rápida de consulta para la solución de los problemas.
             por lo cual, $\lim_{x\rightarrow 0}f(x)g(x)=1$. Es decir, el límite del producto si existe.
         \end{enumerate}
     \end{sol}
+
     \item \begin{enumerate}
         \item \textbf{Demuestre} que si exiten los límites $\lim_{x\rightarrow a}(f(x)+g(x))$ y $\lim_{x\rightarrow a}f(x)$, entonces también existe $\lim_{x\rightarrow a}g(x)$.
         \item \textbf{Pruebe} que si existen los límites $\lim_{x\rightarrow a}f(x)g(x)$ y, además, $\lim_{x\rightarrow a}f(x)\neq 0$, entonces también existe $\lim_{x\rightarrow a}g(x)$.
@@ -628,7 +632,7 @@ rápida de consulta para la solución de los problemas.
     \begin{enumerate}
         \item $\lim_{x\rightarrow0}\frac{\tan^2x}{x}$.
         \item $\lim_{x\rightarrow a}\left[\frac{\sen x-\sen a}{x-a} \right]$, donde $a\in\mathbb{R}$.
-        \item $\lim_{x\rightarrow0}\sqrt{\abs{x}}\sen\left(\frac{1}{x}\right)$.
+        \item $\lim_{x\rightarrow0}\sqrt{\abs{x}}\sin\left(\frac{1}{x}\right)$.
         \item Sean $\cf{f,g}{S}{\mathbb{R}}$ dos funciones y $a\in\mathbb{R}$. Suponga que $g$ es acotada en $S$ y que $\lim_{x\rightarrow a}f(x)=0$. \textbf{Demuestre} que
         \begin{equation*}
             \lim_{x\rightarrow a}f(x)g(x)=0
@@ -651,9 +655,45 @@ rápida de consulta para la solución de los problemas.
             \end{split}
         \end{equation*}
 
-        De (ii): Sea $a\in\mathbb{R}$
+        De (ii): Sea $a\in\mathbb{R}$, veamos que
+        \begin{equation*}
+            \begin{split}
+                \lim_{x\rightarrow a}\frac{\sin x-\sin a}{x-a}&=\lim_{h\rightarrow 0}\frac{\sin (a+h)-\sin a}{a+h-a}\\
+                &=\lim_{h\rightarrow 0}\frac{\sin (a+h)-\sin a}{h}\\
+                &=\lim_{h\rightarrow 0}\frac{\sin a\cos h+\sin h\cos a -\sin a}{h}\\
+                &=\lim_{h\rightarrow 0}\frac{[\cos h-1]\sin a +\sin h\cos a}{h}\\
+                &=\lim_{h\rightarrow 0}\left(\frac{\cos h-1}{h}\cdot\sin a+\frac{\sin h}{h}\cdot\cos a\right) \\
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \lim_{ h\rightarrow0}\frac{\sin h}{h}\cdot\cos a=\cos a\lim_{ h\rightarrow0}\frac{\sin h}{h}=\cos a
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                \lim_{h\rightarrow 0}\frac{\cos h-1}{h}&=\lim_{h\rightarrow 0}\frac{\cos h-1}{h}\cdot\frac{\cos h+1}{\cos h+1}\\
+                &=\lim_{h\rightarrow 0}\frac{\cos^2 h-1}{h(\cos h+1)}\\
+                &=\lim_{h\rightarrow 0}\frac{-\sin^2 h}{h(\cos h+1)}\\
+                &=\lim_{h\rightarrow 0}\frac{-\sin h}{\cos h+1}\cdot\frac{\sin h}{h}\\
+                &=\left(\lim_{h\rightarrow 0}\frac{-\sin h}{\cos h+1}\right)\cdot\left(\lim_{h\rightarrow 0}\frac{\sin h}{h}\right)\\
+                &=\frac{0}{2}\cdot 1\\
+                &=0
+            \end{split}
+        \end{equation*}
+        por ende, el límite es la suma de los límites y se sigue que 
+        \begin{equation*}
+            \lim_{x\rightarrow a}\frac{\sin x-\sin a}{x-a}=\cos a
+        \end{equation*}
 
-        De (iii):
+        De (iii): Veamos que
+        \begin{equation*}
+            -\sqrt{\abs{x}}\leq\sqrt{\abs{x}}\sin\left(\frac{1}{x}\right)\leq\sqrt{\abs{x}}
+        \end{equation*}
+        para todo $x\in\mathbb{R}\backslash\left\{0\right\}$. Tomando el límite de ambos lados y usando el teorema de comparación se sigue que, al tenerse que $\lim_{ x\rightarrow 0}\sqrt{\abs{x}}=0$:
+        \begin{equation*}
+            \lim_{x\rightarrow0}\sqrt{\abs{x}}\sin\left(\frac{1}{x} \right)=0
+        \end{equation*}
 
         De (iv): Como $g$ es acotada en $S$, existe $M\geq0$ tal que
         \begin{equation*}
@@ -685,11 +725,40 @@ rápida de consulta para la solución de los problemas.
         \end{array} \right.$.
         \item \textbf{Muestre} que no existe $\lim_{x\rightarrow a}f(x)$, donde $f$ es la función de Dirichlet y $a\in\mathbb{R}$ es arbitrario.
     \end{enumerate}
+
+    \begin{sol}
+        De (i): Sea $\left\{x_n\right\}_{ n=1}^\infty$ una sucesión en $\mathbb{R}\backslash\left\{-2\right\}$ que converge a $-2$. Se tiene que
+        \begin{equation*}
+            \begin{split}
+                \lim_{ n\rightarrow\infty}\sqrt[3]{\frac{x_n-1}{2x_n+2}}&=\sqrt[3]{\lim_{ n\rightarrow\infty}\frac{x_n-1}{2x_n+2}}\\
+                &=\sqrt[3]{\frac{\lim_{ n\rightarrow\infty}x_n-1}{\lim_{ n\rightarrow\infty}2x_n+2}}\\
+                &=\sqrt[3]{\frac{-2-1}{-4+2}}\\
+                &=\sqrt[3]{\frac{-3}{-2}}\\
+                &=\sqrt[3]{\frac{3}{2}}\\
+            \end{split}
+        \end{equation*}
+        por tanto, al ser la sucesión arbitraria se sigue que
+        \begin{equation*}
+            \lim_{ x\rightarrow-2}\sqrt[3]{\frac{x-1}{2x+2}}=\sqrt[3]{\frac{3}{2}}
+        \end{equation*}
+
+        De (ii): Sea $\left\{x_n\right\}_{ n=1}^\infty$ una sucesión en $\mathbb{R}\backslash\left\{-3\right\}$ que converge a $-3$. Se tiene que
+        \begin{equation*}
+            \lim_{ n\rightarrow\infty}
+        \end{equation*}
+        %TODO
+    \end{sol}
+
     \item Usando primero la definición de límite y después el teorema sobre caracterizació nde límites de funciones por medio de sucesiones, \textbf{pruebe} que:
     \begin{enumerate}
         \item $\lim_{x\rightarrow1}\frac{x-1}{2x+2}\neq 3$.
         \item $\lim_{x\rightarrow 2}\abs{x}\neq -1$.
     \end{enumerate}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
     \item Considere la función
     \begin{equation*}
         f(x)=\left\{
@@ -704,27 +773,41 @@ rápida de consulta para la solución de los problemas.
     \begin{enumerate}
         \item \textbf{Bosqueje} la gráfica de $f$.
         \item \textbf{Calcule} $\lim_{x \rightarrow-1^-}f(x)$ y $\lim_{x \rightarrow-1^+}f(x)$ ¿Existe $\lim_{x \rightarrow-1}f(x)$?
-        \item \item \textbf{Calcule} $\lim_{x \rightarrow1^-}f(x)$ y $\lim_{x \rightarrow1^+}f(x)$ ¿Existe $\lim_{x \rightarrow1}f(x)$?
+        \item \textbf{Calcule} $\lim_{x \rightarrow1^-}f(x)$ y $\lim_{x \rightarrow1^+}f(x)$ ¿Existe $\lim_{x \rightarrow1}f(x)$?
         \item ¿Existen $\lim_{x \rightarrow3^-}f(x)$, $\lim_{x \rightarrow3^+}f(x)$ y $\lim_{x \rightarrow3}f(x)$?
         \item \textbf{Calcule} $\lim_{x \rightarrow-3}f(x)$ y $\lim_{x \rightarrow\infty}f(x)$.
         \item Si $a\in[-3,\infty[\backslash\left\{-3,-1,1,3 \right\}$. \textbf{Calcule} $\lim_{ x\rightarrow a}f(x)$, $\lim_{ x\rightarrow a^+}f(x)$ y $\lim_{ x\rightarrow a^-}f(x)$.
     \end{enumerate}
     \textbf{Justifique} usando la definición del límite correspondiente y también usando la respectiva caracterización de sucesiones.
 
+    \begin{sol}
+        %TODO
+    \end{sol}
+
     \item \textbf{Calcule}, justificando por medio de la definición del límite correspondiente y de la respectiva caracterización de sucesiones, los siguientes límites.
     \begin{enumerate}
         \item $\lim_{x\rightarrow\infty}x^2+3$, $\lim_{x\rightarrow\infty}-x^2-3$ y $\lim_{x\rightarrow\infty}[(x^2+3)-(-x^2-5)]$.
-        \item \item $\lim_{x\rightarrow\infty}3x^2-x+5$, $\lim_{x\rightarrow\infty}x-3$ y $\lim_{x\rightarrow\infty}[(3x^2-x+5)+(x-3)]$.
+        \item $\lim_{x\rightarrow\infty}3x^2-x+5$, $\lim_{x\rightarrow\infty}x-3$ y $\lim_{x\rightarrow\infty}[(3x^2-x+5)+(x-3)]$.
         \item $\lim_{x\rightarrow3^-}\frac{5x-2}{x-3}$, $\lim_{x\rightarrow3^+}\frac{5x-2}{x-3}$ y $\lim_{x\rightarrow3}\abs{\frac{5x-2}{x-3}}$.
     \end{enumerate}
+
+    \begin{sol}
+        %TODO
+    \end{sol}
+
     \item \textbf{Calcule}
     \begin{equation*}
-        \lim_{ x\rightarrow\infty}\frac{a_nx^n+\cdots+a_1x+a_0}{bm_x^m+\cdots+b_1x+b_0}
+        \lim_{ x\rightarrow\infty}\frac{a_nx^n+\cdots+a_1x+a_0}{b_mx^m+\cdots+b_1x+b_0}
     \end{equation*}
     donde $a_n,b_m\neq0$, distinguiendo los casos $m=n$, $m>n$ y $m<n$. En particular, \textbf{calcule}.
     \begin{equation*}
         \lim_{ x\rightarrow\infty}\frac{x^2-3}{x-1}\quad\lim_{ x\rightarrow\infty}\frac{2-x}{x^4-1}\quad\lim_{ x\rightarrow\infty}\frac{5x+2}{x-3}
     \end{equation*}
+
+    \begin{sol}
+        %TODO
+    \end{sol}
+
     \item Sea $E(x)=\max\left\{n\in\mathbb{Z}\Big|n\leq x \right\}$, para todo $x\in\mathbb{R}$, la función \textbf{parte entera} de $x$. Considere las funciones siguientes:
     \begin{enumerate}
         \item $f(x)=E(x)$.
@@ -733,9 +816,8 @@ rápida de consulta para la solución de los problemas.
         \item $f(x)=E(1/x)$.
         \item $f(x)=\frac{1}{E(1/x)}$.
         \item $f(x)=E(x)+\sqrt{x-E(x)}$.
-        \item $f(x)=E(x)+\sqrt{x-E(x)}$.
     \end{enumerate}
-    \textbf{Determine} el dominio natrual de cada una de estas funciones y \textbf{bosqueje} su gráfica. Si existen, cálcule los siguientes límites (justificando formalmente) para cada una de las funciones anteriores:
+    \textbf{Determine} el dominio natural de cada una de estas funciones y \textbf{bosqueje} su gráfica. Si existen, cálcule los siguientes límites (justificando formalmente) para cada una de las funciones anteriores:
     \begin{equation*}
         \lim_{ x\rightarrow a^-}f(x)\quad\lim_{ x\rightarrow a^+}f(x)\quad\lim_{ x\rightarrow a}f(x)
     \end{equation*}
@@ -743,39 +825,132 @@ rápida de consulta para la solución de los problemas.
     \begin{equation*}
         \lim_{ x\rightarrow-\infty}f(x)\quad\lim_{ x\rightarrow\infty}f(x)
     \end{equation*}
+
+    \begin{sol}
+        %TODO
+    \end{sol}
+
     \item Sea $S\subseteq\mathbb{R}$. Sea $\cf{f}{S}{\mathbb{R}}$ una función y, $t,l\in\mathbb{R}$. \textbf{Pruebe} que:
     \begin{enumerate}
         \item $\lim_{ x\rightarrow t}f(x)=l$ si y sólo si $\lim_{ x\rightarrow t}f(x)-l=0$ si y sólo si $\lim_{ x\rightarrow t}\abs{f(x)-l}=0$.
         \item $\lim_{ x\rightarrow t}f(x)=\lim_{ h\rightarrow 0}f(t+h)$.
     \end{enumerate}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
     \item \textbf{Demuestre} que si dos funciones $f$ y $g$ toman los mismos valores en todos los puntos de algún intervalo abierto que contenga a $a$, exceptuando posiblemente a $a$, entonces
     \begin{equation*}
         \lim_{ x\rightarrow a}f(x)=\lim_{ x\rightarrow a}g(x)
     \end{equation*}
     cuando alguno de los dos límites exista. Esto significa que la existencia del límite de alguna función en un punto dado es una \textbf{propiedad local}.
 
-    \item Sea $S\subseteq\mathbb{R}$. Sean $\cf{f,g}{S}{\mathbb{R}}$ dos funciones y $a\in\mathbb{R}$. Si $f(x)\leq g(x)$, para todo $x\in S$, y si existen $\lim_{ x\rightarrow a}f(x)$ y $\lim_{ x\rightarrow a}g(x)$, pruebe que
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \item Sea $S\subseteq\mathbb{R}$. Sean $\cf{f,g}{S}{\mathbb{R}}$ dos funciones y $a\in\mathbb{R}$. Si $f(x)\leq g(x)$, para todo $x\in S$, y si existen $\lim_{ x\rightarrow a}f(x)$ y $\lim_{ x\rightarrow a}g(x)$, \textbf{pruebe} que
     \begin{equation*}
         \lim_{ x\rightarrow a}f(x)\leq\lim_{ x\rightarrow a}g(x)
     \end{equation*}
-    \item Sea $S\subseteq\mathbb{R}$. Sean $\cf{f,g,h}{S}{\mathbb{R}}$ tres funciones. Dije $a\in\mathbb{R}\cup\left\{-\infty,\infty \right\}$. Si $f(x)\leq g(x)\leq h(x)$, para todo $x\in S$ y $\lim_{ x\rightarrow a}f(x)=\lim_{ x\rightarrow a}h(x)$, \textbf{demuestre} que existe $\lim_{ x\rightarrow a}g(x)$ y
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \item Sea $S\subseteq\mathbb{R}$. Sean $\cf{f,g,h}{S}{\mathbb{R}}$ tres funciones. Fije $a\in\mathbb{R}\cup\left\{-\infty,\infty \right\}$. Si $f(x)\leq g(x)\leq h(x)$, para todo $x\in S$ y $\lim_{ x\rightarrow a}f(x)=\lim_{ x\rightarrow a}h(x)$, \textbf{demuestre} que existe $\lim_{ x\rightarrow a}g(x)$ y
     \begin{equation*}
         \lim_{ x\rightarrow a}f(x)=\lim_{ x\rightarrow a}g(x)=\lim_{ x\rightarrow a}h(x)
     \end{equation*}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
     \item Sea $S\subseteq\mathbb{R}$. Si $\cf{f}{S}{\mathbb{R}}$ es una función, defina la función $\cf{\abs{f}}{S}{\mathbb{R}}$ como $\abs{f}(x)=\abs{f(x)}$, para todo $x\in S$. \textbf{Pruebe} que si $\lim_{ x\rightarrow a}f(x)=l$, entonces $\lim_{ x\rightarrow a}\abs{f}(x)=\abs{l}$.
+    
+    \begin{proof}
+        Sea $\varepsilon>0$. Como $\lim_{ x\rightarrow a}f(x)=l$ existe $\delta>0$ tal que
+        \begin{equation*}
+            \forall x\in S\textup{ tal que }0<\abs{x-a}<\delta\Rightarrow\abs{f(x)-l}<\varepsilon
+        \end{equation*}
+        pero, recordemos que si $u,v\in\mathbb{R}$:
+        \begin{equation*}
+            \abs{\abs{u}-\abs{v}}\leq\abs{u-v}
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \forall x\in S\textup{ tal que }0<\abs{x-a}<\delta\Rightarrow\abs{\abs{f(x)}-\abs{l}}<\varepsilon
+        \end{equation*}
+        es decir,
+        \begin{equation*}
+            \forall x\in S\textup{ tal que }0<\abs{x-a}<\delta\Rightarrow\abs{\abs{f}(x)-\abs{l}}<\varepsilon
+        \end{equation*}
+        de la definición de límite se sigue entonces que
+        \begin{equation*}
+            \lim_{ x\rightarrow a}\abs{f}(x)=\abs{l}
+        \end{equation*}
+    \end{proof}
+
     \item \textbf{Pruebe} que si $\lim_{ x\rightarrow a}f(x)=l$ y $\lim_{ x\rightarrow a}g(x)=m$, entonces
     \begin{equation*}
         \lim_{ x\rightarrow a}\max(f,g)(x)=\max(l,m)\quad\textup{y}\quad\lim_{ x\rightarrow a}\min(f,g)(x)=\min(l,m)
     \end{equation*}
     \textit{Sugerencia.} Utilice un resultado de un problema anterior.
-    \item \textbf{Determine (justificando)} el dominio nautral y el conjunto de puntos de continuidad de las siguientes funciones:
+
+    \begin{proof}
+        Solo se probará el primer límite, pues el segundo es análogo. Supongamos que $\cf{f,g}{S}{\mathbb{R}}$ donde $S\subseteq\mathbb{R}$. Sea $\left\{x_n \right\}_{ n=1}^\infty$ una sucesión en $S\backslash\left\{a \right\}$ que converge a $a$. Veamos que
+        \begin{equation*}
+            \begin{split}
+                \lim_{ n\rightarrow\infty}\max(f,g)(x_n)&=\lim_{ n\rightarrow\infty}\left(\frac{f(x_n)+g(x_n)}{2}+\frac{\abs{f(x_n)-g(x_n)}}{2}\right)\\
+                &=\lim_{ n\rightarrow\infty}\frac{f(x_n)+g(x_n)}{2}+\lim_{ n\rightarrow\infty}\frac{\abs{f(x_n)-g(x_n)}}{2}\\
+                &=\frac{\lim_{ n\rightarrow\infty}[f(x_n)+g(x_n)]}{2}+\frac{\lim_{ n\rightarrow\infty}\abs{f(x_n)-g(x_n)}}{2}\\
+                &=\frac{l+m}{2}+\frac{\abs{l-m}}{2}\\
+                &=\max(l,m)\\
+            \end{split}
+        \end{equation*}
+        por tanto, como la sucesión fue arbitraria, se sigue que
+        \begin{equation*}
+            \lim_{ x\rightarrow a}\max(f,g)(x)=\max(l,m)
+        \end{equation*}
+        lo que prueba el resultado.
+    \end{proof}
+
+    \item \textbf{Determine (justificando)} el dominio natural y el conjunto de puntos de continuidad de las siguientes funciones:
     \begin{enumerate}
         \item $P(x)=a_nx^n+a_{ n-1}x^{ n-1}+\cdots+a_1x+a_0$, donde $n\in\mathbb{N}$, $a_i\in\mathbb{R}$, para todo $i=0,1,...,n$.
         \item $R(x)=\frac{P(x)}{Q(x)}$ ,donde $P$ y $Q$ son dos polinomios.
         \item $f(x)=x^a$, donde $a\in\mathbb{Q}$.
         \item $\mathcal{N}(x)=\abs{x}$.
     \end{enumerate}
+
+    \begin{sol}
+        %TODO
+    \end{sol}
+
     \item Sea $S\subseteq\mathbb{R}$. Si $\cf{f,g}{S}{\mathbb{R}}$ son dos funciones continuas en todo punto de $S$, \textbf{pruebe} que las funciones $\max(f,g)$ y $\min(f,g)$ son también continuas en todo punto de $S$.
+
+    \begin{proof}
+        Sea $x_0\in S$ y $\left\{x_n \right\}_{ n=1}^\infty$ una sucesión en $S\backslash\left\{x_0 \right\}$ que converge a $x_0$. Entonces,
+        \begin{equation*}
+            \begin{split}
+                \lim_{ n\rightarrow\infty}\max(f,g)(x_n)&=\lim_{ n\rightarrow\infty}\left(\frac{f(x_n)+g(x_n)}{2}+\frac{\abs{f(x_n)-g(x_n)}}{2}\right)\\
+                &=\lim_{ n\rightarrow\infty}\frac{f(x_n)+g(x_n)}{2}+\lim_{ n\rightarrow\infty}\frac{\abs{f(x_n)-g(x_n)}}{2}\\
+                &=\frac{\lim_{ n\rightarrow\infty}[f(x_n)+g(x_n)]}{2}+\frac{\lim_{ n\rightarrow\infty}\abs{f(x_n)-g(x_n)}}{2}\\
+                &=\frac{f(x_0)+g(x_0)}{2}+\frac{\abs{f(x_0)-g(x_0)}}{2}\\
+                &=\max(f,g)(x_0)
+            \end{split}
+        \end{equation*}
+        Pues $f$ y $g$ son continuas en $x_0$. Por tanto
+        \begin{equation*}
+            \lim_{x\rightarrow x_0}\max(f,g)(x)=\max(f,g)(x_0)
+        \end{equation*}
+        por ser $\left\{x_n\right\}_{n=1}^\infty$ una sucesión arbitraria. Se sigue entonces que $\max(f,g)$ es continua en $x_0$. Al ser el $x_0\in S$ arbitrario, entonces $\max(f,g)$ es continua en $S$.
+
+        De forma análoga se prueba que $\min(f,g)$ es continua en $S$.
+    \end{proof}
+
     \item \textbf{Determine} (justificando) el conjunto de puntos de continuidad de las siguientes funciones e \textbf{indique} el tipo de discontinuidad que ocurre en los puntos donde son discontinuas. \textbf{Bosqueje} sus gráficas.
     \begin{enumerate}
         \item $f(x)=\left\{
@@ -804,28 +979,91 @@ rápida de consulta para la solución de los problemas.
             \end{array}
         \right.$
     \end{enumerate}
-    \item \textbf{Determine} (justificando) el conjunto de puntos de discontinuidad de las funcoines dadas en el problema 3.18 e \textbf{indique} el tipo de discontuidad que ocurre en los puntos donde son discontinuas.
+
+    \begin{sol}
+        %TODO
+    \end{sol}
+
+    \item \textbf{Determine} (justificando) el conjunto de puntos de discontinuidad de las funciones dadas en el problema 3.18 e \textbf{indique} el tipo de discontuidad que ocurre en los puntos donde son discontinuas.
     
-    \item \textbf{DEtermine} (justificando) el conjunto de puntos de continuidad de la siguiente función y \textbf{bosqueje} su gráfica
+    \begin{sol}
+        %TODO
+    \end{sol}
+
+    \item \textbf{Determine} (justificando) el conjunto de puntos de continuidad de la siguiente función y \textbf{bosqueje} su gráfica
     \begin{equation*}
         f(x)=\min(x-E(x),E(x+1)-x),\quad\forall x\in\mathbb{R}
     \end{equation*}
 
+    \begin{sol}
+        %TODO
+    \end{sol}
+
     \item \begin{enumerate}
         \item \textbf{Construya} un ejemplo de una función que sea discontinua en los puntos $1,1/2,1/3,...$ pero que sea continua en los demás puntos de $\mathbb{R}$. \textbf{Justifique}.
-        \item \item \textbf{Construya} un ejemplo de una función que sea discontinua en los puntos $1,1/2,1/3,...$ y $0$ pero que sea continua en los demás puntos de $\mathbb{R}$. \textbf{Justifique}.
+        \item \textbf{Construya} un ejemplo de una función que sea discontinua en los puntos $1,1/2,1/3,...$ y $0$ pero que sea continua en los demás puntos de $\mathbb{R}$. \textbf{Justifique}.
     \end{enumerate}
+
+    \begin{sol}
+        De (i): Sea
+        \begin{equation*}
+            f(x)=\left\{
+                \begin{array}{lcr}
+                    \frac{1}{n} & \textup{ si } & x=\frac{1}{n}\textup{ para algún }n\in\mathbb{N}\\
+                    0 & \textup{ e.o.c } & \\
+                \end{array}
+            \right.
+        \end{equation*}
+
+        De (ii):
+        \begin{equation*}
+            f(x)=\left\{
+                \begin{array}{lcr}
+                    1 & \textup{ si } & x=\frac{1}{n}\textup{ para algún }n\in\mathbb{N}\\
+                    0 & \textup{ e.o.c } & \\
+                \end{array}
+            \right.
+        \end{equation*}
+    \end{sol}
 
     \item Sea
     \begin{equation*}
         f(x)=\left\{
             \begin{array}{lcr}
                 -1 & \textup{ si } & x\leq 1 \\
-                0 & \textup{ si } & x>1 \\
+                1 & \textup{ si } & x>1 \\
             \end{array}
         \right.
     \end{equation*}
-    Defina $g=-f$. \textbf{Pruebe} que $f$ y $g$ son discontinuas en $1$. \textbf{Escriba} explícitamente las funcoines $\abs{f}$, $f^2$, $f\cdot g$ y $g^2$. \textbf{Pruebe} que todas estas funciones son continuas en $1$.
+    Defina $g=-f$. \textbf{Pruebe} que $f$ y $g$ son discontinuas en $1$. \textbf{Escriba} explícitamente las funciones $\abs{f}$, $f^2$, $f\cdot g$ y $g^2$. \textbf{Pruebe} que todas estas funciones son continuas en $1$.
+
+    \begin{sol}
+        Para probar que $f$ y $g$ son discontinuas en $1$ basta con ver que una de ellas dos es discontinua en $1$ y, de forma automática se tendrá que la otra también lo es (ya que si $f$ es continua en un punto, $-f$ también es continua en el mismo punto). Veamos que $f$ es discontinua en $1$.
+        
+        En efecto, tomemos $\varepsilon=1>0$, para todo $\delta>0$ existe $x_\delta=1+\frac{\delta}{2}$ tal que
+        \begin{equation*}
+            \begin{split}
+                0<\abs{1-x_\delta}=\abs{1-1-\frac{\delta}{2}}=\frac{\delta}{2}<\delta
+            \end{split}
+        \end{equation*}
+        tal que
+        \begin{equation*}
+            \begin{split}
+                \abs{f(1)-f(x_\delta)}&=\abs{-1-f\left(1+\frac{\delta}{2}\right)}\\
+                &=\abs{-1-1}\\
+                &=2\\
+                &\geq1\\
+                &=\varepsilon\\
+            \end{split}
+        \end{equation*}
+        por tanto, $f$ no es continua en $1$, luego $g$ tampoco puede serlo.
+
+        Ahora, se tiene que
+        \begin{equation*}
+            \abs{f}(x)=f(x)^2=g(x)^2=1\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        y, $f\cdot g(x)=-1$ para todo $x\in\mathbb{R}$, es decir que todas las funciones anteriores son constantes, luego son continuas en $\mathbb{R}$, en particular lo son en $1$.
+    \end{sol}
 
     \item Considere dos funciones $\cf{g}{[a,b]}{\mathbb{R}}$ y $\cf{h}{[b,c]}{\mathbb{R}}$. Defina $\cf{f}{[a,c]}{\mathbb{R}}$ como
     \begin{equation*}
@@ -836,7 +1074,77 @@ rápida de consulta para la solución de los problemas.
             \end{array}
         \right.
     \end{equation*}
-    si $g$ es continua en $[a,b]$, $h$ es continua en $[b,c]$ y $g(b)=H(b)$, \textbf{demuestre} que $f$ es continua en $[a,c]$.
+    si $g$ es continua en $[a,b]$, $h$ es continua en $[b,c]$ y $g(b)=h(b)$, \textbf{demuestre} que $f$ es continua en $[a,c]$.
+
+    \begin{proof}
+        Es claro que $f$ está bien definida para todo $x\in[a,c]$. Sea $x_0\in[a,c]$, probaremos que $f$ es continua en $x_0$. Tomemos $\varepsilon>0$, se tienen 3 casos:
+        \begin{enumerate}
+            \item $x_0\in[a,b[$. Como $g$ es continua y $x_0\in[a,b]$, entonces existe $\delta_1>0$ tal que
+            \begin{equation*}
+                \forall x\in[a,b]\textup{ tal que }0<\abs{x_0-x}<\delta_1\Rightarrow \abs{g(x_0)-g(x)}<\varepsilon
+            \end{equation*}
+            tomemos $\delta=\min\left\{\delta_1,b-x_0 \right\}>0$. Si $x\in[a,c]$ es tal que $0<\abs{x_0-x}<\delta$, en particular se tiene que
+            \begin{equation*}
+                0<\abs{x_0-x}<\delta_1\textup{ y }x-x_0<b-x_0
+            \end{equation*}
+            por tanto, $x<b$, luego $f(x)=g(x)$. De esta forma:
+            \begin{equation*}
+                \abs{f(x_0)-f(x)}=\abs{g(x_0)-g(x)}<\varepsilon
+            \end{equation*}
+            por la continuidad de $g$ en $x_0$ y dado que $x_0<b$.
+            
+            \item $x_0\in]b,c]$. Como $h$ es continua y $x_0\in[b,c]$, entonces existe $\delta_2>0$ tal que
+            \begin{equation*}
+                \forall x\in[b,c]\textup{ tal que }0<\abs{x_0-x}<\delta_2\Rightarrow \abs{h(x_0)-h(x)}<\varepsilon
+            \end{equation*}
+            tomemos $\delta=\min\left\{\delta_1,x_0-b \right\}>0$. Si $x\in[a,c]$ es tal que $0<\abs{x_0-x}<\delta$, en particular se tiene que
+            \begin{equation*}
+                0<\abs{x_0-x}<\delta_2\textup{ y }x_0-x<x_0-b
+            \end{equation*}
+            por tanto, $b<x$, luego $f(x)=h(x)$. De esta forma:
+            \begin{equation*}
+                \abs{f(x_0)-f(x)}=\abs{h(x_0)-h(x)}<\varepsilon
+            \end{equation*}
+            por la continuidad de $g$ en $x_0$ y dado que $b<x_0$.
+
+            \item $x_0=b$. Como $g$ y $h$ son continuas en $x_0$, existen $\delta_1,\delta_2>0$ tales que
+            \begin{equation*}
+                \left\{
+                    \begin{split}
+                        \forall x\in[a,b]\textup{ tal que }0<\abs{x_0-x}<\delta_1&\Rightarrow \abs{g(x_0)-g(x)}<\varepsilon\\
+                        \forall x\in[b,c]\textup{ tal que }0<\abs{x_0-x}<\delta_2&\Rightarrow \abs{h(x_0)-h(x)}<\varepsilon\\
+                    \end{split}
+                \right.
+            \end{equation*}
+            pero, dado que $x_0=b$, lo anterior se reduce únicamente a pedir que
+            \begin{equation*}
+                \left\{
+                    \begin{split}
+                        \forall x\in[a,b]\textup{ tal que }0<x_0-x<\delta_1&\Rightarrow \abs{g(x_0)-g(x)}<\varepsilon\\
+                        \forall x\in[b,c]\textup{ tal que }0<x-x_0<\delta_2&\Rightarrow \abs{h(x_0)-h(x)}<\varepsilon\\
+                    \end{split}
+                \right.
+            \end{equation*}
+            tomemos $\delta=\min\left(\delta_1,\delta_2\right)>0$, si $x\in[a,c]$ es tal que $0<\abs{x_0-x}<\delta$, se tienen dos casos:
+            \begin{itemize}
+                \item $x<x_0$, en tal caso se sigue que $0<x_0-x<\delta\leq\delta_1$, luego por la primera ecuación se tiene que
+                \begin{equation*}
+                    \abs{f(x_0)-f(x)}=\abs{g(x_0)-g(x)}<\varepsilon
+                \end{equation*}
+                pues, $f(x_0)=g(x_0)$ y $x<b$.
+                \item $x_0<x$, en tal caso se sigue que $0<x-x_0<\delta\leq\delta_2$, luego por la primera ecuación se tiene que
+                \begin{equation*}
+                    \abs{f(x_0)-f(x)}=\abs{h(x_0)-h(x)}<\varepsilon
+                \end{equation*}
+                pues, $f(x_0)=h(x_0)$ y $b<x_0$.
+            \end{itemize}
+            en cualquier caso, se sigue que
+            \begin{equation*}
+                \abs{f(x_0)-f(x)}<\varepsilon
+            \end{equation*}
+        \end{enumerate}
+        de los tres incisos anteriores, se sigue que $f$ es continua en $x_0$. Como el $x_0\in[a,c]$ fue arbitrario obtenemos entonces que $f$ es continua en $[a,c]$.
+    \end{proof}
 
     \item \begin{enumerate}
         \item Si $f(x)=x^3$ y $g(x)=e^x$, \textbf{calcule} $f\circ g(x)$ y $g\circ f(x)$.
@@ -845,11 +1153,74 @@ rápida de consulta para la solución de los problemas.
         ¿En qué puntos son discontinuas las funciones anteriores? \textbf{Justifique}.
     \end{enumerate}
 
+    \begin{sol}
+        De (i): Se tiene que
+        \begin{equation*}
+            \begin{split}
+                f\circ g(x)&=f(g(x))\\
+                &=f(e^x)\\
+                &=(e^x)^3\\
+                &=e^{ 3x}\\
+            \end{split}
+        \end{equation*}
+        y
+        \begin{equation*}
+            \begin{split}
+                g\circ f(x)&=g(f(x))\\
+                &=g(x^3)\\
+                &=e^{ x^3}\\
+            \end{split}
+        \end{equation*}
+        para todo $x\in\mathbb{R}$.
+
+        De (ii): Veamos que
+        \begin{equation*}
+            \begin{split}
+                f\circ f\circ f(x)&=f(f(f(x)))\\
+                &=f\left(f\left( \frac{1}{1-x}\right)\right)\\
+                &=f\left(\frac{1}{1-\frac{1}{1-x}}\right)\\
+                &=f\left(\frac{1}{\frac{1-x-1}{1-x}}\right)\\
+                &=f\left(\frac{x-1}{x}\right)\\
+                &=\frac{1}{1-\frac{x-1}{x}}\\
+                &=\frac{1}{\frac{x-x+1}{x}}\\
+                &=x\\
+            \end{split}
+        \end{equation*}
+        siempre que la composición esté bien definida.
+
+        De (iii): Recordemos que
+        \begin{equation*}
+            g(x)=\left\{
+                \begin{array}{lcr}
+                    -x & \textup{ si } & -3\leq x\leq-1\\
+                    x^3 & \textup{ si } & -1< x<1\\
+                    \sqrt{x} & \textup{ si } & 1<x\leq3 \\
+                    \frac{1}{3-x}+\sqrt{3} & \textup{ si } & 3<x\\ 
+                \end{array}
+            \right.
+        \end{equation*}
+        %TODO
+    \end{sol}
+
     \item \textbf{Calcule} $g\circ f$ y \textbf{determine} el dominio natural de $g\circ f$ en los siguientes casos. ¿Es $g\circ f$ continua en su domino natural? \textbf{Justifique}.
     \begin{enumerate}
         \item $f(x)=\sqrt{x-2}$ y $g(x)=\frac{1}{x}$.
         \item $f(x)=\sqrt{x}$ y $g(x)=x^2+1$.
     \end{enumerate}
+
+    \begin{sol}
+        De (i): Veamos que
+        \begin{equation*}
+            \begin{split}
+                g\circ f(x)&=g(f(x))\\
+                &=g\left(\sqrt{x-2}\right)\\
+                &=\frac{1}{\sqrt{x-2}}\\
+            \end{split}
+        \end{equation*}
+        notemos que esta función está bien definida siempre que $x-2>0$ es decir que $x>2$. Por tanto, el dominio natural de $f$ es $D_{g\circ f}=]2,\infty[$.
+
+        De (ii): %TODO
+    \end{sol}
 
     \item \textbf{Represente} las siguientes funciones usando operaciones algebraicas y la composición de funciones. \textbf{Determine} el conjuto de puntos de continuidad en cada caso. \textbf{Justifique}.
     \begin{enumerate}
@@ -863,12 +1234,49 @@ rápida de consulta para la solución de los problemas.
         \item $f(x-1)=x^2$. ¿Quiénes son $f(x)$ y $f(x+1)$?
     \end{enumerate}
     
+    \begin{sol}
+        De (i): %TODO
+    \end{sol}
+
     \item  \textbf{Determine (justificando)} el dominio natural de las siguientes funciones e indique su conjunto de puntos de continuidad.
     \begin{enumerate}
-        \item $f(x)=\frac{\sen}{\frac{1}{x-1}}$.
+        \item $f(x)=\sin\left(\frac{1}{x-1}\right)$.
         \item $f(x)=\cos^{1/2}x$.
         \item $f(x)=\frac{1}{x}-\tan^2x$.
     \end{enumerate}
+
+    \begin{sol}
+        De (i): La función $x\mapsto\sin\left(\frac{1}{x-1} \right)$ está bien definida siempre que $\frac{1}{x-1}\in\mathbb{R}$, es decir que $x-1\neq0$. Por tanto, el dominio natural de $f$ es
+        \begin{equation*}
+            D_f=\mathbb{R}\backslash\left\{1 \right\}
+        \end{equation*}
+        Sean $\cf{f_1}{\mathbb{R}}{\mathbb{R}}$, $\cf{f_2}{\mathbb{R}\backslash\left\{0\right\}}{\mathbb{R}}$ y $\cf{f_3}{\mathbb{R}\backslash\left\{1\right\}}{\mathbb{R}\backslash\left\{0\right\}}$ tales que $f_1(x)=\sin x$, $f_2(x)=\frac{1}{x}$ y $f_3(x)=x-1$, se tiene que
+        \begin{equation*}
+            f=f_1\circ f_2\circ f_3
+        \end{equation*}
+        siendo las tres funciones $f_1,f_2$ y $f_3$ son continuas en sus respectivos dominios, se sigue entonces que $f$ es continua en $\mathbb{R}\backslash\left\{ 1\right\}$.
+
+        De (ii): Para que $f$ esté bien definida debe suceder que $\cos x\geq 0$, esto es
+        \begin{equation*}
+            \cos x\geq 0\iff x\in\bigcup_{ k\in\mathbb{Z}}\left[-\frac{\pi}{2}+2k\pi,\frac{\pi}{2}2k\pi\right]
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            D_f=\bigcup_{ k\in\mathbb{Z}}\left[-\frac{\pi}{2}+2k\pi,\frac{\pi}{2}2k\pi\right]
+        \end{equation*}
+        Sean ahora $\cf{f_1}{D_f}{\mathbb{R}^+\cup\left\{0\right\}}$ y $\cf{f_2}{\mathbb{R}^+\cup\left\{0\right\}}{\mathbb{R}}$ las funciones tales que $f_1(x)=\cos x$ y $f_2(x)=\sqrt{x}$. Como
+        \begin{equation*}
+            f=f_2\circ f_1
+        \end{equation*}
+        entonces al tenerse que $f_1$ y $f_2$ son continuas en sus respectivos dominios ($f_1$ es continua pues es la reestricción de la función coseno a $D_f$), se sigue que $f$ es continua en $D_f$.
+
+        De (iii): Para que $f$ esté bien definida debe suceder que $\frac{1}{x}\in\mathbb{R}$ y $\tan x\in\mathbb{R}$, esto es que
+        $x\neq 0$ y $x\neq\frac{2k+1}{2}\pi$ con $k\in\mathbb{Z}$. Por tanto,
+        \begin{equation*}
+            D_f=\mathbb{R}\backslash\left(\left\{0\right\}\cup\left\{\frac{2k+1}{2}\pi\Big|k\in\mathbb{Z}\right\}\right)
+        \end{equation*}
+        Y, como $x\mapsto\frac{1}{x}$ es continua en $\mathbb{R}\backslash\left\{0 \right\}$ y $x\mapsto\tan x$ lo es siempre que $x\neq\frac{2k+1}{2}\pi$ con $k\in\mathbb{Z}$, al reestringir estas funciones a $D_f$ se sigue que también son continuas, luego $f$ también es continua.
+    \end{sol}
 
     \item Si $\cf{f}{\mathbb{R}}{\mathbb{R}}$ es una función continua que satisface la condición $f(x+y)=f(x)+f(y)$, $\forall x,y\in\mathbb{R}$, \textbf{pruebe} que existe un número $a\in\mathbb{R}$ tal que $f(x)=ax$ para todo $x\in\mathbb{R}$.
 
@@ -877,17 +1285,66 @@ rápida de consulta para la solución de los problemas.
     \begin{proof}
         Notemos que
         \begin{equation*}
-            f(0+0)=f(0)+f(0)\Rightarrow f(0)=2f(0)\Rightarrow f(0)=0
+            \begin{split}
+                f(0+0)&=f(0)+f(0)\\
+                \Rightarrow f(0)&=2f(0)\\
+                \Rightarrow f(0)&=0\\
+            \end{split}
         \end{equation*}
-        ahora, sea $a=f(1)$. Se tiene que
+        ahora, sea $a=f(1)$. Se tiene para todo $x\in\mathbb{R}$:
         \begin{equation*}
-            f(2)=f(1+1)=2f(1)=a\cdot 2
+            f(2x)=f(x+x)=2f(x)
         \end{equation*}
-        Suponga que $f(k)=a\cdot k$ para algún $k\in\mathbb{N}$, se tiene entonces que
+        Suponga que $f(kx)=kx$ para algún $k\in\mathbb{N}$, se sigue que
         \begin{equation*}
-            f(k+1)=f(k)+f(1)=a\cdot k+a=a\cdot (k+1)
+            f([k+1]x)=f(kx)+f(x)=kf(x)\cdot f(x)=(k+1)f(x)
         \end{equation*}
-        por inducción se sigue que $f(x)=ax$ para todo $x\in\mathbb{N}$.
+        aplicando inducción obtenemos que $f(nx)=nf(x)$ para todo $x\in\mathbb{N}$. Más aún, como $f(0)=0$ entonces
+        \begin{equation*}
+            f(nx)=nf(x),\quad\forall n\in\mathbb{N}\cup\left\{0 \right\}\textup{ y }x\in\mathbb{R}
+        \end{equation*} 
+        Ahora, si $m\in\mathbb{N}$ tomando $x=\frac{1}{m}$ se obtiene de lo anterior que
+        \begin{equation*}
+            \begin{split}
+                f(1)&=mf\left(\frac{1}{m}\right)\\
+                \Rightarrow f\left(\frac{1}{m} \right)&=\frac{1}{m}f(1)
+            \end{split}
+        \end{equation*}
+        Al ser el $m\in\mathbb{N}$ arbitrario, se sigue que
+        \begin{equation*}
+            f\left(\frac{1}{m}\right)=\frac{1}{m}f(1),\quad\forall m\in\mathbb{N}
+        \end{equation*}
+        De esta forma, si $\frac{p}{q}\in\mathbb{Q}$ es tal que $p,q\geq 0$ se tiene
+        \begin{equation*}
+            \begin{split}
+                f\left(\frac{p}{q}\right)&=f\left(p\cdot\frac{1}{q}\right)\\
+                &=pf\left(\frac{1}{q}\right)\\
+                &=\frac{p}{q}f(1)\\
+                \Rightarrow f\left(\frac{p}{q}\right)&=a\frac{p}{q}
+            \end{split}
+        \end{equation*}
+        (donde recordemos que $a=f(1)$). Se sigue entonces que $f(a)$. Por tanto, $f(x)=ax$ para todo $x\in\mathbb{Q}^+$. Si ahora $x\in\mathbb{R}$, se tiene que
+        \begin{equation*}
+            0=f(0)=f(x-x)=f(x)+f(-x)\Rightarrow -f(x)=f(-x)
+        \end{equation*}
+        por tanto, si $r\in\mathbb{Q}^-$,
+        \begin{equation*}
+            f(r)=-f(-r)=-a\cdot(-r)=ar
+        \end{equation*}
+        (pues $-r\in\mathbb{Q}^+$) luego,
+        \begin{equation*}
+            f(x)=ax,\quad\forall x\in\mathbb{Q}
+        \end{equation*}
+        
+        Sea ahora $x_0\in\mathbb{I}$. Se sabe que existe $\left\{x_n \right\}_{ n=1}^\infty$ una sucesión en $\mathbb{Q}$ que converge a $x_0$. Como $f$ es continua en $\mathbb{R}$, en particular lo es en $x_0$, luego
+        \begin{equation*}
+            f(x_0)=\lim_{n\rightarrow\infty}f(x_n)=\lim_{n\rightarrow\infty}ax_n=ax_0
+        \end{equation*}
+        Por tanto, $f(x)=ax$ para todo $x\in\mathbb{I}$. Se concluye finalmente que
+        \begin{equation*}
+            f(x)=ax,\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        donde $a=f(1)$.
     \end{proof}
 
     \item Considere la función $\cf{f}{]0,1[}{\mathbb{R}}$ definida como
@@ -902,8 +1359,48 @@ rápida de consulta para la solución de los problemas.
     \begin{proof}
         Se tienen que hacer dos cosas:
         \begin{enumerate}
-            \item $f$ es continua en $]0,1[\backslash\mathbb{Q}$. En efecto, sean $x_0\in]0,1[\backslash\mathbb{Q}$ y $\varepsilon>0$.
+            \item $f$ es continua en $]0,1[\backslash\mathbb{Q}$. En efecto, sean $x_0\in]0,1[\backslash\mathbb{Q}$ y $\varepsilon>0$. Considere el conjunto
+            \begin{equation*}
+                A=\left\{x=\frac{p}{q}\in]0,1[\cap\mathbb{Q}\Big|p,q\in\mathbb{N}\textup{ son primos relativos y }\varepsilon\leq\frac{1}{q} \right\}
+            \end{equation*}
+            Se tiene que $A$ es un conjunto finito, pues por la propiedad arquimediana existe $n_0\in\mathbb{N}$ con $n_0\geq 2$ tal que
+            \begin{equation*}
+                \frac{1}{n_0}<\min\left\{\varepsilon,1\right\}\leq\frac{1}{n_0-1}
+            \end{equation*}
+            De esta forma, $A$ puede tener a lo sumo una cantidad finita de elementos. Sea
+            \begin{equation*}
+                \delta=\min_{ y\in A}\abs{x_0-y}>0
+            \end{equation*}
+            pues, $x_0\notin A$. Si $x\in]0,1[$ es tal que $0<\abs{x_0-x}<\delta$, se tienen dos casos:
+            \begin{enumerate}
+                \item $x\in]0,1[\backslash\mathbb{Q}$, se sigue que
+                \begin{equation*}
+                    \abs{f(x_0)-f(x)}=\abs{0-0}=0<\varepsilon
+                \end{equation*}
+                \item $x=\frac{p}{q}\in]0,1[\cap\mathbb{Q}$ siendo $p,q\in\mathbb{N}$ primos relativos, se sigue por la elección de $\delta>0$ que $\frac{1}{q}<\varepsilon$, pues $x\notin A$. Luego,
+                \begin{equation*}
+                    \abs{f(x_0)-f(x)}=\abs{f(x)}=\frac{1}{q}<\varepsilon
+                \end{equation*}
+            \end{enumerate}
+            Por ambos incisos se sigue que
+            \begin{equation*}
+                0<\abs{x_0-x}<\delta\Rightarrow\abs{f(x_0)-f(x)}<\varepsilon
+            \end{equation*}
+            por tanto, $f$ es continua en $x_0$.
+
+            \item $f$ no es continua en $]0,1[\cap\mathbb{Q}$. Sea $x_0\in]0,1[\cap\mathbb{Q}$, entonces existen $p,q\in\mathbb{N}$ primos relativos tales que $x_0=\frac{p}{q}$. Tomemos $\varepsilon=\frac{1}{q}>0$.
+            
+            Por la densidad de los racionales, para todo $\delta>0$ existe $x_\delta\in]0,1[\backslash\mathbb{Q}$ tal que
+            \begin{equation*}
+                \abs{x_0-x_\delta}<\delta
+            \end{equation*}
+            que cumple
+            \begin{equation*}
+                \abs{f(x_0)-f(x)}=\abs{\frac{1}{q}-0}=\frac{1}{q}\geq\varepsilon
+            \end{equation*}
+            Por tanto, $f$ no es continua en $x_0$.
         \end{enumerate}
+        Por los dos incisos se sigue el resultado.
     \end{proof}
 
     \item \textbf{Calcule (justificando)} los siguientes límites:
@@ -956,7 +1453,24 @@ rápida de consulta para la solución de los problemas.
             \lim_{x\rightarrow 0}\frac{1-\cos x}{x^2}=\lim_{x\rightarrow 0}\frac{\sin^2 x}{x^2}\cdot\lim_{ x\rightarrow 0}\frac{1}{1+\cos x}=1\cdot\frac{1}{2}=\frac{1}{2}
         \end{equation*}
 
-        De (iii): 
+        De (iii): Veamos que
+        \begin{equation*}
+            \begin{split}
+                \lim_{ x\rightarrow0}\frac{\tan^2x+2x}{x+x^2}&=\lim_{ x\rightarrow0}\frac{\tan^2x+2x}{x(x+1)}\\
+                &=\lim_{ x\rightarrow0}\frac{\sin^2x+2x\cos^2 x}{x(x+1)\cos^2 x}\\
+                &=\lim_{ x\rightarrow0}\left[\frac{\sin^2x}{x(x+1)\cos^2 x}+\frac{2x\cos^2 x}{x(x+1)\cos^2 x}\right] \\
+                &=\lim_{ x\rightarrow0}\left[\frac{\sin x}{(x+1)\cos^2x}\cdot\frac{\sin x}{x}+\frac{2}{x+1}\right]\\
+            \end{split}
+        \end{equation*}
+        por álgebra de límites, se sigue que
+        \begin{equation*}
+            \begin{split}
+                \lim_{ x\rightarrow0}\frac{\tan^2x+2x}{x+x^2}&=\lim_{ x\rightarrow0}\left[\frac{\sin x}{(x+1)\cos^2x}\cdot\frac{\sin x}{x}\right]+\lim_{ x\rightarrow0}\left[\frac{2}{x+1}\right]\\
+                &=\lim_{ x\rightarrow0}\left[\frac{\sin x}{(x+1)\cos^2x}\right]\cdot\lim_{ x\rightarrow0}\left[\frac{\sin x}{x}\right]+2\\
+                &=0\cdot1+2\\
+                &=2\\
+            \end{split}
+        \end{equation*}
 
         De (iv): Como $\lim_{ x\rightarrow 1}x^2-1=0$ y la función $x\mapsto\sin\frac{1}{x-1}$ es acotada, por un ejercicio anterior se sigue que
         \begin{equation*}
