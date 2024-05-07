@@ -749,14 +749,39 @@ rápida de consulta para la solución de los problemas.
         %TODO
     \end{sol}
 
-    \item Usando primero la definición de límite y después el teorema sobre caracterizació nde límites de funciones por medio de sucesiones, \textbf{pruebe} que:
+    \item Usando primero la definición de límite y después el teorema sobre caracterización de límites de funciones por medio de sucesiones, \textbf{pruebe} que:
     \begin{enumerate}
         \item $\lim_{x\rightarrow1}\frac{x-1}{2x+2}\neq 3$.
         \item $\lim_{x\rightarrow 2}\abs{x}\neq -1$.
     \end{enumerate}
 
     \begin{proof}
-        %TODO
+        De (i): Se probará que el límite no es $3$ por medio de sucesiones. En efecto, sea $\left\{x_n \right\}_{ n=1}^\infty$ una sucesión en $\mathbb{R}\backslash\left\{-1,1 \right\}$ que converge a $1$. Se tiene que
+        \begin{equation*}
+            \begin{split}
+                \lim_{ n\rightarrow\infty}\frac{x_n-1}{2x_n+2}&=\frac{\lim_{ n\rightarrow\infty}(x_n-1)}{\lim_{ n\rightarrow\infty}(2x_n+2)}\\
+                &=\frac{1-1}{2\cdot 2+2}\\
+                &=\frac{0}{6}\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        Por tanto, usando el teorema de caracterización de límite por sucesiones, se sigue que
+        \begin{equation*}
+            \lim_{ x\rightarrow 1}\frac{x-1}{2x+2}=1\neq 3
+        \end{equation*}
+
+        De (ii). Tomemos $\varepsilon=1$. Para todo $\delta>0$ existe $x_\delta=\min\left\{2+\frac{1}{2},2+\frac{\delta}{2} \right\}$ tal que
+        \begin{equation*}
+            0<\abs{x_\delta-2}=x_\delta-2\leq2+\frac{\delta}{2}-2=\frac{\delta}{2}<\delta
+        \end{equation*}
+        tal que
+        \begin{equation*}
+            \abs{f(x_\delta)-(-1)}=\abs{\abs{x_\delta}+1}\geq \abs{x_\delta}-1\geq2-1=1=\varepsilon
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \lim_{ x\rightarrow 2}\abs{x}\neq-1
+        \end{equation*}
     \end{proof}
 
     \item Considere la función
@@ -805,7 +830,68 @@ rápida de consulta para la solución de los problemas.
     \end{equation*}
 
     \begin{sol}
-        %TODO
+        Se tienen 3 casos:
+        \begin{enumerate}
+            \item $m=n$. Veamos que
+            \begin{equation*}
+                \begin{split}
+                    \lim_{ x\rightarrow\infty}\frac{a_nx^n+\cdots+a_1x+a_0}{b_mx^m+\cdots+b_1x+b_0}&=\lim_{ x\rightarrow\infty}\frac{a_nx^n+\cdots+a_1x+a_0}{b_nx^n+\cdots+b_1x+b_0}\cdot1 \\
+                    &=\lim_{ x\rightarrow\infty}\frac{a_nx^n+\cdots+a_1x+a_0}{b_nx^n+\cdots+b_1x+b_0}\cdot\frac{\frac{1}{x^n}}{\frac{1}{x^n}}\\
+                    &=\lim_{ x\rightarrow\infty}\frac{a_n+\frac{a_{ n-1}}{x}+\cdots+\frac{a_1}{x^{ n-1}}+\frac{a_0}{x^n}}{b_n+\frac{b_{ n-1}}{x}+\cdots+\frac{b_1}{x^{ n-1}}+\frac{b_0}{x^n}}\\
+                \end{split}
+            \end{equation*}
+            y, como los límites $\lim_{ x\rightarrow\infty}a_n=a_n$, $\lim_{ x\rightarrow\infty}b_n=b_n$ y
+            \begin{equation*}
+                \lim_{x\rightarrow\infty}\frac{b_i}{x^{n-i}}=\lim_{x\rightarrow\infty}\frac{a_i}{x^{n-i}}=0
+            \end{equation*}
+            existen para todo $i\in\left\{0,1,2,...,n-1 \right\}$, por álgebra de límites se sigue que:
+            \begin{equation*}
+                \begin{split}
+                    \lim_{ x\rightarrow\infty}\frac{a_nx^n+\cdots+a_1x+a_0}{b_mx^m+\cdots+b_1x+b_0}&=\frac{\lim_{ x\rightarrow\infty}(a_n+\frac{a_{ n-1}}{x}+\cdots+\frac{a_1}{x^{ n-1}}+\frac{a_0}{x^n})}{\lim_{ x\rightarrow\infty}(b_n+\frac{b_{ n-1}}{x}+\cdots+\frac{b_1}{x^{ n-1}}+\frac{b_0}{x^n})}\\
+                    &=\frac{a_n+0+\cdots+0}{b_n+0+\cdots+0}\\
+                    &=\frac{a_n}{b_n}\\
+                \end{split}
+            \end{equation*}
+
+            \item $m>n$: Veamos que
+            \begin{equation*}
+                \begin{split}
+                    \lim_{ x\rightarrow\infty}\frac{a_nx^n+\cdots+a_1x+a_0}{b_mx^m+\cdots+b_1x+b_0}&=\lim_{ x\rightarrow\infty}\frac{a_nx^n+\cdots+a_1x+a_0}{b_mx^m+\cdots+b_nx^n+\cdots+b_1x+b_0}\cdot1 \\
+                    &=\lim_{ x\rightarrow\infty}\frac{a_nx^n+\cdots+a_1x+a_0}{b_mx^m+\cdots+b_nx^n+\cdots+b_1x+b_0}\cdot\frac{\frac{1}{x^m}}{\frac{1}{x^m}}\\
+                    &=\lim_{ x\rightarrow\infty}\frac{a_nx^n+\cdots+a_1x+a_0}{b_mx^m+\cdots+b_nx^n+\cdots+b_1x+b_0}\cdot\frac{\frac{1}{x^m}}{\frac{1}{x^m}}\\
+                    &=\lim_{ x\rightarrow\infty}\frac{\frac{a_n}{x^{ m-n}} +\cdots+\frac{a_1}{x^{ m-1}} +\frac{a_0}{x^m}}{b_m+\frac{b_ {m-1}}{x} +\cdots+\frac{b_n}{x^{ m-n}} +\cdots+\frac{b_1}{x^{ m-1}}+\frac{b_0}{x^m}}\\
+                \end{split}
+            \end{equation*}
+            donde
+            \begin{equation*}
+                \begin{split}
+                    \lim_{ x\rightarrow\infty}\left(\frac{a_n}{x^{ m-n}} +\cdots+\frac{a_1}{x^{ m-1}} +\frac{a_0}{x^m}\right)&=0\textup{ y,} \\
+                    \lim_{ x\rightarrow\infty}\left(b_m+\frac{b_ {m-1}}{x} +\cdots+\frac{b_n}{x^{ m-n}} +\cdots+\frac{b_1}{x^{ m-1}}+\frac{b_0}{x^m}\right)&=b_m\\
+                \end{split}
+            \end{equation*}
+            pues,
+            \begin{equation*}
+                \lim_{ x\rightarrow\infty}\frac{a_i}{x^{ m-i}}=0
+            \end{equation*}
+            pues $0<m-i$, para todo $i\in\left\{0,1,2,...,n\right\}$ y de forma similar con los $b_n$:
+            \begin{equation*}
+                \lim_{ x\rightarrow\infty}\frac{b_j}{x^{ m-i}}=0
+            \end{equation*}
+            para todo $j\in\left\{0,1,2,...,m-1\right\}$. Por tanto, por álgebra de límtes se sigue que
+            \begin{equation*}
+                \begin{split}
+                    \lim_{ x\rightarrow\infty}\frac{a_nx^n+\cdots+a_1x+a_0}{b_mx^m+\cdots+b_1x+b_0}&=\lim_{ x\rightarrow\infty}\frac{\frac{a_n}{x^{ m-n}} +\cdots+\frac{a_1}{x^{ m-1}} +\frac{a_0}{x^m}}{b_m+\frac{b_ {m-1}}{x} +\cdots+\frac{b_n}{x^{ m-n}} +\cdots+\frac{b_1}{x^{ m-1}}+\frac{b_0}{x^m}}\\
+                    &=\frac{\lim_{ x\rightarrow\infty}\frac{a_n}{x^{ m-n}} +\cdots+\frac{a_1}{x^{ m-1}} +\frac{a_0}{x^m}}{\lim_{ x\rightarrow\infty}b_m+\frac{b_ {m-1}}{x} +\cdots+\frac{b_n}{x^{ m-n}} +\cdots+\frac{b_1}{x^{ m-1}}+\frac{b_0}{x^m}}\\
+                    &=\frac{0}{b_m}\\
+                    &=0\\
+                \end{split}
+            \end{equation*}
+            \item $m<n$. Afirmamos que el límite es $\pm\infty$, dependiendo del signo de $\frac{a_n}{b_m}$. En efecto, suponga que %TODO 
+        \end{enumerate}
+        Por lo anterior, se sigue que
+        \begin{equation*}
+            \lim_{ x\rightarrow\infty}\frac{x^2-3}{x-1}=\infty,\lim_{ x\rightarrow\infty}\frac{2-x}{x^4-1}=0,\lim_{ x\rightarrow\infty}\frac{5x+2}{x-3}=5
+        \end{equation*}
     \end{sol}
 
     \item Sea $E(x)=\max\left\{n\in\mathbb{Z}\Big|n\leq x \right\}$, para todo $x\in\mathbb{R}$, la función \textbf{parte entera} de $x$. Considere las funciones siguientes:
@@ -837,7 +923,39 @@ rápida de consulta para la solución de los problemas.
     \end{enumerate}
 
     \begin{proof}
-        %TODO
+        De (i): Si $\lim_{ x\rightarrow t}f(x)=l$, entonces para $\varepsilon>0$ existe $\delta>0$ tal que
+        \begin{equation*}
+            x\in S\textup{ tal que }0<\abs{x-t}<\delta\Rightarrow \abs{f(x)-l}<\varepsilon
+        \end{equation*}
+        lo cual es equivalente a decir que
+        \begin{equation}
+            x\in S\textup{ tal que }0<\abs{x-t}<\delta\Rightarrow \abs{f(x)-l-0}<\varepsilon
+        \end{equation}
+        que es lo mismo que $\lim_{ x\rightarrow t}f(x)-l=0$. Pero, lo anterior también es equivalente a decir que
+        \begin{equation*}
+            x\in S\textup{ tal que }0<\abs{x-t}<\delta\Rightarrow \abs{\abs{f(x)-l}-0}<\varepsilon
+        \end{equation*}
+        que es lo mismo que $\lim_{ x\rightarrow t}\abs{f(x)-l}=0$. Por ende,
+        \begin{equation*}
+            \lim_{ x\rightarrow t}f(x)=l\iff \lim_{ x\rightarrow t}f(x)-l=0\iff \lim_{ x\rightarrow t}\abs{f(x)-l}=0
+        \end{equation*}
+
+        De (ii): Suponga que $\lim_{ x\rightarrow t}f(x)=l$ con $l\in\mathbb{R}$. Entonces para todo $\varepsilon>0$ existe $\delta>0$ tal que
+        \begin{equation*}
+            x\in S\textup{ tal que }0<\abs{x-t}<\delta\Rightarrow\abs{f(x)-l}<\varepsilon
+        \end{equation*}
+        Si $x=t+h$ con $h\in\mathbb{R}$, esto anterior es equivalente a decir que
+        \begin{equation*}
+            t+h\in S\textup{ tal que }0<\abs{t+h-t}<\delta\Rightarrow\abs{f(t+h)-l}<\varepsilon
+        \end{equation*}
+        esto es
+        \begin{equation*}
+            t+h\in S\textup{ tal que }0<\abs{h}<\delta\Rightarrow\abs{f(t+h)-l}<\varepsilon
+        \end{equation*}
+        por la definición de límite se sigue que
+        \begin{equation*}
+            \lim_{ h\rightarrow 0}f(t+h)=l=\lim_{ x\rightarrow t}f(x)
+        \end{equation*}
     \end{proof}
 
     \item \textbf{Demuestre} que si dos funciones $f$ y $g$ toman los mismos valores en todos los puntos de algún intervalo abierto que contenga a $a$, exceptuando posiblemente a $a$, entonces
@@ -847,7 +965,48 @@ rápida de consulta para la solución de los problemas.
     cuando alguno de los dos límites exista. Esto significa que la existencia del límite de alguna función en un punto dado es una \textbf{propiedad local}.
 
     \begin{proof}
-        %TODO
+        Sean $\cf{f,g}{S}{\mathbb{R}}$ dos funciones tales que existe $I=]l,m[\subseteq S$ intervalo abierto con $a\in I$ tal que
+        \begin{equation*}
+            f(x)=g(x),\quad\forall x\in I\backslash\left\{a\right\}
+        \end{equation*}
+        y suponga que existe $\lim_{ x\rightarrow a}f(x)=l$. Probaremos que $\lim_{ x\rightarrow a}g(x)$ también existe y es igual a $l$. En efecto, sea $\varepsilon>0$, como $\lim_{ x\rightarrow a}f(x)=l$ entonces existe $\delta'>0$ tal que
+        \begin{equation*}
+            x\in S\textup{ tal que }0<\abs{x-a}<\delta'\Rightarrow\abs{f(x)-l}<\varepsilon
+        \end{equation*}
+        Siendo que $a\in I$ e $I$ es un intervalo abierto, se debe tener que
+        \begin{equation*}
+            a-l,m-a>0
+        \end{equation*}
+        tomemos $\delta=\min\left\{a-l,m-a,\delta' \right\}>0$. Si $x\in S$ es tal que
+        \begin{equation*}
+            0<\abs{x-a}<\delta
+        \end{equation*}
+        por la elección de $\delta$ se tienen las siguientes desigualdades:
+        \begin{equation*}
+            \left\{
+                \begin{split}
+                    a-x&<a-l\\
+                    x-a&<m-a\\
+                    0<\abs{x-a}&<\delta'\\
+                \end{split}
+            \right.
+        \end{equation*}
+        las primeras dos desigualdades implican que $l<x<m$, es decir que $x\in I$, luego por hipótesis se sigue que $f(x)=g(x)$. Además, la tercera condición implica que
+        \begin{equation*}
+            \abs{f(x)-l}<\varepsilon
+        \end{equation*} 
+        es decir que
+        \begin{equation*}
+            \abs{g(x)-l}<\varepsilon
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            x\in S\textup{ tal que }0<\abs{x-a}<\delta\Rightarrow\abs{g(x)-l}<\varepsilon
+        \end{equation*}
+        De esta forma, $\lim_{ x\rightarrow a}g(x)$ existe y,
+        \begin{equation*}
+            \lim_{ x\rightarrow a}g(x)=l=\lim_{ x\rightarrow a}f(x)
+        \end{equation*}
     \end{proof}
 
     \item Sea $S\subseteq\mathbb{R}$. Sean $\cf{f,g}{S}{\mathbb{R}}$ dos funciones y $a\in\mathbb{R}$. Si $f(x)\leq g(x)$, para todo $x\in S$, y si existen $\lim_{ x\rightarrow a}f(x)$ y $\lim_{ x\rightarrow a}g(x)$, \textbf{pruebe} que
@@ -865,7 +1024,34 @@ rápida de consulta para la solución de los problemas.
     \end{equation*}
 
     \begin{proof}
-        %TODO
+        Sea $\left\{x_n \right\}_{ n=1}^\infty$ una sucesión en $S\backslash\left\{a \right\}$ que converge a $a$. Tomemos
+        \begin{equation*}
+            l=\lim_{ x\rightarrow a}f(x)=\lim_{ x\rightarrow a}h(x)
+        \end{equation*}
+        Considere las tres sucesiones $\left\{f(x_n)\right\}_{ n=1}^\infty,\left\{g(x_n)\right\}_{ n=1}^\infty$ y $\left\{h(x_n)\right\}_{ n=1}^\infty$. Se tiene que
+        \begin{equation*}
+            f(x_n)\leq g(x_n)\leq h(x_n)
+        \end{equation*}
+        para todo $n\in\mathbb{N}$ (usando la desigualdad que se tiene de hipótesis). Como los límites
+        \begin{equation*}
+            \lim_{ x\rightarrow a}f(x)=\lim_{ x\rightarrow a}h(x)
+        \end{equation*}
+        existen, entonces se debe tener que
+        \begin{equation*}
+            l=\lim_{ n\rightarrow\infty}f(x_n)=\lim_{ n\rightarrow\infty}h(x_n)
+        \end{equation*}
+        Luego, por el teorema del emparedado se sigue que
+        \begin{equation*}
+            \lim_{ n\rightarrow\infty}g(x_n)=l
+        \end{equation*}
+        Como la sucesión convergente a $a$ en $S\backslash\left\{a\right\}$ fue arbitraria, se sigue que
+        \begin{equation*}
+            \lim_{ x\rightarrow a}g(x)=l
+        \end{equation*}
+        es decir que el limite anterior existe y que
+        \begin{equation*}
+            \lim_{ x\rightarrow a}f(x)=\lim_{ x\rightarrow a}g(x)=\lim_{ x\rightarrow a}h(x)
+        \end{equation*}
     \end{proof}
 
     \item Sea $S\subseteq\mathbb{R}$. Si $\cf{f}{S}{\mathbb{R}}$ es una función, defina la función $\cf{\abs{f}}{S}{\mathbb{R}}$ como $\abs{f}(x)=\abs{f(x)}$, para todo $x\in S$. \textbf{Pruebe} que si $\lim_{ x\rightarrow a}f(x)=l$, entonces $\lim_{ x\rightarrow a}\abs{f}(x)=\abs{l}$.
