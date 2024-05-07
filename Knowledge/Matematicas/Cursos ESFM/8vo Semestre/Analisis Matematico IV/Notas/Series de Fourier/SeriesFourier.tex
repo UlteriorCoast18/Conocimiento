@@ -1524,8 +1524,210 @@
         V_f([a,b])=\sup_{\Delta}S_\Delta(f)
     \end{equation*}
 
-    Se sabe que toda función de variación acotada es acotada en $[a,b]$. En general, una función de variación acotada no necesariamente es continua en $[a,b]$ ni viceversa. Sin embargo, toda función monótona o de clase $C^1$ en $[a,b]$ es de variación acotada en $[a,b]$.
+    Se sabe que toda función de variación acotada es acotada en $[a,b]$. En general, una función de variación acotada no necesariamente es continua en $[a,b]$ ni viceversa. Sin embargo, toda función monótona o de clase $C^1$ en $[a,b]$ es de variación acotada en $[a,b]$. También las monóntonas por trozos.
 
-    También se sabe que para una función $\cf{f}{[a,b]}{\mathbb{C}}$ es de variación acotada si y sólo si $\Re f$ e $\Im f$ lo son en $[a,b]$. Además, el conjunto de funciones de variación acotada des un álgebra con identidad sobre el campo $\mathbb{K}$. Finalmente, $\cf{f}{[a,b]}{\mathbb{R}}$ es de variación acotada en $[a,b]$ si y sólo si $f$ se puede escribir como diferencia de dos funciones monótonas.
+    También se sabe que para una función $\cf{f}{[a,b]}{\mathbb{C}}$ es de variación acotada si y sólo si $\Re f$ e $\Im f$ lo son en $[a,b]$. Además, el conjunto de funciones de variación acotada es un álgebra con identidad sobre el campo $\mathbb{K}$. Finalmente, $\cf{f}{[a,b]}{\mathbb{R}}$ es de variación acotada en $[a,b]$ si y sólo si $f$ se puede escribir como diferencia de dos funciones monótonas.
+
+    \begin{obs}
+        Si $\cf{f}{\mathbb{R}}{\mathbb{K}}$ es una función periódica de periodo $2\pi$ y si la reestricción de $f$ a algún intervalo compacto de longitud $2\pi$ es de variación acotada, entonces $f\in\mathcal{L}_{\infty}^{2\pi}$.
+    \end{obs}
+
+    \begin{lema}
+        Sea $\cf{f}{\mathbb{R}}{\mathbb{K}}$ periódica de periodo $2\pi$ y de variación acotada en $[-\pi,\pi]$. Entonces, existe una constante $A>0$ tal que los coeficientes de Fourier $\left\{c_k \right\}_{ k\in\mathbb{Z}}$ de $f$ satisfacen lo siguiente:
+        \begin{equation*}
+            \abs{c_k}\leq\frac{A}{\abs{k}},\quad\forall k\in\mathbb{Z}\backslash\left\{0\right\}
+        \end{equation*} 
+    \end{lema}
+
+    \begin{proof}
+        Considerando por separado las partes reale imaginaria de la función se puede suponer que $f$ es real y más aún, que es monótona (pues al ser $f$ de variación acotada es la diferencia de funciones monótonas).
+
+        Se tiene
+        \begin{equation*}
+            \begin{split}
+                \abs{c_k}&=\frac{1}{2\pi}\abs{\int_{-\pi}^\pi f(t)e^{ -ikt}dt}\\
+                &\leq\frac{1}{2\pi}\left[2\abs{f(\pi)}+\abs{f(-\pi)} \right]\max_{ -\pi\leq x\leq\pi}\abs{\int_{ -\pi}^x e^{ -ikt}dt}\\
+            \end{split}
+        \end{equation*}
+        donde la primera desigualdad es por el segundo teorema del valor medio. Y,
+        \begin{equation*}
+            \abs{\int_{ -\pi}^\pi e^{ -ikt}dt}=\abs{\frac{e^{ ik\pi}-e^{ ikx}}{ik}}\leq\frac{2}{\abs{k}}
+        \end{equation*}
+        para todo $-\pi\leq x\leq\pi$. Por tanto
+        \begin{equation*}
+            \abs{c_k}\leq\frac{1}{\pi}[2\abs{f(\pi)}+\abs{f(-\pi)}]\frac{1}{\abs{k}},\quad\forall k\in\mathbb{Z}\backslash\left\{0\right\}
+        \end{equation*}
+        Tomando $A=\frac{1}{\pi}[2\abs{f(\pi)}+\abs{f(-\pi)}]>0$ se sigue el resultado.
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema de Jordan}]
+        Sea $\cf{f}{\mathbb{R}}{\mathbb{K}}$ periódica de periodo $2\pi$ y de variación acotada en $[-\pi,\pi]$. Entonces,
+        \begin{enumerate}
+            \item Para todo $1\leq p<\infty$, la serie de Fourier de $f$ converge en el sentido usual a $f$ en $p$-promedio, o sea
+            \begin{equation*}
+                \lim_{ m\rightarrow\infty}\N{p}{f-s_m}=0
+            \end{equation*}
+            \item Si en un punto $x\in\mathbb{R}$ existen los límites laterales $f(x^+)$ y $f(x^-)$, entonces la serie de Fourier de $f$ converge en el sentido usual en $x$ a $\frac{f(x^+)+f(x^-)}{2}$. En particular, si $f$ es continua en $x$ se sigue que la serie de Fourier de $f$ converge en $x$ a $f(x)$ en el sentido usual (hablando de convergencia puntual).
+            \item Si $f$ es continua en un abierto $J\subseteq\mathbb{R}$, entonces la serie de Fourier de $f$ converge en el sentido usual a $f$ uniformemente en todo compacto contenido en $J$.
+            \item Si $f$ es continua en $\mathbb{R}$, entonces la serie de Fourier de $f$ converge en el sentido usual a $f$ uniformemente en $\mathbb{R}$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        Sean $\left\{c_k \right\}_{ k\in\mathbb{Z}}$ los coeficientes de Fourier de $f$. Por el lema anterior se tiene que existe $A>0$ tal que
+        \begin{equation*}
+            \abs{c_k}\leq\frac{A}{\abs{k}},\quad\forall k\in\mathbb{Z}\backslash\left\{0\right\}
+        \end{equation*}
+        Sea $m\geq2$. Se tiene 
+        \begin{equation*}
+            \begin{split}
+                s_{ m-1}-s_{ m-2}&=c_{ m-1}e^{ i(m-1)x}+c_{ -(m-1)}e^{ -i(m-1)x}
+            \end{split}
+        \end{equation*}
+        de donde,
+        \begin{equation*}
+            \begin{split}
+                \abs{s_{ m-1}-s_{ m-2}}&\leq\abs{c_{ m-1}}+\abs{c_{ -(m-1)}}\\
+                &\leq\frac{2A}{m-1}\\
+                &=\frac{m}{m-1}\cdot\frac{2A}{m}\\
+                &\leq\frac{4A}{m},\quad\forall m\geq2\\
+            \end{split}
+        \end{equation*}
+        de donde
+        \begin{equation*}
+            \begin{split}
+                \N{p}{s_{ m-1}-s_{ m-2}}&\leq\frac{4A}{m}\N{p}{1}\\
+                &\leq\frac{4(2\pi)^{1/p}A}{m},\quad\forall m\geq 2\\
+            \end{split}
+        \end{equation*}
+        El teorema de Jordan se sigue ahora del teorema de Fejér y de Hardy-Landau. Para obtener 1) se considera la serie de Fourier de $f$ como una serie en el espacio de Banach $L_p^{2\pi}(\mathbb{C})$.
+
+        Para obtener 2), se considera la serie de Fourier de $f$ en el punto $x$ como una serie en el espacio de Banach $\mathbb{C}$. Para 3) se fija un compacto $C\subseteq J$ y se considera la serie de Fourier de $f$ como una serie en el espacio de Banach $\mathcal{BC}(K,\mathbb{C})$ provisto de la norma uniforme.
+
+        De forma similar a 3), en 4) se considera a la serie de Fourier de $f$ como una serie en $\mathcal{ BC}(\mathbb{R},\mathbb{C})$, provisto de la norma uniforme.
+    \end{proof}
+
+    \begin{cor}
+        Sea $f\in\mathcal{L}_1^{2\pi}$ tal que $\int_{-\pi}^\pi f=0$ y sea $\cf{F}{\mathbb{R}}{\mathbb{K}}$ la integral indefinida
+        \begin{equation*}
+            F(x)=c+\int_0^x f(t)dt,\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        donde $c\in\mathbb{R}$. Entonces, $F\in\mathcal{C}^{2\pi}(\mathbb{K})$ y la serie de Fourier de $F$ converge a $F$ uniformemente en $\mathbb{R}$. 
+    \end{cor}
+
+    \begin{proof}
+        Ya se sabe en esas condiciones que $F\in\mathcal{C}^{2\pi}(\mathbb{K})$. El teorema se seguirá del teorema de Jordan si se prueba que $F$ es de variación acotada en $[-\pi,\pi]$.
+
+        Sea $x_0=-\pi<x_1<\cdots<x_k=\pi$. Se tiene
+        \begin{equation*}
+            \begin{split}
+                \sum_{ k=1}^n\abs{F(x_k)-F(x_{ k-1})}&=\sum_{ k=1}^n\abs{\int_{ x_{ k-1}}^{x_k}f}\\
+                &\leq\sum_{ k=1}^n\int_{ x_{ k-1}}^{x_k}\abs{f}\\
+                &=\int_{-\pi}^\pi\abs{f}<\infty \\
+            \end{split}
+        \end{equation*}
+        por tanto, $f$ es de variación acotada en $[-\pi,\pi]$.
+    \end{proof}
+
+    \begin{exa}
+        Sea $\cf{f}{\mathbb{R}}{\mathbb{R}}$ periódica de periodo $2\pi$ tal que
+        \begin{equation*}
+            f(x)=\pi-\abs{x},\quad\forall x\in[-\pi,\pi[
+        \end{equation*}
+        Por el teorema de Jordan se sigue que la serie de Fourier de $f$ converge a $f$ uniformemente en $\mathbb{R}$ (pues la función $f$ es continua en $\mathbb{R}$). Calculemos los coeficientes de Fourier de $f$:
+        \begin{equation*}
+            \begin{split}
+                a_n&=\frac{1}{\pi}\int_{ -\pi}^\pi f(x)\cos nxdx\\
+                &=\frac{1}{\pi}\int_{ -\pi}^\pi (\pi-\abs{x})\cos nxdx\\
+                &=\frac{1}{\pi}\left[\int_{ -\pi}^0 (\pi-\abs{x})\cos nxdx+\int_{0}^\pi (\pi-\abs{x})\cos nxdx\right]\\
+                &=\frac{1}{\pi}\left[\int_{ -\pi}^0 (\pi+x)\cos nxdx+\int_{0}^\pi (\pi-x)\cos nxdx\right]\\
+                &=\frac{2}{\pi}\int_0^{\pi}(\pi-x)\cos nxdx\\
+                &=2\int_0^{\pi}\cos nxdx-\frac{2}{\pi}\int_{0}^\pi x\cos nxdx \\
+            \end{split}
+        \end{equation*}
+        si $n=0$:
+        \begin{equation*}
+            \begin{split}
+                a_0&=2\int_0^{\pi}
+            \end{split}
+        \end{equation*}
+        y para $n\geq1$:
+        \begin{equation*}
+            a_n=2\int_0^{\pi}\cos nxdx-\frac{2}{\pi}\int_{0}^\pi x\cos nxdx
+        \end{equation*}
+        donde, haciendo el cambio de variable $u=nx$
+        \begin{equation*}
+            \begin{split}
+                \int_0^{\pi}\cos nxdx&=\int_0^{ n\pi}\frac{\cos udu}{n}\\
+                &=\frac{1}{n}\sin u\Big|_0^{n\pi}\\
+                &=\frac{1}{n}[\sin n\pi-0]\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                \int_{0}^\pi x\cos nxdx&=\int_{0}^{n\pi}\frac{u}{n}\cos u\frac{du}{n}\\
+                &=\frac{1}{n^2}\int_{0}^{n\pi}u\cos udu\\
+                &=\frac{1}{n^2}[u\sin u\Big|_0^{n\pi}-\int_0^{n\pi}\sin udu]\\
+                &=\frac{1}{n^2}[n_\pi\sin n\pi-0+\cos u\Big|_0^{n\pi}]\\
+                &=\frac{1}{n^2}[n\pi\sin n\pi-0+\cos u\Big|_0^{n\pi}]\\
+                &=\frac{1}{n^2}\cos u\Big|_0^{n\pi}\\
+                &=\frac{1}{n^2}[(-1)^{n}-1] \\
+            \end{split}
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            a_n=-\frac{2}{\pi}\cdot\frac{1}{n^2}[(-1)^{ n}-1]=\frac{2}{\pi n^2}[(-1)^{ n+1}+1]
+        \end{equation*}
+        y, como $f$ es par, entonces $b_n=0$. Por tanto, la serie de Fourier de $f$ es:
+        \begin{equation*}
+            \frac{\pi}{2}+\sum_{ k=1}^\infty\frac{4}{\pi(2k-1)^2}\cos(2k-1)x
+        \end{equation*}
+        Por el criterio de Dini:
+        \begin{equation*}
+            \frac{\pi}{2}+\sum_{ k=1}^\infty\frac{4}{\pi(2k-1)^2}\cos(2k-1)x=\left\{
+                \begin{array}{lcr}
+                    f(x) & \textup{ si } & x\in\mathbb{R}\\
+                    \pi-\abs{x} & \textup{ si } & -\pi\leq x\leq\pi\\
+                \end{array}
+            \right.
+        \end{equation*}
+        Si $x=0$:
+        \begin{equation*}
+            \frac{\pi}{2}+\sum_{ k=1}^\infty\frac{4}{\pi(2k-1)^2}=\frac{\pi}{2}
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            \sum_{ k=1}^\infty\frac{1}{(2k-1)^2}=\frac{\pi^2}{8}
+        \end{equation*}
+        Si $x=\pi$ se puede hacer lo mismo. Además,
+        \begin{equation*}
+            \begin{split}
+                \alpha&=\sum_{ k=1}^\infty\frac{1}{(2k-1)^2}+\sum_{ k=1}^\infty\frac{1}{(2k)^2}\\
+                &=\sum_{ k=1}^\infty\frac{1}{(2k-1)^2}+\frac{1}{4}\alpha\\
+                \Rightarrow \frac{3}{4}\alpha&=\sum_{ k=1}^\infty\frac{1}{(2k-1)^2}\\
+                \Rightarrow \alpha&=\frac{4}{3}\cdot\frac{\pi^2}{8}\\
+                &=\frac{\pi^2}{6}\\
+            \end{split}
+        \end{equation*}
+
+        Además, por Jordan la serie de Fourier de $f$ converge a $f$ uniformemente en $\mathbb{R}$. Más aún, $f\in\mathcal{L}_2^{2\pi}$, luego por Parseval:
+        \begin{equation*}
+            \frac{\abs{a_0}^2}{2}+\sum_{ k=1}^\infty\left[\abs{a_k}^2+\abs{b_k}^2 \right]=\frac{1}{\pi}\int_{-\pi}^{\pi}\abs{f}
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \frac{\pi^2}{2}+\frac{16}{\pi^2}\sum_{ k=1}^\infty\frac{1}{(2k-1)^4}=\frac{1}{\pi}\int_{-\pi}^{\pi}\abs{\pi-\abs{x}}dx=\frac{2\pi^2}{3}
+        \end{equation*}
+        con lo que se llega a que
+        \begin{equation*}
+            \sum_{ k=1}^\infty\frac{1}{(2k-1)^4}=\frac{\pi^4}{96}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \sum_{ k=1}^\infty\frac{1}{k^4}=\frac{\pi^4}{90}
+        \end{equation*}
+    \end{exa}
 
 \end{document}
