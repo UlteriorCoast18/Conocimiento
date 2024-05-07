@@ -833,6 +833,150 @@
                 g_1\circ f=g_2\circ f&\Rightarrow
             \end{split}
         \end{equation*}
+        %TODO
+    \end{proof}
+
+    \chapter{Trasnformaciones Naturales}
+
+    \newcommand{\Nat}[2]{\ensuremath{\textup{Nat}\left(#1,#2\right)}}
+
+    \begin{mydef}
+        Sean $\mathcal{C},\mathcal{D}$ categorías y $\cf{F,G}{\mathcal{C}}{\mathcal{D}}$ dos funtores. Una \textbf{transformación nautral} consiste en una familia de morfismos $\cf{\alpha_C}{F(C)}{G(C)}$ con $C\in\Obj{\mathcal{C}}$ en $\mathcal{D}$ tales que para todo $f\in\Hom{\mathcal{C}}{C}{C'}$, el siguiente diagrama
+        \begin{equation*}
+            \begin{array}{rcccl}
+                &F(C) & \overset{\longrightarrow}{\alpha_C} & G(C) &\\
+                F(f) & \downarrow & & \downarrow & G(f) \\
+                &F(C') & \overset{\longrightarrow}{\alpha_{ C'}} & G(C') &\\
+            \end{array}
+        \end{equation*}
+        Denotaremos por $\Nat{f}{g}$. Una transformación natural $\alpha$ se denotará por $\cf{\alpha}{F}{G}$.
+    \end{mydef}
+
+    \begin{obs}
+        Si todas las componentes de la transformación natural son isomorfismos, llamaremos a nuestra transformación natural un \textbf{isomorfismo natural} y lo denotaremos como $F\cong G$.
+    \end{obs}
+
+    \begin{mydef}
+        Sean $W,V$ un categorías. Se define para $\cf{u}{W}{V}$ el funtor del \textbf{espacio dual} $\cf{u^*}{W^*}{V}$ tal que $w\mapsto w\circ u$ para todo $w\in W^*$, donde el asterisco es la categoría dual.
+    \end{mydef}
+
+    \begin{mydef}
+        Considere la categoría $_R\mathcal{M}$ de espacios vectoriales. De define el \textbf{funtor del espacio doble dual} como
+        \begin{equation*}
+            (-)^{ **}:_K\mathcal{M}\rightarrow _K\mathcal{M}
+        \end{equation*}
+        tal que si $\cf{u}{U}{V}$, siendo $U,V$ espacios vectoriales, es una transformación lineal, entonces
+        \begin{equation*}
+            u^{**}:U^{ **}\rightarrow V^{ **}
+        \end{equation*}
+        tal que $\phi\mapsto \phi\circ u^*$ para todo $\cf{\phi}{U^*}{K}$.
+    \end{mydef}
+
+    \begin{exa}
+        Definimso una transformación (aún no natural) entre el funtor identidad de la categoría $_R\mathcal{M}$ y el funtor doble dual. Definimos la transformación como sigue:
+        \begin{equation*}
+            \eta:L_{_K\mathcal{M}}\rightarrow (-)^{ **}
+        \end{equation*}
+        cuyas componentes son
+        \begin{equation*}
+            \eta_V:V\rightarrow V^{**}
+        \end{equation*}
+        con $V$ espacio vectorial, definida como sigue:
+        \begin{equation*}
+            \eta_V(v)(f)=f(v),\quad\forall v\in V\textup{ y }\forall f\in V^*
+        \end{equation*}
+        Probaremos que el diagrama de abajo es conmutativo.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, sea $u\in\Hom{_k\mathcal{M}}{V}{W}$, hay que ver que el diagrama
+        \begin{equation*}
+            \begin{array}{rcccl}
+                &V & \overset{\longrightarrow}{\eta_V} & V^** &\\
+                u & \downarrow & & \downarrow & u^{**} \\
+                &W & \overset{\longrightarrow}{\eta_W} & W^{**} &\\
+            \end{array}
+        \end{equation*}
+        En efecto, sea $v\in V$ y $f\in W^*$. Se tiene que
+        \begin{equation*}
+            \begin{split}
+                [u^**\circ\eta_V(v)][f]&=[\eta_V(v)\circ u^*](f)\\
+                &=\eta_V(v)(u^*(f))\\
+                &=u^*(f)(v)\\
+                &=f(u(v))\\
+                &=\eta_W(u(v))(f)\\
+                &=[(\eta_W\circ u)(v)](f)\\
+            \end{split}
+        \end{equation*}
+        por tanto, $\cf{\eta}{1_{_k\mathcal{M}}}{(-)^{**}}$ es una transformación natural.
+    \end{proof}
+
+    \begin{exa}
+        Para todo funtor $\cf{F}{\mathcal{C}}{\mathcal{D}}$ se define la \textbf{transformación natural identidad}, tal que
+        \begin{equation*}
+            \begin{split}
+                1_F:F&\rightarrow F\\
+                1_F&=\left(1_{ F(C)} \right)_{C\in\Obj{\mathcal{C}}}\\
+            \end{split}
+        \end{equation*}
+    \end{exa}
+
+    \begin{exa}
+        Sean $\cf{F,G,H}{\mathcal{C}}{\mathcal{D}}$ tres funtores y $\cf{\alpha}{F}{G}$ y $\cf{\beta}{G}{H}$ transformaciones naturales. Definimos una transformación natural como sigue:
+        \begin{equation*}
+            \begin{split}
+                (\beta\circ\alpha)_C&:F(C)\rightarrow H(C)\\
+                (\beta\circ\alpha)_C&=\beta_c\circ\alpha_C,\quad\forall C\in\Obj{\mathcal{C}}\\
+            \end{split}
+        \end{equation*}
+        a $\left((\beta\circ\alpha)_C \right)_{C\in\Obj{\mathcal{C}}}$ la conoceremos como \textbf{composición vertical de las transformaciones naturales $\alpha$ y $\beta$}.
+    \end{exa}
+
+    \begin{exa}
+        Sean $\cf{F,G}{\mathcal{C}}{\mathcal{D}}$ funtores y $\cf{\alpha}{F}{G}$ un isomorfismo natural. Definimos la siguiente transformación
+        \begin{equation*}
+            \begin{split}
+                \alpha^{-1}:G\mapsto F
+            \end{split}
+        \end{equation*}
+        tal que $(\alpha^{-1})_C=(\alpha_C)^{-1}$ para todo $C\in\Obj{\mathcal{C}}$. Esta transformación natural es llamada \textbf{transformación natural inversa}.
+    \end{exa}
+
+    \begin{exa}
+        Sean $\cf{F,G}{\mathcal{C}}{\mathcal{D}}$ y $\cf{H}{\mathcal{D}}{\mathcal{E}}$ tres funtores y $\cf{\alpha}{F}{G}$ una transformación natural. Definimos una transformación nautral
+        \begin{equation*}
+            \cf{H_\alpha}{H\circ F}{H\circ G}
+        \end{equation*}
+        tal que $(H_\alpha)_C=H(\alpha_C)$ para todo $C\in\Obj{\mathcal{C}}$. La llamaremos \textbf{Whiskering de la transformación nautral por la derecha de $H$}.
+
+        De forma análoga, si $\cf{K}{\mathcal{B}}{\mathcal{C}}$ es un funtor, se define la transformación natural
+        \begin{equation*}
+            _\alpha K:F\circ K\rightarrow G\circ K
+        \end{equation*}
+        tal que $(_\alpha K)_B=\alpha_{ K(B)}$ para todo $B\in\Obj{\mathcal{B}}$. Llamaremos a esta tranformación nautral \textbf{Whiskering de la transformación natural por la izquierda de $K$}.
+    \end{exa}
+
+    \begin{obs}
+        En el ejemplo anterior, si $\alpha$ es un isomorfismo natural, entonces $H_\alpha$ y $_\alpha K$ también serán isomorfismos naturales.
+    \end{obs}
+
+    \begin{propo}
+        Sean $\cf{F,G}{\mathcal{C}}{\mathcal{D}}$ y $\cf{H,K}{\mathcal{D}}{\mathcal{E}}$ funtores, $\cf{\alpha}{F}{G}$ y $\cf{\beta}{H}{K}$ transformaciones naturales. Entonces, $\cf{\beta*\alpha}{H\circ F}{K\circ G}$ definida como sigue:
+        \begin{equation*}
+            (\beta*\alpha)_C=\beta_{G(C)} \circ H_{\alpha(C)},\quad \forall C\in\Obj{\mathcal{C}}
+        \end{equation*}
+        es una transformación nautral.
+    \end{propo}
+
+    \begin{proof}
+        Aplicamos que $\beta$ es una transformación nautral al morfismo $\cf{\alpha_C}{F(C)}{G(C)}$. Queremos que el diagrama
+        \begin{equation*}
+            \begin{array}{ccc}
+                H\circ F(C) & \longrightarrow & K\circ F(C)\\
+                \downarrow & & \downarrow\\
+                H\circ G(C) &\longrightarrow &K\circ G(C)\\
+            \end{array}
+        \end{equation*}
     \end{proof}
 
 \end{document}

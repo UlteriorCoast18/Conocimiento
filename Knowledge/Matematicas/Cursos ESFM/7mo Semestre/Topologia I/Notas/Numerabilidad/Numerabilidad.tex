@@ -1,0 +1,257 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand{\V}[1]{\ensuremath{\mathcal{V}(#1)}}
+\newcommand{\Int}[1]{\ensuremath{\mathring{#1}}}
+\newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\Fr}[1]{\ensuremath{\textup{Fr}(#1)}}
+\newcommand{\natint}[1]{\ensuremath{\left[\!\left[#1\right]\!\right]}}
+\newcommand{\floor}[1]{\ensuremath{\lfloor#1\rfloor}}
+\newcommand{\Card}[1]{\ensuremath{\textup{Card}\left(#1\right)}}
+\newcommand{\Pot}[1]{\ensuremath{\mathcal{P}\left(#1\right)}}
+\newcommand{\id}[1]{\ensuremath{\textup{id}_{#1}}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas Curso Topología I
+    
+    Axiomas de Numerabilidad}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \setcounter{chapter}{4} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Axiomas de Numerabilidad}
+    
+    \section{Conceptos Fundamentales}
+
+    \begin{obs}
+        De ahora en adelante numerable será equivalente a lo sumo numerable.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico.
+        \begin{enumerate}
+            \item  Sean $x\in X$ y $\mathcal{U}$ una colección de vecindades de $x$. Diremos que $\mathcal{U}$ es un \textbf{sistema fundamental de vecindades de $x$} si dada $V\in\mathcal{V}(x)$ existe $U\in\mathcal{U}$ tal que $U\subseteq V$. Si $\mathcal{U}$ es numerable, $\mathcal{U}$ se dice un \textbf{sistema fundamental numerable de vecindades de $x$}.
+            \item Si dado $x\in X$ existe un sistema fundamental numerable de vecindades de $x$, el espacio $(X,\tau)$ se dice \textbf{primero numerable}.
+            \item El espacio $(X,\tau)$ se dice un \textbf{espacio segundo numerable} si su topología tiene una base numerable.
+            \item El espacio $(X,\tau)$ se dice un \textbf{espacio separable} si existe $A\subseteq X$ tal que $A$ es numerable y además $\Cls{A}=X$ (es decir que es denso en $X$).
+            \item El espacio $(X,\tau)$ se dice un \textbf{espacio de Lindelöf} si cada cubierta abierta del espacio tiene una subcubierta numerable.
+        \end{enumerate}
+    \end{mydef}
+
+    \section{Espacios Primero Numerables}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio primero numerable. Si $Y\subseteq X$ entonces $(Y,\tau_Y)$ es primero numerable.
+    \end{propo}
+
+    \begin{proof}
+        Sea $Y\subseteq X$. Sea $y\in Y$, en particular $y\in X$. Como $(X,\tau)$ es primero numeable, existe un sistema fundamental de vecindades de $x$ en $(X,\tau)$, digamos $\mathcal{U}'$, es decir que para este $\mathcal{U}'$ se cumple:
+        \begin{equation*}
+            \forall V\in\mathcal{V}(x)\exists U\in\mathcal{U}'\textup{ tal que }U\subseteq V
+        \end{equation*}
+        Sea
+        \begin{equation*}
+            \mathcal{U}=\left\{Y\cap U\Big|U\in\mathcal{U}' \right\}
+        \end{equation*}
+        Tenemos que $U\in\mathcal{U}'$, $Y\cap U$ es una vecindad de $y$ en $(Y,\tau_Y)$ y, como $\mathcal{U}'$ es numerable, también $\mathcal{U}$ lo es.
+
+        Sea $W\subseteq Y$ una vecindad de $y$ en $(Y,\tau_Y)$, luego existe $V\in\tau$ tal que
+        \begin{equation*}
+            y\in Y\cap V\subseteq W
+        \end{equation*}
+        Como en particular $V$ es una vecindad de $y$ en $(X,\tau)$, entonces existe $U\in\mathcal{U}'$ tal que
+        \begin{equation*}
+            U\subseteq V
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            Y\cap U\subseteq Y\cap V\subseteq W
+        \end{equation*} 
+        donde $Y\cap U\in\mathcal{U}$. Así, $\mathcal{U}$ es un sistema fundamental de vecindades de $y$ en $(Y,\tau_Y)$. Como $y\in Y$ fue arbitrario, se sigue que $(Y,\tau_Y)$ es primero numerable.
+    \end{proof}
+
+    \begin{propo}
+        La propiedad de ser primero numerable es topológica.
+    \end{propo}
+
+    \begin{proof}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos homeomorfos tales que $(X_1,\tau_1)$ es primero numerable. Sea $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ el homeomorfismo entre tales espacios. Veamos que $(X_2,\tau_2)$ es primero numeable.
+
+        En efecto, sea $x_2\in X_2$, entonces existe un único $x_1\in X_1$ tal que $f(x_1)=x_2$. Como $(X_1,\tau_1)$ es primero numerable, entonces existe $\mathcal{U}_1$ sistema fundamental numerable de vecindades de $x_1$. Sea
+        \begin{equation*}
+            \mathcal{U}_2=\left\{f(U_1)\Big|U_1\in\mathcal{U}_1 \right\}
+        \end{equation*}
+        Como $\mathcal{U}_1$ es numerable, $\mathcal{U}_2$ también lo es. Y, como $U_1\in\mathcal{U}_1$ es una vecindad de $x_1$, entonces $f(U_1)$ es una vecindad de $x_2$ (por ser $f$ homeomorfismo). Por tanto, $\mathcal{U}_2$ es una colección de vecindades de $x_2$. Ahora, sea $V\in\mathcal{V}(x_2)$ una vecindad de $x_2$. Como $f$ es homeomorfismo entonces
+        \begin{equation*}
+            f^{-1}(V)\in\mathcal{V}(x_1)
+        \end{equation*}
+        Luego, existe $U\in\mathcal{U}_1$ tal que
+        \begin{equation*}
+            U\subseteq f^{-1}(V)\Rightarrow f(U)\subseteq V
+        \end{equation*}
+        por ser $f$ biyección, donde $f(U)\in\mathcal{U}_2$.
+
+        Así, $\mathcal{U}_2$ es un sistema fundamental numerable de vecindades de $x_2$. Como el elemento $x_2$ fue arbitrario, se sigue que $(X_2,\tau_2)$ es primero numerable. Luego, la propiedad de ser primero numerable es topológica.
+    \end{proof}
+
+    \begin{propo}
+        Sean $\left\{(X_k,\tau_k) \right\}_{ k\in\mathbb{N}}$ una familia numerable de espacios topológicos y
+        \begin{equation*}
+            X=\prod_{ k\in\mathbb{N}}X_k
+        \end{equation*}
+        Entonces, $(X,\tau_p)$ es primero numerable si y sólo si $(X_k,\tau_k)$ es primero numerable, para todo $k\in\mathbb{N}$.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow)$: Es inmediato del hecho de que la propiedad de ser primero numerable es hereditaria y topológica.
+
+        $\Leftarrow)$: Suponga que $(X_k,\tau_k)$ es primero numerable para todo $k\in\mathbb{N}$. Sea $x=(x_n)_{n\in\mathbb{N}}\in X$. Si $k\in\mathbb{N}$, se tiene que $(X_k,\tau_k)$ es primero numerable. Para $x_k\in X_k$ existe
+        \begin{equation*}
+            \mathcal{U}_k=\left\{U_m^k \right\}_{ m\in\mathbb{N}}
+        \end{equation*}
+        sistema fundamental numerable de vecindades de $x_k$ en $(X_k,\tau_k)$. Definimos
+        \begin{equation*}
+            \begin{split}
+                \mathcal{U}=\left\{\prod_{ l\in\mathbb{N}}A_l\Big|\right.&\textup{ existe }I=\left\{i_1,...,i_t \right\} \subseteq\mathbb{N}\textup{ finito con }i_r<i_s\textup{ si }r<s\textup{ tal que } \\
+                &\left.l\in\mathbb{N}-I\Rightarrow A_l=X_l\textup{ y }l\in I\Rightarrow A_k\in\mathcal{U}_l \right\}\\
+            \end{split}
+        \end{equation*}
+        veamos que $\mathcal{U}\subseteq\mathcal{V}(x)$ y además $\mathcal{U}$  es un sistema fundamental de vecindades de $x$. Sea $U=\prod_{t\in\mathbb{N}}U_t$ un básico de la topología producto tal que $x\in U$. Tenemos que existe $I\subseteq\mathbb{N}$ finito tal que
+        \begin{equation*}
+            l\in\mathbb{N}-I\Rightarrow U_l=X_l\textup{ y }l\in I\Rightarrow x_l\in U_l\in\tau_l
+        \end{equation*}
+        Para $l\in I$ existe $U_{ m_l}^l\in\mathcal{U}_l$ tal que $x_l\in U_{ m_l}^l\subseteq U_l$. Sea
+        \begin{equation*}
+            A=\prod_{ l\in\mathbb{N}}A_l
+        \end{equation*}
+        donde,
+        \begin{equation*}
+            l\in\mathbb{N}-I\Rightarrow A_l=X_l\textup{ y }l\in I\Rightarrow A_l=U_{ m_l}^l
+        \end{equation*}
+        por tanto, $A\in\mathcal{U}$ y es tal que $x\in A\subseteq U$.
+    \end{proof}
+
+\end{document}
