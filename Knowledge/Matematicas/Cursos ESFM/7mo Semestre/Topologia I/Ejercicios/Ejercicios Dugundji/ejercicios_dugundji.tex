@@ -1124,4 +1124,65 @@
         Sea $X$ un conjunto, $p\in X$ y $K\subseteq X$ tal que $\abs{K}\geq2$
     \end{excer}
 
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico.
+        \begin{enumerate}
+            \item Encuentre un ejemplo de un filtro definido sobre $X$ que converja a dos puntos distintos.
+            \item Sea $\Delta=\left\{(x,y)\in X\times X\Big|x=y \right\}$, demuestre que $\Delta$ es un conjunto cerrado en $(X\times X,\tau_p)$ si y sólo si dado un filtro $\mathcal{F}$ sobre $X$ convergente, este converge a un único punto.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{excer}
+        Sean $X,Y$ dos conjuntos y $\cf{f}{X}{Y}$ una función. Si $\xi$ es un ultrafiltro sobre $X$, entonces el filtro $f(\xi)^+$, generado por la base de filtro $f(\xi)$ es un ultrafiltro en $Y$.
+    \end{excer}
+
+    \begin{proof}
+        Recordemos que
+        \begin{equation*}
+            f(\xi)^+=\left\{A\subseteq Y\Big|\textup{existe }E\in\xi\textup{ tal que }f(E)\subseteq A \right\}
+        \end{equation*}
+        Por una proposición anterior ya se sabe que $f(\xi)^+$ es filtro sobre $Y$. Veamos que es ultrafiltro. Primero, probaremos que dado un conjunto $A\subseteq Y$, uno de los dos conjuntos $A,Y-A$ está en $f(\xi)^+$. En efecto, sea
+        \begin{equation*}
+            B=f^{-1}(A)
+        \end{equation*}
+        Como $B\subseteq X$, entonces $B\in\xi$ ó $X-B\in \xi$.
+        \begin{itemize}
+            \item Suponga que $B\in\xi$, entonces se sigue por la definición de $B$ que
+            \begin{equation*}
+                f(B)\in f(\xi)
+            \end{equation*}
+            y, como $f(f^{-1}(A))\subseteq A$, se sigue que $f(B)\subseteq A$, luego $A\in\xi$.
+            \item Suponga que $X-B\in\xi$. Afirmamos que
+            \begin{equation*}
+                X-B=X-f^{-1}(A)=f^{-1}(Y-A)
+            \end{equation*}
+            en efecto, veamos que
+            \begin{equation*}
+                \begin{split}
+                    x\in X-f^{-1}(A)&\iff f(x)\notin A\\
+                    &\iff f(x)\in Y-A\\
+                    &\iff x\in f^{-1}(Y-A)\\
+                \end{split}
+            \end{equation*}
+            lo cual prueba el resultado. Por tanto, como $X-B=X-f^{-1}(A)\in \xi$, se sigue que $f^{-1}(Y-A)\in f(\xi)$. Luego, como $f(f^{-1}(Y-A))\subseteq Y-A$, entonces se tiene que $Y-A\in f(\xi)^+$.
+        \end{itemize}
+        Por tanto, $A\in f(\xi)^+$ ó $Y-A\in f(\xi)^+$ (no pueden estar los dos a la vez por ser $f(\xi)^+$ filtro). Luego, por una proposición $f(\xi)^+$ es ultrafiltro.
+    \end{proof}
+
+    \begin{excer}
+        Sean $\mathcal{F}_1,...,\mathcal{F}_n$ filtros definidos sobre $X$ y $\mathcal{U}$ un ultrafiltro sobre $X$ tal que $\mathcal{F}_1\cap \cdots\cap \mathcal{F}_n\subseteq\mathcal{U}$. Demuestre que existe $i\in\natint{1,n}$ tal que $\mathcal{F}_i\subseteq\mathcal{U}$.
+    \end{excer}
+
+    \begin{proof}
+        Procederemos por inducción sobre $n$. Considere el caso $n=2$. Se tienen dos casos:
+        \begin{enumerate}
+            \item $\mathcal{F}_1\subseteq \mathcal{U}$, en cuyo caso ya hemos terminado.
+            \item $\mathcal{F}_1\nsubseteq \mathcal{U}$. 
+        \end{enumerate}
+    \end{proof}
+
+    \begin{excer}[]
+        
+    \end{excer}
+
 \end{document}

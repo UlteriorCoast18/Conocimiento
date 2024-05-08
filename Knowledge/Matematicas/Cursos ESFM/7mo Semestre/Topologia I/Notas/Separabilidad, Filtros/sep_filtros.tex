@@ -679,7 +679,7 @@
         \begin{enumerate}
             \item $\emptyset\notin\mathcal{F}$.
             \item Si $F_1,F_2\in\mathcal{F}$, entonces $F_1\cap F_2\in\mathcal{F}$.
-            \item Si $K\subseteq X$ y $F\subseteq K$ para algún $F\in\mathcal{F}$, entonces $K\subseteq F$. (\textit{Propiedad de absorción}).
+            \item Si $K\subseteq X$ y $F\subseteq K$ para algún $F\in\mathcal{F}$, entonces $K\in\mathcal{F}$. (\textit{Propiedad de absorción}).
         \end{enumerate}
     \end{mydef}
 
@@ -721,7 +721,7 @@
             \item $X\in\xi_x$.
             \item $\emptyset\notin\xi_x$.
             \item $M,N\in\V{x}$ implica que $M\cap N\in\V{x}$.
-            \item Seea $L\subseteq X$ tal que $V\in\V{x}$ cumple que $V\subseteq L$, entonces $L\in\V{x}$.
+            \item Sea $L\subseteq X$ tal que $V\in\V{x}$ cumple que $V\subseteq L$, entonces $L\in\V{x}$.
         \end{enumerate}
         Luego, $\xi_x$ es un filtro sobre $X$.
     \end{proof}
@@ -993,7 +993,22 @@
     \end{excer}
 
     \begin{proof}
-        Ya se tiene que $f(\xi)$ es un filtro en $Y$. 
+        Ya se tiene que $f(\xi)$ es un filtro en $Y$. Veamos que es ultrafiltro. En efecto, sea $A\subseteq Y$, veremos que $A\in f(\xi)$ ó $Y-A\in f(\xi)$.
+
+        Sea $B=f^{-1}(A)\subseteq X$. Como $\xi$ es ultrafiltro, entonces $B\in\xi$ ó $X-B\in\xi$.
+        \begin{enumerate}
+            \item Suponga que $B\in\xi$, se tiene que, al ser $f$ suprayectiva:
+            \begin{equation*}
+                f(B)=f(f^{-1}(A))=A
+            \end{equation*}
+            por ende, $A\in f(\xi)$.
+            \item Suponga que $X-B\in\xi$, se tiene que
+            \begin{equation*}
+                f(X-B)=f(X-f^{-1}(A))=f(f^{-1}(Y-A))=Y-A
+            \end{equation*}
+            pues, $X-f^{-1}(A)=f^{-1}(Y-A)$ y por ser $f$ suprayectiva. Luego, $Y-A\in f(\xi)$.
+        \end{enumerate}
+        Por (1) y (2), se sigue que $A\in f(\xi)$ ó $Y-A\in f(\xi)$. Por tanto, $f(\xi)$ es ultrafiltro.
     \end{proof}
 
     \begin{exa}
@@ -1093,7 +1108,26 @@
     \end{excer}
 
     \begin{proof}
-        
+        $\Rightarrow)$. Suponga que $x\in\Cls{A}$, entonces para toda $V\subseteq X$ vecindad de $x$, $A\cap V\neq\emptyset$. Sea
+        \begin{equation*}
+            \mathcal{B}=\left\{A\cap V\Big|V\in\xi_x \right\}
+        \end{equation*}
+        Por una proposición anterior, $\mathcal{B}$ es una base de filtro sobre $X$ tal que
+        \begin{enumerate}
+            \item $\xi_x\subseteq\mathcal{B}^+$.
+            \item $A\in\mathcal{B}^+$
+        \end{enumerate}
+        siendo $\mathcal{B}^+$ el filtro generado por la base de filtro $\mathcal{B}$. Sea $\xi=\mathcal{B}^+$. Este filtro cumple que $\xi\rightarrow x$ (pues $\xi_x\subseteq\xi$) y que $A\in\xi$, con lo que se tiene el resultado.
+
+        $\Leftarrow)$: Suponga que existe un filtro $\xi$ sobre $X$ tal que $\xi\rightarrow x$ y $A\in \xi$. Como $\xi\rightarrow x$, entonces $\xi_x\subseteq \xi$. Además, como $A\in\xi$ se tiene que
+        \begin{equation*}
+            A\cap F\neq\emptyset,\quad\forall F\in\xi
+        \end{equation*}
+        en particular,
+        \begin{equation*}
+            A\cap V\neq\emptyset,\quad\forall V\in\xi_x
+        \end{equation*}
+        luego, $x\in\Cls{A}$.
     \end{proof}
 
     \begin{excer}
@@ -1101,7 +1135,19 @@
     \end{excer}
 
     \begin{proof}
-        
+        $\Rightarrow)$: Suponga que $(X,\tau)$ es $T_2$ y sea $\mathcal{F}$ un filtro que converge digamos a $l\in X$. Probaremos que $l$ es único. En efecto, sea $m\in X$ tal que $m\neq l$. Como el espacio es $T_2$, existen dos abiertos $U,V\in\tau$ tales que
+        \begin{equation*}
+            l\in U,\quad m\in V,\quad\textup{y}\quad U\cap V=\emptyset
+        \end{equation*}
+        Como $\mathcal{F}\rightarrow l$, entonces $\xi_l\subseteq\mathcal{F}$, luego no puede suceder que $V\in\mathcal{F}$, pues $V\cap U=\emptyset$, así $\xi_m\nsubseteq\mathcal{F}$. Por tanto, $\mathcal{F}\nrightarrow m$. Luego el $l$ al que converge el filtro es único.
+
+        $\Leftarrow)$: Suponga la tesis. Sean $x,y\in X$ tales que $x\neq y$. Afirmamos que $y$ no es punto de acumulación del filtro $\xi_x$. En efecto, si $y$ fuera punto de acumulación de $\xi_x$ entonces por una proposición anterior existiría un filtro $\mathcal{F}$ sobre $X$ tal que $\xi_x\subseteq\mathcal{F}$ y $\mathcal{F}\rightarrow y$ luego, $\mathcal{F}\rightarrow x,y$. Por hipótesis se seguiría que $x=y$\contradiction.
+
+        Por tanto, $y$ no es punto de acumulación de $\xi_x$, luego existe $W\subseteq X$ vecindad de $x$ tal que $y\notin\Cls{W}$, es decir que existe $V$ abierto que contiene a $y$ tal que $W\cap V=\emptyset$. En particular, como $W$ es vecindad de $x$ existe $U$ abierto que contiene a $x$ tal que $U\subseteq W$. Por tanto,
+        \begin{equation*}
+            x\in U,\quad y\in V\quad\textup{y}\quad U\cap V=\emptyset
+        \end{equation*}
+        Así, $(X,\tau)$ es $T_2$.
     \end{proof}
 
     \begin{propo}

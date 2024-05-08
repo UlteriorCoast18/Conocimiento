@@ -979,4 +979,42 @@
         \end{equation*}
     \end{proof}
 
+    Como veremos en el capítulo 3 (si es que nos da el tiempo suficiente de llegar hasta allí), la naturalidad en el caso de bifuntores resultará importante cuando lidiemos con funtores adjuntos (esto se definirá más adelante). Es por esta razón que concluiremos nuestra discusión sobre transformaciones naturales con el siguiente resultado, que muestra que la naturalidad de bifuntores es equivalente a la naturalidad de los funtores asociados izquierdos y derechos (mismos que se definieron en una proposición anterior).
+
+    Para ello, recordemos que un bifuntor es un funtor $\cf{F}{\mathcal{A}\times\mathcal{B}}{\mathcal{C}}$, donde $\mathcal{A}\times\mathcal{B}$ es el producto de dos categorías (es básicamente un funtor de dos variables).
+
+    Recordemos además que, para un bifuntor, los funtores asociados derecho (respectivamente, izquierdo) respecto a $A$ (respectivamente, $B$), se definen como
+    \begin{enumerate}
+        \item $F_A(B)=F(A,B)$ para todo $B\in\Obj{\mathcal{B}}$ (respectivamente, $F^B(A)=F(A,B)$ para todo $A\in\Obj{\mathcal{A}}$).
+        \item $F_A(f)=F(1_A,f)$ para todo $f$ morfismo de la categoría $\mathcal{B}$ (respectivamente, $F^B(g)=F(g,1_B)$ para todo morfismo $g$ en la categoría $\mathcal{A}$).
+    \end{enumerate}
+
+    Con esto en mente, enunciemos la siguiente proposición.
+
+    \begin{propo}
+        Sean $\cf{F,G}{\mathcal{A}\times\mathcal{B}}{\mathcal{C}}$ dos bifuntores. Una familia de morfismos $\left\{\alpha_{(A,B)} \right\}_{(A,B)\in\Obj{\mathcal{A}\times\mathcal{B}}}$ (donde $\cf{\alpha_{(A,B)}}{F(A,B)}{G(A,B)}$ es un morfismo en la categoría $\mathcal{C}$) forman una transformación natrual $\cf{\alpha}{F}{G}$ si y sólo si se cumplen las siguientes condiciones:
+        \begin{enumerate}
+            \item Para todo $A_0\in\Obj{\mathcal{A}}$, la familia de morfismos $\left\{\left(\alpha_{A_0}\right)_B \right\}_{B\in\Obj{\mathcal{B}}}$ (donde $\cf{\left(\alpha_{A_0}\right)_B}{F_{A_0}(B)}{G_{A_0}(B)}$ es morfismo en la categoría $\mathcal{C}$), forma una transformación natural $\cf{\alpha_{ A_0}}{F_{A_0}}{G_{A_0}}$, donde
+            \begin{equation*}
+                \left(\alpha_{A_0}\right)_B=\alpha_{(A_0,B)},\quad\forall B\in\Obj{\mathcal{B}}
+            \end{equation*}
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    Ahora se introducirá un concepto importante: funtores representables.
+    
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría. Decimos que un funtor covariante $\cf{F}{\mathcal{C}}{\Cat{Set}}$ es \textbf{representable} si existe $C\in\Obj{\mathcal{C}}$ y un isomorfismo natural $F\cong\HOM{\mathcal{C}}(C,-)$. 
+        
+        Similarmente para un funtor contravariante $\cf{G}{\mathcal{C}}{\Cat{Set}}$ se dice \textbf{representable} si existe $C\in\Obj{\mathcal{C}}$ y un isomorfismo natural $G\cong\HOM{\mathcal{C}}(-,C)$.
+        
+        En ambos casos, $C$ es llamado el \textbf{objeto representante} del funtor.
+    \end{mydef}
+
+    
+
 \end{document}

@@ -119,6 +119,7 @@
 \newcommand{\natint}[1]{\left[\!\left[#1\right]\!\right]}
 \newcommand{\contradiction}{\ensuremath{\#_{c}}}
 \newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\supp}[1]{\ensuremath{\textup{supp}\left(#1\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -447,8 +448,6 @@
 
     ¿Existen grupos topológicos numerablemente compactos que no sean compactos? La respuesta es que si, en el que se usa el $\Sigma$-producto.
 
-    \newcommand{\supp}[1]{\ensuremath{\textup{supp}\left(#1\right)}}
-
     \begin{mydef}
         Sea $\left\{X_i\right\}_{ i\in I}$ un conjunto de espacios topológicos. En el producto $X=\prod_{ i\in I}X_i$ considere un punto $p\in X$, es decir $p=\left(p_i \right)_{ i\in I}$. Definimos el \textbf{soporte de un punto $x\in X$ respecto a $p$} como:
         \begin{equation*}
@@ -465,7 +464,13 @@
         \begin{equation*}
             G=\prod_{ i\in I}G_i
         \end{equation*}
-        considere el $\Sigma$-producto $G^*$ con la identidad $e_G$ como punto base.
+        considere el $\Sigma$-producto $G^*$ con la identidad $e_G$ como punto base (básicamente se toman todos los elementos de $G$ tales que el elemento tiene a lo sumo una cantidad numerable de entradas diferentes de la identidad). Se tiene que $G^*$ es un subgrupo propio denso de $G$ que es numerablemente compacto.
     \end{exa}
+
+    \begin{proof}
+        Ya se tiene que $G^*$ es un subgrupo propio de $G$. Veamos que es denso. En efecto, el hecho de que sea denso se sigue de que $H<G$ definido como todos los elementos de $G$ que tienen una cantidad finita de entradas diferentes de la identidad es denso en $G$, luego $H<G^*<G$. Veamos que $G^*$ es numerablemente compacto.
+
+        En efecto,
+    \end{proof}
 
 \end{document}
