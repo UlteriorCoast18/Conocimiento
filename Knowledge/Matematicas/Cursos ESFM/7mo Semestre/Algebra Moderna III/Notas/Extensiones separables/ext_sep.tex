@@ -113,7 +113,7 @@
 
 %En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
 
-\newcommand\abs[1]{\ensuremath{\biglvert#1\bigrvert}}
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
@@ -1134,7 +1134,7 @@
     \end{mydef}
 
     \begin{propo}
-        Sea $E/F$ una extensión de campos y $G=\Aut{F}{E}$. Entonces, las siguientes condiciones son equivalentes:
+        Sea $E/F$ una extensión de campos y $G=\Aut{F}{E}$. Entonces, $F\subseteq E^G\subsetneq E$ es una torre de campos y, las siguientes condiciones son equivalentes:
         \begin{enumerate}
             \item $E/F$ es de Galois.
             \item $E$ es el campo de descomposición sobre $F$ de una familia de polinomios separables (también sobre $F$).
@@ -1143,6 +1143,8 @@
     \end{propo}
 
     \begin{proof}
+        Por definición de $E^G$ ya se tiene que $F\subseteq E^G\subsetneq E$ es torre de campos.
+
         Es claro que (1)$\iff$(2).
 
         $(1)\Rightarrow(3):$ Suponga que $E/F$ es de Galois. Notemos que se tiene la torre de campos
@@ -1188,6 +1190,130 @@
             g^\theta(X)=g(X)
         \end{equation*}
         por tanto, $g(X)\in E^{G}[X]=F[X]$ donde $g(\alpha)=0$. Por tanto, $f(X)\divides g(X)\Rightarrow f(X)$ es separable sobre $F$ y todas las raíces de $f(X)$ están en $E$ (más aún, $g(X)=f(X)$). De esta forma se sigue $E/F$ es normal y separable, es decir, de Galois.
+    \end{proof}
+
+    \begin{propo}
+        Sea $E/F$ una extensión de campos y $G=\Aut{F}{E}$. Si $E/F$ es normal, entonces
+        \begin{enumerate}
+            \item $E^G/F$ es puramente inseparable.
+            \item Si $F_S$ es la cerradura separable de $F$ en $E$, entonces $E^G F_S=E$ y $E^G\cap F_S=F$.
+            \item Si $\alpha\in E^G\backslash F$, entonces $\car(F)=p>0$ y existe $t>1$ tal que $\alpha^{p^t}\in F$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{obs}
+        En el caso de que $E^G/F$ sea puramente inseparable y $\car(F)=0$, entonces la extensión también sería separable. Por ende, la única forma en que suceda esto es que $E^G=F$.
+    \end{obs}
+
+    \begin{propo}
+        Sea $E/F$ una extensión finita. Entonces,
+        \begin{enumerate}
+            \item $\abs{\Aut{F}{E}}\leq[E:F]$.
+            \item $\abs{\Aut{F}{E}}=[E:F]$ si y sólo si $E/F$ es de Galois.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): Ya se tiene que
+        \begin{equation*}
+            \abs{\Aut{F}{E}}\leq[E:F]_S\leq[E:F]
+        \end{equation*}
+        pues $[E:F]_S$ es el número de $F$-homomorfismos de $E$ en $\overline{F}$ que dejan fijo a $F$.
+
+        De (2): Veamos que
+        \begin{equation*}
+            \begin{split}
+                \abs{\Aut{F}{E}}=[E:F]&\iff \abs{\Aut{F}{E}}=[E:F]_S=[E:F]\\
+                &\iff \abs{\Aut{F}{E}}=[E:F]_S=[E:F]\\
+                &\iff E/F\textup{ es normal y separable}\\
+                &\iff E/F\textup{ es de Galois}\\
+            \end{split}
+        \end{equation*}
+        pues, si $\abs{\Aut{F}{E}}=[E:F]_S$, entonces todo $F$-homomorfismo de $E$ en $\overline{F}$ es un  $F$-automorfimso de $E$. Y, si los dos índices coinciden se tiene que $E/F$ es separable.
+    \end{proof}
+
+    \begin{propo}
+        Sea $E/F$ una extensión separable tal que existe $n\in\mathbb{N}$ que cumple
+        \begin{equation*}
+            \forall \alpha\in E,[F(\alpha),F]\leq n
+        \end{equation*}
+        Entonces, $E/F$ es finita y $[E:F]\leq n$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $\beta\in E$ tal que
+        \begin{equation*}
+            [F(\alpha):F]\leq [F(\beta):F],\quad\forall\alpha\in E
+        \end{equation*}
+        En particular, $[F(\beta):F]\leq n$. Afirmamos que $E=F(\beta)$. En efecto, supóngase que $E\neq F(\beta)$. Sea $\alpha\in E$ tal que $\alpha\notin F(\beta)$, luego
+        \begin{equation*}
+            F\subseteq F(\beta)\subsetneqq F(\alpha,\beta)\subseteq E
+        \end{equation*}
+        es una torre de campos de tal manera que $E(\alpha,\beta)/F$ es separable y finita (por ser finitamente generada y ser algebraica). Por el teorema del elemento primitivo existe $\theta\in F(\alpha,\beta)$ tal que
+        \begin{equation*}
+            F(\alpha,\beta)=F(\theta)
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            [F(\beta):F]<[F(\theta):F]\contradiction
+        \end{equation*}
+        por la elección de $\beta\in E$. Por tanto, $F(\beta)=E$. Luego
+        \begin{equation*}
+            [E:F]\leq n
+        \end{equation*}
+        donde $E/F$ es finita.
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema de Artín}]
+        Sea $E$ un campo arbitrario y $G$ un grupo finito de automorfismos de $F$. Entonces, $E/E^G$ es una extensión de Galois finita tal que
+        \begin{equation*}
+            \Aut{E^G}{E}=G
+        \end{equation*}
+        y, $[E:E^G]=\abs{G}$.
+    \end{theor}
+
+    \begin{proof}
+        Sea $\alpha\in E$ y
+        \begin{equation*}
+            A_\alpha=\left\{\sigma(\alpha)\Big|\sigma\in G \right\}\subseteq E
+        \end{equation*}
+        Tenemos que $\abs{A_\alpha}\leq\abs{G}<\infty$. Si $m=\abs{A_\alpha}$, expresamos
+        \begin{equation*}
+            A_\alpha=\left\{\sigma_1(\alpha),...,\sigma_m(\alpha)\right\}
+        \end{equation*}
+        Notemos que para todo $\theta\in G$:
+        \begin{equation*}
+            \left\{\theta(\sigma_1(\alpha)),...,\theta(\sigma_m(\theta)) \right\}=A_\alpha
+        \end{equation*}
+        es decir, los elementos de $G$ permitan a los elementos de $A_\alpha$. Definimos
+        \begin{equation*}
+            g(X)=(X-\sigma_1(\alpha))\cdot...\cdot(X-\sigma_m(\alpha))\in E[X]
+        \end{equation*}
+        si $\theta\in G$, se tiene que
+        \begin{equation*}
+            g^\theta(X)=g(X)
+        \end{equation*}
+        (por la observación anterior). Luego, $g(X)\in E^G[X]$. Si $f_\alpha(X)=\irr(\alpha,E^G,X)$, entonces $f_\alpha(X)\divides g(X)$ en $E^G[X]$. Luego, $f_\alpha(X)$ es separable (pues todas las raíces de $g(X)$ son simples) y todos los $E^G$ conjugados de $\alpha$ pertenecen a $E$. Por lo tanto, $E/E^G$ es normal y separable con
+        \begin{equation*}
+            [E^G(\alpha):E^G]=\deg(f_\alpha(X))\leq m=\abs{A_\alpha}\leq\abs{G}
+        \end{equation*}
+        Por tanto, de la proposición anterior se sigue que
+        \begin{equation*}
+            [E:E^G]\leq\abs{G}
+        \end{equation*}
+        pues la extensioń $E/E^G$ es de Galois finita. Además,
+        \begin{equation*}
+            \abs{\Aut{E^G}{E}}=[E:E^G]\leq\abs{G}\leq\abs{\Aut{E^G}{E}}
+        \end{equation*}
+        pues, $G\subseteq \Aut{E^G}{E}$. Por tanto,
+        \begin{equation*}
+            \Aut{E^G}{E}=G
+        \end{equation*}
+        y, $[E:E^G]=\abs{G}$.
     \end{proof}
 
 \end{document}
