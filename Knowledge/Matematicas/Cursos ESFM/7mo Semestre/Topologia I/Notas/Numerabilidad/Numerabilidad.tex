@@ -251,7 +251,130 @@
         \begin{equation*}
             l\in\mathbb{N}-I\Rightarrow A_l=X_l\textup{ y }l\in I\Rightarrow A_l=U_{ m_l}^l
         \end{equation*}
-        por tanto, $A\in\mathcal{U}$ y es tal que $x\in A\subseteq U$.
+        por tanto, $A\in\mathcal{U}$ y es tal que $x\in A\subseteq U$. 
+        
+        Veamos ahora que $\mathcal{U}$ es numerable. Sea $A=\prod_{ l\in\mathbb{N}}A_l\in\mathcal{U}$, entonces existe $I\subseteq\mathbb{N}$ finito, digamos $I=\left\{i_1,...,i_t \right\}$ (ordenados de forma estrictamente creciente y siendo todos distintos) tales que $l\in\mathbb{N}-I$ entonces $A_l=X_l$.Y, si $l\in I$ entonces $A_l=U_{ m_l}^l\in\mathcal{U}_l$. Sea $(i_1,...,i_t,m_{i_1},...,m_{i_t})\in\mathbb{N}^{ 2t}$. 
+        
+        Definimos la función
+        \begin{equation*}
+            \cf{f}{\mathcal{U}}{\bigcup_{t\in\mathbb{N}}\mathbb{N}^{2t}}
+        \end{equation*}
+        (donde $\mathbb{N}^{ 2t}$ expresa el producto cartesiano de $\mathbb{N}$ consigo mismo $2t$-veces) tal que $A\mapsto (i_1,...,i_t,m_{i_1},...,m_{i_t})$ (siendo el $A$ de la forma en que se expresó anteriormente). Se tiene por la elección de los elementos de $\mathcal{U}$, que la función $f$ está bien definida y es inyectiva. Por tanto, $\mathcal{U}$ es numerable.
+
+        Luego, $(X,\tau_p)$ es primero numerable.
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio primero numerable.
+        \begin{enumerate}
+            \item Sea $A\subseteq X$ y $x\in X$. Entonces $x\in\Cls{A}$ si y sólo si existe una sucesión de puntos $\left\{x_n \right\}_{ n=1}^\infty$ de $A$ que converge a $x$.
+            \item Sean $(X',\tau')$ espacio topológico y $\cf{f}{(X,\tau)}{(X',\tau')}$ una función. Entonces, para $x\in X$, $f$ es continua en $X$ si y sólo si para cada sucesión $\left\{ x_n\right\}_{ n=1}^\infty$ de puntos en $X$ que converge a $x$, se tiene que la sucesión $\left\{f(x_n) \right\}_{ n=1}^\infty$ converge a $f(x)$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (1): Se probará la doble implicación.
+
+        $\Rightarrow)$: Sea $x\in\Cls{A}$ y $\left\{ B_n\right\}_{n\in\mathbb{N}}$ un sistema fundamental numerable de vecindades de $x$. Entonces
+        \begin{equation*}
+            B_1\cap A\neq\emptyset
+        \end{equation*}
+        pues $x\in\Cls{A}$ y $B_1$ es vecindad de $x$. Tomemos $x_1\in B_1\cap A$. Para cada $n\in\mathbb{N}$, como
+        \begin{equation*}
+            B_1\cap\cdots\cap B_n
+        \end{equation*} 
+        es vecindad de $x$, entonces su intersección con $A$ es no vacía. Tome así $x_n\in B_1\cap\cdots\cap B_n\cap A$ y constrúyase así la sucesión $\left\{x_n \right\}_{ n\in\mathbb{N}}$. Veamos que esta sucesión converge a $x$. En efecto, sea $U\in\tau$ tal que $x\in\tau$. Como este es un sistema fundamental de vecindades, existe $l\in\mathbb{N}$ tal que $B_l\subseteq U$, luego
+        \begin{equation*}
+            x_{l+m}\in B_l\subseteq U
+        \end{equation*}
+        para todo $m\geq 0$. Por tanto, la sucesión converge a $x$.
+
+        $\Leftarrow)$: Sea $\left\{ x_n\right\}_{ n=1}^\infty$ una sucesión de puntos de $A$ tal que $x_n\rightarrow\infty$. Tomemos $M\in\tau$ tal que $x\in M$, luego existe $k\in\mathbb{N}$ tal que $x_{ k+m}\in M$, para todo $m\geq 0$, así $M\cap A\neq\emptyset$. Por tanto, $x\in\Cls{A}$.
+
+        De (2): Se probará la doble implicación.
+
+        $\Rightarrow)$: Suponga que $f$ es continua en $x$. Sea $\left\{x_n \right\}$ una sucesión de puntos que converge a $x$. Sea $V\in\tau'$ tal que $f(x)\in V$, entonces $x\in f^{-1}(V)$, donde $f^{-1}(V)\in\tau$ por ser $f$ continua en $x$. Luego, existe $k\in\mathbb{N}$ tal que
+        \begin{equation*}
+            x_{ k+m}\in f^{-1}(V),\quad\forall m\geq0
+        \end{equation*}
+        es decir que
+        \begin{equation*}
+            f(x_{ k+m})\in f(f^{-1}(V))\subseteq V,\quad\forall m\geq0
+        \end{equation*}
+        Por tanto, $\left\{f(x_n) \right\}_{ n=1}^\infty$ converge a $f(x)$.
+
+        $\Leftarrow)$: Veamos que dado $A\subseteq X$ se cumple que $f(\Cls{A})\subseteq\Cls{f(A)}$. En efecto, sea $x\in\Cls{A}$. Por 1) al ser $(X,\tau)$ primero numerable existe una sucesión $\left\{x_n \right\}_{ n=1}^\infty$ de puntos de $A$ que converge a $x$. Entonces $\left\{f(x_n) \right\}_{ n=1}^\infty$ es una sucesión de puntos de $f(A)$ que converge a $f(x)$. Por tanto, $f(x)\in\Cls{f(A)}$ (en la prueba de la suficiencia no es necesario que $(X,\tau)$ sea primero numerable, así que en este caso no se ocupa que $(X',\tau')$ sea primero numerable). Por tanto, $f(\Cls{A})\subseteq\Cls{f(A)}$
+    \end{proof}
+
+    \section{Espacios Segundo Numerables}
+
+    \begin{propo}
+        La propiedad de ser segundo numerable es hereditaria.
+    \end{propo}
+
+    \begin{proof}
+        Sea $(X,\tau)$ un espacio topológico segundo numerable y $Y\subseteq X$ subconjunto. Veamos que $(Y,\tau_Y)$ es segundo numerable. En efecto, como $(X,\tau)$ es primero numerable, existe $\mathcal{B}=\left\{B_n\right\}_{ n\in\mathbb{N}}$ una base para la topología $\tau$ que es a lo sumo numerable. Se tiene que
+        \begin{equation*}
+            \mathcal{B}'=\left\{Y\cap B\Big|B\in\mathcal{B} \right\}
+        \end{equation*}
+        es una base para $\tau_Y$ (por una proposición anterior). Como $\mathcal{B}$ es numerable, se sigue que $\mathcal{B}'$ es numerable. Por tanto, $(Y,\tau_Y)$ es segundo numerable.
+    \end{proof}
+
+    \begin{propo}
+        La propiedad de ser segundo numerable es topológica.
+    \end{propo}
+
+    \begin{proof}
+        Sean $(X,\tau)$ y $(Y,\sigma)$ espacios topológicos homeomorfos con $\cf{f}{(X,\tau)}{(Y,\sigma)}$ el homeomorfismo y, suponga que $(X,\tau)$ es segundo numerable y sea $\mathcal{B}=\left\{B_n \right\}_{ n\in\mathbb{N}}$ una base de $\tau$. Entonces, la por una proposición, la colección:
+        \begin{equation*}
+            \mathcal{B}'=\left\{f(B)\Big|B\in\mathcal{B} \right\}
+        \end{equation*}
+        es una base para la topología $\sigma$ (por ser $f$ homeomorfismo) la cual es a lo sumo numerable. Por tanto, $(Y,\sigma)$ es segundo numerable.
+
+        Así, la propiedad de ser segundo numerable es topológica.
+    \end{proof}
+
+    \begin{excer}
+        Sea $\left\{(X_n,\tau_n) \right\}_{ n=1}^\infty$ una familia de espacios topológicos segundo numerables y, tomemos
+        \begin{equation*}
+            X=\prod_{ n=1}^\infty X_n
+        \end{equation*}
+        Entonces, $(X,\tau_p)$ es segundo numerable.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{theor}
+        Sea $(X,\tau)$ un espacio topológico.
+        \begin{enumerate}
+            \item Si $(X,\tau)$ es segundo numerable, entonces es primero numerable.
+            \item Si $(X,\tau)$ se segundo numerable, entonces el espacio es de Lindelöf.
+            \item Si $(X,\tau)$ es segundo numerable, entonces es separable.
+        \end{enumerate}
+    \end{theor}
+     
+    \begin{proof}
+        De (1): Sea $\left\{ B_n\right\}_{ n\in\mathbb{N}}$ una base para la topología $\tau$. Tomemos $x\in X$ y defina
+        \begin{equation*}
+            \mathcal{B}_x=\left\{B\in\mathcal{B} \Big|x\in B \right\}
+        \end{equation*}
+        Se tiene que $\mathcal{B}_x$ es a lo sumo numerable. Sea $U\in\tau$ tal que $x\in U$, luego como $\mathcal{B}$ es base existe $B\in\mathcal{B}$ tal que $x\in B\subseteq U$, luego $B\in\mathcal{B}_x$. Por tanto, $\mathcal{B}_x$ es un sistema fundamental de vecindades de $x$ el cual es a lo sumo numerable. Al ser $x\in X$ arbitrario, se sigue que $(X,\tau)$ es primero numerable.
+
+        De (2): Sea $\left\{ B_n\right\}_{ n\in\mathbb{N}}$ una base para la topología $\tau$ y sea $\mathcal{A}$ una cubierta abierta de $X$. Dado $x\in X$, como $A$ es una cubierta existe $A_x\in\mathcal{A}$ tal que
+        \begin{equation*}
+            x\in A_x\in\tau
+        \end{equation*}
+        luego, existe $B_x\in\mathcal{B}$ tal que $x\in\ B_x\subseteq A_x$. Sea
+        \begin{equation*}
+            \mathcal{K}=\left\{m\in\mathbb{N}\Big|\exists A\in\mathcal{A}\textup{ tal que }B_m\subseteq A \right\}
+        \end{equation*}
+        por la observación anterior, $\mathcal{K}\neq\emptyset$. Dado $k\in\mathcal{K}$ escogemos un único $A_k\in\mathcal{A}$ tal que $B_k\subseteq A_k$. Sea
+        \begin{equation*}
+            \mathcal{A}'=\left\{ A_n\right\}_{ n\in\mathbb{N}}
+        \end{equation*}
+        $\mathcal{A}'\subseteq\mathcal{A}$ es una subcolección a lo sumo numerable.
     \end{proof}
 
 \end{document}
