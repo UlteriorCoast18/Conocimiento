@@ -307,7 +307,76 @@
     \end{excer}
 
     \begin{sol}
+        De (i): (justificar porqué esa función es integrable). Veamos que
+        \begin{equation*}
+            \begin{split}
+                \int_0^\pi\log\sen\frac{x}{2}\:dx&=2\int_0^{\frac{\pi}{2}}\log\sen t\:dt\\
+                &=2\int_0^{\frac{\pi}{2}}\log\left(2\sin
+                \frac{t}{2}\cos\frac{t}{2}\right) \:dt\\
+                &=2\int_0^{\frac{\pi}{2}}\left[\log2+\log\sin\frac{t}{2}+\log\cos\frac{t}{2} \right]  \:dt\\
+                &=2\int_0^{\frac{\pi}{2}}\left[\log2+\log\sin\frac{t}{2}+\log\cos\frac{t}{2} \right]  \:dt\\
+                &=2\int_0^{\frac{\pi}{2}}\log2\:dt+2\int_0^{\frac{\pi}{2}}\log\sin\frac{t}{2}\:dt+2\int_0^{\frac{\pi}{2}}\log\cos\frac{t}{2}\:dt\\
+                &=\pi\log2+2\int_0^{\frac{\pi}{2}}\log\sin\frac{t}{2}\:dt+2\int_0^{\frac{\pi}{2}}\log\cos\frac{t}{2}\:dt\\
+            \end{split}
+        \end{equation*}
+        donde,
+        \begin{equation*}
+            \begin{split}
+                \int_0^{\frac{\pi}{2}}\log\cos\frac{t}{2}\:dt&=\int_0^{\frac{\pi}{2}}\log\sin\left(\frac{\pi}{2}-\frac{t}{2}\right) \:dt\\
+                &=\int_{\pi}^{\frac{\pi}{2}}-\log\sin\left(\frac{u}{2}\right) \:dt\\
+                &=\int_{\frac{\pi}{2}}^{\pi}\log\sin\left(\frac{u}{2}\right) \:dt\\
+            \end{split}
+        \end{equation*}
+        haciendo el cambio de variable $u=\pi-t$. Por ende,
+        \begin{equation*}
+            \begin{split}
+                \int_0^\pi\log\sen\frac{x}{2}\:dx&=\pi\log2+2\int_0^{\frac{\pi}{2}}\log\sin\frac{t}{2}\:dt+2\int_{\frac{\pi}{2}}^{\pi}\log\sin\frac{u}{2}\:du\\
+                &=\pi\log2+2\int_0^{\pi}\log\sen\frac{x}{2}\:dx\\
+                \Rightarrow \int_0^\pi\log\sen\frac{x}{2}\:dx&=-\pi\log2\\
+            \end{split}
+        \end{equation*}
         
+        De (ii): Por lo anterior, $f\in\mathcal{L}_1^{2\pi}$ donde $f(x)=-\log\abs{2\sin\frac{x}{2}}$ para todo $x\in\mathbb{R}\backslash2\pi\mathbb{Z}$. Ahora, como $f$ es par, se tiene que
+        \begin{equation*}
+            b_n=0,\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        Ahora, veamos que
+        \begin{equation*}
+            \begin{split}
+                a_0&=\frac{2}{\pi}\int_0^\pi f(x)\:dx\\
+                &=-\frac{2}{\pi}\int_0^\pi -\log\abs{2\sin\frac{x}{2}}\:dx\\
+                &=\frac{2}{\pi}\int_0^\pi \left[\log2+\log\sin\frac{x}{2}\right]\:dx\\
+                &=\frac{2}{\pi}\left[\int_0^\pi\log2+\int_0^\pi\log\sin\frac{x}{2}\right]\:dx\\
+                &=\frac{2}{\pi}\left[\pi\log2-\pi\log2\right]\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        Ahora, si $n\in\mathbb{N}$:
+        \begin{equation*}
+            \begin{split}
+                a_n&=-\frac{2}{\pi}\int_0^{\pi}\log\abs{2\sin\frac{x}{2}}\cos nx\:dx\\
+                &=-\frac{2}{\pi}\int_0^{\pi}\log\left(2\sin\frac{x}{2}\right)\cos nx\:dx\\
+                &=\frac{2}{\pi}\left[-\log\left(2\sin\frac{x}{2}\right)\frac{1}{n}\sin nx\Big|_0^{\pi}+\frac{1}{2n}\int_0^{\pi}\frac{\cos\frac{x}{2}\sin nx}{\sin\frac{x}{2}}\:dx \right]\\
+                &=\frac{1}{\pi n}\int_0^{\pi}\frac{\cos\frac{x}{2}\sin nx}{\sin\frac{x}{2}}\:dx
+            \end{split}
+        \end{equation*}
+        pero,
+        \begin{equation*}
+            \sin A\cos B=\frac{1}{2}\left[\sin(A+B)+\sin(A-B) \right]
+        \end{equation*}
+        Por ende,
+        \begin{equation*}
+            \begin{split}
+                a_n&=\frac{1}{2\pi n}\int_0^{\pi}\frac{\sin\left(n+\frac{1}{2}\right)x+\sin\left(n-\frac{1}{2}\right)x}{\sin\frac{x}{2}}\:dx\\
+                &=\frac{1}{n}\int_0^{\frac{\pi}{2}}\left[D_n(x)+D_{ n-1}(x)\right]\:dx\\
+                &=\frac{1}{n}\\
+            \end{split}
+        \end{equation*}
+
+        De (iii): Veamos la convergencia (usar el teorema de Carleson y más cosas), de donde se deduce el hecho sorprendente que
+        \begin{equation*}
+            \int_0^{\pi}\left(\log\abs{2\cos\frac{x}{2}} \right)^2\:dx=\frac{\pi^2}{6}
+        \end{equation*}
     \end{sol}
 
     \begin{excer}
