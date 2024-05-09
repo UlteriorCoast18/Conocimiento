@@ -113,7 +113,7 @@
 
 %En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
 
-\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 
@@ -173,7 +173,64 @@
         \begin{equation*}
             \lim_{ m\rightarrow\infty}\int_{0}^\delta\frac{f(x+t)+f(x-t)-2f(x)}{t}\sin\left(m+\frac{1}{2}\right)dt=0
         \end{equation*}
-        por tanto, la serie de Fourier de $f$ converge a $f$ puntualmente en $x$. Computemos ahora los coeficientes de la serie de Fourier de $f$.
+        por tanto, la serie de Fourier de $f$ converge a $f$ puntualmente en $x$. Computemos ahora los coeficientes de la serie de Fourier de $f$. Si $n\geq0$:
+        \begin{equation*}
+            \begin{split}
+                a_n&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos nxdx\\
+                &=\frac{1}{\pi}\int_{0}^{2\pi}f(x)\cos nxdx\\
+                &=\frac{1}{\pi}\int_{0}^{2\pi}\frac{\pi-x}{2}\cos nxdx\\
+                &=\frac{1}{2}\int_{0}^{2\pi}\cos nxdx-\frac{1}{2\pi}\int_0^{2\pi} x\cos nxdx\textup{ haciendo }u=nx \\
+                &=\frac{1}{2}\int_{0}^{2n\pi}\cos u\frac{du}{n}-\frac{1}{2\pi}\int_0^{2n\pi} \frac{u}{n}\cos u\frac{du}{n} \\
+                &=\frac{1}{2n}\sin u\Big|_0^{ 2n\pi}-\frac{1}{2\pi n^2}\int_0^{2n\pi} u\cos udu \\
+                &=\frac{1}{2n}\left[\sin 2\pi n-\sin 0 \right] -\frac{1}{2\pi n^2}\left(u\sin u\Big|_{0}^{2n\pi}+\int_0^{2n\pi}\sin udu\right) \\
+                &=-\frac{1}{2\pi n^2}\left(u\sin u\Big|_{0}^{2n\pi}+\int_0^{2n\pi}\sin udu\right) \\
+                &=-\frac{1}{2\pi n^2}\left(\left[2n\pi\sin 2n\pi-0 \right]-\cos u \Big|_0^{2n\pi}\right) \\
+                &-\frac{1}{2\pi n^2}\left(0-0-1+1 \right)\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        para todo $n\geq0$. Si $n\in\mathbb{N}$:
+        \begin{equation*}
+            \begin{split}
+                b_n&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin nxdx\\
+                &=\frac{1}{\pi}\int_{0}^{2\pi}f(x)\sin nxdx\\
+                &=\frac{1}{\pi}\int_{0}^{2\pi}\frac{\pi-x}{2}\sin nxdx\\
+                &=\frac{1}{2}\int_{0}^{2\pi}\sin nxdx-\frac{1}{2\pi}\int_0^{2\pi} x\sin nxdx\textup{ haciendo }u=nx \\
+                &=\frac{1}{2}\int_{0}^{2n\pi}\sin u\frac{du}{n}-\frac{1}{2\pi}\int_0^{2n\pi} \frac{u}{n}\sin u\frac{du}{n} \\
+                &=\frac{1}{2n}(-\cos u)\Big|_{0}^{2n\pi}-\frac{1}{2\pi n^2}\int_0^{2n\pi} u\sin udu \\
+                &=\frac{1}{2n}(-\cos 2n\pi+1)-\frac{1}{2\pi n^2}\left(-u\cos u\Big|_{0}^{2n\pi}+\int_{0}^{2n\pi}\cos udu \right) \\
+                &=\frac{1}{2n}(-1+1)-\frac{1}{2\pi n^2}\left(-2n\pi\cos 2n\pi+0+\sin u\Big|_{0}^{2n\pi} \right) \\
+                &=-\frac{1}{2\pi n^2}\left(-2n\pi\cos 2n\pi+\sin 2n\pi-\sin 0 \right) \\
+                &=-\frac{1}{2\pi n^2}\left(-2n\pi+\sin 2n\pi-\sin 0 \right) \\
+                &=-\frac{1}{2\pi n^2}\left(-2n\pi \right) \\
+                &=\frac{1}{n}\\
+            \end{split}
+        \end{equation*}
+        Por tanto, la serie de Fourier de $f$ en $x\in]0,2\pi[$ está dada por:
+        \begin{equation*}
+            \frac{a_0}{2}+\sum_{ k=1}^\infty\left[a_k\cos kx+b_k\sin kx \right]=\sum_{ n=1}^\infty b_n\sin nx=\sum_{ n=1}^\infty\frac{\sin nx}{n}
+        \end{equation*}
+        Por el criterio de Dini se sigue que
+        \begin{equation*}
+            \frac{\pi-x}{2}=\sum_{ n=1}^\infty\frac{\sin nx}{n},\quad\forall x\in]0,2\pi[
+        \end{equation*}
+
+        Ahora, como $x\mapsto\frac{\pi-x}{2}$ es una función en $\mathcal{L}_2^{2\pi}$, por Parseval se tiene que
+        \begin{equation*}
+            \begin{split}
+                \frac{\abs{a_0}^2}{2}+\sum_{n=1}^\infty\left[\abs{a_n}^2+\abs{b_n}^2 \right]&=\frac{1}{\pi}\int_{-\pi}^{\pi}\abs{\frac{\pi-x}{2}}^2\:dx\\
+                \Rightarrow \sum_{ n=1}^\infty\frac{1}{n^2}&=\frac{1}{4\pi}\int_0^{2\pi}\abs{\pi-x}^2\:dx\\
+                &=\frac{1}{2\pi}\int_0^{\pi}\abs{\pi-x}^2\:dx\\
+                &=\frac{1}{2\pi}\int_0^{\pi}(\pi-x)^2\:dx\textup{ haciendo el cambio de variable }u=\pi-x \\
+                &=\frac{1}{2\pi}\int_{\pi}^{0}-u^2\:du\\
+                &=\frac{1}{2\pi}\cdot\frac{-u^3}{3}\Big|_{\pi}^{0}\\
+                &=\frac{1}{2\pi}\cdot[-\frac{0}{3}+\frac{\pi^3}{3} ]\\
+                &=\frac{1}{2\pi}\cdot\frac{\pi^3}{3}\\
+                &=\frac{\pi^2}{6}\\
+                \therefore \sum_{ n=1}^\infty\frac{1}{n^2}&=\frac{\pi^2}{6}\\
+            \end{split}
+        \end{equation*}
+        Como se quería demostrar.
     \end{proof}
 
     \begin{excer}
@@ -389,7 +446,7 @@
                     0 & \textup{ si } & -\pi\leq x<0,\\
                     x & \textup{ si } & 0\leq x<\pi.\\
                 \end{array}
-            \right\}
+            \right.
         \end{equation*}
     \end{excer}
 

@@ -1549,15 +1549,15 @@
                 &\leq\frac{1}{2\pi}\left[2\abs{f(\pi)}+\abs{f(-\pi)} \right]\max_{ -\pi\leq x\leq\pi}\abs{\int_{ -\pi}^x e^{ -ikt}dt}\\
             \end{split}
         \end{equation*}
-        donde la primera desigualdad es por el segundo teorema del valor medio. Y,
+        donde la primera desigualdad es por el segundo teorema del valor medio. Además,
         \begin{equation*}
-            \abs{\int_{ -\pi}^\pi e^{ -ikt}dt}=\abs{\frac{e^{ ik\pi}-e^{ ikx}}{ik}}\leq\frac{2}{\abs{k}}
+            \abs{\int_{ -\pi}^x e^{ -ikt}dt}=\abs{\frac{e^{ ik\pi}-e^{- ikx}}{ik}}\leq\frac{2}{\abs{k}}
         \end{equation*}
         para todo $-\pi\leq x\leq\pi$. Por tanto
         \begin{equation*}
             \abs{c_k}\leq\frac{1}{\pi}[2\abs{f(\pi)}+\abs{f(-\pi)}]\frac{1}{\abs{k}},\quad\forall k\in\mathbb{Z}\backslash\left\{0\right\}
         \end{equation*}
-        Tomando $A=\frac{1}{\pi}[2\abs{f(\pi)}+\abs{f(-\pi)}]>0$ se sigue el resultado.
+        Tomando $A=\frac{1}{\pi}[2\abs{f(\pi)}+\abs{f(-\pi)}]>0$ se sigue el resultado (esto si la función no es cero c.t.p. en $\mathbb{R}$, en tal caso basta con tomar $A=1$).
     \end{proof}
 
     \begin{theor}[\textbf{Teorema de Jordan}]
