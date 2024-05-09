@@ -992,21 +992,104 @@
     Con esto en mente, enunciemos la siguiente proposición.
 
     \begin{propo}
-        Sean $\cf{F,G}{\mathcal{A}\times\mathcal{B}}{\mathcal{C}}$ dos bifuntores. Una familia de morfismos $\left\{\alpha_{(A,B)} \right\}_{(A,B)\in\Obj{\mathcal{A}\times\mathcal{B}}}$ (donde $\cf{\alpha_{(A,B)}}{F(A,B)}{G(A,B)}$ es un morfismo en la categoría $\mathcal{C}$) forman una transformación natrual $\cf{\alpha}{F}{G}$ si y sólo si se cumplen las siguientes condiciones:
+        Sean $\cf{F,G}{\mathcal{A}\times\mathcal{B}}{\mathcal{C}}$ dos bifuntores covariantes. Una familia de morfismos $\left\{\alpha_{(A,B)} \right\}_{(A,B)\in\Obj{\mathcal{A}\times\mathcal{B}}}$ (donde $\cf{\alpha_{(A,B)}}{F(A,B)}{G(A,B)}$ es un morfismo en la categoría $\mathcal{C}$) forman una transformación natrual $\cf{\alpha}{F}{G}$ si y sólo si se cumplen las siguientes condiciones:
         \begin{enumerate}
             \item Para todo $A_0\in\Obj{\mathcal{A}}$, la familia de morfismos $\left\{\left(\alpha_{A_0}\right)_B \right\}_{B\in\Obj{\mathcal{B}}}$ (donde $\cf{\left(\alpha_{A_0}\right)_B}{F_{A_0}(B)}{G_{A_0}(B)}$ es morfismo en la categoría $\mathcal{C}$), forma una transformación natural $\cf{\alpha_{ A_0}}{F_{A_0}}{G_{A_0}}$, donde
             \begin{equation*}
                 \left(\alpha_{A_0}\right)_B=\alpha_{(A_0,B)},\quad\forall B\in\Obj{\mathcal{B}}
             \end{equation*}
+            \item Para todo $B_0\in\Obj{\mathcal{B}}$, la familia de morfismos $\left\{(\alpha^{ B_0})_A \right\}_{ A\in\Obj{\mathcal{A}}}$ (donde $\cf{\left(\alpha^{B_0}\right)_A}{F^{B_0}(A)}{G^{B_0}(A)}$ es morfismo en la categoría $\mathcal{C}$), forma una transformación natural $\cf{\alpha^{ B_0}}{F^{B_0}}{G^{B_0}}$, donde
+            \begin{equation*}
+                \left(\alpha^{B_0}\right)_A=\alpha_{(A,B_0)},\quad\forall A\in\Obj{\mathcal{A}}
+            \end{equation*}
         \end{enumerate}
     \end{propo}
 
     \begin{proof}
+        $\Rightarrow)$: Suponga que $\cf{\alpha}{F}{G}$ es una transformación natural; entonces, para todo $(f,g)\in\Hom{\mathcal{A}\times\mathcal{B}}{(A,B)}{(A',B')}$ se tiene que el diagrama es conmutativo:
+        \begin{equation}
+            \begin{array}{rcccl}
+                &F(A,B) & \underset{\longrightarrow}{\alpha_{(A,B)}} & G(A,B) &\\
+                F(f,g) & \downarrow & & \downarrow & G(f,g) \\
+                &F(A',B') & \overset{\longrightarrow}{\alpha_{ (A',B')}} & G(A',B') &\\
+            \end{array}
+        \end{equation}
+        es decir que
+        \begin{equation*}
+            \alpha_{(A',B')}\circ F(f,g)=G(f,g)\circ\alpha_{(A,B)}
+        \end{equation*}
+        Sea $A_0\in\Obj{\mathcal{A}}$ y, tomemos $A=A'=A_0$, además $f=1_A$, se tiene por la igualdad anterior que
+        \begin{equation*}
+            \begin{split}
+                \alpha_{(A_0,B')}\circ F(1_A,g)&=G(1_A,g)\circ\alpha_{(A_0,B)}\\
+                \Rightarrow (\alpha_{A_0})_{B'}\circ F_{A_0}(g)&=G_{A_0}(g)\circ (\alpha_{A_0})_B\\
+            \end{split}
+        \end{equation*}
+        es decir, que para todo $g\in\Hom{\mathcal{B}}{B}{B'}$ el diagrama siguiente es conmutativo:
+        \begin{equation*}
+            \begin{array}{rcccl}
+                &F_{A_0}(B) & \underset{\longrightarrow}{(\alpha_{A_0})_{B}} & G_{A_0}(B) &\\
+                F_{A_0}(g) & \downarrow & & \downarrow & G_{A_0}(g) \\
+                &F_{A_0}(B') & \overset{\longrightarrow}{(\alpha_{A_0})_{B'}} & G_{A_0}(B') &\\
+            \end{array}
+        \end{equation*}
+        Por tanto, $\cf{\alpha_{A_0}}{F_{A_0}}{G_{A_0}}$ es una transformación natural.
+
+        De forma similar se deduce que $\cf{\alpha^{B_0}}{F^{B_0}}{G^{B_0}}$ es una transormación natural, tomando $B_0=B=B'$ y $g=1_B$ en (4.1).
         
+        $\Leftarrow)$: Suponga que se cumplen 1) y 2), es decir que para todo $f\in\Hom{\mathcal{A}}{A}{A'}$ y $g\in\Hom{\mathcal{B}}{B}{B'}$ se cumplen
+        \begin{equation*}
+            \left\{
+                \begin{split}
+                    (\alpha_{A_0})_{B'}\circ F_{A_0}(g)&=G_{A_0}(g)\circ (\alpha_{A_0})_B\\
+                    (\alpha^{B_0})_{A'}\circ F^{B_0}(f)&=G^{B_0}(f)\circ (\alpha^{B_0})_A\\
+                \end{split}
+            \right.
+        \end{equation*}
+        Sea $(u,v)\in\Hom{\mathcal{A}\times\mathcal{B}}{(X,Y)}{(X',Y')}$. Veamos que
+        \begin{equation*}
+            \begin{split}
+                G(u,v)\circ\alpha_{(X,Y)}&=G(u\circ 1_X,1_{Y'}\circ v)\circ\alpha_{(X,Y)}\\
+                &=G((u,1_{Y'})\circ(1_X,v))\circ\alpha_{(X,Y)}\\
+                &=G(u,1_{Y'})\circ G(1_X,v)\circ\alpha_{(X,Y)}\\
+                &=G^{Y'}(u)\circ G_X(v)\circ\alpha_{(X,Y)}\\
+                &=G^{Y'}(u)\circ \underbrace{G_X(v)\circ(\alpha_X)_Y}_{=(\alpha_X)_{Y'}\circ F_X(v)} \\
+                &=G^{Y'}(u)\circ (\alpha_X)_{Y'}\circ F_X(v)\\
+                &=G^{Y'}(u)\circ\alpha_{(X,Y')}\circ F_X(v)\\
+                &=\underbrace{G^{Y'}(u)\circ(\alpha^{ Y'})_X}_{= (\alpha^{Y'})_{X'}\circ F^{Y'}(u)} \circ F_X(v)\\
+                &=(\alpha^{Y'})_{X'}\circ F^{Y'}(u)\circ F_X(v)\\
+                &=\alpha_{(X',Y')} \circ F(u,1_{Y'})\circ F(1_X,v)\\
+                &=\alpha_{(X',Y')} \circ F((u,1_{Y'})\circ(1_X,v))\\
+                &=\alpha_{(X',Y')} \circ F(u,v)\\
+            \end{split}
+        \end{equation*}
+        es decir que para todo $(u,v)\in\Hom{\mathcal{A}\times\mathcal{B}}{(X,Y)}{(X',Y')}$, el siguiente diagrama es conmutativo:
+        \begin{equation*}
+            \begin{array}{rcccl}
+                &F(X,Y) & \underset{\longrightarrow}{\alpha_{(X,Y)}} & G(X,Y) &\\
+                F(u,v) & \downarrow & & \downarrow & G(u,v) \\
+                &F(X',X') & \overset{\longrightarrow}{\alpha_{ (X',Y')}} & G(X',Y') &\\
+            \end{array}
+        \end{equation*}
+        por tanto, $\cf{\alpha}{F}{G}$ es una transformación natural.
     \end{proof}
 
     Ahora se introducirá un concepto importante: funtores representables.
-    
+
+    \begin{obs}
+        Recordemos que si $\mathcal{C}$ es una categoría, dado un objeto fijo $C\in\Obj{\mathcal{C}}$ se definen los funtores $\cf{\HOM{\mathcal{C}}(C,-),\HOM{\mathcal{C}}(-,C)}{\mathcal{C}}{\Cat{Set}}$ (el primero covariante y el segundo contravariante) como sigue:
+        \begin{enumerate}
+            \item Para todo $A\in\Obj{\mathcal{C}}$, $\HOM{\mathcal{C}}(C,A)=\Hom{\mathcal{C}}{C}{A}\in\Obj{\Cat{Set}}$ y, para todo $f\in\Hom{\mathcal{C}}{A}{B}$, la función $\cf{\HOM{\mathcal{C}}(C,f)}{\Hom{\mathcal{C}}{C}{A}}{\Hom{\mathcal{C}}{C}{B}}$ tal que
+            \begin{equation*}
+                g\mapsto \HOM{\mathcal{C}}(C,f)(g)=f\circ g\in\Hom{\mathcal{C}}{C}{B}
+            \end{equation*}
+            \item Para todo $A\in\Obj{\mathcal{C}}$, $\HOM{\mathcal{C}}(A,C)=\Hom{\mathcal{C}}{A}{C}\in\Obj{\Cat{Set}}$ y, para todo $f\in\Hom{\mathcal{C}}{A}{B}$, la función $\cf{\HOM{\mathcal{C}}(f,C)}{\Hom{\mathcal{C}}{B}{C}}{\Hom{\mathcal{C}}{A}{C}}$ tal que
+            \begin{equation*}
+                g\mapsto \HOM{\mathcal{C}}(f,C)(g)=g\circ f\in\Hom{\mathcal{C}}{A}{C}
+            \end{equation*}
+        \end{enumerate}
+    \end{obs}
+
     \begin{mydef}
         Sea $\mathcal{C}$ una categoría. Decimos que un funtor covariante $\cf{F}{\mathcal{C}}{\Cat{Set}}$ es \textbf{representable} si existe $C\in\Obj{\mathcal{C}}$ y un isomorfismo natural $F\cong\HOM{\mathcal{C}}(C,-)$. 
         
@@ -1015,6 +1098,132 @@
         En ambos casos, $C$ es llamado el \textbf{objeto representante} del funtor.
     \end{mydef}
 
-    
+    \begin{obs}
+        Se verá en los ejemplos que resulta más sencillo tomar el isomorfismo natural inverso $\cf{\alpha^{-1}}{\HOM{\mathcal{C}}(C,-)}{F}$ para determinar explícitamente quién es la transformación nautral correspondiente. Además, notemos que en la categoría $\Cat{Set}$, los isomorfismos de esta categoría coinciden con las funciones biyectivas, por lo que para probar que $\alpha^{-1}$ es isomorfismo nautral, basta que ver que es transformación natural y, para cada $D\in\Obj{\mathcal{C}}$, $\cf{(\alpha^{-1})_D}{\HOM{\mathcal{C}}(C,D)}{F(D)}$ es función biyectiva.
+    \end{obs}
+
+    Básicamente lo que se pretende con esta definición es codificar la información que tiene un funtor entre dos categorías para que simplemente nos apoyemos en el objeto $C\in\Obj{\mathcal{C}}$ y en el conjunto de isomorfismos nautrales entre los funtores pues, al ser isomorfismos, nos podemos regresar del funtor $\HOM{\mathcal{C}}(-,C)$ a $F$. Veamos algunos ejemplos.
+
+    \begin{exa}
+        Considere el funtor olvidadizo $\cf{U}{\Cat{Grp}}{\Cat{Set}}$. Afirmamos que este funtor es representable y el objeto representante del funtor es el grupo abeliano $(\mathbb{Z},+)$.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, tenemos que encontrar una transformación natural entre $F$ y $\HOM{\mathcal{C}}(\mathbb{Z},-)$. Para cada $X\in\Obj{\Cat{Grp}}$ y $g\in\Hom{\Cat{Grp}}{\mathbb{Z}}{X}$, definimos:
+        \begin{equation*}
+            \begin{split}
+                \alpha_X:\Hom{\Cat{Grp}}{\mathbb{Z}}{X}&\rightarrow U(X)=X\\
+                g&\mapsto\alpha_X(g)=g(1)\\
+            \end{split}
+        \end{equation*}
+        Notemos que cada $\alpha_X$ es una biyección, ya que para cualquier homomorfismo de grupos $\cf{g}{\mathbb{Z}}{X}$ queda únicamente determinado por su valor en $1$ (ya que $\mathbb{Z}$ es cíclico y uno de sus generadores es $1$). Por tanto, para ver que $\cf{\alpha}{\HOM{\Cat{Grp}}(\mathbb{Z},-)}{\Cat{Grp}}$ es un isomorfismo natural, basta con ver que el diagrama:
+        \begin{equation*}
+            \begin{array}{rcccl}
+                & \HOM{\Cat{Grp}}(\mathbb{Z},X) & \underset{\longrightarrow}{\alpha_{X}} & U(X) &\\
+                \HOM{\Cat{Grp}}(\mathbb{Z},f) & \downarrow & & \downarrow & U(f)=f \\
+                & \HOM{\Cat{Grp}}(\mathbb{Z},Y) & \overset{\longrightarrow}{\alpha_{Y}} & U(Y) &\\
+            \end{array}
+        \end{equation*}
+        es conmutativo. En efecto, sea $g\in\HOM{\Cat{Grp}}(\mathbb{Z},X)$. Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                [\alpha_Y\circ\HOM{\Cat{Grp}}(\mathbb{Z},f)](g)&=\alpha_Y(\HOM{\Cat{Grp}}(\mathbb{Z},f)(g))\\
+                &=\alpha_Y(f\circ g)\\
+                &=(f\circ g)(1)\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                [U(f)\circ \alpha_X](g)&=f(\alpha_X(g))\\
+                &=f(g(1))\\
+                &=(f\circ g)(1)\\
+            \end{split}
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \alpha_Y\circ\HOM{\Cat{Grp}}(\mathbb{Z},f)=U(f)\circ \alpha_X(g)
+        \end{equation*}
+        Con lo que el diagrama anterior es conmutativo. Luego, como $\alpha$ es biyección y es transformación nautral, se sigue que $\cf{\alpha^{-1}}{\Cat{Grp}}{\HOM{\Cat{Grp}}(\mathbb{Z},-)}$ es isomorfismo natural.
+    \end{proof}
+
+    \begin{exa}
+        El funtor covariante olvidadizo $\cf{U}{\Cat{Top}}{\Cat{Set}}$ es representable.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, considere el espacio topológico $(\left\{x_0\right\},\tau_D)$ (donde $\tau_D$ es la topología discreta). Para cada $X\in\Obj{\Cat{Top}}$ definimos
+        \begin{equation*}
+            \begin{split}
+                \alpha_X:\HOM{\Cat{Top}}(\left\{x_0\right\},X)&\rightarrow U(X)=X\\
+                h&\mapsto \alpha_X(h)=h(x_0)\\
+            \end{split}
+        \end{equation*}
+        para todo $h\in\HOM{\Cat{Top}}(\left\{x_0\right\},X)$, donde $\cf{h}{\left\{x_0 \right\}}{X}$ es una función continua. Claramente $\alpha_X$ es biyectiva para cada $X\in\Obj{\Cat{Set}}$, pues queda únicamente determinada por su valor en $x_0$. Para ver que $\cf{\alpha}{\HOM{\Cat{Top}}(\left\{x_0\right\},-)}{\Cat{Set}}$ es isomorfismo natural, basta con ver que el diagrama
+        \begin{equation*}
+            \begin{array}{rcccl}
+                & \HOM{\Cat{Top}}(\left\{x_0\right\},X) & \underset{\longrightarrow}{\alpha_{X}} & U(X) &\\
+                \HOM{\Cat{Top}}(\left\{x_0\right\},f) & \downarrow & & \downarrow & U(f)=f \\
+                & \HOM{\Cat{Top}}(\left\{x_0\right\},Y) & \overset{\longrightarrow}{\alpha_{Y}} & U(Y) &\\
+            \end{array}
+        \end{equation*}
+        es conmutativo para todo $f\in\Hom{\Cat{Top}}{X}{Y}$. En efecto, sea $h\in\HOM{\Cat{Top}}(\left\{x_0\right\},X)=\Hom{\Cat{Top}}{\left\{x_0\right\}}{X}$. Se tiene que
+        \begin{equation*}
+            \begin{split}
+                [U(f)\circ\alpha_X](h)&=f(\alpha_X(h))\\
+                &=f(h(x_0))\\
+                &=(f\circ h)(x_0)\\
+                &=\alpha_Y(f\circ h)\\
+                &=\alpha_Y(\HOM{\Cat{Top}}(\left\{x_0\right\},f)(h))\\
+                &=[\alpha_Y\circ\HOM{\Cat{Top}}(\left\{x_0\right\},f)](h)\\
+                \Rightarrow U(f)\circ\alpha_X&=\alpha_Y\circ\HOM{\Cat{Top}}(\left\{x_0\right\},f)\\
+            \end{split}
+        \end{equation*}
+        Luego, el diagrama anterior es conmutativo. Así, $\cf{\alpha}{\HOM{\Cat{Top}}(\left\{x_0\right\},-)}{U}$ es isomorfismo natural.
+    \end{proof}
+
+    \begin{exa}
+        El funtor covariante constante $\cf{F_{x_0}}{\mathcal{C}}{\Cat{Set}}$ que manda todo objeto de $\mathcal{C}$ a $\left\{x_0\right\}$ y a todo morifismo al mapeo identidad, es representable si y sólo si $\mathcal{C}$ tiene un objeto inicial.
+
+        Más aún, el objeto representante es el objeto inicial.
+    \end{exa}
+
+    \begin{proof}
+        $F_{x_0}$ es representable si y sólo si existe $C\in\Obj{\mathcal{C}}$ tal que $F\cong \HOM{\mathcal{C}}(C,-)$, tomemos $\cf{\alpha}{\HOM{\mathcal{C}}(C,-)}{F_{ x_0}}$ isomorfismo natural entre ambos funtores. En particular, para todo $D\in\Obj{\mathcal{C}}$:
+        \begin{equation*}
+            \cf{\alpha_C}{\HOM{\mathcal{C}}(C,D)}{F_{x_0}(D)}
+        \end{equation*}
+        es biyección. Y,
+        \begin{equation*}
+            F_{x_0}(D)=\left\{x_0\right\}
+        \end{equation*}
+        lo cual ocurre si y sólo si $\abs{\HOM{\mathcal{C}}(C,D)}=\abs{\Hom{\mathcal{C}}{C}{D}}=1$, es decir que $C$ es objeto inicial.
+    \end{proof}
+
+    \begin{exa}
+        El funtor covariante $\cf{\mathcal{P}}{\Cat{Set}}{\Cat{Set}}$ no es representable.
+    \end{exa}
+
+    \begin{proof}
+        Recordemos que
+        \begin{equation*}
+            \begin{split}
+                \mathcal{P}:\Cat{Set}&\rightarrow\Cat{Set}\\
+                X&\mapsto \mathcal{P}(X)\\
+                f&\mapsto \hat{f}\\
+            \end{split}
+        \end{equation*}
+        donde, $\hat{f}(U)=f(U)$, para todo $U\in\mathcal{P}(X)$. Ya se sabe que este funtor es covariante. Veamos que no es representable. En efecto, suponga que es representable y considere $A\in\Cat{Set}$ el objeto representante y $\cf{\tau}{\mathcal{P}}{\HOM{\Cat{Set}}(A,-)}$ el isomorfismo natural correspondiente y sea $\sigma=\tau^{-1}$ el isomorfismo natural inverso.
+
+        Considere el conjunto $\left\{ x_0\right\}$. Como $\tau$ es transformación nautral, entonces $\cf{\sigma_{x_0}}{\HOM{\Cat{Set}}(A,\left\{x_0 \right\})}{\mathcal{P}({x_0})}$ es una biyección, pero
+        \begin{equation*}
+            \HOM{\Cat{Set}}(A,\left\{x_0 \right\})=\Hom{\Cat{Set}}{A}{\left\{x_0 \right\}}=\left\{f\right\}
+        \end{equation*}
+        por ende, $\abs{\HOM{\Cat{Set}}(A,\left\{x_0 \right\})}=1$, siendo $\cf{f}{A}{\left\{x_0\right\}}$ la función tal que $a\mapsto f(a)=x_0$ para todo $a\in A$. Y,
+        \begin{equation*}
+            \mathcal{P}({x_0})=\left\{\emptyset,\left\{x_0\right\} \right\}
+        \end{equation*}
+        por ende, $\abs{\mathcal{P}({x_0})}=2$. Pero esto no puede suceder pues es biyección. Por tanto, $\cf{\mathcal{P}}{\Cat{Set}}{\Cat{Set}}$ no es representable.
+    \end{proof}
 
 \end{document}
