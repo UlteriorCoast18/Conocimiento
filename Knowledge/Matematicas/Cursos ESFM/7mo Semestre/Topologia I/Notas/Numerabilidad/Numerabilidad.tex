@@ -375,6 +375,138 @@
             \mathcal{A}'=\left\{ A_n\right\}_{ n\in\mathbb{N}}
         \end{equation*}
         $\mathcal{A}'\subseteq\mathcal{A}$ es una subcolección a lo sumo numerable.
+
+        Sea $x\in X$, tomemos $A\in\mathcal{A}$ tal que $x\in A$. Por ser $\mathcal{B}$ base existe $B_i\in\mathcal{B}$ tal que
+        \begin{equation*}
+            x\in B_i\subseteq A
+        \end{equation*}
+        Luego, $i\in\mathcal{K}$ por ende $x\in A_i$ siendo $A_i\in\mathcal{A}'$. Por tanto:
+        \begin{equation*}
+            X=\bigcup_{ i=1}^\infty A_i
+        \end{equation*}
+        luego, $(X,\tau)$ es Lindelöf.
+
+        De (3): Sea $\mathcal{B}=\left\{B_n\right\}_{ n\in\mathbb{N}}$ base para $\tau$. Dado $n\in\mathbb{N}$ si $B_n\neq\emptyset$, escogemos $x_n\in B_n$ y con estos puntos formamos al conjunto numerable $A=\left\{x_n\Big|n\in\mathbb{N} \right\}$.
+
+        Veamos que $\Cls{A}=X$. En efecto, sea $U\in\tau$ tal que $U\neq\emptyset$, veamos que $U\cap A\neq\emptyset$. En efecto, sea $x\in U$, luego existe $m\in\mathbb{N}$ tal que $x\in B_m\subseteq U$. Como $B_m\cap A\neq\emptyset$ entonces $U\cap A\neq\emptyset$. Se sigue que $\Cls{A}=X$.
     \end{proof}
+
+    \begin{propo}
+        Sean $(X,\tau)$ un espacio segundo numerable y $\mathcal{B}$ una base para su topología $\tau$. Entonces, $\mathcal{B}$ contiene una base numerable para $\tau$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $\mathcal{B}=\left\{B_\alpha\right\}_{\alpha\in I}$ una base para $\tau$ y, como $(X,\tau)$ es segundo numerable, existe $\mathcal{A}=\left\{A_n\right\}_{ n\in\mathbb{N}}$ base a lo sumo numerable de $\tau$.
+        \renewcommand{\theenumi}{\alph{enumi}}
+        \begin{enumerate}
+            \item Sea $\mathcal{U}\in\tau$. Definimos:
+            \begin{equation*}
+                \mathcal{U}^*=\left\{A\in\mathcal{A}\Big|\exists U\in\mathcal{U}\textup{ tal que }A\subseteq U \right\}
+            \end{equation*}
+            dado $A\in\mathcal{U}^*$ escogemos un único $U_A\in\mathcal{U}$ tal que $A\subseteq U_A$. Defina
+            \begin{equation*}
+                \mathcal{U}'=\left\{U_A\in\mathcal{U} \Big|A\in\mathcal{U}^* \right\}
+            \end{equation*}
+            se tiene que $\mathcal{U}'$ es numerable por ser $\mathcal{A}$ numerable. Como $\mathcal{U}'\subseteq\mathcal{U}$, entonces
+            \begin{equation*}
+                \bigcup\mathcal{U}'\subseteq\bigcup\mathcal{U}
+            \end{equation*}
+            Veamos que se cumple la otra contención. Sea $x\in\bigcup\mathcal{U}$, luego existe $U\in\mathcal{U}$ tal que $x\in U$. Como $\mathcal{A}$ es una base y $U\in\tau$, existe $A\in \mathcal{A}$ tal que
+            \begin{equation*}
+                x\in A\subseteq U
+            \end{equation*}
+            así, $A\in\mathcal{U}^*$, luego $x\in A\subseteq U_A$ por lo cual $x\in\bigcup\mathcal{U}'$. Así,
+            \begin{equation*}
+                \bigcup\mathcal{U}'=\bigcup\mathcal{U}
+            \end{equation*}
+            \item Sea $A\in\mathcal{A}$, $A\in\tau$ luego existe $\mathcal{B}_A\subseteq\mathcal{B}$ tal que
+            \begin{equation*}
+                A=\bigcup\mathcal{B}_A
+            \end{equation*}
+            Por (a) existe $\mathcal{B}_A'\subseteq\mathcal{B}_A$ tal que $\mathcal{B}_A'$ es numerable y
+            \begin{equation*}
+                A=\bigcup\mathcal{B}_A'
+            \end{equation*}
+            Luego, $\bigcup\left\{\mathcal{B}_A'\Big|A\in\mathcal{A} \right\}$ es un conjunto a lo sumo numerable contenida en $\mathcal{B}$ tal que es una base para $\tau$.
+        \end{enumerate}
+        Por los dos incisos anteriores, se tiene el resultado.
+    \end{proof}
+
+    \begin{exa}
+        Sea $X=\left\{0,1\right\}$ y tomemos $\tau_D=\left\{X,\emptyset,\left\{0\right\},\left\{1\right\}\right\}$. El espacio $(X,\tau_D)$ es segundo numerable, en particular primero numerable, Lindelöf y separable (además, metrizable pues $\tau_D$ es la topología discreta).
+    \end{exa}
+
+    \begin{exa}
+        Considere $X=\left\{0,1\right\}$ y tomemos $\tau=\tau_D$. Para $r\in\mathbb{R}$ definimos $X_r=X$ y $\tau_r=\tau$. Veamos que $\left(X=\prod_{ r\in\mathbb{R}}X_r,\tau_p \right)$ no es primero numerable.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, sea $x=\left(x_r\right)_{ r\in\mathbb{R}}\in X$ tal que
+        \begin{equation*}
+            x_r=0,\quad\forall r\in\mathbb{R}
+        \end{equation*}
+        Sea $\mathcal{V}=\left\{V_n \right\}_{ n\in\mathbb{N}}$ una familia numerable de vecindades de $x$. Dado $m\in\mathbb{N}$ existe un básico $B_m\in\tau_p$ tal que
+        \begin{equation*}
+            x_m\in B_m\subseteq V_m
+        \end{equation*}
+        como $B_m$ es un básico de $\tau_p$, luego existe $J_m\subseteq\mathbb{R}$ finito tal que
+        \begin{equation*}
+            B_m=\prod_{ r\in\mathbb{R}}W_r
+        \end{equation*}
+        con $W_r\in\tau_r$, para cada $r\in J_m$ y $W_r=X_r$ para todo $r\in\mathbb{R}-J_m$. Por lo tanto, si
+        \begin{equation*}
+            V_m=\prod_{ r\in\mathbb{R}}K_r
+        \end{equation*}
+        entonces para todo $r\in\mathbb{R}-J_m$ se tiene que $K_r=X_r$. Tomemos
+        \begin{equation*}
+            J=\bigcup_{ m\in\mathbb{N}}J_m
+        \end{equation*}
+        este conjunto es a lo sumo numerable, siendo tal que $J\subseteq\mathbb{R}$, luego $\mathbb{R}-J$ es no vacío. Sea $t\in\mathbb{R}-J$, se tiene que para todo $m\in\mathbb{N}$, $t\notin J_m$. Sea
+        \begin{equation*}
+            U=\prod_{ r\in\mathbb{R}}U_r
+        \end{equation*}
+        donde
+        \begin{equation*}
+            U_r=\left\{ 
+                \begin{array}{lcr}
+                    \left\{0\right\} & \textup{ si } & r=t\\
+                    X_r & \textup{ si } & r\neq t\\ 
+                \end{array}
+            \right.
+        \end{equation*}
+        $U\in\tau_p$ además, $x\in U$. Se cumple además que $V_m\nsubseteq U$ para todo $m\in\mathbb{N}$. Suponga que $\exists m_0\in\mathbb{N}$ tal que
+        \begin{equation*}
+            V_{ m_0}\subseteq U
+        \end{equation*}
+        Se tiene que
+        \begin{equation*}
+            \left\{0,1\right\}=X_t=K_t=p_t(V_{ m_0})\subseteq p_t(U)=\left\{0\right\}
+        \end{equation*}
+        lo cual es una contradicción. Por tanto, $\mathcal{V}$ no puede ser un sistema fundamnetal de vecindades para $x$, así que no es primero numerable.
+    \end{proof}
+
+    \begin{obs}
+        En el ejemplo anterior, $\left(\prod_{ r\in\mathbb{R}}U_r,\tau_p \right)$ no es segundo numerable, pues no es primero numerable. Pero, $(X_r,\tau_r)$ es segundo numerable, para todo $r\in\mathbb{R}$.
+
+        Tampoco es metrizable, siendo $(X_r,\tau_r)$ para todo $r\in\mathbb{R}$, pues metrizable implica primero numerable.
+    \end{obs}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio metrizable. Entonces, $(X,\tau)$ es primero numerable.
+    \end{propo}
+
+    \begin{proof}
+        Sea $\cf{d}{X\times X}{\mathbb{R}}$ una métrica tal que $X=X_d$. Sea $x\in X$. Para $m\in\mathbb{N}$ definimos
+        \begin{equation*}
+            B_n=B_d\left(x,\frac{1}{n}\right)
+        \end{equation*}
+        Entonces, $\left\{B_n\right\}_{ n\in\mathbb{N}}$ es un sistema fundamental de vecindades para $x$ el cual es a lo sumo numerable.
+    \end{proof}
+
+    \begin{exa}
+        
+    \end{exa}
+
+
 
 \end{document}

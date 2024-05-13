@@ -1113,6 +1113,14 @@
     \end{proof}
 
     \begin{excer}
+        Sea $X$ un conjunto infinito. Demuestre que $(X,\tau_{cf})$ no es un espacio $T_2$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
         Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{\alpha\in I}$ una familia de espacios topológicos. Tomando
         \begin{equation*}
             X=\prod_{\alpha\in I}X_\alpha
@@ -1123,6 +1131,197 @@
     \begin{excer}
         Sea $X$ un conjunto, $p\in X$ y $K\subseteq X$ tal que $\abs{K}\geq2$
     \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico. Demuestre que $(X,\tau)$ es $T_2$ si y sólo si el conjunto
+        \begin{equation*}
+            \Delta=\left\{(x,y)\in X\times X\Big|x=y \right\}
+        \end{equation*}
+        es cerrado en $(X\times X,\tau_p)$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico $T_1$. Demuestre que
+        \begin{enumerate}
+            \item Si $x\in X$ y $A=\left\{x\right\}$, entonces $A'=\emptyset$.
+            \item Si $x_1,...,x_n\in X$ y $A=\left\{x_1,...,x_n\right\}$, entonces $A'=\emptyset$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico $T_2$ y, $A,B\subseteq X$ compactos disjuntos. Pruebe que existen $U,V\in\tau$ tales que
+        \begin{equation*}
+            A\subseteq U,\quad B\subseteq V\quad\textup{y}\quad U\cap V=\emptyset
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico regular. Demuestre que, dados $x,y\in X$ distintos existen $U,V\in\tau$ tales que
+        \begin{equation*}
+            x\in U,\quad y\in V,\quad\textup{y}\quad\Cls{U}\cap\Cls{V}=\emptyset
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \renewcommand{\theenumi}{\roman{enumi}}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio $T_2$. Pruebe que si $x\in X$
+        \begin{enumerate}
+            \item $\bigcap\left\{F\subseteq X\Big|x\in F\textup{ y }F\textup{ es cerrado} \right\}=\left\{x\right\}$.
+            \item $\bigcap\left\{U\subseteq X\Big|x\in U\textup{ y }U\textup{ es abierto} \right\}=\left\{x\right\}$.
+        \end{enumerate}
+        pruebe que ninguna de las dos propiedades anteriores es equivalente a que el espacio sea $T_2$.
+    \end{excer}
+
+    \begin{proof}
+        De (i): Como $(X,\tau)$ es $T_2$, en particular es $T_1$, luego $\tau_{cf}\subseteq\tau$, así que el conjunto
+        \begin{equation*}
+            \left\{x\right\}
+        \end{equation*}
+        es cerrado (por ser finito) y tal que $x\in\left\{x\right\}$. Por tanto,
+        \begin{equation*}
+            \bigcap\left\{F\subseteq X\Big|x\in F\textup{ y }F\textup{ es cerrado} \right\}=\left\{x\right\}
+        \end{equation*}
+        (pues la otra contención se tiene de forma inmediata). Observe que no es necesario que el espacio sea $T_2$ para que la condición anterior se cumpla.
+
+        De (ii): Suponga que
+        \begin{equation*}
+            \bigcap\left\{U\subseteq X\Big|x\in U\textup{ y }U\textup{ es abierto} \right\}\neq\left\{x\right\}
+        \end{equation*}
+        como $x$ se encunetra en todo abierto que lo contiene, forzosamente debe existir $y\in X$ tal que
+        \begin{equation*}
+            y\in\bigcap\left\{U\subseteq X\Big|x\in U\textup{ y }U\textup{ es abierto} \right\}
+        \end{equation*}
+        Entonces, para todo $U\in\tau$ tal que $x\in\tau$ implica que $y\in\tau$. Como $(X,\tau)$ es $T_2$ existen $V,W\in\tau$ tales que
+        \begin{equation*}
+            x\in W,\quad y\in V,\quad\textup{ y }\quad W\cap V=\emptyset
+        \end{equation*}
+        pero, la segunda condición implica que $y\notin W$\contradiction. Por tanto,
+        \begin{equation*}
+            \bigcap\left\{U\subseteq X\Big|x\in U\textup{ y }U\textup{ es abierto} \right\}=\left\{x\right\}
+        \end{equation*}
+        Para el ejemplo, tome $(\mathbb{N},\tau_{cf})$. Este espacio claramente no es $T_2$, pero si cumple la condición requerida.
+    \end{proof}
+
+    \begin{excer}
+        Sea $X$ un conjunto finito. Pruebe que la única topología $\tau$ que hace de $(X,\tau)$ un espacio $T_2$ es la discreta. 
+    \end{excer}
+
+    \begin{proof}
+        Supongamos que $X=\left\{x_1,...,x_n\right\}$. Hay que probar que
+        \begin{equation*}
+            \tau_D\subseteq\tau
+        \end{equation*}
+        (suponiendo que $(X,\tau)$ es $T_2$). En efecto, como $(X,\tau)$ es $T_2$, entonces los conjuntos $\left\{x_i\right\}$ son cerrados, para todo $i\in\natint{1.n}$. En particular, para todo $i\in\natint{1,n}$:
+        \begin{equation*}
+            \bigcup_{ j\in\natint{1,n},j\neq i}\left\{x_j\right\}=X-\left\{x_i\right\}
+        \end{equation*}
+        es cerrado (por ser unión finita de cerrados), luego su complemento $\left\{x_i\right\}$ es abierto en $(X,\tau)$. Por tanto, $\tau_D\subseteq\tau$.
+    \end{proof}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio $T_2$. Pruebe que si $A\subseteq X$, entonces
+        \begin{enumerate}
+            \item $A'$ es cerrado.
+            \item $\left(A'\right)'\subseteq A'$.
+            \item $\left(\Cls{A}\right)'= A'$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        Sea $A\subseteq X$.
+        
+        De (i): Veamos que $X-A'$ es abierto. En efecto, primero recordemos que
+        \begin{equation*}
+            x\in A'\iff \forall V\in\tau\textup{ tal que }x\in V\Rightarrow (V-\left\{x\right\})\cap A\neq\emptyset
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            x\in X-A'\iff \exists U_0\in\tau \textup{ tal que }x\in U_0\textup{ y }(U_0-\left\{x\right\})\cap A=\emptyset
+        \end{equation*}
+        Afirmamos que para $x\in X-A'$, $U_0\subseteq X-A'$. En efecto, en caso contrario si existiera $y\in U_0$ tal que $y\in A'$ (en particular, $y\neq x$ pues $x\in X-A'$), por la primera condición:
+        \begin{equation*}
+            (U_0-\left\{y\right\})\cap A\neq\emptyset
+        \end{equation*}
+        Si $x\notin A$, entonces
+        \begin{equation*}
+            (U_0-\left\{x\right\})\cap A\supseteq(U_0-\left\{y\right\})\cap A\neq\emptyset 
+        \end{equation*}
+        lo cual es una contradición. Si $x\in A$, como el espacio es $T_2$ existen dos abiertos $W,V\in\tau$ tales que
+        \begin{equation*}
+            y\in V,\quad x\in W,\quad V\cap W=\emptyset
+        \end{equation*}
+        Tomemos $V_0=U_0\cap V$. Se tiene que
+        \begin{equation*}
+            (V_0-\left\{y\right\})\cap A\neq\emptyset
+        \end{equation*}
+        pues $y\in A'$. Luego, como $x\notin V_0$ (pues $x\notin V$), se sigue que existe $z\in (V_0-\left\{y\right\})\cap A$, en particular $z\neq x$ y $z\in U_0$, luego
+        \begin{equation*}
+            (U_0-\left\{x\right\})\cap A=\emptyset
+        \end{equation*}
+        lo cual es una contradicción. Por ende, $U_0\subseteq X-A'$. Así, el conjunto $X-A'$ es abierto, luego $A'$ es cerrado.
+
+        De (ii): Si $x\in\left(A'\right)'$, entonces
+        \begin{equation*}
+            \forall U\in\tau\textup{ tal que }x\in U\Rightarrow \left(U-\left\{x\right\} \right)\cap A'\neq\emptyset
+        \end{equation*}
+        sea $V=U-\left\{x\right\}=U\cap(X-\left\{x\right\})\in\tau$ (pues $\left\{x\right\}$ es abierto). Entonces, al tenerse que $V\cap A'\neq\emptyset$, existe $y\in X$ tal que $y\in V\cap A'$, en particular $y\in A'$, luego como $V\in\tau$ es tal que $y\in V$, se sigue que
+        \begin{equation*}
+            (V-\left\{y\right\})\cap A\neq\emptyset
+        \end{equation*} 
+        así, existe $z\in V-\left\{y\right\}$ tal que $z\in A$, en particular,
+        \begin{equation*}
+            z\in V\cap A\Rightarrow (U-\left\{x\right\})\cap A\neq\emptyset
+        \end{equation*}
+        es decir, que $x\in A'$. Por tanto,
+        \begin{equation*}
+            \left(A'\right)'\subseteq A'
+        \end{equation*}
+
+        De (iii): Una contención es inmediata del hecho de que $A\subseteq\Cls{A}$, pues
+        \begin{equation*}
+            \begin{split}
+                x\in A'\iff& \forall U\in\tau\textup{ tal que }x\in U\Rightarrow (U-\left\{x\right\})\cap A\neq\emptyset\\
+                \Rightarrow\:&\forall U\in\tau\textup{ tal que }x\in U\Rightarrow (U-\left\{x\right\})\cap\Cls{A}\neq\emptyset\\
+                \iff& x\in\left(\Cls{A}\right)'\\
+            \end{split}
+        \end{equation*}
+        Así, $A'\subseteq\left(\Cls{A}\right)'$. Si $x\in\left(\Cls{A}\right)'$, entonces
+        \begin{equation*}
+            \forall U\in\tau\textup{ tal que }x\in U\Rightarrow (U-\left\{x\right\})\cap\Cls{A}\neq\emptyset
+        \end{equation*}
+        entonces, existe $y\in U-\left\{x\right\}$ tal que $y\in\Cls{A}$. Si $y\in A$ hemos terminado. Suponga que $y\notin A$. Como $V=U-\left\{x\right\}$ es un abierto tal que $y\in V$, entonces
+        \begin{equation*}
+            V\cap A\neq\emptyset
+        \end{equation*}
+        así, existe $z\in V$ tal que $z\in A$, en particular
+        \begin{equation*}
+            (U-\left\{x\right\})\cap A\neq\emptyset
+        \end{equation*}
+        por tanto, $x\in A'$.
+    \end{proof}
+
+    \section{Filtros}
 
     \begin{excer}
         Sea $(X,\tau)$ un espacio topológico.
@@ -1174,15 +1373,133 @@
     \end{excer}
 
     \begin{proof}
-        Procederemos por inducción sobre $n$. Considere el caso $n=2$. Se tienen dos casos:
-        \begin{enumerate}
-            \item $\mathcal{F}_1\subseteq \mathcal{U}$, en cuyo caso ya hemos terminado.
-            \item $\mathcal{F}_1\nsubseteq \mathcal{U}$. 
-        \end{enumerate}
+        Procederemos por inducción sobre $n$.
+        \begin{itemize}
+            \item Considere el caso $n=2$. Suponga que $\mathcal{F}_1,\mathcal{F}_2\nsubseteq\mathcal{U}$, entonces existen $A_1\in\mathcal{F}_1$ y $A_2\in\mathcal{F}_2$ tales que $A_1,A_2\notin\mathcal{U}$, en particular por ser $\mathcal{U}$ ultrafiltro se tiene que $A_1\cup A_2\notin\mathcal{U}$. Tomemos
+            \begin{equation*}
+                A=A_1\cup A_2
+            \end{equation*}
+            se tiene por absorción que $A_1\cup A_2 \in\mathcal{F}_1,\mathcal{F}_2$. Por tanto,
+            \begin{equation*}
+                A_1\cup A_2\in\mathcal{F}_1\cap\mathcal{F}_2\subseteq\mathcal{U}
+            \end{equation*}
+            luego, $A_1\cup A_2\in\mathcal{U}$\contradiction. Por tanto, alguno de los dos $\mathcal{F}_1,\mathcal{F}_2$ tiene que estar contenido en $\mathcal{U}$.
+            \item Suponga que existe $k\in\mathbb{N}$, $k\geq 2$ tal que si $\mathcal{F}_1,...,\mathcal{F}_k$ son filtros sobre $X$ y $\mathcal{U}$ un ultrafiltro tal que $\mathcal{F}_1\cap...\cap\mathcal{F}_k\subseteq\mathcal{U}$, entonces existe $i\in\natint{1,k}$ tal que $\mathcal{F}_i\subseteq\mathcal{U}$.
+            \item Veamos que se cumple para $k+1$. En efecto, sean $\mathcal{F}_1,...,\mathcal{F}_{ k+1}$ filtros sobre $X$ y $\mathcal{U}$ un ultrafiltro sobre $X$ tal que
+            \begin{equation*}
+                \mathcal{F}_1\cap...\cap\mathcal{F}_k\cap\mathcal{F}_{ k+1}\subseteq\mathcal{U}
+            \end{equation*}
+            Sea $\xi=\mathcal{F}_1\cap...\cap\mathcal{F}_k$. Por una proposición $\xi$ es un filtro, luego por el caso $n=2$ se debe tener que $\xi\subseteq\mathcal{U}$ o $\mathcal{F}_{ k+1}\subseteq\mathcal{U}$. Si se tiene el segundo caso, se sigue el resultado tomando $i=k+1$. En el primer caso, usando la hipótesis de inducción se sigue que existe $i\in\natint{1,k}$ tal que $\mathcal{F}_i\subseteq\mathcal{U}$.
+
+            En ambos casos, se tiene que existe $i\in\natint{1,k+1}$ tal que $\mathcal{F}_i\subseteq\mathcal{U}$.
+        \end{itemize}
+        Aplicando inducción, el resultado se tiene para todo $n\in\mathbb{N}$.
+    \end{proof}
+
+    \section{Compacidad}
+
+    \begin{excer}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos $T_2$ localmente compactos que no son compactos. Si $(X_1,\tau_1)$ y $(X_2,\tau_2)$ son homeomorfos, demuestre que $(\hat{X_1},\hat{\tau_1})$ y $(\hat{X_2},\hat{\tau_2})$ también lo son.
+    \end{excer}
+
+    \begin{proof}
+        Supongamos que la compactificación de Alexandroff es tal que
+        \begin{equation*}
+            \hat{X_1}=X_1\cup\left\{\infty_1 \right\}\quad\textup{y}\quad\hat{X_2}=X_2\cup\left\{\infty_2 \right\}
+        \end{equation*}
+        donde $\infty_1\notin X_1$ y $\infty_2\notin X_2$.
+
+        Sea $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ el homeomorfismo entre ambos espacios. Defina $\cf{\hat{f}}{(\hat{X_1},\hat{\tau_1})}{(\hat{X_2},\hat{\tau_2})}$ como sigue
+        \begin{equation*}
+            \hat{f}(x)=\left\{ 
+                \begin{array}{lcr}
+                    f(x) & \textup{ si } & x\in X_1\\
+                    \infty_2 & \textup{ si } & x=\infty_1\\
+                \end{array}
+            \right.
+        \end{equation*}
+        Veamos que esta función es homeomorfismo. En efecto, primero veamos que es biyección.
+        \begin{itemize}
+            \item \textbf{$\hat{f}$ es inyectiva}. Sean $x,y\in \hat{X_1}$ tales que $x\neq y$. Si $x,y\in X_1$ entonces como $f$ es inyectiva, se tiene que
+            \begin{equation*}
+                \hat{f}(x)=f(x)\neq f(y)=\hat{f}(y)
+            \end{equation*}
+            Si $x=\infty_1$, entonces $\hat{f}(x)=\infty_2\notin X_2$, luego $\hat{f}(x)\neq \hat{f}(y)$ (independientemente del valor de $y$). De forma análoga se tiene el resultado si $y=\infty_1$.
+            
+            Por tanto, $\hat{f}$ es inyectiva.
+            \item \textbf{$\hat{f}$ es suprayectiva}. Sea $u\in \hat{X_2}$, si $u\in X_2$ como $f$ es suprayectiva, existe $x\in X_1$ tal que $f(x)=\hat{f}(x)=u$. Si $u=\infty_2$, existe $x=\infty_1$ tal que $\hat{f}(x)=u$.
+        \end{itemize}
+        Por tanto, de los dos incisos anteriores se sigue que $\hat{f}$ es biyectiva. Para ver que es homeomorfismo, basta con verificar que es continua y abierta.
+        \begin{itemize}
+            \item \textbf{$\hat{f}$ es continua}. Sea $V\in\hat{\tau_2}$. Se tienen dos casos:
+            \begin{enumerate}
+                \item $V\in\tau_2$, en cuyo caso se tiene que
+                \begin{equation*}
+                    \hat{f}^{-1}(V)=f^{-1}(V)\in\tau_1\subseteq\hat{\tau_1}
+                \end{equation*}
+                pues, $V\subseteq X_2$.
+                \item $V=\hat{X_2}-C$, donde $C\subseteq X_2$ es compacto en $(X_2,\tau_2)$. Veamos que
+                \begin{equation*}
+                    \begin{split}
+                        \hat{f}^{-1}(V)&=\hat{f}^{-1}(X_2-C)\\
+                        &=\hat{f}^{-1}(X_2)-\hat{f}^{-1}(C)\\
+                        &=X_1-f^{-1}(C)\\
+                    \end{split}
+                \end{equation*}
+                pues, $C\subseteq X_2$. Afirmamos que $f^{-1}(C)$ es compacto. En efecto, como $\cf{f^{-1}}{(X_2,\tau_2)}{(X_1,\tau_1)}$ es continua, la imagen de compactos es compacta, luego $f^{-1}(C)$ es un compacto en $(X_1,\tau_1)$, luego $\hat{f}^{-1}(V)\in\hat{\tau_1}$.
+            \end{enumerate}
+            por los dos incisos anteriores se sigue que $\hat{f}$ es continua.
+            \item \textbf{$\hat{f}$ es abierta}. Sea $U\in\hat{\tau_1}$, se tienen dos casos:
+            \begin{enumerate}
+                \item $U\in\tau_2$, entonce
+                \begin{equation*}
+                    \begin{split}
+                        \hat{f}(U)&=f(U)\in\tau_2\subseteq\hat{\tau_2}
+                    \end{split}
+                \end{equation*}
+                \item $U=\hat{X_1}-C$ donde $C\subseteq (X_1,\tau_1)$ es compacto. Veamos que
+                \begin{equation*}
+                    \begin{split}
+                        \hat{f}(U)&=\hat{f}(\hat{X_1}-C)\\
+                        &=\hat{f}(\hat{X_1})-\hat{f}(C)\\
+                        &=\hat{X_2}-f(C)\\
+                    \end{split}
+                \end{equation*}
+                donde $f(C)$ es compacto en $(X_2,\tau_2)$ pues $C$ es compacto en $(X_1,\tau_1)$, luego $\hat{f}(U)\in\hat{\tau_2}$.
+            \end{enumerate}
+            por los dos incisos anteriores se sigue que $\hat{f}$ es abierta.
+        \end{itemize}
+        Como $f$ es una función biyectiva, continua y abierta, se sigue que $\hat{f}$ es homeomorfismo. Así, $(\hat{X_1},\hat{\tau_1})$ y $(\hat{X_2},\hat{\tau_2})$ son homeomorfos.
     \end{proof}
 
     \begin{excer}
-        
+        Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{\alpha\in I}$ una familia de espacios topológicos localmente compactos y suponga que existe $J\subseteq I$ finito tal que
+        \begin{equation*}
+            \forall \beta\in I-J, (X_\beta,\tau_\beta)\textup{ es compacto}
+        \end{equation*}
+        Demuestre que $\left(X=\prod_{\alpha\in I}X_\alpha,\tau_p \right)$ es localmente compacto.
     \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \chapter{Tercer Parcial}
+
+    \section{Axiomas de Numerabilidad}
+
+    \section{Separabilidad}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico separable. Sea $\mathcal{U}=\left\{U_\alpha \right\}_{\alpha\in I}\subseteq\tau$ tal que
+        \begin{equation*}
+            U_\alpha\cap U_\beta=\emptyset,\quad\forall \alpha,\beta\in I,\alpha\neq\beta
+        \end{equation*}
+        Demuestre que $\mathcal{U}$ es a lo sumo numerable.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
 
 \end{document}
