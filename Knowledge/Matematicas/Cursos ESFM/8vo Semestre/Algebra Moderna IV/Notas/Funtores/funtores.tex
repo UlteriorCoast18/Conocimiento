@@ -1226,4 +1226,159 @@
         por ende, $\abs{\mathcal{P}({x_0})}=2$. Pero esto no puede suceder pues es biyección. Por tanto, $\cf{\mathcal{P}}{\Cat{Set}}{\Cat{Set}}$ no es representable.
     \end{proof}
 
+    \renewcommand{\theenumi}{\roman{enumi}}
+
+    \begin{obs}
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item Ser naturalmente isomorfo es una relación de equivalencia.
+            \item Sean $\cf{F,G}{\mathcal{C}}{\mathcal{D}}$ dos funtores. Supongamos que $F\overset{\alpha}{\cong}G$. Entonces para todo $X,Y\in\Obj{\mathcal{C}}$, si $\cf{f}{X}{Y}$ es morfismo, se tiene que el diagrama siguiente
+            \begin{equation*}
+                \begin{array}{rcccl}
+                    & F(X) & \underset{\longrightarrow}{\alpha_{X}} & G(X) &\\
+                    F(f) & \downarrow & & \downarrow & G(f) \\
+                    & F(Y) & \overset{\longrightarrow}{\alpha_{Y}} & G(Y) &\\
+                \end{array}
+            \end{equation*}
+            conmuta
+        \end{enumerate}
+    \end{obs}
+
+    \renewcommand{\theenumi}{\arabic{enumi}}
+
+    \begin{proof}
+        De (i): Hay que verificar que la relación cumple tres condiciones:
+        \begin{enumerate}
+            \item Todo funtor $F$ está relacionado consigo mismo. En efecto, considere $\cf{F}{\mathcal{C}}{\mathcal{D}}$ funtor entre dos categorías. Afirmamos que $\left(\alpha_{ F(X)}=id_{ F(X)} \right)_{ X\in\Obj{\mathcal{C}}}$ es un isomorfismo natural de $F$ en $F$. En efecto, veamos que para todo $X,Y\in\Obj{\mathcal{C}}$ y $\cf{f}{X}{Y}$ morfismo se tiene que el diagrama:
+            \begin{equation*}
+                \begin{array}{rcccl}
+                    & F(X) & \underset{\longrightarrow}{\alpha_{X}} & F(X) &\\
+                    F(f) & \downarrow & & \downarrow & F(f) \\
+                    & F(Y) & \overset{\longrightarrow}{\alpha_{X}} & F(Y) &\\
+                \end{array}
+            \end{equation*}
+             es conmutativo, pues
+             \begin{equation*}
+                \begin{split}
+                    \alpha_Y\circ F(f)&=id_{F(X)}\circ F(f)\\
+                    &=F(f)\\
+                    &=F(f)\circ id_{F(X)}\\
+                    &=F(f)\circ \alpha_X\\
+                \end{split}
+             \end{equation*}
+             por tanto, $F\cong F$.
+             \item Sean $\cf{F,G}{\mathcal{C}}{\mathcal{D}}$ funtores naturalmente isomorfos.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría y $\cf{F}{\mathcal{C}}{\Cat{Set}}$ un funtor. Un par $(A,a)\in\Obj{\mathcal{C}}\times F(A)$ es llamado \textbf{par de representación} (también conocido como \textbf{elemento universal} o \textbf{par con una propiedad universal que representa a $F$}) si para todo $(B,b)\in\Obj{\mathcal{C}}\times F(B)$ existe un único mofrismo $\cf{f}{A}{B}$ tal que
+        \begin{equation*}
+            \left(F(f)\right)(a)=b
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        Un funtor $\cf{F}{\mathcal{C}}{\Cat{Set}}$ es representable si y sólo si existe un par que le represente.
+    \end{propo}
+
+    \begin{proof}
+        Se probará el caso en el que $F$ es covariante.
+
+        $\Rightarrow)$: Suponga que $F$ es representable, entonces existe $A\in\Obj{\mathcal{C}}$ tal que $F\cong \HOM{\mathcal{C}}(A,-)$, por la observación anterior $\HOM{\mathcal{C}}(A,-)\overset{\varphi}{\cong}F$.
+
+        Notemos ahora que $\Hom{\mathcal{C}}{A}{A}\neq\emptyset$, pues $1_A\in\Hom{\mathcal{C}}{A}{A}$. Tomemos $a=\varphi_A(1_A)$ (recordemos que $\varphi_A$ va de los morfismos de $\Hom{\mathcal{C}}{A}{A}$ en $F(A)$). Afirmamos que $(A,a)$ es par de representación de $F$.
+
+        En efecto, sea $B\in\Obj{\mathcal{C}}$ y $b\in F(B)$. Considere $f_b$ el único morfismo de $A$ en $B$ tal que $b\overset{\varphi}{\cong}f_b$. Se tiene que el diagrama
+        \begin{equation*}
+            \begin{array}{rcccl}
+                & \HOM{\mathcal{C}}(A,A) & \underset{\longrightarrow}{\varphi_{A}} & F(A) &\\
+                \HOM{\mathcal{C}}(A,f_b) & \downarrow & & \downarrow & F(f_b) \\
+                & \HOM{\mathcal{C}}(A,B) & \overset{\longrightarrow}{\varphi_{B}} & F(B) &\\
+            \end{array}
+        \end{equation*}
+        es conmutativo. Como también conmuta con las inversas, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \left(F(f_b)\right)(a)&=... =b
+            \end{split}
+        \end{equation*}
+
+        $\Leftarrow)$: Sea $(A,a)\in\Obj{\mathcal{C}}\times F(A)$ un par de representación de $F$. Se tiene que
+
+        Para todo $(B,b)\in\Obj{\mathcal{C}}\times F(B)$ existe un único $\cf{f}{A}{B}$ tal que $(F(f))(a)=b$.
+
+        Sea $B\in\Obj{\mathcal{C}}$. Considere $\cf{\psi_B}{\HOM{\mathcal{C}(A,B)}}{F(B)}$ tal que
+        \begin{equation*}
+            f\mapsto (F(f))(a)
+        \end{equation*}
+        esta función está bien definida y es biyectiva (por el hecho de que existe un par de representación). Afirmamos que $\left\{\psi_B\right\}_{B\in\Obj{\mathcal{C}}}$ es un isomorfismo natural.
+
+        En efecto, hay que ver que para $X,Y\in\Obj{\mathcal{C}}$ y $\cf{g}{X}{Y}$, el diagrama
+        \begin{equation*}
+            \begin{array}{rcccl}
+                & \HOM{\mathcal{C}}(A,X) & \underset{\longrightarrow}{\psi_{X}} & F(X) &\\
+                \HOM{\mathcal{C}}(A,g) & \downarrow & & \downarrow & F(g) \\
+                & \HOM{\mathcal{C}}(A,Y) & \overset{\longrightarrow}{\psi_{Y}} & F(Y) &\\
+            \end{array}
+        \end{equation*}
+        es conmutativo. En efecto, sea $h\in\Hom{\mathcal{C}}{A}{X}=\HOM{\mathcal{C}}(A,X)$, entonces
+        \begin{equation*}
+            \begin{split}
+                \psi_Y\circ \HOM{\mathcal{C}}(A,g)(h)&=\psi_Y(\HOM{\mathcal{C}}(A,g)(h))\\
+                &=\psi_Y(g\circ h)\\
+                &=(F(g\circ h))(a)\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                F(g)\circ\psi_X(h)&=F(g)(F(h)(a))\\
+                &=F(g)\circ F(h)(a)\\
+                &=F(g\circ h)(a)\\
+            \end{split}
+        \end{equation*}
+        con lo cual
+        \begin{equation*}
+            \psi_Y\circ \HOM{\mathcal{C}}(A,g)=F(g)\circ\psi_X
+        \end{equation*}
+        Que prueba lo deseado.
+    \end{proof}
+
+    \begin{theor}[\textbf{Propiedad universal de la localización de anillos}]
+        Sea $A$ anillo conmutativo y $S\subseteq A$ multiplicativo. Sea además $\varphi$ función definida como sigue
+        \begin{equation*}
+            \begin{split}
+                \varphi:A&\rightarrow S^{-1}A\\
+                a&\mapsto \varphi(a)=\frac{sa}{s} (\forall s\in S)
+            \end{split}
+        \end{equation*}
+        Entonces, el par $(S^{-1}A,\varphi)$ satisface la siguiente propiedad universal. Para cualquier anillo conmutativo con 1, digamos $T$ y $f$ homomorfismo de $A$ en $T$,
+        \begin{equation*}
+            \cf{f}{A}{T}
+        \end{equation*}
+        tal que
+        \begin{equation*}
+            f(S)\subseteq T^*
+        \end{equation*}
+        existe un único homomorfismo $\cf{\bar{f}}{S^{-1}A}{T}$ tal que
+        \begin{equation*}
+            \bar{f}(1)=1,\quad\textup{y}\quad\bar{f}\circ\varphi=f
+        \end{equation*}
+    \end{theor}
+
+    \begin{exa}
+        El teorema anterior equivale a afirmar que el siguiente funtor
+        \begin{equation*}
+            F:\Cat{Ring}^c\rightarrow\Cat{Set}
+        \end{equation*}
+        tal que $T\mapsto F(T)=\left\{f\in\HOM{\Cat{Ring}^c}(A,T)\Big|f(S)\subseteq T^* \right\}$ y, a cada morfismo de anillos $\cf{u}{T}{T'}$ es tal que $u\mapsto\cf{F(u)=_u\varphi}{F(T)}{\HOM{\Cat{Ring}}(A,T')}$ tal que $_u\varphi(g)=u\circ g$.
+    \end{exa}
+
+    \begin{proof}
+        $\Rightarrow)$: Afirmamos que $(S^{-1}A,\varphi)$ es par de representación de $F$
+
+        $\Leftarrow)$: Es inmediata (ejercicio).
+    \end{proof}
+
 \end{document}
