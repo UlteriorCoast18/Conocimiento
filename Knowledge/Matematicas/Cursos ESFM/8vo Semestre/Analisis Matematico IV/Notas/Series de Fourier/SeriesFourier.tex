@@ -1730,6 +1730,211 @@
         \end{equation*}
     \end{exa}
 
-    
+    \section{Puntos de Lebesgue}    
+
+    Se probará que si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$, entonces casi todo punto de $\mathbb{R}^n$ es un punto de Lebesgue de $f$. Será necesario probar algunos resultados preliminares.
+
+    \begin{mydef}
+        Sea $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$. Para cada $x\in\mathbb{R}^n$ se define
+        \begin{equation*}
+            \mathcal{M}f(x)=\sup_{r>0}\frac{1}{m(B(x,r))}\int_{B(x,r)}\abs{f}\leq\infty
+        \end{equation*}
+        donde $B(x,r)$ es la bola con centro $x$ y de radio $r$ con respecto a cualquier norma de $\mathbb{R}^n$ (pues todas las normas son equivalentes).
+    \end{mydef}
+
+    \begin{propo}
+        Si $f\in\mathcal{L}_1(\mathbb{R})^n,\mathbb{K}$, entonces para todo $\lambda>0$ el conjunto
+        \begin{equation*}
+            E_\lambda=\left\{x\in\mathbb{R}^n\Big|\mathcal{M}f(x)>\lambda \right\}
+        \end{equation*}
+        es abierto. 
+    \end{propo}
+
+    \begin{proof}
+        Sea $\lambda>0$. Suponga que el conjunto $E_\lambda$ es no vacío. Como $\mathcal{M}f(x)>\lambda$ para todo $x\in\lambda$. Sea $x\in E_\lambda$, entonces existe $r>0$ tal que
+        \begin{equation*}
+            c=\frac{1}{m(B(x,r))}\int_{ B(x,r)}\abs{f}>\lambda
+        \end{equation*}
+        Sea $\delta>0$. Si $y\in B(x,\delta)$, entonces $B(x,r)\subseteq B(y,r+\delta)$. Entonces
+        \begin{equation*}
+            \begin{split}
+                \lambda&<c\\
+                &=\frac{1}{m(B(x,r))}\int_{ B(x,r)}\abs{f}\\
+                &\leq\frac{m(B(y,r+\delta))}{m(B(x,r))}\cdot\frac{1}{m(B(y,r+\delta))}\int_{ B(y,r+\delta)}\abs{f}\\
+                &=\left(\frac{r+\delta}{r} \right)^n\frac{1}{m(B(y,r+\delta))}\int_{ B(y,r+\delta)}\abs{f}\\
+            \end{split}
+        \end{equation*}
+        Ahora, como
+        \begin{equation*}
+            \lim_{\delta\rightarrow0^+}\left(\frac{r+\delta}{r}\right)^n=1
+        \end{equation*}
+        y
+        \begin{equation*}
+            \frac{c}{\lambda}>1
+        \end{equation*}
+        entonces existe $\delta_0>0$ tal que
+        \begin{equation*}
+            \left(\frac{r+\delta_0}{r}\right)^n<\frac{c}{\lambda}
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            \begin{split}
+                c\leq\left(\frac{r+\delta_0}{r} \right)^n\frac{1}{m(B(y,r+\delta_0))}\int_{ B(y,r+\delta_0)}\abs{f}\\
+                &<\frac{c}{\lambda}\mathcal{M}f(y)\\
+                \Rightarrow \lambda<\mathcal{M}f(y)\\
+            \end{split}
+        \end{equation*}
+        por tanto, $y\in B(x,\delta_0)$ implica que $\mathcal{M}f(y)>\lambda$, es decir que $B(x,\delta_0)\subseteq E_\lambda$. Se sigue entonces que $E_\lambda$ es abierto.
+    \end{proof}
+
+    \begin{lema}[\textbf{Lema de recubrimiento}]
+        Para cada colección finita $\left\{B(x_1,r_1),...,B(x_N,r_N) \right\}$, de bolas abiertas en $\mathbb{R}^n$, existe un conjunto $S\subseteq\left\{1,N\right\}$ tal que la correspondiente subfamilia
+        \begin{equation*}
+            \left\{B(x_i,r_i)\right\}_{ i\in S}
+        \end{equation*}
+        es disjunta y
+        \begin{equation*}
+            \bigcup_{ i=1}^N B(x_i,r_i)\subseteq\bigcup_{ i\in S}B(x_r,3r_i)
+        \end{equation*}
+    \end{lema}
+
+    \begin{proof}
+        Podemos suponer que
+        \begin{equation*}
+            r_1\geq r_2\geq ...\geq r_N
+        \end{equation*}
+        Se construirá $S=\left\{i_1,...,i_m \right\}\subseteq\left\{1,...,N\right\}$ inductivamente. Se define $i_1=1$. Sea
+        \begin{equation*}
+            i_2=\min\left\{j\in\natint{i_1+1,N}\Big|B(x_j,r_j)\cap B(x_2, r_1)=\emptyset \right\}
+        \end{equation*}
+        si el conjunto es no vacío y si el conjunto es vacío se toma $S=\left\{i_1 \right\}$.
+
+        Suponga elegidos $i_1,...,i_k\in\natint{1,N}$ con $i_1<...<i_k<N$. Sea
+        \begin{equation*}
+            i_{ k+1}=\left\{i\in\natint{i_k+1,N}\Big|B(x_j,r_j)\cap B(x_i,r_i)=\emptyset,\forall i\in\natint{1,k} \right\}
+        \end{equation*}
+        Si el conjunto es no vacío, en caso contrario se pone $S=\left\{i_1,...,i_k\right\}$.
+
+        Este proceso eventualmente termina después de un número finito de pasos. Suponga así elegido el conjunto $S\subseteq\natint{1,N}$, siendo
+        \begin{equation*}
+            S=\left\{i_1,...,i_m\right\}
+        \end{equation*}
+        Por construcción, la familia $\left\{B(x_j,r_j) \right\}_{ j\in S}$ es disjunta. Fije $j\in\natint{1,N}$, entonces existe $k\in\natint{1,m}$ tal que $i_k\leq j<i_{ k+1}$ o bien $k=m$ e $i_m<j$. En ambos casos existe $l\in\natint{1,k}$ tal que
+        \begin{equation*}
+            B(x_j,r_j)\cap B(x_{ i_l},r_{ i_l})\neq\emptyset
+        \end{equation*}
+        (por la forma en que se eligieron los elementos de $S$) note que
+        \begin{equation*}
+            r_j\leq r_{ i_k}\leq r_{ i_l}
+        \end{equation*}
+        Sea $z\in B(x_j,r_j)$ y sea $w\in B(x_j,r_j)\cap B(x_{ i_l},r_{ i_l})$. Entonces,
+        \begin{equation*}
+            \begin{split}
+                \norm{z-x_{ i_l}}&\leq\norm{z-x_j}+\norm{x_j-w}+\norm{w-x_{ i_l}}\\
+                &\leq r_j+r_j+r_{ i_l}\\
+                &\leq 3r_{ i_l}\\
+            \end{split}
+        \end{equation*}
+        Por ende, $z\in B(x_{ i_l},r_{ i_l})$. Luego,
+        \begin{equation*}
+            \bigcup_{ i=1}^N B(x_i,r_i)\subseteq\bigcup_{ i\in S}B(x_r,3r_i)
+        \end{equation*}
+    \end{proof}
+
+    \begin{propo}
+        Si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$, entonces para todo $\lambda>0$ sea
+        \begin{equation*}
+            E_\lambda=\left\{x\in\mathbb{R}^n\Big|\mathcal{M}f(x)>\lambda \right\}
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            m(E_\lambda)\leq\frac{3^n}{\lambda}\N{1}{f}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Sea $\lambda>0$. Es claro que $E_\lambda$ es medible (por ser abierto). Sea $K\subseteq E_\lambda$ un subconjunto compacto arbitrario de $E_\lambda$.
+
+        Para cada $x\in K$ existe $r_x>0$ tal que
+        \begin{equation*}
+            \frac{1}{m(B(x,r_x))}\int_{B(x,r_x)}\abs{f}>\lambda
+        \end{equation*}
+        (por ser $E_\lambda$ abierto). Ya que $K\subseteq \bigcup_{ x\in K}B(x,r_x)$ y $K$ es compacto, existen $x_1,...,x_N\in K$ tales que
+        \begin{equation*}
+            K\subseteq \bigcup_{ i=1}^N B(x_i,r_{ x_i})
+        \end{equation*}
+        Por el Lema del recubrimiento existe una subfamilia disjunta $\left\{B(x_{ i_1},r_{ x_{i_1}}),...,B(x_{ i_m},r_{ x_{i_m}})\right\}$ tales que
+        \begin{equation*}
+            \bigcup_{ i=1}^N B(x_i,r_{ x_i})\subseteq\bigcup_{ j=1}^{ m}B(x_{ i_j},3r_{x_{ i_j}} )
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \begin{split}
+                m(K)&\leq\sum_{ j=1}^m B(x_{ i_j},3r_{x_{ i_j}})\\
+                &\leq3^n\sum_{ j=1}^m B(x_{ i_j},r_{x_{ i_j}})\\
+                &<3^n\sum_{ j=1}^m \frac{1}{\lambda}\int_{ B(x_{ i_j},r_{x_{ i_j}})}\abs{f}\\
+                &\leq\frac{3^n}{\lambda}\int_{\bigcup_{ j=1}^{ m}B(x_{ i_j},r_{x_{ i_j}})}\abs{f}\\
+                &\leq\frac{3^n}{\lambda}\int_{\mathbb{R}^n}\abs{f}\\
+                &=\frac{3^n}{\lambda}\N{1}{f}\\
+                \Rightarrow m(K)&<\frac{3^n}{\lambda}\N{1}{f}\\
+            \end{split}
+        \end{equation*}
+        Ahora, como $E_\lambda$ es abierto, podemos escribirlo como:
+        \begin{equation*}
+            E_\lambda=\bigcup_{ \nu=1}^\infty C_{\nu}
+        \end{equation*}
+        donde los $C_\nu$ son cubos disjuntos tales que $\overline{C_\nu}\subseteq E_\lambda$ para todo $\nu\in\mathbb{N}$. Si
+        \begin{equation*}
+            Q_k=\bigcup_{ \nu=1}^k\overline{C_\nu}
+        \end{equation*}
+        entonces $\left\{Q_k \right\}_{ k=1}^\infty$ es una sucesión creciente de compactos cuya unión es $E_\lambda$, entonces por el Teorema de continuidad para la medida de Lebesgue:
+        \begin{equation*}
+            m(E_\lambda)=\lim_{ k\rightarrow\infty}m(Q_k)\leq\frac{3^n}{\lambda}\N{1}{f}
+        \end{equation*}
+        como se quería demostrar.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $\cf{f}{\mathbb{R}^n}{\mathbb{K}}$ función localmente integrable. Se dice que $x\in\mathbb{R}^n$ \textbf{es un punto de Lebesgue de $f$}, si
+        \begin{equation*}
+            \lim_{r\rightarrow0^+} \frac{1}{m(B(x,r))}\int_{B(x,r)}\abs{f(y)-f(x)}dy=0
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        Claramente si $f$ es continua en un punto $x\in\mathbb{R}^n$, entonces $x$ es un punto de Lebesgue de $f$.
+    \end{obs}
+
+    \begin{obs}
+        La definición de punto de Lebesgue para una función $\cf{f}{I\subseteq\mathbb{R}}{\mathbb{K}}$ coincide con la nueva definición (siendo $I$ un intervalo abierto).
+    \end{obs}
+
+    \begin{proof}
+        En efecto, sea $I\subseteq\mathbb{R}$ un intervalo abierto y $\cf{f}{I\subseteq\mathbb{R}}{\mathbb{K}}$ localmente integrable en $I$. Fije $x\in I$ y sea $h_0>0$ tal que
+        $]x-h_0,x+h_0[\subseteq I$. Se tiene
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{m(B(x,h))}\int_{B(x,h)}\abs{f(t)-f(x)}\:dt&=\frac{1}{2h}\int_{ x-h}^{ x+h}\abs{f(t)-f(x)}\:dt\\
+                &=\frac{1}{2}\left[\frac{1}{h}\int_{ x-h}^{x}\abs{f(t)-f(x)}\:dt+\frac{1}{h}\int_{ x}^{ x+h}\abs{f(t)-f(x)}\:dt \right]
+            \end{split}
+        \end{equation*}
+        para $0<h<h_0$. Se tiene que
+        \begin{equation*}
+            \lim_{h\rightarrow0^+}\frac{1}{m(B(x,h))}\int_{B(x,h)}\abs{f(t)-f(x)}\:dt=0
+        \end{equation*}
+        si y sólo si
+        \begin{equation*}
+            \lim_{h\rightarrow0^+}\frac{1}{h}\int_{ x-h}^{x}\abs{f(t)-f(x)}\:dt=0=\lim_{h\rightarrow0^+}\frac{1}{h}\int_{ x}^{ x+h}\abs{f(t)-f(x)}\:dt
+        \end{equation*}
+        (pues recuerde que las integrales no son orientadas y son positivas ambos lados) si y sólo si
+        \begin{equation*}
+            \lim_{h\rightarrow0}\frac{1}{h}\int_{ x}^{ x+h}\abs{f(t)-f(x)}\:dt=0
+        \end{equation*}
+        por el teorema de cambio de variable tomando $t=u+x$ se tiene que esto ocurre si y sólo si
+        \begin{equation*}
+            \lim_{h\rightarrow0}\frac{1}{h}\int_{ x}^{ x+h}\abs{f(x+u)-f(x)}\:du=0
+        \end{equation*}
+        lo cual prueba la equivalencia.
+    \end{proof}
 
 \end{document}

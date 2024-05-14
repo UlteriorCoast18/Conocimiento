@@ -272,9 +272,96 @@
         \end{equation*}
     \end{excer}
 
-    \begin{proof}
+    \begin{sol}
+        Primero determinemos los coeficientes de Fourier de $f$.
+        \begin{equation*}
+            \begin{split}
+                a_0&=\frac{1}{\pi}\int_{ -\pi}^\pi f(x)\:dx\\
+                &=\frac{1}{\pi}\left[\int_{ -\pi}^0 f(x)\:dx+\int_{0}^\pi f(x)\:dx\right] \\
+                &=\frac{1}{\pi}\left[\int_{ -\pi}^0 \pi^2\:dx+\int_{0}^\pi (x-\pi)^2\:dx\right] \\
+                &=\frac{1}{\pi}\left[\pi^3+\int_{-\pi}^0 u^2\:du\right] \\
+                &=\frac{1}{\pi}\left[\pi^3+\int_{-\pi}^0 u^2\:du\right] \\
+                &=\frac{1}{\pi}\left[\pi^3+ \frac{u^3}{3}\Big|_{-\pi}^0 \right] \\
+                &=\frac{1}{\pi}\left[\pi^3+\frac{\pi^3}{3}\right] \\
+                &=\frac{4\pi^2}{3}
+            \end{split}
+        \end{equation*}
+        ahora, para $n\in\mathbb{N}$:
+        \begin{equation*}
+            \begin{split}
+                a_n&=\frac{1}{\pi}\int_{ -\pi}^{\pi}f(x)\cos nx\:dx\\
+                &=\frac{1}{\pi}\left[\int_{ -\pi}^{0}f(x)\cos nx\:dx+\int_{0}^{\pi}f(x)\cos nx\:dx\right] \\
+                &=\frac{1}{\pi}\left[\int_{ -\pi}^{0}\pi^2\cos nx\:dx+\int_{0}^{\pi}(x-\pi)^2\cos nx\:dx\right]\\
+                &=\frac{1}{\pi}\left[\int_{ -\pi}^{0}\pi^2\cos nx\:dx+\int_{0}^{\pi}(x^2-2x\pi+\pi^2)\cos nx\:dx\right]\\
+                &=\frac{1}{\pi}\left[\int_{ -\pi}^{\pi}\pi^2\cos nx\:dx+\int_{0}^{\pi}x^2\cos nx\:dx-\int_{0}^{\pi}2x\pi\cos nx\:dx\right]\\
+                &=\frac{1}{\pi}\left[\int_{ -\pi}^{\pi}\pi^2\cos nx\:dx+\int_{0}^{\pi}x^2\cos nx\:dx-\int_{0}^{\pi}2x\pi\cos nx\:dx\right]\\
+                &=\frac{1}{\pi}\left[\frac{\pi^2}{n}\int_{ -n\pi}^{n\pi}\cos u\:du+\frac{1}{n}\int_{0}^{n\pi}\left(\frac{u}{n}\right)^2 \cos u\:du-\frac{1}{n}\int_{0}^{n\pi}2\left(\frac{u}{n}\right)\pi\cos u\:du\right]\\
+                &=\frac{1}{n\pi}\left[\pi^2\int_{ -n\pi}^{n\pi}\cos u\:du+\frac{1}{n^2}\int_{0}^{n\pi}u^2 \cos u\:du-\frac{2\pi}{n}\int_{0}^{n\pi}u\cos u\:du\right]\\
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \pi^2\int_{ -n\pi}^{n\pi}\cos u\:du=2\sin\left(n\pi\right)
+        \end{equation*}
+        con
+        \begin{equation*}
+            \int_{0}^{n\pi}u^2 \cos u\:du=\left(\pi^2n^2-2 \right)\sin\left(n\pi\right)+2n\pi\cos (n\pi)
+        \end{equation*}
+        y
+        \begin{equation*}
+            \int_{0}^{n\pi}u\cos u\:du=n\pi\sin (n\pi)+\cos(n\pi)-1
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \begin{split}
+                a_n&=\frac{1}{n\pi}\left[\pi^2\int_{ -n\pi}^{n\pi}\cos u\:du+\frac{1}{n^2}\int_{0}^{n\pi}u^2 \cos u\:du-\frac{2\pi}{n}\int_{0}^{n\pi}u\cos u\:du\right]\\
+                &=\frac{1}{n\pi}\left[\pi^2\cdot2\sin\left(n\pi\right)+\frac{1}{n^2}\cdot\left[\left(\pi^2n^2-2 \right)\sin\left(n\pi\right)+2n\pi\cos (n\pi)\right]-\frac{2\pi}{n}\cdot\left[n\pi\sin(n\pi)+\cos (n\pi)-1\right]\right]\\
+                &=\frac{1}{n\pi}\left[2\pi^2\sin\left(n\pi\right)+\pi^2\sin (n\pi)-\frac{2}{n^2}\sin\left(n\pi\right)+\frac{2\pi}{n}\cos (n\pi)-2\pi^2\sin (n\pi)-\frac{2\pi}{n}\cos (n\pi)+\frac{2\pi}{n}\right]\\
+                &=\frac{1}{n\pi}\left[\pi^2\sin (n\pi)-\frac{2}{n^2}\sin\left(n\pi\right)+\frac{2\pi}{n}\right]\\
+                &=\frac{1}{n\pi}\left[\frac{n^3\pi^2\sin (n\pi)+2n^2\pi-2n\sin(n\pi)}{n^3}\right]\\
+                &=\frac{1}{n\pi}\left[\frac{0+2n^2\pi-0}{n^3}\right]\\
+                &=\frac{1}{n\pi}\left[\frac{2n^2\pi}{n^3}\right]\\
+                &=\frac{2}{n^2}
+            \end{split}
+        \end{equation*}
+        pues, $\sin(n\pi)=0$ para todo $n\in\mathbb{N}$. Notemos que la función $f$ es monotóna decreciente, en particular es de variación acotada. Luego, por el teorema de Jordan al ser $f$ continua en $]-\pi,\pi]$ se sigue que la serie de Fourier de $f$ en $x$ converge a $f(x)$ para todo $x\in]-\pi,\pi]$. Esto es:
+        \begin{equation*}
+            f(x)=\frac{a_0}{2}+\sum_{ k=1}^\infty\left[a_k\cos kx+b_k\sin kx \right]
+        \end{equation*}
+        en particular, en $x=0$:
+        \begin{equation*}
+            \begin{split}
+                f(0)&=\frac{a_0}{2}+\sum_{ k=1}^\infty a_k\\
+                &=\frac{2\pi^2}{3}+\sum_{ n=1}^\infty\frac{2}{n^2}\\
+                \Rightarrow \sum_{ n=1}^\infty\frac{1}{n^2}&=\frac{1}{2}\left[\pi^2-\frac{2\pi^2}{3}\right] \\
+                &=\frac{1}{2}\cdot\frac{\pi^2}{3}\\
+                &=\frac{\pi^2}{6}\\
+            \end{split}
+        \end{equation*}
         
-    \end{proof}
+        Para la segunda parte, notemos que
+        \begin{equation*}
+            \begin{split}
+                \sum_{ n=1}^\infty\frac{1}{n^2}&=\sum_{ n=1}^\infty\left[\frac{1}{(2n-1)^2}+\frac{1}{(2n)^2} \right]\\
+                &=\sum_{ n=1}^\infty\frac{1}{(2n-1)^2}+\frac{1}{4}\sum_{ n=1}^\infty\frac{1}{n^2}\\
+                \Rightarrow \sum_{ n=1}^\infty\frac{1}{(2n-1)^2}&=\frac{3}{4}\sum_{ n=1}^\infty\frac{1}{n^2}\\
+                &=\frac{3}{4}\cdot\frac{\pi^2}{6}\\
+                &=\frac{\pi^2}{8}\\
+            \end{split}
+        \end{equation*}
+        Por ende,
+        \begin{equation*}
+            \begin{split}
+                \sum_{ n=1}^\infty\frac{(-1)^{ n-1}}{n^2}&=\sum_{ n=1}^\infty\frac{(-1)^{ 2n-1-1}}{(2n-1)^2}+\sum_{ n=1}^\infty\frac{(-1)^{ 2n-1}}{(2n)^2}\\
+                &=\sum_{ n=1}^\infty\frac{(-1)^{ 2n-2}}{(2n-1)^2}+\frac{1}{4}\sum_{ n=1}^\infty\frac{-1}{n^2}\\
+                &=\sum_{ n=1}^\infty\frac{1}{(2n-1)^2}-\frac{1}{4}\sum_{ n=1}^\infty\frac{1}{n^2}\\
+                &=\frac{\pi^2}{8}-\frac{1}{4}\cdot\frac{\pi^2}{6}\\
+                &=\frac{\pi^2}{8}-\frac{\pi^2}{24}\\
+                &=\frac{\pi^2\left[3-1\right]}{24}\\
+                &=\frac{\pi^2}{12}\\
+            \end{split}
+        \end{equation*}
+    \end{sol}
 
     \begin{excer}
         \textbf{Pruebe} que
@@ -394,13 +481,41 @@
     \begin{excer}
         Sea $f\in\mathcal{L}_1^{2\pi}(\mathbb{R})$ y sea $x\in\mathbb{R}$. Se supone que para algúun $\alpha>0$ se cumple
         \begin{equation*}
-            f(x+t)-f(x)=O(\abs{t^\alpha}),\quad\textup{cuando}t\rightarrow 0
+            f(x+t)-f(x)=O(\abs{t^\alpha}),\quad\textup{cuando}\quad t\rightarrow 0
         \end{equation*}
         \textbf{Demuestre} que la serie de Fourier de $f$ en $x$ converge a $f(x)$.
     \end{excer}
 
     \begin{proof}
-        
+        Como
+        \begin{equation*}
+            f(x+t)-f(x)=O(\abs{t^\alpha}),\quad\textup{cuando}\quad t\rightarrow 0
+        \end{equation*}
+        entonces existe $A>0$ y $\delta>0$ tales que
+        \begin{equation*}
+            \begin{split}
+                \abs{t}<\delta&\Rightarrow \abs{f(x+t)-f(x)}\leq A\abs{t}^\alpha\\
+                &\Rightarrow -A\abs{t}^\alpha\leq f(x+t)-f(x)\leq A\abs{t}^\alpha\\
+            \end{split}
+        \end{equation*}
+        Para ver que la serie de Fourier de $f$ en $x$ converge a $f(x)$, usaremos el Teorema Fundamental para la convergencia puntual de una serie de Fourier. Además, si $m\in\mathbb{N}$
+        \begin{equation*}
+            \begin{split}
+                -A\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt \leq \frac{f(x+t)-f(x)}{t}\sin\left(m+\frac{1}{2}\right)t\:dt\leq A\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt
+            \end{split}
+        \end{equation*}
+        Para todo $0<\abs{t}<\min\left\{\delta,\pi\right\}$. Considere ahora la función $t\mapsto\frac{\abs{t}^\alpha}{t}$ (llamémosla g) definida c.t.p. en $\mathbb{R}$. Esta función es la diferencia de dos funciones monótonas en $[-\pi,\pi]$, luego de variación acotada. Además es integrable. En efecto,
+        \begin{equation*}
+            \abs{g(t)}=\abs{t}^{\alpha-1}
+        \end{equation*}
+        donde $t\mapsto \abs{t}^{\alpha-1}$ es integrable en $[-\pi,\pi]$ pues $\alpha-1>-1$. Luego, por el Teorema de Jordan la serie de Fourier de $g$ en $x$ converge a $g(x)$. Así, por el Teorema Fundamnetal para la convergencia puntual de una serie de Fourier, se tiene que existe $0<\gamma<\pi$ tal que
+        \begin{equation*}
+            \lim_{ m\rightarrow\infty}\int_{-\gamma'}^{\gamma'}\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt=0
+        \end{equation*}
+        Tomemos $\delta'=\min\left\{\delta,\gamma\right\}$. Se tiene que
+        \begin{equation*}
+            -A\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt \leq \frac{f(x+t)-f(x)}{t}\sin\left(m+\frac{1}{2}\right)t\:dt\leq A\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt
+        \end{equation*}
     \end{proof}
 
     \begin{excer}
@@ -411,7 +526,7 @@
         \begin{enumerate}
             \item Póngase
             \begin{equation*}
-                s_n(x)=\sum_{  k=1}^\infty\frac{\sen kx}{k}.
+                s_n(x)=\sum_{  k=1}^n \frac{\sen kx}{k}.
             \end{equation*}
             \textbf{Muestre} que
             \begin{equation*}
@@ -430,7 +545,11 @@
     \end{excer}
 
     \begin{proof}
-        
+        De (i): Recordemos que el núcleo de Dirichlet está dado por:
+        \begin{equation*}
+            D_n(x)=\frac{1}{2\pi}\cdot\frac{\sin\left(n+\frac{1}{2}\right)x}{\sin\frac{x}{2}}
+        \end{equation*}
+        para todo $n\in\mathbb{N}$ y para casi todo $x\in\mathbb{R}$.
     \end{proof}
 
     \begin{excer}
