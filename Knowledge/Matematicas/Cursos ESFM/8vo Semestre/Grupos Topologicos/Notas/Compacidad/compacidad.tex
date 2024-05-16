@@ -464,13 +464,48 @@
         \begin{equation*}
             G=\prod_{ i\in I}G_i
         \end{equation*}
-        considere el $\Sigma$-producto $G^*$ con la identidad $e_G$ como punto base (básicamente se toman todos los elementos de $G$ tales que el elemento tiene a lo sumo una cantidad numerable de entradas diferentes de la identidad). Se tiene que $G^*$ es un subgrupo propio denso de $G$ que es numerablemente compacto.
+        considere el $\Sigma$-producto $G^*$ con la identidad $e_G$ como punto base (básicamente se toman todos los elementos de $G$ tales que el elemento tiene a lo sumo una cantidad numerable de entradas diferentes de la identidad). Se tiene que $G^*$ es un subgrupo propio denso de $G$ que es numerablemente compacto que no es compacto.
     \end{exa}
 
     \begin{proof}
         Ya se tiene que $G^*$ es un subgrupo propio de $G$. Veamos que es denso. En efecto, el hecho de que sea denso se sigue de que $H<G$ definido como todos los elementos de $G$ que tienen una cantidad finita de entradas diferentes de la identidad es denso en $G$, luego $H<G^*<G$. Veamos que $G^*$ es numerablemente compacto.
 
-        En efecto,
+        En efecto, considere un subconjunto infinito numerable $F\subseteq G^*$. Debemos probar que $F$ tiene un punto de acumulación en $G^*$. Sea
+        \begin{equation*}
+            H=\bigcup\left\{\supp{x}\Big|x\in F \right\}
+        \end{equation*}
+        Por definición, $\supp{x}$ es a lo sumo numerable para todo $x\in F$, luego $\abs{H}\leq\aleph_0$. Observe que por el teorema de Tikhonov, el espacio
+        \begin{equation*}
+            G'=\left[\prod_{i\in H}G_i\right]\times\left[\prod_{ j\in I\backslash H}\left\{e_j\right\} \right]
+        \end{equation*}
+        es compacto y es tal que $F\subseteq G'$, por lo cual existe $z\in G'$ tal que es punto de acumulación de $F$ en $G'$. Solo resta notar que $z\in G'\subseteq G^*$.
+    \end{proof}
+
+    \begin{mydef}
+        Un subgrupo $H$ de un grupo topológico $G$ es \textbf{totalmente denso} en $G$ si para todo subgrupo cerrado $N$ de $G$ el subgrupo $H\cap N$ es denso en $N$. El subgrupo $H$ es \textbf{débilmente denso} en $G$ si para todo subgrupo normal $N$ de $G$, el conjunto $H\cap N$ es denso en $N$.
+    \end{mydef}
+
+    \begin{mydef}
+        Un espacio $X$ se llama \textbf{precompacto} si la cerradura de cualquier subconjunto numerable $Y\subseteq X$ es compacta.
+    \end{mydef}
+
+    \begin{obs}
+        Note que todo espacio precompacto es numerablemente compacto.
+    \end{obs}
+
+    \begin{propo}
+        Sean $G$ un grupo compacto, $\cf{\varphi}{G}{G'}$ un homomorfismo continuo de $G$ sobre $G'$, $H'$ un subgrupo de $G'$ y $H=\varphi^{-1}(H')$. Entonces,
+        \begin{enumerate}
+            \item Si $H'$ es denso en $G'$, entonces $H$ es denso en $G$.
+            \item Si $H'$ es totalmente denso en $G'$, entonces $H$ también es totalmente denso en $G$.
+            \item Si $H'$ es precompacto, entonces $H$ también lo es.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Antes note que todo 
+        
+        De (1): 
     \end{proof}
 
 \end{document}
