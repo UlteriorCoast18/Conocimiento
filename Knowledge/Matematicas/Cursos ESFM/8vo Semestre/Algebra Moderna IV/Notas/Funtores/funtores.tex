@@ -1372,13 +1372,189 @@
         \begin{equation*}
             F:\Cat{Ring}^c\rightarrow\Cat{Set}
         \end{equation*}
-        tal que $T\mapsto F(T)=\left\{f\in\HOM{\Cat{Ring}^c}(A,T)\Big|f(S)\subseteq T^* \right\}$ y, a cada morfismo de anillos $\cf{u}{T}{T'}$ es tal que $u\mapsto\cf{F(u)=_u\varphi}{F(T)}{\HOM{\Cat{Ring}}(A,T')}$ tal que $_u\varphi(g)=u\circ g$.
+        tal que $T\mapsto F(T)=\left\{f\in\HOM{\Cat{Ring}^c}(A,T)\Big|f(S)\subseteq T^* \right\}$ y, a cada morfismo de anillos $\cf{u}{T}{T'}$ es tal que $u\mapsto\cf{F(u)=_u\varphi}{F(T)}{\HOM{\Cat{Ring}^c}(A,T')}$ tal que $_u\varphi(g)=u\circ g$.
     \end{exa}
 
     \begin{proof}
         $\Rightarrow)$: Afirmamos que $(S^{-1}A,\varphi)$ es par de representación de $F$
 
-        $\Leftarrow)$: Es inmediata (ejercicio).
+        $\Leftarrow)$: El tereoam anterior implica que el par $(S^{-1}A,\varphi)$ representa a $F$.
+        En efecto, si $T\in\Obj{\Cat{Ring}^c}$ y $f\in F(T)$, se tiene que
+    \end{proof}
+
+    \begin{mydef}[\textbf{Principio de Dualidad}]
+        El lenguajde de primer orden de la teoría de categorías, CT, consta de
+        \begin{enumerate}
+            \item Objetos, $A,B,C,...$ (símbolo unario de predicado Obj).
+            \item Morfismos, $f,g,h,...$ (símbolo unario de predicado Arr).
+            \item Funciones:
+            \begin{itemize}
+                \item Dominio.
+                \item Codominio,
+                \item $1$.
+                \item $\circ$
+            \end{itemize}
+        \end{enumerate}
+        Los cuales satisfacen los siguientes axiomas:
+        \begin{enumerate}
+            \item \begin{equation*}
+                \textup{Dom}(1_A)=A\quad\textup{y}\quad \textup{Cod}(1_A)=A
+            \end{equation*}
+            \item \begin{equation*}
+                1_{ \textup{Cod}(f)}\circ f=f\quad\textup{y}\quad f\circ 1_{\textup{Dom}(f)}=f
+            \end{equation*}
+            \item \begin{equation*}
+                \textup{Dom}(f\circ g)=\textup{Dom}(g)\quad\textup{y}\quad\textup{Cod}(f\circ g)=\textup{Cod}(f)
+            \end{equation*}
+            \item \begin{equation*}
+                (f\circ g)\circ h=f\circ (g\circ h)
+            \end{equation*}
+        \end{enumerate}
+        Para cualquier fórmula de CT, $\Sigma$, se define su dual $\Sigma^*$ como sigue:
+
+        Para cada aparición en $\Sigma$, reemplácese Dom por Cod y Cod por Dom, $\cf{f}{A}{B}$ por $\cf{f}{B}{A}$ y $f\circ g$ por $g\circ f$ y nada más.
+    \end{mydef}
+
+    \begin{obs}
+        Nótese que en la construcción anterior, se construye de forma directa a la categoría dual.
+    \end{obs}
+
+    \begin{exa}
+        Si $\Sigma(A)$ es la fórmula 'A es un objeto inicial', entonces para todo $\forall B\exists!\cf{f}{A}{B}$. Su dual $\Sigma^*(A)$ es la fórmula $A$ es un objeto final, es decir que $\forall B\exists!\cf{f}{B}{A}$. 
+    \end{exa}
+
+    \begin{exa}
+        Si $\Sigma$ es la fórmula:
+        \begin{equation*}
+            \forall B\forall\cf{f}{A}{B}\forall\cf{\varphi}{F(B)}{B},\quad f\circ\alpha=\varphi\circ F(f)
+        \end{equation*}
+        entonces $\Sigma^*$ es:
+        \begin{equation*}
+            \forall B\forall \cf{f}{B}{A}\forall\cf{\varphi}{B}{F(B)},\quad\alpha\circ f=F(f)\circ\varphi
+        \end{equation*}
+    \end{exa}
+
+    \begin{exa}
+        Dadas las fórmulas $\Sigma$ y $\Delta$ de CT,
+        \begin{equation*}
+            \Sigma\Rightarrow\Delta\textup{ implica }\Sigma^*\Rightarrow\Delta^*
+        \end{equation*}
+        Más aún, los axiomas de CT y ACT son autoduales en el sentido siguiente:
+        \begin{equation*}
+            \textup{ACT}^*=\textup{ACT}
+        \end{equation*}
+        Esto permite tener el siguiente resultado.
+    \end{exa}
+
+    \begin{obs}
+        ACT denota a los axiomas de la teoría de categorías.
+    \end{obs}
+
+    \begin{propo}[\textbf{Principio formal de Dualidad}]
+        Si $\Sigma$ es una fórmula de CT, entonces
+        \begin{equation*}
+            \textup{ACT}\Rightarrow\Sigma\textup{ implica }\textup{ACT}\Rightarrow\Sigma^*
+        \end{equation*} 
+    \end{propo}
+
+    \begin{propo}[\textbf{Principio de Dualidad}]
+        Si $\Sigma$ es una fórmula sobre teoría de categorías que se satisface en cualquier categoría $\mathcal{C}$, también lo hace $\Sigma^*$.
+    \end{propo}
+
+    \begin{mydef}
+        Sean $\mathcal{C},\mathcal{D}$ y $\mathcal{E}$ categorías, y sean $\cf{F}{\mathcal{C}}{\mathcal{D}}$ y $\cf{G}{\mathcal{D}}{\mathcal{E}}$ funtores. Existe un funtor $\cf{F}{\mathcal{C}^{op}}{\mathcal{D}^{op}}$ llamado el \textbf{funtor opuesto de $F$}, definido como sigue:
+
+        Si $F$ es tal que
+        \begin{equation*}
+            \begin{split}
+                F:\mathcal{C}&\rightarrow \mathcal{D} \\
+                \forall X\in\Obj{\mathcal{C}}, X&\mapsto F(X)\in\Obj{\mathcal{D}}\\
+                \forall X,Y\in\Obj{\mathcal{C}},f\in\Hom{\mathcal{C}}{X}{Y}, f&\mapsto F(f)\in\Hom{\mathcal{D}}{F(X)}{F(Y)}\\
+            \end{split}
+        \end{equation*}
+        entonces,
+        \begin{equation*}
+            \begin{split}
+                F^{op}:\mathcal{C}^{op}&\rightarrow \mathcal{D}^{op} \\
+                \forall X\in\Obj{\mathcal{C}^{op}}, X&\mapsto F^{op}(X)\in\Obj{\mathcal{D}^{op}}\\
+                \forall X,Y\in\Obj{\mathcal{C}^{op}},f\in\Hom{\mathcal{C}^{op}}{X}{Y}, f&\mapsto F^{op}(f)\in\Hom{\mathcal{D}^{op}}{F^{op}(X)}{F^{op}(Y)}\\
+            \end{split}
+        \end{equation*}
+        y es tal que
+        \begin{equation*}
+            (F^{op})^{op}=F\quad\textup{y}\quad (G\circ F)^{op}=G^{op}\circ F^{op}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{proof}
+        Hay que verificar varias condiciones:
+        \renewcommand{\theenumi}{\roman{enumi}}
+        \begin{enumerate}
+            \item Sea $X\in\Obj{\mathcal{C}^{op}}=\Obj{\mathcal{C}}$, entonces
+            \begin{equation*}
+                \begin{split}
+                    F^{op}(1_X)&=F^{op}(1_X^{op})\\
+                    &=(F(1_X))^{op}\\
+                    &=(1_{F(X)})^{op}\\
+                    &=1_{F(X)}\\
+                    &=1_{F^{op}(X)}\\
+                \end{split}
+            \end{equation*}
+            \item Sean $X,Y,Z\in\Obj{\mathcal{C}^{op}}$; $f^{op}$ un morfismo de $\mathcal{C}^{op}$ de $X$ a $Y$ y $g^{op}$ un morfismo en $\mathcal{C}^{op}$ de $Y$ a $Z$. Entonces,
+            \begin{equation*}
+                \begin{split}
+                    F^{op}(g^{op}\circ^{op}f^{op})&=F^{op}((f\circ g)^{op})\\
+                    &=(F(g\circ f))^{op}\\
+                    &=(F(g)\circ F(f))^{op}\\
+                    &=F(g)^{op}\circ^{op}F(f)^{op}\\
+                    &=F^{op}(g^{op})\circ^{op}F^{op}(f^{op})\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+        Por i) y ii), $F^{op}$ es funtor. Ahora, es claro que
+        \begin{equation*}
+            (F^{op})^{op}=F
+        \end{equation*}
+        por lo cual resta con probar
+        \begin{equation*}
+            (G\circ F)^{op}=G^{op}\circ F^{op}
+        \end{equation*}
+        En efecto, como
+        \begin{equation*}
+            \cf{G\circ F}{\mathcal{C}}{\mathcal{E}}
+        \end{equation*}
+        entonces,
+        \begin{equation*}
+            \cf{(G\circ F)^{op}}{\mathcal{C}^{op}}{\mathcal{E}^{op}}
+        \end{equation*}
+        También,
+        \begin{equation*}
+            \cf{G^{op}\circ F^{op}}{\mathcal{C}^{op}}{\mathcal{E}^{op}}
+        \end{equation*}
+        Sea $X$ un objeto de $\mathcal{C}^{op}$. Entonces,
+        \begin{equation*}
+            \begin{split}
+                (G^{op}\circ F^{op})(X)&=G^{op}(F^{op}(X))\\
+                &=G^{op}(F(X))\\
+                &=G(F(X))\\
+                &=(G\circ F)(X)\\
+                &=(G\circ F)^{op}(X)\\
+            \end{split}
+        \end{equation*}
+        y, si $X,Y\in\Obj{\mathcal{C}}$ con $f^{op}$ un morfismo en $\mathcal{C}^{op}$ de $X$ a $Y$, entonces
+        \begin{equation*}
+            \begin{split}
+                (G^{op}\circ F^{op})(f^{op})&=G^{op}(F^{op}(f^{op}))\\
+                &=G^{op}(F(f)^{op})\\
+                &=G(F(f))^{op}\\
+                &=((G\circ F)(f))^{op}\\
+                &=(G\circ F)^{op}(f^{op})\\
+            \end{split}
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            G^{op}\circ F^{op}=(G\circ F)^{op}
+        \end{equation*}
     \end{proof}
 
 \end{document}
