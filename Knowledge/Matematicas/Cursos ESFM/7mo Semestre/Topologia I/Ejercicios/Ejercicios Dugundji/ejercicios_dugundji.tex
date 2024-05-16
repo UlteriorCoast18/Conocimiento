@@ -1321,9 +1321,69 @@
         por tanto, $x\in A'$.
     \end{proof}
 
-    
+    \begin{excer}
+        Sea $\cf{f}{(X,\tau)}{(Y,\sigma)}$ y $\cf{g}{(Y,\sigma)}{(X,\tau)}$ funciones continuas tales que $g\circ f=1_X$. Pruebe que si $(Y,\tau)$ es $T_2$ implica que $(X,\tau)$ es $T_2$, y que $f(X)$ es cerrado en $(Y,\sigma)$.
+    \end{excer}
+
+    \begin{proof}
+        Notemos que como
+        \begin{equation*}
+            g\circ f=1_X
+        \end{equation*}
+        entonces $g$ es suprayectiva y $f$ es inyectiva. En efecto, veamos que $g$ es suprayectiva, sea $x\in X$, entonces existe $f(x)\in Y$ tal que
+        \begin{equation*}
+            g(f(x))=x
+        \end{equation*}
+        Ahora, sean $x_1,x_2\in X$ tales que $f(x_1)=f(x_2)$, entonces
+        \begin{equation*}
+            g\circ f(x_1)=g\circ f(x_2)\Rightarrow x_1=x_2
+        \end{equation*}
+        Luego, se sigue lo deseado.
+
+        Suponga que $(Y,\sigma)$ es $T_2$. Sean $x,y\in X$ tales que $x\neq y$. Como $(Y,\sigma)$ es $T_2$ y $f(x)\neq f(y)$ entonces existen dos abiertos $V_1,V_2\in\sigma$ tales que
+        \begin{equation*}
+            f(x)\in V_1,\quad f(y)\in V_2,\quad\textup{y}\quad V_1\cap V_2=\emptyset
+        \end{equation*}
+        tomemos $U_1=f^{-1}(V_1)$ y $U_2=f^{-1}(V_2)$. Se tiene que
+        \begin{equation*}
+            x_1\in U_1\quad x_2\in U_2
+        \end{equation*}
+        y, $U_1\cap U_2=\emptyset$. En efecto, si $x\in U_1\cap U_2$ entonces $x\in f^{-1}(V_1)\cap f^{-1}(V_2)$, esto es que $f(x)\in V_1$ y $f(x)\in V_2$\contradiction. Por ende, $U_1\cap U_2=\emptyset$.
+
+        Así, $(X,\tau)$ es $T_2$.
+
+        Ahora, veamos que $f(X)$ es cerrado en $(Y,\sigma)$. En efecto, veamos que su complemento es abierto. Si $y\in Y-f(X)$, entonces
+        \begin{equation*}
+            \begin{split}
+                y\in Y-f(X)&\iff y\notin f(X)\\
+                &\iff y\neq f(x),\quad\forall 
+                x\in X\\
+            \end{split}
+        \end{equation*}
+        %TODO
+    \end{proof}
 
     \section{Filtros}
+
+    \begin{excer}
+        Sea $(Y,d)$ un espacio métrico, y $\left\{ y_n\right\}_{ n=1}^\infty$ una sucesión en $Y$. Pruebe que $y_n\rightarrow y_0$ si y sólo si $d(y_n,y_0)\rightarrow0$.
+    \end{excer}
+
+    \begin{proof}
+        $\Rightarrow)$: Suponga que $y_n\rightarrow y_0$ con $y_0\in Y$. Entonces
+        \begin{equation*}
+            U\in\tau\textup{ tal que }y_0\in U\Rightarrow\exists N\in\mathbb{N}\textup{ para el cual }n\geq N\textup{ implica que }y_n\in U
+        \end{equation*}
+        en particular:
+        \begin{equation*}
+            \forall \varepsilon>0\exists N\in\mathbb{N}\textup{ tal que }n\geq N\Rightarrow y_n\in B(y_0,\varepsilon)
+        \end{equation*}
+        es decir que
+        \begin{equation*}
+            \forall \varepsilon>0\exists N\in\mathbb{N}\textup{ tal que }n\geq N\Rightarrow \abs{d(y_n,y_0)-0}<\varepsilon
+        \end{equation*}
+        lo cual prueba el resultado.
+    \end{proof}
 
     \begin{excer}
         Sea $(X,\tau)$ un espacio topológico.
@@ -1398,12 +1458,148 @@
         Aplicando inducción, el resultado se tiene para todo $n\in\mathbb{N}$.
     \end{proof}
 
+    \begin{excer}
+        Sea $\mathcal{U}=\left\{A_\alpha\right\}_{\alpha\in I}$ una base de filtro en $X$ y $\mathcal{B}=\left\{B_\beta\right\}_{\beta\in J}$ una base de filtro en $Y$ (siendo $X,Y$ conjuntos no vacíos). Pruebe que
+        \begin{equation*}
+            \mathcal{U}\times\mathcal{B}=\left\{A_\alpha\times B_\beta\Big|(\alpha,\beta)\in I\times J \right\}
+        \end{equation*}
+        es una base de filtro en $X\times Y$.
+    \end{excer}
+
+    \begin{proof}
+        En efecto, hay que verificar que se cumplen dos condiciones:
+        \begin{enumerate}
+            \item Claramente la familia $\mathcal{U}\times\mathcal{B}$ es de conjuntos no vacíos, pues cada una de $\mathcal{U}$ y $\mathcal{B}$ es no vacía de conjuntos no vacíos, luego todo elemento del producto de ambos es no vacío.
+            \item Sean $A_{\alpha_1}\times B_{\beta_1},A_{\alpha_2}\times B_{\beta_2}\in\mathcal{U}\times\mathcal{B}$. Como $A_{\alpha_1},A_{\alpha_2}\in\mathcal{U}$ y $B_{\beta_1},B_{\beta_2}\in\mathcal{B}$, entonces al ser bases de filtro se tiene que existen $A_{\alpha_3}\in\mathcal{U}$ y $B_{\beta_3}\in\mathcal{B}$ tales que
+            \begin{equation*}
+                A_{\alpha_3}\subseteq A_{\alpha_1}\cap A_{\alpha_2}\quad\textup{y}\quad B_{\beta_3}\subseteq B_{\beta_1}\cap B_{\beta_2}
+            \end{equation*}
+            Se tiene luego que $A_{\alpha_3}\times B_{\beta_3}\in\mathcal{U}\times\mathcal{B}$. Además,
+            \begin{equation*}
+                A_{\alpha_3}\times B_{\beta_3}\subseteq A_{\alpha_1}\times B_{\beta_1}\cap A_{\alpha_2}\times B_{\beta_2}
+            \end{equation*}
+            por la forma en que se tomaron estos elementos.
+        \end{enumerate}
+        por los dos incisos anteriores, se sigue que $\mathcal{U}\times\mathcal{B}$ es base de filtro sobre $X\times Y$.
+    \end{proof}
+
+    \begin{excer}
+        Sea $\cf{f}{X}{Y}$ una función (siendo $X,Y$ conjuntos no vacíos) y $\mathcal{B}$ una base de filtro en $Y$. Pruebe que
+        \begin{equation*}
+            f^{-1}(\mathcal{B})=\left\{f^{-1}(B)\Big|B\in\mathcal{B} \right\}
+        \end{equation*}
+        es una base de filtro en $X$ si y sólo si $f^{-1}(B)\neq\emptyset$ para todo $B\in\mathcal{B}$.
+    \end{excer}
+
+    \begin{proof}
+        $\Rightarrow):$ Suponga que $f^{-1}(\mathcal{B})$ es una base de filtro en $X$, en particular se tiene que es una familia no vacía de conjuntos no vacíos, es decir que
+        \begin{equation*}
+            f^{-1}(B)\neq\emptyset,\quad\forall B\in\mathcal{B}
+        \end{equation*}
+        (pues todo elemento de la base de filtro es de esa forma) lo que prueba el resultado.
+
+        $\Leftarrow):$ Suponga que $f^{-1}(B)\neq\emptyset$ para todo $B\in\mathcal{B}$. Veamos que $f^{-1}(B)$ es base de filtro. En efecto, se deben verificar dos condiciones:
+        \begin{enumerate}
+            \item $f^{-1}(\mathcal{B})$ es una familia no vacía, pues $\mathcal{B}$ es una familia no vacía, y es de conjuntos no vacíos, pues por hipótesis todo elemento es de la forma
+            \begin{equation*}
+                f^{-1}(B)\neq\emptyset,\quad\forall B\in\mathcal{B}
+            \end{equation*}
+            el cual es no vacío.
+            \item Sean $B_1,B_2\in\mathcal{B}$. Entonces, existe $B_3\in\mathcal{B}$ tal que
+            \begin{equation*}
+                B_3\subseteq B_1\cap B_2
+            \end{equation*}
+            tomando imágenes inversas se tiene que
+            \begin{equation*}
+                f^{-1}(B_3)\subseteq f^{-1}(B_1\cap B_2)
+            \end{equation*}
+            Ahora, veamos que
+            \begin{equation*}
+                \begin{split}
+                    x\in f^{-1}(B_1\cap B_2)&\iff f(x)\in B_1\cap B_2\\
+                    &\iff f(x)\in B_1\textup{ y }f(x)\in B_2\\
+                    &\iff x\in f^{-1}(B_1)\textup{ y }x\in f^{-1}(B_2)\\
+                    &\iff x\in f^{-1}(B_1)\cap f^{-1}(B_2)\\
+                \end{split}
+            \end{equation*}
+            por tanto,
+            \begin{equation*}
+                f^{-1}(B_3)\subseteq f^{-1}(B_1)\cap f^{-1}(B_2)
+            \end{equation*}
+            donde los dos elementos de la derecha están en $f^{-1}(\mathcal{B})$ y el de la izquierda también lo está.
+        \end{enumerate}
+        Por los dos incisos anteriores se sigue que $f^{-1}(\mathcal{B})$ es base de filtro.
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que el conjunto de puntos de acumulación de una base de filtro es cerrado (posiblemente vacío).
+    \end{excer}
+
+    \begin{proof}
+        Sea $(X,\tau)$ un espacio topológico y $\mathcal{B}$ una base de filtro. Recordemos que
+        \begin{equation*}
+            x\in X\textup{ es punto de acumulación de }\mathcal{B}\iff x\in \Cls{B},\quad\forall B\in\mathcal{B}
+        \end{equation*}
+        es decir que $x$ es punto de acumulación de $\mathcal{B}$ si y sólo si
+        \begin{equation*}
+            x\in\bigcap_{ i\in I}\Cls{B_i}
+        \end{equation*}
+        donde $\mathcal{B}=\left\{B_i\right\}_{ i\in I}$. Es decir que el conjunto de puntos de acumulación de una base de filtro es
+        \begin{equation*}
+            \mathcal{B}'=\bigcap_{ i\in I}\Cls{B_i}
+        \end{equation*}
+        el cual es cerrado por ser intersección arbitraria de cerrados.
+    \end{proof}
+
     \section{Compacidad}
 
     \begin{excer}
-        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos $T_2$ localmente compactos que no son compactos. Si $(X_1,\tau_1)$ y $(X_2,\tau_2)$ son homeomorfos, demuestre que $(\hat{X_1},\hat{\tau_1})$ y $(\hat{X_2},\hat{\tau_2})$ también lo son.
+        Sea $(X,\tau)$ un espacio topológico que no es compacto. Pruebe que
+        \begin{equation*}
+            \mathcal{B}=\left\{U\subseteq X\Big|U=X-C\textup{ donde }C\subseteq X\textup{ es compacto} \right\}
+        \end{equation*}
+        es base de un filtro sobre $X$. Pruebe además que si $(X,\tau)$ es compacto, entonces $\mathcal{B}$ no es un filtro.
     \end{excer}
 
+    \begin{proof}
+        Primero veamos que si el espacio $(X,\tau)$ es compacto, $\mathcal{B}$ no es filtro. En efecto, en particular se tendría que $X\subseteq X$ es compacto, luego
+        \begin{equation*}
+            \emptyset = X-X\in\mathcal{F}
+        \end{equation*}
+        así, $\mathcal{B}$ no puede ser filtro.
+
+        Suponga que $(X,\tau)$ no es compacto. Veamos que $\mathcal{F}$ es un fitro. En efecto, se deben cumplir cuatro condiciones:
+        \begin{enumerate}
+            \item $\emptyset\notin\mathcal{B}$, como $(X,\tau)$ no es compacto, entonces $X$ no es un subconjunto compacto de $(X,\tau)$, luego $\emptyset=X-X\notin\mathcal{B}$.
+            \item $\mathcal{B}\neq\emptyset$, como $\emptyset$ es compacto en $(X,\tau)$, entonces $X=X-\emptyset\in\mathcal{B}$, luego $\mathcal{B}\neq\emptyset$.
+            \item Sean $A,B\in\mathcal{B}$, entonces existen $C_1,C_2\subseteq X$ compactos tales que
+            \begin{equation*}
+                A=X-C_1,\quad\textup{y}\quad B=X-C_2
+            \end{equation*}
+            así,
+            \begin{equation*}
+                \begin{split}
+                    A\cap B&=(X-C_1)\cap (X-C_2)\\
+                    &=X-(C_1\cup C_2)\\
+                \end{split}
+            \end{equation*}
+            donde $C_1\cup C_2$ es compacto en $(X,\tau)$ (por ser unión finita de compactos). Luego, $A\cap B\in\mathcal{B}$.
+        \end{enumerate}
+        Por los tres incisos anteriores, se sigue que $\mathcal{B}$ es base de un filtro sobre $X$.
+    \end{proof}
+
+    \begin{excer}
+        Sea $\cf{f}{X}{Y}$ una función. Pruebe que $f$ es inyectiva si y sólo si para todo filtro $\mathcal{F}$ sobre $Y$, $f^{-1}(\mathcal{F})$ es filtro sobre $X$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+        
+    \begin{excer}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos $T_2$ localmente compactos que no son compactos. Si $(X_1,\tau_1)$ y $(X_2,\tau_2)$ son homeomorfos, demuestre que $(\hat{X_1},\hat{\tau_1})$ y $(\hat{X_2},\hat{\tau_2})$ también lo son.
+    \end{excer}
+    
     \begin{proof}
         Supongamos que la compactificación de Alexandroff es tal que
         \begin{equation*}
@@ -1483,7 +1679,14 @@
     \end{excer}
 
     \begin{proof}
+        Sea $x=\left( x_i\right)_{ i\in I} \in X$ arbitrario. Debemos encontrar una vecindad $C=\prod_{i\in I}C_i \subseteq X$ compacta de $x$.
         
+        Sea $i\in I$, se tienen dos casos:
+        \begin{itemize}
+            \item $i\in I-J$: Tomemos $C_i=X_i$, el cual es compacto en $(X_i,\tau_i)$.
+            \item $i\in J$: Como $(X_i,\tau_i)$ es localmente compacto y $x_i\in X_i$, existe $C_i\subseteq C_i$ vecindad compacta de $X$.
+        \end{itemize}
+        Tomemos $C=\prod_{ i\in I}C_i$. Esta es una vecindad (\textit{¿Por qué?}) de $x$. Además es compacta pues cada $C_i$ es compacto, luego por Tikhonov el producto cartesiano dotado de la topología producto es compacto.
     \end{proof}
 
     \chapter{Tercer Parcial}
