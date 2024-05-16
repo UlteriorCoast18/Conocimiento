@@ -1937,4 +1937,184 @@
         lo cual prueba la equivalencia.
     \end{proof}
 
+    \begin{mydef}
+        Sean $(X,d)$ un espacio métrico y $\cf{f}{X}{\overline{\mathbb{R}}}$ una función y $a\in X$. Se definen los \textbf{límites superior e inferior de $f$ en el punto $a$} como:
+        \begin{equation*}
+            \limsup_{ x\rightarrow a}f(x)=\inf_{r>0}\left(\sup_{ x\in B(a,r)}f(x) \right)=\lim_{ r\rightarrow0^+}\left(\sup_{ x\in B(a,r)}f(x) \right)
+        \end{equation*}
+        y
+        \begin{equation*}
+            \liminf_{ x\rightarrow a}f(x)=\sup_{r>0}\left(\inf_{ x\in B(a,r)}f(x) \right)=\lim_{ r\rightarrow0^+}\left(\inf_{ x\in B(a,r)}f(x) \right)
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        Los límites de la definición anterior son límites que siempre existen y son los ordinarios en $\overline{\mathbb{R}}$, pues las funciones
+        \begin{equation*}
+            r\mapsto\sup_{x\in B(a,r)}f(x)\quad\textup{y}\quad r\mapsto\inf_{x\in B(a,r)}f(x)
+        \end{equation*}
+        son funciones monótonas.
+    \end{obs}
+
+    \begin{propo}
+        Sea $(X,d)$ espacio métrico y $\cf{f,g}{X}{\overline{\mathbb{R}}}$ funciones. Entonces,
+        \begin{enumerate}
+            \item $\liminf_{x\rightarrow a}f(x)\leq\limsup_{x\rightarrow a}f(x)$.
+            \item $\liminf_{x\rightarrow a}f(x)=\limsup_{x\rightarrow a}f(x)$ si y sólo si existe $\lim_{x\rightarrow a}f(x)$ y
+            \begin{equation*}
+                \liminf_{x\rightarrow a}f(x)=\lim_{x\rightarrow a}f(x)\limsup_{x\rightarrow a}f(x)
+            \end{equation*}
+            \item Si $f,g$ son no negativas, entonces
+            \begin{equation*}
+                \limsup_{x\rightarrow a}(f+g)(x)\leq \limsup_{x\rightarrow a}f(x)+\limsup_{x\rightarrow a}g(x)
+            \end{equation*}
+            y,
+            \begin{equation*}
+                \liminf_{x\rightarrow a}f(x)+\liminf_{x\rightarrow a}g(x)\leq \liminf_{x\rightarrow a}(f+g)(x)
+            \end{equation*}
+            \item Si $(Y,\rho)$ es otro espacio métrico, $\cf{f}{X}{Y}$ y, $a\in X$ y $b\in Y$, entonces
+            \begin{equation*}
+                \lim_{x\rightarrow a}f(x)=b\iff \limsup_{x\rightarrow a}\rho(f(x),b)=0
+            \end{equation*}
+            en particular, si $f\geq0$ (siendo $Y=\overline{\mathbb{R}}$), entonces
+            \begin{equation*}
+                \lim_{x\rightarrow a}f(x)=0\iff \limsup_{x\rightarrow a}f(x)=0
+            \end{equation*}
+            esta propiedad se utiliza para determinar si puede o no ser $b$ el límite de $f$ en $a$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{theor}
+        Si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ entonces, casi todo punto de $\mathbb{R}^n$ es un punto de Lebesgue.
+    \end{theor}
+
+    \begin{proof}
+        $\forall x\in\mathbb{R}^n$ y para todo $r>0$, escriba
+        \begin{equation*}
+            T_rf(x)=\frac{1}{m(B(x,r))}\int_{ B(x,r)}\abs{f(y)-f(x)}dy
+        \end{equation*}
+        y, sea
+        \begin{equation*}
+            Tf(x)=\limsup_{ r\rightarrow 0^+}T_rf(x)
+        \end{equation*}
+        Es claro por la observación de la proposición anterior que $x$ es un punto de Lebesgue si y sólo si $Tf(x)=0$. Así pues, basta probar que $Tf=0$ c.t.p. en $\mathbb{R}^n$.
+
+        Sea $\varepsilon>0$, existe una función $g\in\mathcal{C}_c(\mathbb{R}^n,\mathbb{K})$ que aproxima en promedio a la $f$, esto es
+        \begin{equation*}
+            \N{1}{f-g}<\varepsilon
+        \end{equation*}
+        si $h=f-g$, entonces $f=g+h$ donde $\N{1}{h}<\varepsilon$. Se tiene lo siguiente: $\forall x\in\mathbb{R}^n$ y para todo $r>0$
+        \begin{equation*}
+            \begin{split}
+                T_rf(x)&=T_r(g+h)(x)\\
+                &=\frac{1}{m(B(x,r))}\int_{B(x,r)}\abs{(g+h)(y)-(g+h)(x)}dy\\
+                &\leq\frac{1}{m(B(x,r))}\abs{g(y)-g(x)}dy+\frac{1}{m(B(x,r))}\abs{h(y)-h(x)}dy\\
+                &=T_rg(x)+T_rh(x)\\
+            \end{split}
+        \end{equation*}
+        tomando límite superior cuando $r\rightarrow0^+$ obtenemos que
+        \begin{equation*}
+            Tf(x)\leq Tg(x)-Th(x)=Th(x)
+        \end{equation*}
+        donde la última igualdad se cumple por ser $g$ continua en $\mathbb{R}^n$ (por esto se tiene que $Tg(x)=0$). Ahora, para todo $x\in\mathbb{R}^n$ y para todo $r>0$:
+        \begin{equation*}
+            \begin{split}
+                T_rh(x)&=\frac{1}{m(B(x,r))}\int_{B(x,r)}\abs{h(y)-h(x)}dy\\
+                &\leq\frac{1}{m(B(x,r))}\int_{B(x,r)}\abs{h(y)}dy+\abs{h(x)}\\
+                &\leq\mathcal{M}h(x)+\abs{h(x)}\\
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \mathcal{M}h(x)=\sup_{ r>0}\left(\frac{1}{m(B(x,r))}\int_{B(x,r)}\abs{h}\right)
+        \end{equation*}
+        Al tomar límite superior cuando $r\rightarrow0^+$, resulta
+        \begin{equation*}
+            Th(x)\leq\mathcal{M}h(x)+\abs{h(x)}
+        \end{equation*}
+        Luego,
+        \begin{equation*}
+            Tf(x)\leq\mathcal{M}h(x)+\abs{h(x)}
+        \end{equation*}
+        Siendo $Tf\geq0$, para probar que $Tf=0$ c.t.p. en $\mathbb{R}^n$, basta probar que el conjunto
+        \begin{equation*}
+            \left\{x\in\mathbb{R}^n\Big|Tf(x)>\frac{1}{k} \right\}
+        \end{equation*}
+        es despreciable para todo $k\in\mathbb{N}$. Por una desigualdad anterior:
+        \begin{equation*}
+            \begin{split}
+                \left\{x\in\mathbb{R}^n\Big|Tf(x)>\frac{1}{k} \right\}\subseteq\underbrace{\left\{x\in\mathbb{R}^n\Big|\mathcal{M}h(x)>\frac{1}{2k} \right\}}_{ =A_k} \cup\underbrace{\left\{x\in\mathbb{R}^n\Big|\abs{h(x)}>\frac{1}{2k}\right\}}_{=B_k}\\
+            \end{split}
+        \end{equation*}
+        es decir que
+        \begin{equation*}
+            C_k=A_k\cup B_k
+        \end{equation*}
+        Se sabe de antemano que
+        \begin{equation*}
+            m(A_k)\leq 3^n2k\N{1}{h}<3^n2k\varepsilon
+        \end{equation*}
+        Además,
+        \begin{equation*}
+            \abs{h}\geq\frac{1}{2k}\chi_B\Rightarrow m(B)\leq 2k\N{1}{h}<2k\varepsilon
+        \end{equation*}
+        Por tanto, para cada $k\in\mathbb{N}$ fijo,
+        \begin{equation*}
+            m(C_k)\leq (3^n2k+2k)\varepsilon
+        \end{equation*}
+        Como esta desigualdad es cierta para todo $\varepsilon>0$, necesariamente
+        \begin{equation*}
+            m(C_k)=0,\quad\forall k\in\mathbb{N}
+        \end{equation*}
+        Así pues,
+        \begin{equation*}
+            \begin{split}
+                m^*\left(\left\{x\in\mathbb{R}^n\Big|Tf(x)>0 \right\} \right)&=m^*\left(\bigcup_{ k=1}^\infty C_k \right)\\
+                &\leq \sum_{ k=1}^\infty m^*(C_k)\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        por tanto, $Tf=0$ c.t.p. en $\mathbb{R}^n$.
+    \end{proof}
+
+    \begin{cor}
+        Si $\cf{f}{\mathbb{R}^n}{\mathbb{K}}$ es localmente integrable en $\mathbb{R}^n$, entonces casi todo punto de $\mathbb{R}^n$ es punto de Lebesgue.
+    \end{cor}
+
+    \begin{proof}
+        Sea $L$ el conjunto de puntos de Lebesgue de $f$. Como $f$ es localmente integrable, entonces
+        \begin{equation*}
+            f_k=f\chi_{B(0,k)}
+        \end{equation*}
+        es integrable para todo $k\in\mathbb{N}$. Observe que el conjunto de puntos de Lebesgue de $f_k$ en $B(0,k)$ es $L\cap B(0,k)$. Por el teorema anterior
+        \begin{equation*}
+            m(L^c\cap B(0,k))=0,\quad\forall k\in\mathbb{N}
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            m(L^c)\leq\sum_{ k=1}^\infty m(L^c\cap B(0,k))=0
+        \end{equation*}
+        luego, casi todo punto de $f$ es de Lebesgue.
+    \end{proof}
+
+    \begin{cor}
+        Sea $\Omega\subseteq\mathbb{R}^n$ un conjunto abierto y $\cf{f}{\Omega}{\mathbb{K}}$. Entonces, casi todo punto de $\Omega$ es un punto de Lebesgue de $f$.
+    \end{cor}
+
+    \begin{proof}
+        Sea $L$ el conjunto de puntos de Lebesgue de $f$ en $\Omega$. Para cada $x\in\Omega$ escoja un radio $r_x>0$ tal que $B'(x,r_x)\subseteq\Omega$. Por hipótesis $\cf{\tilde{f}\chi_{ B'(x,r_x)}}{\mathbb{R}^n}{\mathbb{K}}$ es integrable en $\mathbb{R}^n$. Observe que el conjunto de puntos de Lebesgue de $\tilde{f}\chi_{ B'(x,r_x)}$ dentro de $B(x,r_x)$ coincide con $L\cap B(x,r_x)$. Por el teorema
+        \begin{equation*}
+            m(B(x,r_x)\backslash L)=0,\forall x\in\Omega
+        \end{equation*}
+        Como $\left\{B(x,r_x) \right\}_{x\in\Omega}$ es una cubierta abierta de $\Omega$, existe una subcubierta numerable $\left\{B(x_n,r_{ x_n})\right\}_{n=1}^\infty$ de $\Omega$ (por Lindelöf), de donde
+        \begin{equation*}
+            m(\Omega\backslash L)=m\left(\bigcup_{ n=1}^\infty B(x_n,r_{ x_n})\backslash L\right)\leq\sum_{ n=1}^\infty m(B(x_n,r_{x_n})\backslash L)=0
+        \end{equation*}
+        es decir que casi todo punto de $f$ es de Lebesgue.
+    \end{proof}
+    
 \end{document}
