@@ -693,7 +693,59 @@
         \begin{equation*}
             F(x)=\int_{0}^{x}\left(f(t)-c_0 \right)\:dt
         \end{equation*}
-        es una función absolutamente continua. En particular, es de variación acotada, luego por el Teorema de Jordan la serie de Fourier de $F$ converge puntualmente a $F$ en 
+        es una función absolutamente continua y de periodicidad $2\pi$, pues
+        \begin{equation*}
+            \int_{-\pi}^{\pi}(f(t)-c_0)\:dt=0
+        \end{equation*}
+        En efecto, veamos que
+        \begin{equation*}
+            \begin{split}
+                \int_{-\pi}^{\pi}(f(t)-c_0)\:dt&=\int_{-\pi}^{\pi}f(t)\:dt+2\pi c_0\\
+                &=\int_{-\pi}^{\pi}f(t)\:dt+2\pi\cdot\frac{1}{2\pi}\int_{-\pi}^{\pi}f(t)\:dt\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        En particular, es de variación acotada y continua (por ser absolutamente continua), luego por el Teorema de Jordan la serie de Fourier de $F$ en $x$ converge puntualmente a $F$ en $x$ para todo $x\in\mathbb{R}$, esto es
+        \begin{equation*}
+            \begin{split}
+                F(x)&=\sum_{ k\in\mathbb{Z}}c_k'e^{ ikx},\quad\forall x\in\mathbb{R}\\
+                \Rightarrow \int_{0}^{x}(f(t)-c_0)&=\sum_{ k\in\mathbb{Z}}c_k'e^{ ikx},\quad\forall x\in\mathbb{R}\\
+                \Rightarrow \int_{0}^{\pi}f(t)\:dt&=c_0x+\sum_{ k\in\mathbb{Z}}c_k'e^{ ikx},\quad\forall x\in\mathbb{R}\\
+            \end{split}
+        \end{equation*}
+        siendo $\left\{c_k'\right\}_{ k\in\mathbb{Z}}$ los coeficientes de Fourier de $F$. Calculemos estos coeficientes, para ello, calculemos los de $f-c_0$ y recordemos que
+        \begin{equation*}
+            c_k=\frac{\tilde{c_k}}{ik}
+        \end{equation*}
+        Siendo $\left\{\tilde{c_k}\right\}_{ k\in\mathbb{Z}}$ los coeficientes de Fourier de $f-c_0$, donde estos son
+        \begin{equation*}
+            \tilde{c_k}=\left\{
+                \begin{array}{lcr}
+                    c_k & \textup{ si } & k\in\mathbb{Z}\backslash\left\{0\right\}\\
+                    c & \textup{ si } & k=0\\
+                \end{array}
+            \right.
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            \int_{0}^{x}f(t)\:dt=c+xc_0+\sum_{ k\in\mathbb{Z}\backslash\left\{0\right\}}\frac{c_ke^{ikx}}{ik},\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        Veamos ahora que en particular para $x=0$ se tiene que
+        \begin{equation*}
+            \begin{split}
+                0&=c+\sum_{ k\in\mathbb{Z}\backslash\left\{0\right\}}\frac{c_k}{ik}\\
+                \Rightarrow -c&=\sum_{ k\in\mathbb{Z}\backslash\left\{0\right\}}\frac{c_k}{ik}\\
+                &=\sum_{k\in1}^\infty\frac{c_k}{ik}+\sum_{k\in1}^\infty\frac{c_{-k}}{-ik}\\
+                &=\sum_{k\in1}^\infty\frac{c_k}{ik}+\sum_{k\in1}^\infty\frac{-c_{-k}}{ik}\\
+                &=\frac{1}{i}\cdot\sum_{k\in1}^\infty\frac{c_k-c_{ -k}}{k}\\
+                &=\frac{1}{i}\cdot\sum_{k\in1}^\infty\frac{b_k}{k}\\
+            \end{split}
+        \end{equation*}
+        pues, la serie $\sum_{ k\in\mathbb{Z}\backslash\left\{0\right\}}\frac{c_k}{ik}$ es convergente. Por tanto, la serie
+        \begin{equation*}
+            \sum_{ n=1}^\infty\frac{b_n}{n}
+        \end{equation*}
+        es convergente y converge a $-ic$.
     \end{proof}
 
     \begin{excer}

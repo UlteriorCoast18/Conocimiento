@@ -2117,4 +2117,33 @@
         es decir que casi todo punto de $f$ es de Lebesgue.
     \end{proof}
     
+    \begin{theor}[\textbf{Primer Teorema Fundamental del Cálculo} (otro Teorema de Lebesgue).]
+        Sea $\cf{f}{I\subseteq\mathbb{R}}{\mathbb{K}}$ función localmente integrable en $I$, siendo éste un intervalo abierto. Fije $a\in I$, sea $\cf{F}{I}{\mathbb{K}}$ la función:
+        \begin{equation*}
+            F(t)=\int_a^t f,\quad\forall t\in I
+        \end{equation*}
+        Entonces $F'(x)=f(x)$ para casi toda $x\in I$.
+    \end{theor}
+
+    \begin{proof}
+        Basta probar que $F'(x)=f(x)$ en todo punto de Lebesgue $x\in I$ (ya que casi todos los puntos de $f$ son de Lebesgue). Sea $x\in I$ un punto de Lebesgue de $f$. Se tiene, $\forall h\neq0$ tal que $[x-\abs{h},x+\abs{h}]\subseteq I$,
+        \begin{equation*}
+            \begin{split}
+                \abs{\frac{F(x+h)-F(x)}{h}-f(x)}&=\abs{\frac{1}{h}\int_x^{x+h}f(t)\:dt-f(x)}\\
+                &=\abs{\frac{1}{h}\int_x^{x+h}\left[f(t)-f(x)\right]\:dt}\\
+                &\leq\abs{\frac{1}{h}\int_x^{ x+h}\abs{f(t)-f(x)}\:dt}\\
+                &=\abs{\frac{1}{h}\int_0^h\abs{f(x+u)-f(x)}\:du}\\
+            \end{split}
+        \end{equation*}
+        haciendo el cambio de variable $t=x+u$. Como $x$ es un punto de Lebesgue se tiene que
+        \begin{equation*}
+            \lim_{ h\rightarrow0}\frac{1}{h}\int_0^h\abs{f(x+h)-f(x)}\:du=0
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \lim_{ h\rightarrow0}\abs{\frac{1}{h}\frac{F(x+h)-F(x)}{h}-f(x)}=0
+        \end{equation*}
+        Así, $F'(x)=f(x)$.
+    \end{proof}
+
 \end{document}
