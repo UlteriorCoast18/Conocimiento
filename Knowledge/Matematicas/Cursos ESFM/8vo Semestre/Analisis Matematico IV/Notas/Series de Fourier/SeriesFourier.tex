@@ -1751,40 +1751,40 @@
     \end{propo}
 
     \begin{proof}
-        Sea $\lambda>0$. Suponga que el conjunto $E_\lambda$ es no vacío. Como $\mathcal{M}f(x)>\lambda$ para todo $x\in\lambda$. Sea $x\in E_\lambda$, entonces existe $r>0$ tal que
+        Sea $\lambda>0$. Supongamos que el conjunto $E_\lambda$ es no vacío. Sea $x\in E_\lambda$, como $\mathcal{M}f(x)>\lambda$ para todo $x\in\lambda$ entonces existe $r>0$ tal que
         \begin{equation*}
             c=\frac{1}{m(B(x,r))}\int_{ B(x,r)}\abs{f}>\lambda
         \end{equation*}
-        Sea $\delta>0$. Si $y\in B(x,\delta)$, entonces $B(x,r)\subseteq B(y,r+\delta)$. Entonces
+        Sea $\delta>0$. Si $y\in B(x,\delta)$, entonces $B(x,r)\subseteq B(y,r+\delta)$. Así,
         \begin{equation*}
             \begin{split}
                 \lambda&<c\\
                 &=\frac{1}{m(B(x,r))}\int_{ B(x,r)}\abs{f}\\
                 &\leq\frac{m(B(y,r+\delta))}{m(B(x,r))}\cdot\frac{1}{m(B(y,r+\delta))}\int_{ B(y,r+\delta)}\abs{f}\\
-                &=\left(\frac{r+\delta}{r} \right)^n\frac{1}{m(B(y,r+\delta))}\int_{ B(y,r+\delta)}\abs{f}\\
+                &=\left(\frac{r+\delta}{r} \right)^n\cdot\frac{1}{m(B(y,r+\delta))}\int_{ B(y,r+\delta)}\abs{f}\\
             \end{split}
+        \end{equation*}
+        Pues, para cualquier bola en $\mathbb{R}^n$ se cumple la relación:
+        \begin{equation*}
+            \frac{m(B(y,r+\delta))}{m(B(x,r))}=\left(\frac{r+\delta}{r} \right)^n
         \end{equation*}
         Ahora, como
         \begin{equation*}
-            \lim_{\delta\rightarrow0^+}\left(\frac{r+\delta}{r}\right)^n=1
+            \lim_{\delta\rightarrow0^+}\left(\frac{r+\delta}{r}\right)^n=1,\quad\textup{y}\quad\frac{c}{\lambda}>1
         \end{equation*}
-        y
-        \begin{equation*}
-            \frac{c}{\lambda}>1
-        \end{equation*}
-        entonces existe $\delta_0>0$ tal que
+        entonces, existe $\delta_0>0$ tal que
         \begin{equation*}
             \left(\frac{r+\delta_0}{r}\right)^n<\frac{c}{\lambda}
         \end{equation*}
         Por tanto,
         \begin{equation*}
             \begin{split}
-                c\leq\left(\frac{r+\delta_0}{r} \right)^n\frac{1}{m(B(y,r+\delta_0))}\int_{ B(y,r+\delta_0)}\abs{f}\\
+                c&\leq\left(\frac{r+\delta_0}{r} \right)^n\cdot\frac{1}{m(B(y,r+\delta_0))}\int_{ B(y,r+\delta_0)}\abs{f}\\
                 &<\frac{c}{\lambda}\mathcal{M}f(y)\\
-                \Rightarrow \lambda<\mathcal{M}f(y)\\
+                \Rightarrow \lambda&<\mathcal{M}f(y)\\
             \end{split}
         \end{equation*}
-        por tanto, $y\in B(x,\delta_0)$ implica que $\mathcal{M}f(y)>\lambda$, es decir que $B(x,\delta_0)\subseteq E_\lambda$. Se sigue entonces que $E_\lambda$ es abierto.
+        por tanto, $y\in B(x,\delta_0)$ lo cual implica que $\mathcal{M}f(y)>\lambda$, es decir que $B(x,\delta_0)\subseteq E_\lambda$. Se sigue entonces que $E_\lambda$ es abierto.
     \end{proof}
 
     \begin{lema}[\textbf{Lema de recubrimiento}]
@@ -1799,19 +1799,19 @@
     \end{lema}
 
     \begin{proof}
-        Podemos suponer que
+        Podemos suponer sin pérdida de generalidad que
         \begin{equation*}
             r_1\geq r_2\geq ...\geq r_N
         \end{equation*}
         Se construirá $S=\left\{i_1,...,i_m \right\}\subseteq\left\{1,...,N\right\}$ inductivamente. Se define $i_1=1$. Sea
         \begin{equation*}
-            i_2=\min\left\{j\in\natint{i_1+1,N}\Big|B(x_j,r_j)\cap B(x_2, r_1)=\emptyset \right\}
+            i_2=\min\left\{j\in\natint{i_1+1,N}\Big|B(x_j,r_j)\cap B(x_{ i_1}, r_{ i_1})=\emptyset \right\}
         \end{equation*}
         si el conjunto es no vacío y si el conjunto es vacío se toma $S=\left\{i_1 \right\}$.
 
         Suponga elegidos $i_1,...,i_k\in\natint{1,N}$ con $i_1<...<i_k<N$. Sea
         \begin{equation*}
-            i_{ k+1}=\left\{i\in\natint{i_k+1,N}\Big|B(x_j,r_j)\cap B(x_i,r_i)=\emptyset,\forall i\in\natint{1,k} \right\}
+            i_{ k+1}=\min\left\{j\in\natint{i_k+1,N}\Big|B(x_j,r_j)\cap B(x_i,r_i)=\emptyset,\forall i\in\natint{1,k} \right\}
         \end{equation*}
         Si el conjunto es no vacío, en caso contrario se pone $S=\left\{i_1,...,i_k\right\}$.
 
@@ -1819,15 +1819,15 @@
         \begin{equation*}
             S=\left\{i_1,...,i_m\right\}
         \end{equation*}
-        Por construcción, la familia $\left\{B(x_j,r_j) \right\}_{ j\in S}$ es disjunta. Fije $j\in\natint{1,N}$, entonces existe $k\in\natint{1,m}$ tal que $i_k\leq j<i_{ k+1}$ o bien $k=m$ e $i_m<j$. En ambos casos existe $l\in\natint{1,k}$ tal que
+        Por construcción, la familia $\left\{B(x_j,r_j) \right\}_{ j\in S}$ es disjunta. Fije $j\in\natint{1,N}$, entonces existe $k\in\natint{1,m}$ tal que $i_k\leq j<i_{ k+1}$ o bien $k=m$ e $i_m\leq j$. En ambos casos existe $l\in\natint{1,k}$ tal que
         \begin{equation*}
             B(x_j,r_j)\cap B(x_{ i_l},r_{ i_l})\neq\emptyset
         \end{equation*}
         (por la forma en que se eligieron los elementos de $S$) note que
         \begin{equation*}
-            r_j\leq r_{ i_k}\leq r_{ i_l}
+            r_{ i_l}\geq r_{ i_k}\geq r_j 
         \end{equation*}
-        Sea $z\in B(x_j,r_j)$ y sea $w\in B(x_j,r_j)\cap B(x_{ i_l},r_{ i_l})$. Entonces,
+        (pues, $i_l\leq i_k\leq j$). Sea $z\in B(x_j,r_j)$ y sea $w\in B(x_j,r_j)\cap B(x_{ i_l},r_{ i_l})$. Entonces,
         \begin{equation*}
             \begin{split}
                 \norm{z-x_{ i_l}}&\leq\norm{z-x_j}+\norm{x_j-w}+\norm{w-x_{ i_l}}\\
@@ -1863,15 +1863,15 @@
         \begin{equation*}
             K\subseteq \bigcup_{ i=1}^N B(x_i,r_{ x_i})
         \end{equation*}
-        Por el Lema del recubrimiento existe una subfamilia disjunta $\left\{B(x_{ i_1},r_{ x_{i_1}}),...,B(x_{ i_m},r_{ x_{i_m}})\right\}$ tales que
+        Por el Lema del recubrimiento existe una subfamilia disjunta de bolas abiertas $\left\{B(x_{ i_1},r_{ x_{i_1}}),...,B(x_{ i_m},r_{ x_{i_m}})\right\}$ tales que
         \begin{equation*}
             \bigcup_{ i=1}^N B(x_i,r_{ x_i})\subseteq\bigcup_{ j=1}^{ m}B(x_{ i_j},3r_{x_{ i_j}} )
         \end{equation*}
         Entonces,
         \begin{equation*}
             \begin{split}
-                m(K)&\leq\sum_{ j=1}^m B(x_{ i_j},3r_{x_{ i_j}})\\
-                &\leq3^n\sum_{ j=1}^m B(x_{ i_j},r_{x_{ i_j}})\\
+                m(K)&\leq\sum_{ j=1}^m m(B(x_{ i_j},3r_{x_{ i_j}})) \\
+                &\leq3^n\sum_{ j=1}^m m(B(x_{ i_j},r_{x_{ i_j}})) \\
                 &<3^n\sum_{ j=1}^m \frac{1}{\lambda}\int_{ B(x_{ i_j},r_{x_{ i_j}})}\abs{f}\\
                 &\leq\frac{3^n}{\lambda}\int_{\bigcup_{ j=1}^{ m}B(x_{ i_j},r_{x_{ i_j}})}\abs{f}\\
                 &\leq\frac{3^n}{\lambda}\int_{\mathbb{R}^n}\abs{f}\\
@@ -1918,7 +1918,7 @@
                 &=\frac{1}{2}\left[\frac{1}{h}\int_{ x-h}^{x}\abs{f(t)-f(x)}\:dt+\frac{1}{h}\int_{ x}^{ x+h}\abs{f(t)-f(x)}\:dt \right]
             \end{split}
         \end{equation*}
-        para $0<h<h_0$. Se tiene que
+        para $0<h<h_0$. Además,
         \begin{equation*}
             \lim_{h\rightarrow0^+}\frac{1}{m(B(x,h))}\int_{B(x,h)}\abs{f(t)-f(x)}\:dt=0
         \end{equation*}
@@ -1926,7 +1926,7 @@
         \begin{equation*}
             \lim_{h\rightarrow0^+}\frac{1}{h}\int_{ x-h}^{x}\abs{f(t)-f(x)}\:dt=0=\lim_{h\rightarrow0^+}\frac{1}{h}\int_{ x}^{ x+h}\abs{f(t)-f(x)}\:dt
         \end{equation*}
-        (pues recuerde que las integrales no son orientadas y son positivas ambos lados) si y sólo si
+        (pues recuerde que las integrales no son orientadas y son positivas ambos lados) lo cual ocurre si y sólo si
         \begin{equation*}
             \lim_{h\rightarrow0}\frac{1}{h}\int_{ x}^{ x+h}\abs{f(t)-f(x)}\:dt=0
         \end{equation*}
@@ -1942,7 +1942,7 @@
         \begin{equation*}
             \limsup_{ x\rightarrow a}f(x)=\inf_{r>0}\left(\sup_{ x\in B(a,r)}f(x) \right)=\lim_{ r\rightarrow0^+}\left(\sup_{ x\in B(a,r)}f(x) \right)
         \end{equation*}
-        y
+        y,
         \begin{equation*}
             \liminf_{ x\rightarrow a}f(x)=\sup_{r>0}\left(\inf_{ x\in B(a,r)}f(x) \right)=\lim_{ r\rightarrow0^+}\left(\inf_{ x\in B(a,r)}f(x) \right)
         \end{equation*}
@@ -2007,7 +2007,7 @@
         \begin{equation*}
             \N{1}{f-g}<\varepsilon
         \end{equation*}
-        si $h=f-g$, entonces $f=g+h$ donde $\N{1}{h}<\varepsilon$. Se tiene lo siguiente: $\forall x\in\mathbb{R}^n$ y para todo $r>0$
+        si $h=f-g$, entonces $f=g+h$ donde $\N{1}{h}<\varepsilon$. Se tiene lo siguiente, $\forall x\in\mathbb{R}^n$ y para todo $r>0$:
         \begin{equation*}
             \begin{split}
                 T_rf(x)&=T_r(g+h)(x)\\
@@ -2042,7 +2042,7 @@
         \end{equation*}
         Siendo $Tf\geq0$, para probar que $Tf=0$ c.t.p. en $\mathbb{R}^n$, basta probar que el conjunto
         \begin{equation*}
-            \left\{x\in\mathbb{R}^n\Big|Tf(x)>\frac{1}{k} \right\}
+            C_k=\left\{x\in\mathbb{R}^n\Big|Tf(x)>\frac{1}{k} \right\}
         \end{equation*}
         es despreciable para todo $k\in\mathbb{N}$. Por una desigualdad anterior:
         \begin{equation*}
@@ -2060,7 +2060,7 @@
         \end{equation*}
         Además,
         \begin{equation*}
-            \abs{h}\geq\frac{1}{2k}\chi_B\Rightarrow m(B)\leq 2k\N{1}{h}<2k\varepsilon
+            \abs{h}\geq\frac{1}{2k}\chi_{B_k}\Rightarrow m(B_k)\leq 2k\N{1}{h}<2k\varepsilon
         \end{equation*}
         Por tanto, para cada $k\in\mathbb{N}$ fijo,
         \begin{equation*}
@@ -2078,7 +2078,7 @@
                 &=0\\
             \end{split}
         \end{equation*}
-        por tanto, $Tf=0$ c.t.p. en $\mathbb{R}^n$.
+        luego, $Tf=0$ c.t.p. en $\mathbb{R}^n$.
     \end{proof}
 
     \begin{cor}
@@ -2141,7 +2141,7 @@
         \end{equation*}
         por tanto,
         \begin{equation*}
-            \lim_{ h\rightarrow0}\abs{\frac{1}{h}\frac{F(x+h)-F(x)}{h}-f(x)}=0
+            \lim_{ h\rightarrow0}\abs{\frac{1}{h}\cdot\frac{F(x+h)-F(x)}{h}-f(x)}=0
         \end{equation*}
         Así, $F'(x)=f(x)$.
     \end{proof}
