@@ -113,9 +113,19 @@
 
 %En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
 
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+
 \newcommand\abs[1]{\ensuremath{\left|#1\right|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\norm[1]{\ensuremath{\|#1\|}}
+\newcommand\ora[1]{\ensuremath{\vec{#1}}}
+\newcommand\pint[2]{\ensuremath{\left(#1\big| #2\right)}}
+\newcommand\conj[1]{\ensuremath{\overline{#1}}}
+\newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
+
+\newcommand{\natint}[1]{\ensuremath{\left[\!\left[#1\right]\!\right]}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -125,8 +135,6 @@
     \title{Lista 3 de Ejercicios Análisis Matemático IV}
     \author{Cristo Daniel Alvarado}
     \maketitle
-
-    \tableofcontents %Con este comando se genera el índice general del libro%
 
     \setcounter{chapter}{2} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
     
@@ -241,19 +249,66 @@
     \end{excer}
 
     \begin{proof}
-        Veamos que
+        Considere la función $\cf{g}{\mathbb{R}}{\mathbb{R}}$ dada por:
+        \begin{equation*}
+            g(x)=x,\quad\forall x\in[0,2\pi[
+        \end{equation*}
+        y extiéndase por periodicidad a todo $\mathbb{R}$. Es claro que $g\in\mathcal{L}_2^{2\pi}(\mathbb{R})$. Si $\left\{c_k=\frac{a_k-ib_k}{2}\right\}_{ k\in\mathbb{Z}}$ y $\left\{d_k=\frac{\alpha_k-i\beta_k}{2}\right\}_{ k\in\mathbb{Z}}$ son los coeficientes de Fourier de $f$ y $g$, respectivamente, al estar ambas funciones en $\mathcal{L}_2^{2\pi}(\mathbb{R})$ se tiene por las identidades de Parserval que
+        \begin{equation*}
+            \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\overline{g(x)}=\frac{a_0\overline{\alpha_0}}{2}+\sum_{n=1}^\infty\left[a_n\overline{\alpha_n}+b_n\overline{\beta_n}\right]
+        \end{equation*}
+        en particular,
         \begin{equation*}
             \begin{split}
-                \int_0^{ 2\pi}xf(x)\:dx&=xf(x)
+                \Rightarrow\frac{1}{\pi}\int_{0}^{\pi}f(x)\overline{g(x)}\:dx&=\frac{a_0\overline{\alpha_0}}{2}+\sum_{n=1}^\infty\left[a_n\overline{\alpha_n}+b_n\overline{\beta_n}\right]\\
+                \Rightarrow \frac{1}{\pi}\int_{0}^{2\pi}xf(x)\:dx&=\frac{a_0\overline{\alpha_0}}{2}+\sum_{n=1}^\infty\left[a_n\overline{\alpha_k}+b_n\overline{\beta_n}\right]\\
             \end{split}
         \end{equation*}
-        Recordemos que
+        Calculemos los coeficientes de Fourier de $g$. Veamos que
         \begin{equation*}
             \begin{split}
-                b_1=\int_0^{2\pi}\sin xf(x)\:dx
+                \alpha_0&=\frac{1}{\pi}\int_{0}^{2\pi}g(x)\:dx\\
+                &=\frac{1}{\pi}\int_{0}^{2\pi}x\:dx\\
+                &=\frac{1}{2\pi} x^{2}\Big|_{0}^{2\pi}\\
+                &=\frac{1}{2\pi} x^{2}\Big|_{0}^{2\pi}\\
+                &=2\pi\\
             \end{split}
         \end{equation*}
-
+        y, para $k\in\mathbb{N}$:
+        \begin{equation*}
+            \begin{split}
+                \alpha_k&=\frac{1}{\pi}\int_{0}^{2\pi}x\cos kx\:dx\\
+                &=\frac{1}{\pi}\int_{0}^{2k\pi}\frac{u}{k}\cos u\: \frac{du}{k}\\
+                &=\frac{1}{k^2\pi}\int_{0}^{2k\pi}u\cos u\:du\\
+                &=\frac{1}{k^2\pi}\left[u\sin u+\cos u\Big|_{0}^{2k\pi}\right]\\
+                &=\frac{1}{k^2\pi}\left[2k\pi\sin 2k\pi+\cos 2k\pi-\cos0\right]\\
+                &=\frac{1}{k^2\pi}\left[2k\pi\sin 2k\pi+\cos 2k\pi-\cos0\right]\\
+                &=\frac{1}{k^2\pi}\left[0+1-1\right]\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                \beta_k&=\frac{1}{\pi}\int_{0}^{2\pi} x\sin kx\:dx\\
+                &=\frac{1}{\pi}\int_{0}^{2k\pi} \frac{u}{k}\sin kx\:\frac{du}{k}\\
+                &=\frac{1}{k^2\pi}\int_{0}^{2k\pi} u\sin kx\:du\\
+                &=\frac{1}{k^2\pi}\left[\sin u-u\cos u\Big|_{0}^{2k\pi}\right]\\
+                &=\frac{1}{k^2\pi}\left[\sin 2k\pi-2k\pi\cos 2k\pi-\sin 0+0\cos 0\right]\\
+                &=\frac{1}{k^2\pi}\left[0-2k\pi-0+0\right]\\
+                &=-\frac{2}{k}\\
+            \end{split}
+        \end{equation*}
+        haciendo el cambio de variable $u=kx$. Por tanto,
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{\pi}\int_{0}^{2\pi}xf(x)\:dx&=\frac{a_0\overline{\alpha_0}}{2}+\sum_{n=1}^\infty\left[a_n\overline{\alpha_n}+b_n\overline{\beta_n}\right]\\
+                &=\frac{2\pi a_0}{2}+\sum_{n=1}^\infty\left[a_n\cdot 0+b_n\cdot\left(\frac{-2}{n}\right)\right]\\
+                &=\pi a_0-2\sum_{ n=1}^\infty\frac{b_n}{n}\\
+                \Rightarrow \frac{1}{\pi}\int_{0}^{2\pi}xf(x)\:dx&=\pi a_0-2\sum_{ n=1}^\infty\frac{b_n}{n}\\
+            \end{split}
+        \end{equation*}
+        como se quería demostrar.
     \end{proof}
 
     \begin{excer}
