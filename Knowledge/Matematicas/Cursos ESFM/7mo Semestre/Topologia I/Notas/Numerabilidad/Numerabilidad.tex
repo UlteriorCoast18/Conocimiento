@@ -498,13 +498,85 @@
     \begin{proof}
         Sea $\cf{d}{X\times X}{\mathbb{R}}$ una métrica tal que $X=X_d$. Sea $x\in X$. Para $m\in\mathbb{N}$ definimos
         \begin{equation*}
-            B_n=B_d\left(x,\frac{1}{n}\right)
+            B_n=B_d\left(x,\frac{1}{m}\right)
         \end{equation*}
         Entonces, $\left\{B_n\right\}_{ n\in\mathbb{N}}$ es un sistema fundamental de vecindades para $x$ el cual es a lo sumo numerable.
     \end{proof}
 
     \begin{exa}
-        
+        Sea $\mathcal{B}_l=\left\{[a,b)\Big|a,b\in\mathbb{R} \right\}$. Ya se sabe que $\mathcal{B}_l$ es una base para una topología sobre $\mathbb{R}$, la cual se denota por $\tau_l$. A la pareja $(\mathbb{R},\tau_l)$ se suele escribir como $\mathbb{R}_l$.
+        \begin{enumerate}
+            \item $\mathbb{R}_l$ es de Hausdorff (esto se deduce de forma casi inmediata).
+            \item $\mathbb{R}_l$ es primero numerable. En efecto, sea $r\in\mathbb{R}$, entonces el conjunto:|
+            \begin{equation*}
+                \mathcal{V}=\left\{[r,r+\frac{1}{n})\Big|n\in\mathbb{N} \right\}
+            \end{equation*}
+            es un sistema fundamental de vecindades de $r$. En efecto, sea $U\in\tau_l$ tal que $r\in U$. Considere $[l,k)\in\mathcal{B}_l$ que cumple
+            \begin{equation*}
+                r\in [l,k)\subseteq U
+            \end{equation*}
+            Entonces, $l\leq r<k$. Por la propiedad arquimediana existe $n\in\mathbb{N}$ tal que
+            \begin{equation*}
+                r+\frac{1}{n}<k
+            \end{equation*}
+            luego,
+            \begin{equation*}
+                [r,r+\frac{1}{n})\subseteq [l,k)\subseteq U
+            \end{equation*}
+            luego $\mathcal{V}$ es un sistema fundamental de vecindades de $r$.
+            \item $\mathbb{R}_l$ no es segundo numerable. Sea $\mathcal{B}$ una base para $\tau_l$. Dado $x\in\mathbb{R}$, escogemos $B_x\in\mathcal{B}$ tal que
+            \begin{equation*}
+                x\in B_x\subseteq [x,x+1)
+            \end{equation*}
+            Tenemos $x=\inf B_x$ luego dados $x,y\in\mathbb{R}$ con $x<y$ existen $B_x,B_y\in\mathcal{B}$ tales que $B_x\neq B_y$. Por tanto, $\mathcal{B}$ no puede ser numerable, así que $\mathbb{R}_l$ no puede ser segundo numerable.
+            \item $\mathbb{R}_l$ es separable. Considere $\mathbb{Q}\subseteq\mathbb{R}$. Este conjunto es numerable y denso en $\mathbb{R}_l$.
+            \item $\mathbb{R}_l$ es de Lindelöf. Sea $\mathcal{A}$ una cubierta de $\mathbb{R}_l$ formada por básicos. Suponga que
+            \begin{equation*}
+                \mathcal{A}=\left\{[a_\alpha,b_\alpha)\Big|\alpha\in I \right\}
+            \end{equation*}
+            Sea
+            \begin{equation*}
+                C=\bigcup_{\alpha\in I}(a_\alpha,b_\alpha)
+            \end{equation*}
+            Considere $C$ como subespacio de $(\mathbb{R},\tau_u)$. El espacio $(\mathbb{R},\tau_u)$ es segundo numerable, luego $(X,{\tau_u}_C)$ es segundo numerable. Por lo tanto, $(X,{\tau_u}_C)$ es de Lindelöf. Tenemos que existe $J=\left\{\alpha_1,...,\alpha_m,... \right\} \subseteq I$ numerable tal que
+            \begin{equation*}
+                C=\bigcup_{ i=1}^\infty (a_{\alpha_i},b_{\alpha_i})
+            \end{equation*}
+            Sea
+            \begin{equation*}
+                \mathcal{A}'=\left\{[a_\alpha,b_\alpha)\Big|\alpha\in J \right\}
+            \end{equation*}
+            Se tiene que
+            \begin{equation*}
+                C\subseteq\bigcup_{\alpha\in J}[a_\alpha,b_\alpha)
+            \end{equation*}
+            Tomemos
+            \begin{equation*}
+                D=\mathbb{R}-C
+            \end{equation*}
+            Veamos que $D$ es numerable. En efecto, sea $x\in D$, luego $x\in\mathbb{R}-C$. Así, para todo $\alpha\in I$,
+            \begin{equation*}
+                x\notin (a_\alpha,b_\alpha)
+            \end{equation*}
+            Luego, existe $\alpha_0\in I$ tal que $x= a_{\alpha_0}$. Sea $q_x\in(a_{\alpha_0},b_{\alpha_0})\cap\mathbb{Q}$, entonces
+            \begin{equation*}
+                (x,q_x)\subseteq C
+            \end{equation*}
+            Sea $\cf{f}{D}{\mathbb{Q}}$ la función definida por: dado $x\in D$, $x\mapsto q_x$. Veamos que $f$ es inyectiva. Sean $x,y\in D$ con $x<y$.
+            \begin{enumerate}
+                \item Suponga que $q_y\leq q_x$. Se tiene que $x<y<q_x\leq q_y$ (por la elección de los $q$). Por tanto, $y\in (x,q_x)\subseteq C\Rightarrow y\notin D$\contradiction.
+                \item Por (i), $q_x<q_y$. Así, $f$ es inyectiva. Luego, $D$ es a lo sumo numerable.
+            \end{enumerate}
+            Dado $d\in D$ escogemos un único elemento $A_d\in\mathcal{A}$ tal que $d\in A$. Sea
+            \begin{equation*}
+                \mathcal{A}''=\left\{A_d\Big|d\in D \right\}
+            \end{equation*}
+            Se tiene que $\mathcal{A}'$ y $\mathcal{A}''$ son a lo sumo numerables, luego su unión también lo es y es tal que
+            \begin{equation*}
+                \mathbb{R}\subseteq \bigcup\mathcal{A}'\cup\mathcal{A}''
+            \end{equation*}
+            por tanto, $\mathbb{R}_l$ es Lindelöf.
+        \end{enumerate}
     \end{exa}
 
 

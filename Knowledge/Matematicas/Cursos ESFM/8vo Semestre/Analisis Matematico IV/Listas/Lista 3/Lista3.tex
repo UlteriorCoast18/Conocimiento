@@ -430,7 +430,71 @@
     \end{excer}
 
     \begin{proof}
-        
+        Considere la función $\cf{g}{\mathbb{R}}{\mathbb{R}}$ dada por:
+        \begin{equation*}
+            g(x)=\frac{1}{3}x(\pi-x)(\pi-2x),\quad\forall x\in [0,\pi[
+        \end{equation*}
+        y extiéndase por periodicidad a todo $\mathbb{R}^+$ y hágase
+        \begin{equation*}
+            g(x)=-g(-x),\quad\forall x\in\mathbb{R}^-
+        \end{equation*}. Afirmamos que $g$ es continua en $\mathbb{R}$. En efecto, ya se tiene que $g$ es continua en $]0,\pi[$, por lo cual para ver que es continua en $\mathbb{R}$ basta con ver que $g(0)=g(\pi)$ (en particular se tiene que $g$ es $\pi$-periódica, luego también es $2\pi$-periódica). Veamos que
+        \begin{equation*}
+            g(0)=0=g(\pi)
+        \end{equation*}
+        luego, $g$ es continua en $\mathbb{R}$. Además, $g$ es $C^1$ (e casi todo $\mathbb{R}$), luego de variación acotada en $[-\pi,\pi]$. Por el Teorema de Jordan, la serie de Fourier de $g$ converge a $g$ uniformemente en $\mathbb{R}$, en particular lo hace puntualmente en el intervalo $[0,\pi]$. Calculemos los coeficientes de Fourier de $g$.
+
+        Como $g$ se definió de tal forma que fuese impar, se sigue que
+        \begin{equation*}
+            \begin{split}
+                a_k=0,\quad\forall k\in\mathbb{N}
+            \end{split}
+        \end{equation*}
+        y, para $k\in\mathbb{N}$:
+        \begin{equation*}
+            \begin{split}
+                b_k&=\frac{2}{\pi}\int_{0}^{\pi}g(x)\sin kx\:dx \\
+                &=\frac{2}{\pi}\int_{0}^{\pi}\frac{1}{3}x(\pi-x)(\pi-2x) \sin kx\:dx\\
+                &=\frac{2}{3\pi}\int_{0}^{\pi}(\pi^2x-3\pi x^2+2x^3)\sin kx\:dx\\
+                &=\frac{2}{3\pi}\left[\pi^2\int_{0}^{\pi}x\sin kx\:dx-3\pi\int_{0}^{\pi}x^2\sin kx\:dx+2\int_{0}^{\pi}x^3\sin kx\:dx \right]\\
+                &=\frac{2}{3\pi}\left[\pi^2\left[\frac{\sin k\pi-k\pi\cos k\pi}{k^2} \right] -3\pi\left[\frac{(2-k^2\pi^2)\cos k\pi+2k\pi\sin k\pi-2}{k^3}\right]\right.\\
+                &\left.+2\left[\frac{3(k^2\pi^2-2)\sin k\pi+k\pi(6-k^2\pi^2)\cos k\pi}{k^4}\right]\right]\\
+                &=\frac{2}{3\pi}\left[\pi^2\left[\frac{-k\pi(-1)^k}{k^2} \right] -3\pi\left[\frac{(2-k^2\pi^2)(-1)^k-2}{k^3}\right]+2\left[\frac{k\pi(6-k^2\pi^2)(-1)^k}{k^4}\right]\right]\\
+                &=\frac{2}{3\pi}\left[\frac{\pi^3(-1)^{k+1}}{k}+\frac{3\pi(2-k^2\pi^2)(-1)^{k+1}+6\pi}{k^3}+\frac{2k\pi(6-k^2\pi^2)(-1)^k}{k^4}\right]\\
+                &=\frac{2}{3\pi}\left[\frac{\pi^3k^3(-1)^{k+1}}{k^4}+\frac{3k\pi(2-k^2\pi^2)(-1)^{k+1}+6k\pi}{k^4}+\frac{2k\pi(6-k^2\pi^2)(-1)^k}{k^4}\right]\\
+                &=\frac{2}{3k^4\pi}\left[\pi^3k^3(-1)^{k+1}+3k\pi(2-k^2\pi^2)(-1)^{k+1}+6k\pi+2k\pi(6-k^2\pi^2)(-1)^k\right]\\
+                &=\frac{2}{3k^4\pi}\left[\pi^3k^3(-1)^{k+1}+6k\pi(-1)^{k+1}+3k^3\pi^3(-1)^{k}+6k\pi+12k\pi(-1)^k+2k^3\pi^3(-1)^{ k+1}\right]\\
+                &=\frac{2}{3k^4\pi}\left[3k^3\pi^3(-1)^{k+1}+3k^3\pi^3(-1)^{k}+6k\pi+6k\pi(-1)^k\right]\\
+                &=\frac{2}{3k^4\pi}\left[6k\pi+6k\pi(-1)^k\right]\\
+                &=\frac{4}{k^3}\left[1+(-1)^k\right]\\
+            \end{split}
+        \end{equation*}
+        si $k=2m-1$ con $m\in\mathbb{N}$:
+        \begin{equation*}
+            \begin{split}
+                b_{ 2m-1}&=\frac{4}{(2m-1)^3}\left[1+(-1)^{2m-1}\right]\\
+                &=\frac{4}{(2m-1)^3}\left[1-1\right]\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        y,si $k=2m$ con $m\in\mathbb{N}$:
+        \begin{equation*}
+            \begin{split}
+                b_{2m}&=\frac{4}{(2m)^3}\left[1+(-1)^{2m}\right]\\
+                &=\frac{8}{8m^3}\\
+                &=\frac{1}{m^3}\\
+            \end{split}
+        \end{equation*}
+        Por ende, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{3}x(\pi-x)(\pi-2x)&=\sum_{n=1}^\infty b_{ 2n}\sin 2nx\\
+                &=\sum_{n=1}^\infty\frac{\sin 2nx}{n^3},\quad\forall 0\leq x\leq\pi \\
+            \end{split}
+        \end{equation*}
+        Para la otra parte, recuerde que
+        \begin{equation*}
+            \sin \left(n\pi+\frac{\pi}{2}\right)=(-1)^n
+        \end{equation*}
     \end{proof}
 
     \renewcommand{\theenumi}{\textbf{\roman{enumi}}}
