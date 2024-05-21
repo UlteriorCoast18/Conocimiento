@@ -493,7 +493,20 @@
         \end{equation*}
         Para la otra parte, recuerde que
         \begin{equation*}
-            \sin \left(n\pi+\frac{\pi}{2}\right)=(-1)^n
+            \sin\frac{n\pi}{2}=\left\{
+                \begin{array}{lcr}
+                    0 & \textup{ si } & n=2m\textup{ para algún }m\in\mathbb{N}\\
+                    (-1)^{m-1} & \textup{ si } & n=2m-1\textup{ para algún }m\in\mathbb{N} \\
+                \end{array}
+            \right.
+        \end{equation*}
+        Tomemos $x=\frac{\pi}{4}$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{3}\cdot\frac{\pi}{4}\cdot(\pi-\frac{\pi}{4})(\pi-\frac{\pi}{2})&=\sum_{ n=1}^{\infty}\frac{\sin\frac{n\pi}{2}}{n^3}\\
+                \Rightarrow \frac{1}{3}\cdot\frac{\pi}{4}\cdot\frac{3\pi}{4}\cdot\frac{\pi}{2}&=\sum_{ n=1}^{\infty }\frac{(-1)^{ n-1}}{(2n-1)^3}\\
+                \Rightarrow \sum_{ n=1}^{\infty }\frac{(-1)^{ n+1}}{(2n-1)^3}&=\frac{\pi^3}{32}\\
+            \end{split}
         \end{equation*}
     \end{proof}
 
@@ -617,7 +630,7 @@
                 &\Rightarrow -A\abs{t}^\alpha\leq f(x+t)-f(x)\leq A\abs{t}^\alpha\\
             \end{split}
         \end{equation*}
-        Para ver que la serie de Fourier de $f$ en $x$ converge a $f(x)$, usaremos el Teorema Fundamental para la convergencia puntual de una serie de Fourier. Además, si $m\in\mathbb{N}$
+        Para ver que la serie de Fourier de $f$ en $x$ converge a $f(x)$, usaremos el Teorema Fundamental para la convergencia puntual de una serie de Fourier. Ahora, si $m\in\mathbb{N}$
         \begin{equation*}
             \begin{split}
                 -A\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt \leq \frac{f(x+t)-f(x)}{t}\sin\left(m+\frac{1}{2}\right)t\:dt\leq A\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt
@@ -631,10 +644,25 @@
         \begin{equation*}
             \lim_{ m\rightarrow\infty}\int_{-\gamma'}^{\gamma'}\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt=0
         \end{equation*}
+        Afirmamos que si $0<\zeta\leq\gamma'$, entonces
+        \begin{equation*}
+            \lim_{ m\rightarrow\infty}\int_{-\zeta}^{\zeta}\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt=0
+        \end{equation*}
+        En efecto, sea $0<\zeta\leq\gamma'$, se tiene para $m\in\mathbb{N}$:
+        \begin{equation*}
+            \begin{split}
+                \int_{-\zeta}^{\zeta}\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt&=\int_{-\zeta}^{0}\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt+\int_{0}^{\zeta}\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt\\
+                &=-\int_{\zeta}^{0}\frac{\abs{-t}^\alpha}{-t}\sin\left(m+\frac{1}{2}\right)(-t)\:dt+\int_{0}^{\zeta}\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt\\
+                &=\int_{0}^{\zeta}\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt+\int_{0}^{\zeta}\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt\\
+                &=2\int_{0}^{\zeta}\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt\\
+            \end{split}
+        \end{equation*}
+        %TODO
         Tomemos $\delta'=\min\left\{\delta,\gamma\right\}$. Se tiene que
         \begin{equation*}
             -A\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt \leq \frac{f(x+t)-f(x)}{t}\sin\left(m+\frac{1}{2}\right)t\:dt\leq A\frac{\abs{t}^\alpha}{t}\sin\left(m+\frac{1}{2}\right)t\:dt
         \end{equation*}
+        para todo $\abs{t}<\delta'$
     \end{proof}
 
     \begin{excer}
@@ -789,6 +817,7 @@
         \begin{equation*}
             \lim_{ n\rightarrow\infty}\int_{0}^{x_n}\frac{\sin t}{t}\:dt=\frac{\pi}{2}
         \end{equation*}
+        %TODO
     \end{proof}
 
     \begin{excer}
@@ -865,6 +894,7 @@
             \sum_{ n=1}^\infty\frac{b_n}{n}
         \end{equation*}
         es convergente y converge a $-ic$.
+        %TODO
     \end{proof}
 
     \begin{excer}
@@ -890,7 +920,91 @@
     \end{excer}
 
     \begin{proof}
+        De (i): Considere la función $\cf{f}{\mathbb{R}}{\mathbb{R}}$ dada como sigue:
+        \begin{equation*}
+            x\mapsto \cos\alpha x,\quad\forall x\in[-\pi,\pi]
+        \end{equation*}
+        y extiéndase por periodicidad a todo $\mathbb{R}$. Es claro que esta función es continua, pues
+        \begin{equation*}
+            f(-\pi)=\cos(-\alpha\pi)=\cos\alpha\pi=f(\pi)
+        \end{equation*}
+        (al hacerse la extensión se tiene que es continua en $\pi$, como es continua en $]-\pi,\pi[$, se sigue que lo es en todo $\mathbb{R}$). Esta función es clase $C^1$ en $]-\pi,\pi[$, luego es de variación acotada en $[-\pi,\pi]$. Por el Teorema de Jordan la serie de Fourier de $f$ en $x$ converge puntualmente a $f(x)$ para todo $x\in\mathbb{R}$ (en particular, en $[-\pi,\pi]$). Notemos que $f$ es par, por lo cual se tiene que
+        \begin{equation*}
+            b_k=0,\quad\forall k\in\mathbb{N}
+        \end{equation*}
+        Y,
+        \begin{equation*}
+            a_k=\frac{2}{\pi}\int_{0}^{\pi}f(x)\cos kx\:dx,\quad\forall k\in\mathbb{N}^+
+        \end{equation*}
+        calculemos estos coeficientes.
+        \begin{equation*}
+            \begin{split}
+                a_0&=\frac{2}{\pi}\int_{0}^{\pi}f(x)\:dx\\
+                &=\frac{2}{\pi}\int_{0}^{\pi}\cos\alpha x\:dx,\textup{  sea }u=\alpha x \\
+                &=\frac{2}{\pi}\int_{0}^{\alpha\pi}\cos u\: \frac{du}{\alpha}\\
+                &=\frac{2}{\pi\alpha}\int_{0}^{\pi\alpha}\cos u\:du\\
+                &=\frac{2}{\pi\alpha}\sin u\Big|_{0}^{\alpha\pi}\\
+                &=\frac{2}{\pi\alpha}\sin u\Big|_{0}^{\pi\alpha}\\
+                &=\frac{2}{\pi\alpha}\sin\pi\alpha\\
+            \end{split}
+        \end{equation*}
+        Recordemos antes que
+        \begin{equation*}
+            \cos A\cos B=\frac{\cos (A-B)+\cos (A+B)}{2}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \sin A+\sin B=2\sin\left(\frac{A+B}{2}\right)\cos\left(\frac{A-B}{2}\right)
+        \end{equation*}
+        Ahora, para $k\in\mathbb{N}$:
+        \begin{equation*}
+            \begin{split}
+                a_k&=\frac{2}{\pi}\int_{0}^{\pi}f(x)\cos kx\:dx\\
+                &=\frac{2}{\pi}\int_{0}^{\pi}\cos\alpha x\cos kx\:dx\\
+                &=\frac{2}{\pi}\int_{0}^{\pi}\frac{\cos(\alpha-k)x+\cos(\alpha+k)x}{2}\:dx\\
+                &=\frac{1}{\pi}\left[\int_{0}^{\pi}\cos(\alpha-k)x\:dx+\int_{0}^{\pi}\cos(\alpha+k)x\:dx\right]\\
+                &=\frac{1}{\pi}\left[\frac{1}{\alpha-k}\int_{0}^{(\alpha-k)\pi}\cos u\:du+\frac{1}{\alpha+k}\int_{0}^{(\alpha+k)\pi}\cos v\:dv\right]\\
+                &=\frac{1}{\pi}\left[\frac{1}{\alpha-k}\sin u\Big|_{0}^{(\alpha-k)\pi}+\frac{1}{\alpha+k}\sin v\Big|_{0}^{(\alpha+k)\pi} \right]\\
+                &=\frac{1}{\pi}\left[\frac{1}{\alpha-k}\sin u(\alpha-k)\pi+\frac{1}{\alpha+k}\sin (\alpha+k)\pi \right]\\
+                &=\frac{1}{\pi}\left[\frac{\alpha\sin(\alpha-k)\pi+k\sin(\alpha-k)\pi}{\alpha^2-k^2}+\frac{\alpha\sin(\alpha+k)\pi-k\sin(\alpha+k)\pi}{\alpha^2-k^2}\right]\\
+                &=\frac{1}{\pi}\left[\frac{\alpha\sin(\alpha-k)\pi+\alpha\sin(\alpha+k)\pi+k\sin(\alpha-k)\pi+k\sin(-\alpha-k)\pi}{\alpha^2-k^2}\right]\\
+                &=\frac{1}{\pi}\left[\frac{2\alpha\sin(\frac{\alpha-k+\alpha+k}{2})\pi\cos(\frac{\alpha-k-\alpha-k}{2})\pi+2k\sin(\frac{\alpha-k-\alpha-k}{2})\pi\cos(\frac{\alpha-k+\alpha+k}{2})\pi}{\alpha^2-k^2}\right]\\
+                &=\frac{1}{\pi}\left[\frac{2\alpha\sin\alpha\pi\cos(-k\pi)+2k\sin(-k\pi)\cos\alpha\pi}{\alpha^2-k^2}\right]\\
+                &=\frac{1}{\pi}\left[\frac{2\alpha\sin\alpha\pi\cos k\pi-2k\sin k\pi\cos \alpha\pi}{\alpha^2-k^2}\right],\textup{ pero }\sin k\pi=0\textup{ y }\cos k\pi=(-1)^k \\
+                &=\frac{1}{\pi}\left[\frac{2(-1)^k\alpha\sin\alpha\pi}{\alpha^2-k^2}\right]\\
+                &=\frac{2\alpha\sin\alpha\pi}{\pi}\cdot\frac{(-1)^k}{\alpha^2-k^2}\\
+            \end{split}
+        \end{equation*}
+        Por tanto, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \cos\alpha x&=\frac{a_0}{2}+\sum_{n=1}^{\infty}a_n\cos nx\\
+                &=\frac{\sin \pi\alpha}{\pi\alpha}+\sum_{n=1}^{\infty} \frac{2\alpha\sin\alpha\pi}{\pi}\cdot\frac{(-1)^n}{\alpha^2-n^2}\cos nx\\
+                &=\frac{2\alpha\sin\pi\alpha}{\pi}\left(\frac{1}{2\alpha^2}+\sum_{n=1}^{\infty}(-1)^n\frac{\cos nx}{\alpha^2-n^2}\right),\quad\forall x\in[-\pi,\pi]\\
+                \Rightarrow \pi\cos \alpha x&=2\alpha\sin\pi\alpha\left(\frac{1}{2\alpha^2}+\sum_{n=1}^{\infty}(-1)^n\frac{\cos nx}{\alpha^2-n^2}\right),\quad\forall x\in[-\pi,\pi] \\
+            \end{split}
+        \end{equation*}
         
+        En particular, cuando $x=0$ y $x=\pi$ se tiene que
+        \begin{equation*}
+            \begin{split}
+                \pi\cos \alpha 0&=2\alpha\sin\pi\alpha\left(\frac{1}{2\alpha^2}+\sum_{n=1}^{\infty}(-1)^n\frac{\cos 0}{\alpha^2-n^2}\right)\\
+                \Rightarrow \pi\alpha&=2\alpha^2\sin\pi\alpha\left(\frac{1}{2\alpha^2}+\sum_{n=1}^{\infty}\frac{(-1)^n}{\alpha^2-n^2}\right)\\
+                \Rightarrow \frac{\pi\alpha}{\sin\pi\alpha}&=1+2\alpha^2\sum_{n=1}^{\infty}\frac{(-1)^n}{\alpha^2-n^2}\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                \pi\cos \alpha\pi&=2\alpha\sin\pi\alpha\left(\frac{1}{2\alpha^2}+\sum_{n=1}^{\infty}(-1)^n\frac{\cos n\pi}{\alpha^2-n^2}\right)\\
+                \Rightarrow \pi\cot\alpha\pi&=2\alpha\left(\frac{1}{2\alpha^2}+\sum_{n=1}^{\infty}\frac{(-1)^n\cos n\pi}{\alpha^2-n^2}\right)\\
+                \Rightarrow \alpha\pi\cot\alpha\pi&=2\alpha^2\left(\frac{1}{2\alpha^2}+\sum_{n=1}^{\infty}\frac{1}{\alpha^2-n^2}\right)\\
+                &=1+2\alpha^2\sum_{n=1}^{\infty}\frac{1}{\alpha^2-n^2}\\
+                \therefore\alpha\pi\cot\alpha\pi&=1+2\alpha^2\sum_{n=1}^{\infty}\frac{1}{\alpha^2-n^2}\\
+            \end{split}
+        \end{equation*}
+
+        De (ii): %TODO
     \end{proof}
 
     \begin{excer}
