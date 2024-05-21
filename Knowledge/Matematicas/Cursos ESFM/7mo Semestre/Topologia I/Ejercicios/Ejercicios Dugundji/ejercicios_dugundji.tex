@@ -1704,7 +1704,108 @@
     \end{excer}
 
     \begin{proof}
+        Como el espacio $(X,\tau)$ es separble, existe $A\subseteq X$ a lo sumo numerable tal que
+        \begin{equation*}
+            \Cls{A}=X
+        \end{equation*}
+        (es decir que $A$ es denso en $(X,\tau)$). Veamos que $\mathcal{U}$ es a lo sumo numerable. En efecto, como $A$ es denso en $(X,\tau)$, entonces para cada $\alpha\in I$ se tiene que
+        \begin{equation*}
+            U_\alpha\cap A\neq\emptyset, \textup{ pues }U_\alpha\in\tau
+        \end{equation*}
+        Para cada $\alpha\in I$ escogemos un único $x_\alpha\in X$ tal que $x_\alpha\in U_\alpha\cap A$. Construyamos así al función $\cf{f}{I}{X}$ tal que $\alpha\mapsto x_\alpha$. Por construcción esta función está bien definida.
+
+        Afirmamos que $f$ es inyectiva. En efecto, sean $\alpha,\beta\in I$ tales que $\alpha\neq\beta$. Como $\alpha\neq\beta$ entonces
+        \begin{equation*}
+            U_\alpha\cap U_\beta=\emptyset
+        \end{equation*}
+        Dado a que $x_\alpha\in U_\alpha\cap A$ y $x_\beta\in U_\beta\cap A$, no puede suceder que $x_\alpha=x_\beta$, pues en tal caso se tendría que $U_\alpha\cap U_\beta\neq\emptyset$\contradiction. Luego, $f$ es inyectiva. Por Cantor-Bernstein se sigue que
+        \begin{equation*}
+            \abs{I}\leq\abs{f(I)}\leq\abs{A}\leq\aleph_0
+        \end{equation*}
+        pues, $f(I)\subseteq A$. Por tanto, $I$ es a lo sumo numerable, es decir que $\mathcal{U}$ es a lo sumo numerable.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico y $A\subseteq X$. Dado $x\in X$ se dice que \textbf{$x$ es punto de condensación de $A$} si para todo $U\in\mathcal{V}_x$ se tiene que $U\cap A$ es un conjunto no numerable.
+    \end{mydef}
+
+    \begin{propo}
+        Sean $(X,\tau)$ un espacio Lindelöf y $A\subseteq X$ cerrado. Entonces, $(A,\tau_A)$ es Lindelöf.
+    \end{propo}
+
+    \begin{proof}
+        Sea $\mathcal{V}=\left\{V_\alpha\right\}_{\alpha\in I}\subseteq\tau_A$ una cubierta abierta de $A$, es decir
+        \begin{equation*}
+            \bigcup_{\alpha\in I}V_\alpha=A
+        \end{equation*}
+    \end{proof}
+
+    \begin{excer}
+        Si $(X,\tau)$ es un espacio Lindelöf y $A\subseteq X$ es no numerable, demuestre que existe $x\in X$ tal que $x$ es punto de condensación de $A$.
+    \end{excer}
+
+    \begin{proof}
+        Procederemos por contradicción. Suponga que para todo $x\in X$, $x$ no es punto de condensación de $A$, es decir que para todo $x\in X$ existe $U_x\in\mathcal{V}_x$ (una vecindad que en particular podemos tomar abierta de $x$) tal que
+        \begin{equation*}
+            U_x\cap A\textup{ es a lo sumo numerable}
+        \end{equation*}
+        Constrúyase así la cubierta abierta $\left\{U_x\right\}_{x\in X}$ de $X$. Como $(X,\tau)$ es Lindelöf, entonces existe $\left\{U_{x_i} \right\}_{ i=1}^\infty$ subcubierta a lo sumo numerable de $X$, esto es
+        \begin{equation*}
+            X=\bigcup_{ i=1}^\infty U_{ x_i}
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            \begin{split}
+                A=\bigcup_{i=1}^\infty U_{x_i}\cap A
+            \end{split}
+        \end{equation*}
+        donde $U_{ x_i}\cap A$ es a lo sumo numerable, luego $A$ es a lo sumo numerable\contradiction. Por tanto, $A$ tiene al menos un punto de condensación.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico y $Y$ un conjunto. Si función $\cf{f}{X}{Y}$, entonces
+        \begin{equation*}
+            \tau_f=\left\{A\subseteq Y\Big|f^{-1}(A)\in\tau \right\}
+        \end{equation*}  
+        es una topología sobre $Y$ y es la topología más gruesa que se puede definir sobre $Y$ tal que la función $\cf{f}{(X,\tau)}{(Y,\tau_f)}$ es continua.
+    \end{mydef}
+    
+    \begin{excer}
+        Sean $(X_1,\tau_1)$ y $(X_1,\tau_2)$ espacios topológicos y $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ una función continua, suprayectiva y abierta. Entonces, $\tau_1=\tau_f$.
+    \end{excer}
+
+    \begin{proof}
         
     \end{proof}
+
+    \begin{excer}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos y $Y$ un conjunto. Sea $\cf{f}{X_1}{Y}$ una función. Demuestre que una función $\cf{g}{(Y,\tau_f)}{(X_2,\tau_2)}$ es continua si y sólo si $\cf{g\circ f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es continua.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{theor}
+        Sea $(X,\tau)$ un espacio topológico.
+        \begin{enumerate}
+            \item Sea $A\subseteq X$. Si existe una sucesión de puntos de $A$ que converge a $x$, entonces $x\in\Cls{A}$. El recíproco es cierto si $(X,\tau)$ es primero numerable.
+            \item Sea $\cf{f}{X}{Y}$. Si $f$ es continua, entonces para cada sucesión convergente $\left\{x_n \right\}_{ n=1}^\infty\Rightarrow x$ en $X$, la sucesión $\left\{f(x_n) \right\}_{ n=1}^\infty \rightarrow f(x)$. El recíproco es cierto si $(X,\tau)$ es primero numerable.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sean $(X,\tau)$ un espacio con una base a lo sumo numerable y $A\subseteq X$ subconjunto no numerable de $X$. Pruebe que una cantidad no numerable de puntos de $A$ son puntos límites de $A$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \section{Conexidad}
 
 \end{document}
