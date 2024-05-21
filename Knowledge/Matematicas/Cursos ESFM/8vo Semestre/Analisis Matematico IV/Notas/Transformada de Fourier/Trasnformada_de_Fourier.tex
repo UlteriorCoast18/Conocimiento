@@ -1,0 +1,391 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\norm[1]{\ensuremath{\|#1\|}}
+\newcommand\ora[1]{\ensuremath{\vec{#1}}}
+\newcommand\pint[2]{\ensuremath{\left(#1\big| #2\right)}}
+\newcommand\conj[1]{\ensuremath{\overline{#1}}}
+\newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
+\newcommand{\natint}[1]{\ensuremath{\left[\!\left[#1\right]\!\right]}}
+\newcommand{\fou}[1]{\ensuremath{\mathcal{F}#1}}
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas de Análisis Matemático IV}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Transformación de Fourier}
+    
+    La transformada de Fourier de una función de $\mathbb{R}^n$ en $\mathbb{C}$ generaliza en cierta forma la noción de coeficietes de Fourier de funciones periódicas
+    
+    \section{Conceptos Fundamentales}
+
+    \begin{mydef}
+        Sea $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Se definen $\cf{\mathcal{F}f,\mathcal{F}^*f}{\mathbb{R}^n}{\mathbb{C}} $ como
+        \begin{equation*}
+            \mathcal{F}f(x)=\int_{ \mathbb{R}^n}e^{ -i\pint{x}{y}}f(y)\:dy\quad\textup{y}\quad\mathcal{F}f(x)=\int_{ \mathbb{R}^n}e^{i\pint{x}{y}}f(y)\:dy
+        \end{equation*}
+        para todo $x\in\mathbb{R}^n$. Las funciones $\mathcal{F}f$ y $\mathcal{F}^f*$ se llaman las \textbf{transformaciones de Fourier de $f$}. Las aplicaciones $\mathcal{F},\mathcal{F}^*$ de $\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$ en el conjunto de funciones de $\mathbb{R}^n$ en $\mathbb{C}$ se llaman las \textbf{transformaciones de Fourier}.
+    \end{mydef}
+
+    \begin{obs}
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item Las funciones $\fou{f}(x)$ y $\fou^*{f}(x)$ están definidas para todo $x\in\mathbb{R}^n$ si y sólo si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$.
+            \item En caso de existir, se tiene que $\fou{f}(x)=\fou^*{f}(-x)$.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{mydef}
+        Sea $f\in\mathcal{L}_1^([0,\infty[,\mathbb{C})$. Se definen
+        \begin{equation*}
+            \mathcal{F}_cf(x)=\int_0^\infty f(y)\cos xy\:dy\quad\textup{y}\quad\mathcal{F}_sf(x)=\int_0^\infty f(y)\sin xy\:dy
+        \end{equation*}
+        para todo $x\in\mathbb{R}$. Las funciones $\mathcal{F}_cf$ y  $\mathcal{F}_sf$ se llaman \textbf{las trasnformadas coseno y seno de Fourier de $f$}.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $\cf{f}{[0,\infty[}{\mathbb{C}}$ una función. Se definen las funciones $^Pf$ y $^If$ de $\mathbb{R}$ en $\mathbb{C}$ como
+        \begin{equation*}
+            ^Pf(x)=\left\{ 
+                \begin{array}{lcr}
+                    f(x) & \textup{ si } & x\geq0\\
+                    f(-x) & \textup{ si } & x<0\\
+                \end{array}
+            \right.
+        \end{equation*}
+        y,
+        \begin{equation*}
+            ^If(x)=\left\{ 
+                \begin{array}{lcr}
+                    f(x) & \textup{ si } & x\geq0\\
+                    -f(-x) & \textup{ si } & x<0\\
+                \end{array}
+            \right.
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        Sea $f\in\mathcal{L}_1([0,\infty[,\mathbb{C})$. Se tiene
+        \begin{equation*}
+            \fou{^Pf}(x)=2\mathcal{F}_cf(x)\quad\textup{y}\quad\fou{^If}(x)=2i\mathcal{F}_2f(x)
+        \end{equation*}
+        para todo $x\in\mathbb{R}$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $x\in\mathbb{R}$, entonces
+        \begin{equation*}
+            \begin{split}
+                \fou{P^f}(x)&=\int_{\mathbb{R}} f^p(y) e^{ -i\pint{x}{y}} \:dy\\
+                &=\int_{-\infty}^\infty f^p(y)e^{-ixy}\:dy\\
+                &=\int_{ \infty}^0f^p(y)e^{-ixy}\:dy+\int_0^{\infty}f^p(y)e^{-ixy}\:dy \\
+                &=\int_{ \infty}^0f(y)e^{-ixy}\:dy+\int_0^{\infty}f(-y)e^{-ixy}\:dy\\
+            \end{split}
+        \end{equation*}
+        (terminar demostración).
+    \end{proof}
+
+    \begin{cor}
+        Sea $f\in\mathcal{L}_1(\mathbb{R},\mathbb{C})$.
+        \begin{enumerate}
+            \item Si $f$ es par, entonces $\fou{f}(x)=2\int_0^{\infty}f(y)\cos xy\:dy$ para todo $x\in\mathbb{R}$.
+            \item Si $f$ es impar, entonces $\fou{f}(x)=-2i\int_0^{\infty}f(y)\sin xy\:dy$ para todo $x\in\mathbb{R}$.
+        \end{enumerate}
+    \end{cor}
+
+    \begin{exa}
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item Sea $\cf{f}{\mathbb{R}}{\mathbb{R}}$ la función $f=\chi_I$ donde $I$ es un intervalo con extremos $a<b$ en $\mathbb{R}$. Entonces,
+            \begin{equation*}
+                \begin{split}
+                    \fou{f}(x)&=\int_{-\infty}^\infty \xi_I(y)e^{ -ixy}\:dy\\
+                    &=\int_{a}^b e^{ -ixy}\:dy\\
+                    &=\left\{ 
+                        \begin{array}{lcr}
+                            \frac{e^{ -ixb}-e^{ -ixa}}{-ix} & \textup{ si } & x\neq0\\
+                            b-a & \textup{si} & x=0\\
+                        \end{array}
+                    \right.\\
+                \end{split}
+            \end{equation*}
+            En particular, si $a>0$ entonces
+            \begin{equation*}
+                \fou{\chi_{-a,a}}(x)=\left\{ 
+                    \begin{array}{lcr}
+                        \frac{2\sin ax}{x} & \textup{ si } & x\neq0\\
+                        2a & \textup{si} & x=0\\
+                    \end{array}
+                \right.
+            \end{equation*}
+            Coom $\fou{\chi_[-a,a]}$ no es integrable en $\mathbb{R}$ se concluye que, en general, la transformada de Fourier de una función integrable no necesariamente es integrable.
+            \item Sea $\cf{f}{\mathbb{R}}{\mathbb{R}}$ la función
+            \begin{equation*}
+                f(x)=e^{-k\abs{x}},\quad\forall x\in\mathbb{R}
+            \end{equation*}
+            donde $k>0$. Como $f$ es integrable, entonces
+            \begin{equation*}
+                \begin{split}
+                    \fou{f}(x)&=\int_{-\infty}^\infty e^{-k\abs{y}}e^{-ixy}\:dy\\
+                    &=\int_{-\infty}^0 e^{ky}e^{-ixy}\:dy+\int_{0}^\infty e^{-ky}e^{-ixy}\:dy\\
+                    &=\int_{0}^\infty e^{-ky}e^{ixy}\:dy+\int_{0}^\infty e^{-ky}e^{-ixy}\:dy\\
+                    &=\int_{0}^\infty e^{-ky}e^{(-k+ix)y}\:dy+\int_{0}^\infty e^{-ky}e^{(-k-ix)y}\:dy\\
+                    &=\frac{-1}{-k+ix}+\frac{-1}{-k-ix}\\
+                    &=\frac{k+ix+k-ix}{k^2+x^2}\\
+                    &=\frac{2k}{k^2+x^2}\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+    \end{exa}
+
+    \begin{exa}
+        Sea $\cf{f}{\mathbb{R}}{\mathbb{R}}$ la función
+        \begin{equation*}
+            f(x)=e^{ -kx^2},\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        donde $k>0$. Como $f$ es par se tiene que
+        \begin{equation*}
+            \fou{f}(x)=2\int_0^{\infty}e^{ -ky^2}\cos xy\:dy
+        \end{equation*}
+        Sea $g(x)=\int_0^\infty e^{ -ky^2}\cos xy\:dy$ para todo $x\in\mathbb{R}$. Se afirma que
+        \begin{equation*}
+            g'(x)=-\int_0^{\infty}ye^{ -ky^2}\sin xy\:dy,\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        En efecto, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \abs{ye^{-ky^2}\sin xy}\leq ye^{-ky^2},\quad\forall y\geq0
+            \end{split}
+        \end{equation*}
+        donde la función de la derecha es integrable e independiente de $x$ (justificar). Por el teorema de derivación se sigue que
+        \begin{equation*}
+            g'(x)=-\int_0^{\infty}ye^{ -ky^2}\sin xy\:dy,\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        Veamos ahora que
+        \begin{equation*}
+            \begin{split}
+                g'(x)&=\int_0^{\infty}ye^{ -ky^2}\sin xy\:dy\\
+                &=-\left[-\frac{1}{2k}e^{ -ky^2}\sin xy\Big|_0^{\infty}+\frac{1}{2k}\int_0^{\infty}xe^{ -ky^2}\cos xy\:dy \right]\\
+                &=-\left[0-0+\frac{x}{2k}\int_0^{\infty}e^{ -ky^2}\cos xy\:dy \right]\\
+                &=-\frac{x}{2k}\int_0^{\infty}e^{ -ky^2}\cos xy\:dy\\
+                &=-\frac{x}{2k}g(x),\quad\forall x\in\mathbb{R} \\
+            \end{split}
+        \end{equation*}
+        Luego, 
+        \begin{equation*}
+            \begin{split}
+                g'(x)+\frac{x}{2k}g(x)&=0,\quad\forall x\in\mathbb{R}\\
+                \Rightarrow e^{\frac{x^2}{4k}}\left(g'(x)+\frac{x}{2k}g(x)\right)&=0,\forall x\in\mathbb{R}\\
+                \Rightarrow \frac{d}{dx}\left(e^{\frac{x^2}{4k}}g(x) \right)(x_0)&=0,\quad\forall x_0\in\mathbb{R} \\
+                \Rightarrow e^{\frac{x^2}{4k}}g(x)&=c\quad\forall x\in\mathbb{R}\\
+            \end{split}
+        \end{equation*}
+        En particular,
+        \begin{equation*}
+            \begin{split}
+                c&=g(0)\\
+                &=\int_0^\infty e^{ -ky^2}\:dy\\
+                &=\frac{1}{\sqrt{k}}\int_0^\infty e^{-u^2}\:du\\
+                &=\frac{1}{2}\cdot\sqrt{\frac{\pi}{k}}
+            \end{split}
+        \end{equation*}
+        Por ende,
+        \begin{equation*}
+            g(x)=\frac{1}{2}\sqrt{\frac{\pi}{k}}e^{ -\frac{x^2}{4k}},\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        De donde se sigue que
+        \begin{equation*}
+            \fou{f}(x)=\sqrt{\frac{\pi}{k}}e^{ -\frac{x^2}{4k}}, \quad\forall x\in\mathbb{R}
+        \end{equation*}
+        En particular, si $k=\frac{1}{2}$ entonces $f(x)=e^{-\frac{x^2}{2}}$ para todo $x\in\mathbb{R}$ y se tiene que:
+        \begin{equation*}
+            \fou{f}(x)=\sqrt{2\pi}e^{ -\frac{x^2}{2}}=\sqrt{2\pi}f(x)
+        \end{equation*}
+        es decir que $f$ es un vector propio del operador transformada de Fourier.
+    \end{exa}
+
+    \begin{propo}
+        Sea $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$.
+        \begin{enumerate}
+            \item Si $g(x)=e^{i\pint{a}{y}}f(x)$, entonces
+            \begin{equation*}
+                \fou{g}(x)=\fou{f}(x-a),\quad\forall x\in\mathbb{R}^n
+            \end{equation*}
+            \item Si $g(x)=f(x-a)$, entonces
+            \begin{equation*}
+                \fou{g}(x)=e^{ -i\pint{x}{a}}\fou{f}(x),\quad\forall x\in\mathbb{R}^n
+            \end{equation*}
+            \item Si $g(x)=\conj{f(-x)}$, entonces
+            \begin{equation*}
+                \fou{g}(x)=\conj{\fou{f}(x)},\quad\forall x\in\mathbb{R}^n
+            \end{equation*}
+            \item Sea $\lambda\in\mathbb{R}\backslash\left\{0\right\}$. Si $g(x)=f(\frac{x}{\lambda})$ para todo $x\in\mathbb{R}^n$, entonces
+            \begin{equation*}
+                \fou{g}(x)=\abs{\lambda}^n\fou{f}(\lambda x),\quad\forall x\in\mathbb{R}^n
+            \end{equation*}
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (i): Veamos que
+        \begin{equation*}
+            \begin{split}
+                \fou{g}(x)&=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}g(y)\:dy\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}e^{ i\pint{a}{y}}f(y)\:dy\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{x-a}{y}}f(y)\:dy\\
+                &=\fou{f}(x-a)
+            \end{split}
+        \end{equation*}
+        para todo $x\in\mathbb{R}^n$.
+
+        De (ii): Veamos que
+        \begin{equation*}
+            \begin{split}
+                \fou{g}(x)&=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}g(y)\:dy\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}f(y-a)\:dy\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{u+a}}f(u)\:du\\
+                &=e^{ -i\pint{x}{a}}\fou{f}(x) \\
+            \end{split}
+        \end{equation*}
+        para todo $x\in\mathbb{R}^n$.
+
+        De (iii): Veamos que
+        \begin{equation*}
+            \begin{split}
+                \fou{g}(x)&=\int_{\mathbb{R}^n}e^{-i\pint{x}{y}}\conj{f(-y)}\:dy\\
+                &=\int_{\mathbb{R}^n}e^{i\pint{x}{y}}\conj{f(y)}\:dy\\
+                &=\conj{\int_{\mathbb{R}^n}e^{-i\pint{x}{y}}f(y)\:dy}\\
+                &=\conj{\fou{f}(x)}\\
+            \end{split}
+        \end{equation*}
+        
+        De (iv): 
+
+    \end{proof}
+
+\end{document}
