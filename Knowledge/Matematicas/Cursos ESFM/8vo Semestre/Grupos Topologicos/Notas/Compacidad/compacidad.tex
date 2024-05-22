@@ -502,13 +502,20 @@
         \end{enumerate}
     \end{propo}
 
+    \begin{lema}
+        Toda función continua de un espacio compacto en un Hausdorff es perfecta.
+    \end{lema}
+
     \begin{proof}
         %TODO
-        Antes note que todo homomorfismo $\cf{\varphi}{G}{G'}$ continuo es abierto. En partcular, $\varphi\big|_H$ es abierto: luego, si $U$ es un abierto en $H$ y $V$ es un abierto en $G$ tal que
+    \end{proof}
+
+    \begin{proof}
+        Más adelante se probará que $\varphi$ es abierto (el resultado es muy relevante y aún no se puede probar totalmente dadas las herramientas actuales), pero en este momento lo tomaremos como un hecho. En partcular, $\varphi\big|_H$ es abierto: luego, si $U$ es un abierto en $H$ y $V$ es un abierto en $G$ tal que
         \begin{equation*}
             U=H\cap V
         \end{equation*}
-        entonces, $\varphi(U)=\varphi(V)\cap H'$. Por tanto, $\varphi(U)$ es abierto en $H'$. (recuerde que toda función continua de un compacto en un Hausdorff es perfecta).
+        entonces, $\varphi(U)=\varphi(V)\cap H'$. Por tanto, $\varphi(U)$ es abierto en $H'$. (recuerde que toda función continua de un compacto en un Hausdorff es perfecta). Probaremos los tres incisos:
 
         \begin{enumerate}
             \item Queremos probar que $H=\varphi^{-1}(H')$ es denso en $G$. Sea $U$ un abierto en $G$, entonces $\varphi(U)$ es un abierto en $G'$. Como $H'$ es denso en $G'$ se tiene que
@@ -518,11 +525,58 @@
             así, $H$ es denso en $G$.
             \item Sea $K$ un subgrupo cerrado de $G$. Se tiene que $H'\cap\varphi(K)$ es denso en $G$. Sea $U$ un abierto en $G$, entonces $\varphi(U)$ es abierto en $G'$ y por consiguiente:
             \begin{equation*}
-                s
+                \varphi(U)\cap\left(H'\cap\varphi(K)\right)\neq\emptyset
+                \Rightarrow U\cap \varphi^{-1}(H')\cap K\neq\emptyset
             \end{equation*}
+            luego, $H\cap K$ es denso en $K$. Por ser $K$ arbitrario se sigue que $H$ es totalmente denso en $G$. 
+            \item Sea $D\subseteq H$ numerable. Queremos ver que $\Cls{D}$ es compacta en $H$. Como $H'$ es precompacto, existe pues un conjunto $K\subseteq H'$ compacto tal que
+            \begin{equation*}
+                \varphi(D)\subseteq K
+            \end{equation*}
+            luego,
+            \begin{equation*}
+                D\subseteq \varphi^{-1}(K)
+            \end{equation*}
+            donde $\varphi^{-1}(K)$ es compacto, pues la función $\varphi$ es perfecta.
         \end{enumerate}
-        
-        De (1): 
     \end{proof}
+
+    \section{Propiedades Relativas a Compacidad}
+
+    Una clase más amplia de grupos compactos la constituyen los grupos totalmente acotados.
+
+    \begin{mydef}
+        Un grupo topológico $G$ es \textbf{totalmente acotado} si para cada vecindad $U$ de $e_G$ existe un subconjunto $F\subseteq G$ tal que $F$ es finito y $G=F\cdot U$.
+    \end{mydef}
+
+    Los grupos totalmente acotados tienen una propiedad muy importante: son subgrupos densos de grupos compactos (esto no se probará). Además, la propiedad se preserva en subgrupos, bajo homomorfismos continuos y en productos.
+
+    \begin{obs}
+        Los grupos totalmente acotados no pueden contener grupos infinitos discretos y, su grado de dispersión es igual a la cardinalidad del grupo $G$.
+    \end{obs}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    Note que todo grupo compacto es totalmente acotado. Pues si $G$ es compacto y $U$ es una vecindad de $e_G$, entonces $\left\{gU \right\}_{ g\in G}$ es una cubierta abierta de $G$, luego por ser compacto existen $g_1,...,g_n$ tales que $G$ está contenido en la unión de la familia $\left\{g_iU \right\}_{ i=1}^n$. Por tanto, tomando $F=\left\{g_1,...,g_n \right\}$ se sigue que $G=F\cdot U$, es decir que $G$ es totalmente acotado.
+
+    \renewcommand{\theenumi}{\roman{enumi}}
+
+    \begin{propo}
+        Sea $G$ un grupo totalmente acotado. Entonces:
+        \begin{enumerate}
+            \item Si $U$ es una vecindad arbitraria de $e_G$, entonces existe $L\subseteq G$ finito tal que $G=U\cdot L$.
+            \item Todo subgrupo $K$ de $G$ es totalmente acotado.
+            \item Si $G'$ es un grupo topológico que es la imagen de $G$ respecto a un homomorfismo continuo, entonces $G'$ es totalmente acotado.
+            \item Si $K$ es un subgrupo denso de un grupo $L$ y $K$ es totalmente acotado, entonces $L$ también es totalmente acotado.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (i):
+    \end{proof}
+
+    
 
 \end{document}

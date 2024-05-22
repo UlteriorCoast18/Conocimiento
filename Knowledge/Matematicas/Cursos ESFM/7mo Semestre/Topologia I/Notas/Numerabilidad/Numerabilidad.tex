@@ -168,9 +168,9 @@
     \end{propo}
 
     \begin{proof}
-        Sea $Y\subseteq X$. Sea $y\in Y$, en particular $y\in X$. Como $(X,\tau)$ es primero numeable, existe un sistema fundamental de vecindades de $x$ en $(X,\tau)$, digamos $\mathcal{U}'$, es decir que para este $\mathcal{U}'$ se cumple:
+        Sea $Y\subseteq X$. Sea $y\in Y$, en particular $y\in X$. Como $(X,\tau)$ es primero numeable, existe un sistema fundamental de vecindades de $y$ en $(X,\tau)$, digamos $\mathcal{U}'$, es decir que para este $\mathcal{U}'$ se cumple:
         \begin{equation*}
-            \forall V\in\mathcal{V}(x)\exists U\in\mathcal{U}'\textup{ tal que }U\subseteq V
+            \forall V\in\mathcal{V}(y)\exists U\in\mathcal{U}'\textup{ tal que }U\subseteq V
         \end{equation*}
         Sea
         \begin{equation*}
@@ -228,7 +228,7 @@
     \begin{proof}
         $\Rightarrow)$: Es inmediato del hecho de que la propiedad de ser primero numerable es hereditaria y topológica.
 
-        $\Leftarrow)$: Suponga que $(X_k,\tau_k)$ es primero numerable para todo $k\in\mathbb{N}$. Sea $x=(x_n)_{n\in\mathbb{N}}\in X$. Si $k\in\mathbb{N}$, se tiene que $(X_k,\tau_k)$ es primero numerable. Para $x_k\in X_k$ existe
+        $\Leftarrow)$: Suponga que $(X_k,\tau_k)$ es primero numerable para todo $k\in\mathbb{N}$. Sea $x=(x_n)_{n\in\mathbb{N}}\in X$. Para $x_k\in X_k$ existe
         \begin{equation*}
             \mathcal{U}_k=\left\{U_m^k \right\}_{ m\in\mathbb{N}}
         \end{equation*}
@@ -500,18 +500,26 @@
         \begin{equation*}
             B_n=B_d\left(x,\frac{1}{m}\right)
         \end{equation*}
-        Entonces, $\left\{B_n\right\}_{ n\in\mathbb{N}}$ es un sistema fundamental de vecindades para $x$ el cual es a lo sumo numerable.
+        Entonces, $\left\{B_n\right\}_{ n\in\mathbb{N}}$ es un sistema fundamental de vecindades para $x$ el cual es a lo sumo numerable. En efecto, sea $U\in\tau$ tal que $x\in U$. Entonces, como el sistema de bolas abiertas forma una base para la topología $\tau$ se tiene que existe $r>0$ tal que
+        \begin{equation*}
+            B(x,r)\subseteq U
+        \end{equation*}
+        Por la propiedad arquimediana existe $n\in\mathbb{N}$ tal que $\frac{1}{n}<r$. Así,
+        \begin{equation*}
+            B\left(x,\frac{1}{n}\right)\subseteq U
+        \end{equation*}
+        siendo $B(x,\frac{1}{n})$ un elemento del sistema fundamental de vecindades.
     \end{proof}
 
     \begin{exa}
-        Sea $\mathcal{B}_l=\left\{[a,b)\Big|a,b\in\mathbb{R} \right\}$. Ya se sabe que $\mathcal{B}_l$ es una base para una topología sobre $\mathbb{R}$, la cual se denota por $\tau_l$. A la pareja $(\mathbb{R},\tau_l)$ se suele escribir como $\mathbb{R}_l$.
+        Sea $\mathcal{B}_l=\left\{[a,b)\Big|a,b\in\mathbb{R} \right\}$. Ya se sabe que $\mathcal{B}_l$ es una base para una topología sobre $\mathbb{R}$, la cual se denota por $\tau_l$. A la pareja $(\mathbb{R},\tau_l)$ se suele escribir simplemente como $\mathbb{R}_l$.
         \begin{enumerate}
             \item $\mathbb{R}_l$ es de Hausdorff (esto se deduce de forma casi inmediata).
-            \item $\mathbb{R}_l$ es primero numerable. En efecto, sea $r\in\mathbb{R}$, entonces el conjunto:|
+            \item $\mathbb{R}_l$ es primero numerable. En efecto, sea $r\in\mathbb{R}$, entonces el conjunto:
             \begin{equation*}
                 \mathcal{V}=\left\{[r,r+\frac{1}{n})\Big|n\in\mathbb{N} \right\}
             \end{equation*}
-            es un sistema fundamental de vecindades de $r$. En efecto, sea $U\in\tau_l$ tal que $r\in U$. Considere $[l,k)\in\mathcal{B}_l$ que cumple
+            es un sistema fundamental de vecindades de $r$. En efecto, sea $U\in\tau_l$ tal que $r\in U$. Considere $[l,k)\in\mathcal{B}_l$ que cumpla
             \begin{equation*}
                 r\in [l,k)\subseteq U
             \end{equation*}
@@ -523,7 +531,7 @@
             \begin{equation*}
                 [r,r+\frac{1}{n})\subseteq [l,k)\subseteq U
             \end{equation*}
-            luego $\mathcal{V}$ es un sistema fundamental de vecindades de $r$.
+            Así, $\mathcal{V}$ es un sistema fundamental de vecindades de $r$.
             \item $\mathbb{R}_l$ no es segundo numerable. Sea $\mathcal{B}$ una base para $\tau_l$. Dado $x\in\mathbb{R}$, escogemos $B_x\in\mathcal{B}$ tal que
             \begin{equation*}
                 x\in B_x\subseteq [x,x+1)
