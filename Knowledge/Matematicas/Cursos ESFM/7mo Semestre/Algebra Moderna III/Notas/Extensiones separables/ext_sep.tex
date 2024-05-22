@@ -1316,4 +1316,185 @@
         y, $[E:E^G]=\abs{G}$.
     \end{proof}
 
+    \renewcommand{\theenumi}{\roman{enumi}}
+
+    \begin{theor}[\textbf{Teorema Fundamental de la Teoría de Galois finita}]
+        Sea $E/F$ una extensión finita de Galois, con $G=\Gal{E/F}$. Entonces,
+        \begin{enumerate}
+            \item Si $K$ es un campo intermedio de la extensión $E/F$, entonces $E/K$ es de Galois, y si $H=\Gal{E/K}$ se tiene que $K=E^H$ y $[E:K]=\abs{H}$.
+            \item Si $H<G$ entonces $E/E^H$ es de Galois con $\Gal{E/E^H}=H$ y $[E:E^H]=\abs{H}$.
+            \item Existe una biyección entre el conjunto de campo intermedios de la extensión $E/F$ y el conjunto de subgrupos de $G$, a saber:
+            \begin{equation*}
+                K\mapsto \Gal{E/K}
+            \end{equation*}
+            cuya inversa está dada por la correspondencia:
+            \begin{equation*}
+                H\mapsto E^H
+            \end{equation*}
+            \item Si $K$ es un campo intermedio de la extensión $E/F$ y $\sigma\in G$, entonces $\sigma(K)$ es un campo intermedio de la extensión $E/F$ y $\Gal{E/\sigma(K)}=\sigma^{-1}\Gal{E/K}\sigma$ ($\sigma(K)$ es llamado el \textbf{conjugado de $K$}).
+            \item Sea $K$ un campo intermedio de la extensión $E/F$. Entonces, $K/F$ es de Galois si y sólo si $\Gal{E(K)}\vartriangleleft G$. Si $K/F$ es normal entonces la función
+            \begin{equation*}
+                \begin{split}
+                    \psi:G&\rightarrow \Gal{K/F}\\
+                    \sigma&\mapsto \sigma\big|_K\\
+                \end{split}
+            \end{equation*}
+            es un epimorfismo tal que $\ker(\Psi)=\Gal{E/K}$, es decir
+            \begin{equation*}
+                \Gal{E/F}/\Gal{E/K}=G/\Gal{E/K}\cong \Gal{K/F}
+            \end{equation*}
+        \end{enumerate}
+    \end{theor}
+        
+    \begin{proof}
+        De (i) y (ii): Es inmediato del teorema de Artín y de un resultado anterior.
+
+        De (iii): Sea $\mathcal{C}$ el conjunto de campos intermedios de la extensión $E/F$, y $\mathcal{G}$ el conjunto de subgrupos de $G$. Denotemos por
+        \begin{equation*}
+            \begin{split}
+                \Phi:\mathcal{C}&\rightarrow \mathcal{G}\\
+                K&\mapsto \Gal{E/K}\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                \Psi:\mathcal{G}&\rightarrow \mathcal{C}\\
+                H&\mapsto E^H\\
+            \end{split}
+        \end{equation*}
+        Tenemos que para cada $K\in\mathcal{C}$:
+        \begin{equation*}
+            \begin{split}
+                \Psi\circ\Phi(K)&=\Psi(\Phi(K))\\
+                &=\Psi(\Gal{E/K})\\
+                &=E^{\Gal{E/K}}\\
+                &=K\\
+                &=1_{\mathcal{C}}(K)\\
+                \therefore \Psi\circ\Phi&=1_{\mathcal{C}}\\
+            \end{split}
+        \end{equation*}
+        Por otro lado, sea $H\in\mathcal{G}$, entonces
+        \begin{equation*}
+            \begin{split}
+                \Phi\circ\Psi(H)&=\Phi(\Psi(H))\\
+                &=\Phi(E^H)\\
+                &=\Gal{E/E^H}\\
+                &=H\\
+                &=1_{\mathcal{G}}(H)\\
+                \therefore \Phi\circ\Psi&=1_{\mathcal{G}}\\
+            \end{split}
+        \end{equation*}
+        luego $\Phi$ y $\Psi$ son biyecciones siendo una la inversa de la otra.
+
+        De (iv): Sea $K$ un campo intermedio de la extensión $E/F$ y $\sigma\in G$. Entonces, es inmediato que $\sigma(K)$ es campo intermedio de la extensión $E/F$, pues
+        \begin{equation*}
+            F=\sigma(F)\subseteq\sigma(K)\subseteq\sigma(E)=E
+        \end{equation*}
+        Luego, $E/\sigma(K)$ es de Galois. Probemos que:
+        \begin{equation*}
+            \Gal{E/\sigma(K)}=\sigma\Gal{E/K}\sigma^{-1}
+        \end{equation*}
+        es decir, por (iii):
+        \begin{equation*}
+            \begin{split}
+                E^{\Gal{E/\sigma(K)}}&=E^{\sigma\Gal{E/K}\sigma^{-1}}\\
+                \iff \sigma(K)&=E^{\sigma\Gal{E/K}\sigma^{-1}}\\
+            \end{split}
+        \end{equation*}
+        Sea $\beta\in E$ y elegimos $\alpha\in E$ tal que $\beta=\sigma(\alpha)$ (por ser $\sigma$ un $F$-automorfismo de $E$). Supóngase que $\beta\in\sigma(K)$, entonces $\alpha\in K$, y para cada $\theta\in\Gal{E/K}$ se tiene:
+        \begin{equation*}
+            \begin{split}
+                (\sigma\circ\theta\circ\sigma^{-1})(\beta)&=\sigma(\theta(\sigma^{-1}(\beta)))\\
+                &=\sigma(\theta(\alpha))\\
+                &=\sigma(\alpha)\\
+                &=\beta
+            \end{split}
+        \end{equation*}
+        pues $\alpha\in K$ y $\theta$ deja fijo a $K$. Por tanto, $\beta\in E^{\sigma\Gal{E/K}\sigma^{-1}}$. Así.
+        \begin{equation*}
+            \sigma(K)\subsetneq E^{\sigma\Gal{E/K}\sigma^{-1}}
+        \end{equation*}
+        Por otro lado, si $\beta\in E^{\sigma\Gal{E/K}\sigma^{-1}}$ entonces
+        \begin{equation*}
+            \begin{split}
+                \sigma\circ\theta\circ\sigma^{-1}(\beta)&=\beta,\quad\forall \theta\in\Gal{E/K}\\
+                \Rightarrow \sigma(\theta(\alpha))&=\sigma(\alpha),\quad\forall \theta\in\Gal{E/K}\\
+                \Rightarrow \theta(\alpha)&=\alpha,\quad\forall\theta\in\Gal{E/K}\\
+                \Rightarrow \alpha\in E^{\Gal{E/K}}&=K\\
+                \Rightarrow \beta=\sigma(\alpha)&\in\sigma(K)\\
+            \end{split}
+        \end{equation*}
+        por tanto, $E^{\sigma\Gal{E/K}\sigma^{-1}}\subseteq \sigma(K)$.
+
+        De ambas contenciones se sigue que
+        \begin{equation*}
+            \sigma(K)=E^{\sigma\Gal{E/K}\sigma^{-1}}
+        \end{equation*}
+        es decir que
+        \begin{equation*}
+            \Gal{E/\sigma(K)}=\sigma\Gal{E/K}\sigma^{-1}
+        \end{equation*}
+        De (v): Probaremos la doble implicación.
+
+        $\Rightarrow):$ Suponga que $K/F$ es normal (es decir, que es de Galois pues es lo único que falta). Probaremos que para todo $\sigma\in G$:
+        \begin{equation*}
+            \sigma\Gal{E/K}\sigma^{-1}=\Gal{E/K}
+        \end{equation*}
+        ya se sabe que
+        \begin{equation*}
+            \sigma\Gal{E/K}\sigma^{-1}=\Gal{E/\sigma(K)},\quad\forall \sigma\in G
+        \end{equation*}
+        pero, como $\cf{\sigma\big|_K}{K}{\overline{F}}$ es un $F$-homomorfismo que deja fijo a $F$, se tiene que $\sigma\big|_K$ es un $F$-automorfismo de $K$ en $K$ (por ser $K/F$ normal), luego se tiene que
+        \begin{equation*}
+            \sigma\Gal{E/K}\sigma^{-1}=\Gal{E/K},\quad\forall\sigma\in G
+        \end{equation*}
+        así, $\Gal{E/K}\vartriangleleft G$.
+
+        $\Leftarrow):$ Suponga que $\Gal{E/K}\vartriangleleft G$. Sea $\theta$ un $F$-homomorfismo de $K$ en $F$. Probemos que $\theta(K)=K$, es decir que $\theta$ es un $F$-automorfismo de $K$. Para esto, extendemos $\theta$ a un $F$-automorfismo de $E$ (pues $E/F$ es de Galois, en particular normal) y la denotamos por $\sigma$. Se tiene que $\sigma\in G$ y,
+        \begin{equation*}
+            \begin{split}
+                \Gal{E/K}&=\sigma\Gal{E/K}\sigma^{-1}\\
+                &=\Gal{E/\sigma(K)}\\
+                \Rightarrow \Phi(K)&=\Phi(\sigma(K))\\
+                \Rightarrow K&=\sigma(K)\\
+                \Rightarrow K&=\theta(K)\\
+            \end{split}
+        \end{equation*}
+        Por tanto, $K/F$ es normal.
+        
+        Por otro lado, supongamos que $K/F$ es normal, y tomamos la función $\cf{\psi}{G}{\Gal{K/F}}$ tal que $\sigma\mapsto\sigma\big|_K$. Esta función está bien definida. Hay que verificar tres cosas:
+        \begin{itemize}
+            \item \textbf{$\sigma$ es homomorfismo}: Sean $\sigma,\sigma_1\in G$, entonces
+            \begin{equation*}
+                \begin{split}
+                    \psi(\sigma\circ\sigma_1)&=(\sigma\circ\sigma_1)\big|_K\\
+                    &=(\sigma\big|_K)\circ(\sigma_1\big|_K)\textup{, pues la extensión $K/F$ es normal}\\
+                    &=\psi(\sigma)\circ\psi(\sigma_1)\\
+                \end{split}
+            \end{equation*}
+            \item $\ker(\psi)=\Gal{E/K}$: Sea $\sigma\in G$. Veamos que
+            \begin{equation*}
+                \begin{split}
+                    \sigma\in\ker(\psi)&\iff \psi(\sigma)=1_K \\
+                    &\iff \sigma\big|_K=1_K\\
+                    &\iff\sigma(\alpha)=\alpha,\quad\forall \alpha\in K\\
+                    &\iff \sigma\in\Gal{E/K}\\
+                    \therefore \ker(\psi)&=\Gal{E/K}\\
+                \end{split}
+            \end{equation*}
+            \item \textbf{$\psi$ es epimorfismo}: Por supuesto,
+            \begin{equation*}
+                \begin{split}
+                    \psi(G)<\Gal{K/F}
+                \end{split}
+            \end{equation*}
+            y debemos probar que son iguales. Sea $\theta\in\Gal{K/F}$, extendemos $\theta$ a un $F$-automorfismo de $E$ digamos $\sigma$, se tiene que
+            \begin{equation*}
+                \psi(\sigma)=\sigma\big|_K=\theta
+            \end{equation*}
+            luego, $\psi(\sigma)\in\psi(G)$. De forma inmediata se sigue la igualdad.
+        \end{itemize}
+    \end{proof}
+
 \end{document}

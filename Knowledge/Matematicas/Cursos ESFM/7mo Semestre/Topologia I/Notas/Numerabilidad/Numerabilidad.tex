@@ -584,9 +584,101 @@
                 \mathbb{R}\subseteq \bigcup\mathcal{A}'\cup\mathcal{A}''
             \end{equation*}
             por tanto, $\mathbb{R}_l$ es Lindelöf.
+            \item $\mathbb{R}_l^2=\mathbb{R}_l\times\mathbb{R}_l$ no es de Lindelöf. Sea
+            \begin{equation*}
+                \mathcal{L}=\left\{(x,-x)\Big|x\in\mathbb{R} \right\}
+            \end{equation*}
+            Afirmamos que $\mathcal{L}\subseteq \mathbb{R}_l^2$ es cerrado. Sea
+            \begin{equation*}
+                \mathcal{A}=\left\{\mathbb{R}-\mathcal{L} \right\}\bigcup\left\{[a,b)\times[-a,d)\Big|a,b,d\in\mathbb{R} \right\}
+            \end{equation*}
+            Se tiene que $\mathcal{A}$ es una cubierta abierta de $\mathbb{R}_l^2$.
+            Además, para $U=[a,b)\times[-a,d)$ tenemos que $U\cap\mathcal{L}=\left\{(a,-a) \right\}$. Luego, para todo $a\in\mathbb{R}$
+            \begin{equation*}
+                \left\{(a,-a) \right\}\in{\tau_l^2}_{\mathcal{L}}
+            \end{equation*}
+            pero entonces $\mathcal{A}$ no puede tener una subcolección numerable que cubra a $\mathbb{R}_l^2$.
+            \item $\mathbb{R}_l^2$ es separable pues $\mathbb{Q}^2\subseteq\mathbb{R}_l^2$ es numerbale y denso.
+            \item $\mathcal{L}$ como subespacio de $\mathbb{R}_l^2$ no es separable. Sea $A\subseteq\mathcal{L}$ numerable. Se tiene que ${\tau_l^2}_{\mathcal{L}}$ coincide con la topología discreta. Luego $\mathcal{L}-A$ es abierto, así $\mathcal{A}$ es cerrado (todo esto en la topología del subespacio), así $A$ no es denso en $(L,)$. Por tanto, el espacio no puede ser separable.
         \end{enumerate}
     \end{exa}
 
+    \chapter{Espacios Conexos}
 
+    \section{Conceptos Fundamentales}
+
+    \renewcommand{\theenumi}{\alph{enumi}}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico.
+        \begin{enumerate}
+            \item Una \textbf{partición de $X$} es una pareja formada por dos conjuntos abiertos $U,V$ no vacíos tales que $U\cap V=\emptyset$ y $X=U\cap V$.
+            \item Dos subconjuntos $A,B$ de $X$ se dicen \textbf{mutuamente separados} en $(X,\tau)$ si $A\cap\Cls{B}=\Cls{A}\cap B=\emptyset$.
+            \item $(X,\tau)$ se llama un \textbf{espacio conexo} si no existe una partición de $X$ y, en caso contrario lo llamaremos \textbf{espacio disconexo}. Si $A\subseteq X$ se dice que $A$ es un \textbf{conjunto conexo} si $(A,\tau_A)$ es conexo.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        Dado $(X,\tau_I=\left\{X,\emptyset \right\})$ es un conjunto conexo.
+    \end{exa}
+
+    \begin{exa}
+        Sea $X$ un conjunto con al menos dos puntos distintos. Entonces, $(X,\tau_D)$ no es conexo.
+    \end{exa}
+
+    \begin{exa}
+        Sean $\tau_1$ y $\tau_2$ dos topologías definidas sobre el conjunto $X$ tales que $\tau_2\subseteq\tau_1$. Si $(X,\tau_1)$ es conexo, entonces $(X,\tau_2)$ también lo es.
+    \end{exa}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{exa}
+        Sea $X=\left\{a,b,c\right\}$ y considere la topología $\tau=\left\{X,\emptyset,\left\{a,b\right\},\left\{b,c \right\},\left\{b\right\} \right\}$. Entonces, $(X,\tau)$ es conexo.
+
+        Pero, $A=\left\{a,c\right\}$ es un conjunto tal que $(A,\tau_A=\left\{A,\emptyset,\left\{a\right\},\left\{c\right\} \right\})$ no es conexo.
+
+        Por tanto, la propiedad de ser conexo no se hereda.
+    \end{exa}
+
+    \renewcommand{\theenumi}{\arabic{enumi}}
+    
+    \begin{propo}
+        Sea $(\mathcal{L},\prec)$ un conjunto ordenado tal que:
+        \begin{enumerate}
+            \item Dados $x,y\in\mathcal{L}$ tales que $x\prec y$, existe $z\in\mathcal{L}$ que cumple $x\prec z\prec y$.
+            \item Todo subconjunto no vacío de $\mathcal{L}$ acotado superiormente tiene mínima cota superior.
+        \end{enumerate}
+        Entonces, al considerar $(\mathcal{L},\tau_{\prec})$ tenemos que en $\mathcal{L}$, el mismo $\mathcal{L}$, cada intervalo abierto, cerrado, semi-abierto y cualquier rayo, son conjuntos conexos
+    \end{propo}
+
+    \begin{proof}
+        Sea $Y\subseteq\mathcal{L}$ tal que $Y=\mathcal{L}$ o $Y$ es un intervalo o $Y$ es un rayo.
+
+        Tenemos que dados $p,q\in Y$ con $p\prec q$ se cumple que $[p,q]\subseteq Y$, es decir que $Y$ es un conjunto convexo. Mostremos que $Y$ es conexo.
+
+        Sean $A,B\subseteq Y$ tales que $A,B\in{\tau_{\prec}}_Y$ son ambos no vacíos y $A\cap B\neq\emptyset$. Mostraremos que $A\cup B$ es un subconjunto propio de $Y$, es decir que
+        \begin{equation*}
+            A\cup B\subsetneqq Y
+        \end{equation*}
+        Sean $a\in A$ y $b\in B$. Podemos suponer que $a\prec b$. Como $Y$ es convexo, entonces $[a,b]\subseteq Y$. Sea
+        \begin{equation*}
+            A_0=A\cap [a,b]\neq\emptyset
+        \end{equation*}
+        y
+        \begin{equation*}
+            B_0=B\cap [a,b]\neq\emptyset
+        \end{equation*}
+        Entonces $A_0,B_0$ son dos conjuntos abiertos no vacíos en $([a,b],{\tau_\prec}_{[a,b]})$. Para todo $x\in A_0$ se tiene que $x\prec b$. Existe pues $c\in\mathcal{L}$ tal que $c$ es la mínima cota superior de $A_0$. Probemos que $c\in[a,b]$ y que $c\notin A\cup B$.
+        \begin{enumerate}
+            \item $c\notin A_0$. Suponga que $c\in A_0$, entonces $a\preceq c\prec b$. Como $A_0$ es abierto en $[a,b]$ existe $d\in\mathcal{L}$ tal que $[c,d)\subseteq A_0$ y $c\prec d$. Como $c\prec d$ entonces existe $y\in\mathcal{L}$ tal que $c\prec y\prec d$. Luego $y\in A_0$\contradiction. Por tanto, $c\notin A_0$.
+            \item $c\in[a,b]$. Sea $y_0\in A_0=A\cap [a,b]$. Por la parte anterior se tiene que $y\prec c\preceq b$, luego $c\in [y_0,b]\subseteq [a,b]$.
+            \item $c\notin A$.
+            \item $c\notin B_0$. Suponga que $c\in B_0=B\cap [a,b]$, entonces $a\prec c$. $B_0$ es abierto en $[a,b]$, luego existe $d\in[a,b]$ tal que $d\prec c$ y $(d,c]\subseteq B_0$. Existe entonces $x\in A_0$ tal que $d\prec x\prec c$, luego $x\in A$ y $x\in B$ pues $(d,c]\subseteq B_0$\contradiction. Luego, $c\notin B_0$.
+            \item $c\notin B$.
+        \end{enumerate}
+        Entonces, $c\notin A\cup B$. Así, $A\cup B$ no puede formar una partición de $Y$, es decir que $Y$ es conexo.
+    \end{proof}
 
 \end{document}
