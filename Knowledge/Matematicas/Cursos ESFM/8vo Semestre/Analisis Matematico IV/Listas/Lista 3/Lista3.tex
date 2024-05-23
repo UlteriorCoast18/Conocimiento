@@ -1020,14 +1020,165 @@
         \begin{equation*}
             f(x)=\pi-\abs{2x},\quad-\pi\leq x\leq\pi
         \end{equation*}
-        Aplique el teorema 3.9 para mostrar que la serie de Fourier de $f$ converge a $f$ uniformemente en $\mathbb{R}$. \textbf{Calcule}
+        Demuestre que la serie de Fourier de $f$ converge a $f$ uniformemente en $\mathbb{R}$ aplicando primero el Teorema 3.5 y después el Teorema de Jordan. \textbf{Calcule}
         \begin{equation*}
             \sum_{ k=1}^\infty\frac{1}{(2k-1)^2}\quad\textup{y}\quad\sum_{ k=1}^\infty\frac{1}{(2k-1)^4}.
         \end{equation*}
     \end{excer}
 
     \begin{sol}
-        
+        Se tiene que probar el resultado usando el Teorema 3.4.1 (de mis notas). Para ello, debemos encontrar una función $\cf{g}{\mathbb{R}}{\mathbb{R}}$ tal que $g\in\mathcal{L}_2^{2\pi}(\mathbb{R})$ que satisfaga:
+        \begin{equation*}
+            \int_{-\pi}^{\pi}g(t)\:dt=0
+        \end{equation*}
+        y que
+        \begin{equation*}
+            f(x)=c+\int_{0}^{x}g(t)\:dt
+        \end{equation*}
+        para todo $x\in\mathbb{R}$ siendo $c\in\mathbb{R}$. De esta forma se sigue de manera inmediata que la serie de Fourier de $f$ converge a $f$ uniformemente en $\mathbb{R}$.
+
+        Tomemos $c=\pi$ y,
+        \begin{equation*}
+            g(t)=\left\{
+                \begin{array}{lcr}
+                     2 & \textup{ si } & -\pi\leq t<0\\
+                     -2 & \textup{ si } & 0\leq t<\pi\\
+                \end{array}
+            \right.,\quad\forall t\in[-\pi,\pi[
+        \end{equation*}
+        y extiéndase por periodicidad a todo $\mathbb{R}$. Afirmamos que
+        \begin{equation*}
+            \int_{0}^{x}g(t)\:dt = -\abs{2x},\quad\forall x\in[-\pi,\pi]
+        \end{equation*}
+        En efecto, sea $x\in[-\pi,\pi]$, se tienen dos casos:
+        \begin{itemize}
+            \item $x<0$, se tiene que 
+            \begin{equation*}
+                \begin{split}
+                    \int_{0}^{x}g(t)\:dt&=-\int_{x}^{0}2\:dt\\
+                    &=-2 t\Big|_{x}^0\\
+                    &=2x\\
+                    &=-(-2x)\\
+                    &=-\abs{2x}\\
+                \end{split}
+            \end{equation*}
+            \item $x\geq 0$, se tiene que
+            \begin{equation*}
+                \begin{split}
+                    \int_{0}^{x}g(t)\:dt&=-\int_0^x -2\:dt\\
+                    &=-2\int_0^x\:dt\\
+                    &=-2t\Big|_{0}^x\\
+                    &=-2x\\
+                    &=-\abs{2x}\\
+                \end{split}
+            \end{equation*}
+        \end{itemize}
+        luego, como $g\in\mathcal{L}_2^{2\pi}(\mathbb{R})$ se sigue que la serie de Fourier de $f$ converge a $f$ uniformement en $\mathbb{R}$, pues
+        \begin{equation*}
+            f(x)=\pi+\int_{0}^{x}g(t)\:dt
+        \end{equation*}
+        para todo $x\in\mathbb{R}$.
+
+        Ahora, aplicando el teorema de Jordan basta con ver que $f$ es $2\pi$ periódica, de variación acotada en $[-\pi,\pi]$ y continua en $\mathbb{R}$. En efecto, ya se tiene que $f$ es $2\pi$ periódica, veamos que
+        \begin{itemize}
+            \item \textbf{$f$ es de variación acotada}: Sea $\Delta=\left\{-\pi=x_0<x_1<...<x_n=\pi \right\}$ una partición del intervalo $[-\pi,\pi]$, entonces
+            \begin{equation*}
+                \begin{split}
+                    S_\Delta(f)&=\sum_{ k=1}^n\abs{f(x_k)-f(x_{k-1})}\\
+                    &=\sum_{ k=1}^n\abs{\pi-\abs{2x_k}-\pi+\abs{2x_{ k-1}}}\\
+                    &=2\sum_{ k=1}^n\abs{\abs{x_k}-\abs{x_{ k-1}}}\\
+                \end{split}
+            \end{equation*}
+            existe $m\in\mathbb{N}\cup\left\{0\right\}$ tal que
+            \begin{equation*}
+                x_{m}\leq0<x_{ m+1}
+            \end{equation*}
+            se divide pues la suma como:
+            \begin{equation*}
+                \begin{split}
+                    S_\Delta(f)&=2\sum_{ k=1}^n\abs{\abs{x_k}-\abs{x_{ k-1}}}\\
+                    &=2\sum_{ k=1}^m\abs{\abs{x_k}-\abs{x_{ k-1}}}+2\sum_{ k=m+1}^n\abs{\abs{x_k}-\abs{x_{ k-1}}}\\
+                \end{split}
+            \end{equation*}
+            si $k\in\natint{1,m}$, entonces
+            \begin{equation*}
+                x_{ k-1}<x_k\leq0\Rightarrow \abs{x_k}<\abs{x_{ k-1}}
+            \end{equation*}
+            y, si $k\in\natint{m+1,n}$,
+            \begin{equation*}
+                0<x_{ k-1}<x_{k}\Rightarrow \abs{x_{ k-1}}<\abs{x_k}
+            \end{equation*}
+            por lo cual
+            \begin{equation*}
+                \begin{split}
+                    S_\Delta(f)&=2\sum_{ k=1}^m\abs{\abs{x_k}-\abs{x_{ k-1}}}+2\sum_{ k=m+1}^n\abs{\abs{x_k}-\abs{x_{ k-1}}}\\
+                    &=2\sum_{ k=1}^m(\abs{x_{k-1}}-\abs{x_k})+2\sum_{ k=m+1}^n(\abs{x_k}-\abs{x_{ k-1}})\\
+                    &=2\sum_{ k=1}^m(\abs{x_{k-1}}-\abs{x_k})+2\sum_{ k=m+1}^n(\abs{x_k}-\abs{x_{ k-1}})\\
+                    &=2(\abs{x_0}-\abs{x_m})+2(\abs{x_n}-\abs{x_m})\\
+                    &=4(\abs{x_0}+\abs{x_n})\\
+                    &=4\pi\\
+                \end{split}
+            \end{equation*}
+            por tanto,
+            \begin{equation*}
+                V_f([-\pi,\pi])=4\pi
+            \end{equation*}
+            así, $f$ es de variación acotada en $[-\pi,\pi]$.
+            \item \textbf{$f$ es continua en $\mathbb{R}$}. Ya se tiene que $f$ es continua en $]-\pi,\pi[$, para ver que es continua en $\mathbb{R}$ basta con ver que es continua en $\pi$, para ello, se debe verificar que
+            \begin{equation*}
+                \lim_{x\rightarrow \pi^-}f(x)=f(\pi)=f(-\pi)=\lim_{x\rightarrow-\pi^+}f(x)
+            \end{equation*}
+            Los dos límites ya se tienen pues la función $\pi-\abs{2x}$ es continua en $\mathbb{R}$. Por lo cual, solo basta con ver que
+            \begin{equation*}
+                f(\pi)=\pi-\abs{2\pi}=-\pi=\pi-\abs{2(-\pi)}=f(-\pi)
+            \end{equation*}
+            luego, $f$ es continua en $\mathbb{R}$.
+        \end{itemize}
+        Por tanto, usando el Teorema de Jordan se sigue que la serie de Fourier de $f$ converge a $f$ uniformemente en $\mathbb{R}$.
+
+        Ahora, calculemos los coeficientes de la serie de Fourier de $f$, notemos antes que $f$ es par, por ende $b_k=0$ para todo $k\in\mathbb{N}$. Sea $k\in\mathbb{N}$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                a_0&=\frac{2}{\pi}\int_{0}^{\pi}f(t)\:dt\\
+                &=\frac{2}{\pi}\int_{0}^{\pi}(\pi-\abs{2t})\:dt\\
+                &=\frac{2}{\pi}\int_{0}^{\pi}(\pi-2t)\:dt\\
+                &=\frac{2}{\pi}\left[\pi t-t^2\Big|_0^\pi \right] \\
+                &=\frac{2}{\pi}\left[\pi^2-\pi^2\right] \\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                a_k&=\frac{2}{\pi}\int_{0}^{\pi}f(t)\cos kt\:dt\\
+                &=\frac{2}{\pi}\int_{0}^{\pi}(\pi-\abs{2t})\cos kt\:dt\\
+                &=\frac{2}{\pi}\int_{0}^{\pi}(\pi-2t)\cos kt\:dt\\
+                &=\frac{2}{\pi}\left[\int_{0}^{\pi}\pi\cos kt\:dt-\int_{0}^{\pi}2t\cos kt\:dt\right]\\
+                &=\frac{2}{\pi}\left[\pi\int_{0}^{\pi}\cos kt\:dt-2\int_{0}^{\pi}t\cos kt\:dt\right],\textup{ haciendo el cambio de variable }u=kt \\
+                &=\frac{2}{\pi}\left[\pi\int_{0}^{k\pi}\cos u\:\frac{du}{k}-2\int_{0}^{k\pi}\frac{u}{k}\cos u\:\frac{du}{k} \right]\\
+                &=\frac{2}{\pi}\left[\frac{\pi}{k}\int_{0}^{k\pi}\cos u\:du-\frac{2}{k^2}\int_{0}^{k\pi}u\cos u\:du\right]\\
+                &=\frac{2}{\pi}\left[\frac{\pi}{k}\sin u\Big|_{0}^{k\pi} -\frac{2}{k^2}\left[u\sin u+\cos u\Big|_{0}^{k\pi}\right] \right]\\
+                &=\frac{2}{\pi}\left[\frac{\pi}{k}\left[\sin k\pi-0 \right] -\frac{2}{k^2}\left[k\pi\sin k\pi+\cos k\pi-0-\cos0\right] \right]\\
+                &=\frac{2}{\pi}\left[\frac{2}{k^2}\left[1-(-1)^k\right]\right]\\
+                &=\frac{4}{\pi k^2}\left[1-(-1)^k \right]\\
+            \end{split}
+        \end{equation*}
+        si $k=2m-1$ con $m\in\mathbb{N}$, entonces
+        \begin{equation*}
+            \begin{split}
+                a_k&=\frac{4}{\pi k^2}\left[1-(-1)^k\right]\\
+                &=\frac{4}{\pi k^2}\left[1-(-1)^{2m-1}\right]\\
+                &=\frac{4}{\pi k^2}\left[1+1 \right]\\
+                &=\frac{8}{\pi k^2}\\
+            \end{split}
+        \end{equation*}
+        y, si $k=2m$ con $m\in\mathbb{N}$ se tiene que $a_k=0$. Por tanto, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \pi-\abs{2x}&=\frac{a_0}{2}+\sum_{ k=1}^\infty a_k\cos kx\\
+                &=\frac{a_0}{2}+\sum_{ k=1}^\infty \frac{8}{\pi (2k-1)^2}\cos (2k-1)x\\
+            \end{split}
+        \end{equation*}
     \end{sol}
 
     \begin{excer}
@@ -1038,7 +1189,7 @@
                     0 & \textup{ si } & -\pi\leq x<0,\\
                     x^2 & \textup{ si } & 0\leq x<\pi.\\
                 \end{array}
-            \right\}
+            \right.
         \end{equation*}
         \textbf{Calcule} la serie de Fourier de $f$. Usando el teorema fundamental para la convergencia de una serie de Fourier, \textbf{muestre} que la serie de Fourier de $f$ converge a alguna suma $s(x)$ para todo $x\in[-\pi,\pi]$. \textbf{Calcule} $s(x)$ para todo $x\in[-\pi,\pi]$.
     \end{excer}
