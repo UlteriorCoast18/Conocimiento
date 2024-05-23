@@ -1771,28 +1771,19 @@
     \end{mydef}
     
     \begin{excer}
-        Sean $(X_1,\tau_1)$ y $(X_1,\tau_2)$ espacios topológicos y $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ una función continua, suprayectiva y abierta. Entonces, $\tau_1=\tau_f$.
+        Sean $(X_1,\tau_1)$ y $(X_1,\tau_2)$ espacios topológicos y $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ una función continua, suprayectiva y abierta. Entonces, $\tau_2=\tau_f$.
     \end{excer}
 
     \begin{proof}
-        
+        Veamos que se cumple la doble contención.
+        \begin{itemize}
+            \item Sea $U\in\tau_1$, entonces se tiene que como la función $f$ es abierta, $f(U)\in\tau_2$. En particular como $f$ es suprayectiva, 
+        \end{itemize}
     \end{proof}
 
     \begin{excer}
         Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos y $Y$ un conjunto. Sea $\cf{f}{X_1}{Y}$ una función. Demuestre que una función $\cf{g}{(Y,\tau_f)}{(X_2,\tau_2)}$ es continua si y sólo si $\cf{g\circ f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es continua.
     \end{excer}
-
-    \begin{proof}
-        
-    \end{proof}
-
-    \begin{theor}
-        Sea $(X,\tau)$ un espacio topológico.
-        \begin{enumerate}
-            \item Sea $A\subseteq X$. Si existe una sucesión de puntos de $A$ que converge a $x$, entonces $x\in\Cls{A}$. El recíproco es cierto si $(X,\tau)$ es primero numerable.
-            \item Sea $\cf{f}{X}{Y}$. Si $f$ es continua, entonces para cada sucesión convergente $\left\{x_n \right\}_{ n=1}^\infty\Rightarrow x$ en $X$, la sucesión $\left\{f(x_n) \right\}_{ n=1}^\infty \rightarrow f(x)$. El recíproco es cierto si $(X,\tau)$ es primero numerable.
-        \end{enumerate}
-    \end{theor}
 
     \begin{proof}
         

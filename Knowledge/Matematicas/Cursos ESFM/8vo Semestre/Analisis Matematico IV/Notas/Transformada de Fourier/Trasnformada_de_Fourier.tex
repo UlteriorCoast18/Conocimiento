@@ -430,4 +430,224 @@
         \end{equation*}
         para todo $x\in\mathbb{R}^n$.
     \end{proof}
+
+    \begin{theor}
+        Si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$, entonces,
+        \begin{equation*}
+            \abs{\fou{f}(x)}\leq\N{1}{f},\quad\forall x\in\mathbb{R}^n
+        \end{equation*}
+        Así pues, $\cf{\fou{f}}{\mathbb{R}^n}{\mathbb{C}}$ es una función acotada. Si $\mathcal{B}(\mathbb{R}^n,\mathbb{C})$ denota al espacio de funciones acotadas de $\mathbb{R}^n$ en $\mathbb{C}$ provisto de la norma uniforme, entonces $\fou{\cdot}$ es una aplicación lineal continua de $L_1(\mathbb{R}^n,\mathbb{C})$ en $\mathcal{B}(\mathbb{R}^n,\mathbb{C})$ tal que $\norm{\fou{\cdot}}=1$.
+    \end{theor}
+
+    \begin{proof}
+        Para todo $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \abs{\fou{f}(x)}&=\abs{\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}f(y)\:dy}\\
+                &\leq\int_{\mathbb{R}^n}\abs{f(y)}\:dy\\
+                &=\N{1}{f},\quad\forall x\in\mathbb{R}^n \\
+            \end{split}
+        \end{equation*}
+        Notemos también que $\norm{\fou{\cdot}}\leq1$.
+
+        Para probar la otra desiguladad se busca una función $P\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$ tal que $\N{\infty}{\fou{P}}=\N{1}{P}>0$. Por ejemplo, la función $\cf{P}{\mathbb{R}^n}{\mathbb{C}}$ dada por:
+        \begin{equation*}
+            P(x)=e^{ -\sum_{ k=1}^n\abs{x_k}},\quad\forall x\in\mathbb{R}^n
+        \end{equation*}
+        satisface
+        \begin{equation*}
+            \begin{split}
+                \fou{P}(x)&=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}P(y)\:dy\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}P(y)\:dy\\
+                &=\int_{\mathbb{R}^n}e^{ -\abs{y_1}-ix_1y_1}\cdots e^{ -\abs{y_n}-ix_ny_n}\:dy_1\cdots dy_n\\
+                &=\left(\int_{-\infty}^{\infty}e^{ -\abs{y_1}-ix_1y_1}\:dy_1\right)\cdots\left(\int_{-\infty}^{\infty}e^{ -\abs{y_n}-ix_ny_n}\:dy_n\right)\\
+            \end{split}
+        \end{equation*}
+        Se sabe por ejemplos anteriores que la transformada de $t\mapsto e^{-\abs{t}}$ es $\frac{2}{1+t^2}$, para todo $t\in\mathbb{R}$, así pues,
+        \begin{equation*}
+            \fou{P}(x)=\frac{2^n}{(1+x_2^2)\cdots(1+x_n^2)},\quad\forall x\in\mathbb{R}^n
+        \end{equation*}
+        de donde,
+        \begin{equation*}
+            \N{\infty}{\fou{P}}=2^n
+        \end{equation*}
+        Por otra parte,
+        \begin{equation*}
+            \begin{split}
+                \N{1}{P}&=\int_{\mathbb{R}^n}e^{ -\sum_{ k=1}^n\abs{x_k}}\:dx_1\cdots dx_n\\
+                &=\left[\int_{-\infty}^\infty e^{-\abs{t}}\:dt \right]^n\\
+                &=2^n\left[\int_0^{\infty}e^{-\abs{t}}\:dt \right]\\
+                &=2^n\\
+            \end{split}
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            \begin{split}
+                \N{1}{P}&=\N{\infty}{\fou{P}}\\
+                &\leq\norm{\fou{\cdot}}\N{1}{P}\\
+                \Rightarrow 1&\leq\norm{\fou{\cdot}}\\
+            \end{split}
+        \end{equation*}
+        por tanto, de lo anterior se deduce que $\norm{\fou{\cdot}}=1$. 
+    \end{proof}
+
+    \begin{propo}
+        Si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$, entonces $\fou{f}$ es uniformemente continua en $\mathbb{R}^n$.
+    \end{propo}
+
+    \begin{proof}
+        Basta probar que si $\left\{x_\nu\right\}_{ \nu=1}^\infty$ y $\left\{y_\nu \right\}_{ \nu=1}^\infty$ son dos sucesiones en $\mathbb{R}^n$ tales que $\lim_{ \nu\rightarrow\infty}\norm{x_\nu-y_\nu}=0$, entonces
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\abs{\fou{f}(x_\nu)-\fou{f}(y_\nu)}=0
+        \end{equation*}
+
+        Considere entonces dos sucesiones que cumplan lo anterior. Se tiene
+        \begin{equation*}
+            \begin{split}
+                \abs{\fou{f}(x_\nu)-\fou{f}(y_\nu)}&=\abs{\int_{\mathbb{R}^n}\left(e^{ -i\pint{x_\nu}{z}}-e^{ -i\pint{y_\nu}{z}} \right)f(z)\:dz}\\
+                &=\abs{\int_{\mathbb{R}^n}e^{ -i\pint{x_\nu}{z}}\left(1-e^{ -i\pint{y_\nu-x_\nu}{z}} \right)f(z)\:dz}\\
+                &\leq\int_{\mathbb{R}^n}\abs{\left(1-e^{ -i\pint{y_\nu-x_\nu}{z}} \right)}\abs{f(z)}\:dz\\
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\abs{1-e^{-i\pint{y_\nu-x\nu}{z}}}\abs{f(z)}=0,\quad\forall z\in\mathbb{R}^n
+        \end{equation*}
+        y, además
+        \begin{equation*}
+            \abs{1-e^{-i\pint{y_\nu-x\nu}{z}}}\abs{f(z)}\leq2\abs{f(z)},\quad\forall z\in\mathbb{R}^n
+        \end{equation*}
+        donde la función de la derecha es integrable e independiente de $\nu$. Por Lebesgue se sigue que
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\abs{\fou{f}(x_\nu)-\fou{f}(y_\nu)}=0
+        \end{equation*}
+        así, $\cf{\fou{f}}{\mathbb{R}^n}{\mathbb{C}}$ es una función uniformemente continua.
+    \end{proof}
+
+    \begin{obs}
+        $\fou{f}$ es una función uniformemente continua acotada en $\mathbb{R}^n$ si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$.
+    \end{obs}
+
+    \begin{theor}[\textbf{Teorema de Riemman-Lebesgue}]
+        Si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$, entonces
+        \begin{equation*}
+            \lim_{\abs{x}\rightarrow\infty}\fou{f}(x)=0
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Se probará por casos:
+        \begin{enumerate}
+            \item Sea $P=I_1\times\cdot\times I_n \subseteq\mathbb{R}^n$ un rectángulo acotado en $\mathbb{R}^n$ donde $I_k$ es un intervalo de extremos $a_k\leq b_k$ para todo $k\in\natint{1,n}$. Se considera el caso en que $f=\chi_P$. En particular, notemos que
+            \begin{equation*}
+                \begin{split}
+                    f(x)=\chi_{ I_1}(x_1)\cdots\chi_{ I_n}(x_n),\quad\forall x\in\mathbb{R}^n
+                \end{split}
+            \end{equation*}
+            Entonces,
+            \begin{equation*}
+                \begin{split}
+                    \fou{f}(x)=\int_{\mathbb{R}^n}e^{ -i\pint{x}{z}}f(z)\:dz\\
+                    &=\int_{\mathbb{R}^n}e^{ -ix_1z_1}\chi_{I_1}(z_1)\cdots e^{ -ix_nz_n}\chi_{I_n}(z_n)\:dz_1\cdots dz_n\\
+                    &=\left(\int_{-\infty}^\infty e^{ -ix_1z_1}\chi_{ I_1}(z_1)\:dz_1 \right)\cdots\left(\int_{-\infty}^\infty e^{ -ix_nz_n}\chi_{ I_n}(z_n)\:dz_n\right)\\
+                \end{split}
+            \end{equation*}
+            luego,
+            \begin{equation*}
+                \fou{f}(x)=\varphi_1(x_1)\cdots\varphi_n(x_n),\quad\forall x\in\mathbb{R}^n
+            \end{equation*}
+            donde
+            \begin{equation*}
+                \varphi_k(x_k)=\left\{
+                    \begin{array}{lcr}
+                        \frac{e^{ -ix_kb_k}-e^{ -ix_ka_k}}{-ik}, & \textup{ si } & x_k\neq0\\
+                        b_k-a_k & \textup{ si } & x_k=0\\
+                    \end{array}
+                \right.
+            \end{equation*}
+            para $k\in\natint{1,n}$. Es claro que $\lim_{ x_k\rightarrow\infty}\varphi_k(x_k)=0$ para todo $k\in\natint{1,n}$. Por otra parte,
+            \begin{equation*}
+                \begin{split}
+                    \abs{\varphi_k(x_k)}&\leq\abs{\fou{\chi_{I_k}}(x_k)}\\
+                    &\leq\N{1}{\chi_{I_k}}\\
+                    &=b_k-a_k\\
+                \end{split}
+            \end{equation*}
+            para $k\in\natint{1,n}$. Sea
+            \begin{equation*}
+                c=\max_{ 1\leq k\leq n}\left\{b_k-a_k \right\}
+            \end{equation*}
+            Dado $\varepsilon>0$ existe $R>0$ tal que para todo $k\in\natint{1,n}$ es tiene
+            \begin{equation*}
+                \abs{x_k}>R\Rightarrow\abs{\varphi_k(x_k)}<\varepsilon
+            \end{equation*}
+            Si se toma la norma cúbica $\norm{\cdot}$ de $\mathbb{R}^n$, al suponer que $\norm{x}>R$ se tendrá que $\abs{x_k}>R$ para algún $k\in\natint{1,n}$, luego
+            \begin{equation*}
+                \norm{x}>R\Rightarrow\abs{\fou{\chi_P}(x)}=\abs{\varphi_1(x_1)\cdots\varphi_n(x_n)}\leq c^{ n-1}\varepsilon
+            \end{equation*}
+            Así pues, el Teorema es cierto para $f=\chi_P$. Claramente por linealidad de la transformación de Fourier el Teorema sigue siendo cierto si $f$ es una función escalonada en $\mathbb{R}^n$.
+
+            \item Sea $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$ y tomemos $\varepsilon>0$. Por la densidad de $\mathcal{E}(\mathbb{R}^n,\mathbb{C})$ en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$, existe $\varphi\in\mathcal{E}(\mathbb{R}^n,\mathbb{C})$ tal que
+            \begin{equation*}
+                \N{1}{f-\varphi}<\frac{\varepsilon}{2}
+            \end{equation*}
+            Entonces,
+            \begin{equation*}
+                \begin{split}
+                    \abs{\fou{f}(x)}&=\abs{\fou{f}(x)-\fou{\varphi}(x)}+\abs{\fou{\varphi}(x)}\\
+                    &=\abs{\fou{(f-\varphi)}(x)}+\abs{\fou{\varphi}(x)}\\
+                    &\leq\N{1}{f-\varphi}+\abs{\fou{\varphi}(x)},\quad\forall x\in\mathbb{R}^n \\
+                    &<\frac{\varepsilon}{2}+\abs{\fou{\varphi}(x)},\quad\forall x\in\mathbb{R}^n \\
+                \end{split}
+            \end{equation*}
+            Por tanto, de (i) existe $R>0$ tal que
+            \begin{equation*}
+                \norm{x}>R\Rightarrow\abs{\fou{\varphi}(x)}<\frac{\varepsilon}{2}
+            \end{equation*}
+            de donde se sigue que
+            \begin{equation*}
+                \norm{x}>R\Rightarrow\abs{\fou{f}(x)}<\frac{\varepsilon}{2}+\abs{\fou{\varphi}(x)}<\varepsilon
+            \end{equation*}
+            lo que prueba el resultado.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{theor}
+        Si $f,g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$, entonces $\fou{(f*g)}=(\fou{f})(\fou{g})$.
+    \end{theor}
+
+    \begin{proof}
+        Sean $f,g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Se tiene que
+        \begin{equation*}
+            \begin{split}
+                \fou{(f*g)}(x)&=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}f*g(y)\:dy\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}\:dy\int_{\mathbb{R}^n}f(z)g(y-z)\:dz\\
+            \end{split}
+        \end{equation*}
+        ya se sabe que $(y,z)\mapsto f(z)g(y-z)e^{ -i\pint{x}{y}}$ es integrable en $\mathbb{R}^n\times\mathbb{R}^n$ para todo $x\in\mathbb{R}^n$. Por Fubini:
+        \begin{equation*}
+            \begin{split}
+                \fou{(f*g)}(x)&=\int_{\mathbb{R}^n}f(z)\:dz\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}g(y-z)\:dy,\textup{ haciendo el cambio de variable }y=u+z\\
+                &=\int_{\mathbb{R}^n}f(z)\:dz\int_{\mathbb{R}^n}e^{-i\pint{x}{u+z}}g(u)\:du\\
+                &=\left(\int_{\mathbb{R}^n}e^{ -i\pint{x}{z}}f(z)\:dz \right)\left(\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}g(y)\:dy \right)\\
+                &=(\fou{f}(x))(\fou{g}(x))\\
+            \end{split}
+        \end{equation*}
+        lo que prueba el resultado.
+    \end{proof}
+
+    \begin{theor}
+        Sea $\mathcal{C}_0(\mathbb{R}^n,\mathbb{C})$ el álgebra de Banach de las funciones de $\mathbb{R}^n$ en $\mathbb{C}$ continuas y nulas en el infinito provisto de la norma uniforme. Entonces la aplicación $\cf{\fou{\cdot}}{L_1(\mathbb{R}^n,\mathbb{C})}{\mathcal{C}_0(\mathbb{R}^n,\mathbb{C})}$ es un homomorfismo continuo entre ambas álgebras de Banach.
+
+        La norma de $\fou{\cdot}$ considerada como aplicación lineal es $\norm{\fou{\cdot}}=1$.
+    \end{theor}
+
+    \begin{proof}
+        Es un resumen de las propiedades anteriores.
+    \end{proof}
+
+    \begin{obs}
+        Más adelante se verá que $\fou{\cdot}$ es inyectia pero no es suprayectiva.
+    \end{obs}
+
 \end{document}
