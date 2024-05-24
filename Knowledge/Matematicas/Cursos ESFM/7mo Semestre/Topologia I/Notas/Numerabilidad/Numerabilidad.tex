@@ -681,4 +681,171 @@
         Entonces, $c\notin A\cup B$. Así, $A\cup B$ no puede formar una partición de $Y$, es decir que $Y$ es conexo.
     \end{proof}
 
+    \begin{cor}
+        Consideremos $(\mathbb{R},\tau_u)$, entonces cada intervalo, cada rayo y el mismo conjunto $\mathbb{R}$ son subconjuntos conexos de $(\mathbb{R},\tau_u)$.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato del teorema anterior.
+    \end{proof}
+
+    \begin{propo}
+        Sea $C$ un subconjunto de $(\mathbb{R},\tau_u)$. Entonces, $C$ es conexo si y sólo si $C$ es un intervalo o $C$ es un rayo o $C=\mathbb{R}$ o $C=\emptyset$ o $C=\left\{r\right\}$ con $r\in\mathbb{R}$.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Sea $C\subseteq\mathbb{R}$ tal que $C\neq\mathbb{R}$, $C\neq\emptyset$, $C$ no es un intervalo ni un rayo ni un conjunto unipuntual. Entonces, existen $a,b\in C$ y un punto $x\in\mathbb{R}-C$ tal que
+        \begin{equation*}
+            a<x<b
+        \end{equation*}
+        Sea
+        \begin{equation*}
+            A=\left\{c\in C\Big|c<x \right\}\quad\textup{y}\quad B=\left\{c\in C\Big|x<c \right\}
+        \end{equation*}
+        tanto $A$ como $B$ son conjuntos no vacíos. Otra forma de expresarlos es como:
+        \begin{equation*}
+            A=(-\infty,x)\cap C\quad\textup{y}\quad B=(x,\infty)\cap C
+        \end{equation*}
+        $A$ y $B$ son dos conjuntos no vacíos abiertos en $(C,{\tau_u}_C)$ tales que $A\cap B=\emptyset$. Además, $A\cup B=C$. Luego $C$ no es conexo. 
+
+        $\Leftarrow):$ Es inmediata del teorema anterior.
+    \end{proof}
+
+    \begin{obs}
+        Sea $(X,\tau)$ un espacio toplógico no conexo. Entonces, existen $U,V\in\tau-\left\{\emptyset \right\}$ tales que
+        \begin{equation*}
+            U\cap V=X\quad X=U\dot{\cup}V
+        \end{equation*}
+        por ende, $U=X-V$ y $V=X-U$ son cerrados disjuntos tales que
+        \begin{equation*}
+            \Int{U}=U=\Cls{U}
+        \end{equation*}
+        Análogamente
+        \begin{equation*}
+            \Int{V}=V=\Cls{V}
+        \end{equation*}
+        Además, $U\cap\Cls{V}=\Cls{U}\cap V=\emptyset$. También, $\Fr{U}=\Fr{V}=\emptyset$.
+    \end{obs}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico, entonces los siguientes enunciados son equivalentes:
+        \begin{enumerate}
+            \item $(X,\tau)$ es conexo.
+            \item Los únicos subconjuntos de $X$ que son a la vez abiertos y cerrados son $X$ y $\emptyset$.
+            \item Los únicos subconjuntos de $X$ con frontera vacía son $X$ y $\emptyset$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        $(1)\Rightarrow(2)$: Sea $A\subseteq X$ tal que $A$ es abierto y cerrado a la vez, es decir que $A,X-A\in\tau$. Suponga que $A\neq X,\emptyset$, se tiene pues que
+        \begin{equation*}
+            X=A\cup (X-A)\quad\textup{y}\quad A\cap (X-A)=\emptyset
+        \end{equation*}
+        siendo $A,X-A\neq\emptyset$. Luego esto implicaría que $(X,\tau)$ no es conexo\contradiction. Por tanto, $A=\emptyset$ o $A=\mathbb{R}$.
+
+        $(2)\Rightarrow(3):$ Sea $A\subseteq X$ tal que $\Fr{A}=\emptyset$. Entonces,
+        \begin{equation*}
+            \emptyset=\Fr{A}=\Cls{A}-\Int{A}\Rightarrow \Int{A}=\Cls{A}
+        \end{equation*}
+        luego $A$ es cerrado y abierto en $(X,\tau)$. Por tanto, $A=X$ o $A=\emptyset$.
+
+        $(3)\Rightarrow (1):$ Suponga que $U,V\in\tau$ son tales que
+        \begin{equation*}
+            U\cap V=\emptyset\quad\textup{y}\quad U\cup V=X
+        \end{equation*}
+        Se tiene que $U=X-V$ y $V=X-U$ donde se sigue que $U,V$ son cerrados en $(X,\tau)$. Así,
+        \begin{equation*}
+            \Cls{U}=U=\Int{U}\quad\textup{y}\quad\Cls{V}=V=\Int{V}
+        \end{equation*}
+        por tanto, $\Fr{U}=\emptyset$, es decir que $U=\emptyset$ y $V=X$, o $U=X$ y $V=\emptyset$. Luego, $(X,\tau)$ es conexo.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico. Dos conjuntos $U,V\in\tau$ se dicen \textbf{mutuamente separados} si $U\cap\Cls{V}=\Cls{U}\cap V=\emptyset$.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico y sea $Y\subseteq X$. Una pareja $A,B$ de subconjuntos de $X$ mutuamente separados en $(X,\tau)$ es una \textbf{separación de $Y$ en $(X,\tau)$} si
+        \begin{equation*}
+            Y=A\cup B,\quad Y\cap A\textup{ y }Y\cap B \neq\emptyset
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        Sean $(X,\tau)$ un espacio topológico y $Y\subseteq X$. Entonces $(Y,\tau_Y)$ es conexo si y sólo si no existe una separación de $Y$ en $X$.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Suponga que $A,B\subseteq X$ son una separación de $Y$ en $(X,\tau)$. Tenemos que
+        \begin{equation*}
+            \Cls{A}\cap B=A\cap\Cls{B}=\emptyset
+        \end{equation*}
+        también,
+        \begin{equation*}
+            Y=A\cup B\quad Y\cap A\neq\emptyset\textup{ y }Y\cap B\neq\emptyset
+        \end{equation*}
+        Se tiene pues que
+        \begin{equation*}
+            \begin{split}
+                \Cls{A}\cap Y &=\Cls{A}\cap (A\cup B)\\
+                &=(\Cls{A}\cap A)\cup (\Cls{A}\cap B)\\
+                &=A\\
+            \end{split}
+        \end{equation*}
+        análogamente se prueba que $\Cls{B}\cap Y=B$. Por tanto, $A,B$ forman una partición de $(Y,\tau_Y)$\contradiction. Por tanto, $(Y,\tau_Y)$ es conexo.
+
+        $\Leftarrow):$ Suponga que $(Y,\tau_Y)$ no es conexo. Entonces existen $A,B\in\tau_Y$ con $A,B\neq\emptyset$ tales que
+        \begin{equation*}
+            A\cap B=\emptyset\quad\textup{y}\quad A\cup B=Y
+        \end{equation*}
+        Luego $A$ y $B$ son conjuntos abiertos y cerrados en $(Y,\tau_Y)$.
+        \begin{equation*}
+            A=\Cls{A}\cap Y\quad\textup{y}\quad B=\Cls{B}\cap Y
+        \end{equation*}
+        Siendo tales que
+        \begin{equation*}
+            \emptyset=A\cap B=(\Cls{A}\cap Y)\cap B=\Cls{A}\cap(Y\cap B)=\Cls{A}\cap B
+        \end{equation*}
+        de forma análoga $A\cap\Cls{B}=\emptyset$. Así, $A$ y $B$ forman una separación de $Y$ en $(X,\tau)$.
+    \end{proof}
+
+    \begin{cor}
+        Sea $(X,\tau)$ un espacio topológico. Entonces, $(X,\tau)$ es conexo si y sólo si no existen $A,B\subseteq X$ no vacíos tales que
+        \begin{equation*}
+            X=A\cup B\quad A\cap \Cls{B}=\emptyset=\Cls{A}\cap B
+        \end{equation*}
+    \end{cor}
+
+    \begin{proof}
+        Inmediato de la proposición anterior.
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico y sean $Y,Z\subseteq X$ tales que $Y\subseteq Z$. Si $U,V$ es una separación de $Z$ en $(X,\tau)$ y $Y$ es conexo, entonces $Y\subseteq U$ ó $Y\subseteq V$.
+    \end{propo}
+
+    \begin{proof}
+        Se tiene que $Y\subseteq U\cup V$. Sea
+        \begin{equation*}
+            U_1=Y\cup U\quad\textup{y}\quad V_1=Y\cap V
+        \end{equation*}
+        entonces,
+        \begin{equation*}
+            Y=U_1\cup V_1
+        \end{equation*}
+        Como $U\cap\Cls{V}=\emptyset=\Cls{U}\cap V$, entonces
+        \begin{equation*}
+            \begin{split}
+                \Cls{U_1}\cap V_1&=\Cls{Y\cap U}\cap (Y\cap V)\\
+                &\subseteq\Cls{U}\cap (Y\cap V)\\
+                &=(\Cls{U}\cap V)\cap Y\\
+                &=\emptyset\\
+                \Rightarrow \Cls{U_1}\cap V_1&=\emptyset\\
+            \end{split}
+        \end{equation*}
+        de forma análoga se obtiene que $U_1\cap\Cls{V_1}=\emptyset$. Como $Y$ es conexo entonces $U_1=\emptyset$ o $V_1=\emptyset$, es decir que $Y\subseteq V$ o $Y\subseteq U$.
+    \end{proof}
+
+
+
 \end{document}
