@@ -1498,4 +1498,171 @@
         Por el P.T.I, $\psi$ induce un isomorfismo $\cf{\overline{\psi}}{G/\Gal{E/K}}{\Gal{K/F}}$ tal que $\sigma\Gal{E/K}\mapsto\psi(\sigma)=\sigma\big|_K$.
     \end{proof}
 
+    \begin{propo}
+        Sea $E/F$ una extensión de Galois finita, y $K,L$ campos intermedios de la extensión $E/F$. Denotemos por $H=\Gal{E/K}$ e $I=\Gal{E/L}$. Enotnces,
+        \begin{enumerate}
+            \item $K\subseteq L$ si y sólo si $I\subseteq K$.
+            \item $\Gal{E/KL}=I\cap H$.
+            \item $E^{\langle H\cup I\rangle}=E^H\cap E^I$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (i): Supóngase que $K\subseteq L$. is $\sigma\in I=\Gal{E/L}$ entonces $\sigma(\alpha)=\alpha$ para todo $\alpha\in L$ donde $K\subseteq L$, luego $\sigma(\alpha)=\alpha$ para todo $\alpha\in K$, es decir que $\sigma\in H=\Gal{e/k}$. Así, $I\subseteq H$.
+
+        Recíprocamente se tiene que $I\subseteq H$. Por demostrar que $E^H=K\subseteq L=E^I$. En efecto, sea $\alpha\in E^H$ entonces, $\sigma(\alpha)=\alpha$ para todo $\sigma\in H$, donde $I\subseteq H$ ,luego $\sigma(\alpha)=\alpha$ para todo $\sigma\in I$. Así, $\sigma\in E^I=L$. Por tanto, $K\subseteq L$.
+
+        De (ii): Debemos probar que $\Gal{E/KL}=\Gal{E/K}\cap\Gal{E/L}$. Si $\sigma\in\Gal{E/K}\cap\Gal{E/L}$ entonces $\sigma(\alpha)=\alpha$ para todo $\alpha\in K$ y que $\sigma(\beta)=\beta$ para todo $\beta\in L$. Luego $\sigma(\gamma)=\gamma$ para todo $\gamma\in KL$. Por tanto, $\sigma\in\Gal{E/KL}$. Así, $H\cap I\subseteq\Gal{E/KL}$.
+
+        La recíproca es inmediata pues $K,L\subseteq KL$. Se sigue entonces que
+        \begin{equation*}
+            \Gal{E/KL}=H\cap I
+        \end{equation*}
+
+        De (iii): Si $\alpha\in E^{ \langle H\cup I \rangle}$, luego $\sigma(\alpha)=\alpha$ para todo $\sigma\in\langle H\cup I\rangle$. En particular, $\sigma(\alpha)=\alpha$ para todo $\sigma\in I$ y $\theta(\alpha)=\alpha$ para todo $\theta\in I$. Por tanto, $\alpha\in E^H\cap E^I$. Se sigue entonces que $E^{ \langle H\cup I \rangle}\subseteq E^H\cap E^I$.
+
+        Para la otra contención, si $\alpha\in E^H\cap E^I$ entonces $\sigma(\alpha)=\alpha$ para todo $\sigma\in H$ y $\theta(\alpha)=\alpha$ para todo $\theta\in I$. Recordemos ahora que
+        \begin{equation*}
+            \langle H\cup I \rangle=\left\{\gamma\in \Gal{E/F}\Big|\gamma=\gamma_1^{\epsilon_1}\circ\cdots\circ\gamma_t^{\epsilon_t} \textup{ donde }\gamma_i\in H\cup I,\epsilon_i\in\left\{-1,1\right\} \textup{ con }t\in\mathbb{N} \right\}
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            \gamma(\alpha)=\alpha,\quad\forall \gamma\in\langle H\cup I \rangle
+        \end{equation*}
+        Se sigue que
+        \begin{equation*}
+            E^{H}\cap E^I\subseteq E^{\langle H\cup I \rangle}
+        \end{equation*}
+        Por la otra contención se sigue la igualdad.
+    \end{proof}
+
+    \begin{obs}
+        Si $E/F$ es una extensión de Galois finita con $G=\Gal{E/F}$, entonces $E^G=F$ y $E^{ \langle e\rangle}=E$ (siendo $e$ la identidad de $G$).
+        \begin{equation*}
+            \begin{array}{ccccc}
+                E & = & E^{\langle e\rangle} & \longleftarrow & \langle e\rangle \\
+                | & & & & \cap \\
+                L & = & E^I & \longleftarrow & I \\
+                | & & & & \cap \\
+                K & = & E^H & \longleftarrow & H \\
+                | & & & & \cap \\
+                F & = & E^G & \longleftarrow & G \\
+            \end{array}
+        \end{equation*}
+    \end{obs}
+
+    \begin{propo}
+        Sean $E/K$ y $F/K$ extensiones de campos con $E$ y $F$ contenidos en un campo común $L$. Supóngase que la extensión $E/K$ es de Galois finita, Entonces, las extensiones $FE/F$ y $E/E\cap F$ son extensiones de Galois finitas cuyos grupos de Galois son isomorfos. En particular, se tiene que $[FE:F]\divides [E:K]$.
+    \end{propo}
+
+    \begin{proof}
+        Observemos antes el diagrama:
+        \begin{equation*}
+            \begin{array}[pos]{ccccc}
+                & & L & & \\
+                & & \uparrow & & \\
+                & & FE & & \\
+                & \nearrow & & \nwarrow & \\
+                E & & & & F \\
+                & \nwarrow & & \nearrow & \\
+                & & E\cap F & & \\
+                & & \uparrow & & \\
+                & & K & & \\
+            \end{array}
+        \end{equation*}
+        Es claro que las extensiones $FE/F$ y $F/E\cap F$ son de Galois dinitas. Probemos que
+        \begin{equation*}
+            \Gal{FE/F}\cong\Gal{E/E\cap F}
+        \end{equation*}
+        Sea $\cf{\varphi}{\Gal{FE/F}}{\Gal{E/E\cap F}}$ tal que $\sigma\mapsto \sigma\big|_E$. Es claro que $\sigma$ está bien definida por ser la extensión $E/E\cap F$ normal y dado que deja fijo a los elementos de $F$, deja fijos a los de $E\cap F$. Es claro que $\varphi$ es homomorfismo. Dado $\sigma\in\Gal{FE/F}$, tenemos que
+        \begin{equation*}
+            \begin{split}
+                \sigma\in\ker(\varphi)&\iff \varphi(\sigma)=e\\
+                &\iff \sigma\big|_E=1_E\\
+                &\iff \sigma(\alpha)=\alpha,\quad\forall \alpha\in E\\
+                &\iff \sigma(\alpha)=\alpha,\quad\forall \alpha\in E\textup{ pues $\sigma$ deja fijo a todo }F\\
+                &\iff \sigma=1_{FE}\\
+            \end{split}
+        \end{equation*}
+        por tanto, $\ker(\varphi)=\langle e\rangle$. Sea $H=\varphi(\Gal{FE/F})<\Gal{E/E\cap F}$. Probaremos que $H=\Gal{E/E\cap F}$, es decir
+        \begin{equation*}
+            E^H=E\cap F
+        \end{equation*}
+        Es claro que $E\cap F\subseteq E^H$. Sea $\alpha\in E^H\subseteq E$, entonces
+        \begin{equation*}
+            \begin{split}
+                \theta(\alpha)&=\alpha,\quad\forall\theta\in H\\
+                \Rightarrow \exists\sigma\in \Gal{FE/F}\textup{ tal que }\sigma\big|_E=\theta\textup{ y }\sigma(\alpha)&=\alpha,\quad\forall \theta\in H\\
+                \Rightarrow \sigma(\alpha)&=\alpha,\quad\forall\sigma\in H\\
+                \Rightarrow \alpha\in FE^{\Gal{FE/F}}&=F\\
+                \Rightarrow \alpha&\in E\cap F\\
+            \end{split}
+        \end{equation*}
+        pues $\varphi$ es una función inyectiva. Por tanto,
+        \begin{equation*}
+            E^H\subseteq E\cap F
+        \end{equation*}
+        Se sigue que $E^H=E\cap F$. Así pues,
+        \begin{equation*}
+            \Gal{FE/F}\overset{\varphi}{\cong}\Gal{E/E\cap F}
+        \end{equation*}
+        Finalmente,
+        \begin{equation*}
+            \begin{split}
+                [E:K]&=[E:E\cap F][E\cap F:K]\\
+                &=\abs{\Gal{E/E\cap F}}[E\cap F:K]\\
+                &=\abs{\Gal{FE/F}}[E\cap F:K]\\
+                &=[FE:F][E\cap F:K]\\
+                \Rightarrow [FE:F]&\divides[E:K]\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \begin{propo}
+        Sean $E/K$ y $F/K$ extensiones de Galois finitas contenidas en un campo común. Entonces, $EF/K$ es una extensión de Galois finita, donde 
+        \begin{equation*}
+            \Gal{EF/K}\hookrightarrow \Gal{E/K}\times\Gal{F/K} 
+        \end{equation*}
+        si $E\cap F=K$, entonces
+        \begin{equation*}
+            \Gal{EF/K}\cong\Gal{E/K}\times\Gal{F/K}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Es claro que $EF/K$ es de Galois finita. Definimos $\cf{\varphi}{\Gal{EF/K}}{\Gal{E/K}\times\Gal{F/K}}$ dada por:
+        \begin{equation*}
+            \sigma\mapsto (\sigma\big|_E,\sigma\big|_F)
+        \end{equation*}
+        es claro que $\varphi$ está bien definida (por ser las extensiones $E/K$ y $F/K$ son de Galois, en particular normales) y es homomorfismo. Sea $\sigma\in\Gal{EF/K}$. Entonces,
+        \begin{equation*}
+            \begin{split}
+                \sigma\in\ker(\varphi)&\iff \varphi(\sigma)=e\\
+                &\iff (\sigma\big|_E,\sigma\big|_F)=(1_E,1_F)\\
+                &\iff \sigma(\alpha)=\alpha,\quad\forall\alpha\in EF\\
+                &\iff \sigma=1_{EF}\\
+            \end{split}
+        \end{equation*}
+        por tanto, $\ker(\varphi)=\langle e\rangle$. Por lo tanto, $\varphi$ es monomorfismo.
+
+        Por otro lado, suponemos que $E\cap F=K$ y probemos que $\varphi$ es isomorfismo. Sea $\sigma_1\in\Gal{E/K}\cong\Gal{EF/F}$, con lo cual existe $\sigma\in\Gal{EF/F}$ tal que
+        \begin{equation*}
+            \sigma\big|_E=\sigma_1\quad\textup{y}\quad\sigma\big|_F=1_F
+        \end{equation*}
+        de manera similar, si $\sigma_2\in\Gal{F/K}\cong\Gal{EF/E}$, existe $\theta\in\Gal{EF/E}$ tal que
+        \begin{equation*}
+            \theta\big|_E=\sigma_2\quad\textup{y}\quad\sigma\big|_E=1_E
+        \end{equation*}
+        Así que, si $(\sigma_1,\sigma_2)\in\Gal{E/K}\times\Gal{F/K}$ se tiene que $\sigma,\theta\in\Gal{EF/K}$ y,
+        \begin{equation*}
+            \begin{split}
+                \varphi(\sigma\circ\theta)&=\varphi(\sigma)\circ\varphi(\theta)\\
+                &=(\sigma\big|_E,\sigma\big|_F)\circ(\theta\big|_E,\theta\big|_F)\\
+                &=(\sigma_1,1_F)\circ (1_E,\sigma_2)\\
+                &=(\sigma_1,\sigma_2)\\
+            \end{split}
+        \end{equation*}
+        así, $\varphi$ es epimorfismo. Se sigue que $\Gal{EF/K}\overset{\varphi}{\cong}\Gal{E/K}\times\Gal{F/K}$.
+    \end{proof}
+
 \end{document}

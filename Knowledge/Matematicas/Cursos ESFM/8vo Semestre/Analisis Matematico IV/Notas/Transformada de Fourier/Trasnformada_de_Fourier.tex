@@ -650,4 +650,196 @@
         Más adelante se verá que $\fou{\cdot}$ es inyectia pero no es suprayectiva.
     \end{obs}
 
+    \begin{propo}
+        Sea $\cf{f}{\mathbb{R}^n}{\mathbb{C}}$ y $r\in\mathbb{N}$. Se supone que $x\mapsto x_1^{m_1}\cdots x_m^{m_n}f(x)$ e sintegrable en $R^n$ para toda colección $m_1,...,m_n\in\mathbb{N}$ tales que $m_1+\cdots+m_n\leq r$. Entonces, $\fou{f}$ es de clase $C^r$ en $\mathbb{R}^n$. Si $k\in\natint{1,k}$ y $\alpha_1,...,\alpha_k\in\natint{1,n}$ se tiene que
+        \begin{equation*}
+            \partial_{\alpha_1}\cdots\partial_{\alpha_k}\fou{f}=\fou{g}
+        \end{equation*}
+        donde $g(x)=(-ix_{\alpha_1})(-ix_{\alpha_2})\cdots(-ix_{\alpha_k})f(x)$.
+    \end{propo}
+
+    \begin{proof}
+        Se tiene
+        \begin{equation*}
+            \fou{f}(x)=\int_{\mathbb{R}^n}e^{ -i(x_1y_1+\cdots+x_ny_n)}f(y)\:dy
+        \end{equation*}
+        Al aplicar el operador $\partial_{\alpha_1}\cdots\partial_{\alpha_k}$ a $x\mapsto e^{ -i(x_1y_1+\cdots+x_ny_n)}f(y)$ se tiene
+        \begin{equation*}
+            (-iy_{\alpha_i})\cdots(-iy_{\alpha_k})f(y)
+        \end{equation*}
+        Esta función en valor absoulto es menor o igual a
+        \begin{equation*}
+            \abs{y_{\alpha_1}\cdots y_{\alpha_k}f(y)}
+        \end{equation*}
+        la cual por hipótesis es integrable en $\mathbb{R}^n$ e independiente de $x$. Por el Teorema de derivación parcial de funciones definidas por integrales, $\fou{f}$ es de clase $C^r$.
+    \end{proof}
+
+    \begin{obs}
+        Si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ y existe $\lim_{x\rightarrow\infty}f(x)$, necesariamente
+        \begin{equation*}
+            \lim_{x\rightarrow\infty}f(x)=0
+        \end{equation*}
+    \end{obs}
+
+    \begin{propo}
+        Sea $\cf{f}{\mathbb{R}}{\mathbb{C}}$ función de clase $C^r$ en $\mathbb{R}^n$. Se supone que $f$ y todas sus derivadas parciales hasta el orden $r$ (inclusive) son integrables. Si $k\in\natint{1,r}$ y $\alpha_1,...,\alpha_k\in\natint{1,n}$, entonces
+        \begin{equation*}
+            \fou{(\partial_{\alpha_1}\cdots\partial_{\alpha_k}f)}(x)=(ix_{\alpha_1})\cdots(ix_{\alpha_k})\fou{f}(x)
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Basta probar que
+        \begin{equation*}
+            \fou{(\partial_jf)}(x)=(ix_j)\fou{f}(x)
+        \end{equation*}
+        con $j\in\natint{1,n}$ pues el resto se sigue por inducción. Se tiene
+        \begin{equation*}
+            \begin{split}
+                \fou{(\partial_jf)}(x)-(ix_j)\fou{f}(x)&=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}[\partial_jf(y)-ix_jf(y)]\:dy\\
+                &=\int_{\mathbb{R}^n}\frac{\partial}{\partial y_j} \left[e^{ -i\pint{x}{y}}f(y) \right]\:dy\\
+            \end{split}
+        \end{equation*}
+        de donde, por el Teorema de Fubini
+        \begin{equation*}
+            \begin{split}
+                \fou{(\partial_jf)}(x)-(ix_j)\fou{f}(x)&=\int_{\mathbb{R}^{ n-1}}\:dy_1\cdots dy_{ j-1}dy_{ j+1}\cdots dy_n\int_{-\infty}^\infty\frac{\partial}{\partial y_j}\left[e^{-i\pint{x}{y}}f(y)\right] \:dy_j\\
+            \end{split}
+        \end{equation*}
+        El Teorema de Fubini asegura que existe un conjunto despreciable $Z_1\subseteq\mathbb{R}^{ n-1}$ tal que para todo $y'=(y_1,...,y_{ j-1},y_{ j+1},...,y_n)\in\mathbb{R}^{ n-1}\backslash Z_1$ existe la integral
+        \begin{equation*}
+            \int_{-\infty}^\infty\frac{\partial}{\partial y_j}\left[e^{-i\pint{x}{y}}f(y)\right] \:dy_j
+        \end{equation*}
+        o sea que $y_j\mapsto\frac{\partial}{\partial y_j}\left[e^{-i\pint{x}{y}}f(y)\right]$ es integrable en $\mathbb{R}$. Por el 2° T.F.C. para intervalos abiertos
+        \begin{equation}
+            \begin{split}
+                \int_{-\infty}^\infty\frac{\partial}{\partial y_j}\left[e^{-i\pint{x}{y}}f(y)\right] \:dy_j&=\lim_{ y_j\rightarrow\infty}e^{ -i\pint{x}{y}}f(y)-\lim_{ y_j\rightarrow-\infty}e^{ -i\pint{x}{y}}f(y)\\
+            \end{split}
+        \end{equation}
+        puesto que la función $y\mapsto e^{ -i\pint{x}{y}}f(y)$ es integrable en $\mathbb{R}^n$, por el Teorema de Fubini existe un conjunto $Z_2\subseteq\mathbb{R}^{ n-1}$ tal que para todo $y'=(y_1,...,y_{ j-1},y_{ j+1},...,y_n)\in\mathbb{R}^{ n-1}\backslash Z_2$, la función $y_j\mapsto e^{ -i\pint{x}{y}}f(y)$ es integable en $\mathbb{R}$. Sea $Z=Z_1\cup Z_2\subseteq\mathbb{R}^{ n-1}$. Por la última observación, los límites a la derecha de la ecuación anterior deben ser $0$ para todo $y'=(y_1,...,y_{ j-1},y_{ j+1},...,y_n)\in\mathbb{R}^{n-1}\backslash Z$. Por tanto,
+        \begin{equation*}
+            \int_{-\infty}^\infty\frac{\partial}{\partial y_j}\left[e^{-i\pint{x}{y}}f(y)\right] \:dy_j =0
+        \end{equation*}
+        para todo $y'=(y_1,...,y_{ j-1},y_{ j+1},...,y_n)\in\mathbb{R}^{n-1}\backslash Z$. Por tanto
+        \begin{equation*}
+            \fou{(\partial_jf)}(x)-(ix_j)\fou{f}(x)=0
+        \end{equation*}
+        lo que prueba el resultado.
+    \end{proof}
+
+    \section{Teoremas de Transferencia e Inversión}
+
+    \begin{theor}[\textbf{Teorema de Transferencia}]
+        Sean $f,g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$. Entonces
+        \begin{equation*}
+            \int_{\mathbb{R}^n}f\cdot\fou{g}=\int_{\mathbb{R}^n}\fou{f}\cdot g
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \int_{\mathbb{R}^n}f\cdot\fou^*{g}=\int_{\mathbb{R}^n}\fou^*{f}\cdot g
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Como $\fou{f}$ y $\fou{g}$ son continuas acotadas en $\mathbb{R}^n$ y $f,g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$, ambas integrales existen. Se tiene
+        \begin{equation*}
+            \begin{split}
+                \int_{\mathbb{R}^n}\fou{f}(x)\cdot g(x)\:dx&=\int_{\mathbb{R}^n}g(x)\:dx\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}f(y)\:dy\\
+            \end{split}
+        \end{equation*}
+        ya se sabe que $(x,y)\mapsto e^{ -i\pint{x}{y}}g(x)f(y)$ es integrable en $\mathbb{R}^n\times\mathbb{R}^n$. Por Fubini podemos invertir el orden de integración
+        \begin{equation*}
+            \begin{split}
+                \int_{\mathbb{R}^n}\fou{f}(x)\cdot g(x)\:dx&=\int_{\mathbb{R}^n}f(y)\:dy\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}g(x)\:dx\\
+                &=\int_{\mathbb{R}^n}f(y)\:dy\int_{\mathbb{R}^n}e^{ -i\pint{y}{x}}g(x)\:dx\\
+                &=\int_{\mathbb{R}^n}f(y)\cdot\fou{g}(y)\:dy\\
+                \Rightarrow \int_{\mathbb{R}^n}f\cdot\fou{g}&=\int_{\mathbb{R}^n}\fou{f}\cdot g\\
+            \end{split}
+        \end{equation*}
+        para la $\fou^*{\cdot}$ el procedimiento es análogo.
+    \end{proof}
+
+    \begin{lema}[\textbf{Efecto de la transformación de Fourier sobre sucesiones de Dirac}]
+        Sea $\left\{\rho_\nu \right\}_{\nu=1}^\infty$ una sucesión de Dirac en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Defina
+        \begin{equation*}
+            h_\nu=\fou{\rho_\nu},\quad\forall\nu\in\mathbb{N}
+        \end{equation*}
+        Entonces,
+        \begin{enumerate}
+            \item $\abs{h_\nu(x)}\leq1$ para todo $x\in\mathbb{R}^n$.
+            \item $\lim_{\nu\rightarrow\infty}h_\nu(x)=1$, para todo $x\in\mathbb{R}^n$.
+        \end{enumerate}
+    \end{lema}
+
+    \begin{proof}
+        De (i): Se tiene
+        \begin{equation*}
+            \begin{split}
+                \abs{h_\nu(x)}&=\abs{\fou{\rho_\nu}(x)}\\
+                &\leq\N{1}{\rho_\nu}\\
+                &=\int_{\mathbb{R}^n}\rho_\nu\\
+                &=1\\
+            \end{split}
+        \end{equation*}
+        para todo $x\in\mathbb{R}^n$.
+
+        De (ii): Sea $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$. Entonces $\left\{f*\rho_\nu \right\}_{ \nu=1}^\infty$ es una sucesión en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ que converge en promedio a $f$. Como la transformación de Fourier es un homomorfismo continuo del álgebra de Banach $L_1(\mathbb{R}^n,\mathbb{K})$ en $\mathcal{C}_0(\mathbb{R}^n,\mathbb{K})$, se debe tener que
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\fou{(f*\rho_\nu)}=\fou{f}\textup{ uniformemente en }\mathbb{R}^n
+        \end{equation*}
+        pero,
+        \begin{equation*}
+            \fou{f*\rho_\nu}=\fou{f}\cdot\fou{\rho_\nu}=h_\nu\fou{f}
+        \end{equation*}
+        es decir,
+        \begin{equation*}
+            \begin{split}
+                \lim_{\nu\rightarrow\infty}h_\nu\fou{f}&=\fou{f}\textup{ uniformemente en }\mathbb{R}^n\\
+                \Rightarrow \fou{f}\lim_{\nu\rightarrow\infty}h_\nu&=\fou{f}\textup{ uniformemente en }\mathbb{R}^n\\
+            \end{split}
+        \end{equation*}
+        Fijando $f$ de tal suerte que $\fou{f}(x)\neq0$ para todo $x\in\mathbb{R}^n$ se concluye que
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}h_\nu(x)=1
+        \end{equation*}
+        (por ejemplo, tome $f(x)=e^{-\frac{x^2}{2}}$).
+    \end{proof}
+
+    \begin{obs}
+        Si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$, entonces no necesariamente su transformada de Fourier es integrable. Por ejemplo
+        \begin{equation*}
+             \fou{\chi_{[-1,1]}}=\left\{
+                \begin{array}{lcr}
+                    \frac{2\sin x}{x} & \textup{ si } & x\neq0\\
+                    2 & \textup{ si } & x=0\\
+                \end{array}
+             \right.
+        \end{equation*}
+        es continua, nula en el infinito pero no es integrable en $\mathbb{R}$.
+    \end{obs}
+
+    \begin{theor}[\textbf{Teorema de Inversión de Fourier}]
+        Si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$ es tal que $\fou{f}\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$, entonces
+        \begin{equation*}
+            \fou^*{(\fou{f})}=\fou{(\fou^*{f})}=(2\pi)^n f\textup{ c.t.p. en }\mathbb{R}^n
+        \end{equation*}
+        Si además $f$ es continua en $\mathbb{R}^n$, la fórmula es válida en todo punto de $\mathbb{R}^n$.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{propo}
+        La transformación de Fourier $\fou{\cdot}$ es un homomorfismo inyectivo del álgebra de Banach $L_1(\mathbb{R}^n,\mathbb{C})$ en el álgebra de Banach $\mathcal{C}_0(\mathbb{R}^n,\mathbb{C})$.
+    \end{propo}
+
+    \begin{proof}
+        Basta probar que el kernel de $\fou{\cdot}$ se reduce a $0$. En efecto, sea $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$ tal que $\fou{f}=0$ en $\mathbb{R}^n$, luego $\fou{f}\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Así se puede aplicar el Teorema anterior, que resulta en que
+        \begin{equation*}
+            0=\fou^*{0}=\fou^*{(\fou{f})}=(2\pi)^nf\textup{ c.t.p. en }\mathbb{R}^n
+        \end{equation*}
+        en $\mathbb{R}^n$. Por tanto, $f=0$ c.t.p. en $\mathbb{R}^n$.
+    \end{proof}
+
 \end{document}

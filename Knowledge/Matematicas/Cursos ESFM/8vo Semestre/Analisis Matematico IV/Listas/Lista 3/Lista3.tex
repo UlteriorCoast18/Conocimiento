@@ -1012,7 +1012,7 @@
     \end{excer}
 
     \begin{proof}
-        
+        %TODO
     \end{proof}
 
     \begin{excer}
@@ -1176,7 +1176,35 @@
         \begin{equation*}
             \begin{split}
                 \pi-\abs{2x}&=\frac{a_0}{2}+\sum_{ k=1}^\infty a_k\cos kx\\
-                &=\frac{a_0}{2}+\sum_{ k=1}^\infty \frac{8}{\pi (2k-1)^2}\cos (2k-1)x\\
+                &=\sum_{ k=1}^\infty \frac{8}{\pi (2k-1)^2}\cos (2k-1)x\\
+                &=\frac{8}{\pi}\sum_{ k=1}^\infty\frac{\cos (2k-1)x}{(2k-1)^2},\quad\forall x\in[-\pi,\pi] \\
+            \end{split}
+        \end{equation*}
+        en particular, lo anterior se cumple para $x=0$, es decir que
+        \begin{equation*}
+            \begin{split}
+                \pi&=\frac{8}{\pi}\sum_{ k=1}^\infty\frac{1}{(2k-1)^2}\\
+                \Rightarrow \sum_{ k=1}^\infty\frac{1}{(2k-1)^2}&=\frac{\pi^2}{8}\\
+            \end{split}
+        \end{equation*}
+        Ahora, se sabe que en particular $f\in\mathcal{L}_2^{2\pi}(\mathbb{R})$. Por las identidades de Parserval se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \sum_{ k=1}^\infty\abs{a_{2k-1}}^2&=\frac{1}{\pi}\int_{-\pi}^\pi\abs{f(x)}^2\:dx\\
+                \Rightarrow \sum_{ k=1}^\infty\frac{64}{\pi^2(2k-1)^4}&=\frac{1}{\pi}\int_{-\pi}^\pi\abs{\pi-\abs{2x}}^2\:dx\\
+                &=\frac{1}{\pi}\left[\int_{-\pi}^{-\frac{\pi}{2}}\abs{\pi-\abs{2x}}^2\:dx +\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\abs{\pi-\abs{2x}}^2\:dx+\int_{\frac{\pi}{2}}^{\pi}\abs{\pi-\abs{2x}}^2\:dx \right]\\
+                &=\frac{1}{\pi}\left[\int_{-\pi}^{-\frac{\pi}{2}}(\abs{2x}-\pi)^2\:dx +\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}(\pi-\abs{2x})^2\:dx+\int_{\frac{\pi}{2}}^{\pi}(\abs{2x}-\pi)^2\:dx \right]\\
+                &=\frac{1}{\pi}\left[\int_{-\pi}^{-\frac{\pi}{2}}(-2x-\pi)^2\:dx+\int_{-\frac{\pi}{2}}^{0}(\pi+2x)^2\:dx+\int_{0}^{\frac{\pi}{2}}(\pi-2x)^2\:dx+\int_{\frac{\pi}{2}}^{\pi}(2x-\pi)^2\:dx \right]\\
+                &=\frac{1}{\pi}\left[\int_{-\pi}^{0}(\pi+2x)^2\:dx+\int_{0}^{\pi}(\pi-2x)^2\:dx \right]\\
+                &=\frac{1}{\pi}\left[\int_{\pi}^{0}(\pi-2x)^2\:(-dx)+\int_{0}^{\pi}(\pi-2x)^2\:dx \right]\\
+                &=\frac{1}{\pi}\left[\int_{0}^{\pi}(\pi-2x)^2\:dx+\int_{0}^{\pi}(\pi-2x)^2\:dx \right]\\
+                &=\frac{2}{\pi}\int_{0}^{\pi}(\pi-2x)^2\:dx,\textup{ sea }u=\pi-2x \\
+                &=\frac{2}{\pi}\int_{\pi}^{-\pi}u^2\:\frac{-du}{2}\\
+                &=\frac{1}{\pi}\frac{u^3}{3}\Big|_{\pi}^{-\pi}\\
+                &=\frac{1}{\pi}\frac{2\pi^3}{3}\\
+                &=\frac{2\pi^2}{3}\\
+                \Rightarrow \sum_{ k=1}^\infty\frac{64}{\pi^2(2k-1)^4}&=\frac{2\pi^2}{3}\\
+                \Rightarrow \sum_{ k=1}^\infty\frac{1}{(2k-1)^4}&=\frac{\pi^4}{96}\\
             \end{split}
         \end{equation*}
     \end{sol}
