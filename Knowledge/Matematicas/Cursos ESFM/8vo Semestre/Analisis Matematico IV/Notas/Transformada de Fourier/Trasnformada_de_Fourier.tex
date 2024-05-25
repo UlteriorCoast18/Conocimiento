@@ -121,7 +121,7 @@
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\norm[1]{\ensuremath{\|#1\|}}
 \newcommand\ora[1]{\ensuremath{\vec{#1}}}
-\newcommand\pint[2]{\ensuremath{\left(#1\big| #2\right)}}
+\newcommand\pint[2]{\ensuremath{\langle#1| #2\rangle}}
 \newcommand\conj[1]{\ensuremath{\overline{#1}}}
 \newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
 \newcommand{\natint}[1]{\ensuremath{\left[\!\left[#1\right]\!\right]}}
@@ -143,6 +143,14 @@
     La transformada de Fourier de una función de $\mathbb{R}^n$ en $\mathbb{C}$ generaliza en cierta forma la noción de coeficietes de Fourier de funciones periódicas
     
     \section{Conceptos Fundamentales}
+
+    \begin{mydef}
+        Se define el \textbf{producto escalar usual en $\mathbb{R}^n$} como
+        \begin{equation*}
+            \pint{x}{y}=\sum_{ k=1}^n x_ky_x,\quad\forall x,y\in\mathbb{R}^n
+        \end{equation*}
+        en ocasiones también denotado como $(x|y)=\pint{x}{y}$.
+    \end{mydef}
 
     \begin{mydef}
         Sea $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Se definen $\cf{\mathcal{F}f,\mathcal{F}^*f}{\mathbb{R}^n}{\mathbb{C}} $ como
@@ -525,7 +533,7 @@
     \end{proof}
 
     \begin{obs}
-        $\fou{f}$ es una función uniformemente continua acotada en $\mathbb{R}^n$ si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$.
+        $\fou{f}$ es una función uniformemente continua y acotada en $\mathbb{R}^n$ si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$.
     \end{obs}
 
     \begin{theor}[\textbf{Teorema de Riemman-Lebesgue}]
@@ -647,7 +655,7 @@
     \end{proof}
 
     \begin{obs}
-        Más adelante se verá que $\fou{\cdot}$ es inyectia pero no es suprayectiva.
+        Más adelante se verá que $\fou{\cdot}$ es inyectiva pero no es suprayectiva.
     \end{obs}
 
     \begin{propo}
@@ -663,7 +671,7 @@
         \begin{equation*}
             \fou{f}(x)=\int_{\mathbb{R}^n}e^{ -i(x_1y_1+\cdots+x_ny_n)}f(y)\:dy
         \end{equation*}
-        Al aplicar el operador $\partial_{\alpha_1}\cdots\partial_{\alpha_k}$ a $x\mapsto e^{ -i(x_1y_1+\cdots+x_ny_n)}f(y)$ se tiene
+        Al aplicar el operador $\partial_{\alpha_1}\cdots\partial_{\alpha_k}$ a $x\mapsto e^{ -i(x_1y_1+\cdots+x_ny_n)}f(y)$ obtenemos
         \begin{equation*}
             (-iy_{\alpha_i})\cdots(-iy_{\alpha_k})f(y)
         \end{equation*}
@@ -671,7 +679,11 @@
         \begin{equation*}
             \abs{y_{\alpha_1}\cdots y_{\alpha_k}f(y)}
         \end{equation*}
-        la cual por hipótesis es integrable en $\mathbb{R}^n$ e independiente de $x$. Por el Teorema de derivación parcial de funciones definidas por integrales, $\fou{f}$ es de clase $C^r$.
+        la cual por hipótesis es integrable en $\mathbb{R}^n$ e independiente de $x$. Por el Teorema de derivación parcial de funciones definidas por integrales, se tiene que
+        \begin{equation*}
+            \partial_{\alpha_1}\cdots\partial_{\alpha_k}\fou{f}=\fou{g}
+        \end{equation*}
+        y, además $\fou{f}$ es de clase $C^r$ en $\mathbb{R}^n$.
     \end{proof}
 
     \begin{obs}
@@ -693,7 +705,7 @@
         \begin{equation*}
             \fou{(\partial_jf)}(x)=(ix_j)\fou{f}(x)
         \end{equation*}
-        con $j\in\natint{1,n}$ pues el resto se sigue por inducción. Se tiene
+        con $j\in\natint{1,n}$ pues el resto se sigue por inducción. Se tiene que
         \begin{equation*}
             \begin{split}
                 \fou{(\partial_jf)}(x)-(ix_j)\fou{f}(x)&=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}[\partial_jf(y)-ix_jf(y)]\:dy\\
@@ -711,16 +723,16 @@
             \int_{-\infty}^\infty\frac{\partial}{\partial y_j}\left[e^{-i\pint{x}{y}}f(y)\right] \:dy_j
         \end{equation*}
         o sea que $y_j\mapsto\frac{\partial}{\partial y_j}\left[e^{-i\pint{x}{y}}f(y)\right]$ es integrable en $\mathbb{R}$. Por el 2° T.F.C. para intervalos abiertos
-        \begin{equation}
+        \begin{equation*}
             \begin{split}
                 \int_{-\infty}^\infty\frac{\partial}{\partial y_j}\left[e^{-i\pint{x}{y}}f(y)\right] \:dy_j&=\lim_{ y_j\rightarrow\infty}e^{ -i\pint{x}{y}}f(y)-\lim_{ y_j\rightarrow-\infty}e^{ -i\pint{x}{y}}f(y)\\
             \end{split}
-        \end{equation}
+        \end{equation*}
         puesto que la función $y\mapsto e^{ -i\pint{x}{y}}f(y)$ es integrable en $\mathbb{R}^n$, por el Teorema de Fubini existe un conjunto $Z_2\subseteq\mathbb{R}^{ n-1}$ tal que para todo $y'=(y_1,...,y_{ j-1},y_{ j+1},...,y_n)\in\mathbb{R}^{ n-1}\backslash Z_2$, la función $y_j\mapsto e^{ -i\pint{x}{y}}f(y)$ es integable en $\mathbb{R}$. Sea $Z=Z_1\cup Z_2\subseteq\mathbb{R}^{ n-1}$. Por la última observación, los límites a la derecha de la ecuación anterior deben ser $0$ para todo $y'=(y_1,...,y_{ j-1},y_{ j+1},...,y_n)\in\mathbb{R}^{n-1}\backslash Z$. Por tanto,
         \begin{equation*}
             \int_{-\infty}^\infty\frac{\partial}{\partial y_j}\left[e^{-i\pint{x}{y}}f(y)\right] \:dy_j =0
         \end{equation*}
-        para todo $y'=(y_1,...,y_{ j-1},y_{ j+1},...,y_n)\in\mathbb{R}^{n-1}\backslash Z$. Por tanto
+        para todo $y'=(y_1,...,y_{ j-1},y_{ j+1},...,y_n)\in\mathbb{R}^{n-1}\backslash Z$. Se sigue entonces que
         \begin{equation*}
             \fou{(\partial_jf)}(x)-(ix_j)\fou{f}(x)=0
         \end{equation*}
@@ -741,13 +753,13 @@
     \end{theor}
 
     \begin{proof}
-        Como $\fou{f}$ y $\fou{g}$ son continuas acotadas en $\mathbb{R}^n$ y $f,g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$, ambas integrales existen. Se tiene
+        Como $\fou{f}$ y $\fou{g}$ son continuas acotadas en $\mathbb{R}^n$ y $f,g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$, ambas integrales existen (pues en particular $\fou{f},\fou{g}\in\mathcal{L}_{\infty}(\mathbb{R}^n,\mathbb{K})$). Se tiene
         \begin{equation*}
             \begin{split}
                 \int_{\mathbb{R}^n}\fou{f}(x)\cdot g(x)\:dx&=\int_{\mathbb{R}^n}g(x)\:dx\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}f(y)\:dy\\
             \end{split}
         \end{equation*}
-        ya se sabe que $(x,y)\mapsto e^{ -i\pint{x}{y}}g(x)f(y)$ es integrable en $\mathbb{R}^n\times\mathbb{R}^n$. Por Fubini podemos invertir el orden de integración
+        ya se sabe que $(x,y)\mapsto e^{ -i\pint{x}{y}}g(x)f(y)$ es integrable en $\mathbb{R}^n\times\mathbb{R}^n$ (pues en módulo es igual al módulo del producto tensorial de $g$ y $f$, siendo éste integrable). Por Fubini podemos invertir el orden de integración, lo que resulta:
         \begin{equation*}
             \begin{split}
                 \int_{\mathbb{R}^n}\fou{f}(x)\cdot g(x)\:dx&=\int_{\mathbb{R}^n}f(y)\:dy\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}g(x)\:dx\\
@@ -789,7 +801,7 @@
         \end{equation*}
         pero,
         \begin{equation*}
-            \fou{f*\rho_\nu}=\fou{f}\cdot\fou{\rho_\nu}=h_\nu\fou{f}
+            \fou{(f*\rho_\nu)}=\fou{f}\cdot\fou{\rho_\nu}=h_\nu\fou{f}
         \end{equation*}
         es decir,
         \begin{equation*}
