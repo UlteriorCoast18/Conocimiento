@@ -120,7 +120,9 @@
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
     \setlength{\parindent}{12pt} % Pone la sangría como me gusta
-    \title{Título o Nombre de las notas}
+    \title{Notas Curso Álgebra Moderna III
+    
+    Una Introducción a la Teoría de Galois Finita}
     \author{Cristo Daniel Alvarado}
     \maketitle
 
@@ -130,48 +132,50 @@
 
     \newpage
 
-    \chapter{Ejemplo}
+    \setcounter{chapter}{-1}
 
-    \section{Ejemplo}
+    \chapter{Temario}
 
-    \begin{proof}
-        Entorno de Prueba
-    \end{proof}
+    \renewcommand{\theenumii}{\arabic{enumi}.\arabic{enumii}}
 
-    \begin{sol}
-        Entorno de Solución
-    \end{sol}
+    \section*{Temas}
 
-    \begin{theor}[Nombre]
-        Teorema
-    \end{theor}
+    \begin{enumerate}
+        \item Anillo de Polinomios.
+        \begin{enumerate}
+            \item Series de Potencias.
+            \item Anillo de Polinomios.
+        \end{enumerate}
+        \item Espacios Vectoriales.
+        \item Extensiones de Campos.
+        \begin{enumerate}
+            \item Extensiones de Campos.
+            \item Extensiones Algebraicas.
+            \item Extensiones Normales.
+            \item Extensiones Separables, Puramente Inseparables y Simples.
+        \end{enumerate}
+        \item Teoría de Galois Finita.
+        \begin{enumerate}
+            \item Extensiones de Galois.
+            \item Teoría de Galois Finita.
+            \item Grupo de Galois de un Polinomio.
+            \item Campos Finitos.
+            \item Extensiones Ciclotómicas.
+            \item Extensiones Cíclicas.
+            \item Extensiones Radicales.
+            \item Construcciones con Regla y Compás.
+        \end{enumerate}
+    \end{enumerate}
 
-    \begin{propo}[Nombre]
-        Proposición
-    \end{propo}
+    \section*{Bibliografía}
 
-    \begin{cor}[Nombre]
-        Corolario
-    \end{cor}
-
-    \begin{lema}[Nombre]
-        Lema
-    \end{lema}
-
-    \begin{mydef}[Nombre]
-        Definición
-    \end{mydef}
-
-    \begin{obs}[Nombre]
-        Observación
-    \end{obs}
-
-    \begin{exa}[Nombre]
-        Ejemplo
-    \end{exa}
-
-    \begin{excer}[Nombre]
-        Ejercicio
-    \end{excer}
+    \begin{itemize}
+        \item \textit{Algebra} - Hungerford, Springer.
+        \item \textit{Algebra} - Serge Lang, Springer.
+        \item \textit{Álgebra Clásica} - Vargas A. Mendoza, SMM.
+        \item \textit{Algebraic Extensions of Fields} - James McCarthy.
+        \item \textit{Topics in Field Theory} - Karpilovsky.
+        \item \textit{Topics in the Theory of Algebraic Function Fields} - Villa.
+    \end{itemize}
 
 \end{document}

@@ -120,7 +120,9 @@
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
     \setlength{\parindent}{12pt} % Pone la sangría como me gusta
-    \title{Título o Nombre de las notas}
+    \title{Notas de Álgebra Moderna III:
+    
+    Una Introducción a la Teoría de Galois Finita}
     \author{Cristo Daniel Alvarado}
     \maketitle
 
@@ -130,48 +132,68 @@
 
     \newpage
 
-    \chapter{Ejemplo}
+    \chapter{Anillo de Polinomios}
 
-    \section{Ejemplo}
+    \section{Series de Potencias}
 
-    \begin{proof}
-        Entorno de Prueba
-    \end{proof}
-
-    \begin{sol}
-        Entorno de Solución
-    \end{sol}
-
-    \begin{theor}[Nombre]
-        Teorema
-    \end{theor}
-
-    \begin{propo}[Nombre]
-        Proposición
-    \end{propo}
-
-    \begin{cor}[Nombre]
-        Corolario
-    \end{cor}
-
-    \begin{lema}[Nombre]
-        Lema
-    \end{lema}
-
-    \begin{mydef}[Nombre]
-        Definición
-    \end{mydef}
-
-    \begin{obs}[Nombre]
-        Observación
+    \begin{obs}
+        De ahora en adelante todos los anillos se considerarán como anillos connmutativos con identidad, a menos que se establezca lo contrario.
     \end{obs}
 
-    \begin{exa}[Nombre]
-        Ejemplo
-    \end{exa}
+    \begin{mydef}
+        Sea $A$ un anillo. Denotemos por
+        \begin{equation*}
+            S_A=\left\{f\Big|\cf{f}{\mathbb{N}\cup\left\{0\right\}}{A} \right\}
+        \end{equation*}
+        es decir que $S_A$ es el \textbf{conjunto de sucesiones de $A$}. Si $f\in S_A$ escribimos a $f$ como:
+        \begin{equation*}
+            f=(a_0,a_1,...)
+        \end{equation*}
+        Sobre $S_A$ se definen dos operaciones, la \textbf{suma} y \textbf{producto}. A saber, si $f=(a_0,a_1,...)$ y $g=(b_0,b_1,...)$, entonces:
+        \begin{equation*}
+            f+g=(a_0+b_0,a_1+b_1,...,a_k+b_k,...)
+        \end{equation*}
+        y,
+        \begin{equation*}
+            fg = f\cdot g = (c_0,c_1,...,c_k,...)
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \begin{split}
+                c_k&=\sum_{ i=0}^k a_ib_{ k-i}\\
+                &=a_0b_k+a_1b_{ k-1}+...+a_kb_0\\
+                &=\sum_{ i=0}^k a_{k-i}b_{i}\\
+                &=\sum_{ i+j=k}a_ib_j\\
+            \end{split}
+        \end{equation*}
+    \end{mydef}
 
-    \begin{excer}[Nombre]
-        Ejercicio
-    \end{excer}
+    \begin{obs}
+        En la definición anterior, se tiene que $S_A$ es un anillo con cero el elemento $(0,0,...,0,...)$ e inverso $-f=(-a_0,-a_1,...,-a_k,...)$ para todo $f\in S_A$. Además, existe un monomorfismo de $A$ en $S_A$, a saber:
+        \begin{equation*}
+            A\hookrightarrow S_A, a\mapsto (a,0,...,0,...)
+        \end{equation*}
+        Por lo cual $A$ está encajado en $S_A$. Debido a esto, se denotará de ahora en adelante como
+        \begin{equation*}
+            a=(a,0,...,0,...),\quad\forall a\in A
+        \end{equation*}
+    \end{obs}
+
+    \begin{mydef}
+        Sean $A$ y $x$ un objeto tal que $x\notin A$. $x$ es llamado una \textbf{indeterminada para $A$}. Definimos para todo $n\in\mathbb{N}\cup\left\{0\right\}$ y para todo $a\in A$:
+        \begin{equation*}
+            ax^n=(\underbrace{0,0,0,...,0,0,0,a}_{{n+1}-\textbf{ésima entrada}},0,...)
+        \end{equation*}
+        Si $A$ tiene identidad, entonces
+        \begin{equation*}
+            1x^n=x^n=(\underbrace{0,0,0,...,0,0,0,1}_{{n+1}-\textbf{ésima entrada}},0,...)
+        \end{equation*}
+        En caso que $n=1$, $1x^1=x^1=x$ y si $n=0$, $1x^0=x^0=1$ (abusando en este caso de la notación). Se tiene entonces que
+        \begin{equation*}
+            x^n\in S_A,\quad\forall n\in\mathbb{N}\cup\left\{0\right\}
+        \end{equation*}
+    \end{mydef}
+
+
 
 \end{document}
