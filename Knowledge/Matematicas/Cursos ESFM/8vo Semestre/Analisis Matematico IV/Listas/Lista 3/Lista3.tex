@@ -1219,11 +1219,128 @@
                 \end{array}
             \right.
         \end{equation*}
-        \textbf{Calcule} la serie de Fourier de $f$. Usando el teorema fundamental para la convergencia de una serie de Fourier, \textbf{muestre} que la serie de Fourier de $f$ converge a alguna suma $s(x)$ para todo $x\in[-\pi,\pi]$. \textbf{Calcule} $s(x)$ para todo $x\in[-\pi,\pi]$.
+        \textbf{Calcule} la serie de Fourier de $f$. Usando el teorema fundamental para la convergencia puntual de una serie de Fourier, \textbf{muestre} que la serie de Fourier converge a alguna suma $s(x)$ para todo $x\in[-\pi,\pi]$. \textbf{Calcule} $s(x)$ para todo $x\in[-\pi,\pi]$.
     \end{excer}
 
     \begin{sol}
-        
+        Calculemos los coeficientes de Fourier de $f$:
+        \begin{itemize}
+            \item Veamos que
+            \begin{equation*}
+                \begin{split}
+                    a_0&=\frac{1}{\pi}\int_{-\pi}^\pi f(x)\:dx\\
+                    &=\frac{1}{\pi}\left[\int_{-\pi}^0 f(x)\:dx+\int_{0}^\pi f(x)\:dx \right]\\
+                    &=\frac{1}{\pi}\left[\int_{-\pi}^0 0\:dx+\int_{0}^\pi x^2\:dx\right]\\
+                    &=\frac{1}{\pi}\left[\frac{x^3}{3}\Big|_{0}^\pi \right]\\
+                    &=\frac{1}{\pi}\cdot\frac{\pi^3}{3}\\
+                    &=\frac{\pi^2}{3}\\
+                \end{split}
+            \end{equation*}
+
+            \item Sea $k\in\mathbb{N}$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    a_k&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos kx\:dx\\
+                    &=\frac{1}{\pi}\left[\int_{-\pi}^{0}f(x)\cos kx\:dx+\int_{0}^{\pi}f(x)\cos kx\:dx\right] \\
+                    &=\frac{1}{\pi}\left[\int_{-\pi}^{0}0\cdot\cos kx\:dx+\int_{0}^{\pi}x^2\cos kx\:dx\right]\\
+                    &=\frac{1}{\pi}\int_{0}^{\pi}x^2\cos kx\:dx,\textup{ sea }u=kx \\
+                    &=\frac{1}{\pi}\int_{0}^{k\pi}\left(\frac{u}{k}\right)^2\cos u\:\frac{du}{k}\\
+                    &=\frac{1}{k^3\pi}\int_{0}^{k\pi}u^2\cos u\:du\\
+                    &=\frac{1}{k^3\pi}\left[(u^2-2)\sin u+2u\cos u\Big|_{0}^{k\pi} \right]\\
+                    &=\frac{1}{k^3\pi}\left[((k\pi)^2-2)\sin k\pi+2k\pi\cos k\pi-(0^2-2)\sin 0-2\cdot0\cdot\cos0\right]\\
+                    &=\frac{1}{k^3\pi}\cdot2k\pi(-1)^{k}\\
+                    &=\frac{2(-1)^{k}}{k^2}\\
+                \end{split}
+            \end{equation*}
+            y,
+            \begin{equation*}
+                \begin{split}
+                    b_k&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin kx\:dx\\
+                    &=\frac{1}{\pi}\left[\int_{-\pi}^{0}f(x)\sin kx\:dx+\int_{0}^{\pi}f(x)\sin kx\:dx\right] \\
+                    &=\frac{1}{\pi}\left[\int_{-\pi}^{0}0\cdot\sin kx\:dx+\int_{0}^{\pi}x^2\sin kx\:dx\right]\\
+                    &=\frac{1}{\pi}\int_{0}^{\pi}x^2\sin kx\:dx,\textup{ sea }u=kx \\
+                    &=\frac{1}{\pi}\int_{0}^{k\pi}\left(\frac{u}{k}\right)^2\sin u\:\frac{du}{k}\\
+                    &=\frac{1}{k^3\pi}\int_{0}^{k\pi}u^2\sin u\:du\\
+                    &=\frac{1}{k^3\pi}\left[2u\sin u-(u^2-2)\cos u\Big|_{0}^{k\pi}\right]\\
+                    &=\frac{1}{k^3\pi}\left[2k\pi\sin k\pi-((k\pi)^2-2)\cos k\pi-2\cdot0\cdot\sin 0+(0^2-2)\cos 0\right]\\
+                    &=\frac{1}{k^3\pi}\left[-((k\pi)^2-2)(-1)^k-2\right]\\
+                    &=\frac{1}{k^3\pi}\left[((k\pi)^2-2)(-1)^{k+1}-2\right]\\
+                    &=\frac{1}{k^3\pi}\left[(k\pi)^2(-1)^{k+1}+2(-1)^k-2\right]\\
+                    &=\frac{(k\pi)^2(-1)^{k+1}+2(-1)^k-2}{k^3\pi}\\
+                \end{split}
+            \end{equation*}
+            Se tienen dos casos, si $k=2m-1$ con $m\in\mathbb{N}$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    a_{2m-1}&=\frac{1}{k^3\pi}\left[(k\pi)^2(-1)^{2m-1+1}+2(-1)^{2m-1}-2\right]\\
+                    &=\frac{1}{k^3\pi}\left[(k\pi)^2(-1)^{2m}-2-2\right]\\
+                    &=\frac{1}{k^3\pi}\left[(k\pi)^2-4\right]\\
+                    &=\frac{(k\pi)^2-4}{k^3\pi}\\
+                \end{split}
+            \end{equation*}
+            y, si $k=2m$ con $m\in\mathbb{N}$:
+            \begin{equation*}
+                \begin{split}
+                    a_k&=\frac{1}{k^3\pi}\left[(k\pi)^2(-1)^{2m+1}+2(-1)^{2m}-2\right]\\
+                    &=\frac{1}{k^3\pi}\left[-(k\pi)^2+2-2\right]\\
+                    &=-\frac{(k\pi)^2}{k^3\pi}\\
+                    &=\frac{-\pi}{k}\\
+                \end{split}
+            \end{equation*}
+        \end{itemize}
+        Por tanto, la serie de Fourier de $f$ es:
+        \begin{equation*}
+            \begin{split}
+                s_f(x)&=\frac{a_0}{2}+\sum_{ k=1}^\infty\left(a_k\cos kx+b_k\sin kx\right)\\
+                &=\frac{\pi^2}{6}+\sum_{ k=1}^\infty\left(\frac{2(-1)^k}{k^2}\cos kx+\frac{(k\pi)^2(-1)^{k+1}+2(-1)^k-2}{k^3\pi}\sin kx\right),\quad\forall x\in[-\pi,\pi[ \\
+            \end{split}
+        \end{equation*}
+        Ahora, sea $x\in[-\pi,\pi]$. Para que la serie de Fourier de $f$ converja en $x$ a una suma $s(x)$, es necesario y suficiente que para algún $0<\delta<\pi$ se cumpla:
+        \begin{equation*}
+            \lim_{m\rightarrow\infty}\int_{0}^\delta\frac{f(x+t)+f(x-t)-2s(x)}{t}\sin\left(m+\frac{1}{2}\right)t=0
+        \end{equation*}
+        afirmamos que la serie de Fourier converge puntualmente a $f$ en $]-\pi,\pi[$ y en $x=\pi$ o $x=-\pi$ lo hace a $\frac{\pi^2}{2}$, esto es:
+        \begin{equation*}
+            s(x)=\left\{
+                \begin{array}{lcr}
+                    f(x) & \textup{ si } & x\in]-\pi,\pi[\\
+                    \frac{\pi^2}{2} & \textup{ si } & x=\pi\textup{ ó }x=-\pi\\
+                \end{array}
+            \right.
+        \end{equation*}
+        \begin{itemize}
+            \item Si $x\in]-\pi,\pi[$, se tienen dos casos:
+            \begin{itemize}
+                \item $x\in]-\pi,0[$, tomemos $\delta=\min\left\{-x,\pi+x\right\}>0$, entonces:
+                \begin{equation*}
+                    \begin{split}
+                        \lim_{m\rightarrow\infty}\int_{0}^\delta\frac{f(x+t)+f(x-t)-2s(x)}{t}\sin\left(m+\frac{1}{2}\right)t&=\lim_{m\rightarrow\infty}\int_{0}^{\delta}\frac{0+0-2\cdot0}{t}\sin\left(m+\frac{1}{2}\right)t\\
+                        &=\lim_{m\rightarrow\infty}\int_{0}^{\delta}0\cdot\sin\left(m+\frac{1}{2}\right)t\\
+                        &=\lim_{m\rightarrow\infty}0\\
+                        &=0\\
+                    \end{split}
+                \end{equation*}
+                \item $x\in]0,\pi[$, tomemos $\delta=\min\left\{x,\pi-x\right\}>0$, entonces:
+                \begin{equation*}
+                    \begin{split}
+                        \int_{0}^\delta\frac{f(x+t)+f(x-t)-2s(x)}{t}\sin\left(m+\frac{1}{2}\right)t&=\int_{0}^{\delta}\frac{(x+t)^2+(x-t)^2-2x^2}{t}\sin\left(m+\frac{1}{2}\right)t\\
+                        &=\int_{0}^{\delta}\frac{2x^2+2t^2-2x^2}{t}\sin\left(m+\frac{1}{2}\right)t\\
+                        &=\int_{0}^{\delta}\frac{2t^2}{t}\sin\left(m+\frac{1}{2}\right)t\\
+                        &=2\int_{0}^{\delta}t\sin\left(m+\frac{1}{2}\right)t\\
+                    \end{split}
+                \end{equation*}
+                Por Riemman-Lebsgue, como la función $t\mapsto t$ está en $\mathcal{L}_1(]0,\pi[,\mathbb{R})$, entonces
+                \begin{equation*}
+                    \lim_{ m\rightarrow\infty}\int_{0}^{\delta}t\sin\left(m+\frac{1}{2}\right)t=0
+                \end{equation*}
+                por tanto,
+                \begin{equation*}
+                    \lim_{m\rightarrow\infty}\int_{0}^\delta\frac{f(x+t)+f(x-t)-2s(x)}{t}\sin\left(m+\frac{1}{2}\right)t=0
+                \end{equation*}
+                \item $x=0$
+            \end{itemize}
+            (no es necesario hacer lo anterior ya que con solo afirmar que $s$ tiene derivadas por la derecha e izquierda en $x$ para todo $x\in]-\pi,\pi[$ se sigue la convergencia puntual de la serie de Fourier a $s(x)=f(x)$).
+        \end{itemize}
     \end{sol}
 
     \begin{excer}
