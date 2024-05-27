@@ -813,11 +813,13 @@
         \begin{equation*}
             \int_{0}^{\rightarrow\infty}\frac{\sin t}{t}\:dt=\frac{\pi}{2}
         \end{equation*}
-        En efecto, sea $\left\{x_n\right\}_{ n=1}^\infty$ una sucesión que diverge a infinito. Para probar el resultado basta con ver que
+        Ya se sabe que la integral impropia converge, por tanto, considerando la sucesión $\left\{\frac{\pi m}{2}\right\}_{ m=1}^\infty$ se tiene que:
         \begin{equation*}
-            \lim_{ n\rightarrow\infty}\int_{0}^{x_n}\frac{\sin t}{t}\:dt=\frac{\pi}{2}
+            \begin{split}
+                \int_{0}^{\rightarrow\infty}\frac{\sin t}{t}\:dt&=\lim_{m\rightarrow\infty}\int_{0}^{\frac{\pi m}{2}} \frac{\sin u}{u}\: du=\frac{\pi}{2}\\
+                &=\frac{\pi}{2}\\
+            \end{split}
         \end{equation*}
-        %TODO
     \end{proof}
 
     \begin{excer}
@@ -861,24 +863,39 @@
                 \Rightarrow \int_{0}^{\pi}f(t)\:dt&=c_0x+\sum_{ k\in\mathbb{Z}}c_k'e^{ ikx},\quad\forall x\in\mathbb{R}\\
             \end{split}
         \end{equation*}
-        siendo $\left\{c_k'\right\}_{ k\in\mathbb{Z}}$ los coeficientes de Fourier de $F$. Calculemos estos coeficientes, para ello, calculemos los de $f-c_0$ y recordemos que
+        siendo $\left\{c_k'\right\}_{ k\in\mathbb{Z}}$ los coeficientes de Fourier de $F$. Calculemos estos coeficientes, para ello, calculemos los de $f-c_0$ y recordemos que la aplicación que a cada función en $L_1^{2\pi}(\mathbb{R},\mathbb{C})$ envía a sus coeficientes de Fourier es una aplicación lineal inyectiva, en particular por ser lineal basta con calcular los coeficientes de $f$ y $c_0$ por separado y, los coeficientes de $f-c_0$ serán la diferencia de cada uno de estos coeficientes.
+
+        Sean entonces $\left\{c_k \right\}_{ k\in\mathbb{Z}}$ y $\left\{d_k \right\}_{ k\in\mathbb{Z}}$ los coeficientes de Fourier de $f$ y $c_0$ respectivamente, se tiene entonces que
         \begin{equation*}
-            c_k=\frac{\tilde{c_k}}{ik}
+            c_k'=\frac{c_k-d_k}{ik},\quad\forall k\in\mathbb{Z}\backslash\left\{0\right\}
         \end{equation*}
-        Siendo $\left\{\tilde{c_k}\right\}_{ k\in\mathbb{Z}}$ los coeficientes de Fourier de $f-c_0$, donde estos son
+        tomando $c_0=c'\in\mathbb{C}$ una constante. Siendo:
         \begin{equation*}
-            \tilde{c_k}=\left\{
-                \begin{array}{lcr}
-                    c_k & \textup{ si } & k\in\mathbb{Z}\backslash\left\{0\right\}\\
-                    c & \textup{ si } & k=0\\
-                \end{array}
-            \right.
+            \begin{split}
+                d_k&=\int_{-\pi}^\pi c_0e^{ -ikx}\:dx\\
+                &=c_0\cdot\frac{e^{ -ikx}}{-ik}\Big|_{-\pi}^\pi\\
+                &=c_0\cdot\frac{e^{ -ik\pi}-e^{ik\pi}}{-ik}\\
+                &=c_0\cdot\frac{\cos(-k\pi)+i\sin(-k\pi)-\cos(k\pi)-i\sin(k\pi)}{-ik}\\
+                &=c_0\cdot\frac{\cos(k\pi)-i\sin(k\pi)-\cos(k\pi)-i\sin(k\pi)}{-ik}\\
+                &=c_0\cdot\frac{2i\sin(k\pi)}{ik}\\
+                &=0,\quad\forall k\in\mathbb{Z} \\
+            \end{split}
         \end{equation*}
-        Por tanto,
+        Por tanto:
         \begin{equation*}
-            \int_{0}^{x}f(t)\:dt=c+xc_0+\sum_{ k\in\mathbb{Z}\backslash\left\{0\right\}}\frac{c_ke^{ikx}}{ik},\quad\forall x\in\mathbb{R}
+            c_k'=\frac{c_k}{ik},\quad\forall k\in\mathbb{Z}\backslash\left\{0\right\}
         \end{equation*}
-        Veamos ahora que en particular para $x=0$ se tiene que
+        De esta forma, tenemos que:
+        \begin{equation*}
+            \begin{split}
+                F(x)&=\sum_{ k\in\mathbb{Z}}c_k'e^{ ikx}\\
+                &=c+\sum_{k\in\mathbb{Z}\backslash\left\{0\right\}}c_k'e^{ ikx}\\
+                &=c+\sum_{k\in\mathbb{Z}\backslash\left\{0\right\}}\frac{c_ke^{ ikx}}{ik},\quad\forall x\in\mathbb{R} \\
+                \Rightarrow \int_{0}^{x}(f(t)-c_0)\:dt&=c+\sum_{k\in\mathbb{Z}\backslash\left\{0\right\}}\frac{c_ke^{ ikx}}{ik},\quad\forall x\in\mathbb{R} \\
+                \Rightarrow \int_{0}^{x}f(t)\:dt&=c+c_0x+\sum_{k\in\mathbb{Z}\backslash\left\{0\right\}}\frac{c_ke^{ ikx}}{ik},\quad\forall x\in\mathbb{R} \\
+            \end{split}
+        \end{equation*}
+        En particular para $x=0$ se tiene que
         \begin{equation*}
             \begin{split}
                 0&=c+\sum_{ k\in\mathbb{Z}\backslash\left\{0\right\}}\frac{c_k}{ik}\\
@@ -894,7 +911,35 @@
             \sum_{ n=1}^\infty\frac{b_n}{n}
         \end{equation*}
         es convergente y converge a $-ic$.
-        %TODO
+
+        Para la última parte, considere la sucesión $\left\{c_k\right\}_{k}\in\mathbb{Z}$ tal que:
+        \begin{equation*}
+            c_k=\frac{a_k-ib_k}{2},\quad\forall k\in\mathbb{Z}\backslash\left\{0\right\}
+        \end{equation*}
+        tomando
+        \begin{equation*}
+            a_k=0,\quad\forall k\in\mathbb{Z}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            b_k=\frac{1}{\ln k},\quad\forall k\in\mathbb{N},k\geq2
+        \end{equation*}
+        y haciendo:
+        \begin{equation*}
+            b_{-k}=-b_k,\quad\forall k\in\mathbb{N},k\geq2
+        \end{equation*}
+        Afirmamos que no puede existir ninguna función $f\in\mathcal{L}_1^{2\pi}(\mathbb{C})$ tal que tenga como coeficientes de Fourier los escritos anteriormente, ya que en tal caso, se tendría que la serie:
+        \begin{equation*}
+            \sum_{ k=2}^\infty\frac{1}{k\ln k}
+        \end{equation*}
+        sería convergente. Pero, como la integral (haciendo $u=\ln x\Rightarrow du=\frac{dx}{x}$):
+        \begin{equation*}
+            \begin{split}
+                \int_1^{ \infty}\frac{dx}{x\ln x}&=\int_{0}^{\infty}\frac{du}{u}\\
+                &=\infty\\
+            \end{split}
+        \end{equation*}
+        tal serie no puede converger, luego estos coeficientes de Fourier no pueden pertenecer a ninguna función en $\mathcal{L}_1^{2\pi}(\mathbb{C})$.
     \end{proof}
 
     \begin{excer}
@@ -1004,7 +1049,108 @@
             \end{split}
         \end{equation*}
 
-        De (ii): %TODO
+        De (ii): Veamos que se puede integrar respecto a $\alpha$. En efecto, para cada $\nu\in\mathbb{N}$ defina:
+        \begin{equation*}
+            s_\nu(\alpha)=\sum_{n=1}^\nu\frac{2\alpha}{n^2-\alpha^2}
+        \end{equation*}
+        Considere así la sucesión de funciones $\left\{s_\nu\right\}_{\nu=1}^\infty$. Como cada función es integrable en $]0,x[$ (pues el $0<x<1$) y,
+        \begin{equation*}
+            \begin{split}
+                \abs{s_\nu(\alpha)}&=\abs{\sum_{n=1}^\nu\frac{2\alpha}{n^2-\alpha^2}}\\
+                &=\sum_{n=1}^\nu\frac{2\alpha}{n^2-\alpha^2}\\
+                &=\frac{2\alpha}{1-\alpha^2}+\sum_{n=2}^\nu\frac{2\alpha}{n^2-\alpha^2}\\
+                &\leq\frac{2\alpha}{1-\alpha^2}+\sum_{n=2}^\nu\frac{2\alpha}{n^2-1^2}\\
+                &\leq\frac{2\alpha}{1-\alpha^2}+2\alpha\sum_{n=2}^\infty\frac{1}{n^2-1},\quad\forall\nu\in\mathbb{N} \\
+            \end{split}
+        \end{equation*}
+        donde la función $\cf{g}{[0,1[}{\mathbb{R}}$ tal que $\alpha\mapsto \frac{2\alpha}{1-\alpha^2}+2\alpha\sum_{n=2}^\infty\frac{1}{n^2-1}$ es continua en el compacto $[0,x]$ pues
+        \begin{equation*}
+            \sum_{n=2}^\infty\frac{1}{n^2-1}=\frac{3}{4}<\infty
+        \end{equation*}
+        luego integrable en $[0,x]$. Por tanto, del Teorema de Lebesgue se sigue que:
+        \begin{equation*}
+            \begin{split}
+                \lim_{\nu\rightarrow\infty}\int_{0}^x s_\nu(\alpha)\:d\alpha&=\int_0^x\lim_{\nu\rightarrow\infty}s_\nu(\alpha)\:d\alpha\\
+                \Rightarrow \lim_{\nu\rightarrow\infty}\int_{0}^x \sum_{n=1}^\nu\frac{2\alpha}{n^2-\alpha^2}\:d\alpha&=\int_0^x\sum_{ n=1}^\infty\frac{2\alpha}{n^2-\alpha^2}\:d\alpha\\
+            \end{split}
+        \end{equation*}
+        siendo
+        \begin{equation*}
+            \begin{split}
+                \int_{0}^x \sum_{n=1}^\nu\frac{2\alpha}{n^2-\alpha^2}\:d\alpha&=\sum_{n=1}^\nu\int_{0}^x\frac{2\alpha}{n^2-\alpha^2}\:d\alpha,\textup{ tomemos }u=n^2-\alpha^2\Rightarrow du=-2\alpha\:d\alpha \\
+                &=\sum_{n=1}^\nu\int_{n^2}^{n^2-x^2}\frac{2\alpha}{u}\: \frac{du}{-2\alpha}\\
+                &=\sum_{n=1}^\nu\int_{n^2-x^2}^{n^2}\frac{du}{u}\\
+                &=\sum_{n=1}^\nu\ln\abs{u}\Big|_{n^2-x^2}^{n^2}\\
+                &=\sum_{n=1}^\nu\left[\ln\abs{n^2}-\ln\abs{n^2-x^2}\right]\\
+                &=\sum_{n=1}^\nu\left[\ln\abs{\frac{n^2}{n^2-x^2}}\right]\\
+                &=\sum_{n=1}^\nu\ln\frac{n^2}{n^2-x^2}\\
+                &=\sum_{n=1}^\nu\ln\left(\frac{n^2}{n^2-x^2}\right)\\
+                &=\ln\left(\prod_{ n=1}^\nu\frac{n^2}{n^2-x^2}\right)\\
+            \end{split}
+        \end{equation*}
+        Por tanto, como la función $x\mapsto\ln x$ es continua en $]0,\infty[$, se sigue que:
+        \begin{equation*}
+            \ln\left(\prod_{ n=1}^\infty\frac{n^2}{n^2-x^2}\right)=-\int_0^x\sum_{ n=1}^\infty\frac{2\alpha}{n^2-\alpha^2}\:d\alpha
+        \end{equation*}
+        Ahora, si integramos en $[0,x]$ ambos lados de la última igualdad de (i), se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \alpha\pi\cot\alpha\pi&=1+2\alpha^2\sum_{n=1}^{\infty}\frac{1}{\alpha^2-n^2}\\
+                \Rightarrow \pi\cot\pi\alpha&=\frac{1}{\alpha}+\sum_{n=1}^{\infty}\frac{2\alpha}{\alpha^2-n^2}\\
+                \Rightarrow \pi\cot\pi\alpha-\frac{1}{\alpha}&=\sum_{n=1}^{\infty}\frac{2\alpha}{\alpha^2-n^2}\\
+            \end{split}
+        \end{equation*}
+        Ahora, veamos que
+        \begin{equation*}
+            \begin{split}
+                \frac{d}{d\alpha}\left(\ln\left(\frac{\sin \pi\alpha}{\alpha}\right)\right)&=\frac{1}{\frac{\sin \pi\alpha}{\alpha}}\cdot\frac{d}{d\alpha}\left(\frac{\sin \pi\alpha}{\alpha}\right)\\
+                &=\frac{\alpha}{\sin \pi\alpha}\cdot\frac{d}{d\alpha}\left(\alpha^{-1}\sin \pi\alpha\right)\\
+                &=\frac{\alpha}{\sin \pi\alpha}\cdot\left(-\alpha^{-2}\sin\pi\alpha+\pi\alpha^{-1}\cos\pi\alpha\right)\\
+                &=\frac{1}{\alpha\sin \pi\alpha}\cdot\left(-\sin\pi\alpha+\pi\alpha\cos\pi\alpha\right)\\
+                &=-\frac{1}{\alpha}+\pi\cot\pi\alpha\\
+                &=\pi\cot\pi\alpha-\frac{1}{\alpha}\\
+            \end{split}
+        \end{equation*}
+        Luego, por el primer Teorema Fundamental del Cálculo para intervalos abiertos, se sigue que:
+        \begin{equation*}
+            \begin{split}
+                \int_0^x\left(\pi\cot\pi\alpha-\frac{1}{\alpha}\right)\:d\alpha&=\ln\left(\frac{\sin \pi x}{x}\right)-\lim_{\alpha\rightarrow0^+}\ln\left(\frac{\sin \pi\alpha}{\alpha}\right)\\
+                &=\ln\left(\frac{\sin \pi x}{x}\right)-\lim_{\alpha\rightarrow0^+}\ln\left(\pi\frac{\sin \pi\alpha}{\pi\alpha}\right)\\
+                &=\ln\left(\frac{\sin \pi x}{x}\right)-\ln\left(\pi\lim_{\alpha\rightarrow0^+}\frac{\sin \pi\alpha}{\pi\alpha}\right)\\
+                &=\ln\left(\frac{\sin \pi x}{x}\right)-\ln\left(\pi\cdot1\right)\\
+                &=\ln\left(\frac{\sin \pi x}{x}\right)-\ln(\pi)\\
+                &=\ln\left(\frac{\sin \pi x}{\pi x}\right)
+            \end{split}
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \begin{split}
+                \int_0^x\left(\pi\cot\pi\alpha-\frac{1}{\alpha}\right)\:d\alpha&=\int_0^x\sum_{ n=1}^\infty\frac{2\alpha}{n^2-\alpha^2}\:d\alpha\\
+                &=-\int_0^x\sum_{ n=1}^\infty\frac{2\alpha}{\alpha^2-n^2}\:d\alpha\\
+                \Rightarrow \ln\left(\frac{\sin \pi x}{\pi x}\right)&=-\ln\left(\prod_{ n=1}^\infty\frac{n^2}{n^2-x^2}\right)\\
+                &=\ln\left(\prod_{ n=1}^\infty\frac{n^2-x^2}{n^2}\right)\\
+                &=\ln\left(\prod_{ n=1}^\infty\left(1-\frac{x^2}{n^2}\right) \right)\\
+                \Rightarrow \frac{\sin \pi x}{\pi x}&=\prod_{ n=1}^\infty\left(1-\frac{x^2}{n^2}\right)\\
+                \Rightarrow \sin\pi x&=\pi x\prod_{ n=1}^\infty\left(1-\frac{x^2}{n^2}\right)\\
+            \end{split}
+        \end{equation*}
+        para todo $0<x<1$. Sea ahora $-1<x<0$. Como la función seno es impar, entonces:
+        \begin{equation*}
+            \begin{split}
+                \sin(\pi x)&=-\sin(-\pi x)\\
+                &=\pi (-x)\prod_{ n=1}^\infty\left(1-\frac{(-x)^2}{n^2}\right)\\
+                &=-\left[\pi (-x)\prod_{ n=1}^\infty\left(1-\frac{(-x)^2}{n^2}\right)\right] \\
+                &=\pi x\prod_{ n=1}^\infty\left(1-\frac{x^2}{n^2}\right)\\
+            \end{split}
+        \end{equation*}
+        y, si $x=0$ se tiene de forma inmediata que:
+        \begin{equation*}
+            \sin(\pi x)=0=0\cdot\prod_{ n=1}^\infty\left(1\right)=\pi x\prod_{ n=1}^\infty\left(1-\frac{x^2}{n^2}\right)
+        \end{equation*}
+        Por tanto, para todo $x\in]-1,1[$ se cumple:
+        \begin{equation*}
+            \sin\pi x=\pi x\prod_{ n=1}^\infty\left(1-\frac{x^2}{n^2}\right)
+        \end{equation*}
     \end{proof}
 
     \begin{excer}
