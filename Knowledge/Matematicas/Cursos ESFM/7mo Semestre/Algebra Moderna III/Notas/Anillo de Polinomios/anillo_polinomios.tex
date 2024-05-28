@@ -116,6 +116,7 @@
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
 \newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand{\ord}[1]{\ensuremath{\textup{ord}\left(#1\right)}}
 
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
@@ -135,10 +136,6 @@
     \chapter{Anillo de Polinomios}
 
     \section{Series de Potencias}
-
-    \begin{obs}
-        De ahora en adelante todos los anillos se considerarán como anillos connmutativos con identidad, a menos que se establezca lo contrario.
-    \end{obs}
 
     \begin{mydef}
         Sea $A$ un anillo. Denotemos por
@@ -180,20 +177,138 @@
     \end{obs}
 
     \begin{mydef}
-        Sean $A$ y $x$ un objeto tal que $x\notin A$. $x$ es llamado una \textbf{indeterminada para $A$}. Definimos para todo $n\in\mathbb{N}\cup\left\{0\right\}$ y para todo $a\in A$:
+        Sean $A$ y $X$ un objeto tal que $X\notin A$. $X$ es llamado una \textbf{indeterminada para $A$}. Definimos para todo $n\in\mathbb{N}\cup\left\{0\right\}$ y para todo $a\in A$:
         \begin{equation*}
-            ax^n=(\underbrace{0,0,0,...,0,0,0,a}_{{n+1}-\textbf{ésima entrada}},0,...)
+            aX^n=(\underbrace{0,0,0,...,0,0,0,a}_{{n+1}-\textbf{ésima entrada}},0,...)
         \end{equation*}
         Si $A$ tiene identidad, entonces
         \begin{equation*}
-            1x^n=x^n=(\underbrace{0,0,0,...,0,0,0,1}_{{n+1}-\textbf{ésima entrada}},0,...)
+            1X^n=X^n=(\underbrace{0,0,0,...,0,0,0,1}_{{n+1}-\textbf{ésima entrada}},0,...)
         \end{equation*}
-        En caso que $n=1$, $1x^1=x^1=x$ y si $n=0$, $1x^0=x^0=1$ (abusando en este caso de la notación). Se tiene entonces que
+        En caso que $n=1$, $1X^1=X^1=x$ y si $n=0$, $1X^0=X^0=1$ (abusando en este caso de la notación). Se tiene entonces que
         \begin{equation*}
-            x^n\in S_A,\quad\forall n\in\mathbb{N}\cup\left\{0\right\}
+            X^n\in S_A,\quad\forall n\in\mathbb{N}\cup\left\{0\right\}
+        \end{equation*}
+        Ahora, independientemente de si $A$ tiene o no identidad, tenemos que:
+        \begin{equation*}
+            \begin{split}
+                (a_0,a_1,a_2,...,a_k,...)&=(a_0,0,0,...)\\
+                &+(0,a_1,0,...)\\
+                &+(0,0,a_2,...)\\
+                &+(0,0,...,a_k,...)\\
+                &+...\\
+                &=a_0X^0+a_1X+a_2X^2+-...\\
+            \end{split}
+        \end{equation*}
+        Por lo tanto, si $f=(a_0,a_1,a_2,...,a_k,...)$, entonces:
+        \begin{equation*}
+            \begin{split}
+                f&=\sum_{i=0}^\infty a_iX^i\\
+                &=a_0+a_1X+a_2X^2+...+a_kX^k+...\\
+            \end{split}
+        \end{equation*}
+        así pues, podemos decir que una serie es una expresión algebraica de la forma:
+        \begin{equation}
+            f=\sum_{i=0}^\infty a_iX^i=a_0+a_1X+a_2X^2+...+a_kX^k+...
+        \end{equation}
+        donde $a_0:=a_0X^0$.
+
+        Si $f=\sum_{ n=0}^\infty a_nX^n$ y $g=\sum_{ n=0}^\infty b_nX^n$, entonces:
+        \begin{equation*}
+            \begin{split}
+                f+g&=\sum_{n=0}^\infty(a_n+b_n)X^n\\
+                f\cdot g&=\sum_{ n=0}^\infty c_nX^n\\
+            \end{split}
+        \end{equation*}
+        siendo $c_n=\sum_{ k=0}^n a_kb_{ n-k}$ para todo $n\in\mathbb{Z}_{\geq0}$. Con estas operaciones $S_A$ es un anillo, cambiándose el símbolo por $A[[X]]$, en este caso $A[[X]]$ es llamado \textbf{anillo de series de potencias con coeficientes en $A$ en la indeterminada $X$}.
+
+        Si $f=\sum_{ n=0}^\infty a_nX^n\in A[[X]]$, los elementos $a_0,a_1,...\in A$ son llamados \textbf{coeficientes o términos de la serie $f$}. En particular, $a_0$ es llamado \textbf{coeficiente constante} o \textbf{coeficiente lider de la serie $f$}. El cero de $A[[X]]$ es la serie \textbf{serie cero} dada por:
+        \begin{equation*}
+            0=\sum_{ n=0}^\infty a_nX^n,\quad a_n=0\quad\forall n\in\mathbb{Z}_{ \geq0}
         \end{equation*}
     \end{mydef}
 
+    \begin{obs}
+        Una serie de potencias $f\in A[[X]]$ cumple que $f=0$ si y sólo si $a_n=0$ para todo $a_n=0,\forall n\in\mathbb{Z}_{\geq0}$.
 
+        En el caso de que $f$ tenga coeficientes cero, éstos no se expresan dentro de $f$, es decir que no se expresan dentro de la sumatoria de tipo $f=a_0+a_1X+...$.
+    \end{obs}
+
+    \begin{obs}
+        En el caso de que el anillo $A$ tenga identidad, $A[[X]]$ también lo tiene y es la identidad de $A$, a saber:
+        \begin{equation*}
+            1=1+0X+0X^2+...
+        \end{equation*}
+        En tal caso, $1X^n=X^n$ para todo $n\in\mathbb{N}$.
+    \end{obs}
+
+    \begin{obs}
+        Si $n,m\in\mathbb{Z}_{\geq0}$, entonces $X^n,X^m\in A[[X]]$ y,
+        \begin{equation*}
+            X^n\cdot X^m=X^{ n+m}\in A[[X]]
+        \end{equation*}
+    \end{obs}
+
+    \begin{obs}
+        Si $A$ es un anillo conmutativo, entonces $A[[X]]$ también lo es (se verifica de forma inmediata de la definición de producto en $A[[X]]$).
+    \end{obs}
+
+    \begin{mydef}
+        Sea $A$ un anillo. Para cada serie $f=\sum_{ n=0}^\infty a_nX^n\neq0$ en $A[[X]]$ se define el \textbf{orden de $f$}, denotado por $\ord{f}$ como el mínimo entero no negativo $m$ tal que $a_{m}\neq0$. Así, si $f$ es una serie de potencias no cero, entonces:
+        \begin{equation*}
+            f=\sum_{ n=\ord{f}}^\infty a_nX^n
+        \end{equation*}
+    \end{mydef}
+
+    \begin{excer}
+        Sea $A$ un anillo con $1$. Si $f=\sum_{ n=0}^\infty a_nX^n\in A[[X]]$, entonces existe $g=\sum_{ n=0}^\infty b_nX^n$ tal que $\ord{g}=0$ y,
+        \begin{equation*}
+            f=x^{\ord{f}}g
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{propo}
+        Sea $A$ anillo y $f=\sum_{ n=0}^\infty a_nX^n$ y $\sum_{ n=0}^\infty b_nX^n$ dos series de potencias no cero en $A[[X]]$. Entonces:
+        \begin{enumerate}
+            \item $f+g=0$ ó $\ord{f+g}\geq\min\left\{\ord{f},\ord{g}\right\}$.
+            \item $fg=0$ ó $\ord{fg}\geq\ord{f}+\ord{g}$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{propo}
+        Sean $A$ anillo conmutativo con $1$ y $f=\sum_{ n=0}^\infty a_nX^n\in A[[X]]$ una serie de potencias no cero. Entonces $f$ es unidad de $A[[X]]$ (esto es, elemento invertible de $A[[X]]$) si y sólo si $a_0$ (el término constante de $f$) es unidad de $A$.
+    \end{propo}
+
+    \begin{proof}
+        Pendiente.
+    \end{proof}
+
+    \begin{cor}
+        Si $K$ es campo, entonces $f=\sum_{ n=0}^\infty a_nX^n$ en $K[[X]]\backslash\left\{0\right\}$ es unidad si y sólo si $a_0\neq0$.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediata de la proposición anterior y del hecho que las unidades de $K$ son $K\backslash\left\{0\right\}$.
+    \end{proof}
+
+    \begin{cor}
+        Si $K$ es campo y $f=\sum_{ n=0}^\infty a_nX^n\in K[[X]]\backslash\left\{0\right\}$, entonce existe una única serie de potencias $g\in K[[X]]$ invertible tal que $f=x^{\ord{f}}g$.
+    \end{cor}
+
+    \begin{exa}
+        Considere en $\mathbb{R}[[X]]$ la serie de potencias $f=1+X+X^2+...=\sum_{ n=0}^\infty X^n$. Se tiene que $f$ es invertible y su inversa es $1-x\in\mathbb{R}[[X]]$.
+    \end{exa}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
 
 \end{document}
