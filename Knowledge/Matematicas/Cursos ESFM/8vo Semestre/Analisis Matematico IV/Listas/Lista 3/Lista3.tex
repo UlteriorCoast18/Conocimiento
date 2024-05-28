@@ -1,6 +1,7 @@
 \documentclass[12pt]{report}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -1158,7 +1159,13 @@
     \end{excer}
 
     \begin{proof}
-        %TODO
+        Ya se sabe por Fejér-Lebesgue que la serie de Fourier $f$ converge puntualmente c.t.p. en $\mathbb{R}$ en el sentido de Cesáro a $f$.
+
+        Ahora, como la serie de Fourier de $f$ converge en el sentido de Cesáro uniformemente a una función $\cf{g}{\mathbb{R}}{\mathbb{K}}$, al ser $g$ el límite uniforme de funciones continuas en $\mathbb{R}$ (por ser combinaciones lineales de $\sin$ y $\cos$), entonces $g$ es continua en $\mathbb{R}$. En particular, la serie de Fourier de $f$ converge puntualmente en el sentido de Cesáro a $g$ en $\mathbb{R}$.
+
+        Por tanto, de lo anterior se sigue que $f=g$ c.t.p. en $\mathbb{R}$, es decir que $f$ es equivalente a una función continua de $\mathbb{R}$ en $\mathbb{K}$.
+
+        (Nota: \href{https://mathcs.org/analysis/reals/funseq/proofs/uconvcont.html#:~:text=If%20a%20sequence%20of%20functions,is%20also%20continuous%20on%20D.&text=as%20long%20as%20%7Cx0,is%20continuous%20at%20x0}{convergencia uniforme de funciones continuas.})
     \end{proof}
 
     \begin{excer}
