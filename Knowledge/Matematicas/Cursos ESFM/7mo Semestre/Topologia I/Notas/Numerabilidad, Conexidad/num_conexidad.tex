@@ -959,6 +959,168 @@
 
     \begin{proof}
         
+
+        Entonces, para todo $x\in X_1$, tenemos que $T_x=(X_1\times\left\{b\right\})\cup(\left\{x\right\}\times X_2)$ es un conexo.
+
+        Además, para todo $x\in X_1$, $(a,b)\in T_x$ (recordando que $a\in X_1$ es arbitrario fijo), luego $\bigcup_{ x\in X_1}T_x$ es conexo. Veamos que
+        \begin{equation*}
+            \bigcup_{ x\in X_1}T_x=X_1\times X_2
+        \end{equation*}
+        En efecto, sea $(p,q)\in X_1\times X_2$, entonces $(p,q)\in T_p\subseteq\bigcup_{x\in X_1}T_x$.
+    
+        Se sigue entonces que $(X_1\times X_2,\tau_p)$ es conexo.
     \end{proof}
+
+    \begin{excer}
+        Si $\left\{(X_1,\tau_1),...,(X_n,\tau_n)\right\}$ son espacios topológicos conexos, entonces
+        \begin{equation*}
+            X=\prod_{ i=1}^n X_i
+        \end{equation*}
+        dotado de la topología producto es un espacio conexo.
+        
+        \textit{Sugerencia}. Se puede demostrar que $(X_1\times...\times X_{ n-1})\times X_n$ es homeomorfo a $X_1\times...\times X_n$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{propo}
+        Sea $\left\{(X_\alpha,\tau_\alpha)\right\}_{\alpha\in I}$ una familia arbitraria de espacios topológicos y sea
+        \begin{equation*}
+            X=\prod_{\alpha\in I}X_\alpha
+        \end{equation*}
+        Entonces $(X,\tau_p)$ es conexo si y sólo si para todo $\alpha\in I$, $(X_\alpha,\tau_\alpha)$ es un espacio conexo.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Sea $\alpha\in I$ y considere la función $\cf{p_\alpha}{(X,\tau_p)}{(X_\alpha,\tau_\alpha)}$. Esta función es continua y suprayectiva, luego $(X_\alpha,\tau_\alpha)$ es conexo.
+
+        $\Leftarrow):$ Sea $b=(b_\alpha)_{\alpha\in I}\in X$ elemento arbitrario fijo y sea $J=\left\{\alpha_1,...,\alpha_n \right\}\subseteq I$. Definimos
+        \begin{equation*}
+            X_J=\left\{(x_\alpha)_{\alpha\in I}\in X\Big|x_\alpha=b_\alpha \textup{ para }\alpha\notin J \right\}
+        \end{equation*}
+        Se tiene que $X_J\neq\emptyset$ pues $b\in X_J$. Podemos escribir $X_J$ como
+        \begin{equation*}
+            X_J=\prod_{\alpha\in I}Y_\alpha
+        \end{equation*}
+        donde
+        \begin{equation*}
+            Y_\alpha=\left\{
+                \begin{array}{lcr}
+                    \left\{b_\alpha\right\} & \textup{ si } & \alpha\notin J\\
+                    X_\alpha & \textup{ si } & \alpha\in J\\
+                \end{array}
+            \right.
+        \end{equation*}
+        Sea $X'=\prod_{i=1}^\infty X_{\alpha_i}$. Definamos $\cf{\varphi}{(X',\tau_p)}{(X_J,\tau_p)}$ tal que
+        \begin{equation*}
+            (x_{\alpha_1},...,x_{\alpha_n})\mapsto (y_\alpha)_{\alpha\in I}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            y_\alpha=\left\{
+                \begin{array}{lcr}
+                    b_\alpha & \textup{ si } & \alpha\notin J\\
+                    x_\alpha & \textup{ si } & \alpha\in J\\
+                \end{array}
+            \right.
+        \end{equation*}
+        \begin{enumerate}
+            \item Veamos que $\varphi(X')=X_J$, es decir que $\varphi$ es suprayectiva. En efecto, sea $\zeta=(\zeta_{\alpha})_{\alpha\in I}\in X_J$, es decir que si $\alpha\notin J$ se tiene que $\zeta_\alpha=b_\alpha$, luego:
+            \begin{equation*}
+                \begin{split}
+                    \varphi((\zeta_{\alpha_1},...,\zeta_{\alpha_n}))=\zeta
+                \end{split}
+            \end{equation*}
+            \item $\varphi$ es continua. Sea $U=\prod_{\alpha\in I}U_\alpha$ un básico de $(X,\tau_p)$, es decir que $U_\alpha\in\tau_\alpha$ para todo $\alpha\in I$. Tomemos
+            \begin{equation*}
+                U'=U\cap X_J\in {\tau_p}_{ X_J}-\left\{\emptyset \right\}
+            \end{equation*}
+            Luego,
+            \begin{equation*}
+                \begin{split}
+                    U'&=\left(\prod_{\alpha\in I}U_\alpha \right)\cap\left(\prod_{\alpha\in I}Y_\alpha \right)\\
+                    &=\prod_{\alpha\in I}(U_\alpha\cap Y_\alpha)\\
+                \end{split}
+            \end{equation*}
+            Tenemos
+            \begin{equation*}
+                U_\alpha\cap Y_\alpha=\left\{
+                    \begin{array}{lcr}
+                        \left\{b_\alpha\right\} & \textup{ si } & \alpha\notin J\\
+                        U_\alpha & \textup{ si } & \alpha\in J\\
+                    \end{array}
+                \right.,\quad\forall \alpha\in I
+            \end{equation*}
+            Por tanto
+            \begin{equation*}
+                \varphi^{-1}(U')=\prod_{\alpha\in J}U_\alpha\in{\tau_p}_{X'}
+            \end{equation*}
+            luego $\varphi$ es una función continua.
+        \end{enumerate}
+        Por el ejercicio anterior se tiene que $(X',{\tau_p}_{X'})$ es conexo, entonces $(X_J,\tau_p)$ es conexo (por ser $\varphi$ continua y suprayectiva).
+
+        Sea
+        \begin{equation*}
+            \mathcal{F}=\left\{J\subseteq I\Big|J\textup{ es un conjunto finito} \right\}
+        \end{equation*}
+        Para todo $J\in\mathcal{F}$, $X_J$ es conexo por lo probado anteriormente y, además $b\in X_J$. Por lo tanto
+        \begin{equation*}
+            \bigcup_{ J\in\mathcal{F}}X_J=Y
+        \end{equation*}
+        es un conexo en $(X,\tau_p)$. Veamos que
+        \begin{equation*}
+            \Cls{Y}=X
+        \end{equation*}
+        Sea $W=\prod_{\alpha\in I}W_\alpha$ un básico de $\tau_p$ con $W\neq\emptyset$. Se tiene que para todo $\alpha\in I$, $W_\alpha\in\tau_\alpha$ y además existe $K\in\mathcal{F}$ tal que si $\alpha\notin K$, $W_\alpha=X_\alpha$.
+
+        Para $\alpha\in K$, $x_\alpha\in X_\alpha$ y definimos
+        \begin{equation*}
+            y_\alpha=\left\{
+                \begin{array}{lcr}
+                    x_\alpha & \textup{ si } & \alpha\in K\\
+                    b_\alpha & \textup{ si } & \alpha\notin K\\
+                \end{array}
+            \right.,\quad\forall\alpha\in I
+        \end{equation*}
+        Entonces $y=(y_\alpha)_{\alpha\in I}\in X_K\cap W$ lo que implica que $Y\cap W\neq\emptyset$. Luego $\Cls{Y}=X$ y así, $(X,\tau_p)$ es conexo.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico y sea $p\in X$. Tomemos
+        \begin{equation*}
+            \mathcal{C}=\left\{C\subseteq X\Big|C\textup{ es conexo y }p\in C \right\}
+        \end{equation*}
+        tenemos que $\left\{p\right\}\in\mathcal{C}$ y además para todo $C\in\mathcal{C}$, $p\in C$. Por tanto $C_p=\bigcup_{ C\in\mathcal{C}}C$ es un conjunto conexo, el cual llamaremos \textbf{la componente conexa de $p$}.
+    \end{mydef}
+
+    \begin{obs}
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item $C_p$ es el máximo conexo de $X$ que contiene a $p\in X$.
+            \item $C_p$ es un conjunto cerrado.
+            \item Sean $p,q\in X$, entonces si $C_p=C_q$ o $C_p\cap C_q=\emptyset$.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{proof}
+        De 1): es inmediata de la definición.
+
+        De 2): Como $C_p$ es conexo, entonces $\Cls{C_p}$ es conexo, luego por maximalidad $\Cls{C_p}\subseteq C_p$ lo cual implica que $C_p$ es cerrado.
+
+        De 3): Si $C_p\cap C_q\neq\emptyset$ entonces $C_p\cup C_q$ es conexo, pero es tal que contiene a $p$ y $q$, luego
+        \begin{equation*}
+            C_p\subseteq C_p\cup C_q\subseteq C_p\quad\textup{y}C_q\subseteq C_p\cup C_q\subseteq C_q
+        \end{equation*}
+        por tanto, $C_p\cup C_q=C_p=C_q$.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico, definimos sobre $X$ la relación $\sim$ siguiente:
+        \begin{equation*}
+            x\sim y\iff \textup{ no existen }A,B\in\tau\textup{ tales que }A\cap B=\emptyset, A\cup B=X, x\in A\textup{ y }y\in B
+        \end{equation*}
+    \end{mydef}
 
 \end{document}
