@@ -930,7 +930,15 @@
     \end{propo}
 
     \begin{proof}
-        
+        Suponga que $B$ no es conexo. Podemos definir una función $\cf{f}{(B,\tau_B)}{(Y,\tau_D)}$ continua y suprayectiva, donde $Y=\left\{a,b\right\}$. Como $B\subseteq \Cls{A}$ se tiene que:
+        \begin{equation*}
+            \Cls{A}^B=\Cls{A}\cap B=B
+        \end{equation*}
+        Por lo cual $f\left(\Cls{A}^B\right)=f(B)=Y$, por ser $f$ continua,
+        \begin{equation*}
+            Y=f\left(\Cls{A}^B\right)\subseteq\Cls{f(A)}=f(A)\Rightarrow f(A)=Y
+        \end{equation*}
+        Tenemos pues que $\cf{f\big|_A}{(A,\tau_A)}{(Y,\tau_D)}$ es una función continua (por ser reestricción) y suprayectiva. Por ende, $A$ no es conexo\contradiction. Por tanto, $B$ es conexo. 
     \end{proof}
 
     \begin{cor}
@@ -938,7 +946,7 @@
     \end{cor}
 
     \begin{proof}
-        
+        Es inmediato del teorema anterior.
     \end{proof}
 
     \begin{theor}[\textbf{Teorema del valor medio}]
@@ -950,7 +958,7 @@
     \end{theor}
 
     \begin{proof}
-        
+        Suponga que no existe $c\in X$ tal que $f(c)=\gamma$
     \end{proof}
 
     \begin{propo}

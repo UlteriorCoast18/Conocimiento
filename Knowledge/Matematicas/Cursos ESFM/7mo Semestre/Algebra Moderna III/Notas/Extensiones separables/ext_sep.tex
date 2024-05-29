@@ -1332,7 +1332,7 @@
                 H\mapsto E^H
             \end{equation*}
             \item Si $K$ es un campo intermedio de la extensión $E/F$ y $\sigma\in G$, entonces $\sigma(K)$ es un campo intermedio de la extensión $E/F$ y $\Gal{E/\sigma(K)}=\sigma^{-1}\Gal{E/K}\sigma$ ($\sigma(K)$ es llamado el \textbf{conjugado de $K$}).
-            \item Sea $K$ un campo intermedio de la extensión $E/F$. Entonces, $K/F$ es de Galois si y sólo si $\Gal{E(K)}\vartriangleleft G$. Si $K/F$ es normal entonces la función
+            \item Sea $K$ un campo intermedio de la extensión $E/F$. Entonces, $K/F$ es de Galois si y sólo si $\Gal{E/K}\vartriangleleft G$. Si $K/F$ es normal entonces la función
             \begin{equation*}
                 \begin{split}
                     \psi:G&\rightarrow \Gal{K/F}\\
@@ -1664,5 +1664,124 @@
         \end{equation*}
         así, $\varphi$ es epimorfismo. Se sigue que $\Gal{EF/K}\overset{\varphi}{\cong}\Gal{E/K}\times\Gal{F/K}$.
     \end{proof}
+
+    \begin{cor}
+        Sean $E_i/K$ extensiones de Galois finitas con $i\in\natint{1,n}$ donde $G_i$ es el grupo de Galois de la extensión $E_i/K$ para todo $i\in\natint{1,n}$. Si para todo $j\in\natint{2,n}$ se tiene que
+        \begin{equation*}
+            (E_1\cdots E_{ j-1})\cap E_j=K
+        \end{equation*}
+        entonces, $E_1\cdots E_j/K$ es una extensión de Galois finita tal que
+        \begin{equation*}
+            \Gal{E_1\cdots E_n/K}\cong G_1\times\cdot\times G_n
+        \end{equation*}
+    \end{cor}
+
+    \begin{proof}
+        La demostración es por inducción sobre $n$ aplicando la proposición anterior.
+    \end{proof}
+
+    \begin{propo}
+        Sea $E/K$ una extensión de Galois tal que el grupo de Galois de $E/K$ se puede expresar como un producto directo de grupos de la forma $G_1\times\cdot\times G_n$. Entonces, existen $n$ extensiones de Galois finitas $E_1/K,...,E_n/K$ tales que
+        \begin{equation*}
+            \Gal{E_i/K}=G_i
+        \end{equation*}
+        y, para todo $j\in\natint{2,n-1}$:
+        \begin{equation*}
+            (E_1\cdots E_{ j})\cap E_j=K
+        \end{equation*}
+        y
+        \begin{equation*}
+            E=E_1\cdots E_n
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Para cada $i\in\natint{1,n}$ tomemos:
+        \begin{equation*}
+            H_i=G_1\times\cdots\times G_{ i-1}\times\langle e_i\rangle\times\cdots\times G_n
+        \end{equation*}
+        Se tiene que $H_i\vartriangleleft G_1\times\cdots\times G_n$, y $E_i=E^{ H_i}$. Tenemos que las extensiones $E/E_i$, y $E_i/K$ son de Galois finitas tales que:
+        \begin{equation*}
+            \Gal{E_i/K}\cong G/H_i\cong G_i
+        \end{equation*}
+        Además,
+        \begin{equation*}
+            E_1\cap E_2=E^{ H_1}\cap E^{ H_2}=E^{\langle H_1\cup H_2\rangle}=E^G=K
+        \end{equation*}
+        con lo cual $\Gal{E_1E_2/K}\cong G_1\times G_2$. También,
+        \begin{equation*}
+            E_1E_2\cap E_3=E^{ H_1}E^{ H_2}\cap E^{ H_3}=E^{ H_1\cap H_2}\cap E^{ H_3}=E^{\langle H_1\cap H_2,H_3 \rangle}=E^G=K
+        \end{equation*}
+        luego, $\Gal{E_1E_2E_3/K}\cong G_1\times G_2\times G_3$. Por inducción, tenemos que para todo $j\in\natint{2,n}$:
+        \begin{equation*}
+            (E_1\cdots E_{ j-1})\cap E_j=K
+        \end{equation*}
+        y, $E_1\cdots E_j/K$ es de Galois tal que
+        \begin{equation*}
+            \Gal{E_1\cdots E_j/K}\cong G_1\times\cdots\times G_j
+        \end{equation*}
+        En particular,
+        \begin{equation*}
+            \Gal{E\cdots E_n/K}\cong G_1\times\cdots\times G_n=\Gal{E/K}
+        \end{equation*}
+        es decir que $E=E\cdots E_n$.
+    \end{proof}
+
+    Si tenemos una extensión $E/F$ normal y finita, sabemos que al ser normal, $E$ debe ser el campo de descomposición de una familia de polinomios con coeficientes en $F$. Al ser finita, debe ser una cantidad finita de polinomios, por lo que podemos tomar el producto de todos y al final se tiene que $E$ es campo de descomposición de un polinomio.
+
+    Si más aún la extensión $E/F$ es separable, entonces al ser normal y finita, debe tenerse $f$ es separable, es decir que su descomposición en polinomos irreducibles sea tal que cada uno de éstos sea separable, esto es que tenga raíces simples.
+
+    Esto anterior motiva a la siguiente definición.
+
+    \begin{mydef}
+        Sea $F$ un campo y $f(X)\in F(X)\backslash F$. Denotamos por $\overline{F}$ la cerradura algebraica de $F$. Sean $\alpha_1,...,\alpha_n\in\overline{F}$ todas las raíces distintas de $f(X)$ y sea $E$ el campo de descomposición de $f(X)$ sobre $F$, es decir
+        \begin{equation*}
+            E=F(\alpha_1,...,\alpha_m)
+        \end{equation*}
+        Así que, $E/F$ es una extensión normal. Denotemos por
+        \begin{equation*}
+            G=\Aut{F}{E}=\Aut{}{E/F}
+        \end{equation*}
+        $G$ es llamado el \textbf{grupo de automorfismos de $f(X)$ sobre $F$} y en ocasiones se denota por $G(f)$ ó $G_f$. Si $f(X)$ es separable, entonces decimos que $G_f$ es el \textbf{grupo de Galois del polinomio $f(X)$}.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $n\in\mathbb{N}$ y $G<S_n$ (siendo $S_n$ el grupo simétrico de grado $n$). Decimos que $G$ es \textbf{transitivo} si para todo $i,j\in\natint{1,n}$ existe $\sigma\in G$ tal que $\sigma(i)=j$.
+    \end{mydef}
+
+    \begin{theor}
+        Sea $F$ un campo y $f(X)\in F[X]\backslash F$ con $n=\deg(f(X))$. Sea $G=G_f$ el grupo de automorfismos de $f$ sobre $F$. Entonces:
+        \begin{enumerate}
+            \item $G$ es isomorfo a un subgrupo de $S_m$ para algún $m\in\mathbb{N}$.
+            \item Si $f(X)$ es irreducible y separable, entonces $n\divides\abs{G}$ y $G$ es un subgrupo transitivo del grupo simétrico $S_n$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De (i): Consideremos $\alpha_1,...,\alpha_m\in\overline{F}$ las raíces distintas de $f(X)$. Si $\sigma\in G$ entonces $\sigma$ permuta al conjunto $\left\{\alpha_1,...,\alpha_m\right\}$, luego $\sigma$ puede ser considerado como un elemento de $S_m$.
+
+        Definimos:
+        \begin{equation*}
+            \begin{split}
+                \Phi:G&\rightarrow S_m\\
+                \sigma&\mapsto \sigma\big|_{\left\{\alpha_1,...,\alpha_m\right\}}\\
+            \end{split}
+        \end{equation*}
+        es claro que $\Phi$ es un homomorfismo. Sea $\sigma\in G$, entonces
+        \begin{equation*}
+            \begin{split}
+                \sigma\in\ker(\Phi)&\iff\Phi(\sigma)=e \\
+                &\iff\sigma\big|_{\left\{\alpha_1,...,\alpha_m\right\}}=id_{\left\{\alpha_1,...,\alpha_m\right\} } \\
+                &\iff \sigma(\alpha_i)=\alpha_i,\quad\forall i\in\natint{1,m}\\
+                &\iff \sigma(\beta)=\beta,\quad\forall \beta\in E\\
+                &\iff \sigma=id_E\\
+            \end{split}
+        \end{equation*}
+        por tanto, $\ker(\Phi)=\langle e\rangle$. Así, $\cf{\Phi}{G}{S_m}$ es monomorfismo.
+    \end{proof}
+
+    \begin{obs}
+        Notemos que la función $\Phi$ no necesariamente es isomorfismo, ya que todo elemento $\sigma\in G$ sólo permuta a $F$-conjungados, y puede que $f(X)$ sea producto de polinomios irreducibles, luego no todas las raíces de $f(X)$ serán $F$-conjugadas.
+    \end{obs}
 
 \end{document}
