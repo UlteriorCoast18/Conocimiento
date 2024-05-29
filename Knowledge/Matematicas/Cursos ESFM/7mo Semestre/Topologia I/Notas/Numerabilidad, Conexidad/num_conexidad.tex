@@ -846,6 +846,119 @@
         de forma análoga se obtiene que $U_1\cap\Cls{V_1}=\emptyset$. Como $Y$ es conexo entonces $U_1=\emptyset$ o $V_1=\emptyset$, es decir que $Y\subseteq V$ o $Y\subseteq U$.
     \end{proof}
 
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico y $\left\{A_\alpha\right\}_{\alpha\in I}$ una familia de subconjuntos conexos de $X$ tales que
+        \begin{equation*}
+            \bigcap_{\alpha\in I}A_\alpha\neq\emptyset
+        \end{equation*}
+        Entonces $\bigcup_{\alpha\in I}A_\alpha$ es conexo.
+    \end{propo}
 
+    \begin{proof}
+        Sea $A=\bigcup_{\alpha\in I}A_\alpha$. Supongamos que $A$ no es conexo, entonces existe una separación $U,V\in\tau$ de $A$ en $X$. Tomemos $\beta\in I$. Como $A_\beta\subseteq A$ y $A_\beta$ es conexo, entonces por la proposición anterior se tiene que:
+        \begin{equation*}
+            A_\beta\subseteq U\quad\textup{ó}\quad A_\beta\subseteq V
+        \end{equation*}
+        Podemos suponer sin pérdida de generalidad que $A_\beta\subseteq U$. Como $\bigcap_{\alpha\in I}A_\alpha\subseteq A_\beta$, entonces para todo $\gamma\in I$ se tiene que $A_\gamma\cap U\neq\emptyset$, luego por ser cada $A_\gamma$ conexo debe suceder que:
+        \begin{equation*}
+            A_\gamma\subseteq U
+        \end{equation*}
+        para todo $\gamma\in I$. Por tanto:
+        \begin{equation*}
+            A=\bigcup_{\alpha\in I}A_\alpha\subseteq U
+        \end{equation*}
+        así, $A\cap V=\emptyset$\contradiction. Por tanto, $A$ debe ser conexo.
+    \end{proof}
+
+    \begin{propo}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos tales que existe una función continua y suprayectiva $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$. Si $(X_1,\tau_1)$ es conexo, entonces $(X_2,\tau_2)$ también lo es.
+    \end{propo}
+
+    \begin{proof}
+        Sea $A\subseteq X_2$ tal que $A,X_2-A\in\tau_2$. Suponga que $A\neq\emptyset$, para probar que $(X_2,\tau_2)$ es conexo basta con ver que $A=X_2$. En efecto, veamos que como $f$ es suprayectiva entonces $f^{-1}(A)\neq\emptyset$ y, al ser $f$ continua se tiene que
+        \begin{equation*}
+            f^{-1}(A)\in\tau_1
+        \end{equation*}
+        Pero,
+        \begin{equation*}
+            f^{-1}(X_2-A)=X_1-f^{-1}(A)
+        \end{equation*}
+        donde $X_2-A\in\tau_2$, luego $X_1-f^{-1}(A)\in\tau_1$. Por ser $(X_1,\tau_1)$ conexo, al ser $f^{-1}(A)\neq\emptyset$ debe tenerse pues que:
+        \begin{equation*}
+            f^{-1}(A)=X_1
+        \end{equation*}
+        Por tanto
+        \begin{equation*}
+            A=f(f^{-1}(A))=f(X_1)=X_2
+        \end{equation*}
+        lo que prueba el resultado.
+    \end{proof}
+
+    \begin{cor}
+        La propiedad de ser conexo es topológica.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediata del teorema anterior.
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico, y sea $Y=\left\{a,b\right\}$ y $\tau_D=\left\{\emptyset,T,\left\{a\right\},\left\{b\right\} \right\}$. Entonces $(X,\tau)$ conexo si y sólo si no es posible definir una función $\cf{f}{(X,\tau)}{(Y,\tau_D)}$ que sea suprayectiva y continua.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Suponga que se puede definir tal función, entonces por la proposición anterior se seguiría que $(Y,\tau_D)$ es conexo\contradiction, pues $Y=\left\{a\right\}\cup\left\{b\right\}$ siendo $\left\{a\right\},\left\{b\right\}\in\tau_D$ tales que $\left\{a\right\}\cap\left\{b\right\}=\emptyset$. Por tanto, no es posible definir una función con tales propiedades.
+
+        $\Leftarrow):$ Suponga que $(X,\tau)$ no es conexo, entonces existen $U;V\in\tau-\left\{\emptyset\right\}$ tales que
+        \begin{equation*}
+            X=U\cup V\quad\textup{y}\quad U\cap V=\emptyset
+        \end{equation*}
+        defina $\cf{f}{(X,\tau)}{(Y,\tau_D)}$ como sigue:
+        \begin{equation*}
+            f(x)=\left\{
+                \begin{array}{lcr}
+                    a & \textup{ si } & x\in U\\
+                    b & \textup{ si } & x\in V\\
+                \end{array}
+            \right.,\quad\forall x\in X.
+        \end{equation*}
+        se tiene que $f^{-1}(\left\{a\right\})=U$, $f^{-1}(\left\{b\right\})=V$, luego $f$ es continua. Además, por definición $f$ es suprayectiva. Lo anterior prueba la contrapositiva.
+    \end{proof}
+
+    \begin{propo}
+        Sean $(X,\tau)$ un espacio topológico, $A,B\subseteq X$ tales que $A\subseteq B\subseteq \Cls{A}$. Si $A$ es conexo, entonces $B$ es conexo.
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{cor}
+        Sea $(X,\tau)$ es un espacio topológico. Si $A\subseteq X$ es conexo, entonces $\Cls{A}$ es conexo.  
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema del valor medio}]
+        Sea $(X,\tau)$ un espacio conexo, $(Y,\prec)$ un conjunto ordenado y $\cf{f}{(X,\tau)}{(Y,\tau_\prec)}$ una función continua. Si $a,b\in X$ y $\gamma\in Y$ es tal que:
+        \begin{equation*}
+            f(a)\prec \gamma\prec f(b)
+        \end{equation*}
+        entonces existe $c\in X$ tal que $f(x)=\gamma$.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{propo}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios conexos. Entonces $(X_1\times X_2,\tau_p )$ es un espacio conexo.
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
 
 \end{document}
