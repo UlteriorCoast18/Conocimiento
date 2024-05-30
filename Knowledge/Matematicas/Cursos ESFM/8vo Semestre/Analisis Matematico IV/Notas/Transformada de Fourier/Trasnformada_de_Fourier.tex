@@ -830,6 +830,8 @@
         es continua, nula en el infinito pero no es integrable en $\mathbb{R}$.
     \end{obs}
 
+    \renewcommand{\theenumi}{\arabic{enumi}}
+
     \begin{theor}[\textbf{Teorema de Inversión de Fourier}]
         Si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$ es tal que $\fou{f}\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$, entonces
         \begin{equation*}
@@ -839,7 +841,108 @@
     \end{theor}
 
     \begin{proof}
-        
+        Se probará por casos:
+        \begin{enumerate}
+            \item Suponga por el momento hallada una sucesión de Dirac $\left\{\rho_\nu\right\}_{\nu=1}^\infty$ en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ que cumpla las condiciones:
+            \begin{enumerate}
+                \item $\fou{\rho_\nu}\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$, luego también $\fou^*{\rho_\nu}\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$.
+                \item $\fou^*{\fou{\rho_\nu}}=\fou{(\fou^*{\rho_\nu})}=(2\pi)^n\rho_\nu$ c.t.p. en $\mathbb{R}^n$.
+            \end{enumerate}
+            Sea $h_\nu=\fou{\rho_\nu}$ para todo $\nu\in\mathbb{N}$. Por (ii), $\rho_\nu$ es una función acotada, luego $f*\rho_\nu$ existe en todo punto de $\mathbb{R}^n$. Se tiene
+            \begin{equation*}
+                \begin{split}
+                    f*\rho_\nu(x)&=\int_{\mathbb{R}^n}\rho_\nu(y)f(x-y)\:dy\\
+                    &=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}\fou^*{h_\nu}(y)f(x-y)\:dy\\
+                \end{split}
+            \end{equation*}
+            será necesario aplicar $\fou^*{\cdot}$ a la función de $y$ tal que $y\mapsto f(x-y)$. Sea $s(y)=f(-y)$, para todo $y\in\mathbb{R}^n$. Entonces,
+            \begin{equation*}
+                \begin{split}
+                    \fou{s}(y)&=\int_{\mathbb{R}^n}e^{ -i\pint{u}{y}}s(u)\:du\\
+                    &=\int_{\mathbb{R}^n}e^{i\pint{u}{y}}f(u)\:du\\
+                    &=\int_{\mathbb{R}^n}e^{-i\pint{u}{-y}}f(u)\:du\\
+                    &=\fou{f}(-y)\\
+                \end{split}
+            \end{equation*}
+            sea ahora $r(y)=f(x-y)=f(-(y-x))=s(y-x)$. Por (ii) de las propiedades de la transformación de Fourier:
+            \begin{equation*}
+                \fou{r}(y)=e^{ -i\pint{x}{y}}\fou{s}(y)=e^{ -i\pint{x}{y}}\fou{f}(y),\quad\forall y\in\mathbb{R}^n
+            \end{equation*}
+            Así pues,
+            \begin{equation*}
+                \fou*{r}(y)=\fou{r}(-y)=e^{-i\pint{x}{-y}}\fou{f}(y)=e^{ i\pint{x}{y}}\fou{f}(y),\quad\forall y\in\mathbb{R}^n
+            \end{equation*}
+            Por el Teorema de transferencia (aplicado a $\fou^*{}$) se sigue que:
+            \begin{equation*}
+                \begin{split}
+                    f*\rho_\nu(x)&=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}\fou^*{h_\nu}(y)f(x-y)\:dy\\
+                    &=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}\fou^*{h_\nu}(y)r(y)\:dy\\
+                    &=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}h_\nu\fou^*{r}(y)\:dy\\
+                    &=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}h_\nu e^{i\pint{x}{y}}\fou{f}(y)\:dy\\
+                \end{split}
+            \end{equation*}
+            Todo lo anterior es válido bajo la sola hipótesis de que $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Suponga también que $\fou{f}\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Entonces,
+            \begin{equation*}
+                \lim_{ \nu\rightarrow\infty}h_\nu(y)e^{ i\pint{x}{y}}\fou{f}(y)=e^{ i\pint{x}{y}}\fou{f}(y)
+            \end{equation*}
+            y
+            \begin{equation*}
+                \abs{h_\nu(y)e^{ i\pint{x}{y}}\fou{f}(y)}\leq\fou{f}(y),\quad\forall y\in\mathbb{R}^n
+            \end{equation*}
+            donde la función de la derecha es integrable e independiente de $\nu\in\mathbb{N}$. Por Lebesgue se sigue pues que
+            \begin{equation*}
+                \lim_{ \nu\rightarrow\infty}\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}h_\nu(y)e^{ i\pint{x}{y}}\fou{f}(y)\:dy=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}e^{ i\pint{x}{y}}\fou{f}(y)\:dy,\quad\forall x\in\mathbb{R}^n
+            \end{equation*}
+            Lo que realmente estamos diciendo es que
+            \begin{equation*}
+                \lim_{ \nu\rightarrow\infty}f*\rho_\nu(x)=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}e^{ i\pint{x}{y}}\fou{f}(y)\:dy,\quad\forall x\in\mathbb{R}^n
+            \end{equation*}
+            puntualmente en $\mathbb{R}^n$. Pero $\left\{f*\rho_\nu \right\}_{\nu=1}^\infty$ converge en promedio a $f$, entonces debe tenerse que
+            \begin{equation*}
+                f(x)=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}e^{ i\pint{x}{y}}\fou{f}(y)\:dy
+            \end{equation*}
+            para casi todo $x\in\mathbb{R}^n$.
+            \item Queda por construir una sucesión de Dirac tal que cumpla (i) y (ii). La función $x\mapsto e^{-\sum_{ k=1}^n x_k^2}$ es no negativa y
+            \begin{equation*}
+                \int_{\mathbb{R}^n}e^{ -\sum_{ k=1}^n x_k^2}\:dx_1\cdots dx_n=\left(\int_{-\infty}^\infty e^{ -t^2}\:dt\right)^n=\pi^{ n/2}
+            \end{equation*}
+            defina
+            \begin{equation*}
+                \rho(x)=\frac{1}{\pi^{ n/2}}e^{-\sum_{ k=1}^n x_k^2},\quad\forall x\in\mathbb{R}^n
+            \end{equation*}
+            Esta función satisface que
+            \begin{equation*}
+                \int_{\mathbb{R}^n}\rho=1
+            \end{equation*}
+            Se sabe que la sucesión $\left\{\rho_\nu\right\}_{\nu=1}^\infty$ dada por:
+            \begin{equation*}
+                \rho_\nu=\nu^n \rho_(\nu x)=\frac{\nu^n}{\pi^{ n/2}}e^{-\sum_{ k=1}^n \nu^2 x_k^2},\quad\forall x\in\mathbb{R}^n
+            \end{equation*}
+            es una sucesión de Dirac en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Recuerde que si $a>0$, la transformada de Fourier de $t\mapsto e^{ -at^2}$ es
+            \begin{equation*}
+                t\mapsto\sqrt{\frac{\pi}{a}}e^{-\frac{t^2}{4a}}
+            \end{equation*}
+            para todo $t\in\mathbb{R}$. Entonces,
+            \begin{equation*}
+                \begin{split}
+                    \fou{\rho_\nu}(x)&=\frac{\nu^n}{\pi^{ n/2}}e^{ -\sum_{ k=1}^n \frac{x_k^2}{4\nu^2}}\\
+                    &=e^{ -\sum_{ k=1}^n \frac{x_k^2}{4\nu^2}},\quad\forall x\in\mathbb{R}^n \\
+                \end{split}
+            \end{equation*}
+            En particular, $\fou{\rho_\nu}$ es integrable en $\mathbb{R}^n$. Además, por la parte (iv) de las propieaddes de la trasnformación de Fourier
+            \begin{equation*}
+                \begin{split}
+                    \fou^*{(\fou{\rho_\nu})}(x)&=\fou{(\fou^*{\rho_\nu})}(x)\\
+                    &=\fou{(\fou{\rho_\nu})}(-x)\\
+                    &=\fou{(\fou{\rho_\nu})}(x)\\
+                    &=\fou{\left[e^{ -\sum_{ k=1}^n \frac{x_k^2}{4\nu^2}} \right]}\\
+                    &=\left[\frac{\pi}{\frac{1}{4\nu^2}}\right]^{ n/2}e^{-\sum_{ k=1}^n \frac{x_k^2}{4(\frac{1}{4\nu^2})}}\\
+                    &=(2\pi)^n\cdot\frac{\nu^n}{\pi^{n/2}}e^{ -\sum_{ k=1}^n \nu^2 x_k^2}\\
+                    &=(2\pi)^n\rho_\nu(x),\quad\forall x\in\mathbb{R}^n\\
+                \end{split}
+            \end{equation*}
+            lo que demuestra la existencia de tal sucesión de Dirac.
+        \end{enumerate}
     \end{proof}
 
     \begin{propo}
@@ -853,5 +956,123 @@
         \end{equation*}
         en $\mathbb{R}^n$. Por tanto, $f=0$ c.t.p. en $\mathbb{R}^n$.
     \end{proof}
+
+    \begin{propo}
+        Sean $f,g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Se supone que alguna de $\fou{f}$ y/o $\fou{g}$ es integrable en $\mathbb{R}^n$. Entonces se cumple la \textbf{Identidad de Parseval}.
+        \begin{equation*}
+            \int_{\mathbb{R}^n}\fou{f}\conj{\fou{g}}=(2\pi)^n\int_{\mathbb{R}^n}f\conj{g}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Suponga que $\fou{f}$ es integrable en $\mathbb{R}^n$. Siendo $\fou{g}$ medible acotada, el primer lado tiene sentido. Se tiene que
+        \begin{equation*}
+            \begin{split}
+                \conj{\fou{g}(x)}&=\conj{\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}g(y)\:dy}\\
+                &=\int_{\mathbb{R}^n}e^{i\pint{x}{y}}\conj{g(y)}\:dy\\
+                &=\fou^*{\conj{g}}(x)\\
+            \end{split}
+        \end{equation*}
+        Así pues
+        \begin{equation*}
+            \begin{split}
+                \int_{\mathbb{R}^n}\fou{f}\conj{\fou{g}}&=\int_{\mathbb{R}^n}\fou{f}\fou^*{\conj{g}}\\
+                &=\int_{\mathbb{R}^n}\fou^*{\fou{f}}\cdot\conj{g}\\
+                &=(2\pi)^n\int_{\mathbb{R}^n}f\conj{g}\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \section{Fórmula de inversión en $\mathbb{R}$}
+
+    \begin{obs}
+        Se afirma que
+        \begin{equation*}
+            \int_{0}^{\rightarrow\infty}\frac{\sin ax}{x}\:dx=\frac{\pi}{2}
+        \end{equation*}
+        y de la paridad de $x\mapsto\frac{\sin ax}{x}$ se concluye que
+        \begin{equation*}
+            \int_{ \rightarrow-\infty}^{\rightarrow\infty}\frac{\sin ax}{x}\:dx=\pi,\quad\forall a>0.
+        \end{equation*}
+    \end{obs}
+
+    \begin{proof}
+        En efecto, veamos que
+        \begin{equation*}
+            \begin{split}
+                \int_0^R\frac{\sin ax}{x}\:dx&=\int_0^{aR}\frac{\sin y}{\frac{y}{a}}\:\frac{dy}{a}\\
+                &=\int_0^R \frac{\sin y}{y}\:dy\\
+            \end{split}
+        \end{equation*}
+        de donde se sigue el resultado. Si $a<0$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \int_0^R\frac{\sin ax}{x}\:dx&=-\int_0^R\frac{\sin (-a)x}{x}\:dx\longrightarrow -\frac{\pi}{2}\\
+            \end{split}
+        \end{equation*}
+        Se concluye que
+        \begin{equation*}
+            \int_0^{ \rightarrow\infty}\frac{\sin ax}{x}\:dx=\left\{
+                \begin{array}{lcr}
+                    \frac{\pi}{2} & \textup{ si } & a>0\\
+                    0 & \textup{ si } & a=0\\
+                    -\frac{\pi}{2} & \textup{ si } & a<0\\
+                \end{array}
+            \right.
+        \end{equation*}
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema de inversión en $\mathbb{R}$}]
+        Sean $f\in\mathcal{L}_1(\mathbb{R},\mathbb{C})$. Se supone que $f$ cumple la condición de Dini en cierto punto $x\in\mathbb{R}$, es decir, existe $\delta>0$ tal que
+        \begin{equation*}
+            \int_{-\delta}^\delta\abs{\frac{f(x+t)-f(x)}{t}}\:dt<\infty
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \begin{split}
+                f(x)&=\lim_{ R\rightarrow\infty}\frac{1}{2\pi}\int_{ -R}^{ R}e^{ixy}\fou{f}(y)\:dy\\
+                &=\lim_{ R\rightarrow\infty}\frac{1}{2\pi}\int_{ -R}^{ R}e^{ixy}\:dy\int_{-\infty}^\infty e^{ -iyz}f(z)\:dz \\
+            \end{split}
+        \end{equation*}
+    \end{theor}
+    
+    \begin{proof}
+        Se tiene lo siguiente:
+        \begin{equation*}
+            \begin{split}
+                \int_{ -R}^{ R}e^{ixy}\:dy\int_{-\infty}^\infty e^{ -iyt}f(t)\:dt&=\int_{ -R}^{ R}\:dy\int_{-\infty}^\infty e^{ixy}e^{ -iyt}f(t)\:dt\\
+                &=\int_{ -R}^{ R}\:dy\int_{-\infty}^\infty e^{ -iy(t-x)}f(t)\:dt\\
+                &=\int_{ -R}^{ R}\:dy\int_{-\infty}^\infty f(t)\cos(y(t-x))\:dt+i\int_{ -R}^{ R}\:dy\int_{-\infty}^\infty f(t)\sin(y(t-x))\:dt\\
+            \end{split}
+        \end{equation*}
+        como $y\mapsto\int_{-\infty}^\infty f(t)\sin(y(t-x))\:dt$ es impar, se tiene que:
+        \begin{equation*}
+            \int_{ -R}^{ R}\:dy\int_{-\infty}^\infty f(t)\sin(y(t-x))\:dt=0
+        \end{equation*}
+        y, como $y\mapsto\int_{-\infty}^\infty f(t)\cos(y(t-x))\:dt$ es par,
+        \begin{equation*}
+            \int_{ -R}^{ R}\:dy\int_{-\infty}^\infty f(t)\cos(y(t-x))\:dt=2\int_{0}^{ R}\:dy\int_{-\infty}^\infty f(t)\cos(y(t-x))\:dt
+        \end{equation*}
+        Si se prueba que
+        \begin{equation*}
+            f(x)=\lim_{ R\rightarrow\infty}\frac{1}{\pi}\int_{0}^{ R}\:dy\int_{-\infty}^\infty f(t)\cos(y(t-x))\:dt
+        \end{equation*}
+        se habrá probado que
+        \begin{equation*}
+            f(x)=\frac{1}{2\pi}\int_{ \rightarrow-\infty}^{\rightarrow\infty}\:dy\int_{ -\infty}^{ -\infty}f(t)\cos(y(t-x))\:dt
+        \end{equation*}
+        (que es más de lo que se pide probar). Sea
+        \begin{equation*}
+            J(R)=\frac{1}{\pi}\int_0^R\:dy\int_{-\infty}^\infty f(t)\cos(y(t-x))\:dt,\quad\forall R>0
+        \end{equation*}
+        Se debe probar que
+        \begin{equation*}
+            \lim_{ R\rightarrow\infty}J(R)=f(x)
+        \end{equation*}
+    \end{proof}
+
+    \begin{obs}
+        Recuerde que la condición de Dini se cumple, por ejemplo, si $f$ tiene derivada por la derecha y la izquierda en ese punto.
+    \end{obs}
 
 \end{document}

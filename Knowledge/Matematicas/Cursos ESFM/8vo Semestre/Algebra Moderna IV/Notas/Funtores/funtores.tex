@@ -124,6 +124,7 @@
 \newcommand{\Iso}[3]{\ensuremath{\textup{I}_{\textup{SO}_{#1}}\left(#2,#3\right)}}
 \newcommand{\SO}[1]{\ensuremath{\textup{SO}\left(#1\right)}}
 \newcommand{\Quo}[1]{\ensuremath{\textup{Quo}\left(#1 \right)}}
+\newcommand{\Fun}[2]{\ensuremath{\textup{Fun}\left(#1,#2\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -1556,5 +1557,120 @@
             G^{op}\circ F^{op}=(G\circ F)^{op}
         \end{equation*}
     \end{proof}
+
+    %TODO
+
+    \renewcommand{\theenumi}{\arabic{enumi}}
+
+    \begin{propo}
+        Sean $\cf{F}{\mathcal{A}}{\mathcal{C}}$ y $\cf{G}{\mathcal{B}}{\mathcal{C}}$ dos funtores. Entonce existe un isomorfismo de categorías entre $(F\downarrow G)^{op}$ y $G^{op}\downarrow F^{op}$.
+    \end{propo}
+
+    \begin{proof}
+        Primeor analicemos los objetos y morfismos entre ambas categorías.
+        \begin{enumerate}
+            \item $\Obj{(F\downarrow G)^{op}}=\Obj{F\downarrow G}$.
+            Por definición de la categoría coma, $(A,f,B)\in\Obj{F\downarrow G}$ donde $A\in\Obj{\mathcal{A}}$, $B\in\Obj{\mathcal{B}}$ y $\cf{f}{F(A)}{G(B)}$ esto es, $f\in\Hom{\mathcal{C}}{F(A)}{G(B)}$.
+
+            Entonces, si $(A,f,B)\in\Obj{(F\downarrow G)^{op}}=\Hom{\mathcal{C}^{op}}{G(B)}{F(A)}=\Hom{\mathcal{C}^{op}}{G(B)^{op}}{F(A)^{op}}$ lo cual ocurre si y sólo si $f\in\Hom{\mathcal{C}^{op}}{G(B)}{F(A)}$, más aún, $A\in\Obj{\mathcal{A}}$, $B\in\Obj{\mathcal{B}}$ y $f^{op}\in\Hom{\mathcal{C}^{op}}{G(B)}{F(A)}$, siendo $(B,f^{op},A)\in\Obj{G^{op}\downarrow F^{op}}$. 
+
+            \item Analicemos los morfismos. Veamos al conjunto de morfismos de $(F\downarrow G)^{op}$.
+            \begin{equation*}
+                \begin{split}
+                    \Hom{(F\downarrow G)^{op}}{(A_1,f_1,B_1)}{(A_2,f_2,B_2)}&=\Hom{(F\downarrow G)}{(A_2,f_2,B_2)}{(A_1,f_1,B_1)}\\
+                \end{split}
+            \end{equation*}
+            Entonces,
+            \begin{equation*}
+                \begin{split}
+                    (a,b)^{op}\in\Hom{(F\downarrow G)^{op}}{(A_1,f_1,B_1)}{(A_2,f_2,B_2)}&\iff (a,b)\in\Hom{(F\downarrow G)}{(A_2,f_2,B_2)}{(A_1,f_1,B_1)}\\
+                    &\iff a\in\Hom{\mathcal{A}}{A_2}{A_1}=\Hom{\mathcal{A}^{op}}{A_1}{A_2}\\
+                    &\textup{y }b\in\Hom{\mathcal{B}}{B_2}{B_1}=\Hom{\mathcal{B}^{op}}{B_1}{B_2}\\
+                    &\iff a^{op}\in\Hom{\mathcal{A}^{op}}{A_2}{A_1}\textup{ y }b^{op}\in\Hom{\mathcal{B}^{op}}{B_2}{B_1}\\
+                \end{split}
+            \end{equation*}
+            En particular se tiene el diagrama conmutativo:
+            \begin{equation*}
+                \begin{array}[pos]{lcccr}
+                    & & F(a) & & \\
+                    & F(A_2) & \longrightarrow & F(A_1) & \\
+                    f_2 & \downarrow & & \downarrow & f_1\\
+                    & G(B_2) & \longrightarrow & G(B_1) & \\
+                    & & G(b) & & \\
+                \end{array}
+            \end{equation*}
+            es decir,
+            \begin{equation*}
+                \begin{split}
+                    f_1\circ F(a)=G(b)\circ f_2&\iff (f_1\circ F(a))^{op}=(G(b)\circ f_2)^{op}\\
+                    &\iff (F(a))^{op}\circ^{op}f_1^{op}=f_2^{op}\circ^{op}(G(b))^{op}\\
+                    &\iff F^{op}(a^{op})\circ^{op}f_1^{op}=f_2^{op}\circ^{op}G^{op}(b^{op})\\
+                \end{split}
+            \end{equation*}
+            Por tanto, el diagrama siguiente es conmutativo:
+            \begin{equation*}
+                \begin{array}[pos]{lcccr}
+                    & & G^{op}(b^{op}) & & \\
+                    & G^{op}(B_1) & \longrightarrow & G^{op}(B_2) & \\
+                    f_1^{op} & \downarrow & & \downarrow & f_2^{op}\\
+                    & F^{op}(A_1) & \longrightarrow & F^{op}(A_2) & \\
+                    & & F^{op}(a^{op}) & & \\
+                \end{array}
+            \end{equation*}
+            Por tanto, $(b^{op},a^{op})\in\Hom{(G^{op}\downarrow F^{op})}{(B_1,f_1^{op},A_1)}{(B_2,f_2^{op},A_2)}$. Así
+            $(a,b)^{op}\in\Hom{(F\downarrow G)^{op}}{(A_1,f_1,B_1)}{(A_1,f_1,B_1)}$ si y sólo si $(b^{op},a^{op})\in\Hom{(G^{op}\downarrow F^{op})}{(B_1,f_1^{op},A_1)}{(B_2,f_2^{op},A_2)}$.
+        \end{enumerate}
+        Con lo anterior, sea $\cf{H}{(F\downarrow G)^{op}}{(G^{op}\downarrow F^{op})}$ dado como:
+        \begin{equation*}
+            H((A,f,B))=(B,f^{op},A),\quad\forall (A,f,B)\in\Obj{(F\downarrow G)^{op}}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            H((a,b)^{op})=(b^{op},a^{op}),\quad\forall (a,b)^{op}\textup{ morfismo de la categoría }(F\downarrow G)^{op}
+        \end{equation*}
+        Definimos también $\cf{K}{(G^{op}\downarrow F^{op})}{(F\downarrow G)^{op}}$ tal que
+        \begin{equation*}
+            K((B,f^{op},A))=(A,f,B),\quad\forall (B,f^{op},A)\in\Obj{(G^{op}\downarrow F^{op})}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            H((b^{op},a^{op}))=(a,b)^{op},\quad\forall (b^{op},a^{op})\textup{ morfismo de la categoría }(G^{op}\downarrow F^{op})
+        \end{equation*}
+        Procederemos a probar que $K$ y $H$ son funtores. Sean $A\in\Obj{\mathcal{A}}$ y $B\in\Obj{\mathcal{B}}$ arbitrarios y $\cf{f}{F(A)}{G(B)}$. Entonces
+        \begin{equation*}
+            \begin{split}
+                H(1_{(A,f,B)^{op}})&=H((1_A,1_B)^{op})\\
+                &=H((1_A,1_B)^{op})\\
+                &=(1_B^{op},1_A^{op})\\
+                &=1_{(B,f^{op}.A)}\\
+            \end{split}
+        \end{equation*}
+        (de forma análoga con $K$). Sean ahora $(a,b)^{op}\in\Hom{(F\downarrow G)^{op}}{(A_1,f_1,B_1)}{(A_2,f_2,B_2)}$ y $(c,d)^{op}\in\Hom{(F\downarrow G)^{op}}{(A_2,f_2,B_2)}{(A_3,f_3,B_3)}$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                H((c,d)^{op}\circ^{op}(a,b)^{op})&=H(((a,b)\circ (c,d))^{op})\\
+                &=H((a\circ c,b\circ d)^{op})\\
+                &=((b\circ d)^{op},(a\circ c)^{op})\\
+                &=(d^{op}\circ^{op}b^{op},c^{op}\circ^{op}a^{op})\\
+                &=(d^{op},c^{op})\circ(b^{op},a^{op})\\
+                &=H((c,d)^{op})\circ H((a,b)^{op})\\
+            \end{split}
+        \end{equation*}
+        (de forma análoga se cumple algo similar para $K$). Por tanto, $H$ y $K$ son funtores. De la definición de $H$ y $K$ es claro que
+        \begin{equation*}
+            H\circ K=1_{G^{op}\downarrow F^{op}}\quad\textup{y}\quad K\circ H=1_{(F\downarrow G)^{op}}
+        \end{equation*}
+        luego, las categorías $(F\downarrow G)^{op}$ y $G^{op}\downarrow F^{op}$ son isomorfas.
+    \end{proof}
+
+    \section{Categorías de Funtores}
+
+    \begin{propo}
+        Sean $\mathcal{I}$ y $\mathcal{C}$ dos categorías. Si $\mathcal{I}$ es categoría pequeña, entonces los funtores $\cf{F}{\mathcal{I}}{\mathcal{C}}$ y las transformaciones naturales entre los mismos forman una categoría, la cual es llamada \textbf{categoría de funtores} denotada por $\Fun{\mathcal{I}}{\mathcal{C}}$, donde
+        \begin{enumerate}
+            \item Los objetos de $\Fun{\mathcal{I}}{\mathcal{C}}$ son todos los funtores $F$ de $\mathcal{I}$ en $\mathcal{C}$.
+            \item Los morfismos entre dos funtores $\cf{F,G}{\mathcal{I}}{\mathcal{C}}$, son las transformaciones naturales $\cf{\eta}{F}{G}$.
+        \end{enumerate}
+    \end{propo}
 
 \end{document}
