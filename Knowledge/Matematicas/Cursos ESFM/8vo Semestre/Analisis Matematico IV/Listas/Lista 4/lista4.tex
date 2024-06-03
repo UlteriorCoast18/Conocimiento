@@ -126,6 +126,7 @@
 \newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
 \newcommand{\natint}[1]{\ensuremath{\left[\!\left[#1\right]\!\right]}}
 \newcommand{\fou}[1]{\ensuremath{\mathcal{F}#1}}
+\newcommand{\diag}[1]{\ensuremath{\left(#1\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -170,7 +171,7 @@
         \begin{equation*}
             \fou{f}(0)>\abs{\fou{f}(x)}
         \end{equation*}
-        \textit{Sugerencia.} Una vez que ha demostrado $\abs{\fou{f}(x)}\leq\fou{f}(0)$, para todo $x\in\mathbb{R}^n$, Para demostrar la desigualdad estricta para $x\neq0$ proceda por reducción al absurdo y use el Problema 2 de la Lista 6 de Análisis Matemático II. 
+        \textit{Sugerencia.} Una vez que ha demostrado $\abs{\fou{f}(x)}\leq\fou{f}(0)$, para todo $x\in\mathbb{R}^n$, Para demostrar la desigualdad estricta para $x\neq0$ proceda por reducción al absurdo y use el Problema 2 de la Lista 6 de Análisis Matemático II.
     \end{excer}
 
     \begin{proof}
@@ -186,8 +187,69 @@
             \end{equation*}
             \textit{Sugerencia.} Muestre que
             \begin{equation*}
-                \abs{\frac{x\sin\lambda x}{x^2+a^2}}\underset{\sim}{x\rightarrow\infty}\abs{\frac{\sin\lambda x}{x}}
+                \abs{\frac{x\sin\lambda x}{x^2+a^2}}\underset{x\rightarrow\infty}{\sim}\abs{\frac{\sin\lambda x}{x}}
             \end{equation*}
+            Para probar la existencia de la integral impropia use los criterios de Abel.
+            \item Recuerde que la función $x\mapsto (2a)/(x^2+a^2)$ es la transformada de Fourier de la función $x\mapsto e^{-a\abs{x}}$. Usando el teorema de inversión de Fourier, \textbf{demuestre} que
+            \begin{equation*}
+                \int_0^{\infty}\frac{\cos\lambda x}{x^2+a^2}\:dx=\frac{\pi}{2a}e^{ -a\abs{\lambda}}
+            \end{equation*}
+            \item Usando el inciso (ii), calcule la integral impropia
+            \begin{equation*}
+                \int_0^{\rightarrow\infty}\frac{x\sin\lambda x}{x^2+a^2}\:dx
+            \end{equation*}
+            \textit{Sugerencia.} Para $\lambda\neq0$ defina
+            \begin{equation*}
+                \Phi(\lambda)=\int_0^{\rightarrow\infty}\frac{\cos\lambda x}{x^2+a^2}\:dx
+            \end{equation*}
+            \textbf{Calcule} $\Phi'(\lambda)$ primero suponiendo $\lambda>\lambda_0$, donde $\lambda_0>0$ es arbitrario fijo, de forma análoga para $\lambda<0$ y finalmente para $\lambda=0$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $H$ una matriz simétrica real $n\times n$ positiva definida, es decir, la forma cuadrática $\pint{x}{Hx}$ sobre $\mathbb{R}^n$ es positiva definida. Sea $\cf{f}{\mathbb{R}^n}{\mathbb{R}}$ la función
+        \begin{equation*}
+            f(x)=e^{ -\pint{Hx}{x}},\quad\forall x\in\mathbb{R}^n
+        \end{equation*}
+        \textbf{Demuestre} que $f$ es integrable y que
+        \begin{equation*}
+            \fou{f}(x)=\frac{\pi^{ n/2}}{\left(\det H\right)^{ 1/2}}e^{ -\frac{1}{4}\pint{H^{-1}x}{x}},\quad\forall x\in\mathbb{R}^n
+        \end{equation*}
+        
+        \textit{Sugerencia.} $f$ es medible. Para ver que es integrable, pruebe que $\pint{Hx}{x}\geq m\norm{x}^2$, donde
+        \begin{equation*}
+            m=\min_{ x\in S} \left\{\pint{Hx}{x} \right\}>0
+        \end{equation*}
+        con $S=\left\{x\in\mathbb{R}^n\Big|\norm{x}=1 \right\}$. Se sabe de álgebra que existe una matriz ortogonal $U$ tal que $U^{-1}HU=\diag{\lambda_1,...,\lambda_n}$, donde $\lambda_1,...,\lambda_n$ son números estrictamente positivos. En la integral $\fou{f}(x)=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}e^{ -\pint{Hx}{x}}\:dy$ haga el cambio de variable $y=Uz$ siendo tal que $\abs{\det U}=0$, $\pint{Ur}{Us}=\pint{r}{s}$ (y lo análogo para $U^{-1}$) y observe que $\diag{1/\lambda_1,...,1/\lambda_n}=U^{-1}H^{-1}U$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Recuerde que si $f=\chi_{[-a,a]}$, entonces
+        \begin{equation*}
+            \fou{f}(x)=\sqrt{\frac{\pi}{2}}\frac{\sin ax}{x},\quad\forall x\neq0
+        \end{equation*}
+        \textbf{Deduzca} la fórmula
+        \begin{equation*}
+            \int_{ -\infty}^{\infty}\left(\frac{\sin ax}{x} \right)^2\:dx=\pi a
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item 
         \end{enumerate}
     \end{excer}
 

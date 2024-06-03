@@ -493,6 +493,19 @@
         Note que todo espacio precompacto es numerablemente compacto.
     \end{obs}
 
+    \begin{lema}
+        Toda función continua de un espacio compacto en un Hausdorff es perfecta.
+    \end{lema}
+
+    \begin{proof}
+        Sea $\cf{f}{X}{Y}$ una función continua entre los espacios $(X,\tau)$ y $(Y,\sigma)$ siendo $(X,\tau)$ compacto y $(Y,\sigma)$ Hausdorff. Veamos que es perfecta. En efecto, hay que ver que $f$ es cerrada y que cada fibra es compacta en $X$.
+        \begin{itemize}
+            \item \textbf{$f$ es cerrada.} En efecto, sea $F\subseteq X$ cerrado, como el espacio $(X,\tau)$ es compacto, entonces $F$ es compacto en $X$, así $f(F)$ es compacto en $Y$, el cual es Hausdorff, luego $f(F)$ es cerrado. Por tanto, $f$ es cerrada.
+            \item Sea $y\in Y$, debemos probar que $f^{-1}(y)$ es compacto en $X$. En efecto, como $f$ es continua, se tiene que $f^{-1}(y)=f^{-1}(\left\{y\right\})$ es cerrado en $X$, que al ser compacto se sigue que es compacto en $X$.
+        \end{itemize}
+        Por los dos incisos anteriores se sigue el resultado.
+    \end{proof}
+
     \begin{propo}
         Sean $G$ un grupo compacto, $\cf{\varphi}{G}{G'}$ un homomorfismo continuo de $G$ sobre $G'$, $H'$ un subgrupo de $G'$ y $H=\varphi^{-1}(H')$. Entonces,
         \begin{enumerate}
@@ -501,14 +514,6 @@
             \item Si $H'$ es precompacto, entonces $H$ también lo es.
         \end{enumerate}
     \end{propo}
-
-    \begin{lema}
-        Toda función continua de un espacio compacto en un Hausdorff es perfecta.
-    \end{lema}
-
-    \begin{proof}
-        %TODO
-    \end{proof}
 
     \begin{proof}
         Más adelante se probará que $\varphi$ es abierto (el resultado es muy relevante y aún no se puede probar totalmente dadas las herramientas actuales), pero en este momento lo tomaremos como un hecho. En partcular, $\varphi\big|_H$ es abierto: luego, si $U$ es un abierto en $H$ y $V$ es un abierto en $G$ tal que
@@ -556,7 +561,11 @@
     \end{obs}
 
     \begin{proof}
-        
+        Sea $G$ un grupo totalmente acotado y $H$ un subgrupo de $G$ discreto. Probaremos que $H$ es finito. En efecto, como $H$ es discreto, entonces el conjunto $\left\{e_G\right\}$ es un abierto que contiene a $e_G$, luego por ser $G$ totalmente acotado, existe $F\subseteq G$ finito para el cual
+        \begin{equation*}
+            G=F\cdot\left\{e_G\right\}=F
+        \end{equation*}
+        es decir que $G$ es finito de donde se sigue que $H$ debe ser finito.
     \end{proof}
 
     Note que todo grupo compacto es totalmente acotado. Pues si $G$ es compacto y $U$ es una vecindad de $e_G$, entonces $\left\{gU \right\}_{ g\in G}$ es una cubierta abierta de $G$, luego por ser compacto existen $g_1,...,g_n$ tales que $G$ está contenido en la unión de la familia $\left\{g_iU \right\}_{ i=1}^n$. Por tanto, tomando $F=\left\{g_1,...,g_n \right\}$ se sigue que $G=F\cdot U$, es decir que $G$ es totalmente acotado.

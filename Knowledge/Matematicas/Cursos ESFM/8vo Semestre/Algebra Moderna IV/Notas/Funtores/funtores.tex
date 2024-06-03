@@ -1666,11 +1666,164 @@
     \section{Categorías de Funtores}
 
     \begin{propo}
-        Sean $\mathcal{I}$ y $\mathcal{C}$ dos categorías. Si $\mathcal{I}$ es categoría pequeña, entonces los funtores $\cf{F}{\mathcal{I}}{\mathcal{C}}$ y las transformaciones naturales entre los mismos forman una categoría, la cual es llamada \textbf{categoría de funtores} denotada por $\Fun{\mathcal{I}}{\mathcal{C}}$, donde
+        Sean $\mathcal{I}$ y $\mathcal{C}$ dos categorías. Si $\mathcal{I}$ es categoría pequeña, entonces los funtores $\cf{F}{\mathcal{I}}{\mathcal{C}}$ y las transformaciones naturales entre los mismos forman una categoría, la cual es llamada \textbf{categoría de funtores} denotada por $\Fun{\mathcal{I}}{\mathcal{C}}$ (también denotado por $\mathcal{C}^{\mathcal{I}}$), donde
         \begin{enumerate}
             \item Los objetos de $\Fun{\mathcal{I}}{\mathcal{C}}$ son todos los funtores $F$ de $\mathcal{I}$ en $\mathcal{C}$.
             \item Los morfismos entre dos funtores $\cf{F,G}{\mathcal{I}}{\mathcal{C}}$, son las transformaciones naturales $\cf{\eta}{F}{G}$.
+            \item Existe una transformación natural identidad, para cada $F\in\Obj{\Fun{\mathcal{I}}{\mathcal{C}}}$, se define
+            \begin{equation*}
+                \forall i\in\Obj{\mathcal{I}}, (1_F)_i=1_{F(i)}
+            \end{equation*}
+            \item Composición vertical para transformaciones natruales.
+            \begin{equation*}
+                \forall i\in\Obj{\mathcal{I}}, (\alpha\circ\beta)_i=\alpha_i\circ\beta_i
+            \end{equation*}
         \end{enumerate}
     \end{propo}
+
+    \begin{proof}
+        Para probar que $\Fun{\mathcal{I}}{\mathcal{C}}$ es una categoría, basta con demostrar que la clase de morfismos entre dos objetos es un conjunto.
+
+        En efecto, sean $\cf{F,G}{\mathcal{I}}{\mathcal{C}}$ arbitrarios, entonces notemos que
+        \begin{equation*}
+            \Hom{\Fun{\mathcal{I}}{\mathcal{C}}}{F}{G}=\Nat{F}{G}=\mathcal{C}^{\mathcal{I}}(F,G)
+        \end{equation*}
+        Notemos que
+        \begin{equation*}
+            \bigcup_{ i\in\Obj{\mathcal{I}}}\Hom{\mathcal{C}}{F(i)}{G(i)}
+        \end{equation*}
+        es un conjunto. Sea $\cf{\alpha}{F}{G}$ una transformación natural arbitraria, dado que para cada
+        \begin{equation*}
+            i\in\Obj{\mathcal{I}},\cf{\alpha_i}{F(i)}{G(i)}
+        \end{equation*}
+        podemos ver a $\alpha$ como un mapeo
+        \begin{equation*}
+            \cf{\alpha}{\Obj{\mathcal{I}}}{\bigcup_{ i\in\Obj{\mathcal{I}}}\Hom{\mathcal{C}}{F(i)}{G(i)} }
+        \end{equation*}
+        esto determina que la clase de transformaciones natruales es un subconjunto de
+        \begin{equation*}
+            \Obj{\mathcal{I}}\times \bigcup_{i\in\Obj{\mathcal{I}}}\Hom{\mathcal{C}}{F(i)}{G(i)}
+        \end{equation*}
+        el cual es un conjunto ya que $\mathcal{I}$ es categoría pequeña, luego $\Nat{F}{G}$ es un conjunto.
+    \end{proof}
+
+    \begin{exa}
+        Sea $\mathcal{C}$ una categoría pequeña, el funtor $\cf{F}{\mathcal{C}^{op}}{\Cat{Set}}$ se llama \textbf{prehaz} y a la categoría $\Fun{\mathcal{C}^{op}}{\Cat{Set}}$ se le conoce como la \textbf{categoría de prehaces}.
+    \end{exa}
+
+    \begin{exa}
+        Sea $\Cat{2}$ la categoría discreta con dos objetos. Supongamos que estos objetos son $\left\{*,\diamond\right\}$. Entonces, para cualquier categoría $\mathcal{C}$, la categoría $\Fun{\Cat{2}}{\mathcal{C}}$ es isomorfa a la categoría producto $\mathcal{C}\times\mathcal{C}$.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, note que para cada funtor $\cf{F}{\Cat{2}}{\mathcal{C}}$ está determinado únicamente por dos objetos $D_F, C_F\in\Obj{\mathcal{C}}$, pues
+        \begin{equation*}
+            F(*)=C_F\quad\textup{y}\quad F(\diamond)=D_F
+        \end{equation*}
+        y para cada transformación natrual $\cf{\eta}{F}{G}$ está determinada por dos morfismos
+        \begin{equation*}
+            \cf{\eta_*}{C_F}{D_G}\quad\textup{y}\quad\cf{\eta_\diamond}{D_F}{D_G}
+        \end{equation*}
+        Ahora, como siempre existe un morfismo identidad en $\Cat{2}$, no existen diagramas no triviales, luego no se le dan condiciones extras a $\eta_*$ y $\eta_\diamond$. Sea $\cf{F}{\Fun{\Cat{2}}{\mathcal{C}}}{\mathcal{C}\times\mathcal{C}}$ el funtor dado por:
+        \begin{equation*}
+            V(F)=(C_F,D_F)\quad\textup{y}\quad V(\eta)=(\eta_*,\eta_\diamond)
+        \end{equation*}
+        para cada funtor $\cf{F,G}{\Cat{2}}{\mathcal{C}}$ y $\cf{\eta}{F}{G}$ es transformación natural.
+    \end{proof}
+
+    \begin{propo}
+        Sea $\mathcal{I}$ una categoría pequeña y $\mathcal{C}$ una categoría arbitraria. Tomemos $\cf{F,G}{\mathcal{I}}{\mathcal{C}}$ dos funtores, entonces la transformación nautral $\cf{\eta}{F}{G}$ es un isomorfismo en $\Fun{\mathcal{I}}{\mathcal{C}}$ si y sólo es un isomorfismo natural.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Supongamos que $\eta$ es un isomorfismo en $\Fun{\mathcal{I}}{\mathcal{C}}$. Entonces, existe $\cf{\xi}{G}{F}$ transformación nautral tal que
+        \begin{equation*}
+            \xi\circ\eta=1_F\quad\textup{y}\quad\eta\circ\xi=1_G
+        \end{equation*}
+        en particular, para cada objeto $i\in\Obj{\mathcal{I}}$:
+        \begin{equation*}
+            \xi_i\circ\eta_i=(\xi\circ\eta)_i=(1_F)_i=1_{F(i)}
+        \end{equation*}
+        y de forma análoga $\eta_i\circ\xi_i=1_{G(i)}$. Entonces, $\eta$ es un isomorfismo natural.
+
+        $\Leftarrow):$ Suponga que $\eta$ es un isomorfismo natural. Considere $\cf{\eta^{-1}}{G}{F}$ el cual es una transformación natural (se probó anteriormente), luego se tiene que
+        \begin{equation*}
+            \eta^{-1}\circ\eta=1_F\quad\textup{y}\quad\eta\circ\eta^{-1}=1_G
+        \end{equation*}
+        así, $\eta$ es isomorfismo.
+    \end{proof}
+
+    \begin{propo}
+        Sea $\mathcal{I}$ una categoría pequeña y $\mathcal{C}$ una categoría puntuada. Entonces, la categoría $\Fun{\mathcal{I}}{\mathcal{C}}$ es puntuada.
+    \end{propo}
+
+    \renewcommand{\theenumi}{\arabic{enumi}}
+
+    \begin{proof}
+        Sea $C_0$ un objeto cero en $\mathcal{C}$. Afirmamos que el funtor $\cf{\Delta_{C_0}}{\mathcal{I}}{\mathcal{C}}$ constante $C_0$ es un objeto cero en $\Fun{\mathcal{I}}{\mathcal{C}}$.
+
+        En efecto, sea $\cf{F}{\mathcal{I}}{\mathcal{C}}$ un funtor arbitrario.
+        \begin{enumerate}
+            \item Se define $\cf{\varphi}{\Delta_{C_0}}{F}$ formado por lo súnicos morfismos $\cf{\varphi}{C_0}{F(i)}$ para cada $i\in\Obj{\mathcal{I}}$ (pues $C_0$ es objeto inicial). Afirmamos que $\varphi$ es transformación natural. En efecto, sea $f\in\Hom{\mathcal{I}}{i}{j}$ con $i,j\in\Obj{\mathcal{I}}$ arbitrario.
+            \begin{equation*}
+                \begin{array}{rcccl}
+                    & C_0 & \underset{\longrightarrow}{\varphi_i} & F(i) &\\
+                    1_{C_0} & \downarrow & & \downarrow & F(f) \\
+                    & C_0 & \overset{\longrightarrow}{\varphi_j} & F(j) &\\
+                \end{array}
+            \end{equation*}
+            hay que ver que el diagrama conmuta. En efecto, notemos que
+            \begin{equation*}
+                \cf{\varphi_j}{C_0}{F(j)}
+            \end{equation*}
+            y
+            \begin{equation*}
+                \cf{F(f)\circ\varphi_i}{C_0}{F(j)}
+            \end{equation*}
+            como $C_0$ es objeto inicial, entonces debe tenerse que
+            \begin{equation*}
+                \varphi_j\circ 1_{C_0}=\varphi_j=F(f)\circ\varphi_i
+            \end{equation*}
+            luego el diagrama anterior conmuta.
+
+            \item Se define $\cf{\psi}{F}{\Delta_{C_0}}$ formado por los únicos morfismos $\cf{\psi_i}{F}{C_0}$ (pues $C_0$ es objeto final). De forma análoga se concluye que $\psi$ es transformación natural y es la única entre $F$ y $\Delta_{C_0}$.
+        \end{enumerate}
+        Por los dos incisos anteriores, $\Delta_{C_0}$ es objeto inicial y final, es decir que es objeto cero. Luego, $\Fun{\mathcal{I}}{\mathcal{C}}$ admite un objeto cero, lo que quiere decir que es puntuada.
+    \end{proof}
+
+    \begin{propo}
+        Sea $\mathcal{B}$ una categoría pequeña y $\mathcal{C}$ una categoría arbitraria. Entonces, existe un isomorfismo entre $\Fun{\mathcal{B}}{\mathcal{C}}^{op}$ y $\Fun{\mathcal{B}^{op}}{\mathcal{C}^{op}}$.
+    \end{propo}
+
+    \begin{proof}
+        Antes, usaremos la siguiente notación:
+        \begin{enumerate}
+            \item Denotamos para cualquier morfismo $\cf{\alpha}{F}{G}$ en $\Fun{\mathcal{B}}{\mathcal{C}}$ el correspondiente morfismo en $\Fun{\mathcal{B}}{\mathcal{C}}^{op}$ por $\cf{\alpha^{\overline{op}}}{G}{F}$.
+            \item Denotamos por $\cf{\alpha^{op}}{G^{op}}{F^{op}}$ a la correspondiente transformación natural dual.
+            \item Denotamos a la composición en $\Fun{\mathcal{B}}{\mathcal{C}}^{op}$ por $\circ^{op}$.
+            \item Denotamos por $\circ_{\mathcal{C}}$ (respectivamente, $\circ_{\mathcal{C}}^{op}$) a la composición en la categoría $\mathcal{C}$ (respectivamente en $\mathcal{C}^{op}$).
+            \item Denotamos por $\bullet$ (resp. $\circ$) a la composición en la categoría $\Fun{\mathcal{B}^{op}}{\mathcal{C}^{op}}$ (resp. $\Fun{\mathcal{B}}{\mathcal{C}}$).
+        \end{enumerate}
+
+        Con todo lo anterior, definimos el funtor $\cf{T}{\Fun{\mathcal{B}}{\mathcal{C}}^{op}}{\Fun{\mathcal{B}^{op}}{\mathcal{C}^{op}}}$ dada por
+        \begin{equation*}
+            T(F)=F^{op}\quad\textup{y}\quad T(\alpha^{\overline{op}})=\alpha^{op}
+        \end{equation*}
+        para cualesquiera $\cf{G,F}{\mathcal{B}}{\mathcal{C}}$ funtores y $\cf{\alpha}{F}{G}$ transformación nautral.
+
+        También se define al funtor $\cf{S}{\Fun{\mathcal{B}^{op}}{\mathcal{C}^{op}}}{\Fun{\mathcal{B}}{\mathcal{C}}^{op}}$ dado por
+        \begin{equation*}
+            S(U)=U^{op}\quad\textup{y}\quad S(\beta)=(\beta^{op})^{\overline{op}}
+        \end{equation*}
+        para cualesquiera $\cf{U,V}{\mathcal{B}^{op}}{\mathcal{C}^{op}}$ funtores y $\cf{\beta}{U}{V}$ transformación natural.
+
+        Consideremos $\cf{F,G,H}{\mathcal{B}}{\mathcal{C}}$ funtores y $\cf{\alpha}{F}{G}$ y $\cf{\beta}{G}{H}$ transformaciones naturales.
+
+        Entonces, para todo $B\in\Obj{\mathcal{B}}$ se tiene
+        \begin{equation*}
+            (\beta\circ\alpha)^{op}=\alpha^{op}\bullet\beta^{op}
+        \end{equation*}
+        
+    \end{proof}
 
 \end{document}
