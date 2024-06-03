@@ -1,0 +1,194 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\norm[1]{\ensuremath{\|#1\|}}
+\newcommand\ora[1]{\ensuremath{\vec{#1}}}
+\newcommand\pint[2]{\ensuremath{\langle#1| #2\rangle}}
+\newcommand\conj[1]{\ensuremath{\overline{#1}}}
+\newcommand{\N}[2]{\ensuremath{\mathcal{N}_{#1}\left(#2\right)}}
+\newcommand{\natint}[1]{\ensuremath{\left[\!\left[#1\right]\!\right]}}
+\newcommand{\fou}[1]{\ensuremath{\mathcal{F}#1}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Lista Ejercicios Análisis Matemático IV}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En est a parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Lista 4}
+    
+    \renewcommand{\theenumi}{\roman{enumi}}
+
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item Sea $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Defina $\cf{P}{\mathbb{R}^n}{\mathbb{R}}$ como:
+            \begin{equation*}
+                P(x_1,...,x_n)=e^{ -\sum_{ k=1}^n \abs{x_k}},\quad\forall x\in\mathbb{R}^n
+            \end{equation*}
+            Fije $\nu\in\mathbb{N}$, \textbf{demuestre} la fórmula:
+            \begin{equation*}
+                \int_{\mathbb{R}^n}\fou{f}(x)P\left(\frac{x}{\nu}\right)\:dx=(2\nu)^n\int_{\mathbb{R}^n}\frac{f(x_1,...,x_n)}{(x+\nu^2x_1^2)\cdots(x+\nu^2x_n^2)}\:dx_1\cdots dx_n
+            \end{equation*}
+            \item \textbf{Deduzca} que si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})\cap\mathcal{L}_{\infty}(\mathbb{R}^n,\mathbb{C})$ y $\fou{f}\geq0$, entonces $\fou{f}\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$.
+            
+            \textit{Sugerencia.} Aplique el teorema de Beppo-Levi.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Se supone que $f(x)>0$, para todo $x\in\mathbb{R}^n$. \textbf{Pruebe} que si $x\neq0$, entonces
+        \begin{equation*}
+            \fou{f}(0)>\abs{\fou{f}(x)}
+        \end{equation*}
+        \textit{Sugerencia.} Una vez que ha demostrado $\abs{\fou{f}(x)}\leq\fou{f}(0)$, para todo $x\in\mathbb{R}^n$, Para demostrar la desigualdad estricta para $x\neq0$ proceda por reducción al absurdo y use el Problema 2 de la Lista 6 de Análisis Matemático II. 
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+    
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item Sean $a>0$ y $\lambda\in\mathbb{R}$. \textbf{Pruebe} que la función $x\mapsto (\cos \lambda x)/(x^2+a^2)$ es integrable en $[0,\infty[$. \textbf{Muestre} que si $\lambda\neq0$, la función $x\mapsto (x\sin \lambda x)/(x^2+a^2)$ no es integrable en $[0,\infty[$, pero existe la integral impropia
+            \begin{equation*}
+                \int_0^{\rightarrow\infty}\frac{x\sin\lambda x}{x^2+a^2}\:dx
+            \end{equation*}
+            \textit{Sugerencia.} Muestre que
+            \begin{equation*}
+                \abs{\frac{x\sin\lambda x}{x^2+a^2}}\underset{\sim}{x\rightarrow\infty}\abs{\frac{\sin\lambda x}{x}}
+            \end{equation*}
+        \end{enumerate}
+    \end{excer}
+
+\end{document}

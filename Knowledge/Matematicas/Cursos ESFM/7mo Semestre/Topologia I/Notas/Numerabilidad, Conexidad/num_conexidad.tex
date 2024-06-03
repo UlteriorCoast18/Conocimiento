@@ -1135,6 +1135,130 @@
     \end{mydef}
 
     \begin{proof}
+        Hay que probar que se cumplen tres condiciones:
+        \begin{itemize}
+            \item \textbf{$\sim$ es reflexiva}: En efecto, para todo $x\in X$ se tiene que $x\sim x$.
+            \item \textbf{$\sim$ es transitiva}. En efecto, si $x\sim y$ entonces no es posible que $y\nsim x$ (por la definición de $\sim$), por ende $y\sim x$.
+            \item \textbf{$\sim$ es transitiva}. Sean $x,y,z\in X$ tales que $x\sim y$ y $y\sim z$. Procederemos por contradicción, suponga que $x\nsim z$, luego existen dos abiertos $U,V\in\tau$ disjuntos tales que
+            \begin{equation*}
+                x\in U\quad\textup{y}\quad z\in V
+            \end{equation*}
+            con $U\cup V=X$. Si $y\in U$ entonces se tendría que $y\nsim z$ y, si $y\in V$ entonces $x\nsim y$. Ambos casos llegan a una contradicción. Por tanto, debe suceder que $x\sim z$.
+        \end{itemize}
+        Por los tres incisos, $\sim$ es una relación de equivalencia.
+    \end{proof}
+
+    \begin{obs}
+        Denotamos por $[x]$ a los elementos del conjunto cociente $X/\sim$. $[x]$ será llamado una \textbf{cuasi-componente de $(X,\tau)$}. 
+    \end{obs}
+
+    \begin{propo}
+        Sean $(X,\tau)$ espacio topológico y $x\in X$, entonces
+        \begin{equation*}
+            [x]=\bigcap\left\{A\subseteq X\Big|x\in A\textup{ es tal que $A$ es abierto y cerrado}\right\}
+        \end{equation*}
+        En particular el conjunto $[x]$ es cerrado en $(X,\tau)$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $A\subseteq X$ tal que $x\in A$ y $A,X-A\in\tau$. Veamos que $[x]\subseteq A$. En efecto, si $y\in [x]$ se tiene que $x\sim y$. Pero
+        \begin{equation*}
+            X=A\dot{\cup}(X-A)
+        \end{equation*}
+        Como $x\in A$ entonces no puede ser que $y\in X-A$ pues en tal caso se tendría que $x\nsim y$. Por ende, $y\in A$. Así, $[x]\subseteq A$.
+
+        Sea $y\in\bigcap\left\{A\subseteq X\Big|x\in A\textup{ es tal que $A$ es abierto y cerrado}\right\}$. Suponga que $y\nsim x$, entonces existen $U,V\in\tau$ tales que $U\cap V=\emptyset$, $U\cup V=X$ y
+        \begin{equation*}
+            x\in U\quad\textup{y}\quad y\in V
+        \end{equation*}
+        Luego $U,V=X-U\in\tau$, donde $x\in U$. Se sigue pues que $y\in U$\contradiction. Por tanto, $x\sim y$.
+    \end{proof}
+
+    \begin{propo}
+        Cada componente está contenida en una cuasi-componente.
+    \end{propo}
+
+    \begin{proof}
+        Sea $x\in X$ y considere $C_x$, veamos que $C_x\subseteq [x]$. En efecto, sea $A\subseteq X$ tal que $x\in A$ con $A,X-A\in\tau$. Como $C_x$ es un conexo y $x\in C_x$ entonces $C_x\cap A\neq\emptyset$, luego $C_x\subseteq A$.
+
+        Por tanto, de la proposición anterior se sigue que $C_x\subseteq [x]$.
+    \end{proof}
+
+    \begin{exa}
+        Para cada $n\in\mathbb{N}$ defina $I_n=\left\{\frac{1}{n}\right\}\times[0,1]$. Tomemos
+        \begin{equation*}
+            X=\left\{(0,0),(0,1) \right\}\cup\bigcup_{ n\in\mathbb{N}}I_n
+        \end{equation*}
+        Se tiene que $X\subseteq\mathbb{R}^2$ tomando a $(\mathbb{R}^2,\tau_u)$. Las componentes de $(X,{\tau_u}_X)$ son $\left\{(0,0)\right\}$, $\left\{(0,1)\right\}$ y para todo $n\in\mathbb{N}$, $I_n$. Las cuasi-componentes son $\forall n\in\mathbb{N}$ $I_n$ y $\left\{(0,0),(0,1) \right\}$.
+    \end{exa}
+
+    \begin{proof}
+        La parte de las componentes es inmediata. Para las cuasicomponentes, afirmamos que $(0,0)\sim(0,1)$. En efecto, suponga que $(0,0)\nsim (0,1)$, entonces existen $U,V\in{\tau_u}_X$ tales que $U\cap V=\emptyset$, $U\dot{\cup}V=X$ con $(0,0)\in U$ y $(0,1)\in V$.
+
+        Como $U$ es abierto, entonces existe $\varepsilon>0$ tal que $B((0,0),\varepsilon)\subseteq U$, luego...
+        %TODO 
+    \end{proof}
+
+    \begin{theor}
+        Si $(X,\tau)$ es compacto y $T_2$, entonces cada cuasi-componente es conexa.
+    \end{theor}
+
+    \begin{proof}
+        Luego se hará la demostración del resultado.
+    \end{proof}
+
+    \begin{lema}
+        Sea $(X,\tau)$ un espacio compacto y $T_2$. Sean $A\subseteq X$ cerrado y $x\in X-A$. Si para cada $y\in A$ existen $U_y$ y $V_y$ elementos de $\tau$ tales que
+        \begin{equation*}
+            x\in U_y\quad\textup{y}\quad y\in V_y
+        \end{equation*}
+        con $U_y\cap V_y=\emptyset$ y $U_y\cup V_y=X$, entonces existen $U,V\in\tau$ tales que $U\cap V=\emptyset$, $U\cup V=X$ con
+        \begin{equation*}
+            x\in U\quad\textup{y}\quad A\subseteq V
+        \end{equation*}
+    \end{lema}
+
+    \begin{proof}
+        Como $A\subseteq X$ es cerrado y $(X,\tau)$ es compacto, entonces $A$ es compacto. Para $y\in A$ existen $U_y,V_y\in\tau$ tales que
+        \begin{equation*}
+            x\in U_y\quad\textup{y}\quad y\in V_y
+        \end{equation*}
+        con $U_y\cap V_y=\emptyset$ y $U_y\cup V_y=X$. Entonces
+        \begin{equation*}
+            A\subseteq\bigcup_{ y\in A}V_y
+        \end{equation*}
+        luego $\left\{V_y\right\}_{ y\in A}$ forma una cubierta abierta de $A$. Por ser $A$ compacto existen $y_1,...,y_n\in A$ tales que 
+        \begin{equation*}
+            A\subseteq \bigcup_{ i=1}^n V_{ y_i}
+        \end{equation*}
+        Sean
+        \begin{equation*}
+            U=\bigcap_{ i=1}^n U_{ y_i}\quad\textup{y}\quad V=\bigcup_{ i=1}^n V_{ y_i}
+        \end{equation*}
+        Se tiene que $x\in U$, $A\subseteq V$. Además, $U\cap V=\emptyset$ (por construcción). Veamos que
+        \begin{equation*}
+            U\cup V=X
+        \end{equation*}
+        En efecto, sea $z\in X$. Se tienen dos casos:
+        \begin{itemize}
+            \item $z\in U_{ y_i}$ para todo $i\in\natint{1,n}$, entonces $z\in U$, luego $z\in U\cup V$.
+            \item Existe $i\in\natint{1,n}$ tal que $z\notin U_{ y_i}$, luego como $X=U_{ y_i}\cup V_{ y_i}$ debe suceder que $z\in V_{ y_i}$, lo cual implica que $z\in V\subseteq U\cup V$. 
+        \end{itemize}
+        Por tanto, $z\in U\cup V$. Así, $X=U\cup V$.
+    \end{proof}
+
+    \begin{lema}
+        Sean $A,B\subseteq X$ cerrados con $A\cap B=\emptyset$. Si dados $a\in A$ y $b\in B$ existen $U,V\in\tau$ tales que
+        \begin{equation*}
+            a\in U\quad\textup{y}\quad b\in V
+        \end{equation*}
+        con $U\cap V=\emptyset$ y $U\cap V=X$, entonces existen $M,N\in\tau$ con $M\cap N=\emptyset$ con $M\cup N=X$ siendo tales que
+        \begin{equation*}
+            A\subseteq M\quad\textup{y}\quad B\subseteq N
+        \end{equation*}
+    \end{lema}
+
+    \begin{proof}
         
     \end{proof}
 
