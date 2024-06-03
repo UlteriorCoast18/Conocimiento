@@ -140,7 +140,7 @@
     
     \chapter{Transformación de Fourier}
     
-    La transformada de Fourier de una función de $\mathbb{R}^n$ en $\mathbb{C}$ generaliza en cierta forma la noción de coeficietes de Fourier de funciones periódicas
+    La transformada de Fourier de una función de $\mathbb{R}^n$ en $\mathbb{C}$ generaliza en cierta forma la noción de coeficientes de Fourier de funciones periódicas
     
     \section{Conceptos Fundamentales}
 
@@ -843,7 +843,7 @@
     \begin{proof}
         Se probará por casos:
         \begin{enumerate}
-            \item Suponga por el momento hallada una sucesión de Dirac $\left\{\rho_\nu\right\}_{\nu=1}^\infty$ en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{K})$ que cumpla las condiciones:
+            \item Suponga por el momento hallada una sucesión de Dirac $\left\{\rho_\nu\right\}_{\nu=1}^\infty$ en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$ que cumpla las condiciones:
             \begin{enumerate}
                 \item $\fou{\rho_\nu}\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$, luego también $\fou^*{\rho_\nu}\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$.
                 \item $\fou^*{\fou{\rho_\nu}}=\fou{(\fou^*{\rho_\nu})}=(2\pi)^n\rho_\nu$ c.t.p. en $\mathbb{R}^n$.
@@ -870,7 +870,7 @@
             \end{equation*}
             Así pues,
             \begin{equation*}
-                \fou*{r}(y)=\fou{r}(-y)=e^{-i\pint{x}{-y}}\fou{f}(y)=e^{ i\pint{x}{y}}\fou{f}(y),\quad\forall y\in\mathbb{R}^n
+                \fou^*{r}(y)=\fou{r}(-y)=e^{-i\pint{x}{-y}}\fou{f}(y)=e^{ i\pint{x}{y}}\fou{f}(y),\quad\forall y\in\mathbb{R}^n
             \end{equation*}
             Por el Teorema de transferencia (aplicado a $\fou^*{}$) se sigue que:
             \begin{equation*}
@@ -916,7 +916,7 @@
             \end{equation*}
             Se sabe que la sucesión $\left\{\rho_\nu\right\}_{\nu=1}^\infty$ dada por:
             \begin{equation*}
-                \rho_\nu=\nu^n \rho_(\nu x)=\frac{\nu^n}{\pi^{ n/2}}e^{-\sum_{ k=1}^n \nu^2 x_k^2},\quad\forall x\in\mathbb{R}^n
+                \rho_\nu(x)=\nu^n \rho(\nu x)=\frac{\nu^n}{\pi^{ n/2}}e^{-\sum_{ k=1}^n \nu^2 x_k^2},\quad\forall x\in\mathbb{R}^n
             \end{equation*}
             es una sucesión de Dirac en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Recuerde que si $a>0$, la transformada de Fourier de $t\mapsto e^{ -at^2}$ es
             \begin{equation*}
@@ -936,7 +936,7 @@
                     &=\fou{(\fou{\rho_\nu})}(-x)\\
                     &=\fou{(\fou{\rho_\nu})}(x)\\
                     &=\fou{\left[e^{ -\sum_{ k=1}^n \frac{x_k^2}{4\nu^2}} \right]}\\
-                    &=\left[\frac{\pi}{\frac{1}{4\nu^2}}\right]^{ n/2}e^{-\sum_{ k=1}^n \frac{x_k^2}{4(\frac{1}{4\nu^2})}}\\
+                    &=\left[\frac{\pi}{\frac{1}{4\nu^2}}\right]^{ n/2}e^{-\sum_{ k=1}^n \frac{x_k^2}{4\left(\frac{1}{4\nu^2}\right)}}\\
                     &=(2\pi)^n\cdot\frac{\nu^n}{\pi^{n/2}}e^{ -\sum_{ k=1}^n \nu^2 x_k^2}\\
                     &=(2\pi)^n\rho_\nu(x),\quad\forall x\in\mathbb{R}^n\\
                 \end{split}
@@ -954,7 +954,7 @@
         \begin{equation*}
             0=\fou^*{0}=\fou^*{(\fou{f})}=(2\pi)^nf\textup{ c.t.p. en }\mathbb{R}^n
         \end{equation*}
-        en $\mathbb{R}^n$. Por tanto, $f=0$ c.t.p. en $\mathbb{R}^n$.
+        por tanto, $f=0$ c.t.p. en $\mathbb{R}^n$.
     \end{proof}
 
     \begin{propo}
@@ -997,11 +997,11 @@
     \end{obs}
 
     \begin{proof}
-        En efecto, veamos que
+        En efecto, veamos que para $a>0$:
         \begin{equation*}
             \begin{split}
                 \int_0^R\frac{\sin ax}{x}\:dx&=\int_0^{aR}\frac{\sin y}{\frac{y}{a}}\:\frac{dy}{a}\\
-                &=\int_0^R \frac{\sin y}{y}\:dy\\
+                &=\int_0^{aR} \frac{\sin y}{y}\:dy\\
             \end{split}
         \end{equation*}
         de donde se sigue el resultado. Si $a<0$, se tiene que
@@ -1034,10 +1034,14 @@
                 &=\lim_{ R\rightarrow\infty}\frac{1}{2\pi}\int_{ -R}^{ R}e^{ixy}\:dy\int_{-\infty}^\infty e^{ -iyz}f(z)\:dz \\
             \end{split}
         \end{equation*}
+        y más aún:
+        \begin{equation*}
+            f(x)=\frac{1}{2\pi}\int_{ \rightarrow-\infty}^{\rightarrow\infty}\:dy\int_{ -\infty}^{ -\infty}f(t)\cos(y(t-x))\:dt
+        \end{equation*}
     \end{theor}
     
     \begin{proof}
-        Se tiene lo siguiente:
+        Para $R>0$ se tiene lo siguiente:
         \begin{equation*}
             \begin{split}
                 \int_{ -R}^{ R}e^{ixy}\:dy\int_{-\infty}^\infty e^{ -iyt}f(t)\:dt&=\int_{ -R}^{ R}\:dy\int_{-\infty}^\infty e^{ixy}e^{ -iyt}f(t)\:dt\\
@@ -1045,7 +1049,7 @@
                 &=\int_{ -R}^{ R}\:dy\int_{-\infty}^\infty f(t)\cos(y(t-x))\:dt+i\int_{ -R}^{ R}\:dy\int_{-\infty}^\infty f(t)\sin(y(t-x))\:dt\\
             \end{split}
         \end{equation*}
-        como $y\mapsto\int_{-\infty}^\infty f(t)\sin(y(t-x))\:dt$ es impar, se tiene que:
+        como $y\mapsto\int_{-\infty}^\infty f(t)\sin(y(t-x))\:dt$ es impar, entonces:
         \begin{equation*}
             \int_{ -R}^{ R}\:dy\int_{-\infty}^\infty f(t)\sin(y(t-x))\:dt=0
         \end{equation*}
@@ -1057,7 +1061,7 @@
         \begin{equation*}
             f(x)=\lim_{ R\rightarrow\infty}\frac{1}{\pi}\int_{0}^{ R}\:dy\int_{-\infty}^\infty f(t)\cos(y(t-x))\:dt
         \end{equation*}
-        se habrá probado que
+        se habrá probado también que
         \begin{equation*}
             f(x)=\frac{1}{2\pi}\int_{ \rightarrow-\infty}^{\rightarrow\infty}\:dy\int_{ -\infty}^{ -\infty}f(t)\cos(y(t-x))\:dt
         \end{equation*}
@@ -1065,10 +1069,11 @@
         \begin{equation*}
             J(R)=\frac{1}{\pi}\int_0^R\:dy\int_{-\infty}^\infty f(t)\cos(y(t-x))\:dt,\quad\forall R>0
         \end{equation*}
-        Se debe probar que
+        Veamos que
         \begin{equation*}
             \lim_{ R\rightarrow\infty}J(R)=f(x)
         \end{equation*}
+        En efecto, 
     \end{proof}
 
     \begin{obs}

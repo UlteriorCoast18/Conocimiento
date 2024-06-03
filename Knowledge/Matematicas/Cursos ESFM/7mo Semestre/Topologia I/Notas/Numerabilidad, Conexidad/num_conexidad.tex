@@ -817,7 +817,7 @@
     \end{cor}
 
     \begin{proof}
-        Inmediato de la proposición anterior.
+        Inmediata de la proposición anterior.
     \end{proof}
 
     \begin{propo}
@@ -867,7 +867,7 @@
         \begin{equation*}
             A=\bigcup_{\alpha\in I}A_\alpha\subseteq U
         \end{equation*}
-        así, $A\cap V=\emptyset$\contradiction. Por tanto, $A$ debe ser conexo.
+        así, $A\cap V=\emptyset$\contradiction pues $U$ y $V$ forman una separación de $A$. Por tanto $A$ debe ser conexo.
     \end{proof}
 
     \begin{propo}
@@ -887,7 +887,7 @@
         \begin{equation*}
             f^{-1}(A)=X_1
         \end{equation*}
-        Por tanto
+        (pues $f^{-1}(A)$ y $X_1-f^{-1}(A)$ están en $\tau_1$). Por tanto
         \begin{equation*}
             A=f(f^{-1}(A))=f(X_1)=X_2
         \end{equation*}
@@ -903,13 +903,13 @@
     \end{proof}
 
     \begin{propo}
-        Sea $(X,\tau)$ un espacio topológico, y sea $Y=\left\{a,b\right\}$ y $\tau_D=\left\{\emptyset,T,\left\{a\right\},\left\{b\right\} \right\}$. Entonces $(X,\tau)$ conexo si y sólo si no es posible definir una función $\cf{f}{(X,\tau)}{(Y,\tau_D)}$ que sea suprayectiva y continua.
+        Sea $(X,\tau)$ un espacio topológico, y sea $Y=\left\{a,b\right\}$ dotado de la topología discreta $\tau_D=\left\{\emptyset,T,\left\{a\right\},\left\{b\right\} \right\}$. Entonces $(X,\tau)$ conexo si y sólo si no es posible definir una función $\cf{f}{(X,\tau)}{(Y,\tau_D)}$ que sea suprayectiva y continua.
     \end{propo}
 
     \begin{proof}
         $\Rightarrow):$ Suponga que se puede definir tal función, entonces por la proposición anterior se seguiría que $(Y,\tau_D)$ es conexo\contradiction, pues $Y=\left\{a\right\}\cup\left\{b\right\}$ siendo $\left\{a\right\},\left\{b\right\}\in\tau_D$ tales que $\left\{a\right\}\cap\left\{b\right\}=\emptyset$. Por tanto, no es posible definir una función con tales propiedades.
 
-        $\Leftarrow):$ Suponga que $(X,\tau)$ no es conexo, entonces existen $U;V\in\tau-\left\{\emptyset\right\}$ tales que
+        $\Leftarrow):$ Suponga que $(X,\tau)$ no es conexo, entonces existen $U,V\in\tau-\left\{\emptyset\right\}$ tales que
         \begin{equation*}
             X=U\cup V\quad\textup{y}\quad U\cap V=\emptyset
         \end{equation*}
@@ -922,7 +922,7 @@
                 \end{array}
             \right.,\quad\forall x\in X.
         \end{equation*}
-        se tiene que $f^{-1}(\left\{a\right\})=U$, $f^{-1}(\left\{b\right\})=V$, luego $f$ es continua. Además, por definición $f$ es suprayectiva. Lo anterior prueba la contrapositiva.
+        se tiene que $f^{-1}(\left\{a\right\})=U$, $f^{-1}(\left\{b\right\})=V$, luego $f$ es continua. Además por definición $f$ es suprayectiva. Lo anterior prueba la contrapositiva.
     \end{proof}
 
     \begin{propo}
@@ -938,6 +938,7 @@
         \begin{equation*}
             Y=f\left(\Cls{A}^B\right)\subseteq\Cls{f(A)}=f(A)\Rightarrow f(A)=Y
         \end{equation*}
+        %TODO ¿\Cls{f(A)}=f(A)?
         Tenemos pues que $\cf{f\big|_A}{(A,\tau_A)}{(Y,\tau_D)}$ es una función continua (por ser reestricción) y suprayectiva. Por ende, $A$ no es conexo\contradiction. Por tanto, $B$ es conexo. 
     \end{proof}
 
@@ -990,7 +991,7 @@
     \end{excer}
 
     \begin{proof}
-        
+        %TODO
     \end{proof}
 
     \begin{propo}
@@ -1002,9 +1003,9 @@
     \end{propo}
 
     \begin{proof}
-        $\Rightarrow):$ Sea $\alpha\in I$ y considere la función $\cf{p_\alpha}{(X,\tau_p)}{(X_\alpha,\tau_\alpha)}$. Esta función es continua y suprayectiva, luego $(X_\alpha,\tau_\alpha)$ es conexo.
+        $\Rightarrow):$ Sea $\alpha\in I$ y considere la función $\cf{p_\alpha}{(X,\tau_p)}{(X_\alpha,\tau_\alpha)}$. Esta función es continua y suprayectiva, se sigue entonces que $(X_\alpha,\tau_\alpha)$ es conexo.
 
-        $\Leftarrow):$ Sea $b=(b_\alpha)_{\alpha\in I}\in X$ elemento arbitrario fijo y sea $J=\left\{\alpha_1,...,\alpha_n \right\}\subseteq I$. Definimos
+        $\Leftarrow):$ Sea $b=(b_\alpha)_{\alpha\in I}\in X$ elemento arbitrario fijo de  $X$ y, sea $J=\left\{\alpha_1,...,\alpha_n \right\}\subseteq I$. Definimos
         \begin{equation*}
             X_J=\left\{(x_\alpha)_{\alpha\in I}\in X\Big|x_\alpha=b_\alpha \textup{ para }\alpha\notin J \right\}
         \end{equation*}
@@ -1021,7 +1022,7 @@
                 \end{array}
             \right.
         \end{equation*}
-        Sea $X'=\prod_{i=1}^\infty X_{\alpha_i}$. Definamos $\cf{\varphi}{(X',\tau_p)}{(X_J,\tau_p)}$ tal que
+        Sea $X'=\prod_{i=1}^\infty X_{\alpha_i}$. Definamos $\cf{\varphi}{(X',\tau_p)}{(X_J,{\tau_p}_{X_J})}$ tal que
         \begin{equation*}
             (x_{\alpha_1},...,x_{\alpha_n})\mapsto (y_\alpha)_{\alpha\in I}
         \end{equation*}
@@ -1035,24 +1036,25 @@
             \right.
         \end{equation*}
         \begin{enumerate}
-            \item Veamos que $\varphi(X')=X_J$, es decir que $\varphi$ es suprayectiva. En efecto, sea $\zeta=(\zeta_{\alpha})_{\alpha\in I}\in X_J$, es decir que si $\alpha\notin J$ se tiene que $\zeta_\alpha=b_\alpha$, luego:
+            \item \textbf{$\varphi$ es suprayectiva}. Veamos que $\varphi(X')=X_J$. En efecto, sea $\zeta=(\zeta_{\alpha})_{\alpha\in I}\in X_J$, es decir que si $\alpha\notin J$ se tiene que $\zeta_\alpha=b_\alpha$, luego:
             \begin{equation*}
                 \begin{split}
                     \varphi((\zeta_{\alpha_1},...,\zeta_{\alpha_n}))=\zeta
                 \end{split}
             \end{equation*}
-            \item $\varphi$ es continua. Sea $U=\prod_{\alpha\in I}U_\alpha$ un básico de $(X,\tau_p)$, es decir que $U_\alpha\in\tau_\alpha$ para todo $\alpha\in I$. Tomemos
+            se concluye que $\varphi(X')=X_J$.
+            \item \textbf{$\varphi$ es continua}. Sea $U=\prod_{\alpha\in I}U_\alpha$ un básico de $(X,\tau_p)$, es decir que $U_\alpha\in\tau_\alpha$ para todo $\alpha\in I$ (y coincide con $X_\alpha$ para casi todo $\alpha\in I$ salvo una cantidad finita). Tomemos
             \begin{equation*}
                 U'=U\cap X_J\in {\tau_p}_{ X_J}-\left\{\emptyset \right\}
             \end{equation*}
-            Luego,
+            Se tiene que $U'\in{\tau_p}_{X_J}$, más aún:
             \begin{equation*}
                 \begin{split}
                     U'&=\left(\prod_{\alpha\in I}U_\alpha \right)\cap\left(\prod_{\alpha\in I}Y_\alpha \right)\\
                     &=\prod_{\alpha\in I}(U_\alpha\cap Y_\alpha)\\
                 \end{split}
             \end{equation*}
-            Tenemos
+            donde
             \begin{equation*}
                 U_\alpha\cap Y_\alpha=\left\{
                     \begin{array}{lcr}
@@ -1073,15 +1075,15 @@
         \begin{equation*}
             \mathcal{F}=\left\{J\subseteq I\Big|J\textup{ es un conjunto finito} \right\}
         \end{equation*}
-        Para todo $J\in\mathcal{F}$, $X_J$ es conexo por lo probado anteriormente y, además $b\in X_J$. Por lo tanto
+        Para todo $J\in\mathcal{F}$, $X_J$ es conexo por lo probado anteriormente para el cual $b\in X_J$. Por ende, el conjunto
         \begin{equation*}
             \bigcup_{ J\in\mathcal{F}}X_J=Y
         \end{equation*}
-        es un conexo en $(X,\tau_p)$. Veamos que
+        es conexo en $(X,\tau_p)$. Veamos que
         \begin{equation*}
             \Cls{Y}=X
         \end{equation*}
-        Sea $W=\prod_{\alpha\in I}W_\alpha$ un básico de $\tau_p$ con $W\neq\emptyset$. Se tiene que para todo $\alpha\in I$, $W_\alpha\in\tau_\alpha$ y además existe $K\in\mathcal{F}$ tal que si $\alpha\notin K$, $W_\alpha=X_\alpha$.
+        En efecto, sea $W=\prod_{\alpha\in I}W_\alpha$ un básico de $\tau_p$ con $W\neq\emptyset$. Se tiene que para todo $\alpha\in I$, $W_\alpha\in\tau_\alpha$ y además existe $K\in\mathcal{F}$ tal que si $\alpha\notin K$, $W_\alpha=X_\alpha$.
 
         Para $\alpha\in K$, $x_\alpha\in X_\alpha$ y definimos
         \begin{equation*}
@@ -1108,18 +1110,18 @@
         \begin{enumerate}
             \item $C_p$ es el máximo conexo de $X$ que contiene a $p\in X$.
             \item $C_p$ es un conjunto cerrado.
-            \item Sean $p,q\in X$, entonces si $C_p=C_q$ o $C_p\cap C_q=\emptyset$.
+            \item Sean $p,q\in X$, entonces $C_p=C_q$ ó $C_p\cap C_q=\emptyset$.
         \end{enumerate}
     \end{obs}
 
     \begin{proof}
-        De 1): es inmediata de la definición.
+        De 1): Es inmediata de la definición.
 
         De 2): Como $C_p$ es conexo, entonces $\Cls{C_p}$ es conexo, luego por maximalidad $\Cls{C_p}\subseteq C_p$ lo cual implica que $C_p$ es cerrado.
 
         De 3): Si $C_p\cap C_q\neq\emptyset$ entonces $C_p\cup C_q$ es conexo, pero es tal que contiene a $p$ y $q$, luego
         \begin{equation*}
-            C_p\subseteq C_p\cup C_q\subseteq C_p\quad\textup{y}C_q\subseteq C_p\cup C_q\subseteq C_q
+            C_p\subseteq C_p\cup C_q\subseteq C_p\quad\textup{y}\quad C_q\subseteq C_p\cup C_q\subseteq C_q
         \end{equation*}
         por tanto, $C_p\cup C_q=C_p=C_q$.
     \end{proof}
@@ -1127,8 +1129,13 @@
     \begin{mydef}
         Sea $(X,\tau)$ un espacio topológico, definimos sobre $X$ la relación $\sim$ siguiente:
         \begin{equation*}
-            x\sim y\iff \textup{ no existen }A,B\in\tau\textup{ tales que }A\cap B=\emptyset, A\cup B=X, x\in A\textup{ y }y\in B
+            x\sim y\iff\textup{no existen }A,B\in\tau\textup{ tales que }A\cap B=\emptyset, A\cup B=X, x\in A\textup{ y }y\in B
         \end{equation*}
+        Esta es una realción de equivalencia sobre $X$. Esta relación de equivalencia dice básicamente que dos elementos están relacionados si y sólo si están en la misma componente conexa.
     \end{mydef}
+
+    \begin{proof}
+        
+    \end{proof}
 
 \end{document}
