@@ -1777,7 +1777,7 @@
     \begin{proof}
         Veamos que se cumple la doble contención.
         \begin{itemize}
-            \item Sea $U\in\tau_1$, entonces se tiene que como la función $f$ es abierta, $f(U)\in\tau_2$. En particular como $f$ es suprayectiva, 
+            \item Sea $U\in\tau_2$, entonces se tiene que como la función $f$ es abierta, $f(U)\in\tau_2$. En particular como $f$ es suprayectiva, 
         \end{itemize}
     \end{proof}
 
@@ -1798,5 +1798,279 @@
     \end{proof}
 
     \section{Conexidad}
+
+    \begin{excer}
+        Sean $\tau$ y $\tau'$ dos topologías definidas sobre $X$. Si $\tau\subseteq \tau'$, ¿qué se puede decir de la conexión de $X$ respecto de una topología y respecto de la otra?
+    \end{excer}
+
+    \begin{proof}
+        Si $(X,\tau)$ es disconexo, entonces también lo será $(X,\tau')$, ya que como $(X,\tau)$ es disconexo existen dos conjuntos abiertos $A,B\in\tau$ tales que
+        \begin{equation*}
+            A\cap B=\emptyset\quad\textup{y}\quad A\cup B=X
+        \end{equation*}
+        En particular, $A,B\in\tau'$, luego $(X,\tau')$ es disconexo.
+
+        Si $(X,\tau')$ es conexo, entonces $(X,\tau)$ es conexo también, ya que no existen conjuntos abiertos y cerrados en $\tau$ que sean abiertos y cerrados, pues éstos no existen en $\tau'$.
+    \end{proof}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico y $\left\{A_n\right\}_{ n=1}^\infty$ una sucesión de conjuntos conexos de $(X,\tau)$ tal que para todo $n\in\mathbb{N}$, $A_n\cap A_{ n+1}\neq\emptyset$. Demuestre que $\bigcup_{ n=1}^\infty A_n$ es conexo.
+    \end{excer}
+
+    \begin{proof}
+        Para todo $m\in\mathbb{N}$ defina
+        \begin{equation*}
+            B_m=\bigcup_{ k=1}^m A_k
+        \end{equation*}
+        Afirmamos que $B_m$ es conexo, para todo $m\in\mathbb{N}$. En efecto, procederemos por inducción sobre $m$.
+        \begin{itemize}
+            \item Si $m=2$, veamos que
+            \begin{equation*}
+                B_2=A_1\cup A_2
+            \end{equation*}
+            donde $A_1,A_2$ son conexos y son tales que $A_1\cap A_2=A_1\cap A_{ 1+1}\neq\emptyset$. Por tanto, de un teorema se sigue que $B_2$ es conexo.
+            \item Suponga que existe $m\in\mathbb{N}$ tal que $B_m$ es conexo. Veamos que $B_{ m+1}$ es conexo. En efecto, se tiene que:
+            \begin{equation*}
+                B_{ m+1}=\bigcup_{ k=1}^{ m+1}A_k=\left(\bigcup_{ k=1}^{ m}A_k\right)\cup A_{ m+1}=B_m\cup A_m
+            \end{equation*}
+            donde $B_m$ y $A_{ m+1}$ son conexos en $(X,\tau)$ tales que
+            \begin{equation*}
+                \emptyset\neq A_m\cap A_{ m+1}\subseteq B_m\cap A_{ m+1}
+            \end{equation*}
+            luego $B_m\cup A_{ m+1}$ es conexo, es decir que $B_{ m+1}$ es conexo.
+        \end{itemize}
+        Por inducción se sigue que $B_m$ es conexo para todo $m\in\mathbb{N}$. Ahora, si $m,n\in\mathbb{N}$ son tales que $n<m$, se tiene que
+        \begin{equation*}
+            B_m\cap B_n\neq\emptyset
+        \end{equation*}
+        ya que $m\leq n$ o $n\leq m$ (de donde se sigue que $B_n\subseteq B_m$ o $B_m\subseteq B_n$) y, $A_1\neq\emptyset$ (pues $A_1\cap A_2\neq\emptyset$). Por tanto, al ser cada uno conexo y tener intersección no vacía a pares, se sigue que
+        \begin{equation*}
+            \bigcup_{ m=1}^{\infty}B_m=\bigcup_{ m=1}^{\infty}\bigcup_{ n=1}^{m}A_n=\bigcup_{ n=1}^{\infty}A_n
+        \end{equation*}
+        es conexo en $(X,\tau)$.
+    \end{proof}
+
+    \begin{excer}
+        Sean $\left\{A_\alpha \right\}_{\alpha\in I}$ una sucesión de espacios conexos en un espacio topológico $(X,\tau)$ y $A$ un subespacio conexo de $(X,\tau)$. Demuestre que si $A\cap A_\alpha\neq\emptyset$ para todo $\alpha\in I$, entonces $A\cup\left(\bigcup_{\alpha\in I}A_\alpha \right)$ es conexo en $(X,\tau)$. 
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Demuestre que si $X$ es un conjunto infinito, entonces $X$ es conexo con la topología de los complementos finitos (o topología cofinita).
+    \end{excer}
+
+    \begin{proof}
+        Sea $X$ un conjunto infinito y considere el espacio topológico $(X,\tau_{cf})$. Recordemos que
+        \begin{equation*}
+            \tau_{cf}=\left\{A\subseteq X\Big|X-A\textup{ es finito} \right\}\cup\left\{\emptyset \right\}
+        \end{equation*}
+        Probaremos que si $A,B\subseteq X$ son abiertos no vacíos, entonces $A\cap B\neq\emptyset$. En efecto, si $A,B\in\tau_{cf}-\left\{\emptyset \right\}$ son tales que $A\cap B=\emptyset$ se tiene que
+        \begin{equation*}
+            X-A\cap B=X\Rightarrow X=(X-A)\cup(X-B)
+        \end{equation*}
+        donde $X-A$ y $X-B$ son finitos, luego $X$ es finito\contradiction. Por ende $A\cap B\neq\emptyset$. Pero lo anterior implica que no existe una partición de $X$ en dos conjuntos abiertos no vacíos, pues siempre sucede que $A\cap B\neq\emptyset$. Por tanto, $(X,\tau_{cf})$ debe ser conexo.
+    \end{proof}
+
+    \begin{mydef}
+        Un espacio topológico $(X,\tau)$ es \textbf{totalmente disconexo} si sus únicos subespacios conexos son los conjuntos unipuntuales.
+    \end{mydef}
+
+    \begin{excer}
+        Sea $(X,\tau_D)$ un espacio topológico dotado de la topología discreta. Pruebe que $(X,\tau_D)$ es totalmente disconexo. ¿Es cierto el recíproco?
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $A\subseteq X$. Demuestre que si $C$ es un subespacio conexo de $X$ que interseca tanto a $A$ como a $X-A$, entonces $C$ interseca a $\Fr{A}$.
+    \end{excer}
+
+    \begin{proof}
+        Se tiene que
+        \begin{equation*}
+            C\cap A\neq\emptyset\quad\textup{y}\quad C\cap(X-A)=\emptyset
+        \end{equation*}
+        Suponga que $C\cap\Fr{A}=\emptyset$. Como
+        \begin{equation*}
+            X=\Int{\overbrace{X-A}}\cup\Fr{A}\cup\Int{A}
+        \end{equation*}
+        donde los tres conjuntos de la derecha son disjuntos a pares. Debe suceder entonces que
+        \begin{equation*}
+            C\subseteq \Int{\overbrace{X-A}}\cup\Int{A}
+        \end{equation*}
+        Afirmamos que $C\cap\Int{A}\neq\emptyset$ y $C\cap\Int{\overbrace{X-A}}\neq\emptyset$. En efecto, si $C\cap\Int{A}=\emptyset$ se tendría que
+        \begin{equation*}
+            C\cap A\subseteq \Int{\overbrace{X-A}}\subseteq X-A
+        \end{equation*}
+        lo cual no puede suceder. De forma análoga, $C\cap\Int{\overbrace{X-A}}\neq\emptyset$. Tomemos $U=C\cap\Int{A}$ y $V=C\cap\Int{\overbrace{X-A}}$, se tiene que $U,V\in\tau_C$ son no vacíos para los cuales
+        \begin{equation*}
+            C=U\cup V=(C\cap\Int{\overbrace{X-A}})\cup(C\cap\Int{A})=C\cap\left(\Int{\overbrace{X-A}}\cup\Int{A}\right)
+        \end{equation*}
+        se tendría entonces que $C$ no es conexo\contradiction. Por tanto, $C\cap\Fr{A}\neq\emptyset$.
+    \end{proof}
+
+    \begin{excer}
+        Sean $A$ un subconjunto propio de $X$ y $B$ un subconjunto propio de $Y$. Si $X$ e $Y$ son conexos, demuestre que
+        \begin{equation*}
+            (X\times Y)-(A\times B)
+        \end{equation*}
+        es conexo.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $Y\subseteq X$ y supongamos que $X$ e $Y$ son conexos. Demuestre que si $A$ y $B$ forman una separación de $X-Y$, entonces $Y\cup A$ e $Y\cup B$ son conexos.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        En $\mathbb{R}^n$ la conexidad se preserva bajo traslaciones.
+    \end{excer}
+
+    \begin{proof}
+        Sea $C\subseteq\mathbb{R}^n$ conexo y $x\in\mathbb{R}^n$. Probaremos que el conjunto
+        \begin{equation*}
+            C+x=\left\{y+x\in\mathbb{R}^n \Big|y\in C \right\}
+        \end{equation*}
+        es conexo en $\mathbb{R}^n$. En efecto, considere la aplicación $\cf{f}{\mathbb{R}^n}{\mathbb{R}^n}$ tal que $y\mapsto y+x$. Es claro que esta función es continua y, se tiene que
+        \begin{equation*}
+            f\big|_{C}:C\rightarrow C+x
+        \end{equation*}
+        es una función continua suprayectiva, luego por un teorema se sigue que $C+x$ es conexo en $\mathbb{R}^n$.
+    \end{proof}
+
+    \begin{excer}
+        Sea $n>1$, y $B\subseteq\mathbb{R}^n$ numerable. Entonces, $\mathbb{R}^n-B$ es conexo.
+    \end{excer}
+
+    \begin{proof}
+        Antes, para cada par $x,y\in\mathbb{R}^n$ se define el segmento que une a $x$ y $y$ como el conjunto:
+        \begin{equation*}
+            L_{ xy}=\left\{ty+(1-t)x\Big|t\in[0,1] \right\}
+        \end{equation*}
+        Este conjunto es conexo pues es homeomorfo al subespacio conexo $([0,1],{\tau_u}_{[0,1]})$ y tiene más de dos puntos siempre que $x\neq y$.
+
+        Ahora, suponga que $B\neq\emptyset$ (pues si $B=\emptyset$ el resultado es inmediato ya que $\mathbb{R}$ es conexo). Por el ejercicio anterior podemos suponer que $0\notin B$. Para cada $x\in\mathbb{R}^n-(B\cup\left\{0\right\})$ considere
+        \begin{equation*}
+            L_{0x}=\left\{tx\in\mathbb{R}^n \Big|t\in[0,1]\right\}
+        \end{equation*} 
+        
+        y, dado $x\in\mathbb{R}^n-(B\cup\left\{0\right\})$ sea $l(x,a)$ una linea de longitud $a>0$ en $\mathbb{R}^n$ tal que $l(x,a)$ interseca a $L_{0x}$ es un punto distinto de $0$ y $x$ (lo cual es posible pues $L_x$ tiene más de dos puntos pues $x\neq0$). Afirmamos que existe $z\in l(x,a)$ tal que el conjunto
+        \begin{equation*}
+            L_{0z}\cup L_{zx}
+        \end{equation*}
+        está totalmente contenido en $\mathbb{R}^n-B$. En efecto, si para todo $z\in l(x,a)$ se tiene que $L_{0z}\cup L_{zx}$ no está totalmente contenido en $\mathbb{R}^n-B$, entonces existiría $b_z\in l_x$ tal que $b_z\in B$. No puede suceder que $b_z=0$ o $b_z=x$ pues $0,x\notin B$. Además, si $z,w\in l(x,a)$ son tales que $z\neq w$, entonces $b_z\neq b_w$, ya que los únicos puntos que tienen en común los conjuntos $L_{0z}\cup L_{zx}$ y $L_{0w}\cup L_{wx}$ son $0$ y $x$ (esto se deduce de forma inmediata mediante un sistema de ecuaciones lineales). Por tanto, la aplicación
+        \begin{equation*}
+            z\mapsto b_z
+        \end{equation*}
+        de $l(x,a)$ en $B$ es inyectiva. Como $a>0$ entonces se tendría que $B$ es no numerable (pues $l(x,a)$ es no numerable)\contradiction. Por tanto, existe $z\in l(x,a)$ tal que
+        \begin{equation*}
+            L_{ 0z}\cup L_{zx}
+        \end{equation*}
+        está totalmente contenido en $\mathbb{R}^n-B$. Este conjunto es conexo, pues $L_{ 0z}\cap L_{zx}=\left\{z\right\}$ y ambos segmentos son conexos. Defina así para cada $x\in\mathbb{R}^n-B$
+        \begin{equation*}
+            l_x=L_{ 0z}\cup L_{zx}
+        \end{equation*}
+        Entonces, se tiene que
+        \begin{equation*}
+            \bigcup_{x\in\mathbb{R}^n-B}l_x
+        \end{equation*}
+        es un conjunto conexo, ya que cada $l_x$ es conexo y, para todo par $x,y\in\mathbb{R}^n-B$, $l_x\cap l_y\neq\emptyset$, pues $0\in l_x\cap l_y$. Pero
+        \begin{equation*}
+            \bigcup_{x\in\mathbb{R}^n-B}l_x=\mathbb{R}^n-B
+        \end{equation*}
+        pues $l_x\subseteq\mathbb{R}^n-B$, para todo $x\in\mathbb{R}^n-B$. Así, $\mathbb{R}^n-B$ es conexo.
+    \end{proof}
+
+    \begin{excer}
+        Sean $A,B$ subconjuntos de un espacio topológico $(X,\tau)$.
+        \begin{enumerate}
+            \item Demuestre que si $A$ y $B$ son cerrados y $A\cap B$ y $A\cup B$ son conexos, entonces $A$ y $B$ son conexos en. Proporcione un ejemplo donde la proposición no se cumple si uno de los dos conjuntos $A$ o $B$ no es cerrado.
+            \item Suponga que $A$ y $B$ son conexos y que $\Cls{A}\cap B\neq\emptyset$, demuestre que $A\cup B$ es conexo.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico tal que dados $x,y\in X$ existe $C\subseteq X$ conexo tal que $x,y\in X$. Demuestre que $(X,\tau)$ es un espacio conexo.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio localmente conexo.
+        \begin{enumerate}
+            \item Dado $x\in X$ sea $C_x$ la componente conexa de $x$. Demuestre que $C_x\in\tau$.
+            \item Definimos una relación de equivalencia sobre $X$ por: $x\mathcal{R}y$ si y sólo si $C_x=C_y$. Demuestre que $\tau/\mathcal{R}$ es la topología discreta.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que $S^n$ es conexo para todo $n\geq1$.
+    \end{excer}
+
+    \begin{proof}
+        Procederemos por inducción sobre $n$.
+        \begin{itemize}
+            \item $n=1$. Considere
+            \begin{equation*}
+                S^1=\left\{(x,y)\in\mathbb{R}^2\Big|x^2+y^2=1 \right\}
+            \end{equation*}
+            Sea $p=(1,0)$ elemento de $S^1$. Se sabe que para cada $(x,y)\in S^1-\left\{p\right\}$ existe un único $\theta_x\in]0,2\pi[$ tal que
+            \begin{equation*}
+                (x,y)=(\cos\theta_x,\sin\theta_x)
+            \end{equation*}
+            Defina
+            \begin{equation*}
+                S_x^1=\left\{(\cos t\theta_x,\sin t\theta_x)\in S^1\Big|t\in[0,1]\right\}
+            \end{equation*}
+            Es claro que este conjunto une a $p$ con $(x,y)$ y, está totalmente contenido en $S^1$ (por identidades trigonométricas). Además es conexo, pues existe una función continua y suprayectiva de $([0,1],{\tau_u}_{[0,1]})$ en $(S_x^1,{\tau_u}_{S^1})$ ($t\mapsto(\cos t\theta_x,\sin t\theta_x)$, sólo habría que probar que es continua, procediendo por sucesiones se tiene el resultado) donde el primer espacio es conexo. Luego, el conjunto
+            \begin{equation*}
+                \bigcup_{x\in S^1-\left\{p\right\}}S_x^1=S_1
+            \end{equation*}
+            es conexo en $(\mathbb{R}^2,\tau_u)$ pues $p\in S_x^1$, para todo $x\in S^1-\left\{p\right\}$. Por tanto, $S_1$ es conexo en $(\mathbb{R}^2,\tau_u)$.
+
+            \item Suponga que existe $n\in\mathbb{N}$, $n\geq2$ tal que $S^{n-1}$ es conexo en $\mathbb{R}^n$. Probaremos que $S^n$ es conexo en $\mathbb{R}^{ n+1}$. En efecto, observemos que
+            \begin{equation*}
+                S^n=\left\{(x_1,...,x_{ n+1})\in\mathbb{R}^{n+1}\Big|\sum_{ k=1}^{n+1}x_k^2=1 \right\}
+            \end{equation*}
+        \end{itemize}
+    \end{proof}
+
+    \section{Espacio Cociente}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico y sea $\mathcal{R}$ una relación ed equivalencia sobre $X$. Demuestre lo siguiente:
+        \begin{enumerate}
+            \item $(X/\mathcal{R},\tau/\mathcal{R})$ es $T_1$ si y sólo si $\forall x\in X$, $[x]$ es un subcojnunto cerrado de $(X,\tau)$.
+            \item Si $(X/\mathcal{R},\tau/\mathcal{R})$ es un espacio $T_2$, entonces $\mathcal{R}$ es un subconjunto cerrado de $(X\times X,\tau_p)$.
+            \item Sea $\cf{\phi}{X}{X/\mathcal{R}}$ la función definida por $\phi(x)=[x]$. Si $\mathcal{R}$ es un subconjunto cerrado de $(X\times X,\tau_p )$ y $\phi$ es una función abierta, entonces $(X/\mathcal{R},\tau/\mathcal{R})$ es $T_2$.
+            \item Si $(X,\tau)$ es un espacio compacto, entonces $(X/\mathcal{R},\tau/\mathcal{R})$ es un espacio compacto.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
 
 \end{document}
