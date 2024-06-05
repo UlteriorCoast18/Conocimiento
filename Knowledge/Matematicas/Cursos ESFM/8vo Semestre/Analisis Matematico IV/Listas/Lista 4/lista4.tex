@@ -154,7 +154,7 @@
             \end{equation*}
             Fije $\nu\in\mathbb{N}$, \textbf{demuestre} la fórmula:
             \begin{equation*}
-                \int_{\mathbb{R}^n}\fou{f}(x)P\left(\frac{x}{\nu}\right)\:dx=(2\nu)^n\int_{\mathbb{R}^n}\frac{f(x_1,...,x_n)}{(x+\nu^2x_1^2)\cdots(x+\nu^2x_n^2)}\:dx_1\cdots dx_n
+                \int_{\mathbb{R}^n}\fou{f}(x)P\left(\frac{x}{\nu}\right)\:dx=(2\nu)^n\int_{\mathbb{R}^n}\frac{f(x_1,...,x_n)}{(1+\nu^2x_1^2)\cdots(1+\nu^2x_n^2)}\:dx_1\cdots dx_n
             \end{equation*}
             \item \textbf{Deduzca} que si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})\cap\mathcal{L}_{\infty}(\mathbb{R}^n,\mathbb{C})$ y $\fou{f}\geq0$, entonces $\fou{f}\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$.
             
@@ -163,7 +163,121 @@
     \end{excer}
 
     \begin{proof}
-        
+        De (i): Defina $g(x)=P\left(\frac{x}{\nu}\right)$, para todo $x\in\mathbb{R}^n$. Veamos que $g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. En efecto, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \int_{\mathbb{R}^n}g\left(x\right)\:dx&=\int_{\mathbb{R}^n}P\left(\frac{x}{\nu}\right)\:dx\\
+                &=\int_{\mathbb{R}^n}P\left(\frac{x_1}{\nu},...,\frac{x_1}{\nu}\right)\:dx_1\cdots dx_n \\
+                &=\int_{\mathbb{R}^n}e^{ -\sum_{ k=1}^n\abs{\frac{x_k}{\nu}}}\:dx_1\cdots dx_n\\
+                &=\int_{\mathbb{R}^n}e^{ -\frac{1}{\nu}\sum_{ k=1}^n\abs{x_k}}\:dx_1\cdots dx_n\\
+                &=\int_{\mathbb{R}^n}e^{-\frac{\abs{x_1}}{\nu}}\cdot...\cdot e^{-\frac{\abs{x_n}}{\nu}}\:dx_1\cdots dx_n\\
+                &=\underbrace{\left(\int_{\mathbb{R}}e^{-\frac{\abs{x_1}}{\nu}}\:dx_1\right)\cdots\left(\int_{\mathbb{R}}e^{-\frac{\abs{x_n}}{\nu}}\:dx_n\right)}_{ n\textup{-veces}}\\
+                &=\left(\int_{\mathbb{R}}e^{-\frac{\abs{t}}{\nu}}\:dt\right)^n\\
+                &<\infty
+            \end{split}
+        \end{equation*}
+        Usando Fubini para funciones medibles no negativas. Por tanto, por el Teorema de transferencia se sigue que
+        \begin{equation*}
+            \begin{split}
+                \int_{\mathbb{R}^n}\fou{f}(x)P\left(\frac{x}{\nu}\right)\:dx&=\int_{\mathbb{R}^n}\fou{f}(x)g(x)\:dx\\
+                &=\int_{\mathbb{R}^n}f(x)\fou{g}(x)\:dx
+            \end{split}
+        \end{equation*}
+        Calculemos $\fou{g}(x)$. Como $g(x)=P\left(\frac{x}{\nu}\right)$ para todo $x\in\mathbb{R}^n$, entonces
+        \begin{equation*}
+            \begin{split}
+                \fou{g}(x)=\nu^n\fou{P}(\nu x)
+            \end{split}
+        \end{equation*}
+        (por una proposición), donde
+        \begin{equation*}
+            \begin{split}
+                \fou{P}(x)&=\int_{\mathbb{R}^n}e^{-i\pint{x}{y}}P(y)\:dy\\
+                &=\int_{\mathbb{R}^n}e^{-i\sum_{ k=1}^n x_ky_k}e^{ -\sum_{ k=1}^n \abs{y_k}}\:dy\\
+                &=\int_{\mathbb{R}^n}e^{-\sum_{ k=1}^n(\abs{y_k}+ix_ky_k)}\:dy\\
+                &=\int_{\mathbb{R}^n}e^{-\abs{y_1}-ix_1y_1}\cdot...\cdot e^{-\abs{y_n}-ix_ny_n}\:dy_1\cdots dy_n\\
+                &=\underbrace{\left(\int_{-\infty}^{\infty}e^{-\abs{y_1}-ix_1y_1}\:dy_1 \right)\cdots\left(\int_{-\infty}^{\infty}e^{-\abs{y_n}-ix_ny_n}\:dy_n \right)}_{ n\textup{-veces}}\\
+                &=\underbrace{\left(\int_{-\infty}^{\infty}e^{-\abs{t}-ix_1t}\:dt \right)\cdots\left(\int_{-\infty}^{\infty}e^{-\abs{t}-ix_nt}\:dt \right)}_{ n\textup{-veces}}\\
+                &=\fou{h}(x_1)\cdots\fou{h}(x_n)\\
+            \end{split}
+        \end{equation*}
+        donde $\cf{h}{\mathbb{R}}{\mathbb{R}}$ es la función tal que $t\mapsto e^{-\abs{t}}$ y, se sabe que
+        \begin{equation*}
+            \fou{h}(x)=\frac{2}{1+x^2}
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            \begin{split}
+                \fou{P}(x)&=\frac{2^n}{(1+x_1^2)\cdots(1+x_n^2)}\\
+                \Rightarrow \fou{P}(\nu x)&=\frac{2^n}{(1+\nu^2x_1^2)\cdots(1+\nu^2x_n^2)}\\
+            \end{split}
+        \end{equation*}
+        Se sigue que
+        \begin{equation*}
+            \begin{split}
+                \int_{\mathbb{R}^n}\fou{f}(x)P\left(\frac{x}{\nu}\right)\:dx&=\nu^n\int_{\mathbb{R}^n}f(x)\fou{P}(\nu x)\:dx\\
+                &=\nu^n\int_{\mathbb{R}^n}\frac{2^nf(x_1,...,x_n)}{(1+\nu^2x_1^2)\cdots(1+\nu^2x_n^2)}\:dx_1\cdots dx_n\\
+                &=(2\nu)^n\int_{\mathbb{R}^n}\frac{f(x_1,...,x_n)}{(1+\nu^2x_1^2)\cdots(1+\nu^2x_n^2)}\:dx_1\cdots dx_n\\
+            \end{split}
+        \end{equation*}
+
+        De (ii): Para cada $\nu\in\mathbb{N}$ defina la función $\cf{g_\nu}{\mathbb{R}^n}{\mathbb{C}}$ como sigue:
+        \begin{equation*}
+            g_\nu(x)=\fou{f}(x)P\left(\frac{x}{\nu}\right),\quad\forall x\in\mathbb{R}^n
+        \end{equation*}
+        Esta es una sucesión creciente de funciones en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$, pues si $\nu\in\mathbb{N}$:
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{\nu+1}\sum_{ k=1}^n\abs{x_k}&\leq\frac{1}{\nu}\sum_{ k=1}^n\abs{x_k},\quad\forall x\in\mathbb{R}^n\\
+                \Rightarrow -\frac{1}{\nu}\sum_{ k=1}^n\abs{x_k}&\leq-\frac{1}{\nu+1}\sum_{ k=1}^n\abs{x_k},\quad\forall x\in\mathbb{R}^n\\
+                \Rightarrow e^{\frac{1}{\nu}\sum_{ k=1}^n\abs{x_k}}&\leq e^{-\frac{1}{\nu+1}\sum_{ k=1}^n\abs{x_k}},\quad\forall x\in\mathbb{R}^n\\
+                \Rightarrow P\left(\frac{x}{\nu}\right)&\leq P\left(\frac{x}{\nu+1}\right),\quad\forall x\in\mathbb{R}^n \\
+                \Rightarrow  \fou{f}(x)P\left(\frac{x}{\nu}\right)&\leq \fou{f}(x)P\left(\frac{x}{\nu+1}\right),\quad\forall x\in\mathbb{R}^n \\
+                \Rightarrow  g_\nu&\leq g_{\nu+1} \\
+            \end{split}
+        \end{equation*}
+        pues, $\fou{f}\geq0$.
+        Además, como $f\in\mathcal{L}_{\infty}(\mathbb{R}^n,\mathbb{C})$, entonces
+        \begin{equation*}
+            f\leq\N{\infty}{f}\textup{ c.t.p. en }\mathbb{R}^n
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            \begin{split}
+                \int_{\mathbb{R}^n}g_\nu(x)\:dx&=\int_{\mathbb{R}^n}\fou{f}(x)P\left(\frac{x}{\nu}\right)\:dx\\
+                &=(2\nu)^n\int_{\mathbb{R}^n}\frac{f(x_1,...,x_n)}{(1+\nu^2x_1^2)\cdots(1+\nu^2x_n^2)}\:dx_1\cdots dx_n\\
+            \end{split}
+        \end{equation*}
+        Hagamos el cambio de variable $(y_1,...,y_n)=(\frac{x_1}{\nu},...,\frac{x_n}{\nu})$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                (2\nu)^n\int_{\mathbb{R}^n}\frac{f(x_1,...,x_n)}{(1+\nu^2x_1^2)\cdots(1+\nu^2x_n^2)}\:dx_1\cdots dx_n&=(2\nu)^n\int_{\mathbb{R}^n}\frac{f(\nu y_1,...,\nu y_n)}{(1+y_1^2)\cdots(1+y_n^2)}\: \frac{dy_1\cdots dy_n}{\nu^n}\\
+                &=2^n\int_{\mathbb{R}^n}\frac{f(\nu y_1,...,\nu y_n)}{(1+y_1^2)\cdots(1+y_n^2)}\:dy_1\cdots dy_n\\
+                &=2^n\int_{\mathbb{R}^n}\frac{\N{\infty}{f}}{(1+y_1^2)\cdots(1+y_n^2)}\:dy_1\cdots dy_n\\
+                &=2^n\N{\infty}{f}\int_{\mathbb{R}^n}\frac{dy_1\cdots dy_n}{(1+y_1^2)\cdots(1+y_n^2)}\\
+                \Rightarrow \abs{\int_{\mathbb{R}^n}g_\nu(x)}&=2^n\N{\infty}{f}\int_{\mathbb{R}^n}\frac{dy_1\cdots dy_n}{(1+y_1^2)\cdots(1+y_n^2)}\\
+            \end{split}
+        \end{equation*}
+        pues $\int_{\mathbb{R}^n}\frac{dy_1\cdots dy_n}{(1+y_1^2)\cdots(1+y_n^2)}<\infty$ y $\int_{\mathbb{R}^n}g_\nu(x)\geq0$. Por tanto, por Beppo-Levi se sigue que existe una función $g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$ tal que
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}g_\nu=g\textup{ c.t.p. en }\mathbb{R}^n
+        \end{equation*}
+        Pero, también se tiene que
+        \begin{equation*}
+            \begin{split}
+                \lim_{\nu\rightarrow\infty}g_\nu(x)&=\lim_{\nu\rightarrow\infty}\fou{f}(x)P\left(\frac{x}{\nu}\right)\\
+                &=\fou{f}(x)\lim_{\nu\rightarrow\infty}P\left(\frac{x}{\nu}\right)\\
+                &=\fou{f}(x)P\left(0,...,0\right)\\
+                &=\fou{f}(x),\quad\forall x\in\mathbb{R}^n \\
+            \end{split}
+        \end{equation*}
+        Entonces $\fou{f}=g$ c.t.p. en $\mathbb{R}^n$, luego $\fou{f}\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Más aún,
+        \begin{equation*}
+            \begin{split}
+                \int_{\mathbb{R}^n}\fou{f}(x)\:dx&=\lim_{\nu\rightarrow\infty}2^n\N{\infty}{f}\int_{\mathbb{R}^n}\frac{dy_1\cdots dy_n}{(1+y_1^2)\cdots(1+y_n^2)}\\
+                &=2^n\N{\infty}{f}\int_{\mathbb{R}^n}\frac{dy_1\cdots dy_n}{(1+y_1^2)\cdots(1+y_n^2)}\\
+            \end{split}
+        \end{equation*}
     \end{proof}
 
     \begin{excer}
@@ -249,8 +363,173 @@
     \begin{excer}
         Haga lo siguiente:
         \begin{enumerate}
-            \item 
+            \item Sea $f(x)=\left(1-\frac{\abs{x}}{a}\right)\chi_{[-a,a]}(x)$, para todo $x\in\mathbb{R}$. \textbf{Pruebe } que
+            \begin{equation*}
+                \fou{f}(x)=a\left(\frac{\sin\frac{ax}{2}}{\frac{ax}{2}}\right)^2
+            \end{equation*}
+            \item Usando $\fou{f}$ \textbf{muestre} la fórmula
+            \begin{equation*}
+                \int_{-\infty }^{\infty}\left(\frac{\sin ax}{x} \right)^4\:dx=\frac{2}{3}\pi a^3
+            \end{equation*}
+            \item \textbf{Calcule} la integral
+            \begin{equation*}
+                \int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^3\:dx
+            \end{equation*}
+            \textit{Sugerencia.} Escriba $f(x)=\left(1-\frac{\abs{x}}{a} \right)\chi_[-a,a](x)$ y $g(x)=\chi_{[-a,a]}(x)$, para todo $x\in\mathbb{R}$. Aplique la identidad de Parseval
+            \begin{equation*}
+                \int_\mathbb{R}\fou{f}\fou{g}=\pint{\fou{f}}{\fou{g}}=\pint{f}{g}=\int_{\mathbb{R}}fg
+            \end{equation*}
+            para deducir el resultado.
         \end{enumerate}
     \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Sea $n\geq2$ y $\cf{r}{\mathbb{R}^n}{\mathbb{R}}$ la función $x\mapsto r(x)=\norm{x}=\sqrt{x_1^2+...+x_n^2}$. Sea $\cf{f}{[0,\infty[}{\mathbb{C}}$ una función tal que $f\circ r$ es integrable en $\mathbb{R}^n$.
+        \begin{enumerate}
+            \item \textbf{Pruebe} que la transformada de Fourier $\fou{(f\circ r)}$ es una función radial.
+            
+            \textit{Sugerencia.} Si $U$ es una matriz ortogonal $n\times n$, se tiene que $\fou{(f\circ r)}(Ux)=\fou{(f\circ r)}(x)$. Dados $x,y\in\mathbb{R}^n$ tales que $\norm{x}=\norm{y}$, siempre existe una matriz ortogonal $U$ tal que $Ux=y$.
+
+            \item \textbf{Muestre} que se cumple la \textbf{fórmula de Bochner}
+            \begin{equation*}
+                \fou{(f\circ r)}(x)=2(n-1)\omega_{ n-1}\int_0^\infty v_n(u(\norm{x}))f(u)u^{ n-1}\:du,\quad\forall x\in\mathbb{R}^n
+            \end{equation*}
+            donde $\omega_{n-1}$ es el volumen de la bola euclideana de radio uno en $\mathbb{R}^{ n-1}$ y $v_n$ se define por la fórmula
+            \begin{equation*}
+                v_n(t)=\int_0^{\frac{\pi}{2}}\cos(t\cos\theta)\sin^{ n-2}\theta\:d\theta
+            \end{equation*}
+            \textit{Sugerencia.} Según el inciso (i),
+            \begin{equation*}
+                \fou{(f\circ r)}(x)=\fou{(f\circ r)}(\norm{x},0,...,0)=\int_{\mathbb{R}^n}f(\norm{y})e^{ -i\norm{x}y_1}\:dy_1\cdots dy_n
+            \end{equation*}
+            Transforme esta integral por el Teorema de Fubini y exprese la integral con respecto a $y_2,...,y_n$ como una integral simple. La doble integral resultante se transforma a coordenadas polares.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \newcommand{\Sgn}[1]{\ensuremath{\textup{Sgn}\left(#1\right)}}
+
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item Sea $\cf{h}{[0,\infty[}{0\mathbb{C}}$ una función integrable en $[0,\infty[$. Sea $a>0$, \textbf{demuestre} que existe la integral impropia
+            \begin{equation*}
+                \int_{a}^{ \rightarrow\infty}\frac{dx}{x}\int_0^{\infty}h(y)\sin xy\:dy
+            \end{equation*}
+            \textit{Sugerencia.} Justifique la inversión del orden de las integraciones.
+            \item Sea $\cf{f}{\mathbb{R}}{\mathbb{R}}$ la función
+            \begin{equation*}
+                f(x)=\left\{
+                    \begin{array}{lcr}
+                        \frac{1}{e}x & \textup{ si } & \abs{x}<e\\
+                        \frac{\Sgn{x}}{\log\abs{x}} & \textup{ si } & \abs{x}\geq e\\
+                    \end{array}
+                \right.,\quad\forall x\in\mathbb{R}
+            \end{equation*}
+            Muestre que, para $a>0$ no existe la integral impropia
+            \begin{equation*}
+                \int_a^{\rightarrow \infty}\frac{f(x)}{x}\:dx
+            \end{equation*}
+            De este hecho y del inciso (i) \textbf{deduzca} que no existe $g\in\mathcal{L}_1(\mathbb{R},\mathbb{C})$ tal que $f=\fou{g}$. Así pues, la transformación de Fourier no es una aplicación suprayectiva de $L_1(\mathbb{R},\mathbb{C})$ en $\mathcal{C}_0(\mathbb{R},\mathbb{C})$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item Sea $\cf{f}{\mathbb{R}}{\mathbb{C}}$ una función integrable en $\mathbb{R}$. Se supone que existe una función $\cf{\varphi}{\mathbb{R}}{\mathbb{C}}$ localmente integrable en $\mathbb{R}$ tal que
+            \begin{equation*}
+                f(x)=f(0)+\int_0^{x}\varphi,\quad\forall x\in\mathbb{R}\quad\textup{y}\quad\abs{\varphi(x)}\underset{\abs{x}\rightarrow\infty}{=}O\left(\frac{1}{\abs{x}^m}\right)
+            \end{equation*}
+        \end{enumerate}
+        donde $m>2$. \textbf{Pruebe} que
+        \begin{equation*}
+            \abs{f(x)}=\underset{\abs{x}\rightarrow\infty}{=}O\left(\frac{1}{x^{ m-1}}\right)
+        \end{equation*}
+        y que, para todo $x\in\mathbb{R}$, existen las sumas
+        \begin{equation*}
+            \Phi(x)=\sum_{k\in\mathbb{Z}}\varphi(x+k)\quad\textup{y}\quad F(x)=\sum_{ k\in\mathbb{Z}}f(x+k)
+        \end{equation*}
+        siendo la convergencia absoluta y uniforme en $[-1,1]$, luego en $\mathbb{R}$. \textbf{Muestre} finalmente que
+        \begin{equation*}
+            F(x)=F(0)+\int_0^x\Phi,\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        \item $F$ es una función periódica de periodo uno. \textbf{Demuestre} que los coeficientes de Fourier de $F$ respecto al sistema O.N. $\left(e^{2\pi int} \right)_{n\in\mathbb{Z}}$ son
+        \begin{equation*}
+            \int_0^1 F(x)e^{ -2\pi inx}\:dx=\fou{f}(2\pi n),\quad\forall n\in\mathbb{Z}
+        \end{equation*}
+        \textbf{Deduzca la fórmula Sumatoria de Poisson}
+        \begin{equation*}
+            \sum_{ k\in\mathbb{Z}}f(x+k)=\sum_{ k\in\mathbb{Z}}\fou{f}(x+k),\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        \item Aplicando la fórmula sumatoria de Poisson a la función $x\mapsto e^{-\alpha\abs{x}}$ para $\alpha>0$, obtenga el desarrollo
+        \begin{equation*}
+            \coth x = \frac{1}{x}+2x\sum_{ n=1}^{\infty}\frac{1}{x^2+n^2\pi^2},\quad\forall x\geq0
+        \end{equation*}
+        Se define la \textbf{función theta} por
+        \begin{equation*}
+            \Theta(x)=\sum_{ n=-\infty}^{\infty}e^{ -\pi n^2x},\quad\forall x>0
+        \end{equation*}
+        Aplicando la fórmula sumatoria de Poisson a la función $x\mapsto e^{-\alpha x^2}$ para $\alpha>0$, \textbf{pruebe} la identidad
+        \begin{equation*}
+            \Theta(x)=\sqrt{\frac{1}{x}}\Theta\left(\frac{1}{x}\right),\quad\forall x>0
+        \end{equation*}
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item Sea $f\in\mathcal{L}_1(\mathbb{R},\mathbb{C})$ tal que $f(x)=0$ para todo $x<0$. Para todo $z\in\mathbb{C}$ tal que $\Im z\leq 0$ se define
+            \begin{equation*}
+                \fou{f}(x)=\int_0^{\infty}e^{ -izx}f(x)\:dx
+            \end{equation*}
+            \textbf{Pruebe} que esta definción tiene sentido, que $\fou{f}$ es continua en el semiplano cerrado $\left\{z\in\mathbb{C}\Big|\Im z\leq0 \right\}$ y holomorfa en el semiplano abierto $\left\{z\in\mathbb{C}\Big|\Im z<0 \right\}$.
+
+            \textit{Sugerencia.} El teorema de derivación de funciones defindas por integrales continúa siendo válido al sustituir el intervalo $I$ por un abierto de $\mathbb{C}$.
+
+            \item Sean $f,g\in\mathcal{L}_1(\mathbb{R},\mathbb{C})$ tales que $f(x)=g(x)=0$, $\forall x<0$. \textbf{Muestre} que para todo $z\in\mathbb{C}$ tal que $\Im z\leq 0$ se tiene
+            \begin{equation*}
+                \fou{(f*g)}(z)=\fou{f}(z)\fou{g}(z)
+            \end{equation*}
+            \item Sean $f,g$ como en el inciso (ii). Se supone además que $\fou{(f*g)}=0$ c.t.p. en $\mathbb{R}$. \textbf{Demuestre} que $f=0$ c.t.p. en $\mathbb{R}$ o bien $g=0$ c.t.p. en $\mathbb{R}$.
+            
+            \textit{Sugerencia.} Deduzca de (i) y (ii) que $\fou{f}=0$ o bien $\fou{g}=0$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
 
 \end{document}
