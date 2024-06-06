@@ -1080,4 +1080,257 @@
         Recuerde que la condición de Dini se cumple, por ejemplo, si $f$ tiene derivada por la derecha y la izquierda en ese punto.
     \end{obs}
 
+    \section{Homomorfismos Complejos del álgebra de Banach $L_1(\mathbb{R}^n,\mathbb{C} )$}
+
+    \begin{obs}
+        $\mathbb{R}^n_+$ denota al grupo abeliano $(\mathbb{R}^n,+)$ y $\mathbb{C}^*$ denota al grupo abeliano $(\mathbb{C}\backslash\left\{0\right\},\cdot)$.
+    \end{obs}
+
+    \begin{propo}
+        Todo homomorfismo continuo de $\mathbb{R}_+$ en $\mathbb{C}^*$ es de la forma
+        \begin{equation*}
+            t\mapsto e^{ at}
+        \end{equation*}
+        con $a\in\mathbb{C}$.
+    \end{propo}
+
+    \begin{proof}
+        Primero, es claro que para todo $a\in\mathbb{C}$, la función $t\mapsto e^{at}$ es homomorfismo continuo de $\mathbb{R}_+$ en $\mathbb{C}^*$. Fije un homomorfismo continuo $\cf{\varphi}{\mathbb{R}_+}{\mathbb{C}^*}$.
+        \begin{enumerate}
+            \item Se afirma que $\varphi$ es diferenciable en todo punto de $\mathbb{R}$. En efecto, considere su integral indefinida
+            \begin{equation*}
+                x\mapsto \int_{0}^x \varphi(t)\:dt
+            \end{equation*}
+            esta función es diferenciable con derivada $\varphi(x)$ para todo $x\in\mathbb{R}$ (pues $\varphi$ es continua). Ya que $\varphi(x)\neq0$, la función anterior no puede ser la constante cero. Existe pues $\alpha\in\mathbb{R}$ tal que
+            \begin{equation*}
+                c=\int_0^\alpha\varphi(t)\:dx\neq0
+            \end{equation*}
+            Se tiene para todo $x\in\mathbb{R}$:
+            \begin{equation*}
+                \begin{split}
+                    c\varphi(x)&=\int_0^{\alpha}\varphi(x)\varphi(t)\:dt\\
+                    &=\int_0^{\alpha}\varphi(x+t)\:dt\\
+                    &=\int_x^{x+\alpha}\varphi(u)\:du\\
+                \end{split}
+            \end{equation*}
+            pues $\varphi$ es homomorfismo y haciendo el cambio de variable $t=u-x$. Como la función $x\mapsto \int_{x}^{x+\alpha}\varphi(t)\:dx$ es derivable en todo punto de $\mathbb{R}$ (con derivada $\varphi(x+a)-\varphi(x)$) y $c\neq0$, entonces se sigue que $\varphi$ es derivable en todo punto de $\mathbb{R}$.
+
+            \item Se afirma ahora que
+            \begin{equation*}
+                \varphi(t)=\varphi'(0)\varphi(t),\quad\forall t\in\mathbb{R}
+            \end{equation*}
+            Esto se sigue de que
+            \begin{equation*}
+                \begin{split}
+                    \frac{\varphi(t+h)-\varphi(t+0)}{h}&=\frac{\varphi(t)\varphi(h)-\varphi(t)}{h}\\
+                    &=\varphi(t)\cdot\frac{\varphi(h)-\varphi(0)}{h}\\
+                \end{split}
+            \end{equation*}
+            tomando límites cuando $h\rightarrow0$ se tiene el resultado.
+            \item Sea $a=\varphi'(0)$. Se tiene que
+            \begin{equation*}
+                \begin{split}
+                    \frac{d}{dt}\left(\varphi(t)e^{-at} \right)&=\varphi'(t)e^{-at}-a\varphi(t)e^{-at}\\
+                    &=a\varphi(t)e^{-at}-a\varphi(t)e^{-at}\\
+                    &=0,\quad\forall t\in\mathbb{R}\\
+                \end{split}
+            \end{equation*}
+            así pues, $t\mapsto\varphi(t)e^{-at}$ es constante en $\mathbb{R}$ de valor $\varphi(0)e^{-a\cdot0}=\varphi(0)=1$. Por tanto:
+            \begin{equation*}
+                \varphi(t)=e^{at},\quad\forall t\in\mathbb{R}
+            \end{equation*}
+        \end{enumerate}
+    \end{proof}
+
+    \begin{theor}
+        Todos los homomorfismos continuos de $\mathbb{R}_+^n$ en $\mathbb{C}^*$ son las funciones
+        \begin{equation*}
+            x\mapsto e^{\pint{a}{x}}\cdot e^{i\pint{b}{x}}
+        \end{equation*}
+        donde $a,b\in\mathbb{R}^n$.
+    \end{theor}
+
+    \begin{proof}
+        Primero, es claro que todas las funciones descritas anteriormente son homomorfismos continuos del grupo $\mathbb{R}^n_+$ en $\mathbb{C}^*$.
+
+        Sea $\cf{\varphi}{\mathbb{R}^n_+}{\mathbb{C}^*}$ un homomorfismo continuo. Sea $(e_1,...,e_n)$ la base natural de $\mathbb{R}^n$. Para cada $k\in\natint{1,n}$ se define
+        \begin{equation*}
+            \cf{\varphi_k}{\mathbb{R}}{\mathbb{C}}
+        \end{equation*}
+        dada como
+        \begin{equation*}
+            \varphi_k(t)=\varphi(te_k),\quad\forall t\in\mathbb{R}
+        \end{equation*}
+        Se tiene para todo $s,t\in\mathbb{R}$:
+        \begin{equation*}
+            \begin{split}
+                \varphi_k(s+t)&=\varphi(se_k+t_ek)\\
+                &=\varphi(se_k)\cdot\varphi(te_k)\\
+                &=\varphi_k(s)\cdot\varphi_k(t)\\
+            \end{split}
+        \end{equation*}
+        Luego $\varphi_k$ es homomorfismo. Además, $\varphi_k$ es continua por ser composición de funciones continuas. Por el resultado anterior existen $a_k,b_k\in\mathbb{R}$ tales que
+        \begin{equation*}
+            \varphi_k(t)=e^{ a_kt}\cdot e^{ib_kt},\quad\forall t\in\mathbb{R}
+        \end{equation*}
+        Sea $x=(x_1,...,x_n)\in\mathbb{R}^n$. Se tiene
+        \begin{equation*}
+            \begin{split}
+                \varphi(x)&=\varphi\left(\sum_{ k=1}^n x_ke_k \right)\\
+                &=\prod_{ k=1}^n \varphi(x_ke_k)\\
+                &=\prod_{ k=1}^n e^{ a_kx_k}\cdot e^{ib_kx_k}\\
+                &=e^{\sum_{ k=1}^n a_kx_k}\cdot e^{i\sum_{ k=1}^n b_kx_k}\\
+                &=e^{\pint{a}{x}}\cdot e^{i\pint{b}{x}},\quad\forall x\in\mathbb{R}^n \\
+            \end{split}
+        \end{equation*}
+        siendo $a=(a_1,...,a_n)$ y $b=(b_1,...,b_n)$.
+    \end{proof}
+
+    \begin{obs}
+        Sea $\mathbb{T}$ el subgrupo de $\mathbb{C}^*$ de todos los números complejos con módulo 1. $\mathbb{T}$ es llamado \textbf{el grupo del círculo}.
+
+        Todos los homomorfismos continuos de $\mathbb{R}^n_+$ en $\mathbb{T}$ se llaman \textbf{caracteres de $\mathbb{R}^n$}, los cuales son funciones de la forma
+        \begin{equation*}
+            x\mapsto e^{i\pint{b}{x}} 
+        \end{equation*}
+        (pues si $a\neq0$ entonces $e^{\pint{a}{x}}>1$ para casi todo $x\in\mathbb{R}^n$). En particular, la transformada de Fourier
+        \begin{equation*}
+            \fou{f}(x)=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}f(y)\:dy
+        \end{equation*}
+        es el resultado de integrar un caracter por $f$.
+    \end{obs}
+
+    \begin{lema}
+        Si $\Phi$ es un homomorfismo de un álgebra de Banach $\mathcal{A}$ en $\mathbb{K}$, entonces $\Phi$ es un funcional lineal continuo sobre $\mathcal{A}$ de norma $\norm{\Phi}\leq1$.
+    \end{lema}
+
+    \begin{proof}
+        Claramente $\Phi$ es funcional lineal sobre $\mathcal{A}$. Se debe probar que
+        \begin{equation*}
+            \norm{\Phi(x)}\leq\norm{x},\quad\forall x\in\mathcal{A}
+        \end{equation*}
+        Suponga por el contrario que existe $x_0\in\mathcal{A}$ tal que
+        \begin{equation*}
+            \norm{x_0}<\norm{\Phi(x_0)}
+        \end{equation*}
+        necesariamente debe tenerse que $\Phi(x_0)\neq0$. Al tomar
+        \begin{equation*}
+            x=\frac{x_0}{\Phi(x_0)}
+        \end{equation*}
+        resulta que
+        \begin{equation*}
+            \norm{x}<1\quad\textup{y}\quad\Phi(x)=1
+        \end{equation*}
+        Recuerde que en toda álgebra de Banach se cumple que $\norm{x\cdot y}\leq\norm{x}\cdot\norm{y}$. Entonces
+        \begin{equation*}
+            \norm{x^k}\leq\norm{x}^k
+        \end{equation*}
+        Entonces, la serie de términos positivos $\sum_{ k=1}^\infty\norm{x}^k$ es convergente, luego la serie $\sum_{ k=1}^\infty\norm{x^k}$ también es convergente, es decir que la serie
+        \begin{equation*}
+            \sum_{ k=1}^\infty x^k
+        \end{equation*}
+        es absolutamente convergente en el álgebra de Banach $\mathcal{A}$. Siendo $\mathcal{A}$ completo, dicha serie es convergente, digamos
+        \begin{equation*}
+            y=-\sum_{ k=1}^\infty x^k
+        \end{equation*}
+        para algún $y\in\mathcal{A}$. Entonces
+        \begin{equation*}
+            \begin{split}
+                x\cdot y&=x\cdot\left(-\sum_{ k=1}^\infty x^k\right)\\
+                &=-\sum_{ k=1}^\infty x^{ k+1}\\
+                &=y+x\\
+                &=x+y\\
+            \end{split}
+        \end{equation*}
+        Como $\Phi$ es homomofismo:
+        \begin{equation*}
+            \begin{split}
+                \Phi(x)+\Phi(y)&=\Phi(x+y)\\
+                &=\Phi(x y)\\
+                &=\Phi(x)\cdot\Phi(y)\\
+            \end{split}
+        \end{equation*}
+        lo cual es incompatible con $\Phi(x)=1$. Por tanto, $\Phi$ es continua de norma menor o igual a 1.
+    \end{proof}
+
+    \begin{theor}[\textbf{Homomorfismos no nulos del álgebra de Banach $L_1(\mathbb{R}^n,\mathbb{C})$ en $\mathbb{C}$}]
+        Para todo $a\in\mathbb{R}^n$, sea $\cf{\Phi_a}{L_1(\mathbb{R}^n,\mathbb{C})}{\mathbb{C}}$ la función
+        \begin{equation*}
+            \Phi_a(f)=\fou{f}(a),\quad\forall f\in L_1(\mathbb{R}^n,\mathbb{c})
+        \end{equation*}
+        Entonces, $\Phi_a$ es un homomorfismo no nulo del álgebra de Banach $L_1(\mathbb{R}^n,\mathbb{C})$ en $\mathbb{C}$. Además, la aplicación $\Phi:a\mapsto \Phi_a$ es una biyección de $\mathbb{R}^n$ sobre el conjunto de todos los homomorfismos no nulos de $L_1(\mathbb{R}^n,\mathbb{C})$ en $\mathbb{C}$.
+    \end{theor}
+
+    \begin{proof}
+        Se harán varias cosas:
+        \begin{enumerate}
+            \item Para cada $a\in\mathbb{R}^n$ fijo, se tiene
+            \begin{equation*}
+                \begin{split}
+                    \Phi_a(\lambda f)&=\fou{(\lambda f)}(a)\\
+                    &=\lambda\fou{f}(a)\\
+                    &=\lambda\Phi_a(f)\\
+                \end{split}
+            \end{equation*}
+            para todo $\lambda\in\mathbb{C}$. También,
+            \begin{equation*}
+                \begin{split}
+                    \Phi_a(f+g)&=\fou{(f+g)}(a)\\
+                    &=\fou{f}(a)+\fou{g}(a)\\
+                    &=\Phi_a(f)+\Phi_a(g)\\
+                \end{split}
+            \end{equation*}
+            y,
+            \begin{equation*}
+                \begin{split}
+                    \Phi_a(f*g)&=\fou{f*g}(a)\\
+                    &=\fou{f}(a)\cdot\fou{g}(a)\\
+                    &=\Phi_a(f)\cdot\Phi_a(g)\\
+                \end{split}
+            \end{equation*}
+            para todo $f,g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Por tanto, $\Phi_a$ es homomorfismo de $L_1(\mathbb{R}^n,\mathbb{C})$ en $\mathbb{C}$.
+
+            Es claro que $\phi_a$ no es el homomorfismo nulo, pues existen funciones $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$ tales que
+            \begin{equation*}
+                \fou{f}(a)\neq0,\quad\forall a\in\mathbb{R}^n
+            \end{equation*}
+            por ejemplo $f(x)=e^{ -\sum_{ k=1}^n \abs{x_k}}$ para todo $x\in\mathbb{R}^n$ es tal que $f$ es integrable y
+            \begin{equation*}
+                \fou{f}(a)=\frac{2^n}{(1+a_1^2)\cdot...\cdot(1+a_n^2)}\neq0,\quad\forall a\in\mathbb{R}^n
+            \end{equation*}
+            \item Se afirma que $\Phi:a\mapsto\Phi_a$ es inyectiva de $\mathbb{R}^n$ en el conjunto de todos los homomorfismos no nulos de $L_1(\mathbb{R}^n,\mathbb{C})$ en $\mathbb{C}$. Sean pues $a=(a_1,...,a_n)$ y $b=(b_1,...,b_n)$ en $\mathbb{R}^n$ tales que
+            \begin{equation*}
+                \Phi_a=\Phi_b
+            \end{equation*}
+            es decir que
+            \begin{equation*}
+                \fou{f}(a)=\fou{f}(b),\quad\forall f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})
+            \end{equation*}
+            o sea que
+            \begin{equation*}
+                \int_{\mathbb{R}^n}e^{ -i\pint{a}{x}}f(x)\:dx=\int_{\mathbb{R}^n}e^{ -i\pint{b}{x}}f(x)\:dx,\quad\forall f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})
+            \end{equation*}
+            se debe probar que $a=b$. Por el lema anterior, $\Phi_a=\Phi_b$ es un funcional lineal continuo de $L_1(\mathbb{R}^n,\mathbb{C})$ en $\mathbb{C}$. Por el Teorema de Dualidad entre $L_1$ y $L_\infty$, existe $\beta\in\mathcal{L}_{\infty}(\mathbb{R}^n,\mathbb{C})$ único salvo equivalencias tal que
+            \begin{equation*}
+                \begin{split}
+                    \int_{\mathbb{R}^n}e^{ -i\pint{a}{x}}f(x)\:dx=\int_{\mathbb{R}^n}e^{ -i\pint{b}{x}}f(x)\:dx=\int_{\mathbb{R}^n}\beta(x)f(x)\:dx
+                \end{split}
+            \end{equation*}
+            para todo $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Por tanto, de la unicidad de $\beta$ debe suceder que
+            \begin{equation*}
+                e^{ -i\pint{a}{x}}=e^{ -i\pint{b}{x}}=\beta(x)\textup{ c.t.p. en }\mathbb{R}^n
+            \end{equation*}
+            siendo las dos primeras continuas, debe tenerse que
+            \begin{equation*}
+                r(x)=e^{ -i\pint{a}{x}}=e^{ -i\pint{b}{x}}=s(x),\quad\forall x\in\mathbb{R}^n
+            \end{equation*}
+            entonces,
+            \begin{equation*}
+                \frac{\partial}{\partial x_k}r(0)=-ia_k=-ib_k=\frac{\partial}{\partial x_k}s(0)
+            \end{equation*}
+            para todo $k\in\natint{1,n}$. Así, $a=b$.
+            \item 
+        \end{enumerate}
+    \end{proof}
+
 \end{document}
