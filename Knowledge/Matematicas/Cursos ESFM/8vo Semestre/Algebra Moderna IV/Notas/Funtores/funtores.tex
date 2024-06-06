@@ -125,6 +125,7 @@
 \newcommand{\SO}[1]{\ensuremath{\textup{SO}\left(#1\right)}}
 \newcommand{\Quo}[1]{\ensuremath{\textup{Quo}\left(#1 \right)}}
 \newcommand{\Fun}[2]{\ensuremath{\textup{Fun}\left(#1,#2\right)}}
+\newcommand{\Ev}{\ensuremath{\textup{Ev}}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -1815,15 +1816,158 @@
         \begin{equation*}
             S(U)=U^{op}\quad\textup{y}\quad S(\beta)=(\beta^{op})^{\overline{op}}
         \end{equation*}
-        para cualesquiera $\cf{U,V}{\mathcal{B}^{op}}{\mathcal{C}^{op}}$ funtores y $\cf{\beta}{U}{V}$ transformación natural.
+        para cualesquiera $\cf{U,V}{\mathcal{B}^{op}}{\mathcal{C}^{op}}$ funtores y $\cf{\beta}{U}{V}$ transformación natural. Claramente con estas definciciones se tiene que $T$ y $S$ preservan identidades.
 
-        Consideremos $\cf{F,G,H}{\mathcal{B}}{\mathcal{C}}$ funtores y $\cf{\alpha}{F}{G}$ y $\cf{\beta}{G}{H}$ transformaciones naturales.
-
-        Entonces, para todo $B\in\Obj{\mathcal{B}}$ se tiene
+        Consideremos ahora $\cf{F,G,H}{\mathcal{B}}{\mathcal{C}}$ funtores y $\cf{\alpha}{F}{G}$ y $\cf{\beta}{G}{H}$ transformaciones naturales. Entonces,
         \begin{equation*}
             (\beta\circ\alpha)^{op}=\alpha^{op}\bullet\beta^{op}
         \end{equation*}
-        
+        En efecto, veamos que para todo $B\in\Obj{\mathcal{B}}$ se tiene
+        \begin{equation*}
+            \begin{split}
+                \left((\beta\circ\alpha)^{op}\right)_B&=((\beta\circ\alpha)_B)^{op}\\
+                &=(\beta_B\circ_{\mathcal{C}}\alpha_B)^{op}\\
+                &=(\alpha_B)^{op}\circ_{\mathcal{C}}^{op}(\beta_B)^{op}\\
+                &=(\alpha^{op})_B\circ_{\mathcal{C}}^{op}(\beta^{op})_B\\
+                &=(\alpha^{op}\bullet\beta^{op})_B\\
+            \end{split}
+        \end{equation*}
+        lo que prueba el resultado.
+
+        Ahora, veamos que $T$ saca composiciones:
+        \begin{equation*}
+            \begin{split}
+                T(\alpha^{\overline{op}}\circ^{op}\beta^{\overline{op}})&=T((\beta\circ\alpha)^{\overline{op}})\\
+                &=(\beta\circ\alpha)^{op}\\
+                &=\alpha^{op}\bullet\beta^{op}\\
+                &=T(\alpha^{\overline{op}})\bullet T(\beta^{\overline{op}})\\
+            \end{split}
+        \end{equation*}
+
+        Ahora consideremos $\cf{U,V,W}{\mathcal{C}^{op}}{\mathcal{C}^{op}}$ funtores y $\cf{\alpha}{U}{V}$, $\cf{\beta}{V}{W}$ transformaciones naturales. Afirmamos que
+        \begin{equation*}
+            (\beta\bullet\alpha)^{op}=\alpha^{op}\circ\beta^{op}
+        \end{equation*}
+        Se tiene que para todo $B\in\Obj{\mathcal{B}}$:
+        \begin{equation*}
+            \begin{split}
+                ((\beta\bullet\alpha)^{op})_B&=((\beta\bullet\alpha)_B)^{op}\\
+                &=(\beta_B\circ_{\mathcal{C}^{op}}\alpha_B)^{op}\\
+                &=\alpha_B^{op}\circ_\mathcal{C}\beta_B^{op}\\
+                &=(\alpha^{op}\circ\beta^{op})_B\\
+            \end{split}
+        \end{equation*}
+        lo que prueba el resultado. Ahora, veamos que $S$ saca composiciones:
+        \begin{equation*}
+            \begin{split}
+                S(\beta\bullet\alpha)&=((\beta\bullet\alpha)^{op})^{\overline{op}}\\
+                &=(\alpha^{op}\circ\beta^{op})^{\overline{op}}\\
+                &=(\beta^{op})^{\overline{op}}\circ^{op}(\alpha^{op})^{\overline{op}}\\
+                &=S(\beta)\circ^{op}S(\alpha)\\
+            \end{split}
+        \end{equation*}
+
+        Por tanto, $S$ y $T$ son funtores. Ahora, de la definción es claro que
+        \begin{equation*}
+            S\circ T=1_{\Fun{\mathcal{B}}{\mathcal{C}}^{op}}\quad\textup{y}\quad T\circ S=1_{\Fun{\mathcal{B}^{op}}{\mathcal{C}^{op}}}
+        \end{equation*}
+        con lo que los funtores $S$ y $T$ son isomorfismos, es decir que las categorías $\Fun{\mathcal{B}}{\mathcal{C}}^{op}$ y $\Fun{\mathcal{B}^{op}}{\mathcal{C}^{op}}$, son isomorfas.
+    \end{proof}
+
+    \begin{cor}
+        Sea $\mathcal{I}$ categoría pequeña y $\mathcal{C}$ categoría atrbiaria. Si $\cf{F,G}{\mathcal{I}}{\mathcal{C}}$ son funtores y $\cf{\psi}{F}{G}$ es transformación natural. Entonces $\psi$ es monomorfismo en $\Fun{\mathcal{I}}{\mathcal{C}}$ si y sólo si $\psi^{op}$ es epimorfismo en $\Fun{\mathcal{I}^{op}}{\mathcal{C}^{op}}$.
+    \end{cor}
+
+    \begin{proof}
+        Recordemos que por el principio de dualidad se tiene que $\cf{\psi}{F}{G}$ es monomorfismo en $\Fun{\mathcal{I}}{\mathcal{C}}$ si y sólo si $\cf{\psi^{\overline{op}}}{G}{F}$ es epimorfismo en $\Fun{\mathcal{I}}{\mathcal{C}}^{op}$ si y sólo si $\cf{T(\psi^{\overline{op}})=\psi^{op}}{G^{op}}{F^{op}}$ es epimorfismo en $\Fun{\mathcal{I}^{op}}{\mathcal{C}^{op}}$ donde la última equivalencia es válida por el teorema anteroir y el hecho de que los isomorfismos de categorías preservan epimorfismos.
+    \end{proof}
+
+    \section{Construcción de Funtores entre categorías de Funtores}
+
+    \begin{mydef}
+        Se define lo siguiente:
+        \begin{itemize}
+            \item Sea $\mathcal{I}$ una categoría pequeña y $\mathcal{C},\mathcal{D}$ categorías arbitrarias. Dado un funtor $\cf{F}{\mathcal{C}}{\mathcal{D}}$, se induce un funtor
+            \begin{equation*}
+                \cf{F_{\star}}{\Fun{\mathcal{I}}{\mathcal{C}}}{\Fun{\mathcal{I}}{\mathcal{D}}}
+            \end{equation*}
+            definida como: para todo $\cf{G,G'}{\mathcal{I}}{\mathcal{C}}$ funtores y $\cf{\psi}{G}{G'}$ transformación natural,
+            \begin{equation*}
+                F_\star(G)=F\circ G
+            \end{equation*}
+            y,
+            \begin{equation*}
+                F_\star(\psi)_i=F(\psi_i),\quad\forall i\in\Obj{\mathcal{I}}
+            \end{equation*}
+            siendo $\psi=\left\{\psi_i \right\}_{ i\in\Obj{\mathcal{I}}}$.
+            \item Similarmente, dado un funtor $\cf{F}{\mathcal{I}}{\mathcal{J}}$ siendo $\mathcal{I},\mathcal{J}$ categorías pequeñas, se induce un funtor
+            \begin{equation*}
+                \cf{F^\star}{\Fun{\mathcal{J}}{\mathcal{C}}}{\Fun{\mathcal{I}}{\mathcal{C}}}
+            \end{equation*}
+            definido como: para todo $\cf{G,G'}{\mathcal{J}}{\mathcal{C}}$ funtores y $\cf{\psi}{G}{G'}$ transformación natural,
+            \begin{equation*}
+                F^\star(G)=G\circ F
+            \end{equation*}
+            y,
+            \begin{equation*}
+                F^\star(\psi)_i=\psi_{ F(i)},\quad\forall i\in\Obj{\mathcal{I}}
+            \end{equation*}
+        \end{itemize}
+    \end{mydef}
+
+    \begin{proof}
+        Se probará que los anteriores son funtores. En efecto,
+        %TOOD
+    \end{proof}
+
+    \begin{mydef}
+        Dada $\mathcal{I}$ categoría pequeña y $\mathcal{C}$ categoría arbitraria, existe un bifuntor denotado por $\cf{\Ev}{\Fun{\mathcal{I}}{\mathcal{C}}\times\mathcal{I}}{\mathcal{C}}$ llamado el \textbf{bifuntor evaluación} definido como sigue: para todo $i,j\in\Obj{\mathcal{I}}$, $f\in\Hom{\mathcal{I}}{i}{j}$, $\cf{F,G}{\mathcal{I}}{\mathcal{C}}$ funtores y $\cf{\eta}{F}{G}$ transformación natural,
+        \begin{equation*}
+            \Ev(F,i)=F(i)
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \Ev(\eta,f)=G(f)\circ\eta_i
+        \end{equation*}
+    \end{mydef}
+
+    \begin{proof}
+        Sean $i,j\in\Obj{\mathcal{I}}$, $f\in\Hom{\mathcal{I}}{i}{j}$, $\cf{F,G}{\mathcal{I}}{\mathcal{C}}$ funtores y $\cf{\eta}{F}{G}$ transformación natural. Como $\eta$ es transformación natural, entonces el siguiente diagrama es conmutativo:
+        \begin{equation*}
+            \begin{array}{rcccl}
+                &F(u) & \overset{\eta_i}{\longrightarrow} & G(i) &\\
+                F(f) & \downarrow & & \downarrow & G(f) \\
+                &F(j) & \underset{\eta_j}{\longrightarrow} & G(j) &\\
+            \end{array}
+        \end{equation*}
+        Por tanto:
+        \begin{equation*}
+            \eta_j\circ F(f)=G(f)\circ\eta(i)
+        \end{equation*}es
+        por tanto, $\Ev$ está bien definido, pues $G(f)\circ\eta(i)$ es morfismo en $\mathcal{C}$ (la segunda parte de su defincición puede que no quede totalmente clara).
+
+        Veamos que preserva identidades. En efecto, para todo $\cf{F}{\mathcal{I}}{\mathcal{C}}$ funtor y para todo $i\in\Obj{\mathcal{I}}$:
+        \begin{equation*}
+            \begin{split}
+                \Ev(1_F,1_i)&=F(i)\circ 1_{F(i)}\\
+                &=1_{F(i)}\circ 1_{F(i)}\\
+                &=1_{F(i)}\\
+                &=1_{\Ev(F,i)}\\
+            \end{split}
+        \end{equation*}
+    
+        Y veamos que respeta composiciones. Sean $f\in\Hom{\mathcal{I}}{i}{j}$, $g\in\Hom{\mathcal{I}}{j}{k}$ y $\cf{\eta}{F}{G}$, $\cf{\xi}{G}{H}$ transformaciones naturales donde $\cf{F,G,H}{\mathcal{I}}{\mathcal{C}}$ son funtores. Entonces,
+        \begin{equation*}
+            \begin{split}
+                \Ev((\xi,g)\circ(\eta,f))&=\Ev((\xi\circ\eta,g\circ f))\\
+                &=H(g\circ f)\circ(\xi\circ\eta)_i\\
+                &=H(g)\circ H(f)\circ\xi_i\circ\eta_i\\
+                &=H(g)\circ\xi_i\circ G(f)\circ\eta_i\\
+                &=(H(g)\circ\xi_i)\circ (G(f)\circ\eta_i)\\
+                &=\Ev(\xi,g)\circ\Ev(\eta,f)\\
+            \end{split}
+        \end{equation*}
+        por tanto, $\Ev$ es funtor.
     \end{proof}
 
 \end{document}
