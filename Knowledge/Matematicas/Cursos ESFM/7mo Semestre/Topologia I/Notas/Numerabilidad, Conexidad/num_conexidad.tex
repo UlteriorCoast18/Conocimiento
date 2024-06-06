@@ -1248,7 +1248,7 @@
     \end{proof}
 
     \begin{lema}
-        Sean $A,B\subseteq X$ cerrados con $A\cap B=\emptyset$. Si dados $a\in A$ y $b\in B$ existen $U,V\in\tau$ tales que
+        Sea $(X,\tau)$ un espacio compacto y $T_2$, $A,B\subseteq X$ cerrados con $A\cap B=\emptyset$. Si dados $a\in A$ y $b\in B$ existen $U,V\in\tau$ tales que
         \begin{equation*}
             a\in U\quad\textup{y}\quad b\in V
         \end{equation*}
@@ -1259,7 +1259,116 @@
     \end{lema}
 
     \begin{proof}
-        
+        Sea $b\in B$, entonces $b\notin A$ pues $A\cap B=\emptyset$. Por el lema anterior existen $U_b,V_b\in\tau$ tales que
+        \begin{equation*}
+            U_b\cap V_b=\emptyset\quad\textup{y}\quad U_b\cup V_b=X
+        \end{equation*}
+        siendo tales que $b\in U_b$ y $A\subseteq V_b$. Luego
+        \begin{equation*}
+            B\subseteq\bigcup_{ b\in B}U_b
+        \end{equation*}
+        Como $B$ es un cerrado en un espacio compacto, entonces es compacto, luego existen $b_1,...,b_n\in B$ tales que
+        \begin{equation*}
+            B\subseteq\bigcup_{ i=1}^n U_{b_i}
+        \end{equation*}
+        Sea
+        \begin{equation*}
+            N=\bigcup_{ i=1}^n U_{b_i}\quad\textup{y}\quad M=\bigcap_{ i=1}^n V_{ b_i}
+        \end{equation*}
+        Se tiene que $M,N\in\tau$ y, además $M\cap N=\emptyset$. Veamos ahora que $M\cup N=X$. En efecto,
+        \begin{equation*}
+            \begin{split}
+                M\cup N&=\left(\bigcap_{ i=1}^n V_{ b_i}\right)\cup\left(\bigcup_{ i=1}^n U_{b_i}\right)\\
+                &=\left(\bigcap_{ i=1}^n\left[V_{ b_i}\cup\left(\bigcup_{ j=1}^n U_{b_j}\right)\right]\right)\\
+                &=\left(\bigcap_{ i=1}^n\left(\bigcup_{ j=1}^n V_{ b_i}\cup U_{b_j}\right)\right)\\
+                &=\left(\bigcap_{ i=1}^n\left(\bigcup_{ j=1, j\neq i}^n V_{ b_i}\cup U_{b_j}\right)\cup V_{ b_i}\cup U_{ b_i} \right)\\
+                &=\left(\bigcap_{ i=1}^n\left(\bigcup_{ j=1, j\neq i}^n V_{ b_i}\cup U_{b_j}\right)\cup X \right)\\
+                &=\left(\bigcap_{ i=1}^n X \right)\\
+                &=X\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \begin{lema}
+        Sea $(X,\tau)$ un espacio compacto y $T_2$. Sean $Q$ una quasi-componente de $X$ y $U\in\tau$ tal que $Q\subseteq U$. Entonces existe $H\subseteq X$ tal que $H,X-H\in\tau$ y $Q\subseteq H\subseteq U$.
+    \end{lema}
+
+    \begin{proof}
+        Tenemos que $Q,X-U$ son dos conjuntos cerrados disjuntos. Si $a\in Q$ y $b\in X-U$ entonces $a\nsim b$ pues en caso contrario se tendría que $b\in Q$. Por tanto, existen $V,W\in\tau$ tales que
+        \begin{equation*}
+            a\in V,\quad b\in W
+        \end{equation*}
+        tales que
+        \begin{equation*}
+            V\cap W=\emptyset\quad\textup{y}\quad V\cup W=X
+        \end{equation*}
+        Por tanto, los cerrados $Q$ y $X-U$ cumplen las hipótesis del lema anterior, luego existen dos abiertos $H,F\in\tau$ tales que
+        \begin{equation}
+            Q\subseteq H\quad X-U\subseteq F
+        \end{equation}
+        y,
+        \begin{equation*}
+            H\cap F=\emptyset\quad\textup{y}\quad H\cup F=X
+        \end{equation*}
+        Se tiene al ser la unión disjunta que $F=X-H\in\tau$. Además,
+        \begin{equation*}
+            X-U\subseteq F\Rightarrow X-F\subseteq U\Rightarrow H\subseteq U
+        \end{equation*}
+        Por tanto, $H$ es el conjunto abierto deseado.
+    \end{proof}
+
+    \begin{theor}
+        Sea $(X,\tau)$ un espacio compacto y $T_2$. Entonces, toda cuasi-componente de $X$ es conexa.
+    \end{theor}
+
+    \begin{proof}
+        Sea $Q$ una cuasi-componente de $X$ y suponga que $Q$ no es conexa. Entonces existen $U,V\in\tau_Q$ no vacíos tales que
+        \begin{equation*}
+            U\cap V=\emptyset\quad\textup{y}\quad U\cup V=Q
+        \end{equation*}
+        Como $U$ y $V$ son cerrados en $(Q,\tau_Q)$ y $Q$ es cerrado en $(X,\tau)$, entonces $U,V$ son cerrados en $(X,\tau)$. Como $(X,\tau)$ es compacto y $T_2$, es normal. Así, existen $M,N\in\tau$ tales que
+        \begin{equation*}
+            M\cap N=\emptyset
+        \end{equation*}
+        con $U\subseteq M$ y $V\subseteq N$. Por ende
+        \begin{equation*}
+            Q=U\cup V\subseteq M\cup N\in\tau
+        \end{equation*}
+        Por el lema anterior existe $H\subseteq X$ tal que $H,X-H\in\tau$ con
+        \begin{equation*}
+            Q\subseteq H\subseteq M\cup N
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            W=M\cap H=(X-N)\cap H
+        \end{equation*}
+        es cerrado y abierto, pues los dos conjuntos de la derecha son cerrados y los dos de en medio son abiertos. Por tanto, $W,X-W\in\tau$. Más aún , se tiene que
+        \begin{equation*}
+            U\subseteq W\quad\textup{y}\quad V\subseteq X-W
+        \end{equation*}
+        y, $Q=U\cup V\subseteq W\cup (X-W)=X$. De esta forma dados $x\in W$ y $y\in X-W$ entonces $Q_x\neq Q_y$\contradiction. Por tanto, uno de los dos $U,V$ debe ser vacío. Así, $Q$ debe ser conexo.
+    \end{proof}
+
+    \begin{cor}
+        Si $(X,\tau)$ es un espacio compacto y $T_2$. Entonces las componentes y las cuasi-componentes coinciden.
+    \end{cor}
+
+    \begin{proof}
+        Inmediata de lo anterior.
+    \end{proof}
+
+    \section{Espacios Localmente Conexos}
+
+    \begin{mydef}
+        Un espacio topológico $(X,\tau)$ es \textbf{localmente conexo} si dado $x\in X$ existe una base de vecindades conexas de $x$. Es decir, cualquier vecindad de $x$ contiene una vecindad conexa de $x$.
+    \end{mydef}
+
+    \begin{propo}
+        Si $(X,\tau)$ es un espacio localmente conexo y $C$ es una componente conexa de $X$, entonces $C$ es un abierto.
+    \end{propo}
+
+    \begin{proof}
+        Sea $C$ una componente conexa de $X$ y $p\in C$. Sea $U$ una vecindad conexa de $p$. Se tiene que $U\cap C\neq\emptyset$, luego $U\cap C$ es un conexo que contiene a $p$. Por maximalidad se sigue que $U\cup C=C$, es decir que $U\subseteq C$.
     \end{proof}
 
 \end{document}

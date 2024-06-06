@@ -1750,10 +1750,10 @@
     \end{mydef}
 
     \begin{theor}
-        Sea $F$ un campo y $f(X)\in F[X]\backslash F$ con $n=\deg(f(X))$. Sea $G=G_f$ el grupo de automorfismos de $f$ sobre $F$. Entonces:
+        Sea $F$ un campo, $f(X)\in F[X]\backslash F$, $\alpha_1,...,\alpha_m\in\overline{F}$ las raíces distintas de $f(X)$, $E=F(\alpha_1,...,\alpha_m)$, $n=\deg(f)$ y $G=G_f=\Aut{F}{E}$. Entonces:
         \begin{enumerate}
             \item $G$ es isomorfo a un subgrupo de $S_m$ para algún $m\in\mathbb{N}$.
-            \item Si $f(X)$ es irreducible y separable, entonces $n\divides\abs{G}$ y $G$ es un subgrupo transitivo del grupo simétrico $S_n$.
+            \item Si $f(X)$ es irreducible y separable, entonces $n\divides\abs{G}$ y $G$ es isomorfo a un subgrupo transitivo del grupo simétrico $S_n$.
         \end{enumerate}
     \end{theor}
 
@@ -1778,10 +1778,112 @@
             \end{split}
         \end{equation*}
         por tanto, $\ker(\Phi)=\langle e\rangle$. Así, $\cf{\Phi}{G}{S_m}$ es monomorfismo.
+
+        De (ii): Bajo estas condiciones la extensión $E/F$ es de Galois (por ser normal y ser $f(X)$ separable) y finita (por ser algebraica y finitamente generada), donde
+        \begin{equation*}
+            \Gal{E/F}=G=G_f
+        \end{equation*}
+        Además, $m=n$. Por (i) tenemos que $G$ es isomorfo a un subgrupo de $S_n$, es decir $G\hookrightarrow S_n$. tal que $\sigma\mapsto\sigma\big|_{\left\{\alpha_1,...,\alpha_n\right\}}$.
+
+        Sea $\alpha$ una raíz de $f(X)$, entonces se tiene que $F(\alpha)$ es un campo intermedio de la extensión $E/F$ con $[F(\alpha):F]=\deg(\irr(\alpha,F,X))=\deg(f(X))=n$. Luego,
+        \begin{equation*}
+            \abs{G}=\abs{\Gal{E/F}}=[E:F]=[E:F(\alpha)]\cdot[F(\alpha):F]=n\cdot[E:F(\alpha)]
+        \end{equation*}
+        por tanto, $n\divides\abs{G}$. Finalmente, sean $\alpha_i$ y $\alpha_j$ raíces de $f(X)$ ($i,j\in\natint{1,n}$). Notemos que por hipótesis, $\alpha_i$ y $\alpha_j$ son $F$-conjugados. Luego, existe un $F$-isomorfismo $\cf{\varphi}{F(\alpha_i)}{F(\alpha_j)}$ tal que $\varphi(\alpha_i)=\alpha_j$.
+
+        Extendemos $\varphi$ a un $F$-homomorfismo $\sigma$ de $E$ en $\overline{F}$. Como $E/F$ es normal, entonces $\sigma$ es un $F$-automorfismo de $E$ tal que $\sigma\big|_{\left\{\alpha_1,...,\alpha_n\right\}}(\alpha_i)=\sigma(\alpha_i)=\varphi(\alpha_i)=\alpha_j$.
+
+        Por tanto, $G$ es transitivo.
     \end{proof}
 
     \begin{obs}
         Notemos que la función $\Phi$ no necesariamente es isomorfismo, ya que todo elemento $\sigma\in G$ sólo permuta a $F$-conjungados, y puede que $f(X)$ sea producto de polinomios irreducibles, luego no todas las raíces de $f(X)$ serán $F$-conjugadas.
     \end{obs}
+
+    \begin{propo}
+        En las condiciones del teorema anterior, suponemos que $\deg(f(X))=2$ con $f(X)$ irreducible y separable de $F[X]$. Entonces $G\cong S_2\cong\mathbb{Z}/2\mathbb{Z}$.
+    \end{propo}
+
+    \begin{proof}
+        Inmediata del teorema anterior.
+    \end{proof}
+
+    \begin{exa}
+        Considere un campo $F$ y sea $f(X)$ el polinomio tal que $\deg(f(X))=2$. Se tienen dos casos:
+        \begin{enumerate}
+            \item $f(X)=\lambda(X-\alpha_1)(X-\alpha_2)$. Se tienen dos casos.
+            \begin{enumerate}
+                \item $\alpha_1\in F$ implica que $\alpha_2\in F$ (vea le desarrollo del producto en $f(X)$).
+            \end{enumerate}
+            \item $f(X)=\lambda(X-\alpha)^2$. Notemos que
+            \begin{equation*}
+                f(X)=\lambda X²-2\lambda\alpha X+\lambda\alpha^2
+            \end{equation*}
+            si $\car(F)\neq2$, forzosamente debe suceder que $\alpha\in F$. En cambio, si $\car(F)=2$, puede suceder que $\alpha\notin F$, pero debe suceder que $\alpha^2\in F$, esto es que $\alpha$ sea puramente inseparable sobre $F$.
+        \end{enumerate}
+    \end{exa}
+    
+    \begin{obs}
+        Recordemos que $S_3$ está generado por los elementos
+        \begin{equation*}
+            \sigma=\left(
+                \begin{array}{ccc}
+                    1 & 2 & 3 \\
+                    2 & 1 & 3 \\
+                \end{array}
+            \right)\quad\textup{y}\quad\pi=\left(
+                \begin{array}{ccc}
+                    1 & 2 & 3 \\
+                    2 & 3 & 1 \\
+                \end{array}
+            \right)
+        \end{equation*}
+        es decir,
+        \begin{equation*}
+            S_r=\langle\sigma,\pi\Big|\abs{\sigma}=2,\abs{\pi}=2,\pi\sigma=\sigma\pi^2 \rangle=\left\{e,\sigma,\pi,\pi^2,\sigma\pi,\sigma\pi^2 \right\}
+        \end{equation*}
+        donde $\abs{\sigma}=\abs{\sigma\pi}=\abs{\sigma\pi^2}=2$ y $\abs{\pi}=\abs{\pi^2}=3$, luego los cubgrupos de $S_3$ son:
+        \begin{equation*}
+            \langle e\rangle, \langle\sigma\rangle, \langle\sigma\pi\rangle,\langle\sigma\pi^2\rangle\textup{ y } \langle\pi\rangle
+        \end{equation*}
+        Los primeros tres no pueden ser transitivos, el tercero ya que
+        \begin{equation*}
+            \sigma\pi=\left(
+                \begin{array}{ccc}
+                    1 & 2 & 3 \\
+                    1 & 3 & 2 \\
+                \end{array}
+            \right)
+        \end{equation*}
+        tampoco el cuarto, pues
+        \begin{equation*}
+            \sigma\pi^2=\left(
+                \begin{array}{ccc}
+                    1 & 2 & 3 \\
+                    3 & 2 & 1 \\
+                \end{array}
+            \right)
+        \end{equation*}
+        y para el quinto
+        \begin{equation*}
+            \pi^2=\left(
+                \begin{array}{ccc}
+                    1 & 2 & 3 \\
+                    3 & 1 & 2 \\
+                \end{array}
+            \right)
+        \end{equation*}
+        si es grupo transitivo, pues $\langle\pi\rangle=\left\{e,\pi,\pi^2\right\}$ (se verifica rápidamente).
+
+        Luego, los únicos subgrupos transitivos de $S_3$ son $\langle\pi\rangle$ y $S_3$.
+    \end{obs}
+
+    \begin{cor}
+        En las condiciones del teorema anterior, si $f(X)$ es un polinomio irreducible y separable de grado $3$, entonces su grupo de automorfismos debe ser isomorfo a $\langle\pi\rangle$ o a $S_3$.
+    \end{cor}
+
+    \begin{proof}
+        Inmediato de la observación anterior.
+    \end{proof}
 
 \end{document}
