@@ -1073,7 +1073,86 @@
         \begin{equation*}
             \lim_{ R\rightarrow\infty}J(R)=f(x)
         \end{equation*}
-        En efecto, 
+        En efecto, sea $R>0$. Se tiene que la función $(y,t)\mapsto f(t)\cos(y(t-x))$ es medible para la cual se cumple que
+        \begin{equation*}
+            \begin{split}
+                \int_0^R\:dy\int_{-\infty}^\infty \abs{f(t)\cos(y(t-x))}\:dt&\leq\int_0^R\:dy\int_{-\infty}^\infty \abs{f(t)}\:dt\\
+                &\leq R\N{1}{f}\\
+                &<\infty\\
+            \end{split}
+        \end{equation*}
+        Luego, por Fubini se tiene que
+        \begin{equation*}
+            \begin{split}
+                J(R)&=\frac{1}{\pi}\int_0^R\:dy\int_{-\infty}^\infty f(t)\cos(y(t-x))\:dt\\
+                &=\frac{1}{\pi}\int_{-\infty}^\infty\:dt\int_0^R f(t)\cos(y(t-x))\:dy\\
+                &=\frac{1}{\pi}\int_{-\infty}^\infty f(t)\:dt\int_0^R \cos(y(t-x))\:dy\\
+                &=\frac{1}{\pi}\int_{-\infty}^\infty f(t)\left[\frac{\sin(y(t-x))}{t-x}\Big|_{ y=0}^{ y=R} \right]\:dt\\
+                &=\frac{1}{\pi}\int_{-\infty}^\infty f(t)\cdot\frac{\sin(R(t-x))}{t-x}\:dt,\quad\textup{ haciendo el cambio de variable }t=z+x \\
+                &=\frac{1}{\pi}\int_{-\infty}^\infty f(z+x)\cdot\frac{\sin(Rz)}{z}\:dz\\
+            \end{split}
+        \end{equation*}
+        Por otro lado, recuerde de la observación anterior que
+        \begin{equation*}
+            f(x)=\frac{1}{\pi}\int_{\rightarrow-\infty}^{\rightarrow\infty} f(z)\cdot\frac{\sin(Rz)}{z}\:dz,\quad\forall R>0
+        \end{equation*}
+        Así pues,
+        \begin{equation*}
+            J(R)-f(x)=\frac{1}{\pi}\int_{\rightarrow-\infty}^{\rightarrow\infty}\frac{f(x+z)-f(x)}{z}\cdot\sin(Rz)\:dz
+        \end{equation*}
+        Sea $N>0$, por lo anterior se tiene para cada $R>0$:
+        \begin{equation*}
+            \begin{split}
+                J(R)-f(x)&=\frac{1}{\pi}\int_{\rightarrow-\infty}^{\rightarrow\infty}\frac{f(x+z)-f(x)}{z}\cdot\sin(Rz)\:dz\\
+                &=\frac{1}{\pi}\int_{-N}^{N}\frac{f(x+z)-f(x)}{z}\cdot\sin(Rz)\:dz+\frac{1}{\pi}\int_{\abs{z}>N}f(x+z)\cdot\frac{\sin(Rz)}{z}\:dz\\
+                &-\frac{f(x)}{\pi}\int_{N}^{\rightarrow\infty}\frac{\sin (Rz)}{z}\:dz-\frac{f(x)}{\pi}\int_{\rightarrow-\infty}^{-N}\frac{\sin (Rz)}{z}\:dz\\
+            \end{split}
+        \end{equation*}
+        Analicemos por partes, se tiene lo siguiente:
+        \begin{equation*}
+            \begin{split}
+                \abs{\int_{\abs{z}>N}f(x+z)\cdot\frac{\sin(Rz)}{z}\:dz}&\leq\int_{\abs{z}>N}\frac{\abs{f(x+z)}}{\abs{z}}\:dz\\
+                &\leq\frac{1}{N}\int_{\abs{z}>N}\abs{f(x+z)}\:dz\\
+                &=\frac{\N{1}{f}}{N}\\
+            \end{split}
+        \end{equation*}
+        ahora, si $R>1$ y por el Segundo Teorema del Valor Medio:
+        \begin{equation*}
+            \begin{split}
+                \abs{\int_{N}^{M}\frac{\sin (Rz)}{z}\:dz}&\leq\left[\frac{1}{N}+\frac{2}{M} \right]\cdot\sup_{N\leq\zeta\leq M}\abs{\int_{N}^{\zeta}\sin Rz\:dz}\\
+                &=\left(\frac{1}{N}+\frac{2}M{}\right)\cdot\sup_{N\leq\zeta\leq M}\abs{-\frac{\cos(Rz)}{z}\Big|_{z=N}^{ z=\zeta}}\\
+                &\leq\left(\frac{1}{N}+\frac{2}{M}\right)\cdot\left(\frac{2}{R}\right)\\
+                &\leq\frac{6}{NR}\\
+                &\leq\frac{6}{N}\\
+            \end{split}
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            \abs{\int_{N}^{\rightarrow\infty}\frac{\sin (Rz)}{z}\:dz}\leq\frac{6}{N}
+        \end{equation*}
+        y, haciendo el cambio de variable $u=-z$ se sigue que
+        \begin{equation*}
+            \abs{\int_{\rightarrow-\infty}^{-N}\frac{\sin (Rz)}{z}\:dz}\leq\frac{6}{N}
+        \end{equation*}
+        Sea ahora $\varepsilon>0$. Se sigue de las tres desiguladades anteriores que si se fija $N$ lo suficientemente grande, los módulos de las tres últimas integrales de la derecha son menor o iguales a $\frac{\varepsilon}{2}$. Por ende,
+        \begin{equation*}
+            \begin{split}
+                \abs{J(R)-f(x)}\leq\frac{1}{\pi}\abs{\int_{-N}^{N}\frac{f(x+z)-f(x)}{z}\cdot\sin(Rz)\:dz}+\frac{\varepsilon}{2}
+            \end{split}
+        \end{equation*}
+        Como la función $z\mapsto\frac{f(x+z)-f(x)}{z}$ es integrable en $]-\delta,\delta[$ para algún $0<\delta<\pi$, necesariamente tiene que serlo en $[-N,N]$ (por la condición de Dini y separando la integral en los intervalos disjuntos $]-N,-\delta[$, $]-\delta,\delta[$ y $]\delta, N[$, tomando en este caso el $N>0$ tal que $N>\delta$). Luego, por el Teorema de Riemman-Lebesgue existe $R_0>1$ tal que
+        \begin{equation*}
+            \frac{1}{\pi}\abs{\int_{-N}^{N}\frac{f(x+z)-f(x)}{z}\cdot\sin(Rz) \:dz}<\frac{\varepsilon}{2},\quad\forall R\geq R_0
+        \end{equation*} 
+        Se sigue entonces que para todo $R\geq R_0$:
+        \begin{equation*}
+            \abs{J(R)-f(x)}<\varepsilon
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            \lim_{ R\rightarrow\infty}J(R)=f(x)
+        \end{equation*}
+        lo que prueba el resultado.
     \end{proof}
 
     \begin{obs}
