@@ -1371,4 +1371,118 @@
         Sea $C$ una componente conexa de $X$ y $p\in C$. Sea $U$ una vecindad conexa de $p$. Se tiene que $U\cap C\neq\emptyset$, luego $U\cap C$ es un conexo que contiene a $p$. Por maximalidad se sigue que $U\cup C=C$, es decir que $U\subseteq C$.
     \end{proof}
 
+    \chapter{Topología Cociente}
+
+    \section{Conceptos Fundamnetales}
+
+    \begin{propo}
+        Sean $(X,\tau)$ un espacio topológico, $Y$ un conjunto y $\cf{f}{X}{Y}$ una función. Entonces, la colección
+        \begin{equation*}
+            \tau_f=\left\{U\subseteq Y\Big|f^{-1}(U)\in\tau\right\}
+        \end{equation*}
+        es una topología sobre $Y$ llamada \textbf{la topología cociente (inducida por $f$)}.
+    \end{propo}
+
+    \begin{proof}
+        Se tienen que verificar tres condiciones:
+        \begin{itemize}
+            \item $f^{-1}(\emptyset)=\emptyset$ y $f^{-1}(Y)=X$, luego $\emptyset,Y\in\tau_f$.
+            \item Si $U,V\in\tau_f$, entonces $f^{-1}(U),f^{-1}(V)\in\tau$, luego
+            \begin{equation*}
+                \begin{split}
+                    f^{-1}(U\cap V)&=f^{-1}(U)\cap f^{-1}(V)\\
+                    &\in\tau\\
+                \end{split}
+            \end{equation*}
+            luego $U\cap V\in\tau_f$.
+            \item Si $\left\{A_\alpha\right\}_{\alpha\in I}\subseteq\tau_f$, entonces $f^{-1}(A_\alpha)\in\tau$ para todo $\alpha\in I$. Note que
+            \begin{equation*}
+                \begin{split}
+                    f^{-1}\left(\bigcup_{\alpha\in I}A_\alpha \right)&=\bigcup_{\alpha\in I}f^{-1}(A_\alpha)\\
+                    &\in\tau\\
+                \end{split}
+            \end{equation*}
+            así, $\bigcup_{\alpha\in I}A_\alpha\in\tau_f$.
+        \end{itemize}
+        Por tanto, $\tau$ es una topología sobre $Y$.
+    \end{proof}
+
+    \begin{obs}
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item La función $\cf{f}{(X,\tau)}{(Y,\tau_f)}$ es una función continua.
+            \item La topología cociente $\tau_f$ es la topología más fina que hace a la función $f$ continua.
+            \item $A\subseteq Y$ es un conjunto cerrado de $(Y,\tau_f)$ si y sólo si $f^{-1}(A)$ es un conjunto cerrado de $(X,\tau)$.
+            \item Si $f$ no es una función suprayectiva y $A\subseteq Y-f(X)$, entonces tenemos que $f^{-1}(A)=\emptyset$, por lo tanto, $A\in{\tau_f}_{Y-f(X)}$. Así, tenemos que ${\tau_f}_{ Y-f(X)}=\mathcal{P}(Y-f(X))$.
+            \item Si $f$ es inyectiva, entonces para todo $A\subseteq X$, $A=f^{-1}(f(A))$. Por tanto, si $\cf{f}{(X,\tau)}{(Y,\tau_f)}$ con $f$ una función inyectiva tenemos que $f$ es una función abierta. Así, la función $\cf{h}{(X,\tau)}{(f(X),{\tau_f}_{f(X)})}$ definida como $h(x)=f(x)$ para todo $x\in X$ es un homeomorfismo.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{propo}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios topológicos, $Y$ un conjunto y $\cf{f}{X_1}{Y}$ una función. Considere a $Y$ con la topología cociente $\tau_f$. Entonces, una función $\cf{g}{(Y,\tau_f)}{(X_2,\tau_2)}$ es continua si y sólo si $\cf{g\circ f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es continua.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Suponga que $\cf{g}{(Y,\tau_f)}{(X_2,\tau_2)}$ es continua. Como $f$ es continua se sigue pues que $g\circ f$ es continua.
+        
+        $\Leftarrow):$ Suponga que $\cf{g\circ f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es continua. Sea $U\subseteq X_2$ tal que $U\in\tau_2$. Queremos ver que $g^{-1}(U)\in\tau_f$, lo cual sucede si $f^{-1}(g^{-1}(U))\in\tau_1$. Veamos que
+        \begin{equation*}
+            (g\circ f)^{-1}(U)=f^{-1}(g^{-1}(U))\in\tau_1
+        \end{equation*}
+        pues $g\circ f$ es continua. Luego entonces $g$ es continua.
+    \end{proof}
+
+    \begin{propo}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios topológicos. Si $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es una función suprayectiva, continua y cerrada, entonces $\tau_2=\tau_f$.
+    \end{propo}
+
+    \begin{proof}
+        Ya se tiene que $\tau_2\subseteq\tau_f$ (por ser $\tau_f$ la topología más fina que hace de $f$ una función continua).
+
+        Sea entonces $U\in\tau_f$, entonces $f^{-1}(U)\in\tau_1$ luego $X_1-f^{-1}(U)$ es un cerrado de $(X_1,\tau_1)$. Por ser $f$ cerrada se sigue que
+        \begin{equation*}
+            \begin{split}
+                f(X_1-f^{-1}(U))&=f(X_1)-f(f^{-1}(U))\\
+                &=X_2-U\\
+            \end{split}
+        \end{equation*}
+        es cerrado en $(X_2,\tau_2)$, luego $U\in\tau_2$. Luego $\tau_f\subseteq\tau_2$. Por ambas contenciones se tiene que $\tau_2=\tau_f$.
+    \end{proof}
+
+    \begin{cor}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios topológicos y sea $\cf{f}{X_1}{X_2}$ una función biyectiva. Entonces, $f$ es homeomorfismo si y sólo si $\tau_f=\tau_2$.
+    \end{cor}
+
+    \begin{proof}
+        $\Rightarrow):$ Es inmediata de lo anterior.
+
+        $\Leftarrow):$ Es inmediata de la observación anterior en la parte 5.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico y $\mathcal{R}$ una relación de equivalencia sobre $X$. A la función $\cf{\varphi}{X}{X/\mathcal{R}}$ dada por
+        \begin{equation*}
+            \varphi(x)=[x],\quad\forall x\in X
+        \end{equation*}
+        la llamaremos \textbf{la función canónica} y a la topología cociente inducida por $\varphi$ como \textbf{la topología cociente módulo $\mathcal{R}$} y se denota por $\tau/\mathcal{R}$.
+    \end{mydef}
+
+    \begin{obs}
+        Sea $A\subseteq X/\mathcal{R}$. Entonces $A\in\tau/\mathcal{R}$ si y sólo si $\bigcup_{ [x]\in A}[x]\in\tau$.
+    \end{obs}
+
+    \begin{proof}
+        $\Rightarrow):$ Suponga que $A\in\tau/\mathcal{R}$, entonces $\varphi^{-1}(A)\in\tau$. Pero
+        \begin{equation*}
+            \begin{split}
+                p\in\varphi^{-1}(A)&\iff \varphi(p)\in A\\
+                &\iff [p]\in A\\
+            \end{split}
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \varphi^{-1}(A)=\bigcup_{ [x]\in A}[x]
+        \end{equation*}
+    \end{proof}
+
 \end{document}
