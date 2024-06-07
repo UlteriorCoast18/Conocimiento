@@ -127,6 +127,7 @@
 \newcommand{\natint}[1]{\ensuremath{\left[\!\left[#1\right]\!\right]}}
 \newcommand{\fou}[1]{\ensuremath{\mathcal{F}#1}}
 \newcommand{\diag}[1]{\ensuremath{\left(#1\right)}}
+\newcommand{\contradiction}{\ensuremath{\#_c}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -280,6 +281,24 @@
         \end{equation*}
     \end{proof}
 
+    \begin{excer}[\textbf{Problema 2 Lista 6 Análisis Matemático II}]
+        \textbf{Pruebe} que si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$, entonces
+        \begin{equation*}
+            \abs{\int_{\mathbb{R}^n}f}=\int_{\mathbb{R}^n}\abs{f}
+        \end{equation*}
+        si y sólo si existe $\alpha\in\mathbb{R}$ fijo tal que $f=e^{i\alpha}\abs{f}$ c.t.p. en $\mathbb{R}^n$.
+
+        \textit{Sugerencia.} Suponiendo que $\abs{\int_{\mathbb{R}^n}f}=\int_{\mathbb{R}^n}\abs{f}$, existe $\alpha\in\mathbb{R}$ tal que $\int_{\mathbb{R}^n}f=e^{i\alpha}\int_{\mathbb{R}^n}\abs{f}$. Escriba
+        \begin{equation*}
+            e^{ -i\alpha}f=g+ih
+        \end{equation*}
+        donde $g$ y $h$ son funciones reales.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
     \begin{excer}
         Sea $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Se supone que $f(x)>0$, para todo $x\in\mathbb{R}^n$. \textbf{Pruebe} que si $x\neq0$, entonces
         \begin{equation*}
@@ -289,9 +308,78 @@
     \end{excer}
 
     \begin{proof}
-        
+        Notemos que como $f(x)>0$ para todo $x\in\mathbb{R}$, se tiene en particular que $\cf{f}{\mathbb{R}^n}{\mathbb{R}}$.
+
+        Sea $x\in\mathbb{R}^n$. Primero probaremos que
+        \begin{equation*}
+            \fou{f}(0)\geq\abs{\fou{f}(x)}
+        \end{equation*}
+        es decir:
+        \begin{equation*}
+            \begin{split}
+                \int_{\mathbb{R}^n}e^{ -i\pint{0}{y}}f(y)\:dy&\geq\abs{\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}f(y)\:dy}\\
+                \iff\int_{\mathbb{R}^n}f(y)\:dy&\geq\abs{\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}f(y)\:dy}\\
+                \iff\int_{\mathbb{R}^n}\abs{f(y)}\:dy&\geq\abs{\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}f(y)\:dy}\\
+            \end{split}
+        \end{equation*}
+        pues $f(x)>0$ para todo $x\in\mathbb{R}^n$. Veamos que
+        \begin{equation}
+            \begin{split}
+                \abs{\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}f(y)\:dy}&\leq\int_{\mathbb{R}^n}\abs{e^{ -i\pint{x}{y}}f(y)}\:dy\\
+                &=\int_{\mathbb{R}^n}\abs{e^{ -i\pint{x}{y}}}\abs{f(y)}\:dy\\
+                &=\int_{\mathbb{R}^n}\abs{f(y)}\:dy\\
+            \end{split}
+        \end{equation}
+        lo que prueba el resultado. Para la desigualdad estricta suponga que existe $x\in\mathbb{R}^n$ no cero tal que
+        \begin{equation*}
+            \fou{f}(x)=\fou{f}(0)
+        \end{equation*}
+        esto es
+        \begin{equation*}
+            \begin{split}
+                \abs{\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}f(y)\:dy}&=\int_{\mathbb{R}^n}f(y)\:dy\\
+                &=\int_{\mathbb{R}^n}\abs{f(y)}\:dy\\
+                &=\int_{\mathbb{R}^n}\abs{e^{ -i\pint{x}{y}}f(y)}\:dy\\
+            \end{split}
+        \end{equation*}
+        Por el ejercicio anterior existe $\alpha\in\mathbb{R}$ fijo tal que
+        \begin{equation*}
+            e^{ -i\pint{x}{y}}f(y)=e^{ i\alpha}\abs{f(y)}=e^{ i\alpha}f(y)
+        \end{equation*}
+        para casi todo $y\in\mathbb{R}^n$. En particular, tenemos que
+        \begin{equation*}
+            f(y)\left(e^{-i\pint{x}{y}}-e^{i\alpha}\right)=0
+        \end{equation*}
+        para casi todo $y\in\mathbb{R}^n$. Como $f(y)>0$ para todo $y\in\mathbb{R}^n$, entonces
+        \begin{equation*}
+            e^{-i\pint{x}{y}}-e^{i\alpha}=0
+        \end{equation*}
+        nuevamente para casi todo $y\in\mathbb{R}^n$. Como las dos funciones involucradas son continuas y coinciden c.t.p. en $\mathbb{R}^n$, debe tenerse pues que
+        \begin{equation*}
+            e^{-i\pint{x}{y}}=e^{i\alpha},\quad\forall y\in\mathbb{R}^n
+        \end{equation*}
+        lo cual ocurre si y sólo si
+        \begin{equation*}
+            e^{i(\pint{x}{y}+\alpha)}=1,\quad\forall y\in\mathbb{R}^n
+        \end{equation*}
+        es decir que
+        \begin{equation*}
+            \pint{x}{y}+\alpha=0,\quad\forall y\in\mathbb{R}^n
+        \end{equation*}
+        como $x\neq0$ en particular se tiene que
+        \begin{equation*}
+            \pint{x}{x}=-\alpha
+        \end{equation*}
+        y, además (tomando $y=2x$):
+        \begin{equation*}
+            2\pint{x}{x}=-\alpha
+        \end{equation*}
+        pero esto sólo puede suceder si $\pint{x}{x}=0$, es decir que $x=0$\contradiction. Luego entonces
+        \begin{equation*}
+            \abs{\fou{f}(x)}<\fou{f}(0)
+        \end{equation*}
     \end{proof}
-    
+
     \begin{excer}
         Haga lo siguiente:
         \begin{enumerate}
