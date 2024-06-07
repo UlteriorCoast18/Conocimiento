@@ -1408,8 +1408,236 @@
                 \frac{\partial}{\partial x_k}r(0)=-ia_k=-ib_k=\frac{\partial}{\partial x_k}s(0)
             \end{equation*}
             para todo $k\in\natint{1,n}$. Así, $a=b$.
-            \item 
+            \item Se afirma que $\Phi:z\mapsto\Phi_a$ es suprayectiva. En efecto, sea $\psi$ un hmomorfismo no nulo de $L_1(\mathbb{R}^n,\mathbb{C})$. Se debe probar que existe $a\in\mathbb{R}^n$ tal que $\psi=\Phi_a$.
+            
+            Por el lema anterior, $\psi$ es un funcional lineal continuo sobre $L_1(\mathbb{R}^n,\mathbb{C})$ de norma menor o igual a 1. Por el teorema de dualidad entre $L_1$ y $L_{\infty}$ existe una única $\alpha\in\mathcal{L}_{\infty}(\mathbb{R}^n,\mathbb{C})$ (salvo equivalencias) tal que
+            \begin{equation*}
+                \N{\infty}{\alpha}=\norm{\psi}\leq1
+            \end{equation*}
+            tal que
+            \begin{equation*}
+                \psi(f)=\int_{\mathbb{R}^n}\alpha(x)f(x)\:dx,\quad\forall f\in\mathcal{L}_{1}(\mathbb{R}^n,\mathbb{C})
+            \end{equation*}
+            Se tiene para todo $f,g\in\mathcal{L}_{1}(\mathbb{R}^n,\mathbb{C})$:
+            \begin{equation*}
+                \psi(f*g)=\psi(f)\cdot\psi(g)
+            \end{equation*}
+            por ser homomorfismo. También,
+            \begin{equation*}
+                \begin{split}
+                    \psi(f*g)&=\int_{\mathbb{R}^n}\alpha(x)f*g(x)\:dx\\
+                    &=\int_{\mathbb{R}^n}\alpha(x)\:dx\int_{\mathbb{R}^n}f(x-y)g(y)\:dy\\
+                \end{split}
+            \end{equation*}
+            se sabe que la función $(x,y)\mapsto\alpha(x)f(x-y)g(y)$ es medible y como $\abs{\alpha}\leq1$ c.t.p. en $\mathbb{R}^n$, entonces
+            \begin{equation*}
+                \abs{\alpha(x)f(x-y)g(y)}\leq\abs{f(x-y)g(y)}
+            \end{equation*}
+            para casi todo $(x,y)\in\mathbb{R}^n\times\mathbb{R}^n$, donde la función de la derecha también se sabe que es integrable en $\mathbb{R}^n\times\mathbb{R}^n$. Por Fubini se puede invertir el orden de integración, lo que resulta en
+            \begin{equation*}
+                \begin{split}
+                    \psi(f*g)&=\int_{\mathbb{R}^n}\alpha(x)\:dx\int_{\mathbb{R}^n}f(x-y)g(y)\:dy\\
+                    &=\int_{\mathbb{R}^n}g(y)\:dy\int_{\mathbb{R}^n}\alpha(x)f(x-y)\:dx\\
+                    &=\int_{\mathbb{R}^n} g(y)\psi(f_{ -y})\:dy\\
+                \end{split}
+            \end{equation*}
+            por la definición de $\psi$, donde la función $f_{ -y}(x)=f(x-y)$. Por otra parte
+            %TODO el profe dice que f_{ -y}(x)=f(y-x) 
+            \begin{equation*}
+                \begin{split}
+                    \psi(f*g)&=\psi(f)\cdot\psi(g)\\
+                    &=\int_{\mathbb{R}^n}\psi(f)\alpha(y)g(y)\:dy\\
+                \end{split}
+            \end{equation*}
+            Note que la función $y\mapsto\psi(f_{ -y})$ es continua y acotada en $\mathbb{R}^n$. Es continua por ser la composición de $y\mapsto f_ {-y}$ función continua de $\mathbb{R}^n$ en $L_1(\mathbb{R}^n,\mathbb{C})$ con $\psi$ que es continua de $L_1(\mathbb{R}^n,\mathbb{C})$ en $\mathbb{C}$. Además,
+            \begin{equation*}
+                \begin{split}
+                    \abs{\psi(f_{ -y})}&\leq\norm{\psi}\N{1}{f_{ -y}}\\
+                    &\leq\N{1}{f},\quad\forall y\in\mathbb{R}^n\\
+                \end{split}
+            \end{equation*}
+            de donde se deduce que es acotada. También, la función $y¸mapsto\psi(f)\alpha(y)$ es medible acotada. De las ecuaciones anteriores se puede definir el operador
+            \begin{equation*}
+                \Theta(g)=\int_{\mathbb{R}^n} g(y)\psi(f_{ -y})\:dy=\int_{\mathbb{R}^n}\psi(f)\alpha(y)g(y)\:dy
+            \end{equation*}
+            para todo $g\in\mathbb{R}^n$, es un funcional lineal continuo sobre $L_1(\mathbb{R}^n,\mathbb{C})$. Por la unicidad del teorema de dualidad entre $L_1$ y $L_\infty$,
+            \begin{equation*}
+                \psi(f_{ -y})=\psi(f)\alpha(y)
+            \end{equation*}
+            para casi todo $y\in\mathbb{R}^n$. Fije $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$ tal que $\psi(f)\neq0$ (recuerde que $\psi$ es un homomorfismo no nulo). Modificando $\alpha$ sobre un conjunto despreciable, se tiene
+            \begin{equation*}
+                \alpha(y)=\frac{\psi(f_{ -y})}{\psi(f)},\quad\forall y\in\mathbb{R}^n
+            \end{equation*}
+            Entonces, $\alpha$ es continua y acotada en $\mathbb{R}^n$. Para todo $x,y\in\mathbb{R}^n$ tenemos que
+            \begin{equation*}
+                \begin{split}
+                    \psi(f)\alpha(x+y)&=\psi(f_{-x-y})\\
+                    &=\psi((f_{-x})_{ -y})\\
+                    &=\psi(f_{-x})\alpha(y)\\
+                    &=\psi(f)\alpha(x)\alpha(y)\\
+                    \Rightarrow \alpha(x+y)&=\alpha(x)\alpha(y)\\
+                \end{split}
+            \end{equation*}
+            Si $\alpha$ se anula en algún punto, entonces $\alpha$ es la constante cero, lo cual implicaría que $\psi$ es el funcional cero, lo cual no puede suceder. Luego, $\alpha$ es no nulo. Además por la igualdad anterior debe tenerse que $\alpha$ es un homomorfismo del grupo $\mathbb{R}^n_+$ en el grupo $\mathbb{C}^*$. Por un resultado anterior existen $a,b\in\mathbb{R}^n$ tales que
+            \begin{equation*}
+                \alpha(y)=e^{\pint{b}{y}}\cdot e^{-i\pint{a}{y}},\quad\forall y\in\mathbb{R}^n
+            \end{equation*}
+            como $\alpha$ es acotado, entonces $b=0$. Luego
+            \begin{equation*}
+                \alpha(y)=e^{-i\pint{a}{y}},\quad\forall y\in\mathbb{R}^n
+            \end{equation*}
+            Por tanto:
+            \begin{equation*}
+                \begin{split}
+                    \psi(g)&=\int_{\mathbb{R}^n}\alpha(y)g(y)\:dy\\
+                    &=\int_{\mathbb{R}^n}e^{ -i\pint{a}{y}}g(y)\:dy\\
+                    &=\fou{g}(a)\\
+                    &=\Phi_a(g),\quad\forall g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})\\
+                \end{split}
+            \end{equation*}
+            lo que prueba la suprayectividad.
         \end{enumerate}
+    \end{proof}
+
+    \section{La transformación de Fourier-Plancherel}
+
+    Se intenta definir $\fou{\cdot}$ en $L_2(\mathbb{R}^n,\mathbb{C})$.
+
+    \begin{theor}
+        Sean $(E,d)$ y $(E',d')$ espacios emétricos y $S$ un conjunto denso en $E$. Si $\cf{f}{S}{E'}$ es uniformemente continua, entonces existe una única ampliación canónica de $f$ a $E$ que es uniformemente continua.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{propo}
+        Sean $(E,\norm{\cdot})$ y $(F,\norm{\cdot}')$ dos espacios normados con $F$ de Banach y sea $S$ un subespacio denso de $E$. Sea $\cf{L}{S}{F}$ una aplicación lineal continua (en particular, es uniformemente continua) y sea $\tilde{L}$ la ampliación de $L$ a $E$. Entonces, $\tilde{L}$ es lineal tal que
+        \begin{equation*}
+            \norm{\tilde{L}}=\norm{L}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Sean $x,y\in E$ arbitrarios y $\lambda\in\mathbb{K}$. Como $S$ es denso, existen dos sucesiones $\left\{x_\nu\right\}$ y $\left\{y_\nu\right\}$ en $S$ tales que
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}x_\nu=x\quad\textup{y}\quad\lim_{\nu\rightarrow\infty}y_\nu=y
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \begin{split}
+                \tilde{L}(\lambda x+y)&=\tilde{L}\left(\lim_{\nu\rightarrow\infty}\lambda x_\nu+y_\nu \right)\\
+                &=\lim_{\nu\rightarrow\infty}\tilde{L}\left(\lambda x_\nu+y_\nu \right)\\
+                &=\lim_{\nu\rightarrow\infty}L\left(\lambda x_\nu+y_\nu \right)\\
+                &=\lim_{\nu\rightarrow\infty}\left[\lambda L(x_\nu)+L(y_\nu)\right]\\
+                &=\lim_{\nu\rightarrow\infty}\left[\lambda\tilde{L}(x_\nu)+\tilde{L}(y_\nu)\right]\\
+                &=\lambda\tilde{L}(x)+\tilde{L}(y)\\
+            \end{split}
+        \end{equation*}
+        Ahora, veamos que
+        \begin{equation*}
+            \norm{L(x_\nu)}\leq\norm{L}\norm{x_\nu},\quad\forall \nu\in\mathbb{N}
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \norm{\tilde{L}(x)}\leq\norm{L}\norm{x},\quad\forall x\in E
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            \norm{\tilde{L}}\leq\norm{L}
+        \end{equation*}
+        Y, por otro lado,
+        \begin{equation*}
+            \norm{\tilde{L}}=\sup_{x\in E,\norm{x}=1}\norm{\tilde{L}(x)}\geq\sup_{ x\in E,\norm{x}=1}\norm{L(x)}=\norm{L}
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            \norm{\tilde{L}}=\norm{L}
+        \end{equation*}
+    \end{proof}
+
+    \begin{propo}
+        Si $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})\cap\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$, entonces $\fou{f}\in\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$ y
+        \begin{equation*}
+            \N{2}{\fou{f}}=(2\pi)^{\frac{n}{2}}\N{2}{f}
+        \end{equation*}
+        o sea
+        \begin{equation*}
+            \N{2}{\frac{1}{(2\pi)^{\frac{n}{2}}}\fou{f}}=\N{2}{f}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Sea $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})\cap\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$. Si $f^*(x)=\conj{f(-x)}$, para todo $x\in\mathbb{R}^n$, entonces $f^*\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})\cap\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$. Defina
+        \begin{equation*}
+            g=f*f^*
+        \end{equation*}
+        ya que $f,f^*\in\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$ y que 2 es un índice autoconjugado, $g$ está definida en todo punto de $\mathbb{R}^n$, es continua y nula en el infinito, es decir que $g\in\mathcal{C}_0(\mathbb{R}^n,\mathbb{C})$, luego acotada. Adicionalmente, $f,f^*\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$ implica que $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Recordando que $\fou{f^*}=\conj{\fou{f}}$, resulta
+        \begin{equation*}
+            \fou{g}=\fou{(f*f^*)}=\fou{f}\cdot\conj{\fou{f}}=\abs{\fou{f}}^2
+        \end{equation*}
+        Se calculará $g(0)$ de dos modos distintos. Se tiene
+        \begin{equation*}
+            \begin{split}
+                g(x)&=f(x)*f^{*}(x)\\
+                &=\int_{\mathbb{R}^n}f(y)f(x-y)\:dy\\
+                &=\int_{\mathbb{R}^n}f(y)\conj{f(y-x)}\:dy\\
+            \end{split}
+        \end{equation*}
+        para todo $x\in\mathbb{R}^n$. En particular,
+        \begin{equation*}
+            g(0)=\int_{\mathbb{R}^n}f(y)\conj{f(y)}\:dy=\int_{\mathbb{R}^n}\abs{f(y)}^2\:dy=\N{2}{f}^2
+        \end{equation*}
+        Por otra parte, considere una sucesión de Dirac $\left\{\rho_\nu\right\}_{\nu=1}^\infty$ tal que para cada $\nu\in\mathbb{N}$ se cumplen las dos condiciones siguientes:
+        \begin{enumerate}
+            \item $h_\nu=\fou{\rho_\nu}$ es integrable para todo $\nu\in\mathbb{N}$, luego por el teorema de inversión de Fourier,
+            \begin{equation*}
+                \fou^*{h_\nu}=\fou^*{(\fou{h_\nu})}=(2\pi)^n\rho_\nu
+            \end{equation*}
+            para todo $\nu\in\mathbb{N}$.
+            \item $h_\nu\geq0$ para todo $\nu\in\mathbb{N}$.
+        \end{enumerate}
+        (se puede tomar la misma sucesión de Dirac del Teorema de Inversión). Observe que $g*\rho_\nu$ existe en todo punto (pues $g\in\mathcal{L}_{\infty}(\mathbb{R}^n,\mathbb{C})$ y $\rho_\nu\in\mathcal{L}_{1}(\mathbb{R}^n,\mathbb{C})$). En la demostración del teorema de inversión se probó bajo la sola hipótesis de ser $f$ integrable que
+        \begin{equation*}
+            f*\rho_\nu(x)=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}h_\nu(y)e^{ i\pint{x}{y}}\fou{f}(y)\:dy,\quad\forall x\in\mathbb{R}^n
+        \end{equation*}
+        en particular, aplicando esto a $g$ resulta
+        \begin{equation*}
+            g*\rho_\nu(x)=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}h_\nu(y)e^{ -i\pint{x}{y}}\fou{g}(y)\:dy,\quad\forall x\in\mathbb{R}^n
+        \end{equation*}
+        En particular,
+        \begin{equation*}
+            g*\rho_\nu(0)=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}h_\nu(y)\fou{g}(y)\:dy
+        \end{equation*}
+        Ya que $g\in\mathcal{L}_{\infty}(\mathbb{R}^n,\mathbb{C})$ y es continua en 0, entonces
+        \begin{equation*}
+            g(0)=\lim_{\nu\rightarrow\infty}g*\rho_\nu(0)=\lim_{\nu\rightarrow\infty}\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}h_\nu(y)\fou{g}(y)\:dy
+        \end{equation*}
+        Por el lema antes del teorema de inversión,
+        \begin{equation*}
+            \abs{h_\nu(y)}\leq 1\quad\textup{y}\quad\lim_{\nu\rightarrow\infty}h_\nu(y)=1
+        \end{equation*}
+        para todo $y\in\mathbb{R}^n$. Así pues,
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}h_\nu(y)\fou{g}(y)=\fou{g}(y),\quad\forall y\in\mathbb{R}^n
+        \end{equation*}
+        Como $\fou{g}$ es no negativa y $h_\nu\geq0$, entonces
+        \begin{equation*}
+            \int_{\mathbb{R}^n}h_\nu(y)\fou{g}(y)\:dy=\N{1}{h_\nu\fou{g}},\quad\forall \nu\in\mathbb{N}
+        \end{equation*}
+        Pero, por una ecuación anterior
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\N{1}{h_\nu\fou{g}}=g(0)<\infty
+        \end{equation*}
+        Así pues, por el Lema de Fatou en $L_1$, $\fou{g}$ es integrable en $\mathbb{R}^n$. Además,
+        \begin{equation*}
+            \abs{h_\nu(y)\fou{g}(y)}\leq\fou{g}(0)
+        \end{equation*}
+        donde el lado derecho es una función integrable independiente de $\nu$. Por Lebesgue se sigue que
+        \begin{equation*}
+            g(0)=\lim_{\nu\rightarrow\infty}\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}h_\nu(y)\fou{g}(y)\:dy=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}\fou{g}(y)\:dy=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}\abs{\fou{f}}^2=\frac{1}{(2\pi)^n}\N{2}{\fou{f}}^2
+        \end{equation*}
+        de las dos igualdades se sigue el resultado.
     \end{proof}
 
 \end{document}
