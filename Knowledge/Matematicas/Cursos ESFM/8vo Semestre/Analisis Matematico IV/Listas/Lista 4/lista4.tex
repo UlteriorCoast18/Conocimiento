@@ -144,7 +144,7 @@
     
     \chapter{Lista 4}
     
-    \renewcommand{\theenumi}{\roman{enumi}}
+    \renewcommand{\theenumi}{\textbf{\roman{enumi}}}
 
     \begin{excer}
         Haga lo siguiente:
@@ -455,7 +455,7 @@
             \begin{equation*}
                 \fou{f}(x)=a\left(\frac{\sin\frac{ax}{2}}{\frac{ax}{2}}\right)^2
             \end{equation*}
-            \item Usando $\fou{f}$ \textbf{muestre} la fórmula
+            \item Usando $\fou_2{f}$ \textbf{muestre} la fórmula
             \begin{equation*}
                 \int_{-\infty }^{\infty}\left(\frac{\sin ax}{x} \right)^4\:dx=\frac{2}{3}\pi a^3
             \end{equation*}
@@ -465,7 +465,7 @@
             \end{equation*}
             \textit{Sugerencia.} Escriba $f(x)=\left(1-\frac{\abs{x}}{a} \right)\chi_[-a,a](x)$ y $g(x)=\chi_{[-a,a]}(x)$, para todo $x\in\mathbb{R}$. Aplique la identidad de Parseval
             \begin{equation*}
-                \int_\mathbb{R}\fou{f}\fou{g}=\pint{\fou{f}}{\fou{g}}=\pint{f}{g}=\int_{\mathbb{R}}fg
+                \int_\mathbb{R}\fou_2{f}\fou_2{g}=\pint{\fou_2{f}}{\fou_2{g}}=\pint{f}{g}=\int_{\mathbb{R}}fg
             \end{equation*}
             para deducir el resultado.
         \end{enumerate}
@@ -605,7 +605,23 @@
     \end{sol}
 
     \begin{excer}
-        
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item Sea $f\in\mathcal{L}_2(\mathbb{R},\mathbb{C})$. Se define para todo $z\in\mathbb{C}$,
+            \begin{equation*}
+                F(z)=\int_{-\infty}^{\infty}e^{ -izx-\frac{x^2}{2}}\conj{f(x)}\:dx
+            \end{equation*}
+            \textbf{Pruebe} que $F$ es holomorfa en $\mathbb{C}$ y que, para todo $n\in\mathbb{N}$ y para todo $z\in\mathbb{C}$,
+            \begin{equation*}
+                F^{(n)}(z)=(-i)^n\int_{-\infty}^\infty x^ne^{ -izx-\frac{x^2}{2}}\conj{f(x)}\:dx
+            \end{equation*}
+            \textit{Sugerencia.} La misma que la del Problema 11.
+            \item Se supone que $f$ es ortogonal a todas las funciones de Hermite. Muestre que $F=0$ y \textbf{deduzca} que $f=0$ c.t.p. en $\mathbb{R}^n$.
+            
+            Así pues, el sistema de funciones de Hermite normalizadas es un sistema ortonormal maximal en $L_2(\mathbb{R},\mathbb{C})$.
+
+            \textit{Sugerencia.} Observe que $F^{(n)}(0)=0$, para todo $n\in\mathbb{N}$. La condición $F=0$ implica que la transformada de Fourier de la función integrable $x\mapsto e^{ -\frac{x^2}{2}}\conj{f(x)}$ es cero.
+        \end{enumerate}
     \end{excer}
 
     \begin{sol}
@@ -613,7 +629,24 @@
     \end{sol}
 
     \begin{excer}
-        
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item \textbf{Demuestre} la fórmula.
+            \begin{equation*}
+                D_x^n\int_{-\infty}^\infty e^{ -y^2}e^{\frac{1}{2}(y-ix)^2}\:dy=(-1)^n\int_{-\infty}^\infty e^{ -y^2}D_x^n e^{\frac{1}{2}(y-ix)^2}\:dy
+            \end{equation*}
+            \item Se consideran las funciones de Hermite
+            \begin{equation*}
+                \varphi(x)=(-1)^n e^{\frac{x^2}{2}}D^n e^{ -x^2}
+            \end{equation*}
+            \textbf{Pruebe} que $\fou_2{\varphi_n}=(-1)^n\varphi_n$. Así pues, las funciones de Hermite son vectores propios para el operador $\fou_2{\cdot}$.
+
+            \textit{Sugerencia.} Tranforme $\fou_2{\varphi_n}$ por la ``fórmula de integración por partes de orden $n$".
+            \begin{equation*}
+                \int_a^b f^(n)g=\left[\sum_{ k=0}^{ n-1}(-1)^kf^{ (n-k-1)}g^{(k)} \right]+(-1)^n\int_a^b fg^(n)
+            \end{equation*}
+            (al suponer $f^(n)$ y $g^(n)$ continuas en $[a,b]$). Después, use la fórmula del inciso (i).
+        \end{enumerate}
     \end{excer}
 
     \begin{sol}

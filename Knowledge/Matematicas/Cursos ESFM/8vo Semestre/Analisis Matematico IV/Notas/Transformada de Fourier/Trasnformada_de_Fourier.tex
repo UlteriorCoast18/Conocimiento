@@ -138,6 +138,8 @@
 
     %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
     
+    \setcounter{chapter}{3}
+
     \chapter{Transformación de Fourier}
     
     La transformada de Fourier de una función de $\mathbb{R}^n$ en $\mathbb{C}$ generaliza en cierta forma la noción de coeficientes de Fourier de funciones periódicas
@@ -146,17 +148,19 @@
 
     \begin{mydef}
         Se define el \textbf{producto escalar usual en $\mathbb{R}^n$} como
-        \begin{equation*}
+        \begin{equation}
+            \label{tf:pint}
             \pint{x}{y}=\sum_{ k=1}^n x_ky_x,\quad\forall x,y\in\mathbb{R}^n
-        \end{equation*}
+        \end{equation}
         en ocasiones también denotado como $(x|y)=\pint{x}{y}$.
     \end{mydef}
 
     \begin{mydef}
         Sea $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$. Se definen $\cf{\mathcal{F}f,\mathcal{F}^*f}{\mathbb{R}^n}{\mathbb{C}} $ como
-        \begin{equation*}
+        \begin{equation}
+            \label{tf:def}
             \mathcal{F}f(x)=\int_{ \mathbb{R}^n}e^{ -i\pint{x}{y}}f(y)\:dy\quad\textup{y}\quad\mathcal{F}^*f(x)=\int_{ \mathbb{R}^n}e^{i\pint{x}{y}}f(y)\:dy
-        \end{equation*}
+        \end{equation}
         para todo $x\in\mathbb{R}^n$. Las funciones $\mathcal{F}f$ y $\mathcal{F}^*f$ se llaman las \textbf{transformaciones de Fourier de $f$}. Las aplicaciones $\mathcal{F}$ y $\mathcal{F}^*$ de $\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$ en el conjunto de funciones de $\mathbb{R}^n$ en $\mathbb{C}$ se llaman las \textbf{transformaciones de Fourier}.
     \end{mydef}
 
@@ -277,14 +281,14 @@
             \end{equation*}
             En particular, si $a>0$ se tiene que
             \begin{equation*}
-                \fou{\chi_[-a,a]}(x)=\left\{ 
+                \fou{\chi_{[-a,a]}}(x)=\left\{ 
                     \begin{array}{lcr}
                         \frac{2\sin ax}{x} & \textup{ si } & x\neq0\\
                         2a & \textup{si} & x=0\\
                     \end{array}
                 \right.
             \end{equation*}
-            Como $\fou{\chi_[-a,a]}$ no es integrable en $\mathbb{R}$ se concluye que, en general, la transformada de Fourier de una función integrable no necesariamente es integrable.
+            Como $\fou{\chi_{[-a,a]}}$ no es integrable en $\mathbb{R}$ se concluye que, en general, la transformada de Fourier de una función integrable no necesariamente es integrable.
             \item Sea $\cf{f}{\mathbb{R}}{\mathbb{R}}$ la función
             \begin{equation*}
                 f(x)=e^{-k\abs{x}},\quad\forall x\in\mathbb{R}
@@ -374,21 +378,25 @@
         Sea $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})$.
         \begin{enumerate}
             \item Si $g(x)=e^{i\pint{a}{y}}f(x)$ para todo $x\in\mathbb{R}^n$, entonces
-            \begin{equation*}
+            \begin{equation}
+                \label{tf:id_1}
                 \fou{g}(x)=\fou{f}(x-a),\quad\forall x\in\mathbb{R}^n
-            \end{equation*}
+            \end{equation}
             \item Si $g(x)=f(x-a)$ para todo $x\in\mathbb{R}^n$, entonces
-            \begin{equation*}
+            \begin{equation}
+                \label{tf:id_2}
                 \fou{g}(x)=e^{ -i\pint{x}{a}}\fou{f}(x),\quad\forall x\in\mathbb{R}^n
-            \end{equation*}
+            \end{equation}
             \item Si $g(x)=\conj{f(-x)}$ para todo $x\in\mathbb{R}^n$, entonces
-            \begin{equation*}
+            \begin{equation}
+                \label{tf:id_3}
                 \fou{g}(x)=\conj{\fou{f}(x)},\quad\forall x\in\mathbb{R}^n
-            \end{equation*}
+            \end{equation}
             \item Sea $\lambda\in\mathbb{R}\backslash\left\{0\right\}$. Si $g(x)=f(\frac{x}{\lambda})$ para todo $x\in\mathbb{R}^n$, entonces
-            \begin{equation*}
+            \begin{equation}
+                \label{tf:id_4}
                 \fou{g}(x)=\abs{\lambda}^n\fou{f}(\lambda x),\quad\forall x\in\mathbb{R}^n
-            \end{equation*}
+            \end{equation}
         \end{enumerate}
     \end{propo}
 
