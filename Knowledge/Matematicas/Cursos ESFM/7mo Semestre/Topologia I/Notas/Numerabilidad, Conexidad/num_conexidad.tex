@@ -1369,11 +1369,13 @@
 
     \begin{proof}
         Sea $C$ una componente conexa de $X$ y $p\in C$. Sea $U$ una vecindad conexa de $p$. Se tiene que $U\cap C\neq\emptyset$, luego $U\cap C$ es un conexo que contiene a $p$. Por maximalidad se sigue que $U\cup C=C$, es decir que $U\subseteq C$.
+
+        Por tanto, $C\in\tau$.
     \end{proof}
 
     \chapter{Topología Cociente}
 
-    \section{Conceptos Fundamnetales}
+    \section{Conceptos Fundamentales}
 
     \begin{propo}
         Sean $(X,\tau)$ un espacio topológico, $Y$ un conjunto y $\cf{f}{X}{Y}$ una función. Entonces, la colección
@@ -1464,7 +1466,7 @@
         \begin{equation*}
             \varphi(x)=[x],\quad\forall x\in X
         \end{equation*}
-        la llamaremos \textbf{la función canónica} y a la topología cociente inducida por $\varphi$ como \textbf{la topología cociente módulo $\mathcal{R}$} y se denota por $\tau/\mathcal{R}$.
+        la llamaremos \textbf{la función canónica} y, a la topología cociente inducida por $\varphi$ como \textbf{la topología cociente módulo $\mathcal{R}$} y se denota por $\tau/\mathcal{R}$.
     \end{mydef}
 
     \begin{obs}
@@ -1472,17 +1474,33 @@
     \end{obs}
 
     \begin{proof}
-        $\Rightarrow):$ Suponga que $A\in\tau/\mathcal{R}$, entonces $\varphi^{-1}(A)\in\tau$. Pero
+        $\Rightarrow):$ Suponga que $A\in\tau/\mathcal{R}$, entonces $\varphi^{-1}(A)\in\tau$. Veamos que
+        \begin{equation*}
+            \varphi^{-1}(A)=\bigcup_{ [x]\in A}[x]
+        \end{equation*}
+        Primero, se tiene
+        \begin{equation*}
+            \begin{split}
+                [p]\in\bigcup_{ [x]\in A}\left\{[x]\right\}&\iff p\in\bigcup_{ [x]\in A}[x]\\
+            \end{split}
+        \end{equation*}
+        En efecto, $[p]\in\bigcup_{ [x]\in A}\left\{[x]\right\}$ si y sólo si existe $[x]\in A$ tal que $[p]=[x]$, lo cual ocurre si y sólo si existe $[x]\in A$ tal que $p\in[x]$ si y sólo si $p\in\bigcup_{ [x]\in A}[x]$.
+        Ahora,
         \begin{equation*}
             \begin{split}
                 p\in\varphi^{-1}(A)&\iff \varphi(p)\in A\\
                 &\iff [p]\in A\\
+                &\iff [p]\in\bigcup_{ [x]\in A}\left\{[x]\right\}\\
+                &\iff p\in\bigcup_{ [x]\in A}[x]\\
             \end{split}
         \end{equation*}
-        por tanto,
+        luego, 
         \begin{equation*}
             \varphi^{-1}(A)=\bigcup_{ [x]\in A}[x]
         \end{equation*}
+        donde el conjunto de la izquierda está en $\tau$, luego $\bigcup_{ [x]\in A}[x]\in\tau$. 
+
+        $\Leftarrow):$
     \end{proof}
 
 \end{document}
