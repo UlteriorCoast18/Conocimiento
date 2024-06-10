@@ -1500,7 +1500,92 @@
         \end{equation*}
         donde el conjunto de la izquierda está en $\tau$, luego $\bigcup_{ [x]\in A}[x]\in\tau$. 
 
-        $\Leftarrow):$
+        $\Leftarrow):$%TODO
     \end{proof}
+
+    \begin{propo}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos, $Y$ un conjunto y $\cf{f}{X_1}{Y}$, $\cf{g}{Y}{X_2}$ funciones. Considere a $(Y,\tau_f)$, entonces $\tau_2=\tau_g$ si y sólo si $\tau_2=\tau_{ g\circ f}$.
+    \end{propo}
+
+    \begin{proof}
+        Se tiene por una proposición anterior que $g$ es continua si y sólo si $g\circ f$ es continua.
+
+        $\Rightarrow):$ Suponga que $\tau_2=\tau_g$. Luego $\cf{g}{(Y,\tau_f)}{(X_2,\tau_2)}$ es continua, por ende $g\circ f$ es continua, siendo tal que $\cf{g\circ f}{(X_1,\tau_1)}{(X_2,\tau_2)}$. Por definición de topología cociente debe suceder que $\tau_2\subseteq\tau_{g\circ f}$.
+
+        Sea ahora $U\in\tau_{g\circ f}$, esto es que $(g\circ f)^{-1}(U)\in\tau_1$, esto es que $f^{-1}(g^{-1}(U))\in\tau_1$. Luego, $g^{-1}(U)\in\tau_f$, así $U\in\tau_g=\tau_2$. Por tanto, $\tau_{g\circ f}\subseteq\tau_2$.
+
+        Así, $\tau_2=\tau_{g\circ f}$.
+
+        $\Leftarrow):$ Suponga que $\tau_2=\tau_{g\circ f}$. Entonces la función $\cf{g\circ f}{(X_1,\tau_1)}{(X_2,\tau_g\circ f)=(X_2,\tau_2)}$ es una función continua, luego por una proposición anterior debe tenerse que $g$ es continua, siendo $\cf{g}{(Y,\tau_f)}{(X_2,\tau_2)}$, luego por maximalidad de la topología cociente, debe suceder que $\tau_2\subseteq\tau_g$.
+        
+        Sea ahora $U\in\tau_g$, luego $g^{-1}(U)\in\tau_f\Rightarrow f^{-1}(g^{-1}(U))\in\tau_1$, es decir que $(g\circ f)^{-1}(U)\in\tau_1$, así $U\in\tau_{ g\circ f}=\tau_2$. Por tanto, $\tau_g\subseteq\tau_2$.
+
+        Así, $\tau_2=\tau_g$.
+    \end{proof}
+
+    \begin{mydef}
+        Sean $X,Y$ conjuntos, $\cf{f}{X}{Y}$ una función y $\mathcal{R}$ una relación de equivalencia sobre $X$. Decimos que $f$ es \textbf{compatible con la relación $\mathcal{R}$} si se cumple:
+        \begin{equation*}
+            x\mathcal{R}y\Rightarrow f(x)=f(y)
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        Si $f$ es compatible con $\mathcal{R}$, podemos definir una función $\cf{F}{(X/\mathcal{R})}{Y}$ por $F([x])=f(x)$, para todo $[x]\in X/\mathcal{R}$.
+
+        Si tomamos la función canónica, $\varphi$, se tiene que $F\circ\varphi=f$. En otras palabras, estamos diciendo que el diagrama
+        \begin{equation*}
+            \begin{array}{cccl}
+                X & \overset{f}{\longrightarrow} & Y & \\
+                & \underset{\varphi}{\searrow} & \uparrow & F \\
+                & & X/\mathcal{R} & \\
+            \end{array}
+        \end{equation*}
+    \end{obs}
+
+    Sean $X$, $Y$ conjuntos y $\cf{f}{X}{Y}$ una función. Sea $\mathcal{R}_f$ la relación definida sobre $X$ de la siguiente manera:
+    \begin{equation*}
+        x\mathcal{R}_f y\iff f(x)=f(y)
+    \end{equation*}
+    Esta es una relación de equivalencia definida sobre $X$ y, es claro de la definición que $f$ es compatible con $\mathcal{R}_f$.
+
+    \begin{propo}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios topológicos y $\cf{f}{X_1}{X_2}$ una función y sea $\cf{\overline{f}}{X_1/\mathcal{R}_f}{X_2}$ dada por
+        \begin{equation*}
+            \overline{f}([x])=f(x)
+        \end{equation*}
+        para todo $[x]\in X_1/\mathcal{R}_f$. Entonces se cumple lo siguiente:
+        \begin{enumerate}
+            \item Si $\cf{\varphi_1}{X_1}{X_1/\mathcal{R}_f}$ es la función canónica, entonces $f=\overline{f}\circ\varphi_1$.
+            \item $\overline{f}$ es una función inyectiva.
+            \item Si $f$ es suprayectiva, entonces $\overline{f}$ es biyección.
+            \item $\cf{f}{(X_1,\tau_1)}{(X_2,\tau_2)}$ es continua si y sólo si $\cf{\overline{f}}{(X_1/\mathcal{R}_f,\tau_1/\mathcal{R}_f)}{(X_2,\tau_2)}$ es continua.
+            \item $\tau_2=\tau_f$ si y sólo si $\tau_2=\tau_{\overline{f}}$.
+        \end{enumerate}
+        A la función $\overline{f}$ la llamaremos \textbf{la descomposición canónica de $f$}.
+    \end{propo}
+
+    \begin{proof}
+        De (1): Sea $x\in X_1$, entonces
+        \begin{equation*}
+            \begin{split}
+                (\overline{f}\circ\varphi)(x)&=\overline{f}([x])\\
+                &=f(x)\\
+                \therefore f&=\overline{f}\circ\varphi\\
+            \end{split}
+        \end{equation*}
+
+        De (2): Sean $x,y\in X_1$ tales que $\overline{f}([x])=\overline{f}([y])$, entonces $f(x)=f(y)$, luego $x\mathcal{R}_fy$, así $[x]=[y]$. Por tanto, $\overline{f}$ es inyectiva.
+
+        De (3): Basta con probar que $\overline{f}$ es suprayectiva. Sea $y\in X_2$, como $f$ es suprayectiva, existe $x\in X_1$ tal que $f(x)=y$, luego $\overline{f}([x])=y$. Así y usando (2), se sigue que $\overline{f}$ es biyección.
+        
+        De (4): Es inmediata de una proposición anterior, pues $f=\overline{f}\circ\varphi$ y $\tau_1/\mathcal{R}_f={\tau_1}_{\varphi}$. Luego, $\overline{f}$ es continua si y sólo si $f=\overline{f}\circ\varphi$ lo es.
+
+        De (5): Es inmediata de la proposición anterior, nuevamente pues $\tau_1/\mathcal{R}_f={\tau_1}_{\varphi}$.
+    \end{proof}
+
+    \begin{obs}
+        En los incisos (4) y (5), tomamos $\cf{g=\varphi}{(X_1,\tau_1)}{(X_1/\mathcal{R}_f,\tau_1/\mathcal{R}_f)}$.
+    \end{obs}
 
 \end{document}
