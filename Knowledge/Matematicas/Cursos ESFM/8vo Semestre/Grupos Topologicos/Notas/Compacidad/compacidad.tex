@@ -583,9 +583,49 @@
     \end{propo}
 
     \begin{proof}
-        De (i):
-    \end{proof}
+        De (i): Sea $U$ una vecindad arbitraria de $e_G$. Por un teorema anterior existe una vecindad simétrica $V$ de $e_G$ tal que $V\subseteq U$. Por ser $G$ totalmente acotado, para $V$ existe $F\subseteq G$ finito tal que
+        \begin{equation*}
+            G=F\cdot V
+        \end{equation*}
+        Sea
+        \begin{equation*}
+            L=F^{-1}=\left\{x^{-1}\in G \Big|x\in F\right\}
+        \end{equation*}
+        Se tiene que
+        \begin{equation*}
+            \begin{split}
+                V\cdot L&=V^{-1}\cdot L\\
+                &=(F\cdot V)\\
+                &=G\\
+            \end{split}
+        \end{equation*}
+        más aún, se tiene que
+        \begin{equation*}
+            G=U\cdot L
+        \end{equation*}
 
-    
+        De (ii): Sea $U$ una vecindad de $e_G$ en $H$, es decir que existe $V$ abierto en $G$ tal que
+        \begin{equation*}
+            U=H\cap V
+        \end{equation*}
+        Por una proposición anterior, existe $W$ vecindad de $e_G$ tal que $W^{-1}W\subseteq V$. Por ser $G$ totalmente acotado, existe un subconjunto finito $F\subseteq G$ tal que
+        \begin{equation*}
+            G=F\cdot W
+        \end{equation*}
+        Para cada $x\in F$, definimos $a_x$ como sigue:
+        \begin{itemize}
+            \item Si $H\cap xW\neq\emptyset$, tomamos $a_x$ como un elemento arbitrario fijo de este conjunto.
+            \item En caso contrario, hacemos $a_x=e_G$.
+        \end{itemize} 
+        Entonces, el conjunto
+        \begin{equation*}
+            A=\left\{a_x\in H\Big|x\in F \right\}
+        \end{equation*}
+        es finito y $H=A\cdot U$. En efecto, es claro que $A\cdot U\subseteq H$, pues $A,U\subseteq H$. Si $y\in H$, en particular $y\in G=F\cdot W$, luego existe $x\in F$ tal que $y\in xW$. Se tienen dos casos:
+        \begin{itemize}
+            \item $y=e_G$, en tal caso se sigue que $y\in H$.
+            \item $y\neq e_G$, se tiene que $y\in H\cap xW$, luego si $y=a_x$, se tiene el resultado, pues se seguiría que $y\in A\cdot U$. En caso de que no sean iguales,
+        \end{itemize}
+    \end{proof}
 
 \end{document}
