@@ -128,6 +128,7 @@
 \newcommand{\fou}[1]{\ensuremath{\mathcal{F}#1}}
 \newcommand{\diag}[1]{\ensuremath{\left(#1\right)}}
 \newcommand{\contradiction}{\ensuremath{\#_c}}
+\newcommand{\Sgn}[1]{\ensuremath{\textup{Sgn}\left(#1\right)}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -409,7 +410,133 @@
     \end{excer}
 
     \begin{proof}
-        
+        De (i): Para todo $x\in\mathbb{R}^n$ defina
+        \begin{equation*}
+            f(x)=\frac{\cos\lambda x}{x^2+a^2}
+        \end{equation*}
+        Afirmamos que $f$ es integrable en $[0,\infty[$. Para ello, veamos que
+        \begin{equation*}
+            \begin{split}
+                \int_{0}^{\infty}\abs{f}&=\int_{0}^{\infty}\frac{\abs{\cos\lambda x}}{x^2+a^2}\:dx\\
+                &\leq\int_{0}^\infty\frac{dx}{x^2+a^2}\\
+            \end{split}
+        \end{equation*}
+        donde la función de la derecha es integrable en tal invervalo. Por tanto, $f\in\mathcal{L}_1(\mathbb{R},\mathbb{R})$.
+
+        Sea ahora $\lambda\in\mathbb{R}$ tal que $\lambda\neq0$. Afirmamos que la función
+        \begin{equation*}
+            g(x)=\frac{x\sin\lambda x}{x^2+a^2}
+        \end{equation*}
+        para todo $x\in\mathbb{R}$ no es integrable en $[0,\infty[$. En efecto, veamos que
+        \begin{equation*}
+            \begin{split}
+                \lim_{ x\rightarrow\infty}\frac{\abs{\frac{x\sin\lambda x}{x^2+a^2}}}{\abs{\frac{\sin\lambda x}{x}}}&=\lim_{ x\rightarrow\infty}\abs{\frac{x^2}{x^2+a^2}}\\
+                &=\lim_{ x\rightarrow\infty}\abs{\frac{1}{1+\frac{a^2}{x^2}}}\\
+                &=\frac{1}{1+0}\\
+                &=1\\
+            \end{split}
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \abs{\frac{x\sin\lambda x}{x^2+a^2}}\underset{x\rightarrow\infty}{\sim}\abs{\frac{\sin\lambda x}{x}}
+        \end{equation*}
+        Luego entonces, por la proposición 8.53 Análisis Matemático II:
+        \begin{equation*}
+            \abs{\frac{\sin\lambda x}{x}}\underset{x\rightarrow\infty}{=}O\left(\abs{\frac{x\sin\lambda x}{x^2+a^2}}\right)
+        \end{equation*}
+        donde la función $x\mapsto\abs{\frac{\sin\lambda x}{x}}$ no es integrable en $[0,\infty[$, luego tampoco puede serlo $g$ (siendo que ambas funciones son integrables en todo subconjunto acotado de $\mathbb{R}$).
+
+        Veamos que si existe la integral impropia
+        \begin{equation*}
+            \begin{split}
+                \int_{ 0}^{\rightarrow\infty}\frac{x\sin\lambda x}{x^2+a^2}
+            \end{split}
+        \end{equation*}
+        En efecto, defina para cada $x\in[0,\infty[$ las funciones:
+        \begin{equation*}
+            G(x)=\int_{ 0}^x \sin\lambda x\:dx\quad\textup{y}\quad f(x)=\frac{x}{x^2+a^2}
+        \end{equation*}
+        se tienen dos cosas:
+        \begin{itemize}
+            \item $\lim_{x\rightarrow\infty}f(x)=0$ (es claro de la definición de $f$).
+            \item $G$ es una función acotada en $[0,\infty[$, pues para cada $x\in[0,\infty[$:
+            \begin{equation*}
+                \begin{split}
+                    \abs{G(x)}&=\abs{\int_{ 0}^x \sin\lambda x\:dx},\textup{ haciendo el cambio de variable }u=\lambda x\\
+                    &=\abs{\frac{1}{\lambda}\cdot \int_{ 0}^{\lambda x}\sin u\:du}\\
+                    &=\abs{\frac{1}{\lambda}\cdot\left[-\cos u\Big|_{ 0}^{\lambda x} \right]}\\
+                    &=\abs{\frac{1}{\lambda}\cdot\left[-\cos \lambda x+\cos 0\right]}\\
+                    &\leq\frac{2}{\abs{\lambda}}
+                \end{split}
+            \end{equation*}
+        \end{itemize}
+        Por tanto, del primer criterio de Abel se sigue que la integral impropia
+        \begin{equation*}
+            \int_{ 0}^{\rightarrow\infty}\frac{x\sin\lambda x}{x^2+a^2}
+        \end{equation*}
+        es convergente.
+
+        De (ii): Sea $\cf{h}{\mathbb{R}}{\mathbb{R}}$ la función dada por
+        \begin{equation*}
+            \begin{split}
+                h(x)=e^{-a\abs{x}},\quad\forall x\in\mathbb{R}
+            \end{split}
+        \end{equation*}
+        se sabe por un ejercicio de las notas que
+        \begin{equation*}
+            \fou{h}(x)=\frac{2a}{x^2+a^2}
+        \end{equation*}
+        la función $h$ cumple la condición de Dini en todo punto $\lambda\in\mathbb{R}\neq0$ (también lo hace en cero, pero no es relevante), por lo cual se tiene que
+        \begin{equation*}
+            h(\lambda)=\lim_{ R\rightarrow\infty}\frac{1}{2\pi}\int_{ -R}^R e^{ i\lambda x}\fou{h}(x)\:dx
+        \end{equation*}
+        es decir,
+        \begin{equation*}
+            \begin{split}
+                e^{ -a\abs{\lambda}}&=\lim_{ R\rightarrow\infty}\frac{1}{2\pi}\int_{ -R}^R e^{ i\lambda x}\fou{h}(x)\:dx\\
+                &=\frac{2a}{2\pi}\lim_{ R\rightarrow\infty}\left[\int_{ -R}^R\frac{\cos\lambda x}{x^2+a^2}\:dx+i\int_{ -R}^R\frac{\sin\lambda x}{x^2+a^2}\:dx \right] \\
+                &=\frac{a}{\pi}\lim_{ R\rightarrow\infty}\left[\int_{ -R}^0\frac{\cos\lambda x}{x^2+a^2}\:dx+\int_{0}^R\frac{\cos\lambda x}{x^2+a^2}\:dx+i\int_{ -R}^0\frac{\sin\lambda x}{x^2+a^2}\:dx+i\int_{0}^R\frac{\sin\lambda x}{x^2+a^2}\:dx \right]\\
+                &=\frac{a}{\pi}\lim_{ R\rightarrow\infty}\left[\int_{0}^R\frac{\cos\lambda x}{x^2+a^2}\:dx+\int_{0}^R\frac{\cos\lambda x}{x^2+a^2}\:dx-i\int_{0}^R\frac{\sin\lambda x}{x^2+a^2}\:dx+i\int_{0}^R\frac{\sin\lambda x}{x^2+a^2}\:dx\right]\\
+                &=\frac{2a}{\pi}\lim_{ R\rightarrow\infty}\int_{0}^R\frac{\cos\lambda x}{x^2+a^2}\:dx\\
+                &=\frac{2a}{\pi}\int_{0}^{\rightarrow\infty}\frac{\cos\lambda x}{x^2+a^2}\:dx\\
+            \end{split}
+        \end{equation*}
+        pero, de (i) se sabe que $x\mapsto\frac{\cos\lambda x}{x^2+a^2}$ es integrable en $[0,\infty[$, por tanto coincide su valor con el de la integral impropia, así:
+        \begin{equation*}
+            \begin{split}
+                e^{ -a\abs{\lambda}}&=\frac{2a}{\pi}\int_{0}^{\infty}\frac{\cos\lambda x}{x^2+a^2}\:dx\\
+                \Rightarrow \int_{0}^{\infty}\frac{\cos\lambda x}{x^2+a^2}\:dx&=\frac{\pi}{2a}e^{ -a\abs{\lambda}}\\
+            \end{split}
+        \end{equation*}
+
+        De (iii): Por la parte anterior, para todo $\lambda\in\mathbb{R}\backslash\left\{0\right\}$ tiene que 
+        \begin{equation*}
+            \Phi(\lambda)=\int_{0}^{\infty}\frac{\cos\lambda x}{x^2+a^2}\:dx=\frac{\pi}{2a}e^{ -a\abs{\lambda}}=\frac{\pi}{2a}e^{-a\abs{\lambda}}
+        \end{equation*}
+        Si todo funciona bien, por el Teorema de derivación para funciones definidas por integrales impropias, se tendría para $\lambda>0$:
+        \begin{equation*}
+            \begin{split}
+                -\int_0^{\rightarrow\infty}\frac{x\sin\lambda x}{x^2+a^2}\:dx&=\Phi'(\lambda)\\
+                &=-\frac{\pi}{2}e^{-a\lambda}\\
+                &=-\frac{\pi}{2}e^{-a\abs{\lambda}}\\
+                \Rightarrow \int_0^{\rightarrow\infty}\frac{x\sin\lambda x}{x^2+a^2}\:dx&=\frac{\pi}{2}e^{-a\abs{\lambda}}\\
+            \end{split}
+        \end{equation*}
+        y, para $\lambda<0$:
+        \begin{equation*}
+            \begin{split}
+                -\int_0^{\rightarrow\infty}\frac{x\sin\lambda x}{x^2+a^2}\:dx&=\Phi'(\lambda)\\
+                &=\frac{d}{d\lambda}\left(\frac{\pi}{2a}e^{-a(-\lambda)}\right) \\
+                &=\frac{\pi}{2}e^{a\lambda}\\
+                &=\frac{\pi}{2}e^{-a\abs{\lambda}}\\
+                \Rightarrow \int_0^{\rightarrow\infty}\frac{x\sin\lambda x}{x^2+a^2}\:dx&=-\frac{\pi}{2}e^{-a\abs{\lambda}}\\
+            \end{split}
+        \end{equation*}
+        es decir que
+        \begin{equation*}
+            \int_0^{\rightarrow\infty}\frac{x\sin\lambda x}{x^2+a^2}\:dx=\Sgn{\lambda}\cdot\frac{\pi}{2}e^{ -a\abs{\lambda}}
+        \end{equation*}
+        %TODO Usar el teorema de derivación de funciones definidas por integrales impropias
     \end{proof}
 
     \begin{excer}
@@ -426,11 +553,91 @@
         \begin{equation*}
             m=\min_{ x\in S} \left\{\pint{Hx}{x} \right\}>0
         \end{equation*}
-        con $S=\left\{x\in\mathbb{R}^n\Big|\norm{x}=1 \right\}$. Se sabe de álgebra que existe una matriz ortogonal $U$ tal que $U^{-1}HU=\diag{\lambda_1,...,\lambda_n}$, donde $\lambda_1,...,\lambda_n$ son números estrictamente positivos. En la integral $\fou{f}(x)=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}e^{ -\pint{Hx}{x}}\:dy$ haga el cambio de variable $y=Uz$ siendo tal que $\abs{\det U}=0$, $\pint{Ur}{Us}=\pint{r}{s}$ (y lo análogo para $U^{-1}$) y observe que $\diag{1/\lambda_1,...,1/\lambda_n}=U^{-1}H^{-1}U$.
+        con $S=\left\{x\in\mathbb{R}^n\Big|\norm{x}=1 \right\}$. Se sabe de álgebra que existe una matriz ortogonal $U$ tal que $U^{-1}HU=\diag{\lambda_1,...,\lambda_n}$, donde $\lambda_1,...,\lambda_n$ son números estrictamente positivos. En la integral $\fou{f}(x)=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}e^{ -\pint{Hx}{x}}\:dy$ haga el cambio de variable $y=Uz$ siendo tal que $\abs{\det U}=1$, $\pint{Ur}{Us}=\pint{r}{s}$ (y lo análogo para $U^{-1}$) y observe que $\diag{1/\lambda_1,...,1/\lambda_n}=U^{-1}H^{-1}U$.
     \end{excer}
 
     \begin{proof}
+        Veamos que $f$ es medible (más aún, es continua). En efecto, considere la matriz $H$ dada por
+        \begin{equation*}
+            H=\left[\begin{array}{ccccc}
+                h_{1,1} & h_{1,2} & ... & h_{1,n-1} & h_{1,n}\\
+                h_{2,1} & h_{2,2} & ... & h_{2,n-1} & h_{2,n}\\
+                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                h_{n,1} & h_{n,2} & ... & h_{n,n-1} & h_{n,n}\\
+            \end{array}\right]
+        \end{equation*}
+        Se tiene entonces que para cada $x=(x_1,...,x_n)\in\mathbb{R}^n$:
+        \begin{equation*}
+            \begin{split}
+                \pint{x}{Hx}&=\left[
+                    \begin{array}{cccc}
+                        x_1 & x_2 & ... & x_n\\
+                    \end{array}
+                \right]\cdot\left[\begin{array}{c}
+                    y_1\\
+                    y_2\\
+                    \vdots\\
+                    y_n\\
+                \end{array}\right]\\
+                &=\sum_{ k=1}^n x_ky_k\\
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \left[\begin{array}{c}
+                y_1\\
+                y_2\\
+                \vdots\\
+                y_n\\
+            \end{array}\right]=\left[\begin{array}{ccccc}
+                h_{1,1} & h_{1,2} & ... & h_{1,n-1} & h_{1,n}\\
+                h_{2,1} & h_{2,2} & ... & h_{2,n-1} & h_{2,n}\\
+                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                h_{n,1} & h_{n,2} & ... & h_{n,n-1} & h_{n,n}\\
+            \end{array}\right]\cdot\left[\begin{array}{c}
+                x_1\\
+                x_2\\
+                \vdots\\
+                x_n\\
+            \end{array}\right]
+        \end{equation*}
+        es decir que
+        \begin{equation*}
+            y_k=\sum_{i=1}^n h_{k,i}x_i
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            \begin{split}
+                \pint{x}{Hx}&=\sum_{ k=1}^n x_k\sum_{ i=1}^n h_{k,i}x_i\\
+                &=\sum_{ k=1}^n\sum_{ i=1}^n x_kx_ih_{k,i}\\
+            \end{split}
+        \end{equation*}
+        siendo la aplicación $x\mapsto \pint{x}{Hx}$ una aplicación polinomial de $n$-variables, luego es continua. Así, la composición con $t\mapsto e^{-t}$ es continua, es decir que la función $f$ es continua en $\mathbb{R}^n$, luego medible.
+
+        Ahora, sea ahora
+        \begin{equation*}
+            m=\inf_{ x\in S} \left\{\pint{Hx}{x} \right\}
+        \end{equation*}
+        donde $S=\left\{x\in\mathbb{R}^n\Big|\norm{x}=1 \right\}$. Afirmamos que $m>0$. En el caso que $m=0$, como la función $x\mapsto\pint{x}{Hx}$ es continua de $\mathbb{R}^n$ en $\mathbb{R}$, se tendría que alcanzaría su máximo y mínimo, luego existiría $x_0\in S$ tal que
+        \begin{equation*}
+            \pint{x_0}{Hx_0}=0
+        \end{equation*}
+        lo cual contradeciría el hecho de que $H$ es positiva definida. Por tanto, $m>0$. Más aún,
+        \begin{equation*}
+            m=\inf_{ x\in S} \left\{\pint{Hx}{x} \right\}=\min_{ x\in S} \left\{\pint{Hx}{x} \right\}
+        \end{equation*}
         
+        Sea $x\in\mathbb{R}^n$ no cero, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \pint{Hx}{x}
+                &=\pint{H\left(\norm{x}\cdot\frac{x}{\norm{x}}\right)}{\norm{x}\cdot\frac{x}{\norm{x}}}\\
+                &=\norm{x}^2\pint{H\left(\frac{x}{\norm{x}}\right)}{\frac{x}{\norm{x}}}\\
+                &\geq m\norm{x}^2\\
+                \Rightarrow -\pint{Hx}{x}\leq -m\norm{x}^2\\
+            \end{split}
+        \end{equation*}
+        Considere la función
     \end{proof}
 
     \begin{excer}
@@ -501,8 +708,6 @@
     \begin{sol}
         
     \end{sol}
-
-    \newcommand{\Sgn}[1]{\ensuremath{\textup{Sgn}\left(#1\right)}}
 
     \begin{excer}
         Haga lo siguiente:
