@@ -1512,7 +1512,7 @@
     Se intenta definir $\fou{\cdot}$ en $L_2(\mathbb{R}^n,\mathbb{C})$.
 
     \begin{theor}
-        Sean $(E,d)$ y $(E',d')$ espacios emétricos y $S$ un conjunto denso en $E$. Si $\cf{f}{S}{E'}$ es uniformemente continua, entonces existe una única ampliación canónica de $f$ a $E$ que es uniformemente continua.
+        Sean $(E,d)$ y $(E',d')$ espacios métricos y $S$ un conjunto denso en $E$. Si $\cf{f}{S}{E'}$ es uniformemente continua, entonces existe una única ampliación canónica de $f$ a $E$ que es uniformemente continua.
     \end{theor}
 
     \begin{proof}
@@ -1647,5 +1647,228 @@
         \end{equation*}
         de las dos igualdades se sigue el resultado.
     \end{proof}
+
+    \begin{theor}
+        Existe una y sólo una aplicación lineal continua $\cf{\fou_2{\cdot}}{L_2(\mathbb{R}^n,\mathbb{C})}{L_2(\mathbb{R}^n,\mathbb{C})}$ tal que
+        \begin{equation*}
+            \fou_2{\cdot}\Big|_{L_1(\mathbb{R}^n,\mathbb{C})\cap L_1(\mathbb{R}^n,\mathbb{C})}=\frac{1}{(2\pi)^{ n/2}}\fou{\cdot}
+        \end{equation*}
+        Además, la aplicación $\fou_2{\cdot}$ es una isometría lineal de $L_2(\mathbb{R}^n,\mathbb{C})$ en $L_2(\mathbb{R}^n,\mathbb{C})$, y se llama \textbf{la transformación de Fourier-Plancherel}.
+    \end{theor}
+
+    \begin{proof}
+        Ya se sabe que $\frac{1}{(2\pi)^{ n/2}}\fou{\cdot}$ es una isometría lineal de $L_1(\mathbb{R}^n,\mathbb{C})\cap L_2(\mathbb{R}^n,\mathbb{C})$, donde $L_1(\mathbb{R}^n,\mathbb{C})\cap L_2(\mathbb{R}^n,\mathbb{C})$ es denso en $L_2(\mathbb{R}^n,\mathbb{C})$. Existe pues una única extensión lineal continua $\fou_2{\cdot}$ de $\frac{1}{(2\pi)^{ n/2}}\fou{\cdot}$ en todo $L_2(\mathbb{R}^n,\mathbb{C})$.
+
+        Resta probar que $\fou_2{\cdot}$ también es isometría. Sea $f\in\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$. Se sabe que existe $\left\{f_\nu\right\}_{\nu=1}^\infty$ en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})\cap\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$ tal que
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\N{2}{f-f_\nu}=0
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\N{2}{\fou_2{f}-\fou_2{f_\nu}}=0
+        \end{equation*}
+        de donde
+        \begin{equation*}
+            \lim_{\nu\rightarrow\infty}\N{2}{\fou_2{f_\nu}}=\N{2}{\fou_2{f}}
+        \end{equation*}
+        Pero $\N{2}{\fou_2{f_\nu}}=\N{2}{f_\nu}$ para todo $\nu\in\mathbb{N}$. Tomando límites cuando $\nu\rightarrow\infty$,
+        \begin{equation*}
+            \N{2}{\fou_2{f}}=\lim_{\nu\rightarrow\infty}\N{2}{\fou_2{f_\nu}}=\lim_{\nu\rightarrow\infty}\N{2}{f_\nu}=\N{2}{f}
+        \end{equation*}
+    \end{proof}
+
+    \begin{theor}[\textbf{Identidad de Parseval}]
+        Para todo $f,g\in\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$ se cumple que
+        \begin{equation*}
+            \pint{\fou_2{f}}{\fou_2{g}}=\pint{f}{g},\quad\forall f,g\in\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})
+        \end{equation*}
+        es decir,
+        \begin{equation*}
+            \int_{\mathbb{R}^n}\fou_2{f}\conj{\fou_2{g}}=\int_{\mathbb{R}^n}f\conj{g}
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Es inmediata del teorema anterior y del hecho de que toda isometría preserva productos escalares.
+    \end{proof}
+
+    \begin{obs}
+        Los resultados anteriores son válidos al reemplazar $\fou{\cdot}$ por $\fou^*{}$, así pues $\fou_2^*{\cdot}$ es también una isometría de $L_2(\mathbb{R}^n,\mathbb{C})$ en sí mismo que coincide con $\frac{1}{(2\pi)^{ n/2}}\fou^*{\cdot}$ al reestringirla a $L_1(\mathbb{R}^n,\mathbb{C})\cap L_2(\mathbb{R}^n,\mathbb{C})$.
+    \end{obs}
+
+    \begin{theor}[\textbf{Teorema de Transferencia}]
+        Para todo $f,g\in\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$ se cumple que
+        \begin{equation*}
+            \pint{\fou_2{f}}{g}=\pint{f}{\fou_2^*{g}}
+        \end{equation*}
+        luego, se tiene que $\fou_2^*{\cdot}$ es la adjunta de $\fou_2{\cdot}$.
+    \end{theor}
+
+    \begin{proof}
+        Se hará por casos:
+        \begin{enumerate}
+            \item Sean $f,g\in\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})\cap\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$. Por el teorema de transferencia en $L_1(\mathbb{R}^n,\mathbb{C})$, se tiene lo siguiente:
+            \begin{equation*}
+                \int_{\mathbb{R}^n}\fou{f}\conj{g}=\int_{\mathbb{R}^n}f\fou{\conj{g}}
+            \end{equation*}
+            observe que
+            \begin{equation*}
+                \begin{split}
+                    \fou{\conj{g}}(x)&=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}\conj{g}(y)\:dy\\
+                    &=\conj{\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}g(y)\:dy}\\
+                    &=\conj{\fou^*{g}}(x)\\
+                \end{split}
+            \end{equation*}
+            se sigue entonces
+            \begin{equation*}
+                \int_{\mathbb{R}^n}\fou{f}\conj{g}=\int_{\mathbb{R}^n}f\conj{\fou^*{g}}
+            \end{equation*}
+            multiplicando ambos lados por $\frac{1}{(2\pi)^n}$ se sigue que
+            \begin{equation*}
+                \pint{\fou_2{f}}{g}=\pint{f}{\fou_2^*{g}}
+            \end{equation*}
+            \item Sean $f,g\in\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$ y, $\left\{f_\nu\right\}$ y $\left\{g_\nu\right\}$ dos sucesiones en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})\cap\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$ tales que
+            \begin{equation*}
+                \lim_{\nu\rightarrow\infty}\N{2}{f-f_\nu}=0\quad\textup{y}\quad\lim_{\nu\rightarrow\infty}\N{2}{g-g_\nu}=0
+            \end{equation*}
+            Por lo anterior,
+            \begin{equation*}
+                \pint{\fou_2{f_\nu}}{g_\nu}=\pint{f_\nu}{\fou_2^*{g_\nu}},\quad\forall\nu\in\mathbb{N}
+            \end{equation*}
+            Como $(f,g)\mapsto\pint{f}{g}$ es continua de $L_2(\mathbb{R}^n,\mathbb{C})\times L_2(\mathbb{R}^n,\mathbb{C})$ en $\mathbb{C}$, al tomar límites cuando $\nu\rightarrow
+            \infty$ se tiene que
+            \begin{equation*}
+                \pint{\fou_2{f}}{g}=\pint{f}{\fou_2^*{g}}
+            \end{equation*}
+        \end{enumerate}
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema de Plancherel}]
+        $\fou_2{\cdot}$ es una isometría lineal suprayectiva de $L_2(\mathbb{R}^n,\mathbb{C})$ en $L_2(\mathbb{R}^n,\mathbb{C})$.
+    \end{theor}
+
+    \begin{proof}
+        Ya se sabe que es isometría lineal, veamos que es supayectiva. Usando la identidad de Parseval y el teorema de transferencia, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \pint{f}{g}&=\pint{\fou_2{f}}{\fou_2{g}}\\
+                &=\pint{f}{\fou_2^*{(\fou_2{g})}}\\
+            \end{split}
+        \end{equation*}
+        para todo $f,g\in\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$. Se sigue que
+        \begin{equation*}
+            \fou_2^*{(\fou_2{g})}=g\textup{ c.t.p. en }\mathbb{R}^n
+        \end{equation*}
+        Intercambiando los papeles de $\fou_2{\cdot}$ y $\fou_2^*{\cdot}$ resulta que $\fou_2{(\fou_2^*{\cdot})}=1_{L_2(\mathbb{R}^n,\mathbb{C})}$.
+    \end{proof}
+
+    \renewcommand{\theenumi}{\roman{enumi}}
+
+    \begin{propo}
+        Para toda $f\in\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$ se cumple lo siguiente:
+        \begin{enumerate}
+            \item $\fou_2{E^af}=(\fou_2{f})_{-a}$.
+            \item $\fou_2{f_{-a}}=E^{a}\fou_2{f}$.
+            \item $\fou_2{f^*}=\conj{\fou_2{f}}$.
+            \item $\fou_2{\left(^{\frac{1}{\lambda}}f\right)}=\abs{\lambda}^n(\fou_2{f})$.
+        \end{enumerate}
+        donde $E^a(x)=e^{ i\pint{x}{a}}$ con $a\in\mathbb{R}^n$, para todo $x\in\mathbb{R}^n$, $f_{-a}(x)=f(x-a)$ para todo $x\in\mathbb{R}^n$, $f^*(x)=\conj{f(x)}$ y $^{\frac{1}{\lambda}}f(x)=f(\frac{x}{\lambda})$.
+    \end{propo}
+
+    \begin{proof}
+        Si $f,g\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})\cap\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$ las 4 fórmulas anteriores se cumplen de forma inmediata. Si $f\in\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$, existe $\left\{f_\nu\right\}_{\nu=1}^\infty$ en $\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})\cap\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$ que converge en promedio cuadrático a $f$. Las $f_\nu$ satisfacen (i)-(iv) y
+        \begin{equation*}
+            E^af_\nu,\quad (f_\nu)_{-a},\quad f_\nu^*,\quad ^{\frac{1}{\lambda}}f_\nu
+        \end{equation*}
+        convergen también en promedio cuadrático a 
+        \begin{equation*}
+            E^af,\quad f_{-a},\quad f^*,\quad ^{\frac{1}{\lambda}}f
+        \end{equation*}
+        respectivamente. La conclusión se sigue entonces de la continuidad de $\fou_2{\cdot}$.
+    \end{proof}
+
+    \section{Determinación efectiva de $\fou_2{f}$}
+        
+    En general no es psoible determinar con presición la identidad de $\fou_2{f}$ para $f\in\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$. En casos favorables se puede hacer lo siguiente:
+    \begin{equation*}
+        \forall k\in\mathbb{N}, P_k=[-k,k]
+    \end{equation*}
+    Se tiene por Hölder que
+    \begin{equation*}
+        f\chi_{ P_k}\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C}),\quad\forall k\in\mathbb{N}
+    \end{equation*}
+    Además,
+    \begin{equation*}
+        \lim_{k\rightarrow\infty}f\chi_{P_k}=f\textup{ puntualmente en }\mathbb{R}^n
+    \end{equation*}
+    siendo tal que
+    \begin{equation*}
+        \abs{f\chi_{ P_k}}\leq\abs{f}
+    \end{equation*}
+    con $f$ una función integrable en $\mathcal{L}_2$ independiente de $k$. Por Lebesgue, se sigue que
+    \begin{equation*}
+        \lim_{ k\rightarrow\infty}\N{2}{f-f\chi_{ P_k}}=0
+    \end{equation*}
+    Entonces
+    \begin{equation*}
+        \lim_{ k\rightarrow\infty}\N{2}{\fou_2{f}-\fou_2{(f\chi_{ P_k})}}=0
+    \end{equation*}
+    por continuidad de $\fou_2{\cdot}$. En casos favorables tendremos que si
+    \begin{equation*}
+        \lim_{ k\rightarrow\infty}\fou_2{(f\chi_{ P_k})}=g\textup{ c.t.p. en }\mathbb{R}^n
+    \end{equation*}
+    Entonces,
+    \begin{equation*}
+        \fou_2{f}=g\textup{ c.t.p. en }\mathbb{R}^n
+    \end{equation*}
+
+    \begin{exa}
+        Sea $a>0$ y considere la función $\cf{f}{\mathbb{R}}{\mathbb{R}}$ dada por
+        \begin{equation*}
+            f(x)=\left\{
+                \begin{array}{lcr}
+                    \frac{2}{\sqrt{2\pi}}\cdot\frac{\sin ax}{x} & \textup{ si } & x\neq0\\
+                    \frac{2a}{\sqrt{2\pi}} & \textup{ si } & x=0\\
+                \end{array}
+            \right.
+        \end{equation*}
+        Entonces $f\in\mathcal{L}_2(\mathbb{R},\mathbb{C})$, pero $f\notin\mathcal{L}_1(\mathbb{R},\mathbb{C})$. Por ser $f$ par
+        \begin{equation*}
+            \begin{split}
+                \fou_2{(f\chi_{ {-k,k}})}(x)&=\frac{1}{(2\pi)^{ 1/2}}\fou{(f\chi_{[-k,k]})}(x)\\
+                &=\frac{1}{\pi}\int_{ -k}^k e^{ -ixy}\cdot\frac{\sin ay}{y}\:dy\\
+                &=\frac{2}{\pi}\int_0^k\cos xy\cdot\frac{\sin ay}{y}\:dy\\
+                &=\frac{1}{\pi}\left[\int_0^k \frac{\cos(a+x)y}{y}\:dy+\int_0^k \frac{\cos(a-x)y}{y}\:dy \right]\\
+            \end{split}
+        \end{equation*}
+        cuando $k\rightarrow\infty$ obtenemos la integral impropia
+        \begin{equation*}
+            \frac{1}{\pi}\left[\int_0^{\rightarrow\infty} \frac{\cos(a+x)y}{y}\:dy+\int_0^{\rightarrow\infty} \frac{\cos(a-x)y}{y}\:dy \right]
+        \end{equation*}
+        Recordando que
+        \begin{equation*}
+            \int_{0}^{\rightarrow\infty}\frac{\cos by}{y}\:dy=\left\{
+                \begin{array}{lcr}
+                    \frac{\pi}{2} & \textup{ si } & b>0\\
+                    \infty & \textup{ si } & b=0\\
+                    -\frac{\pi}{2} & \textup{ si } & b<0\\
+                \end{array}
+            \right.
+        \end{equation*}
+        se tiene
+        \begin{equation*}
+            \fou_2{f}(x)=\lim_{ k\rightarrow\infty}\fou_2{f\chi_{[-k,k]}}(x)=\left\{
+                \begin{array}{lcr}
+                    0 &\textup{ si } & x <-a<a\\
+                    1 & \textup{ si } & -a<x<a\\
+                    0 & \textup{ si } & -a<a<x\\
+                    \infty & \textup{ si } & x=-a \textup{ ó }x=a\\
+                \end{array}
+            \right.
+        \end{equation*}
+        por tanto, $\fou_2{f}=\chi_{[-a,a]}$ c.t.p. en $\mathbb{R}$.
+    \end{exa}
+
+    \section{Notas complementarias al curso}
 
 \end{document}

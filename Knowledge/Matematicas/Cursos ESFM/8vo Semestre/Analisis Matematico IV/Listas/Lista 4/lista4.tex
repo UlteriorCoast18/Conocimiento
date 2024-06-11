@@ -678,6 +678,8 @@
     \end{excer}
 
     \begin{proof}
+        %TODO Usar proposición 4.5.2
+
         Se sabe que la función $x\mapsto\left(\frac{\sin ax}{x}\right)^2$ es integrable en $\mathbb{R}$. Observemos ahora que
         \begin{equation*}
             \begin{split}
@@ -821,7 +823,19 @@
     \end{excer}
 
     \begin{sol}
+        De (i): Ya se sabe que $f\circ r$ es una función radial (de la definición es claro este hecho). Como $f\circ r$ es integrable en $\mathbb{R}^n$, entonces la transformada de Fourier de $f\circ r$ está definida para todo $x\in\mathbb{R}^n$.
         
+        Sean $x,y\in\mathbb{R}^n$ tales que $\norm{x}=\norm{y}$. Para probar que $\fou{(f\circ r)}$ es una función radial, basta con ver que
+        \begin{equation*}
+            \fou{(f\circ r)}(x)=\fou{(f\circ r)}(y)
+        \end{equation*}
+        En efecto, como $\norm{x}=\norm{y}$ por álgebra lineal se sabe que existe una matriz ortogonal $n\times n$ con determinante $1$ tal que $z=Uw$. Por lo cual, por el teorema de cambio de variable se sigue que:
+        \begin{equation*}
+            \begin{split}
+                \fou{(f\circ r)}(x)&=\int_{\mathbb{R}^n}e^{-i\pint{x}{z}}f\circ r(z)\:dz\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{Uw}}f\circ r(Uw)\:dw\\
+            \end{split}
+        \end{equation*}
     \end{sol}
 
     \begin{excer}
