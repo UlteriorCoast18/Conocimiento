@@ -1970,4 +1970,222 @@
         por tanto, $\Ev$ es funtor.
     \end{proof}
 
+    \begin{propo}
+        Sea $\mathcal{I}$ una categoría pequeña, $\mathcal{C}$ una categoría arbitraria. Entonces, existe el funtor $\cf{\Delta}{\mathcal{C}}{\Fun{\mathcal{I}}{\mathcal{C}}}$ llamado \textbf{el funtor diagonal}, definido como sigue: para todo $C,D\in\Obj{\mathcal{C}}$ y todo morfismo $f\in\Hom{\mathcal{C}}{C}{D}$, se tiene que
+        \begin{equation*}
+            \Delta(C)=\Delta_C\quad\textup{y}\quad \Delta(f)=\cf{\eta}{\Delta_C}{\Delta_D}
+        \end{equation*}
+        donde $\cf{\eta}{\Delta_C}{\Delta_D}$ es transformación natural dada por $\eta_i=f$, para todo $i\in\Obj{\mathcal{I}}$, con $\cf{\Delta_C}{\mathcal{I}}{\mathcal{C}}$ es el funtor constante.
+    \end{propo}
+
+    \begin{proof}
+        Para cualquier morfismo $t\in\Hom{\mathcal{I}}{i}{j}$, siendo $i,j\in\Obj{\mathcal{I}}$, el siguiente diagrama
+        \begin{equation*}
+            \begin{array}[pos]{rcccl}
+                & \Delta_C(i) & \overset{\eta_i}{\longrightarrow} & \Delta_D(i) & \\
+               \Delta_C(t) & \downarrow & & \downarrow & \Delta_D(t) \\
+               & \Delta_C(j) & \underset{\eta_j}{\longrightarrow} & \Delta_D(j) & \\
+            \end{array}
+        \end{equation*}
+        se reduce al siguiente
+        \begin{equation*}
+            \begin{array}[pos]{rcccl}
+                & C & \overset{t}{\longrightarrow} & D & \\
+               1_C & \downarrow & & \downarrow & 1_D \\
+               & C & \underset{t}{\longrightarrow} & D & \\
+            \end{array}
+        \end{equation*}
+        el cual claramente es conmtativo. Por tanto, $\eta$ es transformación natural. Luego, $\Delta$ está bien definido.
+
+        Sea $C\in\Obj{\mathcal{C}}$ arbitrario, tenemos que $\Delta_C(1_C)=\xi$, donde $\cf{\xi}{\Delta_C}{\Delta_C}$ es la transformación natural identidad. Por tanto, $\Delta$ preserva identidades.
+
+        Finalmente, sean $f,g$ morfismos con $f\in\Hom{\mathcal{C}}{C}{D}$ y $g\in\Hom{\mathcal{C}}{D}{E}$ siendo $C,D,E\in\Obj{\mathcal{C}}$. Tomemos
+        \begin{equation*}
+            \mu=\Delta(f)\quad\textup{y}\quad\Delta(g)=\nu
+        \end{equation*}
+        Donde $\cf{\mu}{\Delta_C}{\Delta_D}$ y $\cf{\nu}{\Delta_D}{\Delta_E}$ son las transformaciones naturales dadas por:
+        \begin{equation*}
+            \mu_i=f,\quad\nu_i=g,\quad\forall i\in\Obj{\mathcal{I}}
+        \end{equation*}
+        Veamos que
+        \begin{equation*}
+            \Delta(g\circ f)=\Delta(g)\circ\Delta(f)
+        \end{equation*}
+        En efecto, se tiene que $\cf{\Delta(g\circ f)}{\Delta_C}{\Delta_E}$ es la transformación natural dada por
+        \begin{equation*}
+            \eta_i=g\circ f=\nu_i\circ\mu_i,\quad\forall i\in\Obj{\mathcal{I}}
+        \end{equation*}
+        Luego,
+        \begin{equation*}
+            \Delta(g\circ f)=\nu\circ\mu=\Delta(g)\circ\Delta(f)
+        \end{equation*}
+        lo que prueba el resultado. Por tanto, $\Delta$ es funtor.
+    \end{proof}
+
+    \section{Lema de Yoneda}
+
+    Uno de los resultados más relevantes que se van a ver en este curso es el lema de Yoneda, el cual nos permite encajar una categoría en una estructura más general.
+    
+    \begin{theor}[\textbf{Lema de Yoneda}]
+        Sea $\mathcal{C}$ una categoría, $\cf{F}{\mathcal{C}}{\Cat{Set}}$ un funtor. Para cualesquiera $C\in\Obj{\mathcal{C}}$, el conjunto de transformaciones naturales
+        \begin{equation*}
+            \HOM{\mathcal{C}}\left(C,-\right)=h^C
+        \end{equation*}
+        a $F$ están en biyección a los elementos de $F(C)$. Es decir,
+        \begin{equation*}
+            \Nat{h^C}{F}\cong F(C)
+        \end{equation*}
+        donde la biyección está dada para cualesquiera $\cf{\varphi}{h^C}{F}$ transformaciones naturales, se tiene
+        \begin{equation*}
+            \cf{\pi_{ C,F}}{\Nat{h^C}{F}}{F(C)}\quad\textup{y}\quad \pi_{ C,F}(\varphi)=\varphi_C(1_C)
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Consideremos $\cf{\tau_{ C,F}}{F(C)}{\Nat{h^C}{F}}$ definida como: para todo $x\in F(X)$,
+        \begin{equation*}
+            \tau_{ C,F}(x)=h^x
+        \end{equation*}
+        donde $(h^x)_D(f)=F(f)(x)$, para todo $D\in\Obj{\mathcal{C}}$ y para todo morfismo $f\Hom{\mathcal{C}}{C}{D}$.
+
+        Veamos que $h_x$ es transformación natural. En efecto, se tiene que
+        \begin{equation*}
+            \begin{array}[pos]{rcccl}
+                & \Hom{\mathcal{C}}{C}{A} & \overset{(h^x)_A}{\longrightarrow} & F(A) & \\
+                \HOM{\mathcal{C}}(C,f) & \downarrow & & \downarrow & F(f) \\
+               & \Hom{\mathcal{C}}{C}{B} & \underset{(h^x)_B}{\longrightarrow} & F(B) & \\
+            \end{array}
+        \end{equation*}
+        es conmutativo, ya que para todo $g\in\Hom{\mathcal{C}}{A}{B}$:
+        \begin{equation*}
+            \begin{split}
+                (h^x)_B(\Hom{\mathcal{C}}{C}{f})(g)&=(h^x)_B(f\circ g)\\
+                &=F(f\circ g)(x)\\
+                &=F(f)\circ F(g)(x)\\
+                &=F(f)\circ (h^x)_A(g)\\
+            \end{split}
+        \end{equation*}
+        lo que prueba lo deseado. Veamos que $\pi_{ C,F}$ y $\tau_{ C,F}$ son inversas entre sí. En efecto, tenemos que
+        \begin{equation*}
+            \begin{split}
+                (\pi_{ C,F}\circ\tau_{ C.F})(x)&=\pi_{ C,F}(\tau_{ C,F}(x))\\
+                &=\pi_{ C,F}(h^x)\\
+                &=(h^x)_C(1_C)\\
+                &=F(1_C)(x)\\
+                &=1_{ F(C)}(x)\\
+                &=x\\
+            \end{split}
+        \end{equation*}
+        para todo $x\in F(C)$. También, para todo $\cf{\varphi}{h^C}{F}$ una transformación natural, se tiene que
+        \begin{equation*}
+            (\tau_{ C,F}\circ\pi_{ C,F})(\varphi)=\varphi
+        \end{equation*}
+        pues, como $\varphi$ es transformación natural, el diagrama siguiente es conmutativo:
+        \begin{equation*}
+            \begin{array}[pos]{rcccl}
+                & \Hom{\mathcal{C}}{C}{C} & \overset{\varphi_C}{\longrightarrow} & F(C) & \\
+                \HOM{\mathcal{C}}(C,f) & \downarrow & & \downarrow & F(f) \\
+               & \Hom{\mathcal{C}}{C}{D} & \underset{\varphi_{D}}{\longrightarrow} & F(D) & \\
+            \end{array}
+        \end{equation*}
+        Tomando a $1_C\in\Hom{\mathcal{C}}{C}{C}$, tenemos que
+        \begin{equation*}
+            F(f)(\varphi_C(1_C))=\varphi_D(f)
+        \end{equation*}
+        para todo $D\in\Obj{\mathcal{C}}$ y para todo $f\in\Hom{\mathcal{C}}{C}{D}$. Luego,
+        \begin{equation*}
+            \begin{split}
+                (\tau_{ C,F}\circ\pi_{ C,F})(\varphi)_D(f)&=\tau_{ C,F}(\pi_{ C,F}(\varphi))_D(f)\\
+                &=\tau_{ C,F}(\varphi_C(1_C)_D)(f)\\
+                &=F(f)(\varphi_C(1_C))\\
+                &=\varphi_D(f)\\
+                \Rightarrow \tau_{ C,F}\circ\pi_{ C,F}(\varphi)&=\varphi\\
+            \end{split}
+        \end{equation*}
+        lo cual prueba el hecho de que amboas funciones sean biyectivas, que prueba el resultado.
+    \end{proof}
+
+    \begin{theor}
+        Sea $\mathcal{C}$ una categoría, $\cf{F}{\mathcal{C}}{\Cat{Set}}$  un funtor. Se tiene lo siguiente:
+        \begin{enumerate}
+            \item Si $\cf{G}{\mathcal{C}}{\Cat{Set}}$ es un funtor definido como sigue: $\forall C\in\Obj{\mathcal{C}}$, $f\in\Hom{\mathcal{C}}{C}{C'}$:
+            \begin{itemize}
+                \item $G(C)=\Nat{h^C}{F}$.
+                \item $\cf{G(f)}{\Nat{h^C}{F}}{\Nat{h^{C'}}{F}}$ está dado por 
+                \begin{equation*}
+                    G(f)(\psi)=\psi\circ\HOM{\mathcal{C}}(f,-),\quad\forall\psi\in\Nat{h^C}{F}
+                \end{equation*}
+            \end{itemize}
+            entonces, $\cf{\pi_{ -,F}}{G}{F}$ definida como en el teorema anterior es una transformación natural.
+            \item Si $\mathcal{C}$ es una categoría pequeña, $\cf{F,F'}{\mathcal{C}}{\Cat{Set}}$ son funtores y $\cf{\psi}{F}{F'}$ es una transformación natural, entonces definimos el funtor
+            \begin{equation*}
+                \cf{H}{\Fun{\mathcal{C}}{\Cat{Set}}}{\Cat{Set}}
+            \end{equation*}
+            dado por
+            \begin{itemize}
+                \item $H(F)=\Nat{h^C}{F}$.
+                \item $\cf{H(\psi)}{\Nat{h^C}{F}}{\Nat{h^C}{F'}}$ está dada por
+                \begin{equation*}
+                    H(\psi)(\varphi)=\psi\circ\varphi,\quad\forall\varphi\in\Nat{h^C}{F}
+                \end{equation*}
+            \end{itemize}
+            entonces, $\cf{\pi_{ C,-}}{H}{\Ev_C}$ como se definió en el teorema anterior es una transformación natural, donde $\Ev_C$ es el funtor evaluación en $C$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De (1): Sea $f\in\Hom{\mathcal{C}}{C}{C'}$ hay que verificar que
+        \begin{equation*}
+            F(f)\circ\pi_{ C,F}=\pi_{ C',F}\circ G(f)
+        \end{equation*}
+        Es decir, que el diagrama
+        \begin{equation*}
+            \begin{array}[pos]{rcccl}
+                & G(C) & \overset{\pi_{ C,F}}{\longrightarrow} & F(C) & \\
+                G(f) & \downarrow & & \downarrow & F(f) \\
+               & G(C') & \underset{\pi_{ C',F}}{\longrightarrow} & F(C') & \\
+            \end{array}
+        \end{equation*}
+        es conmutativo. En efecto, para $\varphi\in G(C)$ se tiene que
+        \begin{equation*}
+            \begin{split}
+                (F(f)\circ\pi_{C,F})(\varphi)&=F(f)(\pi_{ C,F}(\varphi))\\
+                &=\varphi_{ C'}(f)\\
+                &=\varphi_{C'}(\HOM{\mathcal{C}}(f,C'))(1_{C'})\\
+                &=(\varphi\circ\HOM{\mathcal{C}}(f,-)_{C'})(1_{C'})\\
+                &=\pi_{ C',F}(\varphi\circ\HOM{\mathcal{C}}(f,-))\\
+                &=(\pi_{ C',F}\circ G(f))(\varphi)\\
+                \Rightarrow F(f)\circ\pi_{C,F}&=\pi_{ C',F}\circ G(f)\\
+            \end{split}
+        \end{equation*}
+        lo que prueba que es transformación natural.
+
+        De (2): Consideremos los siguientes funtores $\cf{F,F'}{\mathcal{C}}{\Cat{Set}}$ y $\cf{\psi}{F}{F'}$ una transformación natural. Veamos que
+        \begin{equation*}
+            \Ev_C(\psi)\circ\pi_{ C,F}=\pi_{ C,F'}\circ H(\psi)
+        \end{equation*}
+        es decir, que el siguiente diagrama
+        \begin{equation*}
+            \begin{array}[pos]{rcccl}
+                & H(F) & \overset{\pi_{ C,F}}{\longrightarrow} & \Ev_C(F) & \\
+                H(\psi) & \downarrow & & \downarrow & \Ev_C(\psi) \\
+               & H(F') & \underset{\pi_{ C,F'}}{\longrightarrow} & \Ev_C(F') & \\
+            \end{array}
+        \end{equation*}
+        es conmutativo. En efecto, sea $\varphi\in H(F)=\Nat{h^C}{F}$. Tenemos que
+        \begin{equation*}
+            \begin{split}
+                (\Ev_C(\psi)\circeq\pi_{ C,F})(\varphi)&=\Ev_C(\psi)(\pi_{ C,F}(\varphi))\\
+                &=\Ev_C(\psi)(\varphi_C(1_C))\\
+                &=\psi_C(\varphi_C(1_C))\\
+                &=(\psi\circ\varphi)_C(1_C)\\
+                &=\pi_{ C,F'}(\psi\circ\varphi)\\
+                &=\pi_{C,F'}(H(\psi)(\varphi))\\
+                &=(\pi_{C,F'}\circ H(\psi))(\varphi)\\
+                \Rightarrow \Ev_C(\psi)\circeq\pi_{ C,F}&=\pi_{C,F'}\circ H(\psi)\\
+            \end{split}
+        \end{equation*}
+        lo que prueba el hecho de que sea transformación natural.
+    \end{proof}
+
 \end{document}
