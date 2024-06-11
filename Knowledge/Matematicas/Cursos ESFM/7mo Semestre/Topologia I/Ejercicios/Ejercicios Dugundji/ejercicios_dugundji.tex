@@ -2002,15 +2002,51 @@
     \end{excer}
 
     \begin{proof}
-        
+        De (i): Suponga que uno de los dos $A$ o $B$ no es conexo, sin pérdida de generalidad, supongamos que $A$ no lo es. Como no es conexo, existen dos abiertos no vacíos $U,V\in\tau_A$ tales que
+        \begin{equation*}
+            U\cup V=A\quad\textup{y}\quad U\cap V=\emptyset
+        \end{equation*}
+        en particular, se tiene que $A-U,A-V\in\tau$, siendo $U=A-V$ y $V=A-U$ son conjuntos cerrados, esto es que $U,V$ son cerrados en $(A,\tau_A)$. Como $A$ es cerrado en $(X,\tau)$, entonces $U$ y $V$ también son cerrados en $(X,\tau)$.
+
+        Se tienen dos casos:
+        \begin{itemize}
+            \item $A\cap B=\emptyset$. Tomemos $M=B\cup V$ y $N=U$. Ambos conjuntos son cerrados en $(A\cup B,\tau_{A\cup B})$, pues lo son en $(X,\tau)$. Además, se cumple que
+            \begin{equation*}
+                \begin{split}
+                    M\cap N&=(B\cup V)\cap U\\
+                    &=(B\cap U)\cup (V\cap U)\\
+                    &\subseteq (A\cap B)\cup(V\cap U)\\
+                    &=\emptyset\cup\emptyset\\
+                    &=\emptyset\\
+                \end{split}
+            \end{equation*}
+            y, $M\cup N=A\cup B$. Por tanto, $A\cup B$ no puede ser conexo\contradiction.
+            \item $A\cap B\neq\emptyset$. Como $U$ y $V$ forman una separación de $A$ y $A\cap B\subseteq A$, al ser $A\cap B$ conexo se tiene que $A\cap B\subseteq U$ ó $A\cap B\subseteq V$.
+            
+            Supongamos sin péridad de generalidad que $A\cap B\subseteq U$. Considere los conjuntos $M=U$ y $N=A\cup B-U$. Es claro que
+            \begin{equation*}
+                M\cap N=\emptyset\quad\textup{y}\quad M\cup N=A\cup B
+            \end{equation*}
+            También, $M$ es cerrado en $A\cup B$ por serlo $U$ en $X$, y $N$ es cerrado en 
+        \end{itemize}
+
+        De (ii)
     \end{proof}
 
     \begin{excer}
-        Sea $(X,\tau)$ un espacio topológico tal que dados $x,y\in X$ existe $C\subseteq X$ conexo tal que $x,y\in X$. Demuestre que $(X,\tau)$ es un espacio conexo.
+        Sea $(X,\tau)$ un espacio topológico tal que dados $x,y\in X$ existe $C\subseteq X$ conexo tal que $x,y\in C$. Demuestre que $(X,\tau)$ es un espacio conexo.
     \end{excer}
 
     \begin{proof}
-        
+        Sea $x\in X$ arbitrario fijo. Por hipótesis, para cada $y\in X$ existe $C_y\subseteq X$ conexo tal que $x,y\in C_y$. Se tiene que
+        \begin{equation*}
+            \bigcap_{ y\in X}C_y\neq\emptyset
+        \end{equation*}
+        pues $x\in C_y$ para todo $y\in X$, luego por un teorema al ser cada $C_y$ conexo, se tiene que
+        \begin{equation*}
+            \bigcup_{y\in X}C_y=X
+        \end{equation*}
+        es conexo. Por tanto, $(X,\tau)$ es conexo.
     \end{proof}
 
     \begin{excer}
@@ -2022,7 +2058,24 @@
     \end{excer}
 
     \begin{proof}
-        
+        De (i): Sea $y\in C_x$. Como $(X,\tau)$ es localmente conexo, luego existe una vecindad $V$ de $y$ que es conexa. Se tiene que
+        \begin{equation*}
+            V\cap C_x\neq\emptyset
+        \end{equation*}
+        por tanto, $V\cup C_x$ es un conjunto conexo que contiene a $y$, luego debe suceder que $V\cup C_x\subseteq C_y=C_x$, lo cual implica que $V\subseteq C_x$. Como $V$ es vecindad de $y$, existe $U_y\in\tau$ tal que $y\in U_y\subseteq V$, así $U_y\subseteq C_x$. Por ende:
+        \begin{equation*}
+            C_x=\bigcup_{ y\in C_x}U_y\in\tau
+        \end{equation*}
+
+        De (ii): Por una proposición, se sabe que
+        \begin{equation*}
+            A\in\tau/\mathcal{R}\iff \bigcup_{[x]\in A}[x]\in\tau
+        \end{equation*}
+        Sea $A=\left\{[x]\right\}$, con $x\in X$. Se tiene que
+        \begin{equation*}
+            \bigcup_{[x]\in A}[x]=[x]=C_x\in\tau
+        \end{equation*}
+        luego entonces $A\in\tau/\mathcal{R}$. Como $x\in X$, se sigue que todo subconjunto unipuntual de $X/\mathcal{R}$ es abierto, es decir que $\tau/\mathcal{R}$ es la topología discreta.
     \end{proof}
 
     \begin{excer}
