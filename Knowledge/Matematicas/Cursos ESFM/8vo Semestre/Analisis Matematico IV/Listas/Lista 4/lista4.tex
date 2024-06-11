@@ -553,7 +553,7 @@
         \begin{equation*}
             m=\min_{ x\in S} \left\{\pint{Hx}{x} \right\}>0
         \end{equation*}
-        con $S=\left\{x\in\mathbb{R}^n\Big|\norm{x}=1 \right\}$. Se sabe de álgebra que existe una matriz ortogonal $U$ tal que $U^{-1}HU=\diag{\lambda_1,...,\lambda_n}$, donde $\lambda_1,...,\lambda_n$ son números estrictamente positivos. En la integral $\fou{f}(x)=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}e^{ -\pint{Hx}{x}}\:dy$ haga el cambio de variable $y=Uz$ siendo tal que $\abs{\det U}=1$, $\pint{Ur}{Us}=\pint{r}{s}$ (y lo análogo para $U^{-1}$) y observe que $\diag{1/\lambda_1,...,1/\lambda_n}=U^{-1}H^{-1}U$.
+        con $S=\left\{x\in\mathbb{R}^n\Big|\norm{x}=1 \right\}$. Se sabe de álgebra que existe una matriz ortogonal $U$ tal que $U^{-1}HU=\textup{Diag}\left(\lambda_1,...,\lambda_n\right)$, donde $\lambda_1,...,\lambda_n$ son números estrictamente positivos. En la integral $\fou{f}(x)=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}e^{ -\pint{Hy}{y}}\:dy$ haga el cambio de variable $y=Uz$ siendo tal que $\abs{\det U}=1$, $\pint{Ur}{Us}=\pint{r}{s}$ (y lo análogo para $U^{-1}$) y observe que $\diag{1/\lambda_1,...,1/\lambda_n}=U^{-1}H^{-1}U$.
     \end{excer}
 
     \begin{proof}
@@ -634,10 +634,36 @@
                 &=\pint{H\left(\norm{x}\cdot\frac{x}{\norm{x}}\right)}{\norm{x}\cdot\frac{x}{\norm{x}}}\\
                 &=\norm{x}^2\pint{H\left(\frac{x}{\norm{x}}\right)}{\frac{x}{\norm{x}}}\\
                 &\geq m\norm{x}^2\\
-                \Rightarrow -\pint{Hx}{x}\leq -m\norm{x}^2\\
+                \Rightarrow -\pint{Hx}{x}&\leq -m\norm{x}^2\\
             \end{split}
         \end{equation*}
-        Considere la función
+        Considere la función $x\mapsto e^{ -m\norm{x}^2}$ de $\mathbb{R}^n$ en $\mathbb{R}$. Se tiene que
+        \begin{equation*}
+            0\leq f(x)\leq e^{ -m\norm{x}^2},\quad\forall x\in\mathbb{R}^n
+        \end{equation*}
+        siendo $x\mapsto e^{ -m\norm{x}^2}$ intergable en $\mathbb{R}^n$, luego $f$ lo es en $\mathbb{R}^n$, luego la transformada de Fourier $\fou{f}(\cdot)$ está definida en todo $\mathbb{R}^n$.
+
+        Sea $x\in\mathbb{R}^n$, entonces
+        \begin{equation*}
+            \begin{split}
+                \fou{f}(x)&=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}f(y)\:dy\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}\cdot e^{ -\pint{Hy}{y}}\:dy\\
+            \end{split}
+        \end{equation*}
+        Se sabe por un resultado de álgebra lineal que existen una matriz $D$ $n\times n$ diagonal con entradas en la diagonal positivas, y una matriz ortogonal $U$ (también $n\times n$) con $\abs{\det U}=1$ tal que
+        \begin{equation*}
+            U^{-1}HU=D\Rightarrow HU=UD
+        \end{equation*}
+        Hagáse el cambio de variable $y=Uz$, se tiene en la integral anterior que
+        \begin{equation*}
+            \begin{split}
+                \fou{f}(x)&=\int_{\mathbb{R}^n}e^{ -i\pint{x}{y}}\cdot e^{ -\pint{Hy}{y}}\:dy\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{Uz}}\cdot e^{ -\pint{HUz}{Uz}}\:dz\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{Uz}}\cdot e^{ -\pint{UDz}{Uz}}\:dz\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{Uz}}\cdot e^{-\pint{Dz}{z}}\:dz\\
+            \end{split}
+        \end{equation*}
+        %TODO
     \end{proof}
 
     \begin{excer}
@@ -652,7 +678,23 @@
     \end{excer}
 
     \begin{proof}
-        
+        Se sabe que la función $x\mapsto\left(\frac{\sin ax}{x}\right)^2$ es integrable en $\mathbb{R}$. Observemos ahora que
+        \begin{equation*}
+            \begin{split}
+                \int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^2\:dx&=\int_{-\infty}^{\infty}\fou{f}(x)\cdot\fou{f}(x)\:dx\\
+                &=\int_{-\infty}^{\infty}\fou{f}(x)\:dx\int_{-\infty}^\infty e^{ -ixy}f(y)\:dy\\
+                &=\int_{-\infty}^{\infty}\frac{\sin ax}{x}\:dx\int_{-a}^a e^{ -ixy}\:dy\\
+            \end{split}
+        \end{equation*}
+        considere la función $(x,y)\mapsto $
+
+        Sea $x\in\mathbb{R}^n\backslash\left\{-a,a\right\}$. Se tiene que $f$ posee derivadas laterales derecha e izquierda en $x$, por lo cual del teorema de inversión de Fourier en $\mathbb{R}$, se sigue que
+        \begin{equation*}
+            \begin{split}
+                f(x)&=\frac{1}{2\pi}\lim_{ R\rightarrow\infty}\int_{-R}^R e^{ ixy}\fou{f}(y)\:dy\\
+                \Rightarrow\chi_{[-a,a]}(-x)&=\frac{1}{2\pi}\lim_{ R\rightarrow\infty}\int_{-R}^R e^{-ixy}\sin \:dy\\
+            \end{split}
+        \end{equation*}
     \end{proof}
 
     \begin{excer}
@@ -679,7 +721,52 @@
     \end{excer}
 
     \begin{sol}
+        De (i): Sea $x\in\mathbb{R}\backslash\left\{0\right\}$, tenemos que
+        \begin{equation*}
+            \begin{split}
+                \fou{f}(x)&=\int_{-\infty}^\infty e^{ -ixy}f(y)\:dy\\
+                &=\int_{-\infty}^\infty e^{ -ixy}\left(1-\frac{\abs{y}}{a} \right)\chi_{[-a,a]}(y)\:dy\\
+                &=\int_{-a}^a e^{ -ixy}\left(1-\frac{\abs{y}}{a}\right)\:dy\\
+                &=\int_{-a}^0 e^{ -ixy}\left(1-\frac{\abs{y}}{a}\right)\:dy+\int_{0}^a e^{ -ixy}\left(1-\frac{\abs{y}}{a}\right)\:dy\\
+                &=\int_{-a}^0 e^{ -ixy}\left(1+\frac{y}{a}\right)\:dy+\int_{0}^a e^{ -ixy}\left(1-\frac{y}{a}\right)\:dy\\
+                &=-\int_{a}^0 e^{ ixu}\left(1-\frac{u}{a}\right)\:du+\int_{0}^a e^{ -ixy}\left(1-\frac{y}{a}\right)\:dy\\
+                &=\int_{0}^a e^{ ixy}\left(1-\frac{y}{a}\right)\:dy+\int_{0}^a e^{ -ixy}\left(1-\frac{y}{a}\right)\:dy\\
+                &=\int_{0}^a\left(e^{ ixy}+e^{-ixy}\right)\cdot\left(1-\frac{y}{a}\right)\:dy\\
+                &=2\int_{0}^a\left(1-\frac{y}{a}\right)\cos xy\:dy\\
+                &=2\left[\int_{0}^a\cos xy\:dy-\frac{1}{a}\int_0^a y\cos xy\:dy\right]\\
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \begin{split}
+                \int_{0}^a\cos xy\:dy&=\frac{1}{x}\int_0^{ ax}\cos u\:du\\
+                &=\frac{1}{x}\sin u\Big|_0^{ax}\\
+                &=\frac{\sin ax}{x}\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                \int_0^a y\cos xy\:dy&=\int_0^{ax}\frac{u}{x}\cos u\: \frac{du}{x}\\
+                &=\frac{1}{x^2}\int_0^{ax}u\cos u\:du\\
+                &=\frac{1}{x^2}\left[ax\sin ax+\cos ax-1\right]
+            \end{split}
+        \end{equation*}
+        Por tanto,
+        \begin{equation*}
+            \begin{split}
+                \fou{f}(x)&=2\left[\int_{0}^a\cos xy\:dy-\frac{1}{a}\int_0^a y\cos xy\:dy\right]\\
+                &=2\left[\frac{\sin ax}{x}-\frac{ax\sin ax}{ax^2}-\frac{\cos ax}{ax^2}+\frac{1}{ax^2}\right]\\
+                &=2\left[\frac{\sin ax}{x}-\frac{\sin ax}{x}+\frac{1-\cos ax}{ax^2}\right]\\
+                &=\frac{1-\cos ax}{\frac{ax^2}{2}}\\
+                &=a\cdot\frac{2\sin^2\left(\frac{ax}{2}\right)}{\frac{a^2x^2}{2}}\\
+                &=a\cdot\frac{\sin^2\frac{ax}{2}}{\frac{a^2x^2}{4}}\\
+                &=a\cdot\left(\frac{\sin\frac{ax}{2}}{\frac{ax}{2}}\right)^2\\
+            \end{split}
+        \end{equation*}
         
+        De (ii): 
+
     \end{sol}
 
     \begin{excer}
