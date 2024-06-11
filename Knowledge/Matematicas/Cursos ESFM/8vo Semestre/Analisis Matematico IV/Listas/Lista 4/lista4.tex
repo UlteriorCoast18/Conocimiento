@@ -669,7 +669,7 @@
     \begin{excer}
         Recuerde que si $f=\chi_{[-a,a]}$, entonces
         \begin{equation*}
-            \fou{f}(x)=\sqrt{\frac{\pi}{2}}\frac{\sin ax}{x},\quad\forall x\neq0
+            \fou{f}(x)=\frac{2\sin ax}{x},\quad\forall x\neq0
         \end{equation*}
         \textbf{Deduzca} la fórmula
         \begin{equation*}
@@ -681,20 +681,48 @@
         Se sabe que la función $x\mapsto\left(\frac{\sin ax}{x}\right)^2$ es integrable en $\mathbb{R}$. Observemos ahora que
         \begin{equation*}
             \begin{split}
-                \int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^2\:dx&=\int_{-\infty}^{\infty}\fou{f}(x)\cdot\fou{f}(x)\:dx\\
-                &=\int_{-\infty}^{\infty}\fou{f}(x)\:dx\int_{-\infty}^\infty e^{ -ixy}f(y)\:dy\\
-                &=\int_{-\infty}^{\infty}\frac{\sin ax}{x}\:dx\int_{-a}^a e^{ -ixy}\:dy\\
+                \int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^2\:dx&=\frac{1}{4}\cdot\int_{-\infty}^{\infty}\fou{f}(x)\cdot\fou{f}(x)\:dx\\
+                &=\frac{1}{4}\cdot\int_{-\infty}^{\infty}\fou{f}(x)\:dx\int_{-\infty}^\infty e^{ -ixy}f(y)\:dy\\
+                &=\frac{1}{4}\cdot\int_{-\infty}^{\infty}\fou{f}(x)\:dx\int_{-\infty}^\infty e^{ -ixy}\chi_{[-a,a]}(y)\:dy\\
+                &=\frac{1}{2}\cdot\int_{-\infty}^{\infty}\frac{\sin ax}{x}\:dx\int_{-a}^a e^{ -ixy}\:dy\\
             \end{split}
         \end{equation*}
-        considere la función $(x,y)\mapsto $
+        considere la función $(x,y)\mapsto e^{-ixy}\cdot\frac{\sin ax}{x}$. Esta función es integrable en $\mathbb{R}\times[-a,a]$. En efecto, basta con ver que la función
+        \begin{equation*}
+            (x,y)\mapsto \frac{e^{-ixy}}{x}
+        \end{equation*}
+        lo es en $[0,\infty[\times[-a,a]$.%TODO
 
-        Sea $x\in\mathbb{R}^n\backslash\left\{-a,a\right\}$. Se tiene que $f$ posee derivadas laterales derecha e izquierda en $x$, por lo cual del teorema de inversión de Fourier en $\mathbb{R}$, se sigue que
+        Luego por Fubini se sigue que
+        \begin{equation*}
+            \begin{split}
+                \int_{-\infty}^{\infty}\frac{\sin ax}{x}\:dx\int_{-a}^a e^{ -ixy}\:dy&=\int_{-a}^{a}\frac{\sin ax}{x}\:dy\int_{-\infty}^\infty e^{ -ixy}\:dx\\
+                &=\int_{-a}^{a}\:dy\int_{-\infty}^\infty e^{ -ixy}\cdot\frac{\sin ax}{x}\:dx\\
+                &=\int_{-a}^{a}\:dy \lim_{ R\rightarrow\infty}\int_{-R}^R e^{ -ixy}\cdot\frac{\sin ax}{x}\:dx\\
+                &=\int_{-a}^{a}\:dx \lim_{ R\rightarrow\infty}\int_{-R}^R e^{ -ixy}\cdot\frac{\sin ay}{y}\:dy\\
+                \Rightarrow 2\int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^2\:dx&=\int_{-a}^{a}\:dx \lim_{ R\rightarrow\infty}\int_{-R}^R e^{ -ixy}\cdot\frac{\sin ay}{y}\:dy\\
+            \end{split}
+        \end{equation*}
+        pues, la función $x\mapsto \int_{-\infty}^\infty e^{ -ixy}\cdot\frac{\sin ay}{y}\:dy$ definida c.t.p. en $[-a,a]$ coincide con su integral impropia. 
+
+        Sea $x\in\mathbb{R}$. Se tiene que $f$ posee derivadas laterales derecha e izquierda en $x$, por lo cual del teorema de inversión de Fourier en $\mathbb{R}$ se sigue que
         \begin{equation*}
             \begin{split}
                 f(x)&=\frac{1}{2\pi}\lim_{ R\rightarrow\infty}\int_{-R}^R e^{ ixy}\fou{f}(y)\:dy\\
-                \Rightarrow\chi_{[-a,a]}(-x)&=\frac{1}{2\pi}\lim_{ R\rightarrow\infty}\int_{-R}^R e^{-ixy}\sin \:dy\\
+                \Rightarrow\chi_{[-a,a]}(-x)&=\frac{1}{\pi}\lim_{ R\rightarrow\infty}\int_{-R}^R e^{-ixy}\cdot\frac{\sin ay}{y} \:dy\\
+                \Rightarrow\pi\cdot\chi_{[-a,a]}(-x)&=\lim_{ R\rightarrow\infty}\int_{-R}^R e^{-ixy}\cdot\frac{\sin ay}{y} \:dy\\
             \end{split}
         \end{equation*}
+        Por tanto, tenemos que
+        \begin{equation*}
+            \begin{split}
+                \Rightarrow \pi\int_{-a}^a\chi_{[-a,a]}(-x)\:dx&=\int_{-a}^a\:dx \lim_{ R\rightarrow\infty}\int_{-R}^R e^{-ixy}\cdot\frac{\sin ay}{y} \:dy\\
+                \Rightarrow \pi\int_{-a}^a\:dx&=2\int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^2\:dx\\
+                \Rightarrow 2\pi a&=2\int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^2\:dx\\
+                \Rightarrow \int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^2\:dx&=\pi a\\
+            \end{split}
+        \end{equation*}
+        lo que prueba el resultado.
     \end{proof}
 
     \begin{excer}
