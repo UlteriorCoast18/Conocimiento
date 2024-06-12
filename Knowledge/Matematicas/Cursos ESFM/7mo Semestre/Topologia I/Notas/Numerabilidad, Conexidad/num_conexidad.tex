@@ -1588,4 +1588,128 @@
         En los incisos (4) y (5), tomamos $\cf{g=\varphi}{(X_1,\tau_1)}{(X_1/\mathcal{R}_f,\tau_1/\mathcal{R}_f)}$.
     \end{obs}
 
+    \begin{propo}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ dos espacios topológicos. Sean $\mathcal{R}_1$ y $\mathcal{R}_2$ relaciones de equivalencia definidas sobre $X_1$ y $X_2$, respectivamente.
+
+        Sea $\cf{f}{X_1}{X_2}$ una función tal que $x\mathcal{R}_1y$ si y sólo si $f(x)\mathcal{R}_2f(y)$. Entonces podemos definir una función $\cf{F}{X_1/\mathcal{R}_1}{X_2/\mathcal{R}_2}$ por
+        \begin{equation*}
+            F([x]_{\mathcal{R}_1})=[f(x)]_{\mathcal{R}_2}
+        \end{equation*}
+        se cumple además lo siguiente:
+        \begin{enumerate}
+            \item $F$ es inyectiva.
+            \item Si $f$ es suprayectiva, entonces $F$ es biyectiva.
+            \item Si $\cf{\varphi_i}{X_i}{X_i/\mathcal{R}_i}$ con $i\in\natint{1,2}$ es la función canónica, entonces
+            \begin{equation*}
+                F\circ\varphi_1=\varphi_2\circ f
+            \end{equation*}
+            \item Si $f$ es continua, entonces $F$ también lo es.
+            \item Si $\tau_2={\tau_1}_f$, entonces $\tau_2/\mathcal{R}_2=\left(\tau_1/\mathcal{R}_1\right)_F$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Veamos que $F$ está bien definida. Sean $x,y\in X_1$ tales que $x\mathcal{R}_1y$, luego $f(x)\mathcal{R}_2f(y)$, así $[f(x)]_{\mathcal{R}_2}=[f(y)]_{\mathcal{R}_2}$, es decir que $F([x]_{\mathcal{R}_1})=F([y]_{\mathcal{R}_1})$.
+
+        De (1): Sean $x,y\in X_1$ tales que $F([x]_{\mathcal{R}_1})=F([y]_{\mathcal{R}_1})$, luego $[f(x)]_{\mathcal{R}_2}=[f(y)]_{\mathcal{R}_2}$, entonces $f(x)\mathcal{R}_2f(y)$ si y sólo si $x\mathcal{R}_1y$, así $[x]_{\mathcal{R}_1}=[y]_{\mathcal{R}_1}$. Por tanto $F$ es inyectiva.
+
+        De (2): Suponga que $f$ es suprayectiva. Para probar que $F$ es biyectiva, basta con ver que es suprayectiva. Sea $[y]_{\mathcal{R}_2}$, se tiene que $y\in X_2$. Como $f$ es suprayectiva, existe $x\in X_1$ tal que $f(x)=y$, luego $[f(x)]_{\mathcal{R}_2}=[y]_{\mathcal{R}_2}$, así
+        \begin{equation*}
+            F([x]_{\mathcal{R}_1})=[y]_{\mathcal{R}_2}
+        \end{equation*}
+        con lo cual se sigue que $F$ es suprayectiva.
+         
+        De (3): Sea $x\in X_1$, tenemos
+        \begin{equation*}
+            \begin{split}
+                F\circ\varphi_1(x)&=F([x]_{\mathcal{R}_1})\\
+                &=[f(x)]_{\mathcal{R}_2}\\
+                &=\varphi_2(f(x))\\
+                &=\varphi_2\circ f(x)\\
+            \end{split}
+        \end{equation*}
+        lo que prueba la igualdad.
+
+        De (4): Suponga que $f$ es continua. Como $\varphi_2$ es continua, entonces $\varphi_2\circ f$ es continua, por (3) se sigue que $F\circ\varphi_1$ es continua. Como $\varphi_1$ también es continua, por una proposición anterior al tener $X_1/\mathcal{R}_1$ la topología cociente inducida por $\varphi_1$, se sigue que $F$ es continua.
+
+        De (5): Suponga que $\tau_2={\tau_1}_f$, entonces $f$ es continua, luego por (4) $F$ es continua. Así, debe suceder que
+        \begin{equation*}
+            \tau_2/\mathcal{R}_2\subseteq\left(\tau_1/\mathcal{R}_1\right)_F
+        \end{equation*}
+        Sea $U\in\left(\tau_1/\mathcal{R}_1\right)_F$, por definición se tiene que $F^{-1}(U)\in\tau_1/\mathcal{R}$, luego $\varphi^{-1}(F^{-1}(U))=(F\circ\varphi_1)^{-1}(U)\in\tau_1$. Por (3):
+        \begin{equation*}
+            (F\circ\varphi_1)^{-1}(U)=(\varphi_2\circ f)^{-1}(U)=f^{-1}(\varphi^{-1}(U))\in\tau_1
+        \end{equation*}
+        luego $\varphi^{-1}(U)\in{\tau_1}_f=\tau_2$, así $U\in\tau_2/\mathcal{R}_2$. Por ende $\left(\tau_1/\mathcal{R}_1\right)_F\subseteq\tau_2/\mathcal{R}_2$.
+
+        Se concluye que $\tau_2/\mathcal{R}_2=\left(\tau_1/\mathcal{R}_1\right)_F$.
+    \end{proof}
+
+    \begin{cor}
+        Sean $(X_1,\tau_1)$ y $(X_2,\tau_2)$ espacios topológicos. Sean $\cf{f}{X_1}{X_2}$ una función y, $\mathcal{R}_1$ y $\mathcal{R}_2$ relaciones de equivalencia definidas sobre $X_1$ y $X_2$, respectivamente, tales que
+        \begin{equation*}
+            x\mathcal{R}_1y\iff f(x)\mathcal{R}_2f(y)
+        \end{equation*}
+        Si $f$ es un homeomorfismo, entonces $(X_1/\mathcal{R}_1,\tau_1/\mathcal{R}_1)$ y $(X_2/\mathcal{R}_2,\tau_2/\mathcal{R}_2)$ son homeomorfos.
+    \end{cor}
+
+    \begin{proof}
+        Por la proposición anterior, la función $\cf{F}{(X_1/\mathcal{R}_1,\tau_1/\mathcal{R}_1)}{(X_2/\mathcal{R}_2,\tau_2/\mathcal{R}_2)}$ es biyectiva y continua (ya que $f$ en particular es suprayectiva y continua). Por la proposición 7.1.3 se tiene que $\tau_2={\tau_1}_f$. Luego de la proposición anterior se tiene que $\tau_2/\mathcal{R}_2=\left(\tau_1/\mathcal{R}_1\right)_F$.
+
+        $F$ es biyectiva y $\tau_2/\mathcal{R}_2=\left(\tau_1/\mathcal{R}_1\right)_F$, luego por el corolario 7.1.1, se sigue que $F$ es homeomorfismo.
+    \end{proof}
+
+    \begin{exa}
+        Considere $X=[0,2\pi]\subseteq\mathbb{R}$,
+        \begin{equation*}
+            Y=\left\{(x,y)\in\mathbb{R}^2\Big|x^2+y^2=1 \right\}
+        \end{equation*}
+        considere $(\mathbb{R},\tau_u)$ y $(X,{\tau_u}_{X})$. Sea $\cf{f}{X}{Y}$ la función definida por
+        \begin{equation*}
+            f(x)=(\cos x,\sin x),\quad\forall x\in X
+        \end{equation*}
+        Tomemos $(\mathbb{R}^2,\tau_{p_u})$ (tiene la topología producto derivada de la topología usual de $\mathbb{R}$) y $Y$ como subespacio de él. Considere $\cf{f}{(X,{\tau_{u}}_X)}{(Y,{\tau_p}_Y)}$. Entonces:
+        \begin{enumerate}
+            \item $f$ es continua, pues cada una de sus funciones coordenadas $f_1(x)=\cos x$ y $f_2(x)=\sin x$ son continuas.
+            \item ${\tau_{ p_u}}_Y\subseteq{{\tau_u}_X}_f$.
+            \item $f$ es suprayectiva.
+            \item $f$ es cerrada.
+            \item ${\tau_{ p_u}}_Y={{\tau_u}_X}_f$.
+        \end{enumerate}
+    \end{exa}
+
+    \begin{proof}
+        Los demás incisos se dejan como ejercicio.
+
+        De (4): Sea $A\subseteq X$ cerrado. Como $(X,{\tau_u}_X)$ es compacto, entonces $A$ es compacto. Por ser $f$ continua, manda compactos en compactos, luego $f(A)$ es compacto en $Y$, el cual es $T_2$, luego $f(A)$ es cerrado. Así, $f$ es cerrada.
+
+        De (5): Se sigue de los incisos anteriores.
+    \end{proof}
+
+    \newcommand{\RP}{\ensuremath{\mathbb{R}\textup{P}}}
+
+    \begin{exa}
+        Sea $n\in\mathbb{N}$. Defin 
+        \begin{equation*}
+            S^{n}=\left\{(x_1,...,x_{ n+1})\in\mathbb{R}^{ n+1}\Big|\sum_{ i=1}^{ n+1}x_i^2=1 \right\}
+        \end{equation*}
+        Considere a $S^n$ como subespacio de $(\mathbb{R}^{ n+1},\tau_p)$ (con $\tau_p$ la topología producto derivada de la topología usual de $\mathbb{R}$). Este espacio es llamado la \textbf{$n$-esfera estándar}.
+
+        Sea $\sim$ la relación de equivalencia definida sobre $S^n$ de la siguiente manera:
+        \begin{equation*}
+            x\sim y\iff x=y\textup{ ó }x=-y
+        \end{equation*}
+        Entonces, dado $x\in S^n$, tenemos que
+        \begin{equation*}
+            [x]=\left\{x,-x\right\}
+        \end{equation*}
+        Luego
+        \begin{equation*}
+            \RP^n=S^n/\sim=\left\{\left\{x,-x\right\}\Big|x\in S^n \right\}
+        \end{equation*}
+        a veces denotado por $\RP^n$. Considere el mapeo canónico $\cf{\varphi}{(S^n,\tau_p)}{(\RP^n,\tau_\varphi)}$ la función canonica.
+
+        El conjunto $\RP^n$ junto con la topología cociente definida por $\varphi$ se llama el \textbf{$n$-espacio proyectivo real}
+    \end{exa}
+    
 \end{document}
