@@ -120,6 +120,7 @@
 \newcommand{\contradiction}{\ensuremath{\#_{c}}}
 \newcommand{\Cls}[1]{\ensuremath{\overline{#1}}}
 \newcommand{\supp}[1]{\ensuremath{\textup{supp}\left(#1\right)}}
+\newcommand{\gen}[1]{\ensuremath{\langle#1\rangle}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -619,13 +620,139 @@
         \end{itemize} 
         Entonces, el conjunto
         \begin{equation*}
-            A=\left\{a_x\in H\Big|x\in F \right\}
+            A=\left\{a_x\in H\Big|x\in F \right\}\cup\left\{ e_G\right\}
         \end{equation*}
         es finito y $H=A\cdot U$. En efecto, es claro que $A\cdot U\subseteq H$, pues $A,U\subseteq H$. Si $y\in H$, en particular $y\in G=F\cdot W$, luego existe $x\in F$ tal que $y\in xW$. Se tienen dos casos:
         \begin{itemize}
-            \item $y=e_G$, en tal caso se sigue que $y\in H$.
-            \item $y\neq e_G$, se tiene que $y\in H\cap xW$, luego si $y=a_x$, se tiene el resultado, pues se seguiría que $y\in A\cdot U$. En caso de que no sean iguales,
+            \item $y=e_G$, en tal caso se sigue que $y\in A\cdot U$.
+            \item $y\neq e_G$, se tiene que $y\in H\cap xW$, luego si $y=a_x$, se tiene el resultado, pues se seguiría que $y\in A\cdot U$. En caso de que no sean iguales, se sabe que existe $w\in W$ tal que
+            \begin{equation*}
+                y=xw=a_xa_x^{-1}xw
+            \end{equation*}
+            donde $a_x\in A$ y, como $a_x\in xW$, existe $w'\in W$ tal que $a_x=xw'\Rightarrow a_x^{-1}=w'^{-1}x^{-1}$, luego:
+            \begin{equation*}
+                a_x^{-1}xw=w'^{-1}x^{-1}xw=w'^{-1}w
+            \end{equation*}
+            donde $w'^{-1}w\in W^{-1}W\subseteq V$, y además está en $H$ pues $xw$ y $xw'$ lo están, luego el producto de sus inversos el cual es
+            \begin{equation*}
+                (xw')^{-1}(xw)=w'^{-1}w
+            \end{equation*}
+            está en $H$, así $a_x^{-1}xw\in U=V\cap H$. Por tanto, $y\in A\cdot U$
         \end{itemize}
+        Por tanto, $H=A\cdot U$, luego $H$ es totalmente acotado.
+
+        De (iii): Sea $\cf{\varphi}{G}{K}$ un homomorfismo continuo suprayectivo (podemos suponer que es suprayectivo tomando como contradominio la imagen de $G$ bajo $\varphi$) y supongamos que $G$ es totalmente acotado. Probaremos que $K$ también lo es. Sea $V$ una vecindad abierta de $e_K$ en $K$. El conjunto
+        \begin{equation*}
+            U=\varphi^{-1}(V)
+        \end{equation*}
+        es un abierto en $G$ que contiene a $e_G$. Como $G$ es totalmente acotado, entonces existe $F\subseteq G$ finito tal que
+        \begin{equation*}
+            G=F\cdot U
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            K=\varphi(F)\cdot V
+        \end{equation*}
+        pues $\varphi(\varphi^{-1}(V))=V$. Así, tomando $A=\varphi(F)$ subconjunto finito de $K$ se sigue que $K$ es totalmente acotado.
+
+        De (iv): Sea $U$ una vecindad de $e_L$. Se sabe que existe una vecindad simétrica $W$ de $e_L$ tal que
+        \begin{equation*}
+            W^2\subseteq L
+        \end{equation*}
+        Se tiene pues que
+        \begin{equation*}
+            V=W\cap K\neq\emptyset
+        \end{equation*}
+        pues $K$ es denso en $L$. Más aún, $V$ es una vecindad de $e_K=e_L$ en $K$, por ser $K$ totalmente acotado existe $F\subseteq K$ finito tal que
+        \begin{equation*}
+            K=F\cdot V
+        \end{equation*}
+        Afirmamos que
+        \begin{equation*}
+            L=F\cdot U
+        \end{equation*}
+        En efecto, sea $g\in L$. Como $K$ es denso en $L$, el conjunto $K\cap gW$ es no vacío, tomemos $h\in K\cap gW$. Entonces, $h=gw$ para algún $w\in W$ y $h\in K$, de donde se sigue quee existe $f\in F$ y $v\in V$ tales que
+        \begin{equation*}
+            h=fv
+        \end{equation*}
+        pues $h\in K$. Así, se tiene
+        \begin{equation*}
+            \begin{split}
+                g&=hw^{-1}\\
+                &=fvw^{-1}\\
+            \end{split}
+        \end{equation*}
+        donde $f\in F$ y $vw^{-1}\subseteq W^2\subseteq U$. Por tanto, $L=F\cdot U$.
     \end{proof}
+
+    \begin{exa}
+        Los puntos con coordenadas racionales en el grupo del círculo forman un subgrupo denso, totalmente acotado y no compacto de $\mathbb{T}$. Se tiene pues que la clase de grupos totalmente acotados es estrictamente más grande que la de grupos compactos.
+    \end{exa}
+
+    \begin{mydef}
+        Un grupo topológico $G$ es \textbf{compacto de origen} si existe una vecindad $V$ de $e_G$ tal que $\Cls{V}$ es compacto y el conjunto $V$ genera al grupo $G$, es decir
+        \begin{equation*}
+            G=\gen{V}
+        \end{equation*}
+        Si el grupo $G$ está generado por un subconjunto $H$ compacto, entonces $G$ es \textbf{compacto generado}.
+    \end{mydef}
+    
+    \begin{obs}
+        Todo grupo compacto de origen es compacto generado. La recíproca no necesariamente es cierta.
+    \end{obs}
+
+    \begin{mydef}
+        Un espacio topológico $X$ es \textbf{$\sigma$-compacto} si existe una familia numerable de conjuntos compactos $\left\{K_n\right\}_{ n\in\mathbb{N}}$ que cubren a $X$.
+    \end{mydef}
+
+    \begin{obs}
+        Todo espacio compacto es $\sigma$-compacto. La recíproca en general no es cierta. Si $X$ es Lindelöf y localmente compacto, es $\sigma$-compacto.
+    \end{obs}
+
+    \begin{lema}
+        Si $G$ es un grupo topológico compacto de origen, entonces $G$ es $\sigma$-compacto.
+    \end{lema}
+
+    \begin{proof}
+        Como $G$ es compacto de origen, existe una vecindad $V$ de $e_G$ tal que $\Cls{V}$ es compacto y
+        \begin{equation*}
+            G=\gen{V}
+        \end{equation*}
+        Tomemos
+        \begin{equation*}
+            U=V\cup V^{-1}
+        \end{equation*}
+        Claramente se tiene que
+        \begin{equation*}
+            G=\bigcup_{ n=1}^{\infty}U^n
+        \end{equation*}
+        (véase una caracterización de $\gen{V}$). Con más razón
+        \begin{equation*}
+            G=\bigcup_{ n=1}^{\infty}\Cls{U}^n
+        \end{equation*}
+        donde $\Cls{U}^n$ es compacto, para todo $n\in\mathbb{N}$. Por tanto, $G$ es $\sigma$-compacto.
+    \end{proof}
+
+    \begin{theor}
+        Sea $G$ un grupo topológico con un subgrupo normal y compacto $H$ tak que $G/H$ es compacto generado. Entonces $G$ es compacto generado.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{theor}
+        Sea $G$ un grupo localmente compacto y $H$ un subgrupo normal de $G$. Si $G/H$ y $H$ son compactos generados, entonces $G$ también es compacto generado.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \section{Funciones Cardinales y Compacidad}
+
+    \begin{theor}
+        
+    \end{theor}
 
 \end{document}
