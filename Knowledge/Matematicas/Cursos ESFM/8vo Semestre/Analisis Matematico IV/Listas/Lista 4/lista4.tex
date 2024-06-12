@@ -831,19 +831,71 @@
         \begin{equation*}
             \fou{(f\circ r)}(x)=\fou{(f\circ r)}(y)
         \end{equation*}
-        En efecto, como $\norm{x}=\norm{y}$ por álgebra lineal se sabe que existe una matriz ortogonal $n\times n$ con determinante $1$ tal que $z=Uw$. Por lo cual, por el teorema de cambio de variable se sigue que:
+        En efecto, como $\norm{x}=\norm{y}$ por álgebra lineal se sabe que existe una matriz ortogonal $n\times n$ con determinante $1$ tal que $x=Uy$. Por lo cual, por el teorema de cambio de variable haciendo $z=Uw$, se sigue que:
         \begin{equation*}
             \begin{split}
                 \fou{(f\circ r)}(x)&=\int_{\mathbb{R}^n}e^{-i\pint{x}{z}}f\circ r(z)\:dz\\
                 &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{Uw}}f\circ r(Uw)\:dw\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{UU^{-1}x}{Uw}}f\circ r(w)\:dw\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{y}{w}}f\circ r(w)\:dw\\
+                &=\fou{(f\circ r)}(y)\\
             \end{split}
         \end{equation*}
+        por tanto, $\fou{(f\circ r)}$ es una función radial.
+
+        De (ii): Sea $x\in\mathbb{R}^n$, veamos que
+        \begin{equation*}
+            \begin{split}
+                \fou{(f\circ r)}(x)&=\fou{(f\circ r)}(\norm{x},0,...,0)\\
+                &=\int_{\mathbb{R}^n}e^{-i\pint{(\norm{x},0,...,0)}{(y_1,...,y_n)}}f\circ r(y_1,...,y_n)\:dy_1\cdots dy_n\\
+                &=\int_{\mathbb{R}^n}e^{ -i\norm{x}y_1}f(\norm{y})\:dy_1\cdots dy_n\\
+            \end{split}
+        \end{equation*}
+        Cambiando a coordenadas polares, resulta que
+        \begin{equation*}
+            \begin{split}
+                \fou{(f\circ r)}(x)&=\int_{\mathbb{R}^n}e^{ -i\norm{x}y_1}f(\norm{y})\:dy_1\cdots dy_n\\
+                &=\int_{\Omega}e^{ -i\norm{x}r\cos\varphi_1}f(r)\: drd\varphi_1\cdots d\varphi_{ n-1}\\
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \Omega=\left\{(r,\varphi_1,...,\varphi_{ n-1})\in\mathbb{R}^n\Big|r\geq0,0\leq\varphi_1,...,\varphi_{ n-2}\leq\pi,-\pi\leq\varphi_{ n-1}\leq\pi \right\}
+        \end{equation*}
+
+        %puede que esto de abajo no jale
+        por Fubini, integrando primero respecto a $y_1$ resulta:
+        \begin{equation*}
+            \begin{split}
+                \fou{(f\circ r)}(x)&=\int_{\mathbb{R}^n}e^{ -i\norm{x}y_1}f(\norm{y})\:dy_1\cdots dy_n\\
+                &=\int_{-\infty}^\infty e^{ -i\norm{x}y_1}\:dy_1 \int_{\mathbb{R}^{ n-1}}f(\norm{y})\:dy_2\cdots dy_n
+            \end{split}
+        \end{equation*}
+        Se sabe también por Fubini que para casi todo $y_1\in\mathbb{R}$, la función $(y_2,...,y_n)\mapsto f(\norm{y})=f\circ r(y_1,...,y_n)$ es integrable en $\mathbb{R}^{ n-1}$. Veamos que esta función es radial. En efecto, para $z=(z_2,...,z_n),w=(w_2,...,w_n)\in\mathbb{R}^{ n-1}$ tales que
+        \begin{equation*}
+            \norm{z}=\norm{w}\Rightarrow z_2^2+...+z_n^2=w_2^2+...+w_n^2
+        \end{equation*}
+        se cumple
+        \begin{equation*}
+            \begin{split}
+                f\circ r(y_1,z_2,...,z_n)&=f(\sqrt{y_1^2+z_2^2+...+z_n^2})\\
+                &=f(\sqrt{y_1^2+w_2^2+...+w_n^2})\\
+                &=f\circ r(y_1,w_2,...,w_n)\\
+            \end{split}
+        \end{equation*}
+        por tanto, la función es radial. Por el teorema de funciones radiales se tiene que al ser integrable, tenemos:
+        \begin{equation*}
+            \begin{split}
+                \int_{\mathbb{R}^{ n-1}}f(\norm{y})\:dy_2\cdots dy_n&=
+            \end{split}
+        \end{equation*}
+        %TODO
     \end{sol}
 
     \begin{excer}
         Haga lo siguiente:
         \begin{enumerate}
-            \item Sea $\cf{h}{[0,\infty[}{0\mathbb{C}}$ una función integrable en $[0,\infty[$. Sea $a>0$, \textbf{demuestre} que existe la integral impropia
+            \item Sea $\cf{h}{[0,\infty[}{\mathbb{C}}$ una función integrable en $[0,\infty[$. Sea $a>0$, \textbf{demuestre} que existe la integral impropia
             \begin{equation*}
                 \int_{a}^{ \rightarrow\infty}\frac{dx}{x}\int_0^{\infty}h(y)\sin xy\:dy
             \end{equation*}
@@ -876,39 +928,39 @@
             \begin{equation*}
                 f(x)=f(0)+\int_0^{x}\varphi,\quad\forall x\in\mathbb{R}\quad\textup{y}\quad\abs{\varphi(x)}\underset{\abs{x}\rightarrow\infty}{=}O\left(\frac{1}{\abs{x}^m}\right)
             \end{equation*}
+            donde $m>2$. \textbf{Pruebe} que
+            \begin{equation*}
+                \abs{f(x)}\underset{\abs{x}\rightarrow\infty}{=}O\left(\frac{1}{x^{ m-1}}\right)
+            \end{equation*}
+            y que, para todo $x\in\mathbb{R}$, existen las sumas
+            \begin{equation*}
+                \Phi(x)=\sum_{k\in\mathbb{Z}}\varphi(x+k)\quad\textup{y}\quad F(x)=\sum_{ k\in\mathbb{Z}}f(x+k)
+            \end{equation*}
+            siendo la convergencia absoluta y uniforme en $[-1,1]$, luego en $\mathbb{R}$. \textbf{Muestre} finalmente que
+            \begin{equation*}
+                F(x)=F(0)+\int_0^x\Phi,\quad\forall x\in\mathbb{R}
+            \end{equation*}
+            \item $F$ es una función periódica de periodo uno. \textbf{Demuestre} que los coeficientes de Fourier de $F$ respecto al sistema O.N. $\left(e^{2\pi int} \right)_{n\in\mathbb{Z}}$ son
+            \begin{equation*}
+                \int_0^1 F(x)e^{ -2\pi inx}\:dx=\fou{f}(2\pi n),\quad\forall n\in\mathbb{Z}
+            \end{equation*}
+            \textbf{Deduzca la fórmula Sumatoria de Poisson}
+            \begin{equation*}
+                \sum_{ k\in\mathbb{Z}}f(x+k)=\sum_{ k\in\mathbb{Z}}\fou{f}(x+k),\quad\forall x\in\mathbb{R}
+            \end{equation*}
+            \item Aplicando la fórmula sumatoria de Poisson a la función $x\mapsto e^{-\alpha\abs{x}}$ para $\alpha>0$, obtenga el desarrollo
+            \begin{equation*}
+                \coth x = \frac{1}{x}+2x\sum_{ n=1}^{\infty}\frac{1}{x^2+n^2\pi^2},\quad\forall x\geq0
+            \end{equation*}
+            Se define la \textbf{función theta} por
+            \begin{equation*}
+                \Theta(x)=\sum_{ n=-\infty}^{\infty}e^{ -\pi n^2x},\quad\forall x>0
+            \end{equation*}
+            Aplicando la fórmula sumatoria de Poisson a la función $x\mapsto e^{-\alpha x^2}$ para $\alpha>0$, \textbf{pruebe} la identidad
+            \begin{equation*}
+                \Theta(x)=\sqrt{\frac{1}{x}}\Theta\left(\frac{1}{x}\right),\quad\forall x>0
+            \end{equation*}
         \end{enumerate}
-        donde $m>2$. \textbf{Pruebe} que
-        \begin{equation*}
-            \abs{f(x)}=\underset{\abs{x}\rightarrow\infty}{=}O\left(\frac{1}{x^{ m-1}}\right)
-        \end{equation*}
-        y que, para todo $x\in\mathbb{R}$, existen las sumas
-        \begin{equation*}
-            \Phi(x)=\sum_{k\in\mathbb{Z}}\varphi(x+k)\quad\textup{y}\quad F(x)=\sum_{ k\in\mathbb{Z}}f(x+k)
-        \end{equation*}
-        siendo la convergencia absoluta y uniforme en $[-1,1]$, luego en $\mathbb{R}$. \textbf{Muestre} finalmente que
-        \begin{equation*}
-            F(x)=F(0)+\int_0^x\Phi,\quad\forall x\in\mathbb{R}
-        \end{equation*}
-        \item $F$ es una función periódica de periodo uno. \textbf{Demuestre} que los coeficientes de Fourier de $F$ respecto al sistema O.N. $\left(e^{2\pi int} \right)_{n\in\mathbb{Z}}$ son
-        \begin{equation*}
-            \int_0^1 F(x)e^{ -2\pi inx}\:dx=\fou{f}(2\pi n),\quad\forall n\in\mathbb{Z}
-        \end{equation*}
-        \textbf{Deduzca la fórmula Sumatoria de Poisson}
-        \begin{equation*}
-            \sum_{ k\in\mathbb{Z}}f(x+k)=\sum_{ k\in\mathbb{Z}}\fou{f}(x+k),\quad\forall x\in\mathbb{R}
-        \end{equation*}
-        \item Aplicando la fórmula sumatoria de Poisson a la función $x\mapsto e^{-\alpha\abs{x}}$ para $\alpha>0$, obtenga el desarrollo
-        \begin{equation*}
-            \coth x = \frac{1}{x}+2x\sum_{ n=1}^{\infty}\frac{1}{x^2+n^2\pi^2},\quad\forall x\geq0
-        \end{equation*}
-        Se define la \textbf{función theta} por
-        \begin{equation*}
-            \Theta(x)=\sum_{ n=-\infty}^{\infty}e^{ -\pi n^2x},\quad\forall x>0
-        \end{equation*}
-        Aplicando la fórmula sumatoria de Poisson a la función $x\mapsto e^{-\alpha x^2}$ para $\alpha>0$, \textbf{pruebe} la identidad
-        \begin{equation*}
-            \Theta(x)=\sqrt{\frac{1}{x}}\Theta\left(\frac{1}{x}\right),\quad\forall x>0
-        \end{equation*}
     \end{excer}
 
     \begin{sol}
