@@ -1886,4 +1886,139 @@
         Inmediato de la observación anterior.
     \end{proof}
 
+    \section{Grupo Simétrico}
+
+    Debido a la naturaleza del grupo de Galois de un polinomio, resulta factible analizar al grupo simétrico $S_n$ y sus subgrupos (en particular, a sus subgrupos transitivos), para determinar el grupo de Galois de una extensión de Galois.
+
+    \begin{obs}
+        $\natint{1,n}=\left\{1,n\right\}$, para todo $n\in\mathbb{N}$.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $n\in\mathbb{N}$. Se define al grupo $S_n$, como el grupo formado por todas las permutaciones de $\natint{1,n}$ en sí mismo con operación binaria la composición usual de funciones.
+    \end{mydef}
+
+    Los elementos de $S_n$ están denotados por:
+    \begin{equation*}
+        \sigma=\left(
+            \begin{array}{cccc}
+                1 & 2 & ... & n\\
+                \sigma(1) & \sigma(2) & ... & \sigma(n)\\
+            \end{array}
+        \right)
+    \end{equation*}
+
+    Si $\sigma\in S_n$ es tal que $\sigma(i)=i$, se dice que \textbf{$i$ se dejado fijo por $\sigma$}, en caso contrario se dice que \textbf{$\sigma$ mueve a $i$}. Definimos
+    \begin{equation*}
+        M_\sigma=\left\{j\in\natint{1,n}\Big|\sigma(j)\neq j \right\}
+    \end{equation*}
+    Decimos que \textbf{$\sigma$ y $\theta$ son disjuntos} si
+    \begin{equation*}
+        M_\sigma\cap M_\theta=\emptyset
+    \end{equation*}
+
+    \begin{propo}
+        Si $\sigma$ y $\theta$ son permutaciones disjuntas, entonces $\sigma\circ\theta=\theta\circ\sigma$.
+    \end{propo}
+
+    \begin{proof}
+        \textit{Bosquejo}. Hay que partir a $\natint{1,n}$ en tres conjuntos, $M_\sigma\cup M_\alpha\cup(\natint{1,n}\backslash(M_\sigma\cup M_\theta))$. Se analiza a partir de eso puntualmente el valor de cada una de las dos composiciones.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $\sigma\in S_n$. Decimos que $\sigma$ es un \textbf{$r$-ciclo} si existen $\left\{1_1,...,1_r\right\}\subseteq\natint{1,n}$ tales que
+        \begin{equation*}
+            \sigma(i)=\left\{
+                \begin{array}{lcr}
+                    i & \textup{ si } & i\notin\left\{1_1,...,1_r\right\}\\
+                    i_{ k+1} & \textup{ si } & i=i_k, k\in\natint{1,r-1}\\
+                    i_1 & \textup{ si } & i=i_{ r}\\
+                \end{array}
+            \right.,\quad\forall i\in\natint{1,n}
+        \end{equation*}
+        En tal caso, se expresa
+        \begin{equation*}
+            \sigma=\left(i_1\quad i_2\quad...\quad i_r \right)
+        \end{equation*}
+        A los $2$-ciclos también se les llama \textbf{transposiciones}.
+    \end{mydef}
+
+    \begin{obs}
+        En particular, $e=(1)=(2)=...=(n)$, para todo $n\in\mathbb{N}$.
+    \end{obs}
+
+    \begin{exa}
+        Notemos que
+        \begin{equation*}
+            \left(
+                \begin{array}{ccccc}
+                    1 & 2 & 3 & 4 & 5\\
+                    5 & 4 & 3 & 2 & 1\\
+                \end{array}
+            \right)=(1\quad 5)(2\quad 4)(3)
+        \end{equation*}
+        en $S_5$.
+    \end{exa}
+
+    \begin{propo}
+        Toda permutación se expresa de forma única como producto de ciclos disjuntos (salvo 1-ciclos).
+    \end{propo}
+
+    \begin{proof}
+        Se puede encontrar en el Rotman, \textit{Introducción a la Teoría de Grupos}.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $G$ un grupo y $X$ un conjunto. Una \textbf{acción de $G$ sobre $X$} es un homomorfismo $\cf{\varphi}{G}{S_X}$ tal que $g\mapsto \varphi_g$.
+    \end{mydef}
+
+    \begin{obs}
+        Una acción $\varphi$ de $G$ sobre $X$ cumple las siguientes condiciones:
+        \begin{itemize}
+            \item $g\cdot (g_1\cdot x)=(gg_1)\cdot x$, para todo $x\in X$.
+            \item $e\cdot x=x$, para todo $x\in X$.
+            \item $g\cdot x=g\cdot y$ implica $x=y$.
+            \item $\forall g\in G$ y para todo $y\in X$ existe $x\in X$ tal que $g\cdot x=y$.
+        \end{itemize}
+    \end{obs}
+
+    \begin{mydef}
+        Sea $\varphi$ una acción de $G$ sobre $X$. Se define una relación sobre $X$, denominada por $\sim$ como
+        \begin{equation*}
+            x\sim y\iff \exists g\in G\textup{ tal que }y=g\cdot x
+        \end{equation*}
+        El conjunto $G\cdot x=\left\{g\cdot x\Big|g\in G \right\}$ es llamado \textbf{órbita de $x$}. También, se define
+        \begin{equation*}
+            G_x=\left\{g\in G\Big|g\cdot x=x \right\}
+        \end{equation*}
+        $G_x$ es un subgrupo de $G$, para el cual se cumple:
+        \begin{equation*}
+            \abs{G\cdot x}=[G:G_x]
+        \end{equation*}
+        para todo $x\in X$.
+    \end{mydef}
+
+    \begin{obs}
+        Considere $\sigma\in S_n$ elemento diferente de la identidad, se sabe que $\langle\sigma\rangle\hookrightarrow S_n$, luego la función
+        \begin{equation*}
+            \cf{\varphi}{\langle\sigma\rangle}{S_n=S_{\natint{1,n}}=S_X}
+        \end{equation*}
+        siendo $X=\natint{1,n}$ es una acción de $\langle\sigma\rangle$ sobre $\natint{1,n}$ y es tal que
+        \begin{equation*}
+            \theta\cdot i=\theta(i)
+        \end{equation*}
+        para todo $i\in\natint{1,n}$, con $\theta\in\langle\sigma\rangle$. Así:
+        \begin{equation*}
+            \begin{split}
+                \langle\sigma\rangle\cdot i&=\left\{\theta\cdot i\Big|\theta\in\langle\sigma\rangle \right\}\\
+                &=\left\{\theta(i)\Big|\theta\in\langle\sigma\rangle \right\}\\
+                &=\left\{i,\sigma(i),...,\sigma^{k-1}(i)\right\}\\
+            \end{split}
+        \end{equation*}
+        Sea $l=\abs{\langle\sigma\rangle\cdot i}$, se tiene que $\abs{\langle\sigma\rangle\cdot i}\leq n,k$. Entonces,
+        \begin{equation*}
+            \langle\sigma\rangle\cdot i=\left\{i,\sigma(i),...,\sigma^{ l-1}(i) \right\}
+        \end{equation*}
+    \end{obs}
+
 \end{document}
