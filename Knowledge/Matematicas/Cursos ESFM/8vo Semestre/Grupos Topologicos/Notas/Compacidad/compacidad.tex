@@ -137,6 +137,10 @@
     
     \chapter{Compacidad}
 
+    \begin{obs}
+        De ahora en adelante se considerarán solamente grupos $T_0$. Por un lema anterior se tiene en particular que son $T_3$ y $T_0$, luego son $T_2$ y regulares.
+    \end{obs}
+
     En este capítulo se estudiarán algunas de las propiedades más investigadas en grupos topológicos.
 
     \section{Grupos compactos y localmente compactos}
@@ -734,11 +738,43 @@
     \end{proof}
 
     \begin{theor}
-        Sea $G$ un grupo topológico con un subgrupo normal y compacto $H$ tak que $G/H$ es compacto generado. Entonces $G$ es compacto generado.
+        Sea $G$ un grupo topológico con un subgrupo normal y compacto $H$ tal que $G/H$ es compacto generado. Entonces $G$ es compacto generado.
     \end{theor}
 
     \begin{proof}
-        
+        Considere $\cf{\pi}{G}{G/H}$ el homomorfismo canónico. Como $G/H$ es compacto generado, existe un conjunto $\tilde{A}\subseteq G$ compacto tal que
+        \begin{equation*}
+            G/H=\gen{\tilde{A}}
+        \end{equation*}
+        tomemos $A=\pi^{-1}(\tilde{A})$. Por ser $H$ compacto, se tiene que $\pi$ es perfecta, luego
+        \begin{equation*}
+            A=\pi^{-1}(\tilde{A})
+        \end{equation*}
+        es compacto. Así, $AH$ es un subconjunto compacto de $G$. Se sigue que $(AH)\cup H$ es compacto. Afirmamos que
+        \begin{equation*}
+            G=\gen{(AH)\cup H}
+        \end{equation*}
+        En efecto, sea $g\in G$. Se tienen dos casos:
+        \begin{itemize}
+            \item $g\in H$, de donde se sigue que $g\in\gen{(AH)\cup H}$.
+            \item $g\notin H$. Como $\pi(g)\in G/H=\gen{\tilde{A}}$, existen $a_1H,...,a_nH\in\gen{\tilde{A}}$ y $\epsilon_1,...,\epsilon_n\in\left\{-1,1\right\}$ tales que
+            \begin{equation*}
+                \begin{split}
+                    \pi(g)&=(a_1H)^{\epsilon_1}\cdots(a_nH)^{\epsilon_n}\\
+                    &=(a_1^{\epsilon_1}\cdots a_n^{\epsilon_n})H\\
+                    \Rightarrow gH&=(a_1^{\epsilon_1}\cdots a_n^{\epsilon_n})H\\
+                \end{split}
+            \end{equation*}
+            siendo $a_1,...,a_n\in\pi^{-1}(\tilde{A})=A$, luego para ciertos $h_1,h_2\in H$ tenemos que
+            \begin{equation*}
+                \begin{split}
+                    gh_1&=a_1^{\epsilon_1}\cdots a_n^{\epsilon_n}h_2\\
+                    g&=a_1^{\epsilon_1}\cdots a_n^{\epsilon_n}h_2h_1^{-1}\\
+                \end{split}
+            \end{equation*}
+            donde el elemento de la derecha está en $\gen{(AH)\cup H}$.
+        \end{itemize}
+        Por los dos incisos anteriores, se sigue que $G=\gen{(AH)\cup H}$. Por tanto $G$ es compacto generado.
     \end{proof}
 
     \begin{theor}
@@ -746,13 +782,35 @@
     \end{theor}
 
     \begin{proof}
-        
+        Suponga que $G/H$ y $H$ son compactos generados. Sea $\tilde{X}=\subseteq G/H$ y $Y\subseteq G$ tales que
+        \begin{equation*}
+            G/H=\gen{\tilde{X}}\quad\textup{y}\quad H=\gen{Y}
+        \end{equation*}
+        Tomemos $X=\pi^{-1}(\tilde{X})$. Como $\pi$ es perfecta, entonces $X$ es compacto, así $X\cup Y$ es compacto. Afirmamos que
+        \begin{equation*}
+            G=\gen{X\cup Y}
+        \end{equation*}
+        %TODO
     \end{proof}
 
     \section{Funciones Cardinales y Compacidad}
 
     \begin{theor}
-        
+            Sea $G$ un grupo topológico con la propiedad de que para cada vecindad $U$ de $e_G$ existe un subconjunto $D_u\subseteq G$ tal que $\abs{D_U}\leq\chi(G)$ y $G=U\cdot D_U$. Entonces $w(G)=\chi(G)$.
     \end{theor}
+
+    \begin{proof}
+        Recordemos que
+        \begin{equation*}
+            w(G)=\min\left\{\abs{\mathcal{B}}\Big|\mathcal{B}\textup{ es una base de }G \right\}+\aleph_0
+        \end{equation*}
+        y
+        \begin{equation*}
+            \chi(G)=\sup\left\{\min\left\{\abs{\mathcal{V}}\Big|\mathcal{V}\textup{ es una base local en }p \right\}\Big|p\in G \right\}+\aleph_0
+        \end{equation*}
+        Se tiene siempre que $\chi(G)\leq w(G)$, pues cualquier base de $G$ es una base local para cualquier punto de $G$. Basta con probar que $w(G)\leq\chi(G)$.
+
+        Sea $\mathcal{B}(e_G)$ una base local para $e_G$ con cardinalidad igual a $\chi_G$
+    \end{proof}
 
 \end{document}
