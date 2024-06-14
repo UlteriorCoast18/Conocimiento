@@ -810,7 +810,23 @@
         \end{equation*}
         Se tiene siempre que $\chi(G)\leq w(G)$, pues cualquier base de $G$ es una base local para cualquier punto de $G$. Basta con probar que $w(G)\leq\chi(G)$.
 
-        Sea $\mathcal{B}(e_G)$ una base local para $e_G$ con cardinalidad igual a $\chi_G$
+        Sea $\mathcal{B}(e_G)$ una base local para $e_G$ con cardinalidad igual a $\chi_G$. Definimos
+        \begin{equation*}
+            \mathcal{B}=\left\{Bx\Big|B\in\mathcal{B}(e_G)x\in D_B \right\}
+        \end{equation*}
+        donde $D_B$ es un subconjunto de $G$ tal que $G=B\cdot D_B$. Por un teorema anterior se sabe que $\mathcal{B}$ es una base para la topología de $G$. Se desprende que
+        \begin{equation*}
+            \begin{split}
+                \abs{\mathcal{B}}&\leq\sum_{ B\in\mathcal{B}(e_G)}\abs{D_B}\\
+                &\leq\chi(G)\cdot\chi(G)\\
+                &=\chi(G)\\
+            \end{split}
+        \end{equation*}
+        por lo cual, $w(G)\leq\chi(G)$.
     \end{proof}
+
+    \begin{cor}
+        Sea $G$ un grupo $\sigma$-compacto, entonces $w(G)=\chi(G)$.
+    \end{cor}
 
 \end{document}
