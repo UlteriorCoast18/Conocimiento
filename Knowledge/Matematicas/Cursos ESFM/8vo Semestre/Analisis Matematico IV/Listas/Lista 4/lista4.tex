@@ -918,7 +918,148 @@
     \end{excer}
 
     \begin{sol}
-        
+        De (i): Considere la función $\cf{f}{[a,\infty[\times[0,\infty[}{\mathbb{R}}$ dada por:
+        \begin{equation*}
+            f(x,y)=\frac{h(y)\sin xy}{x},\quad\forall (x,y)\in[a,\infty[\times[0,\infty[
+        \end{equation*}
+        Veamos que se cumplen tres condiciones:
+        \begin{itemize}
+            \item $\forall \beta\in[a,\infty]$, $f$ es integrable en $[a,\beta]\times[0,\infty[$, pues
+            \begin{equation*}
+                \begin{split}
+                    \abs{f(x,y)}&=\abs{\frac{h(y)\sin xy}{x}}\\
+                    &\leq\frac{1}{a}\abs{h(y)}\cdot\abs{\sin xy}\\
+                    &\leq\frac{1}{a}\abs{h(y)},\quad\forall (x,y)\in[a,\beta]\times[0,\infty[\\
+                \end{split}
+            \end{equation*}
+            donde la función $(x,y)\mapsto\frac{1}{a}\abs{h(y)}$ es integrable en $[a,\beta]\times[0,\infty[$ ya que $h$ es integrable y $[a,\beta]$ es un conjunto de medida finita.
+
+            \item Sea $y\in[0,\infty[$. Afirmamos que la integral impropia
+            \begin{equation*}
+                \int_a^{ \rightarrow\infty}f(x,y)\:dx
+            \end{equation*}
+            es convergente. En efecto, si $y=0$ el resultado se tiene pues $f(x,0)=0$ para todo $x\in[a,\infty[$. Para $M>a$ y $y>0$ tenemos que
+            \begin{equation*}
+                \begin{split}
+                    \int_a^{M}f(x,y)\:dx&=\int_a^{M}\frac{h(y)\sin xy}{x}\:dx\\
+                    &=h(y)\int_{a}^{M}\frac{\sin xy}{x}\:dx\textup{, haciendo el cambio de variable }u=xy\\
+                    &=h(y)\int_{ ay}^{ My}\frac{\sin u}{\frac{u}{y}}\:\frac{du}{y}\\
+                    &=h(y)\int_{ ay}^{ My}\frac{\sin u}{u}\:du\\
+                \end{split}
+            \end{equation*}
+            como la integral impropia
+            \begin{equation*}
+                \int_{ 0}^{ \rightarrow\infty}\frac{\sin u}{u}\:du
+            \end{equation*}
+            es convergente, en particular lo es
+            \begin{equation*}
+                \int_{a}^{ \rightarrow\infty}\frac{\sin u}{u}\:du
+            \end{equation*}
+            se sigue que también lo es $\int_a^{\rightarrow\infty}f(x,y)\:dx$.
+
+            \item Tomemos $\beta_0>a$, se tiene que para todo $\beta>\beta_0$:
+            \begin{equation*}
+                \begin{split}
+                    \abs{\int_{a}^{\beta}f(x,y)\:dx}&\leq\abs{\int_{a}^{\beta}\frac{h(y)\sin xy}{x}\:dx}\\
+                    &\leq\abs{h(y)\int_{ya}^{y\beta}\frac{\sin u}{u}\:du}\\
+                    &\leq\abs{h(y)}\abs{\int_{ya}^{y\beta}\frac{\sin u}{u}\:du}\\
+                \end{split}
+            \end{equation*}
+            como
+            \begin{equation*}
+                \int_{ya}^{ \rightarrow\infty}\frac{\sin u}{u}\:du
+            \end{equation*}
+            es convergente para todo $y>0$, entonces para $\varepsilon=1$ existe $M>a$ tal que
+            \begin{equation*}
+                \abs{\int_{ ya}^{yM}\frac{\sin u}{u}\:du-\frac{\pi}{2}}<1\Rightarrow\abs{\int_{ ya}^{yM}\frac{\sin u}{u}\:du}<1+\frac{\pi}{2}
+            \end{equation*}
+            Luego, si $\beta_0=M$, tenemos que
+            \begin{equation*}
+                \beta>\beta_0\Rightarrow\abs{\int_{a}^{\beta}f(x,y)\:dx}<\left(1+\frac{\pi}{2}\right)\abs{h(y)}
+            \end{equation*}
+            para todo $y\in[0,\infty[$ (en particular cuando $y=0$, el valor de la integral de la derecha es cero), donde la función de la derecha es integrable en $[0,\infty[$.
+        \end{itemize}
+        Por el teorema de intercambio de integrales impropias, se sigue que
+        \begin{equation*}
+            \begin{split}
+                \int_{a}^{ \rightarrow\infty}\frac{dx}{x}\int_0^{\infty}h(y)\sin xy\:dy&=\int_{a}^{ \rightarrow\infty}\:dx\int_0^{\infty}\frac{h(y)\sin xy}{x}\:dy\\
+                &=\int_0^{\infty}\:dy\int_{a}^{ \rightarrow\infty}\frac{h(y)\sin xy}{x}\:dx\\
+                &=\int_0^{\infty}h(y)\:dy\int_{ya}^{ \rightarrow\infty}\frac{\sin u}{u}\:du\\
+                \Rightarrow\abs{\int_{a}^{ \rightarrow\infty}\frac{dx}{x}\int_0^{\infty}h(y)\sin xy\:dy}&\leq\int_0^{\infty}\abs{h(y)\:dy\int_{ya}^{ \rightarrow\infty}\frac{\sin u}{u}\:du}\\
+                &=\int_0^{\infty}\abs{h(y)}\abs{\int_{ya}^{ \rightarrow\infty}\frac{\sin u}{u}\:du}\:dy\\
+            \end{split}
+        \end{equation*}
+        Donde la función
+        \begin{equation*}
+            y\mapsto\int_{ ya}^{\rightarrow\infty}\frac{\sin y}{u}\:du,\quad\forall y\in[0,\infty[
+        \end{equation*}
+        es acotada (\textit{probar}). Luego, se sigue que existe la integral impropia:
+        \begin{equation*}
+            \int_{a}^{ \rightarrow\infty}\frac{dx}{x}\int_0^{\infty}h(y)\sin xy\:dy
+        \end{equation*}
+
+        De (ii): Sea $a>0$. Veamos primero que la función $x\mapsto f(x)$ es continua en $\mathbb{R}$, más aún, se tiene que
+        \begin{equation*}
+            \lim_{ \abs{x}\rightarrow\infty}f(x)=0
+        \end{equation*}
+        (es inmediato de la definición de $f$), por lo cual $f\in\mathcal{C}_0(\mathbb{R},\mathbb{C})$. Por esta razón, basta con analizar el caso en que $a\geq e$. Veamos que para $M>a$
+        \begin{equation*}
+            \begin{split}
+                \int_{a}^{M}\frac{f(x)}{x}\:dx&=\int_{ a}^{M}\frac{dx}{x\log x},\textup{ haciendo el cambio de variable }u=\log x\Rightarrow dx=x\:du \\
+                &=\int_{\log a}^{ \log M}\frac{du}{u}\\
+                &=\log\abs{u}\Big|_{\log a}^{\log M}\\
+                &=\log\abs{\log M}-\log\abs{\log a}\\
+            \end{split}
+        \end{equation*}
+        por tanto,
+        \begin{equation*}
+            \int_{a}^{\rightarrow\infty}\frac{f(x)}{x}\:dx=\lim_{M\rightarrow\infty}\int_{a}^M\frac{f(x)}{x}\:dx=\infty
+        \end{equation*}
+        Ahora, suponga que existe $g\in\mathcal{L}_1(\mathbb{R},\mathbb{C})$ tal que
+        \begin{equation*}
+            f=\fou{g}
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \begin{split}
+                f(x)&=\int_{-\infty}^{\infty}e^{ -ixy}g(y)\:dy\\
+                &=\int_{-\infty}^{\infty}g(y)\cos xy\:dy+i\int_{-\infty}^{\infty}g(y)\sin xy\:dy\\
+            \end{split}
+        \end{equation*}
+        en particular, para $x\neq0$:
+        \begin{equation*}
+            \begin{split}
+                \frac{f(x)}{x}&=\int_{-\infty}^{\infty}\frac{g(y)\cos xy}{x}\:dy+i\int_{-\infty}^{\infty}\frac{g(y)\sin xy}{x}\:dy\\
+                &=\int_{-\infty}^{0}\frac{g(y)\cos xy}{x}\:dy+\int_{0}^{\infty}\frac{g(y)\cos xy}{x}\:dy+i\left(\int_{-\infty}^{0}\frac{g(y)\sin xy}{x}\:dy+\int_{0}^{\infty}\frac{g(y)\sin xy}{x}\right)\\
+                &=\int_{0}^{\infty}\frac{g(-y)\cos -xy}{x}\:dy+\int_{0}^{\infty}\frac{g(y)\cos xy}{x}\:dy+i\left(\int_{0}^{\infty}\frac{g(-y)\sin -xy}{x}\:dy+\int_{0}^{\infty}\frac{g(y)\sin xy}{x}\right)\\
+            \end{split}
+        \end{equation*}
+        veamos que $g$ impar casi en todo $\mathbb{R}$. Se tiene que
+        \begin{equation*}
+            \begin{split}
+                f(x)&=f(-x),\quad\forall x\in\mathbb{R}\\
+                \Rightarrow \int_{-\infty}^{\infty}e^{ -ixy}g(y)\:dy&=\int_{-\infty}^{\infty}e^{ ixy}g(y)\:dy,\quad\forall x\in\mathbb{R}\\
+                \Rightarrow \int_{-\infty}^{\infty}e^{ -ixy}g(y)\:dy&=\int_{-\infty}^{\infty}e^{-ixy}g(-y)\:dy,\quad\forall x\in\mathbb{R}\\
+                \Rightarrow \int_{-\infty}^{\infty}e^{ -ixy}\left[g(y)-g(-y)\right]\:dy&=0,\quad\forall x\in\mathbb{R}\\
+            \end{split}
+        \end{equation*}
+        en particular, se cumple para todo $k\in\mathbb{Z}$. Como el sistema $\left\{e^{ -ixk} \right\}_{k\in\mathbb{Z}}$ es total en $\mathcal{L}_1(\mathbb{R},\mathbb{C})$, debe suceder que $g(y)-g(-y)=0$ para casi todo $y\in\mathbb{R}$. Por tanto, $g$ es impar c.t.p. en $\mathbb{R}$. Luego,
+        \begin{equation*}
+            \begin{split}
+                \frac{f(x)}{x}&=\int_{0}^{\infty}\frac{g(-y)\cos -xy}{x}\:dy+\int_{0}^{\infty}\frac{g(y)\cos xy}{x}\:dy+i\left(\int_{0}^{\infty}\frac{g(-y)\sin -xy}{x}\:dy+\int_{0}^{\infty}\frac{g(y)\sin xy}{x}\right)\\
+                &=-\int_{0}^{\infty}\frac{g(y)\cos xy}{x}\:dy+\int_{0}^{\infty}\frac{g(y)\cos xy}{x}\:dy+i\left(\int_{0}^{\infty}\frac{g(y)\sin xy}{x}\:dy+\int_{0}^{\infty}\frac{g(y)\sin xy}{x}\right)\\
+                &=2i\int_{0}^{\infty}\frac{g(y)\sin xy}{x}\:dy\\
+            \end{split}
+        \end{equation*}
+        Para $a>0$ se tiene que
+        \begin{equation*}
+            \int_{a}^{ \rightarrow\infty}\frac{f(x)}{x}\:dx
+        \end{equation*}
+        no es convergente, pero por (i), se tiene que
+        \begin{equation*}
+            \int_{a}^{\rightarrow\infty}2i\:dx \int_{0}^{\infty}\frac{g(y)\sin xy}{x}\:dy=2i\int_{a}^{\rightarrow\infty}\:dx\int_{0}^{\infty}\frac{g(y)\sin xy}{x}\:dy
+        \end{equation*}
+        si lo es, pues la función $g$ es integrable en $[0,\infty[$, lo cual contradice la igualdad a la que se llegó anteriormente. Por tanto, $f$ no puede ser la transformada de Fourier de ninguna función en $\mathcal{L}_1(\mathbb{R},\mathbb{C})$.
     \end{sol}
 
     \begin{excer}
