@@ -569,17 +569,17 @@
         Se tiene entonces que para cada $x=(x_1,...,x_n)\in\mathbb{R}^n$:
         \begin{equation*}
             \begin{split}
-                \pint{x}{Hx}&=\left[
+                \pint{Hx}{x}&=\left[
                     \begin{array}{cccc}
-                        x_1 & x_2 & ... & x_n\\
+                        y_1 & y_2 & ... & y_n\\
                     \end{array}
                 \right]\cdot\left[\begin{array}{c}
-                    y_1\\
-                    y_2\\
+                    x_1\\
+                    x_2\\
                     \vdots\\
-                    y_n\\
+                    x_n\\
                 \end{array}\right]\\
-                &=\sum_{ k=1}^n x_ky_k\\
+                &=\sum_{ k=1}^n y_kx_k\\
             \end{split}
         \end{equation*}
         donde
@@ -608,19 +608,19 @@
         Por tanto,
         \begin{equation*}
             \begin{split}
-                \pint{x}{Hx}&=\sum_{ k=1}^n x_k\sum_{ i=1}^n h_{k,i}x_i\\
+                \pint{Hx}{x}&=\sum_{ k=1}^n\left(\sum_{ i=1}^n h_{k,i}x_i\right)x_k\\
                 &=\sum_{ k=1}^n\sum_{ i=1}^n x_kx_ih_{k,i}\\
             \end{split}
         \end{equation*}
-        siendo la aplicación $x\mapsto \pint{x}{Hx}$ una aplicación polinomial de $n$-variables, luego es continua. Así, la composición con $t\mapsto e^{-t}$ es continua, es decir que la función $f$ es continua en $\mathbb{R}^n$, luego medible.
+        siendo la aplicación $x\mapsto \pint{Hx}{x}$ una aplicación polinomial de $n$-variables, luego es continua. Así, la composición con $t\mapsto e^{-t}$ es continua, es decir que la función $f$ es continua en $\mathbb{R}^n$, luego medible.
 
         Ahora, sea ahora
         \begin{equation*}
             m=\inf_{ x\in S} \left\{\pint{Hx}{x} \right\}
         \end{equation*}
-        donde $S=\left\{x\in\mathbb{R}^n\Big|\norm{x}=1 \right\}$. Afirmamos que $m>0$. En el caso que $m=0$, como la función $x\mapsto\pint{x}{Hx}$ es continua de $\mathbb{R}^n$ en $\mathbb{R}$, se tendría que alcanzaría su máximo y mínimo, luego existiría $x_0\in S$ tal que
+        donde $S=\left\{x\in\mathbb{R}^n\Big|\norm{x}=1 \right\}$. Afirmamos que $m>0$. En el caso que $m=0$, como la función $x\mapsto\pint{Hx}{x}$ es continua de $\mathbb{R}^n$ en $\mathbb{R}$, se tendría que alcanzaría su máximo y mínimo en el compacto $S$, luego existiría $x_0\in S$ tal que
         \begin{equation*}
-            \pint{x_0}{Hx_0}=0
+            \pint{Hx_0}{x_0}=0
         \end{equation*}
         lo cual contradeciría el hecho de que $H$ es positiva definida. Por tanto, $m>0$. Más aún,
         \begin{equation*}
@@ -639,9 +639,9 @@
         \end{equation*}
         Considere la función $x\mapsto e^{ -m\norm{x}^2}$ de $\mathbb{R}^n$ en $\mathbb{R}$. Se tiene que
         \begin{equation*}
-            0\leq f(x)\leq e^{ -m\norm{x}^2},\quad\forall x\in\mathbb{R}^n
+            0\leq f(x)=e^{ -m\pint{Hx}{x}}\leq e^{ -m\norm{x}^2},\quad\forall x\in\mathbb{R}^n
         \end{equation*}
-        siendo $x\mapsto e^{ -m\norm{x}^2}$ intergable en $\mathbb{R}^n$, luego $f$ lo es en $\mathbb{R}^n$, luego la transformada de Fourier $\fou{f}(\cdot)$ está definida en todo $\mathbb{R}^n$.
+        siendo $x\mapsto e^{ -m\norm{x}^2}$ intergable en $\mathbb{R}^n$, luego $f$ lo es en $\mathbb{R}^n$. Así, la transformada de Fourier $\fou{f}$ está definida en todo $\mathbb{R}^n$.
 
         Sea $x\in\mathbb{R}^n$, entonces
         \begin{equation*}
@@ -654,6 +654,18 @@
         \begin{equation*}
             U^{-1}HU=D\Rightarrow HU=UD
         \end{equation*}
+        siendo
+        \begin{equation*}
+            D=\left[
+                \begin{array}{ccccc}
+                    \lambda_1 & 0 & ... & 0 & 0\\
+                    0 & \lambda_2 & ... & 0 & 0\\
+                    \vdots & \vdots & \ddots & \vdots & \vdots \\
+                    0 & 0 & ... & \lambda_{ n-1} & 0\\
+                    0 & 0 & ... & 0 & \lambda_n\\
+                \end{array}
+             \right]
+        \end{equation*}
         Hagáse el cambio de variable $y=Uz$, se tiene en la integral anterior que
         \begin{equation*}
             \begin{split}
@@ -661,9 +673,115 @@
                 &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{Uz}}\cdot e^{ -\pint{HUz}{Uz}}\:dz\\
                 &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{Uz}}\cdot e^{ -\pint{UDz}{Uz}}\:dz\\
                 &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{Uz}}\cdot e^{-\pint{Dz}{z}}\:dz\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{U^{-1}x}{U^{-1}Uz}}\cdot e^{-\pint{Dz}{z}}\:dz\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{U^{-1}x}{z}}\cdot e^{-\pint{Dz}{z}}\:dz\\
             \end{split}
         \end{equation*}
-        %TODO
+        considere la función $\cf{g}{\mathbb{R}^n}{\mathbb{R}}$ tal que $x\mapsto e^{ -\pint{Dz}{z}}$ (esta función es integrable pues los elementos de la matriz diagonal $D$ son números positivos), por lo anterior se tiene que
+        \begin{equation*}
+            \fou{f}(x)=\fou{g}(U^{-1}x)
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \begin{split}
+                \fou{g}(x)&=\int_{\mathbb{R}^n}e^{ -i\pint{x}{z}}g(z)\:dz\\
+                &=\int_{\mathbb{R}^n}e^{ -i\pint{x}{z}}\cdot e^{-\pint{Dz}{z}}\:dz\\
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \begin{split}
+                Dz&=\left[
+                    \begin{array}{ccccc}
+                        \lambda_1 & 0 & ... & 0 & 0\\
+                        0 & \lambda_2 & ... & 0 & 0\\
+                        \vdots & \vdots & \ddots & \vdots & \vdots \\
+                        0 & 0 & ... & \lambda_{ n-1} & 0\\
+                        0 & 0 & ... & 0 & \lambda_n\\
+                    \end{array}
+                 \right]\cdot\left[\begin{array}{c}
+                    z_1\\
+                    z_2\\
+                    \vdots\\
+                    z_n\\
+                \end{array}\right]\\
+                &=\left[\begin{array}{c}
+                    \lambda_1z_1\\
+                    \lambda_2z_2\\
+                    \vdots\\
+                    \lambda_nz_n\\
+                \end{array}\right]\\
+            \end{split}
+        \end{equation*}
+        por tanto
+        \begin{equation*}
+            \pint{Dz}{z}=\lambda_1z_1^2+...+\lambda_nz^n
+        \end{equation*}
+        luego, usando Fubini se sigue que
+        \begin{equation*}
+            \begin{split}
+                \fou{g}(x)&=\int_{\mathbb{R}^n}e^{ -i\sum_{ k=1}^n x_kz_k-\sum_{k=1}^n \lambda_kz_k^2}\:dz_1\cdots dz_n\\
+                &=\left(\int_{ -\infty}^\infty e^{ -ix_1z_1-\lambda_1z_1^2}\:dz_1\right)\cdots\left(\int_{ -\infty}^\infty e^{ -ix_nz_n-\lambda_nz_n^2}\:dz_n\right)\\
+                &=\prod_{ i=1}^n\fou{g_i}(x_i)
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            g_i(u)=e^{ -\lambda_iu^2},\quad\forall u\in\mathbb{R}
+        \end{equation*}
+        para cada $i\in\natint{1,n}$. Se sabe por un ejercicio de la las notas que
+        \begin{equation*}
+            \fou{g_i}(x_i)=\sqrt{\frac{\pi}{\lambda_i}}e^{ -\frac{x_i^2}{4\lambda_i}},\quad\forall x_i\in\mathbb{R}
+        \end{equation*}
+        para todo $i\in\natint{1,n}$. Por tanto:
+        \begin{equation*}
+            \begin{split}
+                \fou{g}(x)&=\prod_{ i=1}^n \sqrt{\frac{\pi}{\lambda_i}}e^{ -\frac{x_i^2}{4\lambda_i}}\\
+                &=\frac{\pi^{n/2}}{\sqrt{\lambda_1\cdots\lambda_n}}e^{ -\frac{1}{4}\sum_{k=1}^n \frac{x_k^2}{\lambda_k}}\\
+            \end{split}
+        \end{equation*}
+        recordemos que
+        \begin{equation*}
+            D^{-1}=\left[
+                \begin{array}{ccccc}
+                    \frac{1}{\lambda_1} &  0 & ... & 0 & 0\\
+                    0 & \frac{1}{\lambda_2} & ... & 0 & 0\\
+                    \vdots & \vdots & \ddots & \vdots & \vdots \\
+                    0 & 0 & ... & \frac{1}{\lambda_{ n-1}} & 0\\
+                    0 & 0 & ... & 0 & \frac{1}{\lambda_n}\\
+                \end{array}
+             \right]
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \det H = \det (UDU^{-1})=\det U\cdot \det D\cdot\det U^{-1}=\lambda_1\cdots\lambda_n
+        \end{equation*}
+        por ende
+        \begin{equation*}
+            \pint{D^{-1}x}{x}=\sum_{k=1}^n \frac{x_k^2}{\lambda_k}
+        \end{equation*}
+        así,
+        \begin{equation*}
+            \fou{g}(x)=\frac{\pi^{ n/2}}{(\det H)^{1/2}}e^{ -\frac{1}{4}\pint{D^{-1}x}{x}}
+        \end{equation*}
+        Por lo tanto, recordando que
+        \begin{equation*}
+            \begin{split}
+                U^{-1}HU=D&\Rightarrow U^{-1}H^{-1}U=D^{-1}\\
+                &\Rightarrow U^{-1}H^{-1}=D^{-1}U^{-1}\\
+            \end{split}
+        \end{equation*}
+        \begin{equation*}
+            \begin{split}
+                \fou{f}(x)&=\fou{g}(U^{-1}x)\\
+                &=\frac{\pi^{ n/2}}{(\det H)^{1/2}}e^{ -\frac{1}{4}\pint{D^{-1}U^{-1}x}{U^{-1}x}}\\
+                &=\frac{\pi^{ n/2}}{(\det H)^{1/2}}e^{ -\frac{1}{4}\pint{U^{-1}H^{-1}x}{U^{-1}x}}\\
+                &=\frac{\pi^{ n/2}}{(\det H)^{1/2}}e^{ -\frac{1}{4}\pint{H^{-1}x}{x}}\\
+                \Rightarrow \fou{f}(x)&=\frac{\pi^{ n/2}}{(\det H)^{1/2}}e^{ -\frac{1}{4}\pint{H^{-1}x}{x}}\\
+            \end{split}
+        \end{equation*}
+        para todo $x\in\mathbb{R}^n$, como se quería demostrar.
+    
     \end{proof}
 
     \begin{excer}
@@ -678,55 +796,25 @@
     \end{excer}
 
     \begin{proof}
-        %TODO Usar proposición 4.5.2
-
-        %Está mal todo lo de abajo
-
-        Se sabe que la función $x\mapsto\left(\frac{\sin ax}{x}\right)^2$ es integrable en $\mathbb{R}$. Observemos ahora que
+        Notemos que $f\in\mathcal{L}_1(\mathbb{R}^n,\mathbb{C})\cap\mathcal{L}_2(\mathbb{R}^n,\mathbb{C})$, por lo cual
         \begin{equation*}
             \begin{split}
-                \int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^2\:dx&=\frac{1}{4}\cdot\int_{-\infty}^{\infty}\fou{f}(x)\cdot\fou{f}(x)\:dx\\
-                &=\frac{1}{4}\cdot\int_{-\infty}^{\infty}\fou{f}(x)\:dx\int_{-\infty}^\infty e^{ -ixy}f(y)\:dy\\
-                &=\frac{1}{4}\cdot\int_{-\infty}^{\infty}\fou{f}(x)\:dx\int_{-\infty}^\infty e^{ -ixy}\chi_{[-a,a]}(y)\:dy\\
-                &=\frac{1}{2}\cdot\int_{-\infty}^{\infty}\frac{\sin ax}{x}\:dx\int_{-a}^a e^{ -ixy}\:dy\\
+                \fou_2{f}(x)&=\frac{1}{(2\pi)^{1/2}}\fou{f}(x)\\
+                &=\frac{1}{(2\pi)^{1/2}}\cdot\frac{2\sin ax}{x}\\
+                &=\sqrt{\frac{2}{\pi}}\cdot\frac{\sin ax}{x}\\
             \end{split}
         \end{equation*}
-        considere la función $(x,y)\mapsto e^{-ixy}\cdot\frac{\sin ax}{x}$. Esta función es integrable en $\mathbb{R}\times[-a,a]$. En efecto, basta con ver que la función
-        \begin{equation*}
-            (x,y)\mapsto \frac{e^{-ixy}}{x}
-        \end{equation*}
-        lo es en $[0,\infty[\times[-a,a]$.%TODO
-
-        Luego por Fubini se sigue que
+        así, por la identidad de Parseval se cumple
         \begin{equation*}
             \begin{split}
-                \int_{-\infty}^{\infty}\frac{\sin ax}{x}\:dx\int_{-a}^a e^{ -ixy}\:dy&=\int_{-a}^{a}\frac{\sin ax}{x}\:dy\int_{-\infty}^\infty e^{ -ixy}\:dx\\
-                &=\int_{-a}^{a}\:dy\int_{-\infty}^\infty e^{ -ixy}\cdot\frac{\sin ax}{x}\:dx\\
-                &=\int_{-a}^{a}\:dy \lim_{ R\rightarrow\infty}\int_{-R}^R e^{ -ixy}\cdot\frac{\sin ax}{x}\:dx\\
-                &=\int_{-a}^{a}\:dx \lim_{ R\rightarrow\infty}\int_{-R}^R e^{ -ixy}\cdot\frac{\sin ay}{y}\:dy\\
-                \Rightarrow 2\int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^2\:dx&=\int_{-a}^{a}\:dx \lim_{ R\rightarrow\infty}\int_{-R}^R e^{ -ixy}\cdot\frac{\sin ay}{y}\:dy\\
+                \int_{-\infty}^{\infty}(\fou_2{f})^2(x)\:dx&=\pint{\fou_2{f}}{\fou_2{f}}\\
+                &=\pint{f}{f}\\
+                &=\int_{-\infty}^\infty \chi_{[-a,a]}(x)\:dx\\
+                &=2a\\
+                \Rightarrow \frac{2}{\pi}\int_{ -\infty}^\infty\left(\frac{\sin ax}{x}\right)^2 \:dx&=2a\\
+                \Rightarrow \int_{ -\infty}^\infty\left(\frac{\sin ax}{x}\right)^2\:dx&=\pi a\\
             \end{split}
         \end{equation*}
-        pues, la función $x\mapsto \int_{-\infty}^\infty e^{ -ixy}\cdot\frac{\sin ay}{y}\:dy$ definida c.t.p. en $[-a,a]$ coincide con su integral impropia. 
-
-        Sea $x\in\mathbb{R}$. Se tiene que $f$ posee derivadas laterales derecha e izquierda en $x$, por lo cual del teorema de inversión de Fourier en $\mathbb{R}$ se sigue que
-        \begin{equation*}
-            \begin{split}
-                f(x)&=\frac{1}{2\pi}\lim_{ R\rightarrow\infty}\int_{-R}^R e^{ ixy}\fou{f}(y)\:dy\\
-                \Rightarrow\chi_{[-a,a]}(-x)&=\frac{1}{\pi}\lim_{ R\rightarrow\infty}\int_{-R}^R e^{-ixy}\cdot\frac{\sin ay}{y} \:dy\\
-                \Rightarrow\pi\cdot\chi_{[-a,a]}(-x)&=\lim_{ R\rightarrow\infty}\int_{-R}^R e^{-ixy}\cdot\frac{\sin ay}{y} \:dy\\
-            \end{split}
-        \end{equation*}
-        Por tanto, tenemos que
-        \begin{equation*}
-            \begin{split}
-                \Rightarrow \pi\int_{-a}^a\chi_{[-a,a]}(-x)\:dx&=\int_{-a}^a\:dx \lim_{ R\rightarrow\infty}\int_{-R}^R e^{-ixy}\cdot\frac{\sin ay}{y} \:dy\\
-                \Rightarrow \pi\int_{-a}^a\:dx&=2\int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^2\:dx\\
-                \Rightarrow 2\pi a&=2\int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^2\:dx\\
-                \Rightarrow \int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^2\:dx&=\pi a\\
-            \end{split}
-        \end{equation*}
-        lo que prueba el resultado.
     \end{proof}
 
     \begin{excer}
@@ -744,7 +832,7 @@
             \begin{equation*}
                 \int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^3\:dx
             \end{equation*}
-            \textit{Sugerencia.} Escriba $f(x)=\left(1-\frac{\abs{x}}{a} \right)\chi_[-a,a](x)$ y $g(x)=\chi_{[-a,a]}(x)$, para todo $x\in\mathbb{R}$. Aplique la identidad de Parseval
+            \textit{Sugerencia.} Escriba $f(x)=\left(1-\frac{\abs{x}}{a} \right)\chi_{[-a,a]}(x)$ y $g(x)=\chi_{[-a,a]}(x)$, para todo $x\in\mathbb{R}$. Aplique la identidad de Parseval
             \begin{equation*}
                 \int_\mathbb{R}\fou_2{f}\fou_2{g}=\pint{\fou_2{f}}{\fou_2{g}}=\pint{f}{g}=\int_{\mathbb{R}}fg
             \end{equation*}
@@ -797,8 +885,50 @@
             \end{split}
         \end{equation*}
         
-        De (ii): 
+        De (ii): Notemos que $f\in\mathcal{L}_1(\mathbb{R},\mathbb{R})\cap\mathcal{L}_2(\mathbb{R},\mathbb{R})$, por lo cual
+        \begin{equation*}
+            \begin{split}
+                \fou_2{f}(x)&=\frac{1}{\sqrt{2\pi}}\fou{f}(x)\\
+                &=\frac{a}{\sqrt{2\pi}}\cdot\left(\frac{\sin\frac{ax}{2}}{\frac{ax}{2}}\right)^2\\
+            \end{split}
+        \end{equation*}
+        por lo cual, usando la identidad de Parseval se sigue que
+        \begin{equation*}
+            \begin{split}
+                \frac{a^2}{2\pi}\int_{ -\infty}^{\infty}\left(\frac{\sin\frac{ax}{2}}{\frac{ax}{2}} \right)^4\:dx&=\int_{ -\infty}^{\infty}\left(\frac{a}{\sqrt{2\pi}}\right)^2 \left(\frac{\sin\frac{ax}{2}}{\frac{ax}{2}} \right)^4\:dx\\
+                &=\pint{\fou_2{f}}{\fou_2{f}}\\
+                &=\pint{f}{f}\\
+                &=\int_{-\infty}^\infty\left(1-\frac{\abs{x}}{a}\right)^2\chi_{[-a,a]}(x)\:dx\\
+                &=\int_{-a}^a\left(\frac{a-\abs{x}}{a}\right)^2\:dx\\
+                &=2\int_{0}^a\left(\frac{a-x}{a}\right)^2\:dx\\
+            \end{split}
+        \end{equation*}
+        cambiemos de variable la primera integral, haciendo $u=\frac{x}{2}\Rightarrow 2du=dx$, por tanto:
+        \begin{equation*}
+            \begin{split}
+                \frac{a^2}{2\pi}\int_{ -\infty}^{\infty}\left(\frac{\sin\frac{ax}{2}}{\frac{ax}{2}} \right)^4\:dx&=\frac{a^2}{\pi}\int_{ -\infty}^{\infty}\left(\frac{\sin ax}{ax}\right)^4\:dx\\
+                &=\frac{1}{a^2\pi}\int_{ -\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^4\:dx\\
+            \end{split}
+        \end{equation*}
+        y, haciendo el cambio de variable en la última integral a $y=a-x\Rightarrow dy=-dx$, se tiene que 
+        \begin{equation*}
+            \begin{split}
+                \int_{0}^a\left(\frac{a-x}{a}\right)^2\:dx&=-\int_{a}^0\frac{y^2}{a^2}\:dy\\
+                &=\frac{1}{a^2}\int_{0}^{a}y^2\:dy\\
+                &=\frac{1}{a^2}\left[\frac{y^3}{3}\Big|_{ 0}^{a}\right]\\
+                &=\frac{a^3}{3a^2}\\
+                &=\frac{a}{3}\\
+            \end{split}
+        \end{equation*}
+        por tanto
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{a^2\pi}\int_{ -\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^4\:dx&=\frac{2a}{3}\\
+                \Rightarrow \int_{ -\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^4\:dx&=\frac{2}{3}\pi a^3\\
+            \end{split}
+        \end{equation*}
 
+        De (iii): 
     \end{sol}
 
     \begin{excer}
