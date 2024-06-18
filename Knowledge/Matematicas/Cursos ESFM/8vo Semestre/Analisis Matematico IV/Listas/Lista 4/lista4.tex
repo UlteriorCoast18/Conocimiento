@@ -1028,7 +1028,7 @@
         \begin{equation*}
             \begin{split}
                 \fou{(f\circ r)}(x)&=\int_{\mathbb{R}^n}e^{ -i\norm{x}y_1}f(\norm{y})\:dy_1\cdots dy_n\\
-                &=\int_{\Omega}e^{ -i\norm{x}r\cos\varphi_1}f(r)\: drd\varphi_1\cdots d\varphi_{ n-1}\\
+                &=\int_{\Omega}e^{ -i\norm{x}r\cos\varphi_1}f(r)r^{ n-1}\sin^{ n-2}\varphi_1\cdots\sin\varphi_{ n-2} \: drd\varphi_1\cdots d\varphi_{ n-1}\\
             \end{split}
         \end{equation*}
         donde
@@ -1036,33 +1036,6 @@
             \Omega=\left\{(r,\varphi_1,...,\varphi_{ n-1})\in\mathbb{R}^n\Big|r\geq0,0\leq\varphi_1,...,\varphi_{ n-2}\leq\pi,-\pi\leq\varphi_{ n-1}\leq\pi \right\}
         \end{equation*}
 
-        %puede que esto de abajo no jale
-        por Fubini, integrando primero respecto a $y_1$ resulta:
-        \begin{equation*}
-            \begin{split}
-                \fou{(f\circ r)}(x)&=\int_{\mathbb{R}^n}e^{ -i\norm{x}y_1}f(\norm{y})\:dy_1\cdots dy_n\\
-                &=\int_{-\infty}^\infty e^{ -i\norm{x}y_1}\:dy_1 \int_{\mathbb{R}^{ n-1}}f(\norm{y})\:dy_2\cdots dy_n
-            \end{split}
-        \end{equation*}
-        Se sabe también por Fubini que para casi todo $y_1\in\mathbb{R}$, la función $(y_2,...,y_n)\mapsto f(\norm{y})=f\circ r(y_1,...,y_n)$ es integrable en $\mathbb{R}^{ n-1}$. Veamos que esta función es radial. En efecto, para $z=(z_2,...,z_n),w=(w_2,...,w_n)\in\mathbb{R}^{ n-1}$ tales que
-        \begin{equation*}
-            \norm{z}=\norm{w}\Rightarrow z_2^2+...+z_n^2=w_2^2+...+w_n^2
-        \end{equation*}
-        se cumple
-        \begin{equation*}
-            \begin{split}
-                f\circ r(y_1,z_2,...,z_n)&=f(\sqrt{y_1^2+z_2^2+...+z_n^2})\\
-                &=f(\sqrt{y_1^2+w_2^2+...+w_n^2})\\
-                &=f\circ r(y_1,w_2,...,w_n)\\
-            \end{split}
-        \end{equation*}
-        por tanto, la función es radial. Por el teorema de funciones radiales se tiene que al ser integrable, tenemos:
-        \begin{equation*}
-            \begin{split}
-                \int_{\mathbb{R}^{ n-1}}f(\norm{y})\:dy_2\cdots dy_n&=
-            \end{split}
-        \end{equation*}
-        %TODO
     \end{sol}
 
     \begin{excer}
@@ -1244,7 +1217,7 @@
             \end{equation*}
             donde $m>2$. \textbf{Pruebe} que
             \begin{equation*}
-                \abs{f(x)}\underset{\abs{x}\rightarrow\infty}{=}O\left(\frac{1}{x^{ m-1}}\right)
+                \abs{f(x)}\underset{\abs{x}\rightarrow\infty}{=}O\left(\frac{1}{\abs{x}^{ m-1}}\right)
             \end{equation*}
             y que, para todo $x\in\mathbb{R}$, existen las sumas
             \begin{equation*}
@@ -1284,35 +1257,80 @@
         \end{equation*}
         entonces existen $M\geq0$ y $A>0$ tales que
         \begin{equation*}
-            \abs{x}>M\Rightarrow \abs{\varphi(x)}\leq A\abs{g(x)}
+            \abs{x}>M\Rightarrow \abs{\varphi(x)}\leq \frac{A}{\abs{x}^m}
         \end{equation*}
-        Veamos que
+        Al ser $f$ integrable, se tiene que
+        \begin{equation*}
+            \lim_{\abs{x}\rightarrow\infty}f(x)=0
+        \end{equation*}
+        entonces
+        \begin{equation*}
+            \lim_{x\rightarrow\infty}f(x)=\lim_{x\rightarrow-\infty}f(x)=0
+        \end{equation*}
+        Por tanto, de la definición de $f$ tenemos que
         \begin{equation*}
             \begin{split}
-                \abs{f(x)}&=\abs{f(0)+\int_0^x\varphi(t)\:dt}\\
+                0&=\lim_{u\rightarrow\infty}\left(f(0)+\int_0^u\varphi(t)\:dt\right)\\
+                &=f(0)+\lim_{u\rightarrow\infty}\int_0^u\varphi(t)\:dt\\
+                \Rightarrow f(0)&=-\lim_{u\rightarrow\infty}\int_0^u\varphi(t)\:dt\\
             \end{split}
         \end{equation*}
-        para todo $x\in\mathbb{R}$. Si $\abs{x}>M$ tenemos dos casos:
+        y,
+        \begin{equation*}
+            \begin{split}
+                0&=\lim_{u\rightarrow-\infty}\left(f(0)+\int_0^u\varphi(t)\:dt\right)\\
+                &=f(0)-\lim_{u\rightarrow\infty}\int_u^0\varphi(t)\:dt\\
+                \Rightarrow f(0)&=-\lim_{u\rightarrow-\infty}\int_u^0\varphi(t)\:dt\\
+            \end{split}
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            \begin{split}
+                f(x)&=-\lim_{u\rightarrow\infty}\int_0^u\varphi(t)\:dt+\int_0^x\varphi(t)\:dt\\
+                &=\lim_{u\rightarrow\infty}\left[-\int_0^u\varphi(t)\:dt+\int_0^x\varphi(t)\:dt\right]\\
+                &=\lim_{u\rightarrow\infty}\int_x^u\varphi(t)\:dt\\
+            \end{split}
+        \end{equation*}
+        si $x\geq0$. Si $x<0$ tenemos
+        \begin{equation*}
+            \begin{split}
+                f(x)&=-\lim_{u\rightarrow-\infty}\int_u^0\varphi(t)\:dt+\int_0^x\varphi(t)\:dt\\
+                &=\lim_{u\rightarrow-\infty}\left(-\int_u^0\varphi(t)\:dt-\int_x^0\varphi(t)\:dt\right)\\
+                &=-\lim_{u\rightarrow-\infty}\int_u^x\varphi(t)\:dt
+            \end{split}
+        \end{equation*}
+        Si $\abs{x}>M$, tenemos dos casos:
         \begin{itemize}
-            \item $x>M$, se sigue que
+            \item $x>M$, se tiene
             \begin{equation*}
                 \begin{split}
-                    \abs{f(x)}&=\abs{f(0)+\int_0^x\varphi(t)\:dt}\\
-                    &=\abs{\underbrace{f(0)+\int_0^M\varphi(t)\:dt}_{=f(M)}+\int_M^x\varphi(t)\:dt}\\
-                    &=\abs{f(M)+\int_M^x\varphi(t)\:dt}\\
-                    &\leq\abs{f(M)}+\int_{M}^x\abs{\varphi(t)}\:dt\\
-                    &\leq\abs{f(M)}+A\int_M^x\frac{dt}{t^{m}}\\
-                    &\leq\abs{f(M)}+A\int_M^x\frac{dt}{t^{m}}\\
+                    \abs{f(x)}&=\abs{\lim_{u\rightarrow\infty}\int_x^u\varphi(t)\:dt}\\
+                    &=\lim_{u\rightarrow\infty}\abs{\int_x^u\varphi(t)\:dt}\\
+                    &\leq\lim_{u\rightarrow\infty}\int_x^u\abs{\varphi(t)}\:dt\\
+                    &\leq A\lim_{u\rightarrow\infty}\int_x^u\frac{dt}{\abs{t}^m}\\
+                    &=A\lim_{u\rightarrow\infty}\int_x^u t^{-m}\:dt \\
+                    &=A\lim_{u\rightarrow\infty}\frac{t^{ 1-m}}{1-m}\Big|_x^u\\
+                    &=\frac{A}{1-m}\lim_{u\rightarrow\infty}t^{ 1-m}\Big|_x^u\\
+                    &=\frac{A}{1-m}\lim_{u\rightarrow\infty}\left[u^{ 1-m}-x^{ 1-m}\right] \\
+                    &=\frac{A}{m-1}x^{1-m}\\
+                    &=\frac{A}{m-1}\cdot\frac{1}{\abs{x}^{m-1}}\\
+                    \therefore \abs{f(x)}&\leq\frac{A}{m-1}\cdot\frac{1}{\abs{x}^{m-1}}\\
                 \end{split}
             \end{equation*}
-            \item $-x>M$, se sigue que 
+            \item $-x<-M$, de forma análoga se sigue que
+            \begin{equation*}
+                \abs{f(x)}\leq \frac{A}{m-1}\cdot\frac{1}{\abs{x}^{m-1}}
+            \end{equation*}
         \end{itemize}
-        %TODO
-        Sea $x\in\mathbb{R}$, como 
+        De los dos incisos anteriores se concluye que
         \begin{equation*}
-            \sum_{ k\in\mathbb{Z}}\varphi(x+k)
+            \abs{x}>M\Rightarrow \abs{f(x)}\leq \frac{A}{m-1}\cdot\frac{1}{\abs{x}^{m-1}}
         \end{equation*}
-        
+        por ende,
+        \begin{equation*}
+            \abs{f(x)}\underset{\abs{x}\rightarrow\infty}{=}=O\left(\frac{1}{\abs{x}^{ m-1}} \right)
+        \end{equation*}
+
     \end{sol}
 
     \begin{excer}
@@ -1502,9 +1520,9 @@
 
             \textit{Sugerencia.} Tranforme $\fou_2{\varphi_n}$ por la ``fórmula de integración por partes de orden $n$".
             \begin{equation*}
-                \int_a^b f^(n)g=\left[\sum_{ k=0}^{ n-1}(-1)^kf^{ (n-k-1)}g^{(k)} \right]+(-1)^n\int_a^b fg^(n)
+                \int_a^b f^{(n)}g=\left[\sum_{ k=0}^{ n-1}(-1)^kf^{ (n-k-1)}g^{(k)} \right]+(-1)^n\int_a^b fg^{(n)}
             \end{equation*}
-            (al suponer $f^(n)$ y $g^(n)$ continuas en $[a,b]$). Después, use la fórmula del inciso (i).
+            (al suponer $f^{(n)}$ y $g^{(n)}$ continuas en $[a,b]$). Después, use la fórmula del inciso (i).
         \end{enumerate}
     \end{excer}
 
