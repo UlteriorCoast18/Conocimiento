@@ -1105,6 +1105,40 @@
     \end{excer}
 
     \begin{sol}
+        De (i): Como
+        \begin{equation*}
+            \abs{\varphi(x)}\underset{\abs{x}\rightarrow\infty}{=}O\left(\frac{1}{\abs{x}^m}\right)
+        \end{equation*}
+        entonces existen $M\geq0$ y $A>0$ tales que
+        \begin{equation*}
+            \abs{x}>M\Rightarrow \abs{\varphi(x)}\leq A\abs{g(x)}
+        \end{equation*}
+        Veamos que
+        \begin{equation*}
+            \begin{split}
+                \abs{f(x)}&=\abs{f(0)+\int_0^x\varphi(t)\:dt}\\
+            \end{split}
+        \end{equation*}
+        para todo $x\in\mathbb{R}$. Si $\abs{x}>M$ tenemos dos casos:
+        \begin{itemize}
+            \item $x>M$, se sigue que
+            \begin{equation*}
+                \begin{split}
+                    \abs{f(x)}&=\abs{f(0)+\int_0^x\varphi(t)\:dt}\\
+                    &=\abs{\underbrace{f(0)+\int_0^M\varphi(t)\:dt}_{=f(M)}+\int_M^x\varphi(t)\:dt}\\
+                    &=\abs{f(M)+\int_M^x\varphi(t)\:dt}\\
+                    &\leq\abs{f(M)}+\int_{M}^x\abs{\varphi(t)}\:dt\\
+                    &\leq\abs{f(M)}+A\int_M^x\frac{dt}{t^{m}}\\
+                    &\leq\abs{f(M)}+A\int_M^x\frac{dt}{t^{m}}\\
+                \end{split}
+            \end{equation*}
+            \item $-x>M$, se sigue que 
+        \end{itemize}
+        %TODO
+        Sea $x\in\mathbb{R}$, como 
+        \begin{equation*}
+            \sum_{ k\in\mathbb{Z}}\varphi(x+k)
+        \end{equation*}
         
     \end{sol}
 
@@ -1113,7 +1147,7 @@
         \begin{enumerate}
             \item Sea $f\in\mathcal{L}_1(\mathbb{R},\mathbb{C})$ tal que $f(x)=0$ para todo $x<0$. Para todo $z\in\mathbb{C}$ tal que $\Im z\leq 0$ se define
             \begin{equation*}
-                \fou{f}(x)=\int_0^{\infty}e^{ -izx}f(x)\:dx
+                \fou{f}(z)=\int_0^{\infty}e^{ -izx}f(x)\:dx
             \end{equation*}
             \textbf{Pruebe} que esta definción tiene sentido, que $\fou{f}$ es continua en el semiplano cerrado $\left\{z\in\mathbb{C}\Big|\Im z\leq0 \right\}$ y holomorfa en el semiplano abierto $\left\{z\in\mathbb{C}\Big|\Im z<0 \right\}$.
 
@@ -1130,7 +1164,130 @@
     \end{excer}
 
     \begin{sol}
-        
+        De (i): Sea $z\in\mathbb{C}$ tal que $\Im z\leq0$. Se tiene que
+        \begin{equation*}
+            \begin{split}
+                \int_0^{\infty}\abs{e^{ -izx}f(x)}\:dx&=\int_0^{\infty}\abs{e^{ -ix(\Re z+i\Im z)}f(x)}\:dx\\
+                &=\int_0^{\infty}\abs{e^{ -ix(\Re z+i\Im z)}f(x)}\:dx\\
+                &=\int_0^{\infty}\abs{e^{ -ix\Re z}e^{ x\Im z}f(x)}\:dx\\
+                &=\int_0^{\infty}\abs{e^{x\Im z}}\abs{f(x)}\:dx\\
+            \end{split}
+        \end{equation*}
+        donde $x\geq 0$ y $\Im z\leq0$, luego $e^{x\Im z}\leq1$, para todo $x\in [0,\infty[$. Así
+        \begin{equation*}
+            \begin{split}
+                \int_0^{\infty}\abs{e^{ -izx}f(x)}\:dx&\leq\int_0^{\infty}\abs{f(x)}\:dx\\
+                &=\int_{-\infty}^\infty\abs{f(x)}\:dx\\
+            \end{split}
+        \end{equation*}
+        pues $f(x)=0$ para todo $x<0$. Como $f$ es integrable, se sigue entonces que $\fou{f}(z)$ está bien definida, para todo $z\in\mathbb{C}$ tal que $\Im z\leq0$.
+
+        Veamos que $\fou{f}$ es una función continua en el semiplano cerrado
+        \begin{equation*}
+            \mathcal{I}=\left\{z\in\mathbb{C}\Big|\Im z\leq0 \right\}
+        \end{equation*}
+        En efecto, considere la función $\cf{g}{\mathbb{R}\times\mathcal{I}}{\mathbb{C}}$ dada por
+        \begin{equation*}
+            g(x,z)=e^{ -izx}f(x)
+        \end{equation*}
+        para todo $(x,z)\in\mathbb{R}\times\mathcal{I}$. Claramente $g$ está bien definida. Se tiene lo siguiente:
+        \begin{itemize}
+            \item Para todo $z\in\mathbb{C}$, $g^z(x)=e^{ -izx}f(x)$ es integrable en $\mathbb{R}$ (se probó en el punto anterior), se define así
+            \begin{equation*}
+                \begin{split}
+                    \Phi(z)&=\fou{f}(z)\\
+                    &=\int_{\mathbb{R}}g^z(x)\:dx\\
+                    &=\int_0^{\infty}e^{-izx}f(x)\:dx\\
+                \end{split}
+            \end{equation*}
+            \item Para toda $x\in\mathbb{R}$, la función $\cf{g_x}{\mathcal{I}}{\mathbb{C}}$ tal que $z\mapsto e^{ -izx}f(x)$ es continua en $z_0\in\mathcal{I}$, para todo $z_0$.
+            \item Existe $f\in\mathcal{L}_1(\mathbb{R},\mathbb{C})$ tal que
+            \begin{equation*}
+                \begin{split}
+                    \abs{g(x,z)}&=\abs{e^{ -izx}f(x)}\\
+                    &\leq\abs{f(x)}\\
+                \end{split}
+            \end{equation*}
+            para todo $(x,z)\in\mathbb{R}\times\mathcal{I}$.
+        \end{itemize}
+        entonces, por el teorema de continuidad de funciones definidas por integrales, se sigue que $\Phi$ es continua en $z_0\in\mathcal{I}$, para todo $z_0$, esto es que $\fou{f}$ es continua en $\mathcal{I}$.
+
+        Para ver que es holomorfa en el semiplano abierto
+        \begin{equation*}
+            \mathring{\mathcal{I}}=\left\{z\in\mathbb{C}\Big|\Im z<0 \right\}
+        \end{equation*}
+        considere nuevamente a la función $\cf{g}{\mathbb{R}\times\mathring{\mathcal{I}}}{\mathbb{C}}$ tal que
+        \begin{equation*}
+            g(x,z)=e^{ -izx}f(x)
+        \end{equation*}
+        Veamos que
+        \begin{itemize}
+            \item Para toda $z\in\mathring{\mathcal{I}}$, la función $x\mapsto g^z(x)=g(x,z)$ es integrable, se define así
+            \begin{equation*}
+                \begin{split}
+                    \Phi(z)&=\fou{f}(z)\\
+                    &=\int_{\mathbb{R}}g(x,z)\:dx\\
+                    &=\int_0^{\infty}e^{-izx}f(x)\:dx\\
+                \end{split}
+            \end{equation*}
+            para todo $z\in\mathring{\mathcal{I}}$.
+            \item Sea $x\in\mathbb{R}$, como $z\mapsto e^{ -izx}$ es holomorfa en $\mathring{\mathcal{I}}$, entonces existe la derivada de la función $\cf{g_x}{\mathring{\mathcal{I}}}{\mathbb{C}}$, dada por
+            \begin{equation*}
+                \begin{split}
+                    g_x'(z)&=\lim_{ w\rightarrow z}\frac{g_x(z)-g_x(w)}{z-w}\\
+                    &=\lim_{ w\rightarrow z}\frac{e^{ -izx}f(x)-e^{ -iwx}f(x)}{z-w}\\
+                    &=f(x)\lim_{ w\rightarrow z}\frac{e^{ -izx}-e^{ -iwx}}{z-w}\\
+                    &=-ixf(x)e^{ -izx}\\
+                \end{split}
+            \end{equation*}
+            \item Para todo $(x,z)\in\mathbb{R}\times\mathring{\mathcal{I}}$ se cumple que
+            \begin{equation*}
+                \begin{split}
+                    \abs{g_x'(z)}&=\abs{-ixf(x)e^{ -izx}}\\
+                    &=\abs{xe^{ -izx}}\abs{f(x)}\\
+                    &=\abs{xe^{ -ix(\Re z+i\Im z)}}\abs{f(x)}\\
+                    &=\abs{xe^{ -ix\Re z}e^{x\Im z}}\abs{f(x)}\\
+                    &=\abs{xe^{x\Im z}}\abs{f(x)}\\
+                \end{split}
+            \end{equation*}
+            donde
+            \begin{equation*}
+                \lim_{x\rightarrow\infty}xe^{x\Im z}=\lim_{x\rightarrow\infty}\frac{x}{e^{-x\Im z}}
+            \end{equation*}
+            que es de la forma $\frac{\infty}{\infty}$, por L'Hopital se sigue que
+            \begin{equation*}
+                \begin{split}
+                    \lim_{x\rightarrow\infty}xe^{x\Im z}&=\lim_{x\rightarrow\infty}\frac{x}{e^{-x\Im z}}\\
+                    &=\lim_{x\rightarrow\infty}\frac{1}{-\Im ze^{ -z\Im z}}\\
+                    &=0\\
+                \end{split}
+            \end{equation*}
+            pues el segundo límite existe. Así, existe $M>0$ tal que
+            \begin{equation*}
+                x\geq M\Rightarrow \abs{xe^{x\Im z}}<1
+            \end{equation*}
+            y, como la función $x\mapsto\abs{xe^{x\Im z}}$ es continua en $[0,M]$, es acotada, luego existe $A_0\geq 1$ tal que
+            \begin{equation*}
+                \abs{xe^{x\Im z}}\leq A_0,\quad\forall x\in[0,M]
+            \end{equation*}
+            Por ende,
+            \begin{equation*}
+                \abs{xe^{x\Im z}}\leq\max\left\{A_0,1\right\}=B_0,\quad\forall x\in[0,\infty[
+            \end{equation*}
+            se sigue entonces que
+            \begin{equation*}
+                \abs{g_x'(z)}\leq B_0\abs{f(x)}
+            \end{equation*}
+            (pues $f$ es nula fuera de $[0,\infty[$), siendo $f$ integrable.
+        \end{itemize}
+        Por los tres incisos anteriores y el teorema de derivación de funciones definidas por integrales, se sigue que $\Phi$ es holomorfa en $\mathring{\mathcal{I}}$ y su valor es
+        \begin{equation*}
+            \Phi'(z)=-i\int_{0}^{\infty}xe^{ -izx}f(x)\:dx
+        \end{equation*}
+
+        De (ii): %TODO
+
+        De (iii): 
     \end{sol}
 
     \begin{excer}
@@ -1154,7 +1311,7 @@
     \end{excer}
 
     \begin{sol}
-        
+        De (i): 
     \end{sol}
 
     \begin{excer}
