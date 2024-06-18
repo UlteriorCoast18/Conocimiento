@@ -928,7 +928,50 @@
             \end{split}
         \end{equation*}
 
-        De (iii): 
+        De (iii): Sea $\cf{g}{\mathbb{R}}{\mathbb{R}}$ la función $g=\chi_{[-a,a]}$. Se sabe por el inciso anterior que
+        \begin{equation*}
+            \fou_2{g}(x)=\sqrt{\frac{2}{\pi}}\frac{\sin ax}{x},\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        y, del inciso (i) y considere la función $\cf{h}{\mathbb{R}}{\mathbb{R}}$ tal que $h(x)=f(2x)=f\left(\frac{x}{\frac{1}{2}}\right)$. Entonces
+        \begin{equation*}
+            \begin{split}
+                \fou_2{f}(2x)&=\frac{1}{2}\fou_2{f}(x)\\
+                \Rightarrow 2\fou_2{f}(2x)&=\fou_2{f}(x)\\
+                \Rightarrow 2\fou_2{h}(x)&=\fou_2{f}(x)\\
+            \end{split}
+        \end{equation*}
+        Notemos además que
+        \begin{equation*}
+            \begin{split}
+                \pint{\fou_2{f}}{\fou_2{g}}&=2\pint{\fou_2{h}}{\fou_2{g}}\\
+                &=2\int_{-\infty}^\infty \fou_2{h}(x)\fou_2{g}(x)\:dx\\
+                &=2\int_{ -\infty}^{\infty}\fou_2{f}(2x)\fou_2{g}(x)\:dx\\
+                &=2\int_{-\infty}^{\infty}\frac{a}{\sqrt{2\pi}}\left(\frac{\sin\frac{2ax}{2}}{\frac{2ax}{2}} \right)^2\cdot\sqrt{\frac{2}{\pi}}\frac{\sin ax}{x}\:dx\\
+                &=\frac{2}{\pi a}\int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^3\:dx\\
+            \end{split}
+        \end{equation*}
+        y, por la identidad de Parserval
+        \begin{equation*}
+            \begin{split}
+                \pint{\fou_2{f}}{\fou_2{g}}&=\pint{f}{g}\\
+                &=\int_{-\infty}^\infty f(x)g(x)\:dx\\
+                &=\int_{-a}^a \left(1-\frac{\abs{x}}{a}\right)\:dx\\
+                &=2\int_{0}^a \left(1-\frac{\abs{x}}{a}\right)\:dx\\
+                &=2\int_{0}^a \left(1-\frac{x}{a}\right)\:dx\\
+                &=2\left[x-\frac{x^2}{2a}\Big|_{ 0}^a\right]\\
+                &=2\left[a-\frac{a^2}{2a}\right]\\
+                &=2\left[\frac{a}{2}\right]\\
+                &=a
+            \end{split}
+        \end{equation*}
+        Por ende,
+        \begin{equation*}
+            \begin{split}
+                \frac{2}{\pi a}\int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^3\:dx&=a\\
+                \Rightarrow \int_{-\infty}^{\infty}\left(\frac{\sin ax}{x}\right)^3\:dx&=\frac{\pi a}{2}
+            \end{split}
+        \end{equation*}
+        (falta multiplicar por un factor de 2/3 según Wolfram).
     \end{sol}
 
     \begin{excer}
