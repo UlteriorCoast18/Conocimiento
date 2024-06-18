@@ -1689,7 +1689,7 @@
     \newcommand{\RP}{\ensuremath{\mathbb{R}\textup{P}}}
 
     \begin{exa}
-        Sea $n\in\mathbb{N}$. Defin 
+        Sea $n\in\mathbb{N}$. Defina
         \begin{equation*}
             S^{n}=\left\{(x_1,...,x_{ n+1})\in\mathbb{R}^{ n+1}\Big|\sum_{ i=1}^{ n+1}x_i^2=1 \right\}
         \end{equation*}
@@ -1712,4 +1712,139 @@
         El conjunto $\RP^n$ junto con la topología cociente definida por $\varphi$ se llama el \textbf{$n$-espacio proyectivo real}
     \end{exa}
     
+    \begin{exa}
+        Sea $X=[0,1]\times[0,2]$ y considere a $X$ como subespacio de $(\mathbb{R}^2,\tau_u)$. Sobre $X$ definimos las siguientes relaciones de equivalencia.
+        \begin{equation*}
+            (x,y)\mathcal{R}(x',y')\iff \left\{
+                \begin{array}{c}
+                    (x,y)=(x',y')\\
+                    \textup{ó}\\
+                    {x,x'}=\left\{0,1\right\}\textup{ y }y=y'\\
+                \end{array}
+            \right.
+        \end{equation*}
+        y,
+        \begin{equation*}
+            (x,y)\mathcal{S}(x',y')\iff \left\{
+                \begin{array}{c}
+                    (x,y)\mathcal{R}(x',y')\\
+                    \textup{ó}\\
+                    {y,y'}=\left\{0,2\right\}\textup{ y }x=x'\\
+                \end{array}
+            \right.
+        \end{equation*}
+        definimos sobre $X/\mathcal{R}$ la relación de equivalencia siguiente:
+        \begin{equation*}
+            [(x,y)]_{\mathcal{R}}\mathcal{S}/\mathcal{R}[(z,w)]_{\mathcal{R}}\iff\exists(x',y')\in[(x,y)]_{\mathcal{R}}\textup{ y }(z',w')\in[(z,w)]_{\mathcal{R}}\textup{ tales que }(x',y')\mathcal{S}(z',w')
+        \end{equation*}
+        Sea ahora
+        \begin{equation*}
+            C=\left\{(x,y,z)\in\mathbb{R}^3\Big|x^2+y^2=1\textup{ y }0\leq z\leq 2 \right\}
+        \end{equation*}
+        defina así $\cf{g}{(X,\tau_u)}{(C,\tau_u)}$ tal que $(x,y)\mapsto g(x,y)=(\cos 2\pi x,\sin x\pi x,y)$. Las funciones coordenadas de $g$ son continuas, con lo cual $g$ es continua. Se tiene que $g$ es suprayectiva, afirmamos también que $g$ es cerrada. 
+        
+        En efecto, sea $A\subseteq X$ cerrado, como $(X,\tau_u)$ es compacto, entonces $A$ es compacto, luego $g(A)$ es compacto en $(C,\tau_u)$ que es $T_2$. Por tanto $g(A)$ es cerrado.
+
+        Se tiene entonces que $g$ es continua, suprayectiva y cerrada, por una proposición anterior se sigue que la topología de $C$ es la topología cociente inducida por $g$, esto es $\cf{g}{(X,\tau_u)}{(C,\tau_g)}$.
+
+        Afirmamos ahora que $g$ es compatible con $\mathcal{R}$. Sean $(x,y),(x',y')\in X$ tales que $(x,y)\mathcal{R}(x',y')$, se tienen dos casos:
+        \begin{itemize}
+            \item Si $(x,y)=(x',y')$, entonces $g(x,y)=g(x',y')$.
+            \item Si $x=0$, $x'=1$ y $y=y'$ se sigue que $g(x,y)=(1,0,y)$ y $g(x',y')=(1,0,y')$. Por tanto $g(x,y)=g(x',y')$.
+        \end{itemize}
+        luego, de una proposición anterior podemos definir $\cf{\overline{g}}{(X/\mathcal{R},\tau/\mathcal{R})}{(C,\tau_g)}$ tal que
+        \begin{equation*}
+            \overline{g}([(x,y)]_{\mathcal{R}})=g(x,y)
+        \end{equation*}
+        Se tiene que $\overline{g}$ es continua y biyectiva. Sea $\cf{\varphi}{X}{X/\mathcal{R}}$ el mapeo canónico. Se tiene
+        \begin{equation*}
+            (X,\tau_u)\overset{g}{\longrightarrow}(C,\tau_g)\overset{\overline{g}^{-1}}{\longrightarrow}(X/\mathcal{R},\tau/\mathcal{R})
+        \end{equation*}
+        siendo $\varphi=\overline{g}^{-1}\circ g$ es continua y siendo $g$ continua, luego por una proposición anterior, como $\tau_g=\tau_C$, se sigue que $\overline{g}^{-1}$ es continua. Por tanto, $\overline{g}$ es un homeomorfismo, en particular $\overline{g}^{-1}$ lo es y además, $\tau_g=\tau_{\overline{g}}$.
+
+        Sea
+        \begin{equation*}
+            B=\left\{(x,y,z)\in\mathbb{R}^3\Big|x^2+y^2+z^2+3=4\sqrt{x^2+y^2} \right\}
+        \end{equation*}
+        considere a $B$ como subespacio de $(\mathbb{R}^3,\tau_u)$. Sea $\cf{h}{(X,\tau_u)}{(B,\tau_u)}$ tal que
+        \begin{equation*}
+            h(x,y)=((2+\cos\pi y)\cdot\cos 2\pi x,(2+\cos \pi y)\cdot\sin 2\pi x,\sin \pi y)
+        \end{equation*}
+        Se tiene que $h$ es continua cerrada y biyectiva. Por una proposición anterior se sigue que la topología de $B$ es la topología cociente $\tau_h$.
+
+        Veamos que $h$ es compatible con $\mathcal{S}$. Sean $(x,y),(x',y')\in X$ tales que $(x,y)\mathcal{S}(x',y')$. Se tienen tres casos:
+        \begin{itemize}
+            \item $(x,y)=(x',y')$, en cuyo caso se sigue que $h(x,y)=h(x',y')$.
+            \item Suponga que $x=0$, $x'=1$ y $y=y'$. Tenemos que
+            \begin{equation*}
+                h(0,y)=(2+\cos\pi y,0,\sin\pi y)\quad\textup{y}\quad h(1,y)=(2+\cos\pi y,0,\sin\pi y)
+            \end{equation*}
+            con lo que se tiene la igualdad.
+            \item $x=x'$, $y=0$ y $y'=2$. Tenemos qu 
+            \begin{equation*}
+                h(x,0)=(3\cos2\pi x,3\sin 2\pi x,0)\quad\textup{y}\quad h(x,2)=(3\cos2\pi x,3\sin 2\pi x,0)
+            \end{equation*}
+            con lo que se tiene la igualdad.
+        \end{itemize}
+        Por tanto, $h$ es compatible con $\mathcal{S}$. De una proposición anterior se sigue que podemos definir una función $\cf{\overline{h}}{(X/\mathcal{S},\tau/\mathcal{S})}{(B,\tau_h)}$ tal que
+        \begin{equation*}
+            \overline{h}([(x,y)]_{\mathcal{S}})=h(x,y)
+        \end{equation*}
+        se tiene que $\overline{h}$ es un homeomorfismo (el agrumento es similar al de la función $\overline{g}$).
+
+        Definimos ahora una relación $\mathcal{H}$ sobre $C$ como
+        \begin{equation*}
+            (x,y,z)\mathcal{H}(x',y',z')\iff \left\{
+                \begin{array}{c}
+                    (x,y,z)=(x',y',z')\\
+                    \textup{ó}\\
+                    (x,y)=(x',y')\textup{ y }\left\{z,z'\right\}=\left\{0,2 \right\}\\
+                \end{array}
+            \right.
+        \end{equation*}
+        se tiene que $\mathcal{H}$ es una relación de equivalencia sobre $C$. Tenemos lo espacios topológicos $(X/\mathcal{R},\tau/\mathcal{R})$, $(C,\tau_g)$ y las relaciones de equivalencia $\mathcal{S}/\mathcal{R}$ y $\mathcal{H}$ definida sobre $X/\mathcal{R}$. Tomemos
+        \begin{equation*}
+            u=[(x,y)]_{\mathcal{R}}\quad\textup{y}\quad v=[(z,w)]_{\mathcal{R}}
+        \end{equation*}
+        en $X/\mathcal{R}$. Entonces $u\mathcal{S}/\mathcal{R}v$ si y sólo si
+        \begin{equation*}
+            \overline{g}(u)\mathcal{H}\overline{g}(v)
+        \end{equation*}
+        Sea $\cf{\psi}{(C,\tau_g)}{(C/\mathcal{H},\tau/\mathcal{H})}$. Defina $F=\psi\circ\overline{g}$. Entonces
+        \begin{equation*}
+            \cf{F}{(X/\mathcal{R},\tau/\mathcal{R})}{(C/\mathcal{H},\tau/\mathcal{H})}
+        \end{equation*}
+        $\psi$ y $\overline{g}$ son continuas y suprayectivas, luego $F$ también es continua y suprayectiva. Entonces $F$ es compatible con $\mathcal{S}/\mathcal{R}$, es decir si $u,v\in X/\mathcal{R}$ y además $u\mathcal{H}v$, entonces $F(u)=F(v)$.
+
+        Por una proposición anterior podemos definir $\cf{\overline{F}}{(X/\mathcal{R}/\mathcal{S}/\mathcal{R},\tau/\mathcal{R}/\mathcal{S}/\mathcal{R})}{(C/\mathcal{H},\tau/\mathcal{H})}$ tal que
+        \begin{equation*}
+            \overline{F}\left(\left[\left[(x,y) \right]_{\mathcal{R}} \right]_{\mathcal{S}/\mathcal{R}} \right)=F\left([(x,y)]_{\mathcal{R}}\right)=(\psi\circ\overline{g})([(x,y)]_{\mathcal{R}})=[g(x,y)]_{\mathcal{H}}
+        \end{equation*}
+        siendo $F$ continua, se sigue que $\overline{F}$ también lo es, además por ser suprayectiva, entonces $\overline{F}$ es biyección. Sea $\cf{\varphi'}{(X/\mathcal{R},\tau/\mathcal{R})}{(X/\mathcal{R}/\mathcal{S}/\mathcal{R},\tau/\mathcal{R}/\mathcal{S}/\mathcal{R})}$ la función canónica. El siguiente diagrama
+        \begin{equation*}
+            \begin{array}{lcccr}
+                & (X/\mathcal{R},\tau/\mathcal{R})& \overset{\overline{g}}{\longrightarrow} & (C,\tau_{\overline{g}}) & \\
+                \psi' & \downarrow & & \downarrow & \psi\\
+                & (X/\mathcal{R}/\mathcal{S}/\mathcal{R},\tau/\mathcal{R}/\mathcal{S}/\mathcal{R})& \overset{\overline{F}}{\longrightarrow} & (C/\mathcal{H},\tau_{\overline{g}/\mathcal{H}}) & \\
+            \end{array}
+        \end{equation*}
+        es conmutativo, es decir que
+        \begin{equation*}
+            (\overline{F}\circ\psi')=\psi\circ\overline{g}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            (X/\mathcal{R},\tau/\mathcal{R})\overset{\overline{g}}{\longrightarrow}(C,\tau_g)\overset{\overline{F}^{-1}\circ\psi}{\longrightarrow}(X/\mathcal{R}/\mathcal{S}/\mathcal{S},\tau/\mathcal{R}/\mathcal{S}/\mathcal{S})
+        \end{equation*}
+        por una proposición anterior se sigue que $\overline{F}^{-1}\circ\psi$ es continua. Más aún
+        \begin{equation*}
+            (C,\tau_g)\overset{\psi}{\longrightarrow}(C/\mathcal{H},\tau/\mathcal{H})\overset{\overline{F}^{-1}}{\longrightarrow}(X/\mathcal{R}/\mathcal{S}/\mathcal{S},\tau/\mathcal{R}/\mathcal{S}/\mathcal{S})
+        \end{equation*}
+        Por otra proposición anterior se sigue que $\overline{F}^{-1}$ es continua, luego $\overline{F}$ es homeomorfismo.
+    \end{exa}
+
+    \begin{proof}
+        $g$ es suprayectiva (\textit{ejercicio}).
+    \end{proof}
+
 \end{document}
