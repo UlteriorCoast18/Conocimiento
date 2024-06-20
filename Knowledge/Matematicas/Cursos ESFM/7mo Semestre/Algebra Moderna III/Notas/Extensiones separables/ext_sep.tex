@@ -2021,4 +2021,66 @@
         \end{equation*}
     \end{obs}
 
+    \begin{propo}
+        Sea $N <| S_n$ con $N\neq S_n$ y $N$ conteniendo un 3-ciclo. Entonces, $N=A_n$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $(a\quad b\quad c)$ el 3-ciclo contenido en $N$. Probemos que para todo $i\in\mathbb{N}$, $i\neq a,b,c$, $(a\quad b\quad i)\in N$.
+
+        Como $N<| S_n$, entonces para todo $\beta\in S_n$, $\beta(a\quad b\quad c)\beta^{-1}\in N$, es decir que $(\beta(a)\quad \beta(b)\quad \beta(c))\in N$, para todo $\beta\in S_n$.
+
+        Elegimos $\beta=(c\quad i)$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                (a\quad b\quad i)=(\beta(a)\quad\beta(b)\quad\beta(c))\in N
+            \end{split}
+        \end{equation*}
+        Así, $A_n< N< S_n$.
+
+        Más aún
+        \begin{equation*}
+            \begin{split}
+                2&=[S_n:A_n]\\
+                &=[S_n:N][N:A_n]\\
+            \end{split}
+        \end{equation*}
+        luego, $[N:A_n]=1$, es decir que $A_n=N$.
+    \end{proof}
+
+    \begin{obs}
+        $\langle\sigma^2\Big|\sigma\in S_n \rangle=A_n$. En efecto, basta notar que si $(i\quad j\quad k)$ es un 3-ciclo, entonces este tres ciclo es el cuadrado de una permutación, que es el cuadrado de un 3-ciclo, ya que
+        \begin{equation*}
+            (i\quad j\quad k)=(i\quad k\quad j)^2
+        \end{equation*}
+    \end{obs}
+
+    \begin{propo}
+        Sea $N\vartriangleleft S_n$ tal que $[S_n:N]=2$, entonces $N=A_n$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $\sigma\notin N$, entonces
+        \begin{equation*}
+            S_n/N=\left\{N,\sigma N\right\}
+        \end{equation*}
+        donde $o\left(\sigma N \right)$, esto es que $\sigma^2\in N$. Por tanto
+        \begin{equation*}
+            \sigma^2\in N\quad\forall \sigma\in S_n
+        \end{equation*}
+        es decir que
+        \begin{equation*}
+            A_n< N<S_n
+        \end{equation*}
+        pero
+        \begin{equation*}
+            [S_n:A_n]=[S_n:N][N:A_n]
+        \end{equation*}
+        donde $[S_n:A_n]=2$ y $[S_n:N]$, entonces $A_n=N$.
+    \end{proof}
+
+    \begin{theor}
+        Si $n\geq 5$, entonces $A_n$ es simple.
+    \end{theor}
+
 \end{document}

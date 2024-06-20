@@ -983,7 +983,7 @@
 
             \item \textbf{Muestre} que se cumple la \textbf{fórmula de Bochner}
             \begin{equation*}
-                \fou{(f\circ r)}(x)=2(n-1)\omega_{ n-1}\int_0^\infty v_n(u(\norm{x}))f(u)u^{ n-1}\:du,\quad\forall x\in\mathbb{R}^n
+                \fou{(f\circ r)}(x)=2(n-1)\omega_{ n-1}\int_0^\infty v_n(u\norm{x})f(u)u^{ n-1}\:du,\quad\forall x\in\mathbb{R}^n
             \end{equation*}
             donde $\omega_{n-1}$ es el volumen de la bola euclideana de radio uno en $\mathbb{R}^{ n-1}$ y $v_n$ se define por la fórmula
             \begin{equation*}
@@ -1028,14 +1028,78 @@
         \begin{equation*}
             \begin{split}
                 \fou{(f\circ r)}(x)&=\int_{\mathbb{R}^n}e^{ -i\norm{x}y_1}f(\norm{y})\:dy_1\cdots dy_n\\
-                &=\int_{\Omega}e^{ -i\norm{x}r\cos\varphi_1}f(r)r^{ n-1}\sin^{ n-2}\varphi_1\cdots\sin\varphi_{ n-2} \: drd\varphi_1\cdots d\varphi_{ n-1}\\
+                &=\int_{\Omega}e^{ -i\norm{x}\rho\cos\varphi_1}f(\rho)\rho^{ n-1}\sin^{ n-2}\varphi_1\cdots\sin\varphi_{ n-2} \: d\rho d\varphi_1\cdots d\varphi_{ n-1}\\
             \end{split}
         \end{equation*}
         donde
         \begin{equation*}
-            \Omega=\left\{(r,\varphi_1,...,\varphi_{ n-1})\in\mathbb{R}^n\Big|r\geq0,0\leq\varphi_1,...,\varphi_{ n-2}\leq\pi,-\pi\leq\varphi_{ n-1}\leq\pi \right\}
+            \Omega=\left\{(\rho,\varphi_1,...,\varphi_{ n-1})\in\mathbb{R}^n\Big|\rho\geq0,0\leq\varphi_1,...,\varphi_{ n-2}\leq\pi,-\pi\leq\varphi_{ n-1}\leq\pi \right\}
         \end{equation*}
-
+        Por Fubini se tiene que
+        \begin{equation*}
+            \begin{split}
+                \fou{(f\circ r)}(x)&=\int_{\Omega}e^{ -i\norm{x}\rho\cos\varphi_1}f(\rho)\rho^{ n-1}\sin^{ n-2}\varphi_1\cdots\sin\varphi_{ n-2} \: d\rho d\varphi_1\cdots d\varphi_{ n-1}\\
+                &=\int_{0}^\infty \rho^{ n-1}f(\rho)\:d\rho \int_{0}^\pi e^{ -i\norm{x}\rho\cos\varphi_1}\sin^{ n-2}\varphi_1\:d\varphi_1 \int_{\Omega'} \sin^{ n-3}\varphi_2\cdots\sin\varphi_{ n-2} \: d\varphi_{2}\cdots d\varphi_{ n-1}\\
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \Omega'=\left\{(\varphi_2,...,\varphi_{ n-1})\in\mathbb{R}^{n-2}\Big|0\leq\varphi_2,...,\varphi_{ n-2}\leq\pi,-\pi\leq\varphi_{ n-1}\leq\pi \right\}
+        \end{equation*}
+        Pero, tenemos que
+        \begin{equation*}
+            \begin{split}
+                \int_{\Omega'} \sin^{ n-3}\varphi_2\cdots\sin\varphi_{ n-2} \: d\varphi_{2}\cdots d\varphi_{ n-1}&=(1-0)\int_{\Omega'}\sin^{(n-1)-2}\varphi_2\cdots\sin\varphi_{ n-2} \: d\varphi_{2}\cdots d\varphi_{ n-1}\\
+                &=(n-1)\left(\frac{\rho^{n-1}}{n-1}\Big|_{0}^1\right)\int_{\Omega'}\sin^{(n-1)-2}\varphi_2\cdots\sin\varphi_{ n-2} \: d\varphi_{2}\cdots d\varphi_{ n-1}\\
+                &=(n-1)\left(\int_0^1\rho^{ n-2}\:d\rho\right)\int_{\Omega'}\sin^{(n-1)-2}\varphi_2\cdots\sin\varphi_{ n-2} \: d\varphi_{2}\cdots d\varphi_{ n-1}\\
+                &=(n-1)\int_0^1\rho^{ n-2}\:d\rho\int_{\Omega'}\sin^{(n-1)-2}\varphi_2\cdots\sin\varphi_{ n-2} \: d\varphi_{2}\cdots d\varphi_{ n-1}\\
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \begin{split}
+                \omega_{ n-1}=\int_0^1\rho^{ n-2}\:d\rho\int_{\Omega'}\sin^{(n-1)-2}\varphi_2\cdots\sin\varphi_{ n-2} \: d\varphi_{2}\cdots d\varphi_{ n-1}
+            \end{split}
+        \end{equation*}
+        es el volumen de la $n-1$ esfera en $\mathbb{R}^{ n-1}$. Por tanto:
+        \begin{equation*}
+            \begin{split}
+                \fou{(f\circ r)}(x)&=\int_{0}^\infty \rho^{ n-1}f(\rho)\:d\rho \int_{0}^\pi e^{ -i\norm{x}\rho\cos\varphi_1}\sin^{ n-2}\varphi_1\:d\varphi_1 \int_{\Omega'} \sin^{ n-3}\varphi_2\cdots\sin\varphi_{ n-2} \: d\varphi_{2}\cdots d\varphi_{ n-1}\\
+                &=(n-1)\omega_{n-1}\int_{0}^\infty \rho^{ n-1}f(\rho)\:d\rho \int_{0}^\pi e^{ -i\norm{x}\rho\cos\varphi_1}\sin^{ n-2}\varphi_1\:d\varphi_1\\
+                &=(n-1)\omega_{n-1}\int_{0}^\infty u^{ n-1}f(u)\:du \int_{0}^\pi e^{ -i\norm{x}u\cos\phi}\sin^{ n-2}\phi\:d\phi\\
+            \end{split}
+        \end{equation*}
+        y, para $u\in[0,\infty[$:
+        \begin{equation*}
+            \begin{split}
+                \int_{0}^\pi e^{ -i\norm{x}u\cos\phi}\sin^{ n-2}\phi\:d\phi&=\int_{0}^\pi \left(\cos(\norm{x}u\cos\phi)-i\sin(\norm{x}u\cos\phi)\right) \sin^{ n-2}\phi\:d\phi\\
+                &=\int_{0}^\pi\cos(\norm{x}u\cos\phi)\sin^{ n-2}\phi\:d\phi-i\int_{0}^\pi\sin(\norm{x}u\cos\phi)\sin^{ n-2}\phi\:d\phi\\
+            \end{split}
+        \end{equation*}
+        Analicemos ambas integrables. Sea $u\in[0,\infty[$:
+        \begin{itemize}
+            \item Afirmamos que
+            \begin{equation*}
+                \int_{0}^\pi\cos(\norm{x}u\cos\phi)\sin^{ n-2}\phi\:d\phi=2\int_{0}^{\frac{\pi}{2}}\cos(\norm{x}u\cos\theta)\sin^{ n-2}\theta\:d\theta
+            \end{equation*}
+            \item Afirmamos que
+            \begin{equation*}
+                \int_{0}^\pi\sin(\norm{x}u\cos\phi)\sin^{ n-2}\phi\:d\phi=0
+            \end{equation*}
+            %TODO
+        \end{itemize}
+        Por los dos incisos anteriores, tenemos que
+        \begin{equation*}
+            \begin{split}
+                \fou{(f\circ r)}(x)&=(n-1)\omega_{n-1}\int_{0}^\infty u^{ n-1}f(u)\:du \int_{0}^\pi e^{ -i\norm{x}u\cos\phi}\sin^{ n-2}\phi\:d\phi\\
+                &=2(n-1)\omega_{n-1}\int_{0}^\infty u^{ n-1}f(u)\:du \int_{0}^{\frac{\pi}{2}}\cos(\norm{x}u\cos\theta)\sin^{ n-2}\theta\:d\theta\\
+                &=2(n-1)\omega_{n-1}\int_{0}^\infty v_n(u\norm{x})f(u)u^{ n-1}\:du\\
+            \end{split}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            v_n(t)=\int_{0}^{\frac{\pi}{2}}\cos(t\cos\theta)\sin^{ n-2}\theta\:d\theta,\quad\forall t\in[0,\infty[
+        \end{equation*}
     \end{sol}
 
     \begin{excer}
@@ -1564,7 +1628,87 @@
     \end{excer}
 
     \begin{sol}
-        De (i): 
+        De (i): Defina $\cf{h}{\mathbb{R}\times\mathbb{C}}{\mathbb{C}}$ dada por:
+        \begin{equation*}
+            h(x,z)=e^{ -izx-\frac{x^2}{2}}\conj{f(x)}
+        \end{equation*}
+        Veamos que se cumple lo siguiente:
+        \begin{itemize}
+            \item Sea $z\in\mathbb{C}$, se tiene que
+            \begin{equation*}
+                \begin{split}
+                    \abs{e^{ -izx-\frac{x^2}{2}}\conj{f(x)}}&=\abs{e^{ -ix(\Re z+i\Im z)}e^{-\frac{x^2}{2}}\conj{f(x)}}\\
+                    &=\abs{e^{-ix\Re z}}\abs{e^{x\Im z-\frac{x^2}{2}}}\abs{\conj{f(x)}}\\
+                    &=\abs{e^{x\Im z-\frac{x^2}{2}}}\abs{f(x)},\quad\forall x\in\mathbb{R} \\
+                \end{split}
+            \end{equation*}
+            donde por Hölder, se tiene que $x\mapsto \abs{e^{x\Im z-\frac{x^2}{2}}}\abs{f(x)}$ está en $\mathcal{L}_1(\mathbb{R},\mathbb{R})$, pues $x\mapsto e^{x\Im z-\frac{x^2}{2}}$ está en $\mathcal{L}_2(\mathbb{R},\mathbb{C})$, al igual que $f$.
+            \item Sea $x\in\mathbb{R}$. Es claro que la función
+            \begin{equation*}
+                z\mapsto e^{-izx-^{\frac{x^2}{2}}}\conj{f(x)} 
+            \end{equation*}
+            es diferenciable en $\mathbb{C}$ (pues $z\mapsto e^{-izx-\frac{x^2}{2}}$) lo es, con derivada:
+            \begin{equation*}
+                \frac{\partial h}{\partial z}(x,z)=(-i)xe^{-izx-^{\frac{x^2}{2}}}\conj{f(x)}
+            \end{equation*}
+            Se tiene entonces que $F$ está bien definida, para todo $z\in\mathbb{R}$.
+
+            \item Para $z\in\mathbb{C}$ se tiene que
+            \begin{equation*}
+                \begin{split}
+                    \abs{\frac{\partial h}{\partial z}(x,z)}&=\abs{(-i)xe^{-izx-^{\frac{x^2}{2}}}\conj{f(x)}}\\
+                    &=\abs{xe^{x\Im z-\frac{x^2}{2}}}\abs{f(x)}\\
+                \end{split}
+            \end{equation*}
+            sea $a>0$, tenemos que para todo $z\in\mathbb{C}$ tal que $\Im z<a$:
+            \begin{equation*}
+                \begin{split}
+                    \abs{\frac{\partial h}{\partial z}(x,z)}&=\abs{xe^{x\Im z-\frac{x^2}{2}}}\abs{f(x)}\\
+                    &=e^{x\Im z} \abs{xe^{-\frac{x^2}{2}}}\abs{f(x)}\\
+                    &\leq e^{ ax}\abs{xe^{-\frac{x^2}{2}}}\abs{f(x)}\\
+                    &=\abs{xe^{ax-\frac{x^2}{2}}}\abs{f(x)}\\
+                \end{split}
+            \end{equation*}
+            donde la función de la derecha es integrable en $\mathbb{R}$ y no depende de $z$.
+        \end{itemize}
+        Por el teorema de derivación de funciones definidas por integrales, se tiene que $F$ es holomorfa en el semiplano abierto
+        \begin{equation*}
+            \Omega_a=\left\{z\in\mathbb{Z}\Big|\Im z<a \right\}
+        \end{equation*}
+        para todo $a>0$. Luego al ser el $a>0$ arbitrario, se sigue que $F$ es homolorfa en $\mathbb{C}$. En particular:
+        \begin{equation*}
+            F^{(1)}=(-i)\int_{-\infty}^\infty xe^{ -izx-\frac{x^2}{2}}\conj{f(x)}\:dx,\quad\forall z\in\mathbb{C}
+        \end{equation*}
+        Más aún, como $F$ es holomorfa en $\mathbb{C}$, tiene todas sus derivadas de todos sus órdenes y, por inducción se prueba de forma análoga al procedimiento anterior que
+        \begin{equation*}
+            F^{(n)}=(-i)^n\int_{-\infty}^\infty x^ne^{ -izx-\frac{x^2}{2}}\conj{f(x)}\:dx,\quad\forall z\in\mathbb{C}
+        \end{equation*}
+        para todo $n\in\mathbb{N}$.
+
+        De (ii): Como $f$ es ortogonal a todas las funciones de Hermite, se tiene que
+        \begin{equation*}
+            \pint{\varphi_n}{f}=0,\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        es decir,
+        \begin{equation*}
+            \int_{ -\infty}^{\infty}H_n(x)e^{ -\frac{x^2}{2}}\conj{f(x)}\:dx=0
+        \end{equation*}
+        donde $H_n$ es un polinomio de grado $n$. Como se cumple para todo $n\in\mathbb{N}$, entonces
+        \begin{equation*}
+            (-1)^n\int_{ -\infty}^{\infty}x^n e^{ -\frac{x^2}{2}}\conj{f(x)}\:dx=0
+        \end{equation*}
+        es decir, que
+        \begin{equation*}
+            F^(n)=0,\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        Por ser $F$ holomorfa en $\mathbb{C}$, admite expansión en serie de Taylor alrededor del 0, así:
+        \begin{equation*}
+            F(z)=\sum_{ n=0}^\infty \frac{F^{n}(0)}{n!}z^n,\quad\forall z\in\mathbb{C}
+        \end{equation*}
+        (ya que el hecho de que $F$ sea holomorfa en $\mathbb{C}$ implica que $F$ es analítica, luego admite tal representación en serie de potencias). En particular, se tiene que
+        \begin{equation*}
+            F(z)=F(0),\quad\forall z\in\mathbb{C}
+        \end{equation*}
     \end{sol}
 
     \begin{excer}
@@ -1572,7 +1716,7 @@
         \begin{enumerate}
             \item \textbf{Demuestre} la fórmula.
             \begin{equation*}
-                D_x^n\int_{-\infty}^\infty e^{ -y^2}e^{\frac{1}{2}(y-ix)^2}\:dy=(-1)^n\int_{-\infty}^\infty e^{ -y^2}D_x^n e^{\frac{1}{2}(y-ix)^2}\:dy
+                D_x^n\int_{-\infty}^\infty e^{ -y^2}e^{\frac{1}{2}(y-ix)^2}\:dy=(-1)^n\int_{-\infty}^\infty e^{ -y^2}D_y^n e^{\frac{1}{2}(y-ix)^2}\:dy
             \end{equation*}
             \item Se consideran las funciones de Hermite
             \begin{equation*}
