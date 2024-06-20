@@ -1328,9 +1328,71 @@
         \end{equation*}
         por ende,
         \begin{equation*}
-            \abs{f(x)}\underset{\abs{x}\rightarrow\infty}{=}=O\left(\frac{1}{\abs{x}^{ m-1}} \right)
+            \abs{f(x)}\underset{\abs{x}\rightarrow\infty}{=}O\left(\frac{1}{\abs{x}^{ m-1}} \right)
+        \end{equation*}
+        La convergencia absoluta de ambas sumas se sigue de forma inmediata de el hecho que
+        \begin{equation*}
+            \abs{f(x)}\underset{\abs{x}\rightarrow\infty}{=}O\left(\frac{1}{\abs{x}^{ m-1}} \right)\quad\textup{y}\quad\abs{\varphi(x)}\underset{\abs{x}\rightarrow\infty}{=}O\left(\frac{1}{\abs{x}^{ m}} \right)
+        \end{equation*}
+        veamos que es uniforme en $[-1,1]$. En efecto, sea $\varepsilon>0$, debemos encontrar un $N\in\mathbb{N}$ tal que $n\geq N$ implique
+        \begin{equation*}
+            \sup_{ x\in[-1,1]}\abs{\Phi(x)-\sum_{ k=-n}^{n}\varphi(x+k)}\leq\varepsilon
+        \end{equation*}
+        en otras palabras
+        \begin{equation*}
+            \sup_{ x\in[-1,1]}\abs{\sum_{ k\in U_n}\varphi(x+k)}\leq\varepsilon
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \begin{split}
+                U_n&=\left\{y\in\mathbb{Z}\Big|y\leq-n\textup{ ó }n\leq y \right\}\\
+                &=\left(]-\infty,-n]\cup[n,\infty[\right)\cap\mathbb{Z}\\
+            \end{split}
+        \end{equation*}
+        es decir que
+        \begin{equation*}
+            \sup_{ x\in[-1,1]}\abs{\sum_{ k=-\infty }^{ -n}\varphi(x+k)+\sum_{ k=n}^{\infty}\varphi(x+k)}\leq\varepsilon
+        \end{equation*}
+        En efecto, existe $M_1\geq 0$ tal que
+        \begin{equation*}
+            \abs{x}\geq M_1\Rightarrow \frac{A}{\abs{x}^m}\leq \varepsilon
+        \end{equation*}
+        sea $N\in\mathbb{N}$ tal que $N\geq\max\left\{M,M_1 \right\}$, entonces si $n\geq N$
+        (la idea está en ver la convergencia absoulta de $\sum_{ k=-\infty }^{ -n}\varphi(x+k)$).
+
+        De (ii): Veamos primero que
+        \begin{equation*}
+            \begin{split}
+                \int_0^1 F(x)e^{ -2\pi inx}\:dx&=\int_0^1\left(F(0)+\int_0^x\Phi(y)\:dy\right)e^{ -2\pi inx}\:dx \\
+                &=\int_0^1\left(F(0)+\int_0^x\Phi(y)\:dy\right)e^{ -2\pi inx}\:dx \\
+                &=\int_0^1 F(0)\:dx+\int_0^1\:dx\int_0^x\Phi(y) e^{ -2\pi inx}\:dy \\
+                &=F(0)+\int_0^1\:dx\int_0^x\Phi(y) e^{ -2\pi inx}\:dy\\
+                &=\sum_{k\in\mathbb{Z}}f(k)+\int_0^1\:dx\int_0^x\Phi(y) e^{ -2\pi inx}\:dy\\
+                &=\sum_{k\in\mathbb{Z}}f(k)+\int_0^1\:dy\int_{1-y}^1\Phi(y) e^{ -2\pi inx}\:dx\\
+                &=\sum_{k\in\mathbb{Z}}f(k)+\int_0^1\Phi(y)\:dy\int_{1-y}^1 e^{ -2\pi inx}\:dx\\
+                &=\sum_{k\in\mathbb{Z}}f(k)+\int_0^1\Phi(y)\:dy\int_{1-y}^1 e^{ -2\pi inx}\:dx\\
+                &=\sum_{k\in\mathbb{Z}}f(k)+\int_0^1\Phi(y)\left[\frac{e^{ -2\pi inx}}{-2\pi in}\Big|_{1-y}^1\right]\:dy\\
+                &=\sum_{k\in\mathbb{Z}}f(k)+\int_0^1\Phi(y)\left[\frac{e^{ -2\pi in}-e^{ -2\pi(1-y)in}}{-2\pi in}\right]\:dy\\
+                &=\sum_{k\in\mathbb{Z}}f(k)+\int_0^1\Phi(y)\left[\frac{1-e^{ -2\pi in}e^{ -2\pi iny}}{-2\pi in}\right]\:dy\\
+                &=\sum_{k\in\mathbb{Z}}f(k)+\int_0^1\Phi(y)\left[\frac{1-e^{ -2\pi iny}}{-2\pi in}\right]\:dy\\
+                &=\sum_{k\in\mathbb{Z}}f(k)-\frac{1}{2\pi in}\int_0^1\Phi(y)\left[1-e^{-2\pi iny}\right]\:dy\\
+                &=\sum_{k\in\mathbb{Z}}f(k)-\frac{1}{2\pi in}\int_0^1\sum_{ k\in\mathbb{Z}}\varphi(y+k)\left[1-e^{-2\pi iny}\right]\:dy\\
+            \end{split}
+        \end{equation*}
+        (suponiendo que todo sale bien) y,
+        \begin{equation*}
+            \begin{split}
+                \fou{f}(2\pi n)&=\int_{-\infty}^{\infty}e^{ -2\pi inx}f(x)\:dx\\
+                &=\sum_{ k\in\mathbb{Z}}\int_{k}^{k+1}e^{ -2\pi inx}f(x)\:dx\\
+                &=\sum_{ k\in\mathbb{Z}}\int_{k}^{k+1}\left(f(0)+\int_0^x\varphi(y)\:dy\right) e^{ -2\pi inx} \:dx\\
+                &=\sum_{ k\in\mathbb{Z}}\int_{k}^{k+1}f(0)e^{ -2\pi inx}\:dx+\sum_{ k\in\mathbb{Z}}\int_{k}^{k+1}dx\int_0^x \varphi(y)e^{-2\pi inx}\:dy
+            \end{split}
         \end{equation*}
 
+        De (iii): Considere la función $\cf{h_1}{\mathbb{R}}{\mathbb{R}}$ dada por $x\mapsto e^{-\alpha\abs{x}}$, se sabe que
+        \begin{equation*}
+            \fou{h_1}(x)=\frac{2\alpha}{\alpha^2+x^2},\quad\forall x\in\mathbb{R}
+        \end{equation*}
     \end{sol}
 
     \begin{excer}
@@ -1527,7 +1589,58 @@
     \end{excer}
 
     \begin{sol}
-        
+        Considere la función $\cf{f}{\mathbb{R}\times\mathbb{R}}{\mathbb{C}}$ dada por
+        \begin{equation*}
+            f(y,x)=e^{-y^2}e^{\frac{1}{2}\left(y-ix \right)^2}
+        \end{equation*}
+        Se cumple para $f$ lo siguiente:
+        \begin{itemize}
+            \item Sea $y\in\mathbb{R}$, entonces la función $x\mapsto f_y(x)=f(x,y)=e^{-y^2}e^{\frac{1}{2}\left(y-ix \right)^2}$ es de clase $C^{\infty}$ en $\mathbb{R}$ (por ser composición de funciones clases $C^{\infty}$). Más aún, se tiene que
+            \begin{equation*}
+                D_x^n\left(e^{-y^2}e^{\frac{1}{2}\left(y-ix \right)^2}\right)=e^{ -y^2}D_x^ne^{\frac{1}{2}\left(y-ix \right)^2}
+            \end{equation*}
+            \item Para todo $x\in\mathbb{R}$, las funciones $y\mapsto e^{ -y^2}D_x^ne^{\frac{1}{2}\left(y-ix \right)^2}$ son integrables en $\mathbb{R}$, con $n\in\mathbb{N}\cup\left\{0\right\}$. En efecto, procederemos por inducción sobre $n$. Sea $x\in\mathbb{R}$:
+            \begin{itemize}
+                \item El caso $n=0$ y $n=1$ son inmediatos, pues para todo $y\in\mathbb{R}$:
+                \begin{equation*}
+                    \begin{split}
+                        e^{ -y^2}D_x^0e^{\frac{1}{2}\left(y-ix \right)^2}&=e^{-y^2+\frac{1}{2}\left(y-ix \right)^2}\\
+                        &=e^{-y^2 +\frac{1}{2}(y^2-2iyx-x^2)}\\
+                        &=e^{-y^2+\frac{1}{2}y^2-iyx-\frac{1}{2}x^2}\\
+                        &=e^{-\frac{y^2}{2}-iyx-\frac{x^2}{2}}\\
+                        &=e^{-\frac{y^2}{2}-\frac{x^2}{2}}e^{-iyx}\\
+                        \Rightarrow \abs{e^{ -y^2}D_x^0e^{\frac{1}{2}\left(y-ix \right)^2}}&\leq e^{-\frac{y^2}{2}-\frac{x^2}{2}}\\
+                        &=e^{-\frac{x^2}{2}}e^{-\frac{y^2}{2}}\\
+                    \end{split}
+                \end{equation*}
+                donde la función $y\mapsto e^{-\frac{x^2}{2}}e^{-\frac{y^2}{2}}$ es integrable en $\mathbb{R}$.
+                y,
+                \begin{equation*}
+                    \begin{split}
+                        e^{ -y^2}D_x^1e^{\frac{1}{2}\left(y-ix \right)^2}&=
+                    \end{split}
+                \end{equation*}
+                \item Suponga que para algún $n\in\mathbb{N}$, las funciones
+                \begin{equation*}
+                    y\mapsto e^{ -y^2}D_x^ne^{\frac{1}{2}\left(y-ix \right)^2}\quad\textup{y}\quad y\mapsto e^{ -y^2}D_x^{n-1}e^{\frac{1}{2}\left(y-ix \right)^2}
+                \end{equation*}
+                son integrables en $\mathbb{R}$. Veamos que se cumple para $n+1$. En efecto, se tiene que
+                \begin{equation*}
+                    \begin{split}
+                        D_x^{n+1}\left(e^{-y^2}e^{\frac{1}{2}\left(y-ix \right)^2}\right)&=e^{-y^2}D_x^{n+1}e^{\frac{1}{2}\left(y-ix \right)^2}\\
+                        &=D_x^n\left(D_x e^{\frac{1}{2}\left(y-ix \right)^2}\right)\\
+                        &=e^{-y^2}D_x^n\left(e^{\frac{1}{2}\left(y-ix \right)^2}D_x\left[\frac{1}{2}\left(y-ix \right)^2\right] \right)\\
+                        &=e^{-y^2}D_x^n\left(e^{\frac{1}{2}\left(y-ix \right)^2}D_x\left[\frac{1}{2}\left(y-ix \right)^2\right] \right)\\
+                        &=e^{-y^2}D_x^n\left(e^{\frac{1}{2}\left(y-ix \right)^2}(-i)[y-ix]\right)\\
+                        &=e^{-y^2}\left[(-i)D_x^n\left([y-ix]e^{\frac{1}{2}\left(y-ix \right)^2}\right)\right] \\
+                        &=e^{-y^2}\left[(-i)yD_x^n\left(e^{\frac{1}{2}\left(y-ix \right)^2}\right)-D_x^n\left(xe^{\frac{1}{2}\left(y-ix \right)^2}\right)\right] \\
+                        &=e^{-y^2}\left[(-i)yD_x^n\left(e^{\frac{1}{2}\left(y-ix \right)^2}\right)-\sum_{ k=1}^n {n\choose k} D_x^{ n-k}\left(e^{\frac{1}{2}\left(y-ix \right)^2}\right)D_x^k(x)\right] \\
+                        &=e^{-y^2}\left[(-i)yD_x^n\left(e^{\frac{1}{2}\left(y-ix \right)^2}\right)-xD_x^ne^{\frac{1}{2}\left(y-ix \right)^2}-D_x^{n-1}e^{\frac{1}{2}\left(y-ix \right)^2}\right]\\
+                    \end{split}
+                \end{equation*}
+                usando la fórmula de Leibniz para la derivada de un producto.
+            \end{itemize}
+        \end{itemize}
     \end{sol}
 
 \end{document}
