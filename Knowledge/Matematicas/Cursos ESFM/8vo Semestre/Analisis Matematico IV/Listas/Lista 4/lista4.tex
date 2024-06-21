@@ -1602,9 +1602,90 @@
             \Phi'(z)=-i\int_{0}^{\infty}xe^{ -izx}f(x)\:dx
         \end{equation*}
 
-        De (ii): %TODO
+        De (ii): como $f,g\in\mathcal{L}_1(\mathbb{R},\mathbb{C})$, entonces su convolución $f*g\in\mathcal{L}_1(\mathbb{R},\mathbb{C})$. Afirmamos que
+        \begin{equation*}
+            f*g(x)=0,\quad\forall x<0
+        \end{equation*}
+        En efecto, sea $x<0$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                f*g(x)&=\int_{-\infty}^{\infty}f(x-y)g(y)\\
+                &=\int_{-\infty}^{\infty}f(x-y)g(y)\:dy\\
+                &=\int_{0}^{\infty}f(x-y)g(y)\:dy\quad\textup{, haciendo el CV }u=x-y\\
+                &=-\int_{x}^{-\infty}f(u)g(x-u)\:du\\
+                &=\int_{-\infty}^{x}f(u)g(x-u)\:du\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        pues $f(y)=g(y)=0$ para todo $y<0$. Así, $f*g$ cumple las condiciones de la definición anterior. Sea $z\in\mathbb{C}$ tal que $\Im z\leq0$, veamos que
+        \begin{equation*}
+            \fou{(f*g)}(z)=\fou{f}(z)\fou{g}(z)
+        \end{equation*}
+        En efecto, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \fou{(f*g)}(z)&=\int_0^{\infty}e^{ -izx}f*g(x)\:dx\\
+                &=\int_0^{\infty}e^{ -izx}\:dx\int_{-\infty}^{\infty}f(x-y)g(y)\:dy\\
+                &=\int_0^{\infty}e^{ -izx}\:dx\int_{0}^{\infty}f(x-y)g(y)\:dy\\
+            \end{split}
+        \end{equation*}
+        Considere la función $(x,y)\mapsto e^{ -izx}f(x-y)g(y)$. Afirmamos que esta función es integrable en $[0,\infty[\times[0,\infty[$. En efecto, es medible y, se cumple que
+        \begin{equation*}
+            \begin{split}
+                \abs{e^{ -izx}f(x-y)g(y)}&\leq\abs{e^{ -ix(\Re z+i\Im z)}}\abs{f(x-y)g(y)}\\
+                &=\abs{e^{ -ix\Re z}e^{x\Im z}}\abs{f(x-y)g(y)}\\
+                &=\abs{e^{ -ix\Re z}}\abs{e^{x\Im z}}\abs{f(x-y)g(y)}\\
+                &=\abs{e^{x\Im z}}\abs{f(x-y)g(y)}\\
+                &\leq\abs{f(x-y)g(y)},\quad\forall (x,y)\in[0,\infty[\times[0,\infty[\\
+            \end{split}
+        \end{equation*}
+        pues, $\Im z\leq 0$, luego $x\Im z<\leq0$. Como la función $(x,y)\mapsto f(x-y)g(y)$ es integrable en $[0,\infty[\times[0,\infty[$, se sigue que $(x,y)\mapsto e^{ -izx}f(x-y)g(y)$ es integrable en $[0,\infty[\times[0,\infty[$. Así, por Fubini obtenemos que (haciendo el cambio de variable $u=x-y$):
+        \begin{equation*}
+            \begin{split}
+                \fou{(f*g)}(z)&=\int_0^{\infty}e^{ -izx}\:dx\int_{0}^{\infty}f(x-y)g(y)\:dy\\
+                &=\int_0^{\infty}\:dy\int_{0}^{\infty}e^{-izx}f(x-y)g(y)\:dx\\
+                &=\int_0^{\infty}\:dy\int_{-y}^{\infty}e^{-iz(u+y)}f(u)g(y)\:du\\
+                &=\int_0^{\infty} e^{-izy}g(y)\:dy\int_{0}^{\infty}e^{-izu}f(u)\:du\\
+                &=\left(\int_0^{\infty} e^{-izy}g(y)\:dy\right)\left(\int_{0}^{\infty}e^{-izu}f(u)\:du\right)\\
+                &=\fou{g}(z)\fou{f}(z)\\
+                &=\fou{f}(z)\fou{g}(z)\\
+            \end{split}
+        \end{equation*}
+        pues $-y\leq0$ para todo $y\in[0,\infty[$. Lo anterior prueba el resultado.
 
-        De (iii): 
+        De (iii): Suponga que
+        \begin{equation*}
+            \fou{(f*g)}(x)=0
+        \end{equation*}
+        para casi todo $x\in\mathbb{R}$. Por la parte (i), se tiene que
+        \begin{equation*}
+            \begin{split}
+                \fou{(f*g)}(x)=0,\quad\forall x\in\mathbb{R}
+            \end{split}
+        \end{equation*}
+        pues $\fou{(f*g)}$ es continua en $\mathbb{R}\subseteq\mathbb{C}$. Entonces:
+        \begin{equation*}
+            \fou{f}(z)\fou{g}(x)=0,\quad\forall x\in\mathbb{R}
+        \end{equation*}
+        Suponga que $\fou{g}(x)\neq0$ para algún $x\in\mathbb{R}$, esto es que
+        \begin{equation*}
+            \abs{\int_{ 0}^\infty e^{ -ixy}g(y)}>0
+        \end{equation*}
+        Como $\fou{g}$ es continua en $x$ y $x\in L=\left\{z\in\mathbb{C}\Big|\Im z\leq0 \right\}$, existe $\delta>0$ tal que para todo $u\in B(x,\delta)\cap L$:
+        \begin{equation*}
+            \abs{\fou{g}(u)}>0
+        \end{equation*}
+        luego entonces
+        \begin{equation*}
+            \fou{f}(z)=0,\quad\forall z\in B(x,\delta)\cap L
+        \end{equation*}
+        en particular, existe $u_0\in B(x,\delta)\cap L$ tal que $\Im u_0<0$, luego existe $r>0$ tal que
+        \begin{equation*}
+            B(u_0,r)\subseteq B(x,\delta)\cap \mathring{L}
+        \end{equation*}
+        siendo $\fou{f}$ holomorfa en $\mathring{L}$ y cero en un abierto contenido en $\mathring{L}$, se sigue que $\fou{f}$ debe ser cero en todo $\mathring{L}$ (por el teorema de identidad en variable compleja) y, como $\fou{f}$ es continua en $L$, debe ser cero en $\mathbb{R}$.
+
+        Por ende, $f=0$ c.t.p. en $\mathbb{R}$ (ya que el operador transformación de Fourier es inyectivo).
     \end{sol}
 
     \begin{excer}
@@ -1709,6 +1790,23 @@
         \begin{equation*}
             F(z)=F(0),\quad\forall z\in\mathbb{C}
         \end{equation*}
+        en particular
+        \begin{equation*}
+            F(y)=F(0),\quad\forall y\in\mathbb{R}
+        \end{equation*}
+        es decir que
+        \begin{equation*}
+            \begin{split}
+                F(0)&=F(y)\\
+                &=\int_{ -\infty}^{\infty}e^{ -iyx}\cdot e^{-\frac{x^2}{2}}\conj{f(x)}\:dx\\
+                &=\fou{h}(y)\\
+            \end{split}
+        \end{equation*}
+        donde $\cf{h}{\mathbb{R}}{\mathbb{C}}$ es la función $x\mapsto h(x)=e^{-\frac{x^2}{2}}\conj{f(x)}$ es una función en $\mathcal{L}_2(\mathbb{R},\mathbb{C})\cap\mathcal{L}_1(\mathbb{R},\mathbb{C})$, por ende $\fou{h}\in\mathcal{C}_0(\mathbb{R},\mathbb{C})$, esto es que
+        \begin{equation*}
+            \lim_{ y\rightarrow\infty}\fou{h}(y)=0\iff\lim_{ y\rightarrow\infty}F(y)=0
+        \end{equation*}
+        lo cual solo puede suceder si $F(0)=0$. Por tanto, $F=0$. Pero de lo anterior, como la aplicación que a cada función la envía a su seríe de Fourier es inyectiva, debe suceder que $h=0$ c.t.p. en $\mathbb{R}$, es decir que $f=0$ c.t.p. en $\mathbb{R}$.
     \end{sol}
 
     \begin{excer}
