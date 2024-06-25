@@ -117,6 +117,7 @@
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\aut{\textup{Aut}}
 \newcommand\irr{\textup{irr}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -166,7 +167,35 @@
 \end{excer}
 
 \begin{proof}
-    
+    Calculemos los dos
+    \begin{itemize}
+        \item Si $f\in \aut_{\mathbb{R}}(\mathbb{Q})$, se tiene que $f$ deja fijo a $\mathbb{Q}$. Sea $i\in\mathbb{I}$ un número irracional. Como $f$ es homomorfismo, debe suceder que
+        \begin{equation*}
+            \begin{split}
+                f(a+i)&=f(a)+f(i)\\
+                &=a+f(i),\quad\forall a\in\mathbb{Q}\\
+                \Rightarrow f(i)&=a-f(a+i),\quad\forall a\in\mathbb{Q}\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            f(i^r)=f(i)^r,\quad\forall r\in\mathbb{Q}
+        \end{equation*}
+        Como $f$ es automorfismo, debe suceder que $f(i)\in\mathbb{I}$. Analicemos a $\sqrt{2}$: por la segunda condición debe suceder que
+        \begin{equation*}
+            f(2)=f(\sqrt{2})^2=2\Rightarrow f(\sqrt{2})=\pm \sqrt{2}\\
+        \end{equation*}
+        En particular, considere un polinomio $g(X)=a_0+a_1X+...+a_nX^n \in\mathbb{Q}[X]$ irreducbile sobre $\mathbb{R}$. Se tiene que para todo $f\in\aut_{\mathbb{R}}(\mathbb{Q})$:
+        \begin{equation*}
+            \begin{split}
+                g^f(X)&=f(a_0+a_1X+...+a_nX^n)\\
+                &=f(a_0)+f(a_1)X+...+f(a_n)X^n\\
+                &=a_0+a_1X+...+a_nX^n\\
+            \end{split}
+        \end{equation*}
+        es decir, que si $i$ es algebraico sobre $\mathbb{Q}$, entonces $i$ es mapeado bajo $f$ en alguna otra de sus raíces. Pero como la extensión $\mathbb{R}/\mathbb{Q}$ no es trascendente, entonces existe un elemento $\pi\in\mathbb{R}$ trascendente sobre $\mathbb{Q}$, para el cual no se sabe que ocurre.
+        \item (sucede algo con las indeterminadas).
+    \end{itemize}
 \end{proof}
 
 \begin{excer}
@@ -174,7 +203,31 @@
 \end{excer}
 
 \begin{proof}
-    Como $E$ es el campo de descomposición de $f(X)$, entonces expresamos a $E=F\left(u_1,\dots,u_n\right)$, donde $u_1,\dots,u_n\in E$ son las raíces del polinomio $f(X)$.
+    Expresamos a $f$ como producto de polinomios irreducibles:
+    \begin{equation*}
+        f(X)=g_1(X)\cdots g_m(X)
+    \end{equation*}
+    donde $g_i(X)$ es un polinomio de grado menor o igual a $n$, para todo $i\in\natint{1,n}$. Sean $u_{i,1},...,u_{i,m_i}$ las raíces de $g_i(X)$, se tiene que
+    \begin{equation*}
+        \sum_{ i=1}^m m_i\leq n
+    \end{equation*}
+    Al ser $E$ el campo de descomposición de $f$, se tiene que
+    \begin{equation*}
+        E=F(S)
+    \end{equation*}
+    donde $S=\left\{u_{ i,t}\in E\Big|i\in\natint{1,n}, t\in\natint{1,m_i}\right\}$.
+
+    Si $f$ es de grado $n=1$, es claro que su única raíz debe estar en $F$, luego $[E:F]=1$, es decir que $1=n\divides n!=1$.
+
+    Suponga que se cumple el resultado para $1,...,k$. Veamos que se cumple para $k+1$. En efecto, si $f$ es irreducible de grado $k+1$, entonces
+    \begin{equation*}
+        \begin{split}
+            [E:F]&=[F(v_1,...,v_{ k+1}):F]\\
+            &=[F(v_1,...,v_{ k+1}):F(v_1,...,v_{ k})]\cdot...\cdot[F(v_1):F]\\
+        \end{split}
+    \end{equation*}
+
+    Como $E$ es el campo de descomposición de $f(X)$, entonces expresamos a $E=F\left(u_1,\dots,u_n\right)$, donde $u_1,\dots,u_m\in E$ son las raíces distintas del polinomio $f(X)$ (siendo $m\leq n$). Expresamos a $f$ como producto d 
 \end{proof}
 
 \begin{excer}

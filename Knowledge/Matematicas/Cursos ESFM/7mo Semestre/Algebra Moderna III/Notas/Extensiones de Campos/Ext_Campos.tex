@@ -1,0 +1,212 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas Curso Álgebra Moderna III
+    
+    Una Introducción a la Teoría de Galois Finita}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Extensiones de Campos}
+    
+    \section{Fundamentos}
+
+    \begin{obs}
+        El símbolo $\afa$ significa para casi todo salvo una cantidad finita de elementos.
+    \end{obs}
+
+    \begin{mydef}
+        Sean $E$ y $F$ campos. Decimos que $E/F$ es una \textbf{extensión de campos} si se cumple que $F\subseteq E$. Se denomina como \textbf{grado de la extensión $E/F$} a la dimensión de $E$ como espacio vectorial sobre $F$, denotado por $[E:F]$, esto es
+        \begin{equation*}
+            [E:F]=\dim_{ F}(E)
+        \end{equation*}
+    \end{mydef}
+    
+    \begin{mydef}
+        Decimos que una extensión de campos $E/F$ es una \textbf{extensión finita}, si $[E:F]<\infty$. En caso contrario, decimos que es una \textbf{extensión infinita}, y lo escribimos como $[E:F]=\infty$.
+    \end{mydef}
+
+    \begin{theor}
+        Sea $K\subseteq F\subseteq E$ una torre de campos (también llamada cadena de campos). Entonces,
+        \begin{equation*}
+            [E:K]=[E:F]\cdot[F:K]
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Sea $\left\{\alpha_i \right\}_{ i\in I}$ y $\left\{\beta_j \right\}_{ j\in J}$ bases de $F$ sobre $K$ y $E$ sobre $F$, respectivamente.
+
+        \begin{equation*}
+            \begin{split}
+                E & \\
+                | & \leftarrow \left\{\beta_j \right\}_{ j\in J} \\
+                F & \\
+                | & \leftarrow \left\{\alpha_i \right\}_{ i\in I}\\
+                K & \\
+            \end{split}
+        \end{equation*}
+        
+        Afirmamos que $\left\{\alpha_i\beta_j \right\}_{ (i,j)\in I\times J}$ es base de $E$ sobre $K$. En efecto, claramente $\alpha_i\beta_j\in E$ para todo $(i,j)\in I\times J$. Notemos que necesariamente
+        \begin{equation*}
+            \abs{\left\{\alpha_i\Big|i\in I \right\}}=\abs{I}\quad\textup{y}\quad\abs{\left\{\beta_j\Big|j\in J \right\}}=\abs{J}
+        \end{equation*}
+        por ser ambas bases. Sea $u\in E$, entonces $u$ se expresa de forma única como combinación lineal de elementos de la base $\left\{\beta_j \right\}_{ j\in J}$ con coeficientes en $F$, digamos
+        \begin{equation*}
+            u=\sum_{j\in J}f_j\beta_j
+        \end{equation*}
+        donde $f_j\in F$ para todo $j\in J$ y $f_j=0\afa j\in J$. Por otro lado, cada $f_j\in F$ se expresa de forma única como una combinación lineal de elementos de la base $\left\{\alpha_i\right\}_{ i\in I}$ sobre $K$:
+        \begin{equation*}
+            f_j=\sum_{ i\in I}k_{ i,j}\alpha_i
+        \end{equation*}
+        donde $k_{ i,j}\in K$ para todo $i\in I$ siendo $k_{ i,j}=0\afa i\in I$, para cada $j\in J$. Luego,
+        \begin{equation*}
+            \begin{split}
+                u&=\sum_{j\in J}f_j\beta_j\\
+                &=\sum_{j\in J}\left( \sum_{ i\in I}k_{ i,j}\alpha_i \right) \beta_j\\
+                &=\sum_{(i,j)\in I\times J}k_{ i,j}\alpha_i\beta_j\\
+            \end{split}
+        \end{equation*}
+        donde $k_{ i,j}\in K$ y $k_{ i,j}=0\afa (i,j)\in I\times J$. Luego
+        \begin{equation*}
+            E=\mathcal{L}\left(\left\{\alpha_i\beta_j\Big|(i,j)\in I\times J \right\} \right)
+        \end{equation*}
+        Probemos que $\left\{\alpha_i\beta_j \right\}_{ (i,j)\in I\times J}$ es l.i. sobre $K$
+    \end{proof}
+
+\end{document}
