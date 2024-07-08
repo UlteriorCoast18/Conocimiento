@@ -1,0 +1,237 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Taller: Espacios de configuraciones de gráficas. Tres enfoques distintos.}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Introducción}
+    
+    Taller impartido por María Teresa Idskgen.
+
+    \section{Conceptos Fundamentales}
+
+    En un \textbf{espacio de configuraciones}, se tiene una gráfica y objetos/particulas que se mueven sobre la gráfica sin choques.
+
+    \begin{mydef}
+        Dada una gráfica $\mathcal{G}$, se definimos su \textbf{gráfica de $k$-fichas} $F_k(\mathcal{G})$, como:
+        \begin{itemize}
+            \item Los vértices son conjuntos de vértices de $\mathcal{G}$.
+            \item Las aristas son $(A,B)$ si
+            \begin{equation*}
+                A\vartriangle B=\left\{x,y\right\}
+            \end{equation*}
+            con $(x,y)\in A(\mathcal{G})$.
+        \end{itemize}
+    \end{mydef}
+
+    \begin{obs}
+        Podemos hacer una distinción de casos en que las fichas son iguales o son distinguibles, pero para el caso haremos que son distinguibles.
+    \end{obs}
+
+    \begin{obs}
+        En la gráfica de fichas, no todas se mueven al mismo tiempo. Se mueve una por una. Es por ello que se da una observación posterior. Cuando movemos una ficha es como mover un hueco.
+    \end{obs}
+
+    \begin{obs}
+        Una forma de construir la gráfica de $k$-fichas de una gráfica $\mathcal{G}$, es haciendo el producto de $\mathcal{G}$ consigo mismo $k$-veces y, eliminando los casos en que hay fichas en el mismo lugar. Sería pues
+        \begin{equation*}
+            \underbrace{\mathcal{G}\square\mathcal{G}\square\cdots\square\mathcal{G}}_{k\textup{-veces}}
+        \end{equation*}
+        notemos que en el caso más simple de una trayectoria simple (como el que se muestra en el diagrama), en el caso en que las fichas sean distinguibles, se tiene un grafo disconexo.
+    \end{obs}
+
+    ¿Qué pasa en el caso en que tenemos la siguiente gráfica?
+
+    (hacer gráfica de las imágenes que se hicieron anteriormente).
+
+    \begin{mydef}
+        Sean $\mathcal{G},\mathcal{H}$ gráficas. Decimos que una función $\cf{f}{V(\mathcal{G})}{V(\mathcal{H})}$ es una \textbf{función de gráficas}, si es tal que $(x,y)\in A(\mathcal{G})$ implica que $(f(x),f(y))\in A(\mathcal{H})$. Decimos este es un \textbf{isomorfismo de gráficas} si $f$ es biyección.
+    \end{mydef}
+
+    \begin{obs}
+        Si $\mathcal{G}$ tiene $n$-vértices, entonces
+        \begin{equation*}
+            F_k(\mathcal{G})\cong F_{ n-k}(\mathcal{G})
+        \end{equation*}
+        En el caso que $k=n-1$, $F_{n-1}(\mathcal{G})\cong F_{1}(\mathcal{G})$.
+    \end{obs}
+
+    Si $\left\{x_1,..,x_k \right\}$ es un conjunto independiente, entonces $d(V)=\sum_{ i=1}^k d(x_i)$ (un vértice en la gráfica de fichas). En general, se le resta 2 por cada arista en $\langle x_1,...,x_k\rangle$.
+    
+    \begin{mydef}
+        Un \textbf{núcleo} de una gráfica $\mathcal{G}$ es un conjunto $N\subseteq V(\mathcal{G})$ independiente y absorbente, esto es, para todo $v\in V(\mathcal{G})\backslash N$ existe $w\in N$ tal que $(v,w)\in F(\mathcal{G})$.
+    \end{mydef}
+
+    \begin{theor}
+        Si $\mathcal{G}$ no tiene ciclos dirigidos de longitud impar, entonces $\mathcal{G}$ tiene núcleo.
+    \end{theor}
+
+    \begin{theor}
+        Si $\mathcal{G}$ es bipartita, entonces $F_k(\mathcal{G})$ es bipartita.
+    \end{theor}
+
+    \begin{exa}
+        Hacer ejemplo de las fotos de las dos gráficas, una con núcleo y otra sin núcleo tal que sus gráficas de fichas no tienen núcleo y si tienen, respectivamente.
+    \end{exa}
+
+    \begin{theor}
+        Sea $C_a$ un ciclo dirigido. Enotnces, $F_k(C_a)$ tiene núcleo.
+    \end{theor}
+
+    Sea $DP_u$ la gráfica que se obtiene de un cíclo dirigido pegándole una flecha que entra. Entonces, $F_k(DP_u)$ tiene núcleo si $k=2,3,4$.
+
+    \begin{mydef}
+        Un \textbf{automorfismo} es un morfismo de gráficas $\cf{\varphi}{\mathcal{G}}{\mathcal{G}}$
+    \end{mydef}
+
+    \begin{mydef}
+        $Aut(\mathcal{G})$ denota al grupo de automorfismos de una gráfica con la composiicón usual de funciones y el neutro es la función identidad.
+    \end{mydef}
+
+    Sea $f\in Aut(\mathcal{G})$, entonces existe $\varphi\in Aut(F_k(\mathcal{G}))$ dado por: si $V=\left\{x_1,...,x_k\right\}$, entonces $\varphi(v)=\left\{f(x_1),...,f(x_k)\right\}$.
+
+    \begin{theor}
+        Si $\mathcal{G}$ no contiene como subgráfica indicuda a $C_4$ y diamante, entonces $Aut(\mathcal{G})\cong Aut(F_k(\mathcal{G}))$.
+    \end{theor}
+
+    
+
+    \chapter{Ejercicios}
+
+\end{document}
