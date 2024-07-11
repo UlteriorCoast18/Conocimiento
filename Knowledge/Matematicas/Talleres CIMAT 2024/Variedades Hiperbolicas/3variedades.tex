@@ -239,6 +239,58 @@
 
     Sea $p$ un punto en $\partial\mathbb{H}^3$. Una \textbf{horóesfera} centrada en $p$ es una hipersuperficie completa conexa ortogonal a todas las lineas que salen de $p$. Note que, una horóesfera alrededor de $\infty$ en $\partial\mathbb{H}^3$ es un plano paralelo a $\mathbb{C}$, que consta de puntos $\left\{(x+iy,c)\in\mathbb{C}\times\mathbb{R} \right\}$ donde $c>0$ es constante.
 
+    \begin{obs}[\textbf{Recordatorio}]
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item $Mob(\mathbb{C}\cup\left\{\infty\right\})=Isom_{ +}(\mathbb{H}^3)=PSL_2(\mathbb{C})=Bilh(\hat{\mathbb{C}})$. Que es también el conjunto de composición por inversiones de \textit{círculos}.
+        \end{enumerate}
+    \end{obs}
+
+    Un \textbf{tetraedro ideal en $\mathbb{H}^3$} es la envolvente conexa de cuatro puntos ideales nos forman un cuadrilátero cíclico en $\partial\mathbb{H}^3$.
+
+    De esta forma, se deduce lo siguiente:
+    \begin{itemize}
+        \item Dos lados opuestos tienen ángulos diedrales iguales.
+        \item Tenemos que $\alpha+\beta+\gamma=\pi$.
+        \item Tienen volumen finito.
+    \end{itemize}
+    
+    La primera afirmación se hace considerando cuatro puntos que no se encunetren en el mismo plano en $\mathbb{H}^3$, se mandan tres de los puntos a 0, 1 e $\infty$, luego se deduce usando las transformaciones de Möbius:
+    \begin{equation*}
+        \omega\mapsto\frac{z\omega-z}{\omega-z}\quad\textup{y}\quad \omega\mapsto\frac{z}{\omega}
+    \end{equation*}
+    (z es el punto que se dejó fijo) al ser estas funciones mapeos conformes, se tiene que se preservan los ángulos, por lo que se tiene la primera afirmación. La segunda parte se hace proyectando los ángulos sobre una horóesfera con centro en el infinito. El hecho de que tengan volumen finito es inmediato de la métrica que se usa.
+
+    \begin{mydef}
+        Sea $M$ una 3-variedad. Una \textbf{triangulación topológica ideal de $M$} es una forma combinatoria de pegar tetraedros truncados (tetraedros ideales) de modo que el resultado sea homeomorfo a $M$. Las partes truncadas cooresponderán a la frontera de $M$. Un pegado debe tomar caras con caras, aristas con aristas.
+
+        Una \textbf{triangulación geométrica ideal de $M$} es una topológica triangulación ideal tal que cada tetraedro tenga una estructura hiperbólica (orientada positivamente) y el resultado del pegado sea una variedad suave con métrica completa.
+    \end{mydef}
+
+    Para un tetraedro ideal $T$ encajado en $\mathbb{H}^3$, y una de sus arista $e$ de dicho tetraedro...
+
+    Además, tenemos que $z(e_1)z(e_2)z(e_3)=-1$ y $0=1-z(e_1)+z(e_3)z(e_1)$. De ahora en adelante $M^3$ admite una triangulación ideal topológica $\tau$ tal que cada tetraedro admite una estructura hiperbólica.
+
+    \begin{theor}
+        La estructura hiperbólica en los tetraedros ideales induce una estructura hiperbólica al pegar los tetraedros si y sólo si para cada arista $e_i$,
+        \begin{equation*}
+            \prod_{ z(e_i)}=1\quad\textup{y}\quad\sum_{ \arg(z(e_i))}=2\pi
+        \end{equation*}
+        dondeel producto y la suma es sobre todas las aristas que se identifican con $e_i$.
+    \end{theor}
+
+    \begin{propo}
+        Sea $M$ una 3-variedad hiperbólica simplemente conexa y no completa. Enotnces existe una isometría local
+        \begin{equation*}
+            \cf{D}{M}{\mathbb{H}^3}
+        \end{equation*}
+        única salvo composiicón con una $Isom(\mathbb{H}^3)$, llamada \textbf{aplicación desarrolladora}.
+    \end{propo}
+
+    \begin{propo}[Nombre]
+        
+    \end{propo}
+
     \chapter{Ejercicios}
 
     \section{Ejercicios 8 de julio}
@@ -268,6 +320,17 @@
             entonces, $M_0\cong M_1$.
             \item Si $\Sigma_1=\Sigma_1'$ y $\Sigma_2=\Sigma_2'$ pero $f_1\neq f_0$ y son isotópicas, entonces $M_0\cong M_1$.
         \end{enumerate}
+    \end{excer}
+
+    \begin{excer}
+        Geodésica en $\mathbb{H}^3$ vertigal, $\cf{\gamma}{[a,b]}{\mathbb{H}^3}$, $\gamma(t)=(c,c,t)$ es tal que su longitud de arco es $\log\left(\frac{b}{a}\right)$.
+    \end{excer}
+
+    \begin{excer}
+        Dar el lugar geométrico de
+        \begin{equation*}
+            \left\{\frac{1\pm\sqrt{1-\frac{4}{\omega(1-\omega)}}}{2}\Big|\omega\in\mathbb{C}\textup{ y }\Im(\omega)>0 \right\}
+        \end{equation*}
     \end{excer}
 
 \end{document}
