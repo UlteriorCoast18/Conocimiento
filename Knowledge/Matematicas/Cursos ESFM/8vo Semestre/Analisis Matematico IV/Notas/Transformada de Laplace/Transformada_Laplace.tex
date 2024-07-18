@@ -1,0 +1,226 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas Complementarias de Análisis Matemático IV}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \setcounter{chapter}{4} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+
+    \chapter{Transformación de Laplace}
+
+    \section{Introducción}
+
+    La trasnformación de Laplace surge como una forma de convertir ecuaciones diferenciales ordinarias (EDO's), en ecuaciones algebraicas. Una vez resuelta la ecuación algebraica, mediante la transformación inversa de Laplace, uno puede recuperar la solución original de nuestra ecuación diferencial.
+
+    La transforamción de Laplace nos da información sobre la naturaleza de las ecuaciones en las que estamos trabajando. Puede ser vista como una \textit{conversión entre el tiempo y el dominio de frecuencia}. Por ejemplo, considere la siguiente ecuación diferencial:
+    \begin{equation*}
+        mx''(t)=cx'(t)+kx(t)=f(t)
+    \end{equation*}
+    Podemos pensar a $t$ como el parámetro de tiempo y $f(t)$ como la señal de salida. La transformación de Laplace convierte la ecuación diferencial establecida en el tiempo en una ecuación algebraica (donde no se ven involucradas derivadas de ningún orden), donde la nueva variable independiente $s$ es la \textit{frecuencia}.
+
+    \section{Definición y primeros ejemplos}
+
+    \begin{mydef}
+        Sea $\cf{f}{\mathbb{R}}{\mathbb{R}}$ una función medible.
+        Se define la \textbf{transformada de Laplace} de $f$, denotada por $F=\mathcal{L}\left\{f\right\}$ en el punto $s\in\mathbb{R}$ como:
+        \begin{equation*}
+            F(s)=\mathcal{L}\left\{f\right\}(s)=\int_0^{\infty}e^{-st}f(t)\:dt
+        \end{equation*}
+        siempre que la integral de la derecha sea \textit{finita}.
+    \end{mydef}
+
+    \begin{obs}
+        Para una función medible $\cf{f}{\mathbb{R}}{\mathbb{R}}$, puede que la transformada de Laplace no siempre esté bien definida en todo $\mathbb{R}$ (en general, esto no va a ocurrir).
+
+        En ocasiones también se denota por la letra mayúscula de la función a su transformada de Laplace.
+    \end{obs}
+
+    \begin{exa}
+        Considere la función $\cf{f}{\mathbb{R}}{\mathbb{R}}$ tal que $f(t)=1$ para todo $t\in\mathbb{R}$. Entonces
+        \begin{equation*}
+            F(s)=\frac{1}{s}
+        \end{equation*}
+        para todo $s>0$.
+    \end{exa}
+
+    \begin{sol}
+        En efecto, sea $s>0$. Se tiene que
+        \begin{equation*}
+            \begin{split}
+                F(s)&=\int_{0}^\infty e^{ -st}f(t)\:dt\\
+                &=\int_{0}^\infty e^{ -st}\:dt\\
+            \end{split}
+        \end{equation*}
+        donde la integral de la derecha existe si y sólo si $s>0$. Siguiendo:
+        \begin{equation*}
+            \begin{split}
+                F(s)&=\int_{0}^\infty e^{ -st}\:dt\\
+                &=-\frac{e^{ -st}}{s}\Big|_{ t=0}^{ t=\infty}\\
+                &=-\frac{e^{ -st}}{s}\Big|_{ t=0}^{ t=\infty}\\
+                &=\frac{1}{s}-0\\
+                &=\frac{1}{s}
+            \end{split}
+        \end{equation*}
+        para todo $s>0$.
+    \end{sol}
+
+    \begin{excer}
+        Calcule la transformada de Laplace de $\cf{f}{\mathbb{R}}{\mathbb{R}}$ tal que $t\mapsto e^{ -at}$, con $a\in\mathbb{R}$.
+    \end{excer}
+
+    \begin{sol}
+        Sea $s\in\mathbb{R}$. Veamos que
+        \begin{equation*}
+            \begin{split}
+                \mathcal{L}\left\{f\right\}(s)&=\int_0^{\infty}e^{-st}f(t)\:dt\\
+                &=\int_0^{\infty}e^{-st}e^{ -at}\:dt\\
+                &=\int_0^{\infty}e^{-(s+a)t}\:dt\\
+            \end{split}
+        \end{equation*}
+        donde la integral existe si y sólo si $s+a>0$. Por ende, para $s>-a$ tenemos que:
+        \begin{equation*}
+            \begin{split}
+                \mathcal{L}\left\{f\right\}(s)&=\int_0^{\infty}e^{-(s+a)t}\:dt\\
+                &=-\frac{e^{-(s+a)t}}{s+a}\Big|_0^{\infty}\\
+                &=\frac{1}{s+a}\\
+            \end{split}
+        \end{equation*}
+    \end{sol}
+
+    \begin{theor}
+        Sean $\alpha,\beta\in\mathbb{R}$ y $\cf{f,g}{\mathbb{R}}{\mathbb{R}}$ funciones tales que existe $\mathcal{L}\left\{f\right\}$ y $\mathcal{L}\left\{g\right\}$ en el punto $s\in\mathbb{R}$. Entonces:
+        \begin{equation*}
+            \mathcal{L}\left\{\alpha f+\beta g \right\}(s)=\alpha\mathcal{L}\left\{f\right\}(s)+\beta\mathcal{L}\left\{g\right\}(s)
+        \end{equation*}
+        es decir, si $D_F$ y $D_G$ son los dominios de las respectivas transformaciones de Laplace de $f$ y $g$, entonces el dominio de la trasnformación de Laplace de la suma de $f+g$ es $D_F\cap D_G$ y, el operador $\mathcal{L}$ es lineal.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    %Fuentes: https://math.libretexts.org/Bookshelves/Differential_Equations/Differential_Equations_for_Engineers_(Lebl)/6%3A_The_Laplace_Transform/6.1%3A_The_Laplace_Transform
+
+\end{document}

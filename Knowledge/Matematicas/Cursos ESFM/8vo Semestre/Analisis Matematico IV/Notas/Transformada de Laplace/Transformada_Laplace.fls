@@ -1,9 +1,9 @@
-PWD x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Algebra Moderna III/Notas/Anillo de Polinomios
+PWD x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Cursos ESFM/8vo Semestre/Analisis Matematico IV/Notas/Transformada de Laplace
 INPUT x:/Programas/texlive/2023/texmf.cnf
 INPUT x:/Programas/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT x:/Programas/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Algebra Moderna III/Notas/Anillo de Polinomios/anillo_polinomios.tex
-OUTPUT anillo_polinomios.log
+INPUT x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Cursos ESFM/8vo Semestre/Analisis Matematico IV/Notas/Transformada de Laplace/Transformada_Laplace.tex
+OUTPUT Transformada_Laplace.log
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/base/report.cls
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/base/report.cls
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/base/size12.clo
@@ -220,10 +220,10 @@ INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
-INPUT ./anillo_polinomios.aux
-INPUT ./anillo_polinomios.aux
-INPUT anillo_polinomios.aux
-OUTPUT anillo_polinomios.aux
+INPUT ./Transformada_Laplace.aux
+INPUT ./Transformada_Laplace.aux
+INPUT Transformada_Laplace.aux
+OUTPUT Transformada_Laplace.aux
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -250,13 +250,13 @@ INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-OUTPUT anillo_polinomios.pdf
+OUTPUT Transformada_Laplace.pdf
 INPUT x:/Programas/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT ./anillo_polinomios.toc
-INPUT ./anillo_polinomios.toc
-INPUT anillo_polinomios.toc
+INPUT ./Transformada_Laplace.toc
+INPUT ./Transformada_Laplace.toc
+INPUT Transformada_Laplace.toc
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
@@ -275,16 +275,12 @@ INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msa
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-OUTPUT anillo_polinomios.toc
+OUTPUT Transformada_Laplace.toc
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-INPUT anillo_polinomios.aux
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
+INPUT Transformada_Laplace.aux
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
@@ -293,6 +289,6 @@ INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
-INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb

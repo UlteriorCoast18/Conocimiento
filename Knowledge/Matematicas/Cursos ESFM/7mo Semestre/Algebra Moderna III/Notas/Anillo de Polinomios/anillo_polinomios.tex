@@ -263,12 +263,37 @@
     \begin{excer}
         Sea $A$ un anillo con $1$. Si $f=\sum_{ n=0}^\infty a_nX^n\in A[[X]]$, entonces existe $g=\sum_{ n=0}^\infty b_nX^n$ tal que $\ord{g}=0$ y,
         \begin{equation*}
-            f=x^{\ord{f}}g
+            f=X^{\ord{f}}g
         \end{equation*}
     \end{excer}
 
     \begin{proof}
-        Ejercicio.
+        Se tienen dos casos:
+        \begin{itemize}
+            \item $\ord{f}=0$, en cuyo caso basta tomar $g=f$, con lo que se obtiene que
+            \begin{equation*}
+                f=X^0f=f
+            \end{equation*}
+            \item Suponga que $\ord{f}>0$. Para cada $m\in\mathbb{N}\cup\left\{0\right\}$ se define
+            \begin{equation*}
+                b_m=a_{ m+\ord{f}}
+            \end{equation*}
+            (siendo $f=a_0+a_1X+a_2X^2+...=\sum_{ n=0}^\infty a_nX^n$). Tomemos así
+            \begin{equation*}
+                g=\sum_{ n=0}^\infty b_nX^n=\sum_{ n=0}^\infty a_{n+\ord{f}}X^n
+            \end{equation*}
+            como $a_{\ord{f}}\neq0$, entonces $\ord{g}=0$ ya que $b_0=a_{\ord{f}}\neq0$. Además, se cumple que
+            \begin{equation*}
+                \begin{split}
+                    f&=\sum_{ n=0}^\infty a_nX^n\\
+                    &=\sum_{ n=\ord{f}}^\infty a_nX^n\\
+                    &=\sum_{ n=0}^\infty a_{n+\ord{f}}X^{n+\ord{f}}\\
+                    &=X^{\ord{f}}\sum_{ n=0}^\infty a_{n+\ord{f}}X^{n}\\
+                    &=X^{\ord{f}}\sum_{ n=0}^\infty b_{n}X^{n}\\
+                    &=X^{\ord{f}}g\\
+                \end{split}
+            \end{equation*}
+        \end{itemize}
     \end{proof}
 
     \begin{propo}
@@ -280,7 +305,38 @@
     \end{propo}
 
     \begin{proof}
-        Ejercicio.
+        De (1): Suponga que $f+g\neq0$, tomemos $h=f+g$ y tomemos $m=\ord{h}$. Se tienen tres casos:
+        \begin{itemize}
+            \item $\ord{f}>\ord{g}$, en tal caso se tiene que $\ord{h}=\ord{g}=\min\left\{\ord{f},\ord{g}\right\}$.
+            \item $\ord{f}<\ord{g}$, el caso es análogo al anterior.
+            \item $k=\ord{f}=\ord{g}$, se tienen dos casos:
+            \begin{itemize}
+                \item $a_{k}+b_k=0$, se sigue pues que como $h\neq0$, entonces $\ord{h}>\ord{f},\ord{g}=k=\min\left\{\ord{f},\ord{g}\right\}$.
+                \item $a_{k}+b_k\neq0$, de donde se sigue de forma inmediata que $\ord{h}=k=\min\left\{\ord{f},\ord{g}\right\}$.
+            \end{itemize}
+        \end{itemize}
+        por los incisos anteriores se sigue que $\ord{f+h}\geq\min\left\{\ord{f},\ord{g}\right\}$.
+
+        De (2): Es similar a (1).
+    \end{proof}
+
+    \begin{cor}
+        En las condiciones de la proposición anterior, si $A$ es dominio entero, entonces $\ord{fg}=\ord{f}+\ord{g}$. En particular, $fg\neq0$ y $A[[X]]$ es dominio entero.
+    \end{cor}
+
+    \begin{proof}
+        Suponga que $A$ es dominio entero. Sean $f,g\in A[[X]]$ como en la proposición anterior tales que $f,g\neq0$. De una proposición anterior se sabe que existen $f_1,g_1\in A[[X]]$ tales que
+        \begin{equation*}
+            f=X^{\ord{f}}f_1\quad\textup{y}\quad g=X^{\ord{g}}g_1
+        \end{equation*}
+        con $\ord{f_1}=\ord{g_1}=0$. En particular se tiene que $a_{\ord{f}}\neq0$ y $b_{\ord{g}}\neq0$, luego
+        \begin{equation*}
+            \begin{split}
+                fg&=(a_{\ord{f}}X^{\ord{f}}+...)\cdot(b_{\ord{g}}X^{\ord{g}})\\
+                &=a_{\ord{f}}b_{\ord{g}}X^{\ord{f}+\ord{g}}+...\\
+            \end{split}
+        \end{equation*}
+        donde, al ser $A$ dominio entero, sucede que $a_{\ord{f}}b_{\ord{g}}\neq0$, luego $fg\neq0$, en particular se tiene que $\ord{fg}=\ord{f}+\ord{g}$. Por ende, $A[[X]]$ es dominio entero.
     \end{proof}
 
     \begin{propo}
@@ -288,7 +344,16 @@
     \end{propo}
 
     \begin{proof}
-        Pendiente.
+        $\Rightarrow$): Suponga que $f$ es unidad de $A[[X]]$, entonces existe $g\in A[[X]]$ tal que
+        \begin{equation*}
+            fg=1
+        \end{equation*}
+        en particular, se tiene que si $f=\sum_{ n=0}^{\infty}a_nX^n$ y $g=\sum_{ n=0}^{\infty}b_nX^n$, entonces $a_0b_0=1$, por tanto $a_0\in A^*$.
+
+        $\Leftarrow$): Suponga que $a_0\in A^*$, entonces existe $b_0\in A^*$ tal que
+        \begin{equation*}
+            a_0b_0=1
+        \end{equation*}
     \end{proof}
 
     \begin{cor}
