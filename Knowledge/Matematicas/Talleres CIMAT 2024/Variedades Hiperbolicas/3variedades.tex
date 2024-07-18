@@ -1,0 +1,336 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Taller: Casi todas las 3-variedades son hiperbólicas}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Introducción}
+    
+    \section{Conceptos fundamentales}
+
+    Taller por Andrés Rodrígues Migueles.
+
+    Se probó en cursos anteriores que toda superficie cerrada, conectada y orientable es difeomorfa a $\Sigma_g$ para algunos $g\geq0$ (siendo $g$ el género de la $2$-variedad).
+
+    \textbf{Teorema de Uniformización}. Toda superficie de tipo finito puede ser geometrizada, es decir, puede estar equipada con una métrica hiperbólica plana o elíptica.
+
+    Estos hechos ya se conocen para $2$-variedades pero, ¿qué se puede decir de variedades de dimensión más grande?
+
+    Nuestro objetivo será clasificarlas (de alguna forma más o menos general, ya que no se pueden generalizar totalmente). A lo que se tiene el siguiente teorema:
+
+    \textbf{Teorema de Perelman-Thurston}. Toda 3-variedad compacta con frontera (posiblemente vaía) una colección finita de toros, tiene uan descomposición canónica en piezas geométricas. Esta descomposición está dada en una de las siguientes 8 piezas:
+
+    \begin{equation*}
+        \mathbb{H}^3,\mathbb{S}^3,...
+    \end{equation*}
+
+    \section{Definiciones}
+
+    \begin{mydef}
+        Sea $X$ una variedad y $G$ un grupo que actúa sobre $X$. Decimos que una variedad $M$ tiene una \textbf{estructura $(G;X)$} si para cada punto $x\in M$ existe una carta $(U,\varphi)$, es decir, una vecindad $U\subseteq M$ de $X$ y un homeomorfismo $\cf{\varphi}{U}{\varphi(U)\subseteq X}$.
+
+        Si dos gráficos $(U,\varphi)$ y $(V,\psi)$ se superponga, entonces el mapeo de transición o el mapa de \textbf{cambio de coordenadas}
+        \begin{equation*}
+            \cf{\gamma=\varphi\circ\psi^{-1}}{\psi(U\cap V)}{\varphi(U\cap V)}
+        \end{equation*}
+        es un elemento de $G$.
+    \end{mydef}
+
+    \begin{obs}
+        En el caso, $X$ será simplemente conexo y $G$ será un grupo de difeomorfismos analíticos reales que actúan transitivamente sobre $X$.
+    \end{obs}
+
+    \begin{exa}
+        El toro admite una estructura $(Isom(\mathbb{R}^2),\mathbb{R}^2)$, también llamada \textbf{estructura eucliedeana}. Pero también admite una \textbf{estructura afín}, cuando $G$ sea el grupo afín ($x\mapsto Ax+b$) que actúa sobre $\mathbb{R}^2$.
+
+        En el caso anterior, el gupo afin es el grupo de las transformaciones afines de $\mathbb{R}^2$ en $\mathbb{R}^2$, que son de la forma $x\mapsto Ax+b$, siendo $A\in GL_2(\mathbb{R})$
+    \end{exa}
+
+    Si $M$ tiene un toro como una componente de frontera, no hay una forma canónica de rellenarlo: el objeto más simple que podememos adjuntarle es un toro sólido $D\times\mathbb{S}^2$, pero la varidedad resultante depende del mapa de pegado. Esta operación se llama \textbf{rellenado de Dehn}.
+
+    La curva cerrada $\partial D$ está pegada a alguna curva cerrada simple $\gamma\subseteq \mathbb{T}$. El resultado de esta operaciónes una nueva variedad $M(\gamma)$ que tiene una componente frontera menos que $M$.
+
+    \begin{lema}
+        La variedad $M(\gamma)$ depende sólo de la clase de isotopía de la curva no orientada $\gamma$.
+    \end{lema}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{obs}
+        Ver nudo de Boromer.
+    \end{obs}
+
+    ¿Qué variedades están clasificadas? Variedades de Seifert.
+
+    \begin{cor}
+        Dos fibraciones de Seifert
+        \begin{equation*}
+            (S,(p_1,q_1),...,(p_h,q_h))\quad\textup{y}\quad(S',(p_1',q_1'),...,(p_h',q_h'))
+        \end{equation*}
+        con $p_i,p_i'\geq 2$ son isomorfas (preservando orientación) si y sólo si $S=S'$, $h=h'$ y $e=e'$ (siendo ése el número de Euler) salvo reordenamiento $p_i=p_i'$ y $q_i=q_i\mod $.
+    \end{cor}
+
+    \section{3-variedades Hiperbólicas}
+
+    Primero, recordemos
+    \begin{equation*}
+        \mathbb{H}^2=\left\{x+iy\in\mathbb{C}\Big|y>0 \right\}\quad\textup{y}\quad\partial\mathbb{H}^2=\mathbb{C}\cup\left\{\infty\right\}\cong\mathbb{S}
+    \end{equation*}
+
+    \begin{obs}
+        Recordemos que
+        \begin{equation*}
+            \mathbb{H}^3=\left\{(x+iy,z)\in\mathbb{C}\times\mathbb{R}_{ >0}\right\}\quad\textup{y}\quad\partial\mathbb{H}^3=\mathbb{C}\cup\left\{\infty\right\}\cong\mathbb{S}^2
+        \end{equation*}
+        con la métrica
+        \begin{equation*}
+            ds^2=\frac{dx^2+dy^2+dz^2}{z^2}
+        \end{equation*}
+        Se tiene que las geódesicas en esta variedad son lsa líneas verticales, semicífculos que intersectan a $\partial\mathbb{H}^3$ con un ángulo recro. $Isom_{ +}(\mathbb{H}^3)\cong$...
+    \end{obs}
+
+    \begin{obs}
+        Recordemos que las \textbf{transformaciones de Möbius} son las funciones de la forma
+        \begin{equation*}
+            Mob(\mathbb{C})=\left\{z\mapsto\frac{az+b}{cz+d}\Big|a,b,c,d\in\mathbb{C},bd-ac\neq0 \right\}
+        \end{equation*}
+        (ahondar más en esto pq parece importante).
+    \end{obs}
+
+    \section{Isometrías y Horoesferas}
+
+    Sea $p$ un punto en $\partial\mathbb{H}^3$. Una \textbf{horóesfera} centrada en $p$ es una hipersuperficie completa conexa ortogonal a todas las lineas que salen de $p$. Note que, una horóesfera alrededor de $\infty$ en $\partial\mathbb{H}^3$ es un plano paralelo a $\mathbb{C}$, que consta de puntos $\left\{(x+iy,c)\in\mathbb{C}\times\mathbb{R} \right\}$ donde $c>0$ es constante.
+
+    \begin{obs}[\textbf{Recordatorio}]
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item $Mob(\mathbb{C}\cup\left\{\infty\right\})=Isom_{ +}(\mathbb{H}^3)=PSL_2(\mathbb{C})=Bilh(\hat{\mathbb{C}})$. Que es también el conjunto de composición por inversiones de \textit{círculos}.
+        \end{enumerate}
+    \end{obs}
+
+    Un \textbf{tetraedro ideal en $\mathbb{H}^3$} es la envolvente conexa de cuatro puntos ideales nos forman un cuadrilátero cíclico en $\partial\mathbb{H}^3$.
+
+    De esta forma, se deduce lo siguiente:
+    \begin{itemize}
+        \item Dos lados opuestos tienen ángulos diedrales iguales.
+        \item Tenemos que $\alpha+\beta+\gamma=\pi$.
+        \item Tienen volumen finito.
+    \end{itemize}
+    
+    La primera afirmación se hace considerando cuatro puntos que no se encunetren en el mismo plano en $\mathbb{H}^3$, se mandan tres de los puntos a 0, 1 e $\infty$, luego se deduce usando las transformaciones de Möbius:
+    \begin{equation*}
+        \omega\mapsto\frac{z\omega-z}{\omega-z}\quad\textup{y}\quad \omega\mapsto\frac{z}{\omega}
+    \end{equation*}
+    (z es el punto que se dejó fijo) al ser estas funciones mapeos conformes, se tiene que se preservan los ángulos, por lo que se tiene la primera afirmación. La segunda parte se hace proyectando los ángulos sobre una horóesfera con centro en el infinito. El hecho de que tengan volumen finito es inmediato de la métrica que se usa.
+
+    \begin{mydef}
+        Sea $M$ una 3-variedad. Una \textbf{triangulación topológica ideal de $M$} es una forma combinatoria de pegar tetraedros truncados (tetraedros ideales) de modo que el resultado sea homeomorfo a $M$. Las partes truncadas cooresponderán a la frontera de $M$. Un pegado debe tomar caras con caras, aristas con aristas.
+
+        Una \textbf{triangulación geométrica ideal de $M$} es una topológica triangulación ideal tal que cada tetraedro tenga una estructura hiperbólica (orientada positivamente) y el resultado del pegado sea una variedad suave con métrica completa.
+    \end{mydef}
+
+    Para un tetraedro ideal $T$ encajado en $\mathbb{H}^3$, y una de sus arista $e$ de dicho tetraedro...
+
+    Además, tenemos que $z(e_1)z(e_2)z(e_3)=-1$ y $0=1-z(e_1)+z(e_3)z(e_1)$. De ahora en adelante $M^3$ admite una triangulación ideal topológica $\tau$ tal que cada tetraedro admite una estructura hiperbólica.
+
+    \begin{theor}
+        La estructura hiperbólica en los tetraedros ideales induce una estructura hiperbólica al pegar los tetraedros si y sólo si para cada arista $e_i$,
+        \begin{equation*}
+            \prod_{ z(e_i)}=1\quad\textup{y}\quad\sum_{ \arg(z(e_i))}=2\pi
+        \end{equation*}
+        dondeel producto y la suma es sobre todas las aristas que se identifican con $e_i$.
+    \end{theor}
+
+    \begin{propo}
+        Sea $M$ una 3-variedad hiperbólica simplemente conexa y no completa. Enotnces existe una isometría local
+        \begin{equation*}
+            \cf{D}{M}{\mathbb{H}^3}
+        \end{equation*}
+        única salvo composiicón con una $Isom(\mathbb{H}^3)$, llamada \textbf{aplicación desarrolladora}.
+    \end{propo}
+
+    \begin{propo}[Nombre]
+        
+    \end{propo}
+
+    \chapter{Ejercicios}
+
+    \section{Ejercicios 8 de julio}
+
+    \begin{mydef}
+        Dos difeomorfismos $\cf{f,g}{\Sigma_1}{\Sigma_2}$ son isotópicas si existe una función $\cf{H}{\Sigma_1\times[0,1]}{\Sigma_2}$ continua tal que
+        \begin{equation*}
+            H\Big|_{ H\times\left\{0\right\}}=f\quad\textup{y}\quad H\Big|_{ H\times\left\{1\right\}}=g
+        \end{equation*}
+        y tal que $\cf{H\Big|_{ H\times\left\{t\right\}}}{\Sigma_1}{\sigma_2}$ es difeomorfismo para todo $t\in[0,1]$.
+    \end{mydef}
+
+    \begin{excer}
+        Sea $N$ una $3$-variedad con $\Sigma_1$ y $\Sigma_2$ dos componentes de $\partial N$ (compactas y difeomorfas), $\cf{f_0}{\Sigma_1}{\Sigma_2}$ al difeomorfismo. Tomemos
+        \begin{equation*}
+            M_0=N/\left(\Sigma_1\underset{ f_0}{=}\Sigma_2\right)
+        \end{equation*}
+        \begin{enumerate}
+            \item Si $\Sigma_1'$ y $\Sigma_2'$ CN dos componentes de $\partial N$ tal que existe $\cf{f_1}{\Sigma_1'}{\Sigma_2'}$ difeomorfismo. Tomemos
+            \begin{equation*}
+                M_1=N/\left(\Sigma_1'\underset{ f_0}{=}\Sigma_2'\right)
+            \end{equation*}
+            tal que existe $g$ difeomorfismo de $N$ tal que $g(\Sigma_1)=\Sigma_1'$ para la que se cumple
+            \begin{equation*}
+                g\circ f_0\circ g^{ -1}(z)=f_1(z),\quad\forall z\in\Sigma_1'
+            \end{equation*}
+            entonces, $M_0\cong M_1$.
+            \item Si $\Sigma_1=\Sigma_1'$ y $\Sigma_2=\Sigma_2'$ pero $f_1\neq f_0$ y son isotópicas, entonces $M_0\cong M_1$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{excer}
+        Geodésica en $\mathbb{H}^3$ vertigal, $\cf{\gamma}{[a,b]}{\mathbb{H}^3}$, $\gamma(t)=(c,c,t)$ es tal que su longitud de arco es $\log\left(\frac{b}{a}\right)$.
+    \end{excer}
+
+    \begin{excer}
+        Dar el lugar geométrico de
+        \begin{equation*}
+            \left\{\frac{1\pm\sqrt{1-\frac{4}{\omega(1-\omega)}}}{2}\Big|\omega\in\mathbb{C}\textup{ y }\Im(\omega)>0 \right\}
+        \end{equation*}
+    \end{excer}
+
+\end{document}

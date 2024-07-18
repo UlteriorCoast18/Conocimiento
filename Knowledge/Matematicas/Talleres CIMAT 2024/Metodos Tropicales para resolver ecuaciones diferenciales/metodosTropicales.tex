@@ -1,0 +1,306 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Taller: Métodos algebraicos y tropicales para resolver ecuaciones diferenciales algebraicas}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Introducción}
+    
+    Curso impartido por Cristhian Garay, correo: cristhian.garay@cimat.mx.
+
+    \section{Introducción y motivación}
+
+    \newcommand{\norm}[1]{\ensuremath{\|#1\|}}
+
+    \begin{obs}
+        Las ecuaciones algebraicas son aquellas que usan solo productos de funciones y sus derivadas. Por ejemplo, la ecuación
+        \begin{equation*}
+            \ln u+\norm{u}\frac{\partial u}{\partial x}+\frac{\partial u}{\partial t}u^{ 1/2}=0
+        \end{equation*}
+        no es algebraica.
+    \end{obs}
+
+    Tradicionalmente el estudio de las ecuaciones diferenciales y sus soluciones pertenece al análisis y a los métodos geométricos.
+
+    \begin{mydef}
+        La \textbf{geometría algebraica} es el área de las matemática que estudia los objetos que localmente se describen como conjuntos de soluciones de sistemsa de ecuaciones polinomiales
+        \begin{equation*}
+            \begin{split}
+                f_1(x_1,...,x_n)&=0\\
+                \vdots\\
+                f_m(x_1,...,x_n)&=0\\
+            \end{split}
+        \end{equation*}
+    \end{mydef}
+
+    EL álgebra conmutativa estudia detalladamente los modelos locales de la geometría algebraica, llamada también geometría algebraica afín.
+    
+    En general, gran mayoría de fenómenos se pueden modelar mediante sistemas de ecuaciones polinomiales. Entre estos destacan los lineales, es decir
+    \begin{equation*}
+        f_i(x_1,...,x_n)=\sum_{ i=1}^n a_{i,j}x_i+b_j,\quad\forall j\in\natint{1,m}
+    \end{equation*}
+
+    Notemos que se tiene que para calcular la variedad
+    \begin{equation*}
+        S=\left\{(x_1,...,x_m)\in\mathbb{C}^m\Big|AX=-B \right\}
+    \end{equation*}
+    reducimos el sistema a $A'X=-B'$ con las mismas soluciones. Por esta razón es que el álgebra lineal es un área particular de la geometría algebraica.
+
+    \begin{mydef}
+        Sea $\mathbb{C}[x_1,...,x_n]$ el anillo de polinomios en $n$ variables con coeficientes en $\mathbb{C}$. El \textbf{ideal generado por $A\subseteq\mathbb{C}[x_1,...,x_n]$} es el conjunto
+        \begin{equation*}
+            \langle A\rangle=\left\{\sum_{ i}h_if_i\textup{ finitas }\Big|f_i\in A, h_i\in\mathbb{C}[x_1,...,x_n]\right\}
+        \end{equation*}
+    \end{mydef}
+
+    Para resolver problemas polinomiales se tiene como motivación las bases de Gröbner.
+
+    \section{Modelación algebraica del problema}
+
+    \begin{obs}
+        Convendremos inicialmnete que $\mathbb{N}=\left\{0,1,2,...\right\}$
+    \end{obs}
+
+    Consideremos inicialmente la ecuación diferencial
+    \begin{equation*}
+        \frac{d^2u}{dt^2}=-\frac{k}{m}u
+    \end{equation*}
+    Hacemos
+    \begin{equation*}
+        x_0=u\quad\textup{y}\quad x_2=\frac{d^2u}{dt^2}
+    \end{equation*}
+    obtenemos así el polinomio que modela la ecuación diferencial
+    \begin{equation*}
+        f(x_0,x_2)=x_2+\frac{k}{m}x_0
+    \end{equation*}
+
+    Como otro ejemplo, considere la ecuación del oscilador lineal
+    \begin{equation*}
+        y_1'=-y_2\quad\textup{y}\quad y_2'=y_1
+    \end{equation*}
+    Hacemos
+    \begin{equation*}
+        \begin{split}
+            x_{ 1,0}=y_1\quad&\textup{y}\quad x_{ 2,0}=y_2\\
+            x_{ 1,1}=y_1'\quad&\textup{y}\quad x_{ 2,1}=y_2'\\
+        \end{split}
+    \end{equation*}
+    obtenemos así el sistema
+    \begin{equation*}
+        \begin{split}
+            f(x_{ 1,0},x_{ 2,0},x_{ 1,1},x_{ 2,1})&=x_{ 1,1}+x_{2,0}\\
+            f(x_{ 1,0},x_{ 2,0},x_{ 1,1},x_{ 2,1})&=x_{ 2,1}-x_{1,0}\\
+        \end{split}
+    \end{equation*}
+    El área que estudia este tipo de problemas, convirtiendo los problemas en polinomios es llamada \textbf{álgebra diferencial}.
+
+    Analicemos el caso lineal, la secuaciones diferenciales lineales en $n$ variables diferenciales: $u_1,...,u_n$. Hallemos los vectores de las funciones $(u_1,...,u_n)$ con $u_i=u_i(t)$ siendo $t\in\natint{1,n}$, tales que:
+    \begin{equation*}
+        \sum_{ i=1}^n\sum_{ j=1}^r a_{ i,j}u_i^{(j)}+b=0,\quad a_{ i,j},b\in\mathbb{C}
+    \end{equation*}
+    el \textbf{orden} de la ecuación anterior es $r=\max_{ j}\left\{a_{ i,j}\neq0 \right\}$
+
+    \begin{exa}
+        Consideremos la siguiente ecuación
+        \begin{equation*}
+            a_{ 1,3}\frac{\partial^3u_1}{\partial t_1\partial t_2^2}+a_{ 2,4}\frac{\partial^4u_2}{\partial t_1^3\partial t_2}=0
+        \end{equation*}
+        haciendo $x_1=u_1$ y $x_2=u_2$, tenemos el siguiente polinomio:
+        \begin{equation*}
+            f(x_{1,(0,0)},x_{2,(0,0)},...,)a_{1,3}x_{ 1,(1,2)}+a_{2,4}x_{ 2,(3,1)}
+        \end{equation*}
+        que modela la ecuación diferencial anterior.
+    \end{exa}
+
+    \begin{exa}
+        Consideremos la ecuación de Burgers:
+        \begin{equation*}
+            \frac{\partial u}{\partial t}+u\frac{\partial u}{\partial x}=\nu\frac{\partial^2 u}{\partial u^2}
+        \end{equation*}
+        se traduce algebraicamente como
+        \begin{equation*}
+            f(x_{ (1,0)},x_{ (0,0)},x_{ (0,1)},x_{ (0,2)})=x_{ (1,0)}+x_{(0,0)}x_{ (0,1)}-\nu x_{(0,2)}
+        \end{equation*}
+    \end{exa}
+
+    \begin{mydef}
+        Una \textbf{serie de potencias formal en $m\geq 1$ variables}, es una expresión de la forma
+        \begin{equation*}
+            \varphi=\sum_{ I\in\mathbb{N}^m}a_IT^I,\quad a_I\in\mathbb{C}
+        \end{equation*}
+        definimos las \textbf{derivadas formales} de la manera usual
+        \begin{equation*}
+            \frac{d\varphi}{d t_j}=\sum_{ I\in\mathbb{N}^m}i_j a_IT^{ I-e_j},\quad j\in\natint{1,m}
+        \end{equation*}
+        Dados
+        \begin{itemize}
+            \item $f=f(x_{ i,J}| i\in\natint{1,n}, J\in\mathbb{N}^m)$ un polinomio diferencial en las variables diferenciales $x_1,...,x_n$.
+            \item $\varphi=(\varphi_1,...,\varphi_n)$ es un vector de series formales en $m$ variables.
+        \end{itemize}
+        La \textbf{evaluación diferencial} de $f$ en $\varphi$ es:
+        \begin{equation*}
+            evd_f(\varphi)=f(x_{ i,J}\mapsto\frac{\partial^{j_1+...+j_m}\varphi_i}{\partial^{ j_1}t_1\cdots\partial^{ j_m}t_m})
+        \end{equation*}
+        En este caso, decimos que $\varphi$ es \textbf{solución} de $f$ si $evd_f(\varphi)=0$.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $\varphi=(\varphi_1,...,\varphi_n)$ con $\varphi_i=\sum_{ I\in\mathbb{N}^m}a_{ i,I}T^I$. La \textbf{evaluación algebraica} usual de $f=f(x_{ i,J}\Big|i\in\natint{1,n}, J\in\mathbb{N}^m)$ en $\varphi$ es
+        \begin{equation*}
+            ev_f(\varphi)=f(x_{ i,J}\mapsto a_{ i,J})
+        \end{equation*}
+
+    \end{mydef}
+
+    \section{Herramientas algebraicas}
+
+    \begin{mydef}
+        El conjunto $\mathbb{C}[[T]]=\mathbb{C}[[t_1,...,t_m]]$ de series formales es un anillo conmutativo con 1. La pareja $(\mathbb{C}[[T]],D)$ es un \textbf{anillo diferencial} (siendo $D=\left\{\frac{\partial}{\partial t_1},...,\frac{\partial}{\partial t_m} \right\}$ operadores diferenciales).
+
+        Un ideal $I\subseteq\mathbb{C}[[T]]$ es \textbf{diferencial} si dado $f\in I$ se tiene que $\frac{\partial f}{\partial t_j}\in I$ para $j\in\natint{1,m}$.
+    \end{mydef}
+
+    Sea $\mathbb{C}_{ m,n}$ el anillo de polinomios en infinitas (numerables) variables $\mathbb{C}[x_{ i,J}\Big| i\in\natint{1,n}, J\in\mathbb{N}^m]$. Como en el caos usual, los elementos de este anillo son sumas finitas de \textbf{monomios}:
+    \begin{equation*}
+        f=a_{M_1}E_{ M_1}+\cdots+
+    \end{equation*}
+
+    \chapter{Ejercicios}
+
+\end{document}

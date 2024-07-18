@@ -1,0 +1,371 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Taller: Espacios de configuraciones de gráficas. Tres enfoques distintos.}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Introducción}
+    
+    Taller impartido por María Teresa Idskgen.
+
+    \section{Conceptos Fundamentales}
+
+    En un \textbf{espacio de configuraciones}, se tiene una gráfica y objetos/particulas que se mueven sobre la gráfica sin choques.
+
+    \begin{mydef}
+        Dada una gráfica $\mathcal{G}$, se definimos su \textbf{gráfica de $k$-fichas} $F_k(\mathcal{G})$, como:
+        \begin{itemize}
+            \item Los vértices son conjuntos de vértices de $\mathcal{G}$.
+            \item Las aristas son $(A,B)$ si
+            \begin{equation*}
+                A\vartriangle B=\left\{x,y\right\}
+            \end{equation*}
+            con $(x,y)\in A(\mathcal{G})$.
+        \end{itemize}
+    \end{mydef}
+
+    \begin{obs}
+        Podemos hacer una distinción de casos en que las fichas son iguales o son distinguibles, pero para el caso haremos que son distinguibles.
+    \end{obs}
+
+    \begin{obs}
+        En la gráfica de fichas, no todas se mueven al mismo tiempo. Se mueve una por una. Es por ello que se da una observación posterior. Cuando movemos una ficha es como mover un hueco.
+    \end{obs}
+
+    \begin{obs}
+        Una forma de construir la gráfica de $k$-fichas de una gráfica $\mathcal{G}$, es haciendo el producto de $\mathcal{G}$ consigo mismo $k$-veces y, eliminando los casos en que hay fichas en el mismo lugar. Sería pues
+        \begin{equation*}
+            \underbrace{\mathcal{G}\square\mathcal{G}\square\cdots\square\mathcal{G}}_{k\textup{-veces}}
+        \end{equation*}
+        notemos que en el caso más simple de una trayectoria simple (como el que se muestra en el diagrama), en el caso en que las fichas sean distinguibles, se tiene un grafo disconexo.
+    \end{obs}
+
+    ¿Qué pasa en el caso en que tenemos la siguiente gráfica?
+
+    (hacer gráfica de las imágenes que se hicieron anteriormente).
+
+    \begin{mydef}
+        Sean $\mathcal{G},\mathcal{H}$ gráficas. Decimos que una función $\cf{f}{V(\mathcal{G})}{V(\mathcal{H})}$ es una \textbf{función de gráficas}, si es tal que $(x,y)\in A(\mathcal{G})$ implica que $(f(x),f(y))\in A(\mathcal{H})$. Decimos este es un \textbf{isomorfismo de gráficas} si $f$ es biyección.
+    \end{mydef}
+
+    \begin{obs}
+        Si $\mathcal{G}$ tiene $n$-vértices, entonces
+        \begin{equation*}
+            F_k(\mathcal{G})\cong F_{ n-k}(\mathcal{G})
+        \end{equation*}
+        En el caso que $k=n-1$, $F_{n-1}(\mathcal{G})\cong F_{1}(\mathcal{G})$.
+    \end{obs}
+
+    Si $\left\{x_1,..,x_k \right\}$ es un conjunto independiente, entonces $d(V)=\sum_{ i=1}^k d(x_i)$ (un vértice en la gráfica de fichas). En general, se le resta 2 por cada arista en $\langle x_1,...,x_k\rangle$.
+    
+    \begin{mydef}
+        Un \textbf{núcleo} de una gráfica $\mathcal{G}$ es un conjunto $N\subseteq V(\mathcal{G})$ independiente y absorbente, esto es, para todo $v\in V(\mathcal{G})\backslash N$ existe $w\in N$ tal que $(v,w)\in F(\mathcal{G})$.
+    \end{mydef}
+
+    \begin{theor}
+        Si $\mathcal{G}$ no tiene ciclos dirigidos de longitud impar, entonces $\mathcal{G}$ tiene núcleo.
+    \end{theor}
+
+    \begin{theor}
+        Si $\mathcal{G}$ es bipartita, entonces $F_k(\mathcal{G})$ es bipartita.
+    \end{theor}
+
+    \begin{exa}
+        Hacer ejemplo de las fotos de las dos gráficas, una con núcleo y otra sin núcleo tal que sus gráficas de fichas no tienen núcleo y si tienen, respectivamente.
+    \end{exa}
+
+    \begin{theor}
+        Sea $C_a$ un ciclo dirigido. Enotnces, $F_k(C_a)$ tiene núcleo.
+    \end{theor}
+
+    Sea $DP_u$ la gráfica que se obtiene de un cíclo dirigido pegándole una flecha que entra. Entonces, $F_k(DP_u)$ tiene núcleo si $k=2,3,4$.
+
+    \begin{mydef}
+        Un \textbf{automorfismo} es un morfismo de gráficas $\cf{\varphi}{\mathcal{G}}{\mathcal{G}}$
+    \end{mydef}
+
+    \begin{mydef}
+        $Aut(\mathcal{G})$ denota al grupo de automorfismos de una gráfica con la composiicón usual de funciones y el neutro es la función identidad.
+    \end{mydef}
+
+    Sea $f\in Aut(\mathcal{G})$, entonces existe $\varphi\in Aut(F_k(\mathcal{G}))$ dado por: si $V=\left\{x_1,...,x_k\right\}$, entonces $\varphi(v)=\left\{f(x_1),...,f(x_k)\right\}$.
+
+    \begin{theor}
+        Si $\mathcal{G}$ no contiene como subgráfica indicuda a $C_4$ y diamante, entonces $Aut(\mathcal{G})\cong Aut(F_k(\mathcal{G}))$.
+    \end{theor}
+
+    \section{Punto de vista topológico}
+
+    \begin{mydef}
+        Sea $X$ un espacio topológico. Definimos su \textbf{espacio de configuraciones ordenado} como
+        \begin{equation*}
+            Conf_n(X)=\underbrace{X\times X\times\cdots\times X}_{ n\textup{-veces}}\backslash\Delta
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \Delta=\left\{(x_1,...,x_n)\in \prod_{ i=1}^n X_i\Big|x_i\neq x_j\quad\forall i,j\in\natint{1,n} \right\}
+        \end{equation*}
+        y, de manera similar se define el \textbf{espacio de configuraciones deordenado de $X$ en $n$ puntos} $\cup Conf_n(X)$ como el cociente de $Conf_n(X)/\Sigma_n$.
+    \end{mydef}
+
+    \begin{theor}
+        $Conf_n(I)$ tiene $n!$ componentes conexas todas contraíbles a un punto.
+    \end{theor}
+
+    Si $\mathcal{G}$ es una gráfica distinta a la trayectoria, entonces $Conf_n(\mathcal{G})$ es conexo. En general, $\dot{\cup}Conf_n(\mathcal{G})$ es conexo si $\mathcal{G}$ es conexa.
+
+    \begin{mydef}
+        Sea $X$ un espacio topológico. Definimos su \textbf{espacio de configuraciones ordenado discretizado} como
+        \begin{equation*}
+            D_n(X)=\underbrace{X\times X\times\cdots\times X}_{ n\textup{-veces}}\backslash\Delta'
+        \end{equation*}
+        donde $\Delta'$ son las celdas abiertas cuya cerradura intersecta a $\Delta$. De manera similar se define el \textbf{espacio de configuraciones deordenado discretizado de $X$ en $n$ puntos} $\cup D_n(X)$ como el cociente de $D_n(X)/\Sigma_n$.
+    \end{mydef}
+
+    \begin{theor}
+        Sea $\mathcal{G}$ una gráfica tal que
+        \begin{itemize}
+            \item Entre dos vértices que no son de grado 2 hay al menos $n-1$ aristas.
+            \item Todo cíclo es de longitud al menos $n+1$.
+            Entonces, $Conf_n(\mathcal{G})$ se retrae fuertemente por deformación en $D_n(\mathcal{G})$ y $\bigcup Conf_n(\mathcal{G})$ en $\cup D_n(\mathcal{G})$.
+        \end{itemize}
+    \end{theor}
+
+    \section{Espacios de Cerradura}
+
+
+
+    \begin{mydef}
+        Sea $X$ un conjunto. Un \textbf{operador cerradura} en $X$ es un mapeo $\cf{c}{\mathcal{P}(X)}{\mathcal{P}(X)}$ tal que
+        \begin{itemize}
+            \item $c(\emptyset)=\emptyset$.
+            \item $A\subseteq c(A)$ para todo $A\in\mathcal{P}(X)$.
+            \item $c(A\cup B)=c(A)\cup c(B)$ para todo $A,B\in\mathcal{P}(X)$.
+        \end{itemize}
+        La pareja $(X,c)$ es llamada \textbf{espacio de cerradura}.
+    \end{mydef}
+
+    \begin{exa}
+        Si $c(A)=A$ para todo $A\in\mathcal{P}(X)$, decimos que $c$ es la \textbf{cerradura discreta}.
+    \end{exa}
+
+    \begin{exa}
+        Si $c(A)=X$ para todo $A\in\mathcal{P}(X)$, decimos que $c$ es la \textbf{cerradura indiscreta}.
+    \end{exa}
+
+    \begin{obs}
+        No toda cerradura induce una topología en un conjunto pues necesitamos que $c^2=c$.
+    \end{obs}
+
+    A una gráfica se le puede dar una estructura de operador cerradura como $(V(\mathcal{G}),N[])$ si tomamos como conjunto al conjunto de vértices y como operador la vecindad cerrada.
+    \begin{mydef}
+        Sean $(X,c_X)$ y $(Y,c_Y)$ espacios cerrada. Decimos que un mapeo $\cf{f}{X}{Y}$ es \textbf{continuo} si para todo $U\subseteq X$ se tiene que
+        \begin{equation}
+            f(c_X(U))\subseteq c_Y(f(U))
+        \end{equation}
+    \end{mydef}
+
+    \begin{obs}
+        En el caso que $c_Y$ sea la cerradura indiscreta, toda función simepre es continua. En cambio, casi nunca es continua si $c_Y$ es indiscreta.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $(X,c_X)$ un espacio de cerradura. Se define el mapeo $\cf{\tau_{c_X}}{\mathcal{P}(X)}{\mathcal{P}(X)}$ el mapeo
+        \begin{equation*}
+            \tau_{c_X}(A)=\bigcap\left\{F\subseteq X\Big|c_X(F)=F\textup{ y }A\subseteq F\right\}
+        \end{equation*}
+        llamamos a $\tau_{c_X}$ la \textbf{modificación topológica de $c_X$}.
+    \end{mydef}
+
+    \begin{obs}
+        En la definición anterior se cumplen:
+        \begin{enumerate}
+            \item $\tau_{c_X}^2=\tau_{c_X}$.
+            \item $c_X<\tau_{c_X}$.
+            \item Para todo $c$ tal que $c^2=c$ y $c_X<c$ tenemos que $\tau_{c_X}<c$.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{propo}
+        $\cf{\tau}{\textup{\textbf{Cl}}}{\textup{\textbf{Top}}}$ es un funtor adjunto izquierdo del funtor inclusión $\cf{i}{\textup{\textbf{Top}}}{\textup{\textbf{Cl}}}$, donde $\textup{\textbf{Cl}}$ denota la categoría de todos los espacios de cerradura y $\textup{\textbf{Top}}$ es la categoría de espacios topológicos.
+    \end{propo}
+
+    \begin{mydef}
+        Sean $\cf{f,g}{(X,c)}{(Y,c')}$ dos funciones continuas y supongamos que $X'\subseteq X$, entonces decimos que $f$ es \textbf{homotópica a $g$ relativo a $X'$} si existe un mapeo continuo $\cf{H}{(X,c)\times I}{(Y,c)}$ tal que
+        \begin{equation*}
+            H(x,0)=f(x)\quad\textup{y}\quad H(x,1)=g(x),\quad\forall x\in X
+        \end{equation*}
+        (viendo a $I$ como espacio de cerradura y definiendo el producto entre espacios cerradura) y,
+        \begin{equation*}
+            H(x,t)=f(x)=g(x),\quad\forall x\in X'
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        Se cumple lo siguiente:
+        \begin{enumerate}
+            \item Las gráficas completas son contraíbles.
+            \item Si $v,w\in V(\mathcal{G})$ son tales que $N[v]=N[w]$, entonces $\mathcal{G}\simeq \mathcal{G}\backslash\left\{v\right\}$.
+        \end{enumerate}
+    \end{obs}
+
+    ¿Qué pasa si existe $w\in V(\mathcal{G})$ tal que $N[v]=V(\mathcal{G})$? Se tiene pues que $\mathcal{G}$ es contraíble.
+
+    \begin{theor}
+        $c\cup Conf_2(P_n)\simeq\left\{*\right\}$.
+        $cConf_2(P_n)\simeq\left\{*.\star\right\}$.
+    \end{theor}
+
+    \begin{theor}
+        $\cup Conf_k(P_n)\simeq\left\{*\right\}$.
+    \end{theor}
+
+    \begin{theor}
+        Sea $\mathcal{G}$ una gráfica. Enotnces $c\cup Conf_n(\mathcal{G})$ es una gráfica completa si y sólo si $\mathcal{G}^c$ no tiene como sugráfica ninguna completa bipartita $K_{ m,k}$ con $m+k>n$, $m,k\geq0$.
+    \end{theor}
+
+    \begin{theor}
+        Sea $K_{ 1,n}$ la gráfica estrella. Entonces $c\cup Conf_2(K_{ 1,n})$ es contraíble.
+    \end{theor}
+
+    Sea $T$ un árbol. Entonces, $c\cup Conf_2(T)$ es homotópico a la 
+
+    \chapter{Ejercicios}
+
+\end{document}

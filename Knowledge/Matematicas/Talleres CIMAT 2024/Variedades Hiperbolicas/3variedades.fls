@@ -1,7 +1,7 @@
-PWD /home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Algebra Moderna III/Listas/Lista Ext Normales
+PWD /home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Talleres CIMAT 2024/Variedades Hiperbolicas
 INPUT /home/cristodanielalvarado/.miktex/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt
-INPUT /home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Algebra Moderna III/Listas/Lista Ext Normales/ext_normales_lista.tex
-OUTPUT ext_normales_lista.log
+INPUT /home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Talleres CIMAT 2024/Variedades Hiperbolicas/3variedades.tex
+OUTPUT 3variedades.log
 INPUT /usr/local/share/miktex-texmf/tex/latex/base/report.cls
 INPUT /usr/local/share/miktex-texmf/tex/latex/base/report.cls
 INPUT /usr/local/share/miktex-texmf/tex/latex/base/size12.clo
@@ -223,12 +223,10 @@ INPUT /usr/local/share/miktex-texmf/tex/generic/iftex/ifvtex.sty
 INPUT /usr/local/share/miktex-texmf/tex/latex/geometry/geometry.cfg
 INPUT /usr/local/share/miktex-texmf/tex/latex/geometry/geometry.cfg
 INPUT /usr/local/share/miktex-texmf/tex/latex/geometry/geometry.cfg
-INPUT /usr/local/share/miktex-texmf/tex/latex/wrapfig/wrapfig.sty
-INPUT /usr/local/share/miktex-texmf/tex/latex/wrapfig/wrapfig.sty
-INPUT ./ext_normales_lista.aux
-INPUT ./ext_normales_lista.aux
-INPUT ext_normales_lista.aux
-OUTPUT ext_normales_lista.aux
+INPUT ./3variedades.aux
+INPUT ./3variedades.aux
+INPUT 3variedades.aux
+OUTPUT 3variedades.aux
 INPUT /usr/local/share/miktex-texmf/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/share/miktex-texmf/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/share/miktex-texmf/tex/context/base/mkii/supp-pdf.mkii
@@ -255,12 +253,13 @@ INPUT /usr/local/share/miktex-texmf/tex/latex/amsfonts/umsb.fd
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-OUTPUT ext_normales_lista.pdf
+OUTPUT 3variedades.pdf
 INPUT /home/cristodanielalvarado/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmbx12.tfm
-INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmr17.tfm
-INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmbx12.tfm
+INPUT ./3variedades.toc
+INPUT ./3variedades.toc
+INPUT 3variedades.toc
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmr8.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmr6.tfm
@@ -279,13 +278,11 @@ INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msam7.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-INPUT ./Figures/torre_de_campos.pdf
-INPUT ./Figures/torre_de_campos.pdf
-INPUT ./Figures/torre_de_campos.pdf
-INPUT ./Figures/torre_de_campos.pdf
-INPUT ./Figures/torre_de_campos.pdf
-INPUT ./Figures/torre_de_campos.pdf
-INPUT ext_normales_lista.aux
+OUTPUT 3variedades.toc
+INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmr17.tfm
+INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmbx12.tfm
+INPUT /usr/local/share/miktex-texmf/fonts/tfm/public/cm/cmti12.tfm
+INPUT 3variedades.aux
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb
@@ -300,12 +297,16 @@ INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr17.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr17.pfb
+INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr6.pfb
+INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmti12.pfb
+INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmti12.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT /usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msbm10.pfb
