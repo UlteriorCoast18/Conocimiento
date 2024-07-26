@@ -147,6 +147,56 @@
         Las funciones $x\mapsto P(x)$, $x\mapsto e^x$, $x\mapsto \sin x$ y $x\mapsto \cos x$ son analíticas en $\mathbb{R}$
     \end{exa}
 
+    Debido a que como resultado de efectuar operaciones algebraicas y analíticas (suma, resta, multiplicación, división, integración y derivación) sobre series de potencias resulta nuevamente en una serie de potencias convergente, es de gran interés conocer las propiedades de estas funciones (más que nada debido a las ecuaciones diferenciales). Esto motiva el estudio particular de este tipo  de funciones.
+
+    A pesar de lo amplia que es esta clase de funciones, ésta solamente forma una parte regular de las funciones \textit{infinitamente diferenciables}.
+
+    \begin{propo}
+        Sea $\cf{f}{]x_0-r,x_0+r[}{\mathbb{R}}$ una función, siendo $r>0$ y $x_0\in\mathbb{R}$. Entonces, $f$ es analítica en $x_0$ si y sólo si se satisfacen las condiciones siguientes:
+        \begin{enumerate}
+            \item $f$ tiene derivadas de todos los órdenes en un entorno de $x_0$.
+            \item Existen $\delta,M>0$ tales que para todo $x\in]x_0-\delta,x_0+\delta[$ y para todo $k\in\mathbb{N}$ se cumple:
+            \begin{equation*}
+                \abs{f^{(k)}(x)}<M\frac{k!}{\delta^k}
+            \end{equation*}
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Suponga que $f$ es analítica en $x_0$, entonces existen $a_0,a_1,...,a_n,...\in\mathbb{R}$ y $\rho>0$ tal que
+        \begin{equation*}
+            f(x)=a_0+a_1(x-x_0)+a_2(x-x_0)^2+...
+        \end{equation*}
+        para todo $x\in]x_0-\rho,x_0+\rho[$ (note que $\rho<r$). Se sabe por resultados de análisis real que $f$ tiene derivadas de todos los órdenes en $]x_0-\rho,x_0+\rho[$ y, en particular para todo $k\in\mathbb{N}$ se tiene que
+        \begin{equation*}
+            f^{(k)}(x)=k!a_k+\frac{(k+1)!}{1!}a_{ k+1}(x-x_0)+\frac{(k+2)!}{2!}a_{ k+2}(x-x_0)^2+...+\frac{(k+n)!}{n!}a_{ k+n}(x-x_0)^n+...
+        \end{equation*}
+        para todo $x\in]x_0-\rho,x_0+\rho[$. Fijemos $k\in\mathbb{N}$ y tomemos $\delta>0$ tal que $0<2\delta<\rho$. Si $x=x_0+2\delta$, entonces la serie anterior convergerá y, por ende en el límite debe suceder que
+        \begin{equation*}
+            \begin{split}
+                \lim_{ n\rightarrow\infty}\frac{(k+n)!}{n!}a_{ k+n}(x-x_0)^n&=0\\
+                \iff \lim_{ n\rightarrow\infty}a_{ k+n}(x_0+2\delta-x_0)^n&=0\\
+                \iff a^k\lim_{ n\rightarrow\infty}a_{n}(2\delta)^n&=0\\
+                \iff \lim_{ n\rightarrow\infty}a_{n}(2\delta)^n&=0\\
+            \end{split}
+        \end{equation*}
+        (pues, $\lim_{ n\rightarrow\infty}\frac{(k+n)!}{n!}=1$). En particular, de lo anterior se deduce que $\left\{a_n(2\delta)^n \right\}_{ n=1}^{\infty}$ es una sucesión acotada, luego existe $M>0$ tal que
+        \begin{equation*}
+            \abs{a_n(2\delta)^n}<M',\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        Por tanto, se tiene que para todo $x\in]x_0-\delta,x_0+\delta[$, al ser la serie de potencias convergente y ser el espacio $(\mathbb{R},\abs{\cdot})$ completo, es absolutamente convergente, luego:
+        \begin{equation*}
+            \begin{split}
+                \abs{f^{(k)}(x)}&\leq k!\abs{a_k}+\frac{(k+1)!}{1!}\abs{a_{ k+1}}\abs{x-x_0}+...+\frac{(k+n)!}{n!}\abs{a_{ k+n}}\abs{x-x_0}^n+...\\
+                &\leq k!\abs{a_k}+\frac{(k+1)!}{1!}\abs{a_{ k+1}}\abs{x_0+\delta-x_0}+...+\frac{(k+n)!}{n!}\abs{a_{ k+n}}\abs{x_0+\delta-x_0}^n+...\\
+                &\leq k!\abs{a_k}+\frac{(k+1)!}{1!}\abs{a_{ k+1}}\delta+...+\frac{(k+n)!}{n!}\abs{a_{ k+n}}\delta^n+...\\
+                &< k!\frac{M'}{(2\delta)^k}+\frac{(k+1)!}{1!}\cdot\frac{M'}{(2\delta)^{ k+1}}\delta+...+\frac{(k+n)!}{n!}\cdot\frac{M'}{(2\delta)^{ k+n}}\delta^n+...\\
+                &=\frac{k!M'}{2^k}\left[1+\frac{k+1}{1!}\cdot\frac{1}{2}+...+\frac{(k+1)(k+2)\cdot...\cdot(k+n)}{n!}\cdot\frac{1}{2^n}+... \right]\\
+            \end{split}
+        \end{equation*}
+
+    \end{proof}
+
     \chapter*{Bibliografía}
 
     \begin{itemize}
