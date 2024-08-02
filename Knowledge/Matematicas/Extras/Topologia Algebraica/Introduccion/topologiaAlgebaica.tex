@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage[mathscr]{euscript}
 \usepackage{graphics}
 \usepackage{wrapfig}
 \usepackage{subfigure}
@@ -426,20 +427,151 @@
             \right.
         \end{equation*}
 
-        \begin{wrapfigure}{l}{0.3\textwidth}
+        \begin{figure}
             \begin{center}
-                \includegraphics[scale=0.75]{images/fig_1.pdf}
+                \includegraphics[scale=1]{images/fig_1.pdf}
             \end{center}
             \caption{Dominio de la función $F$.}
-        \end{wrapfigure}
+        \end{figure}
 
-        para todo $s,t\in I$. Veamos que $F$ es continua
-
-
+        para todo $s,t\in I$. Veamos que $F$ es continua... %TODO
     \end{proof}
 
+    Para cualquier punto $x\in X$, denotemos por $\mathscr{I}_x=[i_x]$ a la clase de equivalencia del mapeo identidad, es decir $\cf{i_x}{I}{X}$ es tal que $i_x(t)=x$ para todo $y\in I$. Esta clase tiene la siguiente propiedad fundamental:
 
+    \begin{lema}
+        Sea $\mathscr{F}=[f]$ una clase de equivalencia de caminos con punto inicial $x\in X$ y terminal $y\in X$. Entonces, $\mathscr{I}_x\cdot\mathscr{F}=\mathscr{F}$ y $\mathscr{F}\cdot\mathscr{I}_y=\mathscr{F}$.
+    \end{lema}
 
+    \begin{proof}
+        Solo se probará la primera igualdad, para ello, basta con probar que $i_x\cdot f\sim f$. En efecto, defina la función $\cf{F}{I\times I}{X}$ dada por:
+        \begin{equation*}
+            F(t,s)=\left\{
+                \begin{array}{lcr}
+                    x & \textup{ si } & 0\leq t\leq\frac{s}{2}\\
+                    f\left(\frac{2t-s}{2-s}\right) & \textup{ si } & \frac{s}{2}\leq t\leq 1\\
+                \end{array}
+            \right.
+        \end{equation*}
+        para todo $s,t\in I$. Entonces, $F(t,0)=f(t)$ y $F(t,1)=(e\cdot f)(1)$ siendo $F$ continua. Por tanto, $\mathscr{I}_x\cdot\mathscr{F}=\mathscr{F}$.
+    \end{proof}
+
+    En cierto modo, lo que decimos es que la clase $\mathscr{I}_x$ actúa como elemento identidad (\textit{¿De dónde?}).
+
+    \begin{mydef}
+        Para cualquier camino $\cf{f}{I}{X}$, $\overline{f}$ denota al camino definido por:
+        \begin{equation*}
+            \overline{f}(t)=f(1-t),\quad\forall t\in I
+        \end{equation*}
+        El camino $\overline{f}$ se obtiene recorriendo el camino $f$ en sentido contrario.
+    \end{mydef}
+
+    \begin{lema}
+        Sea $f$ un camino y denotemos por $\mathscr{F}=[f]$ y $\overline{\mathscr{F}}=[\overline{f}]$, entonces:
+        \begin{equation*}
+            \mathscr{F}\cdot\overline{\mathscr{F}}=\mathcal{I}_x\quad\textup{y}\quad\overline{\mathscr{F}}\cdot\mathscr{F}=\mathcal{I}_y
+        \end{equation*}
+        donde $x\in X$ y $y\in X$ son los puntos inicial y terminal de $f$, respectivamnete.
+    \end{lema}
+
+    \begin{proof}
+        Sólo se probará la primera igualdad, para ello es suficiente con probar que $f\cdot\overline{f}\sim i_x$. Definimos la función $\cf{F}{I\times I}{X}$ por:
+        \begin{equation*}
+            F(t,s)=\left\{
+                \begin{array}{lcr}
+                    f(2t) & \textup{ si } & 0\leq t\leq\frac{s}{2}\\
+                    f(s) & \textup{ si } & \frac{s}{2}\leq t\leq1-\frac{s}{2}\\
+                    f(2-2t) & \textup{ si } & 1-\frac{s}{2}\leq t\leq1\\
+                \end{array}
+            \right.
+        \end{equation*}
+        para todo $s,t\in I$. Entonces,
+        \begin{equation*}
+            \begin{split}
+                F(t,0)&=\left\{
+                    \begin{array}{lcr}
+                        f(2t) & \textup{ si } & 0\leq t\leq0\\
+                        f(s) & \textup{ si } & 0\leq t\leq1-0\\
+                        f(2-2t) & \textup{ si } & 1-0\leq t\leq1\\
+                    \end{array}
+                \right.\\
+                &=\left\{
+                    \begin{array}{lcr}
+                        f(0) & \textup{ si } & t=0\\
+                        f(0) & \textup{ si } & 0\leq t\leq1\\
+                        f(2-2t) & \textup{ si } & t=1\\
+                    \end{array}
+                \right.\\
+                &=\left\{
+                    \begin{array}{lcr}
+                        x & \textup{ si } & 0\leq t\leq1\\
+                        f(0) & \textup{ si } & t=1\\
+                    \end{array}
+                \right.\\
+                &=x\\
+            \end{split}
+        \end{equation*}
+        para todo $t\in I$. Además,
+        \begin{equation*}
+            \begin{split}
+                F(t,1)&=\left\{
+                    \begin{array}{lcr}
+                        f(2t) & \textup{ si } & 0\leq t\leq\frac{1}{2}\\
+                        f(1) & \textup{ si } & \frac{1}{2}\leq t\leq1-\frac{1}{2}\\
+                        f(2-2t) & \textup{ si } & 1-\frac{1}{2}\leq t\leq1\\
+                    \end{array}
+                \right.\\
+                &=\left\{
+                    \begin{array}{lcr}
+                        f(2t) & \textup{ si } & 0\leq t\leq\frac{1}{2}\\
+                        f(1-(2t-1)) & \textup{ si } & \frac{1}{2}\leq t\leq1\\
+                    \end{array}
+                \right.\\
+                &=\left\{
+                    \begin{array}{lcr}
+                        f(2t) & \textup{ si } & 0\leq t\leq\frac{1}{2}\\
+                        \overline{f}(2t-1) & \textup{ si } & \frac{1}{2}\leq t\leq1\\
+                    \end{array}
+                \right.\\
+                &=f\cdot\overline{f}(t)\\
+            \end{split}
+        \end{equation*}
+        para todo $t\in I$. La función $F$ es continua... %TODO
+
+        Por tanto, $\mathscr{F}\cdot\overline{\mathscr{F}}$.
+    \end{proof}
+
+    En visata de estas propiedades de la clase $\overline{\mathscr{F}}$, de ahora en adelante la denotaremos por $\mathscr{F}^{-1}$.
+
+    Podemos resumir todos los lemas antes probados diciendo que el conjunto de todas las clases de caminos en un espacio $X$ satisfacen los axiomas de grupo, excepto que el producto de dos caminos no siempre está definido. Solventamos este problema con la siguiente definición:
+
+    \begin{mydef}
+        Un camino o una clase de camino es llamada \textbf{cerrada} o un \textbf{bucle}, si el punto inicial y terminal son el mimso. El bucle se dice que tiene \textbf{base} en el punto inicial o terminal.
+    \end{mydef}
+
+    \begin{theor}
+        Sea $X$ un espacio topológico y $x\in X$ un punto fijo. Entonces, el conjunto de todas las clases de caminos cerradas que tienen como punto base a $x$ dotado por la operación $\cdot$, denotado por $\pi(X,x)$ es un grupo llamado \textbf{grupo fundamental} o \textbf{grupo de Poincaré} de $X$ con punto base $x$.
+    \end{theor}
+
+    \begin{proof}
+        Es un resumen de todos los lemas anteriores.
+    \end{proof}
+
+    \begin{propo}
+        Sea $X$ un espacio y $x,y\in X$ dos puntos distintos. Si $\cf{\gamma}{I}{X}$ es un camino con punto inicial $x$ y terminal $y$, entonces $\pi(X,x)\cong\pi(X,y)$ (es decir, son grupos isomorfos).
+    \end{propo}
+
+    \begin{proof}
+        En efecto, defina la función $\cf{u}{\pi(X,x)}{\pi(X,y)}$ dada por:
+        \begin{equation*}
+            u(f)=\gamma^{-1}\circ f\circ\gamma
+        \end{equation*}
+        Veamos que:
+        \begin{itemize}
+            \item \textbf{$u$ está bien definida}: 
+            \item \textbf{$u$ es homomorfismo}: Sean $f,g\in\pi(X,x)$
+        \end{itemize}
+    \end{proof}
 
     \newpage
 
