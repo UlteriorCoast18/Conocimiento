@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.4)  21 AUG 2024 17:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.4)  22 AUG 2024 17:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -682,7 +682,13 @@ LaTeX Font Info:    Trying to load font information for U+fontawesomefree2 on in
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on input line 80.
- (/usr/local/share/miktex-texmf/tex/latex/fontawesome5/ufontawesomefree1.fd) [1
+ (/usr/local/share/miktex-texmf/tex/latex/fontawesome5/ufontawesomefree1.fd)
+
+Package fancyhdr Warning: \footskip is too small (30.0pt): 
+(fancyhdr)                Make it at least 40.8pt, for example:
+(fancyhdr)                \setlength{\footskip}{40.8pt}.
+
+[1
 
 {/home/cristodanielalvarado/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}{/usr/local/share/miktex-texmf/fonts/enc/dvips/fontawesome5/fa5free2.enc}{/usr/local/share/miktex-texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/local/share/miktex-texmf/fonts/enc/dvips/fontawesome5/fa5free1.enc}] (carta.aux)
  ***********
@@ -697,15 +703,15 @@ Package rerunfilecheck Info: File `carta.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27125 strings out of 474387
- 518876 string characters out of 5747330
+ 27127 strings out of 474387
+ 518890 string characters out of 5747330
  1938493 words of memory out of 5000000
  49030 multiletter control sequences out of 15000+600000
- 563433 words of font info for 64 fonts, out of 8000000 for 9000
+ 563498 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  129i,12n,129p,1139b,527s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/share/miktex-texmf/fonts/type1/public/fontawesome5/FontAwesome5Free-Regular.pfb></usr/local/share/miktex-texmf/fonts/type1/public/fontawesome5/FontAwesome5Free-Solid.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/cm-super/sfsl1095.pfb>
-Output written on carta.pdf (1 page, 65980 bytes).
+Output written on carta.pdf (1 page, 68544 bytes).
 PDF statistics:
  56 PDF objects out of 1000 (max. 8388607)
  7 named destinations out of 1000 (max. 500000)
