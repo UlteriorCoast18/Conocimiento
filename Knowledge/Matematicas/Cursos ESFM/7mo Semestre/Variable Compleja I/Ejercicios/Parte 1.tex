@@ -1,0 +1,423 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+\newcommand{\conj}[1]{\ensuremath{\overline{#1}}}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas, Ejercicios y Problemas sobre funciones de variable compleja}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \renewcommand{\theenumi}{\roman{enumi}}
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Ejercicios y Problemas}
+    
+    \section{Parte 1}
+    
+    Primero se verán algunas definiciones fundamentales para poder entender los ejercicios.
+    
+    \subsection{Problemas y Ejercicios}
+
+    \begin{excer}
+        Encuentre los números complejos tales que sus conjugados son iguales a:
+        \begin{enumerate}
+            \item Sus cuadrados.
+            \item Sus cubos.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        De (i): Consideremos un número complejo $z=a+ib\in\mathbb{C}$ tal que
+        \begin{equation*}
+            \begin{split}
+                &\conj{z}=z^2\\
+                \iff& a-ib=(a^2-b^2)+2iab\\
+                \iff& \left\{
+                    \begin{array}{rl}
+                        a=& a^2-b^2\\
+                        -b=&2ab\\
+                    \end{array}
+                \right.\\
+                \iff& \left\{
+                    \begin{array}{rl}
+                        a=& a^2-b^2\\
+                        (2a-1)b=&0\\
+                    \end{array}
+                \right.\\
+            \end{split}
+        \end{equation*}
+        de la segunda ecuación se deduce que $a=\frac{1}{2}$ o $b=0$. Si $a=\frac{1}{2}$, entonces
+        \begin{equation*}
+            \begin{split}
+                a^2-b^2&=a\\
+                \iff b^2&=a^2-a\\
+                \iff b^2&=\frac{1}{4}-\frac{1}{2}\\
+                \iff b^2&=-\frac{1}{4}\\
+            \end{split}
+        \end{equation*}
+        siendo $b\in\mathbb{R}$, tal cosa no puede suceder, por lo que $b=0$, lo cual implica que
+        \begin{equation*}
+            \begin{split}
+                a^2-b^2&=a\\
+                \iff a^2&=a\\
+                \iff a(a-1)=0\\
+            \end{split}
+        \end{equation*}
+        es decir, si $a=0$ o si $a=1$.
+
+        De (ii): Consideremos un número complejo $z=a+ib\in\mathbb{C}$ tal que
+        \begin{equation*}
+            \begin{split}
+                &\conj{z}=z^3\\
+                \iff& a-ib=a^3+3ia^2b-3ab^2-ib^3\\
+                \iff& a-ib=a^3-3ab^2+i(3a^2b-b^3)\\
+                \iff& \left\{
+                    \begin{array}{rl}
+                        a = & a^3-3ab^2\\
+                        -b = & 3a^2b-b^3\\
+                    \end{array}
+                \right.\\
+                \iff& \left\{
+                    \begin{array}{rl}
+                        a(a^2-3b^2-1) = & 0 \\
+                        b(3a^2-b^2+1) = & 0 \\
+                    \end{array}
+                \right.\\
+            \end{split}
+        \end{equation*}
+        Analicemos por casos cada ecuación.
+        \begin{itemize}
+            \item Suponga que $a=0$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    b(1-b^2)&=0\\
+                \end{split}
+            \end{equation*}
+            luego $b=0$ o $1-b^2=0\Rightarrow b^2=1$, es decir que $z=0$ ó $z=\pm i$.
+            \item Suponga que $a^2-3b^2-1=0$, entonces $a^2=3b^2+1$. Por tanto:
+            \begin{equation*}
+                \begin{split}
+                    b(3a^2-b^2+1) = & 0 \\
+                    \Rightarrow b(9b^2+3-b^2+1)=0\\
+                    \Rightarrow b(9b^2+3-b^2+1)=0\\
+                    \Rightarrow 4b(2b^2+1)=0\\
+                    \Rightarrow 4b(2b^2+1)=0\\
+                \end{split}
+            \end{equation*}
+            esto es, $b=0$ o $2b^2+1=0$, el segundo caso no puede ocurrir pues $b\in\mathbb{R}$, luego si $b=0$ se tiene que $a^2=1$, es decir que $z=\pm1$.
+        \end{itemize}
+        En resumen, $z$ toma uno y sólo uno de los valores del conjunto $\left\{0,-1,1,-i,i \right\}$.
+    \end{sol}
+
+    \begin{excer}
+        Suponga que un número complejo $u\in\mathbb{C}$ es obtenido a partir de aplicar un número finito de veces operaciones racionales a los números complejos $z_1,...,z_n\in\mathbb{C}$. Pruebe que las mismas operaciones aplicadas a $\conj{z_1},...,\conj{z_n}\in\mathbb{C}$ resultan en $\conj{u}$. 
+    \end{excer}
+
+    \begin{proof}
+        Notemos que cada operación (suma y multiplicación) son operaciones binarias y que, el aplicar un número finito de veces operaciones racionales a los números complejos $z_1,...,z_n$ es equivalente a componer un número finito de veces las operaciones binarias de suma y multiplicación (tomando suma de inverso aditivo en caso de la resta y multiplicación por inverso multiplicativo en caso de la división), por lo que para probar el resultado basta con probar que
+        \begin{equation*}
+            \conj{x+y}=\conj{x}+\conj{y}\quad\textup{y}\quad\conj{x\cdot y}=\conj{x}\cdot\conj{y},\quad\forall x,y\in\mathbb{C}
+        \end{equation*}
+        En efecto, sean $x=a+ib$ y $y=c+id$ números complejos. Entonces:
+        \begin{equation*}
+            \begin{split}
+                \conj{x+y}&=\conj{a+ib+c+id}\\
+                &=\conj{(a+c)+i(b+d)}\\
+                &=a+c-i(b+d)\\
+                &=(a-ib)+(c-id)\\
+                &=\conj{x}+\conj{y}\\
+            \end{split}
+        \end{equation*}
+        (de forma análoga se prueba la otra igualdad).
+    \end{proof}
+
+    \begin{excer}
+        Por un argumento puramente geométrico, pruebe la desigualdad:
+        \begin{equation*}
+            \abs{z-1}\leq\abs{\abs{z}-1}+\abs{z}\abs{\arg z}
+        \end{equation*}
+    \end{excer}
+    
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Resuelva las siguientes ecuaciones:
+        \begin{itemize}
+            \item $\abs{z}-z=1+2i$.
+            \item $\abs{z}+z=2+i$.
+        \end{itemize}
+    \end{excer}
+
+    \begin{sol}
+        De (i): Suponga que existe $z=a+ib\in\mathbb{C}$ tal que
+        \begin{equation*}
+            \abs{z}-z=1+2i
+        \end{equation*}
+        entonces,
+        \begin{equation*}
+            \begin{split}
+                &\sqrt{a^2+b^2}-a-ib=1+2i\\
+                \iff& \left\{\begin{array}{rcl}
+                    \sqrt{a^2+b^2}-a&=&1\\
+                    -b&=&2\\
+                \end{array} \right.\\
+                \iff& \left\{\begin{array}{rcl}
+                    \sqrt{a^2+b^2}-a&=&1\\
+                    b&=&-2\\
+                \end{array} \right.\\
+                \iff& \left\{\begin{array}{rcl}
+                    \sqrt{a^2+4}&=&1+a\\
+                    b&=&-2\\
+                \end{array} \right.\\
+                \iff& \left\{\begin{array}{rcl}
+                    a^2+4&=&1+2a+a^2\\
+                    b&=&-2\\
+                \end{array} \right.\\
+                \iff& \left\{\begin{array}{rcl}
+                    a^2+4&=&1+2a+a^2\\
+                    b&=&-2\\
+                \end{array} \right.\\
+                \iff& \left\{\begin{array}{rcl}
+                    2a&=&3\\
+                    b&=&-2\\
+                \end{array} \right.\\
+                \iff& \left\{\begin{array}{rcl}
+                    a&=&\frac{3}{2}\\
+                    b&=&-2\\
+                \end{array} \right.\\
+            \end{split}
+        \end{equation*}
+        por tanto, $z=\frac{3}{2}-2i$.
+
+        De (ii): Suponga que...
+    \end{sol}
+
+    \begin{excer}
+        Pruebe que todo número excepto $-1$ de módulo unitario puede ser expresado en la forma
+        \begin{equation*}
+            z=\frac{1+it}{1-it}
+        \end{equation*}
+        donde $t\in\mathbb{R}$.
+    \end{excer}
+
+    \begin{proof}
+        Sea $z\in\mathbb{C}$ y tomemos $t=\tan\frac{\arg z}{2}$. Se tiene que $t\in\mathbb{R}$ si $z\neq-1$ (ya que $\frac{\arg z}{2}=\frac{p}{2}$, el único punto donde no está definida ya que $0\leq\frac{\arg z}{2}\leq\pi$). Además, a cada punto de módulo unitario le corresponde uno y sólo un argumento $\arg z$.
+
+        Afirmamos que se cumple la igualdad. En efecto:
+        \begin{equation*}
+            \begin{split}
+                \frac{1+it}{1-it}&=\frac{1+it}{1-it}\cdot\frac{1+it}{1+it}\\
+                &=\frac{1-t^2+2it}{1+t^2}\\
+                &=\frac{1-\tan^2\frac{\arg z}{2}}{1+\tan^2\frac{\arg z}{2}}+i\frac{2\tan\frac{\arg z}{2}}{1+\tan^2\frac{\arg z}{2}}\\
+                &=\cos\left(2\cdot\frac{\arg z}{2}\right)+i\sin\left(2\cdot\frac{\arg z}{2}\right)\\
+                &=\cos\arg z+i\sin\arg z\\
+                &=z\\
+            \end{split}
+        \end{equation*}
+        pues, para todo $\theta\in\mathbb{R}$ (para el que todo esté bien definido), se cumplen las igualdades:
+        \begin{equation*}
+            \left\{
+                \begin{array}{rl}
+                    \sin\theta &= \frac{2\tan\frac{\theta}{2}}{1+\tan^2\frac{\theta}{2}}\\
+                    \cos\theta &= \frac{1-\tan^2\frac{\theta}{2}}{1+\tan^2\frac{\theta}{2}}\\
+                    \tan\theta &= \frac{2\tan^2\frac{\theta}{2}}{1-\tan^2\frac{\theta}{2}}\\
+                \end{array}
+            \right.
+        \end{equation*}
+        %TODO: Una demostración de este hecho no estaría mal.
+        Lo que prueba el resultado.
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que si $\abs{z}<\frac{1}{2}$, entonces $\abs{(1+i)z^3+iz}<\frac{3}{4}$.
+    \end{excer}
+
+    \begin{proof}
+        Sea $z\in\mathbb{C}$ tal que $\abs{z}<\frac{1}{2}$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \abs{(1+i)z^3+iz}&\leq\abs{(1+i)z^3}+\abs{iz}\\
+                &\leq\abs{1+i}\abs{z^3}+\abs{i}\abs{z}\\
+                &<(\abs{1}+\abs{i})\abs{z}^3+\frac{1}{2}\\
+                &<\frac{2}{2^3}+\frac{1}{2}\\
+                &\leq\frac{1}{4}+\frac{1}{2}\\
+                &=\frac{3}{4}\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que
+        \begin{equation*}
+            \arg\frac{z_3-z_1}{z_3-z_2}=\frac{1}{2}\arg\frac{z_2}{z_1}
+        \end{equation*}
+        siendo $z_1,z_2,z_3\in\mathbb{C}$ tales que $\abs{z_1}=\abs{z_2}=\abs{z_3}$.
+    \end{excer}
+
+    \begin{proof}
+        Considere los tres números escritos en su forma trigonométrica, es decir:
+        \begin{equation*}
+            \left\{
+                \begin{split}
+                    z_1&=r_1\cos\theta_1+i\sin\theta_1\\
+                    z_2&=r_1\cos\theta_2+i\sin\theta_2\\
+                    z_3&=r_1\cos\theta_3+i\sin\theta_3\\
+                \end{split}
+            \right.
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            \begin{split}
+                \arg\frac{z_2}{z_1}&=\arg\left(\frac{\abs{z_2}}{\abs{z_1}}\left[\cos\left(\theta_2-\theta_1\right)+i\sin\left(\theta_2-\theta_1\right)\right]\right) \\
+                &=\arg\left(\cos\left(\theta_2-\theta_1\right)+i\sin\left(\theta_2-\theta_1\right)\right) \\
+                &=\theta_2-\theta_1\\
+            \end{split}
+        \end{equation*}
+        pues, $\abs{z_1}\neq0$ y se tiene la igualdad de ambos módulos.
+
+        Ahora, también se cumple:
+        \begin{equation*}
+            \begin{split}
+                \frac{z_3-z_1}{z_3-z_2}&=
+            \end{split}
+        \end{equation*}
+    \end{proof}
+    
+    
+
+\end{document}

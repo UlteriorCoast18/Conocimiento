@@ -469,7 +469,7 @@
     \begin{lema}
         Sea $f$ un camino y denotemos por $\mathscr{F}=[f]$ y $\overline{\mathscr{F}}=[\overline{f}]$, entonces:
         \begin{equation*}
-            \mathscr{F}\cdot\overline{\mathscr{F}}=\mathcal{I}_x\quad\textup{y}\quad\overline{\mathscr{F}}\cdot\mathscr{F}=\mathcal{I}_y
+            \mathscr{F}\cdot\overline{\mathscr{F}}=\mathscr{I}_x\quad\textup{y}\quad\overline{\mathscr{F}}\cdot\mathscr{F}=\mathscr{I}_y
         \end{equation*}
         donde $x\in X$ y $y\in X$ son los puntos inicial y terminal de $f$, respectivamnete.
     \end{lema}
@@ -557,6 +557,12 @@
         Es un resumen de todos los lemas anteriores.
     \end{proof}
 
+    \begin{obs}
+        Para un espacio topológico dado $X$ y $x\in X$, dotamos el grupo fundamental $\pi(X,x)$ de una operación binaria que lo hace de grupo, de ahora en adelante tal operación se denotará al producto de dos clases $[f]$ y $[g]$ por $[f]\cdot[g]$ o por yuxtaposición como $[f][g]=[f\cdot g]$ (no confundir la operación dentro de los paréntesis cuadrados con la composición usual de funciones).
+
+        Si $[f]\in\pi(X,x)$, se denotará a su inverso por $[f]^{-1}$ y, al elemento identidad por $\mathscr{I}$
+    \end{obs}
+
     \begin{propo}
         Sea $X$ un espacio y $x,y\in X$ dos puntos distintos. Si $\cf{\gamma}{I}{X}$ es un camino con punto inicial $x$ y terminal $y$, entonces $\pi(X,x)\cong\pi(X,y)$ (es decir, son grupos isomorfos).
     \end{propo}
@@ -564,14 +570,229 @@
     \begin{proof}
         En efecto, defina la función $\cf{u}{\pi(X,x)}{\pi(X,y)}$ dada por:
         \begin{equation*}
-            u(f)=\gamma^{-1}\circ f\circ\gamma
+            u([f])=[\gamma]^{-1}[f][\gamma]
         \end{equation*}
-        Veamos que:
-        \begin{itemize}
-            \item \textbf{$u$ está bien definida}: 
-            \item \textbf{$u$ es homomorfismo}: Sean $f,g\in\pi(X,x)$
-        \end{itemize}
+        Por cursos anteriores de teoría de Grupos, se ve de forma inmediata que esta función es un isomorfismo entre los grupos $\pi(X,x)$ y $\pi(X,y)$.
     \end{proof}
+
+    \begin{cor}
+        Sea $X$ un espacio topológico arco-conexo, entonces los grupos $\pi(X,x)$ y $\pi(X,y)$ son isomorfos para todo $x,y\in X$.
+    \end{cor}
+
+    La importancia del teorema anterior radica en que el grupo $\pi(X,x)$ tiene propiedades como grupo (es decir, es abeliano, finito, nilpotente, libre, etc...) no debido al punto elegido $x\in X$, sino al espacio mismo $X$, suponiendo que $X$ es arco-conexo.
+
+    En general, no hay un mapeo canónico o isomorfismo natural entre $\pi(X,x)$ y $\pi(X,y)$, ya que a cada elección de camino entre $x$ y $y$ le corresponderá un isomorfismo.
+
+    \section{Efecto de una función continua en el grupo fundamental}
+
+    \begin{obs}
+        Para esta sección resultará de utilidad definir el siguiente conjunto, para todo espacio topológico $X$ se define
+        \begin{equation*}
+            \wp_X = \bigcup \left\{[f]\Big|\cf{f}{I}{X}\textup{ es una función continua} \right\}
+        \end{equation*}
+        es decir, estamos tomando todas las clases de caminos de un espacio topológico $X$ (note que no tiene nada que ver con el grupo fundamental, más que con el hecho de que usa las clases de caminos en su definición).
+    \end{obs}
+
+    Considere dos espacios topológicos $X$ y $Y$ y sea $\cf{\varphi}{X}{Y}$ una función continua. Si $\cf{f_0,f_1}{I}{X}$ son caminos en $X$, ¿también lo son $\varphi\circ f_0$ y $\varphi\circ f_1$?
+
+    \begin{propo}
+        Sean $X$ y $Y$ espacios topológicos, $\cf{f_0,f_1}{I}{X}$ caminos equivalentes. Entonces, $\varphi\circ f_0\sim \varphi\circ f_1$.
+    \end{propo}
+
+    \begin{proof}
+        Como $f_1\sim f_0$, existe pues una función continua $\cf{F}{I\times I}{X}$ tal que
+        \begin{equation*}
+            F(x,0)=f_0(x),\quad F(x,1)=f_1(x)
+        \end{equation*}
+        para todo $x\in I$ y,
+        \begin{equation*}
+            F(0,t)=f_0(0)=f_1(0),\quad F(1,t)=f_0(1)=f_1(1)
+        \end{equation*}
+        Considere la función $\cf{G}{I\times I}{Y}$ dada por:
+        \begin{equation*}
+            G(x,t)=\varphi\circ F(x,t)
+        \end{equation*}
+        Es claro que esta funciónes continua por ser composición de funciones continuas, además se cumple que
+        \begin{equation*}
+            \begin{split}
+                G(x,0)&=\varphi\circ F(x,0)\\
+                &=\varphi (F(x,0))\\
+                &=\varphi (f_0(x))\\
+                &=\varphi\circ f_0(x)\\
+            \end{split}
+        \end{equation*}
+        para todo $x\in I$. De forma análoga
+        \begin{equation*}
+            G(x,1)=\varphi\circ f_1(x)
+        \end{equation*}
+        La otra condición se verifica de forma inmediata, con lo que se concluye que $\varphi\circ f_0\sim \varphi\circ f_1$.
+    \end{proof}
+
+    Con la proposición anterior, podemos definir sin problemas una función que mapee clases de caminos en $X$ a clases de caminos en $Y$, a partir de la función continua $\varphi$. Esto se hará con el objetivo de ver qué sucede con el grupo fundamental bajo esta función continua $\varphi_*$.
+
+    \begin{mydef}
+        Sean $X$ y $Y$ espacios topológicos y $\cf{\varphi}{X}{Y}$ una función continua. Sea $\cf{f}{I}{X}$ un camino que une a los puntos $x,y\in X$, se define la función $\cf{\varphi_*}{\wp_X}{\wp_Y}$ por
+        \begin{equation*}
+            \varphi_*([f])=[\varphi\circ f]
+        \end{equation*}
+        por la proposición anterior, esta función está bien definida.
+    \end{mydef}
+
+    Ahora, analizaremos las propiedades de la función $\varphi_*$.
+    
+    \renewcommand{\theenumi}{\roman{enumi}}
+
+    \begin{propo}
+        Sean $X$ y $Y$ espacios topológicos y $\cf{\varphi}{X}{Y}$ una función continua.
+        \begin{enumerate}
+            \item Si $\cf{f_0,f_1}{I}{X}$ son caminos en $X$ tales que $f_0\cdot f_1$ está definido (por ende, $[f_0]\cdot [f_1]$ lo está), entonces $\varphi_*([f_0]\cdot[f_1])=\varphi_*([f_0])\cdot\varphi_*([f_1])$.
+            \item Para cualquier punto $x\in X$, $\varphi_*(\mathscr{I}_x)=\mathscr{I}_{\varphi(x)}$.
+            \item Si $\cf{f}{I}{X}$ es un camino, entonces $\varphi_*([f]^{-1})=(\varphi_*([f]))^{-1}$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (i): Veamos primero que el producto $\varphi_*([f_0])\cdot\varphi_*([f_1])$ está bien definido. En efecto, dado a que el producto $[f_0]\cdot [f_1]$ lo está, entonces
+        \begin{equation*}
+            f_0(1)=f_1(0)
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            \varphi\circ f_0(1)=\varphi\circ f_1(0)
+        \end{equation*}
+        donde $\varphi_*([f_0])=[\varphi\circ f_0]$ y $\varphi_*([f_1])=[\varphi\circ f_1]$, por tanto el producto de ambas clases está definido. Probemos ahora la igualdad. Se tiene que
+        \begin{equation*}
+            \begin{split}
+                \varphi_*([f_0]\cdot[f_1])&=\varphi_*([f_0\cdot f_1])\\
+                &=[\varphi\circ (f_0\cdot f_1)]\\
+            \end{split}
+        \end{equation*}
+        siendo
+        \begin{equation*}
+            f_0\cdot f_1(t)=\left\{
+                \begin{array}{lcr}
+                    f_0(2t) & \textup{ si } 0\leq t\leq \frac{1}{2}\\
+                    f_1(2t-1) & \textup{ si } \frac{1}{2}\leq t\leq 1\\
+                \end{array}
+            \right.,\quad\forall t\in I
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            \begin{split}
+                \varphi\circ (f_0\cdot f_1)(t)&=\left\{
+                    \begin{array}{lcr}
+                        \varphi(f_0(2t)) & \textup{ si } 0\leq t\leq \frac{1}{2}\\
+                        \varphi(f_1(2t-1)) & \textup{ si } \frac{1}{2}\leq t\leq 1\\
+                    \end{array}
+                \right.\\
+                &=\left\{
+                    \begin{array}{lcr}
+                        \varphi\circ f_0(2t) & \textup{ si } 0\leq t\leq \frac{1}{2}\\
+                        \varphi\circ f_1(2t-1) & \textup{ si } \frac{1}{2}\leq t\leq 1\\
+                    \end{array}
+                \right.\\
+                &=(\varphi\circ f_0)\cdot (\varphi\circ f_1)(t),\quad\forall t\in I\\
+            \end{split}
+        \end{equation*}
+        luego entonces
+        \begin{equation*}
+            \begin{split}
+                [\varphi\circ (f_0\cdot f_1)]&=[(\varphi\circ f_0)\cdot (\varphi\circ f_1)]\\
+                &=[\varphi\circ f_0]\cdot [\varphi\circ f_1]\\
+                &=\varphi_*([f_0])\cdot \varphi_*([f_1])\\
+            \end{split}
+        \end{equation*}
+        lo que prueba el resultado.
+
+        De (ii) y (iii): Ejercicio.
+    \end{proof}
+
+    Por estas razones, llamaremos a $\varphi_*$ un \textit{homomorfismo} u \textit{homomorfismo inducido por $\varphi$}.
+
+    \begin{propo}
+        En el contexto de la proposición anterior, si $Z$ es un espacio topológico y $\cf{\psi}{Y}{Z}$ es una función continua, entonces
+        \begin{equation*}
+            (\psi\circ\varphi)_*=\psi_*\circ\varphi_*
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Es claro que la composición de ambas funciones está bien definida. Probaremos ahora la igualdad, sea $\cf{f}{I}{X}$ un camino, entonces:
+        \begin{equation*}
+            \begin{split}
+                (\psi\circ\varphi)_*([f])&=[\psi\circ\varphi\circ f]\\
+                &=[\psi\circ(\varphi\circ f)]\\
+                &=\psi_*([\varphi\circ f])\\
+                &=\psi_*(\varphi_*([f]))\\
+                &=\psi_*\circ \varphi_*([f])\\
+            \end{split}
+        \end{equation*}
+        lo que prueba la igualdad.
+    \end{proof}
+
+    \begin{excer}
+        Sea $X$ espacio topológico y $\cf{i}{X}{X}$ la función identidad, entonces
+        \begin{equation*}
+            i_*([f])=[f]
+        \end{equation*}
+        para todo camino $\cf{f}{I}{X}$ en $X$.
+    \end{excer}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{cor}
+        Sean $X$ y $Y$ espacios topológicos y $\cf{\varphi}{X}{Y}$ una función continua y $x\in X$. La función $\varphi_*$ restringida a $\pi(X,x)\subseteq\wp_X$ es un homomorfismo entre $\pi(X,x)$ y $\pi(Y,\varphi(x))$. Más aún, si $\varphi$ es homeomorfismo, entonces $\varphi_*$ es isomorfismo.
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \section{Nociones geométricas subyacentes}
+
+    Para continuar con el estudio de la función inducida $\varphi_*$, es necesario introducir algunos conceptos geométricos relevantes,
+
+    \begin{mydef}
+        Sean $X$ y $Y$ espacios topológicos. Dos funciones continuas $\cf{\varphi_0,\varphi_1}{X}{Y}$ son \textbf{homotópicas} si existe una función continua $\cf{\Phi}{X\times I}{Y}$ tal que para todo $x\in X$:
+        \begin{equation*}
+            \Phi(x,0)=\varphi_0(x)\quad\textup{y}\quad\Phi(x,1)=\varphi_1(x)
+        \end{equation*}
+        además, para denotar que son homotópicas, se usará el símbolo $\varphi_0\simeq\varphi_1$.
+    \end{mydef}
+
+    \begin{propo}
+        Sean $X$ y $Y$ espacios topológicos. Considere el conjunto:
+        \begin{equation*}
+            \mathcal{F}=\left\{\cf{\varphi}{X}{Y}\Big|f\textup{ es una función continua} \right\}
+        \end{equation*}
+        entonces, $\simeq$ es una relación de equivalencia sobre $\mathcal{F}$.
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{obs}
+        Para aquellos que han tomado algún curso en teoría de categorías, verán de forma casi inmediata que esta relación de equivalencia induce una partición en la clase de todos los morfismos entre espacios topológicos.
+    \end{obs}
+
+    La idea detrás de la homotopía es intentar deformar de forma continua una función en la otra, conservando la continuidad de las funciones, veamos que si
+    \begin{equation*}
+        \varphi_t(x)=\Phi(x,t)
+    \end{equation*}
+    para todo $x\in X$ y todo $t\in I$, entonces la función $\cf{\varphi_t}{X}{Y}$ es continua.
+
+    Por esta razón es que comúnmente se habla de homotopía como la deformación continua de una función.
+
+    \begin{obs}
+        En otros contextos, resulta más familiar decir que dos funciones son homotópicas si pueden ser unidas con un arco en el espacio de todas las funciones continuas que van de $X$ en $Y$.
+    \end{obs}
+
+    \begin{mydef}
+        
+    \end{mydef}
 
     \newpage
 
@@ -581,6 +802,50 @@
         Pruebe que un espacio conexo y localmente arco-conexo es arco conexo.
     \end{excer}
 
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        ¿Bajo qué condiciones dos clases de caminos que unen a $x$ y $y$ se tendrá el mismo isomorfismo entre de $\pi(X,x)$ y $\pi(X,y)$?
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Sea $X$ un espacio arco conexo. ¿Bajo qué condiciones es la siguiente proposición válida? Para cualesquiera dos puntos $x,y\in X$ todas las clases de caminos de $x$ a $y$ dan el mismo isomorfismo entre $\pi(X,x)$ y $\pi(X,y)$. 
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Sean $\cf{f,g}{I}{X}$ dos caminos con punto inicial $x_0$ y final $x_1$. Pruebe que $f\sim g$ si y sólo si $f\cdot\overline{g}$ es equivalente al camino constante en $x_0$ (recordando que $\overline{g}$ es el camino que invierte la forma de recorrer a $g$).
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sean $\cf{\varphi}{X}{Y}$ una función continua y $[f]$ una clase de camino en $X$ que va de $x_0$ a $x_1$. Pruebe que el siguiente diagrama es conmutativo:
+        \begin{equation*}
+            \begin{array}{rcccl}
+              & \pi(X,x_0) & \overset{\varphi_*}{\longrightarrow} & \pi(Y,\varphi(x_0)) & \\
+              u & \downarrow & & \downarrow & v \\
+               & \pi(X,x_1) & \overset{\varphi_*}{\longrightarrow} & \pi(Y,\varphi(x_1)) & \\
+            \end{array}
+        \end{equation*}
+        donde $u$ es el homomorfismo definido como: $u([g])=[f]^{-1}\cdot[g]\cdot[f]$ y $v$ se define de forma similar usando $\varphi_*([f])$ en lugar de $[f]$. ¿Qué sucede si $\varphi(x_0)=\varphi(x_1)$?
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
     \begin{excer}
         Construya una deformación de retracción de $\mathbb{R}^n$ en $S^{ n-1}$.
     \end{excer}
@@ -588,5 +853,5 @@
     \begin{sol}
         
     \end{sol}
-
+    
 \end{document}
