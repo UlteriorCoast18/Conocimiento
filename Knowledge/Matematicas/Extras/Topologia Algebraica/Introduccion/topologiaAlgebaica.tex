@@ -791,8 +791,83 @@
     \end{obs}
 
     \begin{mydef}
-        
+        Dos funciones $\cf{\varphi_0,\varphi_1}{X}{Y}$ entre los espacios topológicos $X$ y $Y$ son \textbf{homotópicas relativas al subconjunto $A$ de $X$} si existe una función continua $\cf{\Phi}{X\times I}{Y}$ tal que
+        \begin{equation*}
+            \begin{split}
+                \varphi(x,0)=\varphi_0(x) & \quad\forall x\in X\\
+                \varphi(x,1)=\varphi_1(x) & \quad\forall x\in X\\
+                \varphi(a,t)=\varphi_0(a)=\varphi_1(a) & \quad\forall a\in A\textup{ y }\forall t\in I \\
+            \end{split}
+        \end{equation*}
     \end{mydef}
+
+    Básicamente la deformación continua es tal que deja al subconjunto $A$ sin modificarse en el proceso de deformación.
+
+    \begin{theor}
+        Sean $\cf{\varphi_0,\varphi_1}{X}{Y}$ funciones entre dos espacios topológicos y $x\in X$. Suponga que son homotópicas $\varphi_0$ y $\varphi_1$ relativas al conjunto $\left\{u \right\}$, entonces
+        \begin{equation*}
+            \cf{{\varphi_0}_*={\varphi_1}_*}{\pi(X,u)}{\pi(Y,\varphi_0(u))}
+        \end{equation*}
+        esto es, los homomorfismos inducidos son el mismo.
+    \end{theor}
+
+    \begin{proof}
+        Sea $\cf{f}{I}{X}$ un bucle que une a $x$ consigo mismo. Como $\varphi_0$ y $\varphi_1$ son homotópicas relativas al conjunto $\left\{u\right\}$, entonces existe una función continua $\cf{\Phi}{X\times I}{Y}$ tal que
+        \begin{equation*}
+            \begin{split}
+                \Phi(x,0)=\varphi_0(x) & \quad\forall x\in X\\
+                \Phi(x,1)=\varphi_1(x) & \quad\forall x\in X\\
+                \Phi(u,t)=\varphi_0(u)=\varphi_1(u) & \quad\forall t\in I
+            \end{split}
+        \end{equation*}
+        por tanto, se tiene para el camino $f$ que la función $\cf{G}{I\times I}{Y}$ dada por
+        \begin{equation*}
+            G(s,t)=\Phi(f(s),t),\quad\forall s,t\in I
+        \end{equation*}
+        es continua, y cumple que
+        \begin{equation*}
+            F(s,0)=\varphi_0\circ f(s)\quad\textup{ y }F(s,1)=\varphi_1\circ f(s)
+        \end{equation*}
+        para todo $s\in I$. Además,
+        \begin{equation*}
+            \begin{split}
+                F(0,t)&=\Phi(f(0),t)=\Phi(u,t)=\varphi_0(u)=\varphi_1(u)\\
+                F(1,t)&=\Phi(f(1),t)=\Phi(u,t)=\varphi_0(u)=\varphi_1(u)\\
+            \end{split}
+        \end{equation*}
+        para todo $t\in I$. Por tanto, los caminos
+        \begin{equation*}
+            \varphi_0\circ f\quad\textup{ y }\varphi_1\circ f
+        \end{equation*}
+        son equivalentes, luego:
+        \begin{equation*}
+            \begin{split}
+                {\varphi_0}_*([f])&=[\varphi_0\circ f]\\
+                &=[\varphi_1\circ f]\\
+                &={\varphi_1}_*([f])\\
+            \end{split}
+        \end{equation*}
+        dado a que el bucle $f$ fue arbitrario, se sigue que
+        \begin{equation*}
+            {\varphi_0}_*={\varphi_1}_*
+        \end{equation*}
+    \end{proof}
+
+    Ahora nos dedicaremos a aplicar estos resultados.
+
+    \begin{mydef}
+        Un subconjunto $A\subseteq X$ de un espacio topológico es un \textbf{repliegue} de $X$ si existe una función continua $\cf{r}{X}{A}$ (llamada \textbf{retración}) tal que $r(a)=a$ para todo $a\in A$.
+    \end{mydef}
+
+    La condición de la definición antes mencionada, es una condición muy fuerte, ya que no todo espacio la cumple para cualquier conjunto $A$ arbitrario. Vea estos dos ejemplos:
+
+    \begin{exa}
+        Considere $X=\mathbb{R}^2\backslash\left\{(0,0)\right\}$ y tomemos $A=\mathbb{R}+(1,0)$. ¿Existe un repliegue de $X$ en $A$?
+    \end{exa}
+
+    \begin{exa}
+        Considere el espacio $X$ como la cinta de Möbius y sea $A$ el círculo central de la cinta. ¿Es $A$ una retracción de $X$? En caso de que sea ¿cuál es una posible retracción?
+    \end{exa}
 
     \newpage
 

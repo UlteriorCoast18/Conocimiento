@@ -1,0 +1,312 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{fullpage}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$\\}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$\\}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+\newcommand{\norm}[1]{\ensuremath{\|#1\|}}
+\newcommand\subtitle[1]{\textit{\large #1}\\}
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+
+    \title{Taller Topología Algebraica: Lectura 1}
+    \author{Cristo Alvarado}
+    \setcounter{section}{1}
+    \maketitle
+
+    \subtitle{Introducción}
+
+    El gran resumen de la topología algebraica es el siguiente:
+
+    \begin{center}
+        \textit{La topología es enredada, el álgebra es directa}
+    \end{center}
+
+    Y para ello, un ejemplo concreto.
+
+    \begin{mydef}
+        Para todo $n\in\mathbb{N}$ se define la \textbf{bola cerrada de radio 1} como
+        \begin{equation*}
+            \mathbb{B}^n=\left\{x\in\mathbb{R}^n\Big|\norm{x}\leq1 \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{theor}[\textbf{Teorema del punto fijo de Brower}]
+        Pruebe que toda función continua $\cf{f}{\mathbb{B}^{n}}{\mathbb{B}^n}$ tiene un punto fijo, es decir que existe $z\in\mathbb{B}^n$ tal que $f(z)=z$.
+    \end{theor}
+
+    Intentemos hacer un análisis de este problema. El caso $n=1$ es casi inmediato, como se ve en la siguiente proposición:
+
+    \begin{propo}
+        Sea $\cf{f}{[-1,1]}{[-1,1]}$ una función continua, entonces existe $z\in[-1,1]$ tal que $f(z)=z$.
+    \end{propo}
+
+    \begin{proof}
+        Se tienen dos casos:
+        \begin{itemize}
+            \item $f(-1)=-1$ o $f(1)=1$, en cuyo caso se tiene el resultado.
+            \item Suponga que $f(-1)\neq -1$ y $f(1)\neq 1$, como el contradominio de $f$ es $[-1,1]$, entonces forzosamente debe tenerse que
+            \begin{equation*}
+                \begin{split}
+                    f(-1)>-1\quad\textup{y}&\quad f(1)<1\\
+                    \iff f(-1)-(-1)>0\quad\textup{y}&\quad f(1)-1<0\\
+                \end{split}
+            \end{equation*}
+            Considere la función $\cf{g}{[-1,1]}{\mathbb{R}}$ dada por $g(x)=f(x)-x$. Esta función es continua en $[-1,1]$ y es tal que
+            \begin{equation*}
+                g(-1)>0\quad\textup{y}\quad g(1)<0
+            \end{equation*}
+            por el teorema del valor medio debe existir $z\in[-1,1]$ tal que $g(z)=0$, es decir que $f(z)=z$.
+        \end{itemize}
+        Por los dos incisos anteriores se tiene el resultado.
+    \end{proof}
+
+    ¿Es posible generalizar este argumento a dimensiones superiores? La respuesta rápida es que (hasta el momento en que se ha escrito este texto) no hay alguna forma sencilla de generalizar este razonamiento a dimensiones superiores.
+
+    Una forma es mediante un método analíco, aproximando a $f$ por funciones $g_k$ más simples que tengan el mismo punto fijo. Sin embargo, este no es un curso de análisis (como lo dice el título), por lo cual no nos corresponde tratar este procedimiento.
+
+    Sin embargo, existe una forma muy elegante de hacerlo mediante la topología algebraica. Las herramientas para resolver este problema (entre otras), son las siguientes:
+
+    \begin{itemize}
+        \item Teoría de Grupos.
+        \item Teoría de Categorías.
+    \end{itemize}
+
+    La forma de resolver problemas en topología algebraica es llevar un problema topológico al mundo algebraico, ver si existe o no una solución en tal lugar y luego regresar a la topología. Para visualizar mejor este razonamiento, uno de los principales problemas en topología es:
+
+    \begin{center}
+        \textit{¿Cuándo dos espacios topológicos $X$ y $Y$ son homeomorfos?}
+    \end{center}
+
+    Dar una respuesta en general resulta demasiado complicada, sin embargo, se verá que analizando al funtor $\cf{\pi_1}{\textbf{Top}}{\textbf{Grp}}$, dicha respuesta resulta más sencilla de obtener.
+
+    Nuestro objetivo primordial será obtener una forma de resolver un problema topológico, usando en su mayoría herramientas algebraicas. Para ello, nuestro estudio comenzará con el estudio del grupo fundamental.\\
+
+    \subtitle{Conceptos fundamentales}
+
+    De ahora en adelante, $I$ denotará al intervalo $[0,1]$.
+
+    \begin{mydef}
+        Un \textbf{camino} o \textbf{arco} en un espacio topológico $X$, es una función continua $\cf{f}{[a,b]}{X}$ de un intervalo cerrado en $X$.
+
+        Las imágenes $f(a)$ y $f(b)$ son llamadas \textbf{puntos finales del camino o arco}. $f(a)$ es llamado \textbf{punto inicial} y $f(b)$ \textbf{punto final}.
+    \end{mydef}
+
+    \begin{obs}
+        Por comodidad, dado a que existe un homeomorfismo lineal entre $[0,1]$ y $[a,b]$ (vistos como subespacios de $\mathbb{R}$ dotado de la topología usual) siendo $a,b\in\mathbb{R}$ con $a<b$ podemos ver a todos los caminos o arcos de un espacio topológico $X$ como funciones continuas de $I$ en $X$. Cuando sea más conveniente de esta manera, se usará esta convención.
+    \end{obs}
+
+    \begin{mydef}
+        Un espacio topológico $X$ es llamado \textbf{conexo por arcos} o \textbf{arco-conexo} si cualesquiera dos puntos de $X$ pueden ser unidos mediante un arco, es decir tales que los puntos finales del arco coincidan con estos dos puntos.
+    \end{mydef}
+
+    \begin{theor}
+        Todo espacio topológico arco-conexo es conexo.
+    \end{theor}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    Como una sugerencia para la demostración del teorema anterior, recuerde el \textit{teorema del cactus} (la unión de una familia de conjuntos conexos tales que la intersección de la familia es no vacía, es un conjunto conexo).
+
+    El recíproco del teorema anterior no es cierto como se ha visto en varios cursos pasados (recuerde Cálculo III).
+
+    \begin{mydef}
+        Sea $X$ un espacio topológico. Para cada $x\in X$ se define:
+        \begin{equation*}
+            \mathcal{A}(x)=\left\{y\in X\Big|\textup{ existe una función continua }\cf{f}{I}{X} \textup{ tal que }f(0)=x \textup{ y }f(1)=y \right\}
+        \end{equation*}
+        Se construye así la familia $\left\{\mathcal{A}(x) \right\}_{ x\in X}$. Esta familia forma una partición de $X$ y se denomina como \textbf{las componentes arco-conexas de $X$}.
+    \end{mydef}
+
+    En el sentido de la definición anterior, estamos obteniendo los subconjuntos de $X$ que son arco conexos más \textit{grandes} que tiene. Si $X$ es arco-conexo, entonces $\mathcal{A}(x)=X$, para todo $x\in X$.
+
+    Las componentes arco-conexas de $X$ no necesariamente son conjuntos cerrados o abiertos.
+
+    \begin{mydef}
+        Un espacio topológico $X$ es \textbf{localmente arco-conexo} si cada punto tiene una familia básica de vecindades arco-conexas.
+    \end{mydef}
+    
+    %TODO Explicar el concepto más profundamente.
+
+    \begin{mydef}
+        Sean $\cf{f,g}{[a,b]}{X}$ dos arcos en $X$ tales que $f(a)=g(a)$ y $f(b)=g(b)$ (esto es, que ambos arcos tienen los mismos puntos terminales). Decimos que estos dos arcos son \textbf{equivalentes}, denotándolo por $f\sim g$, si existe una función continua
+        \begin{equation*}
+            \cf{F}{[a,b]\times I}{X}
+        \end{equation*}
+        tal que
+        \begin{equation*}
+            F(t,0)=f(t)\quad\textup{y}\quad F(t,1)=g(t)
+        \end{equation*}
+        para todo $t\in[a,b]$ y,
+        \begin{equation*}
+            F(a,s)=f(a)=g(a)\quad\textup{y}\quad F(b,s)=f(b)=g(b)
+        \end{equation*}
+        para todo $s\in I$.
+    \end{mydef}
+
+    \begin{propo}
+        La relación de la definición anterior es una relación de equivalencia en el conjunto de todos los arcos con mismos puntos terminales de un espacio topológico $X$.
+    \end{propo}
+
+    Notemos que el concepto anterior es casi el mismo que el de homotopía, considerando de forma adicional que en esta definición se dejen fijos los puntos terminales de ambos arcos.
+
+    \begin{mydef}
+        Sean $X$ e $Y$ dos espacios topológicos. Se dice que dos funciones $\cf{f,g}{X}{Y}$ son \textbf{homotópicas} si existe una función continua $\cf{F}{X\times I}{Y}$ tal que
+        \begin{equation*}
+            F(x,0)=f(x)\quad\textup{y}\quad F(x,1)=g(x)
+        \end{equation*}
+        para todo $x\in X$.
+    \end{mydef}
+
+    \begin{obs}
+        En los dos casos de las definiciones anteriores, se dota a los espacios de la topología producto.
+    \end{obs}
+
+    Intuitivamente lo que uno hace es defomar, sin perder la continuidad, un arco en el otro en el espacio $X$, dejando fijos los puntos terminales fijos en todo momento de la deformación.
+
+    Además de esta relación inducida, queremos definir una operación para dos arcos con ciertas propiedades:
+
+    \begin{mydef}
+        Sea $X$ espacio topológico y $\cf{f}{[a,b]}{X}$ y $\cf{g}{[b,c]}{X}$ arcos tales que $f(b)=g(b)$ (siendo $a<b<c$). Entonces el producto $f\cdot g$ se define como:
+        \begin{equation*}
+            (f\cdot g)(t)=\left\{
+                \begin{array}{lcr}
+                    f(t) & \textup{ si } & t\in[a,b]\\
+                    g(t) & \textup{ si } & t\in[b,c]\\
+                \end{array}
+            \right.
+        \end{equation*}
+        para todo $t\in[a,c]$.
+    \end{mydef}
+
+    \begin{obs}
+        Notemos que esta operación genera otro arco, es decir otra función continua $\cf{f\cdot g}{[a,c]}{X}$.
+    \end{obs}
+    
+\end{document}
