@@ -1,0 +1,255 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{bbm}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas Curso Topología II}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Metrizabilidad}
+    
+    \section{Conceptos Fundamentales}
+    
+    ¿Cuándo un espacio topológico es metrizable? Supongamos que tenemos un espacio topológico $(X,\tau)$, queremos una métrica $\cf{d}{X\times X}{\mathbb{R}}$ tal que $\tau_d=\tau$.
+
+    La respuesta a esta pregunta es que no siempre será posible encontrar tal métrica. Por ejemplo, tome cualquier espacio topológico que no sea $T_1$.
+
+    \begin{itemize}
+        \item Pável Urysohn 1898-1924. El Lema de Urysohn fue publicado en 1924 póstumo a la muerte de su autor.
+        \item Primera guerra mundial 28 de julio de 1914 a 11 de noviembre de 1918, inició con el asesinato del Archiduque Franciso de Austria.
+        \item Segunda guerra mundial 1939 a 1945, cuando Hitler invade Polonia.
+        \item En 1950 Bing, Nagata y Morita resuelven el problema de metrizabilidad de espacios topológicos.
+    \end{itemize}
+
+    Lo que veremos a continuación tiene como base fundamental el siguiente lema:
+
+    \begin{lema}[\textbf{Lema de Urysohn}]
+        Sea $(X,\tau)$ espacio topológico. Entonces, $(X,\tau)$ es $T_4$ si y sólo si dados $A,B\subseteq X$ cerrados disjuntos existe una función continua $\cf{f}{X}{[0,1]}$ tal que
+        \begin{equation*}
+            f(A)=\left\{0\right\} \quad\textup{y}\quad f(B)=\left\{1\right\}
+        \end{equation*}
+    \end{lema}
+
+    Este lema se probó en el curso pasado.
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico segundo numerable. Entonces
+        \begin{enumerate}
+            \item $(X,\tau)$ es primero numerable.
+            \item $(X,\tau)$ es de Lindelöf.
+            \item $(X,\tau)$ es separable.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Sea $\mathcal{B}=\left\{B_i \right\}_{i\in\mathbb{N}}$ una base numerable para $\tau$.
+        
+        De (1): Sea $x\in X$. Tomemos
+        \begin{equation*}
+            \mathcal{B}_x=\left\{B_n\in\mathcal{B}\Big|x\in B_n \right\}
+        \end{equation*}
+        este es un conjunto no vacío pues al ser $\mathcal{B}$ base, existe $B\in\mathcal{B}$ tal que $x\in B$. Además es a lo sumo numerable por ser subcolección de $\mathcal{B}$.
+
+        Sea $U\subseteq X$ abierto tal que $x\in U$. Como $\mathcal{B}$ es base de $\tau$, existe $B\in\mathcal{B}$ tal que $x\in B\subseteq U$, luego $B\in\mathcal{B}_x$. Por tanto, $\mathcal{B}_x$ es un sistema fundamental de vecindades de $x$. Al ser el $x$ arbitrario, se sigue que $(X,\tau)$ es primero numerable.
+
+        De (2): Sea $\mathcal{A}=\left\{A_\alpha\right\}_{ \alpha\in I}$ una cubierta abierta de $(X,\tau)$. Dado $x\in X$ existe $A_\alpha\in\mathcal{A}$ tal que $x\in A_\alpha$, como $A_\alpha\in\tau$, existe $B_x\in\mathcal{B}$ tal que
+        \begin{equation*}
+            x\in B_x\subseteq A_\alpha
+        \end{equation*}
+        Sea
+        \begin{equation*}
+            \mathcal{K}=\left\{n\in\mathbb{N}\Big|\exists A_\alpha\in\mathcal{A}\textup{ tal que }B_n\subseteq A_\alpha \right\}
+        \end{equation*}
+        por la observación anterior, esta colección es no vacía. Dado $k\in\mathcal{K}$ escogemos un único $A_{\alpha_k}$ tal que
+        \begin{equation*}
+            B_k\subseteq A_{\alpha_k}
+        \end{equation*}
+        Sea
+        \begin{equation*}
+            \mathcal{A}'=\left\{A_{\alpha_k} \right\}_{ k\in\mathcal{K}}
+        \end{equation*}
+        se tiene que $\mathcal{A}'\subseteq\mathcal{A}$ es numerable. Sea $x\in X$, Como $\mathcal{A}$ es cubierta, existe $A'\in\mathcal{A}$ tal que
+        \begin{equation*}
+            x\in A'\in\tau
+        \end{equation*}
+        luego, al ser $\mathcal{B}$ base existe $B_n\in\mathcal{B}$ tal que
+        \begin{equation*}
+            x\in B_n\subseteq A'
+        \end{equation*}
+        Se sigue pues que $x\in A_{ \alpha_n}$. Por ende, $x\in\bigcup_{ n\in\mathbb{N}}A_{\alpha_n}$. Así, $\mathcal{A}$ posee una subcubierta a lo sumo numerable. Se sigue que al ser la cubierta abierta arbitraria que el espacio $(X,\tau)$ es Lindelöf.
+
+        De (3): Ejercicio.
+    \end{proof}
+
+    \begin{propo}
+        Si $(X,\tau)$ es metrizable, entonces los coneptos de espacio de Lindelöf, espacio separable y espacio segundo numerable son equivalentes.
+    \end{propo}
+
+    \begin{proof}
+        Probaremos que Lindelöf implica separabilidad que implica segunda numerabilidad.
+
+        Suponga que $(X,\tau)$ es metrizable, entonces existe una métrica $\cf{d}{X\times X}{\mathbb{R}}$ tal que $\tau_d=\tau$.
+        \begin{itemize}
+            \item Suponga que $(X,\tau)$ es Lindelöf. Sea $n\in\mathbb{N}$ y tomemos
+            \begin{equation*}
+                \mathcal{U}_n=\left\{B_d\left(x,\frac{1}{n}\right) \Big|x\in X \right\}
+            \end{equation*}
+            $\mathcal{U}_n$ es una cubierta abierta de $(X,\tau)$. Como el espacio de Lindelöf, existe $\mathcal{V}_n$ a lo sumo numerable tal que
+            \begin{equation*}
+                \mathcal{V}_n=\left\{B_d\left(y,\frac{1}{n} \right)\Big|y\in Y_n \right\}
+            \end{equation*}
+            siendo $Y_n\subseteq X$ un conjunto a lo sumo numerable, de tal suerte que $\mathcal{V}_n$ es subcubierta de $\mathcal{U}_n$. Sea
+            \begin{equation*}
+                A=\bigcup_{n\in\mathbb{N}}Y_n
+            \end{equation*}
+            este es un conjunto a lo sumo numerable. Sea $U\in\tau$ con $U\neq\emptyset$. Como $U\neq\emptyset$, existe $x\in U$, así existe $\varepsilon>0$ tal que $B_d(x,\varepsilon)\subseteq U$. Sea $m\in\mathbb{N}$ tal que $\frac{1}{m}<\varepsilon$. Tenemos que $\mathcal{V}_m$ es una cubierta de $X$, luego existe $y\in Y_m$ tal que
+            \begin{equation*}
+                x\in B_d\left(y,\frac{1}{m}\right)
+            \end{equation*}
+            Por tanto, $y\in B_d\left(x,\frac{1}{m} \right)\subseteq B(x,\varepsilon)\subseteq U$, así $y\in U$. Pero como $y\in Y_m$ se tiene que $y\in A$. Por ende
+            \begin{equation*}
+                U\cap A\neq\emptyset
+            \end{equation*}
+            lo que prueba el resultado.
+
+            \item
+        \end{itemize}
+    \end{proof}
+
+\end{document}
