@@ -133,7 +133,7 @@
 
 \begin{document}
 
-    \title{Taller Topología Algebraica: Lectura 1}
+    \title{Taller Topología Algebraica, Lectura 1: Motivación y Conceptos Fundamentales}
     \author{Cristo Alvarado}
     \setcounter{section}{1}
     \maketitle
@@ -274,6 +274,10 @@
         La relación de la definición anterior es una relación de equivalencia en el conjunto de todos los arcos con mismos puntos terminales de un espacio topológico $X$.
     \end{propo}
 
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
     Notemos que el concepto anterior es casi el mismo que el de homotopía, considerando de forma adicional que en esta definición se dejen fijos los puntos terminales de ambos arcos.
 
     \begin{mydef}
@@ -284,6 +288,8 @@
         para todo $x\in X$.
     \end{mydef}
 
+    Sobre la homotopía hablaremos más adelante.
+
     \begin{obs}
         En los dos casos de las definiciones anteriores, se dota a los espacios de la topología producto.
     \end{obs}
@@ -293,20 +299,119 @@
     Además de esta relación inducida, queremos definir una operación para dos arcos con ciertas propiedades:
 
     \begin{mydef}
-        Sea $X$ espacio topológico y $\cf{f}{[a,b]}{X}$ y $\cf{g}{[b,c]}{X}$ arcos tales que $f(b)=g(b)$ (siendo $a<b<c$). Entonces el producto $f\cdot g$ se define como:
+        Sean $f$ y $g$ caminos en un espacio $X$ tales que el punto final de $f$ es el punto inicial de $g$. Se define el producto $f\cdot g$ por:
         \begin{equation*}
-            (f\cdot g)(t)=\left\{
+            f\cdot g(t)=\left\{
                 \begin{array}{lcr}
-                    f(t) & \textup{ si } & t\in[a,b]\\
-                    g(t) & \textup{ si } & t\in[b,c]\\
+                    f(2t) & \textup{ si } & 0\leq t\leq\frac{1}{2}\\
+                    g(2t-1) & \textup{ si } & \frac{1}{2}\leq t\leq1\\
                 \end{array}
             \right.
         \end{equation*}
-        para todo $t\in[a,c]$.
+        también, decimos que dos caminos $f_0$ y $f_1$ son \textbf{equivalentes} (denotado por $f_0\sim f_1$) si lo son en el sentido de la definición anterior.
     \end{mydef}
 
     \begin{obs}
         Notemos que esta operación genera otro arco, es decir otra función continua $\cf{f\cdot g}{[a,c]}{X}$.
     \end{obs}
-    
+
+    \subtitle{El grupo fundamental}
+
+    Con estos conceptos ya podemos empezar nuestro estudio del grupo fundamental. Para ello, primero se hará su construcción algebraica.
+
+    \begin{lema}
+        La relación de equivalencia y el producto definido anteriormente son compatibles en el sentido siguiente: si $X$ es un espacio, $f_0\sim f_1$ y $g_0\sim g_1$ son caminos equivalentes, entonces $f_0\cdot g_0\sim f_1\cdot g_1$ (asumiendo que el punto terminal de $f_0$ es el punto inicial de $g_0$).
+    \end{lema}
+
+    \begin{proof}
+        Como el punto terminal de $f_0$ es el punto terminal de $g_0$, al tenerse las relaciones $f_0\sim f_1$ y $g_0\sim g_1$ se sigue que el producto $f_1\cdot g_1$ está bien definido.
+
+        Como $f_0\sim f_1$ y $g_0\sim g_1$, existen dos funciones continuas $\cf{F,G}{I\times I}{X}$ tales que
+        \begin{equation*}
+            F(t,0)=f_0(t),\quad F(t,1)=f_1(t),\quad G(t,0)=g_0(t),\quad G(t,1)=g_1(t)
+        \end{equation*}
+        para todo $t\in I$, y
+        \begin{equation*}
+            F(0,s)=f_0(0)=f_1(0),\quad F(1,s)=f_0(1)=f_1(1)
+        \end{equation*}
+        y,
+        \begin{equation*}
+            G(0,s)=g_0(0)=g_1(0),\quad G(1,s)=g_0(1)=g_1(1)
+        \end{equation*}
+        para todo $s\in I$. Definamos la función $\cf{H}{I\times I}{X}$ dada por:
+        \begin{equation*}
+            H(t,s)=\left\{
+                \begin{array}{lcr}
+                    F(2t,s) & \textup{ si } & 0\leq t\leq\frac{t}{2}\\
+                    G(2t-1,s) & \textup{ si } & \frac{t}{2}\leq t\leq1\\
+                \end{array}
+            \right.
+        \end{equation*}
+        para todo $t,s\in I$. Claramente $H$ es continua por el lema de pegado y dado que $F$ y $G$ son continuas, además se cumple que:
+        \begin{equation*}
+            \begin{split}
+                H(t,0)&=\left\{
+                    \begin{array}{lcr}
+                        F(2t,0) & \textup{ si } & 0\leq t\leq\frac{t}{2}\\
+                        G(2t-1,0) & \textup{ si } & \frac{t}{2}\leq t\leq1\\
+                    \end{array}
+                \right.\\
+                &=\left\{
+                    \begin{array}{lcr}
+                        f_0(2t) & \textup{ si } & 0\leq t\leq\frac{t}{2}\\
+                        g_0(2t-1) & \textup{ si } & \frac{t}{2}\leq t\leq1\\
+                    \end{array}
+                \right.\\
+                &=f_0\cdot g_0(t)\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                H(t,1)&=\left\{
+                    \begin{array}{lcr}
+                        F(2t,1) & \textup{ si } & 0\leq t\leq\frac{t}{2}\\
+                        G(2t-1,1) & \textup{ si } & \frac{t}{2}\leq t\leq1\\
+                    \end{array}
+                \right.\\
+                &=\left\{
+                    \begin{array}{lcr}
+                        f_1(2t) & \textup{ si } & 0\leq t\leq\frac{t}{2}\\
+                        g_1(2t-1) & \textup{ si } & \frac{t}{2}\leq t\leq1\\
+                    \end{array}
+                \right.\\
+                &=f_1\cdot g_1(t)\\
+            \end{split}
+        \end{equation*}
+        para todo $t\in I$. Ademśa, para todo $s\in I$ se cumple:
+        \begin{equation*}
+            \begin{split}
+                H(0,s)&=F(0,s)\\
+                &=f_0(0)\\
+                &=f_0(2\cdot0)\\
+                &=f_0\cdot g_0(0)\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                H(0,s)&=F(0,s)\\
+                &=f_1(0)\\
+                &=f_1(2\cdot0)\\
+                &=f_1\cdot g_1(0)\\
+            \end{split}
+        \end{equation*}
+        por lo cual
+        \begin{equation*}
+            H(0,s)=f_0\cdot g_0(0)=f_1\cdot g_1(0)
+        \end{equation*}
+        de forma análoga se deduce que
+        \begin{equation*}
+            H(1,s)=f_0\cdot g_0(1)=f_1\cdot g_1(1)
+        \end{equation*}
+        Se sigue de lo anterior que $f_0\cdot g_0\sim f_1\cdot g_1$.
+    \end{proof}
+
+    Como resultado de este lema, se puede definir la multiplicación de clases de equivalencia de caminos (de tal suerte que el punto terminal del primer camino coincida con el inicial del segundo camino).
+
 \end{document}
