@@ -14,6 +14,7 @@
 \usepackage{enumerate}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{bbm}
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
@@ -127,6 +128,7 @@
     \end{tikzpicture}
     \:
 }
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
 %Este símvolo es para casi todo salvo una cantidad finita
 
 %recuerda usar \clearpage para hacer un salto de página
@@ -869,6 +871,87 @@
         Considere el espacio $X$ como la cinta de Möbius y sea $A$ el círculo central de la cinta. ¿Es $A$ una retracción de $X$? En caso de que sea ¿cuál es una posible retracción?
     \end{exa}
 
+    Sea ahora $\cf{r}{X}{A}$ una retración e $\cf{i}{A}{X}$ el mapeo inclusión. Para cualquier punto $a\in A$ se consideran los homomorfismos inducidos:
+    \begin{equation*}
+        \begin{split}
+            \cf{i_*}{\pi(A,a)}{\pi(X,a)}\\
+            \cf{r_*}{\pi(X,a)}{\pi(A,a)}\\
+        \end{split}
+    \end{equation*}
+    siendo éstos tales que $r\circ i=\bbm{1}_{A}$, debe suceder entonces que $r_*\circ i_*=\bbm{1}_{\pi(A,a)}$ es el homomorfismo identidad.
+    
+    Se sigue entonces que
+    \begin{itemize}
+        \item $i_*$ es monomorfismo.
+        \item $r_*$ es epimorfismo.
+    \end{itemize}
+
+    Estos resultados se usarán más adelante para probar que ciertos subespacios no son repliegues del espacio original.
+
+    \begin{mydef}
+        Un subconjunto $A$ de $X$ es un \textbf{repliegue de deformación} de $X$ si existe una retracción $\cf{r}{X}{A}$ y una homotopía $\cf{F}{X\times I}{Y}$ tal que
+        \begin{equation*}
+            \begin{split}
+                \left.
+                \begin{array}{rcl}
+                    F(x,0) & = & x\\
+                    F(x,1) & = & r(x)\\
+                \end{array}
+            \right\} & \quad\forall x\in X\\
+            F(a,t)=a,\quad&\forall a\in A, \forall t\in I\\
+            \end{split}
+        \end{equation*}
+    \end{mydef}
+
+    En otras palabras, la definición anterior es equivalente a decir que $r\simeq \bbm{1}_X$ y es tal que $F(A\times I)=A$.
+    
+    \begin{theor}
+        Si $A$ es un repliegue de deformación de $X$, entonces el mapeo inclusión $\cf{i}{A}{X}$ induce un isomorfismo entre $\pi(A,a)$ y $\pi(X,a)$ para todo $a\in A$.
+    \end{theor}
+
+    \begin{proof}
+        Sea $a\in A$. Ya se sabe de la parte anterior que $i_*$ es un monomorfismo. Para probar que es isomorfismo, basta con probar que
+        \begin{equation*}
+            \cf{i_*\circ r_*}{\pi(X,a)}{\pi(X,a)}
+        \end{equation*}
+        coincide con $\bbm{1}_{\pi(X,a)}$. Afirmamos que $i\circ r$ es homotópico a $\bbm{1}_X$ respecto a $\left\{a\right\}$. En efecto, como $A$ es repliegue de deformación de $X$, entonces existe una homotopía $\cf{F}{X\times I}{Y}$ tal que
+        \begin{equation*}
+            \begin{split}
+                \left.
+                \begin{array}{rcl}
+                    F(x,0) & = & \bbm{1}_X(x)\\
+                    F(x,1) & = & r(x)\\
+                \end{array}
+            \right\} & \quad\forall x\in X\\
+            F(a',t)=a',\quad&\forall a'\in A, \forall t\in I\\
+            \end{split}
+        \end{equation*}
+        y, como $i\circ r(x)=x$, para todo $x\in X$ (por ser $i$ el mapeo inclusión), se sigue que
+        \begin{equation*}
+            \begin{split}
+                \left.
+                \begin{array}{rcl}
+                    F(x,0) & = & \bbm{1}_X(x)\\
+                    F(x,1) & = & i\circ r(x)\\
+                \end{array}
+            \right\} & \quad\forall x\in X\\
+            F(a,t)=a,\quad&\forall t\in I\\
+            \end{split}
+        \end{equation*}
+        lo cual prueba la afirmación. Se sigue del teorema anterior que
+        \begin{equation*}
+            i_*\circ r_*=(i\circ r)_*=\bbm{1}_{\pi(X,a)}
+        \end{equation*}
+    \end{proof}
+
+    Este teorema que acabamos de probar nos va a servir de dos cosas:
+    \begin{itemize}
+        \item Se usará para probar que dos espacios tienen grupos fundamentales isomorfos.
+        \item Un subespacio $A$ no es un repliegue de deformación de $X$ si los grupos fundamentales no son isomorfos.
+    \end{itemize}
+
+    En particular se usará el segundo punto para probar que ciertos repliegues no son repliegues de deforamción.
+
     \newpage
 
     \section{Ejercicios}
@@ -928,5 +1011,42 @@
     \begin{sol}
         
     \end{sol}
-    
+
+    \begin{excer}
+        Pruebe que un repliegue de un espacio Hausdorff debe ser un conjunto cerrado.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que si $A$ es un repliegue de $X$ y $\cf{r}{X}{A}$ es una retracción, $\cf{i}{A}{X}$ es el mapeo inclusión, $a\in A$ es arbitrario fijo y $i_*(\pi(A,a))$ es un subgrupo normal de $\pi(X,a)$, entonces $\pi(X,a)$ es el producto directo de los subgrupos
+        \begin{equation*}
+            i_*(\pi(A,a))\quad\textup{y}\quad \ker(r_*)
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $A$ un subespacio de $X$, y sea $Y$ un espacio topológico no vacío. Pruebe que $A\times Y$ es un repliegue de $X\times Y$ si y sólo si $A$e s una repliegue de $X$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que la relación \textbf{ser repliegue de} es transitiva, esto es, si $A$ es un repliegue de $B$ y $B$ es un repliegue de $C$, entonces $A$ es un repliegue de $C$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+
+
 \end{document}
