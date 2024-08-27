@@ -1,0 +1,262 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas Didáctica de las Ciencias}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Nombre del capitulo}
+    
+    \section*{Introducción}
+
+    El objetivo del curso va a ser crear un cuadernillo donde se pongan actividades para que el alumno realice (no refiriéndose a la persona que escribe el texto).
+
+    %Esto es una actividad
+
+    \section{Un curso ideal}
+
+    \textit{¿Qué es lo que yo considero un curso ideal de Matemáticas (independientemente del tema que se aborde)?}
+    
+    Primeramente considero que un curso ideal de matemáticas debe de tener las siguientes características:
+
+    \begin{itemize}
+        \item Exposición clara y conscisa del objetivo al que se va a llegar en la clase y la sesión.
+        \item Exposición del tema de parte del profesor siendo ésta tal que quede claro el tema.
+        \item En medio de la exposición de información de parte del mismo, que se deje al alumno digerir adecuadamente la información y se pueda hacer al alumno cuestionarse sobre el tema que se está abordando.
+        \item Dentro de la exposición que se planteen interrogantes y las mismas (en caso de que sea posible) se resuelvan y se discutan de forma grupal, éstas mismas pueden ser ejercicios, problemas o lecturas.
+        \item Fomentar un ambiente sano de discusión (entre pares o grupal) de los temas que se revisan. De igual forma fomentar la discusión de ideas.
+        \item Actividades relacionadas al tema, ya sean lecturas para después de la clase, problemas o ejercicios.
+    \end{itemize}
+
+    El profesor que dé la clase debe tener un dominio del tema lo suficientemente adecuado como para poder transmitir sus conocimientos adecuadamente.
+
+    %Esto es el fin de la actividad.
+
+    En el canal de teams que está dedicado a mí, se debe subir la actividad que se hizo anteriormente. En caso de algún problema, aquí está el correo de la profesora:
+
+    Profesora María Gonzales: lmgonzaleza@ipn.mx
+
+    La actividad anterior se llama: Diagnóstico.
+
+    El medio de comunicación va a ser por el chat para cuando se solicite la revisión de las actividades que se harán en el curso.
+
+    %Esto es otra actividad%
+
+    Yo he visto o he escuchado los siguientes problemas:
+
+    \textit{Con el profesor:}
+    
+    \begin{itemize}
+        \item No hay mucho apoyo de parte del profesor para poder comprender adecuadamente el tema.
+        \item Una mala gestión del tiempo de la clase, que hace de parte del profesor que termine siendo muy pesada en los últimos minutos.
+        \item No se aprovechan las herramientas que ofrece la escuela para las actividades que se llevan a cabo.
+        \item Falta de empatía.
+        \item Actitud muy negativa y desagradable con los alumnos.
+        \item Acoso.
+        \item No se llega a terminar el temario establecido al inicio del curso.
+    \end{itemize}
+
+    \textit{Con los compañeros:}
+
+    \begin{itemize}
+        \item Muchas veces hay compañeros que toman una actitud muy pedante hacia los demás y no fomentan un ambiente de discusión sana.
+        \item Algunos compañeros acostumbran comer en el salón, cosa que en ocasiones resulta molesta para poder concentrarse.
+        \item Compañeros que dificultan el trabajo por intentar hacerse sentir más que los demás.
+        \item Falta de interés.
+    \end{itemize}
+
+    \textit{Con los materiales de apoyo:}
+
+    \begin{itemize}
+        \item Hay materiales de apoyo pero la escuela no fomenta su uso. Por ejemplo Wolfram Alpha ofrece a la escuela acceso a la herramienta pro de forma gratuita, pero casi nadie lo sabe. La única forma de saberlo es investigando en la página del IPN.
+        \item Muchas veces se usan materiales muy viejos, que resultan complicados de leer tanto en su lenguaje como en su notación matemática.
+    \end{itemize}
+
+    Actividad de equipo:
+
+    \textit{Con el profesor:}
+
+    \begin{center}
+        \begin{tabular}{c | c}
+            Problema & Compromiso del profesor \\
+            \hline
+            Mala gestión de tiempo destinado a cada tema. & Se gestione adecuadamente el tiempo. Con ello que también avance conforme a las capcidades y aptitudes de los alumnos \\
+            Poco éticos y apáticos. & Ser más comprensivo con los alumnos. \\
+            Falta de capacitación pedagógica. & Compromiso del profesor para informarse de técnicas pedagógicas actuales con las herramientas disponibles. \\
+            Poca retroalimentación de actividades. & Que haya coherencia y constante comunicación con los alumnos. \\ 
+            Ambigua asignación de calificaciones & Sea claro en cada punto que se está evaluando. \\
+        \end{tabular}
+    \end{center}
+
+    \textit{Con los compañeros:}
+
+    \begin{center}
+        \begin{tabular}{| c | c |}
+            Problema & Compromiso del profesor \\
+            \hline
+            Falta de empatía de los compañeros. & Fomentar un ambiente de convivencia y trabajo en equipo. \\
+            Falta de compromiso en trabajos en equipo. & Asignación de actividades y sanciones a los alumnos que no deseen trabajar.\\ 
+            Actitud de desinterés y falta de respeto. & Comprometerse a generar un ambiente de participación activa. \\
+            Indisposición a realizar actividades complicadas. & Fomentar ejercicios y/o actividades de todos los niveles. \\ 
+        \end{tabular}
+    \end{center}
+
+    \textit{Con los materiales de apoyo:}
+
+    \begin{center}
+        \begin{tabular}{| c | c | c |}
+            Problema & Compromiso del profesor & Compromiso Alumno \\
+            \hline
+            Difícil acceso. & Facilitar el acceso rápido. & Compromiso de los alumnos a compartir y difundir el material al que tienen acceso. \\
+            Materiales y temas poco actualizados. & Compromenterse a que los materiales usados se integren temas nuevos. & Comprometerse a la investigación y búsqueda de los materiales.
+        \end{tabular}
+    \end{center}
+
+    Participantes:
+
+    \begin{itemize}
+        \item Cristo Daniel Alvarado.
+        \item Lozano Vite Iris Paola.
+        \item Daniel Guzmán Vargas.
+        \item Ramírez Reyes Mariene.
+        \item Belem Torres López.
+    \end{itemize}
+
+    %Fin de la actividad%
+
+\end{document}
