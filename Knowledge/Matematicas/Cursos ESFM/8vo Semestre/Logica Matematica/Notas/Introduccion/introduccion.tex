@@ -143,7 +143,15 @@
             \item Lógica de primer orden.
         \end{enumerate}
         \item Teoría de la Computabilidad.
+        \begin{enumerate}
+            \item Conjuntos/Funciones computables.
+            \item Teoremas de incompletitud.
+        \end{enumerate}
         \item Teoría de Conjuntos.
+        \begin{enumerate}
+            \item Ordinales.
+            \item Cardinalidad.
+        \end{enumerate}
     \end{enumerate}
 
     Y la bibliografía para el curso es la siguiente:
@@ -153,15 +161,28 @@
         \item  Enderton, 'Teoría de la computabilidad'.
         \item Copi, 'Lógica Simbólica' o 'Computability Theory'.
         \item Rebeca Weber 'Computability Theory'.
+        \item Hrbacek, Seda.
+        \item Herrnández Herrnández.
     \end{itemize}
 
     \section{Conectivas Lógicas}
 
-    La disyunción ($\land$), conjunción ($\lor$), negación ($\neg$), implicación ($\Rightarrow$) y si y sólo si ($\iff$) son las conectivas lógicas usadas usualmente. 
+    La disyunción ($\land$), conjunción ($\lor$), negación ($\neg$), implicación ($\Rightarrow$) y si y sólo si ($\iff$) son las conectivas lógicas usadas usualmente. Para las demostraciones se tienen que tomar los casos que se cumplan con estas implicaciones, por lo que si podemos simplificar el conjunto de conectivas lógicas, todo se simplificará.
 
-    (Se habló un poco de una cosa llamada forma normal disyuntiva).
-    
-    A $\left\{\land, \lor, \neg \right\}$ se le conoce como un conjunto completo de conectivas lógicas. Nos podemos quedar simplemente con conjuntos completos de disyuntivas con solo dos elementos, a saber: $\left\{\land, \neg \right\}$ y $\left\{\lor, \neg \right\}$, ya que $P\lor Q$ es $\neg(\neg P\land \neg Q)$. (de forma similar a lo otro $P\land Q$ es $\neg(\neg P\lor \neg Q)$).
+    Para ello, veamos que
+    \begin{equation*}
+        P\Rightarrow Q \equiv \neg(P\land\neg Q)
+    \end{equation*}
+    tienen las mismas tablas de verdad. Por ejemplo también se tiene
+    \begin{equation*}
+        P\land Q\equiv \neg(\neg P\lor\neg Q)
+    \end{equation*}
+    ó
+    \begin{equation*}
+        P\lor Q\equiv\neg(\neg P\land\neg Q)
+    \end{equation*}
+
+    A $\left\{\land, \lor, \neg \right\}$ se le conoce como un \textbf{conjunto completo de conectivas lógicas} (es decir que toda conectiva se expresa como combinaciones de ellas). Nos podemos quedar simplemente con conjuntos completos de disyuntivas con solo dos elementos, a saber: $\left\{\land, \neg \right\}$ y $\left\{\lor, \neg \right\}$, ya que $P\lor Q$ es $\neg(\neg P\land \neg Q)$. (de forma similar a lo otro $P\land Q$ es $\neg(\neg P\lor \neg Q)$).
 
     También $\left\{\Rightarrow, \neg \right\}$ es otro conjunto completo de conectivas lógicas, ya que $P\land Q$ es $\neg(P\Rightarrow\neq Q)$.
 
@@ -178,7 +199,14 @@
             $F$ & $F$ & $V$ \\
         \end{tabular}
     \end{center}
-    con este, se tiene un conjunto completo de conectivas lógicas.
+    con este, se tiene un conjunto completo de conectivas lógicas. Veamos que
+    \begin{equation*}
+        P|P\equiv\neg P
+    \end{equation*}
+    y,
+    \begin{equation*}
+        P\land Q\equiv \neg(P|Q)\equiv (P|Q)|(P|Q)
+    \end{equation*}
 
     Como muchas veces se usan conectivas de este tipo:
     \begin{equation*}
@@ -190,6 +218,18 @@
     \end{equation*}
 
     Ahora empezamos con el estudio formal de la lógica.
+
+    \section{Ejercicios}
+
+    Convierta a/de notación Polaca, según sea el caso.
+
+    \begin{enumerate}
+        \item $P\Rightarrow(Q\land\neg A)$. Sería $\Rightarrow P\land Q \neg A$.
+        \item $\Rightarrow  A\neg\land CD$. Sería $A\Rightarrow \neg(C\land D)$.
+        \item $(A\Rightarrow B)\iff (\neg A\lor \neg(\neg B\lor C))$. Sería $\iff \Rightarrow A B \lor \neg A \neg \lor \neg B C$.
+        \item $\lor\neg\neg\Rightarrow B C\land\Rightarrow A\land BCA$. Sería $(\neg\neg(B\Rightarrow C))\lor((A\Rightarrow (B\land C))\land A)$.
+        \item $(P\Rightarrow Q)\iff (\neg Q\Rightarrow\neg P)$. Sería $\iff \Rightarrow P Q \Rightarrow \neg Q \neg P$.
+    \end{enumerate}
 
     \chapter{Lógica Proposicional}
 
