@@ -1435,4 +1435,167 @@
         siempre que $\beta<\abs{G}$. Continuando este proceso logramos $\abs{G}$ conjuntos densos ajenos entre sí. Cada denso debe intersectar a todo abierto no vacío y, por lo tanto, debe tener cardinalidad de $\abs{G}$; en consecuencia, $\Delta(G)=\abs{G}$.
     \end{proof}
 
+    \section{Metrizabilidad}
+
+    \begin{mydef}
+        Sea $G$ un grupo. Una \textbf{pseudonorma en $G$} es una función $\cf{N}{G}{\mathbb{R}}$ que cumple las siguientes condiciones:
+        \renewcommand{\theenumi}{\roman{enumi}}
+        \begin{enumerate}
+            \item $N(x)\geq0$, para todo $x\in G$.
+            \item $N(e)=0$, con $e\in G$ la identidad del grupo.
+            \item $N(x\cdot y^{-1})\leq N(x)+N(y)$, para todo $x,y\in G$.
+        \end{enumerate}
+        (iii) puede ser reformulado de la siguiente forma:
+        \begin{equation*}
+            N(x\cdot y)\leq N(x)+N(y)\quad\textup{y}\quad N(x)=N(x^{-1})
+        \end{equation*}
+        para todo $x,y\in G$.
+    \end{mydef}
+
+    \begin{propo}
+        Sea $G$ un grupo y $N$ una pseudonorma. Entonces:
+        \renewcommand{\theenumi}{\arabic{enumi}}
+        \begin{enumerate}
+            \item $r\cdot N$ es una pseudonorma en $G$ para todo $r\geq0$.
+            \item Para cada $g\in G$, la función $N_g$ en $G$ dada por:
+            \begin{equation*}
+                N_g(x)=N(gxg^{-1}),\quad\forall x\in G
+            \end{equation*}
+            es una pseudonorma.
+            \item La suma de dos pseudnormas en $G$ es una pseudonorma en $G$.
+            \item Para cualquier función $\cf{f}{G}{\mathbb{R}}$ acotada, la función $\cf{N_f}{G}{\mathbb{R}}$ dada por:
+            \begin{equation*}
+                N_f(x)=\sup_{ y\in G}\abs{f(y\cdot x)-f(y)},\quad\forall x\in G
+            \end{equation*}
+            es una pseudonorma en $G$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (4): Sea $\cf{f}{G}{\mathbb{R}}$ una función acotada. Veamos que se cumplen las tres condiciones:
+        \renewcommand{\theenumi}{\roman{enumi}}
+        \begin{enumerate}
+            \item Sea $x\in G$, entonces
+            \begin{equation*}
+                \begin{split}
+                    N_f(x)&=\sup_{ y\in G}\abs{f(y\cdot x)-f(y)}\\
+                    &\geq0\\
+                \end{split}
+            \end{equation*}
+            \item Sea $e\in G$ la identidad del grupo. Entonces:
+            \begin{equation*}
+                \begin{split}
+                    N_f(e)&=\sup_{ y\in G}\abs{f(y\cdot e)-f(y)}\\
+                    &=\sup_{ y\in G}\abs{f(y)-f(y)}\\
+                    &=\sup_{ y\in G}\abs{0}\\
+                    &=0
+                \end{split}
+            \end{equation*}
+            \item Sean $x_1,x_2\in G$. Se tiene que
+            \begin{equation*}
+                \begin{split}
+                    N_f(x_1\cdot x_2^{-1})&=\sup_{ y\in G}\abs{f(y x_1 x_2^{-1})-f(y)}\\
+                    &=\sup_{ y\in G}\abs{f(y x_1 x_2^{-1})-f(y)+f(x_1y)-f(x_1y)}\\
+                    &=\sup_{ y\in G}\abs{[f(x_1y)-f(y)]+[f(y x_1 x_2^{-1})-f(x_1y)]}\\
+                    &\leq\sup_{ y\in G}\abs{f(x_1y)-f(y)}+\sup_{ y\in G}\abs{f(y x_1 x_2^{-1})-f(x_1y)}\\
+                    &\leq\sup_{ y\in G}\abs{f(x_1y)-f(y)}+\sup_{ z\in G}\abs{f(zx_2^{-1})-f(z)}\\
+                    &= N(x_1)+N(x_2^{-1})\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+        Por (i)-(iii) se sigue que $N_f$ es una pseudonorma en $G$.
+    \end{proof}
+
+    Trabajando con grupos topológicos, uno está interesado en las pseudonormas continuas. Debido a que todo grupo topológico es un espacio homogéneo, se verifica la siguiente proposición de forma inmediata.
+
+    \begin{propo}
+        Sea $G$ un grupo topológico y $N$ una pseudonorma. Entonces $N$ es continua si y sólo si es continua en la identidad del grupo.
+    \end{propo}
+
+
+
+    \begin{theor}
+        Sea $G$ un grupo topológico, $\left\{U_n\right\}_{ n=1}^\infty$ una sucesión decreciente de vecindades abiertas de $e$ tales que
+        \begin{equation*}
+            U_n^{-1}=U_n\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        (es decir que son vecindades simétricas), y
+        \begin{equation*}
+            U_{ n+1}^2\subseteq U_n,\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        Entonces, existe una pseudonorma continua $N$ en $G$ tal que
+        \begin{equation*}
+            \left\{x\in G\Big|N(x)<\frac{1}{2^n} \right\}\subseteq U_n\subseteq\left\{x\in G\Big|N(x)\leq\frac{1}{2^{n-1}} \right\}
+        \end{equation*}
+        para todo $n\in\mathbb{N}\cup\left\{0\right\}$.
+    \end{theor}
+
+    \begin{proof}
+        Procederemos por inducción sobre $n$. Para $n=0$ haga $U(1)=U_0$ vecindad abierta simétrica de $e$.
+
+        Suponga que para $n\in\mathbb{N}\cup\left\{0\right\}$ se han definido vecindades abiertas simétricas de $e$, $U(m/2^n)$, donde $m=1,2,...,2^n$. Definimos recursivamente
+        \begin{equation*}
+            U(1/2^{ n+1})=U_{ n+1}\quad\textup{y}\quad U((2m+1)/2^{ n+1})=U(m/2^n)\cdot U_{ n+1}
+        \end{equation*}
+        para todo $m=1,2,...,2^n-1$.
+        %TODO
+    \end{proof}
+
+    \begin{cor}
+        Sea $G$ grupo topológico. Para cada vecindad $U$ de $e\in G$ existe una pseudonorma continua $N$ en $G$ tal que $\left\{x\in G\Big|N(x)<1 \right\}\subseteq U$. 
+    \end{cor}
+
+    \begin{proof}
+        Sin pérdida de generalidad, podemos suponer que $U$ es abierto. Sea
+        \begin{equation*}
+            U_0=U\cap U^{ -1} 
+        \end{equation*}
+        Por un teorema anterior existe $U_1$ vecindad abierta simétrica de $e$ tal que
+        \begin{equation*}
+            U_1^2\subseteq U_0
+        \end{equation*}
+        Suponga elegidos $U_1,...,U_n$ vecindades abiertas de la identidad tales que
+        \begin{equation*}
+            U_{ i+1}^2\subseteq U_i,\quad\forall i=0,1,...,n
+        \end{equation*}
+        Por un teorema anterior existe $U_{ n+1}$ vecindad abierta simétrica de $e$ tal que
+        \begin{equation*}
+            U_{ n+1}^2\subseteq U_n
+        \end{equation*}
+        por ende, se cumple que
+        \begin{equation*}
+            U_{ i+1}^2\subseteq U_i,\quad\forall i=0,1,...,n+1
+        \end{equation*}
+        Por inducción se construye una sucesión $\left\{U_n \right\}_{ i=n}^\infty$ de vecindades abiertas simétricas de la identidad tales que
+        \begin{equation*}
+            U_{ n+1}^2\subseteq U_n,\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        Por el teorema anterior existe una pseudonorma continua $N$ en $G$ que satisface:
+        \begin{equation*}
+            \left\{x\in G\Big|N(x)<1/2^n \right\}\subseteq U_i\subseteq\left\{x\in G\Big| N(x)\leq 1/2^{ n-1} \right\},\quad\forall n\in\mathbb{N}\cup\left\{0\right\}
+        \end{equation*}
+        En particular, para $n=0$ se tiene que
+        \begin{equation*}
+            \left\{x\in G\Big| N(x)<1 \right\}\subseteq U_0=U
+        \end{equation*}
+        lo que prueba el resultado.
+    \end{proof}
+
+    \begin{theor}
+        Un grupo topológico es metrizable si y sólo si posee una base numerable en la identidad.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{cor}
+        Un grupo topológico es metrizable si y sólo si es primero numerable.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediata del teorema anterior y del hecho que todo grupo topológico es un espacio homogéneo.
+    \end{proof}
+
+
 \end{document}

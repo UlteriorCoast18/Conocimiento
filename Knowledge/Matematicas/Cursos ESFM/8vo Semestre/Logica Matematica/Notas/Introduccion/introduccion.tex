@@ -235,14 +235,34 @@
 
     \section{Alfabeto}
 
-    El alfabeto de la lógica proposicional es un conjunto que consta de dos tipos de símbolos:
+    Hablaremos un poco de sintaxis y semántica.
+
+    \begin{itemize}
+        \item Sintaxis: la forma en la que vamos a ordenar nuestras variables y conectivas.
+        \item Semántica: da significado al orden de nuestras variables y conectivas.
+    \end{itemize}
+
+    Definiremos el lenguaje de la lógica proposicional. Para ello primero definiremos el alfabeto.
+
+    El \textbf{alfabeto} de la lógica proposicional es un conjunto que consta de dos tipos de símbolos:
     \begin{enumerate}
         \item \textbf{Variables}, denotadas por $p_1,p_2,...,p_n,...$ (a lo más una cantidad numerable). Estas representan proposiciones o enunciados (tengo un paraguas, me caí de las escaleras, no tengo café en la cafetera, etc\dots).
         \item \textbf{Conectivas}, como $\Rightarrow$ y $\neg$.
     \end{enumerate}
+
+    El alfabeto que usaremos es: $\left\{\Rightarrow,\neg,p_1,p_2,... \right\}$.
+
+    \begin{obs}
+        Podríamos usar otro alfabeto, pero dado a que $\left\{\Rightarrow,\neg \right\}$ es un conjunto completo de conectivas lógicas (y resulta más sencillo usarlas que la barra de Scheffel), se tomará este alfabeto con estas conectivas.
+    \end{obs}
+
     Aceptamos la existencia de estas cosas (pues, al menos debemos aceptar la existencia de algo).
 
     Se van a trabajar con sucesiones finitas de símbolos del alfabeto descrito anteriormente. Ahora necesitaremos especificar que tipos de sucesiones van a servirnos para tener un significado formal.
+
+    \begin{exa}
+        Por ejemplo la sucesión $(p_3)$, $\emptyset$, $(\Rightarrow, p_2,\neg,p_5)$. Básicamente estas sucesiones finitas representan fórmulas en notación polaca.
+    \end{exa}
 
     \begin{mydef}
         En el conjunto de sucesiones finitas de símbolos del alfabeto, definimos una \textbf{fórmula bien formada} (abreviada como \textbf{FBF}) como sigue:
@@ -253,7 +273,7 @@
     \end{mydef}
 
     \begin{obs}
-        Recordar que usamos la notación Polaca en la definición anterior.
+        Recordar que usamos la notación Polaca en la definición anterior. Cuando se colocan en (2) $\neg\varphi$ y $\Rightarrow\varphi\psi$, hace referencia a concatenar estas sucesiones finitas.
     \end{obs}
 
     A continuación unos ejemplos:
@@ -283,27 +303,63 @@
 
     \section{Modeos o Estructuras}
 
-    En el fondo, queremos que las FBF sean cosas verdaderas o falsas. Un Modelo o Estructura es algo que le va a dar significado a las FBF. De alguna manera va a ser una forma de asignarle el valor de verdadero o falso a cada una de las variables.
+    En el fondo, queremos que las FBF sean cosas verdaderas o falsas. Un Modelo o Estructura es algo que le va a dar significado a las FBF, esta es la parte de la semántica. De alguna manera va a ser una forma de asignarle el valor de verdadero o falso a cada una de las variables.
 
     \begin{mydef}
         Un \textbf{Modelo o Estructura} de la lógica proposicional es una función $\cf{m}{\textup{Var}}{\left\{V,F\right\}}$, donde Var denota al conjunto de símbolos que son variables. Básicamente estamos diciendo que hay variables que son verdaderas y otras que son falsas.
     \end{mydef}
 
     \begin{theor}
-        Para todo modelo $m$, existe una única extensión $\cf{\overline{m}}{\textup{FBF}}{\left\{V,F\right\}}$, donde FBF denota al conjunto de las fórmulas bien formadas, tal que $\overline{m}(\neg\varphi)=V\iff \overline{m}(\varphi)=F$ y $\overline{m}(\neg\varphi\psi)=F\iff\overline{m}(\varphi)=V$ y $\overline{m}(\psi)=F$.
+        Para todo modelo $m$, existe una única extensión $\cf{\overline{m}}{\textup{FBF}}{\left\{V,F\right\}}$, donde FBF denota al conjunto de las fórmulas bien formadas, tal que
+        \begin{enumerate}
+            \item $\overline{m}(p)=m(p)$ para todo $p\in\textup{Var}$.
+            \item Para todo $\varphi,\psi\in\textup{FBF}$:
+            \begin{equation*}
+                \overline{m}(\neg\varphi)=V\iff \overline{m}(\varphi)=F
+            \end{equation*}
+            y,
+            \begin{equation*}
+                \overline{m}(\Rightarrow\varphi\psi)=F\iff\overline{m}(\varphi)=V\textup{ y } \overline{m}(\psi)=F
+            \end{equation*}
+        \end{enumerate}
     \end{theor}
 
+    \begin{proof}
+        La prueba aún no se hará, pero es por recursión.
+    \end{proof}
+
     \begin{mydef}
-        Sea $m$ un modelo, $\varphi$ una fórmula y $\Sigma$ un cojunto de fórmulas. Definimos que
+        Sea $m$ un modelo, $\varphi$ una fórmula y $\Sigma$ un cojunto de fórmulas. Decimos que
         \begin{enumerate}
-            \item $m\vDash \varphi$ ($m$ satisface $\varphi$) si $\overline{m}(\varphi)=V$.
-            \item $m\vDash \Sigma$ si $m\vDash\varphi$ para cada $\varphi$ elemento de $\Sigma$.
+            \item \textbf{$m$ satisface $\varphi$} (denotado por $m\vDash \varphi$) si $\overline{m}(\varphi)=V$.
+            \item \textbf{$m$ satisface $\Sigma$} (denotado por $m\vDash \Sigma$) si $m\vDash\varphi$ para cada $\varphi\in\Sigma$.
         \end{enumerate}
     \end{mydef}
 
     \begin{exa}
         Sea $m$ un modelo tal que $m(p_1)=V$ y $m(p_i)=F$, para todo $i\geq2$. En este caso $m\nvDash \Rightarrow p_1p_3$, pero $m\vDash \neg p_5$.
     \end{exa}
+
+    \begin{mydef}
+        Sea $\varphi$ una fórmula y $\Sigma$ un conjunto de fórmulas.
+        \begin{enumerate}
+            \item Decimos que $\varphi$ es \textbf{consecuencia lógica} de $\Sigma$ o que $\Sigma$ \textbf{lógicamente implica} $\varphi$ (denotado por $\Sigma\vDash\varphi$) si para todo modelo $m$ tal que $m\vDash\Sigma$, se cumple que $m\vDash\Sigma$.
+            \item Decimos que $\varphi$ es una \textbf{tautología} si $\emptyset\vDash\varphi$.
+            \item Decimos que $\varphi$ es una \textbf{contradicción} si $\emptyset\vDash\neg\varphi$ es una tautología.
+        \end{enumerate}
+    \end{mydef}
+
+    Veamos ejemplos para aclarar las ideas:
+
+    \begin{exa}
+        Se tiene $\left\{\Rightarrow p_1p_2,p_2 \right\}\nvDash p_1$. En efecto, para un modelo $m$ tal que $m(p_2)=V$ y $m(p_1)=F$ es tal que $m$ no satisface $p_1$.
+    \end{exa}
+
+    \begin{exa}
+        Muestre que $\left\{\Rightarrow p_1p_2,\Rightarrow p_2p_3 \right\}\vDash\Rightarrow p_1p_3$.
+    \end{exa}
+
+    \section*{Notas viejas}
     
     \begin{mydef}
         Decimos que una fórmula $\varphi$ es:
