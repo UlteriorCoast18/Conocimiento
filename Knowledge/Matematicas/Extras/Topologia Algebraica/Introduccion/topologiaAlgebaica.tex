@@ -887,7 +887,7 @@
     Estos resultados se usarán más adelante para probar que ciertos subespacios no son repliegues del espacio original.
 
     \begin{mydef}
-        Un subconjunto $A$ de $X$ es un \textbf{repliegue de deformación} de $X$ si existe una retracción $\cf{r}{X}{A}$ y una homotopía $\cf{F}{X\times I}{Y}$ tal que
+        Un subconjunto $A$ de $X$ es un \textbf{repliegue de deformación} de $X$ si existe una retracción $\cf{r}{X}{A}$ y una homotopía $\cf{F}{X\times I}{X}$ tal que
         \begin{equation*}
             \begin{split}
                 \left.
@@ -970,16 +970,192 @@
 
     \begin{mydef}
         Un subconjunto $X$ del espacio $\mathbb{R}^n$ es llamado \textbf{convexo} si la línea uniendo cualesquiera dos puntos de $X$ está contenida en $X$.
-
-        Afirmamos que todo subconjunto convexo $X$ de $\mathbb{R}^n$ es contraíble a un punto. En efecto, sea $x_0\in X$ arbitrario fijo. Considere la función $\cf{f}{X\times I}{X}$ dada por:
-        \begin{equation*}
-            F(x,t)=(1-t)x+tx_0
-        \end{equation*} 
     \end{mydef}
 
+    Afirmamos que todo subconjunto convexo $X$ de $\mathbb{R}^n$ es contraíble a un punto. En efecto, sea $x_0\in X$ arbitrario fijo. Considere la función $\cf{f}{X\times I}{X}$ dada por:
+    \begin{equation*}
+        F(x,t)=(1-t)x+tx_0
+    \end{equation*}
+
     \begin{exa}
-        
+        Todo subconjunto convexo de $\mathbb{R}^n$ es contraíble a un punto.
     \end{exa}
+
+    \begin{proof}
+        Sea $X$ un subconjunto convexo de $\mathbb{R}^n$ y $x_0\in X$. Primero debemos dar una retracción de $X$ en $\left\{ x_0\right\}$. Sea
+        \begin{equation*}
+            r(x)=x_0\quad\forall x\in X
+        \end{equation*}
+        es claro que esta función es continua. Para ver que $X$ es contraíble a $\left\{x_0\right\}$ veamos que la función $\cf{F}{X\times I}{X}$ dada por:
+        \begin{equation*}
+            F(x,t)=(1-t)x+tx_0\quad\forall x\in X,t\in I
+        \end{equation*}
+        (esta función es es básicamente para $x\in X$ fijo el segmento que une a $x$ con $x_0$, y al variar $x$ se pasan por todos los posibles segmentos que unen con $x_0$). Esta función es continua y efectivamente tiene como contradiminio $X$, ya que el espacio $X$ es convexo. Además:
+        \begin{equation*}
+            \begin{split}
+                \left.
+                    \begin{array}{rcl}
+                        F(x,0) & = & x \\
+                        F(x,1) & = & x_0 = r(x) \\
+                    \end{array}
+                \right\},\quad&\forall x\in X\\
+                F(x_0,t)=x_0,\quad&\forall t\in I\\
+            \end{split}
+        \end{equation*}
+        por tanto, $\left\{x_0\right\}$ es repliegue de deformación de $X$, i.e. $X$ es contraíble a un punto.
+    \end{proof}
+
+    \begin{mydef}
+        Un subconjunto no vacío $X$ de $\mathbb{R}^n$ se dice que tiene \textbf{forma de estrella respecto a $x_0\in X$} si el segmento que une a $x_0$ con $x$ está contenido en $X$, para todo $x\in X$.
+    \end{mydef}    
+
+    Como en el ejemplo anterior, se prueba de forma análoga que cualquier conjunto con forma de estrella es contraíble a un punto.
+
+    \begin{exa}
+        Afirmamos que la $(n-1)$-esfera unitaria $\mathbb{S}^{ n-1}$
+        \begin{equation*}
+            \mathbb{S}^{ n-1}=\left\{x\in\mathbb{R}^n\Big|\|x\|=s1 \right\}
+        \end{equation*}
+        es una deformación de repliegue de $\mathbb{R}^n-\left\{0\right\}$ para todo $n\in\mathbb{N}$.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, sea $n\in\mathbb{N}$ y considere el repliegue $\cf{r}{\mathbb{R}^n-\left\{0\right\}}{\mathbb{S}^{ n-1}}$ dado por
+        \begin{equation*}
+            r(x)=\frac{x}{\|x\|},\quad\forall x\in\mathbb{R}^n-\left\{0\right\}
+        \end{equation*}
+        Claramente esta es una función continua. Construímos la homotopía $\cf{F}{(\mathbb{R}^n-\left\{0\right\})\times I}{\mathbb{R}^n-\left\{0\right\}}$ dada por:
+        \begin{equation*}
+            F(x,t)=(1-t)x+t\cdot\frac{x}{\|x\|},\quad\forall x\in \mathbb{R}^n-\left\{0\right\}, \forall t\in I
+        \end{equation*}
+        Es claro que esta función es continua, para la que se cumple    que
+        \begin{equation*}
+            \begin{split}
+                \left.
+                    \begin{array}{rcl}
+                        F(x,0) & = & x\\
+                        F(x,0) & = & r(x)\\
+                    \end{array}
+                \right\},&\quad\forall x\in\mathbb{R}^n-\left\{0\right\}\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                F(s,t)&=(1-t)s+t\cdot\frac{s}{\|s\|}\\
+                &=(1-t)s+ts\\
+                &=s,\quad\forall s\in\mathbb{S}^{ n-1},\quad\forall t\in I \\
+            \end{split}
+        \end{equation*}
+        Por tanto, $\mathbb{S}^{ n-1}$ es una deformación de retracción de $\mathbb{R}^n-\left\{0\right\}$.
+    \end{proof}
+
+    %TODO: Ver como redactarla adecuadamente.
+
+    \begin{propo}
+        Un espacio $X$ es simplemente conexo si y sólo si existe una única clase de equivalencia de caminos que conecten cualesquiera dos puntos de $X$.
+    \end{propo}
+
+    \begin{proof}
+        Es más fácil ver la suficiencia del teorema para entender que es lo que está sucediendo.
+
+        $\Leftarrow$): Sea $x_0\in X$. Suponga que existe una única clase de equivalencia de caminos que conecten cualesquiera dos puntos de $X$, digamos $[i]$, donde $\cf{i}{I}{X}$ es tal que $i(t)=x_0$ para todo $t\in I$. Entonces si dado $x\in X$, $\cf{f_x}{I}{X}$ es un camino tal que $f_x(t)=x$ para todo $t\in I$, debe suceder que
+        \begin{equation*}
+            [i]= [f_x]\iff i\simeq f_x
+        \end{equation*}
+        (en particular si dos caminos son equivalentes, son homotópicos) Por ende, existe una función continua $\cf{F}{X\times I}{X}$ tal que
+        \begin{equation*}
+            F(y,0)=i(y)=x_0,\quad\forall y\in X
+        \end{equation*}
+        y
+        \begin{equation*}
+            F(y,1)=f_x(y)=x,\quad\forall y\in X
+        \end{equation*}
+        Es decir, la función $\cf{g}{I}{X}$ dada por:
+        \begin{equation*}
+            g(t)=F(x_0,t),\quad\forall t\in I
+        \end{equation*}
+        dadas las condiciones anteriores es un camino que une a $x_0$ con $x$ (por ser continua). Luego el espacio $X$ es arco-conexo. Si $\cf{f}{I}{X}$ es un bucle con centro en $x_0$, entonces $f\simeq i$, es decir que es homotópico a la identidad
+    \end{proof}
+
+    \section{El grupo fundamental del circulo}
+
+    Procederemos a calcular este grupo fundamental para dar algunos resultados relevantes en las siguientes lecturas.
+
+    Sea $\cf{f}{I}{\mathbb{S}^1}$ el bucle con base $(1,0)$ que va alrededor del circulo exactamente una vez, es decir:
+    \begin{equation*}
+        f(t)=(\cos 2\pi t,\sin 2\pi t),\quad\forall t\in I
+    \end{equation*}
+
+    \begin{theor}
+        El grupo fundamental $\pi(\mathbb{S}^1,(1,0))$ es cíclico infinito generado por $[f]$.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    Como aplicación tenemos el siguente teorema:
+
+    \begin{theor}[\textbf{Teorema fundamental del álgebra}]
+        Todo polinomio no constante con coeficientes en $\mathbb{C}$ tiene una raíz en $\mathbb{C}$.
+    \end{theor}
+
+    \begin{proof}
+        Sin pérdida de generalidad, podemos asumir que
+        \begin{equation*}
+            p(z)=z^{ n}+a_1z^{ n-1}+...+a_n
+        \end{equation*}
+        donde $a_1,...,a_n\in\mathbb{C}$.
+
+        Supongamos que $p$ no tiene raíces en $\mathbb{C}$, entonces para todo $r\geq 0$, y para todo:
+        \begin{equation*}
+            f_r(s)=\frac{p(re^{ 2\pi is})/p(r)}{\abs{p(re^{ 2\pi is})/p(r)}},\quad\forall s\in I
+        \end{equation*}
+        define un bucle en el círculo unitario $\mathbb{S}^1\subseteq\mathbb{C}$ con base en 1. Afirmamos que
+        \begin{equation*}
+            f_r\sim f_0
+        \end{equation*}
+        para todo $r>0$. En efecto, sea $\cf{F}{I\times I}{\mathbb{S}^1}$ dada por:
+        \begin{equation*}
+            F(t,s)=f_{ rt}(s),\quad\forall  s,t\in I
+        \end{equation*}
+        Es claro de la definición de $f_r$ que $F(t,s)$ es continua. Veamos que:
+        \begin{equation*}
+            F(0,s)=f_0(s)\quad\textup{y}\quad F(1,s)=f_r(s),\quad\forall s\in I
+        \end{equation*}
+        Y además:
+        \begin{equation*}
+            F(t,0)=f_{ rt}(0)=1\quad\textup{y}\quad F(t,1)=f_{ rt}(1)=1,\quad\forall t\in I
+        \end{equation*}
+        (pues todos los bucles tienen como punto base a $1$). Por tanto, $f_0\sim f_r$ para todo $r\geq0$. Se sigue pues que
+        \begin{equation*}
+            [f_0]=[f_r],\quad\forall r\geq0
+        \end{equation*}
+        es decir que $[f_r]$ es la identidad de $\pi(\mathbb{S}^1,(1,0))$ para todo $r\geq0$.
+
+        Fijemos ahora $r>0$ tal que
+        \begin{equation*}
+            r>\max\left\{\abs{a_1}+...+\abs{a_n},1\right\}
+        \end{equation*}
+        Entonces para $\abs{z}=r$ se tiene que
+        \begin{equation*}
+            \begin{split}
+                \abs{a_1z^{ n-1}+...+a_n}&\leq\abs{a_1z^{ n-1}}+...+\abs{a_n}\\
+                &<(\abs{a_1}+...+\abs{a_n})\abs{z}^{n-1}\\
+                &<\abs{z}^n\\s
+            \end{split}
+        \end{equation*}
+        lo cual además implica que
+        \begin{equation*}
+            t\abs{a_1z^{ n-1}+...+a_n}<\abs{z}^n,\quad\forall t\in I
+        \end{equation*}
+        Por tanto, el polinomio
+        %TODO
+        \begin{equation*}
+            p_t=
+        \end{equation*}
+    \end{proof}
 
     \newpage
 
