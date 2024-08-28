@@ -1315,6 +1315,49 @@
         el único polinomio que no tiene raíces en $\mathbb{C}$ es el polinomio constante no cero.
     \end{proof}
 
+    Ahora un resultado familiar enunciado al inicio del taller:
+
+    \begin{theor}[\textbf{Teorema del punto fijo de Brower para dimensión 2}]
+        Toda función continua $\cf{f}{\mathbb{D}^2}{\mathbb{D}^2}$ tiene un punto fijo, es decir existe $z\in\mathbb{D}^2$ tal que $f(z)=z$, donde:
+        \begin{equation*}
+            \mathbb{D}^2=\left\{(x,y)\in\mathbb{R}^2\Big|x^2+y^2\leq1 \right\}
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        %TODO
+        Suponga que para todo $x\in\mathbb{D}^2$ se tiene que $f(x)\neq x$. Definimos la función $\cf{r}{\mathbb{D}^2}{\mathbb{S}^1}$ dada como sigue:
+        \begin{itemize}
+            \item Sea $x\in\mathbb{D}^2$. Considere la función $\cf{l_x}{]0,\infty[}{\mathbb{R}^2}$ dada por:
+            \begin{equation*}
+                l_x(t)=(1-t)f(x)+tx
+            \end{equation*}
+            (es la recta que comienza en $f(x)$ y va en dirección de $x$). Por el teorema del valor medio se tiene que existe un único $t_x\in]0,\infty[$ tal que
+            \begin{equation*}
+                \|l_x(t_x)\|=1
+            \end{equation*}
+            En efecto, sea $\cf{L}{]0,\infty[\times\mathbb{D}^2}{\mathbb{R}}$ dada por:
+            \begin{equation*}
+                L(x,t)=\|l_x(t)\|=\|(1-t)f(x)+tx\|
+            \end{equation*}
+            (la prueba no es muy complicada, salvo la unicidad todo se puede hacer rápidamente). Hacemos entonces
+            \begin{equation*}
+                r(x)=l_x(t_0)
+            \end{equation*}
+            \item En la función anterior, considere el mapeo $\cf{\gamma}{\mathbb{D}^2}{]0,\infty[}$ tal que
+            \begin{equation*}
+                x\mapsto t_0
+            \end{equation*}
+            es continua. En efecto, sea $x\in\mathbb{D}^2$ y $\left\{x_n \right\}_{ n=1}^{\infty}$ una sucesión que converge a $x$.
+        \end{itemize}
+        Afirmamos que $r$ es continua. En efecto, veamos que
+        \begin{equation*}
+            r(x)=(1-\gamma(x))f(x)+\gamma(x)x
+        \end{equation*}
+        como todas las funciones involucradas son continuas, se sigue que $r$ es continua.
+    \end{proof}
+    
+
     \newpage
 
     \section{Ejercicios}

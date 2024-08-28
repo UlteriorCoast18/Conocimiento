@@ -248,8 +248,185 @@
             \end{equation*}
             lo que prueba el resultado.
 
-            \item
+            \item Suponga que $(X,\tau)$ es separable, entonces existe $A\subseteq X$ subconjunto denso a lo sumo numerable. Sea
+            \begin{equation*}
+                \mathcal{B}=\left\{B_d\left(a,\frac{1}{n}\right) \Big|a\in A\textup{ y }n\in\mathbb{N} \right\}
+            \end{equation*}
+            Si probamos que $\mathcal{B}$ es base para $\tau$, se probará el resultado (pues $\mathcal{B}$ es a lo sumo numerable). Sea $x\in X$ y $\varepsilon>0$. Tomemos $m\in\mathbb{N}$ tal que
+            \begin{equation*}
+                \frac{2}{m}<\varepsilon
+            \end{equation*}
+            como $\overline{A}=X$, entonces existe $a\in A$ tal que $a\in B_d\left(x,\frac{1}{m}\right)$. Entonces
+            \begin{equation*}
+                x\in B_d\left(a,\frac{1}{m}\right)\subseteq B_d\left(x,\frac{2}{m} \right)\subseteq B_d\left(x,\varepsilon\right)
+            \end{equation*}
+            por tanto, $\mathcal{B}$ es una base para la topología $\tau$, luego el espacio $(X,\tau)$ es segundo numerable.
         \end{itemize}
     \end{proof}
+
+    \begin{exa}
+        Considere el espacio topológico $(\mathbb{R},\leq)$. Entonces el conjunto
+        \begin{equation*}
+            \mathcal{B}_l=\left\{[a,b)\Big|a,b\in\mathbb{R} \right\}
+        \end{equation*}
+        es una base para una topología sobre $\mathbb{R}$. La topología generada por esta base la denotamos por $\tau_l$ y se dice \textbf{la topología del límite inferior}.
+    \end{exa}
+
+    \begin{exa}
+        El espacio $(\mathbb{R},\tau_l)$ es $T_2$. Dados $a,b\in\mathbb{R}$ se tiene que si $a<x<b$.
+        \begin{equation*}
+            (a,b)=\bigcup\left\{[x,b)\Big|a<x<b \right\}
+        \end{equation*}
+        por tanto, $\tau_u\subseteq\tau_l$, luego $(\mathbb{R},\tau_l)$ es $T_2$ pues con la topología usual lo es.
+
+        Más aún, $(\mathbb{R},\tau_l)$ es primero numerable.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, sea $x\in\mathbb{R}$. Afirmamos que la colección
+        \begin{equation*}
+            \left\{[x,x+1/n)\Big|n\in\mathbb{N} \right\}
+        \end{equation*}
+        es un sistema fundamnetal de vecindades de $x$, por lo que este espacio es primero numerable.
+    \end{proof}
+
+    
+    \begin{exa}
+        El espacio $(\mathbb{R},\tau_l)$ no es segundo numerable.
+    \end{exa}
+
+    \begin{proof}
+        Sea $\mathcal{B}$ una base para $\tau_l$. Para $x\in\mathbb{R}$ escogemos $B_x\in\mathcal{B}$ tal que
+        \begin{equation*}
+            x\in B_x\subseteq [x,x+1)
+        \end{equation*}
+        Se tiene que $x=\inf B_x$. Para $x,y\in\mathbb{R}$ se tiene que $B_x\neq B_y$ (pues si fueran iguales, tendrían el mismo ínfimo). Por tanto la colección $\mathcal{B}$ es no numerable.
+
+        Así, el espacio $(\mathbb{R},\tau_l)$ no es segundo numerable.
+    \end{proof}
+
+    \begin{exa}
+        El espacio $(\mathbb{R},\tau_l)$ es separable.
+    \end{exa}
+
+    \begin{proof}
+        Tome $\mathbb{Q}\subseteq\mathbb{R}$.
+    \end{proof}
+    
+    \begin{exa}
+        $(\mathbb{R},\tau_l)$ es normal.
+    \end{exa}
+
+    \begin{proof}
+        Sean $A,B\subseteq\mathbb{R}$ cerrados tales que $A\cap B=\emptyset$. Sea $a\in A$, entonces $a\notin B=\overline{B}$. Existe pues $x_a\in\mathbb{R}$ tal que
+        \begin{equation*}
+            [a,x_a)\subseteq \mathbb{R}-B
+        \end{equation*}
+        (por ser el conjunto de la derecha abierto). Entonces
+        \begin{equation*}
+            A\subseteq\bigcup_{ a\in A}[a,x_a)=U\in\tau_l
+        \end{equation*}
+        y
+        \begin{equation*}
+            B\subseteq\bigcup_{ b\in B}[b,x_b)=V\in\tau_l
+        \end{equation*}
+        Si $U\cap V\neq\emptyset$, entonces existe $a\in A$ y $b\in B$ tales que
+        \begin{equation*}
+            [a,x_a)\cap[b,x_b)\neq\emptyset
+        \end{equation*}
+        Si $a<b$ entonces $b\in [a,x_a)$, lo cual es una contradición. Por tanto, $U\cap V=\emptyset$. Así, el espacio $(\mathbb{R},\tau_l)$ es normal.
+    \end{proof}
+
+    \begin{propo}
+        Si $(X,\tau)$ es metrizable, entonces $(X,\tau)$ es normal.
+    \end{propo}
+
+    \begin{proof}
+        Sea $d$ una métrica definida sobre $X$ tal que $\tau_d=\tau$. Como $(X,\tau)$ es metrizable, entonces es $\mathbb{T}_2$ y por lo tanto es $T_1$. Veamos que $(X,\tau)$ es $T_4$.
+
+        Sean $A,B\subseteq X$ cerrados disjuntos con $A\cap B\neq\emptyset$. Sea $a\in A$, entonces $a\in X-B\in\tau$. Entonces existe $\varepsilon_a>0$ tal que
+        \begin{equation*}
+            B_d(a,\varepsilon_a)\subseteq X-B
+        \end{equation*}
+        Sea
+        \begin{equation*}
+            U=\bigcup_{ a\in A}B_d\left(a,\frac{\varepsilon_a}{2}\right) \in\tau
+        \end{equation*}
+        es claro que $A\subseteq U$. De forma análoga se construye $V$:
+        \begin{equation*}
+            V=\bigcup_{ b\in B}B_d\left(b,\frac{\varepsilon_b}{2}\right) \in\tau
+        \end{equation*}
+        es tal que $B\subseteq V$. Suponga que $U\cap V\neq\emptyset$. Entonces existe $a\in A$ y $b\in B$ tales que
+        \begin{equation*}
+            B_d\left(a,\frac{\varepsilon_a}{2}\right)\cap B_d\left(b,\frac{\varepsilon_b}{2}\right)\neq\emptyset
+        \end{equation*}
+        se tiene que $d(a,b)<d(a,x)+d(x,b)<\frac{\varepsilon_a}{2}+\frac{\varepsilon_b}{2}<\max\left\{\varepsilon_a,\varepsilon_b \right\}$. Por tanto, $a\in B_d(b,\varepsilon_b)$ o $b\in B_d(a,\varepsilon_a)$, lo cual contradice la elección de estas bolas. Por tanto, $U\cap B=\emptyset$.
+
+        Así, el espacio $(X,\tau)$ es $T_4$.
+    \end{proof}
+
+    \begin{cor}
+        Si $(X,\tau)$ es metrizable, entonces es regular.
+    \end{cor}
+
+    \begin{proof}
+        Inmediato del hecho que normalidad implica regularidad.
+    \end{proof}
+
+    \begin{propo}
+        Si $(X,\tau)$ es metrizable, entonces $(X,\tau)$ es primero numerable.
+    \end{propo}
+
+    \begin{proof}
+        Sea $d$ una métrica definida sobre $X$ tal que $\tau=\tau_d$. Sea $x\in X$, considere
+        \begin{equation*}
+            \mathcal{V}=\left\{B_d\left(x,\frac{1}{n}\right)\Big|n\in\mathbb{N} \right\}
+        \end{equation*}
+        entonces $\mathcal{V}$ es una colección numerable de vecindades de $X$ y es fundamental (por construcción). Por tanto, $(X,\tau)$ es primero numerable.
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio $T_3$ y de Lindelöf, entonces $(X,\tau)$ es $T_4$
+    \end{propo}
+
+    \begin{proof}
+        Sean $A,B\subseteq X$ cerrados disjuntos. Sea $a\in A\subseteq X-B\in\tau$. Como $(X,\tau)$ es $T_3$, existe $U_a\in\tau$ tal que
+        \begin{equation*}
+            a\in U_a\subseteq\overline{U}_a\subseteq X-B
+        \end{equation*}
+        Por ser $(X,\tau)$ de Lindelöf y ser $A\subseteq X$ cerrado, tenemos que $(A,\tau_A)$ es de Lindelöf. Se tiene que
+        \begin{equation*}
+            A\subseteq\bigcup_{ a\in A}U_a
+        \end{equation*}
+        donde $U_a\in\tau$ y $\overline{U}_a\cap B\neq\emptyset$. Existe pues $\left\{U_{ a_n} \right\}_{ n\in\mathbb{N}}$ tales que
+        \begin{equation*}
+            A\subseteq\bigcup_{ n\in\mathbb{N}}U_{ a_n}U_{ a_n}
+        \end{equation*}
+        y cumplen que
+        \begin{equation*}
+            \overline{U}_{ a_n}\cap B=\emptyset,\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        De forma análoga podemos encontrar una familia $\left\{V_{ b_n} \right\}_{ n\in\mathbb{N}}$ de abiertos tales que
+        \begin{equation*}
+            V\subseteq\bigcup_{ n\in\mathbb{N}}U_{ b_n}V_{ b_n}
+        \end{equation*}
+        y que cumplan:
+        \begin{equation*}
+            \overline{V}_{ b_n}\cap A=\emptyset,\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        Sea $m\in\mathbb{N}$. Se define
+        \begin{equation*}
+            U_m=U_{ a_m}-\bigcup_{ l=1}^m\overline{V}_{b_l}\in\tau
+        \end{equation*}
+        y $V_m$ se define de forma similar:
+    \end{proof}
+
+    \begin{obs}
+        Por el ejemplo de $(\mathbb{R},\tau_l)$, se sigue que el recíproco de esta proposición anterior no es cierta.
+    \end{obs}
+
+    \begin{obs}
+        Del ejemplo anterior se deduce de forma inmediata que el recíproco del teorema anterior no es cierto.
+    \end{obs}
 
 \end{document}
