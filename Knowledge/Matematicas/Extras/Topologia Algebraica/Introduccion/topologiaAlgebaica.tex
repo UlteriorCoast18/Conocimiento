@@ -762,6 +762,14 @@
         además, para denotar que son homotópicas, se usará el símbolo $\varphi_0\simeq\varphi_1$.
     \end{mydef}
 
+    \begin{obs}
+        En ciertos casos, será más conveniente denotar a la homotopía como la familia de funciones $\left\{\varphi_t \right\}_{ t\in I}$ tal que cada una es continua y que el mapeo $t\mapsto \varphi_t$ es continuo en el espacio de funciones continuas, donde
+        \begin{equation*}
+            \Phi(x,t)=\varphi_t(x),\quad\forall x\in X,\forall t\in I
+        \end{equation*}
+        y por esta razón, se denotará por $\varphi_t$ a $\Phi$.
+    \end{obs}
+
     \begin{propo}
         Sean $X$ y $Y$ espacios topológicos. Considere el conjunto:
         \begin{equation*}
@@ -1080,19 +1088,128 @@
 
     \section{El grupo fundamental del circulo}
 
-    Procederemos a calcular este grupo fundamental para dar algunos resultados relevantes en las siguientes lecturas.
+    Procederemos a calcular este grupo fundamental para dar algunos resultados relevantes en las siguientes lecturas. Para calcular este grupo se tienen que hacer antes algunas cosas adicionales.
 
-    Sea $\cf{f}{I}{\mathbb{S}^1}$ el bucle con base $(1,0)$ que va alrededor del circulo exactamente una vez, es decir:
+    \begin{mydef}
+        Sea $\cf{\omega}{I}{\mathbb{S}^1}$ el bucle con base $(1,0)$ que va alrededor del circulo exactamente una vez, es decir:
+        \begin{equation*}
+            \omega(s)=(\cos 2\pi s,\sin 2\pi s),\quad\forall s\in I
+        \end{equation*}
+        Y, para cada $n\in\mathbb{Z}$ se define:
+        \begin{equation*}
+            \omega_n(s)=(\cos 2\pi ns,\sin 2\pi ns),\quad\forall s\in I
+        \end{equation*}
+    \end{mydef}
+
+    \begin{excer}
+        Pruebe que:
+        \begin{equation*}
+            [\omega]^n=[\omega_n],\quad\forall n\in\mathbb{Z}
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    Para la demostración del teorema, lo se se hará es que dado un camino $\cf{f}{I}{\mathbb{S}^1}$, se comparará al mismo con el camino
     \begin{equation*}
-        f(t)=(\cos 2\pi t,\sin 2\pi t),\quad\forall t\in I
+        p(s)=(\cos 2\pi s,\sin 2\pi s),\quad\forall s\in I
     \end{equation*}
+    este mapeo puede ser visualizado como una helicoide en $\mathbb{R}^3$ (con una parametrización del tipo $s\mapsto (\cos 2\pi s,\sin 2\pi s, s)$, luego para completar a $p$ se proyecta esta helicode en el plano $xy$).
+
+    \begin{obs}
+        Veamos que
+        \begin{equation*}
+            \omega_n=p\circ\widetilde{\omega}_n,\quad\forall n\in\mathbb{Z}
+        \end{equation*}
+        donde $\cf{\widetilde{\omega}_n}{I}{\mathbb{R}}$ es la función tal que $s\mapsto ns$. Básicamente esta función controla el número de giros adicionales que va a dar la helicoide en un solo intervalo de longitud 1. El signo de $n$ determina el sentido de giro de la helicoide.
+    \end{obs}
+
+    \begin{mydef}
+        En el contexto de la definición anterior, diremos que $\widetilde{\omega}_n$ es un \textbf{levantamiento} de $\omega_n$.
+    \end{mydef}
+
+    La prueba del teorema se hará estudiando como es que los caminos en $\mathbb{S}^1$ se levantan a $\mathbb{R}$.
+
+    \begin{mydef}
+        Sea $X$ un espacio. Un \textbf{espacio recubridor} de $X$ consiste de un espacio $\widetilde{X}$ y una función $\cf{p}{\widetilde{X}}{X}$ que satisface lo siguiente:
+        \begin{itemize}
+            \item Para cada punto $x\in X$ existe una vecidad abierta $U$ de $X$ tal que $p^{-1}(U)$ es la unión disjunta de abiertos tales que cada uno de estos conjuntos es homeomorfo a $U$ con respecto a la función $p$.
+        \end{itemize}
+        el conjunto $U$ será denominado \textbf{recubierto uniformemente}.
+    \end{mydef}
+
+    \begin{propo}
+        La función $\cf{p}{\mathbb{R}}{\mathbb{S}^1}$ definida anteriormente hace de la tupla $(\mathbb{R},p)$ un espacio recubridor de $\mathbb{S}^1$. Más aún, todo arco abierto en $\mathbb{S}^1$ es recubierto uniformemente.
+    \end{propo}
+    
+    \begin{proof}
+        Para la primera parte, sea $x=(\cos2\pi s,\sin2\pi s)\in\mathbb{S}^1$ (con $s\in[0,1[$). La función $p$ es continua, por lo que el abierto
+        \begin{equation*}
+            U=\left\{(\cos2\pi(s+r),\sin2\pi (s+r))\Big|r\in[0,1/4[ \right\}
+        \end{equation*}
+        en $\mathbb{S}^1$ es tal que $p^{-1}(U)$ es abierto. Es claro que
+        \begin{equation*}
+            p^{-1}(U)=\bigcup_{ s\in\mathbb{Z}}]s-1/4,s+1/4[
+        \end{equation*}
+        siendo cada uno de los intervalos disjuntos en la unión homeomorfo a $U$.
+
+        Notemos que podemos cambiar $U$ por un arco abierto y el resultado sigue siendo válido. 
+    \end{proof}
+
+    Para probar el teorema necesitaremos de estos dos resultados preliminares concernientes a espacios recubridores con $\cf{p}{\widetilde{X}}{X}$:
+
+    \begin{enumerate}
+        \item Para cada camino $\cf{f}{I}{X}$ comenzando en $x_0\in X$ y para cada $\widetilde{x}_0\in p^{-1}(x_0)$ existe un único levantamiento $\cf{\widetilde{f}}{I}{\widetilde{X}}$ empezando en $\widetilde{x}_0$.
+        \item Para cada homotopía $\cf{F}{I\times I}{X}$ de caminos comenzando en $x_0\in X$ y para cada $\widetilde{x}_0\in p^{-1}(x_0)$ existe un único levantamiento homotópico (es decir, que cada función $f_t(x)=F(t,x)$ es un levantamiento) $\cf{\widetilde{F}(t,x)}{I}{\widetilde{X}}$ empezando en $\widetilde{x}_0$.
+    \end{enumerate}
+
+    Para probar estos resultados, basta con probar lo siguiente:
+
+    \begin{propo}
+        Dadas funciones $\cf{F}{Y\times I}{X}$ y $\cf{\widetilde{F}}{Y\times\left\{0\right\}}{\widetilde{X}}$ un levantamiento de $F\big|_{Y\times\left\{0\right\}}$ existe una única función $\cf{\widetilde{F}}{Y\times I}{\widetilde{I}}$ levantamiento de $F$ tal que reestringida a $Y\times\left\{0\right\}$ resulta en $\widetilde{F}$
+    \end{propo}
+
+    Ya que es un caso particular cuando $Y=\left\{0\right\}$ consiste de un solo punto (en (i)). Para (ii), basta con tomar $Y=I$ y aplicar (i) de la siguiente forma: 
+
+    %TODO
+
+    Cuando se vea la parte de espacios recubridores se hará una prueba formal de este resultado. En esencia este resultado se usa para probar que $\pi(\mathbb{S}^1,(1,0))$ es ínfinito.
 
     \begin{theor}
-        El grupo fundamental $\pi(\mathbb{S}^1,(1,0))$ es cíclico infinito generado por $[f]$.
+        El grupo fundamental $\pi(\mathbb{S}^1,(1,0))$ es cíclico infinito generado por $[\omega]$.
     \end{theor}
 
     \begin{proof}
-        
+        Sea $\cf{f}{I}{\mathbb{S}^1}$ un bucle con punto base $x_0=(1,0)$. Por (i) existe un levantamiento $\widetilde{f}$ empezando en $0$. Este camino termina en algún entero $n\in\mathbb{Z}$ pues al ser levantamiento se cumple que
+        \begin{equation*}
+            f = p\circ \widetilde{f}
+        \end{equation*}
+        luego, para $s=1$:
+        \begin{equation*}
+            p(\widetilde{f}(1))=p\circ\widetilde{f}(1)=f(1)=x_0
+        \end{equation*}
+        y,
+        \begin{equation*}
+            p^{-1}(x_0)=\mathbb{Z}\subseteq\mathbb{R}
+        \end{equation*}
+        Por tanto, debe existir $n\in\mathbb{Z}$ tal que $\widetilde{f}(1)=n$. Así $\widetilde{f}$ es un camino que va de $0$ a $n$. Otro camino que también hace lo mismo es $\widetilde{\omega}_n$. Además
+        \begin{equation*}
+            \widetilde{f}\simeq \widetilde{\omega}_n
+        \end{equation*}
+        dada la función continua $\cf{F}{I\times I}{\mathbb{R}}$, $F(t,s)=(1-t)\widetilde{f}(s)+t\widetilde{\omega}_n(s)$, para todo $s,t\in I$. Tomando $G(s,t)=p\circ F(s,t)$ resulta en que $f\sim\omega_n$, luego $[f]=[\omega_n]$.
+
+        Para ver la unicidad de $n$, suponga que $[f]$ está determinado por $[\omega_n]$ y $[\omega_m]$, es decir que
+        \begin{equation*}
+            f\sim\omega_n\quad\textup{y}\quad f\sim\omega_m
+        \end{equation*}
+        con $m\in\mathbb{Z}$. Se sigue que $\omega_n\sim\omega_m$. Sea $\cf{F}{I\times I}{\mathbb{S}^1}$ la homotopía tal que
+        \begin{equation*}
+            f_0=\omega_n\quad\textup{y}\quad f_1=\omega_m
+        \end{equation*}
+        Por (ii) se tiene que...
+        %TODO
     \end{proof}
 
     Como aplicación tenemos el siguente teorema:
@@ -1102,17 +1219,17 @@
     \end{theor}
 
     \begin{proof}
-        Sin pérdida de generalidad, podemos asumir que
+        Sea $\cf{p}{\mathbb{C}}{\mathbb{C}}$ un polinomio. Sin pérdida de generalidad, podemos asumir que
         \begin{equation*}
             p(z)=z^{ n}+a_1z^{ n-1}+...+a_n
         \end{equation*}
-        donde $a_1,...,a_n\in\mathbb{C}$.
+        donde $a_1,...,a_n\in\mathbb{C}$, con $n\geq0$. Si $n=0$ entonces $p(z)=1,\forall z\in\mathbb{C}$ (normalizando al polinomio).
 
         Supongamos que $p$ no tiene raíces en $\mathbb{C}$, entonces para todo $r\geq 0$, y para todo:
         \begin{equation*}
             f_r(s)=\frac{p(re^{ 2\pi is})/p(r)}{\abs{p(re^{ 2\pi is})/p(r)}},\quad\forall s\in I
         \end{equation*}
-        define un bucle en el círculo unitario $\mathbb{S}^1\subseteq\mathbb{C}$ con base en 1. Afirmamos que
+        define un bucle en el círculo unitario $\mathbb{S}^1\subseteq\mathbb{C}$ con base en 1. Se tiene que $f_0$ es el bucle constante con base en 1, por lo que $[f_0]$ es la identidad de $\pi(\mathbb{S}^1,1)$. Afirmamos que
         \begin{equation*}
             f_r\sim f_0
         \end{equation*}
@@ -1143,18 +1260,59 @@
             \begin{split}
                 \abs{a_1z^{ n-1}+...+a_n}&\leq\abs{a_1z^{ n-1}}+...+\abs{a_n}\\
                 &<(\abs{a_1}+...+\abs{a_n})\abs{z}^{n-1}\\
-                &<\abs{z}^n\\s
+                &<\abs{z}^n\\
+                \Rightarrow \abs{a_1z^{ n-1}+...+a_n}&<\abs{z}^n\\
+                \Rightarrow 0 &< \abs{z}^n-\abs{a_1z^{ n-1}+...+a_n}\\
             \end{split}
         \end{equation*}
-        lo cual además implica que
+        para todo $t\in I$, lo cual además implica que
         \begin{equation*}
             t\abs{a_1z^{ n-1}+...+a_n}<\abs{z}^n,\quad\forall t\in I
         \end{equation*}
         Por tanto, el polinomio
-        %TODO
         \begin{equation*}
-            p_t=
+            p_t=z^n+t\left(a_1z^{ n-1}+...+a_n \right)
         \end{equation*}
+        no tiene raíces cuando $\|z\|=r$ (círculo centrado en 0 de radio $r$) y cuando $t\in I$, pues:
+        \begin{equation*}
+            \begin{split}
+                \abs{p_t(z)}&=\abs{z^n+t\left(a_1z^{ n-1}+...+a_n \right)}\\
+                &\geq\abs{z}^n-t\abs{a_1z^{ n-1}+...+a_n}\\
+                &>0\\
+            \end{split}
+        \end{equation*}
+        para todo $\abs{z}=r$ y $t\in I$. Cambiando a $p$ por $p_t$ en la fórmula de $f_r$ y haciendo
+        \begin{equation*}
+            F(t,s)=\frac{p_t(re^{ 2\pi is})/p_t(r)}{\abs{p_t(re^{ 2\pi is})/p_t(r)}}
+        \end{equation*}
+        obtenemos que $f_r\sim\omega_n$. En efecto, pues
+        \begin{equation*}
+            \begin{split}
+                F(0,s)&=\frac{p_0(re^{ 2\pi is})/p_0(r)}{\abs{p_0(re^{ 2\pi is})/p_0(r)}}\\
+                &=\frac{r^n e^{ 2\pi ins}/r^n}{\abs{r^n e^{ 2\pi ins}/r^n}}\\
+                &=e^{ 2\pi ins},\quad\forall s\in I \\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                F(1,s)&=\frac{p_1(re^{ 2\pi is})/p_1(r)}{\abs{p_1(re^{ 2\pi is})/p_1(r)}}\\
+                &=\frac{p(re^{ 2\pi is})/p(r)}{\abs{p(re^{ 2\pi is})/p(r)}},\quad\forall s\in I\\
+            \end{split}
+        \end{equation*}
+        (lo de los extremos que se quedan fijos se verifica rápidamente). Anteriormente se probó que $\omega_n$ es tal que
+        \begin{equation*}
+            [\omega_n]=[\omega]^n
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            [f_r]=[\omega]^n
+        \end{equation*}
+        pero $[f_r]=[f_0]$ es la identidad del grupo, por ende debe suceder que $n=0$. Por tanto,
+        \begin{equation*}
+            p(z)=1,\quad\forall z\in\mathbb{C}
+        \end{equation*}
+        el único polinomio que no tiene raíces en $\mathbb{C}$ es el polinomio constante no cero.
     \end{proof}
 
     \newpage
