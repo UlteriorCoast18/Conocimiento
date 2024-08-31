@@ -315,11 +315,11 @@
             \item $\overline{m}(p)=m(p)$ para todo $p\in\textup{Var}$.
             \item Para todo $\varphi,\psi\in\textup{FBF}$:
             \begin{equation*}
-                \overline{m}(\neg\varphi)=V\iff \overline{m}(\varphi)=F
+                \overline{m}(\neg\varphi)=V\textup{ si y sólo si } \overline{m}(\varphi)=F
             \end{equation*}
             y,
             \begin{equation*}
-                \overline{m}(\Rightarrow\varphi\psi)=F\iff\overline{m}(\varphi)=V\textup{ y } \overline{m}(\psi)=F
+                \overline{m}(\Rightarrow\varphi\psi)=F\textup{ si y sólo si }\overline{m}(\varphi)=V\textup{ y } \overline{m}(\psi)=F
             \end{equation*}
         \end{enumerate}
     \end{theor}
@@ -343,7 +343,7 @@
     \begin{mydef}
         Sea $\varphi$ una fórmula y $\Sigma$ un conjunto de fórmulas.
         \begin{enumerate}
-            \item Decimos que $\varphi$ es \textbf{consecuencia lógica} de $\Sigma$ o que $\Sigma$ \textbf{lógicamente implica} $\varphi$ (denotado por $\Sigma\vDash\varphi$) si para todo modelo $m$ tal que $m\vDash\Sigma$, se cumple que $m\vDash\Sigma$.
+            \item Decimos que $\varphi$ es \textbf{consecuencia lógica} de $\Sigma$ o que $\Sigma$ \textbf{lógicamente implica} $\varphi$ (denotado por $\Sigma\vDash\varphi$) si para todo modelo $m$ tal que $m\vDash\Sigma$, se cumple que $m\vDash\varphi$.
             \item Decimos que $\varphi$ es una \textbf{tautología} si $\emptyset\vDash\varphi$.
             \item Decimos que $\varphi$ es una \textbf{contradicción} si $\emptyset\vDash\neg\varphi$ es una tautología.
         \end{enumerate}
@@ -359,6 +359,162 @@
         Muestre que $\left\{\Rightarrow p_1p_2,\Rightarrow p_2p_3 \right\}\vDash\Rightarrow p_1p_3$.
     \end{exa}
 
+    \newcommand{\rest}{\ensuremath{\upharpoonright}}
+
+    \begin{obs}
+        De ahora en adelante, $f\rest A$ denotará la reestricción de $f$ al conjunto $A$.
+    \end{obs}
+
+    \begin{lema}
+        Sean $n,m$ dos modelos y sea $\varphi$ una fórmula. Sean $p_{ i_1},p_{ i_2},...,p_{ i_k}$ las variables que ocurren en $\varphi$. Si $n\rest\left\{p_{ i_1},p_{ i_2},...,p_{ i_k}\right\}=m\rest\left\{p_{ i_1},p_{ i_2},...,p_{ i_k}\right\}$, entonces
+        \begin{equation*}
+            n\vDash \varphi\textup{ si y sólo si } m\vDash\varphi
+        \end{equation*}
+    \end{lema}
+
+    \begin{proof}
+        Por la definición de $\vDash$, basta con demostrar que
+        \begin{equation*}
+            \overline{n}(\varphi)=\overline{m}(\varphi)
+        \end{equation*}
+        Esto lo haremos por inducción sobre $\varphi$.
+        \begin{itemize}
+            \item Si $\varphi$ es una variable $p_t$, entonces
+            \begin{equation*}
+                \begin{split}
+                    \overline{n}(\varphi)&=\overline{n}(p_t)\\
+                    &=n(p_t)\\
+                    &=m(p_t)\\
+                    &=\overline{m}(p_t)\\
+                    &=\overline{m}(\varphi)\\
+                \end{split}
+            \end{equation*}
+            \item Hay que ver que se cumple también para las conectivas:
+            \begin{enumerate}
+                \item Supongamos que $\varphi=\neg\psi$, siendo $\psi$ una FBF tal que $\overline{n}(\psi)=\overline{m}(\psi)$. Entonces,
+                \begin{equation*}
+                    \begin{split}
+                        \overline{n}(\varphi)&=\overline{n}(\neg\psi)\\
+                    \end{split}
+                \end{equation*}
+                se tiene que
+                \begin{equation*}
+                    \begin{split}
+                        \overline{n}(\neg\psi)=V&\textup{ si y sólo si } \overline{n}(\psi)=F\\
+                        &\textup{ si y sólo si } \overline{m}(\psi)=F\\
+                        &\textup{ si y sólo si } \overline{m}(\neg\psi)=V\\
+                        &\textup{ si y sólo si } \overline{m}(\varphi)=V\\
+                    \end{split}
+                \end{equation*}
+                por tanto, $\overline{m}(\varphi)=V$ si y sólo si $\overline{m}(\varphi)=V$. De forma análoga se llega a que $\overline{m}(\varphi)=F$ si y sólo si $\overline{m}(\varphi)=F$. Por tanto:
+                \begin{equation*}
+                    \overline{m}(\varphi)=\overline{n}(\varphi)
+                \end{equation*}
+                \item Supongamos que $\varphi$ es de la forma $\Rightarrow\psi\chi$ y que $\overline{m}(\psi)=\overline{n}(\psi)$, y $\overline{m}(\chi)=\overline{n}(\chi)$.
+                
+                Se tiene que $\overline{m}(\Rightarrow\psi\chi)=F$ si y sólo si $\overline{m}(\psi)=V$ y $\overline{m}(\chi)=F$, si y sólo si $\overline{n}(\psi)=V$ y $\overline{n}(\chi)=F$, si y sólo si $\overline{n}(\Rightarrow\psi\chi)=F$ (que es el único caso en que es falso). Por tanto:
+                \begin{equation*}
+                    \overline{m}(\varphi)=\overline{n}(\varphi)
+                \end{equation*}
+            \end{enumerate}
+        \end{itemize}
+        por inducción se sigue que
+        \begin{equation*}
+            n\vDash\varphi\textup{ si y sólo si } m\vDash\varphi
+        \end{equation*}
+    \end{proof}
+
+    Con este lema, se tiene que el ejemplo 1.2.2 ya tiene fundamentación, ya que únicamente basta que el modelo sea válido en las variables $p_1$ y $p_2$ (no en la cantidad infinita de variables que podemos llegar a tener).
+
+    \begin{obs}
+        Si $\Sigma$ es un conjunto finito de fórmulas (digamos $\Sigma=\left\{\varphi_1,...,\varphi_n \right\}$), entonces $\Sigma\vDash\varphi$ si y sólo si $(\varphi_1\land\cdots\land\varphi_n)\Rightarrow\varphi$ es una tautología.
+    \end{obs}
+
+    \section{Cálculo Proposicional}
+
+    Nuestro cálculo proposicional se compondrá de lo siguiente:
+    \begin{enumerate}
+        \item \textbf{Axiomas Lógicos}.
+        \item \textbf{Reglas de inferencia}.
+    \end{enumerate}
+    más adelante se probará que si hubiesemos elegido diferentes axiomas lógicos y reglas de inferencia, habríamos llegado al mismo resultado (siempre que se haya cumplido una hipótesis adicional ¿?). 
+
+    \begin{mydef}[\textbf{Axiomas Lógicos}]
+        Tenemos para nuestro cálculo proposicional los siguientes axiomas lógicos:
+        \begin{enumerate}
+            \item $\varphi\Rightarrow(\psi\Rightarrow\varphi)$.
+            \item $\varphi\Rightarrow((\psi\Rightarrow\neg\varphi)\Rightarrow\neg\psi)$.
+            \item $\varphi\Rightarrow\varphi'$ siempre que $\varphi$ resulte de sustituir $\psi$ por $\neg\neg\psi$ o viceversa (siendo $\psi$ una subfórmula de $\varphi$).
+            \item $\varphi\Rightarrow\varphi'$ siempre que $\varphi$ resulte de sustituir $\psi\Rightarrow\chi$ por $\neg\chi\Rightarrow\neg\psi$ o viceversa (siendo $\psi$ y $\chi$ subfórmulas de $\varphi$).
+            \item $\varphi\Rightarrow\varphi'$ siempre que $\varphi$ resulte de sustitur $\neg\psi\Rightarrow\psi$ por $\psi$ (siendo $\psi$ una subfórmula de $\varphi$).
+            \item $(\varphi\Rightarrow(\chi\Rightarrow\psi))\Rightarrow((\varphi\Rightarrow\chi)\Rightarrow(\varphi\Rightarrow\psi))$.
+        \end{enumerate}
+        siendo $\varphi$ una FBF dada y $\psi$ una FBF arbitraria en 1 y 2, y $\varphi,\psi,\chi$ FBF dadas.
+    \end{mydef}
+
+    \begin{exa}
+        Ejemplo del axioma 1: si $p_1$ es una variable,
+        \begin{equation*}
+            p_1\Rightarrow(p_3\Rightarrow p_1)
+        \end{equation*}
+        siendo $p_3$ una variable arbitraria.
+    \end{exa}
+
+    \begin{exa}
+        Ejemplo del axioma 3:
+        \begin{equation*}
+            (p_1\Rightarrow\neg\neg p_3)\Rightarrow(p_1\Rightarrow p_3)
+        \end{equation*}
+        o
+        \begin{equation*}
+            (p_1\Rightarrow p_3)\Rightarrow(p_1\Rightarrow\neg\neg p_3)
+        \end{equation*}
+    \end{exa}
+
+    \begin{mydef}[\textbf{Reglas de Inferencia}]
+        Se tiene una única regla de inferencia, denominada \textbf{Modus Ponens} (abreviada \textbf{MP}) dada por:
+        \begin{center}
+            \begin{tabular}{c c c}
+                $\varphi$ & $\Rightarrow$ & $\psi$ \\
+                $\varphi$ &  &  \\
+                \hline
+                 & $\therefore$ & $\psi$ \\
+            \end{tabular}
+        \end{center}
+    \end{mydef}
+
+    \renewcommand{\theenumi}{\arabic{enumi}}
+
+    \renewcommand{\theenumii}{\arabic{enumi}.\roman{enumii}}
+
+    \renewcommand{\theenumiii}{\roman{enumi}.\roman{enumii}.\alph{enumiii}}
+
+    \begin{mydef}
+        Sea $\Sigma$ un conjunto y $\varphi$ una fórmula.
+        \begin{enumerate}
+            \item Una \textbf{demostración} de $\varphi$ a partir de $\Sigma$ es una sucesión finita de fórmulas $(\varphi_1,...,\varphi_n)$ tal que:
+            \begin{enumerate}
+                \item $\varphi_n=\varphi$.
+                \item Para cada $i\in\left\{1,...,n\right\}$ se tiene una de las tres:
+                \begin{enumerate}
+                    \item $\varphi_i\in\Sigma$.
+                    \item $\varphi_i$ es axioma lógico.
+                    \item existen $k,j\in\left\{1,...,n\right\}$ con $k<j<i$ tales que $\varphi_j$ es $\Rightarrow\varphi_k\varphi_i$.
+                \end{enumerate}
+            \end{enumerate}
+            \item Decimos que $\varphi$ es \textbf{demostrable a partir de $\Sigma$}, o que $\varphi$ es un \textbf{teorema de $\Sigma$} si existe una demostración de $\varphi$ a partir de $\Sigma$, esto se simboliza por $\Sigma\vdash\varphi$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        Se cumple que $\left\{\neg p_3,p_1\Rightarrow p_3,p_1\lor(p_2\Rightarrow p_3),\neg p_3\Rightarrow(p_3\Rightarrow p_5),p_2 \right\}\vdash p_5$.    
+    \end{exa}
+
+    \begin{proof}
+        Se tiene la siguiente demostración de $p_5$:
+        
+    \end{proof}
+    
     \section*{Notas viejas}
     
     \begin{mydef}
