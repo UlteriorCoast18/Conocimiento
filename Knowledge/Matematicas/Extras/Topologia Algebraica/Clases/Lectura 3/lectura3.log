@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.4)  1 SEP 2024 23:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.4)  1 SEP 2024 23:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -975,20 +975,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 416--419
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 420.
-LaTeX Font Info:    Trying to load font information for U+bbm on input line 421
+
+Underfull \hbox (badness 10000) in paragraph at lines 429--431
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 432.
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 433
 .
 (/usr/local/share/miktex-texmf/tex/latex/bbm/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
 )
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 427.
-
-Underfull \hbox (badness 10000) in paragraph at lines 451--454
+(mdframed)              on input line 439.
+ [5]
+Underfull \hbox (badness 10000) in paragraph at lines 463--466
 
  []
 
-[5] (lectura3.aux
+[6] (lectura3.aux
 LaTeX Info: Redefining \. on input line 9.
 LaTeX Info: Redefining \% on input line 9.
 )
@@ -998,13 +1006,13 @@ L3 programming layer <2024-03-14>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 18163 strings out of 474387
- 358589 string characters out of 5747330
+ 18167 strings out of 474387
+ 358686 string characters out of 5747330
  1948493 words of memory out of 5000000
- 40159 multiletter control sequences out of 15000+600000
+ 40163 multiletter control sequences out of 15000+600000
  567009 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 104i,23n,115p,628b,921s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 104i,23n,115p,628b,1048s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/cristodanielalvarado/.miktex/texmfs/data/fonts/pk/ljfour/public/bbm/d
 pi600/bbm10.pk></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cm
 bx10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmcsc10.
@@ -1021,9 +1029,9 @@ s/cm/cmsy7.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cm
 ti10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmti12.p
 fb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/euler/eusm10.pfb>
 </usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on lectura3.pdf (5 pages, 198320 bytes).
+Output written on lectura3.pdf (6 pages, 199989 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
+ 109 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
