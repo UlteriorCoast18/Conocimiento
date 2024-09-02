@@ -588,7 +588,7 @@
     \begin{obs}
         Para esta sección resultará de utilidad definir el siguiente conjunto, para todo espacio topológico $X$ se define
         \begin{equation*}
-            \wp_X = \bigcup \left\{[f]\Big|\cf{f}{I}{X}\textup{ es una función continua} \right\}
+            \wp_X = \left\{[f]\Big|\cf{f}{I}{X}\textup{ es una función continua} \right\}
         \end{equation*}
         es decir, estamos tomando todas las clases de caminos de un espacio topológico $X$ (note que no tiene nada que ver con el grupo fundamental, más que con el hecho de que usa las clases de caminos en su definición).
     \end{obs}
@@ -742,12 +742,39 @@
         Ejercicio.
     \end{proof}
 
+    \begin{obs}
+        En otras palabras, lo que nos dice la proposición anterior es que el mapeo $i_*$ reestringido a $\pi(X,x)$ coincide con la identidad de $\bbm{1}_{\pi(X,x)}$, y que
+        \begin{equation*}
+            i_*=\bbm{1}_{\wp_X}
+        \end{equation*}
+    \end{obs}
+    
     \begin{cor}
-        Sean $X$ y $Y$ espacios topológicos y $\cf{\varphi}{X}{Y}$ una función continua y $x\in X$. La función $\varphi_*$ restringida a $\pi(X,x)\subseteq\wp_X$ es un homomorfismo entre $\pi(X,x)$ y $\pi(Y,\varphi(x))$. Más aún, si $\varphi$ es homeomorfismo, entonces $\varphi_*$ es isomorfismo.
+        Sean $X$ y $Y$ espacios topológicos y $\cf{\varphi}{X}{Y}$ una función continua y $x\in X$. La función $\varphi_*$ restringida a $\pi(X,x)\subseteq\wp_X$ es un homomorfismo entre $\pi(X,x)$ y $\pi(Y,\varphi(x))$. Más aún, si $\varphi$ es homeomorfismo, entonces $\varphi_*$ reestringida a $\pi(X,x)$ es isomorfismo.
     \end{cor}
 
     \begin{proof}
-        
+        El hecho de que sea homomorfismo es inmediato de la proposición anterior y de que si $f$ es un bucle con base en $x$, entonces
+        \begin{equation*}
+            \varphi_*([f])=[\varphi\circ f]
+        \end{equation*}
+        es la clase del camino $\varphi\circ f$, el cual es un bucle con base en $\varphi(x)$.
+
+        Veamos ue si $\varphi$ es homeomorfismo entonces $\varphi_*$ es isomorfismo. En efecto, como es homeomorfismo existe una función $\cf{\varphi^{-1}}{Y}{X}$ continua que es la inversa de $\varphi$.
+
+        Se sigue de la proposición anterior que
+        \begin{equation*}
+            (\bbm{1}_X)_*=(\varphi\circ\varphi^{-1})_*=\varphi_*\circ\varphi_*^{-1}
+        \end{equation*}
+        donde $\bbm{1}_X$ es la identidad de $X$, luego
+        \begin{equation*}
+            \varphi_*\circ\varphi_*^{-1}=\bbm{1}_{\wp_X}
+        \end{equation*}
+        de forma análoga se sigue que
+        \begin{equation*}
+            \varphi_*^{-1}\circ\varphi_*=\bbm{1}_{\wp_Y}
+        \end{equation*}
+        por tanto, la función $\varphi_*$ es invertible, luego $\varphi_*$ reestringida a $\pi(X,x)$ es invertible, con inversa la reestricción de $\varphi_*^{-1}$ a $\pi(Y,\varphi(x))$. Así, $\varphi_*$ es isomorfismo.
     \end{proof}
 
     \section{Nociones geométricas subyacentes}
