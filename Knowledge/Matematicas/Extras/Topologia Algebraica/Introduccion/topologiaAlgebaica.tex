@@ -1429,8 +1429,15 @@
                 \end{split}
             \right.,\quad\forall t\in I
         \end{equation*}
-        sea $\widetilde{x}_0\in\widetilde{X}$ tal que $f_0(0)=f_1(0)=p(\widetilde{x}_0)$.
-        %TODO
+        sea $\widetilde{x}_0\in\widetilde{X}$ tal que $f_0(0)=f_1(0)=p(\widetilde{x}_0)$. Sea $\left\{U_j \right\}_{ j\in J}$ una cubierta abierta de $X$ por vecindades fundamentales. Por el lema del número de Lebesgue existe pues $\delta>0$ tal que si $A\subseteq I\times I$ es un subconjunto con $D(A)<\delta$, entonces $A$ está contenido en algún elemento de la cubierta.
+
+        Podemos entonces encontrar números $0<s_0<s_1<...<s_m=1$ y $0<t_0<t_1<...<t_n$, tal que cada rectángulo $[s_{ i-1},s_i]\times [t_{ j-1},t_j]$ es mapeado por $F$ a una vecindad elemental en $X$.
+
+        Probaremos ahora la existencia de una única función $\cf{G}{I\times I}{\widetilde{X}}$ tal que
+        \begin{equation*}
+            p\circ G=F
+        \end{equation*}
+        siendo ésta tal que $G(0,0)=\widetilde{x}_0$.
     \end{proof}
 
     \section{El grupo fundamental del circulo}
