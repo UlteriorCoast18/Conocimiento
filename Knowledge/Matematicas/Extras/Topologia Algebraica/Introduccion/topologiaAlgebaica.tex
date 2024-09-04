@@ -1225,6 +1225,10 @@
         Si $(\widetilde{X},p)$ es un espacio recubridor de $X$, entonces $p$ es una función abierta.
     \end{cor}
 
+    \begin{proof}
+        Inmediata del teorema anterior.
+    \end{proof}
+
     \begin{lema}
         Sea $(\widetilde{X},p)$ un espacio recubridor de $X$, $A$ un subespacio de $X$ que es arco-conexo y localmente arco-conexo. Sea $\widetilde{A}$ una componente arco-conexa de $p^{-1}(A)$, entonces $(\widetilde{A},p\Big|_{\widetilde{A}})$ es un espacio recubridor de $A$.
     \end{lema}
@@ -1311,7 +1315,7 @@
         \begin{equation*}
             F=\left\{y\in Y\Big|f_0(y)=f_1(y) \right\}
         \end{equation*}
-        es vacío y es todo $Y$.
+        es vacío o es todo $Y$.
     \end{lema}
 
     \begin{proof}
@@ -1332,6 +1336,7 @@
     \end{proof}
 
     \begin{lema}
+        \label{lemaF1}
         Sea $(\widetilde{X},p)$ un espacio recubridor de $X$, $\widetilde{x}_0\in\widetilde{X}$ y $x_0=p(\widetilde{x}_0)$. Entonces, para cualquier camino $\cf{f}{I}{X}$ con punto inicial $x_0$, existe un único camino $\cf{\widetilde{f}}{I}{\widetilde{X}}$ con punto inicial $\widetilde{x}_0$ tal que
         \begin{equation*}
             p\circ \widetilde{f} =f
@@ -1403,6 +1408,7 @@
     \end{mydef}
 
     \begin{lema}
+        \label{lemaF2}
         Sea $(\widetilde{X},p)$ un espacio recubridor de $X$, y sean $\cf{\widetilde{f}_0,\widetilde{f}_1}{I}{\widetilde{X}}$ caminos tales que tienen el mismo punto inicial. Si
         \begin{equation*}
             f_0=p\circ\widetilde{f}_0\sim p\circ\widetilde{f}_1=f_1
@@ -1424,8 +1430,8 @@
         \begin{equation*}
             \left\{
                 \begin{split}
-                    F(0,t) & = f_0(0)=f_1(0) \\
-                    F(1,t) & = f_0(1)=f_1(1) \\
+                    F(0,t) & = f_0(0)=f_1(0)=x_0 \\
+                    F(1,t) & = f_0(1)=f_1(1)=x_1 \\
                 \end{split}
             \right.,\quad\forall t\in I
         \end{equation*}
@@ -1438,7 +1444,61 @@
             p\circ G=F
         \end{equation*}
         siendo ésta tal que $G(0,0)=\widetilde{x}_0$.
+        \begin{itemize}
+            \item \textit{Existencia de $G$}: Definimos primero $G$ sobre el rectángulo $[0,s_1]\times[0,t_1]$ de tal forma que $G(0,0)=\widetilde{x}_0$, y para cada $t\in [0,t_1]$, el mapeo
+            \begin{equation*}
+                s\mapsto F(s,t)=f_t(s),\quad\forall s\in[0,s_1]
+            \end{equation*}
+            es un camino en $X$ que empieza en $x_0=p(\widetilde{x}_0)$. Del lema anterior se tiene que existe un camino $\cf{g_t}{[0,s_1]}{\widetilde{X}}$ tal que
+            \begin{equation*}
+                p\circ g_t=f_t
+            \end{equation*}
+            hacemos pues
+            \begin{equation*}
+                G(s,t)=g_t(s),\quad\forall (s,t)\in[0,s_1]\times[0,t_1]
+            \end{equation*}
+            Se cumple así que
+            \begin{equation*}
+                p\circ G=F
+            \end{equation*}
+            en $[0,s_1]\times [0,t_1]$. Repitiendo este proceso en todos los rectángulos $[s_{ i-1},s_1]\times[t_{ j-1},t_j]$ de tal forma que todos los caminos coincidan en la frontera (primero recorriendo todos los intervalos $[s_{ i-1},s_i]$ hasta tener el $I\times[0,t_1]$ y luego proceder para los de la forma $I\times[t_{ j-1},t_j]$, esto es posible de hacer por inducción y se incita a que el alumno lo escriba formalmente), obtenemos la función $\cf{G}{I\times I}{\widetilde{X}}$ deseada, para la que se cumple que
+            \begin{equation*}
+                p\circ G=F
+            \end{equation*}
+            Esta función $G$ es continua, pues $p$ es continua y $F$ lo es.
+            \item \textit{Unicidad de $G$}, suponga que existe $\cf{H}{I\times I}{\widetilde{X}}$ tal que
+            \begin{equation*}
+                p\circ H=F
+            \end{equation*}
+            entonces el conjunto en el que coinciden $G$ y $H$ es no vacío. Como $I\times I$ es conexo y cumple todas las hipótesis de un lema anterior, así que $G=H$. Se tiene además que
+            \begin{equation*}
+                p\circ G(s,0)= F(s,0)=f_0(s)=p\circ \widetilde{f}_0(s),\quad\forall s\in I
+            \end{equation*}
+            por unicidad debe suceder que
+            \begin{equation*}
+                G(s,0)=\widetilde{f}_0(s)
+            \end{equation*}
+            de forma análoga
+            \begin{equation*}
+                G(s,0)=\widetilde{f}_1(s)
+            \end{equation*}
+            además se cumple que
+            \begin{equation*}
+                p\circ G(0,t)=F(0,t)=x_0,\quad\forall t\in I
+            \end{equation*}
+            al ser $G$ continua debe suceder que $G(0,t)=\widetilde{x}_0$. De forma análoga
+            \begin{equation*}
+                p\circ G(0,t)=F(1,t)=x_1,\quad\forall t\in I
+            \end{equation*}
+            por tanto, $G(0,t)=\widetilde{x}_1$ para algún $\widetilde{x}_1\in\widetilde{X}$ tal que $p(\widetilde{x}_1)=x_1$. Por tanto, hemos probado que $G$ es una función continua para la cual se cumplen las condiciones necesarias para que
+            \begin{equation*}
+                \widetilde{f}_0\sim\widetilde{f}_1
+            \end{equation*}
+        \end{itemize}
+        así $\widetilde{f}_0\sim\widetilde{f}_1$, en particular se cumple que $\widetilde{f}_0$ y $\widetilde{f}_1$ tienen el mismo punto final.
     \end{proof}
+
+    Con estos lemas probados estamos en condiciones de caracterizar el grupo fundamental del círculo.
 
     \section{El grupo fundamental del circulo}
 
@@ -1453,6 +1513,7 @@
         \begin{equation*}
             \omega_n(s)=(\cos 2\pi ns,\sin 2\pi ns),\quad\forall s\in I
         \end{equation*}
+        es decir, este bucle da $n$-vueltas alrededor del círculo cuando $t$ varía de $0$ a $1$.
     \end{mydef}
 
     \begin{excer}
@@ -1467,11 +1528,11 @@
         Ejercicio.
     \end{proof}
 
-    Para la demostración del teorema, lo se se hará es que dado un camino $\cf{f}{I}{\mathbb{S}^1}$, se comparará al mismo con el camino
+    Para la demostración del teorema, lo se se hará es que dado un camino $\cf{f}{I}{\mathbb{S}^1}$, se comparará al mismo con los caminos que genera la función recubridora $\cf{p}{\mathbb{R}}{\mathbb{S}^1}$
     \begin{equation*}
         p(s)=(\cos 2\pi s,\sin 2\pi s),\quad\forall s\in I
     \end{equation*}
-    este mapeo puede ser visualizado como una helicoide en $\mathbb{R}^3$ (con una parametrización del tipo $s\mapsto (\cos 2\pi s,\sin 2\pi s, s)$, luego para completar a $p$ se proyecta esta helicode en el plano $xy$).
+    este mapeo puede ser visualizado como una helicoide en $\mathbb{R}^3$.
 
     \begin{obs}
         Veamos que
@@ -1490,7 +1551,7 @@
     \end{theor}
 
     \begin{proof}
-        Sea $\cf{f}{I}{\mathbb{S}^1}$ un bucle con punto base $x_0=(1,0)$. Por (i) existe un levantamiento $\widetilde{f}$ empezando en $0$. Este camino termina en algún entero $n\in\mathbb{Z}$ pues al ser levantamiento se cumple que
+        Sea $\cf{f}{I}{\mathbb{S}^1}$ un bucle con punto base $x_0=(1,0)$. Por el lema \ref{lemaF1} existe un levantamiento $\widetilde{f}$ empezando en $0$. Este camino termina en algún entero $n\in\mathbb{Z}$ pues al ser levantamiento se cumple que
         \begin{equation*}
             f = p\circ \widetilde{f}
         \end{equation*}
@@ -1504,21 +1565,33 @@
         \end{equation*}
         Por tanto, debe existir $n\in\mathbb{Z}$ tal que $\widetilde{f}(1)=n$. Así $\widetilde{f}$ es un camino que va de $0$ a $n$. Otro camino que también hace lo mismo es $\widetilde{\omega}_n$. Además
         \begin{equation*}
-            \widetilde{f}\simeq \widetilde{\omega}_n
+            \widetilde{f}\sim \widetilde{\omega}_n
         \end{equation*}
-        dada la función continua $\cf{F}{I\times I}{\mathbb{R}}$, $F(t,s)=(1-t)\widetilde{f}(s)+t\widetilde{\omega}_n(s)$, para todo $s,t\in I$. Tomando $G(s,t)=p\circ F(s,t)$ resulta en que $f\sim\omega_n$, luego $[f]=[\omega_n]$.
+        tomando la función continua $\cf{\widetilde{F}}{I\times I}{\mathbb{R}}$, $\widetilde{F}(t,s)=(1-t)\widetilde{f}(s)+t\widetilde{\omega}_n(s)$, para todo $s,t\in I$. Tomando $F(s,t)=p\circ \widetilde{F}(s,t)$ resulta en que $f\sim\omega_n$ (si le quedan dudas, es fácil de verificar que se cumple lo anterior), luego $[f]=[\omega_n]=[\omega]^n$. Se sigue entonces que $\pi(\mathbb{S}^1,(1,0))$ es generado por $[\omega]$.
 
-        Para ver la unicidad de $n$, suponga que $[f]$ está determinado por $[\omega_n]$ y $[\omega_m]$, es decir que
+        Para ver que es cíclico infinito, veamos que para el bucle anterior el entero $n$ es único. Suponga que $[f]$ está determinado por $[\omega_n]$ y $[\omega_m]$, es decir que
         \begin{equation*}
             f\sim\omega_n\quad\textup{y}\quad f\sim\omega_m
         \end{equation*}
-        con $m\in\mathbb{Z}$. Se sigue que $\omega_n\sim\omega_m$. Sea $\cf{F}{I\times I}{\mathbb{S}^1}$ la homotopía tal que
+        con $m\in\mathbb{Z}$. Se sigue que $\omega_n\sim\omega_m$. Por el lema \ref{lemaF2} se tiene que $\widetilde{\omega}_n\sim\widetilde{\omega}_m$. En particular, tienen el mismo punto terminal, por lo que
         \begin{equation*}
-            f_0=\omega_n\quad\textup{y}\quad f_1=\omega_m
+            m=\widetilde{\omega}_m(1)=\widetilde{\omega}_n(1)=n
         \end{equation*}
-        Por (ii) se tiene que...
-        %TODO
+        así, $n=m$. Se sigue entonces que el orden de $[\omega]$ no puede ser finito ya que en caso contrario $f$ tendría al menos dos representaciones con este mismo generador de $\pi(\mathbb{S}^1,(1,0))$.
+
+        Por lo tanto $\pi(\mathbb{S}^1,(1,0))$ es un grupo cíclico infinito generado por $[\omega]$, luego es isomorfo a $\mathbb{Z}$. Así:
+        \begin{equation*}
+            \pi(\mathbb{S}^1,(1,0))\cong\mathbb{Z}
+        \end{equation*}
     \end{proof}
+
+    \begin{obs}
+        Podemos ver el círculo como subconjunto de $\mathbb{C}$ dado por:
+        \begin{equation*}
+            \mathbb{S}^1=\left\{x+iy\in\mathbb{C}\Big|x^2+y^2=1 \right\}
+        \end{equation*}
+        en particular, $1\in\mathbb{S}^1$ y el espacio $\mathbb{S}^1$ es arco-conexo, por lo que la elección del punto para calcular el grupo fundamental es independiente del elemento de $\mathbb{S}^1$.
+    \end{obs}
 
     Como aplicación tenemos el siguente teorema:
 
@@ -1531,17 +1604,17 @@
         \begin{equation*}
             p(z)=z^{ n}+a_1z^{ n-1}+...+a_n
         \end{equation*}
-        donde $a_1,...,a_n\in\mathbb{C}$, con $n\geq0$. Si $n=0$ entonces $p(z)=1,\forall z\in\mathbb{C}$ (normalizando al polinomio).
+        donde $a_1,...,a_n\in\mathbb{C}$, con $n\geq0$. Si $n=0$ entonces $p(z)=1,\forall z\in\mathbb{C}$.
 
-        Supongamos que $p$ no tiene raíces en $\mathbb{C}$, entonces para todo $r\geq 0$, y para todo:
+        Supongamos que $p$ no tiene raíces en $\mathbb{C}$. Para cada $r\geq 0$ se define la función $\cf{f_r}{I}{\mathbb{C}}$ por:
         \begin{equation*}
             f_r(s)=\frac{p(re^{ 2\pi is})/p(r)}{\abs{p(re^{ 2\pi is})/p(r)}},\quad\forall s\in I
         \end{equation*}
-        define un bucle en el círculo unitario $\mathbb{S}^1\subseteq\mathbb{C}$ con base en 1. Se tiene que $f_0$ es el bucle constante con base en 1, por lo que $[f_0]$ es la identidad de $\pi(\mathbb{S}^1,1)$. Afirmamos que
+        la cual es un bucle en el círculo unitario $\mathbb{S}^1\subseteq\mathbb{C}$ con base en 1. Se tiene que $f_0$ es el bucle constante con base en 1, por lo que $[f_0]$ es la identidad de $\pi(\mathbb{S}^1,1)$. Afirmamos que
         \begin{equation*}
             f_r\sim f_0
         \end{equation*}
-        para todo $r>0$. En efecto, sea $\cf{F}{I\times I}{\mathbb{S}^1}$ dada por:
+        para todo $r>0$. En efecto, sea $r>0$ y $\cf{F}{I\times I}{\mathbb{S}^1}$ dada por:
         \begin{equation*}
             F(t,s)=f_{ rt}(s),\quad\forall  s,t\in I
         \end{equation*}
@@ -1557,15 +1630,16 @@
         \begin{equation*}
             [f_0]=[f_r],\quad\forall r\geq0
         \end{equation*}
-        es decir que $[f_r]$ es la identidad de $\pi(\mathbb{S}^1,(1,0))$ para todo $r\geq0$.
+        es decir que $[f_r]$ es la identidad de $\pi(\mathbb{S}^1,1)$ para todo $r\geq0$.
 
         Fijemos ahora $r>0$ tal que
         \begin{equation*}
             r>\max\left\{\abs{a_1}+...+\abs{a_n},1\right\}
         \end{equation*}
-        Entonces para $\abs{z}=r$ se tiene que
+        Entonces si $z\in\mathbb{C}$ es tal que $\|z\|=r$, tenemos que
         \begin{equation*}
             \begin{split}
+                t\abs{a_1z^{ n-1}+...+a_n}&\leq\abs{a_1z^{ n-1}+...+a_n}\\
                 \abs{a_1z^{ n-1}+...+a_n}&\leq\abs{a_1z^{ n-1}}+...+\abs{a_n}\\
                 &<(\abs{a_1}+...+\abs{a_n})\abs{z}^{n-1}\\
                 &<\abs{z}^n\\
@@ -1573,15 +1647,15 @@
                 \Rightarrow 0 &< \abs{z}^n-\abs{a_1z^{ n-1}+...+a_n}\\
             \end{split}
         \end{equation*}
-        para todo $t\in I$, lo cual además implica que
+        para todo $t\in I$, lo cual implica que
         \begin{equation*}
             t\abs{a_1z^{ n-1}+...+a_n}<\abs{z}^n,\quad\forall t\in I
         \end{equation*}
         Por tanto, el polinomio
         \begin{equation*}
-            p_t=z^n+t\left(a_1z^{ n-1}+...+a_n \right)
+            p_t(z)=z^n+t\left(a_1z^{ n-1}+...+a_n \right),\quad\forall z\in\mathbb{C}
         \end{equation*}
-        no tiene raíces cuando $\|z\|=r$ (círculo centrado en 0 de radio $r$) y cuando $t\in I$, pues:
+        no tiene raíces cuando $\|z\|=r$ (círculo centrado en 0 de radio $r$) y cuando $t\in I$, pues si $z$ y $t$ cumplen estas condiciones se sigue que:
         \begin{equation*}
             \begin{split}
                 \abs{p_t(z)}&=\abs{z^n+t\left(a_1z^{ n-1}+...+a_n \right)}\\
@@ -1589,26 +1663,29 @@
                 &>0\\
             \end{split}
         \end{equation*}
-        para todo $\abs{z}=r$ y $t\in I$. Cambiando a $p$ por $p_t$ en la fórmula de $f_r$ y haciendo
+        Definimos la función $\cf{G}{I\times I}{\mathbb{C}}$ dada por:
         \begin{equation*}
-            F(t,s)=\frac{p_t(re^{ 2\pi is})/p_t(r)}{\abs{p_t(re^{ 2\pi is})/p_t(r)}}
+            G(t,s)=\frac{p_t(re^{ 2\pi is})/p_t(r)}{\abs{p_t(re^{ 2\pi is})/p_t(r)}},\quad\forall s,t\in I
         \end{equation*}
-        obtenemos que $f_r\sim\omega_n$. En efecto, pues
+        Esta función es tal que $f_r\sim\omega_n$. En efecto, esta función es continua y cumple que:
         \begin{equation*}
             \begin{split}
                 F(0,s)&=\frac{p_0(re^{ 2\pi is})/p_0(r)}{\abs{p_0(re^{ 2\pi is})/p_0(r)}}\\
                 &=\frac{r^n e^{ 2\pi ins}/r^n}{\abs{r^n e^{ 2\pi ins}/r^n}}\\
-                &=e^{ 2\pi ins},\quad\forall s\in I \\
+                &=e^{ 2\pi ins}\\
+                &=\cos(2\pi ns) +i\sin(2\pi ns)\\
+                &=\omega_n(s),\quad\forall s\in I\\ 
             \end{split}
         \end{equation*}
         y,
         \begin{equation*}
             \begin{split}
                 F(1,s)&=\frac{p_1(re^{ 2\pi is})/p_1(r)}{\abs{p_1(re^{ 2\pi is})/p_1(r)}}\\
-                &=\frac{p(re^{ 2\pi is})/p(r)}{\abs{p(re^{ 2\pi is})/p(r)}},\quad\forall s\in I\\
+                &=\frac{p(re^{ 2\pi is})/p(r)}{\abs{p(re^{ 2\pi is})/p(r)}}\\
+                &=f_r(s),\quad\forall s\in I\\
             \end{split}
         \end{equation*}
-        (lo de los extremos que se quedan fijos se verifica rápidamente). Anteriormente se probó que $\omega_n$ es tal que
+        (el hecho ed que los extremos que se quedan fijos se verifica rápidamente). Anteriormente se probó que $\omega_n$ es tal que
         \begin{equation*}
             [\omega_n]=[\omega]^n
         \end{equation*}
@@ -1616,11 +1693,11 @@
         \begin{equation*}
             [f_r]=[\omega]^n
         \end{equation*}
-        pero $[f_r]=[f_0]$ es la identidad del grupo, por ende debe suceder que $n=0$. Por tanto,
+        pero $[f_r]=[f_0]$ es la identidad del grupo, así que $n=0$. Luego
         \begin{equation*}
             p(z)=1,\quad\forall z\in\mathbb{C}
         \end{equation*}
-        el único polinomio que no tiene raíces en $\mathbb{C}$ es el polinomio constante no cero.
+        esto es, el único polinomio que no tiene raíces en $\mathbb{C}$ es el polinomio constante no cero.
     \end{proof}
 
     Ahora un resultado familiar enunciado al inicio del taller:
@@ -1633,38 +1710,175 @@
     \end{theor}
 
     \begin{proof}
-        %TODO
-        Suponga que para todo $x\in\mathbb{D}^2$ se tiene que $f(x)\neq x$. Definimos la función $\cf{r}{\mathbb{D}^2}{\mathbb{S}^1}$ dada como sigue:
+        Suponga que para todo $z\in\mathbb{D}^2$ se tiene que $f(z)\neq z$. Definimos la función $\cf{r}{\mathbb{D}^2}{\mathbb{S}^1}$ dada como sigue:
+
         \begin{itemize}
-            \item Sea $x\in\mathbb{D}^2$. Considere la función $\cf{l_x}{]0,\infty[}{\mathbb{R}^2}$ dada por:
+            \item Sea $z=(x,y)\in\mathbb{D}^2$. Considere la función $\cf{l_x}{]0,\infty[}{\mathbb{R}^2}$ dada por:
             \begin{equation*}
-                l_x(t)=(1-t)f(x)+tx
+                l_z(t)=(1-t)f(z)+tz=((1-t)f_1(x,y)+tx,(1-t)f_2(x,y)+ty)
             \end{equation*}
-            (es la recta que comienza en $f(x)$ y va en dirección de $x$). Por el teorema del valor medio se tiene que existe un único $t_x\in]0,\infty[$ tal que
+            (es la recta que comienza en $f(z)$ y va en dirección de $z$) donde $f(z)=(f_1(z),f_2(z))$. Por el teorema del valor medio se tiene que existe un único $t_x\in]0,\infty[$ tal que
             \begin{equation*}
-                \|l_x(t_x)\|=1
+                \|l_z(t_z)\|=1
             \end{equation*}
-            En efecto, sea $\cf{L}{]0,\infty[\times\mathbb{D}^2}{\mathbb{R}}$ dada por:
+            En efecto, como $l_z\left(\frac{1}{2}\right)=\frac{f(z)+z}{2}$, este punto es tal que no puede tener norma igual a $1$, ya que en caso contrario:
             \begin{equation*}
-                L(x,t)=\|l_x(t)\|=\|(1-t)f(x)+tx\|
+                \begin{split}
+                    \|\frac{f(z)+z}{2}\|=1&\Rightarrow\|f(z)+z\|=2\\
+                    &\Rightarrow2\leq\|f(z)\|+\|z\|\leq2 \\
+                    &\Rightarrow\|f(z)\|=\|z\|=1 \\
+                \end{split}
             \end{equation*}
-            (la prueba no es muy complicada, salvo la unicidad todo se puede hacer rápidamente). Hacemos entonces
+            por ende, $\|f(z)\|+\|z\|=\|f(z)+z\|$ así que deben ser coolineales. Como tienen la misma norma, entonces deben ser el mismo, lo cual no puede suceder ya que $f(z)\neq z$. Por tanto
             \begin{equation*}
-                r(x)=l_x(t_0)
+                l_z\left(\frac{1}{2}\right)<1
             \end{equation*}
-            \item En la función anterior, considere el mapeo $\cf{\gamma}{\mathbb{D}^2}{]0,\infty[}$ tal que
+            y,
             \begin{equation*}
-                x\mapsto t_0
+                \lim_{  t\rightarrow\infty}\|l_z(t)\|=\infty
             \end{equation*}
-            es continua. En efecto, sea $x\in\mathbb{D}^2$ y $\left\{x_n \right\}_{ n=1}^{\infty}$ una sucesión que converge a $x$.
+            del teorema del valor medio se sigue la existencia de tal $t_x\in]0,\infty[$. Este elemento está determinado por una de las raíces con $t\in]0,\infty[$ de la ecuación:
+            \begin{equation*}
+                \begin{split}
+                    \|l_z(t)\|=1&\iff \|l_x(t)\|^2=1\\
+                    &\iff\|((1-t)f_1(x,y)+tx,(1-t)f_2(x,y)+ty)\|^2=1\\
+                    &\iff((1-t)f_1(x,y)+tx)^2+(1-t)f_2(x,y)+ty)^2=1\\
+                \end{split}
+            \end{equation*}
+            el cual es un polinomio de grado 2. Por tanto, la aplicación $z\mapsto t_z$ es una función continua. Así, la aplicación $z\mapsto l_z(t_z)$ es una función continua (por ser composición de funciones continuas). Hacemos entonces $r(z)=l_z(t_z)$ la cual es continua y es tal que $t_z>0$.
+            \item Si $z\in\mathbb{D}^2$ es tal que $\|z\|=1$, entonces $r(z)=z$ (pues la función $l_z$ solo pasa por un $t\in]0,\infty[$ tal que $\|l_z(t)\|=1$, en particular debe pasar por $z$).
         \end{itemize}
-        Afirmamos que $r$ es continua. En efecto, veamos que
+
+        Por los dos incisos anteriores, $\cf{r}{\mathbb{D}^2}{\mathbb{S}^1}$ es una función continua siendo $\mathbb{S}^1\subseteq\mathbb{D}^2$. Se tiene que $r$ es una retracción de $\mathbb{D}^2$. En particular, se sabe que la función
         \begin{equation*}
-            r(x)=(1-\gamma(x))f(x)+\gamma(x)x
+            \cf{r_*}{\pi(\mathbb{D}^2,(1,0))}{\pi(\mathbb{S}^1,(1,0))}
         \end{equation*}
-        como todas las funciones involucradas son continuas, se sigue que $r$ es continua.
+        es un epimorfismo. Pero como $\mathbb{D}^2$ tiene forma de estrella respecto a $(0,0)$ se tiene que $\mathbb{D}^2$ es contraíble a un punto, luego es simplemente conexo. Así que
+        \begin{equation*}
+            \pi(\mathbb{D}^2,(1,0))=\langle e\rangle
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \pi(\mathbb{S}^1,(1,0))\cong\mathbb{Z}
+        \end{equation*}
+        por ende, $r_*$ no puede ser epimorfismo, lo cual es una contradicción. De esta forma se sigue que debe existir $z\in\mathbb{D}^2$ tal que $f(z)=z$.
     \end{proof}
     
+    El hecho de que $\pi(\mathbb{S}^1)\cong\mathbb{Z}$ puede ser usado para probar el siguiente resultado:
+
+    \begin{theor}[\textbf{Teorema de Borsuk-Ulam en dimensión 2}]
+        Para cada función continua $\cf{f}{\mathbb{S}^2}{\mathbb{R}^2}$ existen un par de puntos antipodales $x,-x\in\mathbb{S}^2$ tales que
+        \begin{equation*}
+            f(x)=f(-x)
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \mathbb{S}^2=\left\{(x,y,z)\in\mathbb{R}^3\Big|x^2+y^2+z^2=1\right\}
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Sea $\cf{f}{\mathbb{S}^2}{\mathbb{R}^2}$ una función continua tal que
+        \begin{equation*}
+            f(x)\neq f(-x),\quad\forall x\in\mathbb{S}^2
+        \end{equation*}
+        Podemos definir entonces una función $\cf{g}{\mathbb{S}^2}{\mathbb{S}^1}$ tal que
+        \begin{equation*}
+            g(x)=\frac{f(x)-f(-x)}{\|f(x)-f(-x) \|},\quad\forall x\in\mathbb{S}^2
+        \end{equation*}
+        considerando a $\mathbb{S}^1$ como subconjunto de $\mathbb{R}^2$ es decir:
+        \begin{equation*}
+            \mathbb{S}^1=\left\{(x,y)\in\mathbb{R}^3\Big|x^2+y^2=1 \right\}
+        \end{equation*}
+        Definimos ahora el bucle $\cf{\eta}{I}{\mathbb{S}^2}$ como:
+        \begin{equation*}
+            \eta(s)=(\cos 2\pi s,\sin 2\pi s,0)
+        \end{equation*}
+        y hacemos
+        \begin{equation*}
+            h=g\circ \eta
+        \end{equation*}
+        éste es un bucle en $\mathbb{S}^1$. Como $-g(x)=g(-x)$ para todo $x\in\mathbb{S}^2$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                h(s+1/2)&=g\circ\eta(s+1/2)\\
+                &=g(\cos (2\pi s+\pi),\sin (2\pi s+\pi),0)\\
+                &=g(-\cos 2\pi s,-\sin 2\pi s,0)\\
+                &=g(-(\cos 2\pi s,\sin 2\pi s,0))\\
+                &=-g\circ\eta(s)\\
+                &=-h(s),\quad\forall s\in[0,1/2]\\
+            \end{split}
+        \end{equation*}
+        El camino $h$ puede ser levantado a un camino $\cf{\widetilde{h}}{I}{\mathbb{R}}$ empezando en cero, para el que se cumple que:
+        \begin{equation*}
+            p\circ \widetilde{h}=h
+        \end{equation*}
+        siendo $p$ la función tal que $s\mapsto(\cos 2\pi s,\sin 2\pi s)$. En particular,
+        \begin{equation*}
+            p(\widetilde{h}(s+1/2))+p(\widetilde{h}(s))=h(s+1/2)+h(s)=0
+        \end{equation*}
+        para todo $s\in[0,1/2]$. Esto es:
+        \begin{equation*}
+            \begin{split}
+                0&=(\cos 2\pi \widetilde{h}(s+1/2),\sin 2\pi \widetilde{h}(s+1/2))+(\cos 2\pi \widetilde{h}(s),\sin 2\pi \widetilde{h}(s))\\
+                &=(\cos 2\pi \widetilde{h}(s+1/2)+\cos 2\pi \widetilde{h}(s),\sin 2\pi \widetilde{h}(s+1/2)+\sin 2\pi \widetilde{h}(s))\\
+                &=\left(2\cos\frac{2\pi(\widetilde{h}(s+1/2)+\widetilde{h}(s))}{2}\cos\frac{2\pi(\widetilde{h}(s+1/2)-\widetilde{h}(s))}{2}\right.\\
+                &\quad\quad,\left.2\sin\frac{2\pi(\widetilde{h}(s+1/2)+\widetilde{h}(s))}{2}\cos\frac{2\pi(\widetilde{h}(s+1/2)-\widetilde{h}(s))}{2}\right)\\
+                &=\left(2\cos\pi(\widetilde{h}(s+1/2)+\widetilde{h}(s))\cos\pi(\widetilde{h}(s+1/2)-\widetilde{h}(s))\right.\\
+                &\quad\quad,\left.2\sin\pi(\widetilde{h}(s+1/2)+\widetilde{h}(s))\cos\pi(\widetilde{h}(s+1/2)-\widetilde{h}(s))\right)\\
+            \end{split}
+        \end{equation*}
+        la única forma de que esto sea cero, es que
+        \begin{equation*}
+            \begin{split}
+                \cos\pi(\widetilde{h}(s+1/2)-\widetilde{h}(s))=0&\iff \widetilde{h}(s+1/2)-\widetilde{h}(s)=\frac{q(s)}{2}
+            \end{split}
+        \end{equation*}
+        donde $q(s)\in\mathbb{Z}$ es un impar, para todo $s\in I$. Pero la función $\cf{q}{[0,1/2]}{\mathbb{Z}}$ es continua, por lo que debe ser constante. Así que:
+        \begin{equation*}
+            \widetilde{h}(s+1/2)-\widetilde{h}(s)=\frac{q}{2}
+        \end{equation*}
+        para algún $q\in\mathbb{Z}$. En particular:
+        \begin{equation*}
+            \begin{split}
+                \widetilde{h}(1)&=\widetilde{h}(1/2)+\frac{q}{2}\\
+                &=\left(\widetilde{h}(0)+\frac{q}{2}\right)+\frac{q}{2}\\
+                &=\widetilde{h}(0)+q\\
+                &=q\\
+            \end{split}
+        \end{equation*}
+        por ende, $h\sim\omega_q$. En particular esto implica que $h$ no es homotópica a una función contante ya que $q$ es impar (la única forma en que fuera homotópica a una función constante es si $q=0$).
+
+        Pero $\eta$ es homotópica a la función $g$, $s\mapsto (0,0,1)$ que es constante. Para ello, tome la función $\cf{F}{I\times I}{\mathbb{S}^2}$ dada por:
+        \begin{equation*}
+            F(s,t)=\left(\cos 2\pi s\cos\frac{\pi t}{2},\sin 2\pi s\cos\frac{\pi t}{2},\sin\frac{\pi t}{2}\right)
+        \end{equation*}
+        (claramente esta función está bien definida y es continua), para la cual se cumple que:
+        \begin{equation*}
+            \begin{split}
+                F(s,0)&=\left(\cos 2\pi s\cos0,\sin 2\pi s\cos0,0\right)\\
+                &=\left(\cos 2\pi s\cos,\sin 2\pi s,0\right)\\
+                &=\eta(s),\quad\forall s\in I\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                F(s,1)&=\left(\cos 2\pi s\cos\frac{\pi}{2},\sin 2\pi s\cos\frac{\pi}{2},\sin\frac{\pi}{2}\right)\\
+                &=\left(0,0,1\right)\\
+            \end{split}
+        \end{equation*}
+        con lo que se tiene la homotopía deseada. Así, también debe suceder que $g\circ\eta$ sea homotópica a una función constante, es decir que $h$ es homotópica a una función constante, lo cual contradice lo probado anteriormente.
+
+        Así que, existe $x\in\mathbb{S}^2$ tal que
+        \begin{equation*}
+            f(x)=f(-x)
+        \end{equation*}
+    \end{proof}
+
+    \begin{cor}
+        Si $\mathbb{S}^2$ es escrito como la unión de dos conjuntos cerrados $A_1,A_2,A_3\subseteq\mathbb{R}^3$, entonces uno de estos debe tener un par de puntos antipodales $\left\{x,-x\right\}$.
+    \end{cor}
 
     \newpage
 
