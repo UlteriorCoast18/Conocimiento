@@ -138,7 +138,7 @@
 
     \tableofcontents %Con este comando se genera el índice general del libro%
 
-    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    \setcounter{chapter}{1} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
     
     \chapter{Grupos Libres y Productos de Grupos Libres}
     
@@ -146,10 +146,18 @@
     
     \section{Producto Débil de Grupos}
     
+    \begin{obs}
+        De ahora en adelante, el símbolo $\afa$ significa \textit{para casi todo salvo una cantidad finita de elementos}.
+    \end{obs}
+
+    \begin{obs}
+        En esta parte, $I$ no denotará al intervalo $[0,1]$, sino a una indexación de una familia.
+    \end{obs}
+
     \begin{mydef}
         Sea $\mathcal{G}=\left\{G_i \right\}_{ i\in I}$ una familia arbitraria no vacía de grupos. Se define el \textbf{producto directo de la familia $\mathcal{G}$} por:
         \begin{equation*}
-            \prod\mathcal{G}=\left\{\cf{x}{I}{\prod_{ i\in I}G_i}\Big|\varphi\textup{ es función} \right\}
+            \prod\mathcal{G}=\left\{\cf{x}{I}{\prod_{ i\in I}G_i}\Big|x\textup{ es función} \right\}
         \end{equation*}
         y en ocasiones se denotará simplemente por $\prod_{ i\in I}G_i$. Se dota a este conjunto de la siguiente operación: si $x,y\in\prod\mathcal{G}$, entonces $\cf{x\cdot y}{I}{\prod_{ i\in I}G_i}$ es la función tal que
         \begin{equation*}
@@ -158,21 +166,38 @@
         para todo $i\in I$, siendo la multiplicación respectiva en cada grupo.
     \end{mydef}
 
+    En caso de que no lo haya hecho, queda como ejercicio al lector probar que el producto directo de una familia de grupos $\mathcal{G}$ es un grupo dotado de la operación de la definición anterior.
+
     \begin{mydef}
         Sea $\mathcal{G}=\left\{G_i \right\}_{ i\in I}$ una familia arbitraria no vacía de grupos. Se define el \textbf{producto débil de la familia $\mathcal{G}$} como el subgrupo de $\prod\mathcal{G}$ dado por:
         \begin{equation*}
-            \prod\mathcal{G}^*=\left\{x\in\prod\mathcal{G}\Big|x(i)=e_i\afa i\in I \right\}
+            \prod\mathcal{G}^*=\left\{x\in\prod\mathcal{G}\Big|x(i)=e_i,\afa i\in I \right\}
         \end{equation*}
         donde $e_i$ denota la identidad de $G_i$ para cada $i\in I$.
+    \end{mydef}
+
+    \begin{propo}
+        Si $\mathcal{G}$ es una familia arbitraria no vacía de grupos, entonces
+        \begin{equation*}
+            \prod\mathcal{G}^*<\prod\mathcal{G}
+        \end{equation*}
+        es decir, que $\prod\mathcal{G}^*$ es un subgrupo de $\prod\mathcal{G}$.
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $\mathcal{G}=\left\{G_i \right\}_{ i\in I}$ una familia no vacía de grupos. Si $G_i$ es abeliano para cada $i\in I$, entonces llamaremos a $\prod\mathcal{G}^*$ la \textbf{suma directa de los grupos $G_i$}. En este caso, se denotará la operación del grupo de forma aditiva y se le denotará por:
+        \begin{equation*}
+            \prod\mathcal{G}^*=\bigoplus_{ i\in I}G_i=\bigoplus\mathcal{G}
+        \end{equation*}
     \end{mydef}
 
     \begin{obs}
         Note que ambas definiciones coinciden si $I$ es un conjunto finito.
     \end{obs}
-
-    \begin{excer}
-        Pruebe que el conjunto de la definición anterior es un subgrupo de $\prod\mathcal{G}$.
-    \end{excer}
 
     \begin{mydef}
         En las condiciones de la definición anterior, para cada índice $i\in I$ definimos un \textbf{monomorfismo natural} $\cf{\varphi_i}{G_i}{\prod\mathcal{G}^*}$ definido como sigue: $\forall g\in G_i$ y para todo $j\in I$:
