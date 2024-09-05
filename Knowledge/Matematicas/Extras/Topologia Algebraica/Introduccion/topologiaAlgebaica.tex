@@ -930,7 +930,7 @@
                     F(x,0) & = & x\\
                     F(x,1) & = & r(x)\\
                 \end{array}
-            \right\} & \quad\forall x\in X\\
+            \right\}, & \quad\forall x\in X\\
             F(a,t)=a,\quad&\forall a\in A, \forall t\in I\\
             \end{split}
         \end{equation*}
@@ -989,6 +989,35 @@
         Un espacio topológico $X$ es \textbf{contraíble a un punto} si existe $x_0\in X$ tal que $\left\{x_0\right\}$ es un repliegue de deformación de $X$.
     \end{mydef}
 
+    \begin{propo}
+        Si $X$ es un espacio contraíble a un punto, entonces es arco-conexo.
+    \end{propo}
+
+    \begin{proof}
+        Sea $x_0\in X$ tal que $X$ es repliegue de deformación de $X$, entonces existe una homotopía tal que:
+        \begin{equation*}
+            \left.
+                \begin{split}
+                    F(x,0) & = x \\
+                    F(x,1) & = x_0 \\
+                \end{split}
+            \right\},\quad\forall x\in X
+        \end{equation*}
+        y,
+        \begin{equation*}
+            F(x_0,t)=x_0,\quad\forall t\in I
+        \end{equation*}
+        Para cada $x\in X$ defina $\cf{f_x}{I}{X}$ dada por:
+        \begin{equation*}
+            f_x(t)=F(x,t)
+        \end{equation*}
+        entonces, $f_x$ es una función continua tal que
+        \begin{equation*}
+            f_x(0)=F(x,0)=x\quad\textup{y}\quad f_x(1)=F(x,1)=x_0
+        \end{equation*}
+        por tanto, para cada $x\in X$ existe un arco que une a $x_0$ con $x$, luego $X$ es arco-conexo.
+    \end{proof}
+
     \begin{mydef}
         Un espacio topológico es \textbf{simplemente conexo} si es arco-conexo y $\pi(X,x)=\langle e\rangle$ para algún (y por ende para cualquier) $x\in X$.
     \end{mydef}
@@ -998,7 +1027,7 @@
     \end{cor}
 
     \begin{proof}
-        Es inmediato del hecho que el grupo fundamental del espacio topológico consistente de un solo elemento es tal que su grupo fundamental es trivial.
+        Es inmediato del hecho que el grupo fundamental del espacio topológico consistente de un solo elemento es tal que su grupo fundamental es trivial y de la proposición anterior.
     \end{proof}
 
     \section{Simplificación de algunos grupos fundamentales}
@@ -1046,6 +1075,14 @@
 
     Como en el ejemplo anterior, se prueba de forma análoga que cualquier conjunto con forma de estrella es contraíble a un punto.
 
+    \begin{propo}
+        Sea $X\subseteq\mathbb{R}^n$ un subconjunto con forma de estrella respecto a algún $x\in X$. Entonces $X$ es contraíble a un punto y por ende, simplemente conexo.
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
     \begin{exa}
         Afirmamos que la $(n-1)$-esfera unitaria $\mathbb{S}^{ n-1}$
         \begin{equation*}
@@ -1084,33 +1121,24 @@
         \end{equation*}
         Por tanto, $\mathbb{S}^{ n-1}$ es una deformación de retracción de $\mathbb{R}^n-\left\{0\right\}$.
     \end{proof}
-
-    %TODO: Ver como redactarla adecuadamente.
-
     \begin{propo}
-        Un espacio $X$ es simplemente conexo si y sólo si existe una única clase de equivalencia de caminos que conecten cualesquiera dos puntos de $X$.
+        Un espacio $X$ es simplemente conexo si y sólo si todos los caminos que conecten cualesquier dos par de puntos en $X$ son equivalentes, esto es, que para cualquier par de puntos solo hay una clase de caminos.
     \end{propo}
 
     \begin{proof}
-        Es más fácil ver la suficiencia del teorema para entender que es lo que está sucediendo.
+        $\Rightarrow$): Suponga que $X$ es simplemente conexo, entonces es arco-conexo y $\pi(X,x)=\langle e\rangle$. Sean $\cf{f,g}{I}{X}$ un camino con puntos extremos $y$ y $z$ inicial y terminal, respectivamente. Entonces $f\cdot\overline{g}$ es un bucle con punto base $y$, luego:
+        \begin{equation*}
+            \begin{split}
+                [f]&=[f]\cdot[i_z]\\
+                &=[f]\cdot[\overline{g}\cdot g]\\
+                &=[f\cdot\overline{g}]\cdot[g]\\
+                &=[i_y]\cdot[g]\\
+                &=[g]\\
+            \end{split}
+        \end{equation*}
+        pues, $[\overline{g}\cdot g]\in\pi(X,z)=\langle e\rangle$ y $[f\cdot\overline{g}]\in\pi(X,z)=\langle e\rangle$. Luego, $f\sim g$.
 
-        $\Leftarrow$): Sea $x_0\in X$. Suponga que existe una única clase de equivalencia de caminos que conecten cualesquiera dos puntos de $X$, digamos $[i]$, donde $\cf{i}{I}{X}$ es tal que $i(t)=x_0$ para todo $t\in I$. Entonces si dado $x\in X$, $\cf{f_x}{I}{X}$ es un camino tal que $f_x(t)=x$ para todo $t\in I$, debe suceder que
-        \begin{equation*}
-            [i]= [f_x]\iff i\simeq f_x
-        \end{equation*}
-        (en particular si dos caminos son equivalentes, son homotópicos) Por ende, existe una función continua $\cf{F}{X\times I}{X}$ tal que
-        \begin{equation*}
-            F(y,0)=i(y)=x_0,\quad\forall y\in X
-        \end{equation*}
-        y
-        \begin{equation*}
-            F(y,1)=f_x(y)=x,\quad\forall y\in X
-        \end{equation*}
-        Es decir, la función $\cf{g}{I}{X}$ dada por:
-        \begin{equation*}
-            g(t)=F(x_0,t),\quad\forall t\in I
-        \end{equation*}
-        dadas las condiciones anteriores es un camino que une a $x_0$ con $x$ (por ser continua). Luego el espacio $X$ es arco-conexo. Si $\cf{f}{I}{X}$ es un bucle con centro en $x_0$, entonces $f\simeq i$, es decir que es homotópico a la identidad
+        $\Leftarrow)$: Es inmediata. %TODO
     \end{proof}
 
     \section{Espacios Recubridores}
@@ -1877,14 +1905,143 @@
     \end{proof}
 
     \begin{cor}
-        Si $\mathbb{S}^2$ es escrito como la unión de dos conjuntos cerrados $A_1,A_2,A_3\subseteq\mathbb{R}^3$, entonces uno de estos debe tener un par de puntos antipodales $\left\{x,-x\right\}$.
+        Si $\mathbb{S}^2$ es escrito como la unión de tres conjuntos cerrados $A_1,A_2,A_3\subseteq\mathbb{S}^2$, entonces uno de estos debe tener un par de puntos antipodales $\left\{x,-x\right\}$.
     \end{cor}
 
     \begin{proof}
-        %TODO
+        Sean $A_1,A_2,A_3\subseteq\mathbb{S}^2$ conjuntos tales que
+        \begin{equation*}
+            \mathbb{S}^2=A_1\cup A_2\cup A_3
+        \end{equation*}
+        para cada $i=1,2$ definimos la función $\cf{d_i}{\mathbb{S}^2}{\mathbb{R}}$ dada por:
+        \begin{equation*}
+            d_i(x)=\inf\left\{\|x-y\|\Big|y\in A_i \right\}
+        \end{equation*}
+        se sabe que esta es una función continua por cursos de análisis matemático. Por el teorema de Borsuk-Ulam, para la función $\cf{f}{\mathbb{S}^2}{\mathbb{R}^2}$ continua dada por:
+        \begin{equation*}
+            f(x)=(d_1(x),d_2(x))
+        \end{equation*}
+        existen un par de puntos antipodales $x,-x\in\mathbb{S}^2$ tales que:
+        \begin{equation*}
+            f(x)=f(-x)\Rightarrow d_1(x)=d_1(-x)\textup{ y }d_2(x)=d_2(-x)
+        \end{equation*}
+        Se tienen dos casos:
+        \begin{itemize}
+            \item $d_1(x)=d_1(-x)=0$ o $d_2(x)=d_2(-x)=0$, en el primer caso se sigue que al ser $A_1$ cerrado, entonces $x,-x\in A_1$. De forma análoga en el segundo caso se sigue que $x,-x\in A_2$.
+            \item $d_1(x)=d_1(-x)>0$ y $d_2(x)=d_2(-x)>0$. Como los conjuntos $A_1$ y $A_2$ son cerrados, forzosamente debe suceder que $x,-x\notin A_1,A_2$. Por tanto, $x,-x\in A_3$ ya que $\mathbb{S}^2$ es la unión de los $A_i$.
+        \end{itemize}
+        por los dos incisos anteriores se tiene el resultado.
     \end{proof}
 
     \section{El grupo fundamental del producto de espacios}
+
+    Para determinar el grupo fundamental del producto de dos espacios topológicos, primero recordaremos unos hechos básicos sobre espacios topológicos.
+
+    Sean $X$, $Y$ y $A$ espacios topológicos y $\cf{f}{A}{X\times Y}$ una  continua. Dentotamos por $\cf{f_1}{A}{X}$ y $\cf{f_2}{A}{Y}$ a las funciones componentes de $f$, esto es:
+    \begin{equation*}
+        f(a)=(f_1(a),f_2(a)),\quad\forall a\in A
+    \end{equation*}
+    Se sabe que
+    \begin{itemize}
+        \item $f$ es continua si y sólo si $f_1$ y $f_2$ son continuas.
+        \item Para cada $f$, las dos funciones $f_1$ y $f_2$ son únicas.
+    \end{itemize}
+    si denotamos por $\cf{p}{X\times Y}{X}$ y $\cf{q}{X\times Y}{Y}$ a las funciones proyección, esto es:
+    \begin{equation*}
+        p(x,y)=x\quad\textup{y}\quad q(x,y)=y
+    \end{equation*}
+    para todo $(x,y)\in X\times Y$, entonces se cumple que:
+    \begin{equation*}
+        f_1=p\circ f\quad\textup{y}\quad f_2=q\circ f
+    \end{equation*}
+
+    En el caso en que $A=I$, se tiene lo siguiente:
+
+    \begin{propo}
+        En las condiciones anteriores, se cumple que:
+        \renewcommand{\theenumi}{\alph{enumi}}
+        \begin{enumerate}
+            \item Si $\cf{f,g}{I}{X\times Y}$ son caminos con el mismo punto inicial y terminal, entonces $f\sim g$ si y sólo si $f_1\sim g_1$ y $f_2\sim g_2$.
+            \item Sean $\cf{f,g}{I}{X\times Y}$ caminos tales que el punto terminal de $f$ es el punto inicial de $g$, y sea $h=f\cdot g$. Entonces $h_1=f_1\cdot g_1$ y $h_2=f_2\cdot g_2$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    Con esto, estamos en condiciones de probar el siguiente resultado:
+
+    \begin{theor}
+        El grupo fundamental del producto de dos espacios $\pi(X\times Y, (x,y))$ es isomorfo al producto de los grupos fundamentales $\pi(X,x)$ y $\pi(Y,y)$, siendo $(x,y)\in X\times Y$. El isomorfismo está dado por:
+        \begin{equation*}
+            [f]\mapsto ([f_1],[f_2])
+        \end{equation*}
+        siendo $\cf{f}{I}{X\times Y}$ un bucle en $X\times Y$.
+    \end{theor}
+
+    \begin{proof}
+        Sea $(x,y)\in X\times Y$. Definimos la función $\cf{\Pi}{\pi(X\times Y,(x,y))}{\pi(X,x)\times\pi(Y,y)}$ dada por:
+        \begin{equation*}
+            \Pi([f])=([f_1],[f_2])=([p\circ f],[q\circ f])=(p_*([f]),q_*([f]))
+        \end{equation*}
+        para todo $[f]\in\pi(X\times Y,(x,y))$, donde recuerde que
+        \begin{equation*}
+            \cf{p_*}{\pi(X\times Y,(x,y))}{\pi(X,x)}\quad\textup{y}\quad\cf{q_*}{\pi(X\times Y,(x,y))}{\pi(Y,y)}
+        \end{equation*}
+        por ende, la función $\Pi$ está bien definida. Veamos que es isomorfismo:
+        \begin{itemize}
+            \item \textbf{$\Pi$ es homomorfismo}: Sean $[f],[g]\in\pi(X\times Y,(x,y))$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    \Pi([f]\cdot[g])&=\Pi([f\cdot g])\\
+                    &=(p_*([f\cdot g]),q_*([f\cdot g]))\\
+                    &=(p_*([f])\cdot p_*([g]),q_*([f])\cdot q_*([g]))\\
+                    &=(p_*([f]),q_*([f]))\cdot(p_*([g]),q_*([g]))\\
+                    &=\Pi([f])\cdot\Pi([g])\\
+                \end{split}
+            \end{equation*}
+            \item \textbf{$\Pi$ es monomorfismo}: Se tiene para $[f]\in\pi(X\times Y,(x,y))$:
+            \begin{equation*}
+                \begin{split}
+                    \Pi([f])=([i_x],[i_y])&\iff ([f_1],[f_2])=([i_x],[i_y])\\
+                    &\iff [f_1]=[i_x]\textup{ y }[f_2]=[i_y]\\
+                    &\iff f_1\sim i_x\textup{ y }f_2\sim i_y\\
+                    &\iff f\sim i_{(x,y)}\\
+                    &\iff [f]=[i_{(x,y)}]\\
+                \end{split}
+            \end{equation*}
+            por ende, $\ker\Pi=\langle[i_{(x,y)}]\rangle$.
+            \item \textbf{$\Pi$ es epimorfismo}: Sean $([f_1],[f_2])\in\pi(X,x)\times\pi(Y,y)$, tomemos la función
+            \begin{equation*}
+                f(x,y)=(f_1(x),f_2(y)),\quad\forall (x,y)\in X\times Y
+            \end{equation*}
+            claramente esta función define un bucle en $X\times Y$ con punto base $(x,y)\in X\times Y$, así que $[f]\in\pi(X\times Y,(x,y))$. Es claro de la definición de $\Pi$ que
+            \begin{equation*}
+                \Pi([f])=([f_1],[f_2])
+            \end{equation*}
+        \end{itemize}
+        por los incisos anteriores, se tiene el resultado.
+    \end{proof}
+
+    \begin{obs}
+        El resultado anterior se generaliza de forma inmediata al producto de un número finito de espacios topológicos.
+    \end{obs}
+
+    \begin{theor}
+        Sea $\left\{X_i \right\}_{ i=1}^n$ una familia finita de espacios topológicos. Sean $x_i\in X_i$ para cada $i\in\natint{1,n}$. Entonces:
+        \begin{equation*}
+            \pi(X_1\times\cdots\times X_n,(x_1,...,x_n))\cong\pi(X_1,x_1)\times\dots\times\pi(X_n,x_n)
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \section{Tipo de Homotopía y Equivalencia de Homotopía entre Espacios}
+
+    %TODO
 
     \newpage
 
