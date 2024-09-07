@@ -4,7 +4,9 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage[mathscr]{euscript}
 \usepackage{graphics}
+\usepackage{wrapfig}
 \usepackage{subfigure}
 \usepackage{lipsum}
 \usepackage{array}
@@ -12,6 +14,7 @@
 \usepackage{enumerate}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{bbm}
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
@@ -214,7 +217,21 @@
     En el caso en que cada $G_i$ sea un grupo abeliano, el siguiente teorema da una caracterización importante de su producto débil y de los monomorfismos $\varphi_i$.
 
     \begin{theor}
+        Si $\left\{G_i \right\}_{ i\in I}$ es una familia no vacía de grupos abelianos y,
+        \begin{equation*}
+            G=\bigoplus_{ i\in I}G_i
+        \end{equation*}
         
+        \begin{center}
+            \includegraphics[scale=1.5]{images/fig_1.pdf}
+        \end{center}
     \end{theor}
+
+    \section{Generadores y Relaciones}
+
+    \begin{mydef}
+        Sea $F$ un grupo y $X\subseteq F$ un grupo, decimos que $F$ es un \textbf{grupo libre con base $X$}, si para cada grupo $G$ y para cada función $\cf{f}{X}{G}$, existe un único homomorfismo $\cf{\varphi}{F}{G}$ extensión de $F$ tales que el diagrama
+        
+    \end{mydef}
 
 \end{document}

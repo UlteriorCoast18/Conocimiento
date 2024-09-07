@@ -39,6 +39,8 @@ INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/amscls/amsthm.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/amscls/amsthm.sty
+INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/amsfonts/euscript.sty
+INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/amsfonts/euscript.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/graphics/graphics.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/graphics/graphics.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/graphics/trig.sty
@@ -49,6 +51,8 @@ INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/graphics-def/pdftex.def
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/graphics-def/pdftex.def
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/graphics-def/pdftex.def
+INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/subfigure/subfigure.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/subfigure/subfigure.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/subfigure/subfigure.cfg
@@ -220,6 +224,8 @@ INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
+INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/bbm-macros/bbm.sty
+INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/bbm-macros/bbm.sty
 INPUT ./gruposLibres.aux
 INPUT ./gruposLibres.aux
 INPUT gruposLibres.aux
@@ -279,10 +285,18 @@ OUTPUT gruposLibres.toc
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
+INPUT ./images/fig_1.pdf
+INPUT ./images/fig_1.pdf
+INPUT ./images/fig_1.pdf
+INPUT ./images/fig_1.pdf
+INPUT ./images/fig_1.pdf
 INPUT gruposLibres.aux
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
