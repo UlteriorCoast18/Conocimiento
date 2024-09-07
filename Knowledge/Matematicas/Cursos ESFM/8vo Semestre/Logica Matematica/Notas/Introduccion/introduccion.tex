@@ -713,7 +713,176 @@
                 & & $\therefore$ & $\neg p_4\land\neg(p_{20}\lor p_{30})$ & \\
             \end{tabular}
         \end{center}
+    \end{proof}
 
+    \begin{excer}
+        Demuestre que existe una demostración formal de los siguientes argumentos:
+    \end{excer}
+
+    \begin{proof}
+        De (a):
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $A$ & $\Rightarrow$ & $B$ & Premisa \\
+                2) & $C$ & $\Rightarrow$ & $D$ & Premisa \\
+                3) & $\neg B$ & $\lor$ & $\neg D$ & Premisa \\
+                4) & $\neg\neg A$ &  &  & Premisa \\
+                5) & $E\land F$ & $\Rightarrow$ & $C$ & Premisa \\
+                6) & $A$ &  &  & 4 Ax. 3 \\
+                7) & $B$ &  &  & 1,6 M.P. \\
+                8) & $\neg(\neg B)$ &  &  & 7 Ax. 3 \\
+                9) & $\neg D$ &  &  & 3,8 S.D.\\
+                10) & $\neg D$ & $\Rightarrow$ & $\neg C$ & 1 Ax. 4 \\
+                11) & $\neg C$ &  &  & 9,10 M.P.\\
+                12) & $\neg C$ & $\Rightarrow$ & $\neg(E\land F)$ & 5 Ax. 4 \\
+                13) & $\neg(E\land F)$ &  &  & 11,12 M.P.\\
+                \hline
+                & & $\therefore$ & $\neg (E\land F)$ & \\
+            \end{tabular}
+        \end{center}
+
+        De (b):
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $E$ & $\Rightarrow$ & $(F\land\neg G)$ & Premisa \\
+                2) & $(F\lor G)$ & $\Rightarrow$ & $H$ & Premisa \\
+                3) & $E$ &  &  & Premisa \\
+                4) & $F$ & $\land$ & $\neg G$ & 1,3 M.P. \\
+                5) & $F$ &  &  & 4, Simp. \\
+                6) & $F$ & $\lor$ & $G$ & 4 Ad. \\
+                7) & $H$ &  &  & 2,6 M.P. \\
+                \hline
+                & & $\therefore$ & $H$ & \\
+            \end{tabular}
+        \end{center}
+    \end{proof}
+
+    \begin{propo}
+        Se cumple lo siguiente:
+        \begin{center}
+            \textbf{Doble Negación}
+        \end{center}
+        \begin{center}
+            \begin{tabular}{c c c}
+                $\varphi$ &  &  \\
+                \hline
+                 & $\therefore$ & $\neg\neg\varphi$ \\
+            \end{tabular}
+        \end{center}
+        y,
+        \begin{center}
+            \begin{tabular}{c c c}
+                $\neg\neg\varphi$ &  &  \\
+                \hline
+                 & $\therefore$ & $\varphi$ \\
+            \end{tabular}
+        \end{center}
+        \begin{center}
+            \textbf{Transposición}
+        \end{center}
+        \begin{center}
+            \begin{tabular}{c c c}
+                $\varphi$ &  &  \\
+                $\varphi$ & $\Rightarrow$ & $\varphi'$ (con Ax. 4) \\
+                \hline
+                 & $\therefore$ & $\varphi'$ \\
+            \end{tabular}
+        \end{center}
+        \begin{center}
+            \textbf{Tautología}
+        \end{center}
+        \begin{center}
+            \begin{tabular}{c c c}
+                $\neg\psi$ & $\Rightarrow$ & $\psi$ \\
+                \hline
+                 & $\therefore$ & $\psi$ \\
+            \end{tabular}
+        \end{center}
+        \begin{center}
+            \textbf{Conmutatividad de $\lor$}
+        \end{center}
+        \begin{center}
+            \begin{tabular}{c c c}
+                $\varphi$ & $\lor$ & $\psi$ \\
+                \hline
+                 & $\therefore$ & $\psi\lor\varphi$ \\
+            \end{tabular}
+        \end{center}
+        \begin{center}
+            \textbf{Conmutatividad de $\land$}
+        \end{center}
+        \begin{center}
+            \begin{tabular}{c c c}
+                $\varphi$ & $\land$ & $\psi$ \\
+                \hline
+                 & $\therefore$ & $\psi\land\varphi$ \\
+            \end{tabular}
+        \end{center}
+    \end{propo}
+
+    \begin{proof}
+        \begin{itemize}
+            \item \textbf{Conmutatividad de $\lor$}
+            \begin{center}
+                \begin{tabular}{l l c l r}
+                    1) & $\varphi$ & $\lor$ & $\psi$ & Premisa \\
+                    1) & $\neg\varphi$ & $\Rightarrow$ & $\psi$ & 1 R.E. \\
+                    1) & $\neg\psi$ & $\Rightarrow$ & $\neg\neg\varphi$ &  \\
+                    1) & $\neg\psi$ & $\Rightarrow$ & $\varphi$ &  \\
+                    1) & $\psi$ & $\lor$ & $\varphi$ &  \\
+                    \hline
+                    & & $\therefore$ & $\psi\lor\varphi$ & \\
+                \end{tabular}
+            \end{center}
+        \end{itemize}
+    \end{proof}
+
+    \begin{obs}
+        Para los siguientes ejercicios se asume la conmutatividad de $\lor$ y $\land$, que se denota simplemente por Conm.
+    \end{obs}
+
+    \begin{excer}
+        Demuestre que existe una demostración formal de los siguientes argumentos:
+    \end{excer}
+
+    \begin{proof}
+        De (c):
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $J$ & $\Rightarrow$ & $K$ & Premisa \\
+                2) & $J$ & $\lor$ & $(K\lor\neg L)$ & Premisa \\
+                3) & $\neg K$ &  &  & Premisa \\
+                4) & $\neg J$ &  &  & 1,3 M.T.\\
+                5) & $K$ & $\lor$ & $\neg L$ & 2,4 S.D.\\
+                6) & $\neg L$ &  &  & 3,5 S.D.\\
+                7) & $\neg L$ & $\lor$ & $\neg K$ & 6 Ad. \\
+                \hline
+                & & $\therefore$ & $\neg L\lor\neg K$ & \\
+            \end{tabular}
+        \end{center}
+
+        De (d):
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $(R\Rightarrow\neg S)$ & $\land$ & $(T\Rightarrow\neg U)$ & Premisa \\
+                2) & $(V\Rightarrow\neg W)$ & $\land$ & $(X\Rightarrow\neg Y)$ & Premisa \\
+                3) & $(T\Rightarrow W)$ & $\land$ & $(U\Rightarrow S)$ & Premisa \\
+                4) & $V$ &  &  & Premisa \\
+                5) & $R$ &  &  & Premisa \\
+                6) & $R$ & $\Rightarrow$ & $\neg S$ & 1 Simp. \\
+                7) & $\neg S$ &  &  & 6,5 M.P. \\
+                8) & $(U\Rightarrow S)$ & $\land$ & $(T\Rightarrow W)$ & 3 Conm. \\
+                9) & $U$ & $\Rightarrow$ & $S$ & 3 Simp. \\
+                10) & $\neg U$ &  &  & 9,7 M.T. \\
+                11) & $V$ & $\Rightarrow$ & $\neg W$ & 2 Simp. \\
+                12) & $\neg W$ &  &  & 4,11 M.P. \\
+                13) & $T$ & $\Rightarrow$ & $ W$ & 3 Simp. \\
+                14) & $\neg T$ &  &  & 13,12 M.T. \\
+                15) & $\neg T$ & $\land$ & $\neg U$ & 14,10 Conj. \\
+                \hline
+                & & $\therefore$ & $\neg T\land\neg U$ & \\
+            \end{tabular}
+        \end{center}
     \end{proof}
     
 \end{document}

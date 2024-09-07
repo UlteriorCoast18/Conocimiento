@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.4)  31 AUG 2024 20:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.4)  6 SEP 2024 09:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -945,7 +945,31 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 485.
- [8] [9] [10] (introduccion.aux
+ [8] [9]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 602.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 615.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 625.
+ [10]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 631.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 665.
+ [11]
+Overfull \hbox (4.3427pt too wide) in paragraph at lines 701--702
+\OT1/cmr/m/n/12 Entonces, por la pro-po-si-ci^^Son an-te-rior pa-ra la fun-ci^^
+Son $\OML/cmm/m/it/12 f \OMS/cmsy/m/n/12 ^^@ [][] \OML/cmm/m/it/12 g[] \OT1/cmr
+/m/n/12 : (\OML/cmm/m/it/12 A; ^^\[]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ! []$
+ []
+
+[12] [13] (introduccion.aux
 LaTeX Info: Redefining \. on input line 9.
 LaTeX Info: Redefining \% on input line 9.
 )
@@ -955,13 +979,13 @@ L3 programming layer <2024-03-14>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 18144 strings out of 474387
- 357749 string characters out of 5747330
- 1943493 words of memory out of 5000000
- 40160 multiletter control sequences out of 15000+600000
+ 18166 strings out of 474387
+ 358299 string characters out of 5747330
+ 1945493 words of memory out of 5000000
+ 40182 multiletter control sequences out of 15000+600000
  567432 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 104i,15n,115p,638b,929s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 104i,16n,115p,638b,1080s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/loc
 al/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/sha
@@ -975,9 +999,9 @@ s/cm/cmsy10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/c
 msy8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msa
 m10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb>
-Output written on introduccion.pdf (11 pages, 187646 bytes).
+Output written on introduccion.pdf (14 pages, 203571 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
+ 116 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

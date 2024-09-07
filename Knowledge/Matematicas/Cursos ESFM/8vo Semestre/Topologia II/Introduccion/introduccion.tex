@@ -599,5 +599,156 @@
         y, $U\cap V=\emptyset$.
     \end{proof}
 
+    \begin{exa}
+        Sea $(X,\tau)$ un espacio topológico $T_4$ y $A,B\subseteq X$ cerrados disjuntos y considere al espacio $(A\cup B,\tau_{A\cup B})$. Sea $\cf{g}{(A\cup B,\tau_{A\cup B})}{([0,1],\tau_u)}$ la función definida como
+        \begin{equation*}
+            g(x)=\left\{ 
+                \begin{array}{lcr}
+                    0 &\textup{ si } & x\in A\\
+                    1 &\textup{ si } & x\in B\\
+                \end{array}
+            \right.,\quad\forall x\in A\cup B
+        \end{equation*}
+        esta función es continua. Como $(X,\tau)$ es $T_4$, por el Lema de Urysohn existe $\cf{G}{(X,\tau)}{([0,1],\tau_u)}$ función continua tal que $G(A)=\left\{0 \right\}$ y $G(B)=\left\{1 \right\}$. Se tiene pues que $G$ es una extensión continua de la función $g$.
+    \end{exa}
+
+    \begin{excer}
+        Pruebe que
+        \begin{equation*}
+            \frac{1}{3}\sum_{ i=1}^\infty\left(\frac{2}{3}\right)^{ i-1}=1
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \frac{1}{3}\sum_{ i=n+1}^\infty\left(\frac{2}{3}\right)^{ i-1}=\left(\frac{2}{3}\right)^n
+        \end{equation*}
+        para todo $n\in\mathbb{N}$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico $T_4$ y sea $A\subseteq X$ cerrado. Tomemos $r\in\mathbb{R}^+$ y considere $[-r,r]$ dotado de la topología usual. Si $\cf{f}{(A,\tau_A)}{([-r,r],\tau_u)}$ es una función continua, entonces existe una función continua $\cf{g}{(X,\tau)}{(\mathbb{R},\tau_u)}$ tal que
+        \renewcommand{\theenumi}{\roman{enumi}}
+        \begin{enumerate}
+            \item $\forall x\in X$, $\abs{g(x)}\leq\frac{r}{3}$.
+            \item $\forall a\in A$, $\abs{f(a)-g(a)}\leq\frac{2r}{3}$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Definimos $I_1=[-r,-r/3]$, $I_2=[-r/3,r/3]$ e $I_3=[r/3,r]$. Hacemos $B=f^{-1}(I_1)$ y $C=f^{-1}(I_3)$. Como $f$ es continua entones $B$ y $C$ son dos cerrados en $(A,\tau_A)$, al ser $A$ cerrado en $X$, se sigue que $B$ y $C$ son cerrados en $X$ y además son disjuntos. Por el Lema de Urysohn existe una función continua $\cf{g}{(X,\tau)}{([-r/3,r/3],\tau_u)}$ tal que
+        \begin{equation*}
+            g(B)=\left\{ -r/3\right\}\textup{ y }g(C)=\left\{r/3\right\}
+        \end{equation*}
+        además, para todo $x\in X$ se cumple que $\abs{g(x)}\leq\frac{r}{3}$.
+
+        Tenemos lo siguiente: sea $a\in A$, entonces:
+        \begin{itemize}
+            \item Si $a\in B$ se tiene que $f(a)\in I_1$ y $g(a)=-r/3$, por lo cual $f(a),g(a)\in I_1$, lo cual implica que
+            \begin{equation*}
+                \abs{f(a)-g(a)}\leq\frac{2r}{3}
+            \end{equation*}
+            \item Si $a\in C$ se tiene que $f(a)\in I_3$ y $g(a)=r/3$, por lo cual $f(a),g(a)\in I_3$, lo cual implica que
+            \begin{equation*}
+                \abs{f(a)-g(a)}\leq\frac{2r}{3}
+            \end{equation*}
+            \item $a\notin B\cup C$, entonces $f(a)\in I_2$ y ya se sabe que $g(a)\in I_2$, lo cual implica que
+            \begin{equation*}
+                \abs{f(a)-g(a)}\leq\frac{2r}{3}
+            \end{equation*}
+        \end{itemize}
+        viendo a $g$ como una función de $(X,\tau)$ en $(\mathbb{R},\tau_u)$ se tiene el resultado.
+    \end{proof}
+    
+    \begin{theor}[\textbf{Teorema de extensión de Tietze}]
+        Sea $(X,\tau)$ un espacio topológico $T_4$. Considere $[a,b]$ como subespacio de $(\mathbb{R},\tau_u)$ con $a,b\in\mathbb{R}$ tales que $a<b$. Si $\cf{f}{(A,\tau_A)}{([a,b],\tau_u)}$ es una función continua, entonces existe una función continua $\cf{F}{(X,\tau)}{([a,b],\tau_u)}$ tal que para todo $a\in A$
+        \begin{equation*}
+            F(a)=f(a)
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        La función $\cf{h}{([a,b],\tau_u)}{([-1,1],\tau_u)}$ definida como
+        \begin{equation*}
+            h(x)=\frac{2x-a-b}{b-a},\quad\forall x\in[a,b]
+        \end{equation*}
+        es un homeomorfismo.
+        
+        Si para la función continua $\cf{h\circ f}{(A,\tau_A)}{([-1,1],\tau_u)}$ existe una función continua $\cf{H}{(X,\tau)}{([-1,1],\tau_u)}$ tal que para todo $a\in A$, $H(a)=(h\circ f)(a)$, entonces $\cf{h^{-1}\circ H}{(X,\tau)}{([a,b],\tau_u)}$ es una función continua tal que
+        \begin{equation*}
+            (h^{-1}\circ H)(a)=f(a),\quad\forall a\in A
+        \end{equation*}
+        Tomando $F=h^{-1}\circ H$ se tiene el resultado. Por tanto, podemos suponer sin pérdida de generalidad que $\cf{f}{(A,\tau_A)}{([-1,1],\tau_u)}$. Podemos usar el resultado anterior para $r=1$.
+
+        \begin{enumerate}
+            \item Tenemos por la proposición anterior que existe una función continua $\cf{g_1}{(X,\tau)}{(\mathbb{R},\tau_u)}$ tal que
+            \begin{itemize}
+                \item $\forall x\in X$, $\abs{g_1(x)}\leq\frac{1}{3}$.
+                \item $\forall a\in A$, $\abs{f(a)-g_1(a)}\leq\frac{2}{3}$.
+            \end{itemize}
+            \item Consideremos la función continua $\cf{f-g_1}{(A,\tau_A)}{([-2/3,2/3],\tau_u)}$ (esto por (1)). Para $r=\frac{2}{3}$ existe una función continua $\cf{g_2}{(X,\tau)}{(\mathbb{R},\tau_u)}$ tal que
+            \begin{itemize}
+                \item $\forall x\in X$, $\abs{g_2(x)}\leq\frac{1}{3}\cdot\frac{2}{3}$.
+                \item $\forall a\in A$, $\abs{(f-g_1)(a)-g_2(a)}=\abs{(f-g_1-g_2)(a)}\leq\frac{2}{3}\cdot\frac{2}{3}$.
+            \end{itemize}
+            \item Suponga construidas funciones continuas $\cf{g_1,...,g_n}{(X,\tau)}{(\mathbb{R},\tau_u)}$ con $n\in\mathbb{N}$ tal que $n\geq 2$ tales que
+            \begin{itemize}
+                \item $\forall x\in X$, $\abs{g_i(x)}\leq\frac{1}{3}\cdot\left(\frac{2}{3}\right)^{i-1}$, para todo $i\in\natint{1,n}$.
+                \item $\forall a\in A$, $\abs{f(a)-\sum_{ i=1}^n g_i(a)}\leq\left(\frac{2}{3}\right)^n$.
+            \end{itemize}
+            Entonces, por la proposición anterior para la función $\cf{f-\sum_{ i=1}^n g_i}{(A,\tau_A)}{\left(\left[-\left(\frac{2}{3}\right)^n,\left(\frac{2}{3}\right)^n\right],\tau_u\right) }$ existe una función continua $\cf{g_{ n+1}}{(X,\tau)}{(\mathbb{R},\tau_u)}$ tal que
+            \begin{itemize}
+                \item $\forall x\in X$, $\abs{g_{ n+1}(x)}\leq\frac{1}{3}\cdot\left(\frac{2}{3}\right)^n$.
+                \item $\forall a\in A$, $\abs{(f-\sum_{ i=1}^n g_i)(a)-g_{ n+1}(a)}\leq\frac{2}{3}\cdot\left(\frac{2}{3}\right)^n=\left(\frac{2}{3}\right)^{n+1}$.
+            \end{itemize}
+        \end{enumerate}
+        por inducción tenemos definida una sucesión de funciones $\left\{\cf{g_i}{(X,\tau)}{(\mathbb{R},\tau_u)} \right\}_{ i=1}^\infty$ que cumple las condiciones anteriores para todo $i\in\mathbb{N}$. Defina
+        \begin{equation*}
+            G_k=\sum_{ i=1}^n g_i
+        \end{equation*}
+
+        sean $m,k\in\mathbb{N}$, $x\in X$. Se tiene que
+        \begin{equation*}
+            \begin{split}
+                \abs{G_{ n+k}(x)-G_n(x)}&=\abs{\sum_{ i=n+1}^{ n+k}g_i(x)}\\
+                &\leq\sum_{ i=n+1}^{ n+k}\abs{g_i(x)}\\
+                &\leq\frac{1}{3}\sum_{ i=n+1}^{ n+k}\left(\frac{2}{3}\right)^{ i-1}\\
+                &<\frac{1}{3}\sum_{ i=n+1}^{\infty}\left(\frac{2}{3}\right)^{ i-1}\\
+                &=\left(\frac{2}{3}\right)^n\\
+            \end{split}
+        \end{equation*}
+        por ende, dado $\varepsilon>0$, existe $N\in\mathbb{N}$ tal que si $n\geq N$ se cumple que
+        \begin{equation*}
+            \abs{\sum_{ i=n+1}^{ n+k}g_i(x)}<\varepsilon,\quad\forall x\in X
+        \end{equation*}
+        y para todo $k\in\mathbb{N}$. Luego, dado $x\in X$ la serie $\sum_{ i=1}^\infty g_i(x)$ es convergente y así podemos definir una función $\cf{g}{(X,\tau)}{(\mathbb{R},\tau_u)}$ tal que
+        \begin{equation*}
+            g(x)=\sum_{ i=1}^\infty g_i(x)
+        \end{equation*}
+        Veamos que la función $\cf{g}{(X,\tau)}{(\mathbb{R},\tau_u)}$ es continua. Para todo $m\in\mathbb{N}$, $G_m$ es continua y para $x\in X$, $k,n\in\mathbb{N}$ con $n<k$ se tiene
+        \begin{equation*}
+            \begin{split}
+                \abs{G_{n+k}(X)-G_n(x)}&=\abs{\sum_{ i=n+1}^{ n+k} g_i(x)}\\
+                &<\left(\frac{2}{3}\right)^n\\
+            \end{split}
+        \end{equation*}
+        para $n$ fijo y $k\rightarrow\infty$ tenemos que para todo $x\in X$:
+        \begin{equation*}
+            \abs{g(x)-G_n(x)}\leq\left(\frac{2}{3}\right)^n
+        \end{equation*}
+        por tanto, $G_n$ converge uniformemente a $g$, por ende $g$ es continua.
+
+        Además, para todo $a\in A$
+        \begin{equation*}
+            \begin{split}
+                \abs{f(a)-G_n(a)}&=\abs{f(a)-\sum_{ i=1}^n g_i(a)}\\
+                &\leq\left(\frac{2}{3}\right)^n\\
+            \end{split}
+        \end{equation*}
+        por tanto, para todo $a\in A$, $f(a)=g(a)$. Tomando $F=g$ se tiene el resultado.
+    \end{proof}
+
 
 \end{document}
