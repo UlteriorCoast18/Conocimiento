@@ -15,6 +15,7 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[a4paper, margin = 1.5cm]{geometry}
 \usepackage{bbm}
+\usepackage{float}
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
@@ -205,7 +206,7 @@
     \begin{mydef}
         En las condiciones de la definición anterior, para cada índice $i\in I$ definimos un \textbf{monomorfismo natural} $\cf{\varphi_i}{G_i}{\prod\mathcal{G}^*}$ definido como sigue: $\forall g\in G_i$ y para todo $j\in I$:
         \begin{equation*}
-            (\varphi_i(g))(j)=\left\{
+            \varphi_i(g)_j(\varphi_i(g))(j)=\left\{
                 \begin{array}{lcr}
                     g & \textup{ si } & i = j\\
                     e_j & \textup{ si } & i\neq j\\
@@ -221,17 +222,144 @@
         \begin{equation*}
             G=\bigoplus_{ i\in I}G_i
         \end{equation*}
-        
-        \begin{center}
-            \includegraphics[scale=1.5]{images/fig_1.pdf}
-        \end{center}
+        entonces para cualquier grupo abeliano $A$ y cualquier familia de homomorfismos $\left\{\psi_i\right\}_{ i\in I}$ tales que
+        \begin{equation*}
+            \cf{\psi_i}{G_i}{A},\quad\forall i\in I
+        \end{equation*}
+        Existe un único homomorfismo $\cf{f}{G}{A}$ tal que para todo $i\in I$ el siguiente diagrama es conmutativo:
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_1.pdf}\\
+                Figura 1. Diagrama conmutativo de $G$ y $A$.
+            \end{center}
+        \end{minipage}
+
+        esto es, $f\circ\varphi_i=\psi_i$ para todo $i\in I$.
     \end{theor}
 
-    \section{Generadores y Relaciones}
+    \begin{proof}
+        Sean $A$ un grupo abeliano y $\left\{\psi_i\right\}_{ i\in I}$ una familia de homomorfismos tales que
+        \begin{equation*}
+            \cf{\psi_i}{G_i}{A},\quad\forall i\in I
+        \end{equation*}
+        sea ahora $x\in G$, como $x_i=e_i,\afa i\in I$ se tiene pues al ser $\psi_i$ homomorfismos debe suceder que $\psi_i(x_i)=e_A,\afa i\in I$ (siendo $e_A$ la identidad de $A$). Por lo cual la suma
+        \begin{equation*}
+            \sum_{ i\in I}\psi_i(x_i)
+        \end{equation*}
+        está bien definido (pues solo una cantidad finita de estos elementos es diferente de la identidad). Hacemos
+        \begin{equation*}
+            f(x)=\sum_{ i\in I}\psi_i(x_i),\quad\forall x\in G
+        \end{equation*}
+        Veamos que esta función está bien definida, ya se tiene por lo anterior que $\cf{f}{G}{A}$. Sea $x\in G$, si $x$ se expresa como
+        \begin{equation*}
+            x=\sum_{ j=1}^n y_j \quad\textup{y}\quad x=\sum_{ k=1}^m z_k
+        \end{equation*}
+        con $y_j,z_k\in G$ para todo $j\in\natint{1,n}$ y para todo $k\in\natint{1,m}$, sea
+        \begin{equation*}
+            I_0=\left\{i_1,...,i_r \right\}
+        \end{equation*}
+        el subconjunto de $I$ tal que si $i\in I_0$, entonces
+        \begin{equation*}
+            {y_j}_i\neq e_i\quad\textup{o}\quad{ z_k}_i\neq e_i 
+        \end{equation*}
+        para algún $j\in\natint{1,n}$ o algún $k\in\natint{1,m}$. Veamos que
+        \begin{equation*}
+            \begin{split}
+                f\left(\sum_{ j=1}^n y_j \right)&=\sum_{ i\in I}\psi_i\left(\left(\sum_{ j=1}^n y_j\right)_i\right)\\
+                &=\sum_{ i\in I_0}\psi_i\left(\sum_{ j=1}^n {y_j}_i\right)\\
+                &=\sum_{ i\in I_0}\sum_{ j=1}^n \psi_{ i}\left( {y_j}_{i}\right)\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                f\left(\sum_{ k=1}^m z_k \right)&=\sum_{ i\in I}\psi_i\left(\left(\sum_{ k=1}^m z_k\right)_i\right)\\
+                &=\sum_{ i\in I_0}\psi_i\left(\sum_{ k=1}^m {z_k}_i\right)\\
+                &=\sum_{ i\in I_0}\sum_{ k=1}^m \psi_{ i}\left( {z_k}_{i}\right)\\
+            \end{split}
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            \begin{split}
+                f\left(\sum_{ j=1}^n y_j \right)-f\left(\sum_{ k=1}^m z_k \right)&=\sum_{ i\in I_0}\sum_{ j=1}^n \psi_{ i}\left( {y_j}_{i}\right)-\sum_{ i\in I_0}\sum_{ k=1}^m \psi_{ i}\left( {z_k}_{i}\right)\\
+                &=\sum_{ i\in I_0}\left(\sum_{ j=1}^n \psi_{ i}\left( {y_j}_{i}\right)-\sum_{ k=1}^m \psi_{ i}\left( {z_k}_{i}\right)\right)\\
+                &=\sum_{ i\in I_0}\left(\psi_{ i}\left(\sum_{ j=1}^n {y_j}_{i}\right)-\psi_{ i}\left(\sum_{ k=1}^m{z_k}_{i}\right)\right)\\
+                &=\sum_{ i\in I_0}\left(\psi_{ i}\left(\sum_{ j=1}^n {y_j}_{i}\right)-\psi_{ i}\left(\sum_{ k=1}^m{z_k}_{i}\right)\right)\\
+                &=\sum_{ i\in I_0}\left(\psi_{ i}\left(\sum_{ j=1}^n {y_j}_{i}-\sum_{ k=1}^m{z_k}_{i}\right)\right)\\
+            \end{split}
+        \end{equation*}
+        %TODO Algo falta aquí sobre la conmutatividad de los $G_i$
+        pero $x_i=\sum_ { j=1}^n {y_j}_i$ y $x_i=\sum_ { k=1}^m {z_k}_i$, por lo cual
+        \begin{equation*}
+            \begin{split}
+                f\left(\sum_{ j=1}^n y_j \right)-f\left(\sum_{ k=1}^m z_k \right)&=0\\
+                \Rightarrow f\left(\sum_{ j=1}^n y_j \right)&=f\left(\sum_{ k=1}^m z_k \right)\\
+            \end{split}
+        \end{equation*}
+        Se sigue que $f$ está bien definida. Veamos que es homomorfismo. Sean $x,y\in G$, entonces
+        \begin{equation*}
+            \begin{split}
+                f(x+y)&=\sum_{ i\in I}\psi_i(x_i+y_i)\\
+                &=\sum_{ i\in I}\psi_i(x_i)+\psi_i(y_i)\\
+            \end{split}
+        \end{equation*}
+        como $A$ es abeliano, esta suma se puede reordenar de cualquier forma, en particular:
+        \begin{equation*}
+            \begin{split}
+                f(x+y)&=\sum_{ i\in I}\psi_i(x_i)+\psi_i(y_i)\\
+                &=\sum_{ i\in I}\psi_i(x_i)+\sum_{ i\in I}\psi_i(y_i)\\
+                &=f(x)+f(y)\\
+            \end{split}
+        \end{equation*}
+        por lo que $f$ es homomorfismo. Sea ahora $i\in I$, entonces
+        \begin{equation*}
+            \begin{split}
+                f\circ\varphi_i(x_i)&=f(\varphi_i(x_i))\\
+                &=\sum_{ j\in I}\psi_j({\varphi_i(x_i)}_j)\\
+                &=\psi_i({\varphi_i(x_i)}_i)\\
+                &=\psi_i(x_i),\quad\forall x_i\in G_i\\
+            \end{split}
+        \end{equation*}
+        Luego, $f\circ\varphi_i=\psi_i$ para todo $i\in I$. Veamos la unicidad. Para ello, recordemos antes que si $x\in G$, entonces
+        \begin{equation*}
+            x=\sum_{ i\in I}\varphi_i(x_i)
+        \end{equation*}
+        (básicamente $x$ se expresa como la suma de sus componentes una por una vistas como elementos de $G$) siendo esta suma finita y por ende, está bien definida. Si $\cf{g}{G}{A}$ es otro homomorfismo tal que
+        \begin{equation*}
+            g\circ\varphi_i=\psi_i,\quad\forall i\in I
+        \end{equation*}
+        se tiene que
+        \begin{equation*}
+            \begin{split}
+                g(x)&=g\left(\sum_{ i\in I}\varphi_i(x_i)\right)\\
+                &=\sum_{ i\in I} g\circ\varphi_i(x_i)\\
+                &=\sum_{ i\in I}\psi_i(x_i)\\
+                &=f(x),\quad\forall x\in G\\
+            \end{split}
+        \end{equation*}
+        por ende, $f$ es único.
+    \end{proof}
 
-    \begin{mydef}
-        Sea $F$ un grupo y $X\subseteq F$ un grupo, decimos que $F$ es un \textbf{grupo libre con base $X$}, si para cada grupo $G$ y para cada función $\cf{f}{X}{G}$, existe un único homomorfismo $\cf{\varphi}{F}{G}$ extensión de $F$ tales que el diagrama
-        
-    \end{mydef}
+    Este teorema caracteriza la suma directa de grupos abelianos, como lo muestra la siguiente proposición.
+
+    \begin{propo}
+        Sea $\left\{G_i \right\}_{ i\in I}$ una familia de grupos abelianos y $G=\bigoplus_{ i\in I}G_i$ 
+    \end{propo}
+
+    \section{Grupos Abelianos Libres}
+
+    Recordemos que si $G$ es un grupo, decimos que un conjunto $S\subseteq G$ \textbf{genera a $G$}, si
+    \begin{equation*}
+        G=\left\{s_1^{\epsilon_1}\cdot\dots\cdot s_m^{\epsilon_m}\Big|s_i\in S,\forall i\in\natint{1,m}; m\in\mathbb{N} \right\}
+    \end{equation*}
+    y en tal caso, se denota $G=\langle S\rangle$. 
+
+    \begin{exa}
+        Si $G$ es un grupo cíclico de orden $n\in\mathbb{N}$, entonces existe $x\in G$ tal que $G=\langle x\rangle$, así que
+        \begin{equation*}
+            G=\left\{x,x^2,...,x^n=e\right\}
+        \end{equation*}
+    \end{exa}
 
 \end{document}

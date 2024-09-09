@@ -1,0 +1,469 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{fullpage}
+\usepackage[mathscr]{euscript}
+\usepackage{bbm}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$\\}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$\\}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+\newcommand{\norm}[1]{\ensuremath{\|#1\|}}
+\newcommand\subtitle[1]{\textit{\large #1}\\}
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+%Este símvolo es para casi todo salvo una cantidad finita
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+
+    \title{Taller Topología Algebraica, Lectura 4: Efecto de una función continua sobre el grupo fundamental}
+    \author{Cristo Alvarado}
+    \setcounter{section}{4}
+    \maketitle
+
+    \subtitle{La función $\varphi_*$}
+
+    \begin{propo}
+        Sean $X$ y $Y$ espacios topológicos, $\cf{f_0,f_1}{I}{X}$ caminos equivalentes. Entonces, $\varphi\circ f_0\sim \varphi\circ f_1$.
+    \end{propo}
+
+    \begin{proof}
+        Como $f_1\sim f_0$, existe pues una función continua $\cf{F}{I\times I}{X}$ tal que
+        \begin{equation*}
+            F(x,0)=f_0(x),\quad F(x,1)=f_1(x)
+        \end{equation*}
+        para todo $x\in I$ y,
+        \begin{equation*}
+            F(0,t)=f_0(0)=f_1(0),\quad F(1,t)=f_0(1)=f_1(1)
+        \end{equation*}
+        Considere la función $\cf{G}{I\times I}{Y}$ dada por:
+        \begin{equation*}
+            G(x,t)=\varphi\circ F(x,t)
+        \end{equation*}
+        Es claro que esta funciónes continua por ser composición de funciones continuas, además se cumple que
+        \begin{equation*}
+            \begin{split}
+                G(x,0)&=\varphi\circ F(x,0)\\
+                &=\varphi (F(x,0))\\
+                &=\varphi (f_0(x))\\
+                &=\varphi\circ f_0(x)\\
+            \end{split}
+        \end{equation*}
+        para todo $x\in I$. De forma análoga
+        \begin{equation*}
+            G(x,1)=\varphi\circ f_1(x)
+        \end{equation*}
+        La otra condición se verifica de forma inmediata, con lo que se concluye que $\varphi\circ f_0\sim \varphi\circ f_1$.
+    \end{proof}
+
+    Con la proposición anterior, podemos definir sin problemas una función que mapee clases de caminos en $X$ a clases de caminos en $Y$, a partir de la función continua $\varphi$. Esto se hará con el objetivo de ver qué sucede con el grupo fundamental bajo esta función continua $\varphi_*$.
+
+    \begin{mydef}
+        Sean $X$ y $Y$ espacios topológicos y $\cf{\varphi}{X}{Y}$ una función continua. Sea $\cf{f}{I}{X}$ un camino que une a los puntos $x,y\in X$, se define la función $\cf{\varphi_*}{\wp_X}{\wp_Y}$ por
+        \begin{equation*}
+            \varphi_*([f])=[\varphi\circ f]
+        \end{equation*}
+        por la proposición anterior, esta función está bien definida.
+    \end{mydef}
+
+    Ahora, analizaremos las propiedades de la función $\varphi_*$.
+    
+    \renewcommand{\theenumi}{\roman{enumi}}
+
+    \begin{propo}
+        Sean $X$ y $Y$ espacios topológicos y $\cf{\varphi}{X}{Y}$ una función continua.
+        \begin{enumerate}
+            \item Si $\cf{f_0,f_1}{I}{X}$ son caminos en $X$ tales que $f_0\cdot f_1$ está definido (por ende, $[f_0]\cdot [f_1]$ lo está), entonces $\varphi_*([f_0]\cdot[f_1])=\varphi_*([f_0])\cdot\varphi_*([f_1])$.
+            \item Para cualquier punto $x\in X$, $\varphi_*(\mathscr{I}_x)=\mathscr{I}_{\varphi(x)}$.
+            \item Si $\cf{f}{I}{X}$ es un camino, entonces $\varphi_*([f]^{-1})=(\varphi_*([f]))^{-1}$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De (i): Veamos primero que el producto $\varphi_*([f_0])\cdot\varphi_*([f_1])$ está bien definido. En efecto, dado a que el producto $[f_0]\cdot [f_1]$ lo está, entonces
+        \begin{equation*}
+            f_0(1)=f_1(0)
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            \varphi\circ f_0(1)=\varphi\circ f_1(0)
+        \end{equation*}
+        donde $\varphi_*([f_0])=[\varphi\circ f_0]$ y $\varphi_*([f_1])=[\varphi\circ f_1]$, por tanto el producto de ambas clases está definido. Probemos ahora la igualdad. Se tiene que
+        \begin{equation*}
+            \begin{split}
+                \varphi_*([f_0]\cdot[f_1])&=\varphi_*([f_0\cdot f_1])\\
+                &=[\varphi\circ (f_0\cdot f_1)]\\
+            \end{split}
+        \end{equation*}
+        siendo
+        \begin{equation*}
+            f_0\cdot f_1(t)=\left\{
+                \begin{array}{lcr}
+                    f_0(2t) & \textup{ si } 0\leq t\leq \frac{1}{2}\\
+                    f_1(2t-1) & \textup{ si } \frac{1}{2}\leq t\leq 1\\
+                \end{array}
+            \right.,\quad\forall t\in I
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            \begin{split}
+                \varphi\circ (f_0\cdot f_1)(t)&=\left\{
+                    \begin{array}{lcr}
+                        \varphi(f_0(2t)) & \textup{ si } 0\leq t\leq \frac{1}{2}\\
+                        \varphi(f_1(2t-1)) & \textup{ si } \frac{1}{2}\leq t\leq 1\\
+                    \end{array}
+                \right.\\
+                &=\left\{
+                    \begin{array}{lcr}
+                        \varphi\circ f_0(2t) & \textup{ si } 0\leq t\leq \frac{1}{2}\\
+                        \varphi\circ f_1(2t-1) & \textup{ si } \frac{1}{2}\leq t\leq 1\\
+                    \end{array}
+                \right.\\
+                &=(\varphi\circ f_0)\cdot (\varphi\circ f_1)(t),\quad\forall t\in I\\
+            \end{split}
+        \end{equation*}
+        luego entonces
+        \begin{equation*}
+            \begin{split}
+                [\varphi\circ (f_0\cdot f_1)]&=[(\varphi\circ f_0)\cdot (\varphi\circ f_1)]\\
+                &=[\varphi\circ f_0]\cdot [\varphi\circ f_1]\\
+                &=\varphi_*([f_0])\cdot \varphi_*([f_1])\\
+            \end{split}
+        \end{equation*}
+        lo que prueba el resultado.
+
+        De (ii) y (iii): Ejercicio.
+    \end{proof}
+
+    Por estas razones, llamaremos a $\varphi_*$ un \textit{homomorfismo} u \textit{homomorfismo inducido por $\varphi$}.
+
+    \begin{propo}
+        En el contexto de la proposición anterior, si $Z$ es un espacio topológico y $\cf{\psi}{Y}{Z}$ es una función continua, entonces
+        \begin{equation*}
+            (\psi\circ\varphi)_*=\psi_*\circ\varphi_*
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Es claro que la composición de ambas funciones está bien definida. Probaremos ahora la igualdad, sea $\cf{f}{I}{X}$ un camino, entonces:
+        \begin{equation*}
+            \begin{split}
+                (\psi\circ\varphi)_*([f])&=[\psi\circ\varphi\circ f]\\
+                &=[\psi\circ(\varphi\circ f)]\\
+                &=\psi_*([\varphi\circ f])\\
+                &=\psi_*(\varphi_*([f]))\\
+                &=\psi_*\circ \varphi_*([f])\\
+            \end{split}
+        \end{equation*}
+        lo que prueba la igualdad.
+    \end{proof}
+
+    \begin{excer}
+        Sea $X$ espacio topológico y $\cf{i}{X}{X}$ la función identidad, entonces
+        \begin{equation*}
+            i_*([f])=[f]
+        \end{equation*}
+        para todo camino $\cf{f}{I}{X}$ en $X$.
+    \end{excer}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{obs}
+        En otras palabras, lo que nos dice la proposición anterior es que el mapeo $i_*$ reestringido a $\pi(X,x)$ coincide con la identidad de $\bbm{1}_{\pi(X,x)}$, y que
+        \begin{equation*}
+            i_*=\bbm{1}_{\wp_X}
+        \end{equation*}
+    \end{obs}
+    
+    \begin{cor}
+        Sean $X$ y $Y$ espacios topológicos y $\cf{\varphi}{X}{Y}$ una función continua y $x\in X$. La función $\varphi_*$ restringida a $\pi(X,x)\subseteq\wp_X$ es un homomorfismo entre $\pi(X,x)$ y $\pi(Y,\varphi(x))$. Más aún, si $\varphi$ es homeomorfismo, entonces $\varphi_*$ reestringida a $\pi(X,x)$ es isomorfismo.
+    \end{cor}
+
+    \begin{proof}
+        El hecho de que sea homomorfismo es inmediato de la proposición anterior y de que si $f$ es un bucle con base en $x$, entonces
+        \begin{equation*}
+            \varphi_*([f])=[\varphi\circ f]
+        \end{equation*}
+        es la clase del camino $\varphi\circ f$, el cual es un bucle con base en $\varphi(x)$.
+
+        Veamos ue si $\varphi$ es homeomorfismo entonces $\varphi_*$ es isomorfismo. En efecto, como es homeomorfismo existe una función $\cf{\varphi^{-1}}{Y}{X}$ continua que es la inversa de $\varphi$.
+
+        Se sigue de la proposición anterior que
+        \begin{equation*}
+            (\bbm{1}_X)_*=(\varphi\circ\varphi^{-1})_*=\varphi_*\circ\varphi_*^{-1}
+        \end{equation*}
+        donde $\bbm{1}_X$ es la identidad de $X$, luego
+        \begin{equation*}
+            \varphi_*\circ\varphi_*^{-1}=\bbm{1}_{\wp_X}
+        \end{equation*}
+        de forma análoga se sigue que
+        \begin{equation*}
+            \varphi_*^{-1}\circ\varphi_*=\bbm{1}_{\wp_Y}
+        \end{equation*}
+        por tanto, la función $\varphi_*$ es invertible, luego $\varphi_*$ reestringida a $\pi(X,x)$ es invertible, con inversa la reestricción de $\varphi_*^{-1}$ a $\pi(Y,\varphi(x))$. Así, $\varphi_*$ es isomorfismo.
+    \end{proof}
+
+    \subtitle{Nociones geométricas subyacentes}
+
+    Para continuar con el estudio de la función inducida $\varphi_*$, es necesario introducir algunos conceptos geométricos relevantes:
+
+    \begin{mydef}
+        Sean $X$ y $Y$ espacios topológicos. Dos funciones continuas $\cf{\varphi_0,\varphi_1}{X}{Y}$ son \textbf{homotópicas} si existe una función continua $\cf{\Phi}{X\times I}{Y}$ tal que para todo $x\in X$:
+        \begin{equation*}
+            \Phi(x,0)=\varphi_0(x)\quad\textup{y}\quad\Phi(x,1)=\varphi_1(x)
+        \end{equation*}
+        además, para denotar que son homotópicas, se usará el símbolo $\varphi_0\simeq\varphi_1$.
+    \end{mydef}
+
+    \begin{obs}
+        En ciertos casos, será más conveniente denotar a la homotopía como la familia de funciones $\left\{\varphi_t \right\}_{ t\in I}$ tal que cada una es continua y que el mapeo $t\mapsto \varphi_t$ es continuo en el espacio de funciones continuas, donde
+        \begin{equation*}
+            \Phi(x,t)=\varphi_t(x),\quad\forall x\in X,\forall t\in I
+        \end{equation*}
+        y por esta razón, se denotará por $\varphi_t$ a $\Phi$.
+    \end{obs}
+
+    \begin{propo}
+        Sean $X$ y $Y$ espacios topológicos. Considere el conjunto:
+        \begin{equation*}
+            \mathcal{F}=\left\{\cf{\varphi}{X}{Y}\Big|f\textup{ es una función continua} \right\}
+        \end{equation*}
+        entonces, $\simeq$ es una relación de equivalencia sobre $\mathcal{F}$.
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{obs}
+        Para aquellos que han tomado algún curso en teoría de categorías, verán de forma casi inmediata que esta relación de equivalencia induce una partición en la clase de todos los morfismos entre espacios topológicos.
+    \end{obs}
+
+    La idea detrás de la homotopía es intentar deformar de forma continua una función en la otra, conservando la continuidad de las funciones, veamos que si
+    \begin{equation*}
+        \varphi_t(x)=\Phi(x,t)
+    \end{equation*}
+    para todo $x\in X$ y todo $t\in I$, entonces la función $\cf{\varphi_t}{X}{Y}$ es continua.
+
+    Por esta razón es que comúnmente se habla de homotopía como la deformación continua de una función.
+
+    \begin{obs}
+        En otros contextos, resulta más familiar decir que dos funciones son homotópicas si pueden ser unidas con un arco en el espacio de todas las funciones continuas que van de $X$ en $Y$.
+    \end{obs}
+
+    \begin{mydef}
+        Dos funciones $\cf{\varphi_0,\varphi_1}{X}{Y}$ entre los espacios topológicos $X$ y $Y$ son \textbf{homotópicas relativas al subconjunto $A$ de $X$} si existe una función continua $\cf{\Phi}{X\times I}{Y}$ tal que
+        \begin{equation*}
+            \begin{split}
+                \varphi(x,0)=\varphi_0(x) & \quad\forall x\in X\\
+                \varphi(x,1)=\varphi_1(x) & \quad\forall x\in X\\
+                \varphi(a,t)=\varphi_0(a)=\varphi_1(a) & \quad\forall a\in A\textup{ y }\forall t\in I \\
+            \end{split}
+        \end{equation*}
+    \end{mydef}
+
+    Básicamente la deformación continua es tal que deja al subconjunto $A$ sin modificarse en el proceso de deformación.
+
+    \begin{theor}
+        Sean $\cf{\varphi_0,\varphi_1}{X}{Y}$ funciones entre dos espacios topológicos y $x\in X$. Suponga que son homotópicas $\varphi_0$ y $\varphi_1$ relativas al conjunto $\left\{u \right\}$, entonces
+        \begin{equation*}
+            \cf{{\varphi_0}_*={\varphi_1}_*}{\pi(X,u)}{\pi(Y,\varphi_0(u))}
+        \end{equation*}
+        esto es, los homomorfismos inducidos son el mismo.
+    \end{theor}
+
+    \begin{proof}
+        Sea $\cf{f}{I}{X}$ un bucle que une a $x$ consigo mismo. Como $\varphi_0$ y $\varphi_1$ son homotópicas relativas al conjunto $\left\{u\right\}$, entonces existe una función continua $\cf{\Phi}{X\times I}{Y}$ tal que
+        \begin{equation*}
+            \begin{split}
+                \Phi(x,0)=\varphi_0(x) & \quad\forall x\in X\\
+                \Phi(x,1)=\varphi_1(x) & \quad\forall x\in X\\
+                \Phi(u,t)=\varphi_0(u)=\varphi_1(u) & \quad\forall t\in I
+            \end{split}
+        \end{equation*}
+        por tanto, se tiene para el camino $f$ que la función $\cf{G}{I\times I}{Y}$ dada por
+        \begin{equation*}
+            G(s,t)=\Phi(f(s),t),\quad\forall s,t\in I
+        \end{equation*}
+        es continua, y cumple que
+        \begin{equation*}
+            F(s,0)=\varphi_0\circ f(s)\quad\textup{ y }F(s,1)=\varphi_1\circ f(s)
+        \end{equation*}
+        para todo $s\in I$. Además,
+        \begin{equation*}
+            \begin{split}
+                F(0,t)&=\Phi(f(0),t)=\Phi(u,t)=\varphi_0(u)=\varphi_1(u)\\
+                F(1,t)&=\Phi(f(1),t)=\Phi(u,t)=\varphi_0(u)=\varphi_1(u)\\
+            \end{split}
+        \end{equation*}
+        para todo $t\in I$. Por tanto, los caminos
+        \begin{equation*}
+            \varphi_0\circ f\quad\textup{ y }\varphi_1\circ f
+        \end{equation*}
+        son equivalentes, luego:
+        \begin{equation*}
+            \begin{split}
+                {\varphi_0}_*([f])&=[\varphi_0\circ f]\\
+                &=[\varphi_1\circ f]\\
+                &={\varphi_1}_*([f])\\
+            \end{split}
+        \end{equation*}
+        dado a que el bucle $f$ fue arbitrario, se sigue que
+        \begin{equation*}
+            {\varphi_0}_*={\varphi_1}_*
+        \end{equation*}
+    \end{proof}
+
+    \begin{mydef}
+        Un subconjunto $A\subseteq X$ de un espacio topológico es un \textbf{repliegue} de $X$ si existe una función continua $\cf{r}{X}{A}$ (llamada \textbf{retración}) tal que $r(a)=a$ para todo $a\in A$.
+    \end{mydef}
+
+    La condición de la definición antes mencionada, es una condición muy fuerte, ya que no todo espacio la cumple para cualquier conjunto $A$ arbitrario. Vea estos dos ejemplos:
+
+    \begin{exa}
+        Considere $X=\mathbb{R}^2\backslash\left\{(0,0)\right\}$ y tomemos $A=\mathbb{R}+(1,0)$. ¿Existe un repliegue de $X$ en $A$?
+    \end{exa}
+
+    \begin{exa}
+        Considere el espacio $X$ como la cinta de Möbius y sea $A$ el círculo central de la cinta. ¿Es $A$ una retracción de $X$? En caso de que sea ¿cuál es una posible retracción?
+    \end{exa}
+
+    Sea ahora $\cf{r}{X}{A}$ una retración e $\cf{i}{A}{X}$ el mapeo inclusión. Para cualquier punto $a\in A$ se consideran los homomorfismos inducidos:
+    \begin{equation*}
+        \begin{split}
+            \cf{i_*}{\pi(A,a)}{\pi(X,a)}\\
+            \cf{r_*}{\pi(X,a)}{\pi(A,a)}\\
+        \end{split}
+    \end{equation*}
+    siendo éstos tales que $r\circ i=\bbm{1}_{A}$, debe suceder entonces que $r_*\circ i_*=\bbm{1}_{\pi(A,a)}$ es el homomorfismo identidad.
+    
+    Se sigue entonces que
+    \begin{itemize}
+        \item $i_*$ es monomorfismo.
+        \item $r_*$ es epimorfismo.
+    \end{itemize}
+
+    Estos resultados se usarán más adelante para probar que ciertos subespacios no son repliegues del espacio original.
+
+\end{document}
