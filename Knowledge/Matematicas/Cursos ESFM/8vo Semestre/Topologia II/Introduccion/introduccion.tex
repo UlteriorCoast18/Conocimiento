@@ -153,7 +153,7 @@
     
     \chapter{Metrizabilidad}
     
-    \section{Conceptos Fundamentales}
+    \section{Introducción}
     
     ¿Cuándo un espacio topológico es metrizable? Supongamos que tenemos un espacio topológico $(X,\tau)$, queremos una métrica $\cf{d}{X\times X}{\mathbb{R}}$ tal que $\tau_d=\tau$.
 
@@ -482,6 +482,8 @@
         Es inmediata.
     \end{proof}
 
+    \section{Lema de Urysohn e implicaciones}
+
     \begin{lema}[\textbf{Lema de Urysohn}]
         Sea $(X,\tau)$ un espacio topológico. Entonces, $(X,\tau)$ es $T_4$ si y sólo si para todos $A,B\subseteq X$ cerrados disjuntos, existe una función continua $\cf{f}{(X,\tau)}{([0,1],\tau_u)}$ tal que $f(A)=\left\{1\right\}$ y $f(B)=\left\{0\right\}$.
     \end{lema}
@@ -748,6 +750,155 @@
             \end{split}
         \end{equation*}
         por tanto, para todo $a\in A$, $f(a)=g(a)$. Tomando $F=g$ se tiene el resultado.
+    \end{proof}
+
+    \begin{obs}
+        Considere $\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$ como subespacio de $(\mathbb{R},\tau_u)$. Sea $\cf{h}{(\mathbb{R},\tau_u)}{\left(\left(-\frac{\pi}{2},\frac{\pi}{2}\right),\tau_u\right)}$ la función definida como:
+        \begin{equation*}
+            h(x)=\arctan(x),\quad\forall x\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right)
+        \end{equation*}
+        el cual es un homeomorfismo. Como a su vez el intervalo $\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$ es homeomorfo a $(-1,1)$ como subespacios de $(\mathbb{R},\tau_u)$, tenemos que
+        \begin{equation*}
+            (\mathbb{R},\tau_u)\cong((-1,1),\tau_u)
+        \end{equation*}
+    \end{obs}
+
+    \begin{obs}
+        Además, si $(X,\tau)$ es un espacio topológico y $\cf{f}{(X,\tau)}{((-1,1),\tau_u)}$ es una función continua, entonces la función $\cf{F}{(X,\tau)}{([-1,1],\tau_u)}$ definida por
+        \begin{equation*}
+            F(x)=f(x),\quad\forall x\in X
+        \end{equation*}
+        es una función continua.
+    \end{obs}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio $T_4$ y tomemos $A\subseteq X$ cerrado. Si $\cf{f}{(A,\tau_A)}{(\mathbb{R},\tau_u)}$ es una función continua, entonces existe una función continua $\cf{F}{(X,\tau)}{(\mathbb{R},\tau_u)}$ tal que
+        \begin{equation*}
+            F(a)=f(a),\quad\forall a\in A
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Podemos considerar a la función $\cf{f}{(A,\tau_A)}{([-1,1],\tau_u)}$ con $f(A)\subseteq(-1,1)$ (esto por las observaciones anteriores). Por el Teorema de extensión de Tietze existe una funcíón continua $\cf{\widetilde{F}}{(X,\tau)}{([-1,1],\tau_u)}$ tal que
+        \begin{equation*}
+            \widetilde{F}(a)=f(a),\quad\forall a\in A
+        \end{equation*}
+        Definimos
+        \begin{equation*}
+            D=\widetilde{F}^{-1}(\left\{-1\right\})\cup \widetilde{F}^{-1}(\left\{1\right\})
+        \end{equation*}
+        este es un conjunto cerrado (pues $\widetilde{F}$ es continua). Se tiene que $A\subseteq X$ es un cerrado tal que $f(A)\subseteq(-1,1)$, luego entonces
+        \begin{equation*}
+            A\cap D=\emptyset
+        \end{equation*}
+        Por el Lema de Urysohn existe una función continua $\cf{g}{(X,\tau)}{([0,1],\tau_u)}$ tal que
+        \begin{equation*}
+            g(D)=\left\{0 \right\}\quad\textup{y}\quad g(A)=\left\{1 \right\}
+        \end{equation*}
+        definimos $F=g\cdot \widetilde{F}$, esta es una función con dominio $(X,\tau)$ y contradominio $(\mathbb{R},\tau_u)$. Por ser producto de funciones continuas, esta es una función continua. Además, como para todo $x\in X$, $g(x)\in[0,1]$, se tiene que
+        \begin{equation*}
+            \abs{F(x)}=\abs{g(x)\cdot \widetilde{F}(x)}\leq \abs{\widetilde{F}(x)}\leq 1,\quad\forall x\in X
+        \end{equation*}
+        \begin{itemize}
+            \item Si $x\in D$, entonces $g(x)=0$, esto es que $F(x)=0$.
+            \item Si $x\notin D$, entonces $\widetilde{F}(x)\in(-1,1)$, luego $\abs{F(x)}<1$, se sigue que $F(x)\in(-1,1)$.
+        \end{itemize}
+        Luego, $\cf{F}{(X,\tau)}{((-1,1),\tau_u)}$ es una función continua tal que
+        \begin{equation*}
+            F(a)=g(a)\cdot \widetilde{F}(a)=1\cdot \widetilde{F}(a)=f(a),\quad\forall a\in A
+        \end{equation*}
+        Luego $F$ es la función continua buscada.
+    \end{proof}
+
+    \section{Espacios $T_{3.5}$ y Completamente Regulares}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico. Decimos que $(X,\tau)$ es \textbf{un espacio $T_{ 3.5}$} si dados $A\subseteq X$ cerrado no vacío y $x\notin A$, existe una función $\cf{f}{(X,\tau)}{([0,1],\tau_u)}$ tal que $f$ es continua y
+        \begin{equation*}
+            f(A)=\left\{1\right\}\quad\textup{y}\quad f(x)=0
+        \end{equation*}
+    \end{mydef}
+
+    \begin{mydef}
+        Un espacio topológico $(X,\tau)$ que es $T_{3.5}$ y $T_1$ se llama \textbf{espacio completamente regular} (también llamado \textbf{espacio de Tychonoff}).
+    \end{mydef}
+
+    \begin{exa}
+        Sea $(X=\left\{0,1\right\},\tau_I=\left\{X,\emptyset \right\})$. Este espacio es $T_{3.5}$ por vacuidad y no es $T_1$.
+    \end{exa}
+
+    \begin{propo}
+        La propiedad de ser un espacio $T_{3.5}$ se hereda.
+    \end{propo}
+
+    \begin{proof}
+        Sea $(X,\tau)$ un espacio $T_{3.5}$ y $Y\subseteq X$. Sea $A\subseteq Y$ un conjunto cerrado no vacío de $(Y,\tau_Y)$. Sea $y\in Y-A$. Recordemos que
+        \begin{equation*}
+            \overline{A}^Y=A=\overline{A}\cap Y
+        \end{equation*}
+        (siendo $\overline{A}^Y$ la cerradura de $A$ en $Y$ y, $\overline{A}$ la cerradura de $A$ en $X$) donde en particular $y\in X-\overline{A}$. Tenemos pues que existe una función continua $\cf{f}{(X,\tau)}{([0,1],\tau_u)}$ tal que
+        \begin{equation*}
+            f\left(\overline{A}\right)=\left\{1\right\}\quad\textup{y}\quad f(y)=0
+        \end{equation*}
+        Entonces, la función $\cf{f\big|_{Y}}{(Y,\tau_Y)}{([0,1],\tau_u)}$ es una función continua tal que
+        \begin{equation*}
+            f\big|_{Y}(a)=f(a)=1,\quad\forall a\in A
+        \end{equation*}
+        pues $A\subseteq\overline{A}$, y $f\big|_{Y}(y)=f(y)=0$. Se sigue entonces que $(Y,\tau_Y)$ es un espacio $T_{3.5}$.
+    \end{proof}
+
+    \begin{cor}
+        La propiedad de ser completamente regular se hereda.
+    \end{cor}
+
+    \begin{proof}
+        Inmediata del hecho de que las propiedades $T_{3.5}$ y $T_1$ son hereditarias.
+    \end{proof}
+
+    \begin{excer}
+        La propiedad de ser $T_{3.5}$ es topológica.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{cor}
+        La propiedad de ser completamente regular es topológica.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediata del ejercicio anterior y de que la propiedad de ser $T_1$ es topológica.
+    \end{proof}
+
+    \begin{propo}
+        Si $(X,\tau)$ es un espacio topológico $T_{3.5}$, entonces $(X,\tau)$ es un espacio $T_3$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $A\subseteq X$ cerrado y $x\in X-A$ con $A\neq\emptyset$. Al ser $(X,\tau)$ espacio $T_{3.5}$, existe pues una función continua $\cf{f}{(X,\tau)}{([0,1],\tau_u)}$ tal que
+        \begin{equation*}
+            f(A)=\left\{1 \right\}\quad\textup{y}\quad f(x)=0
+        \end{equation*}
+        Sean $U=f^{-1}([0,1/2))$ y $V=f^{-1}((1/2,1])$, al ser $f$ función continua se tiene que $U,V\in\tau$ son disjuntos para los que se cumple que
+        \begin{equation*}
+            x\in U\quad\textup{y}\quad A\subseteq V
+        \end{equation*}
+        por tanto, $(X,\tau)$ es $T_3$.
+    \end{proof}
+
+    \begin{propo}
+        Si $(X,\tau)$ es un espacio normal, entonces es completamente regular.
+    \end{propo}
+
+    \begin{proof}
+        Suponga que $(X,\tau)$ es $T_4$ y $T_1$. Sean $A\subseteq X$ cerrado no vacío y $x\in X-A$. Como $(X,\tau)$ es $T_1$, el conjunto $B=\left\{x \right\}$ es cerrado para el que se cumple que $A\cap B=\emptyset$ siendo ambos conjuntos cerrados. Luego, por el Lema de Urysohn al ser $(X,\tau)$ un espacio $T_4$ existe una función continua $\cf{f}{(X,\tau)}{([0,1],\tau_u)}$ tal que
+        \begin{equation*}
+            f(A)=\left\{1 \right\}\quad\textup{y}\quad f(B)=\left\{0 \right\}
+        \end{equation*}
+        la segunda condición es equivalente a que $f(x)=0$.
+
+        Por tanto, $(X,\tau)$ es $T_{3.5}$.
     \end{proof}
 
 
