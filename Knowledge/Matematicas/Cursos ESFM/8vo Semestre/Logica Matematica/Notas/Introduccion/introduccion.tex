@@ -117,6 +117,7 @@
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
 
 \begin{document}
     \title{Curso de Lógica Matemática}
@@ -884,5 +885,235 @@
             \end{tabular}
         \end{center}
     \end{proof}
-    
+
+    \begin{propo}[\textbf{Leyes de DeMorgan}]
+        Se cumple que:
+        \begin{center}
+            \begin{tabular}{c c c}
+                $\neg(\varphi$ & $\land$ & $\psi)$ \\
+                \hline
+                 & $\therefore$ & $\neg\varphi\lor\neg\psi$ \\
+            \end{tabular}
+        \end{center}
+        y,
+        \begin{center}
+            \begin{tabular}{c c c}
+                $\neg(\varphi$ & $\lor$ & $\psi)$ \\
+                \hline
+                 & $\therefore$ & $\neg\varphi\land\neg\psi$ \\
+            \end{tabular}
+        \end{center}
+    \end{propo}
+
+    \begin{proof}
+        En efecto, veamos que
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $\neg(\varphi$ & $\land$ & $\psi)$ & Premisa \\
+                2) & $\neg(\neg(\varphi$ & $\Rightarrow$ & $\neg\psi))$ & 1 R.E. \\
+                3) & $\varphi$ & $\Rightarrow$ & $\neg\psi$ & 2 Ax. \\
+                4) & $\neg\neg\varphi$ & $\Rightarrow$ & $\neg\psi$ & 2 Ax. \\
+                5) & $\neg\neg\psi$ & $\Rightarrow$ & $\neg\varphi$ & 2 Ax. \\
+                6) & $\neg\psi$ & $\lor$ & $\neg\varphi$ & 5 R.E.\\
+                7) & $\neg\varphi$ & $\lor$ & $\neg\psi$ & 6 Conm.\\
+                \hline
+                & & $\therefore$ & $\neg\varphi\lor\neg\psi$ & \\
+            \end{tabular}
+        \end{center}
+        y,
+        \begin{center}
+            \begin{tabular}{r l c l r}
+                1) & $(\neg\varphi$ & $\lor$ & $\psi)$ & Premisa \\
+                2) & $\neg(\neg\varphi$ & $\Rightarrow$ & $\neg\neg\psi)$ & 1 R.E. \\
+                2) & $\neg(\neg(\neg\psi$ & $\Rightarrow$ & $\varphi))$ & 1 R.E. \\
+                $|\longrightarrow$2) & $\neg\varphi$ & $\land$ & $\neg\psi$ &  \\
+                $|\longrightarrow$2) & $\neg\varphi$ & $\land$ & $\neg\psi$ &  \\
+                \hline
+                & & $\therefore$ & $\neg \varphi\land\neg\psi$ & \\
+            \end{tabular}
+        \end{center}
+        %TODO Hacerlo
+    \end{proof}
+
+    \begin{lema}
+        $\emptyset\vdash\varphi\Rightarrow\varphi$ para cualquier fórmula $\varphi$.
+    \end{lema}
+
+    \begin{proof}
+        En efecto, veamos que
+        \begin{center}
+            \begin{tabular}{r l c l r}
+                1) & $\varphi$ & $\Rightarrow$ & $((\psi\Rightarrow\varphi)\Rightarrow\varphi)$ & Ax. 1\\
+                2) & $(\varphi\Rightarrow((\psi\Rightarrow\varphi)\Rightarrow\varphi))$ & $\Rightarrow$ & $((\varphi\Rightarrow(\psi\Rightarrow\varphi))\Rightarrow(\varphi\Rightarrow\varphi))$ & Ax. 3\\
+                3) & $(\varphi\Rightarrow(\psi\Rightarrow\varphi))$ & $\Rightarrow$ & $(\varphi\Rightarrow\varphi)$ & 2,1 M.P.\\
+                4) & $\varphi$ & $\Rightarrow$ & $(\psi\Rightarrow\varphi)$ & Ax. 1\\
+                5) & $\varphi$ & $\Rightarrow$ & $\varphi$ & 3,4 M.P.\\
+                \hline
+                & & $\therefore$ & $\varphi\Rightarrow\varphi$ & \\
+            \end{tabular}
+        \end{center}
+    \end{proof}
+
+    \begin{theor}[\textbf{Metateorema de Deducción}]
+        Si $\Sigma$ es un conjunto de fórmulas y $\varphi,\psi$ son fórmulas, entonces:
+        \begin{equation*}
+            \Sigma\cup\left\{\varphi\right\}\vdash\psi\textup{ si y sólo si }\Sigma\vdash\varphi\Rightarrow\psi
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Probemos la suficiencia. Suponga que $\Sigma\vdash\varphi\Rightarrow\psi$, entonces a partir de $\Sigma\cup\left\{\varphi\right\}$ tenemos:
+        \begin{center}
+            \begin{tabular}{r l c l r}
+                $n$) & $\varphi$ &  &  & Premisa \\
+                $\vdots$ & \vdots & \vdots & \vdots & Líneas de $\Sigma$ que prueban $\varphi\Rightarrow\psi$ \\
+                $n+k$) & $\varphi$ & $\Rightarrow$ & $\psi$ & $\Sigma\vdash\varphi\Rightarrow\psi$ \\
+                $n+k+1$) & $\psi$ &  &  & $n$,$n+k$ M.P. \\
+                \hline
+                & & $\therefore$ & $\psi$ & \\
+            \end{tabular}
+        \end{center}
+        ya que se sabe que existe una demostración de $\varphi\Rightarrow\psi$ a partir de $\Sigma$. Por tanto, $\Sigma\left\{\varphi \right\}\vdash\psi$.
+
+        Para la suficiencia, supongamos que existe una demostración $(\varphi_1,....,\varphi_{n-1},\psi)$ de $\psi$ a partir de $\Sigma\cup\left\{\varphi\right\}$, y supongamos por hipótesis de inductiva que $\Sigma\vdash\varphi\Rightarrow\varphi_i$ para cada $i\in\natint{1,n-1}$.
+
+        $\psi$ cumple algunos de los siguiente casos:
+        \begin{enumerate}
+            \item $\psi$ fue un axioma lógico.
+            \item $\psi\in\Sigma$.
+            \item $\psi$ es $\varphi$.
+            \item Existen $i,j\in\natint{1,n-1}$ tales que $i<j$ y $\varphi_j$ es $\varphi_i\Rightarrow\psi$.
+        \end{enumerate}
+
+        Consideremos los casos 1) y 2). En cualquier caso tenemos la siguiente demostración:
+        \begin{center}
+            \begin{tabular}{r l c l r}
+                $\vdots$ & \vdots & \vdots & \vdots & Líneas de $\Sigma$ \\
+                $n$) & $\psi$ &  &  & Premisa de $\Sigma$/Axioma Lógico \\
+                $n+1$) & $\psi$ & $\Rightarrow$ & $(\varphi\Rightarrow\psi)$ & $n$ Ax.1 \\
+                $n+2$) & $\varphi$ & $\Rightarrow$ & $\psi$ & $n+1$,$n$ M.P. \\
+                \hline
+                & & $\therefore$ & $\varphi\Rightarrow\psi$ & \\
+            \end{tabular}
+        \end{center}
+
+        Consideremos el caso 3), por el lema anterior...
+
+        Consideremos ahora el caso 4) ($i$ no es arbitrario, es alguno)
+        \begin{center}
+            \begin{tabular}{r l c l r}
+                $\vdots$ & \vdots & \vdots & \vdots & Líneas de $\Sigma$ \\
+                $k+i$) & $\varphi$ & $\Rightarrow$ & $\varphi_i$ & Pruebas de $\varphi\Rightarrow\varphi_{ n-1}$ para $i\in\natint{1,n-1}$\\
+                $m+i$) & $\varphi$ & $\Rightarrow$ & $(\varphi_i\Rightarrow\psi)$ & Ax. 1\\
+                $m+i+1$) & $(\varphi\Rightarrow(\varphi_i\Rightarrow\psi))$ & $\Rightarrow$ & $((\varphi\Rightarrow\varphi_i)\Rightarrow(\varphi\Rightarrow\psi))$ & Ax. 6\\
+                $m+i+2$) & $(\varphi\Rightarrow\varphi_i)$ & $\Rightarrow$ & $(\varphi\Rightarrow\psi)$ & $m+i+1,m+i+2$ M.P.\\
+                $m+i+3$) & $\varphi$ & $\Rightarrow$ & $\psi$ & $m+i+1,m+i+2$ M.P.\\
+                \hline
+                & & $\therefore$ & $\varphi\Rightarrow\psi$ & \\
+            \end{tabular}
+        \end{center}
+    \end{proof}
+
+    \begin{exa}
+        Muestre que existe una demostración de $\left\{P\Rightarrow Q,Q\Rightarrow S \right\}\vdash P\Rightarrow S$.
+    \end{exa}
+
+    \begin{theor}[\textbf{Metateorema (Demostración por Contradicción)}]
+        Si $\Sigma$ es un conjunto de fórmulas y $\varphi,\psi$ son fórmulas, entonces
+        \begin{equation*}
+            \Sigma\cup\left\{\neg\psi \right\}\vdash\varphi\land\neg\varphi\textup{ si y sólo si }\Sigma\vdash\psi
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Suficiencia, supongamos que $\Sigma\cup\left\{\neg\psi \right\}\vdash\varphi$. Esto es:
+        \begin{center}
+            \begin{tabular}{r l c l r}
+                $\vdots$ & \vdots & \vdots & \vdots & Líneas de $\Sigma$ \\
+                $|\longrightarrow k$) & $\neg\psi$ &  &  & Suposición \\
+                $|\vdots$ & \vdots & \vdots & \vdots & Prueba de $|\varphi\land\neg\varphi$ \\
+                $|m$) & $\varphi$ & $\land$ & $\neg\varphi$ & \\
+                $|m+1$) & $\varphi$ &  &  & $m$ Simp.\\
+                $|m+2$) & $\varphi$ & $\lor$ & $\psi$ & Ad.\\
+                $|m+1$) & $\neg\varphi$ &  &  & $m$ Simp.\\
+                $|m+2$) & $\psi$ &  &  & S.D.\\
+                \hline
+                $m+2$) & $\neg\psi$ & $\Rightarrow$ & $\psi$ & M.D.\\
+                $m+2$) & $\psi$ & $\lor$ & $\psi$ & M.D.\\
+                $m+2$) & $\psi$ & & & M.D.\\
+                $m+2$) & $\psi$ & & & M.D.\\
+                \hline
+                & & $\therefore$ & $\varphi\Rightarrow\psi$ & \\
+            \end{tabular}
+        \end{center}
+
+        Necesidad, supongamos que $\Sigma\vdash\psi$.
+    \end{proof}
+
+    \begin{excer}
+        Complete las siguientes demostraciones.
+    \end{excer}
+
+    \begin{sol}
+        De 1):
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & 1) & $M$ & $\Rightarrow$ & $N$ & Premisa \\
+                & 2) & $N$ & $\Rightarrow$ & $O$ & Premisa \\
+                & 3) & $(M\Rightarrow O)$ & $\Rightarrow$ & $(N\Rightarrow P)$ & Premisa \\
+                & 4) & $(M\Rightarrow P)$ & $\Rightarrow$ & $Q$ & Premisa \\
+                $|\longrightarrow$ & 5) & $M$ &  &  & Sup. \\
+                $|$ & 6) & $N$ &  &  & 1,5 M.P. \\
+                $|$ & 7) & $O$ &  &  & 2,6 M.P. \\
+                \hline
+                & 8) & $M$ & $\Rightarrow$ & $O$ & 5-7 M.D. \\
+                & 9) & $N$ & $\Rightarrow$ & $P$ & 3,8 M.P. \\
+                $|\longrightarrow$ & 10) & $M$ &  &  & Sup. \\
+                $|$ & 11) & $N$ &  &  & 2,10 M.P. \\
+                $|$ & 12) & $P$ &  &  & 9,11 M.P. \\
+                \hline
+                 & 13) & $M$ & $\Rightarrow$ & $P$ & 10-12 M.D.\\
+                 & 14) & $Q$ &  &  & 13, 4 M.P.\\
+                \hline
+                & & & $\therefore$ & $Q$ & \\
+            \end{tabular}
+        \end{center}
+
+        De 2):
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & 1) & $V$ & $\Rightarrow$ & $W$ & Premisas \\
+                & 2) & $X$ & $\Rightarrow$ & $Y$ & Premisas \\
+                & 3) & $Z$ & $\Rightarrow$ & $W$ & Premisas \\
+                & 4) & $X$ & $\Rightarrow$ & $A$ & Premisas \\
+                & 5) & $W$ & $\Rightarrow$ & $X$ & Premisas \\
+                & 6) & $((V\Rightarrow Y)\land(Z\Rightarrow A))$ & $\Rightarrow$ & $V\lor Z$ & Premisas \\
+                \hline
+                & & & $\therefore$ & $\neg Y\Rightarrow A$ & \\
+            \end{tabular}
+        \end{center}    
+        %TODO
+
+        De 3):
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & 1) & $P$ & $\Rightarrow$ & $(Q\land R)$ & Premisa \\
+                & 2) & $R$ & $\Rightarrow$ & $(A\land B)$ & Premisa \\
+                $|\longrightarrow$& 3) & $P$ &  &  & Sup. \\
+                $|$& 4) & $Q$ & $\land$ & $R$ & 1,3 M.P.\\
+                $|$& 5) & $R$ & $\land$ & $Q$ & 4 Conm.\\
+                $|$& 6) & $R$ &  &  & 5 Simp.\\
+                $|$& 7) & $A$ & $\land$ & $B$ & 6,2 M.P.\\
+                $|$& 8) & $A$ &  &  & 6,2 M.P.\\
+                $|$& 9) & $A$ & $\Rightarrow$ & $(Q\Rightarrow A)$ & Ax. 1\\
+                $|$& 10) & $Q$ & $\Rightarrow$ & $A$ & 9,8 M.P.\\
+                \hline
+                & 10) & $P$ & $\Rightarrow$ & $(Q\Rightarrow A)$ & 3-10 M.D.\\
+                \hline
+                & & & $\therefore$ & $P\Rightarrow(Q\Rightarrow A)$ & \\
+            \end{tabular}
+        \end{center}
+
+    \end{sol}
+
 \end{document}
