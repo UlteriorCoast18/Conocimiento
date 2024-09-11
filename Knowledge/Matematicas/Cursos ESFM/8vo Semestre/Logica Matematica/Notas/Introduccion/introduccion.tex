@@ -991,11 +991,10 @@
             \begin{tabular}{l l c l r}
                 1) & $\neg(\varphi$ & $\land$ & $\psi)$ & Premisa \\
                 2) & $\neg(\neg(\varphi$ & $\Rightarrow$ & $\neg\psi))$ & 1 R.E. \\
-                3) & $\varphi$ & $\Rightarrow$ & $\neg\psi$ & 2 Ax. \\
-                4) & $\neg\neg\varphi$ & $\Rightarrow$ & $\neg\psi$ & 2 Ax. \\
-                5) & $\neg\neg\psi$ & $\Rightarrow$ & $\neg\varphi$ & 2 Ax. \\
-                6) & $\neg\psi$ & $\lor$ & $\neg\varphi$ & 5 R.E.\\
-                7) & $\neg\varphi$ & $\lor$ & $\neg\psi$ & 6 Conm.\\
+                3) & $\varphi$ & $\Rightarrow$ & $\neg\psi$ & 2 D.N. \\
+                4) & $\neg\neg\psi$ & $\Rightarrow$ & $\neg\varphi$ & 3 Transp. \\
+                5) & $\neg\psi$ & $\lor$ & $\neg\varphi$ & 4 R.E.\\
+                6) & $\neg\varphi$ & $\lor$ & $\neg\psi$ & 5 Conm.\\
                 \hline
                 & & $\therefore$ & $\neg\varphi\lor\neg\psi$ & \\
             \end{tabular}
@@ -1003,15 +1002,14 @@
         y,
         \begin{center}
             \begin{tabular}{r l c l r}
-                1) & $(\neg\varphi$ & $\lor$ & $\psi)$ & Premisa \\
-                2) & $\neg(\neg\varphi$ & $\Rightarrow$ & $\neg\neg\psi)$ & 1 R.E. \\
-                2) & $\neg(\neg(\neg\psi$ & $\Rightarrow$ & $\varphi))$ & 1 R.E. \\
-                $|\longrightarrow$2) & $\neg\varphi$ & $\land$ & $\neg\psi$ &  \\
-                $|\longrightarrow$2) & $\neg\varphi$ & $\land$ & $\neg\psi$ &  \\
+                1) & $\neg(\varphi$ & $\lor$ & $\psi)$ & Premisa \\
+                2) & $\neg(\neg\varphi$ & $\Rightarrow$ & $\psi)$ & 1 R.E. \\
+                3) & $\neg(\neg\varphi$ & $\Rightarrow$ & $\neg\neg\psi)$ & 2 Ax. 3 y M.P. \\
                 \hline
                 & & $\therefore$ & $\neg \varphi\land\neg\psi$ & \\
             \end{tabular}
         \end{center}
+        Falta completar esta prueba.%TODO
         %TODO Hacerlo
     \end{proof}
 
@@ -1053,9 +1051,9 @@
                 & & $\therefore$ & $\psi$ & \\
             \end{tabular}
         \end{center}
-        ya que se sabe que existe una demostración de $\varphi\Rightarrow\psi$ a partir de $\Sigma$. Por tanto, $\Sigma\left\{\varphi \right\}\vdash\psi$.
+        ya que se sabe que existe una demostración de $\varphi\Rightarrow\psi$ a partir de $\Sigma$. Por tanto, $\Sigma\cup\left\{\varphi \right\}\vdash\psi$.
 
-        Para la suficiencia, supongamos que existe una demostración $(\varphi_1,....,\varphi_{n-1},\psi)$ de $\psi$ a partir de $\Sigma\cup\left\{\varphi\right\}$, y supongamos por hipótesis de inductiva que $\Sigma\vdash\varphi\Rightarrow\varphi_i$ para cada $i\in\natint{1,n-1}$.
+        Para la necesidad, supongamos que existe una demostración $(\varphi_1,....,\varphi_{n-1},\psi)$ de $\psi$ a partir de $\Sigma\cup\left\{\varphi\right\}$, y supongamos por hipótesis de inductiva que $\Sigma\vdash\varphi\Rightarrow\varphi_i$ para cada $i\in\natint{1,n-1}$.
 
         $\psi$ cumple algunos de los siguiente casos:
         \begin{enumerate}
@@ -1077,26 +1075,52 @@
             \end{tabular}
         \end{center}
 
-        Consideremos el caso 3), por el lema anterior...
+        Consideremos el caso 3), en cuyo caso por el lema anterior se tiene que $\emptyset\vdash\varphi\Rightarrow\varphi$, esto es que $\emptyset\vdash\varphi\Rightarrow\psi$, en particular $\Sigma\vdash\varphi\Rightarrow\psi$.
 
-        Consideremos ahora el caso 4) ($i$ no es arbitrario, es alguno)
+        Consideremos ahora el caso 4), se tiene que:
         \begin{center}
             \begin{tabular}{r l c l r}
                 $\vdots$ & \vdots & \vdots & \vdots & Líneas de $\Sigma$ \\
-                $k+i$) & $\varphi$ & $\Rightarrow$ & $\varphi_i$ & Pruebas de $\varphi\Rightarrow\varphi_{ n-1}$ para $i\in\natint{1,n-1}$\\
-                $m+i$) & $\varphi$ & $\Rightarrow$ & $(\varphi_i\Rightarrow\psi)$ & Ax. 1\\
-                $m+i+1$) & $(\varphi\Rightarrow(\varphi_i\Rightarrow\psi))$ & $\Rightarrow$ & $((\varphi\Rightarrow\varphi_i)\Rightarrow(\varphi\Rightarrow\psi))$ & Ax. 6\\
-                $m+i+2$) & $(\varphi\Rightarrow\varphi_i)$ & $\Rightarrow$ & $(\varphi\Rightarrow\psi)$ & $m+i+1,m+i+2$ M.P.\\
-                $m+i+3$) & $\varphi$ & $\Rightarrow$ & $\psi$ & $m+i+1,m+i+2$ M.P.\\
+                $j$) & $\varphi_i$ & $\Rightarrow$ & $\psi$ & Línea $j$ de $\Sigma$ \\
+                $\vdots$ & \vdots & \vdots & \vdots & Líneas de $\Sigma$ \\
+                $k$) & $\varphi$ & $\Rightarrow$ & $\varphi_i$ & Deducción de $\varphi\Rightarrow\varphi_i$ \\
+                $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Más demostraciones a partir de $\Sigma$ \\
+                $l$) & $\varphi$ & $\Rightarrow$ & $(\varphi_i\Rightarrow\psi)$ & $j$  Ax. 1\\
+                $l+1$) & $(\varphi\Rightarrow(\varphi_i\Rightarrow\psi))$ & $\Rightarrow$ & $((\varphi\Rightarrow\varphi_i)\Rightarrow(\varphi\Rightarrow\psi))$ & $l$ Ax. 6\\
+                $l+2$) & $(\varphi\Rightarrow\varphi_i)$ & $\Rightarrow$ & $(\varphi\Rightarrow\psi)$ & $l+1,l$ M.P.\\
+                $l+3$) & $\varphi$ & $\Rightarrow$ & $\psi$ & $l+2,l+2$ M.P.\\
                 \hline
                 & & $\therefore$ & $\varphi\Rightarrow\psi$ & \\
             \end{tabular}
         \end{center}
+        aplicando inducción se tiene lo deseado.
     \end{proof}
+
+    \begin{obs}
+        Metateorema de Deducción será denotado por M.D. La palabra Sup. abrevia a Suposición.
+    \end{obs}
 
     \begin{exa}
         Muestre que existe una demostración de $\left\{P\Rightarrow Q,Q\Rightarrow S \right\}\vdash P\Rightarrow S$.
     \end{exa}
+
+    \begin{sol}
+        La forma de hacer pruebas con el Metateorema de Deducción será la siguiente: si se quiere probar $P\Rightarrow S$, entonces se supondrá $P$ y se marcará a la izquierda con una linea que nos indicará a partir de suponer $P$, llegar a $S$. Llegando a $S$, cerramos la línea y ponemos línea abajo con $P\Rightarrow S$, indicando las líneas que marcan desde la suposición de $P$ hasta la deducción de $S$, como se muestra en la siguiente demostración:
+
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & 1) & $P$ & $\Rightarrow$ & $Q$ & Premisa \\
+                & 2) & $Q$ & $\Rightarrow$ & $S$ & Premisa \\
+                $|\longrightarrow$ & 3) & $P$ &  &  & Sup. \\
+                $|$ & 4) & $Q$ &  &  & 1,3 M.P. \\
+                $|$ & 5) & $S$ &  &  & 2,4 M.P. \\
+                \hline
+                & 6) & $P$ & $\Rightarrow$ & $S$ & 2-5 M.D.\\
+                \hline
+                & & & $\therefore$ & $Q$ & \\
+            \end{tabular}
+        \end{center}
+    \end{sol}
 
     \begin{theor}[\textbf{Metateorema (Demostración por Contradicción)}]
         Si $\Sigma$ es un conjunto de fórmulas y $\varphi,\psi$ son fórmulas, entonces
@@ -1106,28 +1130,48 @@
     \end{theor}
 
     \begin{proof}
-        Suficiencia, supongamos que $\Sigma\cup\left\{\neg\psi \right\}\vdash\varphi$. Esto es:
+        Necesidad, supongamos que $\Sigma\cup\left\{\neg\psi \right\}\vdash\varphi\land\neg\varphi$. Entonces,
         \begin{center}
-            \begin{tabular}{r l c l r}
-                $\vdots$ & \vdots & \vdots & \vdots & Líneas de $\Sigma$ \\
-                $|\longrightarrow k$) & $\neg\psi$ &  &  & Suposición \\
-                $|\vdots$ & \vdots & \vdots & \vdots & Prueba de $|\varphi\land\neg\varphi$ \\
-                $|m$) & $\varphi$ & $\land$ & $\neg\varphi$ & \\
-                $|m+1$) & $\varphi$ &  &  & $m$ Simp.\\
-                $|m+2$) & $\varphi$ & $\lor$ & $\psi$ & Ad.\\
-                $|m+1$) & $\neg\varphi$ &  &  & $m$ Simp.\\
-                $|m+2$) & $\psi$ &  &  & S.D.\\
+            \begin{tabular}{l r l c l r}
+                & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$ \\
+                $|\longrightarrow$ & $k$) & $\neg\psi$ &  &  & Suposición \\
+                $|$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma\cup\left\{\neg\psi\right\}$ que prueban $\varphi\land\neg\varphi$ \\
+                $|$ & $m$) & $\varphi$ & $\land$ & $\neg\varphi$ &  \\
                 \hline
-                $m+2$) & $\neg\psi$ & $\Rightarrow$ & $\psi$ & M.D.\\
-                $m+2$) & $\psi$ & $\lor$ & $\psi$ & M.D.\\
-                $m+2$) & $\psi$ & & & M.D.\\
-                $m+2$) & $\psi$ & & & M.D.\\
+                 & $m+1$) & $\neg\psi$ & $\Rightarrow$ & $(\varphi\land\neg\varphi)$ & $k$-$m$ M.D. \\
+                 & $m+2$) & $\neg(\varphi\land\neg\varphi)$ & $\Rightarrow$ & $\neg\neg\psi$ & $m+1$ Transp. \\
+                 & $m+3$) & $\neg(\varphi\land\neg\varphi)$ & $\Rightarrow$ & $\psi$ & $m+2$ M.P. y D.N. \\
+                $|\longrightarrow$ & $m+4$) & $\neg\psi$ &  &  & Sup. \\
+                $|$ & $m+5$) & $\varphi$ & $\land$ & $\neg\varphi$ & $m$,$m+4$ M.P. \\
+                $|$ & $m+6$) & $\neg\varphi$ & $\land$ & $\varphi$ & $m+5$ Conm. \\
+                $|$ & $m+7$) & $\neg\varphi$ &  &  & $m+6$ Simp. \\
+                $|$ & $m+8$) & $\neg\varphi$ & $\lor$ & $\neg\neg\varphi$ & $m+7$ Ad. \\
+                $|$ & $m+9$) & $(\neg\varphi\lor\neg\neg\varphi)$ & $\Rightarrow$ & $\neg(\varphi\land\neg\varphi)$ & $m+8$ DeMorgan \\
+                $|$ & $m+10$) & $\neg(\varphi$ & $\land$ & $\neg\varphi)$ & $m+9$,$m+8$ M.P. \\
+                $|$ & $m+11$) & $\psi$ &  &  & $m+3$,$m+10$ M.P. \\
                 \hline
-                & & $\therefore$ & $\varphi\Rightarrow\psi$ & \\
+                 & $m+12$) & $\neg\psi$ & $\Rightarrow$ & $\psi$ & $m+4$-$m+11$ M.D. \\
+                 & $m+13$) & $\psi$ &  &  & $m+12$ Tautología \\
+                \hline
+                & & & $\therefore$ & $\psi$ & \\
             \end{tabular}
         \end{center}
+        por tanto, $\Sigma\vdash\psi$.
 
-        Necesidad, supongamos que $\Sigma\vdash\psi$.
+        Suficiencia, supongamos que $\Sigma\vdash\psi$. Partamos de $\Sigma\cup\left\{\neg\psi\right\}$:
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                 & 1) & $\neg\psi$ &  &  & Premisa \\
+                & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$ \\
+                & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$ que prueban $\psi$ \\
+                & $n$) & $\psi$ &  &  & Prueba de $\varphi$ a partir de $\Sigma$ \\
+                & $n+1$) & $\psi$ & $\lor$ & $(\varphi\land\neg\varphi)$ & $n$ Ad. \\
+                & $n+2$) & $\varphi$ & $\land$ & $\neg\varphi$ & $n+1$ S.D. \\
+                \hline
+                & & & $\therefore$ & $\varphi\land\neg\varphi$ & \\
+            \end{tabular}
+        \end{center}
+        por tanto, $\Sigma\cup\left\{\neg\psi\right\}\vdash\varphi\land\neg\varphi$.
     \end{proof}
 
     \begin{excer}
@@ -1171,7 +1215,8 @@
                 \hline
                 & & & $\therefore$ & $\neg Y\Rightarrow A$ & \\
             \end{tabular}
-        \end{center}    
+        \end{center}
+        Falta completar esta demostración, es un poco larga de hacer (el profesor la hizo en clase).
         %TODO
 
         De 3):
