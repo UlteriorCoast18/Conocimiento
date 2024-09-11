@@ -473,7 +473,7 @@
     \end{exa}
 
     \begin{mydef}[\textbf{Reglas de Inferencia}]
-        Se tiene una única regla de inferencia, denominada \textbf{Modus Ponens} (abreviada \textbf{MP}) dada por:
+        Se define una única regla de inferencia, denominada \textbf{Modus Ponens} (abreviada \textbf{MP}) dada por:
         \begin{center}
             \begin{tabular}{c c c}
                 $\varphi$ & $\Rightarrow$ & $\psi$ \\
@@ -507,15 +507,6 @@
         \end{enumerate}
     \end{mydef}
 
-    \begin{exa}
-        Se cumple que $\left\{\neg p_3,p_1\Rightarrow p_3,p_1\lor(p_2\Rightarrow p_3),\neg p_3\Rightarrow(p_3\Rightarrow p_5),p_2 \right\}\vdash p_5$.    
-    \end{exa}
-
-    \begin{proof}
-        Se tiene la siguiente demostración de $p_5$:
-        
-    \end{proof}
-
     \begin{mydef}
         Convenimos que
         \begin{itemize}
@@ -524,6 +515,41 @@
             \item $\varphi\iff\psi\equiv(\varphi\Rightarrow\psi)\land(\psi\Rightarrow\varphi)$.
         \end{itemize}
     \end{mydef}
+
+    \begin{obs}
+        De ahora en adelante \textbf{R.E.} simplifica reescritura.
+    \end{obs}
+
+    \begin{exa}
+        Se cumple que $\left\{\neg p_3,p_1\Rightarrow p_3,p_1\lor(p_2\Rightarrow p_3),\neg p_3\Rightarrow(p_3\Rightarrow p_5),p_2 \right\}\vdash p_5$.    
+    \end{exa}
+
+    \begin{proof}
+        Se tiene la siguiente demostración de $p_5$:
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $\neg p_3$ &  &  & Premisa \\
+                2) & $p_1$ & $\Rightarrow$ & $p_3$ & Premisa \\
+                3) & $p_1$ & $\lor$ & $(p_2\Rightarrow p_3)$ & Premisa \\
+                4) & $\neg p_3$ & $\Rightarrow$ & $(p_3\Rightarrow p_5)$ & Premisa \\
+                5) & $p_2$ &  &  & Premisa \\
+                6) & $(p_1\Rightarrow p_3)$ & $\Rightarrow$ & $(\neg p_3\Rightarrow \neg p_1)$ & 2 Ax. 4 \\
+                7) & $\neg p_3$ & $\Rightarrow$ & $\neg p_1$ & 6,2 M.P. \\
+                8) & $\neg p_1$ &  &  & 1,6 M.P. \\
+                9) & $\neg(p_2\Rightarrow p_3)$ & $\Rightarrow$ & $p_1$ & 3 R.E. \\
+                10) & $(\neg(p_2\Rightarrow p_3)\Rightarrow p_1)$ & $\Rightarrow$ & $(\neg p_1\Rightarrow\neg\neg (p_2\Rightarrow p_3))$ & 9 Ax. 4 \\
+                11) & $\neg p_1$ & $\Rightarrow$ & $\neg\neg (p_2\Rightarrow p_3)$ & 10,9 M.P. \\
+                12) & $(\neg p_1 \Rightarrow\neg\neg (p_2\Rightarrow p_3))$ & $\Rightarrow$ & $(\neg p_1 \Rightarrow (p_2\Rightarrow p_3))$ & 11 Ax. 3 \\
+                13) & $\neg p_1$ & $\Rightarrow$ & $(p_2\Rightarrow p_3)$ & 11,12 M.P. \\
+                14) & $p_2$ & $\Rightarrow$ & $p_3$ & 11,12 M.P. \\
+                15) & $p_3$ &  &  & 13,5 M.P. \\
+                16) & $p_3$ & $\Rightarrow$ & $p_5$ & 1,4 M.P. \\
+                17) & $p_5$ &  &  & 16,15 M.P. \\
+                \hline
+                & & $\therefore$ & $p_5$ & \\
+            \end{tabular}
+        \end{center}
+    \end{proof}
 
     Tenemos las siguientes reglas de inferencia adicionales:
 
@@ -561,6 +587,7 @@
                  & $\therefore$ & $\varphi\lor\psi$ \\
             \end{tabular}
         \end{center}
+        siendo $\psi$ una FBF cualquiera.
         \begin{center}
             \textbf{Simplificación}
         \end{center}
@@ -605,9 +632,9 @@
                     1) & $\varphi$ & $\lor$ & $\psi$ & Premisa \\
                     2) & $\neg\varphi$ &  &  & Premisa \\
                     3) & $\neg\varphi$ & $\Rightarrow$ & $\psi$ & 1 R.E.\\
-                    4) & $\neg\psi$ &  &  & 2,1 M.P. \\
+                    4) & $\psi$ &  &  & 2,1 M.P. \\
                     \hline
-                    & & $\therefore$ & $\neg\psi$ & \\
+                    & & $\therefore$ & $\psi$ & \\
                 \end{tabular}
             \end{center}
             \item \textbf{Adición}:
@@ -616,13 +643,13 @@
                     1) & $\varphi$ &  &  & Premisa \\
                     2) & $\varphi$ & $\Rightarrow$ & $(\neg\psi\Rightarrow\varphi)$ & 1 Ax. 1 \\
                     3) & $\neg\psi$ & $\Rightarrow$ & $\varphi$ & 1,2 M.P. \\
-                    4) & $(\neg\psi\Rightarrow\neg\varphi)$ & $\Rightarrow$ & $(\neg\varphi\Rightarrow\neg\neg\psi)$ & 3 Ax. 4 \\
+                    4) & $(\neg\psi\Rightarrow\varphi)$ & $\Rightarrow$ & $(\neg\varphi\Rightarrow\neg\neg\psi)$ & 3 Ax. 4 \\
                     5) & $\neg\varphi$ & $\Rightarrow$ & $\neg\neg\psi$ & 3,4 M.P. \\
                     6) & $(\neg\varphi\Rightarrow\neg\neg\psi)$ & $\Rightarrow$ & $(\neg\varphi\Rightarrow\psi)$ & 5 Ax. 3 \\
                     7) & $\neg\varphi$ & $\Rightarrow$ & $\psi$ & 5,6 M.P. \\
                     8) & $\varphi$ & $\lor$ & $\psi$ & 7 R.E. \\
                     \hline
-                    & & $\therefore$ & $\neg\psi$ & \\
+                    & & $\therefore$ & $\varphi\lor\psi$ & \\
                 \end{tabular}
             \end{center}
             \item \textbf{Simplificación}:
@@ -630,31 +657,37 @@
                 \begin{tabular}{l l c l r}
                     1) & $\varphi$ & $\land$ & $\psi$ & Premisa \\
                     2) & $\neg(\varphi$ & $\Rightarrow$ & $\neg\psi)$ & 1 R.E. \\
-                    3) & $\neg\varphi$ & $\Rightarrow$ & $\neg(\psi\Rightarrow\neg\psi)$ & 2 Ax. 1 \\
-                    4) & $(\neg\varphi\Rightarrow(\psi\Rightarrow\neg\varphi))$ & $\Rightarrow$ & $(\neg\varphi\Rightarrow(\neg\neg\varphi\Rightarrow\neg\psi))$ & 2 Ax. 1 \\
-                    5) & $\neg\varphi$ & $\Rightarrow$ & $(\neg\neg\varphi\Rightarrow\neg\psi)$ & 3,4 M.P. \\
+                    3) & $\neg(\varphi\Rightarrow\neg\psi)$ & $\Rightarrow$ & $\neg(\neg\neg\psi\Rightarrow\neg\varphi)$ & 2 Ax. 4 \\
+                    4) & $\neg(\neg\neg\psi$ & $\Rightarrow$ & $\neg\varphi)$ & 3,2 M.P. \\
+                    5) & $\neg(\neg\neg\psi\Rightarrow\neg\varphi)$ & $\Rightarrow$ & $\neg(\psi\Rightarrow\neg\varphi)$ & 4 Ax. 3 \\
+                    6) & $\neg(\psi$ & $\Rightarrow$ & $\neg\varphi)$ & 5,4 M.P. \\
+                    7) & $\neg\varphi$ & $\Rightarrow$ & $\neg(\psi\Rightarrow\neg\varphi)$ & 6 Ax. 1 y M.P. \\
+                    8) & $(\neg\varphi\Rightarrow(\psi\Rightarrow\neg\varphi))$ & $\Rightarrow$ & $(\neg\varphi\Rightarrow(\neg\neg\varphi\Rightarrow\neg\psi))$ & 7 Ax. 1 \\
+                    5) & $\neg\varphi$ & $\Rightarrow$ & $(\neg\neg\varphi\Rightarrow\neg\psi)$ & 8,7 M.P. \\
                     6) & $(\neg\varphi\Rightarrow(\neg\neg\varphi\Rightarrow\neg\psi))$ & $\Rightarrow$ & $(\neg\varphi\Rightarrow(\varphi\Rightarrow\neg\psi))$ &  5 Ax. 3 \\
                     7) & $\neg\varphi$ & $\Rightarrow$ & $(\varphi\Rightarrow\neg\psi)$ &  6,5 M.P. \\
                     8) & $\neg(\varphi\Rightarrow\neg\psi)$ & $\Rightarrow$ & $\neg\neg\varphi$ &  Ax. 4 + M.P. \\
                     9) & $\neg\neg\varphi$ &  &  &  M.P. \\
                     10) & $\varphi$ &  &  &  M.P. \\
                     \hline
-                    & & $\therefore$ & $\neg\psi$ & \\
+                    & & $\therefore$ & $\varphi$ & \\
                 \end{tabular}
             \end{center}
+            La prueba está mal, pero el resultado es correcto (debo verificar que detalles de la prueba anoté mal).
+            %TODO
             \item \textbf{Conjunción}:
             \begin{center}
                 \begin{tabular}{l l c l r}
                     1) & $\varphi$ &  &  & Premisa \\
                     2) & $\psi$ &  &  & Premisa \\
-                    3) & $\varphi$ & $\Rightarrow$ & $((\psi\Rightarrow\neg\varphi)\Rightarrow\neg\psi)$ & Ax. 2 \\
-                    4) & $(\psi\Rightarrow\neg\varphi)$ & $\Rightarrow$ & $\neg\psi$ & M.P. \\
-                    5) & $((\psi\Rightarrow\neg\varphi)\Rightarrow\neg\psi)$ & $\Rightarrow$ & $(\neg\neg\psi\Rightarrow\neg(\psi\Rightarrow\neg\varphi))$ & Ax.  \\
-                    6) & $\neg\neg\psi$ & $\Rightarrow$ & $\neg(\psi\Rightarrow\neg\varphi)$ & M.P.\\
-                    7) & $\psi$ & $\Rightarrow$ & $\neg\neg\psi$ & Ax.\\
-                    8) & $\neg\neg\psi$ &  &  & M.P.\\
-                    9) & $\neg(\psi$ & $\Rightarrow$ & $\neg\varphi)$ & M.P.\\
-                    10) & $\psi$ & $\land$ & $\varphi$ & M.P.\\
+                    3) & $\varphi$ & $\Rightarrow$ & $((\psi\Rightarrow\neg\varphi)\Rightarrow\neg\psi)$ & 1 Ax. 2 \\
+                    4) & $(\psi\Rightarrow\neg\varphi)$ & $\Rightarrow$ & $\neg\psi$ & 3,1 M.P. \\
+                    5) & $((\psi\Rightarrow\neg\varphi)\Rightarrow\neg\psi)$ & $\Rightarrow$ & $(\neg\neg\psi\Rightarrow\neg(\psi\Rightarrow\neg\varphi))$ & 4 Ax. 3\\
+                    6) & $\neg\neg\psi$ & $\Rightarrow$ & $\neg(\psi\Rightarrow\neg\varphi)$ & 5,4 M.P.\\
+                    7) & $\psi$ & $\Rightarrow$ & $\neg\neg\psi$ & 2 Ax. 3\\
+                    8) & $\neg\neg\psi$ &  &  & 7,1 M.P.\\
+                    9) & $\neg(\psi$ & $\Rightarrow$ & $\neg\varphi)$ & 6,8 M.P.\\
+                    10) & $\psi$ & $\land$ & $\varphi$ & 10 R.E.\\
                     \hline
                     & & $\therefore$ & $\psi\land\varphi$ & \\
                 \end{tabular}
@@ -662,15 +695,68 @@
         \end{itemize}
     \end{proof}
 
-    \begin{obs}
-        De ahora en adelante \textbf{R.E.} simplifica reescritura.
-    \end{obs}
+    \begin{propo}
+        Se cumple lo siguiente:
+        \begin{center}
+            \textbf{Conmutatividad de $\lor$}
+        \end{center}
+        \begin{center}
+            \begin{tabular}{c c c}
+                $\varphi$ & $\lor$ & $\psi$ \\
+                \hline
+                 & $\therefore$ & $\psi\lor\varphi$ \\
+            \end{tabular}
+        \end{center}
+        \begin{center}
+            \textbf{Conmutatividad de $\land$}
+        \end{center}
+        \begin{center}
+            \begin{tabular}{c c c}
+                $\varphi$ & $\land$ & $\psi$ \\
+                \hline
+                 & $\therefore$ & $\psi\land\varphi$ \\
+            \end{tabular}
+        \end{center}
+    \end{propo}
+
+    \begin{proof}
+        \begin{itemize}
+            \item \textbf{Conmutatividad de $\lor$}
+            \begin{center}
+                \begin{tabular}{l l c l r}
+                    1) & $\varphi$ & $\lor$ & $\psi$ & Premisa \\
+                    2) & $\neg\varphi$ & $\Rightarrow$ & $\psi$ & 1 R.E. \\
+                    3) & $(\neg\varphi\Rightarrow\psi)$ & $\Rightarrow$ & $(\neg\psi\Rightarrow\neg\neg\varphi)$ & 2 Ax. 4 \\
+                    4) & $\neg\psi$ & $\Rightarrow$ & $\neg\neg\varphi$ & 3,2 M.P.\\
+                    5) & $(\neg\psi\Rightarrow\neg\neg\varphi)$ & $\Rightarrow$ & $(\neg\psi\Rightarrow\varphi)$ & 4 Ax. 3 \\
+                    6) & $\neg\psi$ & $\Rightarrow$ & $\varphi$ & 5,4 M.P. \\
+                    7) & $\psi$ & $\lor$ & $\varphi$ & 6 R.E. \\
+                    \hline
+                    & & $\therefore$ & $\psi\lor\varphi$ & \\
+                \end{tabular}
+            \end{center}
+            \item \textbf{Conmutatividad de $\land$}
+            \begin{center}
+                \begin{tabular}{l l c l r}
+                    1) & $\varphi$ & $\land$ & $\psi$ & Premisa \\
+                    2) & $\neg(\varphi$ & $\Rightarrow$ & $\neg\psi)$ & 1 R.E. \\
+                    3) & $\neg(\varphi\Rightarrow\neg\psi)$ & $\Rightarrow$ & $\neg(\neg\neg\psi\Rightarrow\neg\varphi)$ & 2 Ax. 4 \\
+                    4) & $\neg(\neg\neg\psi$ & $\Rightarrow$ & $\neg\varphi)$ & 3,2 M.P. \\
+                    5) & $\neg(\neg\neg\psi\Rightarrow\neg\varphi)$ & $\Rightarrow$ & $\neg(\psi\Rightarrow\neg\varphi)$ & 4 Ax. 3 \\
+                    6) & $\neg(\psi$ & $\Rightarrow$ & $\neg\varphi)$ & 5,4 M.P. \\
+                    7) & $\psi$ & $\land$ & $\varphi$ & 5,4 M.P. \\
+                    \hline
+                    & & $\therefore$ & $\psi\land\varphi$ & \\
+                \end{tabular}
+            \end{center}
+        \end{itemize}
+    \end{proof}
 
     \begin{excer}
-        Demuestre que existe una demostración de los siguientes:
+        Complete las siguientes demostraciones (que es equivalente a probar que existe una demostración de los siguientes enunciados):
         \begin{enumerate}
             \item $\left\{p_1\lor(p_5\lor p_7),(p_5\lor p_7)\Rightarrow(p_{13}\lor p_{14}),(p_3\lor p_{14})\Rightarrow(p_1\lor p_7),\neg p_1 \right\}\vdash p_7$.
-            \item $\left\{p_4\Rightarrow(p_5\Rightarrow p_6),(p_5\Rightarrow p_6)\Rightarrow p_{10},(p_{20}\lor p_{ 30})\Rightarrow \neg p_{ 40}, \neg p_{ 40}\Rightarrow( p_5\iff \neg p_{ 45}),\neg p_{10},\neg(p_5\iff\neg p_{45}) \right\}\vdash \neg p_4\land\neg(p_{20}\lor p_{30})$.
+            \item $\left\{p_4\Rightarrow(p_5\Rightarrow p_6),(p_5\Rightarrow p_6)\Rightarrow p_{10},(p_{20}\lor p_{ 30})\Rightarrow \neg p_{ 40}, \neg p_{ 40}\Rightarrow( p_5\iff \neg p_{ 45}),\neg p_{10},\neg(p_5\iff\neg p_{45}) \right\}\vdash \neg p_4\land(p_{20}\lor p_{30})$.
         \end{enumerate}
     \end{excer}
 
@@ -682,11 +768,10 @@
                 2) & $(p_5\lor p_7)$ & $\Rightarrow$ & $(p_{13}\lor p_{14})$ & Premisa \\
                 3) & $(p_{13}\lor p_{14})$ & $\Rightarrow$ & $(p_{1}\lor p_{7})$ & Premisa \\
                 4) & $\neg p_1$ &  &  & Premisa \\
-                5) & $(p_5\lor p_7)$ &  &  & S.D. \\
-                6) & $(p_{13}\lor p_{14})$ &  &  & M.P.\\
-                7) & $(p_{1}\lor p_{7})$ &  &  & M.P.\\
-                8) & $p_{1}$ & $\lor$ & $p_{7}$ & R.E.\\
-                9) & $p_{7}$ &  &  & S.D.\\
+                5) & $p_5$ & $\lor$ & $p_7$ & 1,4 S.D. \\
+                6) & $p_{13}$ & $\lor$ & $p_{14}$ & 2,5 M.P.\\
+                7) & $p_{1}$ & $\lor$ & $p_7$ & 3,6 M.P. \\
+                8) & $p_{7}$ &  &  & 7,4 S.D.\\
                 \hline
                 & & $\therefore$ & $p_7$ & \\
             \end{tabular}
@@ -696,64 +781,23 @@
         \begin{center}
             \begin{tabular}{l l c l r}
                 1) & $p_4$ & $\Rightarrow$ & $(p_5\Rightarrow p_7)$ & Premisa \\
-                1) & $(p_5\Rightarrow p_7)$ & $\Rightarrow$ & $p_{10}$ & Premisa \\
-                1) & $(p_{20}\Rightarrow p_{30})$ & $\Rightarrow$ & $\neg p_{40}$ & Premisa \\
-                1) & $\neg p_{40}$ & $\Rightarrow$ & $(p_5\iff\neg p_{ 45})$ & Premisa \\
-                1) & $\neg p_{10}$ &  &  & Premisa \\
-                1) & $\neg(p_5$ & $\iff$ & $\neg p_{45})$& Premisa \\
-                1) & $\neg (p_5\iff\neg p_{ 45})$ & $\Rightarrow$ & $p_{40}$ & Ax. \\
-                1) & $p_{40}$ &  &  & M.P. \\
-                1) & $p_{40}$ & $\Rightarrow$ & $\neg(p_{20}\Rightarrow p_{30})$ & Ax. \\
-                1) & $\neg(p_{20}\Rightarrow p_{30})$ &  & & M.P. \\
-                1) & $\neg p_{10}$ & $\Rightarrow$ & $\neg(p_5\Rightarrow p_7)$ & Ax. \\
-                1) & $\neg(p_5\Rightarrow p_7)$ & & & Ax. \\
-                1) & $\neg(p_5\Rightarrow p_7)$ & $\Rightarrow$ & $\neg p_4$ & Ax. \\
-                1) & $\neg p_4$ &  &  & M.P. \\
-                1) & $\neg p_4$ & $\land$ & $\neg(p_{20}\Rightarrow p_{30})$ & Ad. \\
+                2) & $(p_5\Rightarrow p_7)$ & $\Rightarrow$ & $p_{10}$ & Premisa \\
+                3) & $(p_{20}\Rightarrow p_{30})$ & $\Rightarrow$ & $\neg p_{40}$ & Premisa \\
+                4) & $\neg p_{40}$ & $\Rightarrow$ & $(p_5\iff\neg p_{ 45})$ & Premisa \\
+                5) & $\neg p_{10}$ &  &  & Premisa \\
+                6) & $\neg(p_5$ & $\iff$ & $\neg p_{45})$& Premisa \\
+                7) & $p_{40}$ &  &  & 4,6 M.T. \\
+                8) & $p_{40}$ & $\Rightarrow$ & $\neg\neg p_{40}$ & 7 Ax. 3 \\
+                9) & $\neg\neg p_{40}$ &  &  & 8,7 M.P. \\
+                10) & $\neg(p_{20}$ & $\Rightarrow$ & $p_{30})$ & 3,9 M.T. \\
+                11) & $p_{20}$ & $\lor$ & $p_{30}$ & 10 R.E. \\
+                12) & $((p_5\Rightarrow p_7)\Rightarrow p_{10})$ & $\Rightarrow$ & $(\neg p_{10}\Rightarrow\neg(p_5\Rightarrow p_7))$ & 2 Ax. 4 \\
+                13) & $\neg p_{10}$ & $\Rightarrow$ & $\neg(p_5\Rightarrow p_7)$ & 12,2 M.P. \\
+                14) & $\neg(p_5$ & $\Rightarrow$ & $p_7)$ & 13,5 M.P. \\
+                15) & $\neg p_4$ &  &  & 1,14 M.T. \\
+                16) & $\neg p_4$ & $\land$ & $(p_{20}\lor p_{30})$ & 15,11 Ad. \\
                 \hline
-                & & $\therefore$ & $\neg p_4\land\neg(p_{20}\lor p_{30})$ & \\
-            \end{tabular}
-        \end{center}
-    \end{proof}
-
-    \begin{excer}
-        Demuestre que existe una demostración formal de los siguientes argumentos:
-    \end{excer}
-
-    \begin{proof}
-        De (a):
-        \begin{center}
-            \begin{tabular}{l l c l r}
-                1) & $A$ & $\Rightarrow$ & $B$ & Premisa \\
-                2) & $C$ & $\Rightarrow$ & $D$ & Premisa \\
-                3) & $\neg B$ & $\lor$ & $\neg D$ & Premisa \\
-                4) & $\neg\neg A$ &  &  & Premisa \\
-                5) & $E\land F$ & $\Rightarrow$ & $C$ & Premisa \\
-                6) & $A$ &  &  & 4 Ax. 3 \\
-                7) & $B$ &  &  & 1,6 M.P. \\
-                8) & $\neg(\neg B)$ &  &  & 7 Ax. 3 \\
-                9) & $\neg D$ &  &  & 3,8 S.D.\\
-                10) & $\neg D$ & $\Rightarrow$ & $\neg C$ & 1 Ax. 4 \\
-                11) & $\neg C$ &  &  & 9,10 M.P.\\
-                12) & $\neg C$ & $\Rightarrow$ & $\neg(E\land F)$ & 5 Ax. 4 \\
-                13) & $\neg(E\land F)$ &  &  & 11,12 M.P.\\
-                \hline
-                & & $\therefore$ & $\neg (E\land F)$ & \\
-            \end{tabular}
-        \end{center}
-
-        De (b):
-        \begin{center}
-            \begin{tabular}{l l c l r}
-                1) & $E$ & $\Rightarrow$ & $(F\land\neg G)$ & Premisa \\
-                2) & $(F\lor G)$ & $\Rightarrow$ & $H$ & Premisa \\
-                3) & $E$ &  &  & Premisa \\
-                4) & $F$ & $\land$ & $\neg G$ & 1,3 M.P. \\
-                5) & $F$ &  &  & 4, Simp. \\
-                6) & $F$ & $\lor$ & $G$ & 4 Ad. \\
-                7) & $H$ &  &  & 2,6 M.P. \\
-                \hline
-                & & $\therefore$ & $H$ & \\
+                & & $\therefore$ & $\neg p_4\land(p_{20}\lor p_{30})$ & \\
             \end{tabular}
         \end{center}
     \end{proof}
@@ -799,48 +843,84 @@
                  & $\therefore$ & $\psi$ \\
             \end{tabular}
         \end{center}
-        \begin{center}
-            \textbf{Conmutatividad de $\lor$}
-        \end{center}
-        \begin{center}
-            \begin{tabular}{c c c}
-                $\varphi$ & $\lor$ & $\psi$ \\
-                \hline
-                 & $\therefore$ & $\psi\lor\varphi$ \\
-            \end{tabular}
-        \end{center}
-        \begin{center}
-            \textbf{Conmutatividad de $\land$}
-        \end{center}
-        \begin{center}
-            \begin{tabular}{c c c}
-                $\varphi$ & $\land$ & $\psi$ \\
-                \hline
-                 & $\therefore$ & $\psi\land\varphi$ \\
-            \end{tabular}
-        \end{center}
     \end{propo}
 
     \begin{proof}
         \begin{itemize}
-            \item \textbf{Conmutatividad de $\lor$}
+            \item \textbf{Doble Negación}:
             \begin{center}
                 \begin{tabular}{l l c l r}
-                    1) & $\varphi$ & $\lor$ & $\psi$ & Premisa \\
-                    1) & $\neg\varphi$ & $\Rightarrow$ & $\psi$ & 1 R.E. \\
-                    1) & $\neg\psi$ & $\Rightarrow$ & $\neg\neg\varphi$ &  \\
-                    1) & $\neg\psi$ & $\Rightarrow$ & $\varphi$ &  \\
-                    1) & $\psi$ & $\lor$ & $\varphi$ &  \\
+                    1) & $\varphi$ &  &  & Premisa \\
+                    2) & $\varphi$ & $\Rightarrow$ & $\neg\neg\varphi$ & 1 Ax. 4 \\
+                    3) & $\neg\neg\varphi$ &  &  & 2,1 M.P. \\
                     \hline
-                    & & $\therefore$ & $\psi\lor\varphi$ & \\
+                    & & $\therefore$ & $\neg\neg\varphi$ & \\
+                \end{tabular}
+            \end{center}
+            y,
+            \begin{center}
+                \begin{tabular}{l l c l r}
+                    1) & $\neg\neg\varphi$ &  &  & Premisa \\
+                    2) & $\neg\neg\varphi$ & $\Rightarrow$ & $\varphi$ & 1 Ax. 4 \\
+                    3) & $\varphi$ &  &  & 2,1 M.P. \\
+                    \hline
+                    & & $\therefore$ & $\varphi$ & \\
+                \end{tabular}
+            \end{center}
+            \item \textbf{Transposición}: Solo basta con usar un Modus Ponens y una instancia del axioma 4.
+            \item \textbf{Tautología}:
+            \begin{center}
+                \begin{tabular}{l l c l r}
+                    1) & $\neg\psi$ & $\Rightarrow$ & $\psi$ & Premisa \\
+                    2) & $(\neg\psi\Rightarrow\psi)$ & $\Rightarrow$ & $\psi$ & 1 Ax. 5 \\
+                    3) & $\psi$ &  &  & 2,1  M.P. \\
+                    \hline
+                    & & $\therefore$ & $\varphi$ & \\
                 \end{tabular}
             \end{center}
         \end{itemize}
     \end{proof}
 
-    \begin{obs}
-        Para los siguientes ejercicios se asume la conmutatividad de $\lor$ y $\land$, que se denota simplemente por Conm.
-    \end{obs}
+    \begin{excer}
+        Complete las siguientes demostraciones.
+    \end{excer}
+
+    \begin{proof}
+        De (a):
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $A$ & $\Rightarrow$ & $B$ & Premisa \\
+                2) & $C$ & $\Rightarrow$ & $D$ & Premisa \\
+                3) & $\neg B$ & $\lor$ & $\neg D$ & Premisa \\
+                4) & $\neg\neg A$ &  &  & Premisa \\
+                5) & $E\land F$ & $\Rightarrow$ & $C$ & Premisa \\
+                6) & $A$ &  &  & 4 D.N. \\
+                7) & $B$ &  &  & 1,6 M.P. \\
+                8) & $\neg\neg B$ &  &  & 7 D.N. \\
+                9) & $\neg D$ &  &  & 3,8 S.D.\\
+                10) & $\neg D$ & $\Rightarrow$ & $\neg C$ & 2 Transp. \\
+                11) & $\neg C$ &  &  & 9,10 M.P.\\
+                12) & $\neg(E\land F)$ &  &  & 5,11 S.D.\\
+                \hline
+                & & $\therefore$ & $\neg (E\land F)$ & \\
+            \end{tabular}
+        \end{center}
+
+        De (b):
+        \begin{center}
+            \begin{tabular}{l l c l r}
+                1) & $E$ & $\Rightarrow$ & $(F\land\neg G)$ & Premisa \\
+                2) & $(F\lor G)$ & $\Rightarrow$ & $H$ & Premisa \\
+                3) & $E$ &  &  & Premisa \\
+                4) & $F$ & $\land$ & $\neg G$ & 1,3 M.P. \\
+                5) & $F$ &  &  & 4, Simp. \\
+                6) & $F$ & $\lor$ & $G$ & 4 Ad. \\
+                7) & $H$ &  &  & 2,6 M.P. \\
+                \hline
+                & & $\therefore$ & $H$ & \\
+            \end{tabular}
+        \end{center}
+    \end{proof}
 
     \begin{excer}
         Demuestre que existe una demostración formal de los siguientes argumentos:

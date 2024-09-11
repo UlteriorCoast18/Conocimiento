@@ -1,0 +1,488 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{fullpage}
+\usepackage{bbm}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$\\}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$\\}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+\newcommand{\norm}[1]{\ensuremath{\|#1\|}}
+\newcommand\subtitle[1]{\textit{\large #1}\\}
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+
+    \title{Taller Topología Algebraica, Lectura 5: Conceptos Geométricos}
+    \author{Cristo Alvarado}
+    \setcounter{section}{1}
+    \maketitle
+
+    \subtitle{Nociones geométricas subyacentes}
+
+    Para continuar con el estudio de la función inducida $\varphi_*$, es necesario introducir algunos conceptos geométricos relevantes,
+
+    \begin{mydef}
+        Sean $X$ y $Y$ espacios topológicos. Dos funciones continuas $\cf{\varphi_0,\varphi_1}{X}{Y}$ son \textbf{homotópicas} si existe una función continua $\cf{\Phi}{X\times I}{Y}$ tal que para todo $x\in X$:
+        \begin{equation*}
+            \Phi(x,0)=\varphi_0(x)\quad\textup{y}\quad\Phi(x,1)=\varphi_1(x)
+        \end{equation*}
+        además, para denotar que son homotópicas, se usará el símbolo $\varphi_0\simeq\varphi_1$.
+    \end{mydef}
+
+    \begin{obs}
+        En ciertos casos, será más conveniente denotar a la homotopía como la familia de funciones $\left\{\varphi_t \right\}_{ t\in I}$ tal que cada una es continua y que el mapeo $t\mapsto \varphi_t$ es continuo en el espacio de funciones continuas, donde
+        \begin{equation*}
+            \Phi(x,t)=\varphi_t(x),\quad\forall x\in X,\forall t\in I
+        \end{equation*}
+        y por esta razón, se denotará por $\varphi_t$ a $\Phi$.
+    \end{obs}
+
+    \begin{propo}
+        Sean $X$ y $Y$ espacios topológicos. Considere el conjunto:
+        \begin{equation*}
+            \mathcal{F}=\left\{\cf{\varphi}{X}{Y}\Big|f\textup{ es una función continua} \right\}
+        \end{equation*}
+        entonces, $\simeq$ es una relación de equivalencia sobre $\mathcal{F}$.
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{obs}
+        Para aquellos que han tomado algún curso en teoría de categorías, verán de forma casi inmediata que esta relación de equivalencia induce una partición en la clase de todos los morfismos entre espacios topológicos.
+    \end{obs}
+
+    La idea detrás de la homotopía es intentar deformar de forma continua una función en la otra, conservando la continuidad de las funciones, veamos que si
+    \begin{equation*}
+        \varphi_t(x)=\Phi(x,t)
+    \end{equation*}
+    para todo $x\in X$ y todo $t\in I$, entonces la función $\cf{\varphi_t}{X}{Y}$ es continua.
+
+    Por esta razón es que comúnmente se habla de homotopía como la deformación continua de una función.
+
+    \begin{obs}
+        En otros contextos, resulta más familiar decir que dos funciones son homotópicas si pueden ser unidas con un arco en el espacio de todas las funciones continuas que van de $X$ en $Y$.
+    \end{obs}
+
+    \begin{mydef}
+        Dos funciones $\cf{\varphi_0,\varphi_1}{X}{Y}$ entre los espacios topológicos $X$ y $Y$ son \textbf{homotópicas relativas al subconjunto $A$ de $X$} si existe una función continua $\cf{\Phi}{X\times I}{Y}$ tal que
+        \begin{equation*}
+            \begin{split}
+                \varphi(x,0)=\varphi_0(x) & \quad\forall x\in X\\
+                \varphi(x,1)=\varphi_1(x) & \quad\forall x\in X\\
+                \varphi(a,t)=\varphi_0(a)=\varphi_1(a) & \quad\forall a\in A\textup{ y }\forall t\in I \\
+            \end{split}
+        \end{equation*}
+    \end{mydef}
+
+    Básicamente la deformación continua es tal que deja al subconjunto $A$ sin modificarse en el proceso de deformación.
+
+    \begin{theor}
+        Sean $\cf{\varphi_0,\varphi_1}{X}{Y}$ funciones entre dos espacios topológicos y $x\in X$. Suponga que son homotópicas $\varphi_0$ y $\varphi_1$ relativas al conjunto $\left\{u \right\}$, entonces
+        \begin{equation*}
+            \cf{{\varphi_0}_*={\varphi_1}_*}{\pi(X,u)}{\pi(Y,\varphi_0(u))}
+        \end{equation*}
+        esto es, los homomorfismos inducidos son el mismo.
+    \end{theor}
+
+    \begin{proof}
+        Sea $\cf{f}{I}{X}$ un bucle que une a $x$ consigo mismo. Como $\varphi_0$ y $\varphi_1$ son homotópicas relativas al conjunto $\left\{u\right\}$, entonces existe una función continua $\cf{\Phi}{X\times I}{Y}$ tal que
+        \begin{equation*}
+            \begin{split}
+                \Phi(x,0)=\varphi_0(x) & \quad\forall x\in X\\
+                \Phi(x,1)=\varphi_1(x) & \quad\forall x\in X\\
+                \Phi(u,t)=\varphi_0(u)=\varphi_1(u) & \quad\forall t\in I
+            \end{split}
+        \end{equation*}
+        por tanto, se tiene para el camino $f$ que la función $\cf{G}{I\times I}{Y}$ dada por
+        \begin{equation*}
+            G(s,t)=\Phi(f(s),t),\quad\forall s,t\in I
+        \end{equation*}
+        es continua, y cumple que
+        \begin{equation*}
+            F(s,0)=\varphi_0\circ f(s)\quad\textup{ y }F(s,1)=\varphi_1\circ f(s)
+        \end{equation*}
+        para todo $s\in I$. Además,
+        \begin{equation*}
+            \begin{split}
+                F(0,t)&=\Phi(f(0),t)=\Phi(u,t)=\varphi_0(u)=\varphi_1(u)\\
+                F(1,t)&=\Phi(f(1),t)=\Phi(u,t)=\varphi_0(u)=\varphi_1(u)\\
+            \end{split}
+        \end{equation*}
+        para todo $t\in I$. Por tanto, los caminos
+        \begin{equation*}
+            \varphi_0\circ f\quad\textup{ y }\varphi_1\circ f
+        \end{equation*}
+        son equivalentes, luego:
+        \begin{equation*}
+            \begin{split}
+                {\varphi_0}_*([f])&=[\varphi_0\circ f]\\
+                &=[\varphi_1\circ f]\\
+                &={\varphi_1}_*([f])\\
+            \end{split}
+        \end{equation*}
+        dado a que el bucle $f$ fue arbitrario, se sigue que
+        \begin{equation*}
+            {\varphi_0}_*={\varphi_1}_*
+        \end{equation*}
+    \end{proof}
+
+    Ahora nos dedicaremos a aplicar estos resultados.
+
+    \begin{mydef}
+        Un subconjunto $A\subseteq X$ de un espacio topológico es un \textbf{repliegue} de $X$ si existe una función continua $\cf{r}{X}{A}$ (llamada \textbf{retración}) tal que $r(a)=a$ para todo $a\in A$.
+    \end{mydef}
+
+    La condición de la definición antes mencionada, es una condición muy fuerte, ya que no todo espacio la cumple para cualquier conjunto $A$ arbitrario. Vea estos dos ejemplos:
+
+    \begin{exa}
+        Considere $X=\mathbb{R}^2\backslash\left\{(0,0)\right\}$ y tomemos $A=\mathbb{R}+(1,0)$. ¿Existe un repliegue de $X$ en $A$?
+    \end{exa}
+
+    \begin{exa}
+        Considere el espacio $X$ como la cinta de Möbius y sea $A$ el círculo central de la cinta. ¿Es $A$ una retracción de $X$? En caso de que sea ¿cuál es una posible retracción?
+    \end{exa}
+
+    Sea ahora $\cf{r}{X}{A}$ una retración e $\cf{i}{A}{X}$ el mapeo inclusión. Para cualquier punto $a\in A$ se consideran los homomorfismos inducidos:
+    \begin{equation*}
+        \begin{split}
+            \cf{i_*}{\pi(A,a)}{\pi(X,a)}\\
+            \cf{r_*}{\pi(X,a)}{\pi(A,a)}\\
+        \end{split}
+    \end{equation*}
+    siendo éstos tales que $r\circ i=\bbm{1}_{A}$, debe suceder entonces que $r_*\circ i_*=\bbm{1}_{\pi(A,a)}$ es el homomorfismo identidad.
+    
+    Se sigue entonces que
+    \begin{itemize}
+        \item $i_*$ es monomorfismo.
+        \item $r_*$ es epimorfismo.
+    \end{itemize}
+
+    Estos resultados se usarán más adelante para probar que ciertos subespacios no son repliegues del espacio original.
+
+    \begin{mydef}
+        Un subconjunto $A$ de $X$ es un \textbf{repliegue de deformación} de $X$ si existe una retracción $\cf{r}{X}{A}$ y una homotopía $\cf{F}{X\times I}{X}$ tal que
+        \begin{equation*}
+            \begin{split}
+                \left.
+                \begin{array}{rcl}
+                    F(x,0) & = & x\\
+                    F(x,1) & = & r(x)\\
+                \end{array}
+            \right\}, & \quad\forall x\in X\\
+            F(a,t)=a,\quad&\forall a\in A, \forall t\in I\\
+            \end{split}
+        \end{equation*}
+    \end{mydef}
+
+    En otras palabras, la definición anterior es equivalente a decir que $r\simeq \bbm{1}_X$ y es tal que $F(A\times I)=A$.
+    
+    \begin{theor}
+        Si $A$ es un repliegue de deformación de $X$, entonces el mapeo inclusión $\cf{i}{A}{X}$ induce un isomorfismo entre $\pi(A,a)$ y $\pi(X,a)$ para todo $a\in A$.
+    \end{theor}
+
+    \begin{proof}
+        Sea $a\in A$. Ya se sabe de la parte anterior que $i_*$ es un monomorfismo. Para probar que es isomorfismo, basta con probar que
+        \begin{equation*}
+            \cf{i_*\circ r_*}{\pi(X,a)}{\pi(X,a)}
+        \end{equation*}
+        coincide con $\bbm{1}_{\pi(X,a)}$. Afirmamos que $i\circ r$ es homotópico a $\bbm{1}_X$ respecto a $\left\{a\right\}$. En efecto, como $A$ es repliegue de deformación de $X$, entonces existe una homotopía $\cf{F}{X\times I}{Y}$ tal que
+        \begin{equation*}
+            \begin{split}
+                \left.
+                \begin{array}{rcl}
+                    F(x,0) & = & \bbm{1}_X(x)\\
+                    F(x,1) & = & r(x)\\
+                \end{array}
+            \right\} & \quad\forall x\in X\\
+            F(a',t)=a',\quad&\forall a'\in A, \forall t\in I\\
+            \end{split}
+        \end{equation*}
+        y, como $i\circ r(x)=x$, para todo $x\in X$ (por ser $i$ el mapeo inclusión), se sigue que
+        \begin{equation*}
+            \begin{split}
+                \left.
+                \begin{array}{rcl}
+                    F(x,0) & = & \bbm{1}_X(x)\\
+                    F(x,1) & = & i\circ r(x)\\
+                \end{array}
+            \right\} & \quad\forall x\in X\\
+            F(a,t)=a,\quad&\forall t\in I\\
+            \end{split}
+        \end{equation*}
+        lo cual prueba la afirmación. Se sigue del teorema anterior que
+        \begin{equation*}
+            i_*\circ r_*=(i\circ r)_*=\bbm{1}_{\pi(X,a)}
+        \end{equation*}
+    \end{proof}
+
+    Este teorema que acabamos de probar nos va a servir de dos cosas:
+    \begin{itemize}
+        \item Se usará para probar que dos espacios tienen grupos fundamentales isomorfos.
+        \item Un subespacio $A$ no es un repliegue de deformación de $X$ si los grupos fundamentales no son isomorfos.
+    \end{itemize}
+
+    En particular se usará el segundo punto para probar que ciertos repliegues no son repliegues de deforamción.
+
+    \begin{mydef}
+        Un espacio topológico $X$ es \textbf{contraíble a un punto} si existe $x_0\in X$ tal que $\left\{x_0\right\}$ es un repliegue de deformación de $X$.
+    \end{mydef}
+
+    \begin{propo}
+        Si $X$ es un espacio contraíble a un punto, entonces es arco-conexo.
+    \end{propo}
+
+    \begin{proof}
+        Sea $x_0\in X$ tal que $X$ es repliegue de deformación de $X$, entonces existe una homotopía tal que:
+        \begin{equation*}
+            \left.
+                \begin{split}
+                    F(x,0) & = x \\
+                    F(x,1) & = x_0 \\
+                \end{split}
+            \right\},\quad\forall x\in X
+        \end{equation*}
+        y,
+        \begin{equation*}
+            F(x_0,t)=x_0,\quad\forall t\in I
+        \end{equation*}
+        Para cada $x\in X$ defina $\cf{f_x}{I}{X}$ dada por:
+        \begin{equation*}
+            f_x(t)=F(x,t)
+        \end{equation*}
+        entonces, $f_x$ es una función continua tal que
+        \begin{equation*}
+            f_x(0)=F(x,0)=x\quad\textup{y}\quad f_x(1)=F(x,1)=x_0
+        \end{equation*}
+        por tanto, para cada $x\in X$ existe un arco que une a $x_0$ con $x$, luego $X$ es arco-conexo.
+    \end{proof}
+
+    \begin{mydef}
+        Un espacio topológico es \textbf{simplemente conexo} si es arco-conexo y $\pi(X,x)=\langle e\rangle$ para algún (y por ende para cualquier) $x\in X$.
+    \end{mydef}
+
+    \begin{cor}
+        Si un espacio es contraíble a un punto, entonces es simplemente conexo.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediato del hecho que el grupo fundamental del espacio topológico consistente de un solo elemento es tal que su grupo fundamental es trivial y de la proposición anterior.
+    \end{proof}
+
+    \subtitle{Simplificación de algunos grupos fundamentales}
+
+    \begin{mydef}
+        Un subconjunto $X$ del espacio $\mathbb{R}^n$ es llamado \textbf{convexo} si la línea uniendo cualesquiera dos puntos de $X$ está contenida en $X$.
+    \end{mydef}
+
+    Afirmamos que todo subconjunto convexo $X$ de $\mathbb{R}^n$ es contraíble a un punto. En efecto, sea $x_0\in X$ arbitrario fijo. Considere la función $\cf{f}{X\times I}{X}$ dada por:
+    \begin{equation*}
+        F(x,t)=(1-t)x+tx_0
+    \end{equation*}
+
+    \begin{exa}
+        Todo subconjunto convexo de $\mathbb{R}^n$ es contraíble a un punto.
+    \end{exa}
+
+    \begin{proof}
+        Sea $X$ un subconjunto convexo de $\mathbb{R}^n$ y $x_0\in X$. Primero debemos dar una retracción de $X$ en $\left\{ x_0\right\}$. Sea
+        \begin{equation*}
+            r(x)=x_0\quad\forall x\in X
+        \end{equation*}
+        es claro que esta función es continua. Para ver que $X$ es contraíble a $\left\{x_0\right\}$ veamos que la función $\cf{F}{X\times I}{X}$ dada por:
+        \begin{equation*}
+            F(x,t)=(1-t)x+tx_0\quad\forall x\in X,t\in I
+        \end{equation*}
+        (esta función es es básicamente para $x\in X$ fijo el segmento que une a $x$ con $x_0$, y al variar $x$ se pasan por todos los posibles segmentos que unen con $x_0$). Esta función es continua y efectivamente tiene como contradiminio $X$, ya que el espacio $X$ es convexo. Además:
+        \begin{equation*}
+            \begin{split}
+                \left.
+                    \begin{array}{rcl}
+                        F(x,0) & = & x \\
+                        F(x,1) & = & x_0 = r(x) \\
+                    \end{array}
+                \right\},\quad&\forall x\in X\\
+                F(x_0,t)=x_0,\quad&\forall t\in I\\
+            \end{split}
+        \end{equation*}
+        por tanto, $\left\{x_0\right\}$ es repliegue de deformación de $X$, i.e. $X$ es contraíble a un punto.
+    \end{proof}
+
+    \begin{mydef}
+        Un subconjunto no vacío $X$ de $\mathbb{R}^n$ se dice que tiene \textbf{forma de estrella respecto a $x_0\in X$} si el segmento que une a $x_0$ con $x$ está contenido en $X$, para todo $x\in X$.
+    \end{mydef}    
+
+    Como en el ejemplo anterior, se prueba de forma análoga que cualquier conjunto con forma de estrella es contraíble a un punto.
+
+    \begin{propo}
+        Sea $X\subseteq\mathbb{R}^n$ un subconjunto con forma de estrella respecto a algún $x\in X$. Entonces $X$ es contraíble a un punto y por ende, simplemente conexo.
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{exa}
+        Afirmamos que la $(n-1)$-esfera unitaria $\mathbb{S}^{ n-1}$
+        \begin{equation*}
+            \mathbb{S}^{ n-1}=\left\{x\in\mathbb{R}^n\Big|\|x\|=s1 \right\}
+        \end{equation*}
+        es una deformación de repliegue de $\mathbb{R}^n-\left\{0\right\}$ para todo $n\in\mathbb{N}$.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, sea $n\in\mathbb{N}$ y considere el repliegue $\cf{r}{\mathbb{R}^n-\left\{0\right\}}{\mathbb{S}^{ n-1}}$ dado por
+        \begin{equation*}
+            r(x)=\frac{x}{\|x\|},\quad\forall x\in\mathbb{R}^n-\left\{0\right\}
+        \end{equation*}
+        Claramente esta es una función continua. Construímos la homotopía $\cf{F}{(\mathbb{R}^n-\left\{0\right\})\times I}{\mathbb{R}^n-\left\{0\right\}}$ dada por:
+        \begin{equation*}
+            F(x,t)=(1-t)x+t\cdot\frac{x}{\|x\|},\quad\forall x\in \mathbb{R}^n-\left\{0\right\}, \forall t\in I
+        \end{equation*}
+        Es claro que esta función es continua, para la que se cumple    que
+        \begin{equation*}
+            \begin{split}
+                \left.
+                    \begin{array}{rcl}
+                        F(x,0) & = & x\\
+                        F(x,0) & = & r(x)\\
+                    \end{array}
+                \right\},&\quad\forall x\in\mathbb{R}^n-\left\{0\right\}\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                F(s,t)&=(1-t)s+t\cdot\frac{s}{\|s\|}\\
+                &=(1-t)s+ts\\
+                &=s,\quad\forall s\in\mathbb{S}^{ n-1},\quad\forall t\in I \\
+            \end{split}
+        \end{equation*}
+        Por tanto, $\mathbb{S}^{ n-1}$ es una deformación de retracción de $\mathbb{R}^n-\left\{0\right\}$.
+    \end{proof}
+
+\end{document}
