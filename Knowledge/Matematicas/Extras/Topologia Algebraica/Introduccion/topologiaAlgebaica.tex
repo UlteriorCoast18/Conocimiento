@@ -2033,7 +2033,83 @@
 
     \section{Tipo de Homotopía y Equivalencia de Homotopía entre Espacios}
 
-    %TODO
+    Antes de continuar con el estudio detallado del grupo fundamental, hablaremos un poco sobre la topología de ciertos subespacios del plano. Un espacio topológico será llamado \textbf{disco cerrado} si es homeomorfo al conjunto 
+    \begin{equation*}
+        \mathbb{D}^2=\left\{(x,y)\in\mathbb{R}^2\Big|x^2+y^2\leq1 \right\}
+    \end{equation*}
+    y será llamado \textbf{disco abierto} si es homeomorfo al conjunto
+    \begin{equation*}
+        \mathbb{B}^2=\left\{(x,y)\in\mathbb{R}^2\Big|x^2+y^2<1 \right\}
+    \end{equation*}
+    La \textbf{frontera} de un disco cerrado es el subconjunto que corresponde al círculo $\mathbb{S}^1$ bajo el homeomorfismo del disco sobre $\mathbb{D}^2$.
+
+    Probaremos algunas propiedades fundamentales de los discos:
+
+    \begin{propo}
+        Cualquier subconjunto del plano $E\subseteq\mathbb{R}^2$ compacto, convexo con interior no vacío es un disco cerrado.
+    \end{propo}
+
+    \begin{proof}
+        Sea $x_0\in E$ un punto interior de $E$. Considere el rayo $\cf{l_\theta}{[0,\infty[}{E}$ dado por:
+        \begin{equation*}
+            l_\theta(t)=x_0+t(\cos\theta,\sin\theta)
+        \end{equation*}
+        para cada $\theta\in[0,2\pi[$. Tomemos $\theta\in[0,2\pi[$. El conjunto
+        \begin{equation*}
+            l_\theta^{-1}([0,\infty[)\cap E
+        \end{equation*}
+        es un intervalo cerrado contenido en $E$ con un punto extremo $x_0$ (por ser $E$ compacto y convexo). Este intervalo es homeomorfo al intervalo cerrado con puntos extremos $(0,0)$ y $(\cos\theta,\sin\theta)$ dentro de $\mathbb{D}^2$. De esta forma variando $\theta$ en $[0,2\pi[$ construímos un homeomorfismo entre $E$ y $\mathbb{D}^2$.
+    \end{proof}
+
+    \begin{obs}
+        Al lector que quiera formalizar el argumento anterior le será de utilidad ver lo que está sucediéndole al conjunto $E$.
+    \end{obs}
+
+    \begin{propo}
+        Sean $E_1$ y $E_2$ discos cerrados con fronteras $B_1$ y $B_2$, respectivamente. Entonces, cualquier función continua $\cf{f}{B_1}{B_2}$ puede ser extendida a una función continua $\cf{F}{E_1}{E_2}$. Si $f$ es homeomorfismo, podemos escoger a $F$ como un homeomorfismo.
+    \end{propo}
+
+    \begin{proof}
+        Como $E_1,E_2\cong\mathbb{D}^2$ y $B_1,B_2\cong\mathbb{S}^1$, basta con probar que si $\cf{f}{\mathbb{S}^1}{\mathbb{S}^1}$ es una función continua, esta función puede ser extendida continuamente a $\mathbb{D}^2$.
+
+        En efecto, sea $x\in\mathbb{D}^2$, entonces existe $t\in[0,1]$ y $\theta\in[0,2\pi[$ tal que
+        \begin{equation*}
+            x=t(\cos\theta,\sin\theta)
+        \end{equation*}
+        hacemos $\cf{F}{\mathbb{D}^2}{\mathbb{D}^2}$ dada por:
+        \begin{equation*}
+            F(x)=tf(\cos\theta,\sin\theta)=\left\{
+                \begin{array}{lcr}
+                    tf\left(\frac{x}{\|x\|}\right) & \textup{ si } & x\neq(0,0)\\
+                    0 & \textup{ si } & x=(0,0)\\
+                \end{array}
+            \right.,\quad\forall x\in\mathbb{D}^2
+        \end{equation*}
+        (observe que $t=\|x\|$). Claramente $F$ es continua, está bien definida y es extensión de $f$. Si $f$ es homeomorfismo, considere $f^{-1}$ su inversa continua. Se tiene que definiendo
+        \begin{equation*}
+            F^{-1}(x)=tf^{-1}(\cos\theta,\sin\theta)=\left\{
+                \begin{array}{lcr}
+                    tf^{-1}\left(\frac{x}{\|x\|}\right) & \textup{ si } & x\neq(0,0)\\
+                    0 & \textup{ si } & x=(0,0)\\
+                \end{array}
+            \right.,\quad\forall x\in\mathbb{D}^2
+        \end{equation*}
+        Se tiene entonces que para $x\in\mathbb{D}^2$ no cero (en particular, $t\neq 0$ y $f\left(\frac{x}{\|x\|}\right)\neq0$) que:
+        \begin{equation*}
+            \begin{split}
+                F^{-1}\circ F(x)&=F^{-1}\left(tf\left(\frac{x}{\|x\|}\right)\right)\\
+                &=F^{-1}\left(tf\left(\frac{x}{\|x\|}\right)\right)\\
+                &=t f^{-1}\left(f\left(\frac{x}{\|x\|}\right)\right)\\
+                &=\frac{tx}{\|x\|}\\
+                &=x\\
+            \end{split}
+        \end{equation*}
+        de forma análoga
+        \begin{equation*}
+            F\circ F^{-1}(x)=x
+        \end{equation*}
+        y, el cero lo manda al cero en ambos casos de la composición. Por lo cual, $F$ es homeomorfismo.
+    \end{proof}
 
     \newpage
 
