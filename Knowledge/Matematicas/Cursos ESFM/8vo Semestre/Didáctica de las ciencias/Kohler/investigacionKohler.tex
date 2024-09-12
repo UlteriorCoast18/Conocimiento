@@ -1,0 +1,214 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Investigación para: Köhler vs Skinner}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    Primero daremos una pequeña biografía \textit{Wolfgang Köhler}.
+
+    Psicólogo alemán que fue una pieza clave en el desarrollo de la Gestaltpsychologie. Se doctoró en la Universidad de Berlín en 1909, con un trabajo sobre audición. En 1912 participó, junto a Köhler, en los experimentos sobre percepción que llevó a cabo Wertheimer y que terminaron en un nuevo movimiento psicológico conocido como Gestalt.
+
+    Como director de la Academia Prusiana de Ciencias en Tenerife, Islas Canarias, (1913-1920), Köhler llevó a cabo diversos experimentos sobre la resolución de problemas en chimpancés, poniendo de manifiesto su capacidad para construir y usar herramientas simples. Sus hallazgos fueron publicados en Intelligenzprüfungen an Menschenaffen (1917; The Mentality of Apes), obra en la cual exhortó a una revisión radical de los paradigmas de las teorías de aprendizaje. Otra obra capital fue Die physischen Gestalten in Ruhe und im stationären Zustand (1920; Physical Gestalt in Rest and Stationary States), que incluyó investigaciones neurofisiológicas.
+
+    En 1921 Köhler fue jefe del Instituto de Psicología y profesor de Filosofía de la Universidad de Berlín, y publicó Gestalt Psychology en 1929. Debido a sus críticas al gobierno de Adolf Hitler, Köhler emigró a los EE.UU. en 1935, donde laboró hasta su muerte en el Swarthmore College de Pennsylvania.
+
+    Como se menciona antes, Wolfgang Köhler fue uno de los representantes más destacados de la psicología de Gestalt. Se ocupó de explicar el aprendizaje y para ello, realizó largas observaciones en chimpancés.
+
+    Contextualmente, en Norteamérica se imponía poco a poco la escuela conductista. Esta corriente pretendía darle validez únicamente a las conductas observables. Mientras tanto, en Europa se abría paso la psicología de la Gestalt, que también trabajaba desde el laboratorio, pero buscaba una interpretación fenomenológica de los hallazgos.
+        
+    Hablemos un poco sobre las ventajas y desventajas de dos puntos principales:
+
+    \textbf{Ambiente de Trabajo}
+    
+    \begin{itemize}
+        \item \textit{Ventajas}:
+        \begin{itemize}
+            \item Sus experimentos están hechos en chimpancés, que son animales genéticamente más cercanos a los humanos.
+            \item Se propicia el trabajo colaborativo al incluir grupos chimpancés intentando resolver el problema.
+            \item Se propicia el uso de herramientas.
+        \end{itemize}
+        \item \textit{Desventajas}:
+        \begin{itemize}
+            \item Dependiendo de los estimulos puede que se obtengan respuestas diferentes de parte del sujeto.
+            \item El único estimulo para los chimpancés es obtener alimento.
+            \item En algunas ocasiones sucedía que los chimpancés \textit{jugaban} a pincharse con unos palos (es decir, que usan instrumentos) pero, cuando el juego se transforma en pelea violenta, los arrojan ya que dejan de serles útiles, atacándose utilizando brazos, pies y dientes. 
+        \end{itemize}
+    \end{itemize}
+
+    \textbf{Tipo de Aprendizaje}
+    
+    \begin{itemize}
+        \item \textit{Ventajas}:
+        \begin{itemize}
+            \item Propicia el aprendizaje por cuenta del sujeto.
+            \item Propicia el uso de herramientas por parte del sujeto para resolver su problema. Ello crea precedentes para que el sujeto utilice en otros contextos las herramientas que ha aprendido a usar.
+            \item Köhler concluyó que los chimpancés eran capaces de la resolución de problemas mediante la comprensión súbita (insight, en inglés), en lugar de un simple ensayo y error, que era la tesis planteada anteriormente por Thorndike. De esa manera, contribuyendo significativamente a la comprensión de las capacidades cognitivas de dichos animales (Osuna-Mascaró y Auersperg, 2021).
+            \item Motivava el razonamiento de los chimpancés: las observaciones revelaron un patrón interesante de comportamiento de los chimpancés. Inicialmente, estos intentaban resolver el problema mediante ensayo y error, pero cuando los intentos resultaban infructuosos, se embarcaban en un período de observación.
+            \item Los chimpancés implementaban estrategias en diferentes problemas que se les presentaron después, como el uso de palos o escalar objetos para alcanzar la comida.
+
+        \end{itemize}
+        \item \textit{Desventajas}:
+        \begin{itemize}
+            \item No se puede obtener conocimiento sobre el que el sujeto no sea capaz de obtener.
+            \item Aprendizaje no lineal, es decir que no existe una progresión constante a la hora de resolver problemas, todo depende de como el sujeto discierna sobre los estimulos previos a los que ha sido sometido.
+            \item  En el artículo mencionado en el 4to punto, se habla que el lenguaje desempeñaría un papel regulador o planificador de la acción que es lo que hace que el niño no cometa algunos errores del tipo de los observados por Köhler en los chimpancés. Por lo que directamente no podríamos extrapolar el experimento de los chimpancés a humanos.
+        \end{itemize}
+    \end{itemize}
+
+    \newpage
+
+    \textbf{Referencias:}
+
+    \begin{itemize}
+        \item \href{https://www.ufrgs.br/psicoeduc/chasqueweb/gestalt/biografias-gestalt.htm}{Biografía corta de Köhler}.
+        \item \href{https://lamenteesmaravillosa.com/wolfgang-kohler-la-inteligencia-y-los-chimpances/}{Wolfgang Köhler, la inteligencia y los chimpancés}.
+        \item \href{https://neuro-class.com/wolfgang-kohler-y-el-experimento-de-los-chimpances/}{Wolfgang Köhler y el experimento de los chimpancés}.
+        \item Los estudios sobre la cognición en primates de Köhler: algunas repercusiones en los trabajos de Vigotsky
+        Sabena, Gretel y Freiberg Hoffmann, Agustín.
+        XV Jornadas de Investigación y Cuarto Encuentro de Investigadores en Psicología del Mercosur. Facultad de Psicología - Universidad de Buenos Aires, Buenos Aires, 2008.
+    \end{itemize}
+
+    
+\end{document}
