@@ -1238,7 +1238,109 @@
                 & & & $\therefore$ & $P\Rightarrow(Q\Rightarrow A)$ & \\
             \end{tabular}
         \end{center}
+    \end{sol}
 
+    \begin{excer}
+        Complete las siguientes demostraciones.
+    \end{excer}
+
+    \begin{sol}
+        De (1):
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & 1) & $Q$ &  &  & Premisa \\
+                & 2) & $Q$ & $\Rightarrow$ & $(P\Rightarrow Q)$ & 1 Ax. 1 \\
+                & 3) & $P$ & $\Rightarrow$ & $Q$ & 2,1 M.P. \\
+                \hline
+                & & & $\therefore$ & $P\Rightarrow Q$ & \\
+            \end{tabular}
+        \end{center}
+        De (2):
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & 1) & $(P\Rightarrow Q)$ & $\land$ & $(C\Rightarrow D)$ & Premisa \\
+                & 2) & $(Q\lor D)$ & $\Rightarrow$ & $((E\Rightarrow(E\lor F))\Rightarrow P\land C)$ & Premisa \\
+                & 3) & $P$ & $\Rightarrow$ & $Q$ & 1 Simp. \\
+                & 4) & $C$ & $\Rightarrow$ & $D$ & 1 Conm. y Simp. \\
+                $|\longrightarrow$ & 5) & $E$ &  &  & Sup. \\
+                $|$ & 6) & $E$ & $\lor$ & $F$ & 5 Ad. \\
+                \hline
+                 & 7) & $E$ & $\Rightarrow$ & $(E\lor F)$ & 5-6 M.D. \\
+                $|\longrightarrow$ & 8) & $C$ &  &  & Sup. \\
+                $|$ & 9) & $D$ &  &  & 8,4 M.P. \\
+                $|$ & 10) & $Q$ & $\lor$ & $D$ & 9 Ad. y Conm. \\
+                $|$ & 11) & $(E\Rightarrow(E\Rightarrow D)$ & $\Rightarrow$ & $P\land C$ & 2,10 M.P. \\
+                $||\longrightarrow$ & 12) & $\neg P$ &  &  & Sup. \\
+                $||$ & 13) & $\neg P$ & $\lor$ & $\neg C$ & 12 Ad. \\
+                $||$ & 14) & $\neg (P$ & $\land$ & $C)$ & 13 DeMorgan \\
+                $||$ & 15) & $\neg (E$ & $\Rightarrow$ & $(E\lor F))$ & 11,14 M.T. \\
+                $||$ & 16) & $(E\Rightarrow(E\lor F))$ & $\land$ & $\neg(E\Rightarrow(E\lor F))$ & 7,15 Ad.\\
+                \hline
+                $|$ & 17) & $P$ &  &  & 12-16 D.C. \\
+                \hline
+                 & 18) & $C$ & $\Rightarrow$ & $P$ & 18-17 D.C. \\
+                $|\longrightarrow$ & 19) & $P$ &  &  & Sup. \\
+                & & & $\therefore$ & $P\iff C$ & \\
+            \end{tabular}
+        \end{center}
+        De (3):
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & 1) & $P$ & $\lor$ & $(Q\land R)$ & Premisa \\
+                & 2) & $P$ & $\Rightarrow$ & $R$ & Premisa \\
+                $|\longrightarrow$& 3) & $\neg R$ &  &  & Sup. \\
+                $|$& 4) & $\neg P$ &  &  & 2,3 M.T. \\
+                $|$& 5) & $Q$ & $\land$ & $R$ & 1,4 S.D. \\
+                $|$& 6) & $R$ &  &  & 5 Conm. y Simp. \\
+                $|$& 7) & $R$ & $\land$ & $\neg R$ & 6,3 Conj. \\
+                \hline
+                & 8) & $R$ &  &  & 3-7 M.D.C. \\
+                \hline
+                & & & $\therefore$ & $R$ & \\
+            \end{tabular}
+        \end{center}
+        De (4):
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & 1) & $(P\lor Q)$ & $\Rightarrow$ & $(R\Rightarrow D)$ & Premisa \\
+                & 2) & $(\neg D\lor E)$ & $\Rightarrow$ & $(P\land R)$ & Premisa \\
+                $|\longrightarrow$ & 3) & $\neg D$ &  &  & Sup. \\
+                $|$ & 4) & $\neg D$ & $\lor$ & $E$ & 3 Ad. \\
+                $|$ & 5) & $P$ & $\land$ & $R$ & 2,4 M.P. \\
+                $|$ & 6) & $P$ &  &  & 5 Simp. \\
+                $|$ & 7) & $P$ & $\lor$ & $Q$ & 6 Ad. \\
+                $|$ & 8) & $R$ & $\Rightarrow$ & $D$ & 1,7 M.P. \\
+                $|$ & 9) & $R$ &  &  & 5 Conm. y Simp. \\
+                $|$ & 10) & $D$ &  &  & 8,9 M.P. \\
+                $|$ & 11) & $D$ & $\land$ & $\neg D$ & 10,3 Conj. \\
+                \hline
+                & 12) & $D$ &  &  & 3-11 D.C.\\
+                \hline
+                & & & $\therefore$ & $D$ & \\
+            \end{tabular}
+        \end{center}
+        De (5):
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & 1) & $(P\lor Q)$ & $\Rightarrow$ & $(R\land D)$ & Premisa \\
+                & 2) & $(R\land F)$ & $\Rightarrow$ & $(\neg F\land G)$ & Premisa \\
+                & 3) & $(F\lor H)$ & $\Rightarrow$ & $(P\land I)$ & Premisa \\
+                $|\longrightarrow$& 4) & $F$ &  &  & Sup. \\
+                $|$& 5) & $F$ & $\lor$ & $H$ & 4 Ad. \\
+                $|$& 6) & $P$ & $\land$ & $I$ & 2,5 M.P. \\
+                $|$& 7) & $P$ &  &  & 6 Simp. \\
+                $|$& 8) & $R$ & $\land$ & $D$ & 1,7 M.P. \\
+                $|$& 9) & $R$ &  &  & 8 Simp. \\
+                $|$& 10) & $R$ & $\land$ & $F$ & 9,4 Conj. \\
+                $|$& 11) & $\neg F$ & $\land$ & $G$ & 2,10 M.P. \\
+                $|$& 12) & $\neg F$ &  &  & 11 Simp. \\
+                $|$& 13) & $F$ & $\land$ & $\neg F$ & 4,12 Conj. \\
+                \hline
+                & 14) & $\neg F$ &  &  & 4-13 D.C. \\
+                \hline
+                & & & $\therefore$ & $\neg F$ & \\
+            \end{tabular}
+        \end{center}
     \end{sol}
 
 \end{document}

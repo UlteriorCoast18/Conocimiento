@@ -1,0 +1,229 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\big|#1\big|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand{\Obj}[1]{\ensuremath{\textup{Obj}\left(#1\right)}}
+\newcommand{\Hom}[3]{\ensuremath{\textup{Hom}_{#1}\left(#2,#3\right)}}
+
+\newcommand{\Cat}[1]{\ensuremath{\textup{\textbf{#1}}}}
+\newcommand{\Iso}[3]{\ensuremath{\textup{I}_{\textup{SO}_{#1}}\left(#2,#3\right)}}
+\newcommand{\SO}[1]{\ensuremath{\textup{SO}\left(#1\right)}}
+\newcommand{\Quo}[1]{\ensuremath{\textup{Quo}\left(#1 \right)}}
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas de Álgebra Moderna IV.
+    
+    Módulos.}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+
+    \chapter{Módulos Libres y Espacios Vectoriales}
+
+    \section{Conceptos Fundamentales}
+
+    No queda de otra más que asumir este resultado de categorías:
+
+    \begin{theor}[\textbf{Hungerford, Theorem I.7.8}]
+        Si $\mathcal{C}$ es una categoría concreta, $F$ y $F'$ son objetos en $C$ tales que $F$ es libre en el conjunto $X$ y $F'$ lo es en $X'$ siendo estos conjuntos tales que $\abs{X}=\abs{X'}$, entonces $F$ es equivalente a $F'$.
+    \end{theor}
+
+    En particular, la categoría de $R$-módulos unitarios es una categoría concreta, donde la equivalencia entre dos objetos de la categoría es un isomorfismo entre ambos $R$-módulos.
+
+    \begin{theor}
+        Sea $R$ un anillo conmutativo con identidad. Las siguientes condiciones son equivalentes en un $R$-módulo unitario $F$:
+        \renewcommand{\theenumi}{\roman{enumi}}
+        \begin{enumerate}
+            \item $F$ tiene base no vacía.
+            \item $F$ es la suma interna directa de una familia cíclica de $R$-módulos, cada uno de los cuales es isomorfo a $R$ como un $R$-módulo.
+            \item $F$ es un $R$-módulo isomorfo a la suma directa de copias del $R$-módulo izquierdo $R$.
+            \item Existe un conjunto no vacío $X$ y una función $\cf{i}{X}{F}$ con la siguiente propiedad: dado un $R$-módulo, $A$ y una función $\cf{f}{X}{A}$ existe un único homomorfismo de $R$-módulos $\cf{\overline{f}}{F}{A}$ tal que
+            \begin{equation*}
+                \overline{f}\circ i=f
+            \end{equation*}
+            En otras palabras, $F$ es un objeto libre en la categoría de $R$-módulos uniatrios.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        $(i)\Rightarrow(iv)$: Sea $X$ una base no vacía de $F$ y sea $\cf{i}{X}{F}$ el mapeo inclusión. Sea $A$ un $R$-módulo y $\cf{f}{X}{A}$ una función.
+
+        Si $u\in F$, entonces existen $n\in\mathbb{N}\cup\left\{0\right\}$, $r_i\in R$ y $x_i\in X$, para todo $i\in\left\{1,...,n\right\}$ tales que
+        \begin{equation*}
+            u=\sum_{ i=1}^n r_i x_i
+        \end{equation*}
+        Definimos la función $\cf{\overline{f}}{F}{A}$ dada por:
+        \begin{equation*}
+            \overline{f}(u)=\sum_{ i=1}^n r_if(x_i)
+        \end{equation*}
+        Esta función está bien definida, pues $F$ tiene como base a $X$ (por ende, todo elemento se representa de forma única como combinación lineal finita de elementos de $X$). Además,
+        \begin{equation*}
+            \begin{split}
+                \overline{f}\circ i(x_i)&=\overline{f}(x_i)\\
+                &=1_R\cdot f(x_i) \\
+                &=f(x_i),\quad\forall x_i\in X \\
+            \end{split}
+        \end{equation*}
+        por ende, $\overline{f}\circ i=f$.
+
+        Veamos que es homomorfismo de $R$-módulos (no sé como se verifica eso, chécalo porfa Roque).
+
+        Ahora, si $\cf{g}{F}{A}$ es otro homomorfismo de $R$-módulos tal que
+        \begin{equation*}
+            g\circ i=f
+        \end{equation*}
+        se tiene que
+        \begin{equation*}
+            \overline{f}\circ i=g\circ i\Rightarrow \overline{f}\big|_{X}=g\big|_{X}
+        \end{equation*}
+        Como $X$ genera $F$ y todo homomorfismo de $R$-módulos que vaya de $F$ en algún $R$-módulo, $B$ queda únicamente determinado por $X$, basta ver que $\overline{f}=g$ en $X$, lo cual sucede por la igualdad anterior. Por tanto, $\overline{f}$ es único.
+
+        $(iv)\Rightarrow(iii)$: Asumiendo $(iv)$, sean $X\subseteq F$ no vacío y una función $\cf{i}{X}{F}$ que cumplan esta propiedad. Considere el $R$-módulo
+        \begin{equation*}
+            A=\sum_{ x\in X}R
+        \end{equation*}
+        (es decir, es la suma directa de $\abs{X}$-veces el $R$-módulo izquierdo $R$). Sea
+        \begin{equation*}
+            Y=\left\{\theta_x\Big| x\in X \right\}
+        \end{equation*}
+        donde
+        \begin{equation*}
+            \theta_x(y)=\left\{
+                \begin{array}{lcr}
+                    1_R & \textup{ si } & y=x\\
+                    0_R & \textup{ si } & y\neq x\\
+                \end{array}
+            \right.,\quad\forall y\in Y
+        \end{equation*}
+        Como $X$ es no vacío, entonces $Y$ es no vacío. Por la parte $(iii)\Rightarrow(i)$, se sabe que $Y$ es una base del $R$-módulo unitario $A$. En particular, como $(iii)\Rightarrow(iv)$, se tiene que $A$ es un $R$-módulo libre en la categoría de $R$-módulos unitarios.
+        
+        En particular, $F$ y $A$ son $R$-módulos libres en la categoría de $R$-módulos unitarios y son tales que $\abs{X}=\abs{Y}$ (por la forma en que se construyó $Y$), luego por el Teorema anterior son equivalentes en esta categoría, es decir que existe un isomorfismo $\cf{f}{F}{A}$. Así que
+        \begin{equation*}
+            F\cong\sum_{ x\in X}R
+        \end{equation*}
+        lo que prueba el resultado.
+    \end{proof}
+
+\end{document}
