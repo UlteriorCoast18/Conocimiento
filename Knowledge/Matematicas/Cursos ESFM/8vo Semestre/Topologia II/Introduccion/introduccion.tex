@@ -901,5 +901,206 @@
         Por tanto, $(X,\tau)$ es $T_{3.5}$.
     \end{proof}
 
+    %TODO
+
+    \section{El Teorema de Metrizabilidad de Urysohn}
+
+    \begin{mydef}
+        Considere el espacio de sucesiones $l_2(\mathbb{R})$ de sucesiones dos convergentes, es decir que $\left\{x_n \right\}_{ n=1}^\infty\in l_2(\mathbb{R})$ si y sólo si
+        \begin{equation*}
+            \sum_{ n=1}^\infty\abs{x_n}^2<\infty
+        \end{equation*}
+        Se define una métrica $\rho$ sobre $l_2(\mathbb{R})$ dada por:
+        \begin{equation*}
+            \rho(x,y)=\left[\sum_{ n=1}^\infty(x_n-y_n)^2\right]^{1/2}
+        \end{equation*}
+        Se define el \textbf{Cubo de Hilbert} como el subespacio métrico de $l_2(\mathbb{R})$ dado por:
+        \begin{equation*}
+            \mathcal{H}=\left\{\left\{x_n \right\}_{ n=1}^\infty\Big|\abs{x_n}<\frac{1}{n}\textup{ para todo }n\in\mathbb{N} \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{theor}[\textbf{Teorema de metrización de Urysohn}]
+        Todo espacio regular $(X,\tau)$ y segundo numerable es metrzable.
+    \end{theor}
+
+    \begin{proof}
+        %TODO
+        Tenemos que la suma
+        \begin{equation*}
+            \sum_{ i=1}^\infty h_i(x)^2\leq\sum_{ i=1}^\infty\frac{1}{i^2} <\infty
+        \end{equation*}
+        es convergente para todo $x\in X$. Por tanto, podemos definir una función $\cf{h}{X}{\mathcal{H}}$ dada por:
+        \begin{equation*}
+            h(x)=(h_1(x),...,h_n(x),...),\quad\forall x\in X
+        \end{equation*}
+        Veamos que
+        \begin{enumerate}
+            \item $h$ es inyectiva. Sean $x,y\in X$ puntos distintos. Se tiene que $x\in X-\left\{y\right\}$, como el espacio es $T_1$ este conjunto es abierto. Por la observación anterior existen $(B_{ j_i},B_{ k_i})\in\mathcal{L}$ tales que
+            \begin{equation*}
+                x\in B_{ j_i}\subseteq\overline{B}_{ j_i}\subseteq B_{ k_i}\subseteq X-\left\{y\right\}
+            \end{equation*}
+            por ende, $x\in\overline{B}_{ j_i}$ y $y\in X-B_{ k_i}$. Por ende
+            \begin{equation*}
+                h_i(x)=0\quad\textup{y}\quad h_i(y)=\frac{1}{i},\quad\forall i\in\mathbb{N}
+            \end{equation*}
+            por ende, $h_i(x)\neq h_i(y)$, se sigue que $h(x)\neq h(y)$.
+            \item $\cf{h}{(X,\tau)}{(\mathcal{H},\tau_{\rho})}$ es continua. Sea $x_0\in X$ y $\varepsilon>0$, encontremos $U\in\tau$, con $x_0\in U$ tla que $h(U)\subseteq B_\rho(h(x_0),\varepsilon)$, es decir que para todo $x\in U$,
+            \begin{equation*}
+                \rho(h(x_0),h(x))<\varepsilon
+            \end{equation*}
+            Sea $N\in\mathbb{N}$ tal que dado $x\in X$:
+            \begin{equation*}
+                \sum_{ n=N}^\infty\abs{ h_n(x_0)-h(x)}^2<\frac{\varepsilon^2}{2}
+            \end{equation*}
+            Además, para todo $m\in\left\{1,...,N \right\}$, la función $\cf{h_m}{(X,\tau)}{([0,1/m],\tau_u)}$ es continua, podemos encontrar $W_m\in\tau$ tal que $x_0\in W_m$ y además, para todo $x\in W_m$,
+            \begin{equation*}
+                \abs{h_m(x)-h_m(x_0)}^2<\frac{\varepsilon^2}{2N}
+            \end{equation*}
+            En particular se tiene que
+            \begin{equation*}
+                x_o\in\bigcap_{ m=1}^N W_m=W\in\tau
+            \end{equation*}
+            Sea $x\in W$:
+            \begin{equation*}
+                \begin{split}
+                    \rho(h(x),h(x_0))&=\abs{\sum_{ n=1}^N\abs{h_n(x)-h_n(x_0)}^2+\sum_{ n=N+1}^\infty\abs{h_n(x)-h_n(x_0)}^2}^{1/2}\\
+                    &\leq\abs{\sum_{ n=1}^N\frac{\varepsilon^2}{2N}+\frac{\varepsilon^2}{2}}^{1/2}\\
+                    &=\left[\frac{\varepsilon^2}{2}+\frac{\varepsilon^2}{2} \right]^{ 1/2}\\
+                    &=\varepsilon\\
+                \end{split}
+            \end{equation*}
+            lo que prueba la continuidad de $h$ en $x_0$, que al ser arbitrario, se sigue que $h$ es continua en $X$.
+            \item $\cf{h}{(X,\tau)}{(h(X),\tau_\rho)}$ es abierta. Sea $A\in\tau$. Tomemos $x\in h(A)$, sea $a\in A$ tal que
+            \begin{equation*}
+                h(a)=x
+            \end{equation*}
+            por la observación anterior existe $(B_{ m_i},B_{ n_i})\in\mathcal{L}$ con
+            \begin{equation*}
+                a\in B_{ m_i}\subseteq\overline{B}_{ m_i}\subseteq B_{ n_i}\subseteq A
+            \end{equation*}
+            por tanto, tenemos que $h_i(a)=0$ y $h_i(X-A)=\left\{\frac{1}{i}\right\}$. Por tanto,
+            \begin{equation*}
+                y\in h(X-A)=h(X)-h(A)
+            \end{equation*}
+            se cumple que
+            \begin{equation*}
+                \rho(x,y)\geq\frac{1}{i}
+            \end{equation*}
+            luego, $y\notin B_{\rho}(x,1/i)$. Se sigue que
+            \begin{equation*}
+                B_\rho(x,1/i)\subseteq h(A)
+            \end{equation*}
+            se sigue entonces que $\cf{h}{(X,\tau)}{(h(X),\tau_\rho)}$.
+        \end{enumerate}
+        De los tres incisos anteriores, se sigue que $\cf{h}{(X,\tau)}{(h(X),\tau_\rho)}$ es un homeomorfismo y como $(h(X),\tau_\rho)$ es metrizable, entonces $(X,\tau)$ es metrizable.
+    \end{proof}
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico segundo numerable, entonces las siguientes proposiciones son equivalentes:
+        \begin{enumerate}
+            \item $(X,\tau)$ es completamente regular.
+            \item $(X,\tau)$ es normal.
+            \item $(X,\tau)$ es metrizable.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \section{Espacios Paracompactos}
+
+    \begin{obs}
+        El concepto de espacio paracompacto fue definido por Dieudonné en 1944.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $(X,\tau)$ espacio topológico, $x\in X$ y $\mathcal{U}=\left\{U_\alpha \right\}_{ \alpha\in I}$ una familia de subconjuntos de $X$.
+        \begin{enumerate}
+            \item La familia $\mathcal{U}$ es \textbf{punto finita en $x\in X$}, si existe un subconjunto finito $K$ de $I$ tal que para todo $\alpha\notin K$, $x\notin U_\alpha$.
+            \item La familia $\mathcal{U}$ es \textbf{localmente finita en $x\in X$} si existe una vecindad $V$ de $x$ y un subconjunto finito $J\subseteq I$ tales que para todo $\alpha\notin J$,
+            \begin{equation*}
+                V\cap U_\alpha=\emptyset
+            \end{equation*}
+            \item La familia $\mathcal{U}$ es \textbf{punto (resp. localmente) finita en el espacio $(X,\tau)$} si $\mathcal{U}$ es punto (resp. localmente) finita en cada uno de los pntos de $X$.
+            \item La familia $\mathcal{U}$ es \textbf{$\sigma$-localmente finita} si $\mathcal{U}$ se puede escribir como una unión numerable de colecciones localmente finitas.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item Si $\mathcal{U}$ es localmente finita, entonces $\mathcal{U}$ es punto-finita.
+            \item Si $\mathcal{U}$ es una colección finita, entonces $\mathcal{U}$ es localmente finita.
+        \end{enumerate}
+    \end{obs}
+
+    En los siguientes ejemplos, considere $(\mathbb{R},\tau_u)$.
+    
+    \begin{exa}
+        Sea $\left\{\left(\frac{1}{n},\frac{1}{n}\right) \right\}_{ n\in\mathbb{N}}$. Esta colección no es punto finta en $0$, luego tampoco es localmente finita en $0$.
+    \end{exa}
+
+    \begin{exa}
+        Considere la colección de intervalos $\left\{\left(n,n+2\right) \right\}_{ n\in\mathbb{N}}$. Esta es una colección localmente finita en $(\mathbb{R},\tau)$. Sea $r\in\mathbb{R}$, existe $m\in\mathbb{Z}$ tal que:
+        \begin{equation*}
+            m\leq r<m+1
+        \end{equation*}
+        Considere el entero $n=m-1$, se tiene que
+        \begin{equation*}
+            n<r<n+2
+        \end{equation*}
+        %TODO
+    \end{exa}
+
+    \begin{exa}
+        Dado $n\in\mathbb{N}$, sea $A_n=(0,1/n)$. Se tiene que $\left\{A_n \right\}_{ n\in\mathbb{N}}$ es punto finita, pero no es localmente finita.
+
+        Sea $r\in\mathbb{R}$. Podemos suponer que $r\in(0,1)$ (ya que la colección solo contiene puntos de este conjunto) (es el único caso que genera problemas), luego existe $N_r\in\mathbb{N}$ tal que
+        \begin{equation*}
+            \frac{1}{m}\leq r,\quad\forall m\geq N_r
+        \end{equation*}
+        Sea $J_r=\left\{1,...,N_r \right\}$. Se tiene que
+        \begin{equation*}
+            r\notin A_m\quad\forall m\notin J_r
+        \end{equation*}
+        así que $\left\{A_n \right\}_{ n\in\mathbb{N}}$ es punto finita, pero claramente no es localmente finita (observe que sucede con cualquier vecindad de $0$).
+    \end{exa}
+
+    \begin{exa}[\textbf{**}]
+        Sea $n\in\mathbb{N}$, definimos $A_n=\left(-\frac{1}{n},\frac{1}{n}\right)$ y $B_n=\mathbb{R}-A_n=(-\infty,-1/n]\cup[1/n,\infty)$. Tenemos que $B_n=\overline{B}_n$.
+
+        Sea $m\in\mathbb{N}$ con $m\geq 2$, esto es que $\frac{1}{m}\leq\frac{1}{2}$. Se tiene que $\frac{1}{2}\in B_m$. Por tanto,
+        \begin{equation*}
+            \left\{B_n\right\}_{n\in\mathbb{N}}
+        \end{equation*}
+        no es punto finita en $\frac{1}{2}$.
+
+        Por otro lado, se tiene que $0\notin B_n$ para todo $n\in\mathbb{N}$, por lo cual
+        \begin{equation*}
+            \bigcup_{ n\in\mathbb{N}}B_n\subsetneqq \mathbb{R}
+        \end{equation*}
+        sin embargo,
+        \begin{equation*}
+            \overline{\bigcup_{ n\in\mathbb{N}}B_n}=\overline{\bigcup_{ n\in\mathbb{N}}(\mathbb{R}-A_n)}=\overline{\mathbb{R}-\bigcap_{ n\in\mathbb{N}}A_n}=\overline{\mathbb{R}-\left\{ 0\right\}}=\mathbb{R}
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            \overline{\bigcup_{ n\in\mathbb{N}}B_n}\subsetneqq \bigcup_{ n\in\mathbb{N}}B_n=\bigcup_{ n\in\mathbb{N}}\overline{B}_n
+        \end{equation*}
+    \end{exa}
+
+    \begin{obs}
+        Sea $\mathcal{A}=\left\{A_\alpha \right\}_{\alpha\in I}\subseteq\mathcal{P}(X)$. Escribimos $\overline{\mathcal{A}}=\left\{\overline{A}_\alpha \right\}_{\alpha\in I}$.
+    \end{obs}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico. Tomemos $\mathcal{A}=\left\{A_\alpha \right\}_{\alpha\in I}$ una colección de subconjuntos de $X$ que es localmente finita en $(X,\tau)$. Entonces, se cumple lo siguiente:
+        \begin{enumerate}
+            \item Sea $J\subseteq I$ y sea $\mathcal{B}=\left\{B_\alpha \right\}_{\alpha\in J}\subseteq\mathcal{P}(X)$ tal que para todo $\alpha\in J$, $B_\alpha\subseteq A_\alpha$. Entonces, $\mathcal{B}$ es localmente finita.
+        \end{enumerate}
+    \end{propo}
+
 
 \end{document}
