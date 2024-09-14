@@ -1343,4 +1343,178 @@
         \end{center}
     \end{sol}
 
+    \begin{mydef}
+        Un conjunto de fórmulas $\Sigma$ es \textbf{consistente} si para cualquier fórmula $\varphi$, $\Sigma\nvdash\varphi\land\neg\varphi$. $\Sigma$ es \textbf{inconsistente} si no es consistente.
+    \end{mydef}
+
+    \begin{theor}[\textbf{Explosividad de la Lógica}]
+        Si $\Sigma$ es un conjunto de fórmulas bien formadas que es inconsistente, entonces para toda fórmula $\varphi$, $\Sigma\vdash\varphi$.
+    \end{theor}
+
+    \begin{proof}
+        Sea $\varphi$ una fórmula. Como $\Sigma$ no es consistente, existe $\psi$ fórmula tal que $\Sigma\vdash\psi\land\neg\psi$. Se tiene que:
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$. \\
+                & $n$) & $\psi$ & $\land$ & $\neg\psi$ & Suposición. \\
+                & $n+1$) & $\psi$ &  &  & $n$ Simp. \\
+                & $n+2$) & $\psi$ & $\lor$ & $\varphi$ & $n+1$ Ad. \\
+                & $n+3$) & $\neg\psi$ &  &  & $n$ Conm. y Simp. \\
+                & $n+4$) & $\varphi$ &  &  & $n+2$,$n+3$ S.D. \\
+                \hline
+                & $n+5$) & $\psi\land\neg\psi$ & $\Rightarrow$ & $\varphi$ & $n$-$n+4$ M.D. \\
+                & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$ que prueban $\psi\land\neg\psi$. \\
+                & $m$) & $\psi\land\neg\psi$ &  &  &  \\
+                & $m+1$) & $\varphi$ &  &  & $n+5$,$m$ M.P. \\
+                \hline
+                & & & $\therefore$ & $\varphi$ & \\
+            \end{tabular}
+        \end{center}
+    \end{proof}
+
+    \begin{cor}
+        Un conjunto de fórmulas $\Sigma$ es consistente si y sólo si existe una fórmula $\varphi$ tal que $\Sigma\nvdash\varphi$.
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{cor}
+        Sea $\Sigma$ un conjunto de fórmulas bien formadas y sea $\varphi$ una fórmula. Entonces:
+        \begin{itemize}
+            \item $\Sigma\nvdash\varphi$ si y sólo si $\Sigma\cup\left\{ \varphi\right\}$ es consistente.
+            \item $\Sigma\vdash\varphi$ si y sólo si $\Sigma\cup\left\{\neg\varphi\right\}$ es inconsistente.
+        \end{itemize}
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{lema}[\textbf{Demostración por casos}]
+        \label{demPorCas}
+        Si $\Sigma$ es un conjunto de FBF y $\varphi,\psi$ son fórmulas tales que $\Sigma\cup\left\{\varphi\right\}\vdash\psi$ y $\Sigma\cup\left\{\neg\varphi\right\}\vdash\psi$, entonces $\Sigma\vdash\psi$.
+    \end{lema}
+
+    \begin{proof}
+        Por las hipótesis y el Metateorema de Deducción,
+        \begin{equation*}
+            \Sigma\vdash\varphi\Rightarrow\psi\quad\textup{y}\quad \Sigma\vdash\neg\varphi\Rightarrow\psi
+        \end{equation*}
+        Veamos que
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$. \\
+                $|\longrightarrow$ & $n$) & $\neg\psi$ &  &  & Suposición. \\
+                $|$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$ que prueban $\varphi\Rightarrow\psi$ \\
+                $|$ & $m_1$) & $\varphi$ & $\Rightarrow$ & $\psi$ &  \\
+                $|$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$ que prueban $\neg\varphi\Rightarrow\psi$ \\
+                $|$ & $m_2$) & $\neg\varphi$ & $\Rightarrow$ & $\psi$ &  \\
+                $|$ & $m_2+1$) & $\neg\varphi$ &  &  & $m_1$,$n$ M.T. \\
+                $|$ & $m_2+2$) & $\neg\neg\varphi$ &  &  & $m_2$,$n$ M.T. \\
+                $|$ & $m_2+3$) & $\varphi$ &  &  & $m_2+2$ D.N. \\
+                $|$ & $m_2+4$) & $\varphi$ & $\land$ & $\neg\varphi$ & $m_2+3$,$m_2+1$ Ad. \\
+                \hline
+                & $m_2+5$) & $\psi$ &  &  & $n$-$m_2+4$ D.C. \\
+                \hline
+                & & & $\therefore$ & $\psi$ & \\
+            \end{tabular}
+        \end{center}
+        lo que prueba el resultado.
+    \end{proof}
+
+    \begin{mydef}
+        Un conjunto de FBF $\Sigma$ es \textbf{satisfacible} si existe un modelo $m$ tal que $m\vDash\Sigma$.
+    \end{mydef}
+
+    \begin{lema}
+        \label{demConsist}
+        Para todo conjunto de fórmulas $\Sigma$, si $\Sigma$ es consistente, entonces es satisfacible.
+    \end{lema}
+
+    \begin{proof}
+        Haremos la demostración paso a paso:
+        \begin{itemize}
+            \item \textbf{Enumerar todas las fórmulas}: La idea va a ser usar \textit{codificación}. Hacemos lo siguiente:
+            \begin{center}
+                \begin{tabular}{ccc}
+                    $\neg$ & $\longleftrightarrow$ & $1$ \\
+                    $\Rightarrow$ & $\longleftrightarrow$ & $2$ \\
+                    $p_1$ & $\longleftrightarrow$ & $3$ \\
+                    $p_2$ & $\longleftrightarrow$ & $4$ \\
+                    $p_3$ & $\longleftrightarrow$ & $5$ \\
+                    $\vdots$ & $\vdots$ & $\vdots$ \\
+                \end{tabular}
+            \end{center}
+            siendo $p_1,p_2,p_3,...$ variables y $\neg,\Rightarrow$ conectivas.
+
+            Recordemos antes que existe una biyección entre $\mathbb{N}\times\mathbb{N}$ y $\mathbb{N}$, dada por:
+            \begin{equation*}
+                (n,m)\mapsto 2^{ n-1}(2m-1)
+            \end{equation*}
+            ó
+            \begin{equation*}
+                (n,m)\mapsto\frac{(n+m-1)(n+m)}{2}+m
+            \end{equation*}
+            para todo $n,m\in\mathbb{N}$ (verifique que esto es cierto). En general, uno puede establecer una biyección entre $\mathbb{N}^n$ y $\mathbb{N}$, para todo $n\in\mathbb{N}$. Lo que nos va a interesar es codificar sucesiones finitas de esta manera.
+
+            Uno puede hacer lo siguiente: si $n\in\mathbb{N}$, podemos escribir:
+            \begin{equation*}
+                n=p_1^{\alpha_1}\cdot...\cdot p_k^{\alpha_k}
+            \end{equation*}
+            donde $\left\{p_n \right\}_{ n=1}^\infty$ es la sucesión de números primos ordenados de menor a mayor y $\alpha_i\in\mathbb{N}\cup\left\{0\right\}$, para todo $i\in\natint{1.k}$. En este caso, $p_k$ es el mayor primo para el cual $\alpha_k\neq0$. De esta fórmula, lo que haremos es codificar tuplas, a $n$ le corresponde la $k$-tupla:
+            \begin{equation*}
+                n\leftrightsquigarrow (\alpha_1+1,\alpha_2+1,...,\alpha_ {k-1}+1,\alpha_k)
+            \end{equation*}
+            por ejemplo, en este caso la fórmula $\neg p_3=(\neg,p_3)$ se codificaría como tupla en el número $243$ (asignándole lo establecido a $\neg$ y $p_3$).
+        \end{itemize}
+    \end{proof}
+
+    \begin{obs}
+        Probado este lema anterior, tenemos que:
+        \begin{center}
+            $\Sigma\vDash\varphi$ implica que no existe $m\vDash\Sigma$ tal que $m\nvDash\varphi$;
+
+            lo cual implica que no existe $m\vDash\Sigma$ tal que $m\vDash\neg\varphi$.
+        \end{center}
+        Esto significa que
+        \begin{center}
+            $\Sigma\cup\left\{\neg\varphi \right\}$ no es satisfacible.
+        \end{center}
+        lo cual implica por el Lema (\ref{demConsist}) que $\Sigma\cup\left\{\neg\varphi\right\}$ es inconsistente. Esto implica que $\Sigma\vdash\varphi$.
+    \end{obs}
+
+    \begin{theor}[\textbf{Teorema de Completud}]
+        Sea $\Sigma$ un conjunto de fórmulas y $\varphi$ otra fórmula. Entonces,
+        \begin{equation*}
+            \Sigma\vdash\varphi\textup{ si y sólo si }\Sigma\vDash\varphi
+        \end{equation*}
+        La necesidad es llamada \textbf{correctud} y la suficiencia es \textbf{completud}.
+    \end{theor}
+
+    \begin{proof}
+        Se probará la doble implicación:
+        \begin{itemize}
+            \item \textbf{Correctud}: Sea $(\varphi_1,...,\varphi_{ n-1},\varphi)$ una demostración de $\varphi$ a partir de $\Sigma$. La hipótesis inductiva es:
+            \begin{equation*}
+                \Sigma\vDash\varphi_{ i},\quad\forall i\in\natint{1,n-1}
+            \end{equation*}
+            Se tienen tres casos:
+            \begin{itemize}
+                \item \textit{$\varphi$ es un elemento de $\Sigma$}: Al tenerse que cualquier modelo que satisfaga $\Sigma$ en particular satisface $\varphi$ (checar la definición de satisfabilidad). Por tanto $\Sigma\vDash\varphi$.
+                \item \textit{$\varphi$ es axioma lógico}: Afirmamos que $\emptyset\vDash\varphi$ (\textit{ejercicio}, checar con tabla de verdad y usar proposiciones pasadas). En particular se tiene que $\Sigma\vDash\varphi$.
+                \item \textit{Existen $i,j\in\natint{1,n-1}$ con $i<j$ tales que $\varphi_j$ es $\varphi_i\Rightarrow\varphi$}: Se tiene por hipótesis inductiva $\Sigma\vDash\varphi_i$ y $\Sigma\vDash\varphi_j$, por tanto si $m$ es cualquier modelo que satisface $\Sigma$, esto es $m\vDash\Sigma$, entonces $m\vDash\varphi_i$ y $m\vDash\varphi_j$, se sigue que:
+                \begin{equation*}
+                    m\vDash\varphi_i\quad\textup{y}\quad m\vDash\varphi_i\Rightarrow\varphi
+                \end{equation*}
+                asi que $\overline{m}(\varphi_i)=V$ y $\overline{m}(\varphi_i\Rightarrow\varphi)=V$, lo cual implica que $\overline{m}(\varphi)=V$, por lo que $m\vDash\varphi$.
+
+                Por ende, $\Sigma\vDash\varphi$.
+            \end{itemize}
+            por inducción se sigue que $\Sigma\vDash\varphi$.
+            \item \textbf{Completud}:
+        \end{itemize} 
+    \end{proof}
+
 \end{document}

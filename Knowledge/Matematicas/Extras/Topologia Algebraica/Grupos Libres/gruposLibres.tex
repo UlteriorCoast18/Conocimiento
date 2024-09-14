@@ -218,6 +218,7 @@
     En el caso en que cada $G_i$ sea un grupo abeliano, el siguiente teorema da una caracterización importante de su producto débil y de los monomorfismos $\varphi_i$.
 
     \begin{theor}
+        \label{caractSumDir_1}
         Si $\left\{G_i \right\}_{ i\in I}$ es una familia no vacía de grupos abelianos y,
         \begin{equation*}
             G=\bigoplus_{ i\in I}G_i
@@ -344,9 +345,13 @@
     Este teorema caracteriza la suma directa de grupos abelianos, como lo muestra la siguiente proposición.
 
     \begin{propo}
-        Sea $\left\{G_i \right\}_{ i\in I}$ una familia de grupos abelianos y $G=\bigoplus_{ i\in I}G_i$
-        %TODO
+        \label{caractSumDir_2}
+        Sea $\left\{G_i \right\}_{ i\in I}$ una familia de grupos abelianos y $G=\bigoplus_{ i\in I}G_i$; sea $G'$ un subgrupo abeliano y consideremos para cada $i\in I$ las funciones $\cf{\varphi_i'}{G_i}{G'}$ tales que la conclusión del Teorema \ref{caractSumDir_1} cambiando a $G'$ por 
     \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
 
 
 
@@ -364,6 +369,22 @@
             G=\left\{x,x^2,...,x^n=e\right\}
         \end{equation*}
     \end{exa}
+
+    \begin{mydef}
+        Sea $S$ un conjunto arbitrario. Un \textbf{grupo abeliano libre} en el conjunto $S$ es un grupo abeliano $F$ junto con una función $\cf{f}{S}{F}$ tal que se cumple la siguiente condición:
+        \begin{itemize}
+            \item Para cualquier grupo abeliano y cualquier función $\cf{\psi}{S}{A}$, existe un único homomorfismo $\cf{f}{F}{A}$ tal que el diagrama:
+            
+            \begin{minipage}{\textwidth}
+                \begin{center}
+                    \includegraphics[scale=1.5]{images/fig_2.pdf}\\
+                    Figura 2. Diagrama conmutativo de $F$ y $A$.
+                \end{center}
+            \end{minipage}
+            
+            es conmutativo.
+        \end{itemize}
+    \end{mydef}
 
     %TODO
 
