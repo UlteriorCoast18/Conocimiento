@@ -1357,10 +1357,10 @@
             \begin{tabular}{l r l c l r}
                 & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$. \\
                 & $n$) & $\psi$ & $\land$ & $\neg\psi$ & Suposición. \\
-                & $n+1$) & $\psi$ &  &  & $n$ Simp. \\
-                & $n+2$) & $\psi$ & $\lor$ & $\varphi$ & $n+1$ Ad. \\
-                & $n+3$) & $\neg\psi$ &  &  & $n$ Conm. y Simp. \\
-                & $n+4$) & $\varphi$ &  &  & $n+2$,$n+3$ S.D. \\
+                $|\longrightarrow$ & $n+1$) & $\psi$ &  &  & $n$ Simp. \\
+                $|$ & $n+2$) & $\psi$ & $\lor$ & $\varphi$ & $n+1$ Ad. \\
+                $|$ & $n+3$) & $\neg\psi$ &  &  & $n$ Conm. y Simp. \\
+                $|$ & $n+4$) & $\varphi$ &  &  & $n+2$,$n+3$ S.D. \\
                 \hline
                 & $n+5$) & $\psi\land\neg\psi$ & $\Rightarrow$ & $\varphi$ & $n$-$n+4$ M.D. \\
                 & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$ que prueban $\psi\land\neg\psi$. \\
@@ -1377,19 +1377,9 @@
     \end{cor}
 
     \begin{proof}
-        
-    \end{proof}
+        Necesidad: Suponga que $\Sigma$ es consistente, entonces para una fórmula $\psi$ siempre sucede que $\Sigma\nvdash\psi\land\neg\psi$. Tomando $\varphi=\psi\land\neg\psi$ se sigue el resultado.
 
-    \begin{cor}
-        Sea $\Sigma$ un conjunto de fórmulas bien formadas y sea $\varphi$ una fórmula. Entonces:
-        \begin{itemize}
-            \item $\Sigma\nvdash\varphi$ si y sólo si $\Sigma\cup\left\{ \varphi\right\}$ es consistente.
-            \item $\Sigma\vdash\varphi$ si y sólo si $\Sigma\cup\left\{\neg\varphi\right\}$ es inconsistente.
-        \end{itemize}
-    \end{cor}
-
-    \begin{proof}
-        
+        Suficiencia: Suponga que $\Sigma$ no es consistente, entonces por el Teorema anterior $\Sigma\vdash\varphi$ para toda fórmula $\varphi$.
     \end{proof}
 
     \begin{lema}[\textbf{Demostración por casos}]
@@ -1422,6 +1412,62 @@
             \end{tabular}
         \end{center}
         lo que prueba el resultado.
+    \end{proof}
+
+    \begin{cor}
+        Sea $\Sigma$ un conjunto de fórmulas bien formadas y sea $\varphi$ una fórmula. Entonces:
+        \begin{enumerate}
+            \item $\Sigma\nvdash\varphi$ si y sólo si $\Sigma\cup\left\{ \varphi\right\}$ es consistente.
+            \item $\Sigma\vdash\varphi$ si y sólo si $\Sigma\cup\left\{\neg\varphi\right\}$ es inconsistente.
+        \end{enumerate}
+    \end{cor}
+
+    \begin{proof}
+        De (1):
+
+        $\Rightarrow$): Suponga que $\Sigma\cup\left\{\varphi \right\}$ es inconsistente, entonces por el tereoam anterior
+        \begin{equation*}
+            \Sigma\cup\left\{\varphi \right\}\vdash\neg\varphi
+        \end{equation*}
+        y, de forma inmediata se tiene:
+        \begin{equation*}
+            \Sigma\cup\left\{\varphi\right\}\vdash\varphi
+        \end{equation*}
+        por tanto, por el Lema anterior se sigue que $\Sigma\vdash\varphi$.
+
+        $\Leftarrow$): %TODO
+
+        De (2): Veamos las dos implicaciones:
+
+        $\Rightarrow$): Suponga que $\Sigma\vdash\varphi$, entonces existe una demostración $(\varphi_1,...,\varphi_{ n-1},\varphi)$ de $\varphi$ a partir de $\Sigma$.
+
+        En particular, se tiene a partir de $\Sigma\cup\left\{\neg\varphi\right\}$ que:
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$ que prueban $\varphi$. \\
+                & $n$) & $\varphi$ &  &  & \\
+                & $n+1$) & $\neg\varphi$ &  &  & Premisa. \\
+                & $n+2$) & $\varphi$ & $\land$ & $\neg\varphi$ & $n,n+1$ Ad. \\
+                \hline
+                & & & $\therefore$ & $\varphi\land\neg\varphi$ & \\
+            \end{tabular}
+        \end{center}
+        por tanto, $\Sigma\cup\left\{\neg\phi\right\}\vdash\varphi\land\neg\varphi$. Se sigue que $\Sigma\cup\left\{\neg\varphi\right\}$ es inconsistente.
+
+        $\Leftarrow$): Suponga que $\Sigma\cup\left\{\neg\varphi\right\}$ es inconsistente, entonces existe una fórmula $\psi$ tal que $\Sigma\cup\left\{\neg\varphi\right\}\vdash\psi\land\neg\psi$. A partir de $\Sigma$ tenemos que:
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$. \\
+                $|\longrightarrow$ & $n$) & $\neg\varphi$ &  &  & Sup. \\
+                $|$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma\cup\left\{\neg\varphi\right\}$ que prueban $\psi\land\neg\psi$.\\
+                $|$ & $m$) & $\psi$ & $\land$ & $\neg\psi$ & \\
+                \hline
+                & $m$) & $\varphi$ &  &  & $m$-$n$ D.C. \\
+                \hline
+                & & & $\therefore$ & $\varphi$ & \\
+            \end{tabular}
+        \end{center}
+        por tanto, $\Sigma\vdash\varphi$.
     \end{proof}
 
     \begin{mydef}
@@ -1484,6 +1530,49 @@
         \end{center}
         lo cual implica por el Lema (\ref{demConsist}) que $\Sigma\cup\left\{\neg\varphi\right\}$ es inconsistente. Esto implica que $\Sigma\vdash\varphi$.
     \end{obs}
+
+    \begin{excer}
+        Pruebe que $\emptyset\vDash\phi$ siendo $\phi$ axioma lógico.
+    \end{excer}
+
+    \begin{proof}
+        Se tienen tres casos:
+        \begin{enumerate}
+            \item $\phi\equiv\varphi\Rightarrow(\psi\Rightarrow\varphi)$, siendo $\varphi$ y $\psi$ FBF. Sea $m$ un modelo, para ver que $\emptyset\vDash\phi$ basta con probar que $\overline{m}(\phi)=V$.
+            
+            Por el Lema 1.2.1. basta con ver los valores de $\overline{m}$ en $\varphi$ y $\psi$. Para el modelo $m$ se tienen los posibles valores de $\varphi$, $\psi$, $\psi\Rightarrow\varphi$ y $\phi$:
+            \begin{center}
+                \begin{tabular}{c c | c | c}
+                    \hline
+                    $\varphi$ & $\psi$ & $\psi\Rightarrow\varphi$ & $\varphi\Rightarrow(\psi\Rightarrow\varphi)$ \\
+                    \hline
+                    $V$ & $V$ & $V$ & $V$ \\
+                    $V$ & $F$ & $V$ & $V$ \\
+                    $F$ & $V$ & $F$ & $V$ \\
+                    $F$ & $F$ & $V$ & $V$ \\
+                \end{tabular}
+            \end{center}
+            en cualquier caso, $\overline{m}(\phi)=V$. Por tanto, $\emptyset\vDash\phi$.
+
+            \item $\phi\equiv\varphi\Rightarrow((\psi\Rightarrow\neg\varphi)\Rightarrow\neg\psi)$. Com oen el caso anterior, sea $m$ un modelo. Veamos que se tienen los posibles valores:
+            \begin{center}
+                \begin{tabular}{c c | c | c | c}
+                    \hline
+                    $\varphi$ & $\psi$ & $\psi\Rightarrow\neg\varphi$ & $(\psi\Rightarrow\neg\varphi)\Rightarrow\neg\psi$ & $\varphi\Rightarrow((\psi\Rightarrow\neg\varphi)\Rightarrow\neg\psi)$ \\
+                    \hline
+                    $V$ & $V$ & $F$ & $V$ & $V$ \\
+                    $V$ & $F$ & $V$ & $V$ & $V$ \\
+                    $F$ & $V$ & $V$ & $F$ & $V$ \\
+                    $F$ & $F$ & $V$ & $V$ & $V$ \\
+                \end{tabular}
+            \end{center}
+            en cualquier caso, $\overline{m}(\phi)=V$. Por tanto, $\emptyset\vDash\phi$.
+
+            \item Suponga que $\phi$ es de la forma $\varphi\Rightarrow\varphi'$, donde $\varphi'$ es una fórmula donde alguna subfórmula $\psi$ de $\varphi$ fue sustituída por $\neg\neg\psi$. Para esto, basta con ver que $\overline{m}(\psi)=\overline{m}(\neg\neg\psi)$ (lo cual siempre se cumple por definición de modelo). Para formalizar esta prueba, todo se debe hacer por inducción. %TODO
+            
+            \item %TODO
+        \end{enumerate}
+    \end{proof}
 
     \begin{theor}[\textbf{Teorema de Completud}]
         Sea $\Sigma$ un conjunto de fórmulas y $\varphi$ otra fórmula. Entonces,
