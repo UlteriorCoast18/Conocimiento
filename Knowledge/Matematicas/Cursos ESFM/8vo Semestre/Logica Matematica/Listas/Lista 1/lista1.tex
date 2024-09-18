@@ -1,0 +1,262 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Lista 1 de Ejercicios Lógica Matemática: Lógica Proposicional}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \setcounter{chapter}{1}
+
+    \section{Ejercicios}
+
+    \begin{mydef}
+        Una \textbf{conectiva booleana $n$-aria} es una función $\cf{B}{\left\{T,F \right\}^n}{\left\{T,F \right\}}$.
+    \end{mydef}
+
+    \begin{obs}
+        La idea de la función anterior es que se codifique una tabla de verdad.
+    \end{obs}
+
+    \begin{excer}
+        Considere la conectiva booleana dada por:
+        \begin{equation*}
+            \begin{array}{lr}
+                B(T,T,T)=F, & B(F,T,T)=F,\\
+                B(T,T,F)=F, & B(F,T,F)=T,\\
+                B(T,F,T)=F, & B(F,F,T)=T,\\
+                B(T,F,F)=T, & B(F,F,F)=T,\\
+            \end{array}
+        \end{equation*}
+        escriba una fórmula bien formada, utilizando el conjunto de conectivas $\left\{\neg,\land,\lor \right\}$ que realice esta función booleana.
+    \end{excer}
+
+    \begin{sol}
+        Sea $\cf{B}{\left\{T,F \right\}^3}{\left\{T,F \right\}}$ dada por:
+        \begin{equation*}
+            \begin{split}
+                B(p_1,p_2,p_3)&=(p_1\land\neg p_2\land\neg p_3)\lor(\neg p_1\land p_2\land\neg p_3)\lor(\neg p_1\land\neg p_2\land p_3)\lor(\neg p_1\land\neg p_2\land\neg p_3)
+            \end{split}
+        \end{equation*}
+        se verifica rápidamente que ésta función $B$ satiface lo deseado.
+    \end{sol}
+
+    \begin{excer}
+        Muestre que el conjunto de conectivas $\left\{\perp,\Rightarrow \right\}$ es completo (donde $\perp$ es la conectiva $0$-aria con valor constante $F$).
+    \end{excer}
+
+    \begin{proof}
+        Basta con ver que si $\varphi$ y $\psi$ son fórmulas, entonces $\neg\varphi$ y $\varphi\Rightarrow\psi$ se pueden expresar con conectivas $\left\{\perp,\Rightarrow \right\}$.
+
+        En efecto, ya se tiene la implicación. Veamos que:
+        \begin{equation*}
+            \neg\varphi \equiv \perp\Rightarrow\varphi
+        \end{equation*}
+        para un modelo $m$ se tiene que:
+        \begin{center}
+            \begin{tabular}{ c | c | c | c}
+                $\varphi$ & $\perp$ & $\perp\Rightarrow\varphi$ & $\neg\varphi$\\
+                \hline
+                $T$ & $F$ & $F$ & $F$ \\
+                $F$ & $F$ & $T$ & $T$ \\
+            \end{tabular}
+        \end{center}
+        es decir, que en cualquier caso $\overline{m}(\neg\varphi)=\overline{m}(\perp\Rightarrow\varphi)$. Se sigue entonces la equivalencia. Como $\left\{\neg,\Rightarrow \right\}$ es un conjunto completo de conectivas, también lo debe ser pues $\left\{\perp,\Rightarrow \right\}$.
+    \end{proof}
+
+    \begin{excer}
+        Reescriba las siguientes fórmulas en notación polaca a notación usual:
+        \renewcommand{\theenumi}{\alph{enumi}}
+        \begin{enumerate}
+            \item $\neg\neg\Rightarrow\lor\land p_3p_8\neg p_{10}\neg\lor p_1p_5$.
+            \item $\land\neg\Rightarrow p_3\lor p_4p_1\iff\lor\neg p_{10}\iff p_{ 15}p_{18}q$.
+            \item $\land\Rightarrow p_3\land p_2p_1\neg\lor\land p_4p_5\neg p_{10}$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        Veamos que
+        \begin{enumerate}
+            \item $\neg\neg\Rightarrow\lor\land p_3p_8\neg p_{10}\neg\lor p_1p_5\equiv\neg\neg(((p_3\land p_8)\lor\neg p_{10})\Rightarrow\neg( p_1\lor p_5))$.
+            \item $\land\neg\Rightarrow p_3\lor p_4p_1\iff\lor\neg p_{10}\iff p_{ 15}p_{18}q\equiv(\neg(p_3\Rightarrow(p_4\lor p_1)))\land((\neg p_{10} \lor (p_{15}\iff p_{18}))\iff q)$.
+            \item $\land\Rightarrow p_3\land p_2p_1\neg\lor\land p_4p_5\neg p_{10}\equiv(p_3\Rightarrow(p_2\lor p_1))\land\neg((p_4\land p_5)\lor\neg p_10)$.
+        \end{enumerate}
+    \end{sol}
+
+    \begin{excer}
+        Demuestre que toda fórmula bien formada (en el formato de clase, es decir, en notación polaca) en la que no aparezca el símbolo $\neg$ debe tener longitud impar.
+    \end{excer}
+
+    \begin{proof}
+        Procederemos por inducción del número de implicaciones $\Rightarrow$, digamos $n$, en la cadena de la fórmula $\varphi$.
+        \begin{itemize}
+            \item Si $n=0$, entonces $\varphi\equiv p_1$, siendo $p_1$ una variable. Luego la longitud de $\varphi$ es $1$ que es impar.
+            \item Si $n=1$, entonces $\varphi\equiv\Rightarrow p_1p_2$, siendo $p_1$ y $p_2$ variables. Luego la longitud de $\varphi$ es $3$ que es impar.
+            \item Suponga que existe un $n\in\mathbb{N}$ tal que para todo $k\in\natint{0,n}$ se cumple que toda FBF que no contenga a $\neg$ y con una cantidad de implicaciones $k$ tiene longitud impar.
+            
+            Sea $\varphi$ una fórmula bien formada que no contenga $\neg$ y que tiene $n+1$ implicaciones, es decir que es de la forma:
+            \begin{equation*}
+                \varphi \equiv\Rightarrow\psi_1\psi_2
+            \end{equation*}
+            donde $\psi_1,\psi_2$ son FBF. Como $\varphi$ tiene $n+1$ implicaciones, entonces debe suceder que $\psi_1$ y $\psi_2$ contengan entre $0$ y $n$ implicaciones. Por hipótesis de inducción, tanto $\psi_1$ como $\psi_2$ tienen longitud impar, luego $\varphi$ tiene longitud la suma de estos dos impares (que es un par) más $1$ (la primera implicación). Por tanto, $\varphi$ tiene longitud impar.
+        \end{itemize}
+        Por inducción se sigue el resultado. 
+    \end{proof}
+
+    \begin{excer}
+        Sea $\varphi$ una fórmula bien formada. Sea $c$ la cantidad de veces que aparece el símbolo $\Rightarrow$ en la fórmula $\varphi$, y sea $s$ la cantidad de veces que aparecen variables en la fórmula $\varphi$ (en donde, si alguna variable aparece varias veces, se cuentan cada una de sus apariciones por separado). Demuestre que
+        \begin{equation*}
+            s=c+1
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $\varphi$ una fórmula bien formada, y suponga que todos los símbolos de la variable que aparecen en $\varphi$ se encuentran entre $p_1,...,p_n$. Supóngase que $m,m'$ son dos modelos que satisfacen $m(p_i)=m'(p_i)$ para todo $i\in\natint{1,n}$. Demuestre que
+        \begin{equation*}
+            \overline{m}(\varphi)=\overline{m}'(\varphi)
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Demuestre o refute 
+    \end{excer}
+
+\end{document}
