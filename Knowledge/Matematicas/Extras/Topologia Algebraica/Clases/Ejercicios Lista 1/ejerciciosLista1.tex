@@ -1,0 +1,336 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{fullpage}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$\\}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$\\}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+\newcommand{\norm}[1]{\ensuremath{\|#1\|}}
+\newcommand\subtitle[1]{\textit{\large #1}\\}
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+
+    \title{Taller de Topología Algebraica: 1° Lista de Ejercicios}
+    \author{Cristo Alvarado}
+    \setcounter{section}{1}
+    \maketitle
+
+    \begin{excer}
+        Pruebe que un espacio conexo y localmente arco-conexo es arco conexo.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        ¿Bajo qué condiciones dos clases de caminos que unen a $x$ y $y$ se tendrá el mismo isomorfismo entre de $\pi(X,x)$ y $\pi(X,y)$?
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Sea $X$ un espacio arco conexo. ¿Bajo qué condiciones es la siguiente proposición válida? Para cualesquiera dos puntos $x,y\in X$ todas las clases de caminos de $x$ a $y$ dan el mismo isomorfismo entre $\pi(X,x)$ y $\pi(X,y)$. 
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Sean $\cf{f,g}{I}{X}$ dos caminos con punto inicial $x_0$ y final $x_1$. Pruebe que $f\sim g$ si y sólo si $f\cdot\overline{g}$ es equivalente al camino constante en $x_0$ (recordando que $\overline{g}$ es el camino que invierte la forma de recorrer a $g$).
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sean $\cf{\varphi}{X}{Y}$ una función continua y $[f]$ una clase de camino en $X$ que va de $x_0$ a $x_1$. Pruebe que el siguiente diagrama es conmutativo:
+        \begin{equation*}
+            \begin{array}{rcccl}
+              & \pi(X,x_0) & \overset{\varphi_*}{\longrightarrow} & \pi(Y,\varphi(x_0)) & \\
+              u & \downarrow & & \downarrow & v \\
+               & \pi(X,x_1) & \overset{\varphi_*}{\longrightarrow} & \pi(Y,\varphi(x_1)) & \\
+            \end{array}
+        \end{equation*}
+        donde $u$ es el homomorfismo definido como: $u([g])=[f]^{-1}\cdot[g]\cdot[f]$ y $v$ se define de forma similar usando $\varphi_*([f])$ en lugar de $[f]$. ¿Qué sucede si $\varphi(x_0)=\varphi(x_1)$?
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Construya una deformación de retracción de $\mathbb{R}^n$ en $S^{ n-1}$.
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Pruebe que un repliegue de un espacio Hausdorff debe ser un conjunto cerrado.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que si $A$ es un repliegue de $X$ y $\cf{r}{X}{A}$ es una retracción, $\cf{i}{A}{X}$ es el mapeo inclusión, $a\in A$ es arbitrario fijo y $i_*(\pi(A,a))$ es un subgrupo normal de $\pi(X,a)$, entonces $\pi(X,a)$ es el producto directo de los subgrupos
+        \begin{equation*}
+            i_*(\pi(A,a))\quad\textup{y}\quad \ker(r_*)
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $A$ un subespacio de $X$, y sea $Y$ un espacio topológico no vacío. Pruebe que $A\times Y$ es un repliegue de $X\times Y$ si y sólo si $A$e s una repliegue de $X$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que la relación \textbf{ser repliegue de} es transitiva, esto es, si $A$ es un repliegue de $B$ y $B$ es un repliegue de $C$, entonces $A$ es un repliegue de $C$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $x_0\in\mathbb{R}^2$. Encuentre un círculo $C\subseteq\mathbb{R}^2$ tal que es un repliegue de deformación de $\mathbb{R}^2-\left\{x_0\right\}$. Generalice este resultado a $n$-dimensiones.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $\mathbb{T}$ un toro y considere $X=\mathbb{T}-\left\{x\right\}$, con $x\in\mathbb{T}$. Encuentre un subconjunto de $X$ que sea homeomorfo a la figura \textit{8} (esto es, la unión de dos círculos con un punto en común) y que es una retracción de deformación de $X$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sean $x,y\in X$ dos puntos distintos en un espacio simplemente conexo $X$. Pruebe que existe una \textit{única} clase de caminos en $X$ que une al punto inicial $x$ con el punto final $y$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $X$ un espacio topológico y, para número natural $n\in\mathbb{N}$ sea $X_n$ un subespacio arco-conexo que contiene como punto base $x_0\in X$. Asuma que los subespacios están enacajados, esto es
+        \begin{equation*}
+            X_n\subseteq X_{ n+1},\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        y que
+        \begin{equation*}
+            X=\bigcup_{ n=1}^{\infty}X_n
+        \end{equation*}
+        además, para cada subconjunto compacto $A\subseteq X$ existe $m\in\mathbb{N}$ tal que $A\subseteq X_m$. Sean
+        \begin{equation*}
+            \cf{i_n}{\pi(X_n,x_0)}{\pi(X,x_0)}\quad\textup{y}\quad \cf{j_{ mn}}{\pi(X_m,x_0)}{\pi(X_n,x_0)}
+        \end{equation*}
+        los homomorfismos inducidos por las funciones inclusión, para todo $n\in\mathbb{N}$ y $m\in\mathbb{N}$ tal que $m<n$. Pruebe lo siguiente:
+        \begin{enumerate}
+            \item Para cada $[f]\in\pi(X,x_0)$ existe un natural $n\in\mathbb{N}$ y un elemento $[g]\in\pi(X_n,x_0)$ tal que $i_n([g])=[f]$.
+            \item Si $[f]\in\pi(X_m,x_0)$ e $i_m([f])=1$, entonces existe un entero $n\geq m$ tal que $j_{ mn}([f])=1$.
+            \item Si los homomorfismos $j_{ n,n+1}$ son monomorfismos para todo $n\in\mathbb{N}$, pruebe que cada $i_n$ es un monomorfismo y que $\pi(X,x_0)$ es la unión de los subgrupos $i_n(\pi(X_n,x_0))$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    Algunos de los siguientes ejercicios harán uso del hecho de que el grupo fundamental del círculo es isomorfo a $\mathbb{Z}$, por lo que tenga en mente este resultado a la hora de probar los ejercicios.
+
+    \begin{excer}
+        Sea $\left\{U_i \right\}_{ i\in I}$ una cubierta abierta del espacio $X$ con las siguientes propiedades:
+        \renewcommand{\theenumi}{\alph{enumi}}
+        \begin{enumerate}
+            \item Existe un punto $x_0\in X$ tal que $x_0\in U_i$ para todo $i\in I$.
+            \item Cada $U_i$ es simplemente conexo.
+            \item Si $i\neq j$ con $i,j\in I$, entonces $U_i\cap U_j$ es arco-conexo. 
+        \end{enumerate}
+        pruebe que $X$ es simplemente conexo.
+        
+        \textit{Sugerencia}: Para probar que cualquier bucle $\cf{f}{I}{X}$ con punto base $x_0$ es trivial, considere la cubierta abierta $\left\{f^{-1}(U_i) \right\}_{ i\in I}$ del espacio métrico compacto $I$ y haga uso del número de Lebesgue de esta cubierta.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{obs}
+        En el ejercicio anterior existen dos casos importantes:
+        \begin{enumerate}
+            \item $X$ es cubierto por dos conjuntos abiertos.
+            \item Los conjuntos $U_i$ están linealmente ordenados por la inclusión.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{excer}
+        Reescriba el ejercicio anterior con las hipótesis de la observación anterior y explique qué está sucediendo.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Use el resultado del ejercicio anterior (la parte $1$)) para probar que $\mathbb{S}^2$ es simplemente conexo. Generalice este resultado para probar que $\mathbb{S}^n$ es simplemente conexo.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que $\mathbb{R}^2$ y $\mathbb{R}^n$ no son homeomorfos.
+
+        \textit{Sugerencia}. Considere el complemento de un punto en $\mathbb{R}^2$ o $\mathbb{R}^n$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    Más adelante se incluirán más ejercicios.
+
+\end{document}

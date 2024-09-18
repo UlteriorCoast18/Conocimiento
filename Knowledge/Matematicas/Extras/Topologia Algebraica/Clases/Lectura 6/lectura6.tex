@@ -1,0 +1,520 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{fullpage}
+\usepackage{bbm}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$\\}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$\\}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+\newcommand{\norm}[1]{\ensuremath{\|#1\|}}
+\newcommand\subtitle[1]{\textit{\large #1}\\}
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+
+    \title{Taller Topología Algebraica, Lectura 6: Espacios Recubridores}
+    \author{Cristo Alvarado}
+    \setcounter{section}{6}
+    \maketitle
+
+    \subtitle{Preeliminares}
+
+    Para determinar el grupo fundamental del círculo, será necesario introducir teoría sobre espacios recubridores.
+    
+    \begin{mydef}
+        Sea $(X,\tau)$ un espacio topológico. Un \textbf{espacio recubridor} o \textbf{cubridor} de $X$ consiste de una tupla $(\widetilde{X},p)$ siendo $\widetilde{X}$ un espacio topológico y $\cf{p}{\widetilde{X}}{X}$ una función tal que
+        \begin{itemize}
+            \item Para cada punto $x\in X$ existe una vecindad arco-conexa $U$ tal que cada componente arco-conexa de $p^{-1}(U)$ es homeomorfa a $U$ bajo la reestricción de $p$ a la componente.
+        \end{itemize}
+        Cada abierto $U$ que satisfaga la condición anterior es llamado \textbf{vecindad elemental} y se dice que $U$ es \textbf{recubierto uniformemente}. La funcón $\cf{p}{\widetilde{X}}{X}$ es llamada habitualmente \textbf{proyección}.
+    \end{mydef}
+
+    Veamos algunos ejemplos para clarificar mejor las ideas.
+
+    \begin{exa}
+        Si $X$ es un espacio topológico y $\cf{\bbm{1}_X}{X}{X}$ denota a la función identidad, entonces $(X,\bbm{1}_X)$ es un espacio recubridor de $X$.
+        
+        Similarmente, si $X,Y$ son espacios topológicos y $\cf{f}{X}{Y}$ es un homeomorfismo, entonces $(X,f)$ es un espacio recubridor de $Y$.
+    \end{exa}
+
+    \begin{exa}
+        Si $(\widetilde{X},p)$ y $(\widetilde{Y},q)$ son espacios recubridores de $X$ y $Y$, respectivamente entonces, $(\widetilde{X}\times\widetilde{Y},p\times q)$ es un espacio recubridor de $X\times Y$, donde
+        \begin{equation*}
+            p\times q(x,y)=(p(x),q(y)),\quad\forall (x,y)\in X\times Y
+        \end{equation*}
+    \end{exa}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{exa}
+        Considere la función $\cf{p}{\mathbb{R}}{\mathbb{S}^1}$ dada por:
+        \begin{equation*}
+            p(s)=(\cos 2\pi s,\sin 2\pi s),\quad\forall s\in I
+        \end{equation*}
+        (donde $\mathbb{R}$ está dotado de la topología usual). Entonces $(\mathbb{R},p)$ es un espacio recubridor de $\mathbb{S}^1$. Cualquier subintervalo abierto del círculo sirve como vecindad elemental. Este ejemplo deberá ser tomado en cuenta ya que será de utilidad más adelante.
+    \end{exa}
+
+    \begin{propo}
+        La función $\cf{p}{\mathbb{R}}{\mathbb{S}^1}$ definida anteriormente hace de la tupla $(\mathbb{R},p)$ un espacio recubridor de $\mathbb{S}^1$. Más aún, todo arco abierto en $\mathbb{S}^1$ es recubierto uniformemente.
+    \end{propo}
+
+    \begin{proof}
+        Para la primera parte, sea $x=(\cos2\pi s,\sin2\pi s)\in\mathbb{S}^1$ (con $s\in[0,1[$). La función $p$ es continua, por lo que el abierto
+        \begin{equation*}
+            U=\left\{(\cos2\pi(s+r),\sin2\pi (s+r))\Big|r\in[0,1/4[ \right\}
+        \end{equation*}
+        en $\mathbb{S}^1$ es tal que $p^{-1}(U)$ es abierto. Es claro que
+        \begin{equation*}
+            p^{-1}(U)=\bigcup_{ s\in\mathbb{Z}}]s-1/4,s+1/4[
+        \end{equation*}
+        siendo cada uno de los intervalos disjuntos en la unión homeomorfo a $U$.
+
+        Notemos que podemos cambiar $U$ por un arco abierto y el resultado sigue siendo válido. 
+    \end{proof}
+
+    Usando uno de los ejemplos anteriores, uno puede construir dos espacios recubridores del toro (recuerde que $\mathbb{T}=\mathbb{S}^1\times\mathbb{S}^1$), a saber:
+
+    \begin{equation*}
+        \cf{p}{\mathbb{R}^2}{\mathbb{T}=\mathbb{S}^1\times\mathbb{S}^1}\quad\textup{y}\quad\cf{q}{\mathbb{R}\times\mathbb{S}^1}{\mathbb{T}=\mathbb{S}^1\times\mathbb{S}^1}
+    \end{equation*}
+    (donde las funciones son fácilmente construíbles a partir de los ejemplos anteriores).
+
+    \begin{obs}
+        Para más ejemplos desarrollados explícitamente, se recomienda checar: \textit{A basic course in Algebraic Topology} de Massey W. S.
+
+        Más adelante se abordarán estos ejemplos, el objetivo actual no tiene mucho que ver con el análisis de los mismos, sino con la prueba de un resultado imprescindible.
+    \end{obs}
+
+    \begin{mydef}
+        Una función continua $\cf{f}{X}{Y}$ es un \textbf{homeomorfismo local}, si para cada punto $x\in X$ existe una vecindad abierta $V$ de $x$ tal que $f(V)$ es abierto y $f\big|_{V}$ es un homeomorfismo.
+    \end{mydef}
+
+    \begin{obs}
+        De la definición de espacio recubridor se verifica fácilmente que $p$ es un homeomorfismo local.
+    \end{obs}
+
+    \begin{exa}
+        Si $(\widetilde{X},p)$ es un espacio recubridor de $X$ y $V$ es un subconjunto propio de $\widetilde{X}$ conexo y abierto, entonces $p\big|_{V}$ es un homeomorfismo local, pero $(V,p\big|_{V})$ no es un espacio recubridor de $X$.
+    \end{exa}
+
+    \begin{proof}
+        Observe que puede suceder que $p\big|_{V}$ no sea suprayectiva
+    \end{proof}
+
+    \begin{propo}
+        Todo homomorfismo local es una función abierta.
+    \end{propo}
+
+    \begin{proof}
+        Sea $\cf{f}{X}{Y}$ un homomorfismo local y $U\subseteq X$ abierto no vacío, debemos probar que $f(U)$ es abierto.
+
+        Sea $x\in U$, como $f$ es homomorfismo local, existe un abierto $V_x\subseteq X$ tal que $f\big|_{ V_x}$ es homomorfismo. En particular se tiene que $U\cap V_x$ es un abierto en $X$ contenido en $V_x$, por ser homomorfismo, se sigue que
+        \begin{equation*}
+            f|_{V_x}(U\cap V_x)
+        \end{equation*}
+        es abierto en $Y$, pero
+        \begin{equation*}
+            f(U)=f\left(\bigcup_{ x\in U} U\cap V_x\right)=\bigcup_{ x\in U} f(U\cap V_x)=\bigcup_{ x\in U} f\big|_{ V_x}(U\cap V_x)
+        \end{equation*}
+        donde todos los conjuntos en la unión de la derecha son abiertos, luego $f(U)$ es abierto.
+
+        Se sigue al ser $U$ arbitrario que $f$ es abierta.
+    \end{proof}
+
+    \begin{cor}
+        Si $(\widetilde{X},p)$ es un espacio recubridor de $X$, entonces $p$ es una función abierta.
+    \end{cor}
+
+    \begin{proof}
+        Inmediata del teorema anterior.
+    \end{proof}
+
+    \subtitle{Levantamiento de caminos en un espacio recubridor}
+
+    En esta parte se pretende probar algunos lemas que resultarán relevantes para algunos resultados que se verán posteriormente, relacionados con los espacios recubridores (y sobre todo con la determinación de grupos fundamentales).
+
+    Antes, se probarán algunos resultados sobre espacios métricos.
+
+    \begin{mydef}
+        Sea $(X,d)$ un espacio métrico y $A\subseteq X$ un conjunto no vacío. Para cada $x\in X$ definimos la \textbf{distancia de $x$ a $A$}, como
+        \begin{equation*}
+            d(x,A)=\inf\left\{d(x,a)\Big|a\in A \right\}
+        \end{equation*}
+    \end{mydef}
+
+    En Análisis Matemático I se probó que esta función como una función de $X$ en $\mathbb{R}^+\cup\left\{0\right\}$ es continua, para la que se cumple que
+    \begin{equation*}
+        d(x,A)-d(y,A)\leq d(x,y),\quad\forall x,y\in X
+    \end{equation*}
+
+    \begin{mydef}
+        Sea $(X,d)$ un espacio métrico y $A\subseteq X$ un conjunto acotado no vacío. El \textbf{diámetro de $A$} es el número real:
+        \begin{equation*}
+            D(A)=\sup\left\{d(a_1,a_2)\Big|a_1,a_2\in A \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{lema}[\textbf{Lema del número de Lebesgue}]
+        Sea $(X,d)$ un espcio métrico y $\mathcal{A}=\left\{A_i \right\}_{ i\in I}$ una cubierta abierta de $(X,d)$. Si $X$ es compacto, entonces existe $\delta>0$ tal que para cada subconjunto de $X$ con diámetro menor que $\delta$ existe $i_0\in I$ tal que $A_{ i_0}$ lo contiene. 
+
+        $\delta$ es llamado el \textbf{número de Lebesgue de $\mathcal{A}$}.
+    \end{lema}
+
+    \begin{proof}
+        Se tienen dos casos:
+        \begin{itemize}
+            \item Si $X$ está totalmente contenido en algún $A_i$, tomando $\delta=1$ se tiene el resultado.
+            \item Suponga que $X$ no está totalmente contenido en algún $A_i$. COomo $X$ es compacto, existen $A_{ i_1},...,A_{ i_n}$ tales que
+            \begin{equation*}
+                X=\bigcup_{ j=1}^n A_{ i_j}
+            \end{equation*}
+            Para cada $j\in\natint{1,n}$, sea
+            \begin{equation*}
+                C_j=X-A_{ i_j}
+            \end{equation*}
+            defina la función $\cf{f}{X}{\mathbb{R}}$ dada por:
+            \begin{equation*}
+                f(x)=\frac{1}{n}\sum_{ j=1}^n d(x,C_j)
+            \end{equation*}
+            (esta distancia es la media de las distancias a cualquier conjunto $C_j$). Probaremos que $f(x)>0$ para todo $x\in X$. Sea $x\in X$, entonces existe $j_0\in\natint{1,n}$ tal que $x\in A_{ i_{ j_0}}$, como $A_{ i_{ j_0}}$ es abierto, existe $\varepsilon>0$ tal que
+            \begin{equation*}
+                B_d(x,\varepsilon)\subseteq A_{ i_{ j_0}}
+            \end{equation*}
+            Entonces, $f(x)\geq\frac{\varepsilon}{n}>0$. Como $f$ es una función continua (por ser suma de funciones continuas) en un compacto, alcanza su máximo y su mínimo, en particular alcanza su mínimo, digamos $\delta>0$ (tiene que ser positivo ya que en caso contrario no se cumpliría la desigualdad enunciada anteriormente).
+
+            Afirmamos que $\delta>0$ es el número de Lebesgue. Sea $B\subseteq X$ no vacío tal que $D(B)<\delta$, sea $x_0\in B$, entonces
+            \begin{equation*}
+                B\subseteq B_d(x,\delta)
+            \end{equation*}
+            y, además
+            \begin{equation*}
+                \delta\leq f(x_0)\leq d(x_0,C_m)=d(x_0,X-A_{ i_m})
+            \end{equation*}
+            siendo $m\in\natint{1,n}$ tal que $d(x_0,C_m)$ es el máximo de las distancias a cualquier $C_j$. Luego $x_0\in A_{ i_m}$. Se sigue entonces que
+            \begin{equation*}
+                B\subseteq A_{ i_m}
+            \end{equation*}
+        \end{itemize}
+        por los incisos anteriores se tiene el resultado.
+    \end{proof}
+
+    \begin{lema}
+        Sea $(\widetilde{X},p)$ un espacio recubridor de $X$ y sea $Y$ un espacio conexo. Dadas dos funciones $\cf{f_0,f_1}{Y}{\widetilde{X}}$ continuas tales que
+        \begin{equation*}
+            p\circ f_0=p\circ f_1
+        \end{equation*}
+        se tiene que el conjunto
+        \begin{equation*}
+            F=\left\{y\in Y\Big|f_0(y)=f_1(y) \right\}
+        \end{equation*}
+        es vacío o es todo $Y$.
+    \end{lema}
+
+    \begin{proof}
+        Como $Y$ es conexo, basta con probar que el conjunto $F$ es abierto y cerrado. Sin pérdida de generalidad podemos asumir que $F$ es no vacío.
+        \begin{itemize}
+            \item \textit{$F$ es cerrado}: Sea $y\in\overline{F}$ y tomemos
+            \begin{equation*}
+                x=p\circ f_0(y)=p\circ f_1(y)
+            \end{equation*}
+            Sea $U$ una vecindad elemental de $x$ y sean $V_0$ y $V_1$ las componentes arco-conexas de $p^{-1}(U)$ que contienen a $f_0(y)$ y $f_1(y)$, respectivamente. Como $f_0$ y $f_1$ son ambas continuas, existe una vecindad $W\subseteq Y$ de $y$ tal que
+            \begin{equation*}
+                f_0(W)\subseteq V_0\quad\textup{y}\quad f_1(W)\subseteq V_1
+            \end{equation*}
+            se tiene que existe $z\in W$ tal que $f_0(z)=f_1(z)$. Por ende, debe suceder que $V_0=V_1$ (dado a que $f$ es continua y, $V_0$ y $V_1$ son componentes arco-conexas), luego $f_0(y)=f_1(y)$. Así, $y\in F$.
+            \item \textit{$F$ es abierto}: Se prueba de forma análoga a lo anterior usando el interior de $F$.
+        \end{itemize}
+        por ende $F$ es abierto y cerrado, se sigue que $F=Y$.
+    \end{proof}
+
+    \begin{lema}
+        \label{lemaF1}
+        Sea $(\widetilde{X},p)$ un espacio recubridor de $X$, $\widetilde{x}_0\in\widetilde{X}$ y $x_0=p(\widetilde{x}_0)$. Entonces, para cualquier camino $\cf{f}{I}{X}$ con punto inicial $x_0$, existe un único camino $\cf{\widetilde{f}}{I}{\widetilde{X}}$ con punto inicial $\widetilde{x}_0$ tal que
+        \begin{equation*}
+            p\circ \widetilde{f} =f
+        \end{equation*}
+    \end{lema}
+
+    \begin{proof}
+        Para la existencia se tienen dos casos:
+        \begin{itemize}
+            \item Si el camino $f$ está contenida en alguna vecindad elemental $U$ de $X$, al tenerse que $\widetilde{x}_0\in p^{-1}(U)$ (pues $f(I)\subseteq U$), considereamos la componente arco-conexa $V$ de $p^{-1}(U)$ tal que $\widetilde{x}_0\in V$.
+            
+            Como $\cf{p\big|_{V}}{V}{U}$ es un homeomorfismo, existe una única $\cf{q}{V}{U}$ homeomorfismo tal que
+            \begin{equation*}
+                \left\{
+                    \begin{split}
+                        p\big|_{V} \circ q & = \bbm{1}_{V} \\
+                        q \circ p\big|_{V} & = \bbm{1}_{U} \\
+                    \end{split}
+                \right.
+            \end{equation*}
+            hacemos pues
+            \begin{equation*}
+                \widetilde{f}(t)=q\circ f(t),\quad\forall t\in I
+            \end{equation*}
+            \item Pasaremos al caso general en el que puede que $f$ no esté totalmente contenida en una vecindad elemental. Sea $\left\{U_j\right\}_{j\in J}$ una cubierta abierta de $X$ por vecindades elementales (esto es posible dado a que $(\widetilde{X},p)$ es un recubrimiento de $X$). Entonces,
+            \begin{equation*}
+                \left\{f^{-1}(U_j) \right\}_{ j\in J}
+            \end{equation*}
+            es una cubierta abierta del compacto $I\subseteq\mathbb{R}$ (que puede ser visto como subespacio métrico de $\mathbb{R}$), luego existe $\delta>0$ número de Lebesgue de esta cubierta. Elegimos $n\in\mathbb{N}$ tal que
+            \begin{equation*}
+                \frac{1}{n}<\delta
+            \end{equation*}
+            y dividimos $I$ en los subintervalos:
+            \begin{equation*}
+                I=[0,1]=\bigcup_{ k=1}^n \left[\frac{k-1}{n},\frac{k}{n} \right]
+            \end{equation*}
+            se tiene que cada uno de los invervalos de la unión está contenido en una vecindad elemental, luego por la parte anterior existe una $\cf{\widetilde{f}_1}{\left[0,\frac{1}{n} \right]}{\widetilde{X}}$ tal que
+            \begin{equation*}
+                p\circ\widetilde{f}_1(t)=f(t),\quad\forall t\in\left[0,\frac{1}{n} \right]
+            \end{equation*}
+            hacemos $\widetilde{x}_1=\widetilde{f}_1\left(\frac{1}{n}\right)$. Repetimos el proceso construyendo las funciones $\left\{\widetilde{f}_k \right\}_{ k=1}^n$ tal que el punto terminal de $\widetilde{f}_k$ coincida con el punto inicial de $\widetilde{f}_{ k+1}$ para $k\in\natint{1,n-1}$. Definimos así el levantamiento $\widetilde{f}$ como sigue:
+            \begin{equation*}
+                \widetilde{f}(t)=\widetilde{f}_k(t)\textup{ si }t\in\left[\frac{k-1}{n},\frac{k}{n} \right]
+            \end{equation*}
+            para algún $k\in\natint{1,n}$ con $t\in I$. Se sigue entonces que
+            \begin{equation*}
+                p\circ\widetilde{f}=f
+            \end{equation*}
+        \end{itemize}
+        por los dos incisos anteriores se sigue la existencia de la función.
+
+        Pasemos a la unicidad. Sea $\cf{g}{I}{\widetilde{X}}$ tal que $\widetilde{x}_0$ es el punto inicial de $g$ y,
+        \begin{equation*}
+            p\circ g=f
+        \end{equation*}
+        entonces,
+        \begin{equation*}
+            p\circ g=p\circ \widetilde{f}
+        \end{equation*}
+        el conjunto
+        \begin{equation*}
+            F=\left\{t\in I\Big|g(t)=\widetilde{f}(t) \right\}
+        \end{equation*}
+        es no vacío pues $0\in F$ (ya que $g(0)=\widetilde{x}_0=\widetilde{f}(0)$). Por el lema anterior se sigue que $F=I$, es decir que $g=\widetilde{f}$.
+    \end{proof}
+
+    \begin{mydef}
+        En el contexto del lema anterior, diremos que $\widetilde{f}$ es un \textbf{levantamiento} del camino $f$.
+    \end{mydef}
+
+    \begin{lema}
+        \label{lemaF2}
+        Sea $(\widetilde{X},p)$ un espacio recubridor de $X$, y sean $\cf{\widetilde{f}_0,\widetilde{f}_1}{I}{\widetilde{X}}$ caminos tales que tienen el mismo punto inicial. Si
+        \begin{equation*}
+            f_0=p\circ\widetilde{f}_0\sim p\circ\widetilde{f}_1=f_1
+        \end{equation*}
+        entonces $\widetilde{f}_0\sim\widetilde{f}_1$. En particular, $\widetilde{f}_0$ y $\widetilde{f}_1$ tienen el mismo punto terminal.
+    \end{lema}
+
+    \begin{proof}
+        Suponga que $f_0\sim f_1$, entonces existe una función $\cf{F}{I\times I}{X}$ tal que
+        \begin{equation*}
+            \left\{
+                \begin{split}
+                    F(s,0) & = f_0(s) \\
+                    F(s,1) & = f_1(s) \\
+                \end{split}
+            \right.,\quad\forall s\in I
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \left\{
+                \begin{split}
+                    F(0,t) & = f_0(0)=f_1(0)=x_0 \\
+                    F(1,t) & = f_0(1)=f_1(1)=x_1 \\
+                \end{split}
+            \right.,\quad\forall t\in I
+        \end{equation*}
+        sea $\widetilde{x}_0\in\widetilde{X}$ tal que $f_0(0)=f_1(0)=p(\widetilde{x}_0)$. Sea $\left\{U_j \right\}_{ j\in J}$ una cubierta abierta de $X$ por vecindades fundamentales. Por el lema del número de Lebesgue existe pues $\delta>0$ tal que si $A\subseteq I\times I$ es un subconjunto con $D(A)<\delta$, entonces $A$ está contenido en algún elemento de la cubierta.
+
+        Podemos entonces encontrar números $0<s_0<s_1<...<s_m=1$ y $0<t_0<t_1<...<t_n$, tal que cada rectángulo $[s_{ i-1},s_i]\times [t_{ j-1},t_j]$ es mapeado por $F$ a una vecindad elemental en $X$.
+
+        Probaremos ahora la existencia de una única función $\cf{G}{I\times I}{\widetilde{X}}$ tal que
+        \begin{equation*}
+            p\circ G=F
+        \end{equation*}
+        siendo ésta tal que $G(0,0)=\widetilde{x}_0$.
+        \begin{itemize}
+            \item \textit{Existencia de $G$}: Definimos primero $G$ sobre el rectángulo $[0,s_1]\times[0,t_1]$ de tal forma que $G(0,0)=\widetilde{x}_0$, y para cada $t\in [0,t_1]$, el mapeo
+            \begin{equation*}
+                s\mapsto F(s,t)=f_t(s),\quad\forall s\in[0,s_1]
+            \end{equation*}
+            es un camino en $X$ que empieza en $x_0=p(\widetilde{x}_0)$. Del lema anterior se tiene que existe un camino $\cf{g_t}{[0,s_1]}{\widetilde{X}}$ tal que
+            \begin{equation*}
+                p\circ g_t=f_t
+            \end{equation*}
+            hacemos pues
+            \begin{equation*}
+                G(s,t)=g_t(s),\quad\forall (s,t)\in[0,s_1]\times[0,t_1]
+            \end{equation*}
+            Se cumple así que
+            \begin{equation*}
+                p\circ G=F
+            \end{equation*}
+            en $[0,s_1]\times [0,t_1]$. Repitiendo este proceso en todos los rectángulos $[s_{ i-1},s_1]\times[t_{ j-1},t_j]$ de tal forma que todos los caminos coincidan en la frontera (primero recorriendo todos los intervalos $[s_{ i-1},s_i]$ hasta tener el $I\times[0,t_1]$ y luego proceder para los de la forma $I\times[t_{ j-1},t_j]$, esto es posible de hacer por inducción y se incita a que el alumno lo escriba formalmente), obtenemos la función $\cf{G}{I\times I}{\widetilde{X}}$ deseada, para la que se cumple que
+            \begin{equation*}
+                p\circ G=F
+            \end{equation*}
+            Esta función $G$ es continua, pues $p$ es continua y $F$ lo es.
+            \item \textit{Unicidad de $G$}, suponga que existe $\cf{H}{I\times I}{\widetilde{X}}$ tal que
+            \begin{equation*}
+                p\circ H=F
+            \end{equation*}
+            entonces el conjunto en el que coinciden $G$ y $H$ es no vacío. Como $I\times I$ es conexo y cumple todas las hipótesis de un lema anterior, así que $G=H$. Se tiene además que
+            \begin{equation*}
+                p\circ G(s,0)= F(s,0)=f_0(s)=p\circ \widetilde{f}_0(s),\quad\forall s\in I
+            \end{equation*}
+            por unicidad debe suceder que
+            \begin{equation*}
+                G(s,0)=\widetilde{f}_0(s)
+            \end{equation*}
+            de forma análoga
+            \begin{equation*}
+                G(s,0)=\widetilde{f}_1(s)
+            \end{equation*}
+            además se cumple que
+            \begin{equation*}
+                p\circ G(0,t)=F(0,t)=x_0,\quad\forall t\in I
+            \end{equation*}
+            al ser $G$ continua debe suceder que $G(0,t)=\widetilde{x}_0$. De forma análoga
+            \begin{equation*}
+                p\circ G(0,t)=F(1,t)=x_1,\quad\forall t\in I
+            \end{equation*}
+            por tanto, $G(0,t)=\widetilde{x}_1$ para algún $\widetilde{x}_1\in\widetilde{X}$ tal que $p(\widetilde{x}_1)=x_1$. Por tanto, hemos probado que $G$ es una función continua para la cual se cumplen las condiciones necesarias para que
+            \begin{equation*}
+                \widetilde{f}_0\sim\widetilde{f}_1
+            \end{equation*}
+        \end{itemize}
+        así $\widetilde{f}_0\sim\widetilde{f}_1$, en particular se cumple que $\widetilde{f}_0$ y $\widetilde{f}_1$ tienen el mismo punto final.
+    \end{proof}
+
+    Con estos lemas probados estamos en condiciones de caracterizar el grupo fundamental del círculo.
+
+\end{document}
