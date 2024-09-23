@@ -1109,8 +1109,73 @@
         Sea $(X,\tau)$ un espacio topológico. Tomemos $\mathcal{A}=\left\{A_\alpha \right\}_{\alpha\in I}$ una colección de subconjuntos de $X$ que es localmente finita en $(X,\tau)$. Entonces, se cumple lo siguiente:
         \begin{enumerate}
             \item Sea $J\subseteq I$ y sea $\mathcal{B}=\left\{B_\alpha \right\}_{\alpha\in J}\subseteq\mathcal{P}(X)$ tal que para todo $\alpha\in J$, $B_\alpha\subseteq A_\alpha$. Entonces, $\mathcal{B}$ es localmente finita.
+            \item Sea $\overline{\mathcal{A}}=\left\{\overline{A}_\alpha\Big|\alpha\in I \right\}$, entonces $\overline{\mathcal{A}}$ es localmente finita.
+            \item $\overline{\bigcup_{\alpha\in I}A_\alpha}=\bigcup_{ \alpha\in I}\overline{A}_\alpha$.
         \end{enumerate}
     \end{propo}
 
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{cor}
+        Sea $(X,\tau)$ un espacio topológico.
+        \begin{enumerate}
+            \item Sean $\mathcal{L},\mathcal{B}\subseteq\mathcal{P}(X)$ tales que $\mathcal{L}\subseteq\mathcal{B}$ y $\mathcal{B}$ es localmente finita, entonces $\mathcal{L}$ es localmente finita.
+            \item Si $\mathcal{A}$ es una colecciónde conjuntos cerrados de $(X,\tau)$ y $\mathcal{A}$ es localmente finita, entonces $\bigcup\mathcal{A}=\bigcup_{A\in\mathcal{A}}A$ es un conjunto cerrado.
+        \end{enumerate}
+    \end{cor}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{mydef}
+        Sea $X$ un conjunto y sean $\mathcal{V},\mathcal{U}$ dos colecciones de subconjuntos de $X$. Decimos que $\mathcal{U}$ es un \textbf{refinamiento} de $\mathcal{V}$, o que $\mathcal{U}$ refina a $\mathcal{V}$ y se escribe por $\mathcal{U}<\mathcal{V}$, si para cada $U\in\mathcal{U}$ existe $V\in\mathcal{V}$ tal que $U\subseteq V$.
+    \end{mydef}
+
+    \begin{obs}
+        Sean $\mathcal{U},\mathcal{V},\mathcal{W}$ tres colecciones de subconjuntos de un conjunto $X$. Entonces:
+        \begin{enumerate}
+            \item $\mathcal{U}<\mathcal{U}$.
+            \item $\mathcal{U}<\mathcal{V}$ y $\mathcal{V}<\mathcal{W}$ implican que $\mathcal{U}<\mathcal{W}$.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{exa}
+        Considere $\mathcal{U}=\left\{(-1/n,1/n) \right\}_{ n\in\mathbb{N}}$ y $\mathcal{V}=\left\{(-1,1) \right\}_{ n\in\mathbb{N}}$. Entonces $\mathcal{U}<\mathcal{V}$ y $\mathcal{V}<\mathcal{U}$.
+    \end{exa}
+
+    El ejemplo anterior muestra que la relación $<$ no es antisimétrica.
+
+    \begin{mydef}
+        Un espacio topológico $(X,\tau)$ es \textbf{paracompacto} si para cada cubierta abierta $\mathcal{U}$ de $X$, existe una cubierta abierta $\mathcal{V}$ de $X$ tal que $\mathcal{V}$ es localmente finita y $\mathcal{V}<\mathcal{U}$. 
+    \end{mydef}
+
+    \begin{exa}
+        Considere el espacio topológico $(\mathbb{R},\tau_D)$ y la familia $\mathcal{M}=\left\{\left\{r\right\} \right\}_{ r\in \mathbb{R}}$. Se tiene que $\mathcal{M}$ es una cubierta abierta localmente finita de $(\mathbb{R},\tau_D)$. Ahora, si $\mathcal{U}=\left\{U_\alpha \right\}_{\alpha\in I}$ es una cubierta abierta de $(\mathbb{R},\tau_D)$ se tiene de forma inmediata que:
+        \begin{equation*}
+            \mathcal{M}<\mathcal{U}
+        \end{equation*}
+        Por tanto, $(\mathbb{R},\tau_D)$ es paracompacto.
+    \end{exa}
+
+    El ejemplo anterior muestra que no todo espacio paracompacto es compacto. Sin embargo, veremos que el converso es cierto.
+
+    \begin{excer}
+        Sea $(X,\tau)$ un espacio topológico. Entonces, $(X,\tau)$ es compacto si y sólo si dada una cubierta abierta $\mathcal{U}$ de $(X,\tau)$ existe una cubierta abierta finita $\mathcal{V}$ de $(X,\tau)$ tal que $\mathcal{V}<\mathcal{U}$.
+    \end{excer}
+
+    \begin{proof}
+        Es inmediata de la definición de compacidad.
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico y $A\subseteq X$. Entonces, $(A,\tau_A)$ es paracompacto si y sólo si dada $\mathcal{U}\subseteq\tau$ tal que
+        \begin{equation*}
+            A\subseteq\bigcup_{ U\in\mathcal{U}}U
+        \end{equation*}
+        existe $V\subseteq\tau$ tal que $A\subseteq\bigcup_{ V\in\mathcal{V}}V$, $\mathcal{V}<\mathcal{U}$ y $\mathcal{V}$ es localmente finita en $(A,\tau_A)$.
+    \end{propo}
 
 \end{document}
