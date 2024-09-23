@@ -125,6 +125,9 @@
     \end{tikzpicture}
     \:
 }
+\newcommand{\pstable}[1]{\arabic{#1})\stepcounter{#1}}
+\newcounter{tablec}
+
 %Este símvolo es para casi todo salvo una cantidad finita
 
 %recuerda usar \clearpage para hacer un salto de página
@@ -180,12 +183,12 @@
 
         En efecto, ya se tiene la implicación. Veamos que:
         \begin{equation*}
-            \neg\varphi \equiv \perp\Rightarrow\varphi
+            \neg\varphi \equiv \varphi\Rightarrow\perp
         \end{equation*}
         para un modelo $m$ se tiene que:
         \begin{center}
             \begin{tabular}{ c | c | c | c}
-                $\varphi$ & $\perp$ & $\perp\Rightarrow\varphi$ & $\neg\varphi$\\
+                $\varphi$ & $\perp$ & $\varphi\Rightarrow\perp$ & $\neg\varphi$\\
                 \hline
                 $T$ & $F$ & $F$ & $F$ \\
                 $F$ & $F$ & $T$ & $T$ \\
@@ -194,9 +197,10 @@
         es decir, que en cualquier caso $\overline{m}(\neg\varphi)=\overline{m}(\perp\Rightarrow\varphi)$. Se sigue entonces la equivalencia. Como $\left\{\neg,\Rightarrow \right\}$ es un conjunto completo de conectivas, también lo debe ser pues $\left\{\perp,\Rightarrow \right\}$.
     \end{proof}
 
+    \renewcommand{\theenumi}{\alph{enumi})}
+
     \begin{excer}
         Reescriba las siguientes fórmulas en notación polaca a notación usual:
-        \renewcommand{\theenumi}{\alph{enumi}}
         \begin{enumerate}
             \item $\neg\neg\Rightarrow\lor\land p_3p_8\neg p_{10}\neg\lor p_1p_5$.
             \item $\land\neg\Rightarrow p_3\lor p_4p_1\iff\lor\neg p_{10}\iff p_{ 15}p_{18}q$.
@@ -241,22 +245,372 @@
     \end{excer}
 
     \begin{proof}
-        
+        %TODO
     \end{proof}
 
     \begin{excer}
         Sea $\varphi$ una fórmula bien formada, y suponga que todos los símbolos de la variable que aparecen en $\varphi$ se encuentran entre $p_1,...,p_n$. Supóngase que $m,m'$ son dos modelos que satisfacen $m(p_i)=m'(p_i)$ para todo $i\in\natint{1,n}$. Demuestre que
         \begin{equation*}
-            \overline{m}(\varphi)=\overline{m}'(\varphi)
+            \overline{m}(\varphi)=\overline{m'}(\varphi)
         \end{equation*}
     \end{excer}
 
     \begin{proof}
-        
+        %TODO
     \end{proof}
 
     \begin{excer}
-        Demuestre o refute 
+        Demuestre o refute, para un conjunto de fórmulas $\Sigma$, y $\varphi,\psi$ dos fórmulas:
+        \begin{enumerate}
+            \item Si o bien $\Sigma\vDash\varphi$, o bien $\Sigma\vDash\psi$, entonces $\Sigma\vDash\varphi\land\psi$.
+            \item Si $\Sigma\vDash\varphi\land\psi$ entonces o bien $\Sigma\vDash\varphi$, o bien $\Sigma\vDash\psi$.
+        \end{enumerate}
     \end{excer}
+    
+    \begin{sol}
+        %TODO
+    \end{sol}
+
+    \begin{excer}[\textbf{Sustitución}]
+        Suponga que tenemos una lista de fórmulas bien formadas $\varphi_1,...,\varphi_n,...$. Quisiéramos definir formalmente la opearción que dada una fórmula bien formada $\psi$, reemplaza cada aparición del símbolo de la variable $p_i$ con la fórmula $\varphi_i$, de modo que se obtiene una nueva fórmula bien formada $\psi^*$. Por ejemplo, si $\psi$ es $p_4\Rightarrow p_{ 32}$, entonces $\psi^*$ es $\varphi_4\Rightarrow\varphi_{ 2}$.
+        \begin{enumerate}
+            \item ¿Cómo definiría formalmente la operación $\psi\mapsto\psi^*$ por recursión?
+            \item Sea $m$ cualquier modelo, y defina $m'$ como el modelo dado por $m'(p_i)=\overline{m}(\varphi_i)$ para todo $i\in\mathbb{N}$. Demuestre que $\overline{m'}(\psi)=\overline{m}(\psi^*)$, para cada fórmula bien formada $\psi$.
+            \item Concluya que si $\psi$ es una tautología, entonces $\psi^*$ también lo es.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{excer}
+        Sea $\Sigma$ un conjunto de fórmulas bien formadas. Definimos la operación $\mathcal{C}(\Sigma)$ mediante
+        \begin{equation*}
+            \mathcal{C}(\Sigma)=\Sigma\cup\left\{\varphi\Big|\neg\varphi\in\Sigma \right\}\cup\left\{\varphi\Big|\varphi\land\psi\in\Sigma\textup{ o }\psi\land\varphi\in\Sigma\textup{ para alguna FBF }\psi \right\}
+        \end{equation*}
+        Definimos también recursivamente, para cada conjunto de fórmulas bien formadas $\Sigma$ los conjuntos $\mathcal{C}^n(\Sigma)$ como sigue:
+        \begin{equation*}
+            \begin{split}
+                \mathcal{C}^0(\Sigma)&=\Sigma\\
+                \mathcal{C}^{n+1}(\Sigma)&=\mathcal{C}(\mathcal{C}^n(\Sigma)),\quad\forall n\in\mathbb{N}\cup\left\{0\right\}\\
+            \end{split}
+        \end{equation*}
+        y más aún, se define
+        \begin{equation*}
+            \mathcal{C}^\infty(\Sigma)=\bigcup_{ n\in\mathbb{N}}\mathcal{C}^n(\Sigma)
+        \end{equation*}
+        Haga lo siguiente:
+        \begin{enumerate}
+            \item Considere $\Sigma=\left\{p_1\land\neg p_2,\neg(p_3\land(p_4\land p_5)) \right\}$. Calcule $\mathcal{C}(\Sigma)$ y $\mathcal{C}(\mathcal{C}(\Sigma))$.
+            \item Si $\Sigma$ es como en el inciso $(a)$, ¿a qué es igual $\mathcal{C}^\infty(\Sigma)$?
+            \item Ahora, sea
+            \begin{equation*}
+                \Sigma=\left\{p_n\land\cdots p_n\Big|n\in\mathbb{N} \right\}
+            \end{equation*}
+            ¿A qué es igual $\mathcal{C}^\infty(\Sigma)$?
+            \item ¿Se te puede ocurrir de alguna manera intuitiva (verbal, corta) de describir a qué es igual $\mathcal{C}^\infty(\Sigma)$?
+        \end{enumerate}
+    \end{excer}
+    
+    \begin{sol}
+        %TODO
+    \end{sol}
+
+    \begin{excer}
+        Demuestre que existe una demostración formal de los siguientes argumentos (en su defecto, complete las demostraciones):
+    \end{excer}
+
+    \begin{sol}
+        \begin{enumerate}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $A$ & $\Rightarrow$ & $(B\land\neg C)$ & Premisa \\
+                    & \pstable{tablec} & $(B\lor C)$ & $\Rightarrow$ & $D$ & Premisa \\
+                    & \pstable{tablec} & $A$ &  &  & Premisa \\
+                    & \pstable{tablec} & $B$ & $\land$ & $\neg C$ & 1,3 M.P. \\
+                    & \pstable{tablec} & $B$ &  &  & 4 Simp. \\
+                    & \pstable{tablec} & $B$ & $\lor$ & $C$ & 5 Ad. \\
+                    & \pstable{tablec} & $D$ &  &  & 2,6 M.P. \\
+                    \hline
+                    & & & $\therefore$ & $D$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $A$ & $\Rightarrow$ & $B$ & Premisa \\
+                    & \pstable{tablec} & $A$ & $\lor$ & $(B\lor\neg C)$ & Premisa \\
+                    & \pstable{tablec} & $\neg B$ &  &  & Premisa \\
+                    & \pstable{tablec} & $\neg A$ &  &  & 1,2 M.T. \\
+                    & \pstable{tablec} & $B$ & $\lor$ & $\neg C$ & 3,2 S.D. \\
+                    & \pstable{tablec} & $\neg C$ &  &  & 5,3 S.D. \\
+                    & \pstable{tablec} & $\neg C$ & $\land$ & $\neg B$ & 5,3 Conj. \\
+                    \hline
+                    & & & $\therefore$ & $\neg C\land\neg B$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $A$ & $\Rightarrow$ & $B$ & Premisa \\
+                    & \pstable{tablec} & $B$ & $\Rightarrow$ & $C$ & Premisa \\
+                    & \pstable{tablec} & $(A\Rightarrow C)$ & $\Rightarrow$ & $(B\Rightarrow D)$ & Premisa \\
+                    & \pstable{tablec} & $(A\Rightarrow D)$ & $\Rightarrow$ & $E$ & Premisa \\
+                    $|\longrightarrow$& \pstable{tablec} & $A$ &  &  & Sup. \\
+                    $|$& \pstable{tablec} & $B$ &  &  & 1,5 M.P. \\
+                    $|$& \pstable{tablec} & $C$ &  &  & 2,6 M.P. \\
+                    \hline
+                    & \pstable{tablec} & $A$ & $\Rightarrow$ & $C$ & 5-7 M.D. \\
+                    & \pstable{tablec} & $B$ & $\Rightarrow$ & $D$ & 3,8 M.P. \\
+                    $|\longrightarrow$& \pstable{tablec} & $A$ &  &  & Sup. \\
+                    $|$& \pstable{tablec} & $B$ &  &  & 1,10 M.P. \\
+                    $|$& \pstable{tablec} & $D$ &  &  & 9,11 M.P. \\
+                    \hline
+                    & \pstable{tablec} & $A$ & $\Rightarrow$ & $D$ & 10-12 M.D. \\
+                    & \pstable{tablec} & $E$ &  &  & 4,14 M.P. \\
+                    \hline
+                    & & & $\therefore$ & $E$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $A$ & $\Rightarrow$ & $(B\land C)$ & Premisa \\
+                    & \pstable{tablec} & $\neg A$ & $\Rightarrow$ & $((D\Rightarrow E)\land(F\Rightarrow H))$ & Premisa \\
+                    & \pstable{tablec} & $(B\land C)$ & $\lor$ & $((\neg A\Rightarrow D)\land(\neg A\Rightarrow F))$ & Premisa \\
+                    & \pstable{tablec} & $\neg(B\land C)$ & $\land$ & $\neg(H\land D)$ & Premisa \\
+                    & \pstable{tablec} & $\neg(B$ & $\land$ & $C)$ & 4 Simp. \\
+                    & \pstable{tablec} & $\neg A$ &  &  & 1,5 M.T. \\
+                    & \pstable{tablec} & $(D\Rightarrow E)$ & $\land$ & $(F\Rightarrow H)$ & 2,6 M.P.\\
+                    & \pstable{tablec} & $D$ & $\Rightarrow$ & $E$ & 7 Simp.\\
+                    & \pstable{tablec} & $F$ & $\Rightarrow$ & $H$ & 7 Conm. y Simp. \\
+                    & \pstable{tablec} & $(\neg A\Rightarrow D)$ & $\land$ & $(\neg A\Rightarrow F)$ & 3,5 S.D. \\
+                    & \pstable{tablec} & $\neg A$ & $\Rightarrow$ & $D$ & 10 Simp. \\
+                    & \pstable{tablec} & $\neg A$ & $\Rightarrow$ & $F$ & 10 Conm. y Simp. \\
+                    & \pstable{tablec} & $D$ &  &  & 11,6 M.P. \\
+                    & \pstable{tablec} & $F$ &  &  & 12,6 M.P. \\
+                    & \pstable{tablec} & $E$ &  &  & 8,13 M.P. \\
+                    & \pstable{tablec} & $H$ &  &  & 9,14 M.P. \\
+                    & \pstable{tablec} & $E$ & $\land$ & $H$ & 15,16 Conj. \\
+                    \hline
+                    & & & $\therefore$ & $E\land H$ & \\
+                \end{tabular}
+            \end{center}
+            %TODO
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $(A\Rightarrow B)$ & $\land$ & $(C\Rightarrow D)$ & Premisa \\
+                    & \pstable{tablec} & $(B\Rightarrow E)$ & $\land$ & $(D\Rightarrow F)$ & Premisa \\
+                    & \pstable{tablec} & $(\neg A\Rightarrow E)$ & $\land$ & $(\neg B\Rightarrow D)$ & Premisa \\
+                    & \pstable{tablec} & $\neg E$ &  &  & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $\neg C\lor\neg B$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $A$ & $\Rightarrow$ & $(B\Rightarrow C)$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $B\Rightarrow(A\Rightarrow C)$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $A$ & $\Rightarrow$ & $(B\land C)$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $A\Rightarrow B$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $A$ & $\Rightarrow$ & $(B\land C)$ & Premisa \\
+                    & \pstable{tablec} & $C$ & $\Rightarrow$ & $(D\land E)$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $A\Rightarrow(B\land D)$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $A$ & $\Rightarrow$ & $B$ & Premisa \\
+                    & \pstable{tablec} & $C$ & $\Rightarrow$ & $B$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $(A\lor C)\Rightarrow B$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $((A\lor B)\Rightarrow C)$ & $\land$ & $(\neg D\Rightarrow(B\land\neg C))$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $A\Rightarrow D$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $(A\lor B)$ & $\Rightarrow$ & $C$ & Premisa \\
+                    & \pstable{tablec} & $D$ & $\Rightarrow$ & $(E\land F)$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $(A\Rightarrow C)\land(D\Rightarrow F)$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $(A\Rightarrow B)$ & $\land$ & $(C\Rightarrow D)$ & Premisa \\
+                    & \pstable{tablec} & $(B\lor D)$ & $\Rightarrow$ & $((E\Rightarrow(E\lor F))\Rightarrow A\land C)$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $A\iff C$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $A$ & $\lor$ & $(B\Rightarrow C)$ & Premisa \\
+                    & \pstable{tablec} & $(B\Rightarrow (B\land C))$ & $\Rightarrow$ & $(D\lor E)$ & Premisa \\
+                    & \pstable{tablec} & $(D\Rightarrow A)$ & $\land$ & $(E\Rightarrow F)$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $A\lor F$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $(A\Rightarrow(\neg B\land\neg C))$ & $\land$ & $(D\Rightarrow\neg(B\lor C))$ & Premisa \\
+                    & \pstable{tablec} & $(\neg E\Rightarrow A)$ & $\land$ & $(\neg F\Rightarrow D)$ & Premisa \\
+                    & \pstable{tablec} & $(E\Rightarrow B)$ & $\land$ & $(F\Rightarrow C)$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $B\iff C$ & \\
+                \end{tabular}
+            \end{center}
+            \setcounter{enumi}{15}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $(A\lor B)$ & $\Rightarrow$ & $(C\Rightarrow D)$ & Premisa \\
+                    & \pstable{tablec} & $(C\Rightarrow(C\land D))$ & $\Rightarrow$ & $E$ & Premisa \\
+                    & \pstable{tablec} & $E$ & $\Rightarrow$ & $((\neg F\lor\neg\neg F)\Rightarrow(A\land F))$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $A\iff E$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(A\Rightarrow(B\Rightarrow C))\Rightarrow((A\Rightarrow B)\Rightarrow(B\Rightarrow C))$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(A\Rightarrow B)\Rightarrow ((A\land C)\Rightarrow(B\land C))$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $((A\Rightarrow B)\Rightarrow A)\Rightarrow A$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $A$ & $\lor$ & $(B\land C)$ & Premisa \\
+                    & \pstable{tablec} & $A$ & $\Rightarrow$ & $C$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $C$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $(A\lor B)$ & $\Rightarrow$ & $(C\Rightarrow D)$ & Premisa \\
+                    & \pstable{tablec} & $(\neg D\lor E)$ & $\Rightarrow$ & $(A\land C)$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $D$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $(A\lor B)$ & $\Rightarrow$ & $(C\land D)$ & Premisa \\
+                    & \pstable{tablec} & $(C\lor E)$ & $\Rightarrow$ & $(\neg F\land H)$ & Premisa \\
+                    & \pstable{tablec} & $(F\lor G)$ & $\Rightarrow$ & $(A\land I)$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $\neg F$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(A\Rightarrow B)\lor (B\Rightarrow C)$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $A\Rightarrow ((A\Rightarrow B)\Rightarrow B)$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(A\Rightarrow B)\Rightarrow((A\Rightarrow (B\Rightarrow C))\Rightarrow(A\Rightarrow C))$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(A\land B)\Rightarrow B$ & \\
+                \end{tabular}
+            \end{center}
+            \item
+            \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $A\Rightarrow(B\Rightarrow A\land B)$ & \\
+                \end{tabular}
+            \end{center}
+        \end{enumerate}
+    \end{sol}
 
 \end{document}

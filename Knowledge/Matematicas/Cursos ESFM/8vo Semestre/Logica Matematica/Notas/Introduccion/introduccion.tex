@@ -1417,7 +1417,7 @@
     \begin{cor}
         Sea $\Sigma$ un conjunto de fórmulas bien formadas y sea $\varphi$ una fórmula. Entonces:
         \begin{enumerate}
-            \item $\Sigma\nvdash\varphi$ si y sólo si $\Sigma\cup\left\{ \varphi\right\}$ es consistente.
+            \item $\Sigma\nvdash\varphi$ si y sólo si $\Sigma\cup\left\{\neg\varphi\right\}$ es consistente.
             \item $\Sigma\vdash\varphi$ si y sólo si $\Sigma\cup\left\{\neg\varphi\right\}$ es inconsistente.
         \end{enumerate}
     \end{cor}
@@ -1475,6 +1475,26 @@
     \end{mydef}
 
     \begin{lema}
+        Si $\Gamma$ es un conjunto de fórmulas consistente, y $\varphi$ es cualquier otra fórmula, entonces o bien $\Gamma\cup\left\{\varphi\right\}$ es consistente, o lo es $\Gamma\cup\left\{\neg\varphi\right\}$
+    \end{lema}
+
+    \begin{proof}
+        Sea $\Gamma$ un conjunto de fórmulas consistente. Supongamos que no, es decir, tanto $\Gamma\cup\left\{\varphi\right\}$ y $\Gamma\cup\left\{\neg\varphi\right\}$ son ambos inconsistentes. Entonces
+        \begin{equation*}
+            \Gamma\cup\left\{\varphi\right\}\vdash\psi\land\neg\psi\quad\textup{y}\quad\Gamma\cup\left\{\neg\varphi\right\}\vdash\psi\land\neg\psi
+        \end{equation*}
+        para algúna FBF $\psi$. Por tanto, del Lema 1.3.2 se tiene que
+        \begin{equation*}
+            \Gamma\vdash\psi\land\neg\psi
+        \end{equation*}
+        por tanto $\Gamma$ es inconsistente\contradiction. Por tanto, uno de los dos:
+        \begin{equation*}
+            \Gamma\cup\left\{\varphi\right\}\quad\textup{y}\quad\Gamma\cup\left\{\neg\varphi\right\}
+        \end{equation*}
+        debe ser consistente.
+    \end{proof}
+
+    \begin{lema}
         \label{demConsist}
         Para todo conjunto de fórmulas $\Sigma$, si $\Sigma$ es consistente, entonces es satisfacible.
     \end{lema}
@@ -1490,6 +1510,8 @@
                     $p_1$ & $\longleftrightarrow$ & $3$ \\
                     $p_2$ & $\longleftrightarrow$ & $4$ \\
                     $p_3$ & $\longleftrightarrow$ & $5$ \\
+                    $\vdots$ & $\vdots$ & $\vdots$ \\
+                    $p_n$ & $\longleftrightarrow$ & $n+2$ \\
                     $\vdots$ & $\vdots$ & $\vdots$ \\
                 \end{tabular}
             \end{center}
@@ -1509,13 +1531,140 @@
             \begin{equation*}
                 n=p_1^{\alpha_1}\cdot...\cdot p_k^{\alpha_k}
             \end{equation*}
-            donde $\left\{p_n \right\}_{ n=1}^\infty$ es la sucesión de números primos ordenados de menor a mayor y $\alpha_i\in\mathbb{N}\cup\left\{0\right\}$, para todo $i\in\natint{1.k}$. En este caso, $p_k$ es el mayor primo para el cual $\alpha_k\neq0$. De esta fórmula, lo que haremos es codificar tuplas, a $n$ le corresponde la $k$-tupla:
+            donde $\left\{p_n \right\}_{ n=1}^\infty$ es la sucesión de números primos ordenados de menor a mayor y $\alpha_i\in\mathbb{N}\cup\left\{0\right\}$, para todo $i\in\natint{1.k}$. En este caso, $p_k$ es el mayor primo para el cual $\alpha_k\neq0$. De esta fórmula, lo que haremos es codificar tuplas, a $n$ le corresponde la $k$-tupla de números naturales:
             \begin{equation*}
                 n\leftrightsquigarrow (\alpha_1+1,\alpha_2+1,...,\alpha_ {k-1}+1,\alpha_k)
             \end{equation*}
             por ejemplo, en este caso la fórmula $\neg p_3=(\neg,p_3)$ se codificaría como tupla en el número $243$ (asignándole lo establecido a $\neg$ y $p_3$).
+
+            Con esta codificación, se tiene que:
+            \begin{center}
+                \begin{tabular}{ccccc}
+                    $1$ & $\longleftrightarrow$ & $\emptyset$ & $\equiv$ & $\emptyset$ \\
+                    $2$ & $\longleftrightarrow$ & $(1)$ & $\equiv$ & $\neg$ \\
+                    $3$ & $\longleftrightarrow$ & $(1,1)$ & $\equiv$ & $\ne\neg$ \\
+                    $4$ & $\longleftrightarrow$ & $(2)$ & $\equiv$ & $\Rightarrow$ \\
+                    $5$ & $\longleftrightarrow$ & $(1,1,1)$ & $\equiv$ & $\neg\neg\neg$ \\
+                    $6$ & $\longleftrightarrow$ & $(2,1)$ & $\equiv$ & $\Rightarrow\neg$ \\
+                    $7$ & $\longleftrightarrow$ & $(1,1,1,1)$ & $\equiv$ & $\neg\neg\neg\neg$ \\
+                    $8$ & $\longleftrightarrow$ & $(3)$ & $\equiv$ & $p_1$ \\
+                    $\vdots$ & $\vdots$ & $\vdots$ \\
+                    $p_n$ & $\longleftrightarrow$ & $n+2$ \\
+                    $\vdots$ & $\vdots$ & $\vdots$ \\
+                \end{tabular}
+            \end{center}
+            en este caso, la primera fórmula bien formada es la que codifica el número 8, que llamaremos $\varphi_1$. Con este procedimiento enumeramos cada una de las fórmulas bien formadas.
+
+            \item Ahora si con la demostración. Sea $\Sigma$ un conjunto consistente de fórmulas. Sea $\varphi_1,\varphi_2,...,\varphi_n,...$ una \textbf{enumeración efectiva} de todas las fórmulas bien formadas (esto es, con el procedimiento hecho anteriormente y yendo en correspondencia con el mismo).
+            
+            Recursivamente definimos
+            \begin{equation*}
+                \begin{split}
+                    \Sigma=\Sigma_0\subseteq\Sigma_1\subseteq\Sigma_2\subseteq\cdots\subseteq\Sigma_n\subseteq\cdots
+                \end{split}
+            \end{equation*}
+            de la manera siguiente:
+            \begin{equation*}
+                \Sigma_{ n+1}=\left\{
+                    \begin{array}{lcr}
+                        \Sigma_n\cup\left\{\varphi_{n+1}\right\} & \textup{ si } & \Sigma_n\cup\left\{\varphi_{n+1}\right\} \textup{ es consistente.}\\
+                        \Sigma_n\cup\left\{\neg\varphi_{n+1}\right\} & \textup{ e.o.c. } & \\
+                    \end{array}
+                \right.,\quad\forall n\in\mathbb{N}
+            \end{equation*}
+            del Lema 1.3.3 se sigue que $\Sigma_n$ es consistente, para todo $n\in\mathbb{N}$, y además cumple que:
+            \begin{equation*}
+                \Sigma=\Sigma_0\subseteq\Sigma_1\subseteq\Sigma_2\subseteq\cdots\subseteq\Sigma_n\subseteq\cdots
+            \end{equation*}
+            Definimos
+            \begin{equation*}
+                \Sigma_{\infty}=\bigcup_{ n=1}^\infty\Sigma_n
+            \end{equation*}
+            Se tiene pues que:
+            \begin{enumerate}
+                \item $\Sigma_{\infty}$ es consistente.
+                \item Para cada fórmula $\varphi$, o bien $\varphi\in\Sigma_\infty$ o $\neg\varphi\in\Sigma_{\infty}$.
+                \item $\Sigma_\infty\vdash\varphi$ si y sólo si $\varphi\in\Sigma_{\infty}$.
+            \end{enumerate}
+            Los incisos (2) y (3) son inmediatos de la construcción de cada $\Sigma_n$. Para el inciso (1): Suponga que $\Sigma_\infty$ es inconsistente, entonces existe una FBF tal que
+            \begin{equation*}
+                \Sigma_\infty\vdash\psi\land\neg\psi
+            \end{equation*}
+            Sean $\psi_1,...,\psi_m$ los elementos de $\Sigma_\infty$ usados en esta demostración. Para cada $i\in\natint{1,m}$, sea $n_i$ tal que $\psi_i\in\Sigma_{ n_i}$. Entonces
+            \begin{equation*}
+                \psi_i\in\Sigma_{n}\quad\forall i\in\natint{1,m}
+            \end{equation*}
+            donde $n=\max_{1\leq i\leq m}n_i$. Se sigue entonces que $\Sigma_n$ no es consistente\contradiction. Por tanto, $\Sigma_\infty$ es consistente.
+
+            Definimos el modelo $\cf{m}{\textup{Var}}{\left\{V,F\right\}}$ mediante:
+            \begin{equation*}
+                m(p_i)=V\textup{ si y sólo si }p_i\in\Sigma_{\infty}
+            \end{equation*}
+            y, también
+            \begin{equation*}
+                m(\neg p_i)=V\textup{ si y sólo si }\neg p_i\in\Sigma_{\infty}\textup{ si y sólo si }\Sigma_\infty\nvdash p_i
+            \end{equation*}
+
+            Afirmamos que para toda fórmula $\varphi$, $m\vDash\varphi$ si y sólo si $\varphi\in\Sigma_{\infty}$. En efecto, procederemos por induccción sobre $\varphi$.
+            \begin{itemize}
+                \item El caso base es inmediato.
+                \item Veamos que para una FBF:
+                \begin{equation*}
+                    \begin{split}
+                        m\vDash\neg\varphi&\textup{ si y sólo si }\overline{m}(\neg\varphi)=V\\
+                        &\textup{ si y sólo si }\overline{m}(\varphi)=F\\
+                        &\textup{ si y sólo si }\varphi\notin\Sigma_{\infty}\\
+                        &\textup{ si y sólo si }\neg\varphi\in\Sigma_{\infty}\\
+                    \end{split}
+                \end{equation*}
+                y, si tenemos una fórmula de la forma $\varphi\Rightarrow\psi$, donde $m\vDash\varphi$ y $m\vDash\psi$. Veamos que:
+                \begin{equation*}
+                    \begin{split}
+                        \overline{m}\nvDash\Rightarrow\varphi\psi&\textup{ si y sólo si }\overline{m}(\Rightarrow\varphi\psi)=F\\
+                        &\textup{ si y sólo si }\overline{m}(\varphi)=V\textup{ y }\overline{m}(\psi)=F\\
+                        &\textup{ si y sólo si }m\vDash\varphi\textup{ y }m\nvDash\psi\\
+                        &\textup{ si y sólo si }\varphi\in\Sigma_{\infty}\textup{ y }\psi\notin\Sigma_{\infty}\\
+                        &\textup{ si y sólo si }\varphi\in\Sigma_{\infty}\textup{ y }\neg\psi\in\Sigma_{\infty}\\
+                    \end{split}
+                \end{equation*}
+                si $\Rightarrow\varphi\psi\in\Sigma_{\infty}$, entonces como $\varphi,\neg\psi\in\Sigma_\infty$, se puede demostrar que $\psi\land\neg\psi\in\Sigma_{\infty}$, es decir que $\Sigma_{\infty}$ es inconsistente. Por tanto:
+                \begin{equation*}
+                    \begin{split}
+                        \overline{m}\nvDash\Rightarrow\varphi\psi&\textup{ implica }\Rightarrow\varphi\psi\notin\Sigma_{\infty}\\
+                    \end{split}
+                \end{equation*}
+                para la otra implicación, si $\Rightarrow\varphi\psi\notin\Sigma_{\infty}$, entonces $\neg\Rightarrow\varphi\psi\in\Sigma_\infty$. Pero:
+                \begin{equation*}
+                    \begin{split}
+                        \neg\Rightarrow\varphi\psi&\equiv\neg(\varphi\Rightarrow\psi)\\
+                        &\equiv\neg(\neg\neg\varphi\Rightarrow\psi)\\
+                        &\equiv\neg(\neg\varphi\lor\psi)\\
+                        &\equiv\neg\neg\varphi\land\neg\psi\\
+                        &\equiv\varphi\land\neg\psi\\
+                    \end{split}
+                \end{equation*}
+                en particular, se sigue que $\varphi\in\Sigma_{\infty}$ y $\neg\psi\in\Sigma_{\infty}$, lo cual prueba
+                \begin{equation*}
+                    \begin{split}
+                        \overline{m}\nvDash\Rightarrow\varphi\psi&\textup{ si }\Rightarrow\varphi\psi\notin\Sigma_{\infty}\\
+                    \end{split}
+                \end{equation*}
+                por ende:
+                \begin{equation*}
+                    \begin{split}
+                        \overline{m}\nvDash\Rightarrow\varphi\psi&\textup{ si y sólo si }\Rightarrow\varphi\psi\notin\Sigma_{\infty}\\
+                    \end{split}
+                \end{equation*}
+            \end{itemize}
+            aplicando inducción, se sigue que $m\vDash\varphi$ si y sólo si $\varphi\in\Sigma_{\infty}$.
+
+            Por tanto, $m\vDash\Sigma_{\infty}$, en particular $m\vDash\Sigma$. Por ende, $\Sigma$ es satisfacible.
         \end{itemize}
     \end{proof}
+
+    \begin{obs}
+        Note a su vez que con el procedimiento del lema anterior, también se pueden codificar tuplas de tuplas (en esencia la idea es que podemos codificar una demostración). Esto servirá más adelante para computabilidad.
+    \end{obs}
 
     \begin{obs}
         Probado este lema anterior, tenemos que:
@@ -1602,8 +1751,22 @@
                 Por ende, $\Sigma\vDash\varphi$.
             \end{itemize}
             por inducción se sigue que $\Sigma\vDash\varphi$.
-            \item \textbf{Completud}:
-        \end{itemize} 
+            \item \textbf{Completud}: Suponga que $\Sigma\vDash\varphi$, entonces no existe modelo $m$ tal que $m\vDash\Sigma$ y que $m\nvDash\varphi$. Es decir que no existe modelo $m$ tal que $m\vDash\Sigma$ y $m\vDash\neg\varphi$.
+            
+            Por tanto, el conjunto $\Sigma\cup\left\{\neg\varphi\right\}$ no es satisfacible, por la Correctud, se sigue que $\Sigma\cup\left\{\neg\varphi\right\}$ es inconsistente por el Lema 1.3.4, lo cual a su vez implica por el Corolario 1.3.2 que $\Sigma\vdash\varphi$.
+        \end{itemize}
+    \end{proof}
+
+    \begin{cor}[\textbf{Teorema de Compacidad}]
+        Si $\Sigma\vDash\varphi$, entonces existe un conjunto $\Sigma_0\subseteq\Sigma$ finito tal que $\Sigma_0\vDash\varphi$.
+    \end{cor}
+
+    \begin{proof}
+        Si $\Sigma\vDash\varphi$, entonces $\Sigma\vdash\varphi$. Si
+        \begin{equation*}
+            \Sigma_0=\left\{\psi\Big|\psi\textup{ aparece en una demostracioń de }\varphi \right\}\subseteq\Sigma
+        \end{equation*}
+        entonees $\Sigma_0$ es finito, y $\Sigma_0\vdash\varphi$, lo cual implica que $\Sigma_0\vDash\varphi$.
     \end{proof}
 
 \end{document}
