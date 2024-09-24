@@ -1,0 +1,333 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Sistemas de Ecuaciones Lineales}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \setcounter{chapter}{1}
+    
+    \section{Sistemas de Ecuaciones}
+
+    \section{Sistemas de dos Ecuaciones Lineales}
+
+    Un \textbf{sistema de dos ecuaciones lineales} son dos ecuaciones lineales de la forma
+    \begin{equation}
+        \left\{
+            \begin{array}{ccccc}
+                2x & + & y & = & 10 \\
+                5x & + & 9y & = & 14 \\
+            \end{array}
+        \right.
+    \end{equation}
+    $x$ e $y$ son llamadas las \textbf{incógnitas} del sistema. Este sistema es llamado \textbf{lineal}, pues las incógnitas $x$ e $y$ aparecen con exponente 1 y no hay más funciones involucradas que contengan a $x$ e/o $y$. En el sistema (1.1), los números $2$ y $5$ son llamados \textbf{coeficientes de la incógnita $x$}, y los 1 y 9 son los de la incógnita $y$.
+
+    \begin{obs}
+        Recuerde que $y=1y$ y que $0=0y$.
+    \end{obs}
+
+    \begin{excer}
+        Dado el sistema:
+        \begin{equation*}
+            \left\{
+                \begin{array}{ccccc}
+                    10x & + & 4y & = & 10 \\
+                    5x & + & 2y & = & 5 \\
+                \end{array}
+            \right.
+        \end{equation*}
+        indique los coeficientes de las incógnitas $x$ e $y$, respectivamente.
+    \end{excer}
+
+    \begin{excer}
+        Dado el sistema:
+        \begin{equation*}
+            \left\{
+                \begin{array}{ccccc}
+                    (1+1+1)x &  &  & = & 10 \\
+                    15x & + & \sqrt{19}y & = & 5 \\
+                \end{array}
+            \right.
+        \end{equation*}
+        indique los coeficientes de las incógnitas $x$ e $y$, respectivamente.
+    \end{excer}
+
+    \begin{excer}
+        Dado el sistema:
+        \begin{equation*}
+            \left\{
+                \begin{array}{ccccc}
+                    \sqrt{2}x &  &  & = & 10 \\
+                     &  & \frac{\pi}{3}y & = & 5 \\
+                \end{array}
+            \right.
+        \end{equation*}
+        indique los coeficientes de las incógnitas $x$ e $y$, respectivamente.
+    \end{excer}
+
+    \section{Solución de un Sistema de Ecuaciones Lineales}
+    
+    Cuando uno tiene este sistema de ecuaciones, uno pretende obtener los valores de las incógnitas del sistema. Para obtener el valor que puedan tener estas incógnitas, se debe reducir el sistema a algo de la forma:
+    \begin{equation}
+        \left\{
+            \begin{array}{ccccc}
+                x &  &  & = & ... \\
+                &  & y & = & ... \\
+            \end{array}
+        \right.
+    \end{equation}
+
+    \section{Resolución por suma y resta}
+
+    El procedimiento para obtener el valor de estas incógnitas es el siguiente: dado el sistema
+    \begin{equation*}
+        \left\{
+            \begin{array}{ccccc}
+                2x & + & y & = & 10 \\
+                5x & + & 9y & = & 14 \\
+            \end{array}
+        \right.
+    \end{equation*}
+    se aplicarán operaciones de suma, resta, multiplicación y división a las ecuaciones. Esto es llamado \textbf{reducir las ecuaciones del sistema}. Por ejemplo, el sistema anterior lo podemos reducir a:
+    \begin{equation*}
+        \left\{
+            \begin{array}{ccccc}
+                2x & + & y & = & 10 \\
+                5x & + & 9y & = & 14 \\
+            \end{array}
+        \right.\sim \left\{
+            \begin{array}{ccccl}
+                2x & + & y & = & 10 \\
+                (5x & + & 9y & = & 14)\cdot\frac{1}{9} \\
+            \end{array}
+        \right.
+    \end{equation*}
+    donde, cuando indicamos que se multiplica por $\frac{1}{9}$, es por que estamos multiplicando ambos lados de la ecuación por $\frac{1}{9}$. De esta forma:
+
+    \begin{equation*}
+        \left\{
+            \begin{array}{ccccc}
+                2x & + & y & = & 10 \\
+                5x & + & 9y & = & 14 \\
+            \end{array}
+        \right.\sim \left\{
+            \begin{array}{ccccl}
+                2x & + & y & = & 10 \\
+                \frac{5}{9}x & + & \frac{9}{9}y & = & \frac{14}{9} \\
+            \end{array}
+        \right.
+    \end{equation*}
+    En este caso, $\frac{9}{9}=1$, por lo que:
+    \begin{equation}
+        \left\{
+            \begin{array}{ccccc}
+                2x & + & y & = & 10 \\
+                5x & + & 9y & = & 14 \\
+            \end{array}
+        \right.\sim \left\{
+            \begin{array}{ccccl}
+                2x & + & y & = & 10 \\
+                \frac{5}{9}x & + & y & = & \frac{14}{9} \\
+            \end{array}
+        \right.
+    \end{equation}
+    En el proceso de reducir, uno pretende que el sistema se vaya simplificando y poder de alguna manera, dejar libres las incógnitas del sistema. En este proceso de reducción, también se pueden sumar o restar ecuaciones. Por ejemplo, podemos restar la segunda ecuación de la primera ecuación, lo que resulta en la nueva ecuación:
+    \begin{equation*}
+        \begin{array}{cccccl}
+            & 2x & + & y & = & 10 \\
+            - &  &  &  & & \\
+            & \frac{5}{9}x & + & y & = & \frac{14}{9} \\
+            \hline
+            & 2x-\frac{5}{9}x & + & y-y & = & 10-\frac{14}{9} \\
+        \end{array}
+    \end{equation*}
+    simplificando esta ecuación, obtenemos que:
+    \begin{equation*}
+        \left\{
+            \begin{array}{cccccl}
+                & 2x-\frac{5}{9}x & + & y-y & = & 10-\frac{14}{9} \\
+            \end{array}
+        \right.
+        \sim
+        \left\{
+            \begin{array}{cccccl}
+                & \frac{13}{9}x &  &  & = & \frac{76}{9} \\
+            \end{array}
+        \right.
+    \end{equation*}
+    una vez hecho esto, cambiamos esta nueva ecuación por la primera de nuestro sistema en (1.3), con lo que obtenemos:
+    \begin{equation*}
+        \left\{
+            \begin{array}{ccccl}
+                2x & + & y & = & 10 \\
+                \frac{5}{9}x & + & y & = & \frac{14}{9} \\
+            \end{array}
+        \right.
+        \sim
+        \left\{
+            \begin{array}{ccccl}
+                \frac{13}{9}x &  &  & = & \frac{76}{9} \\
+                \frac{5}{9}x & + & y & = & \frac{14}{9} \\
+            \end{array}
+        \right.
+    \end{equation*}
+    Ahora, para llevar a este sistema a la algo más parecido a (1.2), basta con multiplicar la primera ecuación por $\frac{9}{13}$, con lo que obtenemos:
+    \begin{equation*}
+        \begin{split}
+            \left\{
+            \begin{array}{ccccl}
+                \frac{13}{9}x &  &  & = & \frac{76}{9} \\
+                \frac{5}{9}x & + & y & = & \frac{14}{9} \\
+            \end{array}
+        \right.
+        &\sim
+        \left\{
+            \begin{array}{ccccl}
+                x &  &  & = & \frac{76}{9}\cdot\frac{9}{13} \\
+                \frac{5}{9}x & + & y & = & \frac{14}{9} \\
+            \end{array}
+        \right.\\
+        &\sim
+        \left\{
+            \begin{array}{ccccl}
+                x &  &  & = & \frac{76}{13} \\
+                \frac{5}{9}x & + & y & = & \frac{14}{9} \\
+            \end{array}
+        \right.\\
+        \end{split}
+    \end{equation*}
+
+\end{document}

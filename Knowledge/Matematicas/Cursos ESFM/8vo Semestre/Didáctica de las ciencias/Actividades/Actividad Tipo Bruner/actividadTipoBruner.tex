@@ -1,0 +1,207 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Actividad Tipo Bruner}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \setcounter{chapter}{1}
+
+    \section{Sistemas de dos Ecuaciones Lineales}
+
+    Un \textbf{sistema de dos ecuaciones lineales} son dos ecuaciones lineales de la forma
+    \begin{equation}
+        \left\{
+            \begin{array}{ccccc}
+                2x & + & y & = & 10 \\
+                5x & + & 9y & = & 14 \\
+            \end{array}
+        \right.
+    \end{equation}
+    $x$ e $y$ son llamadas las \textbf{incógnitas} del sistema. Este sistema es llamado \textbf{lineal}, pues las incógnitas $x$ e $y$ aparecen con exponente 1 y no hay más funciones involucradas que contengan a $x$ e/o $y$. En el sistema (1.1), los números $2$ y $5$ son llamados \textbf{coeficientes de la incógnita $x$}, y los 1 y 9 son los de la incógnita $y$.
+
+    \begin{obs}
+        Recuerde que $y=1y$ y que $0=0y$.
+    \end{obs}
+
+    \begin{excer}
+        Dado el sistema:
+        \begin{equation*}
+            \left\{
+                \begin{array}{ccccc}
+                    10x & + & 4y & = & 10 \\
+                    5x & + & 2y & = & 5 \\
+                \end{array}
+            \right.
+        \end{equation*}
+        indique los coeficientes de las incógnitas $x$ e $y$, respectivamente.
+    \end{excer}
+
+    \begin{excer}
+        En el sistema de ecuaciones lineales.
+        \begin{equation*}
+            \left\{
+                \begin{array}{ccccc}
+                    \sqrt{2}x &  &  & = & 10 \\
+                     &  & \frac{\pi}{3}y & = & 5 \\
+                \end{array}
+            \right.
+        \end{equation*}
+        ¿qué puede decir de los valores de las incógnitas $x$ e $y$?
+    \end{excer}
+
+    \begin{excer}
+        En la ecuación lineal:
+        \begin{equation*}
+            10x+4y=10
+        \end{equation*}
+        conociendo que el valor de la incógnita $x$ es $10$, ¿qué puede decir del valor de $y$?
+    \end{excer}
+
+    \begin{excer}
+        En el sistema de ecuaciones:
+        \begin{equation*}
+            \left\{
+                \begin{array}{ccccc}
+                    2x &  &  & = & 10 \\
+                    6x & + & 3y & = & 45 \\
+                \end{array}
+            \right.
+        \end{equation*}
+        ¿Puede pensar en algun procedimiento para obtener el valor de la incógnita $y$? Justifique.
+    \end{excer}
+
+\end{document}
