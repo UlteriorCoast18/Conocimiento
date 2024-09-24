@@ -118,6 +118,16 @@
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
 \newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+\newcommand{\pstable}[1]{\arabic{#1})\stepcounter{#1}}
+\newcounter{tablec}
 
 \begin{document}
     \title{Curso de Lógica Matemática}
@@ -1768,5 +1778,164 @@
         \end{equation*}
         entonees $\Sigma_0$ es finito, y $\Sigma_0\vdash\varphi$, lo cual implica que $\Sigma_0\vDash\varphi$.
     \end{proof}
+
+    \chapter{Lógica de Primer Orden}
+
+    \section{Introducción}
+
+    \begin{mydef}
+        Un \textbf{Lenguaje de Primer Orden} consta de:
+        \begin{itemize}
+            \item \textbf{Alfabeto}: Mismo que tiene:
+            \begin{enumerate}
+                \item \textit{Variables}: denotadsa por $v_1,...,v_n$.
+                \item \textit{Conectivas}: a saber $\neg$ y $\Rightarrow$.
+                \item \textit{Igualdad}: denotada por el símbolo $=$.
+                \item \textit{Cuantificador}: denotado por $\exists$.
+                \item[a)] \textit{Símbolos de predicado/relación}, denotados por $P_1,...,P_n$.
+                \item[b)] \textit{Símbolos de función}, denotados por $F_1,...,F_n$.
+                \item[c)] \textit{Símbolos de constante}. denotados por $C_1,...,C_n$.
+            \end{enumerate}
+        \end{itemize}
+        $1$-$4$ son llamados \textbf{Símbolos Lógicos}, y los de $a)$-$b)$ son llamados \textbf{Símbolos no Lógicos}.
+
+        Cada función lleva su ariedad, como lo muestra el ejemplo de abajo.
+    \end{mydef}
+
+    \begin{obs}
+        Todos los lenguajes poseen Símbolos Lógicos. Lo que generalmente va a cambiar son los Símbolos no Lógicos. Estos se denotarán entre corchetes $\left\{\right\}$.
+    \end{obs}
+
+    \begin{exa}
+        Un ejemplo de un lenguaje de primer orden es el de la Teoría de Grupos: $\left\{\cdot,()^{-1},e_G \right\}=\mathcal{L}_{TG}$, siendo $e_G$ la identidad del grupo, $\cdot$ la operación binaria sobre $G$ que es asociativa y la función $()^{-1}$ es una función unaria que a cada elemento le asigna su inverso.
+        \begin{itemize}
+            \item $\cdot$ es una función binaria.
+            \item $()^{-1}$ es una función unaria.
+            \item $e_G$ es una constante.
+        \end{itemize}
+    \end{exa}
+
+    \begin{exa}
+        Otro ejemplo de un lenguaje de primer orden es el de la Teoría de Anillos: $\left\{+,\cdot,1,0 \right\}=\mathcal{L}_{TA}$, $+$ y $\cdot$ funciónes binarias. 0 y 1 constantes.
+    \end{exa}
+    
+    \begin{exa}
+        El Lenguaje de la Aritmética, denotado por $\mathcal{L}_A=\left\{+,\cdot,<,1,Sc \right\}$, donde $+$ y $\cdot$ son funciones binarias, $<$ es un símbolo de predicado/relación, $1$ es constante y $Sc$ es la función unaria sucesor.
+    \end{exa}
+
+    \begin{exa}
+        El Lenguaje de la Teoría de Conjuntos, denotado por $\mathcal{L}_{TC}=\left\{\in\right\}$, siendo $\in$ el único símbolo que es una relación binaria.
+    \end{exa}
+
+    \begin{mydef}
+        Dado un lenguaje de primer orden $\left\{P_i,F_i,C_i \right\}$, definimos los \textbf{términos} como sigue:
+        \begin{enumerate}
+            \item Cada $v_i$ y cada $c_i$ son términos (variables y constantes). Realmente estamos abreviando la cadena de longitud uno con único elemento a $v_i$ o $c_i$ (dependiendo del caso).
+            \item Si $F_i$ es un símbolo de función que sea $k$-ario, y $t_1,...,t_k$ son términos, entonces la sucesión o cadena de símbolos $(F_i,t_1,...,t_k)\equiv F_it_1\cdot st_k$ también es un término.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        En $\mathcal{L}_{TG}$, $v_5,v_7,e_G$ son términos. También:
+        \begin{equation*}
+            \cdot v_t\cdot v_7 e_G
+        \end{equation*}
+        es un término (recuerde que está en notación polaca).
+
+        En $\mathcal{L}_{ TA}$, $0,1,v_{1000},\cdot v_{57}+01$ son términos.
+
+        En $\mathcal{L}_A$, $S+1v_{ 57}$ es un término.
+
+        En $\mathcal{L}_{ TC}$, $v_{49},v_{79},v_{ 1985}$ son términos.
+    \end{exa}
+
+    \begin{mydef}
+        Dado un lenguaje de primer orden $\left\{F_i,P_i,C_i \right\}$ definimos las fórmulas como sigue:
+        \begin{enumerate}
+            \item \textbf{Fórmulas Atómicas}:
+            \begin{itemize}
+                \item Si $t_1,t_2$ son términos, entonces $=t_1t_2$ es una fórmula.
+                \item Si $R_i$ es un símbolo de relación $k$-aria, y $t_1,...,t_k$ son términos, entonces $R_it_1\cdots t_k$ es una fórmula.
+            \end{itemize}
+            \item Si $\varphi,\psi$ son fórmulas, entonces $\Rightarrow\varphi\psi$ y $\neg\varphi$ son fórmulas.
+            \item Si $\varphi$ es una fórmula y $v_i$ es una variable, entonces $\exists v_i\varphi$ es una fórmula.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{mydef}
+        Se define el cuantificador $\forall$, \textbf{Para Todo} como:
+        \begin{equation*}
+            \forall x\varphi \equiv \neg(\exists x(\neg\varphi))
+        \end{equation*}
+        siendo $x$ una variable y $\varphi$ una fórmula.
+    \end{mydef}
+
+    \begin{exa}
+        Un ejemplo de una fórmula en $\mathcal{L}_{TA}$ es:
+        \begin{equation*}
+            \neg(\exists v_6\neg (1+1)v_5\cdot v_5+(1+1+1)v_5\cdot v_7+v_7=0)
+        \end{equation*}
+    \end{exa}
+
+    \begin{exa}
+        Un ejemplo de fórmula en $\mathcal{L}_A$ es:
+        \begin{equation*}
+            \neg(\exists v_1\neg\neg \exists v_2\neg=+v_1Scv_2Sc+v_1v_2)
+        \end{equation*}
+    \end{exa}
+
+    \begin{exa}
+        Un ejemplo de fórmula en $\mathcal{L}_{TC}$ es:
+        \begin{equation*}
+            (\forall x\forall y)((\forall z z\in x\iff z\in y)\Rightarrow x=y)
+        \end{equation*}
+        que, escrita en notación polaca sería:
+        \begin{equation*}
+            \neg\exists v_1\neg\neg\exists v_2\neg \Rightarrow\neg \exists v_3\neg\land\Rightarrow \in v_3v_1\in v_3v_2\Rightarrow \in v_3v_2\in v_3v_1=v_1v_2
+        \end{equation*}
+    \end{exa}
+
+    Hablaremos ahora de variables libres. En la fórmula:
+    \begin{equation*}
+        (\forall v_5)(e_G=v_5(v_6e_G))
+    \end{equation*}
+    en esta fórmula, $v_5$ es llamada variable ligada, y $v_7$ es llamada libre.
+    
+    En la fórmula:
+    \begin{equation*}
+        (\forall x\forall y)(x+Sc(y)=Sc(x)+y)
+    \end{equation*}
+    no hay variables libres, todas son ligadas. Pero, en la fórmula
+    \begin{equation*}
+        (\forall v_5)(v_5=e_G)\land(v_5\cdot v_7=v_6)
+    \end{equation*}
+    es tal que $v_5$ es una variable ligada en el lado izquierdo del $\land$, pero es libre en el lado derecho.
+    
+    \begin{mydef}
+        Considere el conjunot de fórmulas. Entonces $\cf{Free}{\textup{Conjunto de Fórmulas}}{\mathcal{P}(\textup{Variables})}$ tal que
+
+        \begin{equation*}
+            Free(\textup{atómica})=\textup{Variables que aparecen en todos los términos}
+        \end{equation*}
+
+        l acual cumple que
+        \begin{enumerate}
+            \item 
+        \end{enumerate}
+    \end{mydef}
+
+    \chapter*{Ejemplo Nuevo tipo de Tabla}
+
+    \begin{center}
+        \setcounter{tablec}{1}
+        \begin{tabular}{l r l c l r}
+            & \pstable{tablec} & $(A\lor B)$ & $\Rightarrow$ & $(C\land D)$ & Premisa \\
+            & \pstable{tablec} & $(C\lor E)$ & $\Rightarrow$ & $(\neg F\land H)$ & Premisa \\
+            & \pstable{tablec} & $(F\lor G)$ & $\Rightarrow$ & $(A\land I)$ & Premisa \\
+            \hline
+            & & & $\therefore$ & $\neg F$ & \\
+        \end{tabular}
+    \end{center}
+    
 
 \end{document}
