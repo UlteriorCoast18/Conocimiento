@@ -1911,16 +1911,18 @@
     \end{equation*}
     es tal que $v_5$ es una variable ligada en el lado izquierdo del $\land$, pero es libre en el lado derecho.
     
+    \newcommand{\free}{\textup{Free}}
+
     \begin{mydef}
-        Considere el conjunot de fórmulas. Entonces $\cf{Free}{\textup{Conjunto de Fórmulas}}{\mathcal{P}(\textup{Variables})}$ tal que
-
+        Considere el conjunto de fórmulas. Entonces $\cf{\free}{\textup{Conjunto de Fórmulas}}{\mathcal{P}(\textup{Variables})}$ tal que
         \begin{equation*}
-            Free(\textup{atómica})=\textup{Variables que aparecen en todos los términos}
+            \free(\textup{atómica})=\textup{Variables que aparecen en todos los términos}
         \end{equation*}
-
-        l acual cumple que
+        la cual cumple que
         \begin{enumerate}
-            \item 
+            \item $\free(\varphi)=\free(\neg\varphi)$ para toda fórmula $\varphi$.
+            \item $\free(\Rightarrow\varphi\psi)=\free(\varphi)\cup\free(\psi)$, para todo par de fórmulas $\varphi,\psi$.
+            \item $\free(\exists x\varphi)=\free(\varphi)\setminus\left\{x\right\}$, para toda fórmula $\varphi$ y toda variable $x$.
         \end{enumerate}
     \end{mydef}
 
