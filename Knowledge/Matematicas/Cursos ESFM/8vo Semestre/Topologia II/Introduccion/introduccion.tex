@@ -904,13 +904,72 @@
     Nos preguntamos ahora que sucede con el producto de espacios regulares.
 
     \begin{propo}
-        Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{ \alpha\in I}$ una familia de esapcios topológicos y tomemos $X=\prod_{ \alpha\in I}X_\alpha$. Entonces, $(X,\tau_p)$ es completamente regular si y sólo si $(X_\alpha,\tau_\alpha)$ lo es, para todo $\alpha\in I$.
+        Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{ \alpha\in I}$ una familia de esapcios topológicos y tomemos $X=\prod_{ \alpha\in I}X_\alpha$. Entonces, $(X,\tau_p)$ es $T_{3.5}$ si y sólo si $(X_\alpha,\tau_\alpha)$ lo es, para todo $\alpha\in I$.
     \end{propo}
 
     \begin{proof}
-        $\Rightarrow$): Suponga que $(X,\tau_p)$ es completamente regular, como la propiedad de ser completamente regular es hereditaria y topológica, se sigue de forma inmediata que $(X_\alpha,\tau_\alpha)$ es completamente regular, para todo $\alpha\in I$.
+        $\Rightarrow$): Suponga que $(X,\tau_p)$ es $T_{3.5}$, como la propiedad de ser $T_{3.5}$ es hereditaria y topológica, se sigue de forma inmediata que $(X_\alpha,\tau_\alpha)$ es $T_{3.5}$, para todo $\alpha\in I$.
 
-        $\Leftarrow$): 
+        $\Leftarrow$): Suponga que para todo $\alpha\in I$ se tiene que $(X_\alpha,\tau_\alpha)$ es $T_{3.5}$. Sea $A\subseteq X$ cerrado no vacío y $x\in X-A$. Tenemos que $X-A\in\tau_p$, por lo cual existe un básico $U\in\tau_p$ tal que
+        \begin{equation*}
+            U\subseteq X-A
+        \end{equation*}
+        siendo
+        \begin{equation*}
+            U=\prod_{\alpha\in I}U_\alpha
+        \end{equation*}
+        con $U_\alpha\in\tau_\alpha$ para todo $\alpha\in I$ y tal que $U_\alpha=X_\alpha\afa\alpha\in I$. Digamos que $J=\left\{\alpha_1,...,\alpha_m \right\}\subseteq I$ es tal que
+        \begin{equation*}
+            U_{\alpha_i}\neq X_\alpha,\quad\forall i\in\natint{1,m}
+        \end{equation*}
+        Se tiene que $x=\left(x_\alpha\right)_{\alpha\in I}\in U$, luego se cumple en particular para todo $i\in\natint{1,m}$, $x_{\alpha_i}\notin X_{\alpha_i}-U_{\alpha_i}$.
+
+        Como $X_{\alpha_i}-U_{\alpha_i}$ es un cerrado no vacío que no contiene a $x_{\alpha_i}$, para todo $i\in\natint{1,m}$, al tenerse que $(X_{\alpha_i},\tau_{\alpha_i})$ es un espacio $T_{3.5}$, existe una función continua $\cf{f_{\alpha_i}}{(X_{\alpha_i},\tau_{\alpha_i})}{([0,1],\tau_u)}$ tal que:
+        \begin{equation}
+            f_{\alpha_i}\left(X_{\alpha_i}-U_{\alpha_i}\right)=\left\{0\right\}\quad\textup{y}\quad f_{\alpha_i}(x_{\alpha_i})=\left\{1\right\}
+        \end{equation}
+
+        Ahora, para $i\in\natint{1,m}$ consideremos la función proyección $\cf{p_{\alpha_i}}{(X,\tau_p)}{(X_{\alpha_i},\tau_{\alpha_i})}$. Definimos:
+        \begin{equation*}
+            g_{\alpha_i}=f_{\alpha_i}\circ p_{\alpha_i}
+        \end{equation*}
+        se tiene que $\cf{g_{\alpha_i}}{(X,\tau)}{([0,1],\tau_u)}$ es una función continua, para todo $i\in\natint{1,m}$. Definimos la función $\cf{f}{(X,\tau)}{([0,1],\tau_u)}$ dada por:
+        \begin{equation*}
+            f(x')=g_{\alpha_1}\cdot g_{\alpha_2}\cdots g_{\alpha_m}(x')
+        \end{equation*}
+        para todo $x'\in X$.
+
+        Se tiene que la función $f$ es continua. Además, cumple que:
+        \begin{equation*}
+            \begin{split}
+                f(x)&=g_{\alpha_1}\cdot g_{\alpha_2}\cdots g_{\alpha_m}(x)\\
+                &=1\cdot 1\cdots 1\\
+                &=1\\
+            \end{split}
+        \end{equation*}
+        ahora, sea $a\in A$, se tiene que $a\notin U$, luego existe $i\in\natint{1,m}$ tal que $x_{\alpha_i}\in X_{\alpha_i}-U_{\alpha_i}$, por lo que $g_{\alpha_i}(x_{\alpha_i})=0$, esto es que $f(x)=0$.
+
+        Así, $(X,\tau_p)$ es $T_{3.5}$.
+    \end{proof}
+
+    \begin{cor}
+        Sea $\left\{(X_\alpha,\tau_\alpha) \right\}_{ \alpha\in I}$ una familia de esapcios topológicos y tomemos $X=\prod_{ \alpha\in I}X_\alpha$. Entonces, $(X,\tau_p)$ es completamente regular si y sólo si $(X_\alpha,\tau_\alpha)$ lo es, para todo $\alpha\in I$.
+    \end{cor}
+
+    \begin{proof}
+        Inmediata del teorema anterior.
+    \end{proof}
+
+    \begin{obs}
+        Se sabe que si $(X,\tau)$ es un espacio compacto y Hausdorff, entonces $(X,\tau)$ es normal y por ende, completamente regular.
+    \end{obs}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio localmente compacto que no es compacto y además, es de Hausdorff, entonces $(X,\tau)$ es completamente regular.
+    \end{propo}
+
+    \begin{proof}
+        Considere $(\hat{X},\hat{\tau})$ (la compactificación unipuntual de $(X,\tau)$). Sabemos que $(X,\tau)$ es un espacio compacto y Hausdorff, lo cual implica inmediatamente por la observación anterior que es normal (esto se probó el semestre pasado) y, en consecuencia, $(\hat{X},\hat{\tau})$ es completamente regular. En particular, como $(X,\tau)$ es subespacio de $(\hat{X},\hat{\tau})$ y la propiedad de ser completamente regular es hereditaria, entonces $(X,\tau)$ es completamente regular.
     \end{proof}
 
     \section{El Teorema de Metrizabilidad de Urysohn}
@@ -926,7 +985,7 @@
         \end{equation*}
         Se define el \textbf{Cubo de Hilbert} como el subespacio métrico de $l_2(\mathbb{R})$ dado por:
         \begin{equation*}
-            \mathcal{H}=\left\{\left\{x_n \right\}_{ n=1}^\infty\Big|\abs{x_n}<\frac{1}{n}\textup{ para todo }n\in\mathbb{N} \right\}
+            \mathcal{H}=\left\{\left\{x_n \right\}_{ n=1}^\infty\Big|\abs{x_n}\leq\frac{1}{n}\textup{ para todo }n\in\mathbb{N} \right\}
         \end{equation*}
     \end{mydef}
 
@@ -935,8 +994,42 @@
     \end{theor}
 
     \begin{proof}
-        %TODO
-        Tenemos que la suma
+        Como $(X,\tau)$ es regular, entonces es $T_3$ y $T_1$. Al ser segundo numerable, se tiene que es Lindelöf. Por la proposición 1.1.5 se tiene que $(X,\tau)$ es $T_4$.
+
+        Sea $\mathcal{B}=\left\{B_n \right\}_{ n\in\mathbb{N}}$ una base numerable para $\tau$. Por ser base se cumple:
+        \begin{itemize}
+            \item[$(*)$:] Dados $x\in X$, $U\in\tau$ con $x\in U$ existe $k\in\mathbb{N}$ tal que $x\in B_k\subseteq U$.
+            
+            Ahora, por ser $(X,\tau)$ un espacio $T_3$, existe $V\in\tau$ tal que $x\in V\subseteq\overline{V}\subseteq B_k$. Nuevamente, como $V\in\tau$ entonces existe $j\in\mathbb{N}$ tal que $x\in B_j\subseteq V$. Por ende:
+            \begin{equation*}
+                x\in B_j\subseteq\overline{B_j}\subseteq B_k
+            \end{equation*}
+        \end{itemize}
+
+        Definimos
+        \begin{equation*}
+            \mathcal{L}=\left\{(B_j,B_k)\Big|B_j,B_k\in\mathcal{B}\textup{ son tales que }\overline{B}_j\subseteq B_k \right\}
+        \end{equation*}
+        Por $(*)$ se tiene que $\mathcal{L}\neq\emptyset$. Como $\mathcal{L}\subseteq\mathcal{B}\times\mathcal{B}$, entonces $\mathcal{L}$ es numerable, por lo que podemos escribir a $\mathcal{L}$ como:
+        \begin{equation*}
+            \mathcal{L}=\left\{(B_{ m_i},B_{ n_i}) \right\}_{ i\in\mathbb{N}}
+        \end{equation*}
+        Sea $i\in\mathbb{N}$, se tiene que para $(B_{ m_i},B_{ n_i})\in\mathcal{L}$ se cumple:
+        \begin{equation*}
+            \overline{B}_{ m_i}\subseteq B_{ n_i}
+        \end{equation*}
+        luego, los conjuntos cerrados:
+        \begin{equation*}
+            \overline{B}_{ m_i}\textup{ y }X-B_{ n_i}
+        \end{equation*}
+        son ambos cerrados disjuntos.
+
+        Ahora, como el espacio $(X,\tau)$ es $T_4$, para cada $i\in\mathbb{N}$ existe una función $\cf{h_i}{(X,\tau)}{(\left[0,\frac{1}{i}\right],\tau_u)}$ continua tal que
+        \begin{equation*}
+            h_i\left(\overline{B}_{ m_i}\right)=\left\{0\right\}\textup{ y }h_i\left(X-B_{ n_i}\right)=\frac{1}{i}
+        \end{equation*}
+        
+        Sea $x\in X$, tenemos que la suma
         \begin{equation*}
             \sum_{ i=1}^\infty h_i(x)^2\leq\sum_{ i=1}^\infty\frac{1}{i^2} <\infty
         \end{equation*}
@@ -1177,5 +1270,45 @@
         \end{equation*}
         existe $V\subseteq\tau$ tal que $A\subseteq\bigcup_{ V\in\mathcal{V}}V$, $\mathcal{V}<\mathcal{U}$ y $\mathcal{V}$ es localmente finita en $(A,\tau_A)$.
     \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio paracompacto y $A\subseteq X$ cerrado, entonces $(A,\tau_A)$ es paracompacto.
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{propo}
+        La propiedad de ser paracompacto es topológica.
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{propo}
+        Sea $(X,\tau)$ un espacio topológico. Se cumple:
+        \begin{enumerate}
+            \item Si $(X,\tau)$ es compacto, entonces $(X,\tau)$ es paracompacto.
+            \item Si $(X,\tau)$ es paracompacto y $T_3$, entonces es $T_4$.
+            \item Si $(X,\tau)$ es paracompacto y Hausdorff, entonces es regular.
+            \item Si $(X,\tau)$ es paracompacto y Hausdorff, entonces $(X,\tau)$ es normal.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        
+        De (1): Ya se tiene.
+        
+        De (2): 
+
+    \end{proof}
+
+
 
 \end{document}

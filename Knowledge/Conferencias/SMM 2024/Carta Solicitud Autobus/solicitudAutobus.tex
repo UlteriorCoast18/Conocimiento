@@ -1,0 +1,88 @@
+%% Inicio del archivo `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% Este trabajo puede ser distribuido o modificado bajo las 
+% condiciones de la LaTeX Project Public License V1.3c, 
+% disponible en http://www.latex-project.org/lppl/.
+%
+% Traducción al Español por Fausto M. Lagos (piratax007@protonmail.ch), 2016.
+
+
+\documentclass[11pt,a4paper,sans]{moderncv}        % posibles opciones de tamaño de fuente ('10pt', '11pt' and '12pt'), papel ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') y familia de fuentes ('sans' and 'roman')
+
+% temas moderncv
+\moderncvstyle{casual}                             % Los estilos disponibles son 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{blue}                               % las opciones de color son 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % descomentar al inicio de la línea para definir la fuente por defecto; use '\sfdefault' para sans serif por defecto, '\rmdefault' para roman, o cualquier otro nombre de fuente instalada en sus sistema
+%\nopagenumbers{}                                  % descomente para eliminar el numerado automático de las páginas en cartas de más de una página
+
+% Codificación de carácteres
+\usepackage[utf8]{inputenc}                        % Si no esta usando xelatex o lualatex, remplace por la codificación que este usando
+%\usepackage{CJKutf8}                              % descomente si necesita usar CJK para escribir su carta en Chino, Japones or Koreano
+\usepackage[spanish, english]{babel}			   % comentar si su carta esta escrita en un idioma diferente del Español
+
+% Configuración de márgenes
+\usepackage[scale=0.75]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}                % descomente si quiere modificar el ancho de columna para la fecha
+%\setlength{\makecvtitlenamewidth}{10cm}           % para el estilo 'classic', si quiere forzar el ancho del nombre. la longitud es normalmente calculada para evitar sobrelapamientos con su información personal; descomente esta línea bajo su propio riesgo
+
+% Información personal
+\name{Estudiantes de las tres carreras nivel licenciatura de la ESFM.}{}
+
+% para mostrar etiquetas numéricas en la bibliografía (por defecto no se muestran etiquecas); descomente las siguientes líneas solo si usa referencias bibliográficas en su carta
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]} % Considere reemplazar la línea 44 con esta
+
+% bibliografía con múltiples entradas
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            contenido
+%----------------------------------------------------------------------------------
+\begin{document}
+%-----       carta       ---------------------------------------------------------
+% Datos del destinatario
+\recipient{A QUIEN CORRESPONDA}{Ciudad de México}
+\date{25 de septiembre de 2024}
+\opening{PRESENTE}
+\closing{Esperando una respuesta favorable, le envío un cordial saludo.}
+
+\makelettertitle
+
+Por este medio nos permitimos, los abajo firmantes, solicitar a las autoridades correspondientes de la Escuela Superior de Física y Matemáticas su apoyo para que alumnos de los tres programas académicos que se imparten a nivel licenciatura en la escuela puedan asistir y representar de mejor manera al Instituto y a sí mismos al 57 Congreso Nacional de la Sociedad Matemática Mexicana que se llevará a cabo en la Facultad de Ciencias Exactas de la Universidad Juárez del Estado de Durango en la capital del mismo, del 21 al 25 de octubre del presente año.
+
+Es objetivo de la ESFM, desde su creación, es formar integralmente científicos y científicas en el campo de la Física-Matemática, esto a través de distintos medios, entre ellos la vinculación. Por ello mismo, creemos muy necesaria que esa vinculación deba hacerse con apoyo directo por parte de la ESFM, en este caso otorgando las facilidades para que se nos pueda otorgar una camioneta para el transporte a la ciudad donde se llevará el evento.
+
+Proponemos que se haga la salida del transporte de la Ciudad de México a la ciudad de Durango capital el día domingo 20 de octubre a las 8:00 am y que el regreso se haga el día sábado 26 de octubre a las 8:00 am.   
+
+Creemos beneficioso y reconfortante el hecho de sentir la protección de las necesidades de los alumnos a su desarrollo integral en la academia e investigación por parte del Instituto y sobre todo de la ESFM. Conocemos que para que este apoyo se nos sea brindado, es necesario seguir reglas. Por lo que nos compromentemos bajo este documento a seguir las indicaciones al pie de la letra para que pueda ser posible viajar adecuadamente a la ciudad.
+
+Finalmente, remarcamos nuestro interés de poner en alto el prestigio de nuestra escuela y el instituto como órganos de calidad, formadores de científicos y científicas, ante la Sociedad Matemática Mexciana. Por su atención, muchas gracias.
+
+Ayúdennos a seguir poniendo La Técnica al Servicio de la Patria.
+
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+\begin{center}
+    \begin{tabular}{ P{0.4\linewidth} P{0.1\linewidth}  P{0.4\linewidth} }
+        Alvarado Cristo Daniel & \quad & Gustavo Serrano Herrera \\
+        LFyM & & LFyM \\
+        & & \\
+        & & \\ \cline{1-1} \cline{3-3}
+        & & \\ 
+        Bazán Lozada Daniela Melissa & \quad & Manuel Martinez Morales \\
+        LFyM & & LFyM \\
+        & & \\
+        & & \\ \cline{1-1} \cline{3-3}
+        & & \\
+        Jorge Eduardo García García & \quad & Luis Alonso Hernández Téllez \\
+        LFyM & & LFyM \\
+        & & \\
+        & & \\ \cline{1-1} \cline{3-3}
+        & & \\
+    \end{tabular}
+\end{center}
+
+\end{document}
