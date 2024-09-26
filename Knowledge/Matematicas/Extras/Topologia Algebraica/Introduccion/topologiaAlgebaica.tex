@@ -2074,7 +2074,7 @@
 
         En efecto, sea $x\in\mathbb{D}^2$, entonces existe $t\in[0,1]$ y $\theta\in[0,2\pi[$ tal que
         \begin{equation*}
-            x=t(\cos\theta,\sin\theta)
+            x=t(\cos\theta,\sin\theta),\quad t=\|x\|
         \end{equation*}
         hacemos $\cf{F}{\mathbb{D}^2}{\mathbb{D}^2}$ dada por:
         \begin{equation*}
@@ -2094,7 +2094,7 @@
                 \end{array}
             \right.,\quad\forall x\in\mathbb{D}^2
         \end{equation*}
-        Se tiene entonces que para $x\in\mathbb{D}^2$ no cero (en particular, $t\neq 0$ y $f\left(\frac{x}{\|x\|}\right)\neq0$) que:
+        para $x\in\mathbb{D}^2$ no cero (en particular, $t\neq 0$ y $f\left(\frac{x}{\|x\|}\right)\neq0$) que:
         \begin{equation*}
             \begin{split}
                 F^{-1}\circ F(x)&=F^{-1}\left(tf\left(\frac{x}{\|x\|}\right)\right)\\
@@ -2110,6 +2110,33 @@
         \end{equation*}
         y, el cero lo manda al cero en ambos casos de la composición. Por lo cual, $F$ es homeomorfismo.
     \end{proof}
+
+    \begin{propo}
+        Sea $E_1$ un disco cerrado. Definimos $E_2$ como el espacio cociente de $E_1$ obtenido a partir de identificar un segmento cerrado de la frontera de $E_1$ con un punto. Entonces, este espacio cociente es nuevamente un disco cerrado.
+    \end{propo}
+
+    \begin{proof}
+        Haremos la prueba por pasos:
+        \begin{itemize}
+            \item Primero, veamos que significa la primera parte de la proposición. Podemos suponer (ya que $E_1$ es un disco cerrado), que $E_1$ es el cuadrado en $\mathbb{R}^2$:
+            \begin{equation*}
+                E_1=[-1,1]\times[-1,1]
+            \end{equation*}
+            Definimos sobre $E_1$ la relación $\mathcal{R}$ como sigue:
+            \begin{equation*}
+                \mathcal{R}=\bigcup_{ x\in[-1,1]\times]-1,1]\setminus\left\{(0,1)\right\} }\left\{x\right\}\cup\left\{[-1,1]\times\left\{-1\right\}\cup\left\{(0,-1)\right\} \right\}
+            \end{equation*}
+            (verifique que esta relación de equivalencia es efectivamente la que especifica la proposición). Afirmamos que $E_1/\mathcal{R}\cong\Delta$, donde $\Delta$ es el triángulo formado a partir de unir los puntos $(1,1)$, $(-1,1)$ y $(0,-1)$ en $\mathbb{R}^2$. En efecto, sea
+            \begin{equation*}
+                \cf{f}{E_1}{}
+            \end{equation*}
+            %TODO
+
+            \item Ya que todos los discos son homeomorfos, podemos elegir $E_1$ como queremos, en este caso, decidimos que $E_1$ es el trapezoide en $\mathbb{R}^2$ que une los puntos $ABDE$.
+        \end{itemize}
+    \end{proof}
+
+    
 
     \newpage
 
