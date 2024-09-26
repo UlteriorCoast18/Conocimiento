@@ -128,6 +128,7 @@
 }
 \newcommand{\pstable}[1]{\arabic{#1})\stepcounter{#1}}
 \newcounter{tablec}
+\newcommand{\free}{\textup{Free}}
 
 \begin{document}
     \title{Curso de Lógica Matemática}
@@ -1788,19 +1789,23 @@
         \begin{itemize}
             \item \textbf{Alfabeto}: Mismo que tiene:
             \begin{enumerate}
-                \item \textit{Variables}: denotadsa por $v_1,...,v_n$.
+                \item \textit{Variables}: denotadas por $v_1,...,v_n$.
                 \item \textit{Conectivas}: a saber $\neg$ y $\Rightarrow$.
-                \item \textit{Igualdad}: denotada por el símbolo $=$.
+                \item \textit{Relación de Igualdad}: denotada por el símbolo $=$.
                 \item \textit{Cuantificador}: denotado por $\exists$.
                 \item[a)] \textit{Símbolos de predicado/relación}, denotados por $P_1,...,P_n$.
                 \item[b)] \textit{Símbolos de función}, denotados por $F_1,...,F_n$.
-                \item[c)] \textit{Símbolos de constante}. denotados por $C_1,...,C_n$.
+                \item[c)] \textit{Símbolos de constante}, denotados por $C_1,...,C_n$.
             \end{enumerate}
         \end{itemize}
         $1$-$4$ son llamados \textbf{Símbolos Lógicos}, y los de $a)$-$b)$ son llamados \textbf{Símbolos no Lógicos}.
 
         Cada función lleva su ariedad, como lo muestra el ejemplo de abajo.
     \end{mydef}
+
+    \begin{obs}
+        En un modelo para un lenguaje de primer orden, se van a evaluar expresiones verdaderas, pero ¿qué significa que una expresión pueda ser evaluada? Más adelante se responderá esa pregunta.
+    \end{obs}
 
     \begin{obs}
         Todos los lenguajes poseen Símbolos Lógicos. Lo que generalmente va a cambiar son los Símbolos no Lógicos. Estos se denotarán entre corchetes $\left\{\right\}$.
@@ -1830,10 +1835,14 @@
     \begin{mydef}
         Dado un lenguaje de primer orden $\left\{P_i,F_i,C_i \right\}$, definimos los \textbf{términos} como sigue:
         \begin{enumerate}
-            \item Cada $v_i$ y cada $c_i$ son términos (variables y constantes). Realmente estamos abreviando la cadena de longitud uno con único elemento a $v_i$ o $c_i$ (dependiendo del caso).
+            \item Cada $v_i$ y cada $c_i$ son términos (variables y constantes). Realmente estamos abreviando la cadena de longitud uno con único elemento a $v_i$ o $c_i$ (dependiendo del caso, puede que abreviemos a $(v_i)$ o $(c_i)$).
             \item Si $F_i$ es un símbolo de función que sea $k$-ario, y $t_1,...,t_k$ son términos, entonces la sucesión o cadena de símbolos $(F_i,t_1,...,t_k)\equiv F_it_1\cdot st_k$ también es un término.
         \end{enumerate}
     \end{mydef}
+
+    \begin{obs}
+        El símbolo $\equiv$ denota que dos fórmulas son equivalentes (o que son la misma). En lo que sigue se intentará no usar para no confundir con $=$.
+    \end{obs}
 
     \begin{exa}
         En $\mathcal{L}_{TG}$, $v_5,v_7,e_G$ son términos. También:
@@ -1844,7 +1853,7 @@
 
         En $\mathcal{L}_{ TA}$, $0,1,v_{1000},\cdot v_{57}+01$ son términos.
 
-        En $\mathcal{L}_A$, $S+1v_{ 57}$ es un término.
+        En $\mathcal{L}_A$, $Sc+1v_{ 57}$ es un término.
 
         En $\mathcal{L}_{ TC}$, $v_{49},v_{79},v_{ 1985}$ son términos.
     \end{exa}
@@ -1862,10 +1871,16 @@
         \end{enumerate}
     \end{mydef}
 
+    \begin{obs}
+        Las fórmulas atómicas son las fórmulas más simples que podemos formar en nuestro lenguaje de primer orden.
+    \end{obs}
+
+    Los modelos que definiremos sobre la lógica de primer orden se harán sobre estos conjuntos de fórmulas, a los cuales les podremos asignar un valor de verdadero o falso (dependiendo del caso).
+
     \begin{mydef}
         Se define el cuantificador $\forall$, \textbf{Para Todo} como:
         \begin{equation*}
-            \forall x\varphi \equiv \neg(\exists x(\neg\varphi))
+            \forall x\varphi \equiv \neg((\exists x)(\neg\varphi))
         \end{equation*}
         siendo $x$ una variable y $\varphi$ una fórmula.
     \end{mydef}
@@ -1887,7 +1902,7 @@
     \begin{exa}
         Un ejemplo de fórmula en $\mathcal{L}_{TC}$ es:
         \begin{equation*}
-            (\forall x\forall y)((\forall z z\in x\iff z\in y)\Rightarrow x=y)
+            (\forall x)(\forall y)(((\forall z)( z\in x\iff z\in y))\Rightarrow x=y)
         \end{equation*}
         que, escrita en notación polaca sería:
         \begin{equation*}
@@ -1897,34 +1912,231 @@
 
     Hablaremos ahora de variables libres. En la fórmula:
     \begin{equation*}
-        (\forall v_5)(e_G=v_5(v_6e_G))
+        (\forall v_5)(e_G=v_5(v_6e3_G))
     \end{equation*}
-    en esta fórmula, $v_5$ es llamada variable ligada, y $v_6$ es llamada libre.
+    $v_5$ es llamada variable ligada, y $v_6$ es llamada libre.
     
     En la fórmula:
     \begin{equation*}
         (\forall x\forall y)(x+Sc(y)=Sc(x)+y)
     \end{equation*}
-    no hay variables libres, todas son ligadas. Pero, en la fórmula
+    no hay variables libres, todas son ligadas. Pero la fórmula
     \begin{equation*}
         (\forall v_5)(v_5=e_G)\land(v_5\cdot v_7=v_6)
     \end{equation*}
     es tal que $v_5$ es una variable ligada en el lado izquierdo del $\land$, pero es libre en el lado derecho.
-    
-    \newcommand{\free}{\textup{Free}}
 
     \begin{mydef}
-        Considere el conjunto de fórmulas. Entonces $\cf{\free}{\textup{Conjunto de Fórmulas}}{\mathcal{P}(\textup{Variables})}$ tal que
+        Se define la función $\cf{\free}{\textup{Conjunto de Fórmulas}}{\mathcal{P}(\textup{Var})}$, donde $\textup{Conjunto de Fórmulas}$ (como su nombre lo indica) es el conjunto de fórmulas de nuestro lenguaje de primer orden, y $\textup{Var}$ es el conjunto de variables del mismo lenguaje. Esta función está definida de tal forma que:
         \begin{equation*}
-            \free(\textup{atómica})=\textup{Variables que aparecen en todos los términos}
+            \free(\varphi)=\textup{Variables que aparecen en todos los términos}
         \end{equation*}
-        la cual cumple que
+        para toda fórmula atómica $\varphi$. Además, hacemos que:
         \begin{enumerate}
             \item $\free(\varphi)=\free(\neg\varphi)$ para toda fórmula $\varphi$.
             \item $\free(\Rightarrow\varphi\psi)=\free(\varphi)\cup\free(\psi)$, para todo par de fórmulas $\varphi,\psi$.
             \item $\free(\exists x\varphi)=\free(\varphi)\setminus\left\{x\right\}$, para toda fórmula $\varphi$ y toda variable $x$.
         \end{enumerate}
     \end{mydef}
+
+    \begin{obs}
+        Del inciso (3) de la definición anterior se sigue que
+        \begin{equation*}
+            \free(\forall x\varphi)=\free(\varphi)\setminus\left\{x\right\}
+        \end{equation*}
+    \end{obs}
+
+    \section{Cálculo Deductivo}
+
+    Básicamente es lo análogo al cálculo proposicional en el capítulo pasado:
+
+    \begin{mydef}[\textbf{Axiomas Lógicos}]
+        Todo lenguaje de primer orden consta de 6 axiomas lógicos (llamados \textbf{Axiomas de la Lógica Proposicional}):
+        \renewcommand{\theenumi}{\arabic{enumi}}
+        \begin{enumerate}
+            \item $\varphi\Rightarrow(\psi\Rightarrow\varphi)$.
+            \item $\varphi\Rightarrow((\psi\Rightarrow\neg\varphi)\Rightarrow\neg\psi)$.
+            \item $\varphi\Rightarrow\varphi'$ siempre que $\varphi$ resulte de sustituir $\psi$ por $\neg\neg\psi$ o viceversa (siendo $\psi$ una subfórmula de $\varphi$).
+            \item $\varphi\Rightarrow\varphi'$ siempre que $\varphi$ resulte de sustituir $\psi\Rightarrow\chi$ por $\neg\chi\Rightarrow\neg\psi$ o viceversa (siendo $\psi$ y $\chi$ subfórmulas de $\varphi$).
+            \item $\varphi\Rightarrow\varphi'$ siempre que $\varphi$ resulte de sustitur $\neg\psi\Rightarrow\psi$ por $\psi$ (siendo $\psi$ una subfórmula de $\varphi$).
+            \item $(\varphi\Rightarrow(\chi\Rightarrow\psi))\Rightarrow((\varphi\Rightarrow\chi)\Rightarrow(\varphi\Rightarrow\psi))$.
+        \end{enumerate}
+        siendo $\varphi$ una fórmula dada y $\psi$ una fórmulas arbitraria en 1 y 2, y $\varphi,\psi,\chi$ fórmulas dadas.
+
+        Además, consta de los siguientes axiomas adicionales, correspondeintes a la lógica de primer orden (llamados \textbf{Axiomas de la Lógica de Primer Orden}):
+        \begin{enumerate}
+            \item $(\forall x)(\varphi\Rightarrow\psi)\Rightarrow(\forall x\varphi\Rightarrow\forall x\psi)$.
+            \item $\varphi\Rightarrow\forall x\varphi$ si $x\notin\free(\varphi)$.
+            \item $x=x$.
+            \item $x=y\Rightarrow \varphi=\varphi'$ donde $\varphi'$ resulta de sustituir una instancia por $y$ en $\varphi$ y $\varphi$ es atómica que contiene a la variable $x$.
+            \item $\forall x\varphi\Rightarrow\varphi[t/x]$ si $t$ es \textit{sustituible} por $x$ en $\varphi$. (aquí $t$ es un término).
+        \end{enumerate}
+    \end{mydef}
+
+    Los únicos axiomas nuevos en la lógica de primer orden son los 7-11.
+
+    \begin{mydef}
+        Nuestro lenguaje de primer orden consta de una única regla de inferencia \textbf{Modus Ponens} (abreviado M.P.), dada por:
+        \begin{center}
+            \begin{tabular}{c c c}
+                $\varphi$ & $\Rightarrow$ & $\psi$ \\
+                $\varphi$ &  &  \\
+                \hline
+                 & $\therefore$ & $\psi$ \\
+            \end{tabular}
+        \end{center}
+    \end{mydef}
+
+    Con los axiomas 1-6, se tiene que podemos retomar todas las proposiciones que hemos deducido en el capítulo anterior (únicamente aquellas demostradas en base a los axiomas de la lógica proposicional y a la regla de inferencia Modus Ponens). Por ejemplo, la conjunción, simplificación, adición, Metateorema de Deducción, etc...
+
+    Veremos ahora algunos ejemplos de estos axiomas y de M.P.
+
+    \begin{obs}
+        $\varphi[t/x]$ significa: sustituir cada instancia de $x$ por $t$ en $\varphi$.
+    \end{obs}
+
+    \begin{exa}
+        Ejemplo del axioma 5: Si
+        \begin{equation*}
+            \varphi\equiv x=y+1
+        \end{equation*}
+        entonces, $\varphi[t/x]$ con $t$ siendo $(1+0)\cdot\zeta$ sería $(1+0)\cdot\zeta=y+1$.
+    \end{exa}
+
+    \begin{exa}
+        En la definición, ¿qué significa ser \textit{sustituible}? Si tenemos la fórmula
+        \begin{equation*}
+            (\forall x)(x=y+1)\Rightarrow(1+0)\cdot\zeta=y+1
+        \end{equation*}
+        es correcto poder hacer aplicación del axioma 5. También
+        \begin{equation*}
+            (\forall x)(x=y+1)\Rightarrow(0+y)=y+1
+        \end{equation*}
+        es una instancia correcta del axioma 5 (recuerde que no existen las reglas de cancelación ni de absolutamente nada, por lo que es correcto lo que estamos diciendo aunque sepamos que no puede suceder $y=y+1$).
+    \end{exa}
+
+    \begin{exa}
+        ¿Cuándo no se puede hacer la sustitución? Considere la fórmula:
+        \begin{equation*}
+            (\forall x)(\neg(\forall y)(x=y))\Rightarrow(\neg(\forall y)(y=y))
+        \end{equation*}
+        es decir:
+        \begin{equation*}
+            (\forall x)(\exists y(x\neq y))\Rightarrow (\exists y)(y\neq y)
+        \end{equation*}
+        en este caso, del lado izquierdo la variable $x$ era libre y luego ya no, esto es que fue capturada. Se tiene que esta no es una aplicación correcta del axioma 5.
+    \end{exa}
+
+    Veremos ahora como hacer aplicaciones correctas del axioma 5.
+
+    \begin{mydef}
+        En el axioma 5 de la Lógica de Primer Orden, \textbf{$t$ es sustituíble por $x$ en $\varphi$} significa que ninguna variable de $t$ queda (después de la sustitución) bajo el alcance de un cuantificador de $\varphi$.
+
+        En caso de que no se cumpla lo contrario, se tiene que $t$ no es sustituíble.
+    \end{mydef}
+
+    Con esta definición, los ejemplos anteriores toman sentido.
+
+    \begin{mydef}
+        Sea $\Sigma$ un conjunto y $\varphi$ una fórmula.
+        \begin{enumerate}
+            \item Una \textbf{demostración} de $\varphi$ a partir de $\Sigma$ es una sucesión finita de fórmulas $(\varphi_1,...,\varphi_n)$ tal que:
+            \begin{enumerate}
+                \item $\varphi_n=\varphi$.
+                \item Para cada $i\in\left\{1,...,n\right\}$ se tiene una de las tres:
+                \begin{enumerate}
+                    \item $\varphi_i\in\Sigma$.
+                    \item $\varphi_i$ es axioma lógico de la lógica proposicional o de la lógica de primer orden.
+                    \item existen $k,j\in\left\{1,...,n\right\}$ con $k<j<i$ tales que $\varphi_j$ es $\Rightarrow\varphi_k\varphi_i$.
+                \end{enumerate}
+            \end{enumerate}
+            \item Decimos que $\varphi$ es \textbf{demostrable a partir de $\Sigma$}, o que $\varphi$ es un \textbf{teorema de $\Sigma$} si existe una demostración de $\varphi$ a partir de $\Sigma$, esto se simboliza por $\Sigma\vdash\varphi$.
+        \end{enumerate}
+    \end{mydef}
+
+    Es casi lo mismo que en lógica proposicional, pero cambia el hecho de que las fórmulas incluyen cuantificadores.
+
+    \begin{exa}
+        Completemos la siguente demostración:
+        \begin{center}
+            \setcounter{tablec}{1}
+            \begin{tabular}{l r l c l r}
+                & \pstable{tablec} & $(\forall x)(Px$ & $\Rightarrow$ & $Qx)$ & Premisa \\
+                $|\longrightarrow$& \pstable{tablec} & $Pc$ &  &  & Sup. \\
+                $||\longrightarrow$& \pstable{tablec} & $(\forall y)(Qy$ & $\Rightarrow$ & $Sy)$ & Sup. \\
+                $||$& \pstable{tablec} & $Pc$ & $\Rightarrow$ & $Qc$ & 1 Ax. 5 LdPO y M.P. \\
+                $||$& \pstable{tablec} & $Qc$ & $\Rightarrow$ & $Sc$ & 3 Ax. 5 LdPO y M.P. \\
+                $||$& \pstable{tablec} & $Qc$ &  &  & 4,2 M.P. \\
+                $||$& \pstable{tablec} & $Sc$ &  &  & 5,6 M.P. \\
+                \hline
+                $|$& \pstable{tablec} & $(\forall y)(Qy\Rightarrow Sy)$ & $\Rightarrow$ & $Sc$ & 3-7 M.D. \\
+                \hline
+                & \pstable{tablec} & $Pc$ & $\Rightarrow$ & $((\forall y)(Qy\Rightarrow Sy)\Rightarrow Sc)$ & 2-8 M.D. \\
+                \hline
+                & & & $\therefore$ & $Pc\Rightarrow((\forall y)(Qy\Rightarrow Sy)\Rightarrow Sc)$ & \\
+            \end{tabular}
+        \end{center}
+        en este caso, $P$, $Q$ y $S$ son relaciones 1-arias. Además, $c$ es una constante. En esta prueba se usa el Metateorema de Deducción, el hecho de que se pueda usar este teorema fue fundamentado anteriormente.
+    \end{exa}
+
+    \begin{theor}[\textbf{Metateorema}]
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item \textbf{Instanciación Universal}:
+            \begin{center}
+                \begin{tabular}{c c c}
+                    & $\forall x\varphi$  &  \\
+                    \hline
+                     & $\therefore$ & $\varphi[t/x]$ \\
+                \end{tabular}
+            \end{center}
+            esto es, si $\Sigma\vdash\forall x\varphi$, entonces $\Sigma\vdash\varphi[t/x]$.
+            \item \textbf{Generalización Existencial}:
+            \begin{center}
+                \begin{tabular}{c c c}
+                    & $\varphi[t/x]$  &  \\
+                    \hline
+                     & $\therefore$ & $\exists x\varphi$ \\
+                \end{tabular}
+            \end{center}
+            esto es, si $\Sigma\vdash\varphi[t/x]$, entonces $\Sigma\vdash\exists x\varphi$.
+        \end{enumerate}
+        Los dos incisos siempre y cuando $t$ sea sustituíble por $x$ en $\varphi$. 
+    \end{theor}
+
+    \begin{proof}
+        De (1):
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$. \\
+                 & $n$) & $\forall x\varphi$ &  &  &  \\
+                 & $n+1$) & $\forall x\varphi$ & $\Rightarrow$ & $\varphi[t/x]$ & $n$ Ax. 5 \\
+                 & $n+2$) & $\varphi[t/x]$ &  &  & $n+1$,$n$ M.P. \\
+                \hline
+                & & & $\therefore$ & $\varphi[t/x]$ & \\
+            \end{tabular}
+        \end{center}
+        De (2):
+        \begin{center}
+            \begin{tabular}{l r l c l r}
+                & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$. \\
+                 & $n$) & $\varphi[t/x]$ &  &  &  \\
+                $|\longrightarrow$ & $n+1$) & $\neg\exists x\varphi$ &  &  & Sup. \\
+                $|$ & $n+2$) & $\neg\exists x\neg\neg\varphi$ &  &  & $n+1$ D.N. \\
+                $|$ & $n+3$) & $\forall x\neg\varphi$ &  &  & $n+2$ R.E. \\
+                $|$ & $n+4$) & $\forall x\neg\varphi$ & $\Rightarrow$ & $\neg\varphi[t/x]$ & $n+3$ I.U. \\
+                $|$ & $n+5$) & $\varphi[t/x]$ & $\land$ & $\neg\varphi[t/x]$ & $n$,$n+5$ Conj. \\
+                \hline
+                 & $n+6$) & $\exists x\varphi$ &  &  & $n$-$n+6$ M.D.p.C. \\
+                \hline
+                & & & $\therefore$ & $\exists x\varphi$ & \\
+            \end{tabular}
+        \end{center}
+    \end{proof}
+
+    \begin{obs}
+        \textit{Instanciación} es quitar cuantificador, \textit{Generalización} es añadir cuantificador.
+    \end{obs}
 
     \chapter*{Ejemplo Nuevo tipo de Tabla}
 
