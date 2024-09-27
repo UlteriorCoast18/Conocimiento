@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{tikz-cd}
+\begin{document}
+    \begin{tikzcd}
+    G_i \arrow[hookrightarrow]{r}{\varphi_i}\arrow{rd}[swap]{\varphi_i}
+        & G\arrow{d}{k\circ h}\\
+    & G
+    \end{tikzcd}
+    \begin{tikzcd}
+        G_i \arrow[hookrightarrow]{r}{\varphi_i'}\arrow{rd}[swap]{\varphi_i'}
+            & G'\arrow{d}{h\circ k}\\
+        & G'
+        \end{tikzcd}
+\end{document}

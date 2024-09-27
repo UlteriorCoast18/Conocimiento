@@ -129,6 +129,9 @@
     \end{tikzpicture}
     \:
 }
+\newcommand{\bbm}[1]{\mathbbm{#1}}
+\newcounter{figcount}
+\setcounter{figcount}{1}
 %Este símvolo es para casi todo salvo una cantidad finita
 
 %recuerda usar \clearpage para hacer un salto de página
@@ -232,7 +235,8 @@
         \begin{minipage}{\textwidth}
             \begin{center}
                 \includegraphics[scale=1.5]{images/fig_1.pdf}\\
-                Figura 1. Diagrama conmutativo de $G$ y $A$.
+                Figura \thefigcount. Diagrama conmutativo de $G$ y $A$.
+                \stepcounter{figcount}
             \end{center}
         \end{minipage}
 
@@ -348,20 +352,66 @@
         \label{caractSumDir_2}
         Sea $\left\{G_i \right\}_{ i\in I}$ una familia de grupos abelianos y $G=\bigoplus_{ i\in I}G_i$; sea $G'$ un subgrupo abeliano y consideremos para cada $i\in I$ las funciones $\cf{\varphi_i'}{G_i}{G'}$ tales que la conclusión del Teorema \ref{caractSumDir_1} cambiando a $G'$  y $\varphi_i'$ por $G$ y $\varphi_i$, respectivamente. Entonces, existe un único isomorfismo $\cf{h}{G}{G'}$ tal que el siguiente diagrama:
         
-        es conmutativo.
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_3.pdf}\\
+                Figura \thefigcount. Diagrama conmutativo de $G$ y $G'$.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        es conmutativo, para todo $i\in I$.
     \end{propo}
 
     \begin{proof}
+        La existencia de un único homomrfismo $\cf{h}{G}{G'}$ que haga que el diagrama anterior sea conmutativo es inmediata del Teorema \ref{caractSumDir_1}. Por este mismo teorema, existe un único homomorfismo $\cf{k}{G'}{G}$ tal que el siguiente diagrama es conmutativo, para todo $i\in I$ (cambiando los papeles de $G'$ por $G$ y de $\varphi'$ por $\varphi_i$):
         
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_4.pdf}\\
+                Figura \thefigcount. Diagrama conmutativo de $G'$ y $G$.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        Se sigue de estos dos diagramas que:
+        \begin{equation*}
+            (k\circ h)\circ\varphi_i=\varphi_i\quad\textup{y}\quad(h\circ k)\circ\varphi_i'=\varphi_i'
+        \end{equation*}
+        para todo $i\in I$, estamos diciendo que los diagramas:
+        
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_5.pdf}\\
+                Figura \thefigcount. Diagramas conmutativos de $G$ y $G'$.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        son conmutativos. Notemos que estos también son conmutativos cambiando a $k\circ h $ por $\bbm{1}_G$ y lo mismo cambiando a $h\circ k$ por $\bbm{1}_{G'}$. Como estos homomorfismos son únicos (tanto $h$ como $k$), debe suceder que:
+        \begin{equation*}
+            k\circ h=\bbm{1}_G\quad\textup{y}\quad h\circ k=\bbm{1}_{G'}
+        \end{equation*}
+        por ende, $h$ es isomorfismo.
     \end{proof}
 
+    La importancia de este teorema, es que si consideremos un grupo abeliano $A$ como un \textit{producto} de grupos abelianos $G_i$, entonces el teorema anterior asegura que $G$ (el producto débil de los $G_i$) es el \textit{más libre} de entre todos los candidatos en el sentido de que existe un homomorfismo de $G$ en $A$ que conmuta con $\varphi_i$ y $\psi_i$, para todo $i\in I$.
 
+    En este sentido, usamos la palabra \textit{más libre} como \textit{la menor cantidad de relaciones impuestas} (realmente podemos hablar en un sentido más particular, aterrizando la noción de objetos libres en una categoría, pero resulta complicado establecerla sin amplio conocimiento previo de Teoría de Categorías), y la filosofía general es es que si ciertas relaciones se cumplen para el grupo $G$, entonces éstas también deberan cumplirse en cualquier imagen homomorfa de $G$.
+
+    Este mismo tipo de filosofía se matiene para otras estructuras algebraicas, como lo son los anillos, módulos, etc\dots
+
+    Como el producto débil $G$ de subgrupos esta totalmente caracterizado por los monomomorfismos $\varphi_i$ de $G_i$ en $G$, podemos dejar de pensar que el producto débil es un subgrupo del grupo
+    \begin{equation*}
+        \prod_{ i\in I}G_i
+    \end{equation*}
+    y más aún, podemos pensar a los grupos $G_i$ como conjuntos en $G$ bajo la imagen de $\varphi_i$.
 
     \section{Grupos Abelianos Libres}
 
     Recordemos que si $G$ es un grupo, decimos que un conjunto $S\subseteq G$ \textbf{genera a $G$}, si
     \begin{equation*}
-        G=\left\{s_1^{\epsilon_1}\cdot\dots\cdot s_m^{\epsilon_m}\Big|s_i\in S,\forall i\in\natint{1,m}; m\in\mathbb{N} \right\}
+        G=\left\{s_1^{\epsilon_1}\cdot\dots\cdot s_m^{\epsilon_m}\Big|s_i\in S,\epsilon_i\in\left\{-1,1\right\}, \forall i\in\natint{1,m}; m\in\mathbb{N} \right\}
     \end{equation*}
     y en tal caso, se denota $G=\langle S\rangle$. 
 
@@ -372,6 +422,50 @@
         \end{equation*}
     \end{exa}
 
+    Si un conjunto $S$ genera a un grupo, entonces ciertos productos de elementos de $S$ pueden coincidir con la identidad de $G$, por ejemplo:
+    \renewcommand{\theenumi}{\alph{enumi}}
+    \begin{enumerate}
+        \item Si $x\in S$, entonces $xx^{-1}=e_G$.
+        \item Si $G$ es un grupo cíclico de orden $n$ generado por $\left\{x\right\}$, entonces $x^n=1$.
+    \end{enumerate}
+
+    Cualquier producto de elementos de $S$ que sea igual a la identidad del grupo es llamado una \textbf{relación}.
+
+    Distinguiremos dos tipos de relaciones: \textbf{relaciones triviales} (como las del inciso (a)) y \textbf{relaciones no triviales}.
+
+    Estas nociones dan lugar a la siguiente definición:
+
+    \begin{mydef}
+        Sea $S\subseteq G$ un conjunto de generadores del grupo $G$. Decimos que $G$ es \textbf{libremente generado} por $S$, o \textbf{grupo libre en $S$}, si no hay relaciones no triviales entre los elementos de $S$.
+    \end{mydef}
+
+    \begin{exa}
+        Si $G$ es un grupo cíclico infinito, entonces $G$ es un grupo libre en el conjunto $S=\left\{x \right\}$.
+    \end{exa}
+
+    Estas nociones dan lugar a la idea de que podemos caracterizar totalmente a un grupo $G$ enlistando sus elementos de un conjunto generador $S$, y las relaciones no triviales que se cumplen entre ellos.
+    
+    El problema de caracterizar estas ideas de esta forma, es que carecen de rigor matemático, pues ¿qué significa ser una \textit{relación no trivial}?
+
+    Con la formación de la teoría de categorías, se fueron formalizando estas ideas y actualmente no se describe a un grupo libre de la forma en que se hace en la definición anterior. Para describirlo de una forma rigurosa, se hace uso de las siguientes dos observaciones:
+
+    \renewcommand{\theenumi}{\arabic{enumi}}
+    \begin{enumerate}
+        \item Sea $S$ un conjunto de generadores de $S$, y sea $\cf{f}{G}{G'}$ un epimomorfismo, esto es que $G'$ es la imagen homomorfa de $G$. Entonces, el conjunto $f(S)$ es un conjunto de generadores de $G'$. Más aún, \textit{cualquier relación entre los elementos de $S$ se mantiene entre los elementos de $f(S)$ correspondientes}. Entonces, el grupo $G'$ satisface las mismas relaciones (o inclusive más) que el grupo $G$.
+        \item Sea $S$ un conjunto de generadores de $G$, y sea $\cf{f}{G}{G'}$ un homomorfismo arbitrario. Entonces, $f$ está completamente determinado por su reestricción a $S$. Pero, no cualquier función $\cf{g}{S}{G'}$ puede ser extendida a un homomorfismo. La razón intuitiva es que dada la función $g$, puede que las relaciones que se cumplían en $S$ no se siguan cumpliendo en $g(S)$.
+    \end{enumerate}
+
+    \begin{exa}
+        Considere $\mathbb{Z}$ y sea $\cf{g}{\left\{1\right\}}{\mathbb{Z}}$ dada por:
+        \begin{equation*}
+            g(1)=2
+        \end{equation*}
+        entonces, $g$  no puede ser extendida a un homomorfismo de $\mathbb{Z}$ en sí mismo.
+    \end{exa}
+
+    Con estas condiciones en mente, daremos una definición formal de lo que significa que un grupo \textit{abeliano} (se hará primero este caso, pues es el más sencillo de entender) sea libre.
+
+
     \begin{mydef}
         Sea $S$ un conjunto arbitrario. Un \textbf{grupo abeliano libre} en el conjunto $S$ es un grupo abeliano $F$ junto con una función $\cf{f}{S}{F}$ tal que se cumple la siguiente condición:
         \begin{itemize}
@@ -380,7 +474,8 @@
             \begin{minipage}{\textwidth}
                 \begin{center}
                     \includegraphics[scale=1.5]{images/fig_2.pdf}\\
-                    Figura 2. Diagrama conmutativo de $F$ y $A$.
+                    Figura \thefigcount. Diagrama conmutativo de $G$ y $A$.
+                    \stepcounter{figcount}
                 \end{center}
             \end{minipage}
             
@@ -388,6 +483,61 @@
         \end{itemize}
     \end{mydef}
 
+    Veamos que esta definición caracteriza a los grupos abelianos libres en un conjunto dado $S$.
+
+    \begin{propo}
+        Sean $F$ y $F'$ grupos abelianos libres en un conjunto $S$ con respecto a las funciones $\cf{\varphi}{S}{F}$ y $\cf{\varphi'}{S}{F'}$, respectivamente. Entonces, existe un único isomorfismo $\cf{h}{F'}
+        {F}$ tal que el diagrama
+        
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_6.pdf}\\
+                Figura \thefigcount. Isomorfismo entre $F$ y $F'$.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        es conmutativo
+    \end{propo}
+
+    \begin{proof}
+        El procedimiento es análogo al de la proposición \ref{caractSumDir_2}.
+    \end{proof}
+
+    De momento, no hemos dicho que dado un conjunto $S$, existe un grupo abeliano libre $F$ en $S$. Nuestra tarea será de probar la existencia de este grupo abeliano libre en $S$.
+
     %TODO
+
+    \newpage
+
+    \section{Ejercicios}
+
+    \begin{excer}
+        Pruebe directo de la definición que $\varphi(S)$ genera a $F$.
+
+        \textit{Sugerencia.} Suponga que no, considere el subgrupo $F'$ generado por $\varphi(S)$.
+    \end{excer}
+
+    \begin{proof}
+        Sea
+        \begin{equation*}
+            F'=\langle\varphi(S)\rangle
+        \end{equation*}
+        se tiene que $F'\subseteq F$ y $F'$ es un grupo abeliano. Considere la función
+        \begin{equation*}
+            \cf{\psi}{S}{F'},\psi(s)=\varphi(s),\quad\forall s\in S
+        \end{equation*}
+        claramente esta función está bien definida. Por la definición de grupo abeliano libre existe un único homomorfismo $\cf{f}{F}{F'}$ tal que
+        \begin{equation*}
+            f\circ\varphi=\psi
+        \end{equation*}
+        esto es que:
+        \begin{equation*}
+            f\circ\varphi=\bbm{1}_{F'}\circ\varphi
+        \end{equation*}
+        por tanto, de la unicidad de $f$ se sigue que $f=\bbm{1}_{F'}$, es decir que $F=F'$.
+
+        Por tanto, $\varphi(S)$ genera a $F$.
+    \end{proof}
 
 \end{document}

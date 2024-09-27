@@ -2,8 +2,8 @@ PWD x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Topologia 
 INPUT x:/Programas/texlive/2023/texmf.cnf
 INPUT x:/Programas/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT x:/Programas/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Topologia Algebraica/Grupos Libres/images/fig_2.tex
-OUTPUT fig_2.log
+INPUT x:/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Topologia Algebraica/Grupos Libres/images/fig_3.tex
+OUTPUT fig_3.log
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/standalone/standalone.cls
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/standalone/standalone.cls
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/tools/shellesc.sty
@@ -158,10 +158,10 @@ INPUT x:/Programas/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibrarya
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-INPUT ./fig_2.aux
-INPUT ./fig_2.aux
-INPUT fig_2.aux
-OUTPUT fig_2.aux
+INPUT ./fig_3.aux
+INPUT ./fig_3.aux
+INPUT fig_3.aux
+OUTPUT fig_3.aux
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -170,8 +170,11 @@ INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT x:/Programas/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-OUTPUT fig_2.pdf
+OUTPUT fig_3.pdf
 INPUT x:/Programas/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT fig_2.aux
+INPUT fig_3.aux
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb
 INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb
+INPUT x:/Programas/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
