@@ -431,7 +431,7 @@
 
     Cualquier producto de elementos de $S$ que sea igual a la identidad del grupo es llamado una \textbf{relación}.
 
-    Distinguiremos dos tipos de relaciones: \textbf{relaciones triviales} (como las del inciso (a)) y \textbf{relaciones no triviales}.
+    Distinguiremos dos tipos de relaciones: \textbf{relaciones triviales} (como las del inciso (a)) y \textbf{relaciones no triviales} (como las del inciso (b)).
 
     Estas nociones dan lugar a la siguiente definición:
 
@@ -467,7 +467,7 @@
 
 
     \begin{mydef}
-        Sea $S$ un conjunto arbitrario. Un \textbf{grupo abeliano libre} en el conjunto $S$ es un grupo abeliano $F$ junto con una función $\cf{f}{S}{F}$ tal que se cumple la siguiente condición:
+        Sea $S$ un conjunto arbitrario. Un \textbf{grupo abeliano libre} en el conjunto $S$ es un grupo abeliano $F$ junto con una función $\cf{\varphi}{S}{F}$ tal que se cumple la siguiente condición:
         \begin{itemize}
             \item Para cualquier grupo abeliano y cualquier función $\cf{\psi}{S}{A}$, existe un único homomorfismo $\cf{f}{F}{A}$ tal que el diagrama:
             
@@ -506,7 +506,459 @@
 
     De momento, no hemos dicho que dado un conjunto $S$, existe un grupo abeliano libre $F$ en $S$. Nuestra tarea será de probar la existencia de este grupo abeliano libre en $S$.
 
-    %TODO
+    \begin{propo}
+        \label{caracProdFreeAbelian}
+        Suponga que $\left\{S_i \right\}_{i\in I}$ es una familia de subconjuntos de $S$ no vacíos, que son disjuntos a pares para los que se cumple que:
+        \begin{equation*}
+            S=\bigcup_{ i\in I}S_i
+        \end{equation*}
+        para cada $i\in I$, sea $F_i$ un grupo abeliano libre en $S_i$ con respecto a la función $\cf{\varphi_i}{S_i}{F_i}$. Sea
+        \begin{equation*}
+            F=\bigoplus_{ i\in I}F_i
+        \end{equation*}
+        (esto es, $F$ es el producto débil de los $F_i$, o la suma directa de los mismos). Entonces, si $\cf{\eta_i}{F_i}{F}$ es el monomorfismo natural, se define $\cf{\varphi}{S}{F}$ dada por:
+        \begin{equation*}
+            \varphi(x)=\eta_i\circ\varphi_i(x),\quad\textup{ si }x\in S_i\textup{ para algún }i\in I
+        \end{equation*}
+        Entonces, $F$ es un grupo abeliano libre en $S$ con respecto a la función $\varphi$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $A$ un grupo abeliano y sea $\cf{\psi}{S}{A}$ una función. Para cada $i\in I$, sea
+        \begin{equation*}
+            \psi_i=\psi\big|_{S_i}
+        \end{equation*}
+        Como $F_i$ es grupo abeliano libre en $S_i$ con respecto a $\varphi_i$, entonces existe un único homomorfismo $\cf{f_i}{F_i}{A}$ tal que el diagrama
+        
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_7.pdf}\\
+                Figura \thefigcount. Propiedad Universal $F_i$ y $A$ .
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        es conmutativo, para todo $i\in I$. Considere la familia de funciones $\left\{f_i \right\}_{i\in I}$. Por el Teorema \ref{caractSumDir_1}, existe un único homomorfismo tal que el diagrama
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_8.pdf}\\
+                Figura \thefigcount. Conmutatividad de $F_i$, $F$ y $A$ .
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        es conmitativo para todo $i\in I$. Se sigue que al tenerse
+        \begin{equation*}
+            \varphi\big|_{S_i}=\eta_i\circ\varphi_i,\quad\forall i\in I
+        \end{equation*}
+        se tiene que el diagrama
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_9.pdf}\\
+                Figura \thefigcount. Conmutatividad de $S_i$, $F$ y $A$ .
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        es conmutativo, para todo $i\in I$. Como $\psi_i=\psi$ y $S=\bigcup_{i\in I}S_i$, se sigue que:
+        \begin{equation*}
+            \psi=f\circ\varphi
+        \end{equation*}
+        (es decir, que el diagrama anterior sin las $i$'s es conmutativo).
+
+        Ahora, probaremos que la $f$ es única. Sea $\cf{f}{F}{A}$ un homomorfismo tal que
+        \begin{equation*}
+            \psi=f\circ\varphi
+        \end{equation*}
+        defina $\cf{f_i}{F_i}{A}$ como $f_i=\eta_i\circ f$. Se sigue:
+        \begin{equation*}
+            \begin{split}
+                f_i\circ\varphi_i&=(f\circ\eta_i)\circ\varphi_i\\
+                &=f\circ(\eta_i\circ\varphi_i)\\
+                &=f\circ\varphi\big|_{S_i}\\
+                &=(f\circ \varphi)\big|_{S_i}\\
+                &=\psi\big|_{S_i}\\
+                &=\psi_i\\
+            \end{split}
+        \end{equation*}
+        como $F_i$ es grupo libre en $S_i$ respecto a $\varphi_i$, se sigue que cada $f_i$ es única, luego $f$ es única (pues queda caracterizada por sus reestricciones a cada $S_i$, es decir, por cada $f_i$).
+
+        Por tanto, $F$ es grupo abeliano libre en $S$ con respecto a $\varphi$.
+    \end{proof}
+
+    En términos generales, lo que esta proposición nos dice es que el producto débil de cualquier colección de grupos abelianos libres sigue siendo un grupo abeliano libre.
+
+    \begin{mydef}
+        Sea $a$ una letra. Se definen las \textbf{potencias de $a$} como:
+        \begin{equation*}
+            a^n=\underset{n-\textup{veces}}{\underbrace{a\cdots a}}
+        \end{equation*}
+        si $n=1$, simplemente se escribirá $a$ en vez de $a^1$. Lo que estamos haciendo es concatenar la letra $a$ $n-$veces consigo misma. Además, se define la letra $a^{0}$ como aquella tal que
+        \begin{equation*}
+            a^0b=ba^0=b
+        \end{equation*}
+        para toda letra $b$. Finalmente, se define el \textbf{inverso de $a$} denotado por $a^{-1}$ como la letra tal que
+        \begin{equation*}
+            a^{-1}a=aa^{-1}=b^{0}
+        \end{equation*}
+        para toda letra $b$.
+    \end{mydef}
+
+    \begin{obs}
+        Piense en una letra como literlmente una forma de ver letras en el contexto matemático, haciendo las operaciones de concatenación de letras. Concatenar dos letras significa formar una palabra. Esta terminología es usual en la parte de grupos libres.
+
+        Con estas letras, se generearán grupos abelianos y no abelianos, cosa que se verá más adelante.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $a$ una letra. Entonces, el conjunto
+        \begin{equation*}
+            A=\left\{a^m\Big|m\in\mathbb{Z} \right\}
+        \end{equation*}
+        es un grupo con respecto a la operación concatenación de las potencias de $a$ consigo misma, el cual es un grupo cíclico libre con generador $a$.
+    \end{mydef}
+
+    \begin{proof}
+        Observemos primero que, si $a^i,a^j\in A$, entonces:
+        \begin{equation*}
+            \begin{split}
+                a^i\cdot a^j&=(\underset{i-\textup{veces}}{\underbrace{a\cdots a}})(\underset{j-\textup{veces}}{\underbrace{a\cdots a}})\\
+                &=\underset{(i+j)-\textup{veces}}{\underbrace{a\cdots a}}\\
+                &=a^{ i+j}\\
+            \end{split}
+        \end{equation*}
+        en caso de que algún $i$ o $j$ sea negativo, se tiene que:
+        \begin{equation*}
+            \underset{i-\textup{veces}}{\underbrace{a\cdots a}}=\underset{\abs{i}-\textup{veces}}{\underbrace{a^{-1}\cdots a^{-1}}}
+            =\underset{(-i)-\textup{veces}}{\underbrace{a^{-1}\cdots a^{-1}}}
+        \end{equation*}
+        así que, la operación concatenación de $A\times A$ en $A$ está bien definida. Se verifica rápidamente que $A$ es grupo con esta operación, con elemento identidad $a^0$ y para cada $a^i\in A$, su inverso está dado por:
+        \begin{equation*}
+            (a^i)^{-1}=a^{-i}
+        \end{equation*}
+
+        Es inmediato que $A$ es abeliano y que es cíclico generado por $a$.
+    \end{proof}
+
+    \begin{propo}
+        \label{freeAbelianOneGroup}
+        Sea $x$ una letra y defina $S=\left\{x \right\}$. Entonces, el grupo
+        \begin{equation*}
+            F=\left\{x^m\Big|m\in\mathbb{Z} \right\}
+        \end{equation*}
+        es un grupo abeliano libre en $S$ con respecto a la función $\cf{\varphi}{S}{F}$ dada por:
+        \begin{equation*}
+            \varphi(x)=x^1=x
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Sea $A$ un grupo abeliano y $\cf{\psi}{S}{A}$ una función. Sea $\cf{f}{F}{A}$ la función dada por:
+        \begin{equation*}
+            f(x^m)=\psi(x)^m,\quad\forall x\in\mathbb{Z}
+        \end{equation*}
+        Es claro que $f$ es homomorfismo entre $F$ y $A$. Se cumple además que:
+        \begin{equation*}
+            \begin{split}
+                f\circ\varphi(x)&=f(x)\\
+                &=\psi(x)\\
+                \Rightarrow f\circ\varphi&=\psi\\
+            \end{split}
+        \end{equation*}
+        Veamos que es único. Si $\cf{g}{F}{A}$ es otro homomorfismo entre $F$ y $A$ tal que
+        \begin{equation*}
+            g\circ\varphi=\psi
+        \end{equation*}
+        se tiene que
+        \begin{equation*}
+            g\circ\varphi(x)=\psi(x)\Rightarrow g(x)=\psi(x)
+        \end{equation*}
+        por lo que:
+        \begin{equation*}
+            \begin{split}
+                f(x^m)&=\psi(x)^m\\
+                &=g(x)^m\\
+                &=g(x^m),\quad\forall m\in\mathbb{Z} \\
+            \end{split}
+        \end{equation*}
+        por ser $g$ homomorfismo. Por tanto, $f=g$.
+
+        Así, $F$ es un grupo abeliano libre en $S$ con respecto a $\varphi$.
+    \end{proof}
+
+    \begin{exa}
+        $\mathbb{Z}$ es un grupo abeliano libre en $\left\{1 \right\}$.
+    \end{exa}
+
+    \begin{propo}
+        Sea $S$ un conjunto. Entonces, existe un grupo abeliano libre $F$ en $S$ con respecto a alguna función $\cf{\varphi}{S}{F}$.
+    \end{propo}
+
+    \begin{proof}
+        Podemos considerar que los elementos de $S$ son letras (a cada elemento de $S$ le podemos asociar una letra, digamos $x_i$). Por lo que, podemos escribir $S$ como:
+        \begin{equation*}
+            S=\left\{x_i\Big|i\in I \right\}
+        \end{equation*}
+        (donde $x_i\neq x_j$ para todo $i,j\in I$, $i\neq j$). Sea $S_i=\left\{x_i \right\}$ para todo $i\in I$. Entonces, el grupo abeliano
+        \begin{equation*}
+            F_i=\left\{x_i^m\Big|m\in\mathbb{Z} \right\}
+        \end{equation*}
+        es un grupo abeliano libre en $S_i$ con respecto a $\cf{\varphi_i}{S_i}{F_i}$ dada por:
+        \begin{equation*}
+            \varphi_i(x_i)=x_i
+        \end{equation*}
+        esto por la Proposición anterior. Ahora, por la Proposición \ref{caracProdFreeAbelian}, se tiene que $S$ es un grupo abeliano libre en $F$ con respecto a $\varphi$, siendo
+        \begin{equation*}
+            F=\bigoplus_{ i\in I}F_i
+        \end{equation*}
+        la suma directa (o el producto débil) de los $F_i$, y $\cf{\varphi}{S}{F}$ la función dada por:
+        \begin{equation*}
+            (\varphi(x_i))(j)=\left\{
+                \begin{array}{lcr}
+                    x_i^1 & \textup{ si } & i=j\\
+                    x_j^0 & \textup{ si } & i\neq j\\
+                \end{array}
+            \right.
+        \end{equation*}
+        (recuerde que $\varphi(x_i)$ es una función de $I$ en la unión de los $F_i$).
+    \end{proof}
+
+    \begin{obs}
+        De la proposición anterior, se sigue que $\varphi$ es inyectiva. Por lo que, podemos identificar cada elemento $x_i\in S$ con su imagen $\varphi(x_i)\in F$. Así que hacemos el abuso de notación:
+        \begin{equation*}
+            \varphi(x_i)=x_i
+        \end{equation*}
+        Por lo que, $S$ podemos verlo como subconjunto de $F$ y, de forma inmediata se ve que podemos expresar cada elemento $g\in F$ diferente de la identidad de $F$ como:
+        \begin{equation*}
+            g=x_{ i_1}^{ n_1}x_{ i_2}^{ n_2}\cdots x_{ i_k}^{ n_k}
+        \end{equation*}
+        donde $i_1,i_2,...,i_k\in I$ y $n_1,n_2,...,n_k$ son enteros no cero. Esta expresión de $g$ es única, salvo el orden de los factores. Más aún, cada producto de este tipo representa de forma única a un elemento de $F$. Por lo tanto, se puede demostrar rápidamente (vea el primer ejercicio), que $F$ es generado por $S=\varphi(S)$.
+    \end{obs}
+
+    Identificar a $S$ con $\varphi(S)$ es muy común en la literatura. Cuando se haga esto, el mapeo $\cf{\varphi}{S}{F}$ se convierte en una inyección, por lo que usualmente no se menciona.
+
+    \begin{propo}
+        Cualquier grupo abeliano libre es la imagen homeomorfa de un grupo abeliano libre. Esto es, dado un grupo abeliano $A$ existe un grupo abeliano libre $F$ y un epimorfismo $\cf{f}{F}{A}$.
+        
+        Más aún, todo grupo abeliano es isomorfo al cociente de un grupo abeliano libre con un subgrupo normal del mismo.
+    \end{propo}
+
+    \begin{proof}
+        Sea $A$ un grupo abeliano. Sea $S\subseteq A$ un conjunto no vacío que genera a $A$, esto es: $A=\langle S\rangle$.
+
+        Sea ahora $F$ un grupo abeliano libre en $S$ con respecto a $\cf{\varphi}{S}{F}$ función inyectiva. Considere $\cf{\psi}{S}{A}$ dada por:
+        \begin{equation*}
+            \psi(s)=s,\quad\forall s\in S
+        \end{equation*}
+        Entonces, como $F$ es grupo abeliano libre en $S$, existe un único homomorfismo $\cf{f}{F}{A}$ tal que
+        \begin{equation*}
+            f\circ\varphi=\psi
+        \end{equation*}
+        Afirmamos que $f$ es epimorfismo. Sea $a\in A$, entonces existen $s_1,...,s_k\in S$ diferentes entre sí y $n_1,...,n_k\in\mathbb{Z}$ no cero tales que:
+        \begin{equation*}
+            a=s_1^{n_1}\cdots s_k^{n_k}
+        \end{equation*}
+        Por tanto, como podemos ver a $S$ como subconjunto de $F$, podemos tomar el elemento $s_1^{n_1}\cdots s_k^{n_k}\in F$, el cual es tal que:
+        \begin{equation*}
+            \begin{split}
+                f\left(s_1^{n_1}\cdots s_k^{n_k}\right)&=f(s_1)^{ n_1}\cdots f(s_k)^{ n_k}\\
+                &=f\circ\varphi(s_1)^{ n_1}\cdots f\circ\varphi(s_k)^{ n_k}\\
+                &=\psi(s_1)^{ n_1}\cdots\psi(s_k)^{ n_k}\\
+                &=s_1^{n_1}\cdots s_k^{n_k}\\
+                &=a\\
+            \end{split}
+        \end{equation*}
+        por tanto, $f$ es epimorfismo.
+        
+        Para la segunda parte, se tiene por el Primer Teorema de Isomorfismos, se tiene que
+        \begin{equation*}
+            F/\ker f\cong A
+        \end{equation*}
+        donde $\ker f$ es un subgrupo normal de $F$.
+    \end{proof}
+
+    \begin{obs}
+        $F$ y $A$ no son el mismo conjunto. Recuerde que $F$ se construye por concatenación de letras, por lo que el orden de todo elemento de $F$ es infinito, mientras que puede que no todo elemento de $A$ sea de orden infinito.
+    \end{obs}
+
+    Con esta proposición, se hace más sencillo dar una definición precisa de una relación no trivial entre los elementos de $A$.
+
+    \begin{mydef}
+        Sean $A$, $S$, $F$ y $\cf{f}{F}{A}$ como en la definición anterior. Un elemento $r\in F$ diferente de la identidad es una \textbf{relación no trivial} entre el conjunto de generadores de $S$, si $r\in\ker f$.
+
+        Si $\left\{r_i \right\}_{ i\in I}$ es una colección cualquiera de relaciones no triviales, y $r$ es un elemento de
+        \begin{equation*}
+            \langle r_i\Big|i\in I \rangle
+        \end{equation*}
+        entonces se dice que $r$ es una \textbf{consecuencia de $\left\{r_i \right\}_i\in I$}.
+    \end{mydef}
+
+    Si la colección $\left\{r_i \right\}_{ i\in I}$ genera el kernel de $f$, entonces el grupo $A$ está totalmente determinado (hasta isomorfismos) por $S$ y las relaciones $\left\{ r_i \right\}_{ i\in I}$. En este caso, se tiene que:
+    
+    \begin{equation*}
+        A\cong F/\langle r_i\Big|i\in I \rangle
+    \end{equation*}
+
+    \begin{obs}
+        Si $r$ es consecuencia de $\left\{r_i \right\}_{ i\in I}$, entonces $r$ puede ser expresado como el producto de algunos $r_i$ junto con sus inversos.
+    \end{obs}
+
+    \begin{propo}
+        Sean $S$ y $S'$ conjuntos con la misma cardinalidad y, $F$ y $F'$ grupos abelianos libres en $S$ y $S'$, respectivamente. Entonces, $F\cong F'$.
+    \end{propo}
+
+    \begin{proof}
+        Como $F$ y $F'$ son grupos abelianos libres en sus respectivos conjuntos, existen funciones $\cf{\varphi}{S}{F}$ y $\cf{\varphi'}{S'}{F'}$ inyectivas.
+
+        Como $\abs{S}=\abs{S'}$, entonces existe una biyección $\cf{h}{S}{S'}$. Así, $\cf{\psi'=\varphi\circ h^{-1}}{S'}{F}$ y $\cf{\psi=\varphi'\circ h}{S}{F'}$ son funciones de $S$ en $F'$ y $S'$ en $F$, respectivamente. Por tanto, existen únicos homomorfismos $\cf{f}{F}{F'}$ y $\cf{g}{F'}{F}$ tales que:
+        \begin{equation*}
+            f\circ \varphi=\psi\quad\textup{y}\quad g\circ\varphi'=\psi'
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            f\circ\varphi\circ h^{-1}=\varphi'\quad\textup{y}\quad g\circ\varphi'\circ h=\varphi
+        \end{equation*}
+        por lo cual, sustituyendo $\varphi$ en la primer ecuación y a $\varphi'$ en la segunda, se sigue que:
+        \begin{equation*}
+            f\circ g\circ\varphi'=\varphi'=\bbm{1}_{F'}\circ\varphi' \quad\textup{y}\quad g\circ f\circ\varphi=\varphi=\bbm{1}_{F}\circ\varphi
+        \end{equation*}
+        Siendo las funciones $f$ y $g$ únicas, debe suceder que:
+        \begin{equation*}
+            f\circ g=\bbm{1}_{ F'}\quad\textup{y}\quad g\circ f=\bbm{1}_{ F}
+        \end{equation*}
+        así, $f$ es isomorfismo con inversa $g$. Luego $F\cong F'$
+    \end{proof}
+
+    Resulta que en la proposición anterior, el converso es verdadero (al menos en el caso finito).
+
+    \begin{mydef}
+        Sea $G$ un grupo y $n\in\mathbb{Z}$. Entonces, el conjunto $G^n$ denota al subgrupo generado por $\left\{g^n\Big|g\in G \right\}$. En el caso en que $G$ sea abeliano, se tiene que:
+        \begin{equation*}
+            G^n=\langle g^n\Big|g\in G\rangle=\left\{g^n\Big|g\in G \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{lema}
+        Sea $F$ un grupo abeliano libre en un conjunto de $k\in\mathbb{N}$ elementos. Entonces, dado $n\in\mathbb{N}$, el grupo cociente $F/F^n$ es un grupo finito de orden $n^k$.
+    \end{lema}
+
+    \begin{proof}        
+        Sea $n\in\mathbb{N}$. Es claro que $F/F^n$ es grupo (por ser $F$ abeliano y $F^n$ subgrupo del mismo). Podemos suponer que $F$ es libre en $S$, dado por:
+        \begin{equation*}
+            S=\left\{x_0,...,x_{ k-1} \right\}
+        \end{equation*}
+        y, hacemos $x_k=x_0$. Considere a $S$ como subconjunto de $F$. 
+        
+        %TODO Hay que hacer algo con productos finitos de $S$
+        
+        Sea ahora $\cf{f}{\natint{1,2,...,n^k}}{F/F^n}$ dada por:
+        \begin{equation*}
+            f(m)=F^nx_{\lfloor\log_n m \rfloor}^{r}
+        \end{equation*}
+        donde $0\leq r<n$ es tal que $r\equiv m\bmod n$. Claramente $f$ está bien definida (se verifica rápidamente, pues $0\leq\lfloor\log_nm\rfloor\leq k$ para todo $m\in\natint{1,...,n^k}$). Es inmediato que esta función es inyectiva, veamos que es suprayectiva.
+
+        Sea $a\in F$, entonces existen $n_1,...,n^k\in\mathbb{Z}$ tales que:
+        \begin{equation*}
+            a=x_1^{ n_1}\cdots x_k^{ n_k}
+        \end{equation*}
+        sean $r_1,...,r_n$
+    \end{proof}
+
+    \begin{cor}
+        Sean $S$ y $S'$ conjuntos finitos con cardinales distintos, y sean $F$ y $F'$ grupos abelianos libres en $S$ y $S'$, respectivamnete. Entonces, $F$ y $F'$ no son isomorfos.
+    \end{cor}
+
+    \begin{proof}
+        Como $S$ y $S'$ tienen cardinales distintos, entonces $F/F^2$ y $F'/F'^{ 2}$ tienen cardinalidad distinta, en particular, no puede suceder que $F$ y $F'$ sean isomorfos.
+    \end{proof}
+
+    \begin{cor}
+        Sean $F$ y $F'$ grupos libres isomorfos en $S$ y $S'$, respectivamente. Entonces, $\abs{S}=\abs{S'}$.
+    \end{cor}
+
+    \begin{proof}
+        Inmediata del corolario anterior.
+    \end{proof}
+
+    Básicamente hemos caracterizado una propiedad fundamental de los grupos libres en un conjunto dado $S$, la cual se enuncia en la siguiente definición.
+
+    \begin{mydef}
+        Sea $F$ un grupo abeliano libre en un conjunto $S$ finito. El cardinal de $S$ es llamado el \textbf{rango de $F$}.
+    \end{mydef}
+
+    \section{Productos Libres de Grupos}
+
+    El producto libre de una colección arbitraria de grupos $G_i$ (no necesariamente todos abelianos) es el análogo al producto débil para grupos abelianos.
+
+    \begin{mydef}
+        Sea $\left\{G_i \right\}_{ i\in I}$ una colección no vacía de grupos. Suponga que existe un grupo $G$ tal que para todo $i\in I$, está dado un homomorfismo
+        \begin{equation*}
+            \cf{\varphi_i}{G_i}{G}
+        \end{equation*}
+        Decimos que $G$ es el \textbf{producto libre} o \textbf{coproducto de los grupos $G_i$ con respecto a los homomorfismos $\varphi_i$}, si se cumple lo siguiente:
+        
+        Para todo grupo $H$ y cualquier familia de homomorfismos $\left\{\psi_i \right\}_{ i\in I}$ tales que
+        \begin{equation*}
+            \cf{\psi_i}{G_i}{H},\quad\forall i\in I
+        \end{equation*}
+        existe un único homomorfismo $\cf{f}{G}{H}$ tal que el diagrama
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_10.pdf}\\
+                Figura \thefigcount. Conmutatividad en el producto libre de grupos.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        es conmutativo para todo $i\in I$.
+    \end{mydef}
+
+    Esta caracterización es tan específica para probar la unicidad y existencia de este producto libre de grupos.
+
+    \begin{propo}
+        Suponga que $G$ y $G'$ son productos libres de la familia no vacía de grupos $\left\{G_i \right\}_{ i\in I}$ (con respecto a los homomorfismos $\cf{\varphi_i}{G_i}{G}$ y $\cf{\varphi_i'}{G_i}{G'}$, respectivamente). Entonces, existe un único isomorfismo $\cf{h}{G}{G'}$ tal que el siguiente diagrama
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_11.pdf}\\
+                Figura \thefigcount. Conmutatividad entre $G_i$, $G$ y $G'$.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        es conmutativo para todo $i\in I$.
+    \end{propo}
+
+    \begin{proof}
+        Es una copia de la prueba de la Proposición \ref{caractSumDir_2}. 
+    \end{proof}
+
+    A pesar de que hemos definido el producto libre de grupos, no hemos asegurado su existencia. De paso, también deberíamos de mostrar que cada homomorfismo $\varphi_i$ es monomorfismo y más aún, que $G$ es el grupo libre generado por la unión de las imágenes $\varphi(G_i)$ y dar más estructura algebraica del mismo.
+
+    Este será nuestro objetivo de ahora en adelante.
+
+    \begin{theor}
+        Dada una colección no vacía $\left\{ G_i \right\}_{ i\in I}$ de grupos, su producto libre existe.
+    \end{theor}
+    
+    \begin{proof}
+        
+    \end{proof}
+
+    %TODO Guarda este grupo para más adelante
+
+    \section{Grupos Libres}
+
+    \begin{exa}
+        El grupo diédrico $D_n$, se define como
+        \begin{equation*}
+            D_n=\langle a,b\Big|a^n=1,b^2=1,ba=a^{n-1}b \rangle
+        \end{equation*}
+        (en este caso, no conmutan los elementos).
+    \end{exa}
 
     \newpage
 
@@ -540,4 +992,8 @@
         Por tanto, $\varphi(S)$ genera a $F$.
     \end{proof}
 
+    \begin{excer}
+        Pruebe que el Corolario 2.2.1 es cierto si $S$ es finito y $S'$ es infinito.
+    \end{excer}
+    
 \end{document}
