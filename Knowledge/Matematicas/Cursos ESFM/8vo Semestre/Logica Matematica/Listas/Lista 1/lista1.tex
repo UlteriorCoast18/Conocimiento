@@ -245,7 +245,49 @@
     \end{excer}
 
     \begin{proof}
-        %TODO
+        Procederemos por inducción sobre $c$.
+        \begin{itemize}
+            \item Para $c=0$, se tiene que $\varphi$ solo está conformada por variables y por aplicaciones sucesivas de la operación unaria $\neg$, por lo que solamente puede tener una variable. Así que $s=1$. Se sigue entonces que:
+            \begin{equation*}
+                s=c+1
+            \end{equation*}
+            \item Para $c=1$, se tiene que $\varphi$ es de la forma $\Rightarrow\psi\chi$, donde $\psi$ y $\chi$ son subfórmulas bien formadas de $\varphi$ que no contienen implicaciones, luego por la parte anterior $\psi$ y $\chi$ contienen una variable, es decir que $\varphi$ contiene dos variables. Luego $s=2$. Así que:
+            \begin{equation*}
+                s=c+1
+            \end{equation*}
+            \item Suponga que existe $n\in\mathbb{N}$ tal que para todo $k\leq n$ con $k\in\mathbb{N}\cup\left\{0\right\}$ se tiene que toda fórmula bien formada en la que aparecen $k$ veces el símbolo $\Rightarrow$, se tiene que
+            \begin{equation*}
+                s=k+1
+            \end{equation*}
+            siendo $s$ el número de variables de la fórmula.
+
+            Suponga que $\varphi$ es una fórmula bien formada en la que el símbolo $\Rightarrow$ aparece $n+1$ veces, esto es que $c=n+1$. Entonces, $\varphi$ es de la forma:
+            \begin{equation*}
+                \Rightarrow\psi\chi
+            \end{equation*}
+            donde $\psi$ y $\chi$ son subfórmulas bien formadas de $\varphi$. Sean $c_1$ y $c_2$ el número de veces que aparece el símbolo $\Rightarrow$ en $\psi$ y $\chi$, respectivamente. Se tiene que $0\leq c_1,c_2\leq n$, luego por hipótesis indictiva se sigue que
+            \begin{equation*}
+                s_i=c_i+1,\quad\forall i=1,2
+            \end{equation*}
+            donde $s_1$ y $s_2$ es el número de variables que aparecen en $\psi$ y $\chi$, respectivamente. Así pues, el número de variables que aparecen en $\varphi$ es:
+            \begin{equation*}
+                s=s_1+s_2
+            \end{equation*}
+            y, el número de veces que aparece el símbolo $\Rightarrow$ es la suma de el número de veces que aparece en $\psi$ y $\chi$ más uno. Por lo cual:
+            \begin{equation*}
+                c=c_1+c_2+1
+            \end{equation*}
+            Así pues:
+            \begin{equation*}
+                \begin{split}
+                    s&=s_1+s_2\\
+                    &=c_1+1+c_2+1\\
+                    &=(c_1+c_2+1)+1\\
+                    &=c+1
+                \end{split}
+            \end{equation*}
+        \end{itemize}
+        Aplicando inducción se sigue el resultado.
     \end{proof}
 
     \begin{excer}
@@ -256,7 +298,50 @@
     \end{excer}
 
     \begin{proof}
-        %TODO
+        Procederemos por inducción sobre $\varphi$.
+        \begin{itemize}
+            \item Si $\varphi$ es una variable, digamos $p_i$ (con $i\in\natint{1,n}$), se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    \overline{m}(\varphi)&=m(p_i)\\
+                    &=m'(p_i)\\
+                    &=\overline{m'}(\varphi)\\
+                \end{split}
+            \end{equation*}
+            \item Se verán dos casos:
+            \begin{itemize}
+                \item $\varphi$ es de la forma $\neg\psi$ siendo $\psi$ una fórmula bien formada. Se tiene que las variables de $\psi$ son las mismas que las variables de $\varphi$. Suponga que $\overline{m}(\psi)=\overline{m'}(\psi)$, entonces:
+                \begin{equation*}
+                    \begin{split}
+                        \overline{m}(\varphi)=V & \textup{ si y sólo si }\overline{m}(\neg\psi)=V\\
+                        &\textup{ si y sólo si }\overline{m}(\psi)=F\\
+                        &\textup{ si y sólo si }\overline{m'}(\psi)=F\\
+                        &\textup{ si y sólo si }\overline{m'}(\neg\psi)=V\\
+                        &\textup{ si y sólo si }\overline{m'}(\varphi)=V\\
+                    \end{split}
+                \end{equation*}
+                de forma análoga se deduce que $\overline{m}(\varphi)=F$ si y sólo si $\overline{m'}(\varphi)=F$. Así que:
+                \begin{equation*}
+                    \overline{m}(\varphi)=\overline{m'}(\varphi)
+                \end{equation*}
+                \item $\varphi$ es de la forma $\Rightarrow\psi\chi$ siendo $\psi$ y $\chi$ subfórmulas bien formadas de $\varphi$. Se tiene en el inciso anterior que $\psi$ y $\chi$ son tienen algunas de las variables $p_1,...,p_n$. Supongamos que $\overline{m}(\psi)=\overline{m'}(\psi)$ y $\overline{m}(\chi)=\overline{m'}(\chi)$. Entonces:
+                \begin{equation*}
+                    \begin{split}
+                        \overline{m}(\varphi)=F&\textup{ si y sólo si }\overline{m}(\Rightarrow\psi\chi)=F\\
+                        &\textup{ si y sólo si }\overline{m}(\psi)=F\textup{ y }\overline{m}(\chi)=V\\
+                        &\textup{ si y sólo si }\overline{m'}(\psi)=F\textup{ y }\overline{m'}(\chi)=V\\
+                        &\textup{ si y sólo si }\overline{m'}(\Rightarrow\psi\chi)=F\\
+                        &\textup{ si y sólo si }\overline{m'}(\varphi)=F\\
+                    \end{split}
+                \end{equation*}
+                se sigue entonces que $\overline{m}(\varphi)=\overline{m'}(\varphi)$.
+            \end{itemize}
+        \end{itemize}
+        Por induccioń, se sigue que
+        \begin{equation*}
+            \overline{m}(\varphi)=\overline{m'}(\varphi)
+        \end{equation*}
+        %DUDA
     \end{proof}
 
     \begin{excer}
@@ -268,7 +353,29 @@
     \end{excer}
     
     \begin{sol}
-        %TODO
+        De (a): Suponga que $\Sigma=\left\{p_1 \right\}$. Entonces, $\Sigma\vDash p_1$. No puede suceder que $\Sigma\vDash\neg p_1$. En efecto, si $m$ es un modelo tal que $m\vDash\Sigma$, entonces:
+        \begin{equation*}
+            m(p_1)=V
+        \end{equation*}
+        por tanto:
+        \begin{equation*}
+            m(\neg p_1)=F
+        \end{equation*}
+        luego, $m\nvDash\neg p_1$. Por tanto, $\Sigma\nvDash\neg p_1$. Afirmamos que $\Sigma\nvDash p_1\land\neg p_1$. En efecto, si $m$ es un modelo que satisface $\Sigma$, entonces:
+        \begin{equation*}
+            \begin{split}
+                \overline{m}(p_1\land\neg p_1)&=\overline{m}(\neg(p_1\Rightarrow \neg\neg p_1))\\
+                &=\overline{m}(\neg(p_1\Rightarrow p_1))\\
+            \end{split}
+        \end{equation*}
+        como $\overline{m}(p_1)=m(p_1)=V$, entonces $\overline{m}(p_1\Rightarrow p_1)=V$. Así, $\overline{m}(p_1\land\neg p_1)=F$. Así que $\Sigma\nvDash p_1\land\neg p_1$.
+
+        De (b): Probaremos que $\Sigma\vDash\varphi\land\psi$ implica que $\Sigma\vDash\varphi$ y $\Sigma\vDash\psi$. En efecto, por el Teorema de Completud se tiene que
+        \begin{equation*}
+            \Sigma\vdash\chi\textup{ si y sólo si }\Sigma\vDash\chi
+        \end{equation*}
+        para toda fórmula $\chi$. Por tanto, $\Sigma\vdash\varphi\land\psi$. Entonces, $\Sigma\vdash\varphi$ y $\Sigma\vdash\psi$ (usando conjunción). Luego, $\Sigma\vDash\varphi$ y $\Sigma\vDash\psi$.
+        %DUDA
     \end{sol}
 
     \begin{excer}[\textbf{Sustitución}]
@@ -281,7 +388,18 @@
     \end{excer}
 
     \begin{proof}
-        %TODO
+        De (a): Sea $\cf{f}{\textup{FBF}}{\textup{FBF}}$ dada como sigue:
+        \begin{itemize}
+            \item Si $\psi$ es una variable, digamos $p_i$ con $i\in\mathbb{N}$, entonces $f(\psi)=\varphi_i$.
+            \item Para las conectivas:
+            \begin{itemize}
+                \item Si $\psi$ es de la forma $\neg\chi$, entonces $f(\psi)=\neg f(\chi)$.
+                \item Si $\psi$ es de la forma $\Rightarrow\chi\xi$, entonces $f(\psi)=\Rightarrow f(\chi)f(\xi)$.
+            \end{itemize}
+        \end{itemize}
+        De tal forma, se define recursivamente el valor de $\psi$, ya que se va descomponiendo en sus subfórmulas en las cuales, cada variable $p_i$ es sustutuída por $\varphi_i$.
+
+        De (b): %TODO
     \end{proof}
 
     \begin{excer}
@@ -314,7 +432,7 @@
     \end{excer}
     
     \begin{sol}
-        %TODO
+        De (a): %TODO
     \end{sol}
 
     \begin{excer}
@@ -402,7 +520,6 @@
                     & & & $\therefore$ & $E\land H$ & \\
                 \end{tabular}
             \end{center}
-            %TODO
             \item
             \begin{center}
                 \setcounter{tablec}{1}
@@ -415,6 +532,11 @@
                     & \pstable{tablec} & $C$ & $\Rightarrow$ & $D$ & 1 Conm. y Simp. \\
                     & \pstable{tablec} & $B$ & $\Rightarrow$ & $E$ & 2 Simp. \\
                     & \pstable{tablec} & $D$ & $\Rightarrow$ & $F$ & 2 Conm. y Simp. \\
+                    & \pstable{tablec} & $\neg A$ & $\Rightarrow$ & $E$ & 3 Simp. \\
+                    & \pstable{tablec} & $\neg B$ & $\Rightarrow$ & $D$ & 3 Conm. y Simp. \\
+                    & \pstable{tablec} & $\neg B$ &  &  & 7,4 M.T. \\
+                    & \pstable{tablec} & $\neg B$ & $\lor$ & $\neg C$ & 11 Ad. \\
+                    & \pstable{tablec} & $\neg C$ & $\lor$ & $\neg B$ & 12 Conm. \\
                     \hline
                     & & & $\therefore$ & $\neg C\lor\neg B$ & \\
                 \end{tabular}
@@ -424,10 +546,18 @@
                 \setcounter{tablec}{1}
                 \begin{tabular}{l r l c l r}
                     & \pstable{tablec} & $A$ & $\Rightarrow$ & $(B\Rightarrow C)$ & Premisa \\
+                    $|\longrightarrow$ & \pstable{tablec} & $B$ &  &  & Sup. \\
+                    $||\longrightarrow$ & \pstable{tablec} & $A$ &  &  & Sup. \\
+                    $||$ & \pstable{tablec} & $B$ & $\Rightarrow$ & $C$ & 1,3 M.P. \\
+                    \hline
+                    $|$ & \pstable{tablec} & $A$ & $\Rightarrow$ & $C$ & 3-4 M.D. \\
+                    \hline
+                     & \pstable{tablec} & $B$ & $\Rightarrow$ & $(A\Rightarrow C)$ & 2-5 M.D. \\
                     \hline
                     & & & $\therefore$ & $B\Rightarrow(A\Rightarrow C)$ & \\
                 \end{tabular}
             \end{center}
+            %TODO
             \item
             \begin{center}
                 \setcounter{tablec}{1}

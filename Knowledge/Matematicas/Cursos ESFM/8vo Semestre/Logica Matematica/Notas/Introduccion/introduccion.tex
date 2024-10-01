@@ -2138,6 +2138,136 @@
         \textit{Instanciación} es quitar cuantificador, \textit{Generalización} es añadir cuantificador.
     \end{obs}
 
+    \begin{excer}
+        Complete las demostraciones siguiente:
+
+        \begin{enumerate}
+            \item
+                \begin{center}
+                    \setcounter{tablec}{1}
+                    \begin{tabular}{l r l c l r}
+                        & \pstable{tablec} & $(\forall x)(Px$ & $\Rightarrow$ & $(\forall y)(Qy\Rightarrow Sy))$ & Premisa \\
+                        & \pstable{tablec} & $(\forall x)(Px\Rightarrow (\forall y)(Qy\Rightarrow Sy))$ & $\Rightarrow$ & $(\forall x)Px\Rightarrow (\forall x)(\forall y)(Qy\Rightarrow Sy)$ & 1 Ax. 1 \\
+                        & \pstable{tablec} & $(\forall x)Px$ & $\Rightarrow$ & ($\forall x)(\forall y)(Qy\Rightarrow Sy)$ & 2,1 M.P.\\
+                        $|\longrightarrow$ & \pstable{tablec} & $(\forall x)Px$ &  &  & Sup.\\
+                        $|$ & \pstable{tablec} & $(\forall x)(\forall y)(Qy$ & $\Rightarrow$ & $Sy)$ & 4,3 M.P.\\
+                        $|$ & \pstable{tablec} & $(\forall x)(\forall y)(Qy\Rightarrow Sy)$ & $\Rightarrow$ & $(\forall y)(Qy\Rightarrow Sy)$ & 5 Ax. 5\\
+                        $|$ & \pstable{tablec} & $(\forall y)(Qy$ & $\Rightarrow$ & $Sy)$ & 7,6 M.P.\\
+                        \hline
+                        & \pstable{tablec} & $(\forall x)Px$ & $\Rightarrow$ & $(\forall y)(Qy\Rightarrow Sy)$ & 4-7 M.D.\\
+                        \hline
+                        & & & $\therefore$ & $(\forall x)Px\Rightarrow (\forall y)(Qy\Rightarrow Sy)$ & \\
+                    \end{tabular}
+                \end{center}
+            \item
+                \begin{center}
+                    \setcounter{tablec}{1}
+                    \begin{tabular}{l r l c l r}
+                        & \pstable{tablec} & $(\exists x)Px$ & $\Rightarrow$ & $(\exists y)Qy$ & Premisa \\
+                        $|\longrightarrow$ & \pstable{tablec} & $Pt$ &  &  & Sup. \\
+                        $|$ & \pstable{tablec} & $(\exists x)Px$ &  &  & 2 G.E. \\
+                        $|$ & \pstable{tablec} & $(\exists y) Qy$ &  &  & 1,3 M.P.\\
+                        \hline
+                        & \pstable{tablec} & $Pt$ & $\Rightarrow$ & $(\exists y)Qy$ & 2-4 M.D. \\
+                        & \pstable{tablec} & $(\exists x)(Px$ & $\Rightarrow$ & $(\exists y)Qy)$ & 5 G.E. \\
+                        \hline
+                        & & & $\therefore$ & $(\exists x)(Px\Rightarrow (\exists y)Qy)$ & \\
+                    \end{tabular}
+                \end{center}
+        \end{enumerate}
+
+        Hay una forma alternativa de probar 1):
+
+
+    \end{excer}
+
+    \begin{lema}
+        Usando 1. del siguiente Teorema, si $\Sigma\vdash\forall x\varphi$ y $z$ no aparece libre en ningún elemento de $\Sigma$ y es sustituíble por $x$ en $\varphi$, entonces $\Sigma\vdash\forall z\varphi[z/x]$.
+    \end{lema}
+
+    \begin{proof}
+        Se tiene que:
+        \begin{center}
+            \setcounter{tablec}{1}
+            \begin{tabular}{l r l c l r}
+                & \pstable{tablec} & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma$ \\
+                & \pstable{tablec} & $(\forall x)\varphi$ &  &  & Prueba de $\forall x\varphi$ \\
+                & \pstable{tablec} & $\varphi[z/x]$ &  &  & I.U. \\
+                & \pstable{tablec} & $(\forall z)\varphi[z/x]$ &  &  & G.U. \\
+                \hline
+                & & & $\therefore$ & $(\forall z)\varphi[z/x]$ & \\
+            \end{tabular}
+        \end{center}
+    \end{proof}
+
+    \begin{theor}[\textbf{Metateorema}]
+        Se tiene lo siguiente:
+        \begin{enumerate}
+            \item \textbf{Generalización Universal}: Si $\Sigma\vdash\varphi$ y $x$ no aparece libre en ninguna fórmula de $\Sigma$, entonces $\Sigma\vdash(\forall x)\varphi$. Esto es:
+            \begin{center}
+                \begin{tabular}{c c c}
+                    & $\varphi$  &  \\
+                    \hline
+                     & $\therefore$ & $(\forall x)\varphi$ \\
+                \end{tabular}
+            \end{center}
+            siempre que $x$ no aparezca libre en ninguna premisa, absolutas o relativas.
+            \item \textbf{Instanciación Existencial}: Si $\Sigma\cup\left\{\varphi[w/y]\right\} \vdash\psi$, entonces $\Sigma\cup\left\{\exists y\varphi \right\}\vdash\psi$ si $w$ no aparece libre en ninguna fórmula de $\Sigma$. Esto es:
+            \begin{center}
+                \begin{tabular}{l c c}
+                    & $\exists y\varphi$  &  \\
+                   $|\longrightarrow$ & $\varphi[w/y]$  & Sup. \\
+                    $|$ & $\vdots$  &  \\
+                    $|$ & $\psi$  &  \\
+                    \hline
+                     & $\therefore$ & $\varphi[w/y]$ \\
+                \end{tabular}
+            \end{center}
+            siempre que $w$ no aparezca libre ni en $\psi$ ni en ninguna premisa de $\Sigma$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De (1): Sea $\Gamma=\left\{\varphi|\Sigma\vdash\forall x\varphi \right\}$. Probaremos que $\Sigma\subseteq\Gamma$, $\Gamma$ contiene todos los axiomas lógicos y $\Gamma$ es cerrado bajo M.P. En efecto:
+        \begin{itemize}
+            \item \textbf{$\Gamma$ contiene a todos los axiomas lógicos}: es inmediato por la definición de $\Gamma$.
+            \item Sea $\alpha\in\Sigma$. Entonces, a partir de $\Sigma$, $\alpha$ es premisa. Luego $\alpha\Rightarrow(\forall x)\alpha$ (por una instancia del axioma 2 ya que $x$ no es libre en $\alpha$). Luego $\alpha\in\Gamma$.
+            \item Supongamos que $\alpha,\alpha\Rightarrow\beta\in\Gamma$. A partir de $\Sigma$, $\Sigma\vdash(\forall x)\alpha$ y $\Sigma\vdash(\forall x)(\alpha\Rightarrow\beta)$. Por el axioma 1, se sigue que $\Sigma\vdash(\forall x)\alpha\Rightarrow(\forall x)\beta$. Se puede entonces aplicar M.P. en $\Sigma$ para que se deduzca que $\Sigma\vdash(\forall x)\beta$.
+        \end{itemize}
+
+        De (2): Se tiene que:
+        \begin{center}
+            \setcounter{tablec}{1}
+            \begin{tabular}{l r l c l r}
+                & \pstable{tablec} & $\vdots$ & $\vdots$ & $\vdots$ & Líneas de $\Sigma\cup\left\{(\exists y)\varphi\right\}$ \\
+                & \pstable{tablec} & $(\exists y)\varphi$ &  &  &  \\
+                & \pstable{tablec} & $\varphi[w/y]$ & $\Rightarrow$ & $\psi$ & Hipótesis + M.D. \\
+                $|\longrightarrow$ & \pstable{tablec} & $\neg\psi$ &  &  & Sup. \\
+                $|$ & \pstable{tablec} & $\neg\varphi[w/y]$ &  &  & 3,4 M.T. \\
+                $|$ & \pstable{tablec} & $(\forall w)\neg\varphi[w/y]$ &  &  & 5 G.U. \\
+                $|$ & \pstable{tablec} & $(\forall y)\neg\varphi$ &  &  & 6 Lema 2.2.1 \\
+                $|$ & \pstable{tablec} & $\neg(\forall y)\neg\varphi$ &  &  & 2 R.E. \\
+                $|$ & \pstable{tablec} & $((\forall y)\neg\varphi)$ & $\land$ & $\neg((\forall y)\neg\varphi)$ & 8,7 Conj.\\
+                \hline
+                $|$ & \pstable{tablec} & $\psi$ &  &  & 4-9 D.C.\\
+                & & & $\therefore$ & $\psi$ & \\
+            \end{tabular}
+        \end{center}
+        la línea 3 se tiene pues: $\Sigma\cup\left\{\varphi[w/y]\right\} \vdash\psi$ si y sólo si $\Sigma\vdash\varphi[w/y]\Rightarrow\psi$.
+    \end{proof}
+
+    \begin{exa}
+        Complete la demostración siguiente:
+        \begin{center}
+            \setcounter{tablec}{1}
+            \begin{tabular}{l r l c l r}
+                & \pstable{tablec} & $(\forall x)(Px$ & $\Rightarrow $ & $Qx)$ & Premisa \\
+                \hline
+                & & & $\therefore$ & $(\forall x)(Sx\Rightarrow ((\forall y)(Sy\Rightarrow Py)\Rightarrow Qx))$ & \\
+            \end{tabular}
+        \end{center}    
+    \end{exa}
+
     \chapter*{Ejemplo Nuevo tipo de Tabla}
 
     \begin{center}
