@@ -197,7 +197,268 @@
 
     \end{proof}
 
+    \chapter{Propiedades Elementales y Ejemplos de Funciones Analíticas}
     
+    \section{Series de Potencias}
+
+    Se darán ejemplos y se hablará sobre las propiedades fundamentales de las series de potencias.
+
+    \begin{mydef}
+        Sea $\left\{ a_n \right\}_{ n=1}^\infty$ una sucesión en $\mathbb{C}$. Decimos que la serie de $\sum_{n=1}^\infty a_n$ \textbf{converge a $z\in\mathbb{C}$}, si para todo $\varepsilon>0$ existe $N\in\mathbb{N}$ tal que
+        \begin{equation*}
+            n\geq N\Rightarrow\abs{\sum_{ k=1}^na_n-z }<\varepsilon
+        \end{equation*}
+        La serie $\sum_{n=1}^\infty a_n$ \textbf{converge absolutamente}, si $\sum_{n=1}^\infty\abs{a_n}$ converge.
+    \end{mydef}
+
+    \begin{propo}
+        Si $\sum_{n=1}^\infty a_n$ converge absolutamente, entonces $\sum_{n=1}^\infty a_n$ es convergente.
+    \end{propo}
+
+    \begin{proof}
+        Inmediata de las propiedades del módulo.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $\left\{a_n \right\}_{ n=1}^\infty$ una sucesión en $\mathbb{R}$. Se definen:
+        \begin{itemize}
+            \item $\limsup_{ n\rightarrow\infty}a_n=\lim_{ n\rightarrow\infty}\sup\left\{a_n,a_{ n+1},... \right\}$.
+            \item $\liminf_{ n\rightarrow\infty}a_n=\lim_{ n\rightarrow\infty}\inf\left\{a_n,a_{ n+1},... \right\}$.
+        \end{itemize}
+        como el número real en $\overline{\mathbb{R}}$.
+    \end{mydef}
+
+    \begin{obs}
+        El límite superior y límite inferior de una sucesión siempre existe.
+    \end{obs}
+
+    \begin{mydef}
+        Una \textbf{serie de potencias alrededor de $a\in\mathbb{C}$} es una serie de la forma $\sum_{ n=0}^\infty a_n(z-a)^n$, siendo $\left\{ a_n \right\}_{ n=1}^\infty$ una sucesión en $\mathbb{C}$ y $z\in\mathbb{C}$.
+    \end{mydef}
+
+    \begin{exa}
+        La serie geométrica
+        \begin{equation*}
+            \sum_{ n=0}^\infty z^n
+        \end{equation*}
+        es convergente a $\frac{1}{1-z}$ si y sólo si $\abs{z}<1$.
+    \end{exa}
+
+    \begin{theor}[\textbf{Critero $M$ de Weierestrass}]
+        Para cada $n\in\mathbb{N}$, sea $\cf{u_n}{X}{\mathbb{C}}$ una función tal que existe $M_n\in\mathbb{R}$ tal que
+        \begin{equation*}
+            \abs{u_n}(x)<M_n,\quad\forall x\in X
+        \end{equation*}
+        entonces, si $\sum_{ n=1}^\infty M_n<\infty$ se tiene que la serie
+        \begin{equation*}
+            \sum_{ n=1}^\infty u_n
+        \end{equation*}
+        converge uniformemente.
+    \end{theor}
+
+    \begin{proof}
+        Se hizo en Análisis Matemático I.
+    \end{proof}
+
+    \begin{theor}
+        Sea $\sum_{ n=0}^\infty a_n(z-a)^n$ una serie de potencias, defina el número $R\in[0,\infty]$ tal que
+        \begin{equation*}
+            \frac{1}{R}=\limsup_{ n\rightarrow\infty}\abs{a_n}^{ 1/n}
+        \end{equation*}
+        entonces:
+        \begin{enumerate}
+            \item Si $z\in\mathbb{C}$ es tal que $\abs{z-a}<R$, la serie converge absolutamente.
+            \item Si $z\in\mathbb{C}$ es tal que $\abs{z-a}>R$, los términos de la serie no son acotados, por lo que la serie diverge.
+            \item Si $0<r<R$, la serie converge uniformemente en $\left\{ z\in\mathbb{C}\Big|\abs{z}\leq r \right\}$.
+        \end{enumerate}
+        El elemento no negativo de la recta real extendida $R$ es el único con las propiedades (1) y (2), y es llamado el \textbf{radio de convergencia de la serie $\sum_{ n=0}^\infty a_n(z-a)^n$}.
+    \end{theor}
+
+    \begin{proof}
+        De (1): Se tienen dos casos; si $R>0$ y $R=0$:
+        \begin{itemize}
+            \item \textbf{$R>0$}: Podemos suponer que $a=0$. Sea $z\in\mathbb{C}$ tal que $\abs{z}<R$. Existe $r\in\mathbb{R}$ tal que $\abs{z}<r<R$. $\frac{1}{R}=\limsup_{ n\rightarrow\infty}\abs{a_n}^{ 1/n}$, entonces existe $N\in\mathbb{N}$ tal que
+            \begin{equation*}
+                \abs{a_n}^{ 1/n}<\frac{1}{r},\quad\forall n\geq N
+            \end{equation*}
+            pues, $1/R<1/r$. Entonces:
+            \begin{equation*}
+                \abs{a_n}<\frac{1}{r^n},\quad\forall n\geq N
+            \end{equation*}
+            se sigue así que:
+            \begin{equation*}
+                \abs{a_nz^n}\leq\left(\frac{\abs{z}}{r}\right)^n,\quad\forall n\geq N
+            \end{equation*}
+            Por ende:
+            \begin{equation*}
+                \sum_{ n=N}^\infty\abs{a_nz^n}\leq\sum_{ n=N}^\infty\left(\frac{\abs{z}}{r}\right)^n<\infty
+            \end{equation*}
+            pues $\abs{z}/r<1$. Por tanto, la serie de potencias
+            \begin{equation*}
+                \sum_{ n=1}^\infty a_nz^n
+            \end{equation*}
+            es absolutamente convergente.
+            \item Si $R=0$, entonces no existe $z\in\mathbb{C}$ tal que $\abs{z}<R$. Por tanto, el resultado se cumple por vacuidad.
+        \end{itemize}
+
+        De (2): El procedimiento es análogo (pero mostrando la divergencia de una serie geométrica) al de (1).
+
+        De (3): Sea $r\in\mathbb{R}$ tal que $0<r<R$. Tomemos $\rho\in\mathbb{R}$ tal que $r<\rho<R$. Como en (1) existe $N\in\mathbb{N}$ tal que
+        \begin{equation*}
+            \abs{a_n}<\frac{1}{\rho},\quad\forall n\geq N
+        \end{equation*}
+        Entonces, si $\abs{z}\leq r$ se tiene que
+        \begin{equation*}
+            \abs{a_nz^n}\leq\left(\frac{r}{\rho}\right)^n,\quad\forall n\geq N
+        \end{equation*}
+        siendo $r/\rho<1$. Por el Criterio $M$ de Weierestrass se sigue que la serie de potencias
+        \begin{equation*}
+            \sum_{ n=1}^\infty \abs{a_nz^n}
+        \end{equation*}
+        converge uniformemente en $\left\{ z\in\mathbb{C}\Big|\abs{z}\leq r \right\}$.
+
+        La unicidad de $R$ se sigue de (1) y (2).
+    \end{proof}
+
+    \begin{propo}
+        Si $\sum_{ n=1}^\infty a_n(z-a)^n$ es una serie de potencias con radio de convergencia $R\in[0,\infty]$, entonces
+        \begin{equation*}
+            R=\lim_{n\rightarrow\infty}\abs{\frac{a_n}{a_{ n+1}}}
+        \end{equation*}
+        si el límite existe.
+    \end{propo}
+
+    \begin{proof}
+        Poedmos suponer que $a=0$. Si el límite anterior existe, denotémoslo por
+        \begin{equation*}
+            \alpha=\lim_{n\rightarrow\infty}\abs{\frac{a_n}{a_{ n+1}}}
+        \end{equation*}
+        Probaremos que $\alpha=R$. Sea $z\in\mathbb{C}$:
+        \begin{itemize}
+            \item Suponga que $r\in\mathbb{R}$ es tal que $\abs{z}<r<\alpha$. Existe $N\in\mathbb{N}$ tal que
+            \begin{equation*}
+                \abs{\frac{a_{ n}}{a_{ n+1}}}>r,\quad\forall n\geq N
+            \end{equation*}
+            (pues, el límite converge a $\alpha$). Sea $B=\abs{a_n}r^N$. Entonces:
+            \begin{equation*}
+                \begin{split}
+                    \abs{a_{ N+1}}r^{N+1}&=\abs{a_{ N+1}}rr^{N}\\
+                    &<\abs{a_N}r^N\\
+                    &=B\\
+                \end{split}
+            \end{equation*}
+            por inducción se prueba rápidamente que:
+            \begin{equation*}
+                \abs{a_nr^n}\leq B,\quad\forall n\geq N
+            \end{equation*}
+            Entonces:
+            \begin{equation*}
+                \begin{split}
+                    \abs{a_nz^n}&=\abs{a_nr^n}\cdot\frac{\abs{z^n}}{r^n}\\
+                    &=B\cdot\frac{\abs{z}^n}{r^n},\quad\forall n\geq N \\
+                \end{split}
+            \end{equation*}
+            Como $\abs{z}<r$, entonces $\frac{\abs{z}}{r}<1$. Por lo cual la serie
+            \begin{equation*}
+                \sum_{ n=1}^\infty a_nz^n
+            \end{equation*}
+            es absolutamente convergente para todo $z\in\mathbb{C}$ tal que $\abs{z}<\alpha$. Por (1) del Teorema anterior, debe suceder que $\alpha\leq R$.
+            \item Un procedimiento análogo al anterior pero con $\abs{z}>\alpha$ prueba que la serie
+            \begin{equation*}
+                \sum_{ n=1}^\infty a_nz^n
+            \end{equation*}
+            no converge para todo $z\in\mathbb{C}$ tal que $\alpha<\abs{z}$. Por ende, $R\leq \alpha$
+        \end{itemize}
+        Por los dos incisos anteriores se sigue que $\alpha=R$.
+    \end{proof}
+
+    \begin{exa}
+        La serie de potencias
+        \begin{equation*}
+            \sum_{ n=1}^\infty\frac{z^n}{n!}
+        \end{equation*}
+        tiene radio de convergencia $R=\infty$.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, veamos que:
+        \begin{equation*}
+            \begin{split}
+                \lim_{n\rightarrow\infty}\abs{\frac{a_{ n}}{a_{n+1}}}&=\lim_{n\rightarrow\infty}\frac{(n+1)!}{n!}\\
+                &=\lim_{n\rightarrow\infty}(n+1)\\
+                &=\infty\\
+            \end{split}
+        \end{equation*}
+        por lo cual, $R=\infty$.
+    \end{proof}
+
+    \begin{mydef}
+        Se define la \textbf{función exponencial}, como la función $\cf{\exp}{\mathbb{C}}{\mathbb{C}}$ dada por:
+        \begin{equation*}
+            z\mapsto e^z=\exp(z)=\sum_{ n=0}^\infty\frac{z^n}{n!}
+        \end{equation*}
+        por la parte anterior, esta serie es absolutamente convergente en $\mathbb{C}$, por lo que la función $\exp$ está bien definida.
+    \end{mydef}
+
+    \begin{propo}
+        \label{MultSumSeriesPot}
+        Sean 
+    \end{propo}
+
+    \section{Ejercicios}
+
+    \begin{excer}
+        Pruebe que si $z_1,z_2\in\mathbb{C}$, entonces:
+        \begin{equation*}
+            e^{z_1+z_2}=e^{ z_1}e^{ z_1}
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        En efecto, veamos que:
+        \begin{equation*}
+            \begin{split}
+                e^{ x+iz_2}&=\sum_{ n=0}^\infty\frac{(z_1+z_2)^n}{n!}\\
+                &=\sum_{ n=0}^\infty\frac{1}{n!}\sum_{ k=0}^n\binom{n}{k}z_1^kz_2^{ n-k}\\
+                &=\sum_{ n=0}^\infty\sum_{ k=0}^n\frac{1}{n!}\cdot\frac{n!}{k!(n-k)!}z_1^kz_2^{ n-k}\\
+                &=\sum_{ n=0}^\infty\sum_{ k=0}^n\frac{z_1^k}{k!}\cdot\frac{z_2^{n-k}}{(n-k)!}\\
+            \end{split}
+        \end{equation*}
+        donde, recordemos que:
+        \begin{equation*}
+            e^z_1=\sum_{ n=0}^\infty\frac{z_1^n}{n!}\quad\textup{y}\quad e^ {z_2}=\sum_{ n=0}^\infty\frac{z_2^n}{n!}
+        \end{equation*}
+        por tanto, de la Proposición \ref{MultSumSeriesPot} se sigue que:
+        \begin{equation*}
+            e^{ z_1+z_2}=e^z_1e^{ z_2}
+        \end{equation*}
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que
+        \begin{equation*}
+            e^z=e^x(\cos y+i\sin y)
+        \end{equation*}
+        donde $z=x+iy$.
+    \end{excer}
+
+    \begin{proof}
+        Sea $z\in\mathbb{C}$. Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                e^z&=e^{x}e^{iy}
+            \end{split}
+        \end{equation*}
+        Veamos que:
+        \begin{equation*}
+            \begin{split}
+                e^{ iy}&=\sum_{n=0}^\infty\frac{(iy)^n}{n!}\\
+                &=\sum_{n=0}^\infty\frac{(iy)^{2k}}{(2k)!}+\sum_{k=0}^\infty\frac{(iy)^{2k+1}}{(2k+1)!}\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+
 
     \chapter*{Bibliografía}
 

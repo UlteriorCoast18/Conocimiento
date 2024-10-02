@@ -940,6 +940,22 @@
 
     Este será nuestro objetivo de ahora en adelante.
 
+    \begin{mydef}
+        Sea $\left\{ G_i \right\}_{ i\in I}$ un conjunto no vacío de grupos. Una \textbf{palabra en $\left\{ G_i \right\}_{ i\in I}$ de longitud $n\in\mathbb{N}$} es una sucesión finita $(x_1,x_2,...,x_n)$ de elementos en $\bigcup_{ i\in I}G_i$ tal que:
+        \begin{itemize}
+            \item Para todo $j\in\natint{1,n}$ existe $i_j\in I$ tal que $x_j\in G_{ i_j}$.
+            \item $x_j\neq e_{ G_i}$ para todo $j\in\natint{1,n}$ y para todo $i\in I$.
+            \item Si $n>1$, entonces para todo $j\in\natint{1,n-1}$ se tiene que $x_j$ y $x_{ j+1}$ no están en el mismo grupo.
+        \end{itemize}
+        $n$ es llamado la \textbf{longitud de la palabra}. Se define además al \textbf{palabra vacía}, como el conjunto vacío $\emptyset$, que se identificará con $(\cdot)$.
+
+        Se denotará por $W$ al conjunto de todas las palabras de longitud no negativa en $\left\{G_i \right\}_{ i\in I}$.
+    \end{mydef}
+
+    \begin{propo}
+        Sea $\left\{ G_i \right\}_{ i\in I}$ un conjunto no vacío de grupos.
+    \end{propo}
+
     \begin{theor}
         Dada una colección no vacía $\left\{ G_i \right\}_{ i\in I}$ de grupos, su producto libre existe.
     \end{theor}
