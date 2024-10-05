@@ -1,0 +1,269 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{bbm}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\textit{\alph{enumii}})}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
+\newcommand{\fk}[1]{\ensuremath{\mathfrak{#1}}}
+\newcommand{\gen}[1]{\ensuremath{\langle#1\rangle}}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Introducción a la Geometría Algebraica
+    
+    Notas}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \chapter{Variedades}
+    
+    \textit{Nota}: No confundir el tipo de variedades que estaremos trabajando en esta primera parte con aquellas variedades en el ámbito topológico. Es deseable tener conocimiento básico sobre anillos, campos, extensiones de campos, teoría de grupos y demás temas concernientes al álgebra abstracta para entender los conceptos que se presentarán a lo largo del documento.
+    
+    De ahora en adelante el símbolo $\natint{a,b}$, denotará a todos los números naturales contenidos en el intervalo $[a,b]$, $a,b\in\mathbb{R}$.
+
+    \section{Variedades Afines}
+    
+    Nuestra tarea fundmanetal será enunciar los conceptos básicos con los que se trabajarán.
+
+    De ahora en adelante, $K$ denotará a un campo.
+
+    \begin{mydef}
+        Sea $K$ un campo algebraicamente cerrado. Definimos el \textbf{espacio afín $n$-dimensional sobre $K$}, denotado por $\bbm{A}_K^n$, o simplemente $\bbm{A}^n$ como el conjunto de todas las $n$-tuplas de elementos de $K$, esto es:
+        \begin{equation*}
+            \bbm{A}_K^n=\underset{n-\textup{veces}}{\underbrace{K\times\cdots\times K}}
+        \end{equation*}
+        Un elemento $P\in\bbm{A}_K^n$ será llamado \textbf{punto}, y si $P=(a_1,...,a_n)$, con $a_i\in K$ para todo $i\in\natint{1,n}$, entonces $a_i$ será llamada la \textbf{$i$-ésima coordenada de $P$}.
+    \end{mydef}
+
+    Sea $A=K[x_1,...,x_n]$ el anillo de polinomios en $n$-entradas sobre el campo $K$ (considerado como algebraicamente cerrado). Interpretaremos los elementos de $A$ como funciones del espacio afín $\bbm{A}^n$ a $K$, definiendo
+    \begin{equation*}
+        f(P)=f(a_1,...,a_n)
+    \end{equation*}
+    para todo $P\in\bbm{A}^n$, con $f\in A$.
+
+    \begin{mydef}
+        Sea $f\in K[x_1,...,x_n]$. Se definen los \textbf{ceros de $f$}, como el conjunto
+        \begin{equation*}
+            Z(f)=\left\{P\in\bbm{A}^n\Big|f(P)=0 \right\}
+        \end{equation*}
+        Si $T\subseteq\bbm{A}^n$, definimos el \textbf{conjunto cero de $T$}, como el conjunto:
+        \begin{equation*}
+            Z(T)=\left\{P\in\bbm{A}^n\Big|f(P)=0\textup{, para todo }f\in T \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        Si $\fk{a}$ es el ideal de $K[x_1,...,x_n]$ generado por $T$, entonces:
+        \begin{equation*}
+            Z(T)=Z(\fk{a})
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{obs}
+        Como $K[x_1,...,x_n]$ es un anillo Noetheriano (por ser $K[x_1,...,x_n]$ un Dominio Euclideano, se sigue que es Dominio de Ideales Principales, en particular, todo DIP es Noetheriano). Entonces, el ideal $\fk{a}$ es finitamente generado, esto es:
+        \begin{equation*}
+            \fk{a}=\gen{f_1,...,f_n}
+        \end{equation*}
+        donde $f_1,...,f_n\in K[x_1,...,x_n]$. Por tanto, $Z(T)$ puede ser expresado como todos los ceros comunes del conjunto finito de polinomios $\left\{f_1,...,f_n \right\}$.
+    \end{obs}
+
+    \begin{mydef}
+        Un subconjunto $Y\subseteq\bbm{A}^n$ es llamado \textbf{algebraico} si existe $T\subseteq K[x_1,...,x_n]$ tal que $Y=Z(T)$.
+    \end{mydef}
+
+    Para la siguiente proposición, recuerde que dados $A,B\subseteq K[x_1,...,x_n]$, se define el producto de $A$ por $B$ como el conjunto:
+    \begin{equation*}
+        AB=\left\{fg\Big|f\in A\textup{ y }g\in B \right\}
+    \end{equation*}
+    
+    \begin{propo}
+        Se cumple lo siguiente:
+        \begin{enumerate}[label=(\textit{\alph*})]
+            \item La unión de dos conjuntos algebraicos es un conjunto algebraico.
+            \item La interseccioń de cualquier familia de conjuntos algebraicos es un conjunto algebraico.
+            \item El conjunto vacío y todo el espacio son conjuntos algebraicos.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De $(a)$: Sean $Y_1$ y $Y_2$ subconjuntos de $\bbm{A}^n$ algebraios, entonces existen $T_1,T_2\subseteq K[x_1,...,x_n]$ finitos tales que
+        \begin{equation*}
+            Y_i=Z(T_i),\quad\forall i=1,2
+        \end{equation*}
+        Afirmamos que
+        \begin{equation*}
+            Y_1\cup Y_2=Z(T_1T_2)
+        \end{equation*}
+        En efecto:
+        \begin{itemize}
+            \item Si $P\in Y_1\cup Y_2$, entonces $f(P)=0$ para todo $f\in T_1$ o para todo $f\in T_2$. Se sigue entonces que:
+            \begin{equation*}
+                fg(P)=f(P)g(P)=0
+            \end{equation*}
+            para todo $fg\in T_1T_2$. Luego, $P\in Z(T_1T_2)$.
+            \item Si $P\in Z(T_1T_2)$, suponiendo que $P\notin Y_2$, entonces existe $g\in T_2$ tal que $g(P)\neq 0$. Pero, se tiene que:
+            \begin{equation*}
+                fg(P)=0
+            \end{equation*}
+            para todo $f\in T_1$, luego $f(P)=0$ para todo $f\in T_1$. Así que $P\in Z(T_1)=Y_1$. Se sigue así que $P\in Y_1\cup Y_2$.
+        \end{itemize}
+        por los dos incisos anteriores se tiene la doble contención. Por tanto, la unión de dos conjuntos algebraicos sigue siendo algebraico.
+
+        De $(b)$: Sea $\left\{Y_i=Z(T_i) \right\}_{ i\in I}$ una familia no vacía de conjuntos algebraicos.
+    \end{proof}
+
+    \newpage
+
+    \section{Ejercicios}
+
+
+
+    \newpage
+
+    \section{Referencias}
+
+    \begin{itemize}
+        \item \textit{Algebraic Geometry} de Robin Hartshorne, ed. Springer.
+    \end{itemize}
+
+\end{document}
