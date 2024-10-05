@@ -2262,10 +2262,118 @@
             \setcounter{tablec}{1}
             \begin{tabular}{l r l c l r}
                 & \pstable{tablec} & $(\forall x)(Px$ & $\Rightarrow $ & $Qx)$ & Premisa \\
+                $|\longrightarrow$ & \pstable{tablec} & $Sz$ &  &  & Sup. \\
+                $||\longrightarrow$ & \pstable{tablec} & $(\forall y)(Sy$ & $\Rightarrow$ & $Py)$ & Sup. \\
+                $||$ & \pstable{tablec} & $Sz$ & $\Rightarrow$ & $Pz$ & 3 I.U. \\
+                $||$ & \pstable{tablec} & $Pz$ & $\Rightarrow$ & $Qz$ & 3 I.U. \\
+                $||$ & \pstable{tablec} & $Pz$ &  &  & 4,2 M.P. \\
+                $||$ & \pstable{tablec} & $Qz$ &  &  & 5,7 M.P. \\
+                \hline
+                $|$ & \pstable{tablec} & $(\forall y)(Sy\Rightarrow Py)$ & $\Rightarrow$ & $Qz$ & 3-7 M.D. \\
+                $|$ & \pstable{tablec} & $Sz$ & $\Rightarrow$ & $((\forall y)(Sy\Rightarrow Py)\Rightarrow Qz)$ & 2-8 M.D. \\
+                $|$ & \pstable{tablec} & $(\forall x)(Sx$ & $\Rightarrow$ & $((\forall y)(Sy\Rightarrow Py)\Rightarrow Qx))$ & 9 G.U. \\
                 \hline
                 & & & $\therefore$ & $(\forall x)(Sx\Rightarrow ((\forall y)(Sy\Rightarrow Py)\Rightarrow Qx))$ & \\
             \end{tabular}
-        \end{center}    
+        \end{center} 
+    \end{exa}
+
+    \begin{exa}
+        Complete la demostración siguiente:
+        \begin{center}
+            \setcounter{tablec}{1}
+            \begin{tabular}{l r l c l r}
+                & \pstable{tablec} & $(\forall x)(Px$ & $\Rightarrow $ & $Qx)$ & Premisa \\
+                & \pstable{tablec} & $(\forall x)(Sx$ & $\Rightarrow $ & $Tx)$ & Premisa \\
+                $|\longrightarrow$ & \pstable{tablec} & $(\forall x)(Qx$ & $\Rightarrow $ & $Sx)$ & Sup. \\
+                $||\longrightarrow$ & \pstable{tablec} & $Pz$ &  &  & Sup. \\
+                $||$ & \pstable{tablec} & $Pz$ & $\Rightarrow$ & $Qz$ & 1 I.U. \\
+                $||$ & \pstable{tablec} & $Qz$ & $\Rightarrow$ & $Sz$ & 3 I.U. \\
+                $||$ & \pstable{tablec} & $Sz$ & $\Rightarrow$ & $Tz$ & 2 I.U. \\
+                $||$ & \pstable{tablec} & $Qz$ &  &  & 5,4 M.P. \\
+                $||$ & \pstable{tablec} & $Sz$ &  &  & 6,8 M.P. \\
+                $||$ & \pstable{tablec} & $Tz$ &  &  & 9,7 M.P. \\
+                \hline
+                $|$ & \pstable{tablec} & $Pz$ & $\Rightarrow$ & $Tz$ & 4-10 M.D. \\
+                $|$ & \pstable{tablec} & $(\forall y)(Py$ & $\Rightarrow$ & $Ty)$ & 11 G.U. \\
+                \hline
+                & \pstable{tablec} & $(\forall x)(Qx\Rightarrow Sx)$ & $\Rightarrow$ & $(\forall y)(Py\Rightarrow Ty)$ & 3-12 M.D. \\
+                \hline
+                & & & $\therefore$ & $(\forall x)(Qx\Rightarrow Sx)\Rightarrow(\forall y)(Py\Rightarrow Ty)$ & \\
+            \end{tabular}
+        \end{center} 
+    \end{exa}
+
+    \begin{exa}
+        Complete la demostración siguiente:
+        \begin{center}
+            \setcounter{tablec}{1}
+            \begin{tabular}{l r l c l r}
+                & \pstable{tablec} & $(\exists x)Px$ & $\Rightarrow $ & $(\forall y)((Py\lor Qy)\Rightarrow Sy)$ & Premisa \\
+                & \pstable{tablec} & $(\exists x)Px$ & $\land$ & $(\exists x)Sx$ & Premisa \\
+                & \pstable{tablec} & $(\exists x)Px$ &  &  & 2 Simp. \\
+                & \pstable{tablec} & $(\forall y)((Py\lor Qy)$ & $\Rightarrow$ & $Sy)$ & 1,3 M.P. \\
+                $|\longrightarrow$ & \pstable{tablec} & $Pz$ &  &  & 3 I.E. \\
+                $|$ & \pstable{tablec} & $Pz$ & $\lor$ & $Qz$ & 5 Ad. \\
+                $|$ & \pstable{tablec} & $(Pz\lor Qz)$ & $\Rightarrow$ & $Sz$ & 4 I.U. \\
+                $|$ & \pstable{tablec} & $Sz$ &  &  & 7,6 M.P. \\
+                $|$ & \pstable{tablec} & $Pz$ & $\land$ & $Sz$ & 5,8 Conj. \\
+                \hline
+                & \pstable{tablec} & $(\exists x)(Px$ & $\land$ & $Sx)$ & 5-9 G.E. \\
+                \hline
+                & & & $\therefore$ & $\exists x(Px\land Sx)$ & \\
+            \end{tabular}
+        \end{center} 
+    \end{exa}
+
+    \begin{exa}
+        Complete la demostración siguiente:
+        \begin{center}
+            \setcounter{tablec}{1}
+            \begin{tabular}{l r l c l r}
+                & \pstable{tablec} & $(\exists x)Px$ & $\Rightarrow $ & $(\forall y)(Qy\Rightarrow Sy)$ & Premisa \\
+                $|\longrightarrow$ & \pstable{tablec} & $(\exists x)(Px$ & $\land $ & $Qx)$ & Sup. \\
+                $||\longrightarrow$ & \pstable{tablec} & $Pz$ & $\land $ & $Qz$ & 2 I.E. \\
+                $||$ & \pstable{tablec} & $Pz$ &  &  & 3 Simp. \\
+                \hline
+                $|$ & \pstable{tablec} & $(\exists x)Px$ &  &  & 3-4 G.E. \\
+                $|$ & \pstable{tablec} & $(\forall y)(Qy$ & $\Rightarrow$ & $Sy)$ & 1,5 M.P. \\
+                $|$ & \pstable{tablec} & $Qz$ & $\Rightarrow$ & $Sz$ & 6 I.U. \\
+                $||\longrightarrow$ & \pstable{tablec} & $Pz$ & $\land $ & $Qz$ & 2 I.E. \\
+                $||$ & \pstable{tablec} & $Pz$ &  &  & 8 Simp. \\
+                $||$ & \pstable{tablec} & $Qz$ &  &  & 8 Conm. y Simp. \\
+                $||$ & \pstable{tablec} & $Sz$ &  &  & 7,9 M.P. \\
+                $||$ & \pstable{tablec} & $Pz$ & $\land$ & $Sz$ & 9,11 Conj. \\
+                \hline
+                $|$ & \pstable{tablec} & $(\exists y)(Py$ & $\land$ & $Sy)$ & 8-12 G.E. \\
+                \hline
+                & \pstable{tablec} & $(\exists x)(Px\land Qx)$ & $\Rightarrow$ & $(\exists y)(Py\land Sy)$ & 2-13 M.D. \\
+                \hline
+                & & & $\therefore$ & $(\exists x)(Px\land Qx)\Rightarrow(\exists y)(Py\land Sy)$ & \\
+            \end{tabular}
+        \end{center}
+    \end{exa}
+
+    \begin{exa}
+        Complete la demostración siguiente:
+        \begin{center}
+            \setcounter{tablec}{1}
+            \begin{tabular}{l r l c l r}
+                & \pstable{tablec} & $(\forall x)(\exists y)(Px$ & $\lor $ & $Qy)$ & Premisa \\
+                $|\longrightarrow$ & \pstable{tablec} & $\neg((\forall x)Px)$ &  &  & Sup. \\
+                $|$ & \pstable{tablec} & $(\exists x)\neg Px$ &  &  & 2 R.E. \\
+                $|$ & \pstable{tablec} & $\neg Pz$ &  &  & 3 I.E. \\
+                $|$ & \pstable{tablec} & $(\exists y)(Pz$ & $\lor$ & $Qy)$ & 1 I.U. \\
+                $|$ & \pstable{tablec} & $Pz$ & $\lor$ & $Qw$ & 6 I.E. \\
+                $|$ & \pstable{tablec} & $Qw$ &  &  & 7,5 S.D. \\
+                $|$ & \pstable{tablec} & $(\exists y)Qy$ &  &  & 8 G.E.\\
+                \hline
+                & \pstable{tablec} & $\neg((\forall x)Px)$ & $\Rightarrow$ & $(\exists y)Qy$ & 2-9 M.D. \\
+                & \pstable{tablec} & $(\forall x)Px$ & $\lor$ & $(\exists y)Qy$ & 10 R.E. \\
+                \hline
+                & & & $\therefore$ & $(\forall x)Px\lor(\exists y)Qy$ & \\
+            \end{tabular}
+        \end{center}
     \end{exa}
 
     \chapter*{Ejemplo Nuevo tipo de Tabla}
