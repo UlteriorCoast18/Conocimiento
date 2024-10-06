@@ -128,6 +128,7 @@
     \end{tikzpicture}
     \:
 }
+\newcommand{\contradiction}{\ensuremath{\#_c}}
 \newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
 \newcommand{\fk}[1]{\ensuremath{\mathfrak{#1}}}
 \newcommand{\gen}[1]{\ensuremath{\langle#1\rangle}}
@@ -161,7 +162,7 @@
     
     Nuestra tarea fundmanetal será enunciar los conceptos básicos con los que se trabajarán.
 
-    De ahora en adelante, $K$ denotará a un campo.
+    De ahora en adelante, $K$ denotará a un campo (generalmente algebraicamente cerrado).
 
     \begin{mydef}
         Sea $K$ un campo algebraicamente cerrado. Definimos el \textbf{espacio afín $n$-dimensional sobre $K$}, denotado por $\bbm{A}_K^n$, o simplemente $\bbm{A}^n$ como el conjunto de todas las $n$-tuplas de elementos de $K$, esto es:
@@ -249,14 +250,326 @@
         \end{itemize}
         por los dos incisos anteriores se tiene la doble contención. Por tanto, la unión de dos conjuntos algebraicos sigue siendo algebraico.
 
-        De $(b)$: Sea $\left\{Y_i=Z(T_i) \right\}_{ i\in I}$ una familia no vacía de conjuntos algebraicos.
+        De $(b)$: Sea $\left\{Y_i=Z(T_i) \right\}_{ i\in I}$ una familia no vacía de conjuntos algebraicos. Afirmamos que:
+        \begin{equation*}
+            \bigcap_{ i\in I}Y_I=Z\left(\bigcap_{ i\in I}T_i \right)
+        \end{equation*}
+        En efecto, es inmediata de la definición de conjunto algebraico. Por tanto, la intersección de conjuntos algebraicos es algebraicos.
+
+        De $(c)$: Finalmente, se tiene que
+        \begin{itemize}
+            \item $\emptyset=Z(1)$, donde $1$ es el polinomio con valor constante 1 en $K[x_1,...,x_n]$.
+            \item $\bbm{A}^n=Z(0)$, donde 0 es el polinomio con valor constante 0 en $K[x_1,...,x_n]$.
+        \end{itemize}
     \end{proof}
+    
+    Note que de esta definción anterior, si tomamos la familia los complementos de los conjuntos algebraicos, obtenemos que la unión arbitraria, la intersección finita y el vacío y todo el conjunto están en la familia, es decir, hemos construído una topología sobre $\bbm{A}^n$.
+
+    \begin{mydef}
+        Definimos la \textbf{topología de Zariski en $\bbm{A}^n$}, formada por la familia de los complementos de todos los conjuntos algebraicos sobre $\bbm{A}^n$.
+    \end{mydef}
+
+    \begin{exa}
+        Consideremos la topología de Zariski en la recta afín $\bbm{A}^1$. Como todo ideal de $A=K[x]$ es principal, se tiene que todo conjunto algebraico es el conjunto de ceros de un sólo polinomio en $A$, digamos si $Y$ es algebraico, entonces
+        \begin{equation*}
+            Y=Z(\left\{f\right\})=Z(f)
+        \end{equation*}
+
+        Asumiendo que $K$ es algebraicamente cerrado se tiene que todo polinomio no cero se puede escribir como:
+        \begin{equation*}
+            f(x)=c(x-a_1)\cdots(x-a_n)
+        \end{equation*}
+        con $c\in K^*$ y $a_1,...,a_n\in K$. Por tanto,
+        \begin{equation*}
+            Z(f)=\left\{a_1,...,a_n\right\}
+        \end{equation*}
+        Por tanto, los conjuntos algebraicos en $\bbm{A}^1$ son los conjuntos finitos, el total y el vacío. Por tanto, la topología de Zariski en $\bbm{A}^1$ coincide con la topología de los complementos finitos.
+    \end{exa}
+
+    \begin{mydef}
+        Sea $X$ espacio topológico. Un subconjunto no vacío $Y\subseteq X$ es llamado \textbf{irreducible}, si no puede ser expresado como la unión de dos subconjuntos propios $Y_1,Y_2\subseteq Y$, cada uno de los cuales es cerrado en $Y$.
+
+        Convenimos en que el conjunto vacío no es irreducible.
+    \end{mydef}
+
+    \begin{exa}
+        $\bbm{A}^1$ es irreducible, pues sus únicos subconjuntos propios cerrados son los algebraicos, que son finitos y $\bbm{A}^1$ es infinito.
+    \end{exa}
+
+    \begin{exa}
+        Cualquier abierto no vacío de un espacio irreducible de un espacio irreducible es irreducible y denso.
+    \end{exa}
+
+    \begin{proof}
+        Sea $X$ un espacio irreducible y $Y\subseteq X$ abierto no vacío en $X$. Si $Y=Y_1\cup Y_2$ siendo $Y_1,Y_2\subseteq X$ cerrados en $Y$, como $Y_2$ es el complemento de $Y_1$ en $Y$, por ser $Y_1$ cerrado en $Y$, se sigue que $Y_2$ es abierto en $Y$, en particular es abierto en $X$, de manera análoga $Y_1$ es abierto en $X$. Por tanto, tomando
+        \begin{equation*}
+            Z_i=X-Y_i,\quad i=1,2
+        \end{equation*}
+        se tiene que
+        \begin{equation*}
+            X=Z_1\cup Z_2
+        \end{equation*}
+        siendo $Z_1,Z_2$ subconjuntos de $X$ cerrados. Al ser $X$ irreducible se tiene que $Z_1=X$ o $Z_2=X$, en cuyo caso se seguiría que $Y_1=\emptyset$ o $Y_2=\emptyset$, esto es que $Y_2=Y$ o $Y_1=Y$. Por tanto, $Y$ es irreducible.
+
+        Ahora, veamos que $Y$ es denso. Podemos suponer que $Y\neq X$, tomemos
+        \begin{equation*}
+            Z_1=X-Y\quad\textup{y}\quad Z_2=\overline{Y}
+        \end{equation*}
+        $Z_1$ y $Z_2$ son cerrados no vacíos tales que $X=Z_1\cup Z_2$. Como $X$ es irreducible, entonces $Z_1=X$ o $Z_2=X$, pero $Z_1\neq X$ ya que $Y$ es subconjunto propio de $X$. Por ende, $Z_2=X$, es decir que
+        \begin{equation*}
+            \overline{Y}=X
+        \end{equation*}
+        por tanto, $Y$ es denso en $X$.
+    \end{proof}
+
+    \begin{exa}
+        Si $Y$ es un subconjunto irreducible de $X$, entonces $\overline{Y}$ es irreducible. 
+    \end{exa}
+
+    \begin{proof}
+        Si $\overline{Y}=Y_1\cup Y_2$ con $Y_1$ y $Y_2$ subconjuntos cerrados de $\overline{Y}$ en el mismo espacio, se tiene que en particular son cerrados en $X$. Luego,
+        \begin{equation*}
+            Y=(Y_1\cap Y)\cup(Y_2\cap Y)
+        \end{equation*}
+        donde los dos conjuntos de la unión son cerrados en $Y$. Así que $Y_1\cap Y=Y$ o $Y_2\cap Y=Y$ por ser $Y$ irreducible, luego $Y\subseteq Y_1$ o $Y\subseteq Y_2$, es decir que $\overline{Y}\subseteq Y_1$ o $\overline{Y}\subseteq Y_2$, esto es que $Y_1=\overline{Y}$ o $Y_2=\overline{Y}$.
+        
+        Por tanto, $\overline{Y}$ es irreducible.
+    \end{proof}
+
+    \begin{mydef}
+        Una \textbf{variedad algebraica afín} (o simplemente llamada \textbf{variedad afín}), es un subconjunto cerrado irreducible de $\bbm{A}^n$ (con la topología inducida). Un subconjunto abierto de una variedad afín es una \textbf{variedad quasi-afín}.
+    \end{mydef}
+
+    Por el ejemplo 1.1.3, tiene sentido nombrar a los subconjuntos abiertos de una variedad afín como variedades quasi-afínes, ya que son densos en la variedad afín.
+
+    Nuestro objetivo ahora será estudiar las variedades afines y quasi-afines. Antes de ello, debemos hablar un poco de la relación entre los ideales de $K[x_1,...,x_n]$ y los subconjuntos de $\bbm{A}^n$.
+
+    \begin{mydef}
+        Sea $Y\subseteq\bbm{A}^n$, definimos el \textbf{ideal de $Y$ en $K[x_1,...,x_n]$} como el conjunto:
+        \begin{equation*}
+            I(Y)=\left\{f\in K[x_1,...,x_n]\Big|f(P)=0\textup{ para todo }P\in Y \right\}
+        \end{equation*}
+    \end{mydef}
+
+    De la definición de ideal es inmediato que $I(Y)$ es un ideal, para todo $Y\subseteq\bbm{A}^n$.
+
+    \begin{theor}[\textbf{Hillbert's Nullstellensatz}]
+        Sea $K$ un campo algebraicamente cerrado, $\fk{a}$ un ideal en $A=K[x_1,...,x_n]$ y sea $f\in A$ un polinomio tal que
+        \begin{equation*}
+            f(P)=0,\quad\forall P\in Z(\fk{a})
+        \end{equation*}
+        entonces, $f^r\in\fk{a}$ para algún entero positivo $r$.
+    \end{theor}
+
+    \begin{proof}
+        Podría escribir la prueba (aunque me llevaría un ratote), pero es más fácil consultar la demostración en \textit{Algebra} de Serge Lang, pag. 378, por lo que daremos el resultado como cierto.
+    \end{proof}
+
+    \begin{propo}
+        Se cumple lo siguiente:
+        \begin{enumerate}[label=(\textit{\alph*})]
+            \item Si $T_1\subseteq T_2$ son subconjuntos de $K[x_1,...,x_n]$, entonces $Z(T_1)\supseteq Z(T_2)$.
+            \item Si $Y_1\subseteq Y_2$ son subconjuntos de $\bbm{A}^n$, entonces $I(Y_1)\supseteq I(Y_2)$.
+            \item Para cualesquiera dos subconjuntos $Y_1,Y_2$ de $\bbm{A}^n$, se tiene que $I(Y_1\cup Y_2)=I(Y_1)\cap I(Y_2)$.
+            \item Para un ideal $\fk{a}\subseteq K[x_1,...,x_n]$, $I(Z(\fk{a}))=\sqrt{\fk{a}}$, donde
+            \begin{equation*}
+                \sqrt{\fk{a}}=\left\{f\in K[x_1,...,x_n]\Big|f^r\in\fk{a}\textup{ para algún entero positivo }r \right\}
+            \end{equation*}
+            \item Para todo subconjunto $Y\subseteq\bbm{A}^n$, $Z(I(Y))=\overline{Y}$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De $(a)$, $(b)$ y $(c)$: Es inmediata de la definición.
+
+        De $(d)$: Asumiendo que $K$ es algebraicamente cerrado, veamos la doble contención:
+        \begin{itemize}
+            \item Si $f\in I(Z(\fk{a}))$, entonces $f(P)=0$ para todo $P\in Z(\fk{a})$. Por el Teorema Hillbert's Nullstellensatz, es sigue que existe un entero positivo $r$ tal que $f^r\in\fk{a}$, esto es que $f\in\sqrt{\fk{a}}$.
+            \item Si $f\in\sqrt{\fk{a}}$, entonces existe un entero positivo $r$ tal que $f^r\in A$. Por tanto:
+            \begin{equation*}
+                f^r(P)=\left(f(P)\right)^r=0,\quad\forall P\in Z(\fk{a})
+            \end{equation*}
+            como $K[x_1,...,x_n]$ es dominio entero, entonces $f(P)=0$, para todo $P\in Z(\fk{a})$. Por tanto, $f\in I(Z(\fk{a}))$.
+        \end{itemize}
+        de los dos incisos se sigue la doble contención.
+        
+        De $(e)$: Sea $Y\subseteq\bbm{A}^n$. Si $P\in Y$, entonces $f(P)=0$ para todo $f\in I(P)$, luego se sigue de forma inmediata que $P\in Z(I(Y))$. Así que $Y\subseteq Z(I(Y))$. Como el conjunto
+        \begin{equation*}
+            Z(I(Y))
+        \end{equation*}
+        (pues por definición $Z(I(Y))$ es algebraico, en particular es cerrado en la topología de Zariski inducida en $\bbm{A}^n$). Por ende
+        \begin{equation*}
+            \overline{Y}\subseteq Z(I(Y))
+        \end{equation*}
+        Sea ahora $W$ un conjunto cerrado tal que $Y\subseteq W$. Se tiene que existe un ideal $\fk{a}$ de $K[x_1,...,x_n]$ tal que
+        \begin{equation*}
+            W=Z(\fk{a})
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            Y\subseteq Z(\fk{a})
+        \end{equation*}
+        Por $(b)$ se sigue que
+        \begin{equation*}
+            I(Z(\fk{a}))\subseteq I(Y)
+        \end{equation*}
+        pero, $I(Z(\fk{a}))=\sqrt{\fk{a}}$, donde $\fk{a}\subseteq\sqrt{\fk{a}}$. Por ende:
+        \begin{equation*}
+            \fk{a}\subseteq I(Y)
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            Z(I(Y))\subseteq Z(\fk{a})=W
+        \end{equation*}
+        tomando $W=\overline{Y}$ se tiene que
+        \begin{equation*}
+            Z(I(Y))\subseteq\overline{Y}
+        \end{equation*}
+        Por las dos contenciones obtenemos
+        \begin{equation*}
+            Z(I(Y))=\overline{Y}
+        \end{equation*}
+    \end{proof}
+
+    \begin{cor}
+        Existe una correspondencia biyectiva entre los conjuntos algebraicos en $\bbm{A}^n$ y los ideales radicales (esto es, ideales que coinciden con su ideal radical) en $K[x_1,...,x_n]$, dada por $Y\mapsto I(Y)$ y $\fk{a}\mapsto Z(\fk{a})$.
+
+        Más aún, un conjunto algebraico es irreducible si y sólo si su ideal es ideal primo.
+    \end{cor}
+
+    \begin{proof}
+        La primera parte es inmediata del teorema anterior. Para la otra,
+        \begin{itemize}
+            \item Sea $Y\subseteq\bbm{A}^n$ irreducible, veamos que $I(Y)$ es ideal primo. Sea $fg\in I(Y)$, entonces $\left\{fg \right\}\subseteq I(Y)$, por lo cual
+            \begin{equation*}
+                Y=Z(I(Y))\subseteq Z(fg)
+            \end{equation*}
+            donde $Z(fg)=Z(f)\cup Z(g)$. Por tanto,
+            \begin{equation*}
+                Y=(Y\cap Z(f))\cup (Y\cap Z(g))
+            \end{equation*}
+            siendo los dos conjuntos de la unión cerrados en $Y$. Como $Y$ es irreducible, debe suceder que $Y=Y\cap Z(f)$ o $Y=Y\cap Z(g)$, esto es que $Y\subseteq Z(f)$ o $Y\subseteq Z(g)$, es decir que
+            \begin{equation*}
+                \left\{f \right\}=I(Z(f))\subseteq I(Y)\textup{ o }\left\{g \right\}=I(Z(g))\subseteq I(Y)
+            \end{equation*}
+            por ende, $f\in I(Y)$ o $g\in I(Y)$. Se sigue entonces que $I(Y)$ es ideal primo de $K[x_1,...,x_n]$.
+            \item Sea $\fk{p}$ un ideal primo de $K[x_1,...,x_n]$ y suponga que $Z(\fk{p})=Y_1\cup Y_2$ siendo los dos conjuntos de la derecha cerrados y contenidos en $Z(\fk{p})$ (que es cerrado), luego lo son en $\bbm{A}^n$, entonces:
+            \begin{equation*}
+                I(Y_1\cup Y_2)=I(Z(\fk{p}))=\fk{p}
+            \end{equation*}
+            pero, $I(Y_1\cup Y_2)=I(Y_1)\cap I(Y_2)$ (por la proposición anterior). Luego,
+            \begin{equation*}
+                \fk{p}=I(Y_1)\cap I(Y_2)
+            \end{equation*}
+            siendo $I(Y_1),I(Y_2)$ ideales primos de $K[x_1,...,x_n]$ (por el inciso anterior). Por ende, $\fk{p}=I(Y_1)=I(Y_2)$. Así entonces $Y_1=Z(\fk{p})$ y $Y_2=Z(\fk{p})$. Se sigue así que $Z(\fk{p})$ es un conjunto irreducible en $\bbm{A}^n$.
+        \end{itemize}
+        Por los dos incisos, se tiene la segunda parte del corolario.
+    \end{proof}
+
+    \begin{exa}
+        $\bbm{A}^n$ es irreducible, pues se corresponde con el ideal $\gen{0}$ en $K[x_1,...,x_n]$, el cual es irreducible.
+    \end{exa}
+
+    \begin{exa}
+        Sea $f$ un polinomio irreducible en $A=K[x,y]$. Entonces, $f$ genera un ideal primo en $A$, esto es que $\gen{f}$ es ideal primo de $A$. Como $A$ es DFU, el conjunto cero
+        \begin{equation*}
+            Y=Z(f)=Z(\gen{f})
+        \end{equation*}
+        es irreducible (por ser algebraico). Llamamos al conjunto $Y$ la \textbf{curva afín} definida por la ecuación $f(x,y)=0$. Si $f$ tiene grado $d$, entonces decimos que $Y$ es una \textbf{curva de grado $d$}.
+    \end{exa}
+
+    El ejemplo anterior motiva la siguiente definición.
+
+    \begin{mydef}
+        Sea $f$ un polinomio irreducible en $K[x_1,...,x_n]$, la variedad afín
+        \begin{equation*}
+            Y=Z(f)=Z(\gen{f})
+        \end{equation*}
+        es llamada \textbf{superficie} si $n=3$ y, si $n>3$ es llamada \textbf{hipersuperficie}.
+    \end{mydef}
+
+    \begin{exa}
+        Un ideal maximal $\fk{m}$ de $K[x_1,...,x_n]$ corresponde (ya que en particular $\fk{m}$ es ideal primo), a un subconjunto cerrado minimal de $\bbm{A}^n$, el cual forzosamente debe ser un punto (ya que $\fk{m}\neq K[x_1,...,x_n]$), digamos $\left\{P \right\}$ con $P=(a_1,...,a_n)$.
+
+        Por ende, todo ideal maximal de $K[x_1,...,x_n]$ debe ser de la forma:
+        \begin{equation*}
+            \fk{m}=\gen{x_1-a_1,...,x_n-a_n}
+        \end{equation*}
+    \end{exa}
+
+    \begin{exa}
+        Los resultados anteriores no son válidos si $K$ no es algebraicamente cerrado. Por ejemplo, si $K=\bbm{R}$, entonces la curva $Y$:
+        \begin{equation*}
+            x^2+y^2+1=0
+        \end{equation*}
+        en $\bbm{A}^2_{\bbm{R}}$ es un conjunto vacío. Por ende, el inciso $(d)$ de la proposicioń 1.1.3 es falso (ya que si $f=x^2+y^2+1$, entonces $f$ es irreducible sobre $\mathbb{R}[x,y]$, luego debería suceder que $\gen{f}=I(Y)$ siendo $\gen{0}\neq\gen{f}$ y $I(Y)=I(\emptyset)=\gen{0}$, lo cual es un absurdo).
+    \end{exa}
+
+    \begin{mydef}
+        Si $Y\subseteq\bbm{A}^n$ es una sub-variedad algebraica afín, definimos el \textbf{anillo afín de coordenadas}, denotado por $A(Y)$, como el cociente:
+        \begin{equation*}
+            A(Y)=K[x_1,...,x_n]/I(Y)
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        Si $Y\subseteq\bbm{A}^n$ es sub-variedad algebraica afín, entonces $I(Y)$ es ideal primo, luego $A(Y)$ es dominio entero. Más aún, $A(Y)$ es una $K$-álgebra finitamente generada.
+
+        Recíprocamente, si $B$ es una $K$-álgebra finitamente generada y que sea dominio entero, es el cociente de $K[x_1,...,x_n]$ y $\fk{a}$ un ideal primo de este anillo, luego tomando $Y=Z(\fk{a})$ se sigue que:
+        \begin{equation*}
+            B=K[x_1,...,x_n]/\fk{a}=K[x_1,...,x_n]/I(Y)=A(Y)
+        \end{equation*}
+        es decir, $B$ es el anillo afín de coordenadas de $Y$.
+    \end{obs}
+
+    Ahora, estudiaremos las propiedades topológicas de nuestras variedad. Para ello, introduciremos una clase importante de espacios topológicos, mismos que incluyen a todas las variedades.
+
+    \begin{mydef}
+        Un espacio topológico $X$ es llamado \textbf{Noetheriano}, si satisface la \textit{condición de cadena descendiente} para subconjuntos cerrados:
+        \begin{itemize}
+            \item Para toda sucesión $\left\{Y_n \right\}_{ n=1}^\infty$ de subconjuntos cerrados de $X$ tales que
+            \begin{equation*}
+                Y_1\supseteq Y_2\supseteq\cdots\supseteq Y_m\supseteq\cdots
+            \end{equation*}
+            existe $r\in\mathbb{N}$ tal que
+            \begin{equation*}
+                Y_r=Y_{ r+n},\quad\forall n\in\mathbb{N}
+            \end{equation*}
+        \end{itemize}
+    \end{mydef}
+
+    \begin{exa}
+        $\bbm{A}^n$ es un espacio Noetheriano. En efecto, si $\left\{Y_n \right\}_{ n=1}^\infty$ es una sucesión de subconjuntos cerrados de $X$ tales que
+        \begin{equation*}
+            Y_1\supseteq Y_2\supseteq\cdots\supseteq Y_m\supseteq\cdots
+        \end{equation*}
+        entonces, $\left\{I(Y_n) \right\}_{ n=1}^\infty$ es una sucesión creciente de ideales de $K[x_1,...,x_n]$. Como $K[x_1,...,x_n]$  es Noetheriano, existe $r\in\mathbb{N}$ tal que 
+        \begin{equation*}
+            I(Y_r)=Y(Y_{ n+r}),\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        Por ende,
+        \begin{equation*}
+            Y_r=Y_{ r+n},\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        Así, $\bbm{A}^n$ es Noetheriano.
+    \end{exa}
+
+    \begin{propo}
+        En un espacio Noetheriano $X$, todo subconjunto no vacío $Y$ de $X$ puede ser expresado como la unioń finita $Y=Y_1\cup\cdots\cup Y_r$ de subconjuntos cerrados $Y_i$, para $i\in\natint{1,r}$.
+
+        Si se requiere que $Y_i\nsubseteq Y_j$ para todo $i\neq j$, $i,j\in\natint{1,r}$, entonces los $Y_i$ están determinados de forma única y son llamados las \textbf{componentes irreducibles de $Y$}.
+    \end{propo}
 
     \newpage
 
     \section{Ejercicios}
 
-
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}[label=(\textit{\alph*})]
+            \item Sea $Y$ la curva plana $y=x^2$ (esto es, $Y$ es el conjunto de los ceros del polinomio $f(x,y)=y-x^2$). Muestre que $A(Y)$ es isomorfo a 
+        \end{enumerate}
+    \end{excer}
 
     \newpage
 
