@@ -2231,6 +2231,59 @@
         $\Leftarrow):$ %TODO
     \end{proof}
 
+    Aplicando el lema anterior, es conveniente usar el siguiente abuso de notación, diremos que la función $\cf{f}{\partial\mathbb{D}^2}{X}$ \textit{representa} la clase de equivalencia del bucle $f\circ g$.
+
+    \begin{theor}
+        Sean $X$ y $Y$ espacios topológicos, $\cf{\varphi_0,\varphi_1}{X}{Y}$ funciones continuas homotópicas y sea $\cf{\varphi}{X\times I}{Y}$ la homotopía entre ambas funciones. Sea $x_0\in X$ y considere los homomorfismos inducidos por $\varphi_0$ y $\varphi_1$:
+        \begin{equation*}
+            \left\{
+            \begin{split}
+                &\cf{{\varphi_0}_*}{\pi(X,x_0)}{\pi(Y,\varphi_0(x_0))}\\
+                &\cf{{\varphi_1}_ }{\pi(X,x_0)}{\pi(Y,\varphi_1(x_0))}\\
+            \end{split}
+            \right.
+        \end{equation*}
+        Sea $[\gamma]$ la clase de equivalencia del camino $\cf{\gamma}{I}{Y}$, dado por $t\mapsto\varphi_0(x_0,t)$. Considere el isomorfismo inducido $\cf{u}{\pi(Y,\varphi_0(x_0))}{\pi(Y,\varphi_1(x_0))}$ dado por:
+        \begin{equation*}
+            u([f])=[\gamma]^{-1}\cdot[f]\cdot[\gamma],\quad\forall [f]\in\pi(Y,\varphi_0(x_0))
+        \end{equation*}
+        Entonces, el diagrama
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_4.pdf}\\
+                Figura 4. Conmutatividad de $\pi(X,x_0)$, $\pi(Y,\varphi_0(x_0))$ y $\pi(Y,\varphi_1(x_0))$.
+            \end{center}
+        \end{minipage}
+
+        es conmutativo.
+    \end{theor}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    Note que este teorema es una generalización de un teorema anterior. 
+
+    \begin{mydef}
+        Dos espacios topológicos $X$ y $Y$ tienen el \textbf{mismo tipo de homotopía} si existen funciones continuas, llamadas \textbf{equivalencias de homotopía}, $\cf{f}{X}{Y}$ y $\cf{g}{Y}{X}$ tales que:
+        \begin{equation*}
+            g\circ f\simeq\bbm{1}_X\quad\textup{y}\quad f\circ g\simeq\bbm{1}_Y
+        \end{equation*}
+    \end{mydef}
+
+    Se sigue de forma inmediata que dos espacios homeomorfos tienen el mismo tipo de homotopía, pero el converso no es cierto (en general).
+
+    \begin{theor}
+        Si $\cf{f}{X}{Y}$ es una equivalencia de homotopía, entonces $\cf{f_*}{\pi(X,x)}{\pi(Y,f(x))}$ es un isomorfismo, para todo $x\in X$.
+    \end{theor}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    Este teorema será usado como mira para determinar los grupos fundamentales de ciertos espacios, y como un método de probar que ciertos espacios no tienen el mismo tipo de homotopía (y en consecuencia, no son homeomorfos).
+
     \newpage
 
     \section{Ejercicios}
@@ -2422,6 +2475,118 @@
         Pruebe que $\mathbb{R}^2$ y $\mathbb{R}^n$ no son homeomorfos.
 
         \textit{Sugerencia}. Considere el complemento de un punto en $\mathbb{R}^2$ o $\mathbb{R}^n$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que cualquier homeomorfismo del disco cerrado $\bbm{D}^2$ en sí mismo mapea a $\mathbb{S}^1$ en sí mismo y a $\bbm{U}^2$ en sí mismo, donde
+        \begin{equation*}
+            \bbm{U}^2=\left\{(x,y)\in\bbm{R}^2\Big|x^2+y^2<1 \right\}
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+    
+    \begin{excer}
+        Describa el grupo fundamental del toro.
+
+        \textit{Sugerencia.} Recuerde que $\bbm{T}=\bbm{S}^1\times\bbm{S}^1$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que el subconjunto $\bbm{S}^1\times\left\{x_0 \right\}$ es una retracción de $\bbm{S}^1\times\bbm{S}^1$, pero que no es un repliegue de deformación, para cualquier $x_0\in\bbm{S}^1$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $\cf{i}{X}{X\times Y}$ y $\cf{j}{Y}{X\times Y}$ las funciones definidas por:
+        \begin{equation*}
+            i(x)=(x,y_0)\quad\textup{y}\quad j(y)=(x_0,y)
+        \end{equation*}
+        para todo $x\in X$ y para todo $y\in Y$, siendo $x_0\in X$ y $y_0\in Y$. Pruebe que la función $\cf{\Gamma}{\pi(X,x_0)\times\pi(Y,y_0)}{\pi(X\times Y,(x_0,y_0))}$ dado por:
+        \begin{equation*}
+            \Gamma([f],[g])=(i_*([f]))\cdot(j_*([g]))
+        \end{equation*}
+        para todo $[f],[g]\in\pi(X,x_0)\times\pi(Y,y_0)$, es un isomorfismo de grupos.
+
+        Más aún, deduzca que
+        \begin{equation*}
+            (i_*([f]))\cdot(j_*([g]))=(j_*([g]))\cdot(i_*([f]))
+        \end{equation*}
+        para todo $[f]\in\pi(X,x_0)$ y para todo $[g]\in\pi(Y,y_0)$.
+
+        \textit{Sugerencia.} Pruebe que es el isomorfismo inverso del teorema que caracteriza el grupo fundamental del producto de dos espacios topológicos. 
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $G$ un espacio topológico, $\cf{\mu}{G\times G}{G}$ una función y $e\in G$ tal que
+        \begin{equation*}
+            \mu(e,g)=\mu(g,e)=g,\quad\forall g\in G
+        \end{equation*}
+        Considere las funciones $\cf{i}{G}{G\times G}$ y $\cf{j}{G}{G\times G}$ dadas por:
+        \begin{equation*}
+            i(x)=(x,e)\quad\textup{y}\quad j(y)=(e,y)
+        \end{equation*}
+        para todo $x,y\in G$. Pruebe que para cualesquier par de elementos $[f],[g]\in\pi(G,e)$ se cumple que:
+        \begin{equation*}
+            \mu_*\left(i_*([f]),j_*([g]) \right)=[f]\cdot[g]
+        \end{equation*}
+        Deduzca que $\pi(G,e)$ es un grupo abeliano.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sean $G,e$ y $\mu$ como en el ejercicio anterior. Suponga que existe una función $\cf{c}{G}{G}$ tal que:
+        \begin{equation*}
+            \mu(x,c(x))=\mu(c(x),x)=e,\quad\forall x\in G
+        \end{equation*}
+        Pruebe que para todo $[f]\in\pi(G,e)$ se cumple:
+        \begin{equation*}
+            c_*([f])=[f]^{-1}
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+    
+    \begin{obs}
+        En particular, en los ejercicios anteriores podemos considerar un grupo topológico $(G,\cdot,\tau)$.
+    \end{obs}
+
+    \begin{excer}
+        Pruebe que si $A$ es un repliegue de deformación de $X$, entonces el mapeo inclusión $\cf{i}{A}{X}$ es una equivalencia de homtopía.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Suponga que $G,e,\mu$ satisfacen las condiciones del Ejercicio 2.10.23. Use el Lema 2.9.1 para probar directamente que para cualquier par de elementos $[f],[g]\in\pi(G,e)$ se cumple:
+        \begin{equation*}
+            [f]\cdot[g]\cdot[f]^{-1}\cdot[g]^{-1}=\bbm{1}
+        \end{equation*}
+        donde $\bbm{1}$ es la unidad de $\pi(G,e)$. Deduzca que $\pi(G,e)$ es abeliano.
     \end{excer}
 
     \begin{proof}
