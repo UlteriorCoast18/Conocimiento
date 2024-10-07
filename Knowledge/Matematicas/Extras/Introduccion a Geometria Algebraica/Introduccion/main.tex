@@ -554,11 +554,57 @@
         Así, $\bbm{A}^n$ es Noetheriano.
     \end{exa}
 
+    \begin{obs}
+        Notemos que si $X$ es Noetheriano, toda familia no vacía de conjuntos cerrados $\mathcal{C}=\left\{C_i\Big|i\in I \right\}$ tiene elemento minimal. En efecto, $\mathcal{C}$ es parcialmente ordenado por $\supseteq$ y toda cadena tiene elemento minimal, luego por el Lema de Zorn, se sigue que $\mathcal{C}$ tiene elemento minimal.
+    \end{obs}
+
     \begin{propo}
-        En un espacio Noetheriano $X$, todo subconjunto no vacío $Y$ de $X$ puede ser expresado como la unioń finita $Y=Y_1\cup\cdots\cup Y_r$ de subconjuntos cerrados $Y_i$, para $i\in\natint{1,r}$.
+        En un espacio Noetheriano $X$, todo subconjunto no vacío $Y$ de $X$ puede ser expresado como la unioń finita $Y=Y_1\cup\cdots\cup Y_r$ de subconjuntos cerrados irreducibles $Y_i$, para $i\in\natint{1,r}$.
 
         Si se requiere que $Y_i\nsubseteq Y_j$ para todo $i\neq j$, $i,j\in\natint{1,r}$, entonces los $Y_i$ están determinados de forma única y son llamados las \textbf{componentes irreducibles de $Y$}.
     \end{propo}
+
+    \begin{proof}
+        Primero, probaremos la existencia de esta representación de $Y$. Sea
+        \begin{equation*}
+            \mathcal{C}=\left\{Z\subseteq X\Big|Z\neq\emptyset\textup{ es cerrado y no se escribe como unión finita de conjuntos cerrados irreducibles} \right\}
+        \end{equation*}
+        Si $\mathcal{C}$ fuese no vacío, al ser $X$ Noetheriano entonces $\mathcal{C}$ tendría elemento minimal (recuerde la observación anterior), digamos $C\subseteq X$ cerrado. Este $C$ no es irreducible, por lo que puede ser escrito como:
+        \begin{equation*}
+            C=C_1\cup C_2
+        \end{equation*}
+        donde $C_1,C_2$ son subconjuntos propios cerrados en $C$, en particular lo son en $X$. Luego, por minimalidad de $C$ debe suceder que $C_1,C_2\in\mathcal{C}$, así que $C\in\mathcal{C}$\contradiction. Por tanto, $\mathcal{C}$ es vacío. Se sigue que $Y$ admite esta representación.
+
+        Ahora, supongamos que los $Y_i$ son tales que $Y_i\nsubseteq Y_j$ para todo $i,j\in\natint{1,r}$, $i\neq j$. Consideremos otra representación de $Y$ con las mismas caracaterísticas, digamos
+        \begin{equation*}
+            Y=Y_1'\cup\cdots\cup Y_s'
+        \end{equation*}
+        Entonces,
+        \begin{equation*}
+            Y_1'=\bigcup_{ i=1}^r \left(Y_i\cap Y_j'\right)
+        \end{equation*}
+        pero, $Y_1'$ es cerrado irreducible, luego debe suceder que exista $i_1\in\natint{1,r}$ tal que
+        \begin{equation*}
+            Y_1'=Y_{i_1}\cap Y_1'
+        \end{equation*}
+        esto es, que $Y_1'\subseteq Y_{i_1}$. Similarmente se prueba    que tiene que $Y_{i_1}\subseteq Y_{ j}'$, para algún $j\in\natint{1,r}$, luego $Y_1'=Y_j'$, así que $Y_1'=Y_{i_1}$. Sea ahora
+        \begin{equation*}
+            Z=Y_2\cup\cdots\cup Y_r=Y_2'\cup\cdots\cup Y_s'
+        \end{equation*}
+        aplicando inducción se sigue el resultado.
+    \end{proof}
+
+    \begin{cor}
+        Todo subconjunto algebraico de $\bbm{A}^n$ puede ser escrita de forma única como unión de variedades algebraicas afines, ninguna conteniendo a la otra. 
+    \end{cor}
+
+    \begin{proof}
+        Como $\bbm{A}^n$ es Noetheriando, el resultado es inmediato del hecho de que en $\bbm{A}^n$ los conjuntos cerrados son los conjuntos algebraicos, y que las variedades algebraicas afines son las conjuntos cerrados irreducibles de $\bbm{A}^n$.
+    \end{proof}
+
+    \begin{mydef}
+        
+    \end{mydef}
 
     \newpage
 
