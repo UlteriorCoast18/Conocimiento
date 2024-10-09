@@ -2121,82 +2121,52 @@
     \begin{proof}
         Haremos la prueba por pasos:
         \begin{itemize}
-            \item Primero, veamos que significa la primera parte de la proposición. Podemos suponer (ya que $E_1$ es un disco cerrado), que $E_1$ es el cuadrado en $\mathbb{R}^2$:
-            \begin{equation*}
-                E_1=[-1,1]\times[-1,1]
-            \end{equation*}
-            Definimos sobre $E_1$ la relación $\mathcal{R}$ como sigue:
-            \begin{equation*}
-                \mathcal{R}=\bigcup_{ x\in[-1,1]\times]-1,1]\setminus\left\{(0,1)\right\} }\left\{x\right\}\cup\left\{[-1,1]\times\left\{-1\right\}\cup\left\{(0,-1)\right\} \right\}
-            \end{equation*}
-            (verifique que esta relación de equivalencia es efectivamente la que especifica la proposición). Afirmamos que $E_1/\mathcal{R}\cong\Delta$, donde $\Delta$ es el triángulo formado a partir de unir los puntos $(1,1)$, $(-1,1)$ y $(0,-1)$ en $\mathbb{R}^2$. En efecto, sea
-            \begin{equation*}
-                \cf{f}{E_1}{\Delta}
-            \end{equation*}
-            dada por:
-            \begin{equation*}
-                f(x,y) = \left(g(x,y),y \right),\quad\forall(x,y)\in E_1
-            \end{equation*}
-            donde
-            \begin{equation*}
-                \begin{split}
-                    g(x,y) =\left\{ 
-                        \begin{array}{lcr}
-                            \frac{xy}{2} & \textup{ si } & x\geq0\\
-                            -\frac{y+1}{2} & \textup{ si } & x<0 \\
-                        \end{array}
-                    \right.\quad\forall(x,y)\in E_1
-                \end{split}
-            \end{equation*}
-            %TODO
-            
+            \item Por la Proposición anterior, basta con probar el resultado para el caso en que $E_1$ es un disco cerrado particular y el segmento es un segmento particular de $E_1$.
+            \item Por el inciso anterior, tomaremos a $E_1$ como el trapezoide $ABDE$ dado por el subconjunto del plano $xy$, como se muestra en la Figura 2.2.
             \begin{figure}
                 \begin{center}
-                    \includegraphics[scale=0.5]{images/fig_2.pdf}
+                    \includegraphics[scale=1]{images/fig_5.pdf}
                 \end{center}
-                \caption{Diagrama de $E_1$.}
+                \caption{Trapezoide $ABDE$.}
             \end{figure}
+            y tomaremos a $E_2$ como el triángulo $ABC$. Definiremos una función $\cf{f}{E_1}{E_2}$ tal que el segmento $DE$ de la frontera de $E_1$ sea mapeada al vértice $C$ de $E_2$, pero en todos sus demás puntos sea una función biyectiva.
 
-            \begin{figure}
-                \begin{center}
-                    \includegraphics[scale=0.5]{images/fig_3.pdf}
-                \end{center}
-                \caption{Diagrama del conjunto $\Delta$.}
-            \end{figure}
-
-            Definimos $\cf{\overline{f}}{E_1/\mathcal{R}}{\Delta}$ dada por:
+            Completaremos entonces la prueba diciendo que la topología cociente determinada por $f$ es la misma que la topología de $E_2$, esto para verificar que el espacio cociente de $E_1$ con su segmento es isomorfo a $E_2$, obteniendo así el resultado deseado.
+            \item Definimos $f$ con la condición de que para todo $P=(x,y)\in E_1$, el punto $f(x,y)=P'=(x',y')\in E_2$ sea tal que esté en la recta que une a $P$ con $C=(0,1)$, dada de la siguiente manera:
             \begin{equation*}
-                \overline{f}([(x,y)])=f(x,y)
+                f(x,y)=\left(x\cdot\left(\frac{2y-1}{y-1}\right),2y \right)=(x',y'),\quad\forall (x,y)\in E_1
             \end{equation*}
-            Donde $[(x,y)]$ es la clase de equivalencia de $(x,y)$. Se verifica rápidamente (\textit{ejercicio}) que $\overline{f}$ es biyección y más aún, que es homeomorfismo.
-
-            \item Ya que todos los discos son homeomorfos, podemos elegir $E_1$ como queremos, en este caso, decidimos que $E_1$ es el trapezoide en $\mathbb{R}^2$ que une los puntos $ABDE$.
+            se verifica rápidamente que $g$ tiene como inversa en el conjunto $E_1$ menos el segmento $DE$ a la función $\cf{g}{E_2\setminus\left\{(0,1)\right\} }{E_1\setminus DE}$ dada por:
+            \begin{equation*}
+                g(x',y')=\left(x'\cdot\left(\frac{y'-2}{2y'-2} \right), \frac{1}{2}y'\right)=(x,y),\quad\forall (x',y')\in E_2\setminus\left\{(0,1) \right\} 
+            \end{equation*}
+            Es claro que $f$ es continua y que $g$ es la \textit{inversa} de $f$. Como $E_1$ es compacto y $E_2$ es Hausdorff, entonces $f$ es cerrada. Luego $E_2$ tiene la topología cociente inducida por $f$.
         \end{itemize}
     \end{proof}
 
-    Estamos ahora listos para probar un lema fundamental. Sea $\cf{g}{I}{\partial\mathbb{D}^2}$ (donde $\partial\mathbb{D}^2$ denota la frontera de $\mathbb{D}^2$) la funcioń continua que da exactamente una vuelta alrededor del círculo, esto es
+    Estamos ahora listos para probar un lema fundamental. Sea $\cf{g}{I}{\mathbb{S}^1}$ (donde $\mathbb{S}^1$ denota la frontera de $\mathbb{D}^2$) la funcioń continua que da exactamente una vuelta alrededor del círculo, esto es
     \begin{equation*}
-        g(0)=g(1)=d_0\in\partial\mathbb{D}^2
+        g(0)=g(1)=d_0\in\mathbb{S}^1
     \end{equation*}
     esto es, que $g$ mapea el intervalo $(0,1)$ de forma homeomorfa en $B\setminus\left\{d_0 \right\}$.
 
     \begin{lema}
-        Sea $X$ un espacio topológico. Una funcioń continua $\cf{f}{\partial\mathbb{D}^2}{X}$ puede ser extendida a una función $\cf{F}{\mathbb{D}^2}{X}$ si y sólo si el bucle cerrado $\cf{f\circ g}{I}{X}$ es equivalente al bucle constante con punto base $f(d_0)$.
+        Sea $X$ un espacio topológico. Una funcioń continua $\cf{f}{\mathbb{S}^1}{X}$ puede ser extendida a una función $\cf{F}{\mathbb{D}^2}{X}$ si y sólo si el bucle cerrado $\cf{f\circ g}{I}{X}$ es equivalente al bucle constante con punto base $f(d_0)$.
     \end{lema}
 
     \begin{proof}
-        $\Rightarrow):$ Suponga que $\cf{f}{\partial\mathbb{D}^2}{X}$ puede ser extendida a una función $\cf{F}{\mathbb{D}^2}{X}$. Considere el cuadrado unitario:
+        $\Rightarrow):$ Suponga que $\cf{f}{\mathbb{S}^1}{X}$ puede ser extendida a una función $\cf{F}{\mathbb{D}^2}{X}$. Considere el cuadrado unitario:
         \begin{equation*}
             S=\left\{ (x,y)\in\mathbb{R}^2\Big|0\leq x\leq 1\textup{ y }0\leq y\leq 1 \right\}
         \end{equation*}
-        Definimos una función continua $\cf{h}{S}{\partial\mathbb{D}^2}$ dada como sigue:
+        Definimos una función continua $\cf{h}{S}{\mathbb{S}^1}$ dada como sigue:
         \begin{equation*}
             \begin{split}
                 h(x,0) &= g(x) \textup{ si } 0\leq x\leq 1\\
                 h(x,1) &= h(0,y)=h(1,y)=d_0,\textup{ si }x\in I\textup{ o }y\in I \\
             \end{split}
         \end{equation*}
-        Es claro que $h$ es continua. Por la proposición \ref{propB}, como $S\cong\mathbb{S}^1$, podemos extender $h$ a una función continua $\cf{H}{S}{\partial\mathbb{D}^2}$. La función continua $\cf{F\circ H}{I\times I}{X}$ satisface que:
+        Es claro que $h$ es continua. Por la proposición \ref{propB}, como $S\cong\mathbb{S}^1$, podemos extender $h$ a una función continua $\cf{H}{S}{\mathbb{S}^1}$. La función continua $\cf{F\circ H}{I\times I}{X}$ satisface que:
         \begin{equation*}
             \begin{split}
                 F\circ H(x,0) &= F(h(x,0))\\
@@ -2228,10 +2198,24 @@
         \end{equation*}
         Por tanto, el bucle $f\circ g$ es equivalente al bucle constante con punto base $f(d_0)$.
 
-        $\Leftarrow):$ %TODO
+        $\Leftarrow):$ Suponga que el bucle cerrado $f\circ g$ es equivalente al bucle constante con punto base $f(d_0)$. Entonces, existe una función continua $\cf{G}{I\times I}{X}$ tal que:
+        \begin{equation*}
+            \left\{
+                \begin{split}
+                    G(x,0) & = f\circ g(x)\\
+                    G(x,1) & = G(0,y) = G(1,y) = f(d_0)\\
+                \end{split}
+            \right.,\quad\forall x\in I\textup{ y }\forall y\in I
+        \end{equation*}
+        notemos que de la segunda condición, $G$ mapea el borde superior y los dos bordes de $I\times I$ en un sólo punto, $f(d_0)$ en $X$, luego $G$ induce una función continua de este espacio cociente a $X$. Por la proposición anterior, este espacio cociente es un disco cerrado, digamos $\mathbb{D}^2$. Así que la función inducida $\cf{\widetilde{G}}{\mathbb{D}^2}{X}$ es tal que la frontera de %TODO
+        \begin{equation*}
+            \begin{split}
+                \widetilde{G}(x,y)=
+            \end{split}
+        \end{equation*}
     \end{proof}
 
-    Aplicando el lema anterior, es conveniente usar el siguiente abuso de notación, diremos que la función $\cf{f}{\partial\mathbb{D}^2}{X}$ \textit{representa} la clase de equivalencia del bucle $f\circ g$.
+    Aplicando el lema anterior, es conveniente usar el siguiente abuso de notación, diremos que la función $\cf{f}{\mathbb{S}^1}{X}$ \textit{representa} la clase de equivalencia del bucle $f\circ g$.
 
     \begin{theor}
         Sean $X$ y $Y$ espacios topológicos, $\cf{\varphi_0,\varphi_1}{X}{Y}$ funciones continuas homotópicas y sea $\cf{\varphi}{X\times I}{Y}$ la homotopía entre ambas funciones. Sea $x_0\in X$ y considere los homomorfismos inducidos por $\varphi_0$ y $\varphi_1$:
@@ -2252,7 +2236,7 @@
         \begin{minipage}{\textwidth}
             \begin{center}
                 \includegraphics[scale=1.5]{images/fig_4.pdf}\\
-                Figura 4. Conmutatividad de $\pi(X,x_0)$, $\pi(Y,\varphi_0(x_0))$ y $\pi(Y,\varphi_1(x_0))$.
+                Figura 2.3. Conmutatividad de $\pi(X,x_0)$, $\pi(Y,\varphi_0(x_0))$ y $\pi(Y,\varphi_1(x_0))$.
             \end{center}
         \end{minipage}
 
