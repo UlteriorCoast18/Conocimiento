@@ -1,0 +1,335 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,bbm}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{fullpage}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$\\}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$\\}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+\newcommand{\norm}[1]{\ensuremath{\|#1\|}}
+\newcommand\subtitle[1]{\textit{\large #1}\\}
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+\newcommand{\bbm}[1]{\mathbbm{#1}}
+\newcommand{\Obj}[1]{\ensuremath{\textup{Obj}\left(#1\right)}}
+\newcommand{\Hom}[3]{\ensuremath{\textup{Hom}_{#1}\left(#2,#3\right)}}
+\newcommand{\Cat}[1]{\ensuremath{\textup{\textbf{#1}}}}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+
+    \title{Taller Topología Algebraica, Lectura 9: Categorías}
+    \author{Cristo Alvarado}
+    \setcounter{section}{9}
+    \maketitle
+
+    \subtitle{Introducción}
+
+    Para poder seguir avanzando en nuestro estudio, tendremos que establecer un marco de trabajo satisfactorio para poder desarrollar nuestra teoría.
+
+    \begin{obs}
+        En su curso de álgebra IV se habrá probado que no existe el conjunto de todos los conjuntos, sin embargo, existe la clase de todos los conjuntos.
+    \end{obs}
+
+    Antes de seguir, no daremos una noción concreta de lo que es una \textit{clase}, sin embargo, se describirá de la forma siguiente. Una clase es una colección de elementos tan grande que no puede ser medida, es decir que no se le puede ser asociado un número cardinal (asumiendo el axioma de elección). Diremos entonces que
+
+    \begin{mydef}
+        Un \textbf{conjunto} es una clase que no es biyectiva con la clase de todos los conjuntos.
+    \end{mydef}
+
+    Podemos pasar ahora con la definición de categoría:
+
+    \begin{mydef}
+        Una \textbf{categoría} $\mathcal{C}$, consiste de tres cosas:
+        \begin{itemize}
+            \item Una clase, cuyos elementos son denominados \textbf{objetos de $\mathcal{C}$}, la cual se denota por $\Obj{\mathcal{C}}$.
+            \item Para cada par de elementos $A,B\in\Obj{\mathcal{C}}$, un conjunto de elementos, denominados \textbf{morfismos} y denotado por $\Hom{\mathcal{C}}{A}{B}$. Dado un elemento $f\in\Hom{\mathcal{C}}{A}{B}$, lo denotaremos por $\cf{f}{A}{B}$.
+            \item Para cada objeto $A\in\Obj{\mathcal{C}}$ hay un morfismo $1_A\in\Hom{\mathcal{C}}{A}{A}$ llamado \textbf{identidad de $A$}.
+            \item Una ley de composición $\circ$ tal que para cada terna de objetos $A$, $B$ y $C$:
+            \begin{equation*}
+                \begin{split}
+                    \Hom{\mathcal{C}}{A}{B}\times\Hom{\mathcal{C}}{B}{C}\rightarrow&\Hom{\mathcal{C}}{A}{C}\\
+                    (f,g)\mapsto&g\circ f\\
+                \end{split}
+            \end{equation*}
+            la cual satisface lo siguiente:
+            \begin{enumerate}
+                \item (\textit{Asociatividad}). Dado $f\in\Hom{\mathcal{C}}{A}{B}$ y $g\in\Hom{\mathcal{C}}{B}{C}$ y $h\in\Hom{\mathcal{C}}{C}{D}$ se cumple que:
+                \begin{equation*}
+                    h\circ (g\circ f)=(h\circ g)\circ f
+                \end{equation*}
+                \item Dado un morfismo $f\in\Hom{\mathcal{C}}{A}{B}$, se tiene que:
+                \begin{equation*}
+                    f\circ 1_A=f=1_B\circ f
+                \end{equation*}
+            \end{enumerate}
+        \end{itemize}
+    \end{mydef}
+
+    Hacemos distinción entre distintos tipos de categorías, dependiendo de su \textit{tamaño}.
+
+    \begin{mydef}
+        Si la clase de objetos de la categoría $\mathcal{C}$ es un conjunto, diremos que $\mathcal{C}$ es una \textbf{categoría pequeña}. 
+        
+        Más aún, si tenemos un número finito de morfismos (hablando de todos los que puede haber en la categoría y entre todos los objetos de la categoría), diremos que $\mathcal{C}$ es una \textbf{categoría finita}.
+    \end{mydef}
+
+    \begin{exa}
+        Sea $X$ un conjunto. Denotamos por $\mathcal{C}_X$ a una categoría formada por $\Obj{\mathcal{C}_X}=X$, y tendremos para cualquier par de elementos $x,y\in\Obj{\mathcal{C}_X}$ definimos:
+        \begin{equation*}
+            \Hom{\mathcal{C}_X}{x}{y}=\left\{
+                \begin{array}{lcr}
+                    \emptyset & \textup{ si } & x\neq y\\
+                    \left\{1_x\right\} & \textup{ si } & x=y\\
+                \end{array}
+            \right.
+        \end{equation*}
+        siendo $1_x=\left\{x \right\}$, para todo $x\in X$.
+        
+        Definimos la Ley de Composición de la siguiente forma:
+        \begin{equation*}
+            1_x\circ 1_x=1_x,\quad\forall x\in X
+        \end{equation*}
+        Observemos que el único caso en el que está definido es cuando los tres objetos de la categoría son el mismo, en caso contrario el conjunto de morfismos es vacío. Este ejemplo da una razón para decir que es lo que son los morfismos y objetos de la categoría.
+
+        $\mathcal{C}_X$ es una categoría pequeña la cual no necesariamente es finita (es finita en el caso que la cardinalidad de $X$ sea finita).
+
+        Si $X=\emptyset$ entonces $\mathcal{C}_X$ es la \textbf{categoría vacía} (que coincide cuando $n=0$ en la siguiente parte).
+    \end{exa}
+
+    \begin{mydef}
+        Denotamos por $\Cat{n}$ a la categoría como la del ejemplo del conjunto $\natint{1,n}$, que consta de $n$ elementos, donde $n\in\mathbb{N}\cup\left\{0\right\}$.
+    \end{mydef}
+    
+    \begin{mydef}
+        Un conjunto no vacío $X$ decimos que es \textbf{preordenado} si existe una relación $\leq$ sobre $X$ la cual es transitiva y reflexiva.
+    \end{mydef}
+
+    \begin{exa}
+        Consideremos un conjunto preordenado $(X,\leq)$ (llamado a veces \textbf{PoSet}). Definimos la categoría $\mathcal{C}_{(X,\leq)}$ en donde:
+        \begin{itemize}
+            \item $\Obj{\mathcal{C}_{(X,\leq)}}=X$.
+            \item Se define el conjunto de morfismos por:
+            \begin{equation*}
+                \Hom{\mathcal{C}_{(X,\leq)}}{x}{y}=\left\{
+                    \begin{array}{lcr}
+                        \emptyset & \textup{ si } & x\nleq y\\
+                        \left\{\varphi_{x,y} \right\} & \textup{ si } & x\leq y\\
+                    \end{array}
+                \right.
+            \end{equation*}
+            donde $\varphi_{x,y}=(x,y)$, para todo $x,y\in X$.
+            \item Sean $x,y,z\in \Obj{\mathcal{C}_{(X,\leq)}}$. Se define la Ley de Composición de la siguiente manera:
+            \begin{equation*}
+                \begin{split}
+                    \Hom{\mathcal{C}_{(X,\leq)}}{x}{y}\times\Hom{\mathcal{C}_{(X,\leq)}}{y}{z}\rightarrow&\Hom{\mathcal{C}_{(X,\leq)}}{x}{z}\\
+                    (\varphi_{x,y},\varphi_{y,z})\mapsto&\varphi_{x,z}\\
+                \end{split}
+            \end{equation*}
+            La Ley de composición anterior está definida solamente cuando $x\leq y\leq z$, pues es el único caso en el que el conjunto de morfismos es no vacío.
+        \end{itemize}
+
+        El morfismo es un objeto que cumple las leyes anteriores.
+    \end{exa}
+    
+    \begin{exa}
+        Construimos la categoría $\Cat{Set}$, donde la clase objetos es la clase de todos los conjuntos y los morfismos son las funciones entre cada conjunto. La ley de composición es la composición usual de funciones.
+    \end{exa}
+
+    \begin{exa}
+        Sea $(M,\cdot)$ un monoide, es decir, $M$ es un conjunto no vacío en el que $\cdot$ es una operación binaria que es asociativa, para la cual existe un elemento $e_M\in M$ tal que:
+        \begin{equation*}
+            e_M\cdot x=x\cdot e_M=x\quad\forall x\in M
+        \end{equation*}
+        Denotamos por $\mathcal{M}$ a la categoría en donde:
+        \begin{itemize}
+            \item $\Obj{\mathcal{M}}=\left\{\cdot \right\}$.
+            \item $\Hom{\mathcal{M}}{\cdot}{\cdot}=M$.
+            \item La ley de composición $\circ$, se define de la siguiente forma:
+            \begin{equation*}
+                x\circ y=x\cdot y
+            \end{equation*}
+            donde $x,y\in \Hom{\mathcal{M}}{\cdot}{\cdot}$ (en este caso $\cdot$ son el dominio y codominio de $x,y\in X$).
+        \end{itemize}
+        En este caso, el morfismo identidad es la identidad del monoide.
+
+        Este ejemplo se puede extender a grupos, y en el caso de grupos abelianos se tendría que la ley de composición es conmutativa.
+    \end{exa}
+
+    \begin{exa}
+        La categoría $\Cat{Grp}$ es la categoría de todos los grupos, donde la clase de objetos de la categoría es la clase de todos los grupos y los morfismos son los homomorfismos de grupos.
+
+        De forma similar $\Cat{Grp}=\Cat{AbGrp}$ y $\Cat{SiGrp}$ son las categorías de grupos abelianos y simples.
+    \end{exa}
+
+    \begin{exa}
+        Sea $R$ un anillo con identidad, denotamos por $R_\mathcal{M}$ a la categoría
+    \end{exa}
+
+    \begin{exa}
+        La categoría $\Cat{Top}$ es la categoría de todos los espacios topológicos con funciones continuas entre los espacios como los morfismos.
+
+        De forma análoga con $\Cat{HausTop}$, que es la categoría de todos los espacios topológicos que en particular son Hausdorff y los morfismos son las funciones continuas entre los espacios.
+    \end{exa}
+
+    \begin{mydef}
+        Sean $\mathcal{C}$ y $\mathcal{C}'$ dos categorías. Si
+        \begin{enumerate}
+            \item $\Obj{\mathcal{C}'}\subseteq\Obj{\mathcal{C}}$.
+            \item $\Hom{\mathcal{C}}{A}{B}\subseteq\Hom{\mathcal{C}'}{A}{B}$ para todo $A,B\in\Obj{\mathcal{C}'}$.
+            \item La ley de composición de morfismos en $\mathcal{C}'$ está inducida por la ley de composición de morfismos en $\mathcal{C}$.
+            \item Los morfismos identidad en $\mathcal{C}'$ son los morfismos identidad en $\mathcal{C}$.
+        \end{enumerate}
+        se dice entonces que $\mathcal{C}'$ es una \textbf{subcategoría} de $\mathcal{C}$.
+
+        Más aún, $\mathcal{C}'$ se dice que es una \textbf{subcategoría llena} de $\mathcal{C}$ si para cada par $(A,B)$ de objetos de $\mathcal{C}'$ tenemos que
+        \begin{equation*}
+            \Hom{\mathcal{C}'}{A}{B}=\Hom{\mathcal{C}}{A}{B}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{exa}
+        \begin{enumerate}
+            Se cumple lo siguiente:
+            \item Las categorías $\Cat{Ab}$ y $\Cat{SiGrp}$ son subcategorías llenas de $\Cat{Grp}$.
+            \item La categoría $\Cat{HausTop}$ es una subcategoría llena de $\Cat{Top}$.
+            \item $\Cat{Ring}^c$ y $\Cat{Field}$ son subcategorísa de $\Cat{Ring}$, más aún son subcategorías llenas.
+        \end{enumerate}
+    \end{exa}
+
+    \begin{exa}
+        Definimos la categoría $\Cat{Top}^*$ de espacios topológicos puntuados, es decir, la clase de objetos de esta categoría son los espacios topológicos no vacíos $(X,\tau)$, junto con un punto $x_0\in X$. Esto es, $(X,\tau,x_0)\in\Obj{\Cat{Top}^*}$. Si no hay pérdida de generalidad, se denotará a los objetos de la categoría simplemente por $(X,x_0)$.
+
+        Los morfismos entre dos objetos $(X,x_0)$ y $(Y,y_0)$ son las funciones continuas $\cf{f}{X}{Y}$ tales que $f(x_0)=y_0$, y la Ley de Composición es la composición usual de funciones.
+    \end{exa}
+
+    La categoría del ejemplo anterior es muy importante, pues ha sido nuestro punto de trabajo en casi todo lo que lleva el taller.
+
+    \section{Diagramas Conmutativos y Categoría Cociente}
+
+    %TODO
+
+    \section{Funtores}
+
+    %TODO
+
+\end{document}
