@@ -2324,7 +2324,8 @@
                 \hline
                 & & & $\therefore$ & $\exists x(Px\land Sx)$ & \\
             \end{tabular}
-        \end{center} 
+        \end{center}
+        Este es un buen ejemplo del uso de instanciación existencial.
     \end{exa}
 
     \begin{exa}
@@ -2334,13 +2335,13 @@
             \begin{tabular}{l r l c l r}
                 & \pstable{tablec} & $(\exists x)Px$ & $\Rightarrow $ & $(\forall y)(Qy\Rightarrow Sy)$ & Premisa \\
                 $|\longrightarrow$ & \pstable{tablec} & $(\exists x)(Px$ & $\land $ & $Qx)$ & Sup. \\
-                $||\longrightarrow$ & \pstable{tablec} & $Pz$ & $\land $ & $Qz$ & 2 I.E. \\
+                $||\longrightarrow$ & \pstable{tablec} & $Pz$ & $\land $ & $Qz$ & 2 I.E. con $z$\\
                 $||$ & \pstable{tablec} & $Pz$ &  &  & 3 Simp. \\
                 \hline
                 $|$ & \pstable{tablec} & $(\exists x)Px$ &  &  & 3-4 G.E. \\
                 $|$ & \pstable{tablec} & $(\forall y)(Qy$ & $\Rightarrow$ & $Sy)$ & 1,5 M.P. \\
                 $|$ & \pstable{tablec} & $Qz$ & $\Rightarrow$ & $Sz$ & 6 I.U. \\
-                $||\longrightarrow$ & \pstable{tablec} & $Pz$ & $\land $ & $Qz$ & 2 I.E. \\
+                $||\longrightarrow$ & \pstable{tablec} & $Pz$ & $\land $ & $Qz$ & 2 I.E. con $z$ \\
                 $||$ & \pstable{tablec} & $Pz$ &  &  & 8 Simp. \\
                 $||$ & \pstable{tablec} & $Qz$ &  &  & 8 Conm. y Simp. \\
                 $||$ & \pstable{tablec} & $Sz$ &  &  & 7,9 M.P. \\
@@ -2384,11 +2385,25 @@
             \begin{tabular}{l r l c l r}
                 & \pstable{tablec} & $(\exists x)Px$ & $\lor$ & $(\forall y)(Py\Rightarrow Qy)$ & Premisa \\
                 & \pstable{tablec} & $(\forall x)(Sx$ & $\Rightarrow$ & $\neg Px)$ & Premisa \\
+                $|\longrightarrow$ & \pstable{tablec} & $(\forall x)(Px$ & $\Rightarrow$ & $Sx)$ & Sup. \\
+                $||\longrightarrow$ & \pstable{tablec} & $Pu$ &  &  & Sup. \\
+                $||$ & \pstable{tablec} & $Pu$ & $\Rightarrow$ & $Su$ & 3 I.U. \\
+                $||$ & \pstable{tablec} & $Su$ & $\Rightarrow$ & $\neg Pu$ & 2 I.U. \\
+                $||$ & \pstable{tablec} & $Su$ &  &  & 4,5 M.P. \\
+                $||$ & \pstable{tablec} & $\neg Pu$ &  &  & 6,7 M.P. \\
+                $||$ & \pstable{tablec} & $Pu$ & $\land$ & $\neg Pu$ & 4,8 Conj. \\
+                \hline
+                $|$ & \pstable{tablec} & $\neg Pu$ &  &  & 4-9 D.C. \\
+                $|$ & \pstable{tablec} & $\forall x \neg Px$ &  &  & 10 G.U. \\
+                $|$ & \pstable{tablec} & $\neg((\exists x)\neg\neg Px)$ &  &  & 11 R.E. \\
+                $|$ & \pstable{tablec} & $\neg((\exists x) Px)$ &  &  & 12 D.N. \\
+                $|$ & \pstable{tablec} & $(\forall y)(Py$ & $\Rightarrow$ & $Qy)$ & 1,13 S.D. \\
+                \hline
+                $|$ & \pstable{tablec} & $(\forall x)(Px\Rightarrow Sx)$ & $\Rightarrow$ & $(\forall y)(Py\Rightarrow Qy)$ & 3-14 M.D. \\
                 \hline
                 & & & $\therefore$ & $(\forall x)(Px\Rightarrow Sx)\Rightarrow(\forall y)(Py\Rightarrow Qy)$ & \\
             \end{tabular}
         \end{center}
-        %TODO
     \end{exa}
 
     \begin{exa}
@@ -2398,11 +2413,20 @@
             \begin{tabular}{l r l c l r}
                 & \pstable{tablec} & $(\exists x)Px$ & $\lor$ & $(\exists y)Qy$ & Premisa \\
                 & \pstable{tablec} & $(\forall x)(Px$ & $\Rightarrow$ & $Qx)$ & Premisa \\
+                $|\longrightarrow$ & \pstable{tablec} & $\neg((\exists y)Qy)$ &  &  & Sup. \\
+                $|$ & \pstable{tablec} & $(\exists x)Px$ &  &  & 1,3 S.D. \\
+                $||\longrightarrow$ & \pstable{tablec} & $Pz$ &  &  & 4 I.E. \\
+                $||$ & \pstable{tablec} & $Pz$ & $\Rightarrow$ & $Qz$ & 2 I.U. \\
+                $||$ & \pstable{tablec} & $Qz$ &  &  & 6,5 M.P. \\
+                \hline
+                $|$ & \pstable{tablec} & $(\exists y)Qy$ &  &  & 5-7 I.E. \\
+                $|$ & \pstable{tablec} & $\neg((\exists y)Qy)$ & $\land$ & $((\exists y)Qy)$ & 8,3 Conj. \\
+                \hline
+                  & \pstable{tablec} & $(\exists y)Qy$ &  &  & 3-9 D.C. \\
                 \hline
                 & & & $\therefore$ & $(\exists y)Qy$ & \\
             \end{tabular}
         \end{center}
-        %TODO
     \end{exa}
 
     \section{Semántica de la Lógica de Primer Orden}
