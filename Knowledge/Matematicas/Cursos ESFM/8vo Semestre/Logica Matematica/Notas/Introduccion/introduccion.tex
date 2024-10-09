@@ -12,6 +12,7 @@
 \usepackage{enumerate}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{enumitem}
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
@@ -2375,6 +2376,195 @@
             \end{tabular}
         \end{center}
     \end{exa}
+
+    \begin{exa}
+        Complete la demostración siguiente:
+        \begin{center}
+            \setcounter{tablec}{1}
+            \begin{tabular}{l r l c l r}
+                & \pstable{tablec} & $(\exists x)Px$ & $\lor$ & $(\forall y)(Py\Rightarrow Qy)$ & Premisa \\
+                & \pstable{tablec} & $(\forall x)(Sx$ & $\Rightarrow$ & $\neg Px)$ & Premisa \\
+                \hline
+                & & & $\therefore$ & $(\forall x)(Px\Rightarrow Sx)\Rightarrow(\forall y)(Py\Rightarrow Qy)$ & \\
+            \end{tabular}
+        \end{center}
+        %TODO
+    \end{exa}
+
+    \begin{exa}
+        Complete la demostración siguiente:
+        \begin{center}
+            \setcounter{tablec}{1}
+            \begin{tabular}{l r l c l r}
+                & \pstable{tablec} & $(\exists x)Px$ & $\lor$ & $(\exists y)Qy$ & Premisa \\
+                & \pstable{tablec} & $(\forall x)(Px$ & $\Rightarrow$ & $Qx)$ & Premisa \\
+                \hline
+                & & & $\therefore$ & $(\exists y)Qy$ & \\
+            \end{tabular}
+        \end{center}
+        %TODO
+    \end{exa}
+
+    \section{Semántica de la Lógica de Primer Orden}
+
+    \begin{mydef}
+        Sea $\mathcal{L}=\left\{c_i,R_i,F_i \right\}$ un lenguaje de primer orden. Un \textbf{$\mathcal{L}$-modelo} o \textbf{$\mathcal{L}$-estructura} es una tupla $\mathfrak{A}=(A,\alpha_i,r_i,f_i)$ (tiene una entrada más que símbolos tiene nuestro lenguaje, $\alpha_i$ corresponde biyectivamente a $c_i$, lo mismo con $r_i$ y $R_i$, y $f_i$ y $F_i$, respectivamente), tal que
+        \begin{enumerate}[label=(\textit{\alph*})]
+            \item $A\neq\emptyset$, $A$ es llamado \textbf{universo de discurso/dominio}.
+            \item Cada $a_i\in A$.
+            \item Si $R_i$ es de aridad $K$, entonces $r_i\subseteq A^k$.
+            \item Si $f_i$ es de aridad  
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        En el lenguaje de la teoría de grupos, $\mathcal{L}_{TG}=\left\{e_G,\cdot,(\cdot)^{-1} \right\}$. Una $\mathcal{L}_{TG}$-estructura sería:
+        \begin{equation*}
+            \mathfrak{A}=(\mathbb{N},3,{}^{\wedge},Sc)
+        \end{equation*}
+        donde $Sc$ es la función sucesor. Un símbolo de este lenguaje sería:
+        \begin{equation*}
+            (\forall x)(E\cdot x=x\cdot x)\textup{ y }(\forall n\in\mathbb{N})(3^n=n^n)
+        \end{equation*}
+        Otro ejemplo sería:
+        \begin{equation*}
+            (\mathbb{R},\sqrt{2},+,-)
+        \end{equation*}
+        donde $-$ es la operación que toma inverso. Un símbolo de este lenguaje sería:
+        \begin{equation*}
+            (\forall r\in\mathbb{R})(\sqrt{2}+r=r+r)
+        \end{equation*}        
+        Otro ejemplo sería:
+        \begin{equation*}
+            (S_{19},id,\circ,\pi\mapsto\pi^{-1})
+        \end{equation*}
+        (el cual técnicamente si es un grupo). Un símbolo de este lenguaje sería:
+        \begin{equation*}
+            (\forall \sigma\in S_{19})(id\circ\sigma=\sigma\circ\sigma)
+        \end{equation*}
+    \end{exa}
+
+    Notemos que en estos ejemplos, puede que una fórmula sea válida (o sea satisfacible) en algunos modelos, pero en otros no. Solo basta ver la primer estructura.
+
+    \begin{exa}
+        En $\mathcal{L}_{A}=\left\{1,+,\cdot,Sc,< \right\}$ unos $\mathcal{L}_A$-estructuras serían:
+        \begin{equation*}
+            (\mathbb{N},+,\cdot,n\mapsto n+1,<)
+        \end{equation*}
+        y,
+        \begin{equation*}
+            (\mathbb{Z},-3,\cdot,+,n\mapsto n-1,\divides)
+        \end{equation*}
+    \end{exa}
+
+    \begin{exa}
+        En $\mathcal{L}_{TC}=\left\{\in \right\}$, tenemos las siguientes $\mathcal{L}_{TC}$-estructuras:
+        \begin{equation*}
+            (\mathbb{Z},\divides),(\mathbb{Q},\leq),(\mathcal{P}(X),\subseteq), (\mathbb{R},=) \textup{ y } (\mathbb{R}[x],r)
+        \end{equation*}
+        (siendo $X$ un conjunto), donde
+        \begin{equation*}
+            frg\iff \deg(f)>\deg(g)
+        \end{equation*}
+    \end{exa}
+
+    \begin{mydef}
+        Sea $\mathcal{L}=\left\{c_i,R_i,F_i \right\}$ un lenguaje de primer orden, y sea $\mathfrak{A}=(A,a_i,r_i,f_i)$ un $\mathcal{L}$-modelo.
+        \begin{enumerate}[label=(\textit{\arabic*})]
+            \item Una \textbf{interpretación} es una función $\cf{\iota}{\textup{Var}}{A}$.
+            \item Definimos la \textbf{satisfacción}, o \textbf{relación de satisfacción}, denotada por $\mathfrak{A}\vDash\varphi[\iota]$ por induccioń de la manera siguiente:
+            \begin{itemize}
+                \item Primero, definimos $\cf{\hat{\iota}}{\textup{Term}}{A}$ (donde $\textup{Term}$ es el conjunto de términos) que extiende a $\iota$ y está dada por:
+                \begin{enumerate}[label=(\textit{\alph*})]
+                    \item $\hat{\iota}(c_i)=a_i$ y $\hat{i}(v_i)=\iota(v_i)$.
+                    \item $\hat{\iota}(F_i,t_1,...,t_k)=f_i(\hat{\iota}(t_1),...,\hat{\iota}(t_k))$
+                \end{enumerate}
+                \item Ahora, sí
+                \begin{enumerate}[label=(\textit{\alph*})]
+                    \item Si $\varphi$ es $t_1=t_2$, entonces
+                    \begin{equation*}
+                        \mathfrak{A}\vDash\varphi[\iota]\textup{ si y sólo si }\hat{\iota}(t_1)\textup{ es lo mismo que }\hat{\iota}(t_2)
+                    \end{equation*}
+                    y, si $\varphi$ es $R_it_1\cdots t_k$, entonces
+                    \begin{equation*}
+                        \mathfrak{A}\vDash\varphi[\iota]\textup{ si y sólo si }(\hat{\iota}(t_1),...,\hat{\iota}(t_k))\in r_i
+                    \end{equation*}
+                    \item Se tiene que
+                    \begin{equation*}
+                        \mathfrak{A}\vDash(\varphi\Rightarrow\psi)[\iota]\textup{ si y sólo si }\mathfrak{A}\nvDash\varphi[\iota]\textup{ o bien }\mathfrak{A}\vDash\psi[\iota]
+                    \end{equation*}
+                    y,
+                    \begin{equation*}
+                        \mathfrak{A}\vDash(\neg\varphi)(\iota)\textup{ si y sólo si }\mathfrak{A}\nvDash\varphi[\iota]
+                    \end{equation*}
+                    \item Se tiene que
+                    \begin{equation*}
+                        \mathfrak{A}\vDash(\exists x\varphi)[\iota]\textup{ si y sólo si }
+                    \end{equation*}
+                    para algún $a\in A$, se cumple que
+                    \begin{equation*}
+                        \mathfrak{A}\vDash\varphi[\iota_{a/x}]
+                    \end{equation*}
+                    donde $\iota_{ a/x}=\left(\iota\setminus\left\{(x,\iota(x)) \right\} \right)\cup\left\{(x,a) \right\}$ (recuerde la interpretación de $\iota$ como función dada como subconjunto del producto cartesiano del dominio con el codominio).
+                \end{enumerate}
+            \end{itemize}
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        Retomando el ejemplo 2.3.1, tomando como lenguaje $\mathcal{L}=\left\{e_G,\cdot,(\cdot)^{-1} \right\}$, como modelo a $\mathfrak{N}=(\mathbb{N},3,{}^{\wedge},Sc)$ una interpretación sería:
+        \begin{equation*}
+            \iota(v_i)=i+3
+        \end{equation*}
+        para el término $e_G\cdot(v_3)^{-1}$, tenemos que:
+        \begin{equation*}
+            \begin{split}
+                \hat{\iota}(e_G\cdot(v_3))&=(\hat{\iota}(e_G))^{\hat{\iota}((v_3)^{-1})}\\
+                &=(\iota(e_G))^{Sc(\hat{\iota}(v_3))}\\
+                &=(3)^{(3+3)+1}\\
+                &=3^7\\
+            \end{split}
+        \end{equation*}
+        en el modelo $\mathfrak{R}=(\mathbb{R},\sqrt{2},+,-)$, el término tendría el valor de (haciendo $\iota(v_i)=\sqrt{i}$):
+        \begin{equation*}
+            \begin{split}
+                \hat{\iota}(e_G\cdot(v_3))&=\sqrt{2}-\sqrt{3}
+            \end{split}
+        \end{equation*}
+
+        Considere ahora la fórmula $\varphi$ dada por:
+        \begin{equation*}
+            e_G\cdot(v_3)^{-1}=v_4
+        \end{equation*}
+        se tiene que $\hat{\iota}(e_G\cdot(v_3)^{-1})=3^7$ y $\hat{i}(v_4)=7$. Por tanto, $\mathfrak{N}\nvDash\varphi$. Ahora, considere la fórmula $\varphi$ dada por:
+        \begin{equation*}
+            (\exists v_1)(e_G\times e_G=v_1 )
+        \end{equation*}
+        Se sabe que $\mathfrak{N}\vDash e_G\cdot e_G=v_{24}$ ($\hat{\iota}(e_G\cdot e_G)=3^3=27$ y $\hat{\iota}(v_{24})=24+3=27$), por ende
+        \begin{equation*}
+            \mathfrak{N}\vDash (\exists v_1)(e_G\cdot e_G=v_{1})
+        \end{equation*}
+    \end{exa}
+
+    \begin{mydef}
+        Sea $\mathcal{L}$ un modelo. Una $\mathcal{L}$-fórmula, es una fórmula formada a partir de $\mathcal{L}$.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $\mathcal{L}=\left\{c_i,R_i,F_i \right\}$ un lenguaje de primer orden, y sea $\Sigma$ un conjunto de $\mathcal{L}$-fórmulas.
+        \begin{enumerate}[label=(\textit{\arabic*})]
+            \item Decimos que $\mathfrak{A}\vDash\Sigma[\iota]$ si para todo $\varphi\in\Sigma$, $\mathfrak{A}\vDash\varphi[\iota]$, siendo $\iota$ una interpretación.
+            \item Decimos que un $\mathcal{L}$-modelo $\mathfrak{A}$ \textbf{satisface $\Sigma$} (denotado por $\mathfrak{A}\vDash\Sigma$), si para toda $\varphi\in\Sigma$ y para toda intepretación $\iota$, $\mathfrak{A}\vDash\varphi[i]$.
+            \item Decimos que $\varphi$ es \textbf{consecuencia lógica de $\Sigma$}, escrito $\Sigma\vDash\varphi$, si par todo $\mathcal{L}$-modelo y para toda interpretación $\iota$ tal que $\mathfrak{A}\vDash\Sigma[\iota]$, se tiene que $\mathfrak{A}\vDash\varphi[\iota]$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{theor}[\textbf{Teorema de Completud de Gödel}]
+        Dado un lenguaje de primer orden $\mathcal{L}$, un conjunto de $\mathcal{L}$-fórmulas y una fórmula $\varphi$, se tiene que:
+        \begin{equation*}
+            \Sigma\vDash\textup{ si y sólo si }\Sigma\vdash\varphi
+        \end{equation*}
+    \end{theor}
 
     \chapter*{Ejemplo Nuevo tipo de Tabla}
 
