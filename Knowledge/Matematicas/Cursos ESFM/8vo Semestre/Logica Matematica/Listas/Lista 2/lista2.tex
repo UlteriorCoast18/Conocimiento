@@ -1,0 +1,357 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,bbm}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{enumitem}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+\newcommand{\bbm}[1]{\mathbbm{#1}}
+\newcommand{\pstable}[1]{\arabic{#1})\stepcounter{#1}}
+\newcounter{tablec}
+\newcommand{\free}{\textup{Free}}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Lista 2 de Problemas y Ejercicios
+    
+    Lógica Matemática}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+    
+    \setcounter{chapter}{1}
+
+    \chapter{Lista 2}
+    
+    \setcounter{section}{1}
+
+    \begin{excer}
+        Traduzca cada una de las siguientes fórmulas de primer orden a español ordinario, utilizando los símbolos de predicado unario $A$, $B$ e $I$ para representar \textit{es un autor}, \textit{es un libro} y \textit{es interesante}, respectivamente; por otra parte, el símbolo de predicado binario $C$ debe ser interpretado como \textit{es más caro que}. Finalmente, el símbolo de función unario $P$ representa a la función que recibe como entrada un libro y, arroja como salida a su autor.
+        \begin{enumerate}[label=($\alph*$)]
+            \item $(\forall x)(B(x)\Rightarrow (\exists y)(A(y)\land y=P(x)))$.
+            \item $(\forall x)(\forall y)((B(x)\land B(y)\land I(x)\land\neg I(y))\Rightarrow C(x,y))$.
+            \item $(\forall x)(B(x)\Rightarrow((\exists y)(B(y)\land C(x,y))\Rightarrow I(x)))$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        %TODO
+    \end{sol}
+
+    \begin{excer}
+        Dada cada uno de los siguientes enunciados en español, identifique el universo de discurso apropiado, así como los símbolos adecuados de constante, función y relación (específicando la aridad de cada uno de ellos) para poder escribir simbólicamente una traducción a la lógica de primer orden:
+        \begin{enumerate}[label=($\alph*$)]
+            \item Todo número primo debe ser impar.
+            \item Si hay al menos una manzana, entonces hay al menos una manzana podrida.
+            \item Todo número complejo $z$ tal que $z=\overline{z}$ pertenece al conjunto $\mathbb{R}$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        %TODO
+    \end{sol}
+
+    \begin{excer}
+        Considere el llamado \textbf{lenguaje de la aritmética de Peano}, el cual consta de un símbolo de constante $1$, un símbolo de relación binaria $<$, un símbolo de función unaria $S$ y dos símbolos de función binaria, $+$ y $\cdot$. Determine cuáles de las siguiente sucesiones de símbolos denotan términos y/o fórmulas bien formadas (o bien, de manera más precisa, cuáles de las siguientes podrían convertirse en términos y/o fórmulas bien formadas módulo algunas abreviaturas).
+        \begin{enumerate}[label=($\alph*$)]
+            \item $v_1<(v_2+S(v_3))$.
+            \item $S(v_5+(S(S(1))+v_27))$.
+            \item $S(v_9+S((\forall 1)(1+S(1)=v_{57})))$.
+            \item $(\forall v_{48})(S(v_{48}+1)\cdot S(S(S(1)))=v_{23})$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        %TODO
+    \end{sol}
+
+    \begin{excer}
+        Sea $\mathcal{L}$ un lenguaje de primer orden con cuatro símbolos de relación unaria $P,Q,S,T$, así cómo símbolos de relación binaria $B,C,D$ y símbolos de constante $c,d$. Construya demostraciones formales de validez para cada uno de los siguientes argumentos:
+        \begin{enumerate}[label=($\alph*$)]
+            \item \begin{center}
+                    \setcounter{tablec}{1}
+                    \begin{tabular}{l r l c l r}
+                        & \pstable{tablec} & $(\exists x)(\forall y)(Px$ & $\iff$ & $Qy)$ & Premisa \\
+                        \hline
+                        & & & $\therefore$ & $(\forall y)(\exists x)(Px\iff Qy)$ & \\
+                    \end{tabular}
+                \end{center}
+            \item \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    & \pstable{tablec} & $(\forall x)(\exists y)(Px$ & $\land$ & $Qy)$ & Premisa \\
+                    \hline
+                    & & & $\therefore$ & $(\exists y)(\forall x)(Px\land Qy)$ & \\
+                \end{tabular}
+            \end{center}
+            \item \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(\forall x)(Px\Rightarrow Qx)\Rightarrow ((\forall x)(Px)\Rightarrow (\forall x)(Qx))$ & \\
+                \end{tabular}
+            \end{center}
+            \item \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $(\forall x)(Px\Rightarrow\varphi)\iff((\exists x)(Px)\Rightarrow\varphi)$ & \\
+                \end{tabular}
+            \end{center}
+            \item \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(\exists x)(Px\land\varphi)\iff((\exists x)(Px)\land\varphi)$ & \\
+                \end{tabular}
+            \end{center}
+            \item \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(\forall x)(\exists y)(Px\Rightarrow Qy)\Rightarrow((\forall x)Px\Rightarrow(\exists y)Qy)$ & \\
+                \end{tabular}
+            \end{center}
+            \item \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(\exists x)(Px\Rightarrow\varphi)\iff((\forall x)(Px)\Rightarrow\varphi)$ & \\
+                \end{tabular}
+            \end{center}
+            \item \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(\exists x)(Px\lor\varphi)\Rightarrow((\forall x)(Px)\lor\varphi)$ & \\
+                \end{tabular}
+            \end{center}
+            \item \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $((\exists x)(Px)\lor(\exists x)(Qx))\iff(\exists x)(Px\lor Qx)$ & \\
+                \end{tabular}
+            \end{center}
+            \item \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(\forall x)(Px\lor\varphi)\iff((\forall x)(Px)\lor\varphi)$ & \\
+                \end{tabular}
+            \end{center}
+            \item \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(\forall x)(\exists y)(Px\land Qy)\iff(\exists y)(\forall x)(Px\land Qx)$ & \\
+                \end{tabular}
+            \end{center}
+            \item \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(\forall x)(\exists y)(Px\land Qy)\iff(\exists y)(\forall x)(Px\land Qy)$ & \\
+                \end{tabular}
+            \end{center}
+            \item \begin{center}
+                \setcounter{tablec}{1}
+                \begin{tabular}{l r l c l r}
+                    \hline
+                    & & & $\therefore$ & $(\exists x)(Px\Rightarrow\varphi)\iff((\forall x)(Px)\Rightarrow\varphi)$ & \\
+                \end{tabular}
+            \end{center}
+        \end{enumerate}
+        %TODO
+    \end{excer}
+
+    \begin{excer}
+        Sea $\mathcal{L}$ el lenguaje de primer orden cuyo único símbolo lógico es una relación unaria $P$. Demuestre o refute las siguientes afirmaciones:
+        \begin{enumerate}[label=$(\alph*)$]
+            \item $(\forall v_1)(Pv_1)\vDash P(v_2)$.
+            \item $Pv_2\vDash(\forall v_2)(Pv_1)$.
+            \item $(\forall v_1)(Pv_1)\vDash(\exists v_1)(Pv_1)$.
+            \item $\emptyset\vDash(\exists v_5)(Pv_5)\Rightarrow(\forall v_6)(Pv_6)$.
+            \item $\vDash(\exists v_5)(Pv_5\Rightarrow(\forall v_6)(Pv_6))$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        %TODO
+    \end{sol}
+
+    \begin{excer}
+        Sea $\mathcal{L}$ el mismo lenguaje del problema anterior.
+        \begin{enumerate}[label=$(\alph*)$]
+            \item Caracterice a los modelos que satisfacen el enunciado $(\forall x)(\forall y)(x=y)$.
+            \item Caracterice a los modelos que satisfacen el enunciado $(\exists x)(\exists y)(\neg(x=y)\land(\forall z)(z=x\lor z=y))$.
+            \item Caracterice a los modelos que satisfacen el enunciado $(\forall x)(\neg Px)$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        %TODO
+    \end{sol}
+
+    \begin{excer}
+        Sea $\varphi$ una fórmula (de algún lenguaje de primer orden, $\mathcal{L}$), y sea $\left\{v_{ i_1},...,v_{ i_k} \right\}=\free\left(\varphi\right)$ (supongamos que para todo esté bien definido y que $i_1<...<i_k$). Definimos la \textbf{cerradura universal} de $\varphi$ como la oración $(\forall v_{ i_k})\cdots(\forall v_{ i_1})(\varphi)$.
+        \begin{enumerate}[label=$(\alph*)$]
+            \item Escriba la definición formal de la cerradura universal de una fórmula.
+            
+            \textit{Sugerencia.} Inducción sobre el número de variables libres.
+            \item Demuestre que, para cualquier conjunto de enunciados $\Sigma$, se cumple que $\Sigma\vDash\varphi$ si y sólo si $\Sigma\vDash\psi$, donde $\psi$ es la cerradura universal de $\varphi$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{excer}
+        Considere el lenguaje de primer orden $\mathcal{L}$ cuyo único símbolo no lógico es uno de relación binaria, $P$. Demuestre que, de entre los siguientes enunciados, no hay dos de ellos que contengan al otro como consecuencia lógica.
+        \begin{enumerate}[label=$(\alph*)$]
+            \item $(\forall x)(\forall y)(\forall z)(P(x,y)\Rightarrow P(x,z))$.
+            \item $(\forall x)(\forall y)(P(x,y)\Rightarrow (P(y,x)\Rightarrow x=y))$.
+            \item $(\forall x)(\exists y)(P(x,y))\Rightarrow(\exists y)(\forall x)(P(x,y))$.
+        \end{enumerate} 
+    \end{excer}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{excer}
+        Sea $\mathcal{L}$ el lenguaje de primer orden cuyos símbolos no lógicos son un símbolo de función unaria $F$, y un símbolo de relación biaria $P$. Demuestre que $\emptyset\vDash x=y\Rightarrow(P(z,F(x))\Rightarrow P(z,F(y)))$.
+    \end{excer}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+\end{document}
