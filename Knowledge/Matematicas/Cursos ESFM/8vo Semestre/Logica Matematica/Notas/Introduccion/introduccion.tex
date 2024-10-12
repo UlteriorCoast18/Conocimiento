@@ -2583,12 +2583,148 @@
         \end{enumerate}
     \end{mydef}
 
-    \begin{theor}[\textbf{Teorema de Completud de Gödel}]
-        Dado un lenguaje de primer orden $\mathcal{L}$, un conjunto de $\mathcal{L}$-fórmulas y una fórmula $\varphi$, se tiene que:
+    \begin{lema}
+        Sea $\mathcal{L}$ un lenguaje de primer orden, $\mathfrak{A}$ una $\mathcal{L}$-estructura y $\cf{\iota,\upsilon}{\textup{Var}}{A}$ dos interpretaciones.
+        \begin{enumerate}[label=(\textit{\arabic*})]
+            \item Si $t$ es un término, con $\left\{v_{ i_1},...,v_{ i_k} \right\}$ el conjunto de variables que aparecen en $t$ y,
+            \begin{equation*}
+                \iota\upharpoonright\left\{v_{ i_1},...,v_{ i_k} \right\}=\upsilon\upharpoonright\left\{v_{ i_1},...,v_{ i_k} \right\}
+            \end{equation*}
+            entonces,
+            \begin{equation*}
+                \hat{\iota}(t)=\hat{\upsilon}(t)
+            \end{equation*}
+            \item Si $\varphi$ es una fórmula, $\left\{v_1,...,v_n \right\}$ es el conjunto de variables que aparecen libres en $\varphi$ y,
+            \begin{equation*}
+                \iota\upharpoonright\left\{v_{ i_1},...,v_{ i_k} \right\}=\upsilon\upharpoonright\left\{v_{ i_1},...,v_{ i_k} \right\}
+            \end{equation*}
+            entonces
+            \begin{equation*}
+                \mathfrak{A}\vDash\varphi[\iota]\textup{ si y solo si }\mathfrak{A}\vDash\varphi[\upsilon]
+            \end{equation*}
+        \end{enumerate}
+    \end{lema}
+
+    \begin{proof}
+        De \textit{(1)}: Procederemos por inducción sobre $t$.
+        \begin{itemize}
+            \item[\textit{(b)}] Suponga que $t$ es una constante. De forma inmediata se tiene que $\iota(t)=\upsilon(t)$, es decir que $\hat{\iota}(t)=\hat{\upsilon}(t)$.
+            \item[\textit{(b)}] Suponga que $t$ es una variable, entonces $t$ es $v_i$ para algún $i\in\left\{i_1,...,i_k \right\}$, así que este conjunto se reduce a un sólo elemento. De forma análoga al caso anterior se sigue $\hat{\iota}(t)=\hat{\upsilon}(t)$.
+            \item[\textit{(i)}] Si $F_i$ es símbolo de función de aridad $l$, y $t_1,...,t_l$ son términos tales que
+            \begin{equation*}
+                \hat{\iota}(t_j)=\hat{\upsilon}(t_j),\quad\forall j\in\natint{1,l}
+            \end{equation*}
+            entonces:
+            \begin{equation*}
+                \begin{split}
+                    \hat{\iota}\left(F_it_1\cdots t_l\right)&=f_i\left(\hat{\iota}(t_1),\cdots,\hat{\iota}(t_l) \right)\\
+                    &=f_i\left(\hat{\upsilon}(t_1),\cdots,\hat{\upsilon}(t_l) \right)\\
+                    &=\hat{\upsilon}\left(F_it_1\cdots t_l\right)\\
+                \end{split}
+            \end{equation*}
+        \end{itemize}
+        por inducción se sigue el resultado.
+        
+        De \textit{(2)}: Se procederá por inducción sobre $\varphi$:
+        \begin{itemize}
+            \item[\textit{(b)}] Si $\varphi$ es $=t_1t_2$, entonces $\mathfrak{A}\vDash\varphi[\iota]$ si y śolo si $\hat{\iota}(t_1)$ es igual a $\hat{\iota}(t_2)$, lo cual sucede si y sólo si $\hat{\upsilon}(t_1)$ es igual a $\hat{\upsilon}(t_2)$, es decir que $\mathfrak{A}\vDash\varphi[\upsilon]$.
+            \item[\textit{(b)}] Si $\varphi$ es $R_it_1\cdots t_l$ donde $R_i$ es un símbolo de relación de aridad $l$ y, $t_1,...,t_l$ son términos, entonces $\mathfrak{A}\vDash\varphi[\iota]$ si y sólo si $(\hat{\iota}(t_1),...,\hat{\iota}(t_l))\in r_i$, es decir si y sólo si $(\hat{\upsilon}(t_1),...,\hat{\upsilon}(t_l))\in r_i$, lo cual sucede si y sólo si $\mathfrak{A}\vDash\varphi[\upsilon]$.
+            \item[\textit{(i)}] Se tiene que $\mathfrak{A}\vDash\neg\varphi[\iota]$ si y sólo si $\mathfrak{A}\nvDash\varphi[\iota]$, si y sólo si (por hipótesis de inducción) $\mathfrak{A}\nvDash\varphi[\upsilon]$, si y sólo si $\mathfrak{A}\vDash\neg\varphi[\upsilon]$.
+            \item[\textit{(i)}] Se tiene que $\mathfrak{A}\vDash(\varphi\Rightarrow\psi)[\iota]$ si y sólo si o bien $\mathfrak{A}\nvDash\varphi[\iota]$ o bien $\mathfrak{A}\vDash\psi[\iota]$, si y sólo (por hipótesis de inducción) si o bien $\mathfrak{A}\nvDash\varphi[\upsilon]$ o bien $\mathfrak{A}\vDash\psi[\upsilon]$, si y sólo si $\mathfrak{A}\vDash(\varphi\Rightarrow\psi)[\upsilon]$.
+            \item[\textit{(i)}] Se tiene que $\mathfrak{A}\vDash(\exists v_i)\varphi[\iota]$, si y sólo si para algún $a\in A$, $\mathfrak{A}\vDash\varphi[\iota_{a/v_i}]$, si y sólo si $\mathfrak{A}\vDash\varphi[\upsilon_{a/v_i}]$ (pues $v_i$ es variable libre en $\varphi$, al tenerse que $\iota_{ a/v_i}\left(v_i\right)=a=\upsilon_{ a/v_i}\left(v_i\right)$, luego $\iota_{ a/v_i}\upharpoonright\left\{v_1,...,v_k \right\}=\upsilon_{ a/v_i}\upharpoonright\left\{v_1,...,v_k \right\}$, por la hipótesis de inducción se sigue que $\mathfrak{A}\vDash\varphi[\iota_{ a/v_i}]$ si y sólo si $\mathfrak{A}\vDash\varphi[\upsilon_{ a/v_i}]$), si y sólo si para algún $a\in A$, $\mathfrak{A}\vDash\varphi[\upsilon_{ a/v_i}]$, si y sólo si $\mathfrak{A}\vDash(\exists v_i)\varphi[\upsilon]$.
+        \end{itemize}
+        por inducción se sigue el resultado.
+    \end{proof}
+
+    \begin{obs}
+        Se denotará por $\mathfrak{A}\vDash\varphi[a_1,...,a_k]$, tomando a una interpretación $\iota$ tal que $\iota(v_i)=a_i$ para $i\in\natint{1,k}$ y con $\left\{v_1,...,v_k \right\}$ las variables libres de $\varphi$. Esto por el lema anterior es válido, ya que las interpretaciones dependen solo del valor que tomen en las variables libres.
+
+        Los corchetes nos dicen el valor de las variables libres.
+    \end{obs}
+
+    \begin{exa}
+        Considere el lenguaje de primer orden de la teoría de grupos, $\mathcal{L}_{TG}=\left\{E,*,(\cdot)^{-1} \right\}$ y sea $\mathfrak{A}=\left(\mathbb{N},3,{}^{\wedge},S \right)$ una $\mathcal{L}_{ TG}$-estructura. Entonces
         \begin{equation*}
-            \Sigma\vDash\textup{ si y sólo si }\Sigma\vdash\varphi
+            \mathfrak{A}\nvDash(\exists v_5)(\forall v_7)(v_5*E=v_7*v_8)[10]
+        \end{equation*}
+        donde se cambia la única variable libre en la fórmula $v_8$ por el valor de $10$. Es decir, estamos diciendo que
+        \begin{equation*}
+            (\exists n\in\mathbb{N})(\forall m\in\mathbb{N})(n^3=m^{10})
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \mathfrak{A}\vDash(\exists v_2)(v_2^{-1}*E=v_5*v_7)[2,3]
+        \end{equation*}
+        sería
+        \begin{equation*}
+            (\exists n\in\mathbb{N})((n+1)^2=2^3)
+        \end{equation*}
+    \end{exa}
+
+    \begin{mydef}
+        Un \textbf{enunciado} es una fórmula $\varphi$ tal que $\free\left(\varphi\right)=\emptyset$.
+    \end{mydef}
+
+    \begin{exa}
+        Se tienen los siguientes ejemplos de enunciados:
+        \begin{itemize}
+            \item $(\forall v_1)(E*v_1=v_1)$.
+            \item $(\forall v_1)(\forall v_2)(v_1*v_2=v_2*v_1)$.
+        \end{itemize}
+        al no depender de la interpretación, estos se toman como una especie de axiomas.
+    \end{exa}
+
+    \begin{obs}
+        Si $\varphi$ es un enunciado, entonces o bien $\mathfrak{A}\vDash\varphi$ o bien $\mathfrak{A}\nvDash\varphi$, independientemente de la interpretación.
+    \end{obs}
+
+    '\begin{mydef}
+        Sea $\mathcal{L}$ un lenguaje de primer orden.
+        \begin{enumerate}
+            \item Un conjunto de fórmulas $\Sigma$ es \textbf{consistente}, si $\Sigma\vdash\varphi\land\neg\varphi$ para toda fórmula $\varphi$.
+
+            Equivalentemente, existe una fórmula $\psi$ tal que $\Sigma\nvdash\psi$.
+            \item Un conjunto de fórmulas $\Sigma$ es \textbf{satisfacible} (denotado por $\Sigma\vDash\Sigma$), si existe una $\mathcal{L}$-estructura (o $\mathcal{L}$-modelo) y una interpretación $\iota$ tal que
+            \begin{equation*}
+                \mathfrak{A}\vDash\varphi[\iota]
+            \end{equation*}
+            para todo $\varphi\in\Sigma$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        Se tiene lo siguiente:
+        \begin{itemize}
+            \item Si Consistente implica Satisfacible, entonces $\Sigma\nvdash\varphi$ implica que $\Sigma\nvDash\varphi$.
+            \item Si Satisfacible implica Consistente, entonces $\Sigma\nvDash\varphi$ implica que $\Sigma\nvdash\varphi$.
+        \end{itemize}
+        la primera parte se llama \textbf{Completud} ya siguiente \textbf{Correctud}.
+    \end{obs}
+
+    \begin{theor}[\textbf{Teorema de Completud de Gödel, 1929}]
+        Dado un lenguaje de primer orden $\mathcal{L}$, $\Sigma$ un conjunto de $\mathcal{L}$-fórmulas y una $\mathcal{L}$-fórmula $\varphi$ se tiene que:
+        \begin{equation*}
+            \Sigma\vDash\varphi\textup{ si y sólo si }\Sigma\vdash\varphi
         \end{equation*}
     \end{theor}
+
+    \begin{proof}
+        Basta probar que para todo conjunto de fórmulas $\Sigma$, $\Sigma$ es consistente si y sólo si es satisfacible.
+
+        En efecto, si consistente es equivalente a satisfacible, entonces se tiene que $\Sigma\nvDash\varphi$, si y sólo si existe un $\mathcal{L}$-modelo $\mathfrak{A}$ y una interpretación $\iota$ tal que
+        \begin{equation*}
+            \mathfrak{A}\vDash\Sigma[\iota]
+        \end{equation*}
+        tal que
+        \begin{equation*}
+            \mathfrak{A}\nvDash\varphi[\iota]
+        \end{equation*}
+        lo cual sucede si y sólo si existe un $\mathcal{L}$-modelo $\mathfrak{A}$ y una interpretación $\iota$ tal que
+        \begin{equation*}
+            \mathfrak{A}\vDash\left(\Sigma\cup\left\{\neg\varphi \right\}\right)[\iota]
+        \end{equation*}
+        si y sólo si $\Sigma\cup\left\{\neg\varphi \right\}$ es satisfacible, si y sólo si $\Sigma\cup\left\{\neg\varphi\right\}$ es consistente, si y sólo si $\Sigma\nvdash\varphi$. Por lo que en efecto, solo basta probar lo enunciado.
+    \end{proof}
 
     \chapter*{Ejemplo Nuevo tipo de Tabla}
 
