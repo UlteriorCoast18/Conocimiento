@@ -2205,12 +2205,17 @@
                 \end{split}
             \right.,\quad\forall x\in I\textup{ y }\forall y\in I
         \end{equation*}
-        notemos que de la segunda condición, $G$ mapea el borde superior y los dos bordes de $I\times I$ en un sólo punto, $f(d_0)$ en $X$, luego $G$ induce una función continua de este espacio cociente a $X$. Por la proposición anterior, este espacio cociente es un disco cerrado, digamos $\mathbb{D}^2$. Así que la función inducida $\cf{\widetilde{G}}{\mathbb{D}^2}{X}$ es tal que la frontera de %TODO
+        notemos que de la segunda condición, $G$ mapea el borde superior y los dos bordes de $I\times I$ en un sólo punto, $f(d_0)$ en $X$, luego $G$ induce una función continua de este espacio cociente a $X$. Por la proposición anterior, este espacio cociente es un disco cerrado, digamos $\mathbb{D}^2$. Así que la función inducida $\cf{\widetilde{G}}{\mathbb{D}^2}{X}$ es tal que en un punto de de la frontera de $\mathbb{D}^2$, digamos $(x_0,y_0)\in\mathbb{D}^2$ se cumple que:
         \begin{equation*}
             \begin{split}
-                \widetilde{G}(x,y)=
+                \widetilde{G}(x_0,y_0)=f(d_0)
             \end{split}
         \end{equation*}
+        y,
+        \begin{equation*}
+            \widetilde{G}(x,y)=f\circ g(x,y)
+        \end{equation*}
+        para todo $(x,y)\in\mathbb{S}^2\setminus\left\{(x_0,y_0)\right\}=I$. Por ende, $G$ es una extensión continua de $f$ a todo $\mathbb{D}^2$. 
     \end{proof}
 
     Aplicando el lema anterior, es conveniente usar el siguiente abuso de notación, diremos que la función $\cf{f}{\mathbb{S}^1}{X}$ \textit{representa} la clase de equivalencia del bucle $f\circ g$.
@@ -2221,7 +2226,7 @@
             \left\{
             \begin{split}
                 &\cf{{\varphi_0}_*}{\pi(X,x_0)}{\pi(Y,\varphi_0(x_0))}\\
-                &\cf{{\varphi_1}_ }{\pi(X,x_0)}{\pi(Y,\varphi_1(x_0))}\\
+                &\cf{{\varphi_1}_* }{\pi(X,x_0)}{\pi(Y,\varphi_1(x_0))}\\
             \end{split}
             \right.
         \end{equation*}
@@ -2242,7 +2247,43 @@
     \end{theor}
 
     \begin{proof}
-        %TODO
+        Tenemos que probar que
+        \begin{equation*}
+            {\varphi_1}_*\left([f]\right)=[\gamma]^{-1}\cdot{\varphi_0}_*\left([f]\right)\cdot[\gamma],\quad\forall [f]\in\pi(X,x_0)
+        \end{equation*}
+        En efecto, sea $[f]\in\pi(X,x_0)$. Considere la función $\cf{F}{I\times I}{Y}$ dada por:
+        \begin{equation*}
+            F(x,y)=\varphi(f(x),y),\quad\forall x,y\in I
+        \end{equation*}
+        esta función es continua por ser composición de funciones continuas. Observemos que:
+        \begin{equation*}
+            \left\{ 
+                \begin{split}
+                    F(x,0) & = \varphi(f(x),0)=\varphi_0(f(x)) \\
+                    F(x,1) & = \varphi(f(x),1)=\varphi_1(f(x)) \\
+                \end{split}
+            \right.,\quad\forall x\in I
+        \end{equation*}
+        y,
+        \begin{equation*}
+            F(0,y)=F(1,y)=F(x_0,y)=\gamma(y),\quad\forall y\in I
+        \end{equation*}
+        Por ende, se tiene que el producto
+        \begin{equation*}
+            \left(\varphi_0\circ f \right)\cdot\gamma\cdot\left(\varphi_1\circ f \right)^{-1}\cdot\gamma^{-1}
+        \end{equation*}
+        es un bucle que va de la frontera de $I\times I$ (que se denotará por $\mathbb{S}^1$) a $Y$, esto es que es en algún sentido la función $\cf{F\big|_{\mathbb{S}^1}}{\mathbb{S}^1}{Y}$, la cual puede ser extendida de forma continua a $F$, así, por el lema anterior, se sigue que el camino $\left(\varphi_0\circ f \right)\cdot\gamma\cdot\left(\varphi_1\circ f \right)^{-1}\cdot\gamma^{-1}$ es equivalente al camino constante, es decir que:
+        \begin{equation*}
+            [\left(\varphi_0\circ f \right)\cdot\gamma\cdot\left(\varphi_1\circ f \right)^{-1}\cdot\gamma^{-1}]=e
+        \end{equation*}
+        esto es, que
+        \begin{equation*}
+            \begin{split}
+                {\varphi_0}_*\left([f]\right)\cdot[\gamma]&=[\gamma]\cdot{\varphi_1}_*\left([f]\right)\\
+                \Rightarrow {\varphi_1}_*\left([f]\right)&=[\gamma]^{-1}\cdot{\varphi_0}_*\left([f]\right)\cdot[\gamma]\\
+            \end{split}
+        \end{equation*}
+        lo cual prueba el resultado.
     \end{proof}
 
     Note que este teorema es una generalización de un teorema anterior. 
@@ -2257,11 +2298,14 @@
     Se sigue de forma inmediata que dos espacios homeomorfos tienen el mismo tipo de homotopía, pero el converso no es cierto (en general).
 
     \begin{theor}
-        Si $\cf{f}{X}{Y}$ es una equivalencia de homotopía, entonces $\cf{f_*}{\pi(X,x)}{\pi(Y,f(x))}$ es un isomorfismo, para todo $x\in X$.
+        Si $\cf{f}{X}{Y}$ es una equivalencia de homotopía, entonces $\cf{f_*}{\pi(X,x)}{\pi(Y,f(x))}$ es un isomorfismo para todo $x\in X$.
     \end{theor}
 
     \begin{proof}
-        %TODO
+        Como $f$ es equivalencia de homotopía, existe una función $\cf{g}{Y}{X}$ tal que
+        \begin{equation*}
+            f\circ g\simeq\bbm{1}_Y\quad\textup{y}\quad g\circ f\simeq\bbm{1}_X
+        \end{equation*}
     \end{proof}
 
     Este teorema será usado como mira para determinar los grupos fundamentales de ciertos espacios, y como un método de probar que ciertos espacios no tienen el mismo tipo de homotopía (y en consecuencia, no son homeomorfos).
