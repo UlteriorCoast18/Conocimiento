@@ -1,0 +1,9 @@
+\documentclass{standalone}
+\usepackage{tikz-cd}
+\usepackage{bbm}
+\begin{document}
+    \begin{tikzcd}
+      \pi(Y,y)\arrow{r}{g_*}\arrow{rd}{\mathbbm{1}_{\pi(Y,y)}}\arrow[bend left]{rr}{f_*\circ g_*} & \pi(X,g(x))\arrow{r}{f_*} & \pi(Y,(f\circ g)(y))\arrow{dl}{v} \\
+      & \pi(Y,y) & 
+    \end{tikzcd}
+\end{document}

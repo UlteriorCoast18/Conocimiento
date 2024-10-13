@@ -2302,10 +2302,32 @@
     \end{theor}
 
     \begin{proof}
+
         Como $f$ es equivalencia de homotopía, existe una función $\cf{g}{Y}{X}$ tal que
         \begin{equation*}
             f\circ g\simeq\bbm{1}_Y\quad\textup{y}\quad g\circ f\simeq\bbm{1}_X
         \end{equation*}
+        Por el lema anterior y usando las propiedades de los homomorfismos inducidos, obtenemos los siguientes dos diagramas conmutativos.
+
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_6.pdf}
+            \end{center}
+            \caption{Diagrama Conmutativo de $\bbm{1}_{\pi(X,x)}$, $g_*\circ f_*$ y $u$.}
+        \end{figure}
+
+        \begin{figure}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_7.pdf}
+            \end{center}
+            \caption{Diagrama Conmutativo de $\bbm{1}_{\pi(Y,y)}$, $f_*\circ g_*$ y $v$.}
+        \end{figure}
+
+        Estos son válidos para todo $x\in X$ y para todo $y\in Y$, donde las funciones $u$ y $v$ son como las dadas en el Teorema anterior para algún caminos que las definan. En particular, obtenemos que:
+        \begin{equation*}
+            u\circ (g_*\circ f_*) =\bbm{1}_{\pi(X,x)}\quad\textup{y}\quad v\circ (f_*\circ g_*)=\bbm{1}_{\pi(Y,y)}
+        \end{equation*}
+        donde $u$ y $v$ son isomorfismos, luego de forma inmediata se sigue que $f_*$ y $g_*$ también deben de serlo (restringidos a los dominios adecuados).
     \end{proof}
 
     Este teorema será usado como mira para determinar los grupos fundamentales de ciertos espacios, y como un método de probar que ciertos espacios no tienen el mismo tipo de homotopía (y en consecuencia, no son homeomorfos).
