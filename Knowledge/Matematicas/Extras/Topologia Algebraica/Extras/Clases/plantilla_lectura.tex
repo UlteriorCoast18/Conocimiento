@@ -13,7 +13,27 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[a4paper, margin = 1.5cm]{geometry}
 \usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
 
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.08] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
 \renewcommand{\theenumii}{\roman{enumii}}
