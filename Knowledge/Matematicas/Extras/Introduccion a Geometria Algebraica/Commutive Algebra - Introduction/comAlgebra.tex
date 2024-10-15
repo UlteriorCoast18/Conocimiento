@@ -12,6 +12,7 @@
 \usepackage{enumerate}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{enumitem}
 \usepackage{tikz}
 \usepackage{pgffor}
 \usepackage{ifthen}
@@ -22,7 +23,7 @@
 \newcommand*\watermarktext[1]{\begin{tabular}{c}
     \setcounter{it}{1}%
     \whiledo{\theit<100}{%
-    \foreach \col in {0,...,15}{#1\ \ } \\ \\
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\ \\
     \stepcounter{it}%
     }
     \end{tabular}
@@ -136,7 +137,8 @@
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
-\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\gen}[1]{\ensuremath{\langle#1\rangle}}
 
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
@@ -147,9 +149,254 @@
 
     \tableofcontents %Con este comando se genera el índice general del libro%
 
-    \chapter{Rings and Ideals}
+    \chapter{Anillos e Ideales}
+
+    Muchos de los resultados que se usarán se han visto en el curso de Álgebra Moderna II, por lo que solo se incluirán resultados nuevos.
+
+    A lo largo de todo el documento, todo anillo será un anillo conmutativo con identidad.
+
+  \section{Nilradical y Radical de Jacobson}
+
+    \begin{mydef}
+        Sea $A$ un anillo. Un elemento $x\in A$ es llamado \textbf{nilpotente} si $x^n=0$ para algún $n\in\mathbb{N}$
+    \end{mydef}
+
+    \begin{obs}
+        Todo elemento nilpotente es divisor de cero, sin embargo el converso no es cierto.
+    \end{obs}
+
+    \begin{propo}
+        El conjunto $\mathfrak{N}$ de todos los elementos nilpotentes de un anillo $A$ es un ideal, y el ideal cociente $A/\mathfrak{N}$ no tiene elmentos nilpotentes distintos de cero.
+    \end{propo}
+
+    \begin{proof}
+        Veamos que $\mathfrak{N}$ es un ideal.
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Sean $x,y\in\mathfrak{N}$, entonces existen $m,n\in\mathbb{N}$ tales que $x^n=y^m=0$. Por ende:
+            \begin{equation*}
+                (x+y)^{ n+m}=0
+            \end{equation*}
+            pues, en el desarrollo binomial de esta expresión, todo término es de la forma $c_{(r,s)}x^ry^s$ con $c_{(r,s)}\in\mathbb{N}$ el cual además cumple que
+            \begin{equation*}
+                r+s=n+m
+            \end{equation*}
+            con $r,s\in\natint{0,n+m}$. Si $r<n$ entonces debe suceder que $s>m$, luego $y^s=0$. Si $r>n$ se sigue que $x^r=0$. En cualquier caso, todos los coeficientes de la forma $x^ry^s=0$, lo cual prueba lo enunciado.
+            \item Sea $x\in\mathfrak{N}$, entonces existe $n\in\mathbb{N}$ tal que $x^n=0$, entonces:
+            \begin{equation*}
+                (ax)^n=a^nx^n=0
+            \end{equation*}
+            por lo que $ax\in\mathfrak{N}$.
+        \end{enumerate}
+        Por los dos incisos anteriores se sigue que $\mathfrak{N}$ es un ideal de $A$. Sea $\mathfrak{N}+x\in A/\mathfrak{N}$ con $x\in A$ tal que
+        \begin{equation*}
+            (\mathfrak{N}+x)^n=\mathfrak{N}
+        \end{equation*}
+        para algún $n\in\mathbb{N}$, entonces:
+        \begin{equation*}
+            \mathfrak{N}+x^n=\mathfrak{N}\Rightarrow x^n\in\mathfrak{N}
+        \end{equation*}
+        luego existe $k\in\mathbb{N}$ tal que $(x^n)^k=0$, esto es que $x\in\mathfrak{N}$, por lo que
+        \begin{equation*}
+            \mathfrak{N}+x=\mathfrak{N}
+        \end{equation*}
+    \end{proof}
+
+    \begin{mydef}
+        El ideal de la proposición anterior es llamado el \textbf{nilradical de $A$}.
+    \end{mydef}
+
+    Resulta que podemos caracterizar de otra manera al nilradical $\mathfrak{N}$:
+
+    \begin{propo}
+        El nilradical $\mathfrak{N}$ de $A$ es la intersección de todos los ideales primos de $A$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $\mathfrak{N}'$ la intersección de todos los ideales primos de $A$. Se tiene que este es un ideal de $A$.
+        \begin{itemize}
+            \item Si $x\in A$ es tal que $x\in\mathfrak{N}$, entonces existe $n\in\mathbb{N}$ tal que $x^n=0$. Como $0\in\mathfrak{N}'$ y $\mathfrak{N}'$, entonces
+            \begin{equation*}
+                x^n\in\mathfrak{p}
+            \end{equation*}
+            para todo ideal primo $\mathfrak{p}$ de $A$, luego por inducción se tiene que $x\in\mathfrak{p}$, es decir que $x\in\mathfrak{N}'$.
+            \item Sea $x\in A$ tal que $x\notin\mathfrak{N}$, probaremos que $x\notin\mathfrak{N}'$. Sea
+            \begin{equation*}
+                \Sigma=\left\{\mathfrak{a}\Big|\mathfrak{a}\textup{ es ideal de $A$ tal que }n\in\mathbb{N}\Rightarrow x^n\notin\mathfrak{a} \right\}
+            \end{equation*}
+            el conjunto $\Sigma$ es no vacío, pues $\langle 0\rangle\in\Sigma$. Sea $\mathcal{C}$ una cadena de elementos de $\Sigma$. Como
+            \begin{equation*}
+                \mathcal{C}=\left\{I_n \right\}_{ n=1}^\infty
+            \end{equation*}
+            es tal que $I_1\subseteq I_2\subseteq\cdots\subseteq I_m\subseteq\cdots$, se sigue de una proposición que
+            \begin{equation*}
+                I=\bigcup_{ n=1}^\infty I_n
+            \end{equation*} 
+            es un ideal de $A$, el cual debe estar en $\Sigma$. Por el Lema de Zorn, este conjunto tiene elementos maximales, digamos $\mathfrak{p}$. Es claro que $x^n\notin\mathfrak{p}$ para todo $n\in\mathbb{N}$. Veamos que $\mathfrak{p}$ es primo.
+
+            En efecto, sean $y,z\notin\mathfrak{p}$, entonces los ideales
+            \begin{equation*}
+                \mathfrak{p}+\langle y\rangle\textup{ y }\mathfrak{p}+\langle z\rangle
+            \end{equation*}
+            son dos ideales de $A$ que contienen propiamente a $\mathfrak{p}$, por lo que $x\in\mathfrak{p}+\langle y\rangle$ y $x\in\mathfrak{p}+\langle z\rangle$, luego existen $m,n\in\mathbb{N}$ tales que
+            \begin{equation*}
+                x^n\in\mathfrak{p}+\langle y\rangle,\quad\textup{y}\quad x^m\in\mathfrak{p}+\langle z\rangle
+            \end{equation*}
+            por ende,
+            \begin{equation*}
+                x^{ n+m}\in\left(\mathfrak{p}+\langle y\rangle \right)\left(\mathfrak{p}+\langle z\rangle \right)=\mathfrak{p}+\langle yz\rangle
+            \end{equation*}
+            por tanto, $\mathfrak{p}+\langle yz\rangle$ contiene propiamente a $\mathfrak{p}$, luego no puede estar en $\Sigma$, así que $yz\notin\mathfrak{p}$. Se sigue entonces que $\mathfrak{p}$ es primo. Por tanto, $x\notin\mathfrak{N}'$.
+        \end{itemize}
+        Por los dos incisos anteriores se sigue que $\mathfrak{N}=\mathfrak{N}'$.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $A$ un anillo, el \textbf{radical de Jacobson $\mathfrak{R}$ de $A$} se define como la intersección de todos los ideales maximales de $A$.
+    \end{mydef}
+
+    El radical de Jacobson (que claramente es un ideal), se caracteriza de la siguiente manera:
+
+    \begin{propo}
+        Sea $A$ un anillo. Entonces, $x\in\mathfrak{R}$ si y sólo si $1-xy$ es una unidad en $A$ para todo $y\in A$.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Suponga que existe $y\in A$ tal que $1-xy$ no es una unidad de $A$, entonces existe un ideal maximal que contiene a $1-xy$, digamos $\mathfrak{m}$, pero $x\in\mathcal{R}$, en particular $x\in\mathfrak{m}$ por lo que $xy\in\mathfrak{m}$ lo cual implica que $1\in\mathfrak{m}$, lo cual no puede suceder pues $\mathfrak{m}$ es ideal maximal.
+
+        $\Leftarrow):$ Suponga que existe un ideal maximal $\mathfrak{m}$ tal que $x\notin\mathfrak{m}$. Entonces,
+        \begin{equation*}
+            \mathfrak{m}+\langle x\rangle=\langle\mathfrak{m}+x\rangle=A=\langle 1\rangle
+        \end{equation*}
+        es decir, existe $u\in\mathfrak{m}$ y $y\in A$ tales que
+        \begin{equation*}
+            u+xy=1
+        \end{equation*}
+        luego, $1-xy$ no puede ser unidad de $A$.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $A$ anillo y $\mathfrak{a}$ un ideal de $A$. Se define el \textbf{radical de $\mathfrak{a}$} como el conjunto
+        \begin{equation*}
+            r(\mathfrak{a})=\left\{x\in A\Big|x^n\in\mathfrak{a}\textup{ para algún }n\in\mathbb{N} \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        Dado un anillo $A$ un ideal $\mathfrak{a}$ de $A$, se tiene que $r(\mathfrak{a})$ es un ideal de $A$.
+    \end{propo}
+
+    \begin{proof}
+        Considere el homomorfismo natural $\cf{\pi}{A}{A/\mathfrak{a}}$, afirmamos que
+        \begin{equation*}
+            r(A)=\pi^{-1}\left(\mathfrak{N}_{ A/\mathfrak{a}} \right)
+        \end{equation*}
+        donde $\mathfrak{N}_{ A/\mathfrak{a}}$ es el nilradical de $A/\mathfrak{a}$. En efecto, veamos que:
+        $x\in r(\mathfrak{a})$ si y sólo si existe $n\in\mathbb{N}$ tal que $x^n\in\mathfrak{a}$, lo cual ocurre si y sólo si
+        \begin{equation*}
+            \left(\mathfrak{a}+x\right)^n=\mathfrak{a}+x^n=\mathfrak{a}
+        \end{equation*}
+        si y sólo si $\mathfrak{a}+x$ es un elemento nilpotente de $A/\mathfrak{a}$, si y sólo si $\mathfrak{a}+x\in\mathfrak{N}_{ A/\mathfrak{a}}$, si y sólo si $x\in\pi^{-1}\left(\mathfrak{N}_{ A/\mathfrak{a}} \right)$.
+
+        Lo anterior prueba la igualdad.
+    \end{proof}
+
+    \begin{excer}
+        Sea $A$ un anillo y $\mathfrak{a},\mathfrak{b}$ ideales de $A$. Se cumple lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $\mathfrak{a}\subseteq r(\mathfrak{a})$.
+            \item $r(r(a))=r(\mathfrak{a})$.
+            \item $r(\mathfrak{a}\mathfrak{b})=r(\mathfrak{a}\cap\mathfrak{b})=r(\mathfrak{a})\cap r(\mathfrak{b})$.
+            \item $r(\mathfrak{a})=\gen{1}$ si y sólo si $\mathfrak{a}=\gen{1}$.
+            \item $r(\mathfrak{a}+\mathfrak{b})=r(r(\mathfrak{a})+r(\mathfrak{b}))$.
+            \item Si $\mathfrak{p}$ es un ideal primo de $A$, entonces $r(\mathfrak{p}^n)=\mathfrak{p}$ para todo $n>0$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+    
+    \begin{propo}
+        El radical de un ideal $\mathfrak{a}$ es la intersección de todos ideales primos que contienen a $\mathfrak{a}$.
+    \end{propo}
+
+    \begin{proof}
+        Considere $A/\mathfrak{a}$.%TODO
+    \end{proof}
+
+    \section{Ejercicios}
+
+    \begin{excer}
+        En el anillo $A[x]$, el radical de Jacobson es igual al nilradical.
+    \end{excer}
+
+    \begin{proof}
+        Como todo ideal maximal es un ideal primo, se tiene la contención:
+        \begin{equation*}
+            \mathfrak{N}\subseteq\mathfrak{R}
+        \end{equation*}
+        sea ahora $f(x)\in \mathfrak{R}$ se tiene que
+        \begin{equation*}
+            1-f(x)g(x) \textup{ es unidad de $A[x]$ para todo }g(x)\in A[x]
+        \end{equation*}
+        en particular, $1-xf(x)$ es unidad de $A[x]$, luego si $f(x)=a_nx^n+a_{ n-1}x^{ n-1}+\cdots+a_0$. Debe suceder entonces que los coeficientes de:
+        \begin{equation*}
+            1-xf(x)=-a_nx^{n+1}-a_{ n-1}x^{ n}-\cdots-a_0x+1
+        \end{equation*}
+        sean tales que $a_i$ es nilpotente para todo $i\in\natint{0,n}$, luego $f(x)$ es elemento nilpotente de $A[x]$.
+
+        Se sigue entonces la igualdad.
+    \end{proof}
+
+    \begin{excer}
+        Sea $A$ un anillo y sea $A[[x]]$ el anillo de series de potencias formales con coeficientes en $A$. Pruebe que:
+        \begin{enumerate}[label =\textit{\arabic*}]
+            \item $f$ es unidad de ...%TODO
+        \end{enumerate}
+    \end{excer}
+    
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $A$ un anillo tal que para todo $x\in A$ existe $n\in\mathbb{N}$, $n>1$ tal que $x^n=x$. Pruebe que todo ideal primo de $A$ es maximal.
+    \end{excer}
+
+    \begin{proof}
+        Sea $\mathfrak{p}$ un ideal propio primo de $A$. Probaremos que $A/\mathfrak{p}$ es campo. En efecto, no tiene divisores de cero, pues si
+        \begin{equation*}
+            \mathfrak{p}+xy=\left(\mathfrak{p}+x\right)\left(\mathfrak{p}+y\right)=\mathfrak{p}
+        \end{equation*}
+        con $x,y\notin\mathfrak{p}$, entonces $xy\in\mathfrak{p}$\contradiction. Por tanto, no tiene divisores de cero. Hay que ver que todo elemento no cero es invertible. Sea $x\in A\setminus\mathfrak{p}$. Se tiene que existe $n\in\mathbb{N}$ con $n>1$ tal que
+        \begin{equation*}
+            \begin{split}
+                \mathfrak{p}+x^{n}&=\mathfrak{p}+x\\
+                \Rightarrow \left(\mathfrak{p}+x\right)\left(\left(\mathfrak{p}+x^{ n-1}\right)-\left(\mathfrak{p}+1\right) \right)&=\mathfrak{p}\\
+            \end{split}
+        \end{equation*}
+        como no hay divisores de cero, debe suceder que
+        \begin{equation*}
+            \mathfrak{p}+x^{ n-1}=\mathfrak{p}+1
+        \end{equation*}
+        por ende, al ser $n>1$, se tiene que $n-1>0$, así que:
+        \begin{equation*}
+            \left(\mathfrak{p}+x\right)\left(\mathfrak{p}+x^{ n-2}\right)=\mathfrak{p}+1
+        \end{equation*}
+        con $n-2\geq 0$. Luego $\mathfrak{p}+x$ es invertible. Así que $A/\mathfrak{p}$ es campo, es decir que $\mathfrak{p}$ es ideal maximal.
+    \end{proof}
 
     
+
+    \newpage
 
     \section{Referencias}
 

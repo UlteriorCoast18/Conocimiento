@@ -12,6 +12,7 @@
 \usepackage{enumerate}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{enumitem}
 \usepackage{tikz}
 \usepackage{pgffor}
 \usepackage{ifthen}
@@ -159,6 +160,119 @@
     \tableofcontents %Con este comando se genera el índice general del libro%
 
     %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+
+    \chapter{Moduos, Homomorfismos y Secuencias exactas}
+
+    Los módulos son una generalización de los grupos abelianos y lo enteros (los cuales son módulos sobre $\mathbb{Z}$).
+
+    \begin{mydef}
+        Sea $R$ un anillo no trivial. Decimos que $R$ es un \textbf{anillo de división}, si $R$ es unitario y para cada $a\in A$ existe $a^{-1}\in A$.
+
+        Si $R$ es conmutativo, entonces $R$ es un \textbf{campo}.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $R$ un anillo, un \textbf{$R$-módulo (izquierdo)} es un grupo abeilano $A$ junto con una función $\cf{\cdot}{R\times A}{A}$ (denotada simplemente por $(r,a)\mapsto ra$) tal que para todo $r,s\in R$ y para todo $a\in A$:
+        \begin{enumerate}[label=\textit{(\arabic*)}]
+            \item $r(a+b)=ra+rb$.
+            \item $(r+s)a=ra+sa$.
+            \item $r(sa)=(rs)a$.
+        \end{enumerate}
+        si $R$ además tiene elemento identidad $1_R$ y se cumple que
+        \begin{enumerate}[label=\textit{(\arabic*)}]
+            \setcounter{enumi}{3}
+            \item $1_Ra=a$, para todo $a\in A$.
+        \end{enumerate}
+        entonces decimos que $A$ es un \textbf{$R$-módulo unitario (izquierdo)}. En caso de que $R$ sea un anillo de división, el módulo unitario $A$ será llamado \textbf{espacio vectorial (izquierdo)}.
+    \end{mydef}
+
+    De forma análoga podemos definir los $R$-módulos derechos, cambiando el orden en el que se hacen las operaciones. Sin embargo, a lo largo del texto solo trabajaremos con módulos izquierdos y todos los resultados que se prueben para esto, también se cumplirán para los derechos.
+    
+    \begin{excer}
+        Sea $A$ un $R$-módulo izquierdo. Si $R$ es conmutativo, podemos hacer de $A$ un $R$-módulo derecho definiendo:
+        \begin{equation*}
+            ar = ra,\quad\forall a\in A\textup{ y }\forall r\in R
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        Considere la función de $\cf{\cdot}{A\times R}{A}$ dada por:
+        \begin{equation*}
+            (a,r)\mapsto ar=ra,\quad\forall (a,r)\in A\times R
+        \end{equation*}
+        Afirmamos que esta función hace de $A$ un $R$-módulo derecho. En efecto, debemos verificar tres condiciones, sean $r,s\in R$ y $a,b\in A$:
+        \begin{enumerate}[label=\textit{(\arabic*)}]
+            \item Se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    (a+b)r&=r(a+b)\\
+                    &=ra+rb\\
+                    &=ar+br\\
+                \end{split}
+            \end{equation*}
+            \item Se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    a(r+s)&=(r+s)a\\
+                    &=ra+sa\\
+                    &=ar+as\\
+                \end{split}
+            \end{equation*}
+            \item Se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    (as)r&=r(as)\\
+                    &=r(sa)\\
+                    &=(rs)a\textup{, como $R$ es conmutativo:} \\
+                    &=(sr)a\\
+                    &=a(sr)\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+        por los tres incisos anteriores se sigue que $A$ es un $R$-módulo derecho.
+    \end{proof}
+
+    \begin{obs}
+        A menos que se especifique lo contrario, todo $R$-módulo $A$ sobre un anillo conmutativo $R$ será izquierdo y derecho haciendo:
+        \begin{equation*}
+            ra=ar,\quad\forall a\in A\textup{ y }\forall r\in R
+        \end{equation*}
+    \end{obs}
+
+    \begin{obs}
+        Denotaremos al elemento identidad de un $R$-módulo $A$ por $0_A$, y al elemento neutro de $R$ por $0_R$.
+    \end{obs}
+
+    \begin{propo}
+        Sea $A$ un $R$-módulo, entonces:
+        \begin{equation*}
+            r0_A=0_A\quad\textup{y}\quad 0_Ra=0_A
+        \end{equation*}
+        para todo $r\in R$ y para todo $a\in A$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $r\in R$, se tiene que:
+        \begin{equation*}
+            r0_A=r(0_A+0_A)=r0_A+r0_A\Rightarrow r0_A=0_A
+        \end{equation*}
+        y, para todo $a\in A$:
+        \begin{equation*}
+            0_Ra=(0_R+0_R)a=0_Ra+0_Ra\Rightarrow 0_Ra=0_A
+        \end{equation*}
+    \end{proof}
+
+    Por lo que, en lo que sigue del texto se denotará por 0 a $0_A,0_R$, $0\in\mathbb{Z}$ y al módulo trivial $\left\{0\right\}$.
+
+    %TODO
+
+    \newpage
+
+    \section{Referencias}
+
+    \begin{itemize}
+        \item \textit{Algebra} de Thomas Hungerford, ed. Springer.
+    \end{itemize}
 
     \chapter{Módulos Libres y Espacios Vectoriales}
 

@@ -2721,6 +2721,30 @@
         la primera parte se llama \textbf{Completud} ya siguiente \textbf{Correctud}.
     \end{obs}
 
+    \begin{lema}[Nombre]
+        Sea $\mathcal{L}$ un lenguaje de primer orden, $\Sigma$ un conjunto de $\mathcal{L}$-fórmulas consistente, entonces si $D_n$ es símbolo de constante, para todo $n\in\mathbb{N}$, se tiene que en el lenguaje:
+        \begin{equation*}
+            \mathcal{L}^*=\mathcal{L}\cup\left\{D_n\Big|n\in\mathbb{N} \right\}
+        \end{equation*}
+        $\Sigma$ sigue siendo consistente.
+    \end{lema}
+
+    \begin{proof}
+        Supongamos que $\Sigma$ no es consistente en $\mathcal{L}^*$. Enotnces para algúna fórmula $\Sigma\vdash\varphi\land\neg\varphi$, como $\Sigma$ es consistente en $\mathcal{L}$, en la demostración de $\varphi\land\neg\varphi$ aparecen fórmulas involucrando a algunos $D_n$, $n\in\mathbb{N}$.
+        
+        La única forma en que pudo aparecer la constante $D_n$ es por que en algún momento se usó la instanciación universal. Existe $v_i$ tal que no aparece en la demostración, luego en la demostración podemos cambiar $D_n$ por $v_i$.
+
+        Repitiendo este proceso inductivamente podemos cambiar todos los $D_{ n_j}$ por algún $v_{ n_j}$ que no aparecía inicialmente en la demostración, por tanto, la demostración en $\mathcal{L}^*$ se transforma en una demostración en $\mathcal{L}$, así que $\Sigma$ no es consistente en $\mathcal{L}$.
+    \end{proof}
+
+    \begin{lema}
+        Sea $\mathcal{L}$ un lenguaje de primer orden, $\Sigma$ un conjunto consistente de $\mathcal{L}$-fórmulas y una $\mathcal{L}$-fórmula $\varphi$. Entonces o bien $\Sigma\cup\left\{\varphi\right\}$ es consistente ó bien $\Sigma\cup\left\{\neg\varphi \right\}$ es consistente. 
+    \end{lema}
+
+    \begin{proof}
+        Análogo a lo que se hizo el capítulo pasado.
+    \end{proof}
+
     \begin{theor}[\textbf{Teorema de Completud de Gödel, 1929}]
         Dado un lenguaje de primer orden $\mathcal{L}$, $\Sigma$ un conjunto de $\mathcal{L}$-fórmulas y una $\mathcal{L}$-fórmula $\varphi$ se tiene que:
         \begin{equation*}
@@ -2744,6 +2768,86 @@
             \mathfrak{A}\vDash\left(\Sigma\cup\left\{\neg\varphi \right\}\right)[\iota]
         \end{equation*}
         si y sólo si $\Sigma\cup\left\{\neg\varphi \right\}$ es satisfacible, si y sólo si $\Sigma\cup\left\{\neg\varphi\right\}$ es consistente, si y sólo si $\Sigma\nvdash\varphi$. Por lo que en efecto, solo basta probar lo enunciado.
+
+        $\Rightarrow):$ Suponga que $\Sigma$ es un conjunto consistente de fórmulas en $\mathcal{L}$, debemos probar que $\Sigma$ es satisfacible. Lo haremos por pasos:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Extendemos $\mathcal{L}$ a otro lenguaje
+            \begin{equation*}
+                \mathcal{L}^*=\mathcal{L}\cup\left\{D_n\Big|n\in\mathbb{N} \right\}
+            \end{equation*}
+            siendo $D_n$ símbolos de constante. Por un lema anterior se tiene que $\Sigma$ también es consistente en $\mathcal{L}^*$.
+            \item Sea $\varphi_1,...,\varphi_n,...$ una enumeración efectiva de las $\mathcal{L}^*$-fórmulas (como lo hecho en lógica proposicional).
+            \item Extendemos $\Sigma$ a
+            \begin{equation*}
+                \Sigma^*=\Sigma\cup\left\{\exists x\varphi_n\Rightarrow\varphi_n[D_n/x]\Big|n\in\mathbb{N} \right\}
+            \end{equation*}
+            afirmamos que $\Sigma^*$ sigue siendo consistente. En efecto, sea $\theta_n$ la fórmula $\exists x\varphi_n\Rightarrow\varphi_n[D_n/x]$. Si $\Sigma^*$ fuese inconsistente, tomamos $N$ el mínimo natural tal que
+            \begin{equation*}
+                \Sigma\cup\left\{\theta_n\Big|n\leq N \right\} 
+            \end{equation*}
+            es inconsistente. Entonces, $\Sigma\cup\left\{\theta_n\Big|n<N \right\}$ es consistente y $\Sigma\cup\left\{\theta_n\Big|n<N \right\}\vdash\neg\theta_N$ (por el Metateorema Demostración por Contradicción). En particular, a partir de este conjunto estamos demostrando que
+            \begin{equation*}
+                (\exists x)\varphi_N\land\neg\varphi_N[D_N/x]
+            \end{equation*}
+            simplificando se obtiene una demostración de
+            \begin{equation*}
+                \neg\varphi_N[D_N/x]
+            \end{equation*}
+            lo cual quiere decir que en las premisas no aparece $D_N$, así que intercambiamos $D_n$ por una variable $y$ que no apareció en la demostración. Así que a partir de $\Sigma\cup\left\{\theta_n\Big|n<N \right\}$ demostramos que $\neg\varphi_N[y/x]$ y $\exists x\varphi_N$.
+
+            Hacemos generalización universal, ya que $y$ nunca apareció anteriormente, luego se demuestra que:
+            \begin{equation*}
+                \begin{split}
+                    \forall x&\neg\varphi_N\\
+                    \neg\exists x\neg\neg\varphi_N\\
+                    \neg\exists x\varphi_N
+                \end{split}
+            \end{equation*}
+            por tanto, $\exists x\varphi_N$ y $\neg\exists x\varphi_N$, lo cual es una contradicción, ya que esto implicaría que
+            \begin{equation*}
+                \Sigma\cup\left\{\theta_n\Big|n<N \right\}
+            \end{equation*}
+            es inconsistente. Por tanto, no existe mínimo $N$ tal que $\Sigma\cup\left\{\theta_n\Big|n\leq N \right\}$ sea inconsistente, lo cual implica que $\Sigma^*$ debe ser consistente.
+            \item Definimos conjuntos de fórmulas $\Sigma\subseteq\Sigma^*=\Sigma_1\subseteq\Sigma_2\subseteq\cdots\subseteq\Sigma_n\subseteq\cdots$ tales que
+            \begin{equation*}
+                \Sigma_{ n+1}=\left\{
+                    \begin{array}{lr}
+                        \Sigma_n\cup\left\{\varphi_n \right\} & \textup{ si es consistente}.\\
+                        \Sigma_n\cup\left\{\neg\varphi_n \right\} & \textup{ en caso contrario}.\\
+                    \end{array}
+                \right.,\quad\forall n\in\mathbb{N}
+            \end{equation*}
+            por inducción, al ser $\Sigma_1$ consistente se sigue de forma inmediata que $\Sigma_n$ es consistente, para todo $n\in\mathbb{N}$. Definimos
+            \begin{equation*}
+                \Sigma^{\infty}=\bigcup_{n\in\mathbb{N}}\Sigma_n
+            \end{equation*}
+            Afirmamos lo siguiente:
+            \begin{itemize}
+                \item \textbf{$\Sigma^{\infty}$ es consistente}, en efecto, de lo contrario se tendría que algún $\Sigma_n$ sería consistente.
+                \item \textbf{$\Sigma^\infty$ es maximal respecto de ser consistente} (equivalentemente, para toda fórmula $\varphi$ o bien $\varphi\in\Sigma^\infty$ o bien $\neg\varphi\in\Sigma^\infty$). Esto es inmediato de la definición de $\Sigma^\infty$ y por ser $\varphi_1,...,\varphi_n,...$ una enumeración efectiva de todas las posibles $\mathcal{L}^*$-fórmulas.
+                \item Para cada fórmula $\varphi$:
+                \begin{equation*}
+                    \begin{split}
+                        \varphi\in\Sigma^\infty &\textup{ si y sólo si }\neg\varphi\notin\Sigma^\infty\\
+                        &\textup{ si y sólo si }\Sigma^\infty\vdash\varphi \\
+                    \end{split}
+                \end{equation*}
+            \end{itemize}
+        \end{enumerate}
+
+        $\Leftarrow$): Suponga que $\Sigma$ satisfacible, hay que probar que es consistente. En efecto, lo haremos por pasos:
+        \begin{itemize}
+            \item Si $\mathfrak{M}\vDash\varphi\Rightarrow\psi$ y $\mathfrak{M}\vDash\varphi$, entonces $\mathfrak{M}\vDash\psi$.
+            \item Si $\phi$ es axioma lógico, entonces $\mathfrak{M}\vDash\phi$.
+            \begin{enumerate}[label = \textit{(\alph*)}]
+                \item Los de lógica proposicional.
+                \item Los de lógica de primer orden:
+                \begin{enumerate}[label = \textit{(\arabic*)}]
+                    \item Suponga que $\phi$ es $(\forall x)(\varphi\Rightarrow\psi)\Rightarrow (\forall x\varphi\Rightarrow\forall x\psi)$. Sea $\mathfrak{M}$ un modelo tal que $\mathfrak{M}\vDash(\forall x)(\varphi\Rightarrow\psi)$ y supongamos que $\mathfrak{M}\vDash\varphi$. Esto significa que para cada $a\in M$, $\mathfrak{M}\vDash(\varphi\Rightarrow\psi)[a]$ y $\mathfrak{M}\vDash\varphi[a]$, por el inciso anterior se sigue que $\mathfrak{M}\vDash\psi[a]$. Lo cual implica que $\mathfrak{M}\vDash\forall x\psi$.
+                \end{enumerate}
+            \end{enumerate}
+        \end{itemize}
+        lo que sigue se prueba de forma análoga a lo hecho anteriormente.
     \end{proof}
 
     \chapter*{Ejemplo Nuevo tipo de Tabla}

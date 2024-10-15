@@ -25,7 +25,7 @@
 \newcommand*\watermarktext[1]{\begin{tabular}{c}
     \setcounter{it}{1}%
     \whiledo{\theit<100}{%
-    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\ \\
     \stepcounter{it}%
     }
     \end{tabular}
@@ -624,8 +624,18 @@
     \end{proof}
 
     \begin{mydef}
-        
+        Sea $X$ un espacio topológico, definimos la \textbf{dimensión de $X$}, denotado por $\dim X$ como el supremo de todos los números naturales $n\in\mathbb{N}$ tal que existe una cadena $Z_0\subset Z_1\subset\cdots\subset Z_n$ de conjuntos cerrados irreducibles de $X$.
+
+        Definimos la \textbf{dimensión} de una variedad afín o quasi-afín como su dimensión como espacio topológico.
     \end{mydef}
+
+    \begin{exa}
+        La dimensión de $\bbm{A}^1$ es $1$. En efecto, los únicos conjuntos irreducibles en $\bbm{A}^1$ son todo el espacio y los conjuntos unipuntuales, luego la cadena más larga que puede existir es
+        \begin{equation*}
+            Z_0=\left\{P \right\}\subset X=Z_1
+        \end{equation*}
+        por ende, la dimensión de $\bbm{A}^1$ es $1$.
+    \end{exa}
 
     \newpage
 
