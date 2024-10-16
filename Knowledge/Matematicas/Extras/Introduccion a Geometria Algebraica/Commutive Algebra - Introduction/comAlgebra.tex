@@ -22,8 +22,8 @@
 \newcounter{it}
 \newcommand*\watermarktext[1]{\begin{tabular}{c}
     \setcounter{it}{1}%
-    \whiledo{\theit<100}{%
-    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\ \\
+    \whiledo{\theit<10}{%
+    \foreach \col in {0,...,4}{#1\ \ } \\ \\ \\ \\
     \stepcounter{it}%
     }
     \end{tabular}
@@ -202,7 +202,7 @@
     \end{proof}
 
     \begin{mydef}
-        El ideal de la proposición anterior es llamado el \textbf{nilradical de $A$}.
+        El ideal de la proposición anterior es llamado el \textbf{nilradical de $A$} cuando se trabaje con varios anillos, será denotado por $\mathfrak{N}_A$.
     \end{mydef}
 
     Resulta que podemos caracterizar de otra manera al nilradical $\mathfrak{N}$:
@@ -251,7 +251,7 @@
     \end{proof}
 
     \begin{mydef}
-        Sea $A$ un anillo, el \textbf{radical de Jacobson $\mathfrak{R}$ de $A$} se define como la intersección de todos los ideales maximales de $A$.
+        Sea $A$ un anillo, el \textbf{radical de Jacobson $\mathfrak{R}$ de $A$} se define como la intersección de todos los ideales maximales de $A$. Cuando se trabaje con varios anillos, será denotado por $\mathfrak{R}_A$.
     \end{mydef}
 
     El radical de Jacobson (que claramente es un ideal), se caracteriza de la siguiente manera:
@@ -324,7 +324,17 @@
         Considere $A/\mathfrak{a}$.%TODO
     \end{proof}
 
+    \newpage
+
     \section{Ejercicios}
+
+    \begin{propo}
+        Todo ideal maximal $\mathfrak{m}$ de $A$ es ideal primo de $A$.
+    \end{propo}
+
+    \begin{proof}
+        En efecto, se tiene que $A/\mathfrak{m}$ es campo, en particular es dominio entero (por no tener divisores de cero), luego $\mathfrak{m}$ es ideal primo.
+    \end{proof}
 
     \begin{excer}
         En el anillo $A[x]$, el radical de Jacobson es igual al nilradical.

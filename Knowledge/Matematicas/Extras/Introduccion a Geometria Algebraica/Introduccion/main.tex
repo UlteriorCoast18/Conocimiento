@@ -24,8 +24,8 @@
 \newcounter{it}
 \newcommand*\watermarktext[1]{\begin{tabular}{c}
     \setcounter{it}{1}%
-    \whiledo{\theit<100}{%
-    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\ \\
+    \whiledo{\theit<10}{%
+    \foreach \col in {0,...,4}{#1\ \ } \\ \\ \\ \\
     \stepcounter{it}%
     }
     \end{tabular}
@@ -637,20 +637,95 @@
         por ende, la dimensión de $\bbm{A}^1$ es $1$.
     \end{exa}
 
-    \begin{mydef}[Nombre]
-        
+    \begin{mydef}
+        Sea $A$ un anillo. La \textbf{altura de un ideal primo $\mathfrak{p}$} es el supremo de los números naturales $n\in\mathbb{N}$ tales que existe una cadena
+        \begin{equation*}
+            \mathfrak{p}_0\subset\mathfrak{p}_1\subset\cdots\subset \mathfrak{p}_n=\mathfrak{p}
+        \end{equation*}
+        de ideales estrictamente contenidos. Definimos la \textbf{dimensión de $A$} (en ocasiones llamada \textbf{dimensión de Krull de $A$}) como el supremo de la altura en todos los ideales de $A$.
     \end{mydef}
+
+    \begin{propo}
+        Si $Y$ es una variedad algebraico afín, entonces la dimensión de $Y$ es igual a la dimensión de su anillo afín de coordenadas $A(Y)$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $Y$ una variedad algebraica afín en $\bbm{A}^n$, entonces los subconjuntos cerrados irreducibles de $Y$ coinciden con los ideales primos de $k[x_1,...,x_n]$ que contienen a $I(Y)$. Estos en turno corresponden a los ideales primos de $A(Y)$. Es así que $\dim Y$ es la longiitud de la cadena más larga de ideales en $A(Y)$, la cual es su dimensión.
+    \end{proof}
+
+    \begin{theor}
+        Sea $k$ un campo, $B$ un dominio entero que es una $k$-álgebra finitamente generada. Entonces:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item La dimensión de $B$ es igual a el grado de trascendencia del campo cociente $K(B)$ de $B$ sobre $k$.
+            \item Para todo ideal primo $\mathfrak{p}$ de $B$, tenemos:
+            \begin{equation*}
+                \textup{height}\mathfrak{p}+\dim B/\mathfrak{p}= \dim B
+            \end{equation*}
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        Vea \textit{Commutative Algebra} de Atiyah y Macdonald.
+    \end{proof}
+
+    \begin{propo}
+        La dimensión de $\bbm{A}^n$ es $n$.
+    \end{propo}
+
+    \begin{proof}
+        Por la proposición (1.1.5) se tiene que la dimensión de $\bbm{A}^n$ es la misma que la dimensión de Krull de $k[x_1,...,x_n]$, la cual es $n$ por la parte \textit{(b)} del teorema anterior.
+    \end{proof}
 
     \newpage
 
     \section{Ejercicios}
 
+    Recuerde que todos los campos $k$ son algebraicamente cerrados a menos que se diga lo contrario.
+
     \begin{excer}
         Haga lo siguiente:
         \begin{enumerate}[label=(\textit{\alph*})]
-            \item Sea $Y$ la curva plana $y=x^2$ (esto es, $Y$ es el conjunto de los ceros del polinomio $f(x,y)=y-x^2$). Muestre que $A(Y)$ es isomorfo a 
+            \item Sea $Y$ la curva plana $y=x^2$ (esto es, $Y$ es el conjunto de los ceros del polinomio $f(x,y)=y-x^2$). Muestre que $A(Y)$ es isomorfo a $k[z]$ donde $z$ es una indeterminada.
+            \item Sea $Z$ la curva plana $xy=1$. Muestre que $Z$ no es isomorfo al anillo de polinomios de una variable sobre $k$.
+            \item[\textit{(c)${}^*$}] Sea $f$ un polinomio irreducible en $k[x,y]$, y sea $W$ la cónica definida por $f$. Pruebe que $A(W)$ es isomorfo a $A(Y)$ o a $A(Z)$. Cuál de las dos es entonces? 
         \end{enumerate}
     \end{excer}
+
+    \begin{proof}
+        De \textit{(a)}: Recordemos que:
+        \begin{equation*}
+            A(Y)=k[x,y]/I(Y)
+        \end{equation*}
+        donde $I(Y)$ es el conjunto de todos los polinomios con ceros comunes al polinomio
+        \begin{equation*}
+            f(x,y)=y-x^2
+        \end{equation*}
+        veamos que $Z(f)$ es sub-variedad algebraica. En efecto, esto es claro de la definición. Por tanto, $I(y)$ es ideal primo, luego $A(Y)$ es dominio entero. Considere la función:
+        \begin{equation*}
+            \cf{F}{k[x,y]/I(Y)}{k[x]}
+        \end{equation*}
+        tal que $I(Y)+g(x,y)\mapsto g(x,x^2)$. Veamos que $F$ está bien definida, si $g_1(x,y),g_2(x,y)\in k[x,y]$ son tales que $g_1(x,y),g_1(x,y)\in I(Y)$, entonces tienen como ceros comunes los del polinomio $f(x,y)$, el cual es irreducible, luego son el producto de un polinomio en $k[x,y]$ por $f(x,y)$. Se sigue así que:
+        \begin{equation*}
+            g_1(x,x^2)=h_1(x,x^2)f(x,x^2)=0=h_2(x,x^2)f(x,x^2)=g_2(x,x^2)
+        \end{equation*}
+        Afirmamos que $F$ es un isomorfismo. En efecto:
+        \begin{itemize}
+            \item \textbf{$F$ es homomorfismo y monomorfismo}: Es claro de la definición de $F$.
+            \item \textbf{$F$ es epimorfismo}. Sea $g(x)\in k[x]$, entonces el polinomio
+            \begin{equation*}
+                h(x,y)=g(x)
+            \end{equation*}
+            es tal que
+            \begin{equation*}
+                F(I(Y)+h(x,y))=h(x,x^2)=g(x)
+            \end{equation*}
+        \end{itemize}
+        por ende, $F$ es isomorfismo.
+        
+        De \textit{(b)}: Afirmamos que el conjunto $Z(f)$ no es irreducible, siendo $f(x,y)=xy-1$. En efecto, 
+
+        
+    \end{proof}
 
     \newpage
 
