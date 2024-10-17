@@ -1,0 +1,484 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,bbm}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{forest}
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<10}{%
+    \foreach \col in {0,...,4}{#1\ \ } \\ \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.08] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}}; 
+  \end{tikzpicture}
+}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Problema}
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+\newcommand{\bbm}[1]{\mathbbm{#1}}
+\newcommand{\pstable}[1]{\arabic{#1})\stepcounter{#1}}
+\newcounter{tablec}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Primer Examen Parcial Lógica Matemática}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \begin{excer}
+        Las siguientes son tres fórmulas bien formadas en notación polaca, y utlizando las conectivas $\neg$, $\land$, $\lor$, $\Rightarrow$ y $\iff$. Escriba estas fórmulas en la notación \textit{usual} (usando tantos paréntesis coom sea necesairo para evitar cualquier tipo de ambigüedad). Posteriormente, escriba la fórmula del primer inciso utilizando únicamente las conectivas $\neg$, $\land,\lor$, y escriba la fórmula del segundo inciso utilizando únicamente las conectivas $\neg$, $\Rightarrow$.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item $\Rightarrow\neg\land p_1p_4\lor p_3\land p_4\neg p_{17}$.
+            \item $\land\Rightarrow p_2\neg\land p_{12}p_4\lor\neg p_{ 23}p_7$.
+            \item $\lor p_{ 25}\land\Rightarrow p_3\neg p_4\lor\land\neg p_4p_{10}$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        Haremos la primera parte por cada inciso:
+        \begin{enumerate}
+            \item[De \textit{(a)}:]  Formemos el árbol a partir de la primera fórmula:
+            \begin{center}
+                \begin{tikzpicture}[level/.style={sibling distance = 4 cm}]
+                    \node[circle,draw]{$\Rightarrow$}
+                        child {node[circle, draw]{$\neg$} 
+                            child {node[circle,draw]{$\land$}
+                                child {node[circle,draw]{$p_1$}}
+                                child {node[circle,draw]{$p_4$}}
+                            }
+                        }
+                        child {node[circle,draw]{$\lor$} 
+                            child{node[circle,draw]{$p_3$}}
+                            child{node[circle,draw]{$\land$}
+                                child{node[circle,draw]{$p_4$}}
+                                child{node[circle,draw]{$\neg$}
+                                    child {node[circle,draw]{$p_{17}$}}
+                                }
+                            }
+                        };
+                \end{tikzpicture}
+
+                Figura 1. Árbol de la fórmula \textit{(a)}.
+            \end{center}
+            traduciendo mediante este árbol la fórmula a la notación usual obtenemos la fórmula siguiente:
+            \begin{equation*}
+                \neg(p_1\land p_4)\Rightarrow(p_3 \lor(p_4 \land\neg p_{ 17}))
+            \end{equation*}
+            \item[De \textit{(b)}:] Nuevamente, formemos ahora el árbol a partir de la segunda fórmula:
+            \begin{center}
+                \begin{tikzpicture}[
+                    level 1/.style={sibling distance = 4 cm},
+                    level 2/.style={sibling distance = 2 cm},
+                    level 3/.style={sibling distance = 3 cm},
+                    level 4/.style={sibling distance = 2 cm}
+                    ]
+                    \node[circle,draw]{$\land$}
+                        child{node[circle,draw]{$\Rightarrow$}
+                                child{node[circle,draw]{$p_2$}}
+                                child{node[circle,draw]{$\neg$}
+                                    child{node[circle,draw]{$\land$}
+                                        child{node[circle,draw]{$p_{12}$}}
+                                        child{node[circle,draw]{$p_{4}$}}
+                                    }
+                                }
+                            }
+                        child{node[circle,draw]{$\lor$}
+                            child{node[circle,draw]{$\neg$}
+                                child{node[circle,draw]{$p_{23}$}}
+                            }
+                            child{node[circle,draw]{$p_7$}}
+                    };
+                \end{tikzpicture}
+
+                Figura 2. Árbol de la fórmula \textit{(b)}.
+            \end{center}
+            traduciendo mediante este árbol la fórmula a la notación usual obtenemos la fórmula siguiente:
+            \begin{equation*}
+                (p_2 \Rightarrow\neg(p_{12}\land p_4))\land(\neg p_{23}\lor p_7)
+            \end{equation*}
+            \item[De \textit{(c)}:] Nuevamente, formemos ahora el árbol a partir de la terera fórmula:
+            \begin{center}
+                \begin{tikzpicture}[
+                    level 1/.style={sibling distance = 4 cm},
+                    level 2/.style={sibling distance = 4 cm},
+                    level 3/.style={sibling distance = 2 cm},
+                    level 4/.style={sibling distance = 1 cm}
+                    ]
+                    \node[circle,draw]{$\lor$}
+                        child{node[circle,draw]{$p_{25}$}}
+                        child{node[circle,draw]{$\land$}
+                            child{node[circle,draw]{$\Rightarrow$}
+                                child{node[circle,draw]{$p_3$}}
+                                child{node[circle,draw]{$\neg$}
+                                    child{node[circle,draw]{$p_4$}}
+                                }
+                            }
+                            child{node[circle,draw]{$\lor$}
+                                child{node[circle,draw]{$\land$}
+                                    child{node[circle,draw]{$\neg$}
+                                        child{node[circle,draw]{$p_4$}}
+                                    }
+                                    child{node[circle,draw]{$p_{10}$}}
+                                }
+                                child{node[circle,draw]{}}
+                            }
+                        };
+                \end{tikzpicture}
+
+                Figura 3. Árbol de la fórmula \textit{(c)}.
+            \end{center}
+            traduciendo mediante este árbol la fórmula a la notación usual obtenemos la fórmula siguiente:
+            \begin{equation*}
+                p_{25}\lor((p_3\Rightarrow\neg p_4)\land((\neg p_4\land p_{10})\lor\textup{  }))
+            \end{equation*}
+            donde, notemos que el nodo hijo del nodo que tiene a $\lor$ en la 3era fila está vacío (el nodo se dejó pues se sabe que la opearción $\lor$ es binaria) y también en la reescritura de la ecuación, por lo que esta tercera fórmula no es una fórmula bien formada. 
+        \end{enumerate}
+        Ahora, escribamos la fórmula del primer inciso usando las conectivas $\neg$, $\land$ y $\lor$. Notemos que tenemos una implicación y, recordemos que si $\varphi$ y $\psi$ son dos fórmulas se tiene que se puede escribir $\varphi\lor\psi$ como:
+        \begin{equation*}
+            \neg\varphi\Rightarrow\psi
+        \end{equation*}
+        por lo cual, si en la primera fórmula hacemos a $\varphi$ la fórmula $p_1\land p_4$ y a $\psi$ la fórmula $p_3\lor(p_4\land\neg p_{17})$, obtenemos que la primera fórmula puede ser reescrita como:
+        \begin{equation*}
+            (p_1\land p_4)\lor(p_3\lor(p_4\land\neg p_{17}))
+        \end{equation*}
+
+        Para reescribir la segunda fórmula usando únicamente las conectivas, recordemos que si $\varphi$ y $\psi$, entonces $\varphi\land\psi$ puede ser reescrita como
+        \begin{equation*}
+            \neg(\varphi\Rightarrow\neg\psi)
+        \end{equation*}
+        por lo cual, usando este hecho y el hecho anterior, podemos reescribir la fórmula del segundo inciso como:
+        \begin{equation*}
+            \neg\left((p_2\Rightarrow\neg\neg(p_{12}\Rightarrow \neg p_4)) \Rightarrow\neg(\neg\neg p_{23}\Rightarrow p_7) \right)
+        \end{equation*}
+        y, si se nos permite quitar las dobles negaciones mediante los axiomas de la lógica de primer orden y la única regla de inferencia Modus Ponens, obtenemos la fórmula reescrita:
+        \begin{equation*}
+            \neg\left((p_2\Rightarrow(p_{12}\Rightarrow\neg p_4)) \Rightarrow\neg(p_{23}\Rightarrow p_7) \right)
+        \end{equation*}
+    \end{sol}
+
+    \begin{excer}
+        Escriba una demostración formal de validez (renglón por renglón, y justificando apropiadamente cada paso) del siguiente argumento:
+        \begin{center}
+            \setcounter{tablec}{1}
+            \begin{tabular}{l r l c l r}
+                & \pstable{tablec} & $(\alpha\lor\beta)$ & $\Rightarrow$ & $(\gamma\Rightarrow\delta)$ & Premisa \\
+                & \pstable{tablec} & $\delta$ & $\Rightarrow$ & $\varepsilon$ & Premisa \\
+                & \pstable{tablec} & $\varepsilon$ & $\Rightarrow$ & $(\alpha\land\zeta)$ & Premisa \\
+                & \pstable{tablec} & $\gamma$ &  &  & Premisa \\
+                \hline
+                & & & $\therefore$ & $\alpha\iff\varepsilon$ & \\
+            \end{tabular}
+        \end{center}
+    \end{excer}
+
+    \begin{sol}
+        Completemos la demostración:
+        \begin{center}
+            \setcounter{tablec}{1}
+            \begin{tabular}{l r l c l r}
+                & \pstable{tablec} & $(\alpha\lor\beta)$ & $\Rightarrow$ & $(\gamma\Rightarrow\delta)$ & Premisa \\
+                & \pstable{tablec} & $\delta$ & $\Rightarrow$ & $\varepsilon$ & Premisa \\
+                & \pstable{tablec} & $\varepsilon$ & $\Rightarrow$ & $(\alpha\land\zeta)$ & Premisa \\
+                & \pstable{tablec} & $\gamma$ &  &  & Premisa \\
+                $|\longrightarrow$ & \pstable{tablec} & $\alpha$ &  &  & Suposición \\
+                $|$ & \pstable{tablec} & $\alpha\lor\beta$ &  &  & 5) Ad. \\
+                $|$ & \pstable{tablec} & $\gamma$ & $\Rightarrow$ & $\delta$ & 1) y 6) Modus Ponens \\
+                $|$ & \pstable{tablec} & $\delta$ &  &  & 7) y 4) Modus Ponens \\
+                $|$ & \pstable{tablec} & $\varepsilon$ &  &  & 2) y 8) Modus Ponens \\
+                \hline
+                 & \pstable{tablec} & $\alpha$ & $\Rightarrow$ & $\varepsilon$ & Lineas 5)-9) Metateorema de Deducción \\
+                $|\longrightarrow$ & \pstable{tablec} & $\varepsilon$ &  &  & Suposición \\
+                $|$ & \pstable{tablec} & $\alpha\land\zeta$ &  &  & 2) y 11) Modus Ponens \\
+                $|$ & \pstable{tablec} & $\alpha$ &  &  & 12) Simplificación \\
+                \hline
+                 & \pstable{tablec} & $\varepsilon$ & $\Rightarrow$ & $\alpha$ & Lineas 11)-13) Metateorema de Deducción \\
+                & \pstable{tablec} & $(\alpha\Rightarrow\varepsilon)$ & $\land$ & $(\varepsilon\Rightarrow\alpha)$ & 10) y 14) Conjunción \\
+                & \pstable{tablec} & $\alpha$ & $\iff$ & $\varepsilon$ & 15) Reescritura \\
+                \hline
+                & & & $\therefore$ & $\alpha\iff\varepsilon$ & \\
+            \end{tabular}
+        \end{center}
+    \end{sol}
+
+    \begin{excer}
+        Sea $\mathcal{L}$ un lenguaje de primer oden equipado con un símbolo de función binaria $*$. Muestre que una de las siguientes dos $\mathcal{L}$-fórmulas implica lógicamente a la otra (¿cuál implica cuál?), y que esta implicación no es reversible.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item $(\exists x)(\forall y)(x*y=y)$.
+            \item $(\exists x)(x*x=x)$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        Afirmamos que la fórmula \textit{(a)} implica a la fórmula \textit{(b)}. En efecto, se tiene la siguiente demostración de \textit{(b)} a partir de \textit{(a)}:
+        \begin{center}
+            \setcounter{tablec}{1}
+            \begin{tabular}{l r l c l r}
+                & \pstable{tablec} & $(\exists x)(\forall y)(x*y$ & $=$ & $y)$ & Premisa \\
+                $|\longrightarrow$ & \pstable{tablec} & $(\forall y)(z*y$ & $=$ & $y)$ &  \\
+                $|$ & \pstable{tablec} & $(z*z$ & $=$ & $z)$ & 2) Instanciación Universal \\
+                \hline
+                & \pstable{tablec} & $(\exists x)(x*x$ & $=$ & $x)$ & 1)-3) Generalización Existencial \\
+                \hline
+                & & & $\therefore$ & $(\exists x)(x*x=x)$ & \\
+            \end{tabular}
+        \end{center}
+        pues, en en la tercera fila la variable $z$ es sustituíble por $y$, ya que $z$ no queda bajo el alcance de ningún cuanificador de la fórmula en la fila 2).
+
+        Ahora veamos que la fórmula \textit{(b)} no implica lógicamente a la fórmula \textit{(a)}. Esto es equivalente a probar que
+        \begin{equation*}
+            \Sigma\nvdash (\exists x)(\forall y)(x*y=y)
+        \end{equation*}
+        donde $\Sigma=\left\{(\exists x)(x*x=x) \right\}$. Por el Teorema de Completud de Gödel, basta con probar que
+        \begin{equation*}
+            \Sigma\nvDash (\exists x)(\forall y)(x*y=y)
+        \end{equation*}
+        así que, tenemos que encontrar una $\mathcal{L}$-estructura $\mathfrak{A}$ y una interpretación $\iota$ tales que
+        \begin{equation*}
+            \mathfrak{A}\vDash\Sigma[\iota]\textup{, pero }\mathfrak{A}\nvDash (\exists x)(\forall y)(x*y=y)[\iota]
+        \end{equation*}
+        Considere la $\mathcal{L}$-estructura
+        \begin{equation*}
+            \mathfrak{A}=(\mathbb{N},\cdot)
+        \end{equation*}
+        donde $\mathbb{N}$ es el conjunto de los números naturales y $\cdot$ es el producto usual. Considere también la interpretación $\cf{\iota}{\textup{Var}}{\mathbb{N}}$ dada por:
+        \begin{equation*}
+            \iota(v_i)=i
+        \end{equation*}
+        para toda variable $v_i$. Veamos que $\mathfrak{A}\vDash\Sigma$, esto es que
+        \begin{equation*}
+            \mathfrak{A}\vDash(\exists x)(x*x=x)[\iota]
+        \end{equation*}
+        en efecto, esto se cumple si y sólo si
+        \begin{equation*}
+            \mathfrak{A}\vDash(x*x=x)[\iota_{n/x}]
+        \end{equation*}
+        para algún $n\in\mathbb{N}$. Tomando $n=1$ obtenemos que:
+        \begin{equation*}
+            \begin{split}
+                \hat{\iota}_{1/x}(x*x)&=\hat{\iota}_{1/x}(x)\cdot\hat{\iota}_{1/x}(x)\\
+                &=1\cdot 1\\
+                &=1\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                \hat{\iota}_{1/x}(x)&=1\\
+            \end{split}
+        \end{equation*}
+        por tanto, $\hat{\iota}_{1/x}(x)$ es lo mismo que $\hat{\iota}_{1/x}(x*x)$, se sigue así
+        \begin{equation*}
+            \mathfrak{A}\vDash(x*x=x)[\iota_{n/x}]
+        \end{equation*}
+
+        Veamos que
+        \begin{equation*}
+            \begin{split}
+                \mathfrak{A}\nvDash(\exists x)(\forall y)(x*y=y)[\iota]&\textup{ si y sólo si }\mathfrak{A}\nvDash(\exists x)(\neg(\exists y)(x*y\neq y))[\iota]\\
+                &\textup{ si y sólo si }\mathfrak{A}\nvDash(\neg(\exists y)(x*y\neq y))[\iota_{a/x}]\\
+                &\textup{ si y sólo si }\mathfrak{A}\vDash(\exists y)(x*y\neq y)[(\iota_{a/x})]\\
+                &\textup{ si y sólo si }\mathfrak{A}\vDash(x*y\neq y)[(\iota_{a/x})_{b/y}]\\
+            \end{split}
+        \end{equation*}
+        para algunos $a,b\in\mathbb{N}$. Tomando $a=9$ y $b=1729$ obtenemos que:
+        \begin{equation*}
+            \begin{split}
+                (\hat{\iota}_{a/x})_{b/y}(x*y)&=(\hat{\iota}_{a/x})_{b/y}(x)\cdot(\hat{\iota}_{a/x})_{b/y}(y)\\
+                &=a\cdot b\\
+                &=9\cdot 1729\\
+                &=15561\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            (\hat{\iota}_{a/x})_{b/y}(y)=b=1729
+        \end{equation*}
+        como $1729$ no es $15561$ se sigue que
+        \begin{equation*}
+            \mathfrak{A}\vDash(x*y\neq y)[(\iota_{a/x})_{b/y}]
+        \end{equation*}
+        por lo cual, de las equivalencias anteriores tenemos
+        \begin{equation*}
+            \mathfrak{A}\nvDash(\exists x)(\forall y)(x*y=y)[\iota]
+        \end{equation*}
+        
+        De esta forma, $\mathfrak{A}$ y $\iota$ son la $\mathcal{L}$-estructura e interpretación buscadas, respectivamente.
+    \end{sol}
+
+    \begin{excer}
+        Sea $\mathcal{L}=\left\{\in\right\}$ el lenguaje de la teoría de conjuntos (es decir, $\in$ es simplement el símbolo de relación binaria). Demuestre que cualquier fórmula en la cual no aparezca el símbolo de negación $\neg$ debe tener longitud impar.
+    \end{excer}
+
+    \begin{proof}
+        Procederemos por inducción sobre la longitud de la $\mathcal{L}$-fórmula. Antes de ello, notemos que como nuestro lenguaje $\mathcal{L}$ no posee constantes ni funciones, los únicos posibles términos serán las variables $v_i$. 
+        \begin{itemize}
+            \item \textbf{Caso base}: Sea $\varphi$ una $\mathcal{L}$-fórmula de longitud menor o igual a 3 en la que no aparece el símbolo de negación $\neg$. Se tienen 2 posibilidades:
+            \begin{itemize}
+                \item $\varphi$ es $v_1=v_2$, donde $v_1$ y $v_2$ son variables.
+                \item $\varphi$ es $v_1\in v_2$, donde $v_1$ y $v_2$ son variables. 
+            \end{itemize}
+            esto pues $\varphi$ en su forma más simple es atómica. En cualquiera de los tres casos, la longitud de $\varphi$ es impar (más aún, es 3).
+            \item \textbf{Paso Inductivo}: Suponga que existe $n\in\mathbb{N}$ tal que para toda $\mathcal{L}$-fórmula $\varphi$ de longitud menor o igual a $2n+1$ en la que no aparezca el símbolo de negación $\neg$, implica que la longitud de $\varphi$ es impar.
+            
+            Sea $\varphi$ una fórmula de longitud menor o igual a $2n+3$, se tienen tres posibles casos para $\varphi$:
+            \begin{itemize}
+                \item $\varphi$ tiene longitud menor o igual a $2n+1$, por lo que de la hipótesis de inducción se sigue que $\varphi$ tiene longitud impar.
+                \item $\varphi$ es $\psi\Rightarrow\phi$, donde $\psi$ y $\phi$ son $\mathcal{L}$-fórmulas en las que no aparece el símbolo negación $\neg$, pues éste no aparece en $\varphi$. En particular, al tenerse que $\varphi$ es de longitud menor o igual a $2n+3$, se sigue que $\psi$ y $\phi$ tienen longitud menor a $2n+1$. Por hipótesis de inducción se sigue que ambas tienen longitud impar, digamos:
+                \begin{equation*}
+                    2n_\psi+1\quad\textup{y}\quad 2n_\phi+1
+                \end{equation*}
+                respectivamente, con $n_\psi,n_\phi\in\mathbb{N}$. Por ende, la longitud de $\varphi$ es
+                \begin{equation*}
+                    (2n_\psi+1)+1+(2n_\phi+1)=2(n_\psi+n_\phi+1)+1
+                \end{equation*}
+                es decir, la longitud de $\varphi$ es impar.
+                \item $\varphi$ es $(\exists x)\psi$, donde al tenerse que $\varphi$ no tiene al símbolo negación $\neg$, tampoco lo puede tener $\psi$, así que como $\varphi$ es de longitud menor o igual a $2n+3$, debe tenerse que la longitud de $\psi$ es menor o igual a $2n+1$. Por hipotesis de inducción $\psi$ es de longitud impar, digamos $2n_\psi+1$ con $n_\psi\in\mathbb{N}$, luego la longitud de $\varphi$ será:
+                \begin{equation*}
+                    (2n_\psi+1)+2=2(n_\psi+1)+1
+                \end{equation*}
+                es decir, la longitud de $\varphi$ es impar.
+            \end{itemize}
+            En cualquier caso, se sigue que la longitud de $\varphi$ es impar.
+        \end{itemize}
+        Aplicando inducción, se sigue que para todo $n\in\mathbb{N}$ y para toda $\mathcal{L}$-fórmula $\varphi$ en la que no aparezca $\neg$ que tenga longitud menor o igual a $2n+1$, $\varphi$ tiene longitud impar.
+        
+        En particular, si $\varphi$ es una $\mathcal{L}$-fórmula en la que no aparece $\neg$, existe un número $m\in\mathbb{N}$ tal que la longitud de $\varphi$ es menor o igual a $2m+1$ (pues toda fórmula en este curso tiene longitud finita) luego, por lo anterior se sigue que $\varphi$ tiene longitud impar, lo cual prueba el resultado.
+    \end{proof}
+    
+\end{document}
