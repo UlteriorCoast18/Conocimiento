@@ -362,17 +362,21 @@
                 & & & $\therefore$ & $(\exists x)(x*x=x)$ & \\
             \end{tabular}
         \end{center}
-        pues, en en la tercera fila la variable $z$ es sustituíble por $y$, ya que $z$ no queda bajo el alcance de ningún cuanificador de la fórmula de la fila 2).
+        pues, en en la tercera fila la variable $z$ es sustituíble por $y$, ya que $z$ no queda bajo el alcance de ningún cuanificador de la fórmula de la fila 2). Se tiene así que
+        \begin{equation*}
+            \left\{(\exists x)(\forall y)(x*y=y) \right\}\vdash(\exists x)(x*x=x)
+        \end{equation*}
+        por el Teorema de Completud de Gödel se sigue que
+        \begin{equation*}
+            \left\{(\exists x)(\forall y)(x*y=y) \right\}\vDash(\exists x)(x*x=x)
+        \end{equation*}
+        es decir, que la fórmula \textit{(a)} implica lógicamente a la fórmula \textit{(b)}.
 
         Ahora veamos que la fórmula \textit{(b)} no implica lógicamente a la fórmula \textit{(a)}. Esto es equivalente a probar que
         \begin{equation*}
-            \Sigma\nvdash (\exists x)(\forall y)(x*y=y)
-        \end{equation*}
-        donde $\Sigma=\left\{(\exists x)(x*x=x) \right\}$. Por el Teorema de Completud de Gödel, basta con probar que
-        \begin{equation*}
             \Sigma\nvDash (\exists x)(\forall y)(x*y=y)
         \end{equation*}
-        así que, tenemos que encontrar una $\mathcal{L}$-estructura $\mathfrak{A}$ y una interpretación $\iota$ tales que
+        donde $\Sigma=\left\{(\exists x)(x*x=x) \right\}$. Tenemos que encontrar una $\mathcal{L}$-estructura $\mathfrak{A}$ y una interpretación $\iota$ tales que
         \begin{equation*}
             \mathfrak{A}\vDash\Sigma[\iota]\textup{, pero }\mathfrak{A}\nvDash (\exists x)(\forall y)(x*y=y)[\iota]
         \end{equation*}
