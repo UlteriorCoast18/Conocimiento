@@ -162,7 +162,7 @@
     \maketitle
 
     \begin{excer}
-        Las siguientes son tres fórmulas bien formadas en notación polaca, y utlizando las conectivas $\neg$, $\land$, $\lor$, $\Rightarrow$ y $\iff$. Escriba estas fórmulas en la notación \textit{usual} (usando tantos paréntesis coom sea necesairo para evitar cualquier tipo de ambigüedad). Posteriormente, escriba la fórmula del primer inciso utilizando únicamente las conectivas $\neg$, $\land,\lor$, y escriba la fórmula del segundo inciso utilizando únicamente las conectivas $\neg$, $\Rightarrow$.
+        Las siguientes son tres fórmulas bien formadas en notación polaca, y utlizando las conectivas $\neg$, $\land$, $\lor$, $\Rightarrow$ y $\iff$. Escriba estas fórmulas en la notación \textit{usual} (usando tantos paréntesis como sea necesairo para evitar cualquier tipo de ambigüedad). Posteriormente, escriba la fórmula del primer inciso utilizando únicamente las conectivas $\neg$, $\land,\lor$, y escriba la fórmula del segundo inciso utilizando únicamente las conectivas $\neg$, $\Rightarrow$.
         \begin{enumerate}[label = \textit{(\alph*)}]
             \item $\Rightarrow\neg\land p_1p_4\lor p_3\land p_4\neg p_{17}$.
             \item $\land\Rightarrow p_2\neg\land p_{12}p_4\lor\neg p_{ 23}p_7$.
@@ -173,7 +173,7 @@
     \begin{sol}
         Haremos la primera parte por cada inciso:
         \begin{enumerate}
-            \item[De \textit{(a)}:]  Formemos el árbol a partir de la primera fórmula:
+            \item[De \textit{(a)}:]  Formemos el árbol a partir de la primera fórmula en notación polaca:
             \begin{center}
                 \begin{tikzpicture}[level/.style={sibling distance = 4 cm}]
                     \node[circle,draw]{$\Rightarrow$}
@@ -200,7 +200,7 @@
             \begin{equation*}
                 \neg(p_1\land p_4)\Rightarrow(p_3 \lor(p_4 \land\neg p_{ 17}))
             \end{equation*}
-            \item[De \textit{(b)}:] Nuevamente, formemos ahora el árbol a partir de la segunda fórmula:
+            \item[De \textit{(b)}:] Nuevamente, formemos ahora el árbol a partir de la segunda fórmula en notación polaca:
             \begin{center}
                 \begin{tikzpicture}[
                     level 1/.style={sibling distance = 4 cm},
@@ -232,7 +232,7 @@
             \begin{equation*}
                 (p_2 \Rightarrow\neg(p_{12}\land p_4))\land(\neg p_{23}\lor p_7)
             \end{equation*}
-            \item[De \textit{(c)}:] Nuevamente, formemos ahora el árbol a partir de la terera fórmula:
+            \item[De \textit{(c)}:] Nuevamente, formemos ahora el árbol a partir de la terera fórmula en notación polaca:
             \begin{center}
                 \begin{tikzpicture}[
                     level 1/.style={sibling distance = 4 cm},
@@ -269,7 +269,7 @@
             \end{equation*}
             donde, notemos que el nodo hijo del nodo que tiene a $\lor$ en la 3era fila está vacío (el nodo se dejó pues se sabe que la opearción $\lor$ es binaria) y también en la reescritura de la ecuación, por lo que esta tercera fórmula no es una fórmula bien formada. 
         \end{enumerate}
-        Ahora, escribamos la fórmula del primer inciso usando las conectivas $\neg$, $\land$ y $\lor$. Notemos que tenemos una implicación y, recordemos que si $\varphi$ y $\psi$ son dos fórmulas se tiene que se puede escribir $\varphi\lor\psi$ como:
+        Ahora, escribamos la fórmula del primer inciso usando las conectivas $\neg$, $\land$ y $\lor$. Notemos que tenemos una implicación y, recordemos que si $\varphi$ y $\psi$ son dos fórmulas se puede escribir $\varphi\lor\psi$ como:
         \begin{equation*}
             \neg\varphi\Rightarrow\psi
         \end{equation*}
@@ -282,13 +282,17 @@
         \begin{equation*}
             \neg(\varphi\Rightarrow\neg\psi)
         \end{equation*}
-        por lo cual, usando este hecho y el hecho anterior, podemos reescribir la fórmula del segundo inciso como:
+        por lo cual, usando este hecho y el anterior, podemos reescribir la fórmula del segundo inciso como:
         \begin{equation*}
             \neg\left((p_2\Rightarrow\neg\neg(p_{12}\Rightarrow \neg p_4)) \Rightarrow\neg(\neg\neg p_{23}\Rightarrow p_7) \right)
         \end{equation*}
-        y, si se nos permite quitar las dobles negaciones mediante los axiomas de la lógica de primer orden y la única regla de inferencia Modus Ponens, obtenemos la fórmula reescrita:
+        y, si se nos permite quitar las dobles negaciones mediante los axiomas de la lógica proposicional y la única regla de inferencia Modus Ponens, obtenemos la fórmula reescrita:
         \begin{equation*}
             \neg\left((p_2\Rightarrow(p_{12}\Rightarrow\neg p_4)) \Rightarrow\neg(p_{23}\Rightarrow p_7) \right)
+        \end{equation*}
+        que a su vez usando otro axioma de la lógica proposicional puede ser reescrita como:
+        \begin{equation*}
+            (p_{23}\Rightarrow p_7)\Rightarrow(p_2\Rightarrow(p_{12}\Rightarrow\neg p_4))
         \end{equation*}
     \end{sol}
 
@@ -317,14 +321,14 @@
                 & \pstable{tablec} & $\varepsilon$ & $\Rightarrow$ & $(\alpha\land\zeta)$ & Premisa \\
                 & \pstable{tablec} & $\gamma$ &  &  & Premisa \\
                 $|\longrightarrow$ & \pstable{tablec} & $\alpha$ &  &  & Suposición \\
-                $|$ & \pstable{tablec} & $\alpha\lor\beta$ &  &  & 5) Ad. \\
+                $|$ & \pstable{tablec} & $\alpha\lor\beta$ &  &  & 5) Adición \\
                 $|$ & \pstable{tablec} & $\gamma$ & $\Rightarrow$ & $\delta$ & 1) y 6) Modus Ponens \\
                 $|$ & \pstable{tablec} & $\delta$ &  &  & 7) y 4) Modus Ponens \\
                 $|$ & \pstable{tablec} & $\varepsilon$ &  &  & 2) y 8) Modus Ponens \\
                 \hline
                  & \pstable{tablec} & $\alpha$ & $\Rightarrow$ & $\varepsilon$ & Lineas 5)-9) Metateorema de Deducción \\
                 $|\longrightarrow$ & \pstable{tablec} & $\varepsilon$ &  &  & Suposición \\
-                $|$ & \pstable{tablec} & $\alpha\land\zeta$ &  &  & 2) y 11) Modus Ponens \\
+                $|$ & \pstable{tablec} & $\alpha\land\zeta$ &  &  & 3) y 11) Modus Ponens \\
                 $|$ & \pstable{tablec} & $\alpha$ &  &  & 12) Simplificación \\
                 \hline
                  & \pstable{tablec} & $\varepsilon$ & $\Rightarrow$ & $\alpha$ & Lineas 11)-13) Metateorema de Deducción \\
@@ -350,15 +354,15 @@
             \setcounter{tablec}{1}
             \begin{tabular}{l r l c l r}
                 & \pstable{tablec} & $(\exists x)(\forall y)(x*y$ & $=$ & $y)$ & Premisa \\
-                $|\longrightarrow$ & \pstable{tablec} & $(\forall y)(z*y$ & $=$ & $y)$ &  \\
-                $|$ & \pstable{tablec} & $(z*z$ & $=$ & $z)$ & 2) Instanciación Universal \\
+                $|\longrightarrow$ & \pstable{tablec} & $(\forall y)(z*y$ & $=$ & $y)$ & 1) Instanciación Existencial \\
+                $|$ & \pstable{tablec} & $z*z$ & $=$ & $z$ & 2) Instanciación Universal \\
                 \hline
                 & \pstable{tablec} & $(\exists x)(x*x$ & $=$ & $x)$ & 1)-3) Generalización Existencial \\
                 \hline
                 & & & $\therefore$ & $(\exists x)(x*x=x)$ & \\
             \end{tabular}
         \end{center}
-        pues, en en la tercera fila la variable $z$ es sustituíble por $y$, ya que $z$ no queda bajo el alcance de ningún cuanificador de la fórmula en la fila 2).
+        pues, en en la tercera fila la variable $z$ es sustituíble por $y$, ya que $z$ no queda bajo el alcance de ningún cuanificador de la fórmula de la fila 2).
 
         Ahora veamos que la fórmula \textit{(b)} no implica lógicamente a la fórmula \textit{(a)}. Esto es equivalente a probar que
         \begin{equation*}
@@ -374,13 +378,17 @@
         \end{equation*}
         Considere la $\mathcal{L}$-estructura
         \begin{equation*}
-            \mathfrak{A}=(\mathbb{N},\cdot)
+            \mathfrak{A}=(\mathbb{N},\bullet)
         \end{equation*}
-        donde $\mathbb{N}$ es el conjunto de los números naturales y $\cdot$ es el producto usual. Considere también la interpretación $\cf{\iota}{\textup{Var}}{\mathbb{N}}$ dada por:
+        donde $\mathbb{N}$ es el conjunto de los números naturales y $\bullet$ es la función de $\mathbb{N}\times\mathbb{N}$ en $\mathbb{N}$ dada por:
+        \begin{equation*}
+            m\bullet n=1,\quad\forall m,n\in\mathbb{N}
+        \end{equation*}
+        Considere además la interpretación $\cf{\iota}{\textup{Var}}{\mathbb{N}}$ dada por:
         \begin{equation*}
             \iota(v_i)=i
         \end{equation*}
-        para toda variable $v_i$. Veamos que $\mathfrak{A}\vDash\Sigma$, esto es que
+        para toda variable $v_i$. Veamos que $\mathfrak{A}\vDash\Sigma[\iota]$, esto es que
         \begin{equation*}
             \mathfrak{A}\vDash(\exists x)(x*x=x)[\iota]
         \end{equation*}
@@ -391,8 +399,8 @@
         para algún $n\in\mathbb{N}$. Tomando $n=1$ obtenemos que:
         \begin{equation*}
             \begin{split}
-                \hat{\iota}_{1/x}(x*x)&=\hat{\iota}_{1/x}(x)\cdot\hat{\iota}_{1/x}(x)\\
-                &=1\cdot 1\\
+                \hat{\iota}_{1/x}(x*x)&=\hat{\iota}_{1/x}(x)\bullet\hat{\iota}_{1/x}(x)\\
+                &=1\bullet 1\\
                 &=1\\
             \end{split}
         \end{equation*}
@@ -407,33 +415,32 @@
             \mathfrak{A}\vDash(x*x=x)[\iota_{n/x}]
         \end{equation*}
 
-        Veamos que
+        Veamos ahora que
         \begin{equation*}
             \begin{split}
-                \mathfrak{A}\nvDash(\exists x)(\forall y)(x*y=y)[\iota]&\textup{ si y sólo si }\mathfrak{A}\nvDash(\exists x)(\neg(\exists y)(x*y\neq y))[\iota]\\
-                &\textup{ si y sólo si }\mathfrak{A}\nvDash(\neg(\exists y)(x*y\neq y))[\iota_{a/x}]\\
-                &\textup{ si y sólo si }\mathfrak{A}\vDash(\exists y)(x*y\neq y)[(\iota_{a/x})]\\
-                &\textup{ si y sólo si }\mathfrak{A}\vDash(x*y\neq y)[(\iota_{a/x})_{b/y}]\\
+                \mathfrak{A}\nvDash(\exists x)(\forall y)(x*y=y)[\iota]&\textup{ si y sólo si }\mathfrak{A}\nvDash(\exists x)(\neg((\exists y)\neg(x*y= y)))[\iota]\\
+                &\textup{ si y sólo si }\mathfrak{A}\nvDash\neg((\exists y)(x*y\neq y))[\iota_{n/x}],\textup{ para todo }n\in\mathbb{N} \\
+                &\textup{ si y sólo si }\mathfrak{A}\vDash(\exists y)(x*y\neq y)[\iota_{n/x}],\textup{ para todo }n\in\mathbb{N} \\
+                &\textup{ si y sólo si }\mathfrak{A}\vDash(x*y\neq y)[(\iota_{n/x})_{ m/y}],\textup{ para todo }n\in\mathbb{N}\textup{ y para algún }m\in\mathbb{N} \\
             \end{split}
         \end{equation*}
-        para algunos $a,b\in\mathbb{N}$. Tomando $a=9$ y $b=1729$ obtenemos que:
+        en efecto, sea $n\in\mathbb{N}$ y $m=1729\in\mathbb{N}$, tenemos que:
         \begin{equation*}
             \begin{split}
-                (\hat{\iota}_{a/x})_{b/y}(x*y)&=(\hat{\iota}_{a/x})_{b/y}(x)\cdot(\hat{\iota}_{a/x})_{b/y}(y)\\
-                &=a\cdot b\\
-                &=9\cdot 1729\\
-                &=15561\\
+                (\hat{\iota}_{ n/x})_{ m/y}(x*y)&=(\hat{\iota}_{ n/x})_{ m/y}(x)\bullet(\hat{\iota}_{ n/x})_{ m/y}(y)\\
+                &=n\bullet m\\
+                &=n\bullet 1729\\
+                &=1\\
             \end{split}
         \end{equation*}
         y,
         \begin{equation*}
-            (\hat{\iota}_{a/x})_{b/y}(y)=b=1729
+            \begin{split}
+                (\hat{\iota}_{ n/x})_{ m/y}(y)&=m\\
+                &=1729\\
+            \end{split}
         \end{equation*}
-        como $1729$ no es $15561$ se sigue que
-        \begin{equation*}
-            \mathfrak{A}\vDash(x*y\neq y)[(\iota_{a/x})_{b/y}]
-        \end{equation*}
-        por lo cual, de las equivalencias anteriores tenemos
+        donde claramente 1 no es 1729, se sigue pues de las equivalencias anteriores que:
         \begin{equation*}
             \mathfrak{A}\nvDash(\exists x)(\forall y)(x*y=y)[\iota]
         \end{equation*}
@@ -442,7 +449,7 @@
     \end{sol}
 
     \begin{excer}
-        Sea $\mathcal{L}=\left\{\in\right\}$ el lenguaje de la teoría de conjuntos (es decir, $\in$ es simplement el símbolo de relación binaria). Demuestre que cualquier fórmula en la cual no aparezca el símbolo de negación $\neg$ debe tener longitud impar.
+        Sea $\mathcal{L}=\left\{\in\right\}$ el lenguaje de la teoría de conjuntos (es decir, $\in$ es simplemene el símbolo de relación binaria). Demuestre que cualquier fórmula en la cual no aparezca el símbolo de negación $\neg$ debe tener longitud impar.
     \end{excer}
 
     \begin{proof}
@@ -459,7 +466,7 @@
             Sea $\varphi$ una fórmula de longitud menor o igual a $2n+3$, se tienen tres posibles casos para $\varphi$:
             \begin{itemize}
                 \item $\varphi$ tiene longitud menor o igual a $2n+1$, por lo que de la hipótesis de inducción se sigue que $\varphi$ tiene longitud impar.
-                \item $\varphi$ es $\psi\Rightarrow\phi$, donde $\psi$ y $\phi$ son $\mathcal{L}$-fórmulas en las que no aparece el símbolo negación $\neg$, pues éste no aparece en $\varphi$. En particular, al tenerse que $\varphi$ es de longitud menor o igual a $2n+3$, se sigue que $\psi$ y $\phi$ tienen longitud menor a $2n+1$. Por hipótesis de inducción se sigue que ambas tienen longitud impar, digamos:
+                \item $\varphi$ es $\psi\Rightarrow\phi$, donde $\psi$ y $\phi$ son $\mathcal{L}$-fórmulas en las que no aparece el símbolo negación $\neg$, pues éste no aparece en $\varphi$. En particular, al tenerse que $\varphi$ es de longitud menor o igual a $2n+3$, se sigue que $\psi$ y $\phi$ tienen longitud menor o igual a $2n+1$. Por hipótesis de inducción se sigue que ambas tienen longitud impar, digamos:
                 \begin{equation*}
                     2n_\psi+1\quad\textup{y}\quad 2n_\phi+1
                 \end{equation*}
@@ -476,7 +483,7 @@
             \end{itemize}
             En cualquier caso, se sigue que la longitud de $\varphi$ es impar.
         \end{itemize}
-        Aplicando inducción, se sigue que para todo $n\in\mathbb{N}$ y para toda $\mathcal{L}$-fórmula $\varphi$ en la que no aparezca $\neg$ que tenga longitud menor o igual a $2n+1$, $\varphi$ tiene longitud impar.
+        Aplicando inducción, se sigue que para todo $n\in\mathbb{N}$ y para toda $\mathcal{L}$-fórmula $\varphi$ en la que no aparezca $\neg$ que tenga longitud menor o igual a $2n+1$, implica que $\varphi$ tiene longitud impar.
         
         En particular, si $\varphi$ es una $\mathcal{L}$-fórmula en la que no aparece $\neg$, existe un número $m\in\mathbb{N}$ tal que la longitud de $\varphi$ es menor o igual a $2m+1$ (pues toda fórmula en este curso tiene longitud finita) luego, por lo anterior se sigue que $\varphi$ tiene longitud impar, lo cual prueba el resultado.
     \end{proof}
