@@ -31,7 +31,7 @@
 
 \AddToHook{shipout/foreground}{
     \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
-        \node[rectangle,black,rotate=30,scale=2,opacity=0.08] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}}; 
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}}; 
   \end{tikzpicture}
 }
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
@@ -152,7 +152,9 @@
 \newcommand{\free}{\textup{Free}}
 
 \begin{document}
-    \title{Curso de Lógica Matemática}
+    \title{Curso de Lógica Matemática
+    
+    Lógica Proposicional y de Primer Orden}
     \author{Cristo Daniel Alvarado}
     \maketitle
 

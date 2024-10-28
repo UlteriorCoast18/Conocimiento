@@ -15,8 +15,7 @@
 \usepackage{tikz}
 \usepackage{pgffor}
 \usepackage{ifthen}
-
-\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{positioning,calc}
 
 \newcounter{it}
 \newcommand*\watermarktext[1]{\begin{tabular}{c}
@@ -140,7 +139,9 @@
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
     \setlength{\parindent}{12pt} % Pone la sangría como me gusta
-    \title{Título o Nombre de las notas}
+    \title{Curso de Lógica Matemática
+    
+    Teoría de la Computabilidad}
     \author{Cristo Daniel Alvarado}
     \maketitle
 
@@ -150,48 +151,69 @@
 
     \newpage
 
-    \chapter{Ejemplo}
+    \setcounter{chapter}{2}
 
-    \section{Ejemplo}
+    \chapter{Conjuntos y Funciones computables}
 
-    \begin{proof}
-        Entorno de Prueba
-    \end{proof}
+    Todo de lo que se va a tratar esta parte es de: ¿Cómo formalizar la noción de \textit{procedimiento mecánico, efectivo} o \textit{sistemático}? Con esto nos referimos a:
+    \begin{itemize}
+        \item Tener un número finito de instrucciones.
+        \item Terminar el procedimiento en un número finito de pasos.
+        \item Usar únicamente \textit{papel y lápiz}.
+        \item No requiere razonamiento, solo se siguen reglas.
+    \end{itemize}
 
-    \begin{sol}
-        Entorno de Solución
-    \end{sol}
+    Básicamente se pretendía que dada una fórmula, encontrar un algoritmo que nos diga si esa fórmula es verdadera o falsa. Básicamente se pretendía formalizar las demostraciones para ver lo que nosotros podemos demostrar únicamente usando los axiomas.
 
-    \begin{theor}[Nombre]
-        Teorema
-    \end{theor}
+    Turing y Alonzo Church eventualmente se hicieron preguntas en la misma dirección. En la Tesis de Church-Turing se probó que estas tres preguntas en realidad se reducen a un mismo problema.
 
-    \begin{propo}[Nombre]
-        Proposición
-    \end{propo}
+    \section{Máquinas de Turing}
 
-    \begin{cor}[Nombre]
-        Corolario
-    \end{cor}
-
-    \begin{lema}[Nombre]
-        Lema
-    \end{lema}
-
-    \begin{mydef}[Nombre]
-        Definición
+    \begin{mydef}
+        Una \textbf{máquina de Turing} consta de:
+        \begin{itemize}
+            \item Un \textit{alfabeto}, un conjunto finito $L$.
+            \item Un conjunto $S$ de \textit{estados}.
+            \item Una función parcial $\cf{T}{L^*\times S}{L^*\times S\times\left\{<,-,> \right\}}$ llamada \textit{función de transición}.
+        \end{itemize}
+        donde $L^*=L\cup\left\{* \right\}$.
     \end{mydef}
 
-    \begin{obs}[Nombre]
-        Observación
-    \end{obs}
+    Intuitivamente, uno debe imaginar que esto es una especie de \textit{computadora rudimentaria}. Generalmente esto se conceptualiza como una cinta.
 
-    \begin{exa}[Nombre]
-        Ejemplo
+    \begin{tikzpicture}[every node/.style={block},
+        block/.style={minimum height=1.5em,outer sep=0pt,draw,rectangle,node distance=0pt}]
+    \node (A) {$\sigma$};
+    \node (B) [left=of A] {$\ldots$};
+    \node (C) [left=of B] {$B$};
+    \node (D) [right=of A] {$\ldots$};
+    \node (E) [right=of D] {$\$ $};
+    \node (F) [above = 0.75cm of A,draw=red,thick] {\textsf q};
+    \draw[-latex] (F) -- (A);
+    \draw[-latex,blue] ($(F.east)!0.5!(A.east)$) -- ++(7mm,0);
+    \draw (C.north west) -- ++(-1cm,0) (C.south west) -- ++ (-1cm,0) 
+                    (E.north east) -- ++(1cm,0) (E.south east) -- ++ (1cm,0);
+    \end{tikzpicture}
+
+    \begin{exa}
+        Considere $L=\left\{1 \right\}$, $S=\left\{s_i,s_1,s_2 \right\}$ y,
+        \begin{equation*}
+            T=\left\{(s_i,*,s_1,*,>),(s_i,1,s_1,1,>),(s_1,1,s_1,1,>),(s_1,1,s_2,1,-) \right\}
+        \end{equation*}
+        La cinta se ve más o menos así:
+
+        \begin{center}
+            \begin{tikzpicture}[every node/.style={block},
+                block/.style={minimum height=1.5em,outer sep=0pt,draw,rectangle,node distance=0pt}]
+            \node (1) {$*$};
+            \foreach \x in {2,3,4} \node (\x) [right = of 1+\x] {$*$};
+            \end{tikzpicture}
+        \end{center}
     \end{exa}
 
-    \begin{excer}[Nombre]
-        Ejercicio
-    \end{excer}
+
+    \chapter{Teoremas de Completud}
+
+
 
 \end{document}
