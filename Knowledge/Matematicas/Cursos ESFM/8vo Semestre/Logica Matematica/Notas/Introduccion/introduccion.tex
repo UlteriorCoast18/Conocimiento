@@ -2833,6 +2833,73 @@
                     \end{split}
                 \end{equation*}
             \end{itemize}
+            \item Definiremos una $\mathcal{L}$-estrutura $\mathfrak{A}=\left(A,a_i,b_i,r_i,f_i \right)$ y una interpretación $\cf{\iota}{\textup{Var}}{A}$ tal que $\mathfrak{A}\vDash\varphi$ si y sólo si $\varphi\in\Sigma_{\infty}$ para cualquier $\mathcal{L}$-fórmula $\varphi$.
+            
+            En efecto, sea $T$ el conjunto de todos los $\mathcal{L}$-términos. Definimos la relación $\sim$ sobre $T$ dada por:
+            \begin{equation*}
+                \begin{split}
+                    t_1\sim t_2&\textup{ si y sólo si }=t_1t_2\in\Sigma_{\infty}\\
+                    &\textup{ si y sólo si }\Sigma_{\infty}\vdash =t_1t_2 \\
+                \end{split}
+            \end{equation*}
+            afirmamos que $\sim$ es relación de equivalencia. En efecto:
+            \begin{itemize}
+                \item \textbf{$\sim$ es reflexiva}. Sea $t\in T$, por axioma 1, $\forall x(x=x)$, en particular haciendo instanciación universal se sigue que $t=t$, luego $=tt\in\Sigma_{\infty}$ (en caso contrario se llegaría a que $\Sigma_{\infty}$ no es consistente). Por ende, $t\sim t$.
+                \item \textbf{$\sim$ es simétrica}. Sean $t_1,t_2\in T$ tales que $t_1\sim t_2$, es decir que $=t_1t_2\in\Sigma_{\infty}$. Veamos que:
+                \begin{center}
+                    \setcounter{tablec}{1}
+                    \begin{tabular}{l r l c l r}
+                        & \pstable{tablec} & $t_1$ & $=$ & $t_2$ & Premisa \\
+                        & \pstable{tablec} & $x$ & $=$ & $x$ & Ax. 3\\
+                        & \pstable{tablec} & $x=y$ & $\Rightarrow$ & $(x=x\Rightarrow y=x)$ & 2) Ax. 4, haciendo $\varphi\equiv x=x$ \\
+                        & \pstable{tablec} & $(\forall x)(\forall y)(x=y$ & $\Rightarrow$ & $(x=x\Rightarrow y=x))$ & 3) Ax. 2 \\
+                        & \pstable{tablec} & $(\forall y)(t_1=y$ & $\Rightarrow$ & $(t_1=t_1\Rightarrow y=t_1))$ & 4) I.U. \\
+                        & \pstable{tablec} & $t_1=t_2$ & $\Rightarrow$ & $(t_1=t_1\Rightarrow t_2=t_1)$ & 5) I.U. \\
+                        & \pstable{tablec} & $t_1=t_1$ & $\Rightarrow$ & $t_2=t_1$ & 5) I.U. \\
+                        & \pstable{tablec} & $t_1$ & $=$ & $t_1$ & Ax. 3\\
+                        & \pstable{tablec} & $t_2$ & $=$ & $t_1$ & 7),8) M.P.\\
+                        \hline
+                        & & & $\therefore$ & $t_2=t_1$ & \\
+                    \end{tabular}
+                \end{center}
+                como $\Sigma_{\infty}$ es consistente, se sigue que $=t_2t_1\in\Sigma_\infty$, es decir que $t_2\sim t_1$.
+                \item \textbf{$\sim$ es transitiva}. Sean $t_1,t_2,t_3\in T$ tales que $t_1\sim t_2$ y $t_2\sim t_3$...
+            \end{itemize}
+            por tanto, $\sim$ es de equivalencia.
+
+            Tomemos como conjunto $A=T/\sim$, $a_i=[c_i]$ y $b_i=[D_i]$ (las clases respectivas de cada constante). Si $R_i$ es un símbolo de relación $k$-aria, definimos el conjunto $r_i$ mediante:
+            \begin{equation*}
+                \left([t_1],...,[t_k] \right)\in r_i\textup{ si y sólo si }R_it_1t_2\cdots t_k\in\Sigma_{\infty}
+            \end{equation*}
+            y, si $F_i$ es un símbolo de función $k$-aria, entonces
+            \begin{equation*}
+                f_i([t_1,...,[t_k]])=[F_it_1\cdots t_k]
+            \end{equation*}
+            Afirmamos que $r_i$ y $f_i$ están bien definidas. En efecto, sean $t_1,...,t_k,s_1,...,s_k\in T$ términos tales que $t_i\sim s_i$ para todo $i=1,...,k$. Se tiene que:
+            \begin{itemize}
+                \item Si $r_i$ es $k$-aria y $R_it_1\cdots t_k\in\Sigma_{\infty}$, entonces $\Sigma_\infty\vdash R_it_1\cdots t_k$. Se tiene que:
+                \begin{center}
+                    \setcounter{tablec}{1}
+                    \begin{tabular}{l r l c l r}
+                        & \pstable{tablec} & $Rt_1\cdots t_k$ &  &  & Premisa \\
+                        & \pstable{tablec} & $t_1=s_1$ &  &  & Premisa \\
+                        & \pstable{tablec} & $(\forall x)(\forall y)(x=y$ & $\Rightarrow$ & $(Rxt_2\cdots t_k\Rightarrow Ryt_2\cdots t_k))$ & Ax. 4 y 3 con $\varphi\equiv Rxt_2\cdots t_k$ \\
+                        & \pstable{tablec} & $t_1=s_1$ & $\Rightarrow$ & $(Rt_1t_2\cdots t_k\Rightarrow Rs_1t_2\cdots t_k)$ & 3) I.U. \\
+                        & \pstable{tablec} & $Rt_1t_2\cdots t_k$ & $\Rightarrow$ & $Rs_1t_2\cdots t_k$ & 4),1) M.P. \\
+                        & \pstable{tablec} & $Rs_1t_2\cdots t_k$ &  &  & 5),1) M.P. \\
+                        &  &  & $\vdots$ & Repitiendo $(k-1)$-veces & \\
+                        & $6k-5)$ & $Rs_1t_2\cdots s_k$ &  &  &  \\
+                        \hline
+                        & & & $\therefore$ & $Rs_1t_2\cdots s_k$ & \\
+                    \end{tabular}
+                \end{center}
+                por ende, $Rs_1t_2\cdots s_k\in\Sigma_\infty$. Se sigue así que $r_i$ está bien definida.
+                \item Si $f_i$ es $k$-aria, veamos que
+                \begin{equation*}
+                    F_it_1\cdots t_k\sim F_is_1\cdots s_k
+                \end{equation*}
+                en efecto, basta con ver que $\Sigma_{\infty}\vdash =F_it_1\cdots t_k F_is_1\cdots s_k$:
+            \end{itemize}
         \end{enumerate}
 
         $\Leftarrow$): Suponga que $\Sigma$ satisfacible, hay que probar que es consistente. En efecto, lo haremos por pasos:
@@ -2848,6 +2915,22 @@
             \end{enumerate}
         \end{itemize}
         lo que sigue se prueba de forma análoga a lo hecho anteriormente.
+    \end{proof}
+
+    \begin{cor}[\textbf{Teorema de Compacidad}]
+        Si $\Sigma\vDash\varphi$, entonces existe $\Sigma\subseteq\Sigma$ finito tal que $\Sigma\vDash\varphi$.
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{cor}[\textbf{Teorema de Compacidad versión 2}]
+        Un conjunto de fórmulas $\Sigma$ es satisfacible si y sólo si todo $\Sigma\subseteq\Sigma$ finito es satisfacible.
+    \end{cor}
+
+    \begin{proof}
+        
     \end{proof}
 
     \chapter*{Ejemplo Nuevo tipo de Tabla}
