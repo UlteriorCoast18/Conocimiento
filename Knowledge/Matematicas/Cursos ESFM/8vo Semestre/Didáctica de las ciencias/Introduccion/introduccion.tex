@@ -14,9 +14,8 @@
 \usepackage[a4paper, margin = 1.5cm]{geometry}
 \usepackage{pgffor}
 \usepackage{ifthen}
-\usepackage{tikz,times}
-\usetikzlibrary{mindmap,trees,backgrounds}
-
+\usepackage{tikz}
+\usetikzlibrary{mindmap,trees}
 \usetikzlibrary{shapes.multipart}
 
 \newcounter{it}
@@ -31,7 +30,7 @@
 
 \AddToHook{shipout/foreground}{
     \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
-        \node[rectangle,black,rotate=30,scale=2,opacity=0.08] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}}; 
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}}; 
   \end{tikzpicture}
 }
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
@@ -883,5 +882,26 @@
             };
           \end{tikzpicture}
     \end{center}
+
+    \section{Clase 29 de Octubre}
+
+    El preconcepto sirve. Buscar en el libro de Driver Ideas previas, errores comunes y missconception.
+
+    Buscar a Driver.
+    \begin{equation*}
+        \begin{split}
+            \left. \begin{array}{c}
+                \textup{¿Qué?} \\
+                \textup{¿Cómo?} \\
+            \end{array}\right\} & \rightarrow \textup{Describir} \\
+            \left. \begin{array}{c}
+                \textup{¿Para qué?} \\
+                \textup{¿Por qué?} \\
+            \end{array}\right\} & \rightarrow \textup{Explicar}
+        \end{split}
+    \end{equation*}
+    todo es cuestión de analizar la causa y su efecto. Se debe poner como objetivo enseñar a observar, luego con ello se puede aprender mejor. Si uno puede observar, es solo cuestión de tiempo el aprender a interpretar.
+
+    A veces puede suceder que el alumno no observe lo que es relevante de ver a lo que no es relevante.
 
 \end{document}

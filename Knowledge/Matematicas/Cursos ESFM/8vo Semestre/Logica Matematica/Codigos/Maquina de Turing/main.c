@@ -2,14 +2,14 @@
 #include <unistd.h>
 #include <pthread.h>
 
-char band[10] = {'*','*','*','1','1','1','1','*','*','*'};
+char band[10] = {'*','*','*','1','2','1','1','*','*','*'};
 char state = 'i';
 
 int main() {
     char states[2] = {'i','1','2'};
     char move[3] = {'<','-','>'};
 
-    int start = 1;
+    int start = 4;
 
     turing1(start - 1);
 
@@ -64,7 +64,7 @@ void turing1(int n){
             n++;
             printInfo(cont,n);
         }
-        else if(band[n] == '*' && state == '1'){
+        else if(band[n] == '*' && (state == '1' || state == '2')){
             printInfo(cont,n);
             end = 1;
             state = '2';
@@ -74,6 +74,12 @@ void turing1(int n){
             n++;
             printInfo(cont,n);
             state = '1';
+        }
+        else if(band[n] == '2'){
+            //mover a la derecha >
+            n--;
+            printInfo(cont,n);
+            state = '2';
         }
     }
     printInfo(cont,n);
