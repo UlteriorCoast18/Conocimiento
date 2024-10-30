@@ -1,0 +1,75 @@
+% Turing Machine
+% Author: Sebastian Sardina
+\documentclass[a4paper,10pt]{standalone}
+\usepackage{tikz}
+%%%<
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+%%%>
+\begin{comment}
+:Title: Turing Machine
+:Tags: Chains;Computer science
+:Author: Sebastian Sardina
+:Slug: turing-machine-2
+Partly based on Ludger Humbert's pics of Unviersal Turing Machine at
+https://haspe.homeip.net/projekte/ddi/browser/tex/pgf2/turingmaschine-schema.tex
+\end{comment}
+
+\usetikzlibrary{chains,fit,shapes}
+\begin{document}
+\begin{tikzpicture}
+    \tikzstyle{every path}=[very thick]
+
+    \edef\sizetape{0.7cm}
+    \tikzstyle{tmtape}=[draw,minimum size=\sizetape]
+    \tikzstyle{tmhead}=[arrow box,draw,minimum size=.5cm,arrow box
+    arrows={east:.25cm, west:0.25cm}]
+
+    %% Draw TM tape
+    \begin{scope}[start chain=1 going right,node distance=-0.15mm]
+        \node [on chain=1,tmtape,draw=none] {$\ldots$};
+        \node [on chain=1,tmtape] {};
+        \node [on chain=1,tmtape] (input) {1};
+        \node [on chain=1,tmtape] {1};
+        \node [on chain=1,tmtape] {0};
+        \node [on chain=1,tmtape] {0};
+        \node [on chain=1,tmtape] {0};
+        \node [on chain=1,tmtape] {0};
+        \node [on chain=1,tmtape] {};
+        \node [on chain=1,tmtape,draw=none] {$\ldots$};
+        \node [on chain=1] {\textbf{Banda de Entrada y Salida}};
+    \end{scope}
+
+    %% Draw TM Finite Control
+    \begin{scope}
+    [shift={(3cm,-5cm)},start chain=circle placed {at=(-\tikzchaincount*60:1.5)}]
+    \foreach \i in {s_i,s_1,s_2,s_3,\ddots,s_f}
+        \node [on chain] {$\i$};
+
+    % Arrow to current state
+    \node (center) {};
+    \draw[->] (center) -- (circle-2);
+
+    \node[rounded corners,draw=black,thick,fit=(circle-1) (circle-2) (circle-3) 
+        (circle-4) (circle-5) (circle-6),
+                label=below:\textbf{Posibles Estados}] (fsbox)
+            {};
+    \end{scope}
+
+    %% Draw TM head below (input) tape cell
+    \node [tmhead,yshift=-.3cm] at (input.south) (head) {$s_1$};
+
+    %% Link Finite Control with Head
+    \path[->,draw] (fsbox.north) .. controls (4.5,-1) and (0,-2) .. node[right] 
+                (headlinetext)
+                {} 
+                (head.south);
+    \node[xshift=5cm] at (headlinetext)  
+                {\begin{tabular}{c} 
+                    \textbf{El cabezal se mueve a la derecha o izquierda} \\  
+                    \textbf{(puede no moverse)} 
+                \end{tabular}};
+    \end{tikzpicture}
+\end{document}

@@ -2932,7 +2932,168 @@
     \end{cor}
 
     \begin{proof}
-        
+        name: Sumar uno en unario
+init: s0
+accept: sf
+
+
+
+//-------Función de Transición:
+
+s0,_
+s0,_,>
+
+s0,1
+s1,1,-
+
+s0,0
+s1,0,-
+
+s1,1
+s1,0,>
+
+s1,0
+s1,1,>
+
+s1,_
+sf,_,-
+
+// < = left
+// > = right
+// - = hold
+// use underscore for blank cells
+
+//States and symbols are case-sensitive
+
+//Load your code and click COMPILE.
+//or load an example (top-right).
+
+name: invertirCadena
+init: s0
+accept: s1,sf,l,c,u
+
+//esto para que se empiece a mover
+
+s0,_
+s0,_,>
+
+s0,0
+x,0,<
+
+s0,1
+x,1,<
+
+x,_
+s1,2,>
+
+s1,0
+s1,0,>
+
+s1,1
+s1,1,>
+
+//logica cuando encuentre cosas
+
+s1,_
+s2,_,<
+
+s2,_
+s2,_,<
+
+s2,0
+c00,_,>
+
+s2,1
+u00,_,>
+
+//mueve cosas al inicio
+
+c00,_
+m,0,<
+
+u00,_
+m,1,<
+
+//ya en ciclo
+
+//mueve derecha
+
+m,_
+l,_,<
+
+l,_
+l,_,<
+
+l,0
+c0,_,>
+
+l,1
+u0,_,>
+
+c0,_
+c0,_,>
+
+//mueve izquierda
+
+u0,_
+u0,_,>
+
+c0,0
+c1,0,>
+
+c0,1
+c1,1,>
+
+u0,0
+u1,0,>
+
+u0,1
+u1,1,>
+
+c1,0
+c1,0,>
+
+c1,1
+c1,1,>
+
+u1,0
+u1,0,>
+
+u1,1
+u1,1,>
+
+c1,_
+m,0,<
+
+u1,_
+m,1,<
+
+m,0
+m,0,<
+
+m,1
+m,1,<
+
+l,2
+sf,_,>
+
+sf,_
+sf,_,>
+
+sf,0
+sff,0,-
+
+sf,1
+sff,1,-
+
+
+
+
+
+
+
+
+
     \end{proof}
 
     \chapter*{Ejemplo Nuevo tipo de Tabla}
