@@ -16,6 +16,7 @@
 \usepackage{tikz}
 \usepackage{pgffor}
 \usepackage{ifthen}
+\usepackage{bbm}
 
 \usetikzlibrary{shapes.multipart}
 
@@ -31,7 +32,7 @@
 
 \AddToHook{shipout/foreground}{
     \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
-        \node[rectangle,black,rotate=30,scale=2,opacity=0.08] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}}; 
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}}; 
   \end{tikzpicture}
 }
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
@@ -145,6 +146,7 @@
 \newcommand{\Iso}[3]{\ensuremath{\textup{I}_{\textup{SO}_{#1}}\left(#2,#3\right)}}
 \newcommand{\SO}[1]{\ensuremath{\textup{SO}\left(#1\right)}}
 \newcommand{\Quo}[1]{\ensuremath{\textup{Quo}\left(#1 \right)}}
+\newcommand{\bbm}[1]{\mathbbm{#1}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -161,7 +163,9 @@
 
     %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
 
-    \chapter{Moduos, Homomorfismos y Secuencias exactas}
+    \chapter{Módulos, Homomorfismos y Secuencias exactas}
+
+    \section{Módulos y homomorfismos}
 
     Los módulos son una generalización de los grupos abelianos y lo enteros (los cuales son módulos sobre $\mathbb{Z}$).
 
@@ -264,7 +268,174 @@
 
     Por lo que, en lo que sigue del texto se denotará por 0 a $0_A,0_R$, $0\in\mathbb{Z}$ y al módulo trivial $\left\{0\right\}$.
 
+    \begin{exa}
+        Todo grupo abeliano $G$ es un $\mathbb{Z}$ módulo unitario izquierdo (en particular, puede ser derecho por ser abeliano), bajo la operación $(n,a)\mapsto na $, siendo $na$ la suma de $a$ consigo mismo $n$-veces.
+    \end{exa}
+
+    \begin{exa}
+        Si $S$ es un anillo y $R$ es un subanillo, entonces $S$ es un $R$-módulo (pero no al revés, ya que puede que la operación se salga de $S$) con $ra$ siendo $r\in R$ y $a\in S$. En particular, los anillos:
+        \begin{equation*}
+            R[x_1,...,x_n]\quad\textup{y}\quad R[[x]]
+        \end{equation*}
+        son $R$-módulos, los cuáles son unitarios si $R$ posee identidad.
+    \end{exa}
+
+    \begin{exa}
+        Sean $R$, $S$ anillos y $\cf{\varphi}{R}{S}$ un homomorfismo de anillos. Entonces todo $S$-módulo puede hacerse un $R$-módulo definiendo $rx$ (con $x\in A$) por $\varphi(r)x$, esto es:
+        \begin{equation*}
+            rx=\varphi(r)x
+        \end{equation*}
+        donde la operación de la derecha se toma en el $S$-módulo, $A$. En este caso se dice que la estructura de $R$-módulo de $A$ está dada por el \textbf{pullback a lo largo de $\varphi$}.
+    \end{exa}
+
+    \begin{mydef}
+        Sean $A$ y $B$ módulos sobre un anillo $R$. Una función $\cf{f}{A}{B}$ es un \textbf{homomorfismo de $R$-módulos}, si para todo $a,b\in A$ y para todo $r\in R$ se tiene que:
+        \begin{equation*}
+            f(a+b)=f(a)+f(b)\quad\textup{y}\quad f(ra)=rf(a)
+        \end{equation*}
+        si $R$ es un anillo de división, entonces $f$ es llamada \textbf{transformación lineal}.
+    \end{mydef}
+
+    En el contexto actual, los homomorfismos de $R$-módulos serán simplemente llamados homomorfismos. Se adopta la misma terminología de monomorfismo, epimorfismo e isomorfismo. Se define también de forma análoga el \textbf{núcleo} o \textbf{kernel} de $f$ por:
+    \begin{equation*}
+        \ker(f)=\left\{a\in A\Big|f(a)=0 \right\}
+    \end{equation*}
+    con lo que se tienen los siguientes resultados (que provienen directamente de lo probado en anillos):
+
+    \begin{theor}
+        Sean $A$ y $B$ dos $R$-módulos y $\cf{f}{A}{B}$ un homomorfismo.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item $f$ es monomorfismo si y sólo si $\ker(f)=\left\{0 \right\}$.
+            \item $f$ es isomorfismo si y sólo si existe un homomorfismo de $R$-módulos $\cf{g}{B}{A}$ tal que $g\circ f = \bbm{1}_A$ y $f\circ g=\bbm{1}_B$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{exa}
+        Todo homomorifsmo entre grupos abelianos es un homomorfismo de $\mathbb{Z}$-módulos.
+    \end{exa}
+
+    \begin{exa}
+        Si $R$ es un anillo, la función de $R[x]$ en $R[x]$ dada por: $f(x)\mapsto xf(x)$ es un homomorfismo de $R$-módulos, pero no es un homomorfismo de anillos (no separa productos).
+    \end{exa}
+
+    \begin{obs}
+        Para un anillo $R$ dado, la clase de todos los $R$-módulos forma una categoría concreta, denotada por $\mathcal{M}_R$ para los módulos derechos y ${}_R\mathcal{M}$ para los izquierdos.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $R$ un anillo, $A$ un $R$-módulo y $B\subseteq A$ un subconjunto no vacío. Se dice que $B$ es un \textbf{submódulo de $A$} si $B$ es un subgrupo aditivo de $A$ y, para todo $r\in R$ se tiene que:
+        \begin{equation*}
+            rb\in B,\quad\forall b\in B
+        \end{equation*}
+        un submódulo de un espacio vectorial es llamado \textbf{subespacio vectorial}.
+    \end{mydef}
+
+    \begin{obs}
+        Todo submódulo es en sí mismo un módulo. Todo submódulo de un módulo unitario es también untario.
+    \end{obs}
+
+    \begin{exa}
+        Si $\left\{B_i\Big|i\in I \right\}$ es una familia de submódulos de un módulo $A$, entonces $\bigcap_{ i\in I}B_i$ es un submódulo de $A$.
+    \end{exa}
+
+    \begin{mydef}
+        Sea $A$ un $R$-módulo y $X\subseteq A$, entonces la intersección de todos los submódulos que contienen a $X$ es llamado el \textbf{submódulo generado por $X$}.
+    \end{mydef}
+
+    Si $X$ es finito y $X$ genera al módulo $B$, se dice que $B$ es \textbf{finitamente generado}. Si $X$ tiene un solo elemento, se dice que $B$ es un \textbf{módulo cíclico}.
+
+    Si $\left\{B_i \right\}_{ i\in I}$ es una familia de submódulos de $A$, entonces el submódulo generado por $\bigcup_{ i\in I}B_i$ es llamado la \textbf{suma de los módulos $B_i$}. Si el conjunto $I$ es finito, esto se denota por:
+    \begin{equation*}
+        B_1+\cdots+B_n
+    \end{equation*}
+
+    \begin{theor}
+        Sea $R$ un anillo, $A$ un $R$-módulo, $X\subseteq X$, $\left\{B_i \right\}_{ i\in I}$ una familia de submódulos de $A$ y $a\in A$. Tomemos $Ra=\left\{ra\Big|r\in R \right\}$.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item $Ra$ es un submódulo de $A$ y la función de $R$ en $Ra$ dada por $r\mapsto ra$ es un epimorfismo de $R$-módulos.
+            \item El submódulo cíclico $C$ generado por $a$ es
+            \begin{equation*}
+                \left\{ra+na\Big|r\in R,n\in\mathbb{Z} \right\}
+            \end{equation*}
+            si $R$ tiene identidad y $C$ es unitario, entonces $C=Ra$.
+            \item El submódulo $D$ generado por $X$ es:
+            \begin{equation*}
+                \left\{\sum_{ i=1}^s r_ia_i+\sum_{ j=1}^t n_jb_j\Big|s,t\in\mathbb{N}^*;a_i,b_j\in X;r_i\in R;n_j\in\mathbb{Z} \right\}
+            \end{equation*}
+            si $R$ tiene identidad y $A$ es unitario, entonces:
+            \begin{equation*}
+                D=RX=\left\{\sum_{ i=1}^s r_ia_r\Big|i\in\mathbb{N}^*;r_i\in R;a_i\in X \right\}
+            \end{equation*}
+            \item La suma de la familia $\left\{B_i\Big|i\in I \right\}$ consiste de todas las sumas finitas $b_1+\cdots+b_{ i_n}$ con $b_{ i_k}\in B_{ i_k}$ para todo $k=1,...,n$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De \textit{(a)}: Veamos que $Ra$ es un $R$-módulo. Claramente $s(ra)$ está bien definida (sigue en $Ra$ ya que $A$ es un $R$-módulo). Veamos que:
+        \begin{itemize}
+            \item Sean $ra,sa\in Ra$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    t(ra+sa)&=t(ra)+t(sa)\\
+                \end{split}
+            \end{equation*}
+            \item Sean $r,s\in R$ y $ta\in Ra$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    (r+s)(ta)&=((r+s)t)a\\
+                    &=(rt+st)a\\
+                    &=(rt)a+(st)a\\
+                    &=r(ta)+s(ta)\\
+                \end{split}
+            \end{equation*}
+            \item Sean $r,s\in R$ y $ta\in Ra$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    r(s(ta))&=r((st)a)\\
+                    &=(r(st))a\\
+                    &=((rs)t)a\\
+                    &=(rs)(ta)\\
+                \end{split}
+            \end{equation*}
+        \end{itemize}
+        por tanto, $Ra$ es un $R$-módulo. Claramente la función $r\mapsto ra$ es un epimorfismo de módulos.
+
+        De \textit{(b)}: Sea $C$ el submódulo cíclico generado por $a$, esto es, es la intersección de todos los submódulos que contienen a $a$.
+        %TODO
+    \end{proof}
+
+    \begin{theor}
+        Sea $B$ un submódulo de un módulo $A$ sobre un anillo $R$. Entonces, el grupo cociente $A/B$ es un $R$-módulo con la acción de $R$ en $A/B$ dada por:
+        \begin{equation*}
+            r(a+B)=ra+B,\quad\forall r\in R\textup{ y }\forall a\in A
+        \end{equation*}
+        la función $\cf{\pi}{A}{A/B}$ dada por $a\mapsto a+B$ es un epimorfismo de $R$-módulos con kernel $B$.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
     %TODO
+
+    \newpage
+
+    \section{Ejercicios}
+
+    \begin{obs}
+        $R$ es un anillo.
+    \end{obs}
+
+    \begin{excer}
+        Si $A$ es un grupo abeliano y $n>0$ es natural tal que $na=0$ para todo $a\in A$, entonces $A$ es un $\mathbb{Z}/\mathbb{Z}n$-módulo untario con la acción dada por:
+        \begin{equation*}
+            [k]a=ka,\quad\forall k\in\mathbb{Z}
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        Veamos que en efecto, $A$ es un $\mathbb{Z}/\mathbb{Z}n$-módulo:
+    \end{proof}
 
     \newpage
 
