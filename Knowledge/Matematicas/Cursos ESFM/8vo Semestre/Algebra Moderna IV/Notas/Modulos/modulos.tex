@@ -147,6 +147,7 @@
 \newcommand{\SO}[1]{\ensuremath{\textup{SO}\left(#1\right)}}
 \newcommand{\Quo}[1]{\ensuremath{\textup{Quo}\left(#1 \right)}}
 \newcommand{\bbm}[1]{\mathbbm{#1}}
+\newcommand{\im}{\ensuremath{\textup{Im}}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -413,8 +414,76 @@
     \end{theor}
 
     \begin{proof}
-        
+        Como $B$ es submódulo de $A$, en particular es subgrupo del grupo abeliano $A$, por lo que el grupo cociente $A/B$ está bien definido. Consideremos ahora la operación
+        \begin{equation*}
+            (r,a+B)\mapsto r(a+B)=ra+B
+        \end{equation*}
+        de $R\times A/B$ en $A/B$. Afirmmaos que esta función está bien definida. En efecto, si $a,a'\in A$ son tales que $a-a'\in B$, entonces al ser $B$ submódulo de $A$, se sigue que $r(a-a')=ra-ra'\in B$, lo cual implica que:
+        \begin{equation*}
+            ra+B=ra'+B
+        \end{equation*}
+        así, la acción está bien definida. Veamos ahora que $A/B$ es un $R$-módulo. En efecto, hay que verificar tres condiciones:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Sean $r\in R$ y $a,c\in A$. Entonces:
+            \begin{equation*}
+                \begin{split}
+                    r\left[\left(a+B \right)+\left(c+B \right)\right]&=r\left[a+c+B \right]\\
+                    &=r(a+c)+B\\
+                    &=ra+rc+B\\
+                    &=(ra+B)+(rc+B)\\
+                    &=r(a+B)+r(c+B)\\
+                \end{split}
+            \end{equation*}
+            \item Sean $r,s\in R$ y $a\in A$. Entonces:
+            \begin{equation*}
+                \begin{split}
+                    (r+s)(a+B)&=(r+s)a+B \\
+                    &=ra+sa+B\\
+                    &=(ra+B)+(sa+B)\\
+                    &=r(a+B)+s(a+B)\\
+                \end{split}
+            \end{equation*}
+            \item Sean $s,t\in R$ y $a\in A$. Entonces:
+            \begin{equation*}
+                \begin{split}
+                    r\left(s\left(a+B\right)\right)&=r\left(sa+B \right)\\
+                    &=r(sa)+B\\
+                    &=(rs)a+B\\
+                    &=(rs)(a+B)\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+        por los incisos anteriores se sigue que $A/B$ es un $R$-módulo. Ya se sabe que $\cf{\pi}{A}{A/B}$ es un epimomorfismo de grupos, para ver que lo es de $R$-módulos, veamos que:
+        \begin{equation*}
+            \begin{split}
+                \pi\left(r\left(a+B\right)\right)&=\pi\left(ra+B\right)\\
+                &=ra\\
+                &=r\pi\left(a+B \right)\\
+            \end{split}
+        \end{equation*}
+        para todo $a\in A$ y para todo $r\in R$. Por ende, $\pi$ es un epimofrismo de $R$-módulos.
     \end{proof}
+
+    También se cumplen los teoremas de isomorfismos, que solo se van a enlistar (después se van a probar, solo falta con ver que es homomorfismo de $R$-módulos dependiendo del caso).
+
+    \begin{theor}[\textbf{Primer Teorema de Isomorfismo}]
+        Sea $R$ un anillo, $\cf{f}{A}{B}$ un homomorfismo de $R$-módulos y $C$ un submódulo de $\ker f$. Entonces, existe un único homomorfismo de $R$-módulos $\cf{\overline{f}}{A/C}{B}$ tal que
+        \begin{equation*}
+            \overline{f}(a+C)=f(a),\quad\forall a\in A
+        \end{equation*}
+        además, $\im\overline{f}=\im f$ y $\ker\overline{f}=\ker f/C$. Además, $\overline{f}$ es un isomorfismo de $R$-módulos si y sólo si $f$ es un epimorfismo de $R$-módulos tal que $C=\ker f$. En particular,
+        \begin{equation*}
+            A/\ker f\cong\im f
+        \end{equation*}
+    \end{theor}
+
+    \begin{theor}
+        
+    \end{theor}
+
+    \begin{theor}[\textbf{Segundo y Tercer Teorema de isomorfismos}]
+        
+    \end{theor}
 
     %TODO
 
@@ -437,13 +506,128 @@
         Veamos que en efecto, $A$ es un $\mathbb{Z}/\mathbb{Z}n$-módulo:
     \end{proof}
 
+    \begin{excer}
+        Sea $\cf{f}{A}{B}$ un homomorfismo de $R$-módulos.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item $f$ es monomorfismo si y sólo si para todo par de homomorfismos de $R$-módulos, $\cf{g,h}{D}{A}$ tales que $f\circ g=f\circ h$, tenemos que $g=h$.
+            \item 
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $I$ un ideal izquierdo de un anillo $R$ y sea $A$ un $R$-módulo.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Si $S$ es un subconjunto no vacío de $A$, entonces
+            \begin{equation*}
+                IS=\left\{\sum_{ i=1}^n r_ia_i\Big|n\in\mathbb{N}^*;r_i\in I;a_i\in S \right\}
+            \end{equation*}
+            es un submódulo de $A$. Note que si $S=\left\{a \right\}$, entonces $IS=Ia=\left\{ra\Big|r\in I \right\}$.
+            \item Si $I$ es un ideal por ambos lados, entonces $A/IA$ es un $R/I$ módulo con la acción de $R/I$ dada por:
+            \begin{equation*}
+                (r+I)(a+I)=ra+IA
+            \end{equation*}
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Si $R$ tiene identidad, entonces todo $R$-módulo unitario cíclico es isomorfo a un $R$-módulo de la forma $R/J$, donde $J$ es un ideal izquierdo de $R$.
+    \end{excer}
+
+    \begin{proof}
+        Sea $C$ el $R$-módulo unitario cíclico generado por $a$, esto es:
+        \begin{equation*}
+            C=\left\{ra\Big|r\in R \right\}
+        \end{equation*}
+        definimos el conjunto $J$ dado por:
+        \begin{equation*}
+            J=\left\{r\in R\Big|ra=0 \right\}
+        \end{equation*}
+        Afirmamos que $J$ es ideal izquierdo de $R$. En efecto, veamos que:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Sean $s,t\in J$, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    (s-t)a&=sa-ta\\
+                    &=0\\
+                \end{split}
+            \end{equation*}
+            por ende, $s-t\in J$.
+            \item Sea $s\in J$ y $r\in R$, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    (rs)a&=r(sa)\\
+                    &=r\cdot0\\
+                    &=0\\
+                \end{split}
+            \end{equation*}
+            por ende, $rs\in J$.
+        \end{enumerate}
+        por los dos incisos anteriores se sigue que $J$ es un ideal izquierdo de $R$. Por ejemplos anteriores se tiene que $R/J$ es un $R$-módulo. Considere la función $\cf{f}{C}{R/J}$ dado por:
+        \begin{equation*}
+            f(ra)=r+J,\quad\forall ra\in C
+        \end{equation*}
+        afirmamos que $f$ es un homomorfismo de $R$-módulos. En efecto:
+        \begin{itemize}
+            \item \textbf{$f$ es homomorfismo de $R$-módulos}. Sean $r_1a_1,r_2a_2\in C$. Se tiene:
+            \begin{equation*}
+                \begin{split}
+                    f(r_1a_1+r_2a_2)&=r_1+r_2+J\\
+                    &=(r_1+J)+(r_2+J)\\
+                    &=f(r_1a_1)+f(r_2a_2)\\
+                \end{split}
+            \end{equation*}
+            y, si $ra\in C$, entonces para $t\in R$ se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    f\left(t(ra) \right)&=f((tr)a)\\
+                    &=tr+J\\
+                    &=t(r+J)\\
+                    &=tf(ra)\\
+                \end{split}
+            \end{equation*}
+            \item \textbf{$f$ es monomorfismo}: Sea $ra\in C$. Veamos que:
+            \begin{equation*}
+                \begin{split}
+                    f(ra)=J&\iff r+J=J\\
+                    &\iff r\in J\\
+                    &\iff ra=0\\
+                \end{split}
+            \end{equation*}
+            por lo que, $\ker f=\left\{0 \right\}$.
+            \item Para cada $r+J\in R/J$ existe $ar\in C$ tal que $f(ra)=r+J$.
+        \end{itemize}
+        por los tres incisos anteriores, se tiene que $f$ es isomorfismo de $R$-módulos.
+    \end{proof}
+
+    \begin{mydef}
+        Si $R$ tiene identidad, entonces un $R$-módulo unitario $A$ no cero es \textbf{simple} si sus únicos submódulos son $0$ y $A$.
+    \end{mydef}
+
+    \begin{excer}[Nombre]
+        Pruebe lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Todo $R$-módulo simple es cíclico.
+            \item Si $A$ es simple, entonces todo $R$-módulo endomorfismo es la función cero o es un isomorifsmo.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que un $R$-módulo finitamente generado no necesariamente es un grupo abeliano finitamente generado.
+    \end{excer}
+
     \newpage
-
-    \section{Referencias}
-
-    \begin{itemize}
-        \item \textit{Algebra} de Thomas Hungerford, ed. Springer.
-    \end{itemize}
 
     \chapter{Módulos Libres y Espacios Vectoriales}
 
@@ -530,5 +714,11 @@
         \end{equation*}
         lo que prueba el resultado.
     \end{proof}
+
+    \section{Referencias}
+
+    \begin{itemize}
+        \item \textit{Algebra} de Thomas Hungerford, ed. Springer.
+    \end{itemize}
 
 \end{document}
