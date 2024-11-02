@@ -12,6 +12,7 @@
 \usepackage{enumerate}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{enumitem}
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
@@ -402,8 +403,109 @@
 
     \begin{propo}
         \label{MultSumSeriesPot}
-        Sean 
+        Sean $\sum_{n=0}^\infty a_n$ y $\sum_{n=0}^\infty b_n$ dos series absolutamente convergentes, y sea
+        \begin{equation*}
+            c_n=\sum_{ k=0}^n b_ka_{ n-k},\quad\forall n\in\mathbb{N}\cup\left\{0\right\}
+        \end{equation*}
+        entonces, $\sum_{n=0}^\infty c_n$ es absolutamente convergente, y:
+        \begin{equation*}
+            \sum_{n=0}^\infty c_n=\left(\sum_{n=0}^\infty a_n\right)\cdot\left(\sum_{n=0}^\infty b_n\right)
+        \end{equation*}
     \end{propo}
+
+    \begin{proof}
+        %TODO
+        Ejercicio.
+    \end{proof}
+
+    \section{Funciones Analíticas}
+
+    Se definen las funciones analíticas y se dan algunos ejemplos.
+
+    \begin{mydef}
+        Sea $G\subseteq\mathbb{C}$ abierto y $\cf{f}{G}{\mathbb{C}}$ una función. Entonces, $f$ es \textbf{diferenciable en $a\in G$}, si el límite:
+        \begin{equation*}
+            \lim_{ h\rightarrow0}\frac{f(a+h)-f(a)}{h}
+        \end{equation*}
+        existe; el valor de este límite es denotado por $f'(a)$ y es llamado la \textbf{derivada de $f$ en $a$}. Si $f$ es diferenciable en todo punto de $G$, decimos que $f$ es \textbf{diferenciable en $G$}.
+
+        Puede entonces definirse una función $\cf{f'}{G'\subseteq G}{\mathbb{C}}$, donde $G'\subseteq G$ es el conjunto de puntos donde $f$ es diferenciable. En caso de que $f$ sea diferenciable en todo $G$, se sigue que $G'=G$.
+
+        Si $f'$ es continua, decimos que $f$ es \textbf{diferenciable continua}. Si $f'$ es diferenciable, decimos que $f$ es \textbf{dos veces diferenciable}, continuando, una función $f$ tal que cada derivada sucesiva es diferenciable se dice \textbf{infinitamente diferenciable}.
+    \end{mydef}
+
+    \begin{propo}
+        Si una función $\cf{f}{G}{\mathbb{C}}$ es diferenciable en $a\in G$, entonces $f$ es continua en $a$.
+    \end{propo}
+
+    \begin{proof}
+        Veamos que:
+        \begin{equation*}
+            \begin{split}
+                \lim_{ z\rightarrow a}\abs{f(z)-f(a)}&=\lim_{ z\rightarrow a}\left(\frac{\abs{f(z)-f(a)}}{\abs{z-a}}\cdot\abs{z-a}\right)\\
+                &=\lim_{ z\rightarrow a}\left(\frac{\abs{f(z)-f(a)}}{\abs{z-a}}\right)\cdot\lim_{ z\rightarrow a}\abs{z-a}\\
+                &=\abs{\lim_{ z\rightarrow a}\frac{f(z)-f(a)}{z-a}}\cdot 0\\
+                &=\abs{f'(a)}\cdot 0\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        lo cual prueba el resultado.
+    \end{proof}
+
+    \begin{mydef}
+        Una función $\cf{f}{G}{\mathbb{C}}$ es \textbf{analítica} si es diferenciable continua en $G$.
+    \end{mydef}
+
+    Se sigue rápidamente (como en cálculo), que las sumas y productos de funciones analíticas siguen siendo analíticas. Si $f$ y $g$ son analíticas en $G$ y $G_1$ es el conjunto de puntos donde $g$ no es cero, entonces $f/g$ es analítica en $G_1$.
+
+    Como la función constante y $z$ son analíticas, se sigue que todas las funciones racionales son analíticas en el complemento de los ceros del denominador.
+
+    Más aún, todas las leyes de diferenciación de sumas, productos y cocientes siguen siendo válidas.
+
+    \begin{theor}[\textbf{Regla de la Cadena}]
+        Sean $f,g$ funciones analíticas en $G$ y $\Omega$, respectivamente y suponga que $f(G)\subseteq\Omega$. Entonces, $f\circ g$ es analítica en $G$ y:
+        \begin{equation*}
+            (g\circ f)'(z)=g'(f(z))\cdot f'(z),\quad\forall z\in G
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        Sea $z_0\in G$. Como $G$ es abierto, existe $r>0$ tal que
+        \begin{equation*}
+            \left\{\abs{z_0-z}<r\Big|z\in\mathbb{C} \right\}\subseteq G
+        \end{equation*}
+        para probar que el límite
+        \begin{equation*}
+            \lim_{ h\rightarrow 0}\frac{g\circ f(z_0+h)-g\circ f(z_0)}{h}
+        \end{equation*}
+        existe, basta con mostrar que para toda sucesión $\left\{h_n \right\}_{ n=1}^\infty$ en $\mathbb{C}\setminus\left\{0\right\}$ que converja a 0 se cumple que el límite
+        \begin{equation*}
+            \lim_{ n\rightarrow\infty}\frac{g\circ f(z_0+h_n)-g\circ f(z_0)}{h_n}
+        \end{equation*}
+        existe y es igual a $g'(f(z_0))\cdot f'(z_0)$. En efecto, sea $\left\{h_n \right\}_{ n=1}^\infty$ una sucesión que converge a 0, podemos asumir que:
+        \begin{equation*}
+            0<\abs{h_n}<r,\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        Haremos la prueba por casos:
+        \begin{enumerate}[label = \textit{\quad Caso \arabic*:}]
+            \item Suponga que $f(z_0)\neq f(z_0+h_n)$ para todo $n\in\mathbb{N}$. En este caso:
+            \begin{equation*}
+                \begin{split}
+                    \frac{g\circ f(z_0+h_n)-g\circ f(z_0)}{h_n}&=\frac{g\circ f(z_0+h_n)-g\circ f(z_0)}{f(z_0+h_n)-f(z_0)}\cdot\frac{f(z_0+h_n)-f(z_0)}{h_n}\\
+                \end{split}
+            \end{equation*}
+            por ser $f$ continua, se sigue que:
+            \begin{equation*}
+                \lim_{ n\rightarrow\infty}f(z_0+h_n)-f(z_0)=0
+            \end{equation*}
+            por lo que, al tomar límite cuando $n\rightarrow\infty$ se obtiene que:
+            \begin{equation*}
+                \lim_{ n\rightarrow\infty}\frac{g\circ f(z_0+h_n)-g\circ f(z_0)}{h_n}=g'(f(z_0))\cdot f'(z_0)
+            \end{equation*}
+            \item $f(z_0)=f(z_0+h_n)$ para todo $n\in J\subseteq\mathbb{N}$, donde $J$ es un conjunto infinito.
+        \end{enumerate}
+
+    \end{proof}
 
     \section{Ejercicios}
 
@@ -458,12 +560,11 @@
         \end{equation*}
     \end{proof}
 
-
-
     \chapter*{Bibliografía}
 
     \begin{itemize}
         \item A. Markusevich, \textit{Teoría de las funciones analíticas}, Ed. Mir Moscu.
+        \item \item J. Conway, \textit{Complex Analysis}, Ed. Mir Moscu.
     \end{itemize}
     
 \end{document}

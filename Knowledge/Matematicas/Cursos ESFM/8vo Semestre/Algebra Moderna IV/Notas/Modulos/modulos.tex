@@ -148,6 +148,8 @@
 \newcommand{\Quo}[1]{\ensuremath{\textup{Quo}\left(#1 \right)}}
 \newcommand{\bbm}[1]{\mathbbm{#1}}
 \newcommand{\im}{\ensuremath{\textup{Im}}}
+\newcommand{\coim}{\textup{Coim}}
+    \newcommand{\coker}{\textup{Coker}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -477,13 +479,152 @@
         \end{equation*}
     \end{theor}
 
-    \begin{theor}
-        
-    \end{theor}
+    \begin{cor}
+        Sea $R$ un anillo, $A'$ un submódulo del $R$-módulo, $A$ y $B'$ submódulo del $R$-módulo, $B$ y $\cf{f}{A}{B}$ un homomorfismo de $R$-módulos tal que $f(A')\subseteq B'$. Entonces, $f$ induce un homomorfismo de $R$-módulos $\cf{\overline{f}}{A/A'}{B/B'}$ dado por:
+        \begin{equation*}
+            a+A'\mapsto f(a)+B'
+        \end{equation*}
+        $\overline{f}$ es un isomorfismo de $R$-módulos si y sólo si $\im f+B'=B$ y $f^{-1}(B')\subseteq A'$. En particular, si $f$ es un epimorfismo tal que $f(A')=B'$ y $\ker f\subseteq A'$ entonces $\overline{f}$ es un isomorfismo de $R$-módulos.
+    \end{cor}
 
     \begin{theor}[\textbf{Segundo y Tercer Teorema de isomorfismos}]
-        
+        Sean $B$ y $C$ submódulos de un $R$-módulo $A$.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Existe un isomorfismo de $R$-módulos, $B/(B\cap C)\cong (B+C)/C$.
+            \item Si $C\subseteq B$, entonces $B/C$ es un submódulo de $A/C$, y existe un isomorfismo de $R$-módulos, $(A/C)/(B/C)\cong A/B$.
+        \end{enumerate}
     \end{theor}
+
+    \begin{theor}
+        Si $R$ es un anillo y $B$ es un submódulo de un $R$-módulo $A$, entonces existe una correspondencia uno a uno en el conjunto de todos los submódulos de $A$ que contienen a $B$ y el conjunto de todos los submódulos de $A/B$, dada por $C\mapsto C/B$. Por tanto, todo submódulo de $A/B$ es de la forma $C/B$ donde $C$ es un submódulo de $A$ que contiene a $B$. 
+    \end{theor}
+
+    Ahora daremos la existencia de los productos y coproductos en la categoría ${}_R\mathcal{M}$.
+
+    \begin{theor}
+        Sea $R$ un anillo y $\left\{A_i \right\}_{ i\in I}$ una familia no vacía de $R$-módulos, $\prod_{ i\in I}A_i$ el producto directo de los grupos abelianos $A_i$, y $\sum_{ i\in I}A_i$ la suma directa de los grupos abelianos.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item $\prod_{ i\in I}A_i$ es un $R$-módulo con la acción de $R$ dada por: $(rf)(i)=rf(i)$, para todo $f\in\prod_{ i\in I}A_i$ y para todo $i\in I$. En otras palabras, si $\left\{a_i \right\}_{ i\in I}\in\prod_{ i\in I}A_i$, entonces $r\left\{a_i \right\}_{ i\in I}=\left\{ra_i \right\}_{ i\in I}$.
+            \item $\sum_{ i\in I}A_i$ es un submódulo de $\prod_{ i\in I}A_i$.
+            \item Para cada $k\in I$, la proyección canónica $\cf{\pi_k}{\prod_{ i\in I}A_i}{A_k}$ es un epimorfismo de $R$-módulos.
+            \item Para cada $k\in I$, la inyección canónica $\cf{\iota_k}{A_k}{\prod_{ i\in I}A_i}$ es un monomorfismo de $R$-módulos.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De \textit{(a)}: Ya se sabe que $\prod_{ i\in I}A_i$ es un grupo abeliano, veamos que con la acción
+        \begin{equation*}
+            \left(r,\left\{a_i \right\}_{ i\in I} \right)\mapsto r\left\{a_i \right\}_{ i\in I}=\left\{ra_i \right\}_{ i\in I}
+        \end{equation*}
+        es un $R$-módulo. En efecto, verifiquemos las tres condiciones:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Sean $\left\{a_i \right\}_{ i\in I},\left\{b_i \right\}_{ i\in I}\in\prod_{ i\in I}A_i$ y $r\in R$, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    r\left(\left\{a_i \right\}_{ i\in I}+\left\{b_i \right\}_{ i\in I} \right)&=r\left\{a_i+b_i \right\}_{ i\in I}\\
+                    &=\left\{r(a_i+b_i) \right\}_{ i\in I}\\
+                    &=\left\{ra_i+rb_i \right\}_{ i\in I}\\
+                    &=\left\{ra_i \right\}_{ i\in I}+\left\{rb_i \right\}_{ i\in I}\\
+                    &=r\left\{a_i \right\}_{ i\in I}+r\left\{a_i \right\}_{ i\in I}\\
+                \end{split}
+            \end{equation*}
+            \item Sean $r,s\in R$ y $\left\{a_i \right\}_{ i\in I}\in\prod_{ i\in I}A_i$, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    (r+s)\left\{a_i \right\}_{ i\in I}&=\left\{(r+s)a_i \right\}_{ i\in I}\\
+                    &=\left\{ra_i+sa_i \right\}_{ i\in I}\\
+                    &=\left\{ra_i \right\}_{ i\in I}+\left\{sa_i \right\}_{ i\in I}\\
+                    &=r\left\{a_i \right\}_{ i\in I}+s\left\{a_i \right\}_{ i\in I}\\
+                \end{split}
+            \end{equation*}
+            \item Sean $r,s\in R$ y $\left\{a_i \right\}_{ i\in I}\in\prod_{ i\in I}A_i$, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    r\left(s\left\{a_i \right\}_{ i\in I} \right)&=r\left\{sa_i \right\}_{ i\in I}\\
+                    &=\left\{r(sa_i) \right\}_{ i\in I}\\
+                    &=\left\{(rs)a_i \right\}_{ i\in I}\\
+                    &=(rs)\left\{a_i \right\}_{ i\in I}\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+        por los incisos anteriores, se sigue que $\prod_{ i\in I}A_i$ es un $R$-módulo.
+
+        De \textit{(b)}: Se sigue del hecho de que para todo $r\in R$, $r0_{A_i}=0_{A_i}$, para todo $i\in I$.
+
+        De \textit{(c)} y \textit{(d)}: Son inmediatos por la definición de la acción de $R$ sobre $\prod_{ i\in I}A_i$.
+    \end{proof}
+
+    \begin{mydef}
+        En el contexto del teorema anterior, $\prod_{ i\in I}A_i$ es llamado el \textbf{producto directo (externo)} de la familia de $R$-módulos, $\left\{A_i \right\}_{ i\in I}$ y $\sum_{ i\in I}A_i$ es llamado la \textbf{suma directo (externo)} de la familia de $R$-módulos, $\left\{A_i \right\}_{ i\in I}$.
+
+        En el caso en que $I$ sea finito, digamos $I=\left\{1,...,n \right\}$, el producto directo y la suma directa coincidirán y se denotarán simplemente por:
+        \begin{equation*}
+            A_1\oplus A_2\oplus\cdots\oplus A_n
+        \end{equation*}
+
+        Las funciones $\pi_k$ (respectivamente, $\iota_k$) son llamadas \textbf{proyecciones canónicas} (respectivamente, \textbf{inyecciones}).
+    \end{mydef}
+
+    %TODO Hacer las cosas de sumas de módulos
+
+    \section{Secuencias Exactas}
+
+    \begin{mydef}
+        Un par de homomorfismos de módulos
+        \begin{equation*}
+            A\overset{f}{\rightarrow}B\overset{g}{\rightarrow}C
+        \end{equation*}
+        se dice \textbf{exacta en $B$}, si $\im f=\ker g$.
+
+        Una secuencia finita de homomorfismos de módulos
+        \begin{equation*}
+            A_0\overset{f_1}{\rightarrow}A_1\overset{f_2}{\rightarrow}\cdots\overset{f_{ n-1}}{\rightarrow}A_{ n-1}\overset{f_n}{\rightarrow}A_n
+        \end{equation*}
+        se dice \textbf{exacta}, si
+        \begin{equation*}
+            \im f_i=\ker f_{ i+1},\quad\forall i=0,1,...,n-1
+        \end{equation*}
+        
+        Una secuencia infinita de homomorfismos de módulos
+        \begin{equation*}
+            \cdots\overset{f_{ i-1}}{\rightarrow}A_{ i-1}\overset{f_i}{\rightarrow}A_i\overset{f_{ i+1}}{\rightarrow}A_{ i+1}\overset{f_{ i+2}}{\rightarrow}\cdots
+        \end{equation*}
+        es \textbf{exacta}, si $\im f_i=\ker f_{ i+1}$, para todo $i\in\mathbb{Z}$.
+    \end{mydef}
+
+    Siempre que sea conveniente, nos referiremos a la secuencia exacta de homomorfismos módulos como la secuencia de módulos.
+
+    \begin{exa}
+        Sea $A$ un $R$-módulo. Existen únicos homomorfismos de módulos $0\rightarrow A$ y $A\rightarrow 0$. Por lo que, podemos considerar a la secuencia:
+        \begin{equation*}
+            0\rightarrow A\rightarrow 0
+        \end{equation*}
+        pero esta no es exacta, ya que la imagen del primer homomorfismo es 0 y el kernel del segundo es $A$.
+    \end{exa}
+
+    \begin{exa}
+        Si $A$ y $B$ son módulos sobre un anillo $R$, entonces las secuencias:
+        \begin{equation*}
+            0\rightarrow A\overset{\iota_1}{\rightarrow}A\oplus B\overset{\pi_2}{\rightarrow}B\rightarrow 0\textup{ y }0\rightarrow B\overset{\iota_2}{\rightarrow}A\oplus B\overset{\pi_1}{\rightarrow}A\rightarrow 0
+        \end{equation*} 
+        son exactas, donde $\pi$'s y $\iota$'s son las proyecciones e inyeccoines canónicas, respectivamente.
+    \end{exa}
+
+    \begin{exa}
+        Si $C$ es submódulo de un módulo $D$, entonces la secuencia
+        \begin{equation*}
+            0\rightarrow C\overset{i}{\rightarrow}D\overset{\pi}{\rightarrow}D/C\rightarrow0
+        \end{equation*}
+        es exacta, siendo $\cf{i}{C}{D}$ el mapeo inclusión, y $\cf{\pi}{D}{D/C}$ el epimorfismo canónico.
+    \end{exa}
+
+    \begin{mydef}
+        Si $\cf{f}{A}{B}$ es un homomorifsmo de módulos, entonces $A/\ker f$ (respectivamente, $B/\im f$) es llamada la \textbf{coimagen de $f$} (respectivamente, \textbf{cokernel de $f$}) y es denotado por $\coim f$ (respectivamente, $\coker f$).
+    \end{mydef}
+
+    \begin{exa}
+        
+    \end{exa}
 
     %TODO
 
@@ -611,7 +752,7 @@
         Si $R$ tiene identidad, entonces un $R$-módulo unitario $A$ no cero es \textbf{simple} si sus únicos submódulos son $0$ y $A$.
     \end{mydef}
 
-    \begin{excer}[Nombre]
+    \begin{excer}
         Pruebe lo siguiente:
         \begin{enumerate}[label = \textit{(\arabic*)}]
             \item Todo $R$-módulo simple es cíclico.
@@ -620,11 +761,96 @@
     \end{excer}
 
     \begin{proof}
+        De \textit{(1)}: Sea $A$ un $R$-módulo simple. Si $A$ no es el módulo $0$, entonces existe $c\in A$ no cero. Considere el $R$-módulo generado por $c$, digamos:
+        \begin{equation*}
+            C=\left\{rc+nc\Big|r\in R;n\in\mathbb{Z} \right\}
+        \end{equation*}
+        como $A$ es simple, debe suceder que $C=A$ ya que $c\neq0$ y $c\in C$. Por tanto, $A$ es cíclico.
         
+        De \textit{(2)}: Sea $\cf{f}{A}{A}$ un $R$-módulo endomorfismo. Por un teorema anterior se tiene que $\ker f$ es un submódulo de $A$, el cual debe ser 0, lo cual implicaría que $f$ es isomorfismo, o es $A$, lo cual implicaría que $f$ es la función cero.
     \end{proof}
 
     \begin{excer}
         Pruebe que un $R$-módulo finitamente generado no necesariamente es un grupo abeliano finitamente generado.
+    \end{excer}
+
+    \begin{proof}
+        Considere el grupo $(\mathbb{Q},+)$, se tiene que este grupo no es finitamente generado. En efecto, si lo fuese sería de la forma:
+        \begin{equation*}
+            \mathbb{Q}=\langle a_1,\dots,a_n \rangle
+        \end{equation*}
+        con $a_1,...,a_n\in\mathbb{Q}\setminus\left\{0\right\}$. Podemos asumir sin pérdida de generalidad que $a_i\geq 0$ para todo $i=1,...,n$. También, estos elementos son de la forma:
+        \begin{equation*}
+            a_i=\frac{p_i}{q_i},\quad\forall i=1,...,n
+        \end{equation*}
+        donde $p_i,q_i\in\mathbb{N}$ son primos relativos. Sea
+        \begin{equation*}
+            q=q_1\cdots q_n
+        \end{equation*}
+        Considere ahora el conjunto:
+        \begin{equation*}
+            A=\left\{qa\Big|a\in\langle a_1,\dots,a_n \rangle;a>0 \right\}
+        \end{equation*}
+        al ser todos los elementos de $\langle a_1,\dots,a_n \rangle$ sumas finitas de $a_i$, entonces se tiene que los elementos de $A$ son números naturales. Así que $A$ es un subconjunto de los naturales no vacío, en particular tiene primer elemento, digamos $p$. Se tiene que $\frac{p}{q}$ es el mínimo elemento positivo de $\langle a_1,\dots,a_n \rangle$. Ahora, sabemos que:
+        \begin{equation*}
+            \frac{p}{q+1}\in\mathbb{Q}
+        \end{equation*}
+        pero, $\frac{p}{q+1}\notin\langle a_1,\dots,a_n \rangle$, pues este elemento es menor que el mínimo elemento positivo de este conjunto\contradiction. Por ende, $\mathbb{Q}$ no es finitamente generado como grupo abeliano.
+
+        Pero, $\mathbb{Q}$ es un $\mathbb{Q}$-módulo, el cual es finitamente generado por $1$ (se verifica rápidamente).
+    \end{proof}
+
+    \begin{excer}
+        
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $\cf{f}{A}{A}$ un homomorfismo de $R$-módulos tal que $f\circ f=f$, entonces:
+        \begin{equation*}
+            A=\ker f\oplus\im f
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        Veamos primero que $A=\ker f+\im f$. Sea $a\in A$, si $a\notin\im f$, entonces veamos que:
+        \begin{equation*}
+            f(a)=f(f(a))\Rightarrow f(a-f(a))=0
+        \end{equation*}
+        por lo que, $a-f(a)\in\ker f$, luego $a\in\ker f+\im f$ (pues, $f(a)\in\im f$).
+
+        Veamos ahora que es suma directa interna. En efecto, sea $a\in\ker f\cap\im f$, entonces existe $b\in A$ tal que:
+        \begin{equation*}
+            f(b)=a
+        \end{equation*}
+        como $a\in\ker f$ se sigue que $f(a)=0$. Observemos que:
+        \begin{equation*}
+            f(b)=f(f(b))=f(a)=0
+        \end{equation*}
+        por lo que, $b\in\ker f$, así que $a=f(b)=0$, esto es que $a=0$. Por tanto, se tiene que la suma es directa, esto es:
+        \begin{equation*}
+            A=\ker f\oplus\im f
+        \end{equation*}
+    \end{proof}
+
+    \begin{excer}[Nombre]
+        
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Si $A$ es un módulo sobre un anillo conmutativo $R$ y $a\in A$, entonces $\mathcal{O}_a=\left\{r\in R\Big|ra=0 \right\}$ es un ideal de $R$. Si $\mathcal{O}_a\neq0$, se dice que $a$ es un \textbf{elemento de torsión de $A$}.
+            \item Si $R$ es un dominio entero, entonces el conjunto $T(A)$ de todos los elementos de torsión de $A$ es un submódulo de $A$ ($T(A)$ es llamado el \textbf{submódulo de torsión}).
+            \item Muestre que el inciso anterior puede ser falso para un anillo conmutativo $R$ que no sea dominio entero.
+        \end{enumerate}
     \end{excer}
 
     \newpage
