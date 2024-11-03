@@ -502,8 +502,73 @@
             \begin{equation*}
                 \lim_{ n\rightarrow\infty}\frac{g\circ f(z_0+h_n)-g\circ f(z_0)}{h_n}=g'(f(z_0))\cdot f'(z_0)
             \end{equation*}
-            \item $f(z_0)=f(z_0+h_n)$ para todo $n\in J\subseteq\mathbb{N}$, donde $J$ es un conjunto infinito.
+            \item $f(z_0)=f(z_0+h_n)$ para todo $n\in J\subseteq\mathbb{N}$, donde $J$ es un conjunto infinito.%TODO
         \end{enumerate}
+    \end{proof}
+
+    \begin{mydef}
+        Una función compleja $f$ se dirá \textbf{analítica en $A\subseteq\mathbb{C}$}, si existe $G\subseteq\mathbb{C}$ tal que $f$ es analítica en $G$ y $A\subseteq G$.
+    \end{mydef}
+
+    En lo que sigue de este curso, se hará el mayor esfuerzo para ver porqué la teoría de las funciones analíticas es MUY diferente del cálculo tradicional.
+
+    \begin{propo}
+        Sea $f(z)=\sum_{ n=0}^\infty a_n(z-a)^n$ una serie de potencias con radio de convergencia $R>0$. Entonces:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Para cada $k\geq 1$, la serie:
+            \begin{equation}
+                \label{derivadaSeriePotencias}
+                \sum_{n=k}^\infty n(n-1)\cdots(n-k+1)a_n(z-a)^{ n-k}
+            \end{equation}
+            tiene radio de convergencia $R>0$.
+            \item La función $f$ es infinitamente diferenciable en $B(a,R)$ y más aún, $f^{(k)}$ está dada por la serie en la ecuación (\ref{derivadaSeriePotencias}).
+            \item Para todo $n\geq0$:
+            \begin{equation*}
+                a_n=\frac{1}{n!}f^{(n)}(a)
+            \end{equation*}
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Podemos asumir que $a=0$, ya que la función $z\mapsto z-a$ es diferenciable en $\mathbb{C}$.
+
+        De \textit{(a)}: Basta probar el caso con $k=1$, ya que por inducción se sigue rápidamente que se cumple para todo $k\geq1$. Probaremos que el radio de convergencia de la serie:
+        \begin{equation*}
+            \sum_{ n=1}^\infty na_nz^{ n-1}
+        \end{equation*}
+        es $R$. Para ello, recordemos que como $\sum_{ n=0}^\infty a_n(z-a)^n$ tiene radio de convergencia $R$, se tiene:
+        \begin{equation*}
+            \frac{1}{R}=\limsup_{ n\rightarrow\infty}\abs{a_n}^{ 1/n}
+        \end{equation*}
+        queremos probar que:
+        \begin{equation*}
+            \frac{1}{R}=\limsup_{ n\rightarrow\infty}\abs{na_n}^{ 1/{n-1}}
+        \end{equation*}
+        veamos que el límite $\lim_{n\rightarrow\infty}n^{\frac{1}{n-1}}$ existe, pues se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \lim_{ n\rightarrow\infty}\frac{\ln n}{n-1}&=\lim_{ n\rightarrow\infty}\frac{1}{n}\\
+                &=0\\
+                \Rightarrow\lim_{ n\rightarrow\infty}\ln\left(n^{\frac{1}{n-1}} \right)&=0\\
+            \end{split}
+        \end{equation*}
+        al ser $x\mapsto \ln x$ una función continua, se sigue que:
+        \begin{equation*}
+            \lim_{ n\rightarrow\infty}n^{\frac{1}{n-1}}=1
+        \end{equation*}
+        Del ejercicio (\ref{productoSucesionesLimSupLim}) se sigue que:
+        \begin{equation*}
+            \begin{split}
+                \limsup_{ n\rightarrow\infty}\abs{na_n}^{\frac{1}{n-1}}&=1\cdot\limsup_{ n\rightarrow\infty}\abs{a_n}^{\frac{1}{n-1}}\\
+                &=\limsup_{ n\rightarrow\infty}\abs{a_n}^{\frac{1}{n-1}}\\
+            \end{split}
+        \end{equation*}
+        veamos que el límite superior anterior es $\frac{1}{R}$. Sea $R'>0$ tal que:
+        \begin{equation*}
+            \begin{split}
+                s
+            \end{split}
+        \end{equation*}
 
     \end{proof}
 
@@ -558,6 +623,47 @@
                 &=\sum_{n=0}^\infty\frac{(iy)^{2k}}{(2k)!}+\sum_{k=0}^\infty\frac{(iy)^{2k+1}}{(2k+1)!}\\
             \end{split}
         \end{equation*}
+    \end{proof}
+
+    \begin{excer}
+        \label{productoSucesionesLimSupLim}
+        Pruebe que si $\left\{a_n\right\}_{ n=1}^\infty$ y $\left\{b_n\right\}_{ n=1}^\infty$ son dos sucesiones de números no negativos tales que $0\leq b=\lim_{ n\rightarrow\infty}b_n$ y $a=\limsup_{ n\rightarrow\infty}a_n$, entonces:
+        \begin{equation*}
+            \limsup_{ n\rightarrow\infty}(a_nb_n)=ab
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        Antes, notemos que al tenerse:
+        \begin{equation*}
+            \limsup_{ n\rightarrow\infty}a_n=a
+        \end{equation*}
+        se tiene que el siguiente límite existe:
+        \begin{equation*}
+            \lim_{ n\rightarrow\infty}\left(\sup_{ k\geq n}a_k \right)
+        \end{equation*}
+        por tanto, la sucesión $\left\{\sup_{ k\geq n}a_k\right\}_{ n=1}^\infty$ es acotada. Así que, para cada $n\in\mathbb{N}$, se tiene que el supremo:
+        \begin{equation*}
+            \sup_{ k\geq n}a_k
+        \end{equation*}
+        existe. Veamos ahora que:
+        \begin{equation*}
+            \begin{split}
+                \limsup_{ n\rightarrow\infty}(a_nb_n)&=\lim_{ n\rightarrow\infty}\left(\sup_{ k\geq n}a_kb_k \right)\\
+                &=\lim_{ n\rightarrow\infty}\left(\left(\sup_{ k\geq n}a_k\right)\left(\sup_{ k\geq n}b_k\right) \right)\\
+            \end{split}
+        \end{equation*}
+        donde el supremo se puede separar ya que ambos supremos existen y ser las dos sucesiones acotadas y de números no negativos. Por ende:
+        \begin{equation*}
+            \begin{split}
+                \limsup_{ n\rightarrow\infty}(a_nb_n)&=\lim_{ n\rightarrow\infty}\left(\left(\sup_{ k\geq n}a_k\right)\left(\sup_{ k\geq n}b_k\right) \right)\\
+                &=\lim_{ n\rightarrow\infty}\left(\sup_{ k\geq n} a_k\right)\cdot\lim_{ n\rightarrow\infty}\left(\sup_{ k\geq n}b_k\right)\\
+                &=\left(\limsup_{ n\rightarrow\infty}a_n\right)\cdot\left(\limsup_{ n\rightarrow\infty}b_n\right)\\
+                &=\left(\limsup_{ n\rightarrow\infty}a_n\right)\cdot\left(\lim_{ n\rightarrow\infty}b_n\right)\\
+                &=ab\\
+            \end{split}
+        \end{equation*}
+
     \end{proof}
 
     \chapter*{Bibliografía}

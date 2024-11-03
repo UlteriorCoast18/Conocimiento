@@ -623,10 +623,60 @@
     \end{mydef}
 
     \begin{exa}
-        
+        Sea $\cf{f}{A}{B}$ es un homomorifsmo de módulos. Entonces, cada una de las siguientes secuencias es exacta:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item $0\rightarrow\ker f\rightarrow A\rightarrow\coim f\rightarrow0$.
+            \item $0\rightarrow\im f\rightarrow B\rightarrow \coker f\rightarrow0$.
+            \item $0\rightarrow\ker f\rightarrow A\overset{f}{\rightarrow}B\rightarrow\coker f\rightarrow0$.
+        \end{enumerate}
     \end{exa}
 
-    %TODO
+    \begin{obs}
+        Se tiene que $0\rightarrow A\overset{f}{\rightarrow}B$ es una secuencia exacta si y sólo si $f$ es monomorfismo. Similarmente, $B\overset{g}{\rightarrow}C\rightarrow C$ es exacta si y sólo si $g$ es epimorfismo de módulos.
+
+        Si $A\overset{f}{\rightarrow}B\overset{g}{\rightarrow}C$ es exacta, entonces: $g\circ f=0$, pues $\im f=\ker g$.
+
+        Finalmente, si $A\overset{f}{\rightarrow}B\overset{g}{\rightarrow}C\rightarrow0$ es exacta, entonces: $\coker f=B/\im f= B/\ker g=\coim g\cong C$.
+    \end{obs}
+
+    \begin{mydef}
+        Una secuencia exacta de la forma:
+        \begin{equation*}
+            0\rightarrow A\overset{f}{\rightarrow}B\overset{g}{\rightarrow}C\rightarrow0
+        \end{equation*}
+        es llamada una \textbf{secuencia exacta corta}. Observe que en particular, $f$ es monomorfismo y $g$ es epimorfismo.
+    \end{mydef}
+
+    Con la observación y definición anterior, una secuencia exacta es sólo una forma de presentar un submódulo ($A\cong \im f$) y su módulo cociente ($B/\im f=B/\ker g\cong C$).
+
+    \newcounter{figcount}
+\setcounter{figcount}{1}
+
+    \begin{lema}[\textbf{El Lema de los cinco cortos}]
+        Sea $R$ un anillo, y
+        
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_1.pdf}\\
+                Figura \thefigcount. Diagrama del Lema de los cinco cortos.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+        \\
+
+        un diagrama conmutativo de $R$-módulos y homomorfismos de $R$-módulos tal que cada fila es una secuencia exacta. Entonces:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item $\alpha,\gamma$ monomorfismos implica que $\beta$ es monomorfismo.
+            \item $\alpha,\gamma$ epimorfismos implica que $\beta$ es epimorfismo.
+            \item $\alpha,\gamma$ isomorfismos implica que $\beta$ es isomorfismo.
+        \end{enumerate}
+    \end{lema}
+
+    \begin{proof}
+        De \textit{(a)}: 
+    \end{proof}
+
+
 
     \newpage
 
@@ -644,7 +694,26 @@
     \end{excer}
 
     \begin{proof}
-        Veamos que en efecto, $A$ es un $\mathbb{Z}/\mathbb{Z}n$-módulo:
+        Primero, veremos que la acción está bien definida. En efecto, sean $k,l\in\mathbb{Z}$ tales que $[k]=[l]$, entonces $k-l\in\mathbb{Z}n$, es decir que existe $q\in\mathbb{Z}$ tal que:
+        \begin{equation*}
+            k-l=qn
+        \end{equation*}
+        Por tanto:
+        \begin{equation*}
+            \begin{split}
+                [k]a&=ka\\
+                &=(qn+l)a\\
+                &=(qn)a+la\\
+                &=0+la\\
+                &=la\\
+                &=[l]a\\
+            \end{split}
+        \end{equation*}
+        por lo cual, la acción está bien definida. Veamos ahora que en efecto, $A$ es un $\mathbb{Z}/\mathbb{Z}n$-módulo:
+        %TODO
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item 
+        \end{enumerate}
     \end{proof}
 
     \begin{excer}
@@ -850,6 +919,12 @@
             \item Si $A$ es un módulo sobre un anillo conmutativo $R$ y $a\in A$, entonces $\mathcal{O}_a=\left\{r\in R\Big|ra=0 \right\}$ es un ideal de $R$. Si $\mathcal{O}_a\neq0$, se dice que $a$ es un \textbf{elemento de torsión de $A$}.
             \item Si $R$ es un dominio entero, entonces el conjunto $T(A)$ de todos los elementos de torsión de $A$ es un submódulo de $A$ ($T(A)$ es llamado el \textbf{submódulo de torsión}).
             \item Muestre que el inciso anterior puede ser falso para un anillo conmutativo $R$ que no sea dominio entero.
+        \end{enumerate}
+        en lo que sigue, $R$ es un dominio entero.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \setcounter{enumi}{3}
+            \item Si $\cf{f}{A}{B}$ es un homomoifismo de $R$-módulos, entonces $f(T(A))\subseteq T(B)$; por ende, la reestricción $f_T$ de $f$ a $T(A)$ es un homomorfismo de $R$-módulos.
+            \item Si $0\rightarrow A\overset{f}{\rightarrow}B\overset{g}{\rightarrow}C$ es una secuencia exacta de $R$-módulos, entonces también lo es $0\rightarrow T(A)\overset{f_T}{\rightarrow}T(B)\overset{g_T}{\rightarrow}T(C)$.
         \end{enumerate}
     \end{excer}
 
