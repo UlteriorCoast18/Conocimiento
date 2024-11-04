@@ -192,6 +192,7 @@
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
 \newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand{\dom}[1]{\textup{dom}\left(#1 \right)}
 
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
@@ -425,9 +426,192 @@
         sff,1,-        
     \end{lstlisting}
 
+    \begin{mydef}
+        Una función $f$ es \textbf{computable} si:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $\dom{f}\subseteq\mathbb{N}$.
+            \item Existe un algoritmo tal que para cada $n\in\mathbb{N}$, el algoritmo al correrse con $n$ como argumento, se detiene en tiempo finito si y sólo si $n\in\dom{f}$ y en tal caso arroja $f(n)$ como salida. 
+        \end{enumerate}
+    \end{mydef}
+
+    ¿Qué es un algoritmo? Resulta que hay muchas formas de definirlo, sin embargo, nosotros adoptaremos la siguiente definición:
+
+    \begin{mydef}
+        Un \textbf{algoritmo} lo interpretaremos como una máquina de Turing.
+    \end{mydef}
+
+    \begin{obs}
+        Un algoritmo también puede verse como un código en C, C++, Python o \LaTeX (usando las librerías adecuadas).
+    \end{obs}
+
+    En la Tesis de Church-Turing, cualquier noción es equivalente.
+
+    \begin{obs}
+        De ahora en adelante consideraremos a los naturales con el 0.
+    \end{obs}
+
+    \begin{exa}
+        La función $\cf{f}{\mathbb{N}\setminus\left\{0,1\right\}}{\mathbb{N}}$ tal que $n\mapsto\min\left\{p\in\mathbb{N}\Big|p\textup{ es primo y }p\divides n \right\}$ es computable.
+    \end{exa}
+
+    \begin{proof}
+        Se tiene el siguiente algoritmo:
+        \begin{lstlisting}
+int f(int n){
+    for(int k = 2;n % k != 0;k++) return k;
+}
+        \end{lstlisting}
+    \end{proof}
+
+    \begin{exa}
+        Considere la función $\cf{g}{\left\{n^2\Big|n\in\mathbb{N} \right\}}{\mathbb{N}}$ dada por $n^2\mapsto n$. Esta función es computable.
+    \end{exa}
+
+    \begin{proof}
+        Se tiene el siguiente algoritmo:
+        \begin{lstlisting}
+int g(int m){
+    for(int k = 0;k*k != m;k++) return k;
+}
+        \end{lstlisting}
+    \end{proof}
+
+    \begin{exa}
+        La función $\cf{+}{\mathbb{N}\times\mathbb{N}}{\mathbb{N}}$ es computable.
+    \end{exa}
+
+    \begin{proof}
+        Recordemos que existe una biyección entre $\mathbb{N}\times\mathbb{N}$ y $\mathbb{N}$ dada por:
+        \begin{equation*}
+            (k,l)\mapsto 2^k(2l+1)
+        \end{equation*}
+        por lo cual, podemos ver a la función suma como una función de $\mathbb{N}$ en $\mathbb{N}$.
+    \end{proof}
+
+    \begin{obs}
+        Podemos ir más allá en el ejemplo anterior, podemos generalizar la idea anterior usando conjuntos que puedan ser representados mediante números naturales (recuerde la enumeración de Gödel).
+    \end{obs}
+
+    Veremos más ejemplos que nos ayudarán más adelante a hacer cosas más complejas:
+
+    \begin{itemize}
+        \item La función sucesor (se vió en un ejercicio anterior).
+        \item Cualquier función constante.
+        \item La $i$-ésima proyección de una $k$-tupla.
+    \end{itemize}
+    \begin{lstlisting}
+int p_2(int a, int b, int c){
+    return b;
+}
+    \end{lstlisting}
+    este ejemplo anterior es la 2-ésima proyección de una 3-tupla.
+
+    \begin{exa}
+        La función exponencial: $(a,b)\mapsto a^{b}$ es computable.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, se tiene el siguiente algoritmo:
+        \begin{lstlisting}
+int exp(int a, int b){
+    if(b==0){
+        return 1;
+    }
+    else return a*exp(a,b-1);
+}
+        \end{lstlisting}
+    \end{proof}
+
+    \begin{exa}
+        La función factorial $n\mapsto n!$ es computable.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, se tiene el siguiente algoritmo:
+        \begin{lstlisting}
+int fact(int n){
+    if(n==0) return 1;
+    else return n*fact(n-1);
+}
+        \end{lstlisting}
+    \end{proof}
+
+    \begin{exa}
+        Las funciones máximo y mínimo son computables.
+    \end{exa}
+
+    \begin{exa}
+        El algoritmo de la división es computable.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, se tiene el siguiente algoritmo:
+        \begin{lstlisting}
+int div(int a, int b){
+    for(int i=1; i*b<=a;i++){} //se queda y acaba si es que se puede dividir
+    q = i-1;
+    r = a-b*q;
+    return exp(2,q)*(2*r-1); //codificamos de esta manera la salida del programa
+}
+        \end{lstlisting}
+    \end{proof}
+
+    \begin{obs}
+        Cuando coloquemos $\cf{f}{;A}{B}$, entenderemos que $\dom{f}\subseteq A$, es decir que $f$ es una función parcial.
+    \end{obs}
+
+    \begin{theor}
+        Sea $\cf{f}{;\mathbb{N}^k}{\mathbb{N}}$ una función computable, y sean $\cf{g_1,...,g_k}{;\mathbb{N}}{\mathbb{N}}$ funciones computables. Entonces:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item La función $\cf{h_1}{;\mathbb{N}}{\mathbb{N}}$ dada por: $h_1(x)=f(g_1(x),\cdots,g_k(x))$ es computable.
+            \item La función $\cf{h_2}{;\mathbb{N}^{ k-1}}{\mathbb{N}}$ dada por:
+            \begin{equation*}
+                h_2(x_2,\cdots,x_k)=(\mu x)(f(x,x_2,\cdots,x_k)=0)
+            \end{equation*}
+            donde la función $\mu x$ es el mínimo de $x$ tal que lo de adentro se hace 0, siendo $f$ tal que para todo $i\leq x$, $f(i,x_2,...,x_k)$ está bien definido, también es computable.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De \textit{(1)}: Considere el algoritmo:
+        \begin{lstlisting}
+int h_1(int x){
+    int y_1 = g_1(x);
+    int y_2 = g_2(x);
+    ...
+    int y_k = g_k(x);
+    return f(y_1,...,y_k);
+}
+        \end{lstlisting}
+    \end{proof}
+    es una función computable, ya que si no puede calcular algún valor, se queda atorado.
+
+    De \textit{(2)}: Considere el algoritmo:
+    \begin{lstlisting}
+        int h_2(int x_2,...,int x_k){
+            for(int x=0; f(x,x_2,...,x_k)!=0;x++) return x;
+        }
+    \end{lstlisting}
+    es de una función computable.
+
+    \begin{mydef}
+        Una función computable $\cf{f}{;\mathbb{N}^k}{\mathbb{N}}$ es \textbf{total}, si $\dom{f}=\mathbb{N}^k$. En computabilidad esto se denota por:
+        \begin{equation*}
+            (\forall x_1,...,x_k)(f(x_1,...,x_k)\downarrow)
+        \end{equation*}
+        esto es, que para cualquier entrada $f$ está bien definida.
+    \end{mydef}
+
+    \begin{obs}
+        En el teorema anterior, siempre se puede hacer (2) si la función $f$ es total.
+    \end{obs}
+
+
+
+
+    
 
     \chapter{Teoremas de Completud}
-
 
 
 \end{document}
