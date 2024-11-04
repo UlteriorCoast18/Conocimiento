@@ -565,7 +565,48 @@
         Las funciones $\pi_k$ (respectivamente, $\iota_k$) son llamadas \textbf{proyecciones canónicas} (respectivamente, \textbf{inyecciones}).
     \end{mydef}
 
-    %TODO Hacer las cosas de sumas de módulos
+    \begin{theor}
+        Sea $R$ un anillo, $\left\{A_i \right\}_{ i\in I}$ una familia de $R$-módulos, $C$ un $R$-módulo, y $\left\{\cf{\varphi_i}{C}{A_i} \right\}_{ i\in I}$ una familia de homomorfismos de $R$-módulos. Entonces, existe un único homomorfismo de $R$-módulos $\cf{\varphi}{C}{\prod_{ i\in I}A_i}$ tal que
+        \begin{equation*}
+            \pi_i\circ \varphi=\varphi_i,\quad\forall i\in I
+        \end{equation*}
+        Esto es, que $\prod_{ i\in I}A_i$ está únicamente determinado hasta isomorfismos por esta propiedad, lo que quiere decir que $\prod_{ i\in I}A_i$ es un producto en la categoría de $R$-módulos.
+    \end{theor}
+
+    \begin{proof}
+        Como el producto de los grupos abelianos
+        \begin{equation*}
+            \prod_{ i\in I}A_i
+        \end{equation*}
+        está unicamente determinado por un único homomorfismo de grupos $\cf{\varphi}{C}{\prod_{ i\in I}A_i}$, dado por:
+        \begin{equation*}
+            \varphi(x)=\left\{\varphi_i(x) \right\}_{i\in I}
+        \end{equation*}
+        en particular, se cumple que:
+        \begin{equation*}
+            \begin{split}
+                \varphi(rc)&=\left\{\varphi_i(rc) \right\}_{ i\in I}\\
+                &=\left\{r\varphi_i(c) \right\}_{ i\in I}\\
+                &=r\left\{\varphi_i(c) \right\}_{ i\in I}\\
+                &=r\varphi(c)\\
+            \end{split}
+        \end{equation*}
+        por lo que $\varphi$ es el homomorfismo de $R$-módulos deseado.
+    \end{proof}
+
+    \begin{theor}
+        Sea $R$ un anillo, $\left\{A_i \right\}_{ i\in I}$ una familia de $R$-módulos, $C$ un $R$-módulo, y $\left\{\cf{\psi_i}{C}{A_i} \right\}_{ i\in I}$ una familia de homomorfismos de $R$-módulos. Entonces, existe un único homomorfismo de $R$-módulos $\cf{\psi}{C}{\sum_{ i\in I}A_i}$ tal que
+        \begin{equation*}
+            \psi\circ\iota_i=\psi,\quad\forall i\in I
+        \end{equation*}
+        Esto es, que $\sum_{ i\in I}A_i$ está únicamente determinado hasta isomorfismos por esta propiedad, lo que quiere decir que $\sum_{ i\in I}A_i$ es un coproducto en la categoría de $R$-módulos.
+    \end{theor}
+
+    \begin{proof}
+        Es análogo a lo hecho en el teorema anterior.
+    \end{proof}
+
+    %TODO
 
     \section{Secuencias Exactas}
 
@@ -673,10 +714,91 @@
     \end{lema}
 
     \begin{proof}
-        De \textit{(a)}: 
+        De \textit{(a)}: Sea $b\in B$ tal que $\beta(b)=0$. Por conmutatividad, tenemos que:
+        \begin{equation*}
+            \gamma\circ g(b)=g'\circ\beta(b)=g'(0)=0
+        \end{equation*}
+        por lo cual, como $\gamma$ es monomorfismo, debe suceder que $g(b)=0$. Como la fila de arriba es exacta, entonces $b\in\ker g=\im f$, digamos que $b=f(a)$ para algún $a\in A$. Por conmutatividad:
+        \begin{equation*}
+            f'\circ\alpha(a)=\beta\circ f(a)=\beta(b)=0
+        \end{equation*}
+        por tanto, al ser exacta la fila de abajo se tiene que $f$ es monomorfismo, por lo que $\alpha(a)=0$. Pero, $\alpha$ también es monomorfismo, luego $a=0$. Así que $b=f(a)=f(0)=0$.
+        
+        Así que $\ker\beta=0$, esto es que $\beta$ es monomorfismo.
+
+        De \textit{(b)}: Sea $b'\in B'$. Entonces, $g'(b')\in C'$. Al ser $\gamma$ un epimorfismo, existe $c\in C$ tal que $\gamma(c)=g'(b')$. Por ser la fila superior una secuencia exacta, se sigue que $g$ es epimorfismo; por ende $c=g(b)$ para algún $b\in B$. Se tiene por conmutatividad que:
+        \begin{equation*}
+            g'\circ\beta(b)=\gamma\circ g(b)=\gamma(c)=g'(b')
+        \end{equation*}
+        por lo que,
+        \begin{equation*}
+            g'(\beta(b)-b')=0
+        \end{equation*}
+        luego $\beta(b)-b'\in\ker g'=\im f'$. Por ser la fila de abajo exacta, existe $'a\in A'$ tal que:
+        \begin{equation*}
+            f'(a')=\beta(b)-b'
+        \end{equation*}
+        y, como $\alpha$ es epimorfismo, existe $a\in A$ tal que $\alpha(a)=\alpha'$. Considere el elemento $b-f(a)\in B$. Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \beta\left[b-f(a) \right]&=\beta(b)-\beta(f(a))\\
+                &=\beta(b)-f'(\alpha(a))\\
+                &=b'
+            \end{split}
+        \end{equation*}
+        por la ecuación anterior y por conmutatividad. Por tanto, $\beta$ es epimorfismo.
+
+        De \textit{(3)}: Es inmediata de \textit{(1)} y \textit{(2)}.
     \end{proof}
 
+    \begin{mydef}
+        Dos secuencias cortas exactas se dicen \textbf{isomorfas} si existe un diagrama conmutativo de homomorfismos módulos:
+        
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_2.pdf}\\
+                Figura \thefigcount. Isomorfismo entre dos secuencias exactas.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+        \\
 
+        tal que $f,g$ y $h$ son isomorfismos.
+    \end{mydef}
+
+    \begin{obs}
+        En el caso de la definición anterior, se verifica rápidamente que el diagrama:
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_2.pdf}\\
+                Figura \thefigcount. Isomorfismo entre dos secuencias exactas.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+        \\
+
+        es también conmutativo.
+    \end{obs}
+
+    Más adelante se probará que los isomorfismos de secuencias cortas exactas es una relación de equivalencia.
+
+    \begin{theor}
+        Sea $R$ un anillo y $0\rightarrow A_1\overset{f}{\rightarrow}B\overset{g}{\rightarrow}A_2\rightarrow0$ una secuencia corta exacta. Entonces, las siguientes condiciones son equivalentes:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Existe un homomorfismo de $R$-módulos $\cf{h}{A_2}{B}$ tal que $g\circ h=\bbm{1}_{ A_2}$.
+            \item \item Existe un homomorfismo de $R$-módulos $\cf{k}{B}{A_1}$ tal que $k\circ f=\bbm{1}_{ A_1}$.
+            \item La secuencia dada es isomorfa (con los mapeos identidad de $A_1$ y $A_2$) a la secuencia corta exacta con la suma exacta, esto es a $0\rightarrow A_1\overset{\iota_1}{\rightarrow}A_1\oplus A_2 \overset{\pi_2}{\rightarrow}A_2\rightarrow0$; en particular, $B\cong A_1\oplus A_2$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{mydef}
+        Una secuencia corta exacta que satisfaga alguna de las condiciones del teorema anterior se dirá que es una secuencia exacta dividida.
+    \end{mydef}
 
     \newpage
 
