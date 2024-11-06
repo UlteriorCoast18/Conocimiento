@@ -1,0 +1,10 @@
+\documentclass{standalone}
+\usepackage{tikz-cd}
+\usepackage{bbm}
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
+\begin{document}
+    \begin{tikzcd}
+    0 \arrow{r}{} & A_1\arrow{r}{\iota_1}\arrow{d}{\bbm{1}_{ A_1}} & B\arrow{r}{\pi_2}\arrow{d}{\varphi} & A_2\arrow{r}{}\arrow{d}{\bbm{1}_{ A_2}} & 0 \\
+    0 \arrow{r}{} & A_1\arrow{r}{f} & B\arrow{r}{g} & A_2\arrow{r}{} & 0
+    \end{tikzcd}
+\end{document}

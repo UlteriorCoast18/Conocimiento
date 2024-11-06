@@ -595,7 +595,7 @@
     \end{proof}
 
     \begin{theor}
-        Sea $R$ un anillo, $\left\{A_i \right\}_{ i\in I}$ una familia de $R$-módulos, $C$ un $R$-módulo, y $\left\{\cf{\psi_i}{C}{A_i} \right\}_{ i\in I}$ una familia de homomorfismos de $R$-módulos. Entonces, existe un único homomorfismo de $R$-módulos $\cf{\psi}{C}{\sum_{ i\in I}A_i}$ tal que
+        Sea $R$ un anillo, $\left\{A_i \right\}_{ i\in I}$ una familia de $R$-módulos, $C$ un $R$-módulo, y $\left\{\cf{\psi_i}{A_i}{C} \right\}_{ i\in I}$ una familia de homomorfismos de $R$-módulos. Entonces, existe un único homomorfismo de $R$-módulos $\cf{\psi}{\sum_{ i\in I}A_i}{C}$ tal que
         \begin{equation*}
             \psi\circ\iota_i=\psi,\quad\forall i\in I
         \end{equation*}
@@ -771,8 +771,8 @@
 
         \begin{minipage}{\textwidth}
             \begin{center}
-                \includegraphics[scale=1.5]{images/fig_2.pdf}\\
-                Figura \thefigcount. Isomorfismo entre dos secuencias exactas.
+                \includegraphics[scale=1.5]{images/fig_3.pdf}\\
+                Figura \thefigcount. Isomorfismo inverso entre dos secuencias exactas.
                 \stepcounter{figcount}
             \end{center}
         \end{minipage}
@@ -793,7 +793,32 @@
     \end{theor}
 
     \begin{proof}
+        \textit{(1)}$\Rightarrow$\textit{(3)}: Por el Teorema 1.1.9, los homomorfismos $f$ y $h$ inducen un único homomorfismo $\cf{\varphi}{A_1\oplus A_2}{B}$ dado por: $f(a_1,a_2)\mapsto f(a_1)+h(a_2)$. Con esto se verifica rápidamente que el diagrama:
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_4.pdf}\\
+                Figura \thefigcount. Isomorfismo que relaciona a $B$ con $A_1\oplus A_2$.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        es conmutativo. Por el Lema de los 5 cortos se sigue que $\varphi$ es isomorifismo, por lo que ambas secuencias exactas son isomorfas.
+
+        \textit{(2)}$\Rightarrow$\textit{(3)}: Análogo a lo hecho anteriormente.
+
+        \textit{(3)}$\Rightarrow$\textit{(1), (2)}: Dado el diagrama conmutativo con filas exactas y $\varphi$ un isomorfismo:
         
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_5.pdf}\\
+                Figura \thefigcount. Isomorfismo entre secuencias exactas.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        defina $h=\varphi\circ\iota_2$ y $k$ por $\pi_1\circ\varphi^{-1}$
+
     \end{proof}
 
     \begin{mydef}
@@ -1057,7 +1082,7 @@
 
     \section{Conceptos Fundamentales}
 
-    
+
     
     No queda de otra más que asumir este resultado de categorías:
 

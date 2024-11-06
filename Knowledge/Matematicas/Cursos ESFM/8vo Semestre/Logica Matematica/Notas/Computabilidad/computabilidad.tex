@@ -606,9 +606,164 @@ int h_1(int x){
         En el teorema anterior, siempre se puede hacer (2) si la función $f$ es total.
     \end{obs}
 
+    \begin{excer}
+        Codifique una máquina de Turing que sume dos números en binario.
+    \end{excer}
 
+    \begin{lstlisting}
+name: suma_numeros_binario
+init: s0
+accept: sf
 
+s0,_
+s0,_,>
 
+s0,0
+s1,0,>
+
+s1,0
+s1,0,>
+
+s0,1
+s1,1,>
+
+s1,1
+s1,1,>
+
+//operaciones de suma
+
+//el estado s_s0 nos dice que va a empezar a contar el otro numero
+//el estado s_s1 nos dice que encontro un numero positivo para sumar
+
+s1,+
+s_s0,+,>
+
+s_s0,0
+s_s0,0,>
+
+s_s0,1
+s_s1,1,>
+
+s_s1,1
+s_s1,1,>
+
+s_s1,0
+s_s1,0,>
+
+//llego al final de la cadena
+
+s_s1,_
+sr0,_,<
+
+sr0,1
+srf,0,>
+
+sr0,0
+sr0,0,<
+
+srf,0
+srf,1,>
+
+srf,_
+ss0,_,<
+
+//ss es que ahora le va sumar uno a la cadena de la izquierda
+
+ss0,0
+ss0,0,<
+
+ss0,1
+ss0,1,<
+
+ss0,+
+ss1,+,<
+
+ss1,0
+s1,1,>
+
+ss1,1
+ss1,0,<
+
+ss1,_
+s1,1,>
+
+//cuando no haya nada por sumar, simplemente se detiene
+
+s_s0,_
+sf0,_,<
+
+sf0,0
+sf0,_,<
+
+sf0,+
+sf,_,-
+
+// < = left
+// > = right
+// - = hold
+// use underscore for blank cells
+
+//States and symbols are case-sensitive
+
+//Load your code and click COMPILE.
+//or load an example (top-right).
+    \end{lstlisting}
+
+    \begin{excer}
+        Codifique una máquina de Turing que sume dos números en binario.
+    \end{excer}
+
+\begin{lstlisting}
+name: resta_numeros_1
+init: s0
+accept: sf
+
+s0,_
+s0,_,>
+
+s0,0
+s1,0,>
+
+s1,0
+s1,0,>
+
+s0,1
+s1,1,>
+
+s1,1
+s1,1,>
+
+//operaciones de resta
+
+//sr0 es estado resta inicial
+
+//srf es estado resta final
+
+s1,_
+sr0,_,<
+
+sr0,1
+srf,0,>
+
+sr0,0
+sr0,0,<
+
+srf,0
+srf,1,>
+
+srf,_
+sf,_,-
+
+// < = left
+// > = right
+// - = hold
+// use underscore for blank cells
+
+//States and symbols are case-sensitive
+
+//Load your code and click COMPILE.
+//or load an example (top-right).
+\end{lstlisting}
     
 
     \chapter{Teoremas de Completud}
