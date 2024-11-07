@@ -817,8 +817,7 @@
             \end{center}
         \end{minipage}
 
-        defina $h=\varphi\circ\iota_2$ y $k$ por $\pi_1\circ\varphi^{-1}$
-
+        defina $h=\varphi\circ\iota_2$ y $k$ por $\pi_1\circ\varphi^{-1}$. Se tiene de la conmutatividad del diagrama que $h$ y $k$ cumplen las condiciones de \textit{(1)} y \textit{(2)}.
     \end{proof}
 
     \begin{mydef}
@@ -827,7 +826,7 @@
 
     \newpage
 
-    \section{Ejercicios}
+    \section{Ejercicios Capítulo 1}
 
     \begin{obs}
         $R$ es un anillo.
@@ -1082,9 +1081,27 @@
 
     \section{Conceptos Fundamentales}
 
+    En esta sección se estudiarán los objetos libres sobre la categoría ${}_R\mathcal{M}$.
 
+    \begin{mydef}
+        Sea $A$ un $R$-módulo. Un subconjunto $X\subseteq A$ se dice \textbf{linealmente independiente}, si para todos $x_1,...,x_n\in X$ elementos distintos y para $r_1,...,r_n\in R$ se tiene que:
+        \begin{equation*}
+            r_1x_1+\cdots+r_nx_n=0\Rightarrow r_i=0,\quad\forall i=1,...,n
+        \end{equation*}
+        Un conjunto que no es linealmente independiente se dice \textbf{linealmente dependiente}. Si $A$ es generado como $R$-módulo por un conjunto $Y$, diremos que \textbf{$Y$ genera a $A$}.
+
+        
+    \end{mydef}
     
-    No queda de otra más que asumir este resultado de categorías:
+    \begin{obs}
+        Si $R$ tiene identidad y $A$ es unitario, entonces $Y$ genera a $A$ si y sólo si todo elemento de $A$ se escribe como combinación lineal $r_1y_1+\cdots+r_ny_n$.
+    \end{obs}
+
+    \begin{mydef}
+        En el contexto de la observación anterior, un conjunto linealmente independiente de $A$ que genera a $A$ es llamado una \textbf{base de $A$}.
+    \end{mydef}
+
+    No queda de otra más que asumir este resultado de categorías (ver las notas de categorías para una explicación más detallada):
 
     \begin{theor}[\textbf{Hungerford, Theorem I.7.8}]
         Si $\mathcal{C}$ es una categoría concreta, $F$ y $F'$ son objetos en $C$ tales que $F$ es libre en el conjunto $X$ y $F'$ lo es en $X'$ siendo estos conjuntos tales que $\abs{X}=\abs{X'}$, entonces $F$ es equivalente a $F'$.
