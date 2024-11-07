@@ -15,6 +15,7 @@
 \usepackage{tikz}
 \usepackage{pgffor}
 \usepackage{ifthen}
+\usepackage{bbm}
 
 \usetikzlibrary{shapes.multipart}
 
@@ -30,7 +31,7 @@
 
 \AddToHook{shipout/foreground}{
     \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
-        \node[rectangle,black,rotate=30,scale=2,opacity=0.08] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}}; 
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}}; 
   \end{tikzpicture}
 }
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
@@ -146,6 +147,7 @@
 \newcommand{\Quo}[1]{\ensuremath{\textup{Quo}\left(#1 \right)}}
 \newcommand{\Fun}[2]{\ensuremath{\textup{Fun}\left(#1,#2\right)}}
 \newcommand{\Ev}{\ensuremath{\textup{Ev}}}
+\newcommand{\bbm}[1]{\mathbbm{#1}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -2210,6 +2212,27 @@
 
     \section{Productos, coproductos y objetos libres}
 
-    Página 76 Hungerford. 
+    %Página 76 Hungerford.
+    
+    \begin{mydef}
+        En una categoría $\mathcal{C}$, un morfismo entre dos objetos $\cf{f}{A}{B}$ es llamado una \textbf{equivalencia}, si existe un morfismo $\cf{g}{B}{A}$ tal que $g\circ f=\bbm{1}_A$ y $f\circ g=\bbm{1}_B$.
+    \end{mydef}
+
+    \begin{obs}
+        La composición de equivalencias es una equivalencia (siempre que ésta esté bien definida). Si se tiene una equivalencia, se dice que los objetos entre el morfismo son \textbf{equivalentes}.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ una categoría y $\left\{A_i\Big|i\in I \right\}$ una familia de objetos de $\mathcal{C}$. Un \textbf{producto de la familia $\left\{A_i\Big|i\in I \right\}$} es un objeto $P$ de la categoría $\mathcal{C}$ junto con una familia de morfismos
+        \begin{equation*}
+            \left\{\cf{\pi_i}{P}{A_i}\Big|i\in I \right\}
+        \end{equation*}
+        tal que para cualquier objeto $B$ y una familia de morfismos $\left\{\cf{\varphi_i}{B}{A_i}\Big|i\in I \right\}$, existe un único morfismo $\cf{\varphi}{B}{P}$ tal que:
+        \begin{equation*}
+            \pi_i\circ\varphi=\varphi_i,\quad\forall i\in I
+        \end{equation*}
+    \end{mydef}
+
+    Note que ésta es una generalización natural del producto de grupos, anillos, módulos, etc...
 
 \end{document}
