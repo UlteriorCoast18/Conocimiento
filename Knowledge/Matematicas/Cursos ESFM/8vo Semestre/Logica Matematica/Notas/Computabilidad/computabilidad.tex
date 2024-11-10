@@ -229,7 +229,7 @@
         Una \textbf{máquina de Turing} consta de:
         \begin{itemize}
             \item Un \textit{alfabeto}, un conjunto finito $L$.
-            \item Un conjunto $S$ de \textit{estados}.
+            \item Un conjunto finito $S$ de \textit{estados}.
             \item Una función parcial $\cf{T}{L^*\times S}{L^*\times S\times\left\{<,-,> \right\}}$ llamada \textit{función de transición}.
         \end{itemize}
         donde $L^*=L\cup\left\{* \right\}$.
@@ -1179,7 +1179,109 @@ rsr,0
 RF,0,-
 
 //se mueve para ahora sumar a la otra cadena    
-\end{lstlisting}
+    \end{lstlisting}
+
+    \begin{mydef}
+        Un conjunto $X$ es \textbf{computable}, si puede ser visto como input de elementos de $\mathbb{N}$, y su función característica es computable.
+    \end{mydef}
+    
+    \begin{exa}
+        Sea $\cf{F}{\mathbb{N}}{\mathbb{N}}$ la función:
+        \begin{equation*}
+            F(n)=\left\{
+                \begin{array}{lcr}
+                    1 & \textup{si} & \textup{conjetura Gölbach es verdadera.}\\
+                    0 & \textup{ en } & \textup{caso contrario.}\\
+                \end{array}
+            \right.
+        \end{equation*}
+        esta función es computable.
+    \end{exa}
+
+    \begin{exa}
+        La funcion $\cf{f}{\mathbb{N}}{\mathbb{N}}$ tal que:
+        \begin{equation*}
+            f(n)=\min\left\{p\Big|p>n\textup{ y tanto }p\textup{ como }p+2\textup{ son primos}\right\}
+        \end{equation*}
+        en efecto, se tiene el siguiente algoritmo de $f$:
+    \end{exa}
+
+    \begin{lstlisting}
+int f(int n){
+    for(int i=n+1; i no es primo || i+2 tampoco lo es; i++){
+        return i;
+    }
+}
+    \end{lstlisting}
+
+    \section{Máquina Universal de Turing}
+
+    En general, los input de mis algoritmos son $\mathbb{N}$, pero podemso también codificar parejas por medio de números naturales, por lo que realmente también podemos introducir tuplas de $\mathbb{N}^k$.
+
+    \begin{obs}
+        Una máquina de Turing es un conjunto finito $\left\{a_1,...,a_n \right\}$, donde $a_i=(s_{i_1},t_{i_2},s_{i_3},t_{i_4},l)$ con $l\in\left\{<,-,> \right\}$. Podemos hacer una codificación estas 6-tuplas:
+        \begin{center}
+            \begin{tabular}{l | c | r}
+                0 & - & 0 \\
+                1 & - & | \\
+                2 & - & * \\
+                3 & - & > \\
+                \vdots & - & \vdots \\
+            \end{tabular}
+        \end{center}
+        en este caso, codificamos elementos de $\left[\left\{0,1,*,<,>,-,s_1,...,s_n \right\}^k\right]^{<\aleph_0}$ (cadenas finitas de tuplas finitas). Lo que podemos hacer enotnces es codificar máquinas de Turing.
+    \end{obs}
+
+    \begin{theor}
+        El conjunto
+        \begin{equation*}
+            \left\{x\in X\Big|x\textup{ es máquina de Turing} \right\}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \left\{n\in\mathbb{N}\Big|n\textup{ codifica una máquina de Turing} \right\}
+        \end{equation*}
+        son computables.
+    \end{theor}
+
+    \begin{proof}
+        Ver simulador de máquina de Turing.
+    \end{proof}
+    
+    \begin{mydef}
+        Denotaremos la \textbf{máquina universal de Turing} por $\varphi$, donde
+        \begin{equation*}
+            \cf{\varphi}{;\mathbb{N}^2}{\mathbb{N}}
+        \end{equation*}
+        dada por $\varphi(e,n)$ es el resultado de correr la $e$-ésima máquina de Turing con input $n$.
+    \end{mydef}
+
+    \begin{obs}
+        $\varphi$ es una función computable.
+    \end{obs}
+
+    Una forma de interpretar a $\varphi$ es el simulador de máquina de Turing, pues en este simulador introducimos una máquina de Turing y un input, así que nuestro código sería $e$ y el input sería $n$.
+    
+    \begin{mydef}
+        La función $\cf{\varphi(e,-)}{\mathbb{N}}{\mathbb{N}}$ tal que $n\mapsto\varphi(e,n)$ es llamada la \textbf{$e$-ésima función computable}.
+    \end{mydef}
+
+    \begin{theor}[\textbf{Lema del Relleno}]
+        Para cada función computable $f$, existen una infinidad de $e\in\mathbb{N}$ tales que $f=\varphi(e,-)$.
+    \end{theor}
+
+    Existen funciones que no son computables.
+
+    \begin{obs}
+        Como se pueden enumerar todas las funciones computables, el conjunto:
+        \begin{equation*}
+            \abs{\left\{\cf{f}{\mathbb{N}}{\mathbb{N}}\Big|\textup{ f es computable}\right\}}=\aleph_0
+        \end{equation*}
+        pero,
+        \begin{equation*}
+            \abs{\left\{\cf{f}{\mathbb{N}}{\mathbb{N}}\Big|f\textup{ es función} \right\}}=\aleph_1
+        \end{equation*}
+    \end{obs}
 
     \chapter{Teoremas de Completud}
 
