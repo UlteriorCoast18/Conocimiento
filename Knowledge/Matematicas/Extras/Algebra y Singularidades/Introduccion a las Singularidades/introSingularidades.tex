@@ -1,0 +1,441 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Introducción a las singularidades}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%  
+
+    \chapter{Nociones Básicas}
+
+    \section{Variedades Algebraicas}
+
+    En síntesis, las singularidades abarcan muchas ramas de las matemáticas, como son la geometría algebraica, el álgebra conmutativa, el análisis compleo, la topología algebraica y cosas sobre teoría de nudos.
+    
+    Considremos a $K$ un campo (o cuerpo), en ocasiones este puede ser considerado simplemente como un anillo, el cuál siempre será de característica 0.
+
+    En el anillo de polinomios $K[x_1,...,x_n]$ tenemos los monomios
+    \begin{equation*}
+        x^d=x_1^{d_1}\cdots x_n^{d_n}
+    \end{equation*}
+    donde $d_1+...+d_n=d$. Así que todo polinomio $f$ se puede ver como:
+    \begin{equation*}
+        f=\sum_{\textup{finita}}c_dx^d
+    \end{equation*}
+    donde $c_d\in K\setminus\left\{0 \right\}$. Se define el \textbf{grado de $f$} por:
+    \begin{equation*}
+        \deg f=\max\left\{d_1+...+d_n\Big|c_d\neq 0 \right\}
+    \end{equation*}
+
+    Consideramos el \textbf{espacio afín} $K^n$ de todas las tuplas $(a_1,...,a_k)$. Podemos también ver el \textbf{espacio proyectivo} $\mathbb{P}^n_k$, con coordenadas homogéneas $[x_0:x_1:...:x_n]$.
+
+    \begin{obs}
+        En las coordenadas homogéneas, $[x_0:x_1:...:x_n]$ es tal que $x_i$ no es cero para todo $i$. En particular también se tiene que:
+        \begin{equation*}
+            [x]=[\lambda x]=[\lambda x_0:\lambda x_1:...:\lambda x_n]
+        \end{equation*}
+        con $\lambda\in K\setminus\left\{ 0\right\}$
+    \end{obs}
+
+    \begin{obs}
+        Podemos descomponer a la variedad proyectiva $\mathbb{P}^n_k$ como:
+        \begin{equation*}
+            \mathbb{P}^n_k=K^n\cup \mathbb{P}^{ n-1}_k
+        \end{equation*}
+        donde la primera parte es una variedad afín y la segunda es un hiperplano en el infinito (no sé a qué se refiera esto). Repitiendo este proceso podemos verlo como:
+        \begin{equation*}
+            \mathbb{P}^n_k=K^n\cup K^{ n-1}\cup\cdots\cup K\cup p^t
+        \end{equation*}
+    \end{obs}
+
+    \begin{obs}
+        Podemos también descomponer al espacio proyectivo como:
+        \begin{equation*}
+            \mathbb{P}^n_k=\bigcup_{ i=0}^n U_i
+        \end{equation*}
+        donde
+        \begin{equation*}
+            U_i=\left\{[x]\Big|x_i\neq0 \right\}
+        \end{equation*}
+        cada uno de estos $U_i$ es isomorfo a $K^n$, con isomorfismo dado por:
+        \begin{equation*}
+            [x]=[x_0:x_1:...:x_{ i-1}:x_i:x_{ i+1}:...:x_n]\mapsto \left(\frac{x_0}{x_i},\frac{x_1}{x_i},\cdots,\frac{x_{ i-1}}{x_i},\frac{x_{ i+1}}{x_i},...,\frac{x_n}{x_i} \right)
+        \end{equation*}
+    \end{obs}
+
+    Consideraremos variedades algebraicas:
+    \begin{equation*}
+        V(f)=\left\{x\in K^n\Big|f(x)=0 \right\}
+    \end{equation*}
+
+    \begin{mydef}
+        Decimos que un polinomio $F\in K[x_0,x_1,...,x_n]$ es \textbf{homogéneo}, si todos sus monomios tienen el mismo grado.
+    \end{mydef}
+
+    \begin{obs}
+        La definición anterior es equivalente a que para todo $\lambda\in K$:
+        \begin{equation*}
+            F(\lambda x)=\lambda^{\deg F}F(x)
+        \end{equation*}
+        para todo $x=(x_0,x_1,...,x_n)\in K^{ n+1}$.
+    \end{obs}
+
+    \begin{mydef}
+        Si $F$ es homogéneo, entonces $V(F)$ es una \textbf{hipersuperficie}.
+    \end{mydef}
+
+    Podemos hacer un proceso para deshomogeneizar un polinomio homogéneo, de la siguiente manera:
+
+    \begin{equation*}
+        F\left(1,\frac{x_1}{x_0},...,\frac{x_n}{x_0} \right)=f(x_1,...,x_n)
+    \end{equation*}
+
+    y, podemos homogeneizar un polinomio haciendo:
+    \begin{equation*}
+        F(x_0,x_1,...,x_n)=x^{\deg f}f\left(\frac{x_1}{x_0},...,\frac{x_n}{x_0} \right)
+    \end{equation*}
+
+    \begin{exa}
+        Considere el polinomio $f=3+x_1+x_2$, entonces $F$ homogéneo sería:
+        \begin{equation*}
+            \begin{split}
+                F(x_0,x_1,x_2)&=x_0^1f\left(\frac{x_1}{x_0},\frac{x_2}{x_0}\right)\\
+                &=3x_0+x_1+x_2\\
+            \end{split}
+        \end{equation*}
+    \end{exa}
+
+    \begin{obs}
+        En ocasiones interesa que $K$ sea algebraicamente cerrado. En este caso, se nos permite escribir un polinomio como:
+        \begin{equation*}
+            f=c\cdot(x-a_1)(x-a_2)\cdots (x-a_d),\quad a_i\in K
+        \end{equation*}
+        donde $d$ es el grado del polinomio, esto para polinomios en una variable.
+    \end{obs}
+
+    \begin{obs}
+        En el caso en que $F$ sea un polinomio homogéneo en varias variables, podemos escribirlo como:
+        \begin{equation*}
+            F=c\cdot( b_1x-a_1y)\cdots( bd_x-a_dy),\quad a_i,b_i\in K
+        \end{equation*}
+        por lo que resulta importante tener la noción de polinomio homogéneo.
+    \end{obs}
+
+    \begin{mydef}
+        Dados $f=a_0x^m+a_1x^{ m-1}+\cdots+a_{ m-1}x+a_m$ y $g=b_0x^n+b_1x^{ n-1}+\cdots+b_{ n-1}x+b_n$. Se define el \textbf{resultante de $f$ y $g$}, como:
+        \begin{equation*}
+            Res(f,g)=\det A_{ m+n}(a_i,b_j)
+        \end{equation*}
+    \end{mydef}
+
+    Esta matriz se vería de esta manera:
+    \begin{equation*}
+        \left(
+            \begin{array}{cccccccccc}
+                a_0 & a_1 & a_2 & \cdots & a_m & 0 & 0 & \cdots & 0 \\
+                0 & a_0 & a_1 &  \cdots & a_{ m-1} & a_m & 0 & \cdots & 0 \\
+                a_0 & a_1 & a_2 & \cdots & a_m & 0 & 0 & \cdots & 0 \\
+                \vdots & \vdots & \vdots & \vdots  & \vdots & \vdots & \vdots & \cdots & \vdots \\
+                0 & 0 & 0 &  \underset{(n-1)\textup{-veces recorrido}}{\underbrace{\cdots}} & a_0 & a_1 & a_2 & \cdots & a_m \\
+                b_0 & b_1 & b_2 & \cdots & b_n & 0 & 0 & \cdots & 0 \\
+                0 & b_0 & b_1 &  \cdots & b_{ n-1} & b_n & 0 & \cdots & 0 \\
+                b_0 & b_1 & b_2 & \cdots & b_n & 0 & 0 & \cdots & 0 \\
+                \vdots & \vdots & \vdots & \vdots  & \vdots & \vdots & \vdots & \cdots & \vdots \\
+                0 & 0 & 0 &  \underset{(m-1)\textup{-veces recorrido}}{\underbrace{\cdots}} & b_0 & b_1 & b_2 & \cdots & b_n \\
+            \end{array}
+         \right)
+    \end{equation*}
+
+    \begin{propo}
+        $Res(f,g)=0$ si y sólo si $f$ y $g$ tienen una raíz común.
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$
+
+        $\Leftarrow):$ Suponga que existe $r\in K$ tal que $f(r)=g(r)$, entonces:
+        \begin{equation*}
+            f(x)=(x-r)p(x)\quad\textup{y}\quad g(x)=(x-r)q(x)
+        \end{equation*}
+        donde $\deg p=m-1$ y $\deg q=n-1$. Se cumple además la igualdad:
+        \begin{equation*}
+            fq-gp=0
+        \end{equation*}
+        la ecuación anterior, la podemos ver como la matriz cuadrada $B_{m+n}(a_i,b_j)$ de tamaño $m+n$. Si hacemos
+        \begin{equation*}
+            p(x)=\alpha_0x^{ m-1}+\cdots+\alpha_{ m-1}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            q(x)=\beta_0x^{ n-1}+\cdots+\beta_{ n-1}
+        \end{equation*}
+        Se reduciría todo a un sistema:
+        \begin{equation*}
+            B_{ n+m}(a_i,b_j)\left[ 
+                \begin{array}{c}
+                    \alpha_i \\
+                    \beta_j \\
+                \end{array}
+            \right]=\left[ 
+                \begin{array}{c}
+                    0 \\
+                    \vdots \\
+                    0 \\
+                \end{array}
+            \right]
+        \end{equation*}
+        (completar la demostración).
+    \end{proof}
+
+    \begin{excer}
+        Hacer lo de la proposición anterior cuando $f_1=f_2=x^2-3x+2$ y $g_1=x-1$ (calcular los sistemas necesarios).
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{exa}
+        Considere los polinomios $f=x^3-3x^2+2x+1$ y $g=x^2-x+2$. Entonces $m=3$ y $n=2$, por lo que:
+        \begin{equation*}
+            A_{5}=\left(
+                \begin{array}{ccccc}
+                    1 & -3 & 2 & 1 & 0 \\
+                    0 & 1 & -3 & 2 & 1 \\
+                    1 & -1 & 2 & 0 & 0 \\
+                    0 & 1 & -1 & 2 & 0 \\
+                    0 & 0 & 1 & -1 & 2 \\
+                \end{array}
+            \right)
+        \end{equation*}
+        sería la matriz asociada al resultante de los polinomios $f$ y $g$.
+    \end{exa}
+
+    Para la siguiente proposición, $K$ es un campo algebraicamente cerrado.
+
+    \begin{propo}
+        Sean $f,g\in K[\underline{x}]$ (anillo de polinomios en varias variables). Entonces:
+        \begin{enumerate}
+            \item $V(f)=V(g)$ si y sólo si $f$ y $g$ tienen las mismas componentes irreducibles.
+            \item $V(f)\neq\emptyset$ si y sólo si $f\in K\setminus\left\{0\right\}$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{mydef}
+        Sea $p\in V(f)\subseteq K^n$. Decimos que $p$ es un \textbf{punto singular de $V(f)$}, si
+        \begin{equation*}
+            f(p)=\frac{\partial f}{\partial x_i}(p)=0
+        \end{equation*}
+        para todo $i=1,...,n$. El conjunto de puntos singulares de $f$ se denota por $Sing(V(f))$. Si $p\notin Sing(V(f))$, se dice que $p$ es \textbf{no singular} o \textbf{liso}.
+
+        Si $V(f)$ es tal que $Sing(V(f))=\emptyset$, se dice que $V(f)$ es \textbf{no singular}.
+    \end{mydef}
+
+    \begin{exa}
+        Considere el polinomio $f=ax+by$, $a,b\in K$ no ambas nulas. Entonces, $V(f)$ es no singular.
+    \end{exa}
+
+    \begin{exa}
+        Considere $f=xy$. Entonces:
+        \begin{equation*}
+            Sing(V(f))=\left\{(0,0,*,*,...,*)\in K^n \right\}
+        \end{equation*}
+        En el caso de $K^n=\mathbb{C}^2$, se tiene que:
+        \begin{equation*}
+            Sing(V(f))=\left\{(0,0) \right\}\subseteq\mathbb{C}^2
+        \end{equation*}
+        se dice \textbf{singularidad aislada}.
+
+        Si estamos en $\mathbb{C}^3$, entonces
+        \begin{equation*}
+            Sing(V(f))=\left\{(0,0,*) \right\}\subseteq\mathbb{C}^3
+        \end{equation*}
+        es \textbf{no aislada}.
+    \end{exa}
+
+    \begin{exa}
+        En el caso en que $f=f_1\cdot f_2$, se tiene que $V(f_1)\cap V(f_2)\subseteq Sing(V(f))$.
+    \end{exa}
+
+    \begin{exa}
+        Los siguientes tienen puntos singulares de diferentes tipos:
+        \begin{itemize}
+            \item $g=y^2-x^3$.
+            \item $h=y^2-x^2(x+1)$.
+            \item $k=z^2-xy^3$.
+        \end{itemize}
+    \end{exa}
+
+    \section{Geometría y Topología de Curvas Algebraicas en $\mathbb{P}^2_{\mathbb{C}}$ (o en $\mathbb{C}^2$).}
+
+    En esta parte, tendremos como objetivos dos cosas:
+
+    \begin{enumerate}[label = \textit{(\arabic*)}]
+        \item Entender la topología abstracta de $C=V(F)\subseteq\mathbb{P}^2_{\mathbb{C}}$.
+        \item Entender la geometría de $C=V(F)\subseteq\mathbb{P}^2_{\mathbb{C}}$.
+    \end{enumerate}
+
+    \begin{theor}[\textbf{Teorema de Bezout}]
+        Sean $C=V(P)$ y $D=V(Q)$ curvas contenidas en $\mathbb{P}^2_{\mathbb{C}}$ con $\deg P=n$ y $\deg Q=m$. Entonces, $C\cap D$ es un conjunto de $n\cdot m$ puntos (contando multiplicidades).
+    \end{theor}
+
+    \begin{theor}[\textbf{Fórmula de género-grado}]
+        Sea $C=V(P)\subseteq\mathbb{P}^2_{\mathbb{C}}$ no singular y de grado $n$. Entonces, $C$ es topológicamente una superficie (dimensión 2 sobre $\mathbb{R}$) conexa, compacta, orientable y sin borde con $\chi=2-(n-1)(n-2)$ (siendo $\chi$ la característica de Euler de la superficie).
+    \end{theor}
+
+    Luego hubo una explicación sobre la característica de Euler para superficices (en particular, algunas triangulaciones de la 2-esfera).
+
+    \begin{theor}[\textbf{Teorema de Clasificación de Superficies}]
+        La característica de Euler de toda superficie compacta, orientable, conexa y sin borde es:
+        \begin{equation*}
+            \chi=2-2g
+        \end{equation*}
+        donde $g$ es el género de la superficie.
+    \end{theor}
+
+\end{document}

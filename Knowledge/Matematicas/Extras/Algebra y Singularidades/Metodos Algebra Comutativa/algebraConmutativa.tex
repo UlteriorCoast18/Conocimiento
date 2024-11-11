@@ -1,0 +1,687 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand{\gen}[1]{\ensuremath{\mathcal{L}\left(#1 \right)}}
+\newcommand{\Ass}[1]{\ensuremath{\textup{Ass}\left(#1\right)}}
+\newcommand{\height}[1]{\ensuremath{\textup{ht}\left(#1\right)}}
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Métodos del Álgebra Conmutativa en la Teoría de Códigos}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \chapter{Preeliminares}
+
+    \section{Teoría de Códigos}
+
+    \begin{mydef}
+        Un \textbf{código} $\mathcal{C}$ es un subconjunto de $\mathbb{K}^n$, donde $\mathbb{K}$ es un campo. Si $\mathcal{C}$ es un subespacio vectorial, decimos que $\mathcal{C}$ es un \textbf{código lineal}.
+
+        Los elementos de $\mathcal{C}$ son llamados \textbf{palabras}.
+    \end{mydef}
+
+    \begin{obs}
+        En la definición anterior, el campo $\mathbb{K}$ puede ser finito o infinito, y generalmente se usará $\mathbb{K}=\mathbb{F}_q$.
+    \end{obs}
+
+    \begin{obs}
+        Un código lineal puede ser considerado como:
+        \begin{equation*}
+            \mathcal{C}=\gen{w_1,...,w_n}
+        \end{equation*}
+        si consideramos la base estándar de $\mathbb{K}^n$, entonces podemos pensar en $\mathcal{C}$ como la imagen de una función lineal lineal $\cf{\phi}{\mathbb{K}^k}{\mathbb{K}^n}$, con matriz $k\times n$, denotada por $G$.
+
+        En particular:
+        \begin{equation*}
+            G=\left(
+                \begin{array}{c}
+                    w_1 \\
+                    \vdots \\
+                    w_k \\
+                \end{array}
+            \right)
+        \end{equation*}
+        además, $\mathcal{C}=\phi(\mathbb{K}^k)$.
+    \end{obs}
+
+    \begin{mydef}
+        En el ejemplo anterior, $G$ es llamada \textbf{matriz generadora de $\mathcal{C}$}.
+    \end{mydef}
+
+    En cierto sentido, la matriz $\mathcal{C}$ es la que genera al código.
+
+    \textit{¿Cómo podemos determinar si $v\in\mathcal{K}^n$ es una palabra de $\mathcal{C}$?}
+
+    Pues en el caso en que $v\in\mathcal{C}$, se tiene que
+    \begin{equation*}
+        \phi(v)=vG=vw_1+\cdots+v_kw_k
+    \end{equation*}
+    y, $\dim_{\mathbb{K}}\mathcal{C}=\dim\mathcal{C}$. $n$ es llamado \textbf{longitud (bloque)} de $\mathcal{C}$.
+
+    Notemos que si $\mathcal{C}$ es un subespacio vectorial, podemos considerar al espacio ortogonal:
+    \begin{equation*}
+        \mathcal{C}^\perp=\left\{w\in\mathbb{K}^n\Big|w\cdot c=0,\quad\forall c\in\mathcal{C} \right\}
+    \end{equation*}
+
+    \begin{mydef}
+        El espacio $\mathcal{C}^\perp$ es llamado \textbf{código dual}. Este es un subespacio de $\mathbb{K}^n$ y hacemos que $H$ sea la \textbf{matriz generadora de $\mathcal{C}^\perp$}.
+    \end{mydef}
+
+    $H$ también es la matriz sde chequeo de paridad de $\mathcal{C}$, pues tenemos que $\mathcal{C}$ es el espacio nulo de $H$, pues:
+    \begin{equation*}
+        \dim\mathcal{C}+\dim\mathcal{C}^\perp=n
+    \end{equation*}
+
+    \begin{mydef}
+        Si $x=(x_1,...,x_n),y=(y_1,...,y_n)\in\mathbb{K}^n$, se define la \textbf{distancia de Hamming} entre ambos vectores por:
+        \begin{equation*}
+            d(x,y)=\abs{\left\{i\in\left\{1,...,n \right\}\Big|x_i\neq y_i \right\}}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{mydef}
+        El \textbf{peso de Hamming} de un vector $v\in\mathbb{K}^n$ es el número de entradas diferentes de 0 que tiene $v$:
+        \begin{equation*}
+            w(v)=d(v,0)
+        \end{equation*}
+        La \textbf{distancia mínima de $\mathcal{C}\subseteq\mathbb{K}^n$} se define por:
+        \begin{equation*}
+            d(\mathcal{C})=\min\left\{w(v)\Big|v\in\mathcal{C}\setminus\left\{0\right\} \right\}
+        \end{equation*}
+
+        Una palabra $v\in\mathcal{C}$ tal que $w(v)=d(\mathcal{C})$ será llamada \textbf{palabra de peso mínimo}.
+    \end{mydef}
+
+    Se tienen los siguientes parámetros básicos de un código lineal $\mathcal{C}$:
+    \begin{itemize}
+        \item Dimensión ($\dim_{\mathbb{K}}(\mathcal{C})$).
+        \item Longitud (tamaño de las palabras, $n$).
+        \item Distancia mínima ($d(\mathcal{C})$).
+    \end{itemize}
+
+    \begin{obs}
+        $d(\mathcal{C})$ mide la capacidad de detección y corrección de errores en un código.
+    \end{obs}
+
+    \begin{propo}
+        Se tiene lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item La distancia de Hamming es una métrica en $\mathbb{K}^n$.
+            \item Para cualquier código lineal $[n,\dim_{\mathbb{K}}(\mathcal{C},d(\mathcal{C}))]$ se satisface que:
+            \begin{equation*}
+                d(\mathcal{C})\leq n<\dim\mathcal{C}+1
+            \end{equation*}
+            la cota superior es llamada \textbf{cota de Singleton}. Cuando $d(\mathcal{C})=n-\dim\mathcal{C}+1$, el código es llamado \textbf{MDS (maximum distance separable)}.
+            \item Si $H$ es la matriz de chequeo de paridad, entonces $c\in\mathcal{C}$ si y sólo si $Hc^T=0$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{mydef}
+        Diremos que dos códigos son \textbf{equivalentes}, se tienen los mismos parámetros.
+    \end{mydef}
+
+    \begin{mydef}
+        Un código es \textbf{no degenerado}, si para cualquier matriz generadora $M$, todas sus columnas son no nulas.
+    \end{mydef}
+
+    \begin{exa}
+        Considere $\mathbb{K}=\mathbb{F}_2$. Tomemos el código lineal con matriz generadora:
+        \begin{equation*}
+            G=\left(
+                \begin{array}{lcccccr}
+                    1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+                    0 & 1 & 0 & 0 & 0 & 1 & 1 \\
+                    1 & 0 & 1 & 0 & 1 & 1 & 1 \\
+                    0 & 0 & 0 & 1 & 1 & 0 & 1 
+                \end{array}
+            \right)
+        \end{equation*}
+        tiene los parámetros $[7,4,3]$. Si multiplicamos todos los vectores de $\mathbb{F}_2^4$, se tiene que $\mathcal{C}$ consta de 16 palabras, tiene 7 con peso de Haming igual a 3, 7 con peso de Hamming igual a 4 y 1 con peso de Hamming igual a 7, más el vector 0. Por lo que $d(\mathcal{C})=3$.
+    \end{exa}
+
+    \begin{obs}
+        La equivalencia es en que estamos olvidando la información sobre la estructura de espacio vectorial del código $\mathcal{C}$, pero estamos preservando información que tiene que ver con la longitud de la palabra, dimensión del espacio y la distancia mínima (lo que sea para lo que sirva).
+    \end{obs}
+
+    \begin{excer}
+        Sea $\mathcal{C}$ un $[n,k]$ código lineal no degenerado con matriz generadora $G$ de tamaño $k\times n$. Entonces:
+        \begin{equation*}
+            d(\mathcal{C})=n-h
+        \end{equation*}
+        donde $h$ es el máximo del número de columnas de la matriz generadora que generan a un subespacio $k-1$ dimensional.
+    \end{excer}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \section{Álgebra}
+
+    \begin{obs}
+        De ahora en adelante, $R$ será un anillo conmutativo con identidad.
+    \end{obs}
+
+    \begin{mydef}
+        Un ideal $Q$ de $R$ es \textbf{ideal primario de $R$}, si siempre que $f\cdot g\in Q$ con $f\notin Q$, enotnces $q\in\sqrt{Q}$.
+    \end{mydef}
+
+    \begin{obs}
+        Si $Q$ es primario, entonces $\sqrt{Q}=P$ es ideal primo
+    \end{obs}
+
+    \begin{mydef}
+        Si:
+        \begin{equation*}
+            \min\left(Q\right)=\left\{P \right\}
+        \end{equation*}
+        (es decir, el mínimo de los ideales primos que contienen a $Q$ es $P$), decimos que $Q$ es \textbf{$P$-primario.}
+    \end{mydef}
+
+    \begin{mydef}
+        Un ideal $I\subseteq R$ es \textbf{Noetheriano}, si es finitamente generado, esto es que existen $f_1,...,f_l\in R$ tales que
+        \begin{equation*}
+            I=\langle f_1,...,f_l\rangle
+        \end{equation*}
+        por ende, todo $g\in I$ puede ser expresado como:
+        \begin{equation*}
+            g=r_1f_1+\cdots+r_lf_l
+        \end{equation*}
+        con $r_i\in R$.
+    \end{mydef}
+
+    \begin{theor}
+        Podemos expresar a $I\subseteq R$ como:
+        \begin{equation*}
+            I=Q_1\cap\cdots\cap Q_s
+        \end{equation*}
+        donde cada $Q_i$ es $P_i$-primario y a esta descomposición le llamamos \textbf{descomposición primaria minimal}, para la cual se cumple que el ideal
+        \begin{equation*}
+            P_i=\sqrt{Q_i}
+        \end{equation*}
+        es primo.
+    \end{theor}
+
+    \begin{proof}
+        Ver Hungerford.
+    \end{proof}
+
+    \begin{mydef}
+        Dado un ideal $I\subseteq R$, el conjunto formado a partir del teorema anterior:
+        \begin{equation*}
+            \Ass{I}=\left\{P_1,...,P_s \right\}
+        \end{equation*}
+        es llamado el \textbf{conjunto de primos asociados a $I$}.
+    \end{mydef}
+
+    \begin{mydef}
+        La altura de un ideal primo $P\subseteq R$ es el supremo de las longitudes $n$, de las cadenas de ideales primos:
+        \begin{equation*}
+            P_0\subsetneq P_1\subsetneq\cdots\subsetneq P_n=P
+        \end{equation*}
+        denotado por $ht(P)$.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $I\subseteq R$. Se define la \textbf{altura de $I$}, como:
+        \begin{equation*}
+            ht(I)=\min\left\{ht(P)\Big|I\subseteq P \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{mydef}
+        La \textbf{dimensión de Krull de $R$} es el máximo de $ht(P)$ tal que $P$ es ideal primo de $R$. En este caso, la dimensión de Krull de $R$ se denota por $\dim R$.
+    \end{mydef}
+
+    Cuando $R=K[x_1,...,x_n]$, se tiene que:
+    \begin{equation*}
+        \dim R/I=\dim R-ht(I)
+    \end{equation*}
+    y, $\dim R=n$. Para la prueba de esto, vea algún libro de álgebra conmutativa.
+
+    \begin{exa}
+        Considere $A=K[x,y,z]/I$ donde $I=\langle xy,xz\rangle$. Una descomposición primaria sería:
+        \begin{equation*}
+            I=\langle x\rangle\cap\langle y,z\rangle
+        \end{equation*}
+        Además,
+        \begin{equation*}
+            \begin{split}
+                ht(I)&=\min\left\{ht(\langle x\rangle),ht(\langle y,z\rangle)\right\}\\
+                &=\min\left\{1,2 \right\}\\
+                &=1\\
+            \end{split}
+        \end{equation*}
+        Por el hecho anterior, se tiene que
+        \begin{equation*}
+            \dim K[x,y,z]/\langle xy,yz\rangle=3-1=2
+        \end{equation*}
+    \end{exa}
+
+    \section{Puntos Gordos (Fat-points)}
+
+    En el espacio afín $\mathbb{A}^k$ (producto de $\mathbb{K}$ consigo mismo $k$-veces), podemos tomar el conjunto $\mathbb{A}^k\setminus\left\{(0,...,0) \right\}$ y definir una equivalencia sobre este conjunto dada como sigue:
+    \begin{equation*}
+        (a_1,...,a_k)\sim(b_1,...,b_k)
+    \end{equation*}
+    si y sólo si existe $\lambda\in\mathbb{K}$ tal que:
+    \begin{equation*}
+        (a_1,...,a_k)=(\lambda b_1,...,\lambda b_k)
+    \end{equation*}
+    Se prueba rápidamente que $\sim$ es relación de equivalencia sobre este conjunto.
+    
+    Denotamos por $[a_1,...,a_k]=[a_1:...:a_k]$ a la clase de equivalencia con representante $(a_1,...,a_k)$.
+
+    \begin{mydef}
+        El conjunto de todas las clases de equivalencia anteriores es denotado por $\mathbb{P}^{ k-1}$ y es llamado \textbf{espacio proyectivo}.
+
+        Un elemento $[a_1,...,a_k]\in\mathbb{P}^{ k-1}$ es un \textbf{punto proyectivo}, $a_1,...,a_k$ son llamadas \textbf{coordenadas homogéneas}. Un \textbf{representante estándar} de un punto proyectivo es un representante con la primer coordenada homogénea igual a 1, esto es, que es de la forma:
+        \begin{equation*}
+            [0,...,0,1,a_i,...,a_k]
+        \end{equation*}
+    \end{mydef}
+
+    \begin{mydef}
+        Consideremos el anillo $R=K[x_1,...,x_n]$. Una \textbf{variedad proyectiva}, es el conjunto de ceros comunes de un conjunto de polinomios homogéneos en $R$.
+
+        Si $X\subseteq\mathbb{P}^{ k-1}$, se define el \textbf{ideal de anulación} o \textbf{ideal de definición de $X$}, denotado por $I(X)$, es el conjunto de todos los polinomios que se anulan en todos los puntos de $X$.
+    \end{mydef}
+
+    \begin{mydef}
+        Una \textbf{hipersuperficie} es una variedad generada por una sola variedad polinomial.
+    \end{mydef}
+
+    \begin{mydef}
+        La \textbf{dimensión} de una variedad proyectiva $X\subseteq\mathbb{P}^{ k-1}$ es $m$ si $k-1-m$ es el número más pequeño de hiperplanos genéricos que tienen intersección con $X$ en un conjunto finito de puntos.
+
+        El número de este conjunto finito de puntos es llamado el \textbf{grado de $X$}, denotado por $\deg(X)$.
+    \end{mydef}
+
+    \begin{exa}
+        En particular, si $Q\in\mathbb{P}^{ k-1}$ con $Q=[a_1,...,a_k]$, entonces
+        \begin{equation*}
+            I(Q)=\langle\left\{a_ix_j-a_jx_i\Big|1\leq i\leq j\leq k \right\} \rangle
+        \end{equation*}
+    \end{exa}
+
+    Si $X=\left\{P_1,...,P_m \right\}$ es un conjunto finito de puntos de $\mathbb{P}^{ k-1}$ y su ideal de definición
+    \begin{equation*}
+        I(X)=I(P_1)\cap\cdots\cap I(P_m) 
+    \end{equation*}
+    para cada punto $P_i\in X$.
+
+    \begin{mydef}
+        En lo anterior, tenemos que se denomina un \textbf{esquema de puntos reducidos}.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $X=\left\{P_1,...,P_m \right\}\subseteq\mathbb{P}^{ k-1}$ un conjunto finito y $n_1,...,n_m$ enteros positivos. Un \textbf{esquema de puntos gordos}, es un esquema de puntos proyectivos con ideal de definición:
+        \begin{equation*}
+            I(X)=I(P_1)^{ n_1}\cap\cdots\cap I(P_m)^{ n_m}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        En notación de \textit{divisores}, escribimos:
+        \begin{equation*}
+            \mathcal{Z}=n_1P_1+\cdots+n_mP_m
+        \end{equation*}
+        El \textbf{soporte de $\mathcal{Z}$} es $\sup\left(\mathcal{Z} \right)=X$ y los enteros $n_i$ representan la multiplicidad de $p_i$.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $X=\left\{P_1,...,P_n \right\}\subseteq\mathbb{P}^{ k-1}$. Si consideramos a $G$ como la matriz $k\times n$ con columnas las coordenadas homogéneas de algún representante de $P_i$.
+
+        Decimos que $X$ están en \textbf{posición general} si y sólo si para cualquier $1\leq c\leq \min\left\{n,k \right\}$. cualesquiera $c$ columnas de $G$ generan un espacio $c$-dimensional de $\mathbb{K}^k$.
+    \end{mydef}
+
+    \begin{mydef}
+        Si $p=[a_1,...,a_k]\in\mathbb{P}^k$ es un punto, entonces podemos asociar una forma lineal $l_p=a_1x_1+\cdots+a_kx_k\in R=K[x_1,...,x_n]$.
+        
+        Inversamente, para cualquier forma lineal $l=b_1x_1+\cdots+b_kx_k$ podemos asociar un punto $l^\nu=[b_1,...,b_k]\in\mathbb{P}^k$. 
+    \end{mydef}
+
+    De momento, esto es todo lo que ocupamos de álgebra.
+
+    Consideremos $\mathcal{C}$ un $[n,k,d]$ código lineal con matriz generadora $G$ de tamaño $k\times n$, rango $k\geq 1$ y además el código $\mathcal{C}$ es no degenerado. Considere el conjunto de $n$ puntos reducidos (esto es, que la multiplicidad de cada uno es uno), digamos:
+    \begin{equation*}
+        x_c=\left\{p_1,...,p_n \right\}\subseteq\mathbb{P}^{ k-1}
+    \end{equation*}
+    donde las coordenadas homogéneas de los puntos $p_i$ corresponden a las entradas de la $i$-ésima columna de $G$, como el rango de $G$ es $k$, entonces el conjunto de puntos $x_c$ no están todos incluídos en un hiperplano de $\mathbb{P}^{ k-1}$.
+
+    \begin{mydef}
+        En el caso anterior, el \textbf{esquema reducido}, es el ideal de definición de $x_c$:
+        \begin{equation*}
+            I(x_c)=I(p_1)\cap\cdots\cap I(p_n)
+        \end{equation*}
+    \end{mydef}
+
+    Si la matriz $G$ tiene columnas proporcionales, consideremos:
+    \begin{equation*}
+        \mathcal{Z}_c=m_1p_q+\cdots+m_sp_s
+    \end{equation*}
+    donde $m_i$ es la respectiva multiplicidad de dos columnas proporcionales.
+
+    \begin{mydef}
+        En el caso anterior, el esquema de puntos gordos asociado a $\mathcal{C}$ es el ideal de definición:
+        \begin{equation*}
+            I(\mathcal{Z}_c)=I(p_1)^{ m_1}\cap\cdots\cap I(p_s)^{ m_s}
+        \end{equation*}
+    \end{mydef}
+
+    Ahora analizaremos la conexión entre $\mathcal{C}$ y todas las ideas algebraicas que hemos introducido anteriormente.
+
+    \begin{mydef}
+        Para un esquema de puntos gordos $\mathcal{Z}\subseteq\mathbb{P}^{ k-1}$, denotaremos por $hyp(\mathcal{Z})$ al máximo número de puntos de $\mathcal{Z}$ (contando multiplicidad) que están contenidos en un hiperplano de $\mathbb{P}^{ k-1}$.
+    \end{mydef}
+
+    \begin{exa}
+        Imaginemos que el esquema de puntos gordos está dado por:
+        \begin{equation*}
+            \mathcal{Z}=3p_1+2p_2+p_3+p_4\subseteq\mathbb{P}^2
+        \end{equation*}
+        con $p_1,...,p_4$ no colineales y $p_2,...,p_4$ colineales, entonces:
+        \begin{equation*}
+            hyp(\mathcal{Z})=5
+        \end{equation*}
+        ya que recuerde que estamos contando multiplicidades.
+    \end{exa}
+
+    \begin{mydef}
+        Decimos que el código $\mathcal{C}$ es \textbf{definido por el esquema de puntos gordos} $\mathcal{Z}_c$.
+    \end{mydef}
+
+    \begin{propo}
+        Sea $\mathcal{C}$ un código lineal, $[n,k,d]$ un código lineal con esquema de puntos gordos $\mathcal{Z}_c$ en $\mathbb{P}^{ k-1}$. Entonces:
+        \begin{equation*}
+            d=n-hyp(\mathcal{Z}_c)
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Por definición, la distancia de mínima $d$ de código lineal, existe una palabra no cero $v=(v_1,...,v_n)\in\mathcal{C}$ tal que
+        \begin{equation*}
+            w(v)=d=d(\mathcal{C})
+        \end{equation*}
+        y cualquier otra palabra de $\mathcal{C}$ tiene peso de Hamming mayor o igual a $d$. En particular, cualquier otra palabra con peso menor que $d$ es la palabra cero.
+
+        Como $v\in\mathcal{C}$, entonces existe $\alpha=(\alpha_1,...,\alpha_k)\in \mathbb{K}^k$ tal que
+        \begin{equation*}
+            l_i(\alpha)=v_i,\quad\forall i=1,...,n
+        \end{equation*}
+        donde $l_i$ son las formas lineales de $\mathcal{C}$ en $\mathbb{K}[x_1,...,x_n]$.
+
+        También tenemos que existen índices $i_1,...,i_{ n-d}\in\left\{1,...,n \right\}$ tales que
+        \begin{equation*}
+            l_{ i_a}(\alpha)=0
+        \end{equation*}
+        con $a=1,...,n-d$ y si $j\in\left\{1,...,n \right\}\setminus\left\{i_1,...,i_{ n-d} \right\}$, entonces:
+        \begin{equation*}
+            l_j(\alpha)\neq0
+        \end{equation*}
+
+        Pero, como
+        \begin{equation*}
+            l_i=a_{ 1i}x_1+\cdots+a_{ ki}x_k
+        \end{equation*}
+        donde $a_{ ji}$ son entradas de la matriz generadora $G$. Entonces:
+        \begin{equation*}
+            l_i(\alpha)=a_{ 1i}\alpha_1+\cdots+a_{ ki}\alpha_k=L(p_i)
+        \end{equation*}
+        donde
+        \begin{equation*}
+            L(x_1,...,x_k)=\alpha_1x_1+\cdots+\alpha_kx_k
+        \end{equation*}
+        siendo $P_i=[a_{ 1i},...,a_{ ki}]\in\mathbb{P}^{ k-1}$ es la $i$-ésima columna de $G$. ¿Cuál es el máximo número de puntos del esquema $\mathcal{Z}_c$ del esquema que contando multiplicidades están en un mismo hiperplano? Pues debe ser $n-d$, ya que esos son los únicos números de puntos que le pegan al cero en las transformaciones $l_i$ en su respectiva $i$-ésima entrada, luego son ceros de $L$, por lo que están en el hiperplano generado por la imagen del endomorfismo $L$. Por lo que:
+        \begin{equation*}
+            hyp(\mathcal{Z}_c)=n-d\Rightarrow d=n-hyp(\mathcal{Z}_c)
+        \end{equation*}
+        lo que prueba el resultado.
+    \end{proof}
+
+    \begin{obs}
+        En la proposición anterior, estamos clasificando cosas en función de si nos da algo o no nos da nada.
+    \end{obs}
+
+    \begin{mydef}
+        Para un esquema de puntos gordos $\mathcal{Z}_c=m_1p_1+\cdots+m_sp_s\subseteq\mathbb{P}^{k-1}$ no todos colineales, si
+        \begin{equation*}
+            m_1+\cdots+m_s=n
+        \end{equation*}
+        entonces, el valor $n-hyp(\mathcal{Z})$ se llama la \textbf{distancia mínima de $\mathcal{Z}$} y la denotaremos por $d(\mathcal{Z})$ ($n$ es el número de puntos).
+    \end{mydef}
+
+    Sea $\mathcal{Z}=m_1p_1+\cdots+m_sp_s\subseteq\mathbb{P}^{ k-1}$ un esquema de puntos gordos no contenidos todos en un hiperplano con $m_1\geq m_2\geq\cdots\geq m_s$. Se tiene que:
+    \begin{equation*}
+        \sup(\mathcal{Z})=\left\{p_1,...,p_s \right\}=X
+    \end{equation*}
+    para $i=1,...,s$ supongamos que $c_i$ es el vector columna del punto $p_i$. Consideremos
+    \begin{equation*}
+        A(X)=(c_1,...,c_s)
+    \end{equation*}
+    y,
+    \begin{equation*}
+        A(Z)=(\underset{ m_1}{\underbrace{ c_1,...,c_1}},\cdots,\underset{ m_s}{\underbrace{ c_s,...,c_s}})
+    \end{equation*}
+
+    \begin{theor}
+        Si $d=d(X)$, entonces
+        \begin{equation*}
+            m_1+...+m_d\geq d(Z)\geq m_{ s-d+1}+\cdots+m_s
+        \end{equation*}
+        además, si $m_1=\cdots=m_s=m$, entonces
+        \begin{equation*}
+            d(\mathcal{Z})=md(X)
+        \end{equation*}
+    \end{theor}
+
+    \begin{exa}
+        Considere
+        \begin{equation*}
+            \mathcal{Z}=3p_1+2p_2+p_3+p_4
+        \end{equation*}
+        como en el ejemplo anterior. Se determinó que $hyp(\mathcal{Z})=5$. Se tiene además que $d(\mathcal{Z})=n-5=7-2=2$. Se tiene que $X=\left\{p_1,p_2,p_3,p_4\right\}$, por lo que $d(X)=4-3=1$ y $hyp(X)=3$.
+    \end{exa}
+
+    \section{La distancia mínima y el grado inicial}
+
+    \begin{mydef}
+        Sea $\mathcal{C}$ un $[n,k,d]$ código lineal y $\mathcal{Z}_c$ su esquema de puntos gordos. El \textbf{grado inicial del ideal $I(\mathcal{Z}_c)$} denotado como
+        \begin{equation*}
+            \alpha(\mathcal{Z})=\alpha(I(\mathcal{Z}))=\min\left\{t\Big|I(\mathcal{Z})_t\neq0 \right\}
+        \end{equation*}
+    \end{mydef}
+    (ver anillos graduados).
+
+    En el caso anterior, se tiene que:
+    \begin{equation*}
+        I(\mathcal{Z})=\bigoplus_{ t\geq0}I(\mathcal{Z})_t
+    \end{equation*}
+
+    Una familia \textit{especial} de códigos es la llamada familia de \textbf{códigos evaluación}: sea $X=\left\{p_1,...,p_n \right\}\subseteq\mathbb{P}^{ k-1}$ un conjunto finito. Se tiene que
+    \begin{equation*}
+        R=\mathbb{K}[x_1,...,x_k]=\bigoplus_{ t\geq0}R_t
+    \end{equation*}
+    donde $R_a$ es un espacio vectorial de polinomio homogéneos de grado $t$.
+
+    Definimos un mapeo lineal
+    \begin{equation*}
+        \cf{ev_t}{R_t}{\mathbb{K}^n}
+    \end{equation*}
+    dado por:
+    \begin{equation*}
+        ev_t(f)=(f(p_1),...,f(p_n))
+    \end{equation*}
+
+    \begin{mydef}
+        El código \textbf{evaluación} es la imagen de $ev_t(R_t)\subseteq\mathbb{K}^n$.
+    \end{mydef}
+
+    \begin{obs}
+        El código evaluación es un código lineal de orden/grado $t$ en el conjunto $X$.
+    \end{obs}
+
+    \begin{theor}
+        Todo código lineal es un código evaluación.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{propo}
+        El código evaluacón tiene los parámetros básicos que cumplen las igualdades:
+        \begin{itemize}
+            \item Longitud, $n=\abs{X}=\deg\left(R/I(X) \right)=e$, donde $e$ es llamado la multiplicidad de Hulbert-Samuel.
+            \item Dimensión es igual a $H(R/I(X),t)$
+            \item Distancia mínima, $d(ev_t(R_t))=d$, y
+            \begin{equation*}
+                d_t=n-\max_{ X'\subseteq X}\left\{\abs{X'}\Big|\dim_{\mathbb{K}}(I(X')_t)>\dim_{\mathbb{K}}(I(X)_t) \right\}
+            \end{equation*}
+        \end{itemize}
+    \end{propo}
+
+\end{document}
