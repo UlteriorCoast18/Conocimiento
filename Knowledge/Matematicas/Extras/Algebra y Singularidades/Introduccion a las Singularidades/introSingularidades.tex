@@ -149,6 +149,18 @@
 
     \chapter{Nociones Básicas}
 
+    \section{Preeliminares Algebraicos}
+
+    \begin{mydef}
+        Un anillo $R$ es \textbf{graduado (por $\mathbb{N}$)} si $R$ puede ser escrito como la suma directa (como grupo abeliano):
+        \begin{equation*}
+            R=\bigoplus_{ n=0}^\infty R_n
+        \end{equation*}
+        tal que para todos $m,n\in\mathbb{Z}_{\geq0}$ tenemos que $A_nA_m\subseteq A_{ n+m}$. Se sigue en particular que $A_0$ es un subanillo y que cada componente $A_n$ es un $A_0$-módulo.
+    \end{mydef}
+
+    
+    
     \section{Variedades Algebraicas}
 
     En síntesis, las singularidades abarcan muchas ramas de las matemáticas, como son la geometría algebraica, el álgebra conmutativa, el análisis compleo, la topología algebraica y cosas sobre teoría de nudos.
@@ -167,6 +179,10 @@
     \begin{equation*}
         \deg f=\max\left\{d_1+...+d_n\Big|c_d\neq 0 \right\}
     \end{equation*}
+
+    \begin{exa}
+        El anillo de polinomios $K[x_1,...,x_n]$ es graduado, a saber los subgrupos abelianos que lo graduano son aquellas polinomios con todas sus componentes de mismo grado. En este caso, 
+    \end{exa}
 
     Consideramos el \textbf{espacio afín} $K^n$ de todas las tuplas $(a_1,...,a_k)$. Podemos también ver el \textbf{espacio proyectivo} $\mathbb{P}^n_k$, con coordenadas homogéneas $[x_0:x_1:...:x_n]$.
 
@@ -275,16 +291,16 @@
             \begin{array}{cccccccccc}
                 a_0 & a_1 & a_2 & \cdots & a_m & 0 & 0 & \cdots & 0 \\
                 0 & a_0 & a_1 &  \cdots & a_{ m-1} & a_m & 0 & \cdots & 0 \\
-                a_0 & a_1 & a_2 & \cdots & a_m & 0 & 0 & \cdots & 0 \\
+                0 & 0 & a_0 & \cdots & a_{ m-2} & a_{ m-1} & a_m & \cdots & 0 \\
                 \vdots & \vdots & \vdots & \vdots  & \vdots & \vdots & \vdots & \cdots & \vdots \\
                 0 & 0 & 0 &  \underset{(n-1)\textup{-veces recorrido}}{\underbrace{\cdots}} & a_0 & a_1 & a_2 & \cdots & a_m \\
                 b_0 & b_1 & b_2 & \cdots & b_n & 0 & 0 & \cdots & 0 \\
                 0 & b_0 & b_1 &  \cdots & b_{ n-1} & b_n & 0 & \cdots & 0 \\
-                b_0 & b_1 & b_2 & \cdots & b_n & 0 & 0 & \cdots & 0 \\
+                0 & 0 & b_0 & \cdots & b_{ n-2} & b_{ n-1} & b_n& \cdots & 0 \\
                 \vdots & \vdots & \vdots & \vdots  & \vdots & \vdots & \vdots & \cdots & \vdots \\
                 0 & 0 & 0 &  \underset{(m-1)\textup{-veces recorrido}}{\underbrace{\cdots}} & b_0 & b_1 & b_2 & \cdots & b_n \\
             \end{array}
-         \right)
+            \right)
     \end{equation*}
 
     \begin{propo}
@@ -425,7 +441,7 @@
     \end{theor}
 
     \begin{theor}[\textbf{Fórmula de género-grado}]
-        Sea $C=V(P)\subseteq\mathbb{P}^2_{\mathbb{C}}$ no singular y de grado $n$. Entonces, $C$ es topológicamente una superficie (dimensión 2 sobre $\mathbb{R}$) conexa, compacta, orientable y sin borde con $\chi=2-(n-1)(n-2)$ (siendo $\chi$ la característica de Euler de la superficie).
+        Sea $C=V(P)\subseteq\mathbb{P}^2_{\mathbb{C}}$ no singular y de grado $n$ irreducible. Entonces, $C$ es topológicamente una superficie (dimensión 2 sobre $\mathbb{R}$) conexa, compacta, orientable y sin borde con $\chi=2-(n-1)(n-2)$ (siendo $\chi$ la característica de Euler de la superficie).
     \end{theor}
 
     Luego hubo una explicación sobre la característica de Euler para superficices (en particular, algunas triangulaciones de la 2-esfera).
@@ -437,5 +453,179 @@
         \end{equation*}
         donde $g$ es el género de la superficie.
     \end{theor}
+
+    Notemos que:
+    \begin{equation*}
+        \begin{tabular}{ c | c }
+            $n$ & $g=\frac{(n-1)(n-2)}{2}$ \\
+            \hline
+            1 & 0 \\
+            2 & 0 \\
+            3 & 1 \\
+            4 & 3 \\
+            5 & 6 \\
+            6 & 10 \\
+        \end{tabular}
+    \end{equation*}
+    por lo que no todos los géneros se pueden obtener a partir de curvas $C\subseteq\mathbb{P}_{\mathbb{C}}^2$.
+
+    Uno puede construir todas las superifices orientables, conexas, compactas y sin borde a partir de la identificación usual que se hacía con la esfera, el toro, el 2-toro, etc...
+
+    Hablaremos del teorema de Bezout pero desde el punto de vista de resultantes con polinomios en varias variables. Recordemos que si $f,g\in\mathbb{C}[x]$, entonces
+    \begin{equation*}
+        Res(f,g)=\det A_{ m+n}(a_i,b_j)
+    \end{equation*}
+    siendo
+    \begin{equation*}
+        \left(
+            \begin{array}{cccccccccc}
+                a_0 & a_1 & a_2 & \cdots & a_m & 0 & 0 & \cdots & 0 \\
+                0 & a_0 & a_1 &  \cdots & a_{ m-1} & a_m & 0 & \cdots & 0 \\
+                0 & 0 & a_0 & \cdots & a_{ m-2} & a_{ m-1} & a_m & \cdots & 0 \\
+                \vdots & \vdots & \vdots & \vdots  & \vdots & \vdots & \vdots & \cdots & \vdots \\
+                0 & 0 & 0 &  \underset{(n-1)\textup{-veces recorrido}}{\underbrace{\cdots}} & a_0 & a_1 & a_2 & \cdots & a_m \\
+                b_0 & b_1 & b_2 & \cdots & b_n & 0 & 0 & \cdots & 0 \\
+                0 & b_0 & b_1 &  \cdots & b_{ n-1} & b_n & 0 & \cdots & 0 \\
+                0 & 0 & b_0 & \cdots & b_{ n-2} & b_{ n-1} & b_n& \cdots & 0 \\
+                \vdots & \vdots & \vdots & \vdots  & \vdots & \vdots & \vdots & \cdots & \vdots \\
+                0 & 0 & 0 &  \underset{(m-1)\textup{-veces recorrido}}{\underbrace{\cdots}} & b_0 & b_1 & b_2 & \cdots & b_n \\
+            \end{array}
+            \right)
+    \end{equation*}
+    con $\deg f=m$ y $\deg g = n$ (siendo $a_i$ los coeficientes de $f$ y $b_j$ los de $g$). Si consideramos ahora polinomios en 3 variables:
+    \begin{equation*}
+        f(x,y,z)=a_0(x,y)z^m+a_1(x,y)z^{ m-1}+\cdots+a_m(x,y)
+    \end{equation*}
+    y,
+    \begin{equation*}
+        g(x,y,z)=b_0(x,y)z^n+b_1(x,y)z^{ n-1}+\cdots+b_n(x,y)
+    \end{equation*}
+    tomamos a los polinomios $f,g\in\mathbb{C}[x,y][z]=\mathbb{C}[x,y,z]$ homogéneos. En este caso, los grados de $f$ y $g$ son $m$ y $n$, respectivamente, por lo que $a_i(x,y)$ y $b_j(x,y)$ son polinomios homogéneos de grado $i$ y $j$, respectivamente.
+
+    \begin{mydef}
+        Sean $F,G\in\mathbb{C}[x,y][z]$ polinomios homogéneos de grados $m$ y $n$, respectivamente. Entonces:
+        \begin{equation*}
+            Res_{z}(F,G)=\det A_{ m+n}(a_i(x,y),b_j(x,y))
+        \end{equation*}
+        con el $A$ dado como se hizo anteriormente.
+    \end{mydef}
+
+    \begin{obs}
+        Se tiene que $Res_{z}(F,G)\in\mathbb{C}[x,z]$ es un polinomio homogéneo de grado $n\cdot m$ (a lo más ya que puede ser cero). Por tanto,
+        \begin{equation*}
+            Res_z(F,G)=\prod_{ i=n}^{ n\cdot m}(b_ix+a_iy)
+        \end{equation*}
+        (por ser $\mathbb{C}$ algebraicamente cerrado).
+    \end{obs}
+
+    \begin{obs}
+        Dados $a,b\in\mathbb{C}$, hacemos:
+        \begin{equation*}
+            F(a,b,z)=f(z)\quad\textup{y}\quad G(a,b,z)=g(z)
+        \end{equation*}
+        entonces,
+        \begin{equation*}
+            Res_z(F,G)(a,b)=Res(f,g)
+        \end{equation*}
+        
+        Recordemos que $Res(f,g)=0$ si existe $c\in\mathbb{C}$ tal que $f(c)=g(c)$.
+    \end{obs}
+
+    Por tanto, de las observaciones anteriores, se tiene que para cada $i=1,...,n\cdot m$ existen $c_i$ tales que
+    \begin{equation*}
+        f(c_i)=g(c_i)=0
+    \end{equation*}
+    esto es que
+    \begin{equation*}
+        F(a,b,c_i)=G(a,b,c_i)
+    \end{equation*}
+
+    \begin{obs}
+        Se tiene que $C\cap D\neq\emptyset$ ¿?.
+    \end{obs}
+
+    \begin{propo}
+        $Res_z(F,G)=0\in\mathbb{C}[x,y]$ si y sólo si $F$ y $G$ tienen una componente común.
+    \end{propo}
+
+    \begin{proof}
+        Procederemos por reducción al absurdo. Supongamos que
+        \begin{itemize}
+            \item $Res_z(F,G)\in\mathbb{C}[x,y]$ y es no constante.
+            \item $F$ y $G$ tienen al menos $n\cdot m+1$ puntos comunes.
+        \end{itemize}
+        Podemos tomar coordeadas de modo que cada punto común a $F$ y $G$ induce un factor lineal $b_ix+a_iy$ de $Res_z(F,G)$ y son no proporcionales dos a dos. Por lo cual al menos hay $n\cdot m+1$ factores lineales\contradiction.
+    \end{proof}
+
+    \begin{mydef}
+        Sean $C,D$ dos curvas en $\mathbb{P}_\mathbb{C}^2$ tales que:
+        \begin{itemize}
+            \item $[0:0:1]\notin C\cup D$.
+            \item $[0:0:1]$ no pertenece a una recta por dos puntos de $C\cap D$.
+            \item $[0:0:1]$ no pertenece a la tangente de $C$ ni a la tangente a $D$ por un punto común $Q\in C\cap D$.
+        \end{itemize}
+        y, sea $O=[a:b:c]\in\mathbb{P}_{\mathbb{C}}^2$. Definimos la \textbf{multiplicidad de intersección de $O$}
+        \begin{equation*}
+            I_O(C,D)=\left\{
+                \begin{array}{lcr}
+                    0 & \textup{ si } & 0\notin C\cap D\\
+                    \max\left\{k \right\} & \textup{ t.q. } & (bx-ay)^k\divides Res_z(F,G) \\
+                    \infty & \textup{ si } & O\textup{ pertenece a una componente común a $C$ y $D$} \\
+                \end{array}
+            \right.
+        \end{equation*}
+    \end{mydef}
+
+    Con la definición anterior se sigue que:
+    \begin{equation*}
+        \begin{split}
+            Res_z(F,G)&=\prod_{ O=[a,b,c]\in C\cap D}(bx-ay)^k\\
+        \end{split}
+    \end{equation*}
+    por lo cual:
+    \begin{equation*}
+        \sum_{ I\in C\cap D}I_O(F,G)=n\cdot m
+    \end{equation*}
+
+    Un puede definir la multiplicidad de un punto en una curva $C$, a partir de ver la mínima derivada parcial donde el punto no se anula, denotada por $mult_O(C)$. Se tiene que:
+    \begin{equation*}
+        I_O(C,D)\geq mult_O(C)+mult_O(D)
+    \end{equation*}
+
+    Ahora hablaremos de la fórumla de grado-género.
+
+    \begin{theor}[\textbf{Teorema de la función implícita}]
+        Sea $\underline{0}=(0,0,z)\in C=V(f)\subseteq\mathbb{C}^2$ tal que $f_y(\underline{0})\neq0$, entonces existen entornos abiertos $O_1\in V\subseteq \mathbb{C}$ y $\underline{O}\in U\subseteq C$ y una función analítica $\cf{g}{V}{U}$ tal que
+        \begin{equation*}
+            f(x,g(x))=0,\quad\forall x\in V
+        \end{equation*}
+    \end{theor}
+
+    Por tanto, una curva lisa $C$ y $p\in C$ implica que $\frac{\partial f}{\partial x}(p)\neq 0$ o bien $\frac{\partial f}{\partial y}(p)\neq0$, por lo que del teorema de la función implícita se sigue que un entorno de $p$ en $C$ es homeomorfo a un entnro de $\mathbb{C}$ (de $\mathbb{R}^2$).
+    
+    Por lo que, $C$ es efectivamente una superficie.
+
+    Se sabe de cursos de topología de conexión por arcos implica conexión.
+
+    Considere puntos en la curva $p,q\in C$. Se tiene que existe $\cf{\gamma}{[0,1]}{C}$ continua tal que $\gamma(0)=q$ y $\gamma(1)=p$.
+
+    Tenemos la curva $C=V(f)$. Podemos suponer que
+    \begin{equation*}
+        f=y^n+a_1(x)y^{ n-1}+\cdots+a_{ n-1}(x)y+a_n(x)
+    \end{equation*}
+    se tiene que $f(x_0,y)\in\mathbb{C}[y]$ es tal que $\deg f(x_0,y)=n$. Si consideramos la proyección $\cf{\pi_1}{C}{\mathbb{C}}$, entonces $\pi^{-1}(x_0)$ nos dará las raíces distinas de $f(x_0,y)$.
+
+    Se define:
+    \begin{equation*}
+        Disc(f(x_0,y))=Res(f(x_0,y),f_y(x_0,y))
+    \end{equation*}
+    entonces
+    \begin{equation*}
+        \abs{\pi^{-1}(x_0)}=n\iff Disc(f(x_0,y))\neq0
+    \end{equation*}
+
+    En conclusión, $C\setminus\bigcup_{ q\in\mathbb{C} }\pi_1^{-1}(q)$ donde $q$ es raíz del discriminante, es un recubrimiento de $n$-hojas.
+
+    Lo demás se deduce de forma más sencilla.
 
 \end{document}

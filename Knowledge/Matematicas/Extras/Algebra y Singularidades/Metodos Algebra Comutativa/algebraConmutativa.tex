@@ -306,6 +306,13 @@
     \end{obs}
 
     \begin{mydef}
+        Sea $I$ un ideal de $R$, se define el \textbf{ideal radical de $I$} (denotado por $\sqrt{I}$) por:
+        \begin{equation*}
+            \sqrt{I}=\left\{r\in R\Big|r^n\in I,\textup{ para algún }n\in\mathbb{N} \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{mydef}
         Un ideal $Q$ de $R$ es \textbf{ideal primario de $R$}, si siempre que $f\cdot g\in Q$ con $f\notin Q$, enotnces $q\in\sqrt{Q}$.
     \end{mydef}
 
@@ -683,5 +690,248 @@
             \end{equation*}
         \end{itemize}
     \end{propo}
+
+    Nos dedicaremos a probar esta proposición.
+
+    \begin{mydef}
+        Se define la función de Hilbert de un ideal graduado $I\subseteq R$:
+        \begin{equation*}
+            H_I(n)=\dim_\mathbb{K}\left(R/I \right)_n
+        \end{equation*}
+    \end{mydef}
+
+    \begin{mydef}
+        con lo que se define la serie de Hilbert:
+        \begin{equation*}
+            \begin{split}
+                Hilbert_I(t)&=\sum_{ i\geq0}\dim_{\mathbb{K}}(R/I)_it^i\\
+                &=\sum_{ i\geq0}H_i(t)^i\\
+            \end{split}
+        \end{equation*}        
+    \end{mydef}
+
+    \begin{theor}[\textbf{Teorema de Hilbert-Serre}]
+        \begin{equation*}
+            Hilbert_I(t)=\frac{h(t)}{(1-t)^s}
+        \end{equation*}
+        donde $s=\dim(R/I)-1$ y $h(t)\in\mathbb{Q}[t]$ y $\deg(h)\leq n$.
+    \end{theor}
+
+    \begin{mydef}
+        Se define el grado de multiplicidad de $R/I$ por:
+        \begin{equation*}
+            \deg(R/I)=e(R/I)=h(1)
+        \end{equation*}
+        con $h$ dada en la función anterior.
+    \end{mydef}
+
+    \begin{exa}
+        Considere el anillo $R=K[x,y]$ y el ideal $I=\langle x^2,xy^2,y^4\rangle$. Queremos calcular $e(R/I)$. Se tiene el anillo graduado:
+        \begin{equation*}
+            R/I=\bigoplus_{ n\geq 1}(R/I)_n
+        \end{equation*}
+        se tiene que:
+        \begin{center}
+            \begin{tabular}{c | c | c | c}
+                Grado & Graduado & Base & Valor Hilbert $H_I(n)$ \\
+                \hline
+                $n=0$ & $(R/I)_0=\mathbb{K}$ & $\left\{1 \right\}$ & 1 \\
+                $n=1$ & $(R/I)_1$ & $\left\{x,y \right\}$ & 2 \\
+                $n=2$ & $(R/I)_2$ & $\left\{xy,y^2 \right\}$ & 2 \\
+                $n=3$ & $(R/I)_3$ & $\left\{y^3 \right\}$ & 1 \\
+                $n\geq4$ & $(R/I)_4=\langle 0\rangle$ & $\emptyset$ & 0 \\
+            \end{tabular}
+        \end{center}
+        (todas estas son bases sobre el campo $\mathbb{K}$).
+        Por lo cual tenemos las anteriores funciones de Hilbert, con lo que se genera la siguiente serie de Hilbert:
+        \begin{equation*}
+            Hilbert_I(t)=1t^0+2t^1+2t^3+1t^3
+        \end{equation*}
+        por lo cual:
+        \begin{equation*}
+            e(R/I)=h(1)=6
+        \end{equation*}
+    \end{exa}
+
+    \begin{exa}
+        Considere el anillo $R=\mathbb{K}[x,y,z]$ y al ideal $I=\langle x^2,xy^2,y^3\rangle$. Tomamemos:
+        \begin{equation*}
+            M=R/I=\mathbb{K}[x,y,z]/\langle x^2,xy^2,y^3\rangle
+        \end{equation*}
+        se tiene:
+        \begin{center}
+            \begin{tabular}{c | c | c | c}
+                Grado & Graduado & Base & Valor Hilbert $H_M(n)$ \\
+                \hline
+                $n=0$ & $M_0=\mathbb{K}$ & $\left\{1 \right\}$ & 1 \\
+                $n=1$ & $M_1$ & $\left\{x,y,z \right\}$ & 3 \\
+                $n=2$ & $M_2$ & $\left\{y^2,z^2,xz,yz,xy \right\}$ & 5 \\
+                $n=3$ & $M_3$ & $\left\{z^3,xz^2,yz^2,y^2z,xyz, \right\}$ & 5 \\
+                $n=4$ & $M_4$ & $\left\{z^4,xz^3,yz^3,xyz^2,y^2z^2\right\}$ & 5 \\
+                $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+                $n=i$ & $M_i$ & $\left\{z^i,xz^{ i-1},yz^{ i-1},xyz^{ i-2},y^2z^{ i-2}\right\}$ & 5 \\
+                $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+            \end{tabular}
+        \end{center}
+        entonces, la serie de Hilbert es infinita y es:
+        \begin{equation*}
+            Hilbert_M(t)=1+3t+5t^2+5t^3+5t^4+\cdots=\frac{1+2t+2t^2}{1-t}
+        \end{equation*}
+        (ejercicio) por tanto:
+        \begin{equation*}
+            \deg(M)=e(M)=1+2+2=5
+        \end{equation*}
+    \end{exa}
+
+    En general, todo lo anterior que hemos hecho se puede definir para cualquier $R$-módulo graduado.
+
+    \begin{propo}[\textbf{Propiedad Aditiva de $e(R/I)$}]
+        Si $I=q_1\cap\cdots\cap q_l$ es una descomposición primaria de $I$, entonces
+        \begin{equation*}
+            e(R/I)=\sum_{height(Q_i)=ht(I)}e(R/q_i)
+        \end{equation*}
+    \end{propo}
+
+    Continúamos ahora con los códigos evaluación. Recordemos que fijamos puntos en el espacio:
+    \begin{equation*}
+        x=\left\{p_1,...,p_n \right\}\subseteq\mathbb{P}^{ k-1}
+    \end{equation*}
+    y formábamos una función $\cf{ev_t}{R_t}{\mathbb{K}^n}$ dada por:
+    \begin{equation*}
+        f\mapsto(f(p_1),\cdots,f(p_n))
+    \end{equation*}
+    hacíamos $\mathcal{C}=ev_t(R_t)$ el código evaluación. Se tien que $ev_t$ es un mapeo lineal. Se tiene:
+    \begin{equation*}
+        \begin{split}
+            \ker(ev_t)&=\left\{f\in R_t\Big|ev_t(f)=0 \right\}\\
+            &=\left\{f\in R_t\Big|f(p_i)=0,\quad\forall i=1,...,n \right\}\\
+            &=I(X)_t\\
+        \end{split}
+    \end{equation*}
+    siendo $I(X)_t$ el ideal de anulación de todos los polinomios de grado $t$.
+
+    Por el primer teorema de isomorfismo se sigue que:
+    \begin{equation*}
+        R_t/I(X)_t\cong ev_t(R_t)=\mathcal{C}
+    \end{equation*}
+    como todo código lineal es un código evaluacíon.
+
+    Recordemos que para un código $\mathcal{C}$ se tiene que su longitud es $\abs{X}=e(R/I(X))$. En la clase pasada se dijo que:
+    \begin{equation*}
+        I(X)=I(p_1)\cap\cdots\cap I(p_n)
+    \end{equation*}
+    es una descomposición primaria del ideal $I(X)$. Se puede probar que:
+    \begin{itemize}
+        \item $ht(I(X))=ht(I(p_i))$ para todo $i$.
+        \item $e(R/I(p_i))=1$.
+    \end{itemize}
+    en particular, por la propiedad aditiva de $e(R/I)$ se sigue que:
+    \begin{equation*}
+        e(R/I(X))=\sum_{ ht(I(X))=ht(I(p_i))} e(R/I(p_i))=n=\abs{X}
+    \end{equation*}
+    por lo que tenemos ahora una forma únicamente algebraica para interpretar la lóngitud de un código.
+
+    Para el código $\mathcal{C}$, se tiene que:
+    \begin{equation*}
+        \dim_{\mathbb{K}}(\mathcal{C})=\dim\left([R/I(X)]_t \right)=H_{ I(X)}(t)
+    \end{equation*}
+    considerando el anillo graduado $R/I=\bigoplus_{ t\geq1}(R/I)_t$.
+
+    \begin{propo}
+        La distancia mínima del código $\mathcal{C}(X,t)$ está dada por:
+        \begin{equation*}
+            d(X)_t=m-\max_{ X'\subseteq X}\left\{\abs{X'}\Big|\dim_{\mathbb{K}}(I(X'))>\dim_{\mathbb{K}}(I(X)_t) \right\}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Sea $w\in\mathcal{C}(X,t)$ palabra de peso de Hamming $s\geq1$ que alcanza la distancia mínima, luego $w$ es de la forma:
+        \begin{equation*}
+            w=(f(p_1),...,f(p_m))
+        \end{equation*}
+        donde el grado del polinomio es $t$ (todo esto ya hace sentido). En particular, podemos elegir $i_1,...,i_s$ tales que
+        \begin{equation*}
+            f(p_{ i_1}),...,f(p_{ i_s})\neq0
+        \end{equation*}
+        y, $f(p_j)=0$ para todo $j\in\left\{1,...,n \right\}\setminus\left\{i_1,...,i_s \right\}$. Sea
+        \begin{equation*}
+            X'=\left\{p_j\Big|j\in\left\{1,...,n \right\}\setminus\left\{i_1,...,i_s \right\}\right\}
+        \end{equation*}
+        es claro que $X'\subseteq X$, en particular $I(X)_t\subseteq I(X')_t$, luego
+        \begin{equation*}
+            \dim_{\mathbb{K}}(I(X')_t)>\dim_{\mathbb{K}}(I(X)_t)
+        \end{equation*}
+        y es estricta ya que $f\in I(X')_t\setminus I(X)_t$. Se tiene también que
+        \begin{equation*}
+            s=m-\abs{X'}
+        \end{equation*}
+        por lo que $X'$ es tal que:
+        \begin{equation*}
+            d(X)_t=m-\max_{ X'\subseteq X}\left\{\abs{X'}\Big|... \right\}
+        \end{equation*}
+        lo cual prueba el resultado.
+    \end{proof}
+
+    \begin{mydef}
+        El \textbf{grado inicial} de un ideal homogéneo $\alpha(I(\mathcal{Z}_c))=\min\left\{t\big|(I(\mathcal{Z}_c))_t\neq0 \right\}$. Lo denotaremos por
+        \begin{equation*}
+            \alpha(\mathcal{Z})=\alpha(I(\mathcal{Z}_c))
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        Sea $1\leq t\leq\alpha(X)-1$, entonces
+        \begin{equation*}
+            d(X)_t+u\geq(k-1)(\alpha(X)-t)
+        \end{equation*}
+        para algún $u\in\left\{0,...,k-2 \right\}$, con $X\subseteq\mathbb{P}^{ k-1}$.
+    \end{propo}
+
+    \begin{proof}
+        Supongamos que $X=\left\{p_1,...,p_m \right\}$. Denotemos por:
+        \begin{equation*}
+            d=d(X)_t\geq1
+        \end{equation*}
+        Sea $X'\subseteq X$ tal que
+        \begin{equation*}
+            d=m-\abs{X'}\Rightarrow\abs{X'}=m-d
+        \end{equation*}
+        (por la proposición anterior). Sea
+        \begin{equation*}
+            Y=X\setminus X'=\left\{Q_1,...,Q_d \right\}
+        \end{equation*}
+        y sea $f\in I(X')_t$.
+        \begin{equation*}
+            f(Q_i)\neq0
+        \end{equation*}
+        para todo $j=1,...,d$. Si $d\leq k-1$, entonces $Y$ están contenido en un hiperplano definido por $V(L)$ (ceros de $L$), donde $L$ es una forma lineal (esto es que $\deg(L)=1$) y entonces $f\cdot L\in I(X)$, entonces
+        \begin{equation*}
+            \alpha(X)\leq t+1
+        \end{equation*}
+        por lo que:
+        \begin{equation*}
+            \alpha(X)-t\leq 1\Rightarrow (k-1)(\alpha(X)-t)\leq k-1=d+(k-1)-d
+        \end{equation*}
+        por lo que tomando $u=(k-1)-d$ se tiene el resultado (esto si $d\leq k-1$).
+
+        Si $d\geq k$, tomemos $\delta=\lceil\frac{d}{k-1}\rceil$, entonces,
+        \begin{equation*}
+            \delta\cdot(k-1)=d\cdot u
+        \end{equation*}
+        con $u\in\left\{0,...,k-2 \right\}$, entonces cualquier conjunto $Y$ de $k-1$ puntos pertenece a un hiperplano. Podemos considerar la unión de $\delta$-hiperplanos:
+        \begin{equation*}
+            V(L_1),\cdots,V(L_\delta)\subseteq\mathbb{P}^{k-1}
+        \end{equation*}
+        que contine a los puntos de $Y$ siendo cada $L_i$ una forma lineal de grado uno, entonces
+        \begin{equation*}
+            L_1\cdots L_\delta\cdot f\in I(X)
+        \end{equation*}
+        por lo que $\alpha(X)\leq \delta+t$. De forma inmediata se sigue que:
+        \begin{equation*}
+            d+u\geq(k-1)(\alpha(X)-t)
+        \end{equation*}
+    \end{proof}
+
+
 
 \end{document}
