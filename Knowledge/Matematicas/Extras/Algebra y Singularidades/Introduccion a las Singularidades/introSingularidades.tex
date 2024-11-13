@@ -628,4 +628,409 @@
 
     Lo demás se deduce de forma más sencilla.
 
+    Por último, la fórmula del género se deduce de otro hecho que no se menciona adecuadamente aquí.
+
+    \section{Algoritmo de Newton-Puiseux}
+
+    Básicmaente esto es una generalización del teorema de la función implícita para entornos de puntos singulares de $C\subseteq\mathbb{P}^2_{\mathbb{C}}$.
+
+    Podemos analizar por ejemplo la cúspide de $f(x,y)=y^2-x^3$. Se tiene que $f_x(x,y)=-3x^2$ y $f_y(x,y)=2y$, por lo que $(0,0)$ es un punto singular de la curva afín $C=V(f)$.
+
+    \begin{theor}
+        Sea $C=V(f)\subseteq\mathbb{C}^2$ una curva afín tal que $f(0,0)=0$ tal que $\deg_y(f)=n$. Entonces, existe una serie de potencias $\xi(x)\in\mathbb{C}[[x^{1/n}]]$ tal que $f(x,\xi(x))=0$.
+
+        Además, $\xi$ es convergente en un entorno de $0\in\mathbb{C}$.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{obs}
+        Una consencuencia del teorema es que $\bigcup_{ n\geq1}\mathbb{C}((x^{1/n}))$ es algebraicamente cerrado y es llamado el \textbf{campo de series de Puiseux}.
+    \end{obs}
+
+    Dado un $\xi\in\mathbb{C}[[x^{1/n}]]$, tomemos $\epsilon$ la raíz primitiva de la unidad de orden $n$.
+
+    Por ejemplo, dada $\xi=\sum a_ix^{i/n}$, entonces $\sigma_{\epsilon}(\xi)=\sum a_i\epsilon^ix^{ i/n}$.
+
+    \begin{excer}
+        Calcular las conjugadas de $x^{ 6/4}+x^{ 7/4}$.
+    \end{excer}
+
+    Si tomamos a
+    \begin{equation*}
+        f(x,y)=\prod_{ \textup{conjugadas de }\xi}(y-\xi_k(x))\in\mathbb{C}[x][y]
+    \end{equation*}
+    esta es una función local irreducible.
+
+    \begin{exa}
+        Considere $f(x,y)=y^4+2x^3y^2+x^6+x^5y+x^12$. Entonces:
+        \begin{equation*}
+            f(x,y)=\sum_{i,j}a_{ ij}x^iy^j
+        \end{equation*}
+        \begin{itemize}
+            \item Dibujar los puntos $(i,j)\in\mathbb{N}^2$ tales que $a_{ i,j}\neq0$. En este caso, se verían los puntos $(0,4),(3,2),(6,0),(5,1)$ y $(12,0)$.
+            \item Tomamos $\Delta=envconv\left[\bigcup_{ i,j}\left((i,j)+(\mathbb{R}_{\geq0})^2\right)\right]$ donde $envconv$ es la envolvente convexa de este conjunto y consideramos los segmentos que unen a cada uno de los puntos que forman a éste conjunto parametrizados por las coordenadas $i$ y $j$, en este caso solo tenemos al segmento $2i+3j=12$.
+            \item Para cada segmento $\Gamma$ finito de la frontera de $\Delta$ teenmos un par de números naturales primos rel. tales que $\Gamma$ está contenido en l arecta $ni+mj=M$ y vamos a considerar:
+            \begin{equation*}
+                f_\Gamma=\sum_{ ni+mj=M}a_{ij}x^iy^j
+            \end{equation*}
+            en este caso, para el segmento $\Gamma$ dado por $2i+3j=12$, se tiene que $f_\gamma=y^4+2x^3y^2+x^6$.
+            \item Con $f_\Gamma$ consideramos una raíz $a$ de $f_\Gamma(1,y)\in\mathbb{C}[y^n]$, en este caso para $\Gamma$ tendríamos a $-\frac{2}{3}$.
+            \item Hacemos $x=x_1^n$ y $y=x_1^m(a+y_1)$. Entonces ahora con la raíz $a$ de $(y^2+1)^2$, tomamos $a=i$ y hacemos:
+            \begin{equation*}
+                \left\{
+                    \begin{array}{rcl}
+                        x & = & x_1^2\\
+                        y & = & x_1^3(i+y_1)\\
+                    \end{array}
+                \right.
+            \end{equation*}
+            hacemos:
+            \begin{equation*}
+                \begin{split}
+                    f(x,y)&=f(x_1^n,x_1^m(y+y_1))\\
+                    &=x_1^Mf(x_1,y_1)\\
+                \end{split}
+            \end{equation*}
+            en este caso, notemos que como:
+            \begin{equation*}
+                x^iy^j=x_1^{ ni}x_1^{ mj}(a+y_1)^j=x_1^M(a+y_1)^j
+            \end{equation*}
+            en nuestro caso, obtendríamos que:
+            \begin{equation*}
+                \begin{split}
+                    f(x,y)&=y^4+2x^3y^2+x^6+x^5y+x{12}\\
+                    &=x_1^{12}(i+y_1)^4+2x_1^6x_1^6(i+y_1)^2+x_1^{12}+x_1^{10}x_1^3(i+y_1)+x_1^{24}\\
+                    &=x_1^{12}\left[(i+y_1^4)+2(i+y_1)^2+1+x_1(i+y_1)+x_1^{12}\right]\\
+                    &=x_1^{12}\left[\left((i+y_1)^2+1\right)^2+... \right]\\
+                    &=x_1^{12}\left[(2iy_1+y_1^2)^2+x_1(i+y_1)+x_1^{12}\right]\\
+                    &=x_1^{12}f_1(x_1,y_1)\\
+                \end{split}
+            \end{equation*}
+            \item Reiteramos el proceso con la nueva $f_1$, la nueva raíz de $f_\Gamma(1,y)$ con este nuevo polinomio es $a_a$.
+            \item Cuando paremos, hacemos las sustituciones para que SOLO QUEDE $x$.
+            \item Podemos tomar otro segmento y obtendremos otra raíz conjugada inicial de nuestra variedad inicial. Independientemente de esto, llegaríamos a una aproximación de una raíz.
+        \end{itemize}
+        En el ejemplo anterior, tomamos $h(f)=\min\left\{j\Big|a_{ 0j}\neq0 \right\}$. En este caso, se tiene que:
+        \begin{equation*}
+            h(f_1)
+        \end{equation*}
+        es la multiplicidad de $a_1$ como raíz de $f_\Gamma(1,y)$. Pueden pasar dos cosas:
+        \begin{enumerate}
+            \item Que para alguna iteración $i$, $h(f_i)=0$, luego $y_i=0$ y esto haría que la serie de potencias sea finita.
+            \item $h(f)\geq h(f_1)\geq h(f_2)\geq\cdots\geq h(f_i)=1$.
+        \end{enumerate}
+    \end{exa}
+
+    Considerando una curva $C$ irreducible, por lo anterior podemos encontrar una serie de potencisa $\xi$ tal que con $C=V(f)$ se tiene que $f(t^n,\xi(t^n))=0$. Si $D=V(g)$, entonces
+    \begin{equation*}
+        I_0(C,D)=ord_tg(t^n,\sum a_it^i)
+    \end{equation*}
+    y,
+    \begin{equation*}
+        I_0(C_1\cup C_2,D)=I_0(C_1,D)+I_0(C_2,D)
+    \end{equation*}
+
+    \section{Explosión de $\mathbb{C}^2$ en el origen}
+
+    Considere la superficie
+    \begin{equation*}
+        Bl_0\mathbb{C}^2=\left\{xv-yu=0 \right\}\subseteq\mathbb{A}^2\times\mathbb{P}_{\mathbb{C}}^1
+    \end{equation*}
+    queremos ver esto como superficie en le origen. Hacemos dos cartas dadas por:
+    \begin{equation*}
+        \left\{ 
+            \begin{array}{rcl}
+                x & = & u_1v_1 \\
+                y & = & v_1\\
+            \end{array}
+        \right.\textup{ y }\left\{ 
+            \begin{array}{rcl}
+                x & = & u_2 \\
+                y & = & u_2v_2\\
+            \end{array}
+        \right.
+    \end{equation*}
+    donde habrá un conjunto $E=\mathbb{P}^1$ tal que $E\subseteq Bl_0\mathbb{C}^2$. Lo que nos permite esto es quitar singularidades dobles exóticas como la que muestra la imagen.
+
+    Considere la superficie $y^2=x^2+x^3$. Entonces:
+    \begin{equation*}
+        x^3=(y+x)(y-x)
+    \end{equation*}
+
+    \begin{itemize}
+        \item En la carta 1, se tiene que la superficie se convierte en
+        \begin{equation*}
+            y^2-x^2-x^3=0\Rightarrow v_1^2(1-u_1^2-u_1^3v_1)=0
+        \end{equation*}
+        haciendo $f_1=1-u_1^2-u_1^3v_1$, cuando $E$ sea la recta $v_1=0$ sea cero se seguirá que $u_1$ tiene dos multiplicidades en dos puntos distintos.
+    \end{itemize}
+
+    \begin{excer}
+        En la carta 1, hacer la traslación $u_1\mapsto u_1+1$ y comprobar que $E(v_1=0)$ y que $f_1$ es lisa y corta transversalmente a $E$.
+    \end{excer}
+
+    \begin{exa}
+        Considere la curva $y^2+x^7$.
+        \begin{itemize}
+            \item En la carta 1, va suceder que:
+            \begin{equation*}
+                \begin{split}
+                    v_1^2-u_1^7v_1^7=v_1^2(1-u_1^7v_1^5)=0
+                \end{split}
+            \end{equation*}
+            entonces, $E(v_1=0)$ y $f_1$ no se cortan.
+            \item En la carta 2, va a pasar que
+            \begin{equation*}
+                \begin{split}
+                    (u_2v_2)^2-u_2^7=u_2^2(v_2^2-u_2^5)=0
+                \end{split}
+            \end{equation*}
+            tomando $f_2=y^2-x^5$ se tiene que efectivamente, aquí sí corta $f_2$ a $E(u_2=0)$.
+        \end{itemize}
+    \end{exa}
+
+    \begin{obs}
+        En general, va a suceder que si la multiplicidad de $f$ es $m$, entonces
+        \begin{itemize}
+            \item En carta 1, tenemos algo de la forma $v_1^mf_1(u_1,v_1)$.
+            \item En carta 2, tenemos algo de la forma $u_2^mf_2(u_2,v_2)$.
+        \end{itemize}
+    \end{obs}
+
+    ¿Qué pasa cuando explotamos singularidades? Ahora tenemos la función $f$ y a $\xi$ que cumple lo anterior.
+
+    \newpage
+
+    \section{Referencias}
+
+    \begin{itemize}
+        \item F. Kirwan \textit{Complex Algebraic Curves}, LMS 1992.
+        \item K. Kendig \textit{A guide to plane algebraic curves}, MAA, 2011.
+        \item E. Casas-Alveror, \textit{Algebraic Curves, the Bill-Noether Way}, Springer 2019.
+        \item E. Brickeson H. Krorrer, \textit{Plane Algebraic Curves}, Birkhaser, 80's.
+    \end{itemize}
+
+    \newpage
+
+    \section{Sesión de Ejercicios}
+
+    \begin{exa}
+        Calcular las conjugadas de $x^{ 3/2}+x^{ 7/4}$.
+    \end{exa}
+
+    \begin{sol}
+        Calculamos las raíces cuartas de 1, las cuáles son 1, -1,$i$ y $-i$. Tomamos
+        \begin{equation*}
+            \xi_1=\xi(x^{ 1/4})=(x^{1/4})^6+(x^{1/4})^7=x^{6/4}+x^{7/4}
+        \end{equation*}
+        las conjugadas serían:
+        \begin{equation*}
+            \begin{split}
+                \xi_2=\xi(ix^{ 1/4})&=i^6(x^{1/4})^6+i^7(x^{1/4})^7\\
+                &=-x^{6/4}-ix^{7/4}\\
+            \end{split}
+        \end{equation*}
+        \begin{equation*}
+            \begin{split}
+                \xi_3=\xi(-ix^{ 1/4})&=(-i)^6(x^{1/4})^6+(-i)^7(x^{1/4})^7\\
+                &=-x^{6/4}+ix^{7/4}\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                \xi_4=\xi(-x^{ 1/4})&=(-x^{1/4})^6+(-x^{1/4})^7\\
+                &=x^{6/4}-x^{7/4}\\
+            \end{split}
+        \end{equation*}
+    \end{sol}
+
+    Notemos que en el ejemplo anterior hay 4 conjugadas distintos del polinomio dado. Queremos ahora nuestro polinomio construído a partir de estos polinomios.
+    \begin{equation*}
+        f=(y-\xi_1)\cdot(y-\xi_2)\cdot(y-\xi_3)\cdot(y-\xi_4)
+    \end{equation*}
+    el cuál es:
+    \begin{equation*}
+        \begin{split}
+            f&=(y-\xi_1)\cdot(y-\xi_2)\cdot(y-\xi_3)\cdot(y-\xi_4)\\
+            &=(y-x^{6/4}-x^{7/4})\cdot(y+x^{6/4}+ix^{7/4})\cdot(y-x^{6/4}+x^{7/4})\cdot(y+x^{6/4}-ix^{7/4})\\
+            &=\left((y-x^{ 6/4})^2-x^{7/2} \right)\cdot\left((y+x^{ 6/4})^2+x^{7/2}\right)\\
+            &=\left(y^2+x^3+2x^{ 6/4}y+x^{ 7/2}\right)\cdot\left(y^2+x^3-2x^{ 6/4}y-x^{ 7/2}\right)\\
+            &=(y^2+x^3)^2-(2x^{6/4}y+x^{7/2})^2\\
+            &=(y^2+x^3)^2-4x^3y^2-4x^{5}y-x^7\\
+        \end{split}
+    \end{equation*}
+    
+    \begin{exa}
+        Considere los polinomios $f=x^3-3x^2+2x+1$ y $g=x^2-x+2$. Entonces $m=3$ y $n=2$, por lo que:
+        \begin{equation*}
+            A_{5}=\left(
+                \begin{array}{ccccc}
+                    1 & -3 & 2 & 1 & 0 \\
+                    0 & 1 & -3 & 2 & 1 \\
+                    1 & -1 & 2 & 0 & 0 \\
+                    0 & 1 & -1 & 2 & 0 \\
+                    0 & 0 & 1 & -1 & 2 \\
+                \end{array}
+            \right)
+        \end{equation*}
+        sería la matriz asociada al resultante de los polinomios $f$ y $g$. ¿Cuál es el resultante de ambos polinomios?
+    \end{exa}
+
+    \begin{sol}
+        Supongamos que ambos polinomios tienen una raíz en común, digamos $r$. Escribimos los polinomios de la siguiente forma:
+        \begin{equation*}
+            \left\{
+                \begin{array}{rcl}
+                    x^3-3x^2+2x+1 & = & (x-r)\underset{p}{\underbrace{(a_0x^2+a_1x+a_2)}} \\
+                    x^2-x+2 & = & (x-r)\underset{q}{\underbrace{(b_0x+b_1)}} \\
+                \end{array}
+            \right.
+        \end{equation*}
+        calculamos ahora $qf-pg$, donde:
+        \begin{equation*}
+            qf = b_0x^4+(-3b_0+b_1)x^3+(2b_0+2b_1)x^2+(b_0+2b_1)x+b_1
+        \end{equation*}
+        y,
+        \begin{equation*}
+            a_0x^4+(a_1-a_0)x^3+(a_2-a_1+2a_0)x^2+(-a_2+2a_1)x+2a_2
+        \end{equation*}
+        por lo que los términos del polinomio $qf-pg$ clasificados por grados son:
+        \begin{center}
+            \begin{tabular}{c | c}
+                Grado & Término \\
+                \hline
+                4 & $b_0-a_0$ \\
+                3 & $b_1+a_0-3b_0-a_1$ \\
+                2 & $2b_0-3b_1-a_2+a_1-2a_0$ \\
+                1 & $2b_1+b_0+a_2-2a_1$ \\
+                0 & $b_1-2a_2$ \\
+            \end{tabular}
+        \end{center}
+        Y, para determinar el determinante bastará con resolver el sistema $5\times 5$ y ver si hay solución no trivial para el sistema dado por:
+        \begin{equation*}
+            \left(
+                \begin{array}{ccccc}
+                    -1 & 0 & 0 & 1 & 0 \\
+                    1 & -1 & 0 & -3 & 1 \\
+                    -2 & 1 & -1 & 2 & -3 \\
+                    0 & -2 & 1 & 1 & 2 \\
+                    0 & 0 & -2 & 1 & 0 \\
+                \end{array}
+            \right)\cdot\left(\begin{array}{c}
+                a_0 \\
+                a_1 \\
+                a_2 \\
+                b_0 \\
+                b_1 \\
+            \end{array} \right)=\left(\begin{array}{c}
+                0 \\
+                0 \\
+                0 \\
+                0 \\
+                0 \\
+            \end{array} \right)
+        \end{equation*}
+        reduzcamos el sistema:
+        \begin{equation*}
+            \begin{split}
+                \left(
+                \begin{array}{ccccc}
+                    -1 & 0 & 0 & 1 & 0 \\
+                    1 & -1 & 0 & -3 & 1 \\
+                    -2 & 1 & -1 & 2 & -3 \\
+                    0 & -2 & 1 & 1 & 2 \\
+                    0 & 0 & -2 & 1 & 0 \\
+                \end{array}
+            \right)&\sim \left(
+                \begin{array}{ccccc}
+                    -1 & 0 & 0 & 1 & 0 \\
+                    0 & -1 & 0 & -2 & 1 \\
+                    0 & 1 & -1 & 0 & -3 \\
+                    0 & -2 & 1 & 1 & 2 \\
+                    0 & 0 & -2 & 1 & 0 \\
+                \end{array}
+            \right)\\
+            &\sim \left(
+                \begin{array}{ccccc}
+                    -1 & 0 & 0 & 1 & 0 \\
+                    0 & -1 & 0 & -2 & 1 \\
+                    0 & 0 & -1 & -2 & -2 \\
+                    0 & 0 & 1 & 5 & 0 \\
+                    0 & 0 & -2 & 1 & 0 \\
+                \end{array}
+            \right)\\
+            &\sim \left(
+                \begin{array}{ccccc}
+                    -1 & 0 & 0 & 1 & 0 \\
+                    0 & -1 & 0 & -2 & 1 \\
+                    0 & 0 & -1 & -2 & -2 \\
+                    0 & 0 & 0 & 3 & -2 \\
+                    0 & 0 & 0 & 5 & 4 \\
+                \end{array}
+            \right)\\
+            &\sim \left(
+                \begin{array}{ccccc}
+                    -1 & 0 & 0 & 1 & 0 \\
+                    0 & -1 & 0 & -2 & 1 \\
+                    0 & 0 & -1 & -2 & -2 \\
+                    0 & 0 & 0 & 1 & -\frac{2}{3} \\
+                    0 & 0 & 0 & 5 & 4 \\
+                \end{array}
+            \right)\\
+            &\sim \left(
+                \begin{array}{ccccc}
+                    -1 & 0 & 0 & 1 & 0 \\
+                    0 & -1 & 0 & -2 & 1 \\
+                    0 & 0 & -1 & -2 & -2 \\
+                    0 & 0 & 0 & 1 & -\frac{2}{3} \\
+                    0 & 0 & 0 & 0 & \frac{2}{3} \\
+                \end{array}
+            \right)\\
+            &\sim \left(
+                \begin{array}{ccccc}
+                    -1 & 0 & 0 & 1 & 0 \\
+                    0 & -1 & 0 & -2 & 1 \\
+                    0 & 0 & -1 & -2 & -2 \\
+                    0 & 0 & 0 & 1 & -\frac{2}{3} \\
+                    0 & 0 & 0 & 0 & 1 \\
+                \end{array}
+            \right)\\
+            \end{split}
+        \end{equation*}
+        por lo que el sistema es trivial (rápidamente se obtiene con operaciones de suma y resta de filas de la matriz). Por lo que ambos polinomios no comparten raíces en común.
+    \end{sol}
+
+    \begin{excer}
+        En la carta 1, con la curva $y^2-x^2-x^3=0$ hacer la traslación $u_1\mapsto u_1+1$ y comprobar que $E(v_1=0)$ y que $f_1$ es lisa y corta transversalmente a $E$.
+    \end{excer}
+
+    \begin{sol}
+        Obtuvimos la nueva curva a partir de la explosión:
+        \begin{equation*}
+            v_1^2(1-u_1^2-u_1^3v_1)=0
+        \end{equation*}
+        haciendo $f_1(u_1,v_1)=1-u_1^2-u_1^3v_1$, hacemos $v_1=0$, con lo que obtenemos:
+        \begin{equation*}
+            f(u_1,0)=1-u_1^2=(1-u_1)(1+u_1)
+        \end{equation*}
+        queremos ir al punto $(1,0)$. Cambiamos $u_1\mapsto u_2+1$ y a $v_1$ por $v_2$. Obtenemos en la curva original:
+        \begin{equation*}
+            \begin{split}
+                v_2^2(1-(u_2+1)^2-(u_2+1)^3v_2)=0&\iff v_2^2(1-u_2^2-2u_2-1-v_2(u_2^3+3u_2^2+3u_2+1))\\
+                &\iff v_2^2(-u_2^2-2u_2-v_2(u_2^3+3u_2^2+3u_2+1))\\
+            \end{split}
+        \end{equation*}
+        considerando el nuevo polinomio $f_2(u_2,v_2)=-u_2^2-2u_2-v_2(u_2^3+3u_2^2+3u_2+1)$, con $v_2=0$ obtenemos que:
+        \begin{equation*}
+            f(u_2,0)=-u_2^2-2u_2=-u_2(2+u_2)
+        \end{equation*}
+        por lo que en efecto, $E$ corta a la curva en dos puntos transversalmente (en $0$ y $-1$). Además, es inmediato que esta nueva $f_2$ es lisa.
+
+        Se puede hacer lo análogo usando la transformación $u_1\mapsto \bar{u_2}-1$ y $v_1\mapsto\bar{v_2}$ (resultando en lo análogo).
+    \end{sol}
+
 \end{document}
