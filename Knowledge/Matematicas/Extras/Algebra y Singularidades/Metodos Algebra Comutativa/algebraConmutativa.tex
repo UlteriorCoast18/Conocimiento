@@ -353,7 +353,7 @@
     \end{theor}
 
     \begin{proof}
-        Ver Hungerford.
+        
     \end{proof}
 
     \begin{mydef}
@@ -932,6 +932,247 @@
         \end{equation*}
     \end{proof}
 
+    \begin{exa}
+        Sea $\mathcal{C}$ un código con matriz generadora
+        \begin{equation*}
+            G=\left( 
+                \begin{array}{ccccc}
+                    1 & 0 & 0 & 1 & 0 \\
+                    0 & 1 & 0 & -1 & 1 \\
+                    0 & 0 & 1 & 0 & -1 \\
+                \end{array}
+            \right)
+        \end{equation*}
+        el esquema de puntos (reducido/gordos) está dado por:
+        \begin{equation*}
+            X=\left\{p_1=[1,0,0],p_2=[0,1,0],p_3=[0,0,1],p_4=[1,-1,0],p_5=[1,0,-1] \right\}\subseteq\mathbb{P}^2
+        \end{equation*}
+        Se tiene el ideal de definición:
+        \begin{equation*}
+            \begin{split}
+                I(X)&=I(p_1)\cap\cdots\cap I(p_5)\\
+                &=\langle x_2,x_3 \rangle\cap\langle x_1,x_3 \rangle\cap\langle x_1,x_2 \rangle\cap\langle x_1+x_2,x_3 \rangle\cap\langle x_1+x_3,x_2 \rangle
+            \end{split}
+        \end{equation*}
+        (nomás basta ver como son los puntos para ver como se generan los ideales). Notemos que $p_1,p_2,p_4\in V(x_3)$ y $p_1,p_3,p_5\in V(x_2)$. Por ende, $x_2x_3\in I(X)$.
 
+        Así, $\alpha(X)\leq 2$. Afirmamos que $\alpha(X)=2$ ya que no hay una forma lineal que se vaya a anular en todos.
+        \begin{equation*}
+            hyp(X)=3
+        \end{equation*}
+        Por lo cual,
+        \begin{equation*}
+            d(X)=5-hyp(X)=5-3=2
+        \end{equation*}
+        Si $t=1$ con $u=0$, tenemos que:
+        \begin{equation*}
+            \begin{split}
+                d(X)_1+u&=2+0\\
+                &=(3-1)(2-1)\\
+                &=(k-1)(\alpha(X)-t)\\
+            \end{split}
+        \end{equation*}
+        para $t=2$, necesitamos exhibir un polinomio de grado 2 que anule a la mayor cantidad de puntos de $X$, pero no a todos, elegimos $x_1x_3$ ya que $p_1,p_2,p_3,p_4\in V(x_1x_3)$. En este caso,
+        \begin{equation*}
+            d(X)_t=\abs{X}-\max_{ X'\subseteq X}\left\{\abs{X'}\Big|\cdots \right\}
+        \end{equation*}
+        note que $X'=\left\{p_1,...,p_4 \right\}$ y $p_5\notin V(x_1x_3)$, por lo que
+        \begin{equation*}
+            d(X)_2=5-4=1
+        \end{equation*}
+        (esto por el hecho de que $\alpha(X)=2$).
+    \end{exa}
+
+    \begin{cor}
+        Sea $X\subseteq\mathbb{P}^{ k-1}$ con $k\geq 3$ es un conjunto de $n$ puntos reducidos no todos contenidos en un mismo hiperplano. Sea $t\geq 1$ un entero, entonces:
+        \begin{equation*}
+            d(X)_t\geq(k-1)(\alpha(X)-1-t)+1
+        \end{equation*} 
+    \end{cor}
+
+    \begin{proof}
+        No se verá.
+    \end{proof}
+
+    \begin{cor}
+        Sea $X\subseteq\mathbb{P}^{ k-1}$ con $k\geq 3$ es un conjunto de $n$ puntos reducidos no todos contenidos en un mismo hiperplano. Sea $d(X)$ la distancia mínima del esquema $X$. Entonces,
+        \begin{equation*}
+            d(X)=\alpha(X)-1\iff hyp(X)=n-1\iff d=1
+        \end{equation*}
+    \end{cor}
+
+    \begin{proof}
+        Si $t=1$, del corolario anteriror tenemos que
+        \begin{equation*}
+            d(X)_t\geq(k-1)(\alpha(X)-2)+1
+        \end{equation*}
+        \begin{itemize}
+            \item Si $d(X)=\alpha(X)-1$, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    \alpha(X)-1&\geq(k-1)(\alpha(X)-2)+1\\
+                    \Rightarrow 0&\geq(k-1)(\alpha(X)-2)+2-\alpha(X)\\
+                    \Rightarrow 0&\geq (k-2)(\alpha(X)-2)\\
+                \end{split}
+            \end{equation*}
+            como $k\geq 3$, entonces $\alpha(X)-2\leq 0$, luego al tenerse que el grado inicial es un número positivo, debe tenerse que $1\leq\alpha(X)\leq 2$, pero como no todos están en un mismo hiperplano, se sigue que $\alpha(X)=2$ (en caso que fuese 1, habría una forma lineal que se anulase en todos, luego todos están en un mismo hiperplano, cosa que no puede suceder).
+
+            Luego, $d(X)=\alpha(X)-1=1$, lo cual implica que:
+            \begin{equation*}
+                hyp(X)=n-d(X)=n-1
+            \end{equation*}
+            \item Si $d(X)=1$, entonces del corolario anterior se sigue que:
+            \begin{equation*}
+                \begin{split}
+                    1&\leq(k-1)(\alpha(X)-2)+1\\
+                    \Rightarrow 0\geq(k-1)(\alpha(X)-2)\\
+                \end{split}
+            \end{equation*}
+            como en el caso anterior, se sigue que $\alpha(X)=2$. Luego $d(X)=2-1=\alpha(X)-1\iff hyp(X)=n-1$.
+        \end{itemize}
+    \end{proof}
+
+    Todas estás preguntas las hemos respondido en un esquema de puntos reducidos, pero ¿qué sucede en el caso de esquema de puntos gordos (es decir, con multiplicidad)?
+
+    \section{El caso de puntos gordos}
+
+    Sea $\mathcal{Z}=m_1p_1+\cdots+m_sp_s$ y $m_1,...,m_s\geq1$ es un esquema de puntos gordos no todos contenidos en un hiperplano y además,
+    \begin{equation*}
+        m_1+\cdots+m_s=n
+    \end{equation*}
+    sea $X=supp(\mathcal{Z})=\left\{p_1,...,p_s \right\}$. Denotemos por
+    \begin{equation*}
+        m=m(\mathcal{Z})=\max\left\{m_1,...,m_s \right\}
+    \end{equation*}
+
+    \begin{theor}
+        Sea $\mathcal{Z}$ un esquema de puntos gordos, entonces
+        \begin{equation*}
+            d(\mathcal{Z})\geq\alpha(\mathcal{Z})-m
+        \end{equation*}
+    \end{theor}
+
+    \begin{proof}
+        No se hará.
+    \end{proof}
+
+    Ahora hablaremos de más parámetros sobre los códigos, en particular de lo siguiente:
+    \begin{itemize}
+        \item Pesos generalizados de Hamming.
+        \item Códigos evaluación.
+        \item Como una función sobre ideales graduados/función de Hilbert.
+    \end{itemize}
+
+    \begin{mydef}
+        Sea $\mathcal{C}\subseteq\mathbb{K}^n$ un $[n,k,d]$ un código lineal. Considere $\mathcal{D}\subseteq\mathcal{C}$ un subcódigo (subespacio) de $\mathcal{C}$.
+
+        El \textbf{soporte de $\mathcal{D}$} se define por:
+        \begin{equation*}
+            supp(\mathcal{D})=\left\{i\in\left\{1,...,n \right\}\Big|\exists (x_1,...,x_n)\in D\textup{ con }x_i\neq 0 \right\}
+        \end{equation*}
+        y sea $m(D)=\abs{supp(D)}$.
+    \end{mydef}
+
+    \begin{obs}
+        Para $c=(c_1,...,c_n)\in\mathcal{C}$:
+        \begin{equation*}
+            supp(c)=\left\{i\in\left\{1,...,n \right\}\Big|c_i\neq0 \right\}=w(c)
+        \end{equation*}
+        recordemos que esto es el peso de Hamming de una palabra.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $\mathcal{C}\subseteq\mathbb{K}^n$ un $[n,k,d]$ un código lineal. Para $r\in\left\{1,...,k \right\}$, definimos el \textbf{$r$-ésimo peso generalizado de Hamming de $\mathcal{C}$} por:
+        \begin{equation*}
+            d_r(\mathcal{C})=\min_{\mathcal{D}\subseteq\mathcal{C}}\left\{m(\mathcal{D})\Big|\dim_{\mathbb{K}}(\mathcal{D})=r \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        Veamos quién es uno por uno:
+        \begin{equation*}
+            d_1(\mathcal{C})=\min_{ \mathcal{D}\subseteq\mathcal{C}}\left\{m(\mathcal{D})\Big|\dim_{\mathbb{K}}(\mathcal{D})=1 \right\}
+        \end{equation*}
+        entonces, $\mathcal{D}$ es un subespacio de $\mathcal{C}$ generado por un único elemento, digamos $D=\gen{c}$ con $c\in\mathcal{C}$. Por lo que:
+        \begin{equation*}
+            \begin{split}
+                d_1(\mathcal{C})&=\min_{ c\in\mathcal{C}}\left\{w(c)\Big|c\in\mathcal{C}\setminus\left\{0\right\} \right\}\\
+                &=d(\mathcal{C})\\
+            \end{split}
+        \end{equation*}
+        es decir que recuperamos el peso de Hamming original.
+    \end{obs}
+
+    Consideremos ahora $X0\left\{p_1,...,p_m \right\}\subseteq\mathbb{P}^{ k-1}$ y tomemos el anillo de polinomios $R=\mathbb{K}[x_1,...,x_m]=\bigoplus_{ t\geq1}R_t$ con la graduación estándar.
+
+    Se definió la función evaluacíon:
+    \begin{equation*}
+        \begin{split}
+            ev_t:R_t&\rightarrow\mathbb{K}^{m}\\
+            f&\mapsto(f(p_1),...,f(p_m))\\ 
+        \end{split}
+    \end{equation*}
+    se tomó el código evaluación con parámetro $t$ por $\mathcal{C}(X,t)=ev_t(R_t)$. Se sabe además que:
+    \begin{equation*}
+        \mathcal{C}(X,t)\cong R_t/\ker(ev_t)=R_t/I(X)_t
+    \end{equation*}
+
+    El peso de Hamming de una palabra $c$ cuenta el número de entradas no cero de una palabra, lo cual lo podemos ver coom elnúmero de no raíces de un polinomio $f$ en $X$, el cual es
+    \begin{equation*}
+        \abs{X}-\abs{\left\{\textup{raíces de }f \right\}}=\abs{X}-\abs{V_X(f)}
+    \end{equation*}
+    entonces,
+    \begin{equation*}
+        \begin{split}
+            d(\mathcal{C})&=\min\left\{\abs{X}-\abs{V_X(f)}\Big|f\in\mathbb{K}[x_1,...,x_m]\textup{ es tal que }f\notin I(X)_t \right\}\\
+            &=\deg(R_t/I(X)_t)-\max\left\{\abs{V_X(f)}\Big|f\notin I(X)_t \right\}\\
+        \end{split}
+    \end{equation*}
+
+    \begin{center}
+        \textit{¿Cómo calcular la cardinalidad de $\abs{V_X(f)}$ donde $f$ es un polinomio homogéneo de grado $t$ y $X\subseteq\mathbb{P}^{k-1}$?}
+    \end{center}
+
+    En 2018 se encontró lo siguiente: bajo las condiciones anteriores:
+    \begin{equation*}
+        \abs{V_X(f)}=\left\{
+            \begin{array}{lcr}
+                \deg\left(R/(I(X),f) \right) & \textup{ si } & (I(X):f)\neq I(X) \\
+                0 & \textup{ si } & (I(X):f)= I(X) \\
+            \end{array}
+        \right.
+    \end{equation*}
+    el ideal $(I:f)$ es llamado \textbf{ideal colon/cociente}, formado por:
+    \begin{equation*}
+        (I:f)=\left\{h\in R\Big|hf\in I \right\}
+    \end{equation*}
+    por lo cual,
+    \begin{equation*}
+        \begin{split}
+            d(\mathcal{C})&=\deg(R_t/I(X)_t)-\max\left\{\deg(R_t/(I(X)_t:f))\Big|(I(X):f)\neq I(X) \right\}\\
+        \end{split}
+    \end{equation*}
+
+    Ahora, para los pesos generalizados. En el caso en que $r=1$, solamente necesitamos un polinomio.
+
+    Considere el conjunto de polinomios:
+    \begin{equation*}
+        \mathcal{F}_{ t,r}=\left\{\left\{f_1,...,f_r \right\}\subseteq R_t \Big|((I(X)_t:\langle f_1,...,f_r\rangle))\neq I(X)_t \right\}
+    \end{equation*}
+    donde ahora el ideal colon/cociente es:
+    \begin{equation*}
+        (I:J)=\left\{h\in R\Big|hJ\subseteq I \right\}
+    \end{equation*}
+
+    Con lo cual, la forma de calcular el $r$-ésimo grado generalizado se convierte en computar:
+    \begin{equation*}
+        d_r(\mathcal{C})=\deg\left(R_t/I(X)_t \right)-\max\left\{\deg\left(R_t/(I(X)_t,f_1,...,f_r) \right)\Big|\left\{f_1,...,f_r \right\}\in\mathcal{F}_{ t,r}\neq\emptyset \right\}
+    \end{equation*}
+
+    \newpage
+
+    \section{Ejercicios}
+
+    
 
 \end{document}
