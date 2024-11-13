@@ -139,7 +139,7 @@
 \newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
 \newcommand{\gen}[1]{\ensuremath{\mathcal{L}\left(#1 \right)}}
 \newcommand{\Ass}[1]{\ensuremath{\textup{Ass}\left(#1\right)}}
-\newcommand{\height}[1]{\ensuremath{\textup{ht}\left(#1\right)}}
+\newcommand{\het}[1]{\ensuremath{\textup{ht}\left(#1\right)}}
 
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
@@ -353,7 +353,7 @@
     \end{theor}
 
     \begin{proof}
-        
+        Ver algún libro de álgebra conmutativa.
     \end{proof}
 
     \begin{mydef}
@@ -369,18 +369,18 @@
         \begin{equation*}
             P_0\subsetneq P_1\subsetneq\cdots\subsetneq P_n=P
         \end{equation*}
-        denotado por $ht(P)$.
+        denotado por $\het{P}$.
     \end{mydef}
 
     \begin{mydef}
         Sea $I\subseteq R$. Se define la \textbf{altura de $I$}, como:
         \begin{equation*}
-            ht(I)=\min\left\{ht(P)\Big|I\subseteq P \right\}
+            \het{I}=\min\left\{ht(P)\Big|I\subseteq P \right\}
         \end{equation*}
     \end{mydef}
 
     \begin{mydef}
-        La \textbf{dimensión de Krull de $R$} es el máximo de $ht(P)$ tal que $P$ es ideal primo de $R$. En este caso, la dimensión de Krull de $R$ se denota por $\dim R$.
+        La \textbf{dimensión de Krull de $R$} es el máximo de $\het{P}$ tal que $P$ es ideal primo de $R$. En este caso, la dimensión de Krull de $R$ se denota por $\dim(R)$.
     \end{mydef}
 
     Cuando $R=K[x_1,...,x_n]$, se tiene que:
@@ -1173,6 +1173,6 @@
 
     \section{Ejercicios}
 
-    
+
 
 \end{document}

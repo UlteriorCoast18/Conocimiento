@@ -802,16 +802,125 @@
 
     ¿Qué pasa cuando explotamos singularidades? Ahora tenemos la función $f$ y a $\xi$ que cumple lo anterior.
 
-    \newpage
+    Lo que hicimos en las clases pasadas fue tomar una curva en $\mathbb{C}^2$, haciamos una expolosión y teníamos una nueva curva en $X_0=Bl_0\mathbb{C}^2$.
 
-    \section{Referencias}
+    Tomando un punto $p\in Sing(V(f))$ le asociamos unas sucesiones de multiplicidad. Si suponemos que $f$ es irreducible, tenemos la sucesión $m_1,...,m_v$. Entonces si $(C,0)$ y $(D,0)$ son irreducibles:
+    \begin{equation*}
+        I_0(C,D)=\sum_{ \textup{puntos infinitamente próximos a $m$ y $n$}}m_1^C\cdot m_1^D
+    \end{equation*}
 
+    \begin{exa}
+        Consideremos el polinomio $f=(y^2-x^3)(x^2-y^3)$. El punto $0$ tiene multiplicidad $m_1=4$. Cuando se explote, las dos cúspides que quedaban tenían ahora multiplicidades $m_2^1$ y $m_2^2$.
+
+        En la primera cúspide teníamos multiplicidad $x_1^4(y^2-x_1)$. Seguimos expolotando y va bajando la multiplicidad. En este caso:
+        \begin{equation*}
+            I_0(C,D)=4
+        \end{equation*}
+
+        Tomando a $C$ la curva generada por $y^2-x^3=0$ y $D$ a la generada por $x^2-y^3=0$.
+    \end{exa}
+
+    Todo lo anterior en el ejemplo lo podemos representar en un grafo. Nos interesa decorar este grafo. Considere el grafo generado por los $E_i$. Generamos el grafo dual y decoración, haciendo
+    \begin{equation*}
+        E_i\rightarrow (N_i,\nu_i)
+    \end{equation*}
+    donde $N_i$ es el orden de $E_i$ bajo el pullback de la proyección hacia $\mathbb{C}^2$ de la curva generada por $f$, terminando de quitar las singularidades.
+
+    No entendí lo que siguió después.
+
+    Para $\nu_i$, éste está dado por:
+    \begin{equation*}
+        \nu_i=ord_{ E_i}\pi^{*}(dx\wedge dy)-1
+    \end{equation*}
+    los demás se definen de forma inductiva dependiendo de como se vaya separando la singularidad en todos los pasos.
+
+    Lo demás perdón, ya que no fui capaz de hacer tantos diagramas y describir lo que estaba pasando con palabras me resultó imposible. Espero que con el ejemplo quede más claro.
+
+    Si queremos ver lo que sucede con los grafos y todo eso, ver la página 519 de la última referencia anotada hasta abajo.
+    
+    \begin{exa}[\textbf{Resolución de una curva localmente analítica/irreducible}]
+        Considere
+        \begin{equation*}
+            \xi(x^{ 1/n})\iff\left\{
+                \begin{split}
+                    x & = t^n\\
+                    y & = \sum a_it^i
+                \end{split}
+             \right.;
+             \left\{
+                \begin{split}
+                    & t^{ 12} \\
+                    & t^{ 12}+t^{ 18}+t^{ 24}+t^{ 27}+t^{ 30}+t^{ 35}+ \\
+                \end{split}
+             \right.
+        \end{equation*}
+        Con
+        \begin{equation*}
+            f=\prod_{ \textup{conjugadas de }\xi}(y-\xi_k)
+        \end{equation*}
+    \end{exa}
+
+    Considere la curva $(C,0)$ localmente irreducible y a la singularidad aislada $\left\{f=0 \right\}$ (en esta fibra) con $f\in\mathbb{C}[[x]][y]$ y podemos considerar las fibras $\left\{f=\varepsilon \right\}$
+
+    \begin{theor}[\textbf{Milnor}]
+        Existen $0<\delta<<\varepsilon$ suficientemente pequeños tales que el conjunto
+        \begin{equation*}
+            F=\left\{f=\varepsilon \right\}\cap B_g(\delta)
+        \end{equation*}
+        la fibra de una fibración localmente trivial.
+    \end{theor}
+
+    $F$ es una superficie conexa, compacta orientable y con borde
+    \begin{equation*}
+        \partial F=\bigsqcup_{ \textup{\# componentes irreducibles de }(C,0)}S^1 
+    \end{equation*}
+    y el $\chi(F)=1-\mu$ donde $\mu$ es el número de Milnor y está dado por:
+    \begin{equation*}
+        \mu=\dim_{\mathbb{C}}\frac{\mathbb{C}[[x]][y]}{\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y} \right)}<\infty
+    \end{equation*}
+
+    \begin{exa}
+        En el polinomio $f=y^p-x^q$, entonces $\frac{\partial f}{\partial x}=-qx^{q-1}$ y $\frac{\partial f}{\partial y}=py^{p-1}$. Por ende,
+        \begin{equation*}
+            \mu=(p-1)(q-1)
+        \end{equation*}
+    \end{exa}
+
+    lo que sucede es que básicamente estamos metiendo esferas dentro de esferas dentro de esferas sucesivamente.
+
+    Finalmente se habló de haces fibrados y cosas demás.
+
+    Consideremos $p\in Sing(V(f)\subseteq\mathbb{C}^n)$. Hicimos dos cosas:
     \begin{itemize}
-        \item F. Kirwan \textit{Complex Algebraic Curves}, LMS 1992.
-        \item K. Kendig \textit{A guide to plane algebraic curves}, MAA, 2011.
-        \item E. Casas-Alveror, \textit{Algebraic Curves, the Bill-Noether Way}, Springer 2019.
-        \item E. Brickeson H. Krorrer, \textit{Plane Algebraic Curves}, Birkhaser, 80's.
+        \item Usar la fibración de Milnor.
+        \item Autovalores de las partes semisimples de los homomorfismos de monodromía.
     \end{itemize}
+    y,
+    \begin{itemize}
+        \item Resolución medinate un grafo dual con decoraciones. Finalmente se usó una funcioń racional $\mathcal{C}(s)$ que es una función zeta topológica local con polos $\frac{\nu_i}{N_i}$.
+    \end{itemize}
+
+    \begin{mydef}
+        Se define la función \textbf{zeta topológica local} por:
+        \begin{equation*}
+            Z_{top,p}(f,s)=\sum_{ i}\frac{\chi(E_i)}{N_{ is}+\nu_i}+\sum_{ E_i\cap E_j\neq\emptyset}\frac{1}{(N_{ is}+\nu_i)(N_{ js}+\nu_j)}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        Esta función cumple lo siguiente:
+        \begin{itemize}
+            \item Es independiente de la elección de la resolución.
+            \item Especialización mediante la característica de euler de la función motívica (espacios de arcos o de $n$-jets).
+        \end{itemize}
+    \end{obs}
+
+    \begin{exa}
+        Considere la curva formada por $f=y^3-x^5$. Los candidatos a polos son $3s+2$, $4s+5$, $15s+8$ y $5s+3$. Haciendo la suma de la función zeta topológica local resulta que:
+        \begin{equation*}
+            Z_{ top}(f,s)=\frac{8+7s}{(1+5)(8+15s)}
+        \end{equation*}
+    \end{exa}
 
     \newpage
 
@@ -1033,4 +1142,15 @@
         Se puede hacer lo análogo usando la transformación $u_1\mapsto \bar{u_2}-1$ y $v_1\mapsto\bar{v_2}$ (resultando en lo análogo).
     \end{sol}
 
+    \newpage
+
+    \section*{Referencias}
+
+    \begin{itemize}
+        \item F. Kirwan \textit{Complex Algebraic Curves}, LMS 1992.
+        \item K. Kendig \textit{A guide to plane algebraic curves}, MAA, 2011.
+        \item E. Casas-Alveror, \textit{Algebraic Curves, the Bill-Noether Way}, Springer 2019.
+        \item E. Brickeson H. Krorrer, \textit{Plane Algebraic Curves}, Birkhaser, 80's.
+    \end{itemize}
+    
 \end{document}
