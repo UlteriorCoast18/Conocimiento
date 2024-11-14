@@ -417,8 +417,392 @@
 
     \chapter{Un contraejemplo a la resolución de singularidades vía explosiones de Nash}
 
+    Plática en colabiración con F. Castillo, M. Leyton y A. Liendo.
+
+    \section{Resolución de Singularidades}
+
+    Nuevamente, como en todos las otra charlas comenzamos con un subconjunto $S\subseteq K[x_1,...,x_n]$ y definimos:
+    \begin{equation*}
+        V(S)=\left\{p\in K^n\Big|f(p)=0,\forall f\in S \right\}
+    \end{equation*}
+
+    \begin{exa}
+        Todas las cónicas, por ejemplo $V(x^2-y)$, $V(x^3-y^2)$. En particular, para la segunda variedad tenemos un punto singular en el origen.
+    \end{exa}
+    
+    \begin{center}
+        \textit{Dada una variedd $X$, encontrar $Y$ y un morfismo $\cf{\pi}{X}{Y}$ tal que:}
+        \begin{itemize}
+            \item $X\setminus Sing(X)\overset{\pi}{\cong} Y\setminus\pi^{-1}(Sing X)$.
+            \item \textit{$Y$ no tiene singularidades.}
+        \end{itemize}
+    \end{center}
+
+    Básicamente queremos intentar resolver el problema de esta forma (encontrar una variedad que casi contenga a la otra variedad, pero que ésta no tenga singularidades y coincida casi en todo punto de la otra variedad, salvo en los puntos singulares).
+
+    \section{La explosión de Nash}
+
+    La idea es que tomemos una variedad con un punto singlar. A partir de esta variedad, vamos a tomar este punto singlar para eliminarlo, esto mediante aproximación al punto con espacios tangentes. La idea es que ahora separamos el punto no geométricamente, sino mediante su espacio tangente y aproximar al punto mediante puntos no singulares y sus espacios tangentes.
+
+    \begin{mydef}
+        Se define el \textbf{Grassmaniano de $n$}:
+        \begin{equation*}
+            G(d,n)=\left\{W\subseteq K^n\Big|W\textup{ es subespacio de dimensión }d \right\}
+        \end{equation*}
+    \end{mydef}
+
+    Resulta que la conjunto anterior podemos embediarlo en un espacio proyectivo y podemos pues darle estructura de variedad proyectiva.
+
+    Consideremos $X\subseteq K^n$ una variedad irreducible de dimensión $d$ y asumimos que $K$ es algebraicamente cerrado de cualquier característica. Definimos $\cf{G}{X\setminus Sing(X)}{G(d,n)}$ tal que
+    \begin{equation*}
+        p\mapsto T_pX
+    \end{equation*}
+    (a cada punto se le asocia su espacio tangente). Consideremos
+    \begin{equation*}
+        graph(G)\subseteq X\times G(d,n)
+    \end{equation*}
+    consideremos la variedad más pequeña que contenga al conjunto $graph(G)$, esto es:
+    \begin{equation*}
+        X^*=\overline{graph(G)}\subseteq X\times G(d,n)\rightarrow X
+    \end{equation*}
+    y podemos bajar también a $X$ desde $\overline{graph(G)}$ mediante una función $\nu$.
+    
+    \begin{mydef}
+        En el contexto anterior, $(X^*,\nu)$ es llamada la \textbf{explosión de Nash de $X$}.
+    \end{mydef}
+
+    Esto se vió anteriormente en el curso singularidades. Con esto, podemos generar un proceso que elimina singularidades y surje la pregunta:
+
+    \begin{center}
+        \textit{¿Iterando a ${}^*$ podemos resolver singularidades?}
+    \end{center}
+
+    \section{1975-2024}
+
+    Resulta que se ha llegado a que en muchos casos es posible resolver singularidades.
+
+    Analizaremos un caso particular de variedades algebraicas, llamadas \textit{variedades tóricas}.
+
+    \begin{mydef}
+        Denotemos por:
+        \begin{equation*}
+            \Gamma=\left\{\gamma_1,...,\gamma_n \right\}\subseteq\mathbb{Z}^d
+        \end{equation*}
+        y tomamos un morfismo $\cf{\phi_\Gamma}{(K\setminus\left\{ 0\right\})^d}{K^n}$ tal que $t\mapsto (t^{\gamma_1},...,t^{\gamma_n})$. El conjunto $X_\Gamma=\overline{im(\phi_\Gamma)}\subseteq K^n$ es llamado \textbf{variedad tórica definida por $\Gamma$}.
+    \end{mydef}
+
+    La variedad anterior es llamda tórica ya que hay un toro (de cualquier dimensión) contenida dentro de ella.
+
+    \begin{obs}
+        La variedad $X_\Gamma$ es no singular si y sólo si hay $d$ elementos de $\Gamma$ que generan a los demás.
+    \end{obs}
+
+    \begin{exa}
+        Tomemos $\Gamma=\left\{(1,0),(1,1),(0,2) \right\}\subseteq\mathbb{Z}^2$. Tomaremos $\cf{\phi_\Gamma}{(\mathbb{C}\setminus\left\{0 \right\})^2}{\mathbb{C}^3}$ dada por:
+        \begin{equation*}
+            (u,v)\mapsto (\underset{x}{\underbrace{u}},\underset{x}{\underbrace{uv}},\underset{x}{\underbrace{v^2}})
+        \end{equation*}
+        (es un monomio formado a partir de elevar potencias respectivas de cada una de las $d$-entradas). Tomemos la variedad $X=\overline{ im(\phi_\Gamma)}=V(x^2z-y^2)$. Calculemos su explosión de Nash.
+        \begin{equation*}
+            \begin{array}{ccccccc}
+                (\mathbb{C}\setminus\left\{0\right\})^2 & \overset{\phi_\Gamma}{\longrightarrow} & X_\Gamma\setminus Sing(X_\Gamma) & \overset{G}{\longrightarrow} & G(2,3) & \hookrightarrow & \mathbb{P}^2 \\
+                (u,v) & \mapsto & (u,uv,v^2) & \mapsto & \left(
+                    \begin{array}{cc}
+                        1 & 0 \\
+                        v & u \\
+                        0 & 2v \\
+                    \end{array}
+                \right) & \mapsto & [u:2v:2v^2] \\
+            \end{array}
+        \end{equation*}
+        tenemos entonces que
+        \begin{equation*}
+            X^*_\Gamma=\overline{\left\{((u,uv,v^2),(u,2v,2v^2))\Big|(u,v)\in(\mathbb{C}\setminus\left\{0\right\})^2 \right\}}
+        \end{equation*}
+        Llamamos las coordenadas proyectivas de $\mathbb{P}^2$ por $w_0,w_1$ y $w_2$, Hacemos:
+        \begin{equation*}
+            \begin{split}
+                X_\Gamma^*\cap\left\{w_0\neq0 \right\}&=\overline{\left\{(u,uv,v^2,u^{-1}v,u^{-1}v^2)\in\mathbb{C}^5\Big|(u,v)\in(\mathbb{C}\setminus\left\{0\right\})^2\right\}}\\
+                &=\overline{im(\phi_{\Gamma_0})}\\
+            \end{split}
+        \end{equation*}
+        donde $\Gamma_0=\Gamma\cup\left\{(-1,1),(-1,2)\right\}$.
+    \end{exa}
+
+    \begin{obs}
+        Notemos que en el ejemplo anterior volvimos a encontrar una variedad tórica a partir de la explosión de Nash. Además,
+        \begin{equation*}
+            (-1,1)=(0,2)-(1,1)\quad\textup{y}\quad(-1,2)=(0,2)-(1,0)
+        \end{equation*}
+    \end{obs}
+
+    En el caso del ejemplo anterior, como la carta es suave por el critarerio de la observación 2.3.1, entonces tenemos que una explosión de Nash resolvió las singularidades que había en la variedad inicial.
+
+    Todo esto que se habló anteriormente es un teorema.
+
+    \begin{theor}[\textbf{Gerardo Gonzales Sprinberg, 1977,- Grigoriev-Milman, Glaz-Tessier, 2012, D-Jeffries-Núñez Betancourt, 2022}]
+        Tenemos el siguiente algoritmo: sea $\Gamma=\left\{\gamma_1,...,\gamma_n \right\}\subseteq\mathbb{Z}^d$ tal que:
+        \begin{itemize}
+            \item $\mathbb{Z}\Gamma=\mathbb{Z}^d$.
+            \item $\mathbb{R}_{\geq0}\Gamma$ es fuertemente convexo.
+        \end{itemize}
+        Fijamos $A=\left\{\gamma_{ i_1},...,\gamma_{ i_d} \right\}$ linealmente independiente. Por cada $\gamma_{i_j}$:
+        \begin{equation*}
+            G_A(\gamma_{ i_j})=\left\{\gamma_l-\gamma_{ i_j}\Big|\gamma\notin A,\det(\gamma_l,\gamma_{ i_1},\overset{ i_j}{\hat{...}},\gamma_{i_d})\neq0 \right\}
+        \end{equation*}
+        Tomemos
+        \begin{equation*}
+            \Gamma_A=\Gamma\cup G_A(\gamma_{ i_1})\cup\cdots\cup G_A(\gamma_{ i_d})
+        \end{equation*}
+        Entonces, $X_{\Gamma_A}$ es una carta afín de $X_\Gamma^*$.
+    \end{theor}
+
+    \begin{theor}[\textbf{FC, D, ML, Al; 2024}]
+        La pregunta de Nash tiene respuesta negativa para $\dim\geq4$.
+    \end{theor}
+
+    \begin{proof}
+        Consideremos:
+        \begin{equation*}
+            \Gamma=\left\{\left(\begin{array}{c}
+                1 \\
+                0 \\
+                0 \\
+                0 \\
+            \end{array} \right),\left(\begin{array}{c}
+                0 \\
+                1 \\
+                0 \\
+                0 \\
+            \end{array} \right),
+            \left(\begin{array}{c}
+                0 \\
+                0 \\
+                1 \\
+                0 \\
+            \end{array} \right),
+            \left(\begin{array}{c}
+                0 \\
+                0 \\
+                0 \\
+                1 \\
+            \end{array} \right),\left(\begin{array}{c}
+                2 \\
+                3 \\
+                -2 \\
+                -1 \\
+            \end{array} \right),\left(\begin{array}{c}
+                1 \\
+                3 \\
+                -1 \\
+                -1 \\
+            \end{array} \right),\left(\begin{array}{c}
+                1 \\
+                2 \\
+                -1 \\
+                0 \\
+            \end{array} \right) \right\}\subseteq\mathbb{Z}^4
+        \end{equation*}
+        cada uno lo nombramos (de derecha a izquierda) como el respectivo $\gamma_i$. Sea
+        \begin{equation*}
+            A=\left\{\gamma_1,\gamma_2,\gamma_3,\gamma_5 \right\}
+        \end{equation*}
+        notemos que $\det A=-1$. Después de eliminar elementos redundantes obtenemos que:
+        \begin{equation*}
+            \Gamma_A=\left\{g_1,...,g_7 \right\}
+        \end{equation*}
+        Por el teorema anterior, $X_{\Gamma_A}$ es carta afín de $X_\Gamma^*$. Usando
+        \begin{equation*}
+            T=\left( 
+                \begin{array}{cccc}
+                    -1 & 0 & -2 & 1 \\
+                    0 & -1 & -3 & 0 \\
+                    0 & 0 & 2 & 0 \\
+                    0 & 1& 2 & 0 \\
+                \end{array}
+            \right)
+        \end{equation*}
+        tenemos que $T(\gamma_i)=g_i$, así que $X_\Gamma\cong X_{\Gamma_A}$, por lo que hacer explosiones no hace que las singularidades se resuelvan, ya que siempre obtenemos la misma singularidad.
+    \end{proof}
+
     \chapter{Sobre los teoremas de Cayley-Bacharach}
 
-    \chapter{Título por anunciar}
+    Hablemos primero del teorema de Pappu's:
+
+    \begin{theor}[\textbf{Teorema de Pappu's}]
+        Sean $L$ y $M$ dos lineas en el plano. Sean $p_1,p_2,p_3$ puntos distintos en $L$ y $q_1,q_2,q_3$ puntos distintos en $M$. Si para cada $j\neq k\in\left\{1,2,3\right\}$ sean $r_{ jk}$ los puntos de intersección entre las lineas $\overline{p_jq_k}$ y $\overline{p_kq_j}$, entonces los tres puntos $r_{ jk}$ son colineales.
+    \end{theor}
+
+    \begin{theor}[\textbf{Teorema de Pascal}]
+        Si un hexágono es inscito en una cónica $C$ en el plano proyectivo, entonces los lados opuestos del hexágono se intersectan en 3 puntos colineales.
+    \end{theor}
+
+    Naturalmente uno ve que el teorema de Pappu's es un caso particular del teorema de Pascal. Podemos ir más allá y con el teorema de Chasles.
+
+    \begin{itemize}
+        \item Pascal desde Chasles. Considera las cúbicas:
+        \begin{equation*}
+            X_1=\overline{p_1q_2}\cup\overline{p_2q_3}\cup\overline{p_3p_1}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            X_2=\overline{p_1q_3}\cup\overline{p_2q_1}\cup\overline{p_3q_2}
+        \end{equation*}
+        $X_1$ y $X_2$ están dado por los lados alternados del hexágono $p_1q_2p_3q_1p_2q_3p_1$. Sea $X=C\cup\overline{r_{12}r_{23}}$. Como $r_{23}\in X_1\cap X_2$, entonces $X_1$ y $X_2$ interserctan en 9 puntos y $X$ contiene 8 de ellos.
+        Pappus desde Chasles $X=L\cup M\cup\overline{r_{12}r_{23}}$.
+    \end{itemize}
+
+    Sea $\Gamma=\left\{p_1,...,p_m \right\}\subseteq\mathbb{P}^2$ un conjunto de puntos distintos. La función de Hilbert asociada a $\Gamma$:
+    \begin{equation*}
+        h_[\Gamma](s)=\dim\left(\frac{\mathbb{C}[x,t,z]_s}{I(\Gamma)\cap\mathbb{C}[x,y,z]_s} \right)
+    \end{equation*}
+
+    \begin{exa}
+        Si $\Gamma=\left\{p_1,...,p_9 \right\}$ son obtenidas de dos curvas cúbicas planas $X_1$ y $X_2$, sea $\Gamma'=\left\{p_1,...,p_8 \right\}$ cualquier subconjunto de $\Gamma$ omitiendo un punto, entonces $h_\Gamma(3)=h_{\Gamma'}(3)$.
+    \end{exa}
+
+    \begin{center}
+        \textit{Objetivo: medir o determinar el fallo de poner condiciones.}
+    \end{center}
+
+    \begin{propo}
+        Si las curvas $X_1$ y $X_2$ se intersectan en una colección $\Gamma$ de $de$ puntos, entonces para cualquier $k$:
+    \begin{equation*}
+        h_\Gamma(k)=\left(\begin{array}{c}
+            k+2 \\
+            2
+        \end{array} \right)-\left(\begin{array}{c}
+            k-2+2 \\
+            2
+        \end{array} \right)-\left(\begin{array}{c}
+            k-e+2\\
+            2
+        \end{array} \right)+\left(\begin{array}{c}
+            k-d-e+2\\
+            2
+        \end{array} \right)
+    \end{equation*}
+    por tanto, si $\Gamma'$ es de grado cualquier subconjunto de puntos de $h_\Gamma(k)$ puntos en $\Gamma$, entonces una forma de grado $k$ que se anule sobre $\Gamma'$ debe anularse sobre $\Gamma$.
+    \end{propo}
+
+    \begin{exa}
+        Sea $\Gamma=\left\{p_1,...,p_9 \right\}$ dada por las cúbicas $X_1,X_2$. Sea $\Gamma'=\left\{p_1,p_2,p_3 \right\}$. Si $k=1$ entonces $h_\Gamma(k)=3$.
+    \end{exa}
+
+    Luego se enuncia el teorema de Bacharach... Mejor pedir la presentación a la profesora.
+
+    \chapter{Singularidades}
+
+    Comencemos con un polinomio $f(x,y)\in\mathbb{C}[x,y]$. Escribimos:
+    \begin{equation*}
+        f(x,y)=\sum_{ i+j=0}^n a_{ i,j}x^iy^j
+    \end{equation*}
+    Uno puede analizar diferentes funciones que surgen a partir de nuestra función original, como:
+    \begin{equation*}
+        \frac{\partial f}{\partial x}=\sum_{ i+j=0}^n ia_{ i,j}x^{i-1 }y^j\quad\textup{y}\quad\frac{\partial f}{\partial x}=\sum_{ i+j=0}^n ja_{ i,j}x^{i}y^{j-1}
+    \end{equation*}
+    o también puede analizar el Hessiano
+    \begin{equation*}
+        H=\left(\frac{\partial^2 f}{\partial x\partial y}\right),\textup{ hacemos }h=\det[H]
+    \end{equation*}
+
+    Esto es lo que sucede en el lado algebraico, ¿qué sucede en el lado geométrico?
+
+    En la parte geométrica uno puede analizar la variedad algebraica:
+    \begin{equation*}
+        V(f)=\left\{(x,y)\in\mathbb{C}^2\Big|f(x,y)=0 \right\}
+    \end{equation*}
+    esta cosa es una superficie real (y una cuva compleja).
+
+    De antes uno ya conoce por el teorema de clasificación de superfices que toda superficie compacta, orientable, conexa y sin borde es homeomorfa a una superficie de género $g$. Cuando tomamos la variedad $V(f)$ nos resulta natural preguntarnos qué sucede con el género de esta variedad, ya que como hemos mencionado anteriormente esta es una superficie real.
+
+    \begin{center}
+        \textit{¿Cómo entendemos los puntos singulares en este tipo de variedade?}
+    \end{center}
+
+    Por topología de una superficie, el género es lo que nos da información sobre la superficie, pero podemos ir más allá y hacer
+    \begin{equation*}
+        H_1(S)=\left\{\textup{curvas cerradas} \right\}/\sim=\mathbb{Z}^{2g}
+    \end{equation*}
+    (la relación de equivalencia surje a partir de la equivalencia de curvas).
+
+    Por lo que, en el toro tenemos que $g=1$, así que tiene dos generadores.
+
+    \begin{center}
+        \textit{¿Cómo medimos el invariante $g$ a partir de $f$?}
+    \end{center}
+
+    En vez de ponernos a analizar a los polinomios, analizaremos series de potencias formales en $\mathbb{C}[[x,y]]$. Por variable compleja ya se sabe que podemos ver a estos elementos con funciones con un radio de convergencia $r>0$ (algunas).
+
+    Si nos tomamos un abierto, podemos encontrar un conjunto $B_r(0)$ en $\mathbb{C}^2$ y podemos analizar localmente en este conjunto a la variedad:
+    \begin{equation*}
+        V(f)=\left\{f=0 \right\}
+    \end{equation*}
+
+    Al ser $\mathbb{C}[[x,y]]$ un DFU, entonces todo elemento $f\in\mathbb{C}[x,y]$ se escribe como:
+    \begin{equation*}
+        f=f_1\cdots f_i\in\mathcal{O}_{\mathbb{C}^2,0}
+    \end{equation*}
+    donde el conjunto de la derecha son todas las series de potencias irreducibles en el anillo anterior.
+
+    Afortunadamente para poder analizar por piezas este tipo de objetos tenemos el siguiente teorema, llamamos a estas piezas más pequeñas $V_t$:
+
+    \begin{theor}
+        $\dim H_1(V_t)=\dim_{\mathbb{C}}\left(\frac{\mathcal{O}_{\mathbb{C}^2,0}}{\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}\right)}\right)$.
+    \end{theor}
+
+    Osea que con un cálculo puramente computacional (talacha), podemos determinar objetos más complejos.
+
+    La idea que sigue ahora es sobre \textit{descomponer} superficies en términos más sencillos y analizar qué es lo que sucede con el género de toda la superficie a partir de analizar localmente cada una de las componentes \textit{más simples} de nuestra superficie.
+
+    Conectamos las superficies mediante fronteras de las piezas con las que se construye la superficie. A ese conjunto lo llamamos
+    \begin{equation*}
+        Evan(S)\subseteq H_1(S)
+    \end{equation*}
+    este nos da como es que se están conectando las superficies más pequeñas para formar las más grandes. Este es el submódulo de $H_1(S)$ generado a partir de los lazos que rodean a estas conexiones que surgen entre los caminos.
+
+    Llamamos $A_f=\left(\frac{\mathcal{O}_{\mathbb{C}^2,0}}{\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}\right)}\right)$. Notemos que podemos formar la secuencia exacta:
+    \begin{equation*}
+        0\rightarrow Ann(f)\rightarrow A_f\overset{\cdot f}{\rightarrow} A_f\rightarrow\frac{A_f}{(f)}\rightarrow0
+    \end{equation*}
+    donde $Ann(f)=\left\{g\in A_f\Big|fg=0 \right\}$. Resulta que podemos encontrar una relación entre
+    \begin{equation*}
+        \frac{\mathcal{O}_{\mathbb{C}^2,0}}{\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},f\right)}\quad\textup{y}\quad Evan(S)
+    \end{equation*}
+
+    Es decir, interpretamos una noción puramente algebraica con una puramente geométrica.
+
+    Pero, ¿cómo podemos asegurar que podemos descomponer la superficie de esta forma que nos interesa?
+
+    \section{Resolución de singularidades}
+
+    Considere la función polar $(r,\theta)\mapsto re^{i\theta}$. Este mapeo nos permite materializar objetos que hay en el plano que parametriza a las coordenadas polares, a las coordenadas normales.
+
+    Si no nos gusta la exponencial, entonces podemos usar la transformación $(y_1,y_2)\mapsto(y_1,y_1y_2)=(x,y)$. Esta transformación es llamda \textit{explosión}. La idea de esto es resolver las singularidades que pudiesen haber surgido.
+
+    Este proceso hace que cambiemos las coordenadas de tal forma que nuestra función original va cambiando en términos de que las singularidades se van haciendo ahora esferas conectadas, es decir que ahora la variedad es lisa.
+
+    Este proceso lo podemos representar mediante una gráfica. Llamemos a esa gráfica $\Gamma$. Esta gráfica da la información de cuántas veces descompusimos la singularidad y de la forma en la que está pegada y acoplada la singularidad.
+
+    \begin{equation*}
+        \begin{array}{ c c c }
+            \widetilde{\mathbb{C}}^2 & & \\
+            \downarrow\sigma & \overset{\widetilde{f}}{\searrow} & \\
+            \mathbb{C}^2 & \overset{f}{\rightarrow} & \mathbb{C} \\ 
+        \end{array}
+    \end{equation*}
+
+    Lo que hacemos es ir desde el lugar donde hicimos nuestra explosión hasta regresar a lo que teníamos originalmente. Con lo que ahora si podemos hacer (adecuadamente) la descomposición de nuestra superficie en superficies más pequeñas:
+    \begin{equation*}
+        S=\bigsqcup_{ \partial S_i}S_i
+    \end{equation*}
+
+    Y más cosas de monhodromía, automorfismos de superficies, descomposición espectral, etc...
+
+    La gran pregunta es, si tenemos una matriz y su descomposición espectral, entonces ¿podemos darle una interpretación a partir de esto que hemos dicho anteriormente?
+
+    ¿Qué significa geométricamente a la dimensión de $\frac{\mathcal{O}}{\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},f \right)}$? Nuevamente, se cree que tiene que ver algo con el teorema espectral.
+
+
 
 \end{document}
