@@ -379,6 +379,7 @@
         \end{equation*}
     \end{mydef}
 
+
     \begin{mydef}
         La \textbf{dimensión de Krull de $R$} es el máximo de $\het{P}$ tal que $P$ es ideal primo de $R$. En este caso, la dimensión de Krull de $R$ se denota por $\dim(R)$.
     \end{mydef}
@@ -1173,6 +1174,99 @@
 
     \section{Ejercicios}
 
+    \begin{excer}
+        Muestre que para $f\notin I$:
+        \begin{equation*}
+            (I:f)\neq I\iff f\textup{ es divisor de cero de }R/I
+        \end{equation*}
+    \end{excer}
 
+    \begin{proof}
+        $\Rightarrow):$ Como $(I:f)\neq I$ entonces existe $g\in(I:f)$ tal que $gf\in I$, luego $(I+g)(I+f)=I$ con $g,f\notin I$, luego $f$ es divisor de cero en $R/I$.
+        $\Leftarrow):$ Suponga que $f$ es divisor de cero de $R/I$, entonces existe $g\in R\setminus I$ tal que
+        \begin{equation*}
+            (I+g)(I+f)=I+gf=I
+        \end{equation*}
+        luego, $g\in(I:f)$, por lo que $(I:f)\neq I$.
+    \end{proof}
+    
+    \begin{excer}
+        Si $\mathcal{C}$ es un $[n,k]$ código lineal, y $H$ su matriz de paridad, entonces $d(\mathcal{C})=d$ si y sólo si $d$ es el entero máximo tal que cualesquiera $d-1$ columnas de $H$ son l.i.
+    \end{excer}
+
+    \begin{proof}
+        $\Rightarrow):$ Suponga que $d(\mathcal{C})=d$. Considere $d-1$ columnas de $H$, obtenida a partir de la función lineal $\cf{H}{\mathbb{K}^k}{\mathbb{K}^n}$
+        Sea $c\in\mathbb{K}^n$ tal que $d(\mathcal{C})=w(c)=d$. Entonces,
+        \begin{equation*}
+            cH=0
+        \end{equation*}
+        (viendo a la función lineal $\cf{H}{\mathbb{K}^k}{\mathbb{K}^n}$ y al código como el kernel de $H$). Como a lo más $c$ tiene exactamente $d$ entradas no cero, entonces existen $c_1,c_2,...,c_d\in\mathbb{K}\setminus\left\{0\right\}$ y vectores columna de $H$, $w_{ i_1},...,w_{ i_d}$ tales que
+        \begin{equation*}
+            c_1w_{ i_1}+\cdots+c_dw_{ i_d}=0
+        \end{equation*}
+        para cualquier vector en $\mathcal{C}$. Por ende, todo espacio generado por más de $d-1$ vectores es l.d. y no puede suceder que haya $d-1$ vectores l.d. ya que en tal caso podremos encontrar un elemento $c\in\mathbb{K}^n$ tal que
+        \begin{equation*}
+            cH=0
+        \end{equation*}
+        con $c\in\mathcal{C}$ (pues $\mathcal{C}$ es el subespacio del kernel de $\mathcal{C}$). Por tanto, $d-1$ columnas de $H$ son l.d.
+
+        La vuelta es inmediata comprendiendo lo anterior y procediendo por contradicción. (el peso de Hamming nunca va a poder ser menor que $d-1$ ya que siempre va a haber $d-1$ vectores columna l.i. de la matriz $H$).
+    \end{proof}
+
+    \begin{excer}
+        Sea $\mathcal{C}$ un $[n,k,d]$ código lineal. Entonces:
+        \begin{equation*}
+            d\leq n-k+1
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        Recordemos que
+        \begin{equation*}
+            d(\mathcal{C})=\min\left\{w(c)\Big|c\in\mathcal{C}\setminus\left\{0\right\} \right\}
+        \end{equation*}
+        a lo más, $d(\mathcal{C})$ puede tener $n$ entradas cero, esto es que:
+        \begin{equation*}
+            d(\mathcal{C})\leq n
+        \end{equation*}
+        acortemos más la distancia. Como $\dim_{\mathbb{K}}(\mathcal{C})=k$, entonces a lo menos, un vector $c\in\mathcal{C}$ no cero tiene $k-1$ entradas no cero, por lo que
+        \begin{equation*}
+            w(c)\leq n-(k-1)=n-k+1
+        \end{equation*}
+        así que,
+        \begin{equation*}
+            d(\mathcal{C})\leq n-k+1
+        \end{equation*}
+    \end{proof}
+
+    \begin{excer}
+        $\mathcal{C}$ es degenerado si y sólo si $d(\mathcal{C}^{\perp})=1$.
+    \end{excer}
+
+    \begin{proof}
+        Suponga que $\mathcal{C}$ es degenerado, entonces una columna de la una matriz generadora es 0, digamos la entrada $i$-ésima, luego el vector:
+    \end{proof}
+
+    \begin{excer}
+        Los pesos generalizados se relacionan de la siguiente forma:
+        \begin{equation*}
+            d_1(\mathcal{C})<d_2(\mathcal{C})<\cdots<d_k(\mathcal{C})\leq n
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Calcular la descomposición primaria del ideal:
+        \begin{equation*}
+            I=\langle x_1x_2,x_2x_3,x_2x_5,x_4x_5,x_5x_6\rangle
+        \end{equation*}
+        Veamos que:
+        \begin{equation*}
+            I=
+        \end{equation*}
+    \end{excer}
 
 \end{document}

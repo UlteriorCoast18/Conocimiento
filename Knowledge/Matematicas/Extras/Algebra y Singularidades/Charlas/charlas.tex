@@ -1,0 +1,424 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Charlas CIMAT 2024}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+
+    \newpage
+
+    \chapter{Hilbert, Fronenius y los cuadrados mágicos}
+
+    Denotaremos por $K$ un campo algebraicamente cerrado de característica $p>0$. Sea $S=K[x_1,...,x_n]$ el anillo graduado por todos los polinomios homogéneos de grado $n$, esto es:
+    \begin{equation*}
+        [S]_n=\bigoplus_{ \abs{\alpha}=n}Kx^{\alpha}
+    \end{equation*}
+    Consideremos $I\subseteq S$ el deal homogéneo:
+    \begin{equation*}
+        [I]_n=I\cap[S]_n
+    \end{equation*}
+    podemos considerar así al ideal graduado dado por:
+    \begin{equation*}
+        I=\bigoplus_{ n=0}^\infty[I]_n
+    \end{equation*}
+    sea $R=S/I$, entonces:
+    \begin{equation*}
+        [R]_n=[S]_n/[I]_n
+    \end{equation*}
+
+    \begin{mydef}
+        Se define la función de Hilbert de $R$, dada por:
+        \begin{equation*}
+            HF_R(n)=\dim_K([R]_n)
+        \end{equation*}
+        y su \textbf{serie de Hilbert} es:
+        \begin{equation*}
+            HS_R(t)=\sum_{ n=0}^\infty HF_R(n)t^n\in\mathbb{Q}[t]
+        \end{equation*}
+    \end{mydef}
+
+    \begin{exa}
+        Considere $R=K[x]$, se tiene que:
+        \begin{equation*}
+            HS_R(t)=\sum_{ n=0}^\infty t^n=\frac{1}{1-t}
+        \end{equation*}
+        pues,
+        \begin{equation*}
+            \left(\sum_{ n=0}^\infty t^n\right)\cdot(1-t)=1
+        \end{equation*}
+    \end{exa}
+
+    \begin{excer}
+        En el anillo $R=K[x_1,...,x_l]$, pruebe que:
+        \begin{equation*}
+            HF_R(n)=\left(\begin{array}{c}
+                n+l-1\\
+                n\\
+            \end{array} \right)
+        \end{equation*}
+        por lo que,
+        \begin{equation*}
+            HS_R(t)=\frac{1}{(1-t)^l}
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{theor}
+        Sea $d=\dim(R)$, entonces:
+        \begin{itemize}
+            \item Existe $q(t)\in\mathbb{Q}[t]$ tal que $\deg(q)=d-1$ y $HF_R(n)=q(n)$ para todo $n>>0$.
+            \item Existe $h(t)\in\mathbb{Q}[t]$ tal que
+            \begin{equation*}
+                HS_R(t)=\frac{h(n)}{(1-t)^d}
+            \end{equation*}
+        \end{itemize}
+    \end{theor}
+
+    \begin{excer}
+        Se tiene que:
+        \begin{equation*}
+            HF_R(n)=q(n)\forall n\iff \deg(h)<d
+        \end{equation*}
+    \end{excer}
+
+    \begin{obs}
+        En el ejercicio anterior, veamos que podemos expresar a $h$ por:
+        \begin{equation*}
+            h(t)=\sum_{ n=0}^\infty c_n(t-1)^n
+        \end{equation*}
+    \end{obs}
+
+    \section{Cuadrados Mágicos}
+
+    \begin{mydef}
+        Una matriz $A\in\mathcal{M}_{l\times l}(\mathbb{Z})$ es un \textbf{cuadrado mágico} si existe $n\in\mathbb{Z}$ tal que:
+        \begin{equation*}
+            \sum_{ j=1}^la_{ i,j}=\sum_{ i=1}^la_{ i,j}=n
+        \end{equation*}
+        para todo $i,j\in\left\{1,...,l\right\}$
+    \end{mydef}
+
+    \begin{theor}[\textbf{Teormea de Birkhoff-Von Neumann}]
+        Si $A$ es un cuadrado mágico que suma $n$, entonces $A$ es combinación lineal entera $\geq0$ de matrizes de permutación.
+    \end{theor}
+
+    \begin{obs}
+        Una permutación se ve como el vector columna:
+        \begin{equation*}
+            P_\sigma=[e_{\sigma(1)},...,e_{\sigma(l)}]
+        \end{equation*}
+        con $\sigma\in S_l$ y $e_1,...,e_l\in\mathbb{Z}^l$ son vectores columna.
+    \end{obs}
+
+    \begin{center}
+        \textit{¿Cuántos cuadrados mágicos (denotado por $\square_l(newline)$) de $l\times l$ que suman $n$ existen?}
+    \end{center}
+
+    De forma inmediata uno deduce que:
+    \begin{equation*}
+        \square_l(0)=1,\quad\textup{y}\quad\square_l(1)=l!
+    \end{equation*}
+
+    \section{Vuelta al álgebra}
+
+    Consideremos el anillo de polinomios $K[x_{ i,j}\Big|i,j\in\left\{1,...,l \right\}]$ (la idea es hacer una especie de anillo de matrices). Dada una $A\in\mathcal{M}_{ l\times l}(\mathbb{Z}_{\geq0})$, tenemos que:
+    \begin{equation*}
+        y^A=\prod_{ i,j}y_{ i,j}^{a_{i,j}}
+    \end{equation*}
+
+    \begin{exa}
+        Se tine que:
+        \begin{equation*}
+            y^I=y_{ 1,1}y_{ 2,2}\cdots y_{ l,l}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            y^{\left(
+                \begin{array}{cc}
+                    0 & 1 \\
+                    1 & 0 \\
+                \end{array}
+            \right)}=y_{ 1,2}y_{ 2,1}
+        \end{equation*}
+    \end{exa}
+
+    Sea ahora $T(l)=K[y^A\Big|A\textup{ es matriz de permutación}]$. Se tiene pues que:
+    \begin{equation*}
+        T(2)=K[ y_{ 1,1}y_{ 2,2},y_{ 1,2}y_{ 2,1}]
+    \end{equation*}
+    con esta nueva noción, se tiene el siguiente resultado:
+    \begin{propo}
+        $A$ es una matriz cuadrada si y sólo si $A=\sum_{ \sigma\in S_l}c_\sigma P_\sigma$, si y sólo si $y^A=\prod_{\sigma\in S_l}(y^{ P_\sigma})^{ c_\sigma}$ (siendo $c_\sigma\geq0$).
+    \end{propo}
+
+    Con esta nueva noción, se verifica rápidamente que:
+    \begin{equation*}
+        \square_l(n)=\dim_K([T(l)]_{ nl})
+    \end{equation*}
+
+    \begin{exa}
+        Podemos ver en $T(2)$ simplemente al anillo
+        \begin{equation*}
+            K[x_1,x_2]\overset{\alpha}{\rightarrow}T(2)=K[y_{ 1,1}y_{ 2,2},y_{ 1,2}y_{ 2,1}]
+        \end{equation*}
+        tal que $x_1\mapsto y_{ 1,1}y_{ 2,2}$ y $x_2\mapsto y_{ 1,2}y_{ 2,1}$. De forma inmediata por el primer teorema de isomorfismos se sigue que:
+        \begin{equation*}
+            K[x_1,x_2]/\ker\alpha\cong T(2)
+        \end{equation*}
+        con lo que nos hemos quitado un montón de ceros que no nos sirven.
+    \end{exa}
+
+    \begin{obs}
+        Generalizando este proceso, hacemos:
+        \begin{equation*}
+            K[x_\sigma\Big|\sigma\in S_l]\overset{\alpha_l}{\rightarrow}T(l)
+        \end{equation*}
+        tal que $x_\sigma\mapsto y^{ P_\sigma}$, lo que resulta en el isomorfismo:
+        \begin{equation*}
+            R(l)=K[x_\sigma\Big|\sigma\in S_l]/\ker(\alpha_l)\cong T(l)
+        \end{equation*}
+    \end{obs}
+
+    Por esta razón, se simplifica el problema de cálculo simplemente a hacer:
+    \begin{equation*}
+        \square_l(n)=\dim_K([T(l)]_{ nl})=\dim_K[R(l)]_n
+    \end{equation*}
+
+    \begin{mydef}
+        Sea $\underline{f}=f_1,...,f_u\in A$ una sucesión de elementos del anillo $A$. El \textbf{complejo de Cech de $\underline{f}$} (denotado por $\check{C}(\underline{f})$) se define como:
+        \begin{equation*}
+            0\rightarrow A\rightarrow\bigoplus_{ i=1}^u A\left[1/f_i \right]\rightarrow\bigoplus_{ i<j}A\left[1/f_i,1/f_j \right]\rightarrow\cdots\rightarrow A[1/f_i,1/f_j]\rightarrow 0
+        \end{equation*}
+        La \textbf{$i$-ésima cohomología local de $A$} en $\underline{f}$ es
+        \begin{equation*}
+            H_{\underline{f}}^i(A)=H^i(\check{C}(\underline{f}))
+        \end{equation*}
+    \end{mydef}
+
+    Si ocupan saber más, mandar correo al Dr. que dió la plática.
+    
+    \begin{propo}
+        Se tiene que:
+        \begin{equation*}
+            H_{\underline{f}}^i(A)=H_{\underline{g}}^i(A)
+        \end{equation*}
+        si $(\underline{f})=(\underline{g})$.
+    \end{propo}
+
+    \begin{propo}
+        Sea $A=K[x]/I$ y $m=(\underline{x})$.
+        \begin{itemize}
+            \item $H_m^i(A)=0$ para todo $i>\dim A=d$.
+            \item $H_m^j(A)\neq0$.
+        \end{itemize}
+    \end{propo}
+
+    \begin{mydef}
+        Decimos que $A$ es de \textbf{Cohen-Maculay} si
+        \begin{equation*}
+            H_m^i(A)\neq0\quad\forall i\neq d 
+        \end{equation*}
+    \end{mydef}
+
+    \begin{center}
+        \textit{¿Para qué se ocupa lo anterior?}
+    \end{center}
+
+    \begin{itemize}
+        \item $V(I)$.
+        \item Tiene procesos inductivos.
+    \end{itemize}
+
+    \begin{theor}
+        $R(l)$ es Cohen-Maculay.        
+    \end{theor}
+
+    \begin{proof}
+        La idea es que $R(l)$ es un sumando directo de $K[y^A\Big|a_{ i,j}\geq0]$.
+
+        Luego se usa un teorema de Coxen-Maculay.
+    \end{proof}
+
+    Recordemos que el homomorfismo de Fröbenius:
+    \begin{equation*}
+        \begin{split}
+            F:R(l)&\rightarrow R(l)\\
+            f&\mapsto f^p\\
+        \end{split}
+    \end{equation*}
+    (en campos de característica $p$).
+
+    \begin{propo}
+        El homomorfismo de Fröbenius $\cf{F}{R(l)}{R(l)}$ induce un morfismo en la cohomología:
+        \begin{equation*}
+            \cf{F}{H_m^i(R(l))}{H_m^i(R(l))}
+        \end{equation*}
+    \end{propo}
+
+    \begin{theor}
+        $q(t)\in\mathbb{Q}[t]$ es tal que $\square_l(n)=q(n)$, para todo $n\geq0$.
+    \end{theor}
+
+    \begin{proof}
+        \begin{itemize}
+            \item $\square_l(n)=HF_{ R(l)}(n)$.
+            \item $\dim(R(l))=(l-1)^2+1$.
+            \item $F$ en $H_m^i(R(l))$ es inyectivo.
+        \end{itemize}
+        Como $R(l)$ es Cohen-Maculay con proceso inductivos demuestra que $h$...
+    \end{proof}
+
+    \chapter{Un contraejemplo a la resolución de singularidades vía explosiones de Nash}
+
+    \chapter{Sobre los teoremas de Cayley-Bacharach}
+
+    \chapter{Título por anunciar}
+
+\end{document}
