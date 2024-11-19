@@ -1283,6 +1283,154 @@ int f(int n){
         \end{equation*}
     \end{obs}
 
+    \begin{exa}
+        Se define la función \textbf{Busy Beaver}, $\cf{\sigma}{\mathbb{N}}{\mathbb{N}}$ dada por:
+        \begin{equation*}
+            \sigma(n)=\max\left\{\textup{output en unario de una máquina de Turing con }\leq n+1\textup{ estados e input }0 \right\}
+        \end{equation*}
+        de forma inmediata se tiene que $\sigma(0)=1$, ya que solo hay una máquina de Turing con un estado (el estado final), y el mayor output que puede hacer es 1.
+    \end{exa}
+
+    \begin{excer}
+        Verifique que $\sigma(2)\geq4$.
+    \end{excer}
+
+    \begin{theor}
+        Si $\cf{f}{\mathbb{N}}{\mathbb{N}}$ es cualquier función computable, entonces existe $N\in\mathbb{N}$ tal que para todo $n\geq N$ se cumple que $f(n)< \sigma(n)$. En particular, \textbf{$\sigma$ no es computable}.
+    \end{theor}
+
+    \begin{proof}
+        Sea $f$ computable, entonces la función $\cf{g}{;\mathbb{N}}{\mathbb{N}}$ dada por:
+        \begin{equation*}
+            g(n)=\min\left\{f(2n),f(2n+1) \right\}+1
+        \end{equation*}
+        también es computable. Por lo tanto, existe alguna máquina de Turing $T$ que calcula a $g$ en unario. Sea $k$ el número de estados (además del estado inicial) de dicha máquina.
+
+        Consideremos la función 
+    \end{proof}
+
+    \section{Conjuntos y Relaciones Computables}
+
+    \begin{mydef}
+        Un conjunto $X\subseteq\mathbb{N}$ es \textbf{computable} si su función característica $\chi_X$ es computable.
+    \end{mydef}
+
+    \begin{exa}
+        Los siguientes son conjuntos computables:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $\mathbb{N}$.
+            \item $\emptyset$.
+            \item $\left\{n\in\mathbb{N}\Big|n\textup{ es cuadrado perfecto} \right\}$.
+            \item $\left\{p\in\mathbb{N}\Big|p\textup{ es primo} \right\}$.
+            \item $\left\{(n,m)\in\mathbb{N}^2\Big|n\divides m \right\}$.
+        \end{enumerate}
+    \end{exa}
+
+    \begin{sol}
+        En efecto, se tienen los siguientes algoritmos de cada una de las funciones características de los conjuntos anteriores:
+        \begin{lstlisting}
+int uno(int n) return 1;
+
+int dos(int n) return 0;
+
+int tres(int n){
+    for(int i=0; i*i<n;i++){
+        if(i*i=n) return 1;
+    }
+    return 0;
+}
+        \end{lstlisting}
+    \end{sol}
+
+    \begin{propo}
+        Sean $X,Y\subseteq\mathbb{N}$ conjuntos computables, entonces $X\cap Y$, $X\cup Y$ y $X\setminus Y$ son también computables (en otras palabras, el conjunto de conjuntos computables es un álgebra booleana).
+    \end{propo}
+
+    \begin{proof}
+        Basta con ver que:
+        \begin{itemize}
+            \item $\chi_X(n)\chi_Y(n)=\chi_{ X\cap Y}(n)$.
+            \item $\chi_{ X\cup Y}(n)=\max\left\{\chi_X(n),\chi_Y(n) \right\}$.
+            \item $\chi_{ X\setminus Y}(n)=\max\left\{1-\chi_X(n),0 \right\}$.
+        \end{itemize}
+        para todo $n\in\mathbb{N}$.
+    \end{proof}
+
+    \begin{theor}
+        El conjunto
+        \begin{equation*}
+            \left\{e\in\mathbb{N}\Big|\varphi(e,-)\textup{ es una función total} \right\}
+        \end{equation*}
+        no es computable.
+    \end{theor}
+
+    \begin{proof}
+        En caso contrario, se tendría que la funcioń $h:n\mapsto n$-ésima máquina de Turing que induce una función total, también sería computable (ya que la característica detecta si una función computable es total o no, luego en particular existe una función que codifica a todas las funciones totales).
+
+        Se sigue así que la función $\cf{u}{;\mathbb{N}^2}{\mathbb{N}}$:
+        \begin{equation*}
+            (x,y)\mapsto \varphi(h(x),y)
+        \end{equation*}
+        sería total computable. Así que, la función $g(n)=u(n,n)+1$ también es total computable.
+
+        Por ende, existe $m\in\mathbb{N}$ tal que $g=\varphi(h(m),-)$, entonces:
+        \begin{equation*}
+            \begin{split}
+                u(m,m)&=g(m)\\
+                &=u(m,m)+1\\
+            \end{split}
+        \end{equation*}
+        lo cual es una contradicción.
+    \end{proof}
+
+    \begin{theor}[\textbf{Halting Problem, Enschleidung problem}]
+        El conjunto
+        \begin{equation*}
+            H=\left\{(e,n)\Big|\varphi(e,n)\textup{ está definido} \right\}
+        \end{equation*}
+        (esto es que $(e,n)\in\dom g$ también denotado por $(e,n)\downarrow$) no es computable.
+    \end{theor}
+
+    \begin{proof}
+        Supongamos que sí lo es, entonces el conjunto
+        \begin{equation*}
+            D=\left\{e\in\mathbb{N}\Big|(e,e)\downarrow \right\}
+        \end{equation*}
+        es computable. Definimos la siguiente función $\cf{f}{;\mathbb{N}}{\mathbb{N}}$ con algoritmo:
+        \begin{lstlisting}
+int f(int n){
+    int i;
+    if(chi_X(n)) while(1) i++;
+    return 1;
+}
+        \end{lstlisting}
+        claramente esta función es computable, y está definida si $n\notin D$ (en caso contrario, se sigue y ejecuta el programa infinitamente). Por ser computable, existe $e\in\mathbb{N}$ tal que $f=\varphi(e,-)$. Se tiene:
+        \begin{equation*}
+            \begin{split}
+                f(e) \textup{ está definido}&\textup{ si y sólo si }e\notin D \\
+                &\textup{ si y sólo si }\varphi(e,e)\textup{ no está definido} \\
+                &\textup{ si y sólo si }f(e)\textup{ no está definido}\\
+            \end{split}
+        \end{equation*}
+        lo cual es una contradicción. Por tanto, el conjunto anterior no puede ser computable.
+    \end{proof}
+
+    \begin{obs}
+        El teorema anterior se conoce como el \textbf{brinco de Turing} y es llamado \textbf{el problema de la detección}.
+    \end{obs}
+
+    \begin{obs}
+        Del teorema anterior se deduce de forma inmediata que el conjunto
+        \begin{equation*}
+            D=\left\{e\in\mathbb{N}\Big|\varphi(e,e)\textup{ está definido} \right\}
+        \end{equation*}
+        no es computable.
+    \end{obs}
+
+    \begin{exa}
+        El problema 10 de Hilbert.
+    \end{exa}
+
     \chapter{Teoremas de Completud}
 
 
