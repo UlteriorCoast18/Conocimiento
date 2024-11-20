@@ -16,6 +16,63 @@
 \usepackage{pgffor}
 \usepackage{ifthen}
 \usepackage{enumitem}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mathdots}
+
+%Gestión de Hipervínculos
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan
+}
+
+%Gestión de Código de Programación
+
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA} % additional keywords
+\definecolor{listing-keyword-3}{HTML}{9137CB} % additional keywords
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language         = java,
+    alsolanguage     = scala,
+    numbers          = left,
+    xleftmargin      = 2.7em,
+    framexleftmargin = 2.5em,
+    backgroundcolor  = \color{gray!15},
+    basicstyle       = \color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines       = true,
+    frameshape       = {RYR}{Y}{Y}{RYR},
+    rulecolor        = \color{black},
+    tabsize          = 2,
+    numberstyle      = \color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip        = 1.0em,
+    belowskip        = 0.1em,
+    abovecaptionskip = 0em,
+    belowcaptionskip = 1.0em,
+    keywordstyle     = {\color{listing-keyword}\bfseries},
+    keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive        = true,
+    identifierstyle  = \color{listing-identifier},
+    commentstyle     = \color{listing-comment},
+    stringstyle      = \color{listing-string},
+    showstringspaces = false,
+}
+
+\lstset{style = myStyle}
+
+%Gestión de Marca de Agua
 
 \usetikzlibrary{shapes.multipart}
 
@@ -147,8 +204,6 @@
     \author{Cristo Daniel Alvarado}
     \maketitle
 
-    \tableofcontents %Con este comando se genera el índice general del libro%
-
     %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
 
     \newpage
@@ -157,8 +212,141 @@
 
     \section{Ejercicios}
    
-    \begin{excer}[Nombre]
-        
+    \begin{excer}
+        Demuestre que todo subconjunto cofinito de $\mathbb{N}$ (es decir, cuyo complemento es finito) es computable.
     \end{excer}
+
+    \begin{proof}
+        Sea $X\subseteq\mathbb{N}$ un conjunto cofinito, entonces su complemento $\mathbb{N}\setminus X$ es finito. Sea $N\in\mathbb{N}$, se tiene que la función característica $\chi_{\left\{N \right\}}$ es computable, pues tiene como algoritmo:
+        \begin{lstlisting}
+int chi_N(int n){
+    if(n == N) return 1;
+    else return 0;
+}
+        \end{lstlisting}
+        por lo que el conjunto $\left\{N \right\}$ es computable, en particular el conjunto:
+        \begin{equation*}
+            \mathbb{N}\setminus X=\left\{n\in\mathbb{N}\Big|n\notin X \right\}
+        \end{equation*}
+        es computable (por ser finito) ya que es unión finita de conjuntos numerables, luego su complemento el cual es $X$ es computable.
+    \end{proof}
+
+    \begin{excer}
+        Suponga que $X\subseteq\mathbb{N}$ es computable, y sea $\cf{f}{\mathbb{N}}{\mathbb{N}}$ una función total computable. Demuestre que:
+        \begin{equation*}
+            f^{-1}[X]=\left\{n\in\mathbb{N}\Big|f(n)\in X \right\}
+        \end{equation*}
+        es un conjunto computable.
+    \end{excer}
+
+    \begin{proof}
+        Considere el siguiente algoritmo de la función característica de $f^{-1}[X]$:
+
+        \begin{lstlisting}
+int f_1_[X](int n){
+    if(chi_X(f(n))) return 1;
+    else return 0;
+}
+        \end{lstlisting}
+        como $f$ es total computable, entonces $f(n)$ existe para todo $n$, luego al ser $X$ un conjunto computable, en una cantidad finita de tiempo se obtiene si $\chi_X$ evaluada en $f(n)$ es cero o uno, en cuyo caso se retorna cero o uno en el algoritmo definido anteriormente, el cual siempre retorna algo.
+    \end{proof}
+
+    \begin{excer}
+        Defina la función $\cf{f}{\mathbb{N}}{\mathbb{N}}$ mediante:
+        \begin{equation*}
+            f(n)=\left\{
+                \begin{array}{rl}
+                    1 & \textup{ si la expansión decimal de $\pi$ contiene una sucesion de al menos $n$ digitos}\\ 
+                     & \textup{consecutivos iguales a 7.}\\
+                    0 & \textup{ en otro caso.}\\
+                \end{array}
+            \right.
+        \end{equation*}
+        Demuestre (sin usar ningún hecho especial sobre $\pi$) que la función $f$ es total computable.
+    \end{excer}
+
+    \begin{proof}
+        Es inmediato del siguiente algoritmo:
+        \begin{lstlisting}
+int f(int n){
+    recorrer digito por digito la expansion decimal de pi hasta encontrar un 7{
+        int cont = 1;
+        cont cuenta el numero de 7s despues del primer 7;
+        if(n <= cont) return 1;
+    }
+}
+        \end{lstlisting}
+        que $f$ es computable. Si $f$ no fuese total computable (es decir, que $f$ no sea la función constante uno), entonces existiría al menos un $N\in\mathbb{N}$ tal que $f(N)$ no está bien definido, por la forma en que definimos el algoritmo de $f$, se tendría que $N+1,...$ tampoco estarían bien definidos. Sea $n_0$ el mínimo entero no negativo tal que $f(n_0)$ no está bien definido (es decir que el algoritmo anterior sigue funcionando). Construímos el algoritmo:
+        \begin{lstlisting}
+int f_2(int n){
+    if(n < n_0) return f(n);
+    else return 0;
+}
+        \end{lstlisting}
+        esta es el algoritmo de la función $f$, mismo que es total.
+    \end{proof}
+
+    \begin{obs}
+        ¿Puedo elegir tal $n_0$ en la demostración anterior?
+    \end{obs}
+
+    \begin{excer}
+        Suponga que $\cf{g}{\mathbb{N}}{\mathbb{N}}$ es una función no-creciente, es decir que $g(n+1)\leq g(n)$ para todo $n\in\mathbb{N}$. Pruebe que $g$ debe ser total computable.
+    \end{excer}
+
+    \begin{proof}
+        Primero veamos que $g$ es computable.
+    \end{proof}
+
+    \begin{excer}
+        Demuestre que la función $\cf{f}{\mathbb{N}^3}{\mathbb{N}}$ dada por:
+        \begin{equation*}
+            f(x,y,z)=\left\{
+                \begin{array}{lcr}
+                    y & \textup{ si } & x=0.\\
+                    z & \textup{ si } & x\neq0.\\
+                \end{array}
+            \right\}
+        \end{equation*}
+        es total computable.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Considere una retícula de calles que conste de $n$ calles que van de este a oeste, atravesadas por $m$ calles que van de norte a sur, de tal suerte que se genere un mapa rectangular con $mn$ intersecciones. Si un peatón se propone caminar (utilizando dichas calles) para llegar desde la esquina noreste hasta la suroeste, caminando únicamente hacia el este o hacia el sur, y cambiando de dirección únicamente en las esquinas, denote por $r(n,m)$ a la cantidad de posibles rutas que nuestro peatón puede tomar. Demuestre que la función $\cf{r}{\mathbb{N}^2}{\mathbb{N}}$ es total computable.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Proporcione un ejemplo de una función no-total, $\cf{g}{\mathbb{N}^2}{\mathbb{N}}$, tal que la función $\cf{h}{\mathbb{N}}{\mathbb{N}}$ obtenida por medio de una búsqueda no acotada:
+        \begin{equation*}
+            h(x)=(\mu y)(g(x,y)=0)
+        \end{equation*}
+        sí es total.
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{mydef}
+        El operador $\mu$ significa \textbf{el mínimo tal que}, en caso de que exista (y la función queda sin definir en caso de que no). El acto de invocar a $\mu$ se conoce como búsqueda no acotada.
+    \end{mydef}
+
+    \begin{excer}
+        Demuestre que si $X\subseteq\mathbb{N}$ es el conjunto de números de Gödel de máquinas de Turing (es decir, $n\in X$ si y sólo si $\varphi(n,\cdot)$ es una máquina de Turing válida, en donde $\varphi$ es la máquina de Turing universal), entonces la función característica $\chi_X$ es total computable.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    
 
 \end{document}

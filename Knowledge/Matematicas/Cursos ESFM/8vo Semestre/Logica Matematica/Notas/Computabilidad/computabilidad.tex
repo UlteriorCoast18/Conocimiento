@@ -19,6 +19,7 @@
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{mathdots}
 
 %Gestión de Hipervínculos
 
@@ -1226,7 +1227,7 @@ int f(int n){
                 1 & - & | \\
                 2 & - & * \\
                 3 & - & > \\
-                \vdots & - & \vdots \\
+                $\vdots$ & - & $\vdots$ \\
             \end{tabular}
         \end{center}
         en este caso, codificamos elementos de $\left[\left\{0,1,*,<,>,-,s_1,...,s_n \right\}^k\right]^{<\aleph_0}$ (cadenas finitas de tuplas finitas). Lo que podemos hacer enotnces es codificar máquinas de Turing.
@@ -1312,7 +1313,7 @@ int f(int n){
     \section{Conjuntos y Relaciones Computables}
 
     \begin{mydef}
-        Un conjunto $X\subseteq\mathbb{N}$ es \textbf{computable} si su función característica $\chi_X$ es computable.
+        Un conjunto $X\subseteq\mathbb{N}$ es \textbf{computable} si su función característica $\chi_X$ es total computable.
     \end{mydef}
 
     \begin{exa}
@@ -1430,6 +1431,199 @@ int f(int n){
     \begin{exa}
         El problema 10 de Hilbert.
     \end{exa}
+
+    \section{Conjuntos computablemente numerables}
+
+    \begin{mydef}
+        Un conjunto $X\subseteq\mathbb{N}$ es \textbf{computablemente enumerable} o \textbf{listable} si existe una función total computable $\cf{F}{\mathbb{N}}{\left\{F\subseteq\mathbb{N}\Big|F\textup{ es finito} \right\}}$ tal que:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \setcounter{enumi}{-1}
+            \item $F(0)=\emptyset$.
+            \item $\forall n\in\mathbb{N}$, $F(n)\subseteq F(n+1)$.
+            \item $\forall n\in\mathbb{N}, \abs{F(n+1)\setminus F(n)}\leq 1$.
+            \item $X=\bigcup_{ n=0}^\infty F(n)$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        Intuitivamente, diremos que $X\subseteq\mathbb{N}$ es computablemente enumerable si existe un algoritmo con instrucción \textit{print} que \textit{sucesivamente} (no necesariamente los imprime en orden) imprime a los elementos de $X$.
+    \end{obs}
+
+    \begin{exa}
+        Todo conjunto computable es computablemente enumerable.
+    \end{exa}
+
+    \begin{proof}
+        Suponga que $X$ es un conjunto computable, entonces existe un algoritmo para su función característica $\chi_X$. Considere la función:
+
+        \begin{lstlisting}
+void main(void){
+    for(i=0; 1;i++){
+        if(chi_X(i)) print(i);
+    }
+}
+        \end{lstlisting}
+
+    \end{proof}
+
+    \begin{obs}
+        En el caso en que un conjunto sea computable, su función característica es total computable.
+    \end{obs}
+
+    \begin{exa}
+        El problema de la detección:
+        \begin{equation*}
+            H=\left\{(e,n)\Big|\varphi(e,n)\downarrow \right\}
+        \end{equation*}
+        es computablemente enumerable.
+    \end{exa}
+
+    \begin{proof}
+        La idea es ir corriendo el programa con cada uno de los inputs posibles recorriendo (ya sea en diagonal o no), a todas y cada una de las parejas:
+        
+        \begin{center}
+            \begin{tabular}{c c c c}
+                $\vdots$ & $\vdots$ & $\vdots$ & $\iddots$ \\
+                (1,0) & (1,1) & (1,2) & $\cdots$ \\
+                (0,0) & (0,1) & (0,2) & $\cdots$ \\
+            \end{tabular}
+        \end{center}
+
+        Lo cual lo hacemos de la siguiente manera:
+
+        \begin{lstlisting}
+void main(void){
+    for(int m = 1; 1;m++){
+        encuentra e,n tales que m=2^e(2n+1);
+        correr varphi(e,n) m pasos, si se detiene imprime;
+        print(e,n);
+    }
+}
+        \end{lstlisting}
+
+    \end{proof}
+
+    \begin{obs}
+        Note que $H$ no es computable, pero el conjunto:
+        \begin{equation*}
+            \left\{(e,n,t)\Big|\varphi(e,n)\textup{ se detiene en }\leq t\textup{ pasos} \right\}
+        \end{equation*}
+        sí es computable.
+    \end{obs}
+
+    \begin{theor}
+        Sea $X\subseteq\mathbb{N}$. Entonces las siguientes son equivalentes:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $X$ es computablemente numerable.
+            \item La función semicaracterística $\sigma_X$ dada por:
+            \begin{equation*}
+                \sigma_X(n)=\left\{
+                    \begin{array}{lcr}
+                        1 & \textup{ si } & n\in X \\
+                        \uparrow & \textup{en otro caso} & \\
+                    \end{array}
+                \right.
+            \end{equation*}
+            es computable.
+            \item Hay una función computable $\cf{f}{\mathbb{N}}{\mathbb{N}}$ tal que $X=\dom{f}$.
+            \item Hay un conjunto computable $Y\subseteq\mathbb{N}^2$ tal que:
+            \begin{equation*}
+                X=\left\{x\in\mathbb{N}\Big|(\exists y\in\mathbb{N})((x,y)\in Y) \right\}
+            \end{equation*}
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        \textit{(1)$\Rightarrow$(2)}: Veamos que existe el siguiente algoritmo para la función semicaracterística:
+        
+        \begin{lstlisting}
+int sigma(int n){
+    correr algoritmo que lista a X{
+        if(se imprimio n) return 1;
+    }
+}
+        \end{lstlisting}
+
+        \textit{(2)$\Rightarrow$(3)}: Es inmediato (tomar $f=\sigma_X$).
+
+        \textit{(3)$\Rightarrow$(4)}: Considere el algoritmo de la función característica de $Y$, $\chi_Y$:
+
+        \begin{lstlisting}
+int chi_Y(int a, int b){
+    correr f(a) b pasos;
+    if(f(a) se calculo) return 1;
+    else return 0;
+}
+        \end{lstlisting}
+        
+        note que $Y$ es precisamente:
+        \begin{equation*}
+            Y=\left\{(a,b)\Big|f(a)\textup{ se detiene en }\leq b\textup{ pasos} \right\}
+        \end{equation*}
+        y es tal que su proyección coincide con $X$, pues note que:
+        \begin{equation*}
+            \begin{split}
+                a\in X & \textup{ si y sólo si } a\in\dom{f} \\
+                &\textup{ si y sólo si }\exists b\textup{ tal que }f(a)\textup{ se detiene en }b\textup{ pasos}\\
+                &\textup{ si y sólo si }(a,b)\in Y\textup{ para algún }b \\
+            \end{split}
+        \end{equation*}
+
+        \textit{(4)$\Rightarrow$(1)}: Considere el algoritmo de la función característica de $X$:
+
+        \begin{lstlisting}
+void main(void){
+    for(m=1;1;m++){
+        [se decodifica la pareja dada por m=2^n(2d+1)];
+        if(chi_Y(n,d)) print(n);
+    }
+}
+        \end{lstlisting}
+        pues la función característica de $Y$ es total.
+
+    \end{proof}
+
+    \begin{obs}
+        La flecha hacia arriba significa que el algoritmo se queda estancado y nunca termina.
+    \end{obs}
+
+    \begin{theor}[\textbf{Kleene}]
+        Si $X\subseteq\mathbb{N}$, entonces $X$ es computable si y sólo si tanto $X$ como $\mathbb{N}\setminus X$ son computablemente enumerables.
+    \end{theor}
+
+    \begin{proof}
+        $\Rightarrow$): Suponga que $X$ es computable, entonces $\mathbb{N}\setminus X$ es computable, luego los dos (en particular) son enumerablemente computables.
+
+        $\Leftarrow$): Considere el algoritmo de la función característica de $X$:
+        
+        \begin{lstlisting}
+int chi_X(int n){
+    for(int i = 0; 1; i++){
+        correr X en i pasos;
+            if(se imprimio n) return 1;
+        correr N\X en i pasos;
+        if(se imprimio n) return 0;
+    }
+}
+        \end{lstlisting}
+        este algoritmo siempre termina por ser ambos conjuntos enumerablemente computables, luego la función característica de $X$ es total.
+    \end{proof}
+
+    \begin{cor}
+        Los conjuntos:
+        \begin{equation*}
+            \mathbb{N}^2\setminus H=\left\{(e,d)\Big|\varphi(e,d)\uparrow \right\}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \mathbb{N}\setminus D=\left\{n\in\mathbb{N} \Big|(n,n)\uparrow \right\}
+        \end{equation*}
+        no son computablemente enumerables.
+    \end{cor}
+
+    \begin{proof}
+        Es inmediata del teorema de Kleene.
+    \end{proof}
 
     \chapter{Teoremas de Completud}
 
