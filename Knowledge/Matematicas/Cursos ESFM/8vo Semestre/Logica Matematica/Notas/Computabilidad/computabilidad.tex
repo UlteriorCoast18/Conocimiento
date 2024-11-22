@@ -1625,6 +1625,111 @@ int chi_X(int n){
         Es inmediata del teorema de Kleene.
     \end{proof}
 
+    \begin{obs}
+        Si $X$ y $Y$ son conjuntos enumerablemente computables, entonces $X\cap Y$ y $X\cup Y$ también lo son.
+    \end{obs}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{theor}
+        Sea $\cf{f}{;\mathbb{N}}{\mathbb{N}}$ una función parcial.
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $f$ es una función computable si y sólo si $\Gamma(f)$ es un conjunto enumerablemente computable, donde:
+            \begin{equation*}
+                \Gamma(f)=\left\{(x,y)\in\mathbb{N}^2\Big|y=f(x) \right\}
+            \end{equation*}
+            \item Más aún, si $f$ es total, entonces $f$ es computable si y sólo si $\Gamma(f)$ es un conjunto computable.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De \textit{(1)}: Probaremos la doble implicación:
+        
+        $\Rightarrow)$: Considere el algoritmo:
+        \begin{lstlisting}
+void main(void){
+    for(int a = 0; 1; a++){
+        Decodificar a=(n,t);
+        Correr f(n) t pasos{
+            si el algoritmo termino{
+                print(n,f(n);
+            }
+        }
+    }
+}
+        \end{lstlisting}
+
+        $\Leftarrow)$: Considere el algoritmo:
+        \begin{lstlisting}
+int f(int n){
+    Correr el algoritmo que imprime la lista de elementos de Gamma(f);
+    Cada vez que se imprime (x,y){
+        if(x == n) return y;
+    }
+}
+        \end{lstlisting}
+
+        De \textit{(2)}:
+
+        $\Rightarrow)$: Considere el algoritmo:
+
+        \begin{lstlisting}
+int chi_Gamma_f(int x; int y){
+    if(y == f(x)) return 1;
+    else return 0;
+}
+        \end{lstlisting}
+
+        $\Leftarrow)$: Considere el algoritmo:
+
+        \begin{lstlisting}
+int f(int n){
+    for(int y = 0; 1-chi_Gamma_f(n,y),y++);
+    //la instruccion return va afuera del ciclo FOR
+    return y;
+}
+        \end{lstlisting}
+
+    \end{proof}
+
+    \begin{theor}
+        Sea $X\subseteq\mathbb{N}$. Entonces, $X$ es computablemente enumerable si y sólo si o bien $X=\emptyset$ o existe una función total computable $\cf{f}{\mathbb{N}}{\mathbb{N}}$ tal que $X=\textup{ran}(f)=\textup{im}(f)$.
+    \end{theor}
+
+    \begin{proof}
+        $\Leftarrow$): Suponga que $X\neq\emptyset$. Se tienen dos casos:
+        \begin{itemize}
+            \item \textbf{$X$ es finito}, digamos $X=\left\{x_0,...,x_n \right\}$. Considere el algoritmo.
+            \begin{lstlisting}
+int f(int k){
+    switch(k){
+        case 0: return x_0;
+        ... : ... ;
+        case n: return x_n;
+    }
+    return x_n;
+}
+            \end{lstlisting}
+            \item \textbf{$X$ es infinito}. Considere el algoritmo:
+            \begin{lstlisting}
+int f(int k){
+    correr algoritmo que lista los elementos de  X;
+    tomar el k-esimo elemento de la lista de X y almacenarlo en la variable y;
+    return y;
+}
+            \end{lstlisting}
+        \end{itemize}
+
+        $\Leftarrow)$: Suponga que $X\neq\emptyset$. Considere el algoritmo:
+        \begin{lstlisting}
+void main(void){
+    for(int i = 0; 1; i++) print(f(n));
+}
+        \end{lstlisting}
+    \end{proof}
+
     \chapter{Teoremas de Completud}
 
 
