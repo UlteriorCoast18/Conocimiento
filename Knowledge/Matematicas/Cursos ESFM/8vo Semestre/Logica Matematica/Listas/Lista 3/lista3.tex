@@ -347,6 +347,183 @@ int f_2(int n){
         
     \end{proof}
 
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Construya una función $h$ que \textit{eventualmente domine} a todas las funciones computables, es decir, que para toda función computable $f$ exista un $N\in\mathbb{N}$ tal que $f(n)\leq h(n)$ para todo $n\geq N$.
+            
+            \textit{Sugerencia}. Hay por lo menos tres maneras naturales de definir a $h$.
+            \item ¿Es posible lograr en el inciso anterior que la función $h$ sea total computable?
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Dado un algoritmo $\mathcal{A}$ y un $t\in\mathbb{N}\cup\left\{0\right\}$, la \textit{foto instantánea de $\mathcal{A}$ en el tiempo $t$} es una compliación de toda la información que se encuentra en el algoritmo en el instante de tiempo $t$.
+
+        Demuestre que, si un algoritmo eventualmente se detiene, entonces todas las fotos instantáneas previas a la foto instantánea terminal (es decir, aquella que corresponde al tiempo en el cual el algoritmo se detiene) deben de ser distintas dos a dos.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{exa}
+        En el ejercicio anterior, un ejemplo sería si concebimos a nuestro algoritmo como una máquina de Turing, entonces la foto instantánea en el tiempo $t$ es un conjunto que contiene al $t$-ésimo estado visitado, así como el contenido de la cinta (visto como una sucesión finita de símbolos del alfabeto correspondiente junto con el símbolo \textit{en blanco}) justo en el momento en que se visita ese $t$-ésimo estado, así como la posición exacta del cabezal lector/escritor en ese momento.
+
+        Por otra parte, si concebimos a nuestro algoritmo como un programa en algún lenguaje de programación, entonces la foto instantánea en el tiempo $t$ consta de la información acerca de los valores que tienen las variables en el momento de correr la $t$-ésima instrucción, así como el reglón del programa que se está corriendo en ese momento.
+    \end{exa}
+
+    \begin{excer}
+        Recuerde que un conjunto no vacío $X\subseteq\mathbb{N}$ es \textbf{computablemente enumerable} si y sólo si $X$ es el rango de alguna función total computable. Demuestre ahora que un conjunto no vacío $X\subseteq\mathbb{N}$ es computable si y sólo si $X=\textup{ran}(f)$ para alguna función $\cf{f}{\mathbb{N}}{X}$ total computable que es \textit{no decreciente}.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $A\subseteq\mathbb{N}$ un conjunto infinito, computablemente enumerable.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Demuestre que existe una función total computable $\cf{g}{\mathbb{N}}{\mathbb{N}}$ que es estrictamente creciente tal que $\textup{ran}(g)\subseteq A$.
+            \item Concluya que todo conjunto computablemente enumerable infinito contiene un subconjunto computable infinito.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Decimos que un conjunto $X\subseteq\mathbb{N}^k$ es $\Sigma_1^0$ si existe algún conjunto computable $A\subseteq\mathbb{N}^m$ tal que:
+        \begin{equation*}
+            X=\left\{(x_1,...,x_k)\Big|\exists a_1,...,a_{ m-k}\textup{ tales que }(x_1,...,x_k,a_1,...,a_{m-k})\in A\right\}
+        \end{equation*}
+        Por otra parte, decimos que un conjunto $Y\subseteq\mathbb{N}^k$ es $\Pi_1^0$ si existe algún conjunto computable $B\subseteq\mathbb{N}^m$ tal que:
+        \begin{equation*}
+            Y=\left\{(y_1,...,y_k)\Big|\forall b_1,...,b_{ m-k}\textup{ tales que }(y_1,...,y_k,b_1,...,b_{m-k})\in B\right\}
+        \end{equation*}
+        Demuestre que todo conjunto que es al mismo tiempo $\Sigma_1^0$ y $\Pi_1^0$ es computable.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Dado un conjunto $X\subseteq\mathbb{N}^k$, demuestre que las siguientes condiciones son equivalentes:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item $X$ es computablement enumerable.
+            \item O bien $X=\emptyset$, o bien $X$ es el rango de alguna función parcial computable.
+            \item Existe una sucesión computable de conjuntos finitos $Y_s\subseteq\mathbb{N}^k$ (lo cual realmente significa: existe un conjunto computable $Y\subseteq\mathbb{N}^{ k+1}$ tal que, para cada $s\in\mathbb{N}$
+            \begin{equation*}
+                Y_s=\left\{(x_1,...,x_k)\Big|(x_1,...,x_k,s)\in Y \right\}
+            \end{equation*}
+            ) que satisfacen:
+            \begin{equation*}
+                Y_s\subseteq Y_{ s+1},\quad\forall s\in\mathbb{N}
+            \end{equation*}
+            de tal suerte que $X=\bigcup_{ s\in\mathbb{N}}Y_s$
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Demuestre que todo conjunto infinito computablemente enumerable es el rango de alguna función total computable $\cf{f}{\mathbb{N}}{\mathbb{N}}$ que es inyectiva.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+        
+    \begin{excer}
+        Demuestre que si $X\subseteq\mathbb{N}$ es computable y $Y\subseteq\mathbb{N}$ es computable enumerable, entonces $Y$ es computable si y sólo si $X\setminus Y$ es computable.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Demuestre la \textit{propiedad de reducción}: para cualesquiera dos conjuntos computablemente enumerables $X$ y $Y$ existen conjuntos computablemente enumerables $A\subseteq X$ y $B\subseteq Y$ tales que $A\cap B=\emptyset$ y $A\cup B=X\cup Y$. 
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Demuestre que todo conjunto infinito $X\subseteq\mathbb{N}$ contiene un subconjunto que no es computable.
+    \end{excer}
     
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Dados dos conjuntos $X,Y\subseteq\mathbb{N}$, definimos la \textbf{yunta} de $X$ y $Y$ como:
+        \begin{equation*}
+            X\oplus Y=\left\{2n\Big|n\in X \right\}\cup\left\{2n+1\Big|n\in Y \right\}
+        \end{equation*}
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Demuestre que, si $X$ y $Y$ son ambos computables, entonces $X\oplus Y$ también lo es.
+            \item Demuestre que, si $X$ y $Y$ son ambos computablemente enumerables, entonces $X\oplus Y$ también lo es.
+            \item Demuestre que, si $X\oplus Y$ es computable, entonces tanto $X$ como $Y$ también son computables.
+            \item Demuestre que, si $X\oplus Y$ es computablemente enumerable, entonces tanto $X$ como $Y$ también son computablemente enumerables.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{obs}
+        En términos de grados de Turing, la yunta es importante porque representa al supremo de los grados de Turing de los conjuntos correspondientes.
+    \end{obs}
+
+    \begin{excer}
+        Considere una codificación de los algoritmos de enumeración por medio de números naturales, y denote al conjunto impreso por el $n$-ésimo algoritmo como $W_n$ (en otras palabras, $W_n$ representa al $n$-ésimo conjunto computablemente enumerable, de acuerdo con alguna enumeración efectiva).
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Demuestre que, si $\cf{f}{\mathbb{N}}{\mathbb{N}}$ es una función total computable, entonces
+            \begin{equation*}
+                \bigcup_{ n=1}^\infty W_{f(n)}
+            \end{equation*}
+            es computablemente enumerable (en otras palabras, las uniones computables de conjuntos computablement enumerables son computablemente enumerables).
+            \item ¿Es posible afirmar algo acerca de la computabilidad/computable enumerabilidad del conjunto $\bigcap_{ n=1}^\infty W_{f(n)}$?
+            \item Demuestre que existe una función parcial computable $\cf{f}{;\mathbb{N}}{\mathbb{N}}$ tal que $f(n)$ está definida siempre que $W_n\neq\emptyset$, en cuyo caso $f(n)\in W_n$ (en otras palabras, se cumple el \textbf{axioma de elección computable}).
+            \item Dada una relación binaria $R\subseteq\mathbb{N}^2$ computablemente enumerable, exhiba una función parcial computable $\cf{f}{;\mathbb{N}}{\mathbb{N}}$ tal que $f(n)$ esté definida siempre que $(n,m)\in R$ para algun $m\in\mathbb{N}$, en cuyo caso, además debe cumplirse que $(n,f(n))\in R$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Definamos los siguientes subconjuntos de $\mathbb{N}$:
+        \begin{equation*}
+            \begin{split}
+                X&=\left\{n\in\mathbb{N}\Big|\varphi(n,n)=0 \right\},\\
+                Y&=\left\{n\in\mathbb{N}\Big|\varphi(n,n)=1 \right\},\\
+            \end{split}
+        \end{equation*}
+        (donde $\varphi$ reprsenta la máquiana de Turing universal).
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Demuestre que $X$ y $Y$ son conjuntos computablemente enumerables, amén de que $X\cap Y=\emptyset$.
+            \item Demuestre que $X$ y $Y$ son \textbf{computablemente inseprables}: en otras palabras, no existe ningún conjunto computable $Z$ tal que $X\subseteq Z$ y $Y\cap Z=\emptyset$. 
+            
+            \textit{Sugerencia.} Diagonalización, es decir, si existiera tal $Z$, su función característica sería $\varphi(d,\cdot)$ para algún $d\in\mathbb{N}$; luego, ¿qué podemos decir de $\varphi(d,d)$?
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
 
 \end{document}
