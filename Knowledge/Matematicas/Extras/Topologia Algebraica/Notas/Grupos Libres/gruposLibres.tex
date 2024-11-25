@@ -16,6 +16,7 @@
 \usepackage[a4paper, margin = 1.5cm]{geometry}
 \usepackage{bbm}
 \usepackage{float}
+\usepackage{enumitem}
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
@@ -892,6 +893,8 @@
 
     El producto libre de una colección arbitraria de grupos $G_i$ (no necesariamente todos abelianos) es el análogo al producto débil para grupos abelianos.
 
+    El objetivo de esto es definir de forma análoga a como se hizo anteriormente, un grupo libre, esto se hace prescindiendo del grupo de palabras, sin embargo, como notará su construcción es exactamente la misma.
+
     \begin{mydef}
         Sea $\left\{G_i \right\}_{ i\in I}$ una colección no vacía de grupos. Suponga que existe un grupo $G$ tal que para todo $i\in I$, está dado un homomorfismo
         \begin{equation*}
@@ -899,21 +902,23 @@
         \end{equation*}
         Decimos que $G$ es el \textbf{producto libre} o \textbf{coproducto de los grupos $G_i$ con respecto a los homomorfismos $\varphi_i$}, si se cumple lo siguiente:
         
-        Para todo grupo $H$ y cualquier familia de homomorfismos $\left\{\psi_i \right\}_{ i\in I}$ tales que
-        \begin{equation*}
-            \cf{\psi_i}{G_i}{H},\quad\forall i\in I
-        \end{equation*}
-        existe un único homomorfismo $\cf{f}{G}{H}$ tal que el diagrama
-
-        \begin{minipage}{\textwidth}
-            \begin{center}
-                \includegraphics[scale=1.5]{images/fig_10.pdf}\\
-                Figura \thefigcount. Conmutatividad en el producto libre de grupos.
-                \stepcounter{figcount}
-            \end{center}
-        \end{minipage}
-
-        es conmutativo para todo $i\in I$.
+        \begin{itemize}
+            \item Para todo grupo $H$ y cualquier familia de homomorfismos $\left\{\psi_i \right\}_{ i\in I}$ tales que
+            \begin{equation*}
+                \cf{\psi_i}{G_i}{H},\quad\forall i\in I
+            \end{equation*}
+            existe un único homomorfismo $\cf{f}{G}{H}$ tal que el diagrama
+    
+            \begin{minipage}{\textwidth}
+                \begin{center}
+                    \includegraphics[scale=1.5]{images/fig_10.pdf}\\
+                    Figura \thefigcount. Conmutatividad en el producto libre de grupos.
+                    \stepcounter{figcount}
+                \end{center}
+            \end{minipage}
+    
+            es conmutativo para todo $i\in I$.
+        \end{itemize}
     \end{mydef}
 
     Esta caracterización es tan específica para probar la unicidad y existencia de este producto libre de grupos.
@@ -941,31 +946,124 @@
     Este será nuestro objetivo de ahora en adelante.
 
     \begin{mydef}
-        Sea $\left\{ G_i \right\}_{ i\in I}$ un conjunto no vacío de grupos. Una \textbf{palabra en $\left\{ G_i \right\}_{ i\in I}$ de longitud $n\in\mathbb{N}$} es una sucesión finita $(x_1,x_2,...,x_n)$ de elementos en $\bigcup_{ i\in I}G_i$ tal que:
+        Sea $\left\{ G_i \right\}_{ i\in I}$ un conjunto no vacío de grupos. Una \textbf{palabra en la familia $\left\{ G_i \right\}_{ i\in I}$ de longitud $n\in\mathbb{N}$} es una sucesión finita $(x_1,x_2,...,x_n)$ de elementos en $\bigcup_{ i\in I}G_i$ tal que:
         \begin{itemize}
             \item Para todo $j\in\natint{1,n}$ existe $i_j\in I$ tal que $x_j\in G_{ i_j}$.
             \item $x_j\neq e_{ G_i}$ para todo $j\in\natint{1,n}$ y para todo $i\in I$.
             \item Si $n>1$, entonces para todo $j\in\natint{1,n-1}$ se tiene que $x_j$ y $x_{ j+1}$ no están en el mismo grupo.
         \end{itemize}
-        $n$ es llamado la \textbf{longitud de la palabra}. Se define además al \textbf{palabra vacía}, como el conjunto vacío $\emptyset$, que se identificará con $(\cdot)$.
+        $n$ es llamado la \textbf{longitud de la palabra}. Se define además al \textbf{palabra vacía}, como el conjunto vacío $\emptyset$, que se identificará con $(\cdot)$ la cual tiene longitud 0.
 
-        Se denotará por $W$ al conjunto de todas las palabras de longitud no negativa en $\left\{G_i \right\}_{ i\in I}$.
+        Se denotará por $\mathscr{W}$ al conjunto de todas las palabras de longitud no negativa en $\left\{G_i \right\}_{ i\in I}$.
     \end{mydef}
-
-    \begin{propo}
-        Sea $\left\{ G_i \right\}_{ i\in I}$ un conjunto no vacío de grupos.
-    \end{propo}
 
     \begin{theor}
         Dada una colección no vacía $\left\{ G_i \right\}_{ i\in I}$ de grupos, su producto libre existe.
     \end{theor}
     
     \begin{proof}
+        Veamos que $\mathscr{W}$ es el producto libre de la familia $\left\{G_i \right\}_{ i\in I}$. Veamos que $\mathscr{W}$ es grupo con la operación $\cdot$ definida como sigue:
+        \begin{equation*}
+            (x_1,...,x_n)\cdot(y_1,...,y_m)=\left\{
+                \begin{array}{lcr}
+                    (x_1,...,x_n,y_1,...,y_m) & \textup{ si } & x_n\textup{ y }y_1\textup{ no están en el mismo }G_i\\
+                    (x_1,...,x_ny_1,...,y_m) & \textup{ si } & x_n\textup{ y }y_1\textup{ en el mismo }G_i\textup{ y }x_ny_1\neq e_i\\
+                    (x_1,...,x_{ n-1},y_2,...,y_m) & \textup{ si } & x_n\textup{ y }y_1\textup{ en el mismo }G_i\textup{ y }x_ny_1= e_i\\
+                \end{array}
+            \right.
+        \end{equation*}
+        hace de $\mathscr{W}$ un grupo. En efecto, claramente esta operación es asociativa, el elemento identidad es $(\cdot)$ y el inverso de una palabra $(x_1,...,x_n)$ es $(x_n^{-1},...,x_1^{-1})$.
+
+        Sea $i\in I$, se define el homomorfismo $\cf{\varphi_i}{G_i}{\mathscr{W}}$ dado por:
+        \begin{equation*}
+            \varphi_i(g)=\left\{
+                \begin{array}{lcr}
+                    (g) & \textup{ si } & g\neq e_i\\
+                    (\cdot) & \textup{ si } & g= e_i\\
+                \end{array}
+            \right.,\quad\forall g\in G_i
+        \end{equation*}
+        (claramente éste es homomorfismo, más aún es monomirfismo. Veamos ahora que $\mathscr{W}$ es el producto libre de los grupos $G_i$.
+
+        Sea $H$ un grupo y $\left\{\cf{\psi_i}{G_i}{H} \right\}_{ i\in I}$ una familia de homomorfismos. Defina el homomorfismo $\cf{f}{\mathscr{W}}{H}$ dado por:
+        \begin{equation*}
+            f(x_1,....,x_n)=\psi_{i_1}(x_1)\cdots\psi_{i_n}(x_n)
+        \end{equation*}
+        para toda palabra no vacía, y $f(\cdot)=e_H$ (donde $e_H\in H$ es la identidad del grupo), donde $x_j\in G_{i_j}$ para todo $j=1,...,n$.
         
+        Claramente este es homomorfismo y está bien definido, veamos que para $i\in I$:
+        \begin{equation*}
+            \begin{split}
+                f\circ\varphi_i(g)&=f(g)\\
+                &=\psi_i(g)\\
+            \end{split}
+        \end{equation*}
+        (recuerde que en el segundo lado de la primera igualdad estamos evaluando a $f$ en la palabra $(g)$), para todo $g\in G_i$ diferente de la identidad, y:
+        \begin{equation*}
+            \begin{split}
+                f\circ\varphi_i(e_i)&=f(\cdot)\\
+                &=e_H\\
+                &=\psi_i(e_i)\\
+            \end{split}
+        \end{equation*}
+        por lo que:
+        \begin{equation*}
+            f\circ\varphi_i=\psi_i
+        \end{equation*}
+        Veamos que es único. Sea $\cf{g}{\mathscr{W}}{H}$ otro homomorfismo tal que:
+        \begin{equation*}
+            g\circ\varphi_i=\psi_i,\quad\forall i\in I
+        \end{equation*}
+        Si $(x_1,...,x_n)\in\mathscr{W}$ es una palabra, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                g(x_1,...,x_n)&=g((x_1)\cdot(x_2)\cdots(x_n))\\
+                &=g((x_1))\cdots g((x_n))\\
+                &=g\circ\varphi_{i_1}(x_1)\cdots g\circ\varphi_{i_n}(x_n)\\
+                &=\psi_{ i_1}(x_1)\cdots\psi_{ i_n}(x_n)\\
+                &=f(x_1,...,x_n)
+            \end{split}
+        \end{equation*}
+        donde $x_j\in G_{ i_j}$ para todo $j=1,...,n$. Así que $g=f$.
+
+        Por ende, se sigue que $\mathscr{W}$ es el producto libre de la familia $G_i$.
     \end{proof}
 
-    %TODO Guarda este grupo para más adelante
+    \begin{obs}
+        Dos hechos importantes del teorema anterior son los siguientes:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Cuando $G_i\neq G_j$ para todo $i\neq j$, se tiene que cualquier elemento $g$ del producto libre de los $G_i$ se expresa de forma única como producto de elementos de los $G_i$.
+            \item Es natural la forma en la que se definió el producto de las palabras en $\mathscr{W}$.
+        \end{enumerate}
+    \end{obs}
 
+    \begin{exa}
+        Sean $G_1$ y $G_2$ grupos cíclicos de orden 2, digamos $G_1=\left\{1,x_1 \right\}$ y $G_2=\left\{1,x_2 \right\}$ con $x_1\neq x_2$. Entonces, todo elemento distinto de la identidad en el producto libre de $G_1$ por $G_2$ se expresa de forma única como producto de $x_1$ por $x_2$, alternando cada uno de éstos. Por ejemplo, los siguientes elementos:
+        \begin{equation*}
+            x_1,x_1x_2,x_1x_2x_1,x_1x_2x_1x_2,...
+        \end{equation*}
+        o,
+        \begin{equation*}
+            x_2,x_2 x_1,x_2x_1x_2,x_2x_1x_2x_1,...
+        \end{equation*}
+
+        Note que los elementos $x_1x_2$ y $x_2x_1$ tienen orden infinito y son diferentes. Esta es una diferencia muy grande con respecto al producto débil de $G_1$ con $G_2$, ya que el producto directo de estos dos grupos es un grupo de orden 4, mientras que el producto libre es de orden infinito.
+    \end{exa}
+
+    \begin{mydef}
+        Sea $\left\{G_i \right\}_{ i\in I}$ una familia de grupos.
+        \begin{itemize}
+            \item Si la familia es finita, digamos $G_1,...,G_n$, denotamos el producto libre de la familia por $G_1*G_2*\cdots*G_n$, o también como:
+            \begin{equation*}
+                {\prod_{ 1\leq i\leq n}}^*G_i
+            \end{equation*}
+            \item En general, el producto libre de la familia $\left\{G_i \right\}_{ i\in I}$ se denota por:
+            \begin{equation*}
+                {\prod_{ i\in I}}^*G_i
+            \end{equation*}
+        \end{itemize}
+    \end{mydef}
+    
     \section{Grupos Libres}
 
     \begin{exa}
@@ -1012,4 +1110,14 @@
         Pruebe que el Corolario 2.2.1 es cierto si $S$ es finito y $S'$ es infinito.
     \end{excer}
     
+    \begin{proof}
+        
+    \end{proof}
+
+    %TODO: Escribir los ejercicios de la parte de producto libre de grupos.
+    
+    \begin{excer}[Nombre]
+        
+    \end{excer}
+
 \end{document}
