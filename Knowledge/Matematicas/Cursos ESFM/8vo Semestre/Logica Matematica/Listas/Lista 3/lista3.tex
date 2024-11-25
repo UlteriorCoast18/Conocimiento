@@ -295,7 +295,23 @@ int f_2(int n){
     \end{excer}
 
     \begin{proof}
-        Primero veamos que $g$ es computable.
+        Como $g$ es no creciente, $g$ solo puede tomar un número finito de valores en $\mathbb{N}$, digamos $c_k<c_{ k-1}<\cdots<c_1=c_0$, ya que debe quedarse o disminuir a partir de su valor inicial, el cual es $g(0)=c_0$.
+
+        Por ser $g$ no decreciente, además debe suceder que $g^{-1}(c_i)$ es un conjunto finito, para todo $i=0,1,...,k-1$ y el conjunto $g^{-1}(c_k)$ es infinito. Por tanto, si hacemos:
+        \begin{equation*}
+            g^{-1}(c_i)=\left\{x_{i,0},x_{i,1},...,x_{ i,k_i}\right\},\quad\forall i=0,1,...,k-1
+        \end{equation*}
+        entonces el algoritmo de $g$ sería:
+        \begin{lstlisting}
+int g(int n){
+    if(n == x_0_0 || n == x_0_1 || ... || n == x_0_k_0) return c_0;
+    if(n == x_1_0 || n == x_1_1 || ... || n == x_1_k_1) return c_1;
+    ... ... ;
+    if(n == x_(k-1)_0 || n == x_(k-1)_1 || ... || n == x_(k-1)_k_(k-1)) return c_(k-1);
+    else return c_k;
+}
+        \end{lstlisting}
+        por lo cual, la función $g$ sería total computable.        
     \end{proof}
 
     \begin{excer}
@@ -312,7 +328,14 @@ int f_2(int n){
     \end{excer}
 
     \begin{proof}
-        
+        Veamos que el algoritmo de $f$ sería:
+        \begin{lstlisting}
+int f(int x, int y, int z){
+    if(x == 0) return y;
+    else return z;
+}
+        \end{lstlisting}
+        por lo que, $f$ es total computable.
     \end{proof}
 
     \begin{excer}
@@ -332,7 +355,33 @@ int f_2(int n){
     \end{excer}
 
     \begin{sol}
-        
+        Considere la función no total $\cf{g}{;\mathbb{N}}{\mathbb{N}}$ dada por:
+        \begin{lstlisting}
+int g(int x, int y){
+    if(y == 0) return 0;
+    else{
+        for(int i; 1; i++){}
+    }
+}
+        \end{lstlisting}
+        la función $g$ sería:
+        \begin{equation*}
+            g(x,y)=\left\{
+                \begin{array}{lcr}
+                    0 & \textup{ si } & y=0\\
+                    \uparrow & \textup{ e.o.c. } & \\
+                \end{array}
+            \right.,\quad\forall (x,y)\in\mathbb{N}^2
+        \end{equation*}
+        Esta función no es total computable, pero la función $h$:
+        \begin{equation*}
+            h(x)=(\mu y)(g(x,y)=0)
+        \end{equation*}
+        siempre está definida para todo $x$, pues el mínimo valor de $g$ ocurre cuando $y=0$ sin importar la entrada de $x$, así que $\mu$ siempre en la búsqueda no acotada encuentra el valor mínimo, así que,
+        \begin{equation*}
+            h(x)=0,\quad\forall x\in\mathbb{N}
+        \end{equation*}
+        la cual es total computable.
     \end{sol}
 
     \begin{mydef}
@@ -344,13 +393,21 @@ int f_2(int n){
     \end{excer}
 
     \begin{proof}
-        
+        Debido a que en el simulador de máquinas de Turing, el mismo puede detectar si una máquina de Turing es válida o no (a partir de sintaxis, estados, movimientos, etc...), llamemos a este algoritmo {\fontfamily{cmtt}\selectfont verificarMaquinaTuring}. Se tiene pues el algoritmo siguiente:
+
+        \begin{lstlisting}
+int chi_X(int n){
+    convertir el entero n a la maquina de Turing correspondiente y guardarlo en la variable strMaquina;
+    return verificarMaquinaTuring(strMaquina);
+}
+        \end{lstlisting}
+        ya que la función {\fontfamily{cmtt}\selectfont verificarMaquinaTuring} siempre evalúa si una máquina de Turing es válida o no, por lo que $X$ es un conjunto total computable.
     \end{proof}
 
     \begin{excer}
         Haga lo siguiente:
         \begin{enumerate}[label = \textit{(\alph*)}]
-            \item Construya una función $h$ que \textit{eventualmente domine} a todas las funciones computables, es decir, que para toda función computable $f$ exista un $N\in\mathbb{N}$ tal que $f(n)\leq h(n)$ para todo $n\geq N$.
+            \item Construya una función $h$ que \textbf{eventualmente domine} a todas las funciones computables, es decir, que para toda función computable $f$ exista un $N\in\mathbb{N}$ tal que $f(n)\leq h(n)$ para todo $n\geq N$.
             
             \textit{Sugerencia}. Hay por lo menos tres maneras naturales de definir a $h$.
             \item ¿Es posible lograr en el inciso anterior que la función $h$ sea total computable?
@@ -358,7 +415,30 @@ int f_2(int n){
     \end{excer}
 
     \begin{sol}
+        De \textit{(a)}: Como el conjunto
+        \begin{equation*}
+            \left\{\cf{f}{\mathbb{N}}{\mathbb{N}}\Big|f\textup{ es computable} \right\}
+        \end{equation*}
+        es numerable, podemos hacer una enumeración de todas las funciones, digamos $\left\{f_i\Big|i\in\mathbb{N} \right\}$.
+        Considere ahora la función $\cf{h}{\mathbb{N}}{\mathbb{N}}$ dada por:
+        \begin{equation*}
+            h(n)=\max_{0\leq i\leq n}f_i(n)
+        \end{equation*}
         
+        Claramente la función $h$ es computable, veamos que eventualmente domina a todas las funciones computables. En efecto, si $\cf{f}{\mathbb{N}}{\mathbb{N}}$ es computable, entonces existe $N\in\mathbb{N}$ tal que $f=f_N$. Ahora, para todo $n\geq N$ se cumple que:
+        \begin{equation*}
+            \begin{split}
+                h(n)&=\max_{ 0\leq i\leq n}f_i(n)\\
+                &\geq f_N(n)\\
+                &=f(n)\\
+            \end{split}
+        \end{equation*}
+
+        De \textit{(b)}: Si $h$ fuese total computable, entonces en particular, $h+1$ sería total computable, en particular computable, luego existiría $N\in\mathbb{N}$ tal que:
+        \begin{equation*}
+            h(n)\geq h(n)+1,\quad\forall n\geq N
+        \end{equation*}
+        lo cual no puede suceder, por lo que en algún momento la función $h$ no debe de poder estar definida (para que no haya contradicciones), así que $h$ no puede ser total computable.
     \end{sol}
 
     \begin{excer}
@@ -368,7 +448,9 @@ int f_2(int n){
     \end{excer}
 
     \begin{proof}
+        Probaremos la contrapositiva. Si hubiera dos fotos iguales sucesivas en el los tiempos $t$ y $t+1$, entonces cuando siguiera corriendo el programa en el tiempo $t+2$, la información pasaría exactamente igual que cuando pasó del tiempo $t$ al tiempo $t+1$, es decir que sería la información del tiempo $t$.
         
+        Por inducción se puede probar rápidamente que para todo tiempo $t+n$ con $n\in\mathbb{N}$, la información del algoritmo es la misma que en el tiempo $t$, por lo que el algoritmo nunca se detiene (a menos que se haya detenido en el tiempo $t$).
     \end{proof}
 
     \begin{exa}
