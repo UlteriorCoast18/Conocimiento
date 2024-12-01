@@ -1,0 +1,27 @@
+name: putCenterChains
+init: qMoveCenterStart
+accept: qEndMoveCenter
+
+qMoveCenterStart,_
+qMoveCenterStart,_,>
+
+qMoveCenterStart,0
+qMoveCenterStartDetect,0,>
+
+qMoveCenterStart,1
+qMoveCenterStartDetect,1,>
+
+qMoveCenterStart,*
+qMoveCenterStartDetect,*,>
+
+qMoveCenterStartDetect,0
+qMoveCenterStartDetect,0,>
+
+qMoveCenterStartDetect,1
+qMoveCenterStartDetect,1,>
+
+qMoveCenterStartDetect,*
+qMoveCenterStartDetect,*,>
+
+qMoveCenterStartDetect,_
+qEndMoveCenter,_,-

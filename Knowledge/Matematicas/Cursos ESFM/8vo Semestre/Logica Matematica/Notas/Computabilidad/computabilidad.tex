@@ -1732,5 +1732,216 @@ void main(void){
 
     \chapter{Teoremas de Completud}
 
+    \section{Hilbert}
+
+    Hilbert propuso algunos problemas (en su lista de 100 problemas), los cuales son los siguientes:
+    
+    \begin{enumerate}[label = \textit{(\arabic*)}]
+        \item Lenguaje formal de las matemáticas (lógica de primer orden).
+        \item Codificar las reglas de la lógica (cálculo deductivo).
+        \item Encontrar un conjunto razonable de axiomas (algún conjunto de fórmulas).
+        \item Demuestrar que lo elegido en \textit{(3)} sea consistente.
+    \end{enumerate}
+
+    \section{Introducción}
+
+    Sea $\mathcal{L}$ un lenguaje de primer orden y considere una enumeración de Gödel, esto es que codificamoss ímbolo sdel alfabeto por medio de los naturales $\mathbb{N}$.
+
+    En este caso, retomamos todo lo del capítulo antepasado. Hacemos:
+    \begin{center}
+        \begin{tabular}{ccc}
+            \hline
+            $\exists$ & $-$ & 1 \\
+            $\Rightarrow$ & $-$ & 2 \\
+            $\neg$ & $-$ & 3 \\
+            $=$ & $-$ & 4 \\
+            $v_1$ & $-$ & 5 \\
+            $\vdots$ & $\vdots$ & $\vdots$ \\
+            $v_n$ & $-$ & $2n+3$ \\
+            $\vdots$ & $\vdots$ & $\vdots$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    y hacemos lo análogo para los símbolos de relación, función y constantes.
+
+    \begin{center}
+        \begin{tabular}{ccc}
+            \hline
+            $F_1$ & $-$ & 6 \\
+            $F_2$ & $-$ &  18\\
+            $\vdots$ & $\vdots$ & $\vdots$ \\
+            $F_n$ & $-$ & $2\cdot3^n$ \\
+            $\vdots$ & $\vdots$ & $\vdots$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \begin{center}
+        \begin{tabular}{ccc}
+            \hline
+            $R_1$ & $-$ & 10 \\
+            $R_2$ & $-$ &  50\\
+            $\vdots$ & $\vdots$ & $\vdots$ \\
+            $R_n$ & $-$ & $2\cdot5^n$ \\
+            $\vdots$ & $\vdots$ & $\vdots$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \begin{center}
+        \begin{tabular}{ccc}
+            \hline
+            $c_1$ & $-$ & 14 \\
+            $c_2$ & $-$ & 98 \\
+            $\vdots$ & $\vdots$ & $\vdots$ \\
+            $c_n$ & $-$ & $2(7^n)$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    En este sentido, lo hacemos para que el conjunto:
+    \begin{equation*}
+        \left\{n\in\mathbb{N}\Big|n\textup{ representa algún símbolo del alfabeto} \right\}
+    \end{equation*}
+    es computable.
+
+    Ahora, lo que queremos es codiifcar sucesiones finitas de símbolos del alfabeto. Recordemos que una forma de hacerlo era mediante el teorema fundamental de la aritmética, hacinedo:
+    \begin{equation*}
+        (n_1,...,n_k)\leadsto p_1^{ n_1}\cdots p_{ k-1}^{ n_{ k-1}}p_k^{n_k+1} 
+    \end{equation*}
+    recordando que estamos haciendo una enumeración creciente de ls números primos $\left\{p_n \right\}_{ n=1}^\infty$. Nuevamente, hacemos esto para que el conjunto:
+    \begin{equation*}
+        \left\{n\Big|n\textup{ codifica una cadena de símbolos} \right\}
+    \end{equation*}
+    es un conjunto computable. Esto se hace para que las funciones:
+    \begin{equation*}
+        \begin{split}
+            n&\mapsto \textup{1° término de la tupla codificada por }n\\
+            n&\mapsto \textup{2° término de la tupla codificada por }n\\
+             & \vdots\\
+            n&\mapsto k\textup{° término de la tupla codificada por }n\\
+             & \vdots \\
+            n&\mapsto \textup{longitud de la tupla codificada por }n\\
+        \end{split}
+    \end{equation*}
+    sean funciónes \textit{total} computables (va a suceder algo con la condición de totalidad).
+
+    Análogamente, podemos codificar sucesoines finitas de cuesiones finitas del símbolos del alfabeto.
+
+    \begin{obs}
+        Recuerde que un enunciado es una fórmula en la que no aparecen variables libres.
+    \end{obs}
+
+    \begin{theor}
+        El conjunto de términos de $\mathcal{L}$, el conjunto de fórmulas y el conjunto de enunciados:
+        \begin{equation*}
+            \textup{Term}(\mathcal{L})=\left\{n\in\mathbb{N}\Big|n\textup{ es el número de Gödel de un término}\right\}
+        \end{equation*}
+        \begin{equation*}
+            \textup{Form}(\mathcal{L})=\left\{n\in\mathbb{N}\Big|n\textup{ es el número de Gödel de una fórmula}\right\}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \textup{Enun}(\mathcal{L})=\left\{n\in\mathbb{N}\Big|n\textup{ es el número de Gödel de un enunciado}\right\}
+        \end{equation*}
+        son conjuntos computables.
+    \end{theor}
+
+    \begin{proof}
+        Ejercicio. Es posible probarlo de forma inductiva y usando la tesis de Church-Turing.
+    \end{proof}
+    
+    \begin{theor}
+        Los conjuntos:
+        \begin{equation*}
+            \begin{split}
+                &\left\{n\in\mathbb{N}\Big|n\textup{ es el número de Gödel de un axioma lógico} \right\}\\
+                &\left\{n\in\mathbb{N}\Big|n\textup{ codifica una terna }(a,b,c) \right\}\\
+            \end{split}
+        \end{equation*}
+        donde en el segundo conjunto, $a$ es el número de Gödel de la fórmula $\Rightarrow\varphi\psi$, donde además $b$ es el número de $\varphi$ y $c$ es el número de $\psi$, son conjuntos computables.
+    \end{theor}
+
+    \begin{proof}
+        Ejercicio. Es posible probarlo de forma inductiva y usando la tesis de Church-Turing.
+    \end{proof}
+
+    \begin{cor}
+        El conjunto:
+        \begin{equation*}
+            \textup{Dem}=\left\{n\in\mathbb{N}\Big|n\textup{ codifica una demostración válida} \right\}
+        \end{equation*}
+        es computable.
+    \end{cor}
+
+    \begin{proof}
+        Inmediato del teorema anterior.
+    \end{proof}
+
+    \begin{cor}
+        El conjunto:
+        \begin{equation*}
+            \textup{Teor}=\left\{n\in\mathbb{N}\Big|n\textup{ es el número de Gödel de alguna }\varphi\textup{ tal que }\vdash\varphi \right\}
+        \end{equation*}
+        es computablemente enumerable.
+    \end{cor}
+
+    \begin{proof}
+        Considere:
+        \begin{equation*}
+            Y=\left\{(a,b)\Big| P(a,b) \right\}
+        \end{equation*}
+        donde $P(a,b)$ es la propiedad: $b$ codifica el número de Gödel de $\varphi$, $a\in\textup{Dem}$ y el código $(a,\varphi)\in\textup{Dem}$ (donde en esta parte, $a$ está decodificando las líneas de la demostración). Este conjunto $Y$ es computable (en la misma descripción de la propiedad $P$ viene el algoritmo) y se tiene que el conjunto:
+        \begin{equation*}
+            \textup{Teor}=\left\{b\in\mathbb{N}\Big|\exists a\in\mathbb{N}\textup{ tal que }(a,b)\in Y \right\}
+        \end{equation*}
+        es computablemente enumerable.
+    \end{proof}
+
+    \begin{theor}
+        Sea $\Sigma$ un conjunto {\fontfamily{cmss}\selectfont
+        computable} de fórmulas.
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item  Sea:
+            \begin{equation*}
+                \textup{Dem}(\Sigma)=\left\{n\in\mathbb{N}\Big|n\textup{ codifica una demostración a partir de }\Sigma \right\}
+            \end{equation*}
+            es un conjunto computable.
+            \item El conjunto:
+            \begin{equation*}
+                \textup{Teor}(\Sigma)=\left\{n\in\mathbb{N}\Big|n\textup{ es el numero de Gödel de alguna fórmula $\varphi$ tal que }\Sigma\vdash\varphi \right\}
+            \end{equation*}
+            es un conjunto computablemente enumerable.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        Análoga al teorema anterior.
+    \end{proof}
+
+    \begin{theor}
+        Sea $\Sigma$ un conjunto {\fontfamily{cmss}\selectfont
+        computablemente enumerable} de fórmulas.
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item  Sea:
+            \begin{equation*}
+                \textup{Dem}(\Sigma)=\left\{n\in\mathbb{N}\Big|n\textup{ codifica una demostración a partir de }\Sigma \right\}
+            \end{equation*}
+            es un conjunto computablemente enumerable.
+            \item El conjunto:
+            \begin{equation*}
+                \textup{Teor}(\Sigma)=\left\{n\in\mathbb{N}\Big|n\textup{ es el numero de Gödel de alguna fórmula $\varphi$ tal que }\Sigma\vdash\varphi \right\}
+            \end{equation*}
+            es un conjunto computablemente enumerable.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        Análoga al teorema anteanterior.
+    \end{proof}
+
+    \textbf{El ideal de Hilbert}: Quería encontrar un conjunto computable $\Sigma$ tal que $\textup{Teor}(\Sigma)$ sea computable.
+
+    
 
 \end{document}
