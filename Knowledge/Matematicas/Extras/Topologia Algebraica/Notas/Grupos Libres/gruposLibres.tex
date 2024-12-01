@@ -1066,12 +1066,183 @@
     
     \section{Grupos Libres}
 
+    Absolutamente todo lo análogo a lo hecho en grupos abelianos libres es análogo para los grupos libres.
+
+    \begin{mydef}
+        Sea $S$ un conjunto. Un \textbf{grupo libre en el conjunto $S$} (o \textbf{grupo libre generado por $S$}) es un grupo $F$ junto con una función $\cf{\varphi}{S}{F}$ tal que se cumple la siguiente condición:
+        \begin{itemize}
+            \item Para cualquier grupo $H$ y cualquier función $\cf{\psi}{S}{H}$, existe un único homomorfismo $\cf{f}{F}{H}$ tal que el siguiente diagrama:
+            
+            \begin{minipage}{\textwidth}
+                \begin{center}
+                    \includegraphics[scale=1.5]{images/fig_12.pdf}\\
+                    Figura \thefigcount. Caracterización grupos libres.
+                    \stepcounter{figcount}
+                \end{center}
+            \end{minipage}
+            
+            es conmutativo.
+        \end{itemize}
+    \end{mydef}
+
+    Como en el ejemplo anterior, esta definición caracteriza totalmente al grupo libre sobre un conjunto.
+
+    \begin{propo}
+        Sean $F$ y $F'$ grupos libres sobre un conjunto $S$ con respecto a las funciones $\cf{\varphi}{S}{F}$ y $\cf{\varphi'}{S}{F'}$, respectivamente. Entonces, existe un único isomorfismo $\cf{h}{F}{F'}$ tal que:
+        \begin{equation*}
+            h\circ\varphi=\varphi'
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Análoga a la hecha en grupos abelianos libres.
+    \end{proof}
+
+    \begin{theor}
+        Sea $S$ un conjunto no vacío, entonces existe un grupo libre $F$ sobre $S$.
+    \end{theor}
+
+    \begin{proof}
+        Podemos escribir:
+        \begin{equation*}
+            S=\left\{x_i\Big|i\in I \right\}
+        \end{equation*}
+        Para cada $i\in I$, sea $F_i$ el grupo libre en el elemento $\left\{x_i \right\}$ con respecto a la función $\cf{\varphi_i}{\left\{x_i\right\}}{F_i}$. Tomemos:
+        \begin{equation*}
+            F={\prod_{ i\in I}}^*F_i
+        \end{equation*}
+        con respecto a los monomorfismos naturales $\cf{\eta_i}{F_i}{F}$. Entonces, como en la parte de grupos abelianos libres, se verifica rápidamente que $F$ es grupo libre sobre $S$ (ejercicio verificar esta condición).
+    \end{proof}
+
+    \begin{obs}
+        En el teorema anterior, note que, cada $F_i$ puede ser visto como grupo libre sobre $\left\{x_i \right\}$, y está dado por:
+        \begin{equation*}
+            F_i=\left\{x_i^n\Big|n\in\mathbb{Z} \right\}
+        \end{equation*}
+        tomando al grupo de una palabra. Por tanto, $F$ es el producto libre de grupos libres cíclicos infinitos. De esta forma, los elementos de $F$ pueden ser vistos como productos de elementos de $S$ (no necesariamente todos distintos):
+        \begin{equation*}
+            g=x_1^{ n_1}\cdots x_k^{ n_k}
+        \end{equation*}
+        con $n_i\in\mathbb{Z}$ y $x_i\in S$, siendo $i=1,...,k$.
+    \end{obs}
+
+    \section{Relación entre grupos abelianos libres y grupos libres}
+
+    \begin{mydef}
+        Sea $G$ un grupo, para cualquier par $x,y\in G$ se define el \textbf{conmtuador de $x$ y $y$} (denotado por $[x,y]$) como:
+        \begin{equation*}
+            [x.y]=xyx^{-1}y^{-1}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        Sea $G$ un grupo entonces, el grupo generado por todos los conmtuadores:
+        \begin{equation*}
+            [G,G]=\langle[a,b]\Big|a,b\in G \rangle
+        \end{equation*}
+        es un subgrupo de $G$ que es normal.
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{propo}
+        Sea $G$ un grupo, entonces $G/[G,G]$ es abeliano.
+    \end{propo}
+
+    \begin{proof}
+        Sean $a,b\in G$ y denote por $H=[G,G]$, entonces $aba^{-1}b^{-1}\in H$, luego $ab\in Hba$. Por ende:
+        \begin{equation*}
+            (Ha)(Hb)=Hab=Hba=(Hb)(Ha)
+        \end{equation*}
+        por lo cual, $G/[G,G]$ es abeliano.
+    \end{proof}
+
+    \begin{propo}
+        Sea $G$ grupo. Si $N$ es un subgrupo normal de $G$ tal que $G/N$ es abeliano, entonces $[G,G]\subseteq N$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $a\in[G,G]$, entonces existen $c,d\in G$ tales que $a=cdc^{-1}d^{-1}$. Como el grupo $G/N$ es abeliano, entonces:
+        \begin{equation*}
+            Ncd=Ndc\Rightarrow Ncdc^{-1}d^{-1}=N
+        \end{equation*}
+        por lo cual $Na=N$, es decir que $a\in N$.
+    \end{proof}
+
+    \begin{propo}
+        Sea $F$ un grupo libre en un conjunto $S$ con respecto a una función $\cf{\varphi}{S}{F}$, y sea $\cf{\pi}{F}{F/[F,F]}$ la proyección natural de $F$ en el grupo cociente. Entonces, $F/[F,F]$ es un grupo abeliano libre en $S$ con respecto a la función $\cf{\pi\circ\varphi}{S}{F/[F,F]}$.
+    \end{propo}
+
+    \begin{proof}
+        Sea $A$ un grupo abeliano y $\cf{\psi}{S}{A}$ una función. En particular, $A$ es grupo, por lo que al ser $F$ grupo libre, existe un único homomorfismo $\cf{f}{F}{A}$ tal que:
+        \begin{equation*}
+            f\circ\varphi=\psi
+        \end{equation*}
+    
+        Considere el grupo generado por la imagen de $f$, digamos $A'$. Por el primer teorema de isomorfismo, $F/\ker f\cong A'\subseteq A $ bajo el isomorfismo $\overline{f}$ tal que $\overline{f}\circ\pi=f$.
+
+        Por la proposición anterior se tiene que $[F,F]\subseteq\ker f$. Defina el homomorfismo $\cf{h}{F/[F,F]}{A}$ como:
+        \begin{equation*}
+            h\left([F,F]x\right)=\overline{f}((\ker f)x),\quad\forall x\in F
+        \end{equation*}
+        Veamos que $h$ está bien definida. En efecto, si $x,y\in F$ son tales que $xy^{-1}\in [F,F]$, se tiene que $xy^{-1}\in\ker f$, por lo cual $(\ker f)x=(\ker f)y$, se sigue así:
+        \begin{equation*}
+            \begin{split}
+                h([F,F]x)&=\overline{f}((\ker f)x)\\
+                &=\overline{f}((\ker f)y)\\
+                &=h([F,F]y)\\
+            \end{split}
+        \end{equation*}
+        luego, $h$ está bien definida. Además, ésta cumple que:
+        \begin{equation*}
+            \begin{split}
+                h\circ(\pi\circ\varphi)(s)&=(h\circ\pi)(\varphi(s))\\
+                &=h([F,F]\varphi(s))\\
+                &=\overline{f}((\ker f)\varphi(s))\\
+                &=\overline{f}\circ\pi(\varphi(s))\\
+                &=f\circ\varphi(s)\\
+                &=\psi(s),\quad\forall s\in S \\
+            \end{split}
+        \end{equation*}
+        donde, tanto $f$ como $\overline{f}$ son únicas (por lo que $h$ es única). Así que, $F/[F,F]$ es grupo abeliano libre en $S$ con respecto a la función $\pi\circ\varphi$.
+    \end{proof}
+
+    \begin{cor}
+        Si $F$ y $F'$ son grupos libres en conjuntos finitos $S$ y $S'$, entonces $F$ y $F'$ son isomorfos si y sólo si $S$ y $S'$ tienen la misma cardinalidad.
+    \end{cor}
+
+    \begin{proof}
+        Si $F$ y $F'$ son isomorfos, entonces $F/[F,F]$ y $F'/[F',F']$ también lo son, por un corolario anterior se sigue que $S$ y $S'$ tienen la misma cardinalidad.
+
+        El regreso es inmediato.
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que el corolario anterior es cierto si $S$ es finito y $S'$ es un conjunto arbitrario.
+    \end{excer}
+
+    \begin{mydef}
+        Sea $F$ grupo libre sobre un conjunto $S$. Podemos ver a $S$ como subconjunto de $F$, por lo cual $S$ es llamado una \textbf{base de $F$}.
+    \end{mydef}
+
+    \section{Presentación de un grupo por medio de generadores y relaciones}
+
     \begin{exa}
         El grupo diédrico $D_n$, se define como
         \begin{equation*}
             D_n=\langle a,b\Big|a^n=1,b^2=1,ba=a^{n-1}b \rangle
         \end{equation*}
-        (en este caso, no conmutan los elementos).
+        (en este caso, no conmutan los elementos). Claramente este conjunto se expresa como el cociente:
+        \begin{equation*}
+            D_n=\langle a,b\rangle/K
+        \end{equation*}
+        donde $\langle a,b\rangle$ es grupo libre en el conjunto $\left\{a,b \right\}$, y
+        \begin{equation*}
+            K=\langle a^n,b^2,(ba)^2\rangle
+        \end{equation*}
+        es el subgrupo de este grupo libre generado por estos elementos.
     \end{exa}
 
     \newpage
