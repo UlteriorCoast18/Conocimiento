@@ -17,6 +17,82 @@
 \usepackage{bbm}
 \usepackage{float}
 \usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mathdots}
+
+%Gestión de Hipervínculos
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan
+}
+
+%Gestión de Código de Programación
+
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA} % additional keywords
+\definecolor{listing-keyword-3}{HTML}{9137CB} % additional keywords
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language         = java,
+    alsolanguage     = scala,
+    numbers          = left,
+    xleftmargin      = 2.7em,
+    framexleftmargin = 2.5em,
+    backgroundcolor  = \color{gray!15},
+    basicstyle       = \color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines       = true,
+    frameshape       = {RYR}{Y}{Y}{RYR},
+    rulecolor        = \color{black},
+    tabsize          = 2,
+    numberstyle      = \color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip        = 1.0em,
+    belowskip        = 0.1em,
+    abovecaptionskip = 0em,
+    belowcaptionskip = 1.0em,
+    keywordstyle     = {\color{listing-keyword}\bfseries},
+    keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive        = true,
+    identifierstyle  = \color{listing-identifier},
+    commentstyle     = \color{listing-comment},
+    stringstyle      = \color{listing-string},
+    showstringspaces = false,
+}
+
+\lstset{style = myStyle}
+
+%Gestión de Marca de Agua
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
@@ -1222,7 +1298,8 @@
     \begin{excer}
         Pruebe que el corolario anterior es cierto si $S$ es finito y $S'$ es un conjunto arbitrario.
     \end{excer}
-xx
+
+    \begin{mydef}
         Sea $F$ grupo libre sobre un conjunto $S$. Podemos ver a $S$ como subconjunto de $F$, por lo cual $S$ es llamado una \textbf{base de $F$}.
     \end{mydef}
 
@@ -1243,6 +1320,22 @@ xx
         \end{equation*}
         es el subgrupo de este grupo libre generado por estos elementos.
     \end{exa}
+
+    \begin{propo}
+        Cualquier grupo es la imagen homomorfa de un grupo libre. Más aún, si $S$ es un conjunto de generadores para el grupo $G$ y $F$ es un grupo libre sobre $F$, entonces el mapeo inclusión $S\rightarrow G$ determina un único epimorfismo de $F$ en $G$.
+    \end{propo}
+
+    \begin{proof}
+        Es la misma que la de la parte de grupos abelianos libres.
+    \end{proof}
+    
+    \begin{cor}
+        Todo grupo es el cociente de un grupo libre con un subgrupo normal de éste.
+    \end{cor}
+
+    \begin{proof}
+        Inmediata de lo anterior.
+    \end{proof}
 
     \newpage
 
@@ -1286,7 +1379,7 @@ xx
 
     %TODO: Escribir los ejercicios de la parte de producto libre de grupos.
     
-    \begin{excer}[Nombre]
+    \begin{excer}
         
     \end{excer}
 
