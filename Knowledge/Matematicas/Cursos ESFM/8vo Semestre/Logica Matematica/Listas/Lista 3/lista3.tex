@@ -658,7 +658,31 @@ int f(int n){
     \end{excer}
     
     \begin{proof}
-        Suponga que existe un conjunto infinito $X\subseteq\mathbb{N}$ tal que todo subconjunto de él es computable. Entonces, todo subconjunto de $\mathbb{N}\setminus X$ es computable. En efecto, si alguno no lo fuese, entonces 
+        Se tienen dos casos:
+        \begin{itemize}
+            \item \textbf{$X$ no es computable}, en cuyo caso basta con tomar como subconjunto al mismo $X$.
+            \item \textbf{$X$ es computable}. Como $X$ es infinito, afirmamos que existe una biyección entre $\mathbb{N}$ y $X$ de tal suerte que ésta sea una función creciente y es una función total computable. En efecto, considere la función:
+            \begin{equation*}
+                \sigma(n)=\sum_{ i=0}^n \chi_X(i),\quad\forall nn\in\mathbb{N}
+            \end{equation*}
+            como $X$ es computable, entonces $\chi_X$ es total computable, así que $\sigma$ está definida para todo $n\in\mathbb{N}$. Sea:
+            \begin{equation*}
+                f=\sigma\big|_{X}
+            \end{equation*}
+            esta función nuevamente está bien definida para todo $n\in\mathbb{N}$, es total computable y tiene como algoritmo:
+            \begin{lstlisting}
+int f(int n){
+    int cont = 0;
+    for(int i = 0; i <= n; i++) cont += chi_X(n)//Esta funcion va contando el numero de numeros de X que aparecen antes de el mismo
+    return cont;
+}
+            \end{lstlisting}
+            es claro que $\cf{f}{X}{\mathbb{N}}$ es biyección (ejercicio) y es total computable, pues para cada entrada siempre habrá una salida. Considere el conjunto:
+            \begin{eqnarray}
+                N=\left\{e\in\mathbb{N}\Big|\varphi(e,e)\textup{ está bien definido} \right\}
+            \end{eqnarray}
+            este conjunto no es computable. Afirmamos que $f^{-1}(N)\subseteq X$ tampoco lo es. En efecto, si $f^{-1}(N)$ fuese computable, entonces el conjunto imagen bajo $f$ sería computable (por ser $f$ total computable), luego $N$ sería computable. Así que $f^{-1}(N)$ es un subconjunto de $X$ que no es computable.
+        \end{itemize}
     \end{proof}
 
     \begin{excer}
