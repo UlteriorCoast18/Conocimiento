@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2024.10.12)  25 NOV 2024 22:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2024.10.12)  1 DEC 2024 14:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -651,10 +651,7 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \c@mydef=\count335
 \c@excer=\count336
 \c@figcount=\count337
- (./gruposLibres.aux
-LaTeX Info: Redefining \. on input line 9.
-LaTeX Info: Redefining \% on input line 9.
-)
+ (./gruposLibres.aux)
 \openout1 = `gruposLibres.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 140.
@@ -735,14 +732,12 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 145.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./gruposLibres.toc
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+No file gruposLibres.toc.
 \tf@toc=\write4
 \openout4 = `gruposLibres.toc'.
 
- [1
+[1
 
 ]
 Cap\'{\i }tulo 2.
@@ -801,6 +796,10 @@ Package mdframed Info: Box was splittet wrong
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 352.
+
+
+LaTeX Warning: Reference `caractSumDir_1' on page 6 undefined on input line 354.
+
 <images/fig_3.pdf, id=56, 63.08168pt x 49.37747pt>
 File: images/fig_3.pdf Graphic file (type pdf)
 <use images/fig_3.pdf>
@@ -810,6 +809,9 @@ Package pdftex.def Info: images/fig_3.pdf  used on input line 358.
 Overfull \hbox (12.0pt too wide) in paragraph at lines 356--363
 []$[]$ 
  []
+
+
+LaTeX Warning: Reference `caractSumDir_1' on page 6 undefined on input line 368.
 
 <images/fig_4.pdf, id=57, 63.08168pt x 52.1137pt>
 File: images/fig_4.pdf Graphic file (type pdf)
@@ -876,6 +878,9 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 493--500
 []$[]$ 
  []
 
+
+LaTeX Warning: Reference `caractSumDir_2' on page 9 undefined on input line 505.
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 510.
@@ -890,6 +895,9 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 534--541
  []
 
 [9 <./images/fig_2.pdf> <./images/fig_6.pdf>]
+
+LaTeX Warning: Reference `caractSumDir_1' on page 10 undefined on input line 542.
+
 <images/fig_8.pdf, id=172, 62.15923pt x 48.69292pt>
 File: images/fig_8.pdf Graphic file (type pdf)
 <use images/fig_8.pdf>
@@ -934,7 +942,11 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 696.
- [12]
+
+
+LaTeX Warning: Reference `caracProdFreeAbelian' on page 12 undefined on input line 713.
+
+[12]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 729.
@@ -1009,6 +1021,9 @@ Package pdftex.def Info: images/fig_11.pdf  used on input line 931.
 Overfull \hbox (12.0pt too wide) in paragraph at lines 929--936
 []$[]$ 
  []
+
+
+LaTeX Warning: Reference `caractSumDir_2' on page 17 undefined on input line 941.
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
@@ -1092,36 +1107,118 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 1222.
+
+
+/media/ulterior/Data/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Topologia Algebraica/Notas/Grupos Libres/gruposLibres.tex:1227: LaTeX Error: \begin{document} ended by \end{mydef}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1227     \end{mydef}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+/media/ulterior/Data/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Topologia Algebraica/Notas/Grupos Libres/gruposLibres.tex:1227: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.1227     \end{mydef}
+                      
+Things are pretty mixed up, but I think the worst is over.
+
+/media/ulterior/Data/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Topologia Algebraica/Notas/Grupos Libres/gruposLibres.tex:1227: You can't use `\unskip' in vertical mode.
+\endmdframed ...ignorelastdescenders \par \unskip 
+                                                  \ifvmode \nointerlineskip ...
+l.1227     \end{mydef}
+                      
+Sorry...I usually can't take things from the current page.
+Try `I\vskip-\lastskip' instead.
+
+/media/ulterior/Data/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Topologia Algebraica/Notas/Grupos Libres/gruposLibres.tex:1227: Extra \endgroup.
+\color@endgroup ->\endgraf \endgroup 
+                                     
+l.1227     \end{mydef}
+                      
+Things are pretty mixed up, but I think the worst is over.
+
+/media/ulterior/Data/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Topologia Algebraica/Notas/Grupos Libres/gruposLibres.tex:1227: Too many }'s.
+\endmdf@lrbox ->\color@endgroup \egroup 
+                                        
+l.1227     \end{mydef}
+                      
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+
+Package mdframed Warning: The environment is empty
+(mdframed)                 on input line 1227.
+
+/media/ulterior/Data/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Topologia Algebraica/Notas/Grupos Libres/gruposLibres.tex:1227: Extra \endgroup.
+\color@endgroup ->\endgraf \endgroup 
+                                     
+l.1227     \end{mydef}
+                      
+Things are pretty mixed up, but I think the worst is over.
+
+
+/media/ulterior/Data/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Topologia Algebraica/Notas/Grupos Libres/gruposLibres.tex:1227: LaTeX Error: \begin{document} ended by \end{mdframed}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1227     \end{mydef}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+/media/ulterior/Data/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Topologia Algebraica/Notas/Grupos Libres/gruposLibres.tex:1227: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.1227     \end{mydef}
+                      
+Things are pretty mixed up, but I think the worst is over.
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1226.
+(mdframed)              on input line 1231.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 1245.
+[22] [23]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1232.
- [22] [23]
+(mdframed)              on input line 1251.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1252.
+(mdframed)              on input line 1279.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1280.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 1290.
+(mdframed)              on input line 1289.
  [24] (./gruposLibres.aux
 LaTeX Info: Redefining \. on input line 9.
 LaTeX Info: Redefining \% on input line 9.
-) ) 
+)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 18943 strings out of 476091
- 374807 string characters out of 5794080
+ 18939 strings out of 476091
+ 374730 string characters out of 5794080
  1870330 words of memory out of 5000000
- 38938 multiletter control sequences out of 15000+600000
+ 38936 multiletter control sequences out of 15000+600000
  522691 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  104i,25n,111p,659b,1050s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/ulterior/.texlive2022/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on gruposLibres.pdf (25 pages, 334024 bytes).
+Output written on gruposLibres.pdf (25 pages, 333601 bytes).
 PDF statistics:
  390 PDF objects out of 1000 (max. 8388607)
  266 compressed objects within 3 object streams

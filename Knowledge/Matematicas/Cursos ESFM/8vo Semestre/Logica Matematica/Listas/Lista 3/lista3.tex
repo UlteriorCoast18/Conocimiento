@@ -343,7 +343,15 @@ int f(int x, int y, int z){
     \end{excer}
 
     \begin{proof}
-        
+        El conjunto de todas las posibles rutas es:
+        \begin{equation*}
+            R(n,m)=\left\{(x_1,...,x_{n+m})\Big|x_i\in\left\{s,o\right\}\textup{ y }\sum_{ i=1}^Nx_i = ms+no  \right\}
+        \end{equation*}
+        donde $s$ y $o$ son letras arbitrarias en un grupo libre abeliano sobre $\left\{s,o\right\}$ dado (esto nomás es para formalizar que se puede hacer esta suma, xd). Básicamente lo que estamos haciendo es codificar todas las posibles rutas que puede tomar el peatón. Un elemento de $R(n,m)$ es una codificación de una ruta que da $m$ giros al sur y $n$ giros al oeste. Su cardinalidad es:
+        \begin{equation*}
+            r(n,m)=\abs{R(n,m)}=\binom{n}{m}
+        \end{equation*}
+        (soy malísimo en combinatoria, una explicación está buscando esto en google): \href{https://polypad.amplify.com/es/lesson/paths-on-a-grid}{Paths on a grid}. Por lo que, $r$ es total computable ya que $\binom{n}{m}$ es total computable por ser el factorial y la división funciones computables.
     \end{proof}
 
     \begin{excer}
@@ -464,7 +472,48 @@ int chi_X(int n){
     \end{excer}
 
     \begin{proof}
-        
+        $\Rightarrow)$: Suponga que $X\subseteq\mathbb{N}$ es computable, entonces su función característica $\chi_X$ es total computable. Considere ahora la función $\cf{f}{\mathbb{N}}{\mathbb{N}}$ dada por:
+        \begin{equation*}
+            f(n)=\max\left\{\max\left\{m\in\mathbb{N}\Big|(m\leq n \textup{ y }\chi_X(m)=1)\textup{ o }m==n_0 \right\}\right\}
+        \end{equation*}
+        donde $n_0\in\mathbb{N}$ es el mínimo número no negativo tal que $n_0\in X$, el cual existe por ser $X$ un conjunto no vacío. Esta función es computable pues tiene como algoritmo:
+        \begin{lstlisting}
+int f(int n){
+    if(chi_X(n)) return n;
+    else{
+        while(chi_X(n) == 0) n--;
+        if( n >= 0) return n;
+        else return n_0;
+    }
+}
+        \end{lstlisting}
+        En esencia, esta función codifica una búsqueda yendo de mayor a menor de valores que sean positivos para $\chi_X$. Al encontrar el más grande lo retorna y en caso de no encontrar ninguno, retorna el valor más pequeño. Por lo cual, va retornando todos los elementos de $X$, enlistandolos de forma no decreciente. La función $f$ es total computable por ser $\chi_X$ total computable y por la forma en que se definió, es claro que 
+
+        $\Leftarrow)$: Suponga que $X=\textup{ran}(f)$ para alguna función total computable $\cf{f}{\mathbb{N}}{\mathbb{N}}$ no decreciente. Se tienen dos casos, la función es acotada o no acotada.
+
+        \begin{itemize}
+            \item Si $f$ es acotada, tomemos el mínimo $M_0\in\mathbb{N}$ tal que $f(n)\leq M_0$ para todo $n\in\mathbb{N}$. Se tiene el siguiente algoritmo de $\chi_X$:
+            \begin{lstlisting}
+int chi_X(int n){
+    if(M_0 < n) return 0;
+    else{
+        for(int i = 0; f(i) < n; i++){}
+        if(f(i) == n) return 1;
+        else return 0;
+    }
+}
+            \end{lstlisting}
+            \item Si $f$ es no acotada, se tiene el siguiente algoritmo de $\chi_X$:
+            \begin{lstlisting}
+int chi_X(int n){
+    for(int i = 0; f(i) < n; i++){}
+    if(f(i) == n) return 1;
+    else return 0;
+}
+            \end{lstlisting}
+        \end{itemize}
+        en ambos casos, la función $\chi_X$ es total computable, por lo que $X$ es computable.
+
     \end{proof}
 
     \begin{excer}
@@ -476,7 +525,24 @@ int chi_X(int n){
     \end{excer}
 
     \begin{proof}
-        
+        De \textit{(a)}: Considere el algoritmo {\fontfamily{cmtt}\selectfont enlistarElementosA} que va enlistando los elementos de $A$ (no necesariamente de forma sucesiva). Considere la función $\cf{g}{\mathbb{N}}{\mathbb{N}}$ con algoritmo:
+        \begin{lstlisting}
+int g(int n){
+    int k;
+    sea c el primer numero impreso por enlistarElementosA;
+    if(n == 0) return c;
+    else{
+        vamos guardando en k la ultima impresion de enlistarElementosA a la par que este algoritmo se va corriendo, hacemos esto en bucle{
+            if(k > g(n-1)) return k;
+        }
+    }
+}
+        \end{lstlisting}
+        Analicemos lo que hace el algoritmo. Para $n=0$ retorna $g(0)$ es el primer valor que se retorna de enlistar a $A$. Para $n=1$ retorna el siguiente valor más grande que $g(0)$ que imprime el algoritmo después, sucesivamente va imprimiendo valores crecientes. Esta función es total computable, pues al ser $A$ un conjunto infinito, siempre habrá valores más y más grandes, por lo que nunca se quedará estancado.
+
+        Así que $g$ es total computable y toma todos los valores en $A$, por lo que $\textup{ran}(g)\subseteq A$.
+
+        De \textit{(b)}: Sea $B$ un conjunto infinito computablemente enumerable. Por el inciso \textit{(a)} existe una función total computable creciente $g$ tal que $\textup{ran}(g)\subseteq B$. Por el ejercicio anterior, $\textup{ran}(g)$e es un conjunto computable ya que $g$ es no decreciente y éste es infinito por ser $g$ creciente. Así que $\textup{ran}(g)$ es un subconjunto de $B$ computable infinito.
     \end{proof}
 
     \begin{excer}
@@ -492,13 +558,36 @@ int chi_X(int n){
     \end{excer}
 
     \begin{proof}
+        Sea $X\subseteq\mathbb{N}^k$ un conjunto que es $\Sigma_1^0$ y $\Pi_1^0$. Sean $A,B\subseteq\mathbb{N}^m$ tales que:
+        \begin{equation*}
+            \begin{split}
+                X&=\left\{(x_1,...,x_k)\Big|\exists a_1,...,a_{ m-k}\textup{ tales que }(x_1,...,x_k,a_1,...,a_{m-k})\in A\right\}\\
+                &=\left\{(y_1,...,y_k)\Big|\forall b_1,...,b_{ m-k}\textup{ tales que }(y_1,...,y_k,b_1,...,b_{m-k})\in B\right\}\\
+            \end{split}
+        \end{equation*}
+        Afirmamos que $X$ es computablemente enumerable. En efecto, ya que $X$ es $\Sigma_1^0$ podemos ver a $X$ como:
+        \begin{equation*}
+            X=\left\{m\Big|\exists n\in\mathbb{N}\textup{ para el cual }(m,n)\in A \right\}
+        \end{equation*}
+        (haciendo una enumeración efectiva de los respectivos productos cartesianos de $\mathbb{N}$ consigo mismo). Por ser $A$ computable se sigue que $X$ es computablemente enumerable.
         
+        Veamos que $\mathbb{N}\setminus X$ es computablemente enumerable. En efecto, por lo hecho anteriormente, basta con ver que este conjunto es $\Sigma_1^0$. Como $X$ es $\Pi_1^0$, podemos ver a $X$ (haciendo la descomposición adecuada) como:
+        \begin{equation*}
+            X=\left\{m\in\mathbb{N}\Big|\forall n\in\mathbb{N}\textup{ se cumple que }(m,n)\in B \right\}
+        \end{equation*}
+        entonces, el complemento de $X$ será:
+        \begin{equation*}
+            \mathbb{N}\setminus X=\left\{m\in\mathbb{N}\Big|\exists n\in\mathbb{N}\textup{ tal que }(m,n)\in \mathbb{N}^2\setminus B \right\}
+        \end{equation*}
+        donde $\mathbb{N}^2\setminus B$ es computable por ser $B$ computable, luego $\mathbb{N}\setminus X$ es enumerablemente computable.
+        
+        Se sigue así que al ser $X$ y su complemento enumerablemente computables, que $X$ es computable.
     \end{proof}
 
     \begin{excer}
         Dado un conjunto $X\subseteq\mathbb{N}^k$, demuestre que las siguientes condiciones son equivalentes:
         \begin{enumerate}[label = \textit{(\alph*)}]
-            \item $X$ es computablement enumerable.
+            \item $X$ es computablemente enumerable.
             \item O bien $X=\emptyset$, o bien $X$ es el rango de alguna función parcial computable.
             \item Existe una sucesión computable de conjuntos finitos $Y_s\subseteq\mathbb{N}^k$ (lo cual realmente significa: existe un conjunto computable $Y\subseteq\mathbb{N}^{ k+1}$ tal que, para cada $s\in\mathbb{N}$
             \begin{equation*}
@@ -513,7 +602,18 @@ int chi_X(int n){
     \end{excer}
 
     \begin{proof}
-        
+        Es clara la equivalencia entre 
+
+        \textit{(a) $\Rightarrow$ (b)}: Suponga que $X$ es computablemente enumerable y no vacío. Considere la función $\cf{f}{;\mathbb{N}}{\mathbb{N}}$ con algoritmo:
+        \begin{lstlisting}
+int f(int n){
+    correr X en n pasos;
+    retornar ultima impresion de X;
+}
+        \end{lstlisting}
+        donde {\fontfamily{cmtt}\selectfont X} es la función que va imprimiendo los elementos de $X$. Claramente esta función es parcial (puede que al principio no imprima nada, pero eventualmente lo hará ya que el conjunto es no vacío) y es computable y además, $X$ es el rango de esta función.
+
+        \textit{(b) $\Rightarrow$ (c)}: 
     \end{proof}
 
     \begin{excer}
@@ -521,7 +621,14 @@ int chi_X(int n){
     \end{excer}
 
     \begin{proof}
-        
+        Sea $X\subseteq\mathbb{N}$ un conjunto infinito computablemente enumerable. Considere la función $\cf{f}{\mathbb{N}}{\mathbb{N}}$ con algoritmo:
+        \begin{lstlisting}
+int f(int n){
+    el algoritmo de X corre hasta que haya impreso n+1 valores distintos y guarda el ultimo valor en la variable ultimoValor;
+    return ultimoValor;
+}
+        \end{lstlisting}
+        esta función es total computable, ya que al ser $X$ un conjunto infinito siempre van a existir $n$ valores distintos para cualquier $n\in\mathbb{N}$. Además, es claro que $f$ es inyectiva ya que siempre va dando valores distintos.
     \end{proof}
         
     \begin{excer}
@@ -529,7 +636,13 @@ int chi_X(int n){
     \end{excer}
 
     \begin{proof}
-        
+        $\Rightarrow)$: Suponga que $Y$ es computable, entonces $\mathbb{N}\setminus Y$ es computable, luego $X\setminus Y$ es computable.
+
+        $\Leftarrow)$: Suponga que $X\setminus Y$ es computable, entonces al ser $X$ computable, se sigue que $\mathbb{N}\setminus X$ es computable, con lo cual el conjunto:
+        \begin{equation*}
+            (\mathbb{N}\setminus X)\cup (X\setminus Y)=\mathbb{N}\setminus (X\cap Y)
+        \end{equation*}
+        es computable. Así que $X\cap Y$ es computable...
     \end{proof}
 
     \begin{excer}
@@ -537,7 +650,7 @@ int chi_X(int n){
     \end{excer}
 
     \begin{proof}
-        
+        Si $X\cap Y=\emptyset$, tomando $A=X$ y $B=Y$ se sigue el resultado. Suponga que $X\cap Y\neq\emptyset$.
     \end{proof}
 
     \begin{excer}
