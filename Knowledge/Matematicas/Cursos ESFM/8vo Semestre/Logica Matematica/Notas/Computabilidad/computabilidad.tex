@@ -1942,6 +1942,118 @@ void main(void){
 
     \textbf{El ideal de Hilbert}: Quería encontrar un conjunto computable $\Sigma$ tal que $\textup{Teor}(\Sigma)$ sea computable.
 
+    %TODO Poner todo lo que iba antes.
+
+    \begin{theor}
+        Si una función $f$ es \textbf{computable}, entonces hay una fórmula $\varphi$ tal que $\Gamma(f)=\left\{(l,m)\Big|\mathbb{N}\vDash\varphi[n,m] \right\}$.
+    \end{theor}
     
+    \begin{proof}
+        A la pareja $(m,n)$ la codificamos mediante $(m+n)^2+m$ (este mapeo de $\mathbb{N}^2\mapsto\mathbb{N}$ es inyectivo y es sencillo de explicar en el lenguaje de la aritmética). Sea $P.O.(x,y,z)\equiv z=(x+y)\cdot(x+y)+x$, ésta es una fórmula en el lenguaje de la aritmética que codifica. Se tiene que:
+        \begin{equation*}
+            \mathbb{N}\vDash P.O.(a,m,n)\textup{ si y sólo si }a\textup{ codifica a }m,n
+        \end{equation*}
+
+        Ahora, vamos a codificar una $k$-tupla. Sea $(m_0,...,m_{ k-1})$, esta la codificamos de la siguiente manera: para cada $i=0,...,k-1$ sea $q_i$ el código de la pareja ordenada $(m_i,i)$. Sea $n=\max\left\{q_0,...,q_{ k-1}\right\}$ y
+        \begin{equation}
+            \label{equationofu}
+            u=\prod_{ i<k}(1+(q_i+1)n!)
+        \end{equation}
+        El código de $(m_0,...,m_{ k-1})$ es el código de $(u,n!)$.
+
+        Antes de seguir, debemos probar tres lemas adicionales:
+
+        \begin{lema}
+            Si $q<r\leq n$, entonces:
+            \begin{equation*}
+                1+(q+1)n!\textup{ y }1+(r+1)n!
+            \end{equation*}
+            son primos relativos.
+        \end{lema}
+
+        \begin{proof}
+            Supongamos que $p\in\mathbb{N}$ es primo tal que $p$ divide a ambos números, entonces $p$ divide a:
+            \begin{equation*}
+                p\divides 1+(r+1)n!-1-(1+1)n!=n!(r-q)
+            \end{equation*}
+            Si $p\divides n!$ entonces $p\divides 1$\contradiction. Por ende, $p\divides r-q$ en particular $p\divides n!$ ya que $0<r-q\leq n$. Así que no existe tal primo que divida a ambos números, luego éstos deben ser primos relativos.
+        \end{proof}
+
+        \begin{lema}
+            Si $q<n$ y $u$ es como en la ecuación (\ref{equationofu}), entonces $(1+(q+1)n!)\divides u$ si y sólo si existe $i=0,...,k-1$ tal que $q=q_i$.
+        \end{lema}
+
+        \begin{proof}
+            $\Rightarrow)$: Supongamos que:
+            \begin{equation*}
+                (1+(q+1)n!)\divides\prod_{ i<k}(1+(q_i+1)n!)
+            \end{equation*}
+            luego existe $p\in\mathbb{N}$ primo tal que $p\divides(1+(q+1)n!)$ y $p\divides\prod_{ i<k}(1+(q_i+1)n!)$, luego al ser todos los elementos en el producto primos relativos, debe existir $i=0,...,k-1$ tal que $p\divides(1+(q_i+1)n!)$, así que $(1+(q+1)n!)$ y $(1+(q_i+1)n!)$ no son primos relativos, del lema anterior se sigue que $q=q_i$.
+
+            $\Leftarrow$): Es inmediata.
+        \end{proof}
+
+        \begin{lema}
+            Para cada $i=0,...,k-1$, $m_i$ es el mínimo número $m$ tal que:
+            \begin{equation*}
+                \left(1+(c(m,i)+1)n! \right)\divides u
+            \end{equation*}
+            donde $c(m,i)$ es el número que codifica a $(m,i)$.
+        \end{lema}
+
+        \begin{proof}
+            Sabemos que $m_i$ satisface la condición de arriba (ya que $q_i$ en particular codifica a la tupla $(m_i,i)$). Basta demostrar que si $m<m_i$ y $q$ es el código de la pareja $(m,i)$, entonces:
+            \begin{equation*}
+                \left(1+(q+1)n! \right)\divides u
+            \end{equation*}
+            De lo contrario, por el lema anterior $q=q_j$ para algun $j=0,...,k-1$, entonces $q$ codifica tanto a $(m,j)$ como a $(m_i,i)$. Por la inyectividad de esta codificación se sigue que $i=j$ y $m=m_i=m_j$\contradiction. Por ende, se sigue el resultado.
+        \end{proof}
+
+        De los tres lemas anteriores, entonces:
+        \begin{equation*}
+            \begin{split}
+                \textup{Tupla}(x,y,z)\equiv&(\exists u\exists N P.O.(x,u,N)\land\exists q P.O.(q,z,y)\land )\land\\
+                &(1+(q+1)N)\divides u\land (\forall w<z)(\forall p P.O.(p,w,y)\Rightarrow (1+(p+1)N\nmid u))\\
+            \end{split}
+        \end{equation*}
+        donde la función de la izquierda es la $y$-ésima coordenada de $z$ es $x$. Gracias al lema anterior, se tiene que dados $i,\alpha,m\in\mathbb{N}$:
+        \begin{equation*}
+            \mathbb{N}\vDash \textup{Tupla}[\alpha,i,m]
+        \end{equation*}
+        si y sólo si $m$ es la $i$-ésima entrada de la tupla codificada por $\alpha$.
+
+        Ahora sí vamos con la \textbf{pseudodemostración}: dada una máquina de Turing, una \textbf{foto instantánea} es una terna $(s,i,t)\in\mathbb{N}^3$ donde $s$ es el estado, $i$ es la posición del cabezal y $t$ es el contenido de la cinta.
+        
+        Cada máquina de Turing $\sigma$ inducirá una fórmula $\psi_\sigma(a,b,c,x,y,z)$ si y sólo si al correr la máquina de turing $\sigma$ con foto instantánea $(a,b,c)$ un paso llego a la foto instantánea $(x,y,z)$. Por ejemplo:
+
+        \begin{exa}
+            Considere la máquina de Turing:
+            \begin{equation*}
+                \sigma=\left\{(s_1,1,s_1,1,>),(s_1,0,s_2,1,-) \right\}
+            \end{equation*}
+            Entonces, $\psi_s$ es la fórmula:
+            \begin{equation*}
+                \begin{split}
+                    \psi_\sigma\equiv&(a = 1\land \textup{Tupla}(b,c,1)\land x=1\land y=b+1\land \textup{Tupla}(b,z,1))\lor\\
+                    &(a=1\land \textup{Tupla}(b,c,0)\land x=2\land y=b\land \textup{Tupla}(b,z,1))\\
+                \end{split}
+            \end{equation*}
+        \end{exa}
+
+        Entonces, si $f$ es computable por medio de la máquina de Turing $\sigma$, la fórmula:
+        \begin{equation*}
+            \begin{split}
+                \chi_\sigma(x,y)\equiv&(\exists t)(\exists l)(\exists w \textup{Tupla}(t,1,w) \land w\textup{ codifica a }(1,1,x)\land w\textup{ codifica a }(1,1,x)\\
+                &\forall i<l\exists u\exists v \textup{Tupla}(t,i,u)\land \textup{Tupla}(t,i+1,v)\exists a\exists b\exists c\exists x\exists y\exists z \\
+                &u\textup{ codifica }(a,b,c)\land v\textup{ codifica }(x,y,z)\land\psi_\sigma(a,b,c,x,y,z)\land\exists d\textup{Tupla}(t,l,d)\\
+                &\land d\textup{ codifica }(x,y,z))\\
+            \end{split}
+        \end{equation*}
+
+    \end{proof}
+
+    \begin{obs}
+        El macro $a\divides b$ abrevia la fórmula $(\exists c)(a\cdot c= b)$.
+    \end{obs}
 
 \end{document}
