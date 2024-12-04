@@ -448,7 +448,27 @@
     Ahora, veremos aplicaciones de este teorema.
 
     \begin{exa}
-        
+        Sea $X$ un espacio tal que $X=A\cup B$ y $A\cap B=\left\{x_0 \right\}$, siendo estos dos conjuntos tales que son homeomorfos al círculo $\mathbb{S}^1$. $X$ puede ser visto como la curva con forma de \textit{8}:
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=1.5]{images/fig_6.pdf}\\
+                Figura \thefigcount. Ejemplo de la figura \textit{8}.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        Si $A$ y $B$ fuesen subconjuntos de $X$ abiertos, podríamos aplicar de forma inmediata el teorema anterior con $U=A$ y $V=B$ para determinar la estructura de $\pi(X)$. Sin embargo, $A$ y $B$ no son abiertos.
+
+        Pero, una pequeña modificación nos permitirá que las cosas funcionen. Elija puntos $a\in A$ y $b\in B$ tales que $a\neq x_0$ y $b\neq x_0$. Tomemos:
+        \begin{equation*}
+            U=X-\left\{ a\right\}\quad\textup{y}\quad V=X-\left\{b\right\}
+        \end{equation*}
+        entonces, $U$ y $V$ son homeomorfos a un círculo con dos \textit{colitas}. Es claro que $A$ y $B$ son deformaciones de retracción de $U$ y $V$, respectivamente. Además, el conjunto:
+        \begin{equation*}
+            U\cap V=X-\left\{a,b \right\}
+        \end{equation*}
+        es contraíble a un punto, luego simplemente conexo. Así que $\pi(X)$ es el producto libre de los grupos $\pi(U)$ y $\pi(V)$, o de forma equivalente, el producto libre de $\pi(A)$ y $\pi(B)$ (ya que $\pi(A)\cong\pi(U)$ y $\pi(B)\cong\pi(V)$). Como $A$ y $B$ son círculos, entonces $\pi(A)$ y $\pi(B)$ son grupos cíclicos infinitos. Así que $\pi(X)$ es el producto libre de dos grupos cíclicos infinitos, por una proposición anterior, $\pi(X)$ es grupo libre sobre un conjunto con dos elementos. Podemos tomar como generadores clases de caminos cerrados $\alpha$ y $\beta$ con punto base $x_0$, que van alrededor de $A$ y $B$ una vez, respectivamente.
     \end{exa}
 
 

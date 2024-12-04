@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+\begin{document}
+\begin{tikzpicture}
+  \begin{polaraxis}[grid style=white,ticklabel style=white,xtick=\empty,ytick=\empty,axis line style = {draw opacity = 0}]
+    \tikzset{
+    dot/.style = {circle, fill,
+                inner sep=0pt, outer sep=0pt},
+                dot/.default = 6pt
+    }
+    \addplot [black, domain=-45:45, samples=100] {2*cos(2*x)};
+    \addplot [black, domain=135:225, samples=100] {2*cos(2*x)};
+    \draw (0,0) node[circle,fill,inner sep=0.5pt,label=below:$x_0$](X_0){};
+    \draw (200,0) node[circle,fill,inner sep=0.5pt,label=right:$b$](b){};
+    \draw (-200,0) node[circle,fill,inner sep=0.5pt,label=left:$a$](a){};
+    \draw (-120,70) node[inner sep=0.5pt,label=above:$A$]($B$){};
+    \draw (120,70) node[inner sep=0.5pt,label=above:$B$]($A$){};
+\end{polaraxis}
+\end{tikzpicture}
+\end{document}
