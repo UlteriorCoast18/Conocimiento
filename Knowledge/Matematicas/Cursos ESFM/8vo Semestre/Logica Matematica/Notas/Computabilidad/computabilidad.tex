@@ -20,6 +20,7 @@
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{mathdots}
+\usepackage{bbm}
 
 %Gestión de Hipervínculos
 
@@ -194,6 +195,7 @@
 \newcommand\contradiction{\ensuremath{\#_c}}
 \newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
 \newcommand{\dom}[1]{\textup{dom}\left(#1 \right)}
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
 
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
@@ -1945,7 +1947,7 @@ void main(void){
     %TODO Poner todo lo que iba antes.
 
     \begin{theor}
-        Si una función $f$ es \textbf{computable}, entonces hay una fórmula $\varphi$ tal que $\Gamma(f)=\left\{(l,m)\Big|\mathbb{N}\vDash\varphi[n,m] \right\}$.
+        Si una función $f$ es parcial computable, entonces hay una fórmula $\varphi$ tal que $\Gamma(f)=\left\{(l,m)\Big|\mathbb{N}\vDash\varphi[n,m] \right\}$.
     \end{theor}
     
     \begin{proof}
@@ -2049,11 +2051,121 @@ void main(void){
                 &\land d\textup{ codifica }(x,y,z))\\
             \end{split}
         \end{equation*}
-
+        es válida siempre que $y=f(x)$.
     \end{proof}
 
     \begin{obs}
         El macro $a\divides b$ abrevia la fórmula $(\exists c)(a\cdot c= b)$.
     \end{obs}
+
+    Recordemos el ideal de Hilbert: Encontrar un conjunto $\Gamma$ tal que:
+    \begin{enumerate}[label = \textit{(\arabic*)}]
+        \item Computable.
+        \item Si $\varphi\in\Gamma$ entonces $\mathbb{N}\vDash\varphi$.
+        \item Completa.
+        \item \textit{(Opcional)}. $\Gamma=\textup{Teor}(\Sigma)$ para un conjunto $\Sigma$ computable.
+    \end{enumerate}
+
+    \begin{theor}[\textbf{Indecibilidad de la Aritmética}]
+        El conjunto:
+        \begin{equation*}
+            \textup{Th}(\mathbb{N})=\left\{n\in\mathbb{N}\Big|n\textup{ es el número de Gödel de una }\varphi\textup{ tal que }\mathbb{N}\vDash\varphi \right\}
+        \end{equation*}
+        no es computable, es decir habrá fórmulas para las cuáles no se podrá verificar con un algoritmo si éstas son verdaderas o no.
+    \end{theor}
+
+    \begin{proof}
+        Supongamos que $\textup{Th}(\mathbb{N})$ sí es computable. Sea $\varphi_1,...,\varphi_n,...$ una enumeración computable de todas las fórmulas de la aritmética $\mathcal{L}_{A}$ con una variable libre.
+
+        Sea:
+        \begin{equation*}
+            X=\left\{m\in\mathbb{N}\Big|\mathbb{N}\vDash\varphi_m[m] \right\}
+        \end{equation*}
+        Este conjunto es computable por ser $\textup{Th}(\mathbb{N})$ computable, por tanto del teorema anterior existe una fórmula $\psi(x,y)$ de $\mathcal{L}_A$ tal que:
+        \begin{equation*}
+            \left\{(n,1)\in\mathbb{N}^2\Big|n\in X \right\}\cup\left\{(n,0)\in\mathbb{N}^2\Big|n\notin X \right\} =\Gamma(\chi_X)=\left\{(n,m)\in\mathbb{N}^2\Big|\mathbb{N}\vDash\psi[n,m] \right\}
+        \end{equation*}
+        Considere la fórmula $\neg\psi[1/y]$. Note que:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Esta fórmula tiene una variable libre (por tanto, es igual a $\varphi_e$ para algún $e\in\mathbb{N}$).
+            \item $X=\left\{n\in\mathbb{N}\Big|\mathbb{N}\vDash\neg\varphi_e[n]\right\}$.
+        \end{enumerate}
+        Entonces:
+        \begin{equation*}
+            \begin{split}
+                \mathbb{N}\vDash\neg\varphi_e[e]&\textup{ si y sólo si }\mathbb{N}\vDash\neg\neg\psi[1/y][e]\\
+                &\textup{ si y sólo si }\mathbb{N}\vDash\psi[1/y][e]\\
+                &\textup{ si y sólo si }\mathbb{N}\vDash\psi[e,1]\\
+                &\textup{ si y sólo si }e\in X\\
+                &\textup{ si y sólo si }\mathbb{N}\vDash\varphi_e[e]\\
+            \end{split}
+        \end{equation*}
+        una contradicción. Por tanto, $\textup{Th}(\mathbb{N})$ no es computable.
+    \end{proof}
+
+    \begin{theor}[\textbf{Indefinibilidad de la verdad de Tarski}]
+        El conjunto:
+        \begin{equation*}
+            \textup{Th}(\mathbb{N})=\left\{n\in\mathbb{N}\Big|n\textup{ es el número de Gödel de una }\varphi\textup{ tal que }\mathbb{N}\vDash\varphi \right\}
+        \end{equation*}
+        no es definible.
+    \end{theor}
+
+    \begin{proof}
+        Suponga que si es definible, entonces existe una fórmula $\psi(x,y)$ tal que ... (ver la demostración anterior).
+    \end{proof}
+
+    \begin{cor}
+        Si $\Sigma\subseteq\textup{Th}(\mathbb{N})$ es computable, entonces $\Sigma$ no es una teoría completa (es decir, o demuestras $\varphi$ o $\neg\varphi$ para toda fórmula $\varphi$ en $\mathcal{L}_A$).
+    \end{cor}
+
+    \begin{proof}
+        Suponga que existe $\Sigma\subseteq\textup{Th}(\mathbb{N})$ computable y completa. Entonces:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $\textup{Teor}(\Sigma)$ sería computable.
+            \item $\textup{Teor}(\Sigma)\subseteq\textup{Th}(\mathbb{N})$.
+        \end{enumerate}
+        por \textit{(2)} al ser $\textup{Teor}(\Sigma)$ completa, se sigue que $\textup{Teor}(\Sigma)=\textup{Th}(\mathbb{N})$, pues si $\varphi\notin\textup{Teor}(\Sigma)$ entonces $\neg\in\textup{Th}(\Sigma)$, así que $\mathbb{N}\vDash\neg\varphi$ lo cual implica que $\varphi\notin\textup{Th}(\mathbb{N})$.
+
+        Por ende, $\textup{Teor}(\Sigma)=\textup{Th}(\mathbb{N})$, donde el conjunto de la derecha es computable y el de la izquierda no\contradiction. Por ende, $\Sigma$ no es completo.
+    \end{proof}
+
+    \section{Dos teorías en $\mathcal{L}_A$}
+
+    Adotaremos los siguientes axiomas:
+
+    \begin{mydef}[\textbf{Axiomas de Peano}]
+        Se definen los siguientes axiomas:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $\forall x\neg(\bbm{1}= Sx)$.
+            \item $\forall x\forall y(Sx = Sy\Rightarrow x=y)$.
+            \item $\forall x\neg(x<\bbm{1})$.
+            \item $\forall x\forall y(x<Sy\Rightarrow(x<y\lor x=y))$.
+            \item $\forall x\forall y(x<y\lor x=y\lor y<x)$.
+            \item $\forall x(x+\bbm{1}=Sx)$.
+            \item $\forall x\forall y(x+Sy=S(x+y))$.
+            \item $\forall x(x\cdot\bbm{1}=x)$.
+            \item $\forall x\forall y(x\cdot Sy=x\cdot y+x)$.
+        \end{enumerate}
+        los axiomas \textit{(1)} a \textit{(2)} son llamados \textbf{de sucesor}, los \textit{(3)} a \textit{(5)} son llamados \textbf{de orden}, los \textit{(6)} a \textit{(7)} son llamados \textbf{de suma} y los \textit{(8)} a \textit{(9)} son llamados \textbf{de producto}. Se define además el siguiente axioma:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \setcounter{enumi}{9}
+            \item \textit{(Esquema)}. Para cada fórmula $\varphi(x)$ de $\mathcal{L}_A$ con una variable libre: $\varphi[1/x]\land(\forall x)(\varphi\Rightarrow\varphi[Sx/x])\Rightarrow \forall x\varphi$.
+        \end{enumerate}
+
+        La \textbf{Aritmética de Peano} (abreviado por PA), es el conjunto:
+        \begin{equation*}
+            \textup{PA}=\left\{\textup{\textit{(1)}},\textup{\textit{(2)}},...,\textup{\textit{(9)}},\textup{\textit{(10a)}},\textup{\textit{(10b)}},... \right\}
+        \end{equation*}
+        Además, se define la \textbf{Aritmética de Robinson}:
+        \begin{equation*}
+            \textup{Q}=\textup{RA}=\left\{\textup{\textit{(1)}},\textup{\textit{(2)}},...,\textup{\textit{(9)}} \right\}
+        \end{equation*}
+    \end{mydef}
+
+    En la aritmética de Robinson es posible probar que dados dos números, su suma conmuta, pero como no hay inducción no es posible probar la fórmula:
+    \begin{equation*}
+        \forall x\forall y(x+y=y+x)
+    \end{equation*}
 
 \end{document}
