@@ -146,7 +146,8 @@
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
-\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand\gen[1]{\ensuremath{\langle#1\rangle }}
 
 \newcounter{figcount}
 \setcounter{figcount}{1}
@@ -272,11 +273,7 @@
     \subsection{Definición de los grupos cúbicos singulares de homología}
 
     \begin{obs}
-        De ahora en adelante $I=[0,1]$ denotará a este intervalo. Además, convenimos en que:
-        \begin{equation*}
-            I^0
-        \end{equation*}
-        es un conjunto con un sólo punto. Además, el conjunto $\mathbb{N}^*$ denotará a $\mathbb{N}\cup\left\{0\right\}.$
+        De ahora en adelante $I=[0,1]$ denotará a este intervalo. Además, convenimos en que $I^0$ es un conjunto con un sólo punto, a saber $I^0=\left\{0\right\}$. Además, el conjunto $\mathbb{N}^*$ denotará a $\mathbb{N}\cup\left\{0\right\}.$
     \end{obs}
 
     \begin{mydef}
@@ -302,9 +299,75 @@
     Esta generalización nos permitirá hacer la construcción de la homología singular de forma similiar a como se hizo anteriormente.
 
     \begin{mydef}
-        
+        Sean $X$ espacio topológico y $n\in\mathbb{N}^*$. El conjunto $Q_n(X)$ denota al grupo abeliano libre generado por el conjunto de todos los $n$-cubos singulares en $X$.
     \end{mydef}
 
+    \begin{obs}
+        Un elemento de $Q_n(X)$ (dados como en la definición anterior) es de la forma:
+        \begin{equation*}
+            n_1T_1+n_2T_2+\cdots+n_kT_k
+        \end{equation*}
+        donde $n_i\in\mathbb{Z}$, $\cf{T_i}{I^n}{X}$ es función continua, para todo $i\in\natint{1,n}$ y $T_j\neq T_i$, para todo $i,j\in\natint{1,n}$ con $i\neq j$. La suma NO es la suma usual de funciones (pues puede que $X$ no tenga estructura que le permita realizar esta suma de funciones, y aunque tuviese, ignoraríamos este hecho), es únicamente usada para expresar a los elementos del grupo abeliano libre.
+    \end{obs}
+
+    \begin{mydef}
+        Sean $X$ espacio topológico y $n\in\mathbb{N}$. Un $n$-cubo singular $\cf{T}{I^n}{X}$ es \textbf{degenerado} si existe $i\in\natint{1,n}$ tal que:
+        \begin{equation*}
+            T(x_1,...,x_{ i_1},...,x_n)=T(x_1,...,x_{ i_2},...,x_n)
+        \end{equation*}
+        para todo $x_{i_1},x_{i_2}\in I$. En otras palabras, $T$ no depende de la $i$-ésima entrada.
+    \end{mydef}
+
+    Notemos que admitimos que ningún $0$-cubo singular puede ser degenerado. Además, un $1$-cubo singular es dengerado si y sólo si es la función constante.
+
+    \begin{mydef}
+        Sean $X$ espacio topológico y $n\in\mathbb{N}$. $D_n(X)$ denota al subgrupo de $Q_n$ generado por el conjunto de todos los $n$-cubos singulares degenerados. Este es un subgrupo normal de $Q_n(X)$ (ya que es un subgrupo de un grupo abeliano), denotamos por:
+        \begin{equation*}
+            C_n(X)=Q_n(X)/D_n(X)
+        \end{equation*}
+        este es llamado \textbf{grupo de todas las cadenas singulares de $n$-cubos} o simplemente \textbf{$n$-cadenas de $X$}.
+    \end{mydef}
+
+    En otras palabras, lo que estamos haciendo es quitar al grupo de todos los $n$-cubos singulares a aquellos que deberían tener \textit{menos volumen} que los demás dentro de esta lista.
+
+    Convenimos en que si $X=\emptyset$, entonces $Q_n(X)=D_n(X)=C_n(X)=\langle0\rangle$ para todo $n\in\mathbb{N}^*$.
+
+    \begin{exa}
+        Si $X=\left\{*\right\}$, entonces sólo puede haber un único cubo singular en $X$ para todo $n\in\mathbb{N}^*$. Además, este siempre es degenerado si $n\in\mathbb{N}$.
+
+        Por tanto, $C_0(X)$ es cíclico infinito ya que $Q_0(X)$ lo es y $D_0(X)=\gen{0}$. Si $n\in\mathbb{N}$ se tiene que $C_n(X)=\gen{0}$ ya que $Q_n(X)=D_n(X)$.
+    \end{exa}
+
+    \begin{exa}
+        Podemos ir más allá en la primer parte del ejemplo anterior, ya que para cualquier espacio $X$ se tiene que $D_0(X)=\gen{0}$, por lo que $C_0(X)=Q_0(X)$.
+    \end{exa}
+
+    \begin{exa}
+        Para cualquier espacio $X$, $C_n(X)$ (con $n\in\mathbb{N}$) es grupo abeliano libre generado en el conjunto de todos los $n$-cubos singulares no dengenerados en $X$.
+    \end{exa}
+
+    \subsection{Caras de un cubo singular}
+
+    Nuestro objetivo ahora es el de definir las caras de estos $n$-cubos singulares, de forma análoga a como se hizo con los simplejos.
+
+    \begin{mydef}
+        Sean $X$ espacio topológico y $n\in\mathbb{N}$. Sea $T$ un $n$-cubo singular en $X$, para cada $i\in\natint{1,n}$ se definen los $n$-cubos singulares:
+        \begin{equation*}
+            \cf{A_i(T),B_i(T)}{I^{ n-1}}{X}
+        \end{equation*}
+        dados por:
+        \begin{equation*}
+            \begin{split}
+                A_iT(x_1,...,x_n)&=T(x_1,...,x_{ i-1},1,x_i,...,x_n)\\
+                B_iT(x_1,...,x_n)&=T(x_1,...,x_{ i-1},0,x_i,...,x_n)\\
+            \end{split}
+        \end{equation*}
+        $A_iT$ es llamada la \textbf{$i$-ésima cara frontal de $T$} y $B_iT$ es la \textbf{$i$-ésima cara trasera de $T$}.
+    \end{mydef}
+
+    \begin{obs}
+        Podemos ver a $\cf{A_i}{Q_n(X)}{Q_{ n-1}(X)}$ y $\cf{B_i}{Q_n(X)}{Q_{ n-1}(X)}$ como funciones para cada $i\in\natint{1,n}$.
+    \end{obs}
 
 
 \end{document}
