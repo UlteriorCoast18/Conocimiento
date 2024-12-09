@@ -235,10 +235,74 @@
     \end{mydef}
 
     \begin{mydef}
-        Una \textbf{estructura de $\Delta$-complejo en un espacio $X$} es una colección $\left\{\cf{\sigma_\alpha}{\Delta^{ n_\alpha}}{X} \right\}_{\alpha\in I}$ (con $n_\alpha\in\mathbb{N}\cup\left\{0 \right\}$ para todo $\alpha\in I$) tal que:
+        Una \textbf{estructura de $\Delta$-complejo en un espacio $X$} (o llamado simplemente \textbf{$\Delta$-complejo}) es una colección $\left\{\cf{\sigma_\alpha}{\Delta^{ n_\alpha}}{X} \right\}_{\alpha\in I}$ (con $n_\alpha\in\mathbb{N}\cup\left\{0 \right\}$ para todo $\alpha\in I$) tal que:
         \begin{enumerate}[label = \textit{(\arabic*)}]
-            \item 
+            \item Para todo $\alpha\in I$, la reestricción $\sigma_\alpha\big|_{\mathring{\Delta}^{ n_\alpha}}$ es inyectiva, y todo punto de $X$ es la imagen de exactamente una reestriccion $\sigma_\alpha\big|_{\mathring{\Delta}^{ n_\alpha}}$.
+            \item Para todo $\alpha\in I$ y para cada reestricción de $\sigma_\alpha$ a alguna cara de $\Delta^{ n_\alpha}$ existe $\beta\in I$ tal que esta reestricción coincide con $\cf{\sigma_\beta}{\Delta^{ n_\alpha-1}}{X}$ (donde $n_\beta=n_\alpha-1$).
+            \item $A\subseteq X$ es abierto si y sólo si $\sigma_\alpha^{-1}(A)$ es abierto en $\Delta^{n_\alpha}$ para todo $\alpha\in I$.
         \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        En el inciso \textit{(2)} identificamos cada cara de $\Delta^n$ con $\Delta^{ n-1}$ mediante el homomorfismo lineal entre ellos que preserva la orientación.
+    \end{obs}
+
+    La condición \textit{(3)} nos quita la condición trivial de que todos los puntos de $X$ sean vértices de algún simplejo.
+
+    Una consecuencia inmediata de todas estas condiciones es que un espacio $X$ puede ser construido a partir de una colección de simplejos disjuntos $\Delta_\alpha^{n_\alpha}$, uno por cada $\cf{\sigma_\alpha}{\Delta^{ n_\alpha}}{X}$, el espacio obtenido a partir de identificar cada cara de $\Delta_\alpha^{ n_\alpha}$ con el correspondiente $\Delta_\beta^{ n_\alpha-1}$, correspondeinte a la reestricción de $\sigma_\beta$ de $\sigma_\alpha$ de la cara en cuestión.
+
+    Para nuestro caso, basta con analizar por ejemplo al Toro:
+
+    \begin{exa}
+        %TODO Poner analisis del toro y definir sobre él una estructura de $\Delta$ complejo.
+    \end{exa}
+
+    \subsection{Homología Simplicial}
+
+    Nuestro objetivo ahora es definir los grupos de homología de un $\Delta$-complejo $X$. Para ello, será imprescindible contar con todo lo hecho en la teoría sobre grupos libres y grupos abelianos libres.
+
+    \begin{mydef}
+        Sea 
+    \end{mydef}
+
+    \section{Homología Singular}
+
+    Con lo hecho en la parte de homología simplicial, resultará un poco más sencillo observar qué es lo que está sucediendo en homología singular. En esta sección se dan definiciones y algunas otras propiedades básicas.
+
+    \subsection{Definición de los grupos cúbicos singulares de homología}
+
+    \begin{obs}
+        De ahora en adelante $I=[0,1]$ denotará a este intervalo. Además, convenimos en que:
+        \begin{equation*}
+            I^0
+        \end{equation*}
+        es un conjunto con un sólo punto. Además, el conjunto $\mathbb{N}^*$ denotará a $\mathbb{N}\cup\left\{0\right\}.$
+    \end{obs}
+
+    \begin{mydef}
+        Sea $X$ un espacio topológico. Si existe $n\in\mathbb{N}$ tal que $X\cong I^n$, diremos que $X$ es un \textbf{cubo $n$-dimensional}.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $X$ espacio topológico y $n\in\mathbb{N}^*$ \textbf{$n$-cubo singular en $X$} es una función continua $\cf{T}{I^n}{X}$. 
+    \end{mydef}
+
+    \begin{exa}
+        Si $n=0$, entonces $\cf{T}{\left\{* \right\}}{X}$ es una función que manda un punto en un punto.
+
+        Si $n=0$, entonces $\cf{T}{I}{X}$ es un camino con puntos extremos $T(0)$ y $T(1)$.
+    \end{exa}
+
+    \begin{obs}
+        Note que a diferencia de la parte de homología simplicial, en esta parte permitimos que nuestro mapeo $T$ no necesariamente sea lineal, ya que en la parte anterior se deduce rápidamente que $\Delta^n\cong I^n$.
+
+        Más aún, esta es llamada homología singular ya que puede que la función $T$ tenga singularidades.
+    \end{obs}
+
+    Esta generalización nos permitirá hacer la construcción de la homología singular de forma similiar a como se hizo anteriormente.
+
+    \begin{mydef}
+        
     \end{mydef}
 
 
