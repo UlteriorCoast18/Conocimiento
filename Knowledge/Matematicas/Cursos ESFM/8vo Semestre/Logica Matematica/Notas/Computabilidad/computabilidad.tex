@@ -2168,4 +2168,121 @@ void main(void){
         \forall x\forall y(x+y=y+x)
     \end{equation*}
 
+    De ahora en adelante trabajaremos con el lenguaje de la aritmética:
+    \begin{equation*}
+        \mathcal{L}_A=\left\{+,\cdot,\bbm{1},S,< \right\}
+    \end{equation*}
+
+    \newcommand{\winecomma}[1]{\ensuremath{\ulcorner#1\urcorner}}
+
+    \begin{mydef}
+        Definimos lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \setcounter{enumi}{-1}
+            \item A los números naturales los denotaremos por $\winecomma{n}=\underset{n\textup{-veces}}{\underbrace{S\cdots S}}\bbm{1}$.
+            \item Dado $\Sigma$ un conjunto de $\mathcal{L}_A$-fórmulas, diremos que el conjunto $X\subseteq\mathbb{N}^k$ es \textbf{$\Sigma$-representable} si existe una fórmula $\psi$ tal que para cada $n_1,...,n_k\in\mathbb{N}$, se tiene que:
+            \begin{itemize}
+                \item $(n_1,...,n_k)\in X$ si y sólo si $\Sigma\vdash\psi\left[\winecomma{n_1}/x_1,...,\winecomma{n_k}/x_k\right]$.
+                \item $(n_1,...,n_k)\notin X$ si y sólo si $\Sigma\vdash\neg\psi\left[\winecomma{n_1}/x_1,...,\winecomma{n_k}/x_k\right]$.
+            \end{itemize}
+            \item Dado $\Sigma$ un conjunto de $\mathcal{L}_A$-fórmulas, diremos que el conjunto $X\subseteq\mathbb{N}^k$ es \textbf{débilmente $\Sigma$-representable} si existe una fórmula $\psi$ tal que para cada $n_1,...,n_k\in\mathbb{N}$, se tiene que$(n_1,...,n_k)\in X$ si y sólo si $\Sigma\vdash\psi\left[\winecomma{n_1}/x_1,...,\winecomma{n_k}/x_k\right]$.
+            \item Una función es \textbf{$\Sigma$-representable} (respectivamente, \textbf{débilmente $\Sigma$-representable}) si su gráfica lo es.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        En el inciso \textit{(0)} de la definición anterior lo que queremos hacer es de alguna forma, representar a los números naturales en el lenguaje de la aritmética y trabajar con ellos en ese contexto y no en el que estamos acostumbrados a trabajar usualmente.
+
+        Igualmente con el inciso \textit{(1)}, la idea es representar conjuntos pero ahora en términos de fórmulas.
+    \end{obs}
+
+    \begin{obs}
+        Se tiene lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \setcounter{enumi}{-1}
+            \item Note que $\textup{Th}(\mathbb{N})$-representable es equivalente a la noción usada anteriormente de definible en $\mathbb{N}$.
+            \item $\Sigma$-representable implica débilmente $\Sigma$-representable.
+            \item Si $\Sigma$ es una teoría completa, entonces $\Sigma$-representable es equivalente a débilmente $\Sigma$-representable.
+            \item Si $\Sigma\subseteq\Gamma$, entonces $\Sigma$-representable (o débilmente $\Sigma$-representable) implica $\Gamma$-representable (o débilmente $\Gamma$-representable).
+            \item Ser $\Sigma$-representable es cerrado bajo uniones, intersecciones y complementos finitos.
+            \item Ser débilmente $\Sigma$-representable es cerrado sólo bajo uniones e intersecciones finitas.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{theor}
+        Se tiene lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Toda función computable es $\textup{Q}$-representable.
+            \item Todo conjunto $X\subseteq\mathbb{N}^k$ computable es $\textup{Q}$-representable.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De \textit{(1)} y \textit{(2)}: Es casi lo mismo a probar que una función computable es definible en los naturales, solo que ahora en vez de usar a los naturales usamos la aritmética de Robinson.
+
+        Recordemos que el procedimiento en esa demostración era más o menos el siguiente:
+        \begin{itemize}
+            \item Codificar 2-tuplas: $(m,n)\mapsto(m+n)^2+n$, con la fórmula: $\psi(x,y,z)\equiv z=(x+y)\cdot(x+y)+x$.
+            \item Luego las $k$-tuplas.
+            \item Etc...
+        \end{itemize}
+        En general, éstos dos son análogos al teorema que dice que computable implica definible.
+    \end{proof}
+
+    \begin{mydef}
+        Dos conjuntos $\Sigma,\Gamma$ de fórmulas en $\mathcal{L}_A$ son \textbf{comptatibles} si $\Sigma\cup\Gamma$ es consistente.
+    \end{mydef}
+
+    \begin{theor}[\textbf{1° Teorema de Incompletud de Gödel}]
+        Sea $\Sigma$ un conjunto de fórmulas de $\mathcal{L}_A$ compatible con $Q$. Entonces,
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item El conjunto $\textup{Teor}(\Sigma)$ no es computable.
+            \item Si $\Sigma$ es computable, entonces es incompleta.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De \textit{(1)}: Primero demostraremos que $\textup{Teor}(\Sigma\cup Q)$ no es computable. Sea $\psi_1,...,\psi_n,...$ una enumeración computable de las fórmulas con una variable libre. Sea
+        \begin{equation*}
+            X=\left\{m\Big|\varphi_m[\winecomma{m}/x]\in\textup{Teor}(\Sigma\cup Q) \right\}
+        \end{equation*}
+        si $\textup{Teor}(\Sigma\cup Q)$ fuera computable, entonces el conjunto $X$ también lo sería. Por ende, $X$ es Q-representable, en particular, es $\Sigma\cup\textup{Q}$-representable.
+
+        Entonces, existe una fórmula $\psi(x)$ tal que:
+        \begin{equation*}
+            \begin{split}
+                n\in X&\Rightarrow \Sigma\cup\textup{Q}\vdash\psi[\winecomma{n}/x]\\
+                n\notin X&\Rightarrow \Sigma\cup\textup{Q}\vdash\neg\psi[\winecomma{n}/x]\\
+            \end{split}
+        \end{equation*}
+        Sea $e$ tal que $\psi_e\equiv\neg\psi$. Entonces:
+        \begin{equation*}
+            \begin{split}
+                e\in X&\textup{ si y sólo si }\psi_e[\winecomma{e}/x]\in\Sigma\cup\textup{Q}\\
+                &\textup{ si y sólo si }\Sigma\cup\textup{Q}\vdash \psi_e[\winecomma{e}/x]\\
+                &\textup{ si y sólo si }\Sigma\cup\textup{Q}\vdash\neg\psi[\winecomma{e}/x]\\
+                &\textup{ si y sólo si }\Sigma\cup\textup{Q}\nvdash\psi[\winecomma{e}/x]\\
+                &\textup{ si y sólo si }e\notin X\\
+            \end{split}
+        \end{equation*}
+        por lo que, $\textup{Teor}(\Sigma\cup Q)$ no es computable.
+
+        De \textit{(2)}: Suponga que $\Sigma$ es computable,...
+    \end{proof}
+
+    Sea $\chi$ algún axioma de Q. Entonces se tiene que $\textup{Teor}(\Sigma\cup\left\{\chi\right\})$ no es computable.
+
+    \begin{obs}
+        Recordemos que $\varphi\in\textup{Teor}(\Sigma\cup\left\{\chi\right\})$ si y sólo si:
+        \begin{equation*}
+            \Sigma\cup\left\{\chi \right\}\vdash\varphi\textup{ si y sólo si }\Sigma\vdash\chi\Rightarrow\varphi
+        \end{equation*}
+    \end{obs}
+    
+    En efecto, recordemos que si $\textup{Teor}(\Sigma)$ fuera un conjunto computable, se tendría que:
+    \begin{equation*}
+        \textup{Teor}(\Sigma\cup\left\{\chi\right\})=\left\{\varphi\in\textup{Form}(\mathcal{L}_A)\Big|\chi\Rightarrow\varphi\in\textup{Teor}(\Sigma) \right\}
+    \end{equation*}
+    sería computable, luego $\Sigma\cup Q$ sería computable, cosa que no puede suceder.
+
 \end{document}
