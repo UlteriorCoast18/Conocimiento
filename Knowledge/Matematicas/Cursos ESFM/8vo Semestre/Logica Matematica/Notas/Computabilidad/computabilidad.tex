@@ -2285,4 +2285,87 @@ void main(void){
     \end{equation*}
     sería computable, luego $\Sigma\cup Q$ sería computable, cosa que no puede suceder.
 
+    \begin{obs}
+        Si $\varphi$ es una $\mathcal{L}_A$-fórmula, entonces $\winecomma{\varphi}$ denota al número de Gödel de $\varphi$.
+        
+        Esto es, si $\varphi_1,...,\varphi_n,...$ es una enumeración computable y $\varphi$ es $\varphi_e$, entonces $\winecomma{\varphi}$ es $\underset{\underbrace{S\cdots S}}{e-1}\bbm{1}$.
+    \end{obs}
+
+    \begin{lema}[\textbf{Lema de la autoreferencia}]
+        Para cada fórmula $\theta(y)$ existe un enunciado $\eta$ tal que:
+        \begin{equation*}
+            \textup{Q}\vdash\eta\iff\theta[\winecomma{\eta}/y]
+        \end{equation*}
+    \end{lema}
+
+    \newcommand{\RA}{\textup{Q}}
+
+    \begin{proof}
+        Sea $\theta(y)$ una fórmula. Considere la función $m\mapsto\winecomma{\varphi_m[m/x]}$ (es decir, dado un natural en el conjunto de fórmulas con una variable libre enumeradas computablemente hacemos la evaluación y a tal enunciado encontramos su número de Gödel). Con esta explicación anterior es claro que esta función es computable.
+
+        Además, por ser computable es Q-representable, por lo que existe una fórmula $\psi(x,y)$ tal que:
+        \begin{equation*}
+            \RA\vdash\psi[\winecomma{n}/x,\winecomma{m}/y]\textup{ si y sólo si }\winecomma{m}=\winecomma{\varphi_n[\winecomma{n}/x]}
+        \end{equation*}
+        en particular, $\RA\vdash\psi[\winecomma{\varphi}/x,y]\iff y=\winecomma{\varphi[\winecomma{\varphi}/x]}$.
+
+        Definimos $\xi(x)\equiv(\forall y)(\psi(x,y)\Rightarrow\theta(y))$ y también $\eta\equiv\xi[\winecomma{\xi}/x]$.
+
+        Entonces, $\RA\vdash\psi[\winecomma{\xi}/x,y]\iff y=\winecomma{\xi[\winecomma{\xi}/x]}$, esto es
+        \begin{equation*}
+            \begin{split}
+                \RA&\vdash\psi[\winecomma{\xi}/x,y]\iff y=\winecomma{\eta}\\
+            \end{split}
+        \end{equation*}
+        por otra parte, $\eta\equiv(\forall y)(\psi[\winecomma{\xi}/x,y]\Rightarrow\theta(y))$. Por lo tanto, $\RA\vdash\eta\iff(\forall y)(y=\winecomma{\eta}\Rightarrow\theta(y))$. Rápidamente se demuestra que: $\RA\vdash\eta\iff\theta[\winecomma{\eta}/y]$.
+    \end{proof}
+
+    \section{Segundo Teorema de Incompletud}
+
+    Sea $\Sigma$ un conjunto consistente computable de fórmulas tal que $\RA\subseteq\Sigma$. Sea $\xi_1,...,\xi_n,...$ una enumeración computable de los enunciados (no necesariamente en $\Sigma$). Sea:
+    \begin{equation*}
+        T\left(\Sigma \right)=\left\{m\in\mathbb{N}\Big|\Sigma\vdash\xi_m \right\} 
+    \end{equation*}
+    Este conjunto es computablemente enumerable, por lo que hay una fórmula $\psi(y)$ que lo representa débilmente, es decir:
+    \begin{equation*}
+        \Sigma\vdash\xi_m\textup{ si y sólo si }\RA\vdash\psi[\winecomma{m}/y]
+    \end{equation*}
+    Intuitivamente, $\psi$ dice que $\xi_m$ es demostrable en $\Sigma$. Le aplicamos el lema de autoreferencia a $\neg\psi$, con lo que obtenemos algún enunciado $\eta$ tal que:
+    \begin{equation*}
+        \RA\vdash\eta\iff\neg\psi[\winecomma{\eta}/y]
+    \end{equation*}
+    lo que intuitivamente $\eta$ quiere decir que: \textit{yo no soy demostable en $\Sigma$}. Sea $e$ tal que $\eta\equiv\xi_e$ (así que $\winecomma{\eta}=\winecomma{e}$).
+
+    \begin{obs}
+        Se tiene lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $\Sigma\vdash\psi[\winecomma{e}/y]$ implica que $\Sigma\vdash\neg\eta$, es decir $\Sigma\vdash\neg\xi_e$.
+            \item $\Sigma\vdash\neg\psi[\winecomma{e}/y]$ implica que $\Sigma\vdash\eta$, es decir, $\Sigma\vdash\xi_e$.
+        \end{enumerate}
+        pero, si $\Sigma\vdash\xi_e$, entonces:
+        \begin{equation*}
+            \Sigma\vdash\psi[\winecomma{e}/y]
+        \end{equation*}
+        por lo tanto, también:
+        \begin{equation*}
+            \Sigma\vdash\psi[\winecomma{e}/y]
+        \end{equation*}
+        y por \textit{(1)} se sigue que $\Sigma\vdash\neg\xi_e$, lo cual implicaría que $\Sigma$ es inconsistente. Por ende, $\Sigma\nvdash\xi_e$.
+    \end{obs}
+
+    Denotamos por:
+    \begin{equation*}
+        \textup{Con}(\Sigma)\equiv\neg\psi(\winecomma{=\bbm{1}S\bbm{1}})
+    \end{equation*}
+    es llamado la \textbf{consistencia de $\Sigma$}. Lo que denota es que no podemos demostrar que $1=2$ en $\Sigma$.
+
+    \begin{cor}
+        Si $\Sigma$ es consistente, entonces $\Sigma\nvdash\xi_e$ para algún $e\in\mathbb{N}$.
+    \end{cor}
+
+    \begin{theor}[\textbf{Segundo Teorema de incompletud de Gödel}]
+        Si $\Sigma$ es un conjunto computable, consistente y $\textup{PA}\subseteq\Sigma$, entonces $\Sigma\nvdash\textup{Con}(\Sigma)$.
+    \end{theor}
+    
+
 \end{document}
