@@ -2359,13 +2359,35 @@ void main(void){
     \end{equation*}
     es llamado la \textbf{consistencia de $\Sigma$}. Lo que denota es que no podemos demostrar que $1=2$ en $\Sigma$.
 
+    \begin{obs}
+        Note que $\Sigma$ es consistente si y sólo si $\mathbb{N}\vDash\textup{Con}(\Sigma)$.
+    \end{obs}
+
     \begin{cor}
-        Si $\Sigma$ es consistente, entonces $\Sigma\nvdash\xi_e$ para algún $e\in\mathbb{N}$.
+        Si $\Sigma$ es consistente, entonces $\Sigma\nvdash\xi_e$. Más aún, esto implica que $\mathbb{N}\vDash\xi_e$.
     \end{cor}
+
+    En conclusión:
+
+    \begin{itemize}
+        \item $\mathbb{N}\vDash(\textup{Con}(\Sigma)\Rightarrow\xi_e)$.
+    \end{itemize}
+
+    \begin{lema}[\textbf{Gödel}]
+        Todo lo anterior se puede hacer en la aritmética de Peano. En particular,
+        \begin{equation*}
+            \textup{PA}\vdash\textup{Con}(\Sigma)\Rightarrow\xi_e
+        \end{equation*}
+    \end{lema}
 
     \begin{theor}[\textbf{Segundo Teorema de incompletud de Gödel}]
         Si $\Sigma$ es un conjunto computable, consistente y $\textup{PA}\subseteq\Sigma$, entonces $\Sigma\nvdash\textup{Con}(\Sigma)$.
     \end{theor}
+
+    \begin{proof}
+        Supongamos lo contrario. Entonces, $\Sigma\vdash\textup{Con}(\Sigma)$. Además, $\Sigma\vdash\textup{Con}(\Sigma)\Rightarrow\xi_e$, es decir que $\Sigma\vdash\xi_e$. Luego por el corolario anterior $\Sigma$ no es consistente\contradiction ya que $\Sigma$ es consistente. Por tanto, $\Sigma\nvdash\textup{Con}(\Sigma)$.
+        
+    \end{proof}
     
 
 \end{document}
