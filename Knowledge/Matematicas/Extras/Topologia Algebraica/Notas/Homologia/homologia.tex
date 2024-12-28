@@ -321,7 +321,7 @@
     Notemos que admitimos que ningún $0$-cubo singular puede ser degenerado. Además, un $1$-cubo singular es dengerado si y sólo si es la función constante.
 
     \begin{mydef}
-        Sean $X$ espacio topológico y $n\in\mathbb{N}$. $D_n(X)$ denota al subgrupo de $Q_n$ generado por el conjunto de todos los $n$-cubos singulares degenerados. Este es un subgrupo normal de $Q_n(X)$ (ya que es un subgrupo de un grupo abeliano), denotamos por:
+        Sean $X$ espacio topológico y $n\in\mathbb{N}$. $D_n(X)$ denota al subgrupo de $Q_n(X)$ generado por el conjunto de todos los $n$-cubos singulares degenerados. Este es un subgrupo normal de $Q_n(X)$ (ya que es un subgrupo de un grupo abeliano), denotamos por:
         \begin{equation*}
             C_n(X)=Q_n(X)/D_n(X)
         \end{equation*}
@@ -389,7 +389,7 @@
         \end{equation*}
         Extendemos de forma natural $\partial_n$ al $Q_n$, definiéndolo en función de su valor en los elementos generadores. Denotamos esta extensión de igual manera y es tal que $\cf{\partial_n}{Q_n}{Q_{n-1}}$. Este es un homomorfismo llamado \textbf{operador frontera}.
 
-        Por comodidad, denotaremos a este operador simplemente por $\partial$.
+        Por comodidad, de ahora en adelante denotaremos a este operador simplemente por $\partial$.
     \end{mydef}
 
     \begin{propo}
@@ -420,19 +420,150 @@
         \end{equation*}
         Hay dos casos, $n$ es par o $n$ es impar. Analicemos por casos:
         \begin{itemize}
-            \item Suponga que $n$ es impar, entonces existe $k\in\mathbb{N}$ tal que $n=2k+1$, luego hay $2k$ sumandos. Hacemos:
+            \item Suponga que $n$ es impar, entonces existe $k\in\mathbb{N}$ tal que $n=2k+1$, luego hay $2k$ sumandos. Se tiene:
             \begin{equation*}
                 \begin{split}
                     \sum_{ i=1}^n \sum_{ j=1}^{n-1}(-1)^{i+j}A_jA_iT&=\sum_{ j=1}^{n-1}(-1)^{1+j}A_jA_1T+\sum_{ j=1}^{n-1}(-1)^{2+j}A_jA_2T+\cdots+\sum_{ j=1}^{n-1}(-1)^{k+j}A_jA_{k}T+ \\
-                    &+\sum_{ j=1}^{n-1}(-1)^{k+1+j}A_jA_{k+1}T+\sum_{ j=1}^{n-1}(-1)^{n-1+j}A_jA_{ n-1}T+\cdots+\sum_{ j=1}^{n-1}(-1)^{n+j}A_jA_nT\\
+                    &+\sum_{ j=1}^{n-1}(-1)^{k+1+j}A_jA_{k+1}T+\cdots+\sum_{ j=1}^{n-1}(-1)^{n+j}A_jA_nT\\
                 \end{split}
             \end{equation*}
-            Veamos que todo elemento de una suma de las primeras $k$-sumas se cancela con alguno de las otras $k$-sumas que siguen. En efecto, considere el sumando $(-1)^{l+j}A_jA_lT$ con $l\in\natint{1,n}$.
+            Veamos que todo elemento de una suma de las primeras $k$-sumas se cancela con alguno de las otras $k$-sumas que siguen. En efecto, considere el sumando $(-1)^{l+j}A_jA_lT$ con $j\in\natint{1,n-1}$ y $l\in\natint{1,n}$ que es el $j$-ésimo sumando que se encuentra en la $l$-ésima suma. Se tienen dos casos:
+            \begin{itemize}
+                \item Si $1\leq j< l$, entonces al tenerse que $A_jA_lT=A_{l-1}A_{j}T$ por (\ref{faceConmutativeIdentities}) se sigue que el elemento $(-1)^{ l-1+j}A_{l-1}A_{j}T$ es el $(l-1)$-ésimo sumando que se encuentra en la $j$-ésima suma. Por ende, los sumandos $(-1)^{l+j}A_jA_lT=(-1)^{l+j}A_{l-1}A_{j}T$ y $(-1)^{ l-1+j}A_{l-1}A_{j}T$ se encuentran en diferentes sumas, así que cuando se efectúa su suma obtenemos:
+                \begin{equation*}
+                    \begin{split}
+                        (-1)^{l+j}A_jA_lT+(-1)^{ l-1+j}A_{l-1}A_{j}T&=(-1)^{ l+j}\left(A_{l-1}A_{j}T-A_{l-1}A_{j}T\right)\\
+                        &=0\\
+                    \end{split}
+                \end{equation*}
+                \item Si $l\leq j<n$, entonces al tenerse que $A_jA_lT=A_{(j+1)-1}A_lT$, se sigue de la ecuación (\ref{faceConmutativeIdentities}) que $(-1)^{l+j}A_jA_lT=(-1)^{l+j }A_lA_{ j+1}T$. Como en el $j+1$-ésimo sumando se encuentra $l$-ésimo término (ya que $l\leq n-1$ este término existe) $(-1)^{j+1+l}A_lA_{ j+1}T$, se tiene que los términos $(-1)^{l+j }A_lA_{ j+1}T$ y $(-1)^{j+1+l}A_lA_{ j+1}T$ se encuentran en diferentes sumas, así que cuando se efectúa la suma obtenemos que:
+                \begin{equation*}
+                    \begin{split}
+                        (-1)^{l+j }A_lA_{ j+1}T+(-1)^{j+1+l}A_lA_{ j+1}T&=(-1)^{l+j }(A_lA_{ j+1}T-A_lA_{ j+1}T)\\
+                        &=0\\
+                    \end{split}
+                \end{equation*}
+            \end{itemize}
+            en ambos casos, se sigue que:
+            \begin{equation*}
+                \sum_{ i=1}^n \sum_{ j=1}^{n-1}(-1)^{i+j}A_jA_iT=0
+            \end{equation*}
+            \item Suponga que $n$ es par, entonces existe $k\in\mathbb{N}$ tal que $n=2k$. Entonces, hay $2k-1$ sumandos. El procedimiento para ver que se cancelan las sumas es análogo al anterior.
+        \end{itemize}
+        Por ambos incisos, se sigue que:
+        \begin{equation*}
+            \sum_{ i=1}^n \sum_{ j=1}^{n-1}(-1)^{i+j}A_jA_iT=0
+        \end{equation*}
+        es decir:
+        \begin{equation*}
+            \partial_n(\partial_{ n-1})(T)=0
+        \end{equation*}
+
+        Para la otra parte, suponga que $T$ es degenerado, entonces existe $j\in\natint{1,n}$ tal que:
+        \begin{equation*}
+            T(x_1,...,x_{j_1},...,x_n)=T(x_1,...,x_{j_2},...,x_n)
+        \end{equation*}
+        para todo $x_1,...,x_{j_1},x_{j_2},...,x_n\in I$. En particular, notemos que:
+        \begin{equation*}
+            T(x_1,...,0,...,x_n)=T(x_1,...,1,...,x_n)
+        \end{equation*}
+        por lo cual,
+        \begin{equation*}
+            B_jT=A_jT\Rightarrow A_jT-B_jT=0
+        \end{equation*}
+        Veamos entonces que:
+        \begin{equation*}
+            \begin{split}
+                \partial_nT&=\sum_{ i=1}^n (-1)^i\left[A_iT-B_iT \right]\\
+                &=\sum^n_{\substack{i=1 \\ i \neq j}} (-1)^i\left[A_iT-B_iT \right]\\
+            \end{split}
+        \end{equation*}
+        donde todos los demás $(n-1)$-cubos en esta suma son degenerados, por lo que $\partial_nT\in D_{n-1}(X)$.
+    \end{proof}
+
+    \begin{cor}
+        Sea $n\in\mathbb{N}$ con $n>1$. Entonces, $\cf{\partial_n}{Q_n(X)}{Q_{ n-1}(X)}$ induce un homomorfismo que denotamos por el mismo símbolo $\cf{\partial_n}{C_n(X)}{C_{n-1}(X)}$, tal que:
+        \begin{equation*}
+            \partial_{ n-1}\circ\partial_n=0
+        \end{equation*}
+    \end{cor}
+
+    \begin{proof}
+        En efecto, definamos $\cf{\partial_n}{C_n(X)}{C_{n-1}(X)}$ por:
+        \begin{equation*}
+            \partial_n([C]_{D_n(X)})=[\partial_n(C)]_{D_{n-1}(X)}
+        \end{equation*}
+        donde $C\in Q_n(X)$ y los corchetes denotan la clase de equivalencia, es decir que $[C]_{D_n(X)}\in C_n(X)$. Veamos que este es un homomorfismo que está bien definido.
+        \begin{itemize}
+            \item \textbf{$\partial_n$ está bien definido}. Sean $C_1,C_2\in Q_n(X)$ tales que $C_1+D_n(X)=C_2+D_n(X)$, en otras palabras:
+            \begin{equation*}
+                [C_1]_{D_n(X)}=[C_2]_{D_n(X)}
+            \end{equation*}
+            por comodidad, esto simplemente lo denotaremos por $[C_1]=[C_2]$. Por tanto, existen $T_1,...,T_n\in D_n(X)$ y $n_1,...,n_m\in\mathbb{Z}$ tales que:
+            \begin{equation*}
+                C_1-C_2=n_1T_1+\cdots+n_mT_m\Rightarrow C_1=C_2+n_1T_1+\cdots+n_mT_m
+            \end{equation*}
+            así que:
+            \begin{equation*}
+                \begin{split}
+                    \partial_n([C_1])&=[\partial_n(C_1)]\\
+                    &=[\partial_n(C_2+n_1T_1+\cdots+n_mT_m)]\\
+                    &=[\partial_n(C_2)+n_1\partial_n(T_1)+\cdots+n_m\partial_n(T_m)]\\
+                    &=[\partial_n(C_2)]\\
+                    &=\partial_n([C_2])\\
+                \end{split}
+            \end{equation*}
+            por lo que $\partial_n$ está bien definido.
+            \item \textbf{$\partial_n$ es homomorfismo}. Es inmediato.
         \end{itemize}
     \end{proof}
 
+    \begin{obs}
+        Nuevamente, al operador $\partial_n$ lo denotaremos simplemente por $\partial$.
+    \end{obs}
 
+    \begin{obs}
+        De forma análoga, resulta que para el homomorfismo $\cf{\partial_n}{C_n(X)}{C_{n-1}(X)}$ es tal que:
+        \begin{equation*}
+            \partial_{n-1}\circ\partial_n=0
+        \end{equation*}
+        para $n>1$.
+    \end{obs}
 
+    \begin{mydef}
+        Sea $X$ espacio topológico y $n\in\mathbb{N}$. Definimos:
+        \begin{equation*}
+            Z_n(X)=\ker\partial_n=\left\{u\in C_n(X)\Big|\partial_n(u)=0 \right\}\subseteq C_n(X)
+        \end{equation*}
+        y, para $n\in\mathbb{N}^*$:
+        \begin{equation*}
+            B_n(X)=\textup{im}\:\partial_{n+1}=\partial_{n+1}(C_{n+1}(X))\subseteq C_n(X)
+        \end{equation*}
+        En consecuencia de que $\partial_n\circ\partial_{n+1} = 0$, se tiene que $B_n(X)\subseteq Z_n(X)$ para todo $n\in\mathbb{N}$. Con lo que se define el \textbf{$n$-ésimo grupo de homología singular de $X$} o el \textbf{$n$-ésimo grupo de homología de $X$}:
+        \begin{equation*}
+            H_n(X)=Z_n(X)/B_n(X),\quad\forall n\in\mathbb{N}
+        \end{equation*}
+
+        $Z_n(X)$ es llamado el \textbf{$n$-ésimo grupo de ciclos singulares de $X$}, o \textbf{grupo de $n$-ciclos}. $B_n(X)$ es llamado \textbf{grupo de froteras $n$-dimensionales} o \textbf{grupo de los $n$-ciclos delimitadores}.
+    \end{mydef}
+
+    Nuestro objeto principal de estudio será el grupo $H_n(X)$.
+
+    \section{El $0$-ésimo grupo de homología, $H_0(X)$}
+
+    En la parte anterior hemos definido los grupos de homología para $n\in\mathbb{N}$, pero para poder obtener aún más información (y hacer más álgebra con esta estructura algebraica), necesitamos alguna forma de definir a $H_0(X)$. Para ello, primero deberíamos intentar definir a $Z_0(X)$.
+
+    Daremos dos definiciones, donde una de ellas resultará más sencilla en algunos casos, y la otra en otros. No existe casi diferencia entre ambas será tan sencilla que no habrá problemas en los resultados que obtengamos.
+
+    \subsection{Primera definición de $H_0(X)$}
+
+    \begin{mydef}
+        Sea $X$ espacio topológico. Definimos $Z_0(X)=C_0(X)$ y hacemos:
+        \begin{equation*}
+            H_0(X)=Z_0(X)/B_0(X)=C_0(X)/B_0(X)
+        \end{equation*}
+    \end{mydef}
+    
     \newpage
 
     \section{Ejercicios}

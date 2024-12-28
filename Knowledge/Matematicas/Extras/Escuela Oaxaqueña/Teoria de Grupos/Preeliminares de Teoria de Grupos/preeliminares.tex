@@ -1,0 +1,359 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{bbm}
+
+%Estilo del capítulo y sección
+
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{%
+  {\parindent \z@ \raggedright
+    \reset@font
+    \hrule
+    \vspace*{10\p@}%
+    \par
+    \center \LARGE \scshape \@chapapp{} \huge \thechapter
+    \vspace*{10\p@}%
+    \par\nobreak
+    \vspace*{10\p@}%
+    \par
+    \vspace*{1\p@}%
+    \hrule
+    %\vskip 40\p@
+    \vspace*{60\p@}
+    \Huge #1\par\nobreak
+    \vskip 50\p@
+  }}
+
+\def\section#1{%
+  \par\bigskip\bigskip
+  \hrule\par\nobreak\noindent
+  \refstepcounter{section}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \reset@font
+  { \large \scshape
+    \strut\S \thesection \quad
+    #1}% 
+    \hrule   
+  \par
+  \medskip
+}
+
+%Gestión marca de agua
+
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
+\newcommand{\Aut}[1]{\ensuremath{\textup{Aut}\left(#1\right)}}
+\newcommand{\gen}[1]{\ensuremath{\langle#1\rangle}}
+\newcommand{\im}[1]{\ensuremath{\textup{Im}\left(#1\right)}}
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{10° Escuela Oaxaqueña de Matemáticas
+    
+    Notas}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+
+    \newpage
+
+    \chapter{Ejercicios y Problemas\\ Teoría de Grupos}
+
+    \section{Preliminares Teoría de Grupos}
+
+    \begin{excer}
+        Supongamos que $G$ es un grupo que tiene un subgrupo de índice finito $H$. Demuestra que $G$ tiene un subgrupo normal de índice finito. 
+    \end{excer}
+
+    \begin{proof}
+        Se tienen dos casos:
+        \begin{itemize}
+            \item $G$ es finito, en cuyo caso $G$ es un subgrupo normal de $G$ de índice finito.
+            \item $G$ es infinito. 
+        \end{itemize}
+    \end{proof}
+
+    \begin{excer}
+        ¿Cuál es el grupo de automorfismos del grupo aditivo $\mathbb{Z}$?
+    \end{excer}
+
+    \begin{sol}
+        Considere al grupo de automorfismos del grupo aditivo $\mathbb{Z}$, digamos:
+        \begin{equation*}
+            A=\Aut{\mathbb{Z}}=\left\{\cf{f}{\mathbb{Z}}{\mathbb{Z}}\Big|f\textup{ es isomorfismo} \right\}
+        \end{equation*}
+        Afirmamos que $\Aut{\mathbb{Z}}\cong\mathbb{Z}/2\mathbb{Z}$ donde $\mathbb{Z}/2\mathbb{Z}$ es el grupo aditivo de los enteros módulo 2. En efecto, afirmamos que:
+        \begin{equation*}
+            \Aut{\mathbb{Z}}=\left\{\bbm{1}_{\mathbb{Z}},-\bbm{1}_{\mathbb{Z}}\right\}
+        \end{equation*}
+        donde $\cf{\bbm{1}_{\mathbb{Z}}}{\mathbb{Z}}{\mathbb{Z}}$ es la identidad de $\mathbb{Z}$ y $\cf{-\bbm{1}_{\mathbb{Z}}}{\mathbb{Z}}{\mathbb{Z}}$ es tal que $-\bbm{1}_{\mathbb{Z}}\left(m\right)=-m$ para todo $m\in\mathbb{Z}$. En efecto, es claro que $\left\{\bbm{1}_{\mathbb{Z}},-\bbm{1}_{\mathbb{Z}}\right\}\subseteq\Aut{\mathbb{Z}}$.
+
+        Sea ahora $f\in\Aut{\mathbb{Z}}$, se tiene que:
+        \begin{equation*}
+            f(m)=f(\underset{m\textup{-veces}}{\underbrace{1+\cdots+1}})=\underset{m\textup{-veces}}{\underbrace{f(1)+\cdots+f(1)}}=mf(1)
+        \end{equation*}
+        para todo $m\in\mathbb{N}$. De forma análoga se demuestra que:
+        \begin{equation*}
+            f(-m)=-mf(1),\quad\forall m\in\mathbb{N}
+        \end{equation*}
+        Así que:
+        \begin{equation*}
+            f(m)=mf(1),\quad\forall m\in\mathbb{Z}
+        \end{equation*}
+        por lo que $f$ está únicamente determinada por su valor en $1$. Como $\mathbb{Z}$ tiene únicamente dos generadores (por ser un grupo cíclico infinito), al ser $f$ automorfismo debe suceder que $\mathbb{Z}=\gen{f(1)}$, así que $f(1)=1$ ó $f(1)=-1$, es decir que:
+        \begin{equation*}
+            \begin{split}
+                f(m)&=mf(1)\\
+                &=\left\{
+                    \begin{array}{rl}
+                        m & \textup{ si }f(1) = 1\\
+                        -m & \textup{ si }f(1) = -1\\
+                    \end{array}
+                \right.\\
+                &=\left\{
+                    \begin{array}{rl}
+                        \bbm{1}_\mathbb{Z}(m)& \textup{ si }f(1) = 1\\
+                        -\bbm{1}_\mathbb{Z}(m)& \textup{ si }f(1) = 1\\
+                    \end{array}
+                 \right.\\
+            \end{split}
+        \end{equation*}
+        es decir, que $f=\bbm{1}_\mathbb{Z}$ o $f=-\bbm{1}_{\mathbb{Z}}$. Por tanto, $\Aut{\mathbb{Z}}=\left\{\bbm{1}_\mathbb{Z},-\bbm{1}_\mathbb{Z}\right\}$. Para la otra parte, es inmediato que el grupo $\left\{\bbm{1}_\mathbb{Z},-\bbm{1}_\mathbb{Z}\right\}$ con la composición de funciones es isomorfo al grupo aditivo $\mathbb{Z}/2\mathbb{Z}$.
+    \end{sol}
+
+    \begin{excer}
+        Supongamos que tenemos una sucesión exacta corta de grupos:
+        \begin{equation*}
+            1\rightarrow N\rightarrow G\rightarrow K\rightarrow 1
+        \end{equation*}
+        demuestra que si $N$ y $K$ son grupos finitamente generados, entonces $G$ es finitamente generado.
+    \end{excer}
+
+    \begin{proof}
+        Al tenerse la sucesión exacta corta de grupos, estamos diciendo que existen homomorfismos $\cf{f_0}{\gen{1}}{N}$, $\cf{f_1}{N}{G}$, $\cf{f_2}{G}{K}$ y $\cf{f_3}{K}{\gen{1}}$ tales que:
+        \begin{equation*}
+            \im{f_{i-1}}=\ker\left(f_i \right),\quad\forall i=1,2,3
+        \end{equation*}
+        En particular, notemos que $f_1$ es monomorfismo y que $f_2$ es epimorfismo, ya que:
+        \begin{equation*}
+            \ker\left(f_1\right)=\im{f_0}=\gen{e_N}
+        \end{equation*}
+        siendo $e_N$ la identidad del grupo $N$ y, además:
+        \begin{equation*}
+            \im{f_2}=\ker\left(f_3\right)=K
+        \end{equation*}
+        por lo que se tiene lo afirmado.
+
+        Supongamos ahora que $N$ y $K$ son finitamnete generados, entonces existen elementos $n_1,...,n_m\in N$ y $k_1,...,k_l\in K$ tales que:
+        \begin{equation*}
+            N=\gen{n_1,...,n_m}\quad\textup{y}\quad K=\gen{k_1,...,k_l}
+        \end{equation*}
+        Como $f_3$ es epimorfismo, entonces del Primer Teorema de Isomorfismo se sigue que:
+        \begin{equation*}
+            K\cong G/\ker(f_3)=G/\im{f_2}=G/N'
+        \end{equation*}
+        donde $N'=f_2(N)$.
+        
+    \end{proof}
+
+    \begin{excer}
+        Demuestra que en el producto semidirecto $N\rtimes_{\varphi}H$, $H$ es un subgrupo normal si y sólo si $\varphi$ es el homomorfismo trivial.
+    \end{excer}
+
+    \begin{proof}
+        Recordemos que el producto semidirecto $N\rtimes_\varphi H$ es el grupo $N\times H$ dotado de la operación:
+        \begin{equation*}
+            (n,h)(n',h')=(n\varphi_h(n'),hh')
+        \end{equation*}
+        donde $\cf{\varphi}{H}{\Aut{N}}$ es un homomorfismo tal que $h\mapsto\varphi_h$. El elemento neutro de este grupo es $(e_N,e_H)$, donde cada elemento tiene como inverso:
+        \begin{equation*}
+            (n,h)^{-1}=\left((\varphi_{h^{-1}}(n))^{-1},h^{-1}\right)
+        \end{equation*}
+
+        $\Rightarrow)$: Suponga que $H$ es un subgrupo normal de $N\rtimes_\varphi H$, esto es que el grupo $H$ visto como subgrupo de $N\rtimes_\varphi H$:
+        \begin{equation*}
+            H=\left\{(e_N,h)\Big|h\in H \right\}
+        \end{equation*}
+        es subgrupo normal de $N\rtimes_\varphi H$. Como es normal, se sigue que:
+        \begin{equation*}
+            (n_1,h_1)(e_N,h)(n_1,h_1)^{-1}\in H
+        \end{equation*}
+        para todo $(n_1,h_1)\in H$ y para todo $h\in H$.
+    \end{proof}
+
+    \begin{excer}
+        Demuestra que el producto libre en $n$ generadores $F_n$ es isomorfo al producto libre de $n$ copias de $\mathbb{Z}$, $\mathbb{Z}*\mathbb{Z}*\cdots*\mathbb{Z}$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Demuestra que el producto libre $G*H$ de grupos no triviales $H$ y $G$ tiene centro trivial.
+    \end{excer}
+
+    \begin{proof}
+        Sean $G$ y $H$ grupos no triviales. Considere $G*H$ su producto libre. El centro de $G*H$ se define por:
+        \begin{equation*}
+            Z(G*H)=\left\{x\in G*H\Big|xy=yx,\forall y\in G*H \right\}
+        \end{equation*}
+    \end{proof}
+
+    \begin{excer}
+        Demuestra que $\mathbb{Z}_2*\mathbb{Z}_2$ es isomorfo a $\mathbb{Z}\rtimes\mathbb{Z}_2$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Denotemos por $F_n$ al grupo libre en $n$ generadores. Demuestre que $F_n$ es isomorfo a $F_m$ si y sólo si $n=m$.
+    \end{excer}
+
+    \begin{proof}
+        $\Rightarrow):$ Supongamos que $F_n$ es isomorfo a $F_m$
+    \end{proof}
+
+\end{document}

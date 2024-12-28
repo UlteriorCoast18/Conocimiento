@@ -1,0 +1,513 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{bbm}
+
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{%
+  {\parindent \z@ \raggedright
+    \reset@font
+    \hrule
+    \vspace*{10\p@}%
+    \par
+    \center \LARGE \scshape \@chapapp{} \huge \thechapter
+    \vspace*{10\p@}%
+    \par\nobreak
+    \vspace*{10\p@}%
+    \par
+    \vspace*{1\p@}%
+    \hrule
+    %\vskip 40\p@
+    \vspace*{60\p@}
+    \Huge #1\par\nobreak
+    \vskip 50\p@
+  }}
+
+\def\section#1{%
+  \par\bigskip\bigskip
+  \hrule\par\nobreak\noindent
+  \refstepcounter{section}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \reset@font
+  { \large \scshape
+    \strut\S \thesection \quad
+    #1}% 
+    \hrule   
+  \par
+  \medskip
+}
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand\pot[1]{\ensuremath{\mathcal{P}\left(#1\right)}}
+\newcommand\dom[1]{\ensuremath{\textup{dom}\left(#1\right)}}
+\newcommand\ran[1]{\ensuremath{\textup{ran}\left(#1\right)}}
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
+\newcommand{\winecomma}[1]{\ensuremath{\ulcorner#1\urcorner}}
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Curso de Lógica Matemática
+    
+    Teoría de Conjuntos}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \newpage
+
+    \setcounter{chapter}{4}
+
+    \chapter{Teoría de Conjuntos}
+
+    \section{Introducción}
+
+    Recordemos que el lenguaje de la teoría de conjuntos consta de:
+    \begin{equation*}
+        \mathcal{L}_{TC}=\left\{\in \right\}
+    \end{equation*}
+    De ahora en adelante haremos las siguientes abreviaciones:
+    \begin{center}
+        \begin{tabular}{cc}
+            \hline
+            Fórmula & Abreviación \\
+            \hline
+            $\neg(x\in y)$ & $x\notin y$ \\
+            $\forall z(z\in x\Rightarrow z\in y)$ & $x\subseteq y$\\
+            $\exists!y\chi(y)$ & $\exists y(\chi(y)\land\forall z(\chi(z)\Rightarrow z=y))$\\
+            $\forall a\in u\chi(a)$ & $(\forall a)(a\in u\Rightarrow\chi(a))$ \\
+            $\exists a\in u\chi(a)$ & $\exists a(a\in u\land\chi(a))$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \begin{mydef}[\textbf{Axiomas de la teoría de conjuntos}]
+        Tenemos los siguientes axiomas en $\mathcal{L}_{TC}$:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \setcounter{enumi}{-1}
+            \item \textbf{Existencia}: $\exists x(x=x)$.
+            \item \textbf{Extensionalidad}: $\forall x\forall y((\forall z)(z\in x\iff z\in y)\Rightarrow x=y)$. En otras palabras, $\forall x\forall y((x\subseteq y\land y\subseteq x)\Rightarrow x=y)$.
+            \item \textbf{Comprensión/Separación}: Para cada fórnula $\varphi(x)$ con una variable libre:
+            \begin{equation*}
+                \forall a\exists b\forall z(z\in b\iff (z\in a\land \varphi[z/x]))
+            \end{equation*}
+            informalmente, existe el conjunto $\left\{x\in a\Big|\varphi(x) \right\}$.
+            \item \textbf{Par}: Se tiene que:
+            \begin{equation*}
+                \forall z\forall b\exists u\forall z(z\in u\iff(z= a\lor z\in b))
+            \end{equation*}
+            informalmente, dados $a,b$ existe el conjunto $\left\{a,b\right\}$.
+            \item \textbf{Unión}: $\forall z\exists u\forall z(z\in u\iff(\exists b)(b\in a\land z\in b))$.
+            informalmente, dado $a$ existe el conjunto $\bigcup_{ b\in a}b$.
+            \item \textbf{Potencia}: $\forall z\exists b\forall z(z\in b\iff z\subseteq a)$.
+            informalmente, dado $a$, existe $\pot{}$.
+            \item \textbf{Infinitud}: $\exists x(\emptyset\in x\land \forall a\in x(a\cup\left\{a \right\}\in x))$.
+            informalmente, decimos que existe un conjunto inductivo (por ejemplo, $\mathbb{N}$).
+            \item \textbf{Fundación/Regularidad}: $\forall a\exists b(b\in a \land a\cap b=\emptyset)$.
+            \item \textbf{Reemplazo}: Para cada fórmula $\psi(x,y)$ con dos variables libres:
+            \begin{equation*}
+                \forall x\exists!y\psi(x,y)\Rightarrow\forall y\exists v\forall y(y\in v\iff \exists x\in u\psi(x,y))
+            \end{equation*}
+            \item \textbf{Elección}: $\forall u(u\neq\emptyset\land\forall a(a\in u\Rightarrow a\neq\emptyset)\land \forall a,b\in u(a\neq b\Rightarrow a\cap b=\emptyset)\Rightarrow\exists s\forall a\in u(\exists! z(z\in a\cap s)))$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{theor}
+        Existe un único conjunto sin elementos. En otras palabras, $(\exists! x)(\forall z)(z\notin x)$.
+    \end{theor}
+
+    \begin{proof}
+        Sea $A$ un conjunto. Por el esquema de comprensión existe el conjunto:
+        \begin{equation*}
+            \emptyset=\left\{x\in A\Big|x\neq x \right\}
+        \end{equation*}
+        como por un axioma $(\forall z)z=z$, entonces $(\forall z)(z\notin \emptyset)$. Si $A$ es otro conjunto tal que $(\forall z)(z\notin A)$. Ahora veamos la unicidad. Sea $\emptyset^*$ un conjunto tal que $(\forall z)(z\notin \emptyset^*)$. Se tiene que:
+    \end{proof}
+
+    \begin{mydef}
+        Al único conjunto sin elementos lo denominaremos por \textbf{conjunto vacío} o simplemente \textbf{vacío} y lo denotaremos por $\emptyset$.
+    \end{mydef}
+
+    Ahora, también haremos las siguientes convenciones:
+    \begin{center}
+        \begin{tabular}{cc}
+            \hline
+            Fórmula & Abreviación \\
+            \hline
+            $\emptyset\in x$ & $(\exists y)(\forall z(z\notin y)\land y\in x )$ \\
+            $x\in\emptyset$ & $x\neq x$ \\
+            $\emptyset = x$ & $(\forall z)(z\notin x)$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{theor}
+        No existe un conjunto que contenga a todos los conjuntos.
+    \end{theor}
+
+    \begin{proof}
+        Supongamos que $V$ es un conjunto tal que $(\forall x)(x\in V)$. Por el esquema de comprensión, existe el conjunto:
+        \begin{equation*}
+            A=\left\{x\in V\Big|x\notin x \right\}
+        \end{equation*}
+        Si $A\in A$, entonces $A\notin A$. En caso de que $A\notin A$ entonces $A\in A$. Por tanto, $A\in A\land \neg(A\in A)$, lo cual es una contradicción. Así que $V$ no existe.
+    \end{proof}
+
+    \begin{propo}
+        Sean $a,b$ conjuntos. Entonces los conjuntos:
+        \begin{equation*}
+            a\cap b=\left\{x\in a\Big|x\in b \right\}=\left\{x\in b\Big|x\in a \right\}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            a\setminus b=\left\{x\in a\Big|x\notin b \right\}
+        \end{equation*}
+        Además, también existe el conjunto:
+        \begin{equation*}
+            a\cup b=\left\{x\Big|x\in a\land x\in b \right\}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Los primeros dos son inmediatos del esquema de comprensión. El tercero, por el axioma del par existe el conjunto $\left\{a,b \right\}$, luego del axioma de unión existe el conjunto:
+        \begin{equation*}
+            \bigcup_{ x\in\left\{a,b \right\}}x=a\cup b
+        \end{equation*}
+    \end{proof}
+
+    \begin{propo}
+        Existen los conjuntos $\left\{\emptyset \right\},\left\{\left\{\emptyset \right\}\right\},\left\{\left\{\left\{\emptyset \right\}\right\}\right\},...$.
+    \end{propo}
+
+    \begin{proof}
+        Es inmediata del axioma del par.
+    \end{proof}
+
+    \begin{lema}[\textbf{Metalema}]
+        Dados $a_1,...,a_n$ conjuntos, existe el conjunto $\left\{a_1,...,a_n\right\}$.
+    \end{lema}
+
+    \begin{proof}
+        Se hace inducción sobre $n\in\mathbb{N}$, solo que note que en el lenguaje de teoría de conjuntos no existe el esquema de inducción (aún, solo hay que hacer algunos ajustes), por lo que habría una demostración para cada $n$. La prueba no es complicada y se hace rápida.
+    \end{proof}
+
+    \begin{obs}
+        Notemos que en el axioma del conjunto potencia, solo sirve en el caso en que queramos obtener potencia de conjuntos infinitos, ya que en conjuntos finitos por el metateorema anterior es posible para cada $n\in\mathbb{N}$ y $a_1,...,a_n$ conjuntos, el conjunto:
+        \begin{equation*}
+            \pot{a_1,...,a_n}=\left\{\left\{a_1 \right\},...,\left\{a_n \right\},\left\{a_1,a_2 \right\},...,\left\{a_{ n-1},a_n \right\},\left\{a_1,a_2,a_3\right\},...,\left\{a_1,...,a_n \right\} \right\}
+        \end{equation*}
+        siempre existe (usando repetidamente el metalema anterior).
+    \end{obs}
+
+    \begin{mydef}
+        Dados dos conjuntos $a,b$, definimos la \textbf{pareja ordenada $(a,b)$} como:
+        \begin{center}
+            \begin{tabular}{cc}
+                \hline
+                Fórmula & Abreviación \\
+                \hline
+                $(a,b)$ & $\left\{\left\{a \right\},\left\{a,b \right\} \right\}$ \\
+                \hline
+            \end{tabular}
+        \end{center}
+    \end{mydef}
+
+    \begin{excer}
+        Dados $a,b,c,d$ conjuntos se tiene que $(a,b)=(c,d)$ si y sólo si $a=c$ y $b=d$.
+    \end{excer}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{mydef}
+        Dados $A,B$ conjuntos definimos el \textbf{producto cartesiano de $A$ con $B$} por:
+        \begin{equation*}
+            A\times B=\left\{x\in\pot{\pot{A\cup B}} \Big| \exists a\in A\exists b\in B(x=(a,b)) \right\}
+        \end{equation*}
+    \end{mydef}
+        
+    \begin{mydef}
+        Una \textbf{relación binaria $R$ entre $A$ y $B$} es un conjunto $R$ tal que $R\subseteq A\times B$.
+
+        Cuando decimos \textbf{relación binaria $R$} nos referimos a que $(\exists A)(R\subseteq A\times A)$.
+
+        Si $R$ es una relación binaria, se definen los conjuntos:
+        \begin{equation*}
+            \begin{split}
+                \dom{R}&=\left\{x\in\bigcup_{ A\in \bigcup_{ B\in R}B}A\Big|\exists b (xRb) \right\} \\
+            \dom{R}&=\left\{y\in\bigcup_{ A\in \bigcup_{ B\in R}B}A\Big|\exists a (aRy)  \right\} \\
+            \end{split}
+        \end{equation*}
+        (aqui los conjuntos $A,B$ son diferentes a los de arriba).
+    \end{mydef}
+
+    \begin{mydef}
+        Una \textbf{función $f$} es una relación binaria tal que:
+        \begin{equation*}
+            (\forall x\in\dom{d})(\exists !y)((x,y)\in f)
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        En otras palabras, si $f$ es una función y $x\in\dom{f}$ entonces $f(x)$ es el único $y$ tal que $(x,y)\in f$.
+    \end{obs}
+
+    \begin{mydef}
+        Denotamos las funciones por $\cf{f}{A}{B}$. Decimos que:
+        \begin{itemize}
+            \item \textbf{$f$ es inyectiva}, si $f$ es función y $(\forall x,y\in\dom{f})(f(x)=f(y)\Rightarrow x=y)$.
+            \item \textbf{$f$ es suprayectiva sobre $B$}, si $f$ es función y $(\forall y\in B\exists x\in\dom{f})(f(x)=y)$.
+        \end{itemize}
+    \end{mydef}
+
+    \begin{propo}
+        Dada una relación binaria $R$, el conjunto:
+        \begin{equation*}
+            R^{ -1}=\left\{x\in\ran{R}\times\dom{f}\Big|\exists a,b(x=(b,a)\land(a,b)\in R) \right\}
+        \end{equation*}
+        es una relación binaria sobre $A\times A$.
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{cor}
+        Dada una función $f$, se tiene que $f^{-1}$ es una función si y sólo si $f$ es inyectiva. En este caso $\cf{f^{-1}}{\ran{f}}{\dom{f}}$.
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    Analicemos el axioma de infinitud. Nos dice que:
+    \begin{equation*}
+        (\exists X)(\emptyset \in X\land(\forall x\in X)(x\cup\left\{x \right\}\in X))
+    \end{equation*}
+    En este caso, $X$ se vería más o menos así:
+    \begin{equation*}
+        X=\left\{\emptyset,\left\{\emptyset \right\},\left\{\emptyset,\left\{\emptyset \right\}\right\},...\right\}
+    \end{equation*}
+
+    \begin{mydef}
+        Definimos los conjuntos:
+        \begin{center}
+            \begin{tabular}{cc}
+                $\winecomma{0}$ & $\emptyset$ \\
+                $\winecomma{1}$ & $\left\{\emptyset\right\}=\left\{\winecomma{0}\right\}$ \\
+                $\winecomma{2}$ & $\left\{\emptyset,\left\{\emptyset\right\}\right\}=\left\{\winecomma{0},\winecomma{1}\right\}$ \\
+                $\vdots$ & $\vdots$ \\
+                $\winecomma{n}$ & $\left\{\winecomma{0},...,\winecomma{n-1} \right\}$ \\
+                $\vdots$ & $\vdots$ \\
+            \end{tabular}
+        \end{center}
+    \end{mydef}
+
+    \begin{obs}
+        Por el axioma de infinitud todos estos conjuntos existen y más aún, existe un conjunto que los contiene a todos.
+    \end{obs}
+
+    \begin{mydef}
+        Decimos que un conjunto $A$ es \textbf{inductivo} si $\emptyset\in A\land(\forall a\in A)(a\cup\left\{a \right\}\in A)$ 
+    \end{mydef}
+
+    \begin{cor}
+        El conjunto obtenido a partir del axioma de infinitud, $X=\left\{\emptyset,\left\{\emptyset \right\},\left\{\emptyset,\left\{\emptyset \right\}\right\},...\right\}$ es inductivo.
+    \end{cor}
+
+    \begin{proof}
+        Inmediata de su definición.
+    \end{proof}
+
+    \begin{mydef}
+        Sea $X$ un conjunto inductivo. Se define:
+        \begin{equation*}
+            \omega=\left\{x\in X\Big|\forall Y, Y\textup{ inductivo implica }x\in Y \right\}
+        \end{equation*}
+        y hacemos $\mathbb{N}=\omega\setminus\left\{0\right\}$.
+    \end{mydef}
+
+    \begin{obs}
+        En otras palabras, $\omega$ es el mínimo conjunto inductivo.
+    \end{obs}
+
+    \begin{theor}[\textbf{Teorema de Inducción}]
+        Para todo $A\subseteq\omega$ si $\winecomma{0}\in A$ y $\forall\:\winecomma{n}\in A,\winecomma{n+1}\in A$ entonces $A=\omega$.
+    \end{theor}
+
+    \begin{proof}
+        Por hipótesis $A$ es inductivo (se verifica rápidamente), luego por la observación anterior se sigue que $\omega\subseteq A$. Así que al tenerse que $A\subseteq\omega$ entonces $A=\omega$.
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema de Recursión}]
+        Sea $Z$ un conjunto y sean $\zeta_0\in Z$ y $\cf{g}{Z}{Z}$. Entonces existe una única función $\cf{f}{\omega}{Z}$ tal que $f(0)=\zeta_0$ y $\forall\winecomma{n}\in\omega(f(\winecomma{n+1})=g(f(\winecomma{n})))$.
+    \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{obs}
+        De ahora en adelante para no escribir tanto, denotaremos simplemente por $n=\winecomma{n}$.
+    \end{obs}
+
+    \begin{mydef}
+        Para cada $n\in\omega$ definimos con el teorema anterior la función:
+        \begin{equation*}
+            \begin{split}
+                A_n(0)&=n\\
+                A_n(m+1)&=A_n(m)+1,\quad\forall m\in\omega \\
+            \end{split}
+        \end{equation*}
+        en particular, definimos:
+        \begin{equation*}
+            n+m=A_n(m)
+        \end{equation*}
+        para todo $n,m\in\omega$. También, definimos un orden sobre $\omega\times\omega$ com la relación dada por:
+        \begin{equation*}
+            \leq \:= \left\{(n,m)\in\omega\times\omega\Big|\exists k\in\omega(n=m+k)\right\}
+        \end{equation*}
+    \end{mydef}
+
+
+    
+\end{document}
