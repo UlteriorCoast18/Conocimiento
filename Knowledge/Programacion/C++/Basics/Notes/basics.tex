@@ -1,0 +1,346 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{listings}
+
+%Gestión de Hipervínculos
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan
+}
+
+%Gestión de Código de Programación
+
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA} % additional keywords
+\definecolor{listing-keyword-3}{HTML}{9137CB} % additional keywords
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language         = C++,
+    alsolanguage     = scala,
+    numbers          = left,
+    xleftmargin      = 2.7em,
+    framexleftmargin = 2.5em,
+    backgroundcolor  = \color{gray!15},
+    basicstyle       = \color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines       = true,
+    frameshape       = {RYR}{Y}{Y}{RYR},
+    rulecolor        = \color{black},
+    tabsize          = 2,
+    numberstyle      = \color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip        = 1.0em,
+    belowskip        = 0.1em,
+    abovecaptionskip = 0em,
+    belowcaptionskip = 1.0em,
+    keywordstyle     = {\color{listing-keyword}\bfseries},
+    keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive        = true,
+    identifierstyle  = \color{listing-identifier},
+    commentstyle     = \color{listing-comment},
+    stringstyle      = \color{listing-string},
+    showstringspaces = false,
+    label            = lst:bar,
+    captionpos       = b,
+}
+
+\lstset{style = myStyle}
+
+%Estilo del capítulo y sección
+
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{%
+  {\parindent \z@ \raggedright
+    \reset@font
+    \hrule
+    \vspace*{10\p@}%
+    \par
+    \center \LARGE \scshape \@chapapp{} \huge \thechapter
+    \vspace*{10\p@}%
+    \par\nobreak
+    \vspace*{10\p@}%
+    \par
+    \vspace*{1\p@}%
+    \hrule
+    %\vskip 40\p@
+    \vspace*{60\p@}
+    \Huge #1\par\nobreak
+    \vskip 50\p@
+  }}
+
+\def\section#1{%
+  \par\bigskip\bigskip
+  \hrule\par\nobreak\noindent
+  \refstepcounter{section}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \reset@font
+  { \large \scshape
+    \strut\S \thesection \quad
+    #1}% 
+    \hrule   
+  \par
+  \medskip
+}
+
+%Gestión marca de agua
+
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+
+\newcommand{\code}[1]{{\fontfamily{cmtt}\selectfont #1}}
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas Programación en C++}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \newpage
+
+    \chapter{Básicos}
+
+    \section{Introducción}
+
+    Un código simple de C++ debería verse así:
+
+    \begin{lstlisting}[caption=myfirstprogram.cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+  cout << "Hello World!";
+  return 0;
+}
+    \end{lstlisting}
+
+    Varias cosas a analizar en este fragmento de código:
+
+    \begin{itemize}
+        \item La instrucción \code{\#include \<iostream\>} es una \textbf{header file library}, que nos permite trabajar con objetos de entrada y salida (mediante la terminal). Todos los header files que se deseen incluir deberán ser de esta forma, cambiando dependiendo del nombre del archivo de cabecera. 
+        \item \code{using namespace std} significa que podemos usar nombres para objetos y variables de la librería estándar.
+        \item La función \code{int main()} es esencial para todo código de C++, es ella la que se ejecuta inicialmente y dónde va toda la información de la primera ejecución del código.
+        \item Finalmente, el \code{return 0;} es la salida del programa que indica que no hubo ningún problema en la ejecución.
+    \end{itemize}
+
+    \begin{obs}
+        La instrucción \code{cout} (en C++ es diferente \code{cout} de \code{Cout}) es un \textbf{objeto} usado junto con el \textbf{operador de inserción} \code{\<\<} para imprimir texto o dar una salida. En este caso le estamos diciendo que imprima \code{Hello World!}.
+    \end{obs}
+
+    \begin{obs}
+        Puede que en algunos códigos de C++ se omita la línea \code{using namespace std} y sea reemplazada en su lugar declarando siempre \code{std::}, que es la palabra reservada \code{std} junto con el operador \code{::}.
+    \end{obs}
+    
+    \begin{lstlisting}[caption = Código en C++ donde no se usa la instrucción \code{using namespace std}.]
+#include <iostream>
+
+int main() {
+  std::cout << "Hello World!";
+  return 0;
+}
+    \end{lstlisting}
+
+    La salida de este programa es la misma que la de (1.1).
+
+    Toda línea en C++ debe ser terminada en \code{;}. Una línea de código es también llamada \textbf{instrucción}. Un código de C++ se conforma de muchas instrucciones. Estas son ejecutadas en el orden en que fueron escritas por el usuario.
+
+    \subsection{Salida de programa}
+
+    El objeto \code{cout} junto con el operador \code{\<\<} son usados para imprimir valores e imprimir texto como en el código (1.1).
+
+    Se pueden añadir cuantos quiera objetos \code{cout} como se desee, sin embargo, \textit{no se añadirán en nuevas lineas}, solo se seguirán poniendo en la misma.
+
+    \begin{lstlisting}[caption = Salida de múltiples \code{cout}]
+#include <iostream>
+using namespace std;
+
+int main() {
+  cout << "Hello World!";
+  cout << "I am learning C++";
+  return 0;
+}
+    \end{lstlisting}
+
+    El código anterior tiene como salida \code{Hello World!I am Learning C++}. Con \code{cout} también es posible imprimir números y operaciones resultantes de números, como las siguientes:
+
+    \begin{lstlisting}[caption = Operaciones dentro de \code{cout}]
+cout << 3;
+cout << 2+3;
+cout << 2*3;
+    \end{lstlisting}
+    El programa tiene como salida \code{356}, que son respectivamente cada una las salidas línea por línea del programa después de su ejecución.
+
+    Para insertar nuevas líneas en el programa se usa al final de la línea que estamos escribiendo el caracter \code{$\backslash$n}.
+
+    Por ejemplo, el código:
+
+    \begin{lstlisting}
+#include <iostream>
+using namespace std;
+
+int main() {
+  cout << "Hello World!" << "\n";
+  cout << "I am learning C++";
+  return 0;
+}
+    \end{lstlisting}
+    tiene como salida:
+    \begin{lstlisting}
+Hello World!
+I am learning C++
+    \end{lstlisting}
+    en vez de todo en una sola línea.
+
+    \chapter*{Información adicional}
+
+    Yo para compilar uso en VSCode la extensión de gdc (me parece que así se encuentra en la tienda de extensiones). Todo lo compilo de esa manera, aparte de que uso algunas extensiones adicionales para ayudarme con la parte de programación para que la escritura del código sea más eficiente de lo normal.
+
+\end{document}
