@@ -386,12 +386,83 @@
         es llamado un \textbf{pushout de $G_1$ y $G_2$} sobre $A$ si la siguiente propiedad universal se satisface:
     \end{mydef}
 
+    \section{Acciones de Grupos}
+
+    \begin{mydef}
+        Sean $G$ un grupo y $X$ un conjunto. \textbf{Una acción de $G$ en $X$} es una función binaria $G\times X\rightarrow X$, $(g,x)\mapsto gx$ que satisface dos axiomas:
+        \begin{enumerate}
+            \item $ex=x$.
+            \item $\forall g,h\in G$, $g(hx)=(gh)x$, para todo $x\in X$.
+        \end{enumerate}
+        Esta acción se denota por $G\curvearrowright X$.
+    \end{mydef}
+    
+    \begin{exa}
+        $\mathbb{Z}\curvearrowright\mathbb{R}$ dada por $(n,x)\mapsto n+x$.
+
+        Esta acción se puede generalizar a una $\mathbb{Z}^n\curvearrowright\mathbb{R}^n$, tal que $(\vec{n},\vec{x})\mapsto\vec{n}+\vec{x}$.
+
+        Estas dos acciones cumplen los dos axiomsa de la definición anterior.
+    \end{exa}
+
+    \begin{exa}
+        $\mathbb{Z}/2\mathbb{Z}\curvearrowright\mathbb{S}^2$. Tomando $\mathbb{Z}/2\mathbb{Z}=\gen{a|a^2}$, hacemos $ax=-x$ para todo $x\in\mathbb{S}^2$. Esta acción es llamada \textbf{acción antipodal}.
+    \end{exa}
+
+    \begin{exa}
+        $GL(n,\mathbb{R})\curvearrowright\mathbb{R}^n$ tal que $(A,\vec{x})\mapsto A\vec{x}$ el producto de matrices usual viendo a $\vec{x}$ como vector columna.
+    \end{exa}
+
+    \begin{obs}
+        Una acción $G\curvearrowright X$ es lo mismo que un morfismo de grupos $\cf{\varphi}{G}{\Aut{X}}$.
+        
+        Dependiendo de $X$, podemos pedir diferentes cosas para $\Aut{X}$. En el caso anterior hacemos $g\mapsto\varphi_g$ donde $\cf{\varphi_g}{X}{X}$ es tal que $x\mapsto\varphi_g(x)=gx$.
+
+        De forma viceversa, podemos definir un morfimso de grupos a partir de una acción de grupos.
+    \end{obs}
+
+    \begin{mydef}
+        Sea $G\curvearrowright X$. Dado $x\in X$ definimos la \textbf{órbita de $x$} como:
+        \begin{equation*}
+            \mathcal{O}_x=\left\{gx\Big|g\in G \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{exa}
+        En la acción $\mathbb{Z}\curvearrowright\mathbb{R}$
+    \end{exa}
+
+    \begin{mydef}
+        Dada una acción de grupos $G\curvearrowright X$, definimos el \textbf{espacio cociente $X/G$} como el espacio cociente generado a partir de la relación $\sim$ dada por:
+        \begin{equation*}
+            x\sim y\textup{ si y sólo si }\exists g\in G\textup{ tal que }y=gx
+        \end{equation*}
+    \end{mydef}
+    
+    \begin{exa}
+        Si $\mathbb{Z}^2\curvearrowright\mathbb{R}^2$, entonces el espacio $\mathbb{R}^2/\mathbb{Z}^2=\mathbb{T}=\mathbb{S}^1\times\mathbb{S}^1$.
+    \end{exa}
+
+    \begin{exa}
+        En la acción $\mathbb{Z}/2\mathbb{Z}\curvearrowright\mathbb{S}^2$, el espacio resulta que $\mathbb{S}^2/(\mathbb{Z}/2\mathbb{Z})=\mathbb{R}P^2$.
+    \end{exa}
+
     \chapter{Gráficas y Árboles}
 
     \section{Básicos}
-    
+
+    \begin{obs}
+        En lo que sigue, todas las gráficas serán no dirigidas, simples y sin lazos.
+    \end{obs}
+
+    Que sean no dirigidas es que las aristas no tienen dirección, que sean simples es que no haya más de una arista uniendo dos vértices y que no tengan lazos es que un vértice no sea unido hacia sí mismo por una arista.
+
     \begin{mydef}
-        Una \textbf{gráfica}, denotada por $G=(V,E)$ es un conjunto no vacío de \textbf{vértices} o \textbf{nodos} $V$ y un conjunto $E$ de \textbf{aristas}.
+        Sea $A$ un conjunto, se define el conjunto de \textbf{$k$-tuplas de $A$}, denotado por $[A]^k$, como el conjunto de todos los subconjuntos de $A$ de cardinalidad $k$. 
+    \end{mydef}
+
+    \begin{mydef}
+        Una \textbf{gráfica} es un par $G=(V,E)$ de conjuntos disjuntos, donde $V$ es un conjunto no vacío de \textbf{vértices} o \textbf{nodos} $V$ y un conjunto $E$ de \textbf{aristas} tal que $E\subseteq[V]^2$.
     \end{mydef}
 
     \begin{exa}
@@ -399,10 +470,88 @@
     \end{exa}
 
     \begin{mydef}
-        Sea $G=(V,E)$ una gráfica y $v\in V$. El \textbf{grado de $v$} (denotado por $\deg(v)$) es el número de aristas que contienen como vértice a $v$.
-
-        El \textbf{grado de la gráfica $G$} es el grado más grande de todos los vértices de la gráfica $G$.
+        Sea $(V,E)$ una gráfica.
+        \begin{enumerate}
+            \item Decimos que dos vértices $v,v'\in V$ son \textbf{vecinos} o \textbf{adyacentes} si están unidos por una arista, es decir si $\left\{v,v'\right\}\in E$.
+            \item El número de vecinos de un vértice $v$ es el \textbf{grado del vértice}, denotado por $\deg(v)$.
+            \item Si el grado de todos los vértices de una gráfica es el mismo, decimos que la gráfica es \textbf{regular}.
+        \end{enumerate}
     \end{mydef}
+
+    \begin{mydef}
+        Una gráfica se dice \textbf{completa} si todos los vértices son vecinos unos de otros (salvo él mismo).
+    \end{mydef}
+
+    \begin{exa}
+        $(\left\{a,b \right\},\left\{\left\{a,b\right\} \right\})$ es completa y regular.
+
+        $(\left\{a,b,c \right\},\left\{\left\{a,b\right\},\left\{a,c\right\},\left\{b,c\right\} \right\})$ es completa y regular.
+
+        $(\left\{a,b,c,d \right\},\left\{\left\{a,b\right\},\left\{b,c\right\},\left\{c,d\right\},\left\{d,a\right\} \right\})$ no es completa y pero sí es regular.
+    \end{exa}
+
+    \begin{mydef}
+        Sean $X$ y $Y$ gráficas.
+        \begin{enumerate}
+            \item Una función $\cf{f}{V(X)}{V(Y)}$ es de \textbf{gráficas} si envía aristas en aristas, es decir para todo $\left\{v,w \right\}\in E(X)\Rightarrow\left\{f(v),f(w) \right\}\in E(Y)$.
+            \item Decimos que $X$ y $Y$ son \textbf{isomorfas} si existe una función de gráficas que es biyectiva.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $X$ una gráfica. Un \textbf{camino de longitud $n\in\mathbb{N}\cup\left\{\infty\right\}$ en $X$} es una sucesión de vértices $v_0,v_1,...$ tal que $v_i\neq v_j$ si $i\neq j$ y $\left\{v_i,v_{ i+1} \right\}\in E(X)$.
+
+        Si $n<\infty$, decimos que $v_0$ y $v_n$ son unidos por un camino.
+
+        \begin{enumerate}
+            \item Decimos que $X$ es \textbf{conexo} si cualesquiera dos vértices están unidos por un camino.
+            \item Sea $n\in\mathbb{N}$. Un \textbf{ciclo} de longitud $n$ es un camino $v_0,...,v_{ n-1}$ en $X$ con $\left\{v_{ n-1},v_0 \right\}\in X$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{mydef}
+        Decimos que una gráfica $X$ es un \textbf{árbol} si es conexa y no tiene ciclos.
+    \end{mydef}
+
+    \begin{propo}
+        Una gráfica es un árbol si y sólo si para cualesquiera dos vértices existe un único camino que une a ambos vértices.
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{mydef}
+        Un grupo \textbf{$G$ actúa libremente en un conjunto $X$} si $g\cdot x\neq x$ para todo $g\in G\setminus\left\{e_G\right\}$.
+    \end{mydef}
+
+    \begin{theor}
+        Un grupo $G$ actúa libremente en un árbol si y sólo si $G$ es grupo libre.
+    \end{theor}
+
+    \begin{proof}
+        Esto será inmediata después de que veamos la parte de topología algebraica.
+    \end{proof}
+
+    Naturalmente surge la siguiente pregunta: ¿qué pasa si relajamos la condición de actuar libremente? ¿qué tipos de grupos pueden aparecer? Resulta que hay un teorema que enuncia lo que sucede en esta sucesión y aparecen productos libres de grupos, pushouts de grupos y grupos $HNN$. Esto es conocido como la \textbf{teoría de Basser-Serre}.
+
+    \begin{mydef}
+        Una \textbf{$n$-variedad} es un espacio topológico $(X,\tau)$ que localmente es homeomorfo a $\mathbb{R}^n$.
+    \end{mydef}
+
+    \begin{exa}
+        Ejemplos de 3-variedades son $\mathbb{T}^3=\mathbb{S}^1\times\mathbb{S}^1\times\mathbb{S}^1$, $\mathbb{R}^3$, cualquier abierto de $\mathbb{R}^3$, una superficie $\Sigma$ producto con $\mathbb{S}^1$ es también una 3-variedad.
+    \end{exa}
+
+    Resulta que hay un teorema que si, tomamos una 3-variedad $M^3$, podemos ver a:
+    \begin{equation*}
+        M^3=M_1\#M_2\#\cdots\#M_r
+    \end{equation*}
+    (donde se está haciedo aquí suma conexa). Va a resultar que:
+    \begin{equation*}
+        \pi_1(M^3)=\pi_1(M_1)*\pi_1(M_2)*\cdots*\pi_1(M_r)
+    \end{equation*}
+    es el producto libre de estos grupos.
 
     \chapter{Ejercicios y Problemas\\ Teoría de Grupos}
 
@@ -701,19 +850,127 @@
     \end{proof}
 
     \begin{excer}
-        
+        Sean $G$ un grupo y $X$ un $G$-conjunto, es decir, $G$ actúa en $X$. Haga lo siguiente:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Demuestra que la siguiente relación en $X$ es una relación de equivalencia: $x\sim y$ si y sólo si existe $g\in G$ tal que $y=gx$.
+            \item Demuestra que $G_x$ es un subgrupo de $G$ para todo $x\in X$.
+        \end{enumerate}
     \end{excer}
 
     \begin{proof}
-        
+        De \textit{(a)}: Veamos que la relación $\sim$ en $X$ es de equivalencia:
+        \begin{itemize}
+            \item (\textbf{Reflexividad}) Sea $x\in X$, entonces existe $e_G\in G$ tal que $x=e_Gx$, por lo cual $x\sim x$.
+            \item \textbf{(Simetría)} Sean $x,y\in X$ tales que $x\sim y$, entonces existe $g\in G$ tal que $y=gx$. Se cumple además que existe $g^{-1}\in G$ tal que:
+            \begin{equation*}
+                \begin{split}
+                    g^{-1}y&=g^{-1}(gx)\\
+                    &=(g^{-1}g)x\\
+                    &=e_Gx\\
+                    &=x\\
+                \end{split}
+            \end{equation*}
+            por lo cual, $y\sim x$.
+            \item \textbf{(Transitividad)}: Sean $x,y,z\in X$ tales que $x\sim y$ y $y\sim z$, entonces existen $g_1,g_2\in G$ tales que:
+            \begin{equation*}
+                y=g_1x\textup{ y }z=g_2y
+            \end{equation*}
+            por lo cual:
+            \begin{equation*}
+                \begin{split}
+                    z&=g_2y\\
+                    &=g_2(g_1x)\\
+                    &=(g_2g_1)x\\
+                \end{split}
+            \end{equation*}
+            así que existe $g_2g_1\in G$ tal que $z=(g_2g_1)x$, por ende $x\sim z$.
+        \end{itemize}
+        de los tres incisos anteriores se sigue que $\sim$ es relación de equivalencia.
+
+        De \textit{(b)}: Sea $x\in X$ y considere el conjunto $G_x$. Este conjunto es no vacío pues $e_G\in G_x$. Sean $a,b\in G_x$, se tiene que:
+        \begin{equation*}
+            x=ax\textup{ y }x=bx
+        \end{equation*}
+        en particular, de la segunda igualdad se tiene que $x=b^{-1}x$, por lo cual $x=ax=a(b^{-1}x)=(ab^{-1})x$. Por tanto, $ab^{-1}\in G_x$. Luego, $G_x$ es subgrupo de $G$.
     \end{proof}
-
-
 
     \begin{mydef}[\textbf{Árboles como espacios métricos}]
         Sea $T$ un árbol. Una \textbf{geodésica entre dos puntos $x_1$ y $x_2$ de $T$} es un camino de longitud mínima que une $x_1$ y $x_2$.
     \end{mydef}
 
+    \begin{mydef}
+        Sea $G$ un grupo actuando en una gráfica $Y$. Una \textbf{inversión} consiste de un elemento $g\in G$ y una arista $\left\{u,v \right\}$ de $Y$ tal que $g\left\{u,v\right\}=\left\{u,v \right\}$ y $gu=v$.
+    \end{mydef}
 
+    \begin{excer}
+        Sean $T$ un árbol y $s$ un automorfismo de $T$. Si $\alpha$ es una geodésica, entonces $s\alpha$ es una geodésica.
+    \end{excer}
+
+    \begin{proof}
+        Sea $\alpha$ una geodésica entre dos vértices del árbol $T$, digamos $v_1$ y $v_2$. Como $s$ es un automorfismo de $T$, entonces $s$ es una función de gráficas (que va de $T$ en sí misma) que es biyectiva.
+        
+        Además, al ser $s$ automorfismo se sigue que los vértices $s(v_1)$ y $s(v_2)$ son unidos por el camino $s\alpha$. Veamos que $s\alpha$ es una geodésica. En efecto, en caso de que no fuese un camino de longitud mínima, existiría otro camino, digamos $\beta$ que une a los vértices $s(v_1)$ con $s(v_2)$.
+
+        Por ser $s$ automorfismo, podemos tomar automorfismo inverso $s^{-1}$ y sería tal que $s^{-1}\beta$ es un camino que une a los vértices $v_1$ y $v_2$, el cual debe tener longitud menor que el camino $\alpha$ (ya que los caminos $\alpha$ y $s\alpha$ tienen la misma longitud)\contradiction, pues $\alpha$ es una geodésica. Por tanto, $s\alpha$ es geodésica.
+    \end{proof}
+
+    \begin{excer}
+        Sea $T$ un árbol y $G$ un grupo actuando en $T$ sin inversiones. Sea $H$ un subgrupo de $G$ tal que el conjunto de puntos fijos:
+        \begin{equation*}
+            T^H=\left\{x\in T\Big|hx=x,\forall h\in H \right\}
+        \end{equation*}
+        es no vacío. Entonces, $T^H$ es un subárbol de $T$.
+    \end{excer}
+
+    \begin{proof}
+        Es inmediato que $T^H$ es una subgráfica de $T$. Para ver que es subárbol de $T$ basta con ver que $T^H$ es conexo y que no tiene ciclos. En caso de que tenga solamente un vértice, es inmediato que es un árbol, por lo que supongamos que tiene a lo sumo 2 vértices.
+        \begin{itemize}
+            \item Sean $x,y\in T^H$ diferentes, entonces $hx=x$ y $hy=y$ para todo $h\in H$. Como $T$ es un árbol, existe un único camino $\alpha$ que une a $x$ con $y$, sean $v_1,...,v_n$. Probaremos que los vértices de este camino están en $T^H$. En efecto, procederemos por inducción sobre la longitud del camino. 
+            
+            Supongamos que el camino es de longitud 1, entonces ya se tiene que $x,y$ son vértices de la gráfica $T^H$, veamos que $\left\{x,y \right\}$ es una arista de la gráfica $T^H$.
+
+            \item Veamos que no tiene ciclos. Suponga que $T^H$ tiene un cíclo, entonces $T$ no podría ser un árbol, ya que por ser $T^H$ subgráfica de $T$ se seguiría que $T$ tiene al menos un ciclo\contradiction. Por tanto, $T^H$ no tiene ciclos.
+        \end{itemize}
+    \end{proof}
+
+    \begin{excer}
+        Sea $\gamma$ la línea recta real con su estructura de gráfica canónica, es decir los vértices son los enteros $\mathbb{Z}$, y las aristas son $\left\{n,n+1\right\}$ con $n\in\mathbb{Z}$. Demuestra que el grupo $\Aut{\gamma}$ es isomorfo a $D_\infty$.
+    \end{excer}
+
+    \begin{proof}
+        Recordemos que:
+        \begin{equation*}
+            D_\infty=\gen{x,y\Big|x^2=y^2=1}
+        \end{equation*}
+
+        Sea $f\in\Aut{\gamma}$, entonces $\cf{f}{\gamma}{\gamma}$ es función entre dos gráficas y es biyectiva. Afirmamos que existe $n\in\mathbb{Z}$ tal que
+        \begin{equation*}
+            f(m)=m+n
+        \end{equation*}
+        para todo vértice $m\in\mathbb{Z}$ y,
+        \begin{equation*}
+            \left\{f(m),f(m+1) \right\}=\left\{m+n,m+n+1 \right\}
+        \end{equation*}
+    \end{proof}
+
+    \begin{excer}
+        Demuestra que todo grupo finito actuando en un árbol tiene un punto fijo.
+    \end{excer}
+
+    \begin{proof}
+        Sea $T$ un árbol y $G\curvearrowright T$ una acción del grupo $G$ en $T$, siendo $G$ grupo finito. Veamos que $T$ tiene un punto fijo, es decir que existe $x\in T$ tal que:
+        \begin{equation*}
+            gx=x,\quad\forall g\in G
+        \end{equation*}
+        En efecto, suponga que no existe $x\in T$ tal que sucede lo anterior, por lo que para todo $x\in T$ existe $g_x\in G$ tal que:
+        \begin{equation*}
+            g_xx\neq x
+        \end{equation*}
+        Sea:
+        \begin{equation*}
+            \left\{g_xx\Big|x\in T \right\}
+        \end{equation*}
+
+    \end{proof}
 
 \end{document}
