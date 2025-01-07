@@ -914,6 +914,32 @@
         Por ser $s$ automorfismo, podemos tomar automorfismo inverso $s^{-1}$ y sería tal que $s^{-1}\beta$ es un camino que une a los vértices $v_1$ y $v_2$, el cual debe tener longitud menor que el camino $\alpha$ (ya que los caminos $\alpha$ y $s\alpha$ tienen la misma longitud)\contradiction, pues $\alpha$ es una geodésica. Por tanto, $s\alpha$ es geodésica.
     \end{proof}
 
+    \begin{propo}
+        Sea $X$ una gráfica y $G$ un grupo actúando sin inversiones en $X$ y $H<G$. Si $x,y\in X$ son elementos distintos, entonces:
+        \begin{equation*}
+            x,y\in X^H\textup{ si y sólo si }\left\{x,y \right\}\in X^H
+        \end{equation*} 
+    \end{propo}
+
+    \begin{proof}
+        Recordemos que una acción de un grupo $G$ en una gráfica $X$ es simplemente un homomorfismo entre $G$ y $\Aut{X}$, $g\mapsto\varphi_g$, por lo que el hecho de que un punto $x\in X$ se quede fijo significa que:
+        \begin{equation*}
+            \varphi_g(x)=x,\quad\forall g\in G
+        \end{equation*}
+
+        $\Rightarrow):$ Suponga que $x,y\in X^H$, entonces para todo $h\in H$: $\varphi_h(x)=x$ y $\varphi_h(y)=y$. En particular, como $\varphi_h$ es automorfismo para todo $h\in G$, se tiene que el vértice:
+        \begin{equation*}
+            \left\{\varphi_h(x),\varphi_h(y) \right\}=\left\{x,y\right\}
+        \end{equation*}
+        debe estar en la gráfica $X$. En particular, sigue que $h\left\{x,y \right\}=\left\{x,y\right\}$ para todo $h\in H$, por lo que $\left\{x,y \right\}\in X^H$.
+
+        $\Leftarrow):$ Suponga que $\left\{x,y\right\}\in X^H$, entonces:
+        \begin{equation*}
+            h\left\{x,y\right\}=\left\{x,y\right\},\quad\forall h\in H
+        \end{equation*}
+        como $G$ actúa sin inversiones, en particular no puede suceder que exista $g\in G$ tal que $g\left\{x,y \right\}=\left\{x,y \right\}$ y $y=gx$, así que en particular para todo $h\in H$ sucede que $hx=x$ y $hy=y$, es decir que $x,y\in X^H$.
+    \end{proof}
+
     \begin{excer}
         Sea $T$ un árbol y $G$ un grupo actuando en $T$ sin inversiones. Sea $H$ un subgrupo de $G$ tal que el conjunto de puntos fijos:
         \begin{equation*}
@@ -925,9 +951,11 @@
     \begin{proof}
         Es inmediato que $T^H$ es una subgráfica de $T$. Para ver que es subárbol de $T$ basta con ver que $T^H$ es conexo y que no tiene ciclos. En caso de que tenga solamente un vértice, es inmediato que es un árbol, por lo que supongamos que tiene a lo sumo 2 vértices.
         \begin{itemize}
-            \item Sean $x,y\in T^H$ diferentes, entonces $hx=x$ y $hy=y$ para todo $h\in H$. Como $T$ es un árbol, existe un único camino $\alpha$ que une a $x$ con $y$, sean $v_1,...,v_n$. Probaremos que los vértices de este camino están en $T^H$. En efecto, procederemos por inducción sobre la longitud del camino. 
+            \item Sean $x,y\in T^H$ diferentes, entonces $hx=x$ y $hy=y$ para todo $h\in H$. Como $T$ es un árbol, existe un único camino $\alpha$ que une a $x$ con $y$, sean $v_1,...,v_n$. Procederemos por inducción sobre $n$. Para $n=2$ el resultado es inmediato. Suponga que existe $k\in\mathbb{N}$ tal que si $n\leq k$ y los vértices $v_1,v_n\in T^H$, entonces existe un camino que une a los puntos está en $T^H$.
             
-            Supongamos que el camino es de longitud 1, entonces ya se tiene que $x,y$ son vértices de la gráfica $T^H$, veamos que $\left\{x,y \right\}$ es una arista de la gráfica $T^H$.
+            Sean $x,y\in T^H$ vértices tales que el camino $\alpha$ que los une tiene longitud $k+1$. Suponga que existe $i_0\in\natint{2,k}$ tal que $v_{ i_0}\notin T^H$ (ya que en caso contrario por hipótesis de inducción se tendría que existe un camino que une a $v_1$ con $v_{k+1}$). Por la proposición anterior se sigue que los vértices que unen a $v_{i_0}$ con $v_{i_0-1}$ y $v_{i_0+1}$ no están en $T^H$, respectivamente.
+
+
 
             \item Veamos que no tiene ciclos. Suponga que $T^H$ tiene un cíclo, entonces $T$ no podría ser un árbol, ya que por ser $T^H$ subgráfica de $T$ se seguiría que $T$ tiene al menos un ciclo\contradiction. Por tanto, $T^H$ no tiene ciclos.
         \end{itemize}
@@ -940,17 +968,39 @@
     \begin{proof}
         Recordemos que:
         \begin{equation*}
-            D_\infty=\gen{x,y\Big|x^2=y^2=1}
+            D_\infty=\gen{r,s\Big|s^2=1\textup{ y }srs=r^{-1}}
         \end{equation*}
+        Sea $f\in\Aut{\gamma}$, entonces $\cf{f}{\gamma}{\gamma}$ es función entre dos gráficas y es biyectiva.
 
-        Sea $f\in\Aut{\gamma}$, entonces $\cf{f}{\gamma}{\gamma}$ es función entre dos gráficas y es biyectiva. Afirmamos que existe $n\in\mathbb{Z}$ tal que
+        Sean $\cf{g,h}{\gamma}{\gamma}$ los automorfismos dados por:
         \begin{equation*}
-            f(m)=m+n
+            g(m)=-m,\quad\forall m\in\mathbb{Z}
         \end{equation*}
-        para todo vértice $m\in\mathbb{Z}$ y,
+        y,
         \begin{equation*}
-            \left\{f(m),f(m+1) \right\}=\left\{m+n,m+n+1 \right\}
+            h(m)=m+1,\quad\forall m\in\mathbb{Z}
         \end{equation*}
+        Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                g\circ h\circ g(m)&=g\circ h(-m)\\
+                &=g(-m+1)\\
+                &=m-1\\
+                &=h^{-1}(m),\quad\forall m\in\mathbb{Z} \\
+            \end{split}
+        \end{equation*}
+        donde $\cf{h^{-1}}{\gamma}{\gamma}$ es tal que $m\mapsto m-1$. $g^2=\bbm{1}_\mathbb{Z}$.
+
+        Afirmamos que $f$ se expresa como composición de $g$ y $h$ sucesivamente. En efecto, todo automorfismo de $\gamma$ está caracterizado por su valor en 0. Sea:
+        \begin{equation*}
+            n=f(0)
+        \end{equation*}
+        Se tienen dos casos:
+        \begin{itemize}
+            \item $n\geq0$: en cuyo caso se sigue que $f=\underset{n-\textup{veces}}{\underbrace{h\circ\cdots\circ h}}$.
+            \item $n<0$, en cuyo caso se sigue que $f=\underset{-n-\textup{veces}}{\underbrace{h^{-1}\circ\cdots\circ h^{-1}}}=g\circ\underset{-n-\textup{veces}}{\underbrace{h\circ\cdots\circ h}}\circ g$.
+        \end{itemize}
+        en ambos casos, se obtiene el resultado.
     \end{proof}
 
     \begin{excer}
