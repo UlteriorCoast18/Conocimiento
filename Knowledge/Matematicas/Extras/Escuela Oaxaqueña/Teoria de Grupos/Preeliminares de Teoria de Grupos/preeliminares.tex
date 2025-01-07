@@ -197,6 +197,213 @@
 
     \newpage
 
+    \chapter{Básicos de Teoría de Grupos y Acciones de Grupos}
+
+    Estudiaremos en todo el curso algo llamado la \textbf{teoría geométrica de grupos}. Esta teoría está en la intersección de varias áreas, como son la teoría de grupos, la topología algebraica y la geometría diferencial.
+
+    Veremos básicos de teoría de grupos (junto con cosas de acciones de grupos) y cosas de topología algebraica.
+
+    \section{Grupos Libres}
+
+    La motivación de grupos libres es que cuando tenemos dos espacios vectoriales $V$ y $W$, para definir un morfismo $f$ entre ambos espacios basta con definirlo en la base de $V$. Sin embargo, en grupos resulta más complicado hacer esta definición para poder definir el morfismo.
+
+    \begin{mydef}
+        Sea $S$ un conjunto y $\hat{S}$ un conjunto disjunto de $S$ y biyectivo a $S$. Una \textbf{palabra} en $S\cup\hat{S}$ es una sucesión finita en $S\cup\hat{S}$. Denotamos por $A(S)$ al conjunto de todas las palabras en $S$.
+    \end{mydef}
+
+    \begin{obs}
+        Lo último en la definición anterior quiere decir que tomemos una función biyectiva $\cf{\varphi}{S}{\hat{S}}$.
+    \end{obs}
+
+    \begin{propo}
+        Sea $S$ un conjunto, entonces $A(S)$ es un monoide con la operación de concatenación. Tal que:
+        \begin{enumerate}
+            \item La palabra vacía $\emptyset=\varepsilon$ es el elemento neutro.
+            \item La operación es asociativa.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    Pero, ¿cómo agregamos inversos?
+
+    \begin{mydef}
+        Sea $S$ un conjunto. Definimos la relación $\sim$ en $A(S)$ como la generada por:
+        \begin{equation*}
+            \begin{split}
+                \forall x,y\in A(S)\forall s\in S xs\hat{s}y&\sim xy;\\
+                \forall x,y\in A(S)\forall s\in S x\hat{s}sy&\sim xy;\\
+            \end{split}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        El espacio cociente $F(S)=A[S]/\sim$ es un grupo con la operación concatenación $[w]\cdot[v]=[wv]$. $F(S)$ es llamado \textbf{grupo libre}.
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{exa}
+        Si $S=\left\{a\right\}$, entonces $F(S)=\left\{,...,\hat{a}\hat{a}\hat{a},\hat{a}\hat{a},\hat{a},\emptyset,a,aa,aaa,... \right\}\cong\mathbb{Z}$.
+    \end{exa}
+
+    En el ejemplo anterior la concatenación de palabras se denotará simplemente por potencia y, al elemento asociado en $\hat{S}$ se le denotará por $s^{-1}$.
+
+    \begin{exa}
+        Si $\abs{S}>1$, entonces $F(S)$ no es abeliano.
+    \end{exa}
+    
+    \begin{propo}[\textbf{Propiedad Universal de Grupos Libres}]
+        Sea $F(S)$ el grupo libre generado por $S$. Para todo grupo $H$ y toda función $\cf{f}{S}{H}$ existe un único homomorfismo de grupos $\cf{\hat{f}}{F(S)}{H}$ tal que el diagrama:
+        
+        es conmutativo, esto es que:
+        \begin{equation*}
+            \hat{f}\circ\iota=f
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{mydef}
+        Sea $n\in\mathbb{N}$ y $S=\left\{x_1,...,x_n \right\}$ con $x_i\neq x_j$ para todo $i,j\in\natint{1,n}$ con $i\neq j$. Enotnces, escribimos por $F_n$ al \textbf{grupo libre generado por $S$} y $F_n$ es llamado \textbf{grupo libre de rango $n$}.
+    \end{mydef}
+
+    \section{Generadores y Relaciones}
+
+    \begin{mydef}
+        Sea $G$ un grupo y $S\subseteq G$. El subgrupo normal generado por $S$ es el subgrupo normal más pequeño que contiene a $S$, denotamos este conjunto por: $\gen{S}^{\vartriangleleft}=\gen{\gen{S}}$.
+    \end{mydef}
+
+    \begin{exa}
+        Si $G$ es un grupo abeliano, entonces para todo $S\subseteq G$:
+        \begin{equation*}
+            \gen{S}^\vartriangleleft=\gen{S}
+        \end{equation*}
+    \end{exa}
+
+    \begin{mydef}
+        Sea $S$ un conjunto y considere el conjunto de palabras de $S\cup S^{-1}$ denotado por $(S\cup S^{-1})^*$. Entonces, para $R\subseteq S\cup S^{-1}$ definimos:
+        \begin{equation*}
+            \gen{S|R}=F(S)/\gen{R}^\vartriangleleft
+        \end{equation*}
+
+        Si $G$ es grupo con $G\cong\gen{S|R}$, entonces el par $(S,R)$ es llamado una \textbf{presentación de $G$}.
+    \end{mydef}
+
+    \begin{exa}
+        Para todo $n\in\mathbb{N}$, $\gen{x|x^n}\cong\mathbb{Z}/n\mathbb{Z}$.
+    \end{exa}
+
+    \begin{exa}
+        $\mathbb{Z}\cong\gen{a|\emptyset}$.
+    \end{exa}
+
+    \begin{exa}
+        Considere $F_n$ y $\mathbb{Z}^n$. Ambos no son isomorfos ya que $F_n$ no necesariamente es abeliano. Sea:
+        \begin{equation*}
+            R=\left\{x_ix_jx_i^{-1}x_j^{-1}\Big|x_i,x_j\in F_n \right\}\subseteq F_n
+        \end{equation*}
+        entonces:
+        \begin{equation*}
+            \mathbb{Z}^n\cong F_n/\gen{R}^\vartriangleleft
+        \end{equation*}
+        tal que:
+        \begin{equation*}
+            (0,)
+        \end{equation*}
+    \end{exa}
+
+    \begin{propo}[\textbf{Propiedad Universal de la presentación de Grupos}]
+        
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+    
+    \textbf{El problema de la palabra}: Sea $G=\gen{S|R}$, dar un algoritmo que determine cuando una palabra representa una palabra trivial o no.
+
+    \begin{mydef}
+        Sea $G$ un grupo. Decimos que $G$ es \textbf{finitamente presentado} (abreviado por f.p.) si existe un conjunto finito $S$ y un conjunto finito $S\subseteq(S\cup S^{-1})^*$ tal que:
+        \begin{equation*}
+            \gen{S|R}\cong G
+        \end{equation*}
+    \end{mydef}
+
+    \begin{exa}
+        $\mathbb{Z}$, $\mathbb{Z}^n$ y $\mathbb{Z}/n\mathbb{Z}$ son f.p.
+    \end{exa}
+
+    \section{Producto Libre de Grupos}
+
+    \begin{mydef}
+        Sea $\left\{G_i\right\}_{ i\in I}$ una familia no vacía de grupos. El \textbf{producto libre de $\left\{G_i\right\}_{ i\in I}$}, denotado por:
+        \begin{equation*}
+            *_{ i\in I}G_i
+        \end{equation*}
+        es el conjunto $\Omega$ de todas las palabras reducidas $g_1\cdots g_n$, donde $g_i\in G$ y $g_i\neq e_i$. Además, $g_i$ y $g_{i+1}$ no están en el mismo $G_j$.
+    \end{mydef}
+
+    \begin{propo}
+        $\Omega$ con la operación de concatenación y reducción es un grupo.
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Si $G_i=\gen{S_i|R_i}$, entonces $*_{i\in I}G_i=\gen{\bigcup_{ i\in I}S_i|\bigcup_{ i\in I}R_i}$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Investigar la propiedad universal del producto libre de grupos.
+    \end{excer}
+
+    \section{Pushout de Grupos}
+
+    Supongamos que tenemos el siguiente diagrama de grupos:
+
+    ¿será posible construir el grupo $L$ junto con los morfismos $\beta_1$ y $\beta_2$?
+
+    Resulta que esto también satisface una propiedad universal.
+
+    \begin{mydef}
+        Sean $A$ un grupo y $\cf{\alpha_i}{A}{G_i}$, $i=1,2$ morfismos de grupos. Un grupo $G$ junto con morfismos $\cf{\beta_i}{G_i}{G}$ satisfaciendo:
+        \begin{equation*}
+            \beta_1\circ\alpha_1=\beta_2\circ\alpha_2
+        \end{equation*}
+        es llamado un \textbf{pushout de $G_1$ y $G_2$} sobre $A$ si la siguiente propiedad universal se satisface:
+    \end{mydef}
+
+    \chapter{Gráficas y Árboles}
+
+    \section{Básicos}
+    
+    \begin{mydef}
+        Una \textbf{gráfica}, denotada por $G=(V,E)$ es un conjunto no vacío de \textbf{vértices} o \textbf{nodos} $V$ y un conjunto $E$ de \textbf{aristas}.
+    \end{mydef}
+
+    \begin{exa}
+        Considere la gráfica $G=(V,E)$ donde $V=\left\{a,b,c,d \right\}$ y $E=\left\{\left\{a,b \right\},\left\{a,c \right\},\left\{b,c \right\},\left\{c,d \right\} \right\}$.
+    \end{exa}
+
+    \begin{mydef}
+        Sea $G=(V,E)$ una gráfica y $v\in V$. El \textbf{grado de $v$} (denotado por $\deg(v)$) es el número de aristas que contienen como vértice a $v$.
+
+        El \textbf{grado de la gráfica $G$} es el grado más grande de todos los vértices de la gráfica $G$.
+    \end{mydef}
+
     \chapter{Ejercicios y Problemas\\ Teoría de Grupos}
 
     \section{Preliminares Teoría de Grupos}
@@ -206,11 +413,19 @@
     \end{excer}
 
     \begin{proof}
-        Se tienen dos casos:
-        \begin{itemize}
-            \item $G$ es finito, en cuyo caso $G$ es un subgrupo normal de $G$ de índice finito.
-            \item $G$ es infinito. 
-        \end{itemize}
+        Sea:
+        \begin{equation*}
+            N=\gen{H}^\vartriangleleft
+        \end{equation*}
+        tenemos los siguientes subgrupos de $G$:
+        \begin{equation*}
+            H<N<G
+        \end{equation*}
+        que satisfacen (por ser el índice multiplicativo):
+        \begin{equation*}
+            [G:H]=[G:N][N:H]
+        \end{equation*}
+        como $[G:H]<\infty$, se sigue que $[G:N]<\infty$, con lo que $N$ es el subgrupo normal buscado.
     \end{proof}
 
     \begin{excer}
@@ -294,6 +509,11 @@
         \end{equation*}
         donde $N'=f_2(N)$.
         
+        Afirmamos que:
+        \begin{equation*}
+            G=\gen{f_1(n_1),...,f_1(n_m),f_2^{-1}(k_1),...,f_2^{-1}(k_l)}
+        \end{equation*}
+
     \end{proof}
 
     \begin{excer}
@@ -310,6 +530,21 @@
             (n,h)^{-1}=\left((\varphi_{h^{-1}}(n))^{-1},h^{-1}\right)
         \end{equation*}
 
+        Sean $(n_1,h_1)\in N\rtimes_{\varphi}H$ y $h\in H$, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                (n_1,h_1)(e_N,h)(n_1,h_1)^{-1}&=(n_1,h_1)(e_N,h)\left((\varphi_{h_1^{-1}}(n_1))^{-1},h_1^{-1}\right)\\
+                &=(n_1\varphi_{h_1}(e_N),h_1h)\left((\varphi_{h_1^{-1}}(n_1))^{-1},h_1^{-1}\right)\\
+                &=(n_1\varphi_{h_1}(e_N),h_1h)\left((\varphi_{h_1^{-1}}(n_1))^{-1},h_1^{-1}\right)\\
+                &=(n_1e_N,h_1h)\left((\varphi_{h_1^{-1}}(n_1))^{-1},h_1^{-1}\right)\\
+                &=(n_1,h_1h)\left((\varphi_{h_1^{-1}}(n_1))^{-1},h_1^{-1}\right)\\
+                &=\left(n_1\varphi_{h_1h}\left((\varphi_{h_1^{-1}}(n_1))^{-1}\right),h_1hh_1^{-1} \right)\\
+                &=\left(n_1\varphi_{h_1h}\left((\varphi_{h_1^{-1}}(n_1^{-1}))\right),h_1hh_1^{-1} \right)\\
+                &=\left(n_1\varphi_{h_1h h_1^{-1}}\left(n_1^{-1}\right),h_1hh_1^{-1} \right)\\
+            \end{split}
+        \end{equation*}
+        pues, $\varphi_{h_1}(e_N)=e_N$ y por ser $h\mapsto\varphi_h$ homomorfismo.
+
         $\Rightarrow)$: Suponga que $H$ es un subgrupo normal de $N\rtimes_\varphi H$, esto es que el grupo $H$ visto como subgrupo de $N\rtimes_\varphi H$:
         \begin{equation*}
             H=\left\{(e_N,h)\Big|h\in H \right\}
@@ -318,7 +553,30 @@
         \begin{equation*}
             (n_1,h_1)(e_N,h)(n_1,h_1)^{-1}\in H
         \end{equation*}
-        para todo $(n_1,h_1)\in H$ y para todo $h\in H$.
+        para todo $(n_1,h_1)\in N\rtimes_{\varphi}H$ y $h\in H$, por lo que:
+        \begin{equation*}
+            \left(n_1\varphi_{h_1h h_1^{-1}}\left(n_1^{-1}\right),h_1hh_1^{-1} \right)\in H
+        \end{equation*}
+        nuevamente, para todo $(n_1,h_1)\in N\rtimes_{\varphi}H$ y $h\in H$. En particular:
+        \begin{equation*}
+            n_1\varphi_{h_1h h_1^{-1}}\left(n_1^{-1}\right)=e_N
+        \end{equation*}
+        por lo que para todo $n\in N$ y $h\in H$:
+        \begin{equation*}
+            n^{-1}\varphi_{h}\left(n\right)=e_N\Rightarrow\varphi_h(n)=n
+        \end{equation*}
+        es decir, que $\varphi_h=\bbm{1}_H$, por lo que $h\mapsto \varphi_h$ es el homomorfismo trivial.
+        
+        $\Leftarrow):$ Suponga que $\varphi$ es trivial, se sigue que:
+        \begin{equation*}
+            \begin{split}
+                (n_1,h_1)(e_N,h)(n_1,h_1)^{-1}&=\left(n_1\varphi_{h_1h h_1^{-1}}\left(n_1^{-1}\right),h_1hh_1^{-1} \right)\\
+                &=(n_1\bbm{1}_H(n_1^{-1}),h_1hh_1^{-1})\\
+                &=(n_1n_1^{-1},h_1hh_1^{-1})\\
+                &=(e_N,h_1hh_1^{-1})\in H\\
+            \end{split}
+        \end{equation*}
+        para todo $(n_1,h_1)\in N\rtimes_{\varphi}H$ y $h\in H$, por lo que $H$ es normal en $N\rtimes_{\varphi}H$.
     \end{proof}
 
     \begin{excer}
@@ -338,6 +596,23 @@
         \begin{equation*}
             Z(G*H)=\left\{x\in G*H\Big|xy=yx,\forall y\in G*H \right\}
         \end{equation*}
+        Sea $u\in Z(G*H)$, se tiene que:
+        \begin{equation*}
+            ux=xu,\quad\forall x\in G*H
+        \end{equation*}
+        como $G$ y $H$ son no triviales, podemos tomar $u=gh$ donde $g\in G\setminus\left\{ e_G\right\}$ y $h\in H\setminus\left\{e_H \right\}$. Se sigue así que:
+        \begin{equation*}
+            ugh=ghu
+        \end{equation*}
+        Si $u\neq e_{G*H}$, entonces existirían $x_1,...,x_n\in G\cup H$ (alternándose un elemento con otro estando uno en $G$ y otro en $H$) junto con $m_1,...,m_n\in\mathbb{Z}$ tales que:
+        \begin{equation*}
+            u=x_1^{ m_1}\cdots x_n^{ m_n}
+        \end{equation*}
+        así que:
+        \begin{equation*}
+            x_1^{ m_1}\cdots x_n^{ m_n}gh=ghx_1^{ m_1}\cdots x_n^{ m_n}
+        \end{equation*}
+        reduciendo ambas palabras resulta que $x_n$ está en $G$ y $H$ a la vez, cosa que no puede suceder ya que ello implicaría que $x_i\in G\cap H$ para todo $i=1,...,n$. Por tanto, $u=e_{G*H}$.
     \end{proof}
 
     \begin{excer}
@@ -360,5 +635,85 @@
 
         $\Rightarrow):$ Supongamos que $F_n$ es isomorfo a $F_m$.
     \end{proof}
+
+    \begin{excer}
+        Demuestra que todo grupo admite una presentación.
+    \end{excer}
+
+    \begin{proof}
+        Sea $G$ un grupo y tomemos $S=G$. Considere $F(S)$ el grupo libre sobre el conjunto $S$. Sea $\cf{f}{S}{G}$ la función dada por:
+        \begin{equation*}
+            f(s)=s,\quad\forall s\in S=G
+        \end{equation*}
+        entonces, por la propiedad universal de grupos libres existe un único homomorfismo $\cf{\hat{f}}{F(S)}{G}$ tal que:
+        \begin{equation*}
+            \hat{f}\circ\iota=f
+        \end{equation*}
+        en particular, $\hat{f}$ es epimorfismo, pues:
+        \begin{equation*}
+            \hat{f}\circ\iota(S)=f(S)=G
+        \end{equation*}
+        así que, por el primer teorema de isomorfismos existe un único isomorfismo $\cf{g}{G}{F(S)/\ker(\hat{f})}$. Tomando:
+        \begin{equation*}
+            K=\ker(\hat{f})
+        \end{equation*}
+        se sigue que:
+        \begin{equation*}
+            \gen{K}^\vartriangleleft=\ker(\hat{f})
+        \end{equation*}
+        por lo que $G\cong F(S)/\gen{K}^\vartriangleleft$
+    \end{proof}
+
+    \begin{excer}
+        Demuestra que el grupo con presentación:
+        \begin{equation*}
+            \gen{x,y|xyx^{-1}y^{-1}}
+        \end{equation*}
+        es isomorfo a $\mathbb{Z}^2$.
+    \end{excer}
+
+    \section{Acciones de Grupos}
+
+    \begin{excer}
+        Sean $G$ un grupo y $X$ un $G$-conjunto, es decir que $G$ actúa en $X$. Para $x\in X$ definimos el \textbf{estabilizador de $x$} como:
+        \begin{equation*}
+            G_x=\left\{g\in G\Big|gx=x \right\}
+        \end{equation*}
+        Sean $x,y\in X$ tales que existe $g\in G$ tal que $y=gx$. Demuestre que $G_y=gG_xg^{-1}$.
+    \end{excer}
+
+    \begin{proof}
+        Veamos la doble contención:
+        \begin{itemize}
+            \item Sea $g_1\in G_y$, entonces $g_1y=y$, por lo cual $g_1gx=gx$, luego $g^{-1}g_1gx=g^{-1}gx=x$, así que $g^{-1}g_1g\in G_x$, por tanto $g_1\in gG_xg^{-1}$.
+            \item Sea $gg_1g^{-1}\in gG_xg^{-1}$, entonces se cumple que $g_1x=x$, así que:
+            \begin{equation*}
+                \begin{split}
+                    gg_1g^{-1}y&=gg_1(g^{-1}y)\\
+                    &=gg_1x\\
+                    &=gx\\
+                    &=y\\
+                \end{split}
+            \end{equation*}
+            por tanto, $gg_1g^{-1}\in G_y$.
+        \end{itemize}
+        por los dos incisos se sigue la igualdad.
+    \end{proof}
+
+    \begin{excer}
+        
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+
+
+    \begin{mydef}[\textbf{Árboles como espacios métricos}]
+        Sea $T$ un árbol. Una \textbf{geodésica entre dos puntos $x_1$ y $x_2$ de $T$} es un camino de longitud mínima que une $x_1$ y $x_2$.
+    \end{mydef}
+
+
 
 \end{document}

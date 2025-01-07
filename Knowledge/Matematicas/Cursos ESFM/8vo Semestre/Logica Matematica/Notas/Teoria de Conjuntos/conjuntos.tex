@@ -483,7 +483,7 @@
     \end{theor}
 
     \begin{proof}
-        
+        Ejercicio.
     \end{proof}
 
     \begin{obs}
@@ -508,6 +508,234 @@
         \end{equation*}
     \end{mydef}
 
+    \begin{propo}
+        \label{noPertenenciaSiMismo}
+        Para todo conjunto $x$, $x\notin x$.
+    \end{propo}
+
+    \begin{proof}
+        Por el axioma del Par, $\left\{x\right\}$ es conjunto, luego por el axioma de fundación/regularidad existe un conjunto $y$ tal que $y\in\left\{x\right\}$ y $y\cap\left\{x\right\}=\emptyset$, en particular, $y=x$ y $x\cap\left\{x\right\}=\emptyset$, por lo que $x\notin x$.
+    \end{proof}
+
+    \begin{propo}
+        No existen $x,y,z$ conjuntos tales que $x\in y\in z\in x$.
+    \end{propo}
+
+    \begin{proof}
+        Considere el conjunto $\left\{x,y,z\right\}$. Por el axioma de fundación debe existir $a\in\left\{x,y,z\right\}$ tal que $a\cap\left\{x,y,z \right\}\neq\emptyset$, es decir que:
+        \begin{equation*}
+            x\notin a,y\notin a,z\notin a
+        \end{equation*}
+        Como $a\in\left\{x,y,z\right\}$, se tienen tres casos: $a=x$, entonces $z\notin x$, si $a=y$ entonces $x\notin y$ y, si $a=z$, entonces $y\notin z$.
+    \end{proof}
+
+    \begin{propo}
+        No existe una función $f$ tal que $\dom{f}=\omega$ y que satisface $(\forall n\in\omega)(f(n+1)\in f(n))$.
+    \end{propo}
+
+    \begin{proof}
+        Suponga que existe tal función $f$, entonces por el axioma de fundación, existe $x\in\ran{f}$ tal que $x\cap\ran{f}=\emptyset$. Como $x\in\ran{f}$, entonces existe $n\in\omega$ tal que $x=f(n)$, luego como $f(n+1)\in f(n)$, se sigue que:
+        \begin{equation*}
+            f(n+1)\in x\textup{ y }f(n+1)\in\ran{f}
+        \end{equation*}
+        por lo que $x\cap\ran{f}\neq\emptyset$\contradiction. Así que tal función $f$ no puede existir.
+    \end{proof}
+
+    \begin{mydef}
+        Un conjunto es \textbf{transitivo} si $\forall y\in x(y\subseteq x)$.
+    \end{mydef}
+
+    \begin{exa}
+        $\emptyset$, $\omega$ y $n$ son transitivos, para todo $n\in\mathbb{N}$.
+    \end{exa}
+
+    \begin{propo}
+        Dado un conjunto $x$, los siguientes son equivalentes:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $x$ es transitivo.
+            \item $z\in y\in x \Rightarrow z\in x$.
+            \item $x\subseteq\pot{x}$.
+            \item $\bigcup_{y\in x}y=x$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{lema}
+        Si $x$ es transitivo y $\forall y\in x$, $y$ es transitivo, entonces $\bigcup_{ y\in x}y$ y $\bigcap_{ y\in x}y$ son transitivos.
+    \end{lema}
+
+    \begin{proof}
+        Sea $x$ tal que todos sus elementos son transitivos. Sea $a\in b\in\bigcup_{ y\in x}y$, entonces existe $y\in x$ tal que $b\in y$. Por ser $y$ transitivo se sigue que $a\in y$, luego $a\in\bigcup_{ y\in x}y$. Por tanto, de la proposición anterior se sigue que $\bigcup_{ y\in x}y$ es transitivo.
+
+        Para probar que $\bigcap_{y\in x}y$ es transitivo se procede de forma análoga.
+    \end{proof}
+
+    \begin{mydef}[\textbf{Von Newmann}]
+        Un \textbf{número ordinal} o simplemente \textbf{ordinal} es un conjunto transitivo y totalmente ordenado de manera estricta por la relación $\in$. Esto es, si $\alpha$ es un número ordinal:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item (\textbf{Irreflexividad}) Para todo $\beta\in\alpha$, $\beta\notin\beta$.
+            \item (\textbf{Transitividad}) Para todo $\beta,\gamma,\epsilon\in\alpha$, $\beta\in\gamma\in\epsilon$ implica $\beta\in\epsilon$.
+            \item (\textbf{Totalmente ordenado}) Para todo $\beta,\gamma\in\alpha$ se tiene que $\beta\in\gamma$ o $\gamma\in\beta$ o $\beta=\gamma$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        $\emptyset$, $n\in\omega$ y $\omega$ son números ordinales.
+    \end{exa}
+
+    \begin{lema}
+        Si $\alpha$ es un ordinal, entonces $\alpha$ es bien ordenado por $\in$.
+    \end{lema}
+
+    \begin{proof}
+        Sea $x\subseteq\alpha$ con $x\neq\emptyset$. Por el Axioma de Fundación existe $\beta\in x$ tal que $x\cap\beta=\emptyset$. Sea $\gamma\in x$, afirmamos que $\beta=\gamma$ o $\beta\in\gamma$.
+
+        En efecto, tenemos tres casos: $\beta\in\gamma$ o $\beta=\gamma$ o $\gamma\in\beta$, esto último no puede suceder ya que ello implicaría que $\gamma\in x\cap\beta=\emptyset$\contradiction. Por tanto, $x$ tiene primer elemento, es decir:
+        \begin{equation*}
+            \beta=\min_{\in}(x)
+        \end{equation*}
+
+        Así que $\alpha$ es bien ordenado por $\in$.
+    \end{proof}
+
+    \begin{obs}
+        En otras palabras, en el lema anterior estamos diciendo que todo subconjunto de $\alpha$ tiene un primer elemento bajo la relación $\in$.
+    \end{obs}
+
+    \begin{theor}
+        Se tiene lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Si $\alpha$ es un ordinal y $x\in\alpha$, entonces $x$ también es un número ordinal.
+            \item Si $\alpha$ es un número ordinal, entonces $\alpha\notin\alpha$.
+            \item Si $\alpha,\beta,\gamma$ son números ordinales, entonces $\alpha\in\beta$ y $\beta\in\gamma$ implica que $\alpha\in\gamma$.
+            \item Para cualesquiera $\alpha,\beta$ ordinales, entonces: $\alpha\in\beta$ o $\beta\in\alpha$ o $\alpha=\beta$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De \textit{(1)}: Sea $\alpha$ un ordinal y $x\in\alpha$. Veamos que $x$ es transitivo y es totalmente ordenado de manera estricta por $\in$:
+        \begin{itemize}
+            \item (\textbf{Es transitivo}) Sea $z\in y\in x$. Como $\alpha$ es ordinal, entonces es transitivo, luego $y\in x\in\alpha$ implica que $y\in\alpha$, lo cual a su vez implica $z\in\alpha$ pues $z\in y\in\alpha$. Por tanto, $x,y,z\in\alpha$. Al ser $\in$ un orden total en $\alpha$, se sigue que $z\in x$, $z=x$ o $x\in z$. No pueden suceder ninguna de las dos últimas pues eso llevaría a una contradicción (por un lema anterior), por lo que $z\in x$.
+            \item (\textbf{Es totalmente ordenado}). Como $x\in\alpha$, al ser $\alpha$ transitivo por definición se sigue que $x\subseteq\alpha$, por lo cual, como $\in$ es un orden total en $\alpha$, se sigue que también lo es en $x$.
+        \end{itemize}
+        por los dos incisos anteriores se sigue que $x$ es un número ordinal.
+
+        De \textit{(2)}: Sea $\alpha$ un ordinal, en particular $\alpha$ es un conjunto, luego de la proposición (\ref{noPertenenciaSiMismo}) se sigue que $\alpha\notin\alpha$.
+
+        De \textit{(3)}: Sean $\alpha,\beta,\gamma$ números ordinales tales que $\alpha\in\beta\in\gamma$, como $\gamma$ es un conjunto transitivo se sigue que $\alpha\in\gamma$.
+
+        De \textit{(4)}: Sean $\alpha,\beta$ ordinales. Tomemos $\gamma=\alpha\cap\beta$. $\gamma$ es un número ordinal por (pues es transitivo por ser intersección de conjuntos transitivos y hereda el orden total de $\in$).
+
+        Afirmamos que si $\gamma\neq\alpha$, entonces $\gamma\in\alpha$. Suponga que $\gamma\neq\alpha$, como $\gamma=\alpha\cap\beta$, entonces $\gamma\nsubseteq\alpha$, así que $\alpha\setminus\gamma$ es un subconjunto de $\alpha$ no vacío. Por el lema anterior este elemento tiene elemento mínimo, digamos:
+        \begin{equation*}
+            \delta=\min_{\in}(\alpha\setminus\gamma)
+        \end{equation*}
+        Probaremos que $\delta=\gamma$.
+        \begin{itemize}
+            \item Sea $\xi\in\delta$, entonces por minimalidad de $\delta$ debe suceder que $\xi\notin \alpha\setminus\gamma$, por ende $\xi\in\delta$. Se sigue así que $\delta\subseteq\gamma$.
+            \item Sea $\xi\in\gamma\subseteq\alpha$. Por la linealidad de $\in$ tenemos tres casos:
+            \begin{itemize}
+                \item $\xi\in\delta$, en cuyo caso se sigue la contención.
+                \item $\xi=\delta$, luego esto implica que $\delta=\xi\in\gamma\cap(\alpha\setminus\gamma)=\emptyset$\contradiction. Por tanto, esto no puede suceder.
+                \item $\delta\in\xi$, en cuyo caso se sigue que $\delta\in\gamma\in\gamma$, al ser $\gamma$ ordinal se tiene que $\delta\in\gamma$ y $\delta\in\alpha\setminus\gamma$\contradiction. Por tanto, esto no puede suceder.
+            \end{itemize}
+            por los tres incisos anteriores, se sigue que $\xi\in\delta$, es decir que $\gamma\subseteq\delta$.
+        \end{itemize}
+        De los tres incisos anteriores se sigue que $\delta=\gamma$, en particular:
+        \begin{equation*}
+            \gamma=\delta\in\alpha\setminus\gamma\subseteq\alpha
+        \end{equation*}
+        es decir, $\gamma\in\alpha$. De forma análoga se prueba que si $\gamma\neq\beta$ entonces $\gamma\in\beta$.
+
+        En conclusión, si $\gamma\neq\alpha$ y $\gamma\neq\beta$, entonces $\gamma\in\alpha\cap\beta=\gamma$\contradiction. Por tanto, $\gamma=\alpha$ o bien $\gamma=\beta$, es decir que $\beta=\gamma\in\alpha$ (si $\gamma\neq\alpha$ y $\gamma=\beta$) o bien $\alpha=\gamma\in\gamma$ (si $\gamma\neq\beta$ y $\gamma=\alpha$) o bien $\alpha=\gamma=\beta$ (si $\gamma=\alpha$ y $\gamma=\beta$), lo cual prueba el resultado.
+    \end{proof}
+    
+    \begin{cor}[\textbf{Paradoja de Burali-Forti}]
+        No existe un conjunto $X$ que contenga a todos los ordinales.
+    \end{cor}
+
+    \begin{proof}
+        Suponga que tal conjunto existe, entonces existiría el conjunto:
+        \begin{equation*}
+            O=\left\{x\in X\Big|x\textup{ es un ordinal} \right\}
+        \end{equation*}
+        este es conjunto es un número ordinal por el Teorema anterior (es un conjunto transitivo y totalmente ordenado por $\in$), en particular, $O\in O$\contradiction. Por ende, $X$ no puede existir.
+    \end{proof}
+
+    \begin{mydef}
+        Sean $\alpha,\beta$ ordinales. Decimos que $\alpha<\beta$ si $\alpha\in\beta$.
+    \end{mydef}
+
+    \begin{propo}
+        La relación $<$ definida anteriormente es antisimétrica, transitiva, lineal y es total.
+    \end{propo}
+
+    \begin{proof}
+        Es un reparrafraseo de las propiedades de los ordinales obtenidas en el teorema anterior.
+    \end{proof}
+
+    \begin{propo}
+        Sean $\alpha,\beta$ ordianales. Entonces:
+        \begin{equation*}
+            \alpha\leq\beta\textup{ si y sólo si }\alpha\subseteq\beta
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        $\Rightarrow):$ Si $\alpha\leq\beta$, entonces $\alpha<\beta$ o $\alpha=\beta$, es decir que $\alpha\in\beta$ o $\alpha=\beta$, como $\beta$ es transitivo se sigue que $\alpha\subset\beta$ o $\alpha=\beta$, es decir que $\alpha\subseteq\beta$.
+        
+        $\Leftarrow):$ Supongamos que $\alpha\subseteq\beta$. Por ser ordinales se tienen tres casos:
+        \begin{itemize}
+            \item $\alpha\in\beta$, en cuyo caso se sigue de forma inmediata que $\alpha<\beta$ lo cual implica que $\alpha\leq\beta$.
+            \item $\alpha=\beta$, lo cual implica que $\alpha\leq\beta$.
+            \item $\beta\in\alpha$, lo cual implica que $\beta\in\beta$\contradiction. Por ende, esto no puede suceder.
+        \end{itemize}
+        se sigue de los tres incisos anteriores que $\alpha\leq\beta$.
+    \end{proof}
+
+    \begin{obs}
+        Chance y hay algo mal ya que hago la distinción entre $\subset$ y $\subseteq$ (una es contención propia y la otra es normal).
+    \end{obs}
+
+    \begin{mydef}
+        Si $\alpha$ es un ordinal, definimos:
+        \begin{equation*}
+            S(\alpha)=\alpha\cup\left\{\alpha\right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{theor}
+        Dado un ordinal $\alpha$ se tiene lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $S(\alpha)$ es un ordinal.
+            \item $\alpha<S(\alpha)$.
+            \item $\neg\exists\beta(\alpha<\beta<S(\alpha))$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De \textit{(1)}: Por el teorema demostrado anteriormente la relación $\in$ es irreflexiva, transitiva y satisface la tricotomía entre los ordinales, en particular entre los elementos de $S(\alpha)$, que son todos ellos ordinales. Por tanto, $S(\alpha)$ es linealmente ordenado estricto por $\in$.
+
+        Veamos que $S(\alpha)$ es un conjunto transitivo. Sea $\beta\in S(\alpha)=\alpha\cup\left\{\alpha\right\}$. Se tienen dos casos:
+        \begin{itemize}
+            \item $\beta\in\alpha$, en cuyo caso se sigue que $\beta\subseteq\alpha\subseteq\alpha\cup\left\{\alpha\right\}=S(\alpha)$.
+            \item $\beta\in\left\{\alpha\right\}$, en cuyo caso se sigue que $\beta=\alpha\subseteq\alpha\cup\left\{\alpha\right\}=S(\alpha)$.            
+        \end{itemize}
+        por ambos incisos se sigue que $\beta\subseteq S(\alpha)$. Por ende, $S(\alpha)$ es transitivo. De esto y lo anterior se sigue que $S(\alpha)$ es un ordinal.
+
+        De \textit{(2)}: Es inmediata de la definición.
+
+        De \textit{(3)}: Probaremos que $\forall\beta(\beta\leq\alpha\left\{S(\alpha)\leq\beta \right\})$. Sea $\beta$ un ordinal arbitrario. Por tricotomía se tienen tres casos:
+        \begin{itemize}
+            \item $\beta<\alpha$ o $\beta=\alpha$, en cuyo caso se sigue que $\beta\leq\alpha$.
+            \item Si $\alpha<\beta$, entonces $\alpha\in\beta$ y, por ser $\beta$ ordinal se tiene que $\alpha\subseteq\beta$, es decir que $\alpha\cup\left\{\alpha\right\}\subseteq\beta$. Por la proposición anterior se sigue que $S(\alpha)\leq\beta$.
+        \end{itemize}
+        por ambos casos se sigue el resultado.
+    \end{proof}
 
     
+
 \end{document}

@@ -339,6 +339,89 @@ I am learning C++
     \end{lstlisting}
     en vez de todo en una sola línea.
 
+    \begin{obs}
+        Con \code{$<<$} se pueden insertar más caracteres de texto en la salida estándar.
+    \end{obs}
+
+    Otra forma de hacer un salto de línea es usar \code{$<<$ endl} después de lo que sea que queramos poner, como en el siguiente código:
+
+    \begin{lstlisting}
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello World!" << endl;
+    cout << "I am learning C++";
+    return 0;
+}
+    \end{lstlisting}
+
+    \begin{mydef}
+        El caracter \code{$\backslash$n} es llamado \textbf{secuencia de escape}, y fuerza el cursor a cambiar su posición al inicio de la siguiente línea en la pantalla. Esto resulta en una nueva línea.
+
+        Otros caracteres de escape son:
+        \begin{itemize}
+            \item \code{$\backslash$t}: tabular.
+            \item \code{$\backslash\backslash$}: inserta un $\backslash$.
+            \item \code{$\backslash$''}: inserta comillas.
+        \end{itemize}
+    \end{mydef}
+
+    \section{Variables}
+    
+    En C++, una variable se declara de la siguiente manera:
+    \begin{lstlisting}
+type variableName = value;
+    \end{lstlisting}
+    algunos tipos de variables son:
+    \begin{itemize}
+        \item \code{int}.
+        \item \code{double}.
+        \item \code{char}.
+        \item \code{string}. Guarda texto, a diferencia de C, C++ si tiene este tipo de variable.
+        \item \code{bool}. Guarda dos estados, verdadero y falso.
+    \end{itemize}
+
+    Como en muchos otros lenguajes, se puede crear la variable y asignar su valor después. Esto reescribe el valor anterior que tenía (si es que había un valor anterior).
+
+    Algunos ejemplos de declaraciones de variables:
+
+    \begin{lstlisting}
+int myNum = 5;               // Integer (whole number without decimals)
+double myFloatNum = 5.99;    // Floating point number (with decimals)
+char myLetter = 'D';         // Character
+string myText = "Hello";     // String (text)
+bool myBoolean = true;       // Boolean (true or false)
+    \end{lstlisting}
+
+    \subsection{Impresion en la salida estándar}
+
+    Las variables se imprimen como si fuesen texto, con el objeto \code{cout} y el operador $<<$:
+
+    \begin{lstlisting}
+int myAge = 35;
+cout << "I am " << myAge << " years old.";
+    \end{lstlisting}
+    
+    Estas variables se pueden operar, por ejemplo con el operador binario +.
+
+    \subsection{Múltiples Variables}
+
+    Se pueden también declarar múltiples variables, como en los siguientes dos códigos:
+
+    \begin{lstlisting}
+int x = 5, y = 6, z = 50;
+cout << x + y + z;
+    \end{lstlisting}
+
+    \begin{lstlisting}
+int x, y, z;
+x = y = z = 50;
+cout << x + y + z;
+    \end{lstlisting}
+
+    Todas las variables llevan un nombre único, denominado \textbf{identificador}.
+
     \chapter*{Información adicional}
 
     Yo para compilar uso en VSCode la extensión de gdc (me parece que así se encuentra en la tienda de extensiones). Todo lo compilo de esa manera, aparte de que uso algunas extensiones adicionales para ayudarme con la parte de programación para que la escritura del código sea más eficiente de lo normal.
