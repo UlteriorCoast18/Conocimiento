@@ -736,6 +736,72 @@
         por ambos casos se sigue el resultado.
     \end{proof}
 
-    
+    \begin{theor}
+        Sea $x$ un conjunto tal que $(\forall\alpha)(\alpha\in x\Rightarrow\alpha\textup{ es un ordinal})$. Entonces:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $\bigcup_{\alpha\in x}\alpha$ es un ordinal, que además es el supremo de $x$.
+            \item Si $x\neq\emptyset$, entonces $\bigcap_{\alpha\in x}\alpha$ es un ordinal que además es el mínimo de $x$.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{proof}
+        De \textit{(1)}: Sea $\gamma=\bigcup_{\alpha\in x}\alpha$. Este conjunto es transitivo por ser la unión de conjuntos transitivos, además, $\gamma$ está linealmente ordenado por $\in$ de manera estricta ya que todos los ordinales lo están y tanto $\gamma$ como $\delta$ consisten de números ordinales.
+
+        Por tanto, $\gamma$ es número ordinal. Veamos que $\gamma$ es el supremo de $x$. Se tiene que para todo $\alpha\in x$, $\alpha\subseteq x$ luego $\gamma\subseteq x$ y, si $\xi$ es otro ordinal tal que $\forall\alpha\in x\Rightarrow\alpha\subseteq\xi$ entonces $\gamma\subseteq\xi$ es decir $\gamma\in\xi$, por lo cual, $\gamma=\sup(x)$.
+
+        De \textit{(2)}: Ejercicio. Es análogo a la prueba del inciso anterior.
+    \end{proof}
+
+    \begin{cor}[\textbf{Principio de Inducción Transfinita}]
+        Dada una fórmula $\varphi(x)$, $(\forall\alpha\textup{ ordinal})((\forall\beta<\alpha)\varphi(\beta)\Rightarrow\varphi(\alpha))\Rightarrow(\forall\alpha)\varphi(\alpha)$.
+    \end{cor}
+
+    \begin{proof}
+        Probaremos la contrapositiva, supongamos que $\neg\forall\alpha$ ordinal se tiene $\varphi(\alpha)$. Entonces, sea $\beta$ ordinal tal que $\neg\varphi(\beta)$.
+        
+        Se tienen dos casos:
+        \begin{itemize}
+            \item $\forall\xi<\beta \varphi(\xi)$. Sea $\alpha=\beta$.
+            \item $\exists\xi<\beta\neg\varphi(\xi)$. Sea
+            \begin{equation*}
+                A=\left\{\xi<\beta\Big|\neg\varphi(\xi) \right\}
+            \end{equation*}
+            este conjunto es no vacío por hipótesis. Tomemos $\alpha=\min(A)$.
+        \end{itemize}
+        En ambos casos $\alpha$ es un mínimo tal que $\neg\varphi(\alpha)$, esto es:
+        \begin{equation*}
+            \neg\varphi(\alpha)\textup{ y }(\forall\gamma<\alpha)\varphi(\gamma)
+        \end{equation*}
+        Por tanto, $\exists\alpha\textup{ ordinal}((\forall\gamma<\alpha\varphi(\gamma)\land\neg\varphi(\alpha)))$, lo cual prueba la contrapositiva.
+    \end{proof}
+
+    \begin{mydef}
+        Sean $(X,\leq)$ y $(Y,\preceq)$ son dos conjuntos parcialmente ordenados. Un \textbf{isomorfismo} entre ellos es una biyección $\cf{\varphi}{X}{Y}$ tal que $\forall a,b\in X$, $a\leq b\iff\varphi(a)\preceq\varphi(b)$.
+    \end{mydef}
+
+    \begin{lema}
+        Sean $\alpha,\beta$ ordinales y sea $\cf{h}{\alpha}{\beta}$ un isomorfismo entre ellos. Entonces $\beta=\alpha$ y $h=\textup{id}_\alpha$.
+    \end{lema}
+
+    \begin{proof}
+        Demostraremos que:
+        \begin{equation*}
+            (\forall\xi<\alpha) h(\xi)=\xi
+        \end{equation*}
+        Sea $\xi<\alpha$ arbitrario y supongamos que $\forall \eta<\xi$, $h(\eta)=\eta$. Entonces:
+        \begin{equation*}
+            h(\xi)=\left\{\gamma\Big|\gamma<h(\xi) \right\}
+        \end{equation*}
+        como $h$ es suprayectiva, entonces:
+        \begin{equation*}
+            \begin{split}
+                h(\xi)&=\left\{h(\sigma)\Big|h(\delta)<h(\xi) \right\}\\
+                &=\left\{\delta\Big|h(\delta)<h(\xi) \right\}\\
+                &=\left\{\delta\Big|\delta<\xi \right\}\\
+                &=\xi\\
+            \end{split}
+        \end{equation*}
+        Por inducción transfinita se sigue que $h(\xi)=\xi$ para todo $\xi<\alpha$, es decir que $h=\textup{id}_\alpha$ y, por ende $\beta=h(\alpha)=\alpha$.
+    \end{proof}
 
 \end{document}

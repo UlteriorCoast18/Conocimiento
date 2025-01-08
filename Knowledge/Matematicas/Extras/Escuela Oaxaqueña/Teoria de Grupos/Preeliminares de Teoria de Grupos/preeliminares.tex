@@ -955,10 +955,11 @@
             
             Sean $x,y\in T^H$ vértices tales que el camino $\alpha$ que los une tiene longitud $k+1$. Suponga que existe $i_0\in\natint{2,k}$ tal que $v_{ i_0}\notin T^H$ (ya que en caso contrario por hipótesis de inducción se tendría que existe un camino que une a $v_1$ con $v_{k+1}$). Por la proposición anterior se sigue que los vértices que unen a $v_{i_0}$ con $v_{i_0-1}$ y $v_{i_0+1}$ no están en $T^H$, respectivamente.
 
-
+            Considere el conjunto:
 
             \item Veamos que no tiene ciclos. Suponga que $T^H$ tiene un cíclo, entonces $T$ no podría ser un árbol, ya que por ser $T^H$ subgráfica de $T$ se seguiría que $T$ tiene al menos un ciclo\contradiction. Por tanto, $T^H$ no tiene ciclos.
         \end{itemize}
+        por ambos incisos se sigue el resultado.
     \end{proof}
 
     \begin{excer}
@@ -991,7 +992,7 @@
         \end{equation*}
         donde $\cf{h^{-1}}{\gamma}{\gamma}$ es tal que $m\mapsto m-1$. $g^2=\bbm{1}_\mathbb{Z}$.
 
-        Afirmamos que $f$ se expresa como composición de $g$ y $h$ sucesivamente. En efecto, todo automorfismo de $\gamma$ está caracterizado por su valor en 0. Sea:
+        Afirmamos que $f$ se expresa como composición de $g$ y $h$ sucesivamente. En efecto, todo automorfismo de $\gamma$ está caracterizado por su valor en 0 y lo que haga con sus dos vecinos. Sea:
         \begin{equation*}
             n=f(0)
         \end{equation*}
