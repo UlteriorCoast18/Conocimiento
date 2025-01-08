@@ -1,0 +1,679 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{bbm}
+\usepackage{listings}
+
+%Gestión de Hipervínculos
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan
+}
+
+%Gestión de Código de Programación
+
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA} % additional keywords
+\definecolor{listing-keyword-3}{HTML}{9137CB} % additional keywords
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language         = C++,
+    alsolanguage     = scala,
+    numbers          = left,
+    xleftmargin      = 2.7em,
+    framexleftmargin = 2.5em,
+    backgroundcolor  = \color{gray!15},
+    basicstyle       = \color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines       = true,
+    frameshape       = {RYR}{Y}{Y}{RYR},
+    rulecolor        = \color{black},
+    tabsize          = 2,
+    numberstyle      = \color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip        = 1.0em,
+    belowskip        = 0.1em,
+    abovecaptionskip = 0em,
+    belowcaptionskip = 1.0em,
+    keywordstyle     = {\color{listing-keyword}\bfseries},
+    keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive        = true,
+    identifierstyle  = \color{listing-identifier},
+    commentstyle     = \color{listing-comment},
+    stringstyle      = \color{listing-string},
+    showstringspaces = false,
+    label            = lst:bar,
+    captionpos       = b,
+}
+
+\lstset{style = myStyle}
+
+%Estilo del capítulo y sección
+
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{%
+  {\parindent \z@ \raggedright
+    \reset@font
+    \hrule
+    \vspace*{10\p@}%
+    \par
+    \center \LARGE \scshape \@chapapp{} \huge \thechapter
+    \vspace*{10\p@}%
+    \par\nobreak
+    \vspace*{10\p@}%
+    \par
+    \vspace*{1\p@}%
+    \hrule
+    %\vskip 40\p@
+    \vspace*{60\p@}
+    \Huge #1\par\nobreak
+    \vskip 50\p@
+  }}
+
+\def\section#1{%
+  \par\bigskip\bigskip
+  \hrule\par\nobreak\noindent
+  \refstepcounter{section}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \reset@font
+  { \large \scshape
+    \strut\S \thesection \quad
+    #1}% 
+    \hrule   
+  \par
+  \medskip
+}
+
+%Gestión marca de agua
+
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
+\newcommand{\gen}[1]{\ensuremath{\langle#1\rangle}}
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas Curso Topología Algebraica
+    
+    10° Escuela Oaxaqueña de Matemáticas}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+
+    \newpage
+
+    \chapter{Topología Algebraica}
+
+    \section{El grupo fundamental}
+
+    \begin{obs}
+        De ahora en adelante $X$ y $Y$ serán espacios topológicos.
+    \end{obs}
+
+    \begin{mydef}
+        Sean $X$ y $Y$ espacios. Dos funciones continuas $\cf{f,g}{X}{Y}$ son \textbf{homotópicas} si $\exists\cf{H}{X\times[0,1]}{Y}$ continua (una \textbf{homotopía}) tal que:
+        \begin{equation*}
+            H(x,0)=f(x)\textup{ y }H(x,1)=g(x),\quad\forall x\in X
+        \end{equation*}
+        Escribimos que $f\simeq g$.
+    \end{mydef}
+
+    \begin{mydef}
+        Los espacios $X$ y $Y$ son \textbf{homotópicamente equivalentes} si $\exists\cf{f}{X}{Y}$ y $\cf{g}{Y}{X}$ funciones continuas (llamadas \textbf{equivalencias homotópicas}) tales que:
+        \begin{equation*}
+            f\circ g\eqsim\bbm{1}_X\quad\textup{y}\quad g\circ f=\bbm{1}_Y
+        \end{equation*}
+        a lo cual escribimos $X\simeq Y$.
+    \end{mydef}
+
+    \begin{obs}
+        $\simeq$ define una relación de equivalencia en la clase de espacios topológicos.
+    \end{obs}
+
+    \begin{proof}
+        Ejercicio.
+    \end{proof}
+
+    \begin{propo}
+        Si $X$ es homeomorfo a $Y$, entonces $X\simeq Y$.
+    \end{propo}
+
+    \begin{mydef}
+        Un espacio $X$ es \textbf{contráctil} si $X\simeq\left\{*\right\}$.
+    \end{mydef}
+
+    \begin{obs}
+        Otra equivalencia es que $\cf{C_p}{X}{X}$ $x\mapsto p$ es homotópica a la identidad.
+    \end{obs}
+
+    \begin{exa}
+        $\mathbb{R}^n,I=[0,1],\bbm{D}^n$ son contráctilces.
+    \end{exa}
+
+    \begin{mydef}
+        Un subespacio $A$ de $X$ es \textbf{un retracto de $X$} si $\exists\cf{r}{X}{A}$ continua tal que $r\big|_A=\bbm{1}_A$. En este caso $r$ es llamada una \textbf{retracción}.
+    \end{mydef}
+
+    \begin{mydef}
+        Dos funciones son homotópicas relativas a $A$ si para la función $\cf{H}{X\times I}{Y}$ es tal que:
+        \begin{equation*}
+            H(a,t)=a,\quad\forall a\in A\forall t\in I
+        \end{equation*}
+    \end{mydef}
+
+    \begin{mydef}
+        Un retracto $A$ de $X$ se llama \textbf{retracto por deformación} si $\cf{i\circ x}{X}{X}$ es homotópica a $\bbm{1}_X$ relativa a $A$.
+    \end{mydef}
+
+    \begin{exa}
+        $X$ es contráctil si y sólo si $\forall p\in X$, $\left\{ p\right\}\subseteq X$ es un retracto por deformación.
+    \end{exa}
+
+    \begin{exa}
+        $\bbm{S}^1\subseteq\bbm{C}\setminus 0$ es un retracto por deformación.
+    \end{exa}
+
+    \begin{exa}
+        $\bbm{S}^1\lor\bbm{S}^1\subseteq\mathbb{C}\setminus\left\{p,q\right\}$ es un retracto por deformación (con $p\neq q$). En este caso, $\bbm{S}^1\lor\bbm{S}^1$ es la suma puntuada (o wedge). En este caso:
+        \begin{equation*}
+            \bbm{S}^1\lor\bbm{S}^1=\bbm{S}^1\sqcup\bbm{S}^1/x\sim y
+        \end{equation*}
+        donde $x$ está en la primer esfera y $y$ en la segunda.
+    \end{exa}
+
+    \begin{exa}
+        $\underset{n-\textup{veces}}{\underbrace{\bbm{S}^1\lor\cdots\lor\bbm{S}^1}}$ la rosa de $n$-pétalos es una deformación de retracción de $\mathbb{C}\setminus\left\{p_1,...,p_n \right\}$.
+    \end{exa}
+
+    \begin{exa}
+        El círculo central de la banda de Möbius es retracto por deformación de $X$.
+    \end{exa}
+
+    Surge naturalmente la siguiente pregunta:
+
+    \begin{center}
+        \textit{¿Cuándo dos espacios topológicos $X$ y $Y$ NO son topológicamente equivalentes?}
+    \end{center}
+
+    La topología algebraica nos da repuestas para este tipo de preguntas, ya que traducimos el problema a algo algebraico para luego resolverlo a partir de invariantes algebraicos.
+
+    \section{Caminos y Homotopías: El grupo fundamental}
+
+    \begin{mydef}
+        Sea $X$ espacio topológico. Un \textbf{camino de $p$ a $q$ en $X$} (con $p,q\in X$) es una función continua $\cf{f}{[0,1]}{X}$ tal que $f(0)=p$ y $f(1)=q$.
+    \end{mydef}
+    
+    \begin{mydef}
+        Dos caminos $\cf{\gamma_0,\gamma_1}{[0,1]}{X}$ de $p\in X$ a $q\in X$ son \textbf{homotópicos} si $\exists\cf{H}{[0,1]\times[0,1]}{X}$ continua tal que:
+        \begin{equation*}
+            H\big|_{[0,1]\times\left\{0\right\}}=\gamma_0,H\big|_{[0,1]\times\left\{1\right\}}=\gamma_1
+        \end{equation*}
+        y, $H\big|_{\left\{0\right\}\times[0,1]}=p$ y $H\big|_{\left\{1\right\}\times[0,1]}=1$.
+    \end{mydef}
+
+    \begin{obs}
+        En cierto sentido, la familia de caminos:
+        \begin{equation*}
+            \left\{\gamma_t=H\big|_{[0,1]\times\left\{t\right\}}\Big|t\in[0,1] \right\}
+        \end{equation*}
+        deforma al camino $\gamma_0$ en $\gamma_1$.
+    \end{obs}
+
+    \begin{propo}
+        $\simeq$ es una relación de equivalencia en el conjunto de caminos en $X$ de $p$ a $q$.
+    \end{propo}
+
+    \begin{obs}
+        Escribimos $[\gamma]$ para la clase de $\gamma$.
+    \end{obs}
+    
+    \begin{lema}
+        Sea $\cf{\gamma}{[0,1]}{X}$ un camino de $p$ a $q$ y $\cf{\varphi}{[0,1]}{[0,1]}$ continua. Entonces, $\gamma\simeq\gamma\circ\varphi$.
+    \end{lema}
+
+    En otras palabras, reparametrizar da caminos homotópicos. Más aún, da básicamnete el mismo recorrido a diferentes velocidades.
+
+    \begin{mydef}[\textbf{Concatenación de caminos}]
+        Sean $\gamma$ un camino de $p$ a $q$ en $X$ y $\mu$ un camino de $q$ a $r$. Definimos el camino $\cf{\gamma*\mu}{[0,1]}{X}$ de $p$ a $r$ como:
+        \begin{equation*}
+            \gamma*\mu(t)=\left\{
+                \begin{array}{lcr}
+                    \gamma(2t) & \textup{ si } & t\in[0,1/2]\\
+                    \mu(2t-1) & \textup{ si } & t\in[1/2,1]\\
+                \end{array}
+            \right.
+        \end{equation*}
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $p\in X$, $\cf{e_p}{[0,1]}{X}$ dado por: $e_p(t)=p$ para todo $t\in[0,1]$ es el \textbf{camino constante} de $p$ a $p$.
+    \end{mydef}
+
+    \begin{lema}
+        Sean $\gamma_0\simeq \gamma_1$ caminos de $p$ a $q$ y $\mu_0\simeq\mu_1$ caminos de $q$ a $r$. Entonces: $\gamma_0*\mu_0\simeq\gamma_1*\mu_1$.
+    \end{lema}
+
+    \begin{lema}
+        Sea $\gamma$ camino de $p$ a $q$, $\mu$ de $q$ a $r$ y $\tau$ de $r$ a $s$. Entonces, $\gamma*(\mu*\tau)\simeq(\gamma*\mu)*\tau$.
+    \end{lema}
+
+    \begin{lema}
+        Sea $\gamma$ camino de $p$ a $q$. Entonces:
+        \begin{equation*}
+            \gamma*e_p\simeq\gamma\simeq e_p*\gamma
+        \end{equation*}
+    \end{lema}
+
+    \begin{mydef}
+        Sea $\gamma$ un camino de $p$ a $q$. El \textbf{camio inverso} $\cf{\overline{\gamma}}{[0,1]}{X}$ de $q$ a $p$ está dado por:
+        \begin{equation*}
+            \overline{\gamma}(t)=\gamma(1-t),\quad\forall t\in[0,1]
+        \end{equation*}
+    \end{mydef}
+
+    \begin{lema}
+        $\gamma*\overline{\gamma}\simeq e_p$, $\overline{\gamma}*\gamma\simeq e_q$ y $\overline{\overline{\gamma}}=\gamma$.
+    \end{lema}
+
+    \begin{mydef}
+        Un camino es \textbf{cerrado/lazo} si sus extremos coinciden.
+    \end{mydef}
+
+    \begin{mydef}
+        Decimos que $\gamma$ es un \textbf{lazo basado en $x_0\in X$} si $\gamma(0)=\gamma(1)=x_0$.
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $x_0\in X$. El \textbf{grupo fundamental de $X$ con punto base en $x_0$} es el conjunto $\pi_1(X,x_0)$ dado por:
+        \begin{equation*}
+            \pi_1(X,x_0)=\left\{[\gamma]\Big|\cf{\gamma}{[0,1]}{X}\textup{ es un lazo basado en }x_0\in X \right\}
+        \end{equation*}
+        con el producto dado por el inducido por la concatenación de caminos.
+    \end{mydef}
+
+    \begin{obs}
+        $*$ es asociativa, $[e_{ x_0}]$ es el elemento neutro y $[\overline{\gamma}]$ es el inverso de $[\gamma]$.
+    \end{obs}
+
+    \begin{exa}
+        $\pi_1(\mathbb{R}^n,x_0)=\left\{[e_{ x_0}] \right\}$.
+    \end{exa}
+
+    \begin{exa}
+        Si $U\subseteq\mathbb{R}^n$ tiene forma de estrella relativo a $x_0\in\mathbb{R}^n$, entonces $\pi_1(X,x_0)=\gen{e}$.
+    \end{exa}
+    
+    \begin{obs}
+        Veremos que:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item $\pi_1(\bbm{S}^1,1)\cong\mathbb{Z}$.
+            \item $\pi_1(\bbm{S}^n,x_0)\cong\gen{e}$ si $n\geq2$.
+            \item $\pi_1(\mathbb{C}\setminus\left\{p,q\right\},x_0)\cong F_2$, el grupo libre en dos elementos.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{mydef}
+        Si $X$ arco-conexo tal que $\pi(X,x_0)=\gen{e}$, $X$ es llamdo \textbf{simplemente conexo}.
+    \end{mydef}
+
+    \begin{lema}[\textbf{Cambio de punto base}]
+        Sea $X$ espacio topológico y $\gamma$ un camino de $p$ a $q$. Definimos $\cf{\varphi_\gamma}{\pi_1(X,p)}{\pi_1(X,q)}$ dada por:
+        \begin{equation*}
+            [\delta]\mapsto[\gamma*\delta*\overline{\gamma}]
+        \end{equation*}
+        Entonces, $\varphi_\gamma$ es un homomorfismo de grupos que solo depende de la clase de homotopía de $\gamma$.
+    \end{lema}
+
+    \begin{lema}
+        Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \varphi_{[\gamma]}\circ\varphi_{[\overline{\gamma}]}&=\bbm{1}_{\pi_1(X,q)}\\
+                \varphi_{[\overline{\gamma}]}\circ\varphi_{[\gamma]}=\bbm{1}_{\pi_1(X,p)}
+            \end{split}
+        \end{equation*}
+    \end{lema}
+
+    \begin{cor}
+        $\varphi_{[\gamma]}$ es un isomorfismo de grupos.
+    \end{cor}
+
+    \begin{lema}
+        Si $p,q$ están en la misma compontente arco-conexa, entonces $\pi_1(X,p)=\pi_1(X,q)$.
+    \end{lema}
+
+    \section{Funtorialidad}
+
+    \begin{obs}
+        Podemos ver al grupo fundamental como un funtor:
+        \begin{equation*}
+            \cf{\pi_1}{\textup{Top}_*}{\textup{Grp}}
+        \end{equation*}
+        tal que $(X,x)\mapsto\pi_1(X,x)$.
+    \end{obs}
+
+    \begin{propo}
+        Sea $\cf{f}{X}{Y}$ una función continua y $\cf{\gamma}{[0,1]}{X}$ un camino de $p$ a $q$. Definimos $f_*(\gamma)=f\circ\gamma$.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item $f_*(\gamma)$ es un camino de $Y$ que une a $f(p)$ con $f(q)$.
+            \item Si $\gamma\simeq\gamma'$ entonces $f_*(\gamma)\simeq f_*(\gamma')$.
+            \item $\gamma$ es un camino de $p$ a $q$ implica que $f_*(\gamma*\mu)=$.
+            \item Si $\cf{f}{X}{Y}$ y $\cf{g}{Y}{Z}$ son funciones continuas, entonces:
+            \begin{equation*}
+                g_*\circ f_*=g_*\circ f_*
+            \end{equation*}
+            \item $(\bbm{1}_X)_*=\bbm{1}_{\pi_1(X,x_0)}$.
+        \end{enumerate}
+    \end{propo}
+
+    Con lo anteroir estamos diciendo que $\pi_1$ es un funtor covariante de la categoría de espacios topológicos puntuados en la categoría de grupos.
+
+    \begin{theor}
+        $\pi_1$ es un invariante de homeomorfismo, es decir si $X\cong Y$, entonces $\pi_1(X,x_0)\overset{f_0}{\cong}\pi_1(Y,f(x_0))$.
+    \end{theor}
+
+    \begin{lema}
+        Sean $\cf{f,g}{X}{Y}$ y $x_0\in X$. Si $f\simeq g$ relativas a $x_0$, entonces:
+        \begin{equation*}
+            \cf{f_*=g_*}{\pi_1(X,x_0)}{\pi(Y,f(x_0))}
+        \end{equation*}
+    \end{lema}
+
+    \begin{theor}
+        Sea $\cf{f}{X}{Y}$ y $y_0=f(x_0)$. Si $f$ es una equivalencia de homotopía, entonces $\cf{f_*}{\pi_1(X,x_0)}{\pi(Y,f(x_0))}$ es un isomorfismo, es decir que $\pi_1$ es un invariante de homotopía.
+    \end{theor}
+
+    \begin{theor}
+        Si $A$ es un retracto por deformación de $X$ y $x_0\in A$, entonces el mapeo inclusión $\cf{i}{A}{X}$ induce un homomorfismo:
+        \begin{equation*}
+            \cf{i_*}{\pi_1(A,x_0)}{\pi_1(X,x_0)}
+        \end{equation*}
+    \end{theor}
+
+    \chapter{Ejercicios y Problemas}
+
+    \section{Preeliminares: el grupo fundamental}
+
+    \begin{obs}
+        Durante todo el curso todas las funciones son continuas a menos que se diga explícitamente lo contrario.
+    \end{obs}
+
+    \begin{excer}
+        Muestre que el homomorfismo de cambio de punto base $\beta_h$ depende sólo de la clase de homotopía de $h$.
+    \end{excer}
+
+    
+
+    \begin{proof}
+        
+    \end{proof}
+    
+    \begin{excer}
+        Sea $\cf{f}{X}{Y}$ una función continua. Si $\cf{\alpha,\beta}{I}{X}$ son caminos homotópicos muestre que los caminos $f\circ\alpha$ y $f\circ\beta$ son homotópicos.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Si $X_0$ es la componente conexa por caminos del espacio $X$ que contiene al punto base $x_0$, muestre que la inclusión $\cf{i}{X_0}{X}$ induce un homomorfismo $\cf{i_*}{\pi_1(X_0,x_0)}{\pi_1(X,x_0)}$ dado por $[\gamma]\mapsto[i\circ\gamma]$.
+
+        Note que hay que mostrar que $i_*$ está bien definido, es un homomorfismo y es biyectivo.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Muestre que no existen retracciones en los siguientes casos:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item $X=\mathbb{R}^3$ con $A$ cualquier subespacio homeomorfo a $\mathbb{S}^1$.
+            \item $X=\mathbb{S}^1\times\mathbb{D}^2$ con $A$ su frontera $\mathbb{S}^1\times\mathbb{S}^1$.
+            \item $X$ la banda de Möbius y $A$ su círculo frontera.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Muestre que cualquier homomorfismo $\pi_1(\mathbb{S}^1)\rightarrow\pi_1(\mathbb{S}^1)$ puede ser realizado como el homomorfismo inducido $\psi_*$ de una función $\cf{\psi}{\mathbb{S}^1}{\mathbb{S}^1}$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Muestre que el complemento de un conjunto finito de puntos en $\mathbb{R}^n$ es simplemente conexo si $n\geq 3$.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Calcule el grupo fundamental del espacio obtenido de dos toros $\mathbb{S}^1\times\mathbb{S}^1$ identificando el círculo $\mathbb{S}^1\times\left\{x_0\right\}$ en un toro con el correspondiente círculo $\mathbb{S}^1\times\left\{x_0\right\}$ en el otro toro.
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Calcula el grupo fundamental de la botella de Klein, el plano proyectivo $\mathbb{R}P^2$ y $\mathbb{S}^3$.
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Calcula el grupo fundamental del complenento de un conjunto finito de puntos en $\mathbb{R}^2$.
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Demuestra que $\pi_1(\mathbb{R}^2-\mathbb{Q}^2)$ no es numerable.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $X$ el espacio cociente obtenido de $\mathbb{S}^2$ identificando el polo norte con el polo sur. Calcula $\pi_1(X)$.
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        El \textbf{mapping torus $T_f$} de una función $\cf{f}{X}{X}$ es el cociente obtenido de $X\times I$ identificando cada punto $(x,0)$ con $(f(x),1)$. En el caso $X=\mathbb{S}^1\lor\mathbb{S}^1$ con $f$ preservando el punto base, calcule una presentación de $\pi_1(T_f)$ en términos del homomoorfismo inducido $\cf{f_*}{\pi_1(X)}{\pi_1(X)}$.
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Demuestre que el subespacio de $\mathbb{R}^3$ que es la unión de esferas de radio $\frac{1}{n}$ y centro $\left(\frac{1}{n},0,0\right)$ para $n=1,2,...,$ es simplemente conexo.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $X$ el subespacio de $\mathbb{R}^2$ que consiste de la unión de los círculos $C_n$ de radio $n$ y centro $(n,0)$ para $n=1,2,...$. Calcule $\pi_1(X)$.
+    \end{excer}
+
+    \begin{sol}
+        
+    \end{sol}
+
+    \begin{excer}
+        Calcula el grupo fundamental de cualquier árbol conexo.
+    \end{excer}
+
+    \begin{sol}
+        Es trivial.
+    \end{sol}
+
+\end{document}
