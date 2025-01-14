@@ -1,0 +1,416 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,bbm}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{forest}
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<10}{%
+    \foreach \col in {0,...,4}{#1\ \ } \\ \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}}; 
+  \end{tikzpicture}
+}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición Auxiliar}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema Auxiliar}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=-2pt,
+    innerbottommargin=8pt,
+    roundcorner=5pt
+]{excer}{Problema}
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
+\newcommand{\afa}{\:
+    \begin{tikzpicture}
+        \draw [line width = 0.17 mm, black] (0,0) -- (-0.115,0.29);
+        \draw [line width = 0.17 mm, black] (0,0) -- (0.115,0.29);
+        \draw [line width = 0.17 mm, black] (-0.12,0) arc (190:-10:0.12cm);
+    \end{tikzpicture}
+    \:
+}
+\newcommand{\bbm}[1]{\mathbbm{#1}}
+\newcommand{\pstable}[1]{\arabic{#1})\stepcounter{#1}}
+\newcounter{figcount}
+\setcounter{figcount}{1}
+\newcounter{tablec}
+\newcommand\contradiction{\ensuremath{\#_c}}
+%Este símvolo es para casi todo salvo una cantidad finita
+
+%recuerda usar \clearpage para hacer un salto de página
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Tercer Examen Parcial Lógica Matemática}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \begin{excer}
+        Demuestre que no existe un conjunto que contiene a todos los singuletes (un singulete es un conjunto con un único elemento).
+    \end{excer}
+
+    \begin{proof}
+        Suponga que existe un conjunto $X$ tal que para cualquier conjunto $a$ se tiene que $\left\{a\right\}\in X$.
+
+        Por el axioma de unión, existe el conjunto $\bigcup_{ x\in X}x$, en particular, por la condición anterior se tiene que el siguiente:
+        \begin{equation*}
+            V=\left\{a\in\bigcup_{ x\in X}x\Big|\left\{a\right\}\in X  \right\}
+        \end{equation*}
+        es conjunto por el axioma de comprensión. Veamos que $\forall a, a\in V$. En efecto, si $a$ es un conjunto, entonces $\left\{a\right\}\in X$ por lo que además, $a\in\bigcup_{ x\in X}x$, luego $a\in V$. Por tanto $V$ es conjunto\contradiction ya que por un Teorema probado en clase el conjunto de todos los conjuntos no es conjunto. Así que $X$ no puede ser conjunto. 
+    \end{proof}
+    
+    \begin{excer}
+        Dado un conjunto $X$, definimos recursivamente conjuntos $X_n$, para $n\in\omega$, de la manera siguiente:
+        \begin{itemize}
+            \item $X_0=X$.
+            \item $X_{ n+1}=\bigcup_{\alpha\in X_n}a$.
+        \end{itemize}
+        definiendo también $X_{\omega}=\bigcup_{ n\in\omega}X_n$, demuestre que $X$ es un conjunto transitivo.
+    \end{excer}
+
+    \begin{proof}
+        Recordemos que un conjunto es $x$ \textbf{transitivo} si $\forall y\in x(y\subseteq x)$. Veamos que $X$ es transitivo. Sea $y\in X$, entonces existe $n_0\in\omega$ tal que $y\in X{n_0}$, se sigue así que el elemento $y$ cumple que:
+        \begin{equation*}
+            y\subseteq\bigcup_{ a\in X_{n_0}}a=X_{n_0+1}
+        \end{equation*}
+        por tanto:
+        \begin{equation*}
+            y\subseteq X_{ n_0+1}\subseteq\bigcup_{ n\in\omega}X_n=X
+        \end{equation*}
+        
+        Se sigue que $X$ es un conjunto transitivo.
+    \end{proof}
+
+    \begin{lema}
+        Si $\beta$ es ordinal límite, entonces $\sup\left\{\alpha\Big|\alpha<\beta\right\}=\beta$.
+    \end{lema}
+
+    \begin{proof}
+        Sea $\beta$ ordinal límite, entonces $\beta$ no es sucesor de nadie, por tanto, si $\alpha$ es otro ordinal, se sigue que $\alpha<\beta\Rightarrow S(\alpha)<\beta$, pues en caso contrario se llegaría a una contradicción. En efecto, se tendría que:
+        \begin{itemize}
+            \item $\beta=S(\alpha)$\contradiction, lo cual es una contradicción ya que $\beta$ es ordinal límite.
+            \item $\beta<S(\alpha)$, por lo que $\beta\leq\alpha$\contradiction, ya que $\alpha<\beta$.
+        \end{itemize}
+        Veamos que $\beta$ es el supremo de $S=\left\{\alpha\Big|\alpha<\beta \right\}$. En efecto, por definición de este conjunto $\beta$ es cota superior de él y es no vacío, ya que $0<\beta$ (por ser $\beta$ un ordinal no cero al ser éste un ordinal límite). Si $\gamma$ ahora es tal que
+        \begin{equation*}
+            \alpha<\gamma,\quad\forall\alpha\in S
+        \end{equation*}
+        y $\gamma<\beta$, entonces por lo probado anteriormente se sigue que $S(\gamma)<\beta$ con lo que $\gamma$ no puede ser cota superior de $S$. Así que $\beta$ es la mínima cota superior de $S$, esto es que $\beta$ es el supremo de $S$.
+    \end{proof}
+
+    \begin{propo}
+        Para todo ordinal $\alpha$ se cumple que $0+\alpha=\alpha$.
+    \end{propo}
+
+    \begin{proof}
+        Procederemos por inducción transfinita sobre $\alpha$. Sea $\beta$ un ordinal tal que $(\forall\gamma<\beta)(0+\gamma=\gamma)$. Probaremos que $0+\beta=\beta$. Se tienen tres casos:
+        \begin{itemize}
+            \item Suponga que $\beta=0$, entonces se tiene que $0+\beta=0+0=0=\beta\Rightarrow 0+\beta=\beta$.
+            \item Suponga que existe un ordinal $\eta$ tal que $\beta=S(\eta)$, en particular, $\eta<\beta$, así que:
+            \begin{equation*}
+                \begin{split}
+                    0+\eta=\eta&\Rightarrow S(0+\eta)=S(\eta)\\
+                    &\Rightarrow 0+S(\eta)=\beta\\
+                    &\Rightarrow0+\beta=\beta\\
+                \end{split}
+            \end{equation*}
+            \item Suponga que $\beta$ no es sucesor de ningún ordinal, entonces:
+            \begin{equation*}
+                \begin{split}
+                    0+\beta&=\sup\left\{0+\eta\Big|\eta<\beta \right\}\\
+                    &=\sup\left\{\eta\Big|\eta<\beta \right\}\\
+                    &=\beta\\
+                    \Rightarrow 0+\beta&=\beta\\
+                \end{split}
+            \end{equation*}
+            donde la segunda igualdad se da por hipótesis de inducción y la tercera por ser $\beta$ ordinal límite y usando el Lema Auxiliar 1.
+        \end{itemize}
+        Por los tres incisos anterioes se sigue que $0+\beta=\beta$. Aplicando inducción transfinita se sigue que $0+\alpha=\alpha$ para todo ordinal $\alpha$.
+    \end{proof}
+
+    \begin{excer}
+        Directamente de la definición de multiplicación ordinal, demuestre que $\alpha\cdot1=\alpha$ y que $1\cdot\alpha=\alpha$ para todo $\alpha$ número ordinal.
+    \end{excer}
+
+    \begin{proof}
+        Recordemos que si $\alpha,\beta$ son ordinales, entonces:
+        \begin{equation*}
+            \alpha\cdot\beta=\left\{
+                \begin{array}{lcr}
+                    0 & \textup{ si } & \beta=0,\\
+                    \alpha\cdot\gamma+\alpha & \textup{ si } & \beta=S(\gamma),\\
+                    \sup\left\{\alpha\cdot\eta\Big|\eta<\beta \right\} & \textup{ e.o.c. }
+                \end{array}
+            \right.
+        \end{equation*}
+        donde en el segundo caso $\gamma$ es un número ordinal tal que $\beta=S(\gamma)$. Probaremos ambos resultados:
+        \begin{itemize}
+            \item Veamos que $\alpha\cdot1=\alpha$ para todo $\alpha$ ordinal. Sea $\alpha$ ordinal, se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    \alpha\cdot1&=\alpha\cdot S(0)\\
+                    &=\alpha\cdot0+\alpha\\
+                    &=0+\alpha\\
+                    &=\alpha\\
+                \end{split}
+            \end{equation*}
+            donde la última igualdad se da por la Proposición Auxiliar 1.
+            \item Veamos que $1\cdot\alpha=\alpha$ para todo $\alpha$ ordinal. Procederemos por inducción transfinita sobre $\alpha$. Sea $\beta$ un ordinal tal que $(\forall\gamma<\beta)(1\cdot\gamma=\gamma)$. Se tienen tres casos:
+            \begin{itemize}
+                \item $\beta=0$,en cuyo caso se sigue que:
+                \begin{equation*}
+                    \begin{split}
+                        1\cdot\beta=1\cdot0\\
+                        &=0\\
+                        &=\beta\\
+                        \Rightarrow 1\cdot\beta=\beta\\
+                    \end{split}
+                \end{equation*}
+                \item Existe un ordinal $\gamma$ tal que $\beta=S(\gamma)$, en particular $\gamma<\beta$, por lo que:
+                \begin{equation*}
+                    \begin{split}
+                        1\cdot\beta&=1\cdot S(\gamma)\\
+                        &=1\cdot\gamma+1\\
+                        &=\gamma+1\\
+                        &=S(\gamma)\\
+                        &=\beta\\
+                        \Rightarrow 1\cdot\beta&=\beta\\
+                    \end{split}
+                \end{equation*}
+                donde el paso de la segunda a tercera igualdad es por hipótesis de inducción.
+                \item Suponga que $\beta$ es ordinal límite, entonces:
+                \begin{equation*}
+                    \begin{split}
+                        1\cdot\beta&=\sup\left\{1\cdot\eta\Big|\eta<\beta \right\}\\
+                        &=\sup\left\{\eta\Big|\eta<\beta \right\}\\
+                        &=\beta\\
+                        \Rightarrow 1\cdot\beta&=\beta\\
+                    \end{split}
+                \end{equation*}
+                donde el paso de la primera a segunda igualdad es por hipótesis de inducción y el paso de la segunda a la tercera es por el Lema Auxiliar 1.
+            \end{itemize}
+        \end{itemize}
+        Por los tres incisos anterioes se sigue que $1\cdot\beta=\beta$. Aplicando inducción transfinita se sigue que $1\cdot\alpha=\alpha$ para todo ordinal $\alpha$.
+    \end{proof}
+
+    \begin{excer}
+        Suponga que tenemos una clase-función $F$ (es decir, formalmente estamos considerando una fórmula $\psi(x,y)$ en el lenguaje de la teoría de conjuntos tal que se cumple que $(\forall x)(\exists!y)\psi(x,y)$, y entonces $F(x)$ denota al único elemento $y$ tal que $\psi(x,y)$). Demuestre que, para todo conjunto $A$, la restricción $F\upharpoonright A$ (es decir, formalmente la colección de todos los pares ordenados tales que $x\in A$ y $\psi(x,y)$) es un conjunto.
+    \end{excer}
+
+    \begin{proof}
+        Por decir que tenemos la clase función $F$, estamos diciendo que para una fórmula con dos variables libres $\psi(x,y)$ se tiene que:
+        \begin{equation*}
+            (\forall x)(\exists!y)\psi(x,y)
+        \end{equation*}
+        usando el esquema axioma de reemplazo con la fórmula $\psi$ y Modus Ponens:
+        \begin{equation*}
+            \forall u\exists v\forall y(y\in v\iff(x\in u)\psi(x,y))
+        \end{equation*}
+        obtenemos haciendo una instanciacion existencial tomando $u=A$ se tiene que existe $v_A$ conjunto tal que:
+        \begin{equation*}
+            \forall y(y\in v_A\iff(x\in A)\psi(x,y))
+        \end{equation*}
+        tomemos $F(A)=v_A$, construímos la función $F\upharpoonright A$ dada por:
+        \begin{equation*}
+            F\upharpoonright A=\left\{(x,y)\in A\times F(A) \Big|\psi(x,y) \right\}
+        \end{equation*}
+        Hay que verificar varias cosas para ver que esto es una función. Como $A\times F(A)$ es un conjunto (pues el producto cartesiano de dos conjuntos es un conjunto), se tiene del axioma de comprensión $F\upharpoonright A$ es un conjunto.
+
+        Sea $x\in A$, en particular, $(\exists !y)(\psi(x,y))$, es decir que $(\exists!y)(x,y)\in F\upharpoonright A$, por lo cual:
+        \begin{equation*}
+            (\forall x)(\exists!y)((x,y)\in F\upharpoonright A)
+        \end{equation*}
+        por ende, $F\upharpoonright A$ es función.
+    \end{proof}
+
+    \begin{excer}
+        Demuestre que todo espacio vectorial admite una base.
+
+        \textit{Sugerencia}. hay muchísimas formas de hacer esto, la más sencilla es notar que una base es un conjunto maximal linealmente independiente, pero también se puede bien ordenar el espacio vectorial y elegur una base por recursión transfinita.
+    \end{excer}
+
+    \begin{proof}
+        En clase hemos probado que:
+        \begin{equation*}
+            ZF\vdash AE\iff LZ
+        \end{equation*}
+        donde $ZF$ denota a los axiomas 1 a 8 sin Axioma de Elección (denotado por $AE$) y $LZ$ es el Lema de Zorn:
+
+        \begin{theor}[\textbf{Lema de Zorn}]
+            Cualquier conjunto parcialmente ordenado y no vacío en el cual toda cadena tiene una cota superior, tiene un elemento maximal.
+        \end{theor}
+
+        Veamos ahora que todo espacio vectorial admite una base. Sea $V$ un $\bbm{K}$-espacio vectorial donde $\bbm{K}$ es un campo. Considere la familia:
+        \begin{equation*}
+            \mathcal{S}=\left\{S\subseteq V\Big|S\textup{ es linealmente independiente}\right\}
+        \end{equation*}
+
+        Si $V=\left\{0\right\}$, ya se sabe que una base para $V$ sería $\emptyset$. Podemos suponer entonces que $V$ tiene al menos dos elementos.
+
+        Como $V$ tiene al menos dos elementos, existe $x\in V$ tal que $x\neq 0$, por lo que el conjunto:
+        \begin{equation*}
+            \left\{x\right\}\subseteq V
+        \end{equation*}
+        es linealmente independiente, así que $\mathcal{S}$ es no vacío. Además, $\mathcal{S}$ está parcialmente ordenado por $\subseteq$ ya que esta relación es reflexiva, antisimétrica y transitiva.
+
+        Veamos que $\mathcal{S}$ admite elementos maximales. Sea $\mathcal{C}$ una cadena, es decir:
+        \begin{equation*}
+            \mathcal{C}=\left\{C_i\in\mathcal{S}\Big|i\in I \right\}
+        \end{equation*}
+        es tal que para todo par $i,j\in I$ se tiene que $C_i\subseteq C_j$ o que $C_j\subseteq C_i$. Afirmamos que esta cadena tiene cota superior. Sea:
+        \begin{equation*}
+            C=\bigcup\mathcal{C}=\bigcup_{ i\in I}C_i
+        \end{equation*}
+        es claro que $C_i\subseteq C$. Veamos que $C\in\mathcal{S}$. En efecto, sean $x_1,...,x_n\in C$ y tomemos $\alpha_1,...,\alpha_n\in\bbm{K}$ tales que:
+        \begin{equation*}
+            \alpha_1x_1+\cdots+\alpha_nc_n=0
+        \end{equation*}
+        Como $x_1,...,x_n\in C$, existen $i_1,...,i_n\in I$ tales que:
+        \begin{equation*}
+            x_j\in C_{ i_j},\quad\forall j=1,...,n
+        \end{equation*}
+        Dado a que $\mathcal{C}$ es una cadena, existe $m=1,...,n$ tal que:
+        \begin{equation*}
+            C_{i_j}\subseteq C_{ i_m},\quad\forall j=1,...,n
+        \end{equation*}
+        Por lo cual,
+        \begin{equation*}
+            x_j\in C_{ i_m},\quad\forall j=1,...,n
+        \end{equation*}
+        Así que, como $C\in\mathcal{S}$, entonces $C$ es un conjunto linealmente independiente, por lo cual:
+        \begin{equation*}
+            \alpha_j=0,\quad\forall j=1,...,n
+        \end{equation*}
+        Por ser estos elementos arbitrarios se sigue que $C$ es un conjunto linealmente independiente, así que $C\in\mathcal{S}$. Por tanto, la cadena $\mathcal{C}$ tiene cota superior $C$.
+
+        Aplicando el Lema de Zorn se sigue que $\mathcal{S}$ admite elementos maximales, digamos $B$. Afirammos que $B$ es una base para $V$. En efecto, como $B\in\mathcal{S}$ entonces es un conjunto linealmente independiente. Veamos que $B$ genera a $V$. 
+        
+        Si no lo generase, existiría $v\in V$ tal que $v\notin\langle B\rangle$. En particular, $\alpha v\notin\langle B\rangle$ para todo $\alpha\in\bbm{K}\setminus\left\{0\right\}$, así que el conjunto:
+        \begin{equation*}
+            B\cup\left\{v\right\}
+        \end{equation*}
+        es linealmente independiente. Por ser $B$ elemento maximal y $B\subseteq B\cup\left\{v\right\}$ se sigue que $B\cup\left\{v\right\}\subseteq B$, así que $v\in B\subseteq\langle B\rangle$\contradiction. Por tanto, $B$ genera a todo $V$.
+
+        Se sigue entonces que el $\bbm{K}$.espacio vectorial $V$ admite una base.
+    \end{proof}
+
+\end{document}

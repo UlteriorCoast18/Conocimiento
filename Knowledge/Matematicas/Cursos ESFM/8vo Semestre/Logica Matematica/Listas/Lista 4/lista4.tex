@@ -257,7 +257,24 @@
     \end{excer}
 
     \begin{proof}
-        
+        $\Rightarrow):$ Suponga que $(a,b)=(c,d)$, entonces:
+        \begin{equation*}
+            \left\{\left\{a\right\},\left\{a,b\right\} \right\}=\left\{\left\{c\right\},\left\{c,d\right\} \right\}
+        \end{equation*}
+        Analicemos por casos:
+        \begin{itemize}
+            \item $a=b$, en cuyo caso el conjunto de la izquierda se convierte en:
+            \begin{equation*}
+                \left\{\left\{a\right\} \right\}=\left\{\left\{c\right\},\left\{c,d\right\} \right\}
+            \end{equation*}
+            por lo que $\left\{c\right\}=\left\{a\right\}$ y $\left\{c,d\right\}=\left\{a\right\}$. De la primera igualdad se sigue que $a=c$ y de la segunda que $c=d$, esto es que $a=c$ y $b=d$.
+            \item $a\neq b$, en cuyo caso se tiene que $\left\{c\right\}=\left\{a\right\}$ o $\left\{c\right\}=\left\{a,b\right\}$. Afirmamos que lo segundo no puede suceder, ya que en tal caso $a=c$ y $b=c$, lo cual implicaría que $a=b$\contradiction. Por tanto, $\left\{c\right\}=\left\{a\right\}$ y, por ende $a=c$.
+            
+            Ahora, tampoco puede suceder que $\left\{c,d \right\}=\left\{a\right\}$ ya que en tal caso $\left\{a,b \right\}=\left\{c\right\}$ lo que implicaría que $a=b$\contradiction, por lo que $\left\{c,d \right\}=\left\{a,b\right\}$. Nuevamente, debe suceder que $b=d$.
+        \end{itemize}
+        Los diso incisos anteriores prueban el resultado.
+
+        $\Leftarrow):$ Es inmediata.
     \end{proof}
 
     \begin{excer}
@@ -266,8 +283,279 @@
             (a,b)=\left\{a,\left\{a,b\right\} \right\}
         \end{equation*}
         \begin{enumerate}[label = \textit{(\alph*)}]
-            \item Suponga que existen tres conjuntos distintos $x,y$ y $z$ tales que $x=$
+            \item Suponga que existen tres conjuntos distintos $x,y$ y $z$ tales que $x=\left\{\left\{x,y\right\},z \right\}$. Demuestre que entonces se tiene que $(x,y)=(\left\{x,y\right\},z)$.
+            \item Demuestre que esta definición alternativa de par ordenado satisface que $(a,b)=(c,d)$ si y sólo si $a=b$ y $c=d$.
+            
+            \textit{Sugerencia}. Usar axioma de fundación.
         \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        De \textit{(1)}: veamos que:
+        \begin{equation*}
+            \begin{split}
+                (x,y)&=\left\{x,\left\{x,y\right\} \right\}\\
+                &=\left\{\left\{x,y\right\},\left\{\left\{x,y\right\},z \right\} \right\}\\
+                &=\left\{a,\left\{a,z\right\} \right\}\\
+                &=(a,z)\\
+            \end{split}
+        \end{equation*}
+        donde $a=\left\{x,y\right\}$. Por tanto, $(x,y)=(\left\{x,y \right\},z)$.
+
+        De \textit{(2)}: La suficiencia es inmediata. Suponga que $(a,b)=(c,d)$, es decir que $\left\{a,\left\{a,b\right\}\right\}=\left\{c,\left\{c,d\right\}\right\}$. Analicemos por casos:
+        \begin{itemize}
+            \item $a=b$, en cuyo caso se sigue que $(a,b)=\left\{a,\left\{a\right\}\right\}$, por tanto $c=a$ o $c=\left\{a\right\}$. Si $c=\left\{a\right\}$, entonces tenemos que:
+            \begin{equation*}
+                (c,d)=\left\{\left\{a\right\},\left\{\left\{a\right\},d\right\} \right\}
+            \end{equation*}
+            no puede pasar que $\left\{\left\{a\right\},d\right\}=\left\{a\right\}$, ya que esto implicaría que $\left\{a\right\}\in\left\{a\right\}$\contradiction. Por tanto, $a=\left\{\left\{a\right\},d \right\}$, así que en particular, $\left\{a\right\}\in a$.
+
+            Por axioma de fundación, para el conjunto $\left\{a,\left\{a\right\} \right\}$ existe $b\in\left\{a,\left\{a\right\} \right\}$ tal que $b\cap\left\{a,\left\{a\right\} \right\}=\emptyset$, en particular $b\neq\left\{a\right\}$, por lo que $b=a$, así que $a\cap\left\{a,\left\{a\right\}\right\}=\emptyset$, en particular, $\left\{a\right\}\notin a$. Esto contradice lo de arriba.
+
+            Por tanto, $c\neq\left\{a\right\}$, así que $a=c$. Ahora, se tiene que:
+            \begin{equation*}
+                \left\{a,\left\{a\right\} \right\}=\left\{a,\left\{a,d\right\} \right\}
+            \end{equation*}
+            se tiene que debe suceder que $\left\{a,d \right\}=\left\{a\right\}$, es decir que $d=a$. Por tano, $a=c$ y $b=d$.
+
+            \item $a\neq b$, en cuyo caso se tiene que $(a,b)=\left\{a,\left\{a,b\right\}\right\}$ y $(c,d)=\left\{c,\left\{c,d\right\} \right\}$. Se tienen dos casos:
+            \begin{itemize}
+                \item $a=c$, en cuyo caso se sigue que:
+                \begin{equation*}
+                    \left\{a,\left\{a,b\right\}\right\}=\left\{a,\left\{a,d\right\} \right\}
+                \end{equation*}
+                por lo que $\left\{a,b\right\}=\left\{a,d \right\}$ (en caso contrario se llega a que $a\in a$\contradiction), se sigue así que $b=d$ ya que en caso contrario se tendría que $b=a$\contradiction.
+                \item $a=\left\{a,d\right\}$, esto no puede suceder pues llegaríamos a una contradicción ya que implicaría que $a\in a$\contradiction.
+            \end{itemize}
+            Por los dos incisos anteriores, se sigue que $a=c$ y $b=d$.
+        \end{itemize}
+    \end{proof}
+
+    \begin{excer}
+        
+    \end{excer}
+
+    \begin{mydef}
+        Un \textbf{ordinal límite} es un ordinal $\alpha$ no cero tal que $\alpha$ no es el sucesor de ningún ordinal.
+    \end{mydef}
+
+    \begin{excer}
+        Demuestre que si $\gamma$ es ordinal límite, entonces $\alpha+\gamma$ también lo es.
+
+        \textit{Sugerencia.} Proceder por contradicción.
+    \end{excer}
+
+    \begin{proof}
+        Sea $\gamma$ un ordinal límite y $\alpha$ ordinal. Supongamos que $\alpha+\gamma$ no es ordinal límite, entonces existe un ordinal $\beta$ tal que:
+        \begin{equation*}
+            \alpha+\gamma=S(\beta)
+        \end{equation*}
+        en particular, $\beta<\alpha+\gamma$.
+
+        Ahora, como $\gamma$ es ordinal límite, se tiene que:
+        \begin{equation*}
+            \alpha+\gamma=\sup\left\{\alpha+\eta\Big|\eta<\gamma \right\}
+        \end{equation*}
+        por lo anterior se tiene que existe $\eta<\gamma$ tal que:
+        \begin{equation*}
+            \beta=\alpha+\eta
+        \end{equation*}
+        luego,
+        \begin{equation*}
+            S(\beta)=S(\alpha+\eta)=\alpha+S(\eta)
+        \end{equation*}
+        en particular, se tiene que:
+        \begin{equation*}
+            \alpha+S(\eta)=\sup\left\{\alpha+\eta\Big|\eta<\gamma \right\}
+        \end{equation*}
+        pero, $\alpha+S(\eta)<\sup\left\{\alpha+\eta\Big|\eta<\gamma \right\}$ ya que $\gamma$ es ordinal límite\contradiction. Por tanto, $\alpha+\gamma$ es ordinal límite.
+    \end{proof}
+
+    \begin{excer}
+        Demuestre que, para todos los ordinales $\alpha,\beta$ se cumple que $\beta\leq\alpha+\beta$ y, si $\beta>0$, entonces $\alpha<\alpha+\beta$.
+    \end{excer}
+
+    \begin{proof}
+        Sea $\alpha$ ordinal. Probaremos la afirmación por inducción transfinita. En efecto, supongamos que para todo $\gamma$ ordinal tal que $\gamma<\beta$ se tiene que $\gamma\leq\alpha+\gamma$, probaremos que $\beta\leq\alpha+\beta$. Se tienen tres casos:
+        \begin{itemize}
+            \item $\beta=0$, en cuyo caso se tiene que como $\alpha$ es ordinal, entonces $0\leq\alpha$ y, $\alpha+0=\alpha$, por lo cual $0\leq\alpha+0$, es decir que $\beta\leq\alpha+\beta$.
+            \item $\beta$ es el sucesor de alguien, en cuyo caso existe $\eta$ tal que $\beta=S(\eta)$, por hipótesis se tiene que $\eta\leq\alpha+\eta$. Como:
+            \begin{equation*}
+                \alpha+\eta<S(\alpha+\eta)=\alpha+S(\alpha)=\alpha+\beta
+            \end{equation*}
+            y además, debe suceder que $S(\eta)\leq\alpha+\beta$, esto es que $\beta\leq\alpha+\beta$.
+            \item Suponga que $\beta$ no es el sucesor de nadie. Veamos que:
+            \begin{equation*}
+                \alpha+\beta=\sup\left\{\alpha+\eta\Big|\eta<\beta \right\}
+            \end{equation*}
+            en particular, se tiene que:
+            \begin{equation*}
+                \alpha+\eta<\alpha+\beta,\quad\forall\eta<\beta
+            \end{equation*}
+            y, por hipótesis de inducción:
+            \begin{equation*}
+                \eta\leq\alpha+\eta,\quad\forall\eta<\beta
+            \end{equation*}
+            por lo que:
+            \begin{equation*}
+                \eta<\alpha+\beta,\quad\forall\eta<\beta
+            \end{equation*}
+            Recordemos que:
+            \begin{equation*}
+                \beta=\sup\left\{\eta\Big|\eta<\beta \right\}=\left\{\eta\Big|\eta<\beta \right\}
+            \end{equation*}
+            así que:
+            \begin{equation*}
+                \beta\leq\alpha+\beta
+            \end{equation*}
+        \end{itemize} 
+        aplicando inducción transfinita por los tres incisos anteriores se sigue el resultado.
+
+        Ahora, probaremos que:
+        \begin{equation*}
+            \alpha<\alpha+\beta
+        \end{equation*}
+        para todo par de ordinales $\alpha,\beta$ tales que $\beta>0$. En efecto, procederemos por inducción transfinita sobre $\beta$. Suponga que para todo ordinal 
+    \end{proof}
+
+    \begin{excer}
+        Para todo ordinal $\alpha$, $0+\alpha=\alpha$.
+    \end{excer}
+
+    \begin{proof}
+        Procederemos por inducción transfinita sobre $\alpha$: Supongamos que existe un ordinal $\gamma$ tal que para todo $\beta<\gamma$ se tiene que $0+\beta=\beta$. Se tienen tres casos:
+        \begin{itemize}
+            \item $\gamma=0$, en cuyo caso se sigue que $0+\gamma=\gamma+\gamma=\gamma+0=\gamma$.
+            \item $\gamma$ es el sucesor de algún ordinal $\eta$, en particular, como $\eta<\gamma$, entonces por hipótesis de inducción: $0+\eta=\eta$, luego:
+            \begin{equation*}
+                0+\gamma=0+S(\eta)=S(0+\eta)=S(\eta)=\gamma
+            \end{equation*}
+            \item $\gamma$ no es el sucesor de nadie, entonces es ordinal límite. Veamos que:
+            \begin{equation*}
+                \begin{split}
+                    0+\gamma&=\sup\left\{0+\beta\Big|\beta<\gamma \right\}\\
+                    &=\sup\left\{\beta\Big|\beta<\gamma \right\}\\
+                    &=\gamma\\
+                \end{split}
+            \end{equation*}
+        \end{itemize}
+        por los tres incisos anterioes y aplicando inducción transfinita se sigue el resultado.
+    \end{proof}
+
+    \begin{excer}
+        Demuestre que la adición ordinal satisface la \textit{propiedad cancelativa por la izquierda}: Para cualesquiera ordinales $\alpha,\beta,\gamma$ se tiene que:
+        \begin{equation*}
+            \beta+\alpha=\beta+\gamma\Rightarrow\alpha=\gamma
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        Procederemos por inducción sobre $\beta$. Suponga que existe un ordinal $\eta$ tal que $(\forall\chi<\eta)(\chi+\alpha=\chi+\beta\Rightarrow\alpha=\gamma)$. Se tienen tres casos:
+        \begin{itemize}
+            \item $\eta=0$, en cuyo caso se tiene que:
+            \begin{equation*}
+                \eta+\alpha=\eta+\gamma\Rightarrow0+\alpha=0+\gamma\Rightarrow\alpha=\gamma
+            \end{equation*}
+            por el ejercicio anterior.
+            \item Suponga que $\eta$ es el sucesor de algún ordinal $\chi$, entonces por hipótesis de inducción se sigue que:
+            \begin{equation*}
+                \chi+\alpha=\chi+\gamma\Rightarrow\alpha=\gamma
+            \end{equation*}
+            Se sigue así que:
+            \begin{equation*}
+                \begin{split}
+                    \eta+\alpha=\eta+\gamma&\Rightarrow S(\chi)+\alpha=S(\chi)+\gamma\\
+                \end{split}
+            \end{equation*}
+            Se tiene tres casos:
+            \begin{itemize}
+                \item $\alpha=0$, en cuyo caso se sigue que:
+                \begin{equation*}
+                    \begin{split}
+                        S(\chi)=S(\chi)+\gamma
+                    \end{split}
+                \end{equation*}
+                Si $\gamma>0$, entonces por el ejercicio anterior se seguiría que: $S(\chi)<S(\chi)+\gamma$\contradiction. Por tanto, $\gamma=0$.
+                \item $\alpha$ es el sucesor de algún número, digamos $\upsilon$, entonces:
+                \begin{equation*}
+                    \begin{split}
+                        S(\chi)+\alpha&=S(\chi)+S(\upsilon)\\
+                        &=S(S(\chi)+\upsilon)\\
+                    \end{split}
+                \end{equation*}
+                por lo que:
+                \begin{equation*}
+                    \begin{split}
+                        S(S(\chi)+\upsilon)=S(\chi)+\gamma
+                    \end{split}
+                \end{equation*}
+                se tiene que $\gamma\neq0$ (en caso contrario por un ejercicio llegaríamos a una contradicción). Si $\gamma$ no fuera el sucesor de nadie, por un ejercicio anterior se tendría que $S(\chi)+\gamma$ tampoco lo es\contradiction. Por ende, $\gamma$ es el sucesor de alguien, así que existe $\nu$ ordinal tal que $\gamma=S(\nu)$. Se tiene pues que:
+                \begin{equation*}
+                    S(S(\chi)+\upsilon)=S(S(\chi)+\nu)
+                \end{equation*}
+                por lo cual, $S(\chi)+\upsilon=S(\chi)$%TODO
+            \end{itemize}
+        \end{itemize}
+    \end{proof}
+
+    \begin{obs}
+        Se modificó el siguiente ejercicio.
+    \end{obs}
+
+    \begin{excer}
+        Demuestre que para un número ordinal $\alpha$ no cero, las siguientes condiciones son equivalentes:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $\alpha$ es ordinal límite.
+            \item $\forall\beta<\alpha$ se tiene que $S(\beta)<\alpha$.
+            \item $\alpha=\bigcup_{\beta\in\alpha}\beta$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        \textit{(1) $\Rightarrow$ (2)}: Suponga que $\alpha$ es ordinal límite, entonces no es sucesor de ningún ordinal. Suponga que existe un ordinal $\beta$ tal que $\beta<\alpha$ y $\alpha\leq S(\beta)$. Se tienen dos casos:
+        \begin{itemize}
+            \item $\alpha=S(\beta)$, lo cual es una contradicción ya que $\alpha$ no es sucesor de ningún ordinal.
+            \item $\alpha<S(\beta)$, debe tenerse que $\alpha\leq\beta$\contradiction, pues $\beta<\alpha$.
+        \end{itemize}
+        en ambos incisos anteriores se llega a una contradicción, por lo que $\forall\beta<\alpha(S(\beta)<\alpha)$.
+
+        \textit{(2) $\Rightarrow$ (3)}: Suponga que $\forall\beta<\alpha(S(\beta)<\alpha)$. Veamos que $\alpha=\bigcup_{\beta\in\alpha}\beta$. Antes de empezar, ambos conjuntos son ordinales:
+        \begin{itemize}
+            \item Para todo $\beta\in\alpha$, luego $\beta\subseteq\alpha$, lo cual implica que $\bigcup_{\beta\in\alpha}\subseteq\alpha$.
+            \item Sea $\gamma\in\alpha$, entonces $\gamma<\alpha$, en particular $S(\gamma)<\alpha\Rightarrow S(\gamma)\in\alpha$ y $\gamma\in S(\gamma)$, por lo que $\gamma\in S(\gamma)\subseteq\bigcup_{\beta\in\alpha}\beta$. Así que $\alpha\subseteq\bigcup_{\beta\in\alpha}\beta$.
+        \end{itemize}
+        por ambos incisos se sigue la igualdad.
+
+        \textit{(3) $\Rightarrow$ (1)}: Suponga que $\alpha=\bigcup_{\beta\in\alpha}\beta$. Si $\alpha$ no fuese ordinal límite, existiría $\eta<\alpha$ tal que $\alpha=S(\eta)$.
+
+        Si sucede lo segundo, entonces:
+        \begin{equation*}
+            \begin{split}
+                S(\eta)&=\alpha\\
+                &=\bigcup_{\beta\in\alpha}\beta\\
+            \end{split}
+        \end{equation*}
+        en particular, para todo $\beta\in\alpha$ se tiene que $\beta\leq\eta$ pues en caso contrario $\alpha$ no podría ser el sucesor de $\eta$, así que:
+        \begin{equation*}
+            \beta\subseteq\eta,\quad\forall\beta\in\alpha
+        \end{equation*}
+        por ende,
+        \begin{equation*}
+            \bigcup_{\beta\in\alpha}\beta\subseteq\eta
+        \end{equation*}
+        y, $\eta\subseteq\bigcup_{\beta\in\alpha}\beta$ pues $\eta\in\alpha$. Por tanto:
+        \begin{equation*}
+            \bigcup_{\beta\in\alpha}\beta=\eta
+        \end{equation*}
+        lo que implica:
+        \begin{equation*}
+            S(\eta)=\eta
+        \end{equation*}
+        cosa que es una contradicción\contradiction. Por tanto, $\alpha$ es ordinal límite.
+    \end{proof}
+
+    \begin{excer}[Nombre]
+        
     \end{excer}
 
 \end{document}

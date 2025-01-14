@@ -233,6 +233,8 @@
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
 \newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcounter{figcount}
+\setcounter{figcount}{1}
 
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
@@ -290,5 +292,13 @@
     \begin{excer}[Nombre]
         Ejercicio
     \end{excer}
+    
+    \begin{minipage}{\textwidth}
+    	\begin{center}
+    	    %\includegraphics[scale=0.5]{direccion_imagen}\\
+	    Figura \thefigcount. Caption.
+	    \stepcounter{figcount}
+	\end{center}
+    \end{minipage}
 
 \end{document}

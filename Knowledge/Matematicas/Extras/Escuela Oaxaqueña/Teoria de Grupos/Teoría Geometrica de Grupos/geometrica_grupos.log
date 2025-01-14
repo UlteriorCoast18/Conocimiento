@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.4)  10 JAN 2025 11:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.4)  13 JAN 2025 15:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Cursos ESFM/8vo Semestre/Logica Matematica/Listas/Lista 4/lista4.tex"
-(/home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Cursos ESFM/8vo Semestre/Logica Matematica/Listas/Lista 4/lista4.tex
+**"/home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Extras/Escuela Oaxaqueña/Teoria de Grupos/Teoría Geometrica de Grupos/geometrica_grupos.tex"
+(/home/cristodanielalvarado/Documentos/Personal/1. Conocimiento/Knowledge/Matematicas/Extras/Escuela Oaxaqueña/Teoria de Grupos/Teoría Geometrica de Grupos/geometrica_grupos.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
 (/usr/local/share/miktex-texmf/tex/latex/base/report.cls
@@ -710,6 +710,12 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip134
+) (/usr/local/share/miktex-texmf/tex/latex/bbm/bbm.sty
+Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
+LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
+(Font)                  U/bbm/m/n --> U/bbm/bx/n on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
+(Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
 ) (/usr/local/share/miktex-texmf/tex/latex/listings/listings.sty
 \lst@mode=\count342
 \lst@gtempboxa=\box119
@@ -734,7 +740,12 @@ File: lstmisc.sty 2024/03/11 1.10a (Carsten Heinz)
 File: listings.cfg 2024/03/11 1.10a listings configuration
 ))
 Package: listings 2024/03/11 1.10a (Carsten Heinz)
-Package hyperref Info: Option `colorlinks' set `true' on input line 30.
+ (/usr/local/share/miktex-texmf/tex/generic/pgf/frontendlayer/tikz/libraries/graphs/tikzlibrarygraphs.code.tex
+File: tikzlibrarygraphs.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\tikz@lib@auto@number=\count350
+\tikz@qnode@count=\count351
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 31.
  (/usr/local/share/miktex-texmf/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/03/11 1.10a listings language file
 ) (/usr/local/share/miktex-texmf/tex/latex/listings/lstlang1.sty
@@ -772,53 +783,54 @@ File: pgflibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfnodepartsixbox=\box139
 \pgfnodepartfivebox=\box140
 ))
-\c@it=\count350
-\c@exa=\count351
-\c@obs=\count352
-\c@theor=\count353
-\c@propo=\count354
-\c@cor=\count355
-\c@lema=\count356
-\c@mydef=\count357
-\c@excer=\count358
- (lista4.aux
+\c@it=\count352
+\c@exa=\count353
+\c@obs=\count354
+\c@theor=\count355
+\c@propo=\count356
+\c@cor=\count357
+\c@lema=\count358
+\c@mydef=\count359
+\c@excer=\count360
+\c@figcount=\count361
+ (geometrica_grupos.aux
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
 )
-\openout1 = `lista4.aux'.
+\openout1 = `geometrica_grupos.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 237.
-LaTeX Font Info:    ... okay on input line 237.
-LaTeX Info: Redefining \. on input line 237.
-LaTeX Info: Redefining \% on input line 237.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Info: Redefining \. on input line 244.
+LaTeX Info: Redefining \% on input line 244.
  (/usr/local/share/miktex-texmf/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count359
+\scratchcounter=\count362
 \scratchdimen=\dimen289
 \scratchbox=\box141
-\nofMPsegments=\count360
-\nofMParguments=\count361
+\nofMPsegments=\count363
+\nofMParguments=\count364
 \everyMPshowfont=\toks49
-\MPscratchCnt=\count362
+\MPscratchCnt=\count365
 \MPscratchDim=\dimen290
-\MPnumerator=\count363
-\makeMPintoPDFobject=\count364
+\MPnumerator=\count366
+\makeMPintoPDFobject=\count367
 \everyMPtoPDFconversion=\toks50
 ) (/usr/local/share/miktex-texmf/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -860,72 +872,141 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 237.
-(lista4.out) (lista4.out)
+Package hyperref Info: Link coloring ON on input line 244.
+(geometrica_grupos.out) (geometrica_grupos.out)
 \@outlinefile=\write4
-\openout4 = `lista4.out'.
+\openout4 = `geometrica_grupos.out'.
 
-\c@lstlisting=\count365
-LaTeX Font Info:    Trying to load font information for U+msa on input line 245.
+\c@lstlisting=\count368
+LaTeX Font Info:    Trying to load font information for U+msa on input line 252.
  (/usr/local/share/miktex-texmf/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 245.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 252.
  (/usr/local/share/miktex-texmf/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/home/cristodanielalvarado/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}]
+{/home/cristodanielalvarado/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}{/usr/local/share/miktex-texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (geometrica_grupos.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
+\tf@toc=\write5
+\openout5 = `geometrica_grupos.toc'.
 
-LaTeX Font Warning: Font shape `TS1/cmr/m/sc' undefined
-(Font)              using `TS1/cmr/m/n' instead
-(Font)              for symbol `textsection' on input line 250.
-
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 252.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 280.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.308             \begin{equation*}
-                                    [1{/usr/local/share/miktex-texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+l.255     \newpage
+                   [1
+
+]
+Cap\'{\i }tulo 1.
+
+LaTeX Font Warning: Font shape `TS1/cmr/m/sc' undefined
+(Font)              using `TS1/cmr/m/n' instead
+(Font)              for symbol `textsection' on input line 259.
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 334.
+(mdframed)              on input line 263.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 269.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 273.
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 292.
+(/usr/local/share/miktex-texmf/tex/latex/bbm/ubbm.fd
+File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
+) [2
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 301.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 305.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 315.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 321.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 330.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 338.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 342.
- [2]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 374.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 421.
+(mdframed)              on input line 345.
  [3]
-Package mdframed Info: Not enough space on this page on input line 423.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 445.
- [4]
+(mdframed)              on input line 364.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 501.
+(mdframed)              on input line 378.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 382.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 386.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 394.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 398.
+<images/Caley_2_3.png, id=87, 747.79375pt x 284.06125pt>
+File: images/Caley_2_3.png Graphic file (type png)
+<use images/Caley_2_3.png>
+Package pdftex.def Info: images/Caley_2_3.png  used on input line 407.
+(pdftex.def)             Requested size: 224.33984pt x 85.21902pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 405--412
+[]$[]$ 
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 416.
+[4] [5 <./images/Caley_2_3.png>]
+Cap\'{\i }tulo 2.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 428.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 442.
+[6
+
+]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 505.
- [5]
+ [7] [8]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 557.
- [6] (lista4.aux
+(mdframed)              on input line 621.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 629.
+ [9]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 695.
+
+Overfull \hbox (6.6701pt too wide) in paragraph at lines 698--699
+[]\OT1/cmr/m/n/12 Demuestra que exis-ten con-jun-tos ge-ne-ra-do-res fi-ni-tos $\OML/cmm/m/it/12 S$ \OT1/cmr/m/n/12 de $\U/bbm/m/n/12 Z$ \OT1/cmr/m/n/12 y $\OML/cmm/m/it/12 T$ \OT1/cmr/m/n/12 de $\OML/cmm/m/it/12 D[]$ \OT1/cmr/m/n/12 ta-les que $[] [] []
+ []
+
+[10] (geometrica_grupos.aux
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
 )
@@ -937,21 +1018,21 @@ L3 programming layer <2024-03-14>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `lista4.out' has not changed.
-(rerunfilecheck)             Checksum: 6F428896B8CF93A8666FAAA2E920B67C;83.
+Package rerunfilecheck Info: File `geometrica_grupos.out' has not changed.
+(rerunfilecheck)             Checksum: 5AFDCB1F05B6F1577CCBEB787541FFC5;1491.
  ) 
 Here is how much of TeX's memory you used:
- 26534 strings out of 474387
- 496725 string characters out of 5747330
+ 27480 strings out of 474387
+ 522449 string characters out of 5747330
  2122493 words of memory out of 5000000
- 48414 multiletter control sequences out of 15000+600000
- 567245 words of font info for 71 fonts, out of 8000000 for 9000
+ 49314 multiletter control sequences out of 15000+600000
+ 569189 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 104i,20n,115p,688b,1054s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/share/miktex-texmf/fonts/type1/public/cm-super/sfrm1440.pfb>
-Output written on lista4.pdf (7 pages, 171485 bytes).
+ 104i,23n,115p,713b,1053s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/cristodanielalvarado/.miktex/texmfs/data/fonts/pk/ljfour/public/bbm/dpi600/bbm8.pk> </home/cristodanielalvarado/.miktex/texmfs/data/fonts/pk/ljfour/public/bbm/dpi600/bbm12.pk></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/share/miktex-texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/share/miktex-texmf/fonts/type1/public/cm-super/sfrm2074.pfb>
+Output written on geometrica_grupos.pdf (11 pages, 350424 bytes).
 PDF statistics:
- 139 PDF objects out of 1000 (max. 8388607)
- 31 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 251 PDF objects out of 1000 (max. 8388607)
+ 59 named destinations out of 1000 (max. 500000)
+ 74 words of extra memory for PDF output out of 10000 (max. 10000000)
 

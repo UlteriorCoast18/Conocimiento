@@ -235,7 +235,7 @@
                 \forall z\forall b\exists u\forall z(z\in u\iff(z= a\lor z\in b))
             \end{equation*}
             informalmente, dados $a,b$ existe el conjunto $\left\{a,b\right\}$.
-            \item \textbf{Unión}: $\forall z\exists u\forall z(z\in u\iff(\exists b)(b\in a\land z\in b))$.
+            \item \textbf{Unión}: $\forall a\exists u\forall z(z\in u\iff(\exists b)(b\in a\land z\in b))$.
             informalmente, dado $a$ existe el conjunto $\bigcup_{ b\in a}b$.
             \item \textbf{Potencia}: $\forall z\exists b\forall z(z\in b\iff z\subseteq a)$.
             informalmente, dado $a$, existe $\pot{}$.
@@ -759,7 +759,7 @@
     \section{Inducción Transfinita}
 
     \begin{cor}[\textbf{Principio de Inducción Transfinita}]
-        Dada una fórmula $\varphi(x)$, $(\forall\alpha\textup{ ordinal})((\forall\beta<\alpha)\varphi(\beta)\Rightarrow\varphi(\alpha))\Rightarrow(\forall\alpha)\varphi(\alpha)$.
+        Dada una fórmula $\varphi(x)$, $(\forall\alpha\textup{ ordinal})((\forall\beta<\alpha)\varphi(\beta)\Rightarrow\varphi(\alpha))\Rightarrow(\forall\alpha\textup{ ordinal})\varphi(\alpha)$.
     \end{cor}
 
     \begin{proof}
@@ -808,6 +808,226 @@
             \end{split}
         \end{equation*}
         Por inducción transfinita se sigue que $h(\xi)=\xi$ para todo $\xi<\alpha$, es decir que $h=\textup{id}_\alpha$ y, por ende $\beta=h(\alpha)=\alpha$.
+    \end{proof}
+
+    \section{Axioma de Reemplazo}
+
+    Recordemos que este axioma dice lo siguiente
+    \begin{equation*}
+        \forall x\exists!y\psi(x,y)\Rightarrow\forall u\exists v\forall y(y\in v\iff(\exists x\in u)\psi(x,y))
+    \end{equation*}
+    Veamos algunos ejemplos para concretar más las ideas:
+    \begin{exa}
+        Los siguientes son ejemplos donde $y$ caracteriza de forma única una cosa definida sobre $x$:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $\psi(x,y)\equiv(\forall z)(z\in y\iff z\subseteq x)$. En este caso, $y=\pot{x}$.
+            \item $\psi(x,y)\equiv\forall z(z\in y\iff (z\in x\lor z=x))$. En este caso, es $y=S(x)=x\cup\left\{x\right\}$.
+            \item $\psi(x,y)\equiv(\forall z)(z\in y\iff(\exists u\in x)(z\in u))$. En este caso, $y=\bigcup_{ u\in x}u$.
+        \end{enumerate}
+    \end{exa}
+
+    Básicamente $\psi(x,y)$ es una especie de función, pero queremos algo más general, de alguna manera, generalizar el concepto de función para una noción más general con algo que se comporta como función.
+
+    Resulta que el axioma hace redundante varios axiomas de nuestro teoría.
+
+    \begin{obs}
+        Se tiene lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Axoima de reemplazo implica Axioma del Par.
+            \item Axoima de reemplazo implica Axioma de Comprensión.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{sol}
+        Esto no es una demostración, pero es lo más parecido a lo que podemos hacer a un esquema de ello.
+        
+        De \textit{(1)}: Tenemos que $\emptyset$ existe. Por el axioma del conjunto potencia, $\left\{\emptyset\right\}=\pot{\emptyset}$. Sean $a$ y $b$ arbitrarios, considere:
+        \begin{equation*}
+            \psi(x,y)\equiv(x=\emptyset\land y=a)\lor(x=\left\{\emptyset \right\},y=b)\lor(x\neq\emptyset\lor x\neq\left\{\emptyset \right\}\land y = \emptyset)
+        \end{equation*}
+        En este caso, $\psi$ representa a la \textit{función}:
+        \begin{equation*}
+            F(x)=\left\{
+                \begin{array}{lcr}
+                    a & \textup{ si } & x=\emptyset \\
+                    b & \textup{ si } & x=\left\{\emptyset\right\} \\
+                    \emptyset & \textup{ e.o.c. } & \\
+                \end{array}
+            \right.
+        \end{equation*}
+        Por reemplazo,
+        \begin{equation*}
+            F[\left\{\emptyset,\left\{\emptyset \right\} \right\}]=\left\{F(\emptyset),F(\left\{\emptyset\right\})\right\}=\left\{a,b\right\}
+        \end{equation*}
+        es un conjunto.
+
+        De \textit{(2)}: Sea $\varphi(x)$ una fórmula. Consideramos:
+        \begin{equation*}
+            \psi(x,y)\equiv(\varphi(x)\land y =\left\{x \right\})\lor(\neg\varphi(x)\land y=\emptyset)
+        \end{equation*}
+        representa a la función:
+        \begin{equation*}
+            F(x)=\left\{ 
+                \begin{array}{lcr}
+                    \left\{x\right\} & \textup{ si } & \varphi(x) \\
+                    \emptyset & \textup{ e.o.c. } & \\
+                \end{array}
+            \right.
+        \end{equation*}
+        Entonces, dado $A$, por reemplazo:
+        \begin{equation*}
+            B=F[A]=\left\{\left\{x\right\}\Big|x\in A\land\varphi(x) \right\}\cup\left\{\emptyset\right\}
+        \end{equation*}
+        y, notemos que:
+        \begin{equation*}
+            \bigcup_{ y\in B}y=\left(\bigcup_{\substack{x\in A \\ \varphi(x)}}\left\{x\right\}\right)\cup\emptyset=\left\{x\in A\Big|\varphi(x) \right\}
+        \end{equation*}
+        es justo lo que queremos obtener a partir del axoima de comprensión.
+    \end{sol}
+
+    \begin{theor}[\textbf{Principio de Recursión Transfinita}]
+        Dada una \textit{función} $G$, existe $F$ tal que $\forall\alpha$ ordinal $(F(\alpha)=G(F\upharpoonright\alpha))$.
+    \end{theor}
+
+    \begin{obs}
+        En este caso: $F\upharpoonright\alpha=\left\{(\xi,F(\xi))\Big|\xi<\alpha \right\}$.
+    \end{obs}
+
+    Para que la idea quede más clara, veremos algunos ejemplos.
+
+    \begin{exa}
+        Suma de ordinales:
+        \begin{equation*}
+            \begin{split}
+                \alpha+0&=\alpha\\
+                \alpha+S(\beta)&=S(\alpha+\beta)\\
+                \alpha+\beta&=\sup\left\{\alpha+\xi\Big|\xi<\beta \right\}\textup{ si $\beta$ no es un sucesor} \\
+            \end{split}
+        \end{equation*}
+        Resulta que esta operación es asociativa, $0$ es un elemento neutro. Si $\alpha,\beta\in\omega$, entonces $\alpha+\beta$ coincide con la definción usual de suma de elementos de $\omega$. Pero no es conmutativo, por ejemplo:
+        \begin{equation*}
+            \omega+1=\omega+S(0)=S(\omega+0)=S(\omega)
+        \end{equation*}
+        pero,
+        \begin{equation*}
+            1+\omega=\sup\left\{1+n\Big|n<\omega \right\}=\omega
+        \end{equation*}
+    \end{exa}
+
+    \begin{exa}
+        Producto de ordinales:
+        \begin{equation*}
+            \begin{split}
+                \alpha\cdot0 &= 0\\
+                \alpha\cdot S(\beta) &=\alpha\cdot\beta+\alpha\\
+                \alpha\cdot \beta&=\sup\left\{\alpha\cdot\xi\Big|\xi<\beta \right\}
+            \end{split}
+        \end{equation*}
+        donde el último caso es si $\beta$ no es sucesor de alguien. Este producto es asociativa, el $1$ es elemento neutro, es distributivo sobre la suma, esto es:
+        \begin{equation*}
+            \alpha\cdot(\beta+\gamma)=\alpha\cdot\beta+\alpha\cdot\gamma
+        \end{equation*}
+        Si $\alpha,\beta<\omega$, entonces coincide con el producto usual. No es conmutativa ya que:
+        \begin{equation*}
+            \begin{split}
+                \omega\cdot 2=&\omega\cdot S(S(0)) \\
+                &=\omega\cdot S(0)+\omega\\
+                &=\omega\cdot0+\omega+\omega\\
+                &=\omega+\omega\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                2\cdot\omega&=\sup\left\{2\cdot n\Big|n<\omega \right\}\\
+                &=\omega\\
+            \end{split}
+        \end{equation*}
+        Además, no es cancelativa ya que:
+        \begin{equation*}
+            2\cdot\omega=\omega=3\cdot\omega
+        \end{equation*}
+        con $2\neq 3$.
+    \end{exa}
+
+    \begin{theor}
+        Todo conjunto bien ordenado es isomorfo a un único ordinal.
+    \end{theor}
+
+    \begin{proof}
+        Sea $(X,\preceq)$ un conjunto bien ordenado (abreviado como cobo). Por el principio de recursión transfinita, definimos $F$ mediante:
+        \begin{equation*}
+            F(\alpha)=\left\{
+                \begin{array}{lcr}
+                    \min\left(X\setminus\left\{F(\xi)\Big|\xi<\alpha \right\}\right) & \textup{ si } & X\setminus\left\{F(\xi)\Big|\xi<\alpha \right\}\neq\emptyset\\
+                    * & \textup{e.o.c.} & \\
+                \end{array}
+            \right.
+        \end{equation*}
+        para todo $\alpha$ ordinal. Afirmamos lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Si $\alpha<\beta$ y $F(\alpha),F(\beta)$ están definidos, entonces $F(\alpha)<F(\beta)$.
+            \item $\exists\gamma$ tal que $F(\gamma)$ no está definida, es decir que $F(\gamma)=*$. (de lo contrario, $$\left\{x\in X\Big|x=F(\alpha)\textup{ para algún }\alpha \right\}$$ estaría en biyección con la clase de todos los ordinales, cosa que contradice el axioma de reemplazo). Tomamos el mínimo $\gamma$ tal que $F(\gamma)=*$ y hacemos:
+            \begin{equation*}
+                f=\left\{(\alpha,F(\alpha))\Big|\alpha<\gamma \right\}
+            \end{equation*}
+            por reemplazo esto es un conjunto. Se tiene que $\cf{f}{\gamma}{X}$ es función suprayectiva y por el inciso anterior es inyectiva y preserva el orden, por lo que es un isomorfismo.
+        \end{enumerate}
+        La unicidad se sigue de un teorema anterior.
+    \end{proof}
+    
+    \section{Axioma de Elección}
+
+    Encontrémonos en el contexto de Cálculo III. Sea $A\subseteq\mathbb{R}^n$ y $x\in\mathbb{R}^n$. Hay un teorema que nos dice:
+
+    \begin{propo}
+        $x$ es punto de acumulación de $A$ si y sólo si $\exists$ una sucesión $\langle x_n\Big|n\in\omega \rangle$ tal que para todo $n\in\omega(x_n\in A)$ y $\lim_{ n\rightarrow\infty}x_n=x$.
+    \end{propo}
+
+    \begin{proof}
+        $\Leftarrow):$ Es inmediata.
+
+        $\Rightarrow):$ Para cada $n\in\omega$, sea $x_n\in A\cap B_{\frac{1}{n+1}}(x)$.
+    \end{proof}
+
+    Si queremos elegir $x_0,...,x_m$ para $m\in\omega$, esto es posible. Pero ¿es posible hacer esto de forma inductiva? Realmente, no ya que estaríamos haciendo una cantidad infinita de instanciaciones existenciales, por lo que la demostración de la existencia de todos los elementos de la sucesión sería infinita, cosa que no puede hacerse.
+
+    Una forma tradicional de enunciar el axioma de elección es de la siguiente forma (denominada $AE_1$):
+    \begin{equation*}
+        \forall\chi((\chi\neq\emptyset\land((\forall A\in\chi)(A\neq\emptyset))\forall A,B\in\chi(A\neq B\Rightarrow A\cap B=\emptyset))\Rightarrow\exists S(\forall A\in\chi)(\exists!\zeta)(\zeta\in A\cap S))
+    \end{equation*}
+    en cierto sentido, $S$ es un \textit{selector} de $\chi$. Otra forma de enunciarlo es como sigue:
+    \begin{equation*}
+        AE_2\equiv\forall\chi(\chi\neq\emptyset\land((\forall A\in\chi)(A\neq\emptyset)\Rightarrow\exists f(f\textup{ función}\land\dom{f}=\chi\land(\forall A\in\chi)(f(A)\in A))))        
+    \end{equation*}
+    En cierto, sentido $f$ es llamad a \textit{funcioń de elección} para $\chi$.
+
+    Resulta que ambas enunciaciones del teorema son equivalentes.
+
+    \begin{obs}
+        Cuando decimos ZF nos referimos a todos los axoimas de la teoría de conjuntos salvo elección.
+    \end{obs}
+
+    \begin{theor}
+        $\textup{ZF}\vdash AE_1\iff AE_2$.
+    \end{theor}
+
+    \begin{proof}
+        $\Rightarrow):$ Sea $\chi$ una familia no vacía de conjuntos no vacíos. Tomemos:
+        \begin{equation*}
+            \vartheta=\left\{A\times\left\{A\right\}\Big|A\in\chi \right\}
+        \end{equation*}
+        esta familia es no vacía de conjuntos no vacíos que son disjuntos a pares. Sea $S$ un selector para la familia $\vartheta$, se tiene que:
+        \begin{equation*}
+            f=\left\{(A,a)\Big|A\in X\land (a,A)\in S\cap(A\times\left\{A\right\}) \right\}
+        \end{equation*}
+        $f$ es función de elección para la familia $\chi$.
+        
+        $\Leftarrow):$ Sea $\chi$ una familia no vacía de conjuntos no vacíos disjuntos a pares. Por $AE_2$ existe una función de elección. Entonces:
+        \begin{equation*}
+            \ran{f}=\left\{f(A)\Big|A\in\chi \right\}
+        \end{equation*} 
+        es un selector para $\chi$.
     \end{proof}
 
 \end{document}
