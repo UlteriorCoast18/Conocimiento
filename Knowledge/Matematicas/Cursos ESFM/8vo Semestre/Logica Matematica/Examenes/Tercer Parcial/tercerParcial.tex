@@ -184,20 +184,20 @@
             \item $X_0=X$.
             \item $X_{ n+1}=\bigcup_{\alpha\in X_n}a$.
         \end{itemize}
-        definiendo también $X_{\omega}=\bigcup_{ n\in\omega}X_n$, demuestre que $X$ es un conjunto transitivo.
+        definiendo también $X_{\omega}=\bigcup_{ n\in\omega}X_n$, demuestre que $X_\omega$ es un conjunto transitivo.
     \end{excer}
 
     \begin{proof}
-        Recordemos que un conjunto es $x$ \textbf{transitivo} si $\forall y\in x(y\subseteq x)$. Veamos que $X$ es transitivo. Sea $y\in X$, entonces existe $n_0\in\omega$ tal que $y\in X{n_0}$, se sigue así que el elemento $y$ cumple que:
+        Recordemos que un conjunto es $x$ \textbf{transitivo} si $\forall y\in x(y\subseteq x)$. Veamos que $X_\omega$ es transitivo. Sea $y\in X_\omega$, entonces existe $n_0\in\omega$ tal que $y\in X_{n_0}$, se sigue así que el elemento $y$ cumple que:
         \begin{equation*}
             y\subseteq\bigcup_{ a\in X_{n_0}}a=X_{n_0+1}
         \end{equation*}
         por tanto:
         \begin{equation*}
-            y\subseteq X_{ n_0+1}\subseteq\bigcup_{ n\in\omega}X_n=X
+            y\subseteq X_{ n_0+1}\subseteq\bigcup_{ n\in\omega}X_n=X_\omega
         \end{equation*}
         
-        Se sigue que $X$ es un conjunto transitivo.
+        Se sigue que $X_\omega$ es un conjunto transitivo.
     \end{proof}
 
     \begin{lema}
@@ -279,10 +279,10 @@
                 \item $\beta=0$,en cuyo caso se sigue que:
                 \begin{equation*}
                     \begin{split}
-                        1\cdot\beta=1\cdot0\\
+                        1\cdot\beta&=1\cdot0\\
                         &=0\\
                         &=\beta\\
-                        \Rightarrow 1\cdot\beta=\beta\\
+                        \Rightarrow 1\cdot\beta&=\beta\\
                     \end{split}
                 \end{equation*}
                 \item Existe un ordinal $\gamma$ tal que $\beta=S(\gamma)$, en particular $\gamma<\beta$, por lo que:
@@ -317,15 +317,15 @@
     \end{excer}
 
     \begin{proof}
-        Por decir que tenemos la clase función $F$, estamos diciendo que para una fórmula con dos variables libres $\psi(x,y)$ se tiene que:
+        Por decir que tenemos la clase función $F$, estamos diciendo que tenemos una fórmula con dos variables libres $\psi(x,y)$ para la cual:
         \begin{equation*}
             (\forall x)(\exists!y)\psi(x,y)
         \end{equation*}
-        usando el esquema axioma de reemplazo con la fórmula $\psi$ y Modus Ponens:
+        usando el esquema axioma de reemplazo con la fórmula $\psi$ y Modus Ponens obtenemos que:
         \begin{equation*}
             \forall u\exists v\forall y(y\in v\iff(x\in u)\psi(x,y))
         \end{equation*}
-        obtenemos haciendo una instanciacion existencial tomando $u=A$ se tiene que existe $v_A$ conjunto tal que:
+        y, haciendo una instanciacion existencial tomando $u=A$ se tiene que existe $v_A$ conjunto tal que:
         \begin{equation*}
             \forall y(y\in v_A\iff(x\in A)\psi(x,y))
         \end{equation*}
@@ -339,7 +339,7 @@
         \begin{equation*}
             (\forall x)(\exists!y)((x,y)\in F\upharpoonright A)
         \end{equation*}
-        por ende, $F\upharpoonright A$ es función.
+        por ende, $F\upharpoonright A$ es función. En particular es conjunto.
     \end{proof}
 
     \begin{excer}
@@ -380,7 +380,7 @@
         \begin{equation*}
             C=\bigcup\mathcal{C}=\bigcup_{ i\in I}C_i
         \end{equation*}
-        es claro que $C_i\subseteq C$. Veamos que $C\in\mathcal{S}$. En efecto, sean $x_1,...,x_n\in C$ y tomemos $\alpha_1,...,\alpha_n\in\bbm{K}$ tales que:
+        es claro que $C_i\subseteq C$ para todo $i\in I$. Veamos que $C\in\mathcal{S}$. En efecto, sean $x_1,...,x_n\in C$ y tomemos $\alpha_1,...,\alpha_n\in\bbm{K}$ tales que:
         \begin{equation*}
             \alpha_1x_1+\cdots+\alpha_nc_n=0
         \end{equation*}
@@ -396,7 +396,7 @@
         \begin{equation*}
             x_j\in C_{ i_m},\quad\forall j=1,...,n
         \end{equation*}
-        Así que, como $C\in\mathcal{S}$, entonces $C$ es un conjunto linealmente independiente, por lo cual:
+        Así que, como $C_{ i_m}\in\mathcal{S}$, entonces $C_{ i_m}$ es un conjunto linealmente independiente, por lo cual:
         \begin{equation*}
             \alpha_j=0,\quad\forall j=1,...,n
         \end{equation*}
@@ -410,7 +410,7 @@
         \end{equation*}
         es linealmente independiente. Por ser $B$ elemento maximal y $B\subseteq B\cup\left\{v\right\}$ se sigue que $B\cup\left\{v\right\}\subseteq B$, así que $v\in B\subseteq\langle B\rangle$\contradiction. Por tanto, $B$ genera a todo $V$.
 
-        Se sigue entonces que el $\bbm{K}$.espacio vectorial $V$ admite una base.
+        Se sigue entonces que el $\bbm{K}$.espacio vectorial $V$ tiene como base a $B$.
     \end{proof}
 
 \end{document}

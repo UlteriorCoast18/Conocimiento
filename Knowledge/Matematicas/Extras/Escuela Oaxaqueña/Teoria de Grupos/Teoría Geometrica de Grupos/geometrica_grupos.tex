@@ -560,7 +560,106 @@
         Todo espacio métrico $X$ de diámetro finito es quasi-isométrico al espacio de un punto.
     \end{exa}
 
-    
+    \begin{mydef}
+        Sea $G$ un grupo actuando en una gráfica $(V,E)$, esto es, tenemos un homomorfismo $\cf{\varphi}{G}{\Aut{V,E}}$. La acción $\varphi$ es \textbf{libre} si para todo $g\in G\setminus\left\{e\right\}$:
+        \begin{equation*}
+            \forall v\in V, \varphi_g(v)\neq v
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \forall\left\{v,w \right\}\in E,\varphi_g\left(\left\{v,w \right\}\right) \left\{\varphi_g(v),\varphi_g(w) \right\}\neq \left\{v,w \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{exa}
+        Suponga que $G=\gen{S}$, entonces tenemos una acción:
+        \begin{equation*}
+            \cf{\varphi}{G}{\Aut{V,E}}
+        \end{equation*}
+        tal que $g\mapsto g\cdot h$.
+    \end{exa}
+
+    \begin{obs}
+        La acción se reestringe a:
+        \begin{equation*}
+            \cf{\varphi}{G}{\Aut{G}}
+        \end{equation*}
+        tal que $g\mapsto\varphi_g$. Afirmamos que esta acción es libre.
+    \end{obs}
+
+    \begin{proof}
+        En efecto, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \varphi_g(h)=h&\iff g\cdot h=h\\
+                &\iff g=e\\
+            \end{split}
+        \end{equation*}
+        así que la acción es libre.
+    \end{proof}
+
+    \begin{mydef}
+        Una acción $G\curvearrowright X$ es \textbf{transitiva} si $\forall x\in X$ tenemos que:
+        \begin{equation*}
+            \mathcal{O}_x=\left\{gx\Big|g\in X \right\}=X
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+        Sea $G$ un grupo y $S\subseteq G$ un conjunto generador de $G$. Entonces, la acción $\cf{\varphi}{G}{\Aut{\Cay{G,S}}}$ dada por:
+        \begin{equation*}
+            g\mapsto(h\mapsto g\cdot h)
+        \end{equation*}
+        es libre si y sólo si no contiene involuciones, es decir que no existe $s\in S$ tal que $s^2=e$.
+    \end{propo}
+
+    \begin{proof}
+        Sabemos que la acción $\varphi$ se reestringe a $G$ y es libre.
+
+        $\Rightarrow):$ Supo
+
+        $\Leftarrow):$ Supongamos que $\varphi$ no es libre, entonces existe una arista $\left\{v,w \right\}$ tal que:
+        \begin{equation*}
+            g\cdot\left\{v,w \right\}=\left\{v,w \right\}
+        \end{equation*}
+        para algún $g\in G\setminus\left\{e \right\}$. Tenemos dos casos:
+        \begin{itemize}
+            \item $g\cdot v=v$\contradiction, cosa que no puede suceder ya que la acción es libre sobre $G$.
+            \item $g\cdot v=w$, por lo que $g\cdot w=v$, así que:
+            \begin{equation*}
+                v=g\cdot w=g(g\cdot v)=g^2\cdot v\Rightarrow g^2=e
+            \end{equation*}
+        \end{itemize}
+        con lo que se sigue que $G$ tiene involuciones.
+    \end{proof}
+
+    \begin{propo}
+        Sea $G$ un grupo finitamente generado. Entonces, la gráfica de Caley es única hasta quasi-isometrías.
+    \end{propo}
+
+    \begin{proof}
+        Sean $S$ y $S'$ conjuntos finitos generadores de $G$. Probaremos que:
+        \begin{equation*}
+            \cf{\bbm{1}}{\Cay{G,S}}{\Cay{G,S'}}
+        \end{equation*}
+        es una equivalencia bilipschitz. Sea:
+        \begin{equation*}
+            n=\max\left\{d(e,s)\Big|s\in S' \right\}
+        \end{equation*}
+        Notemos que $n$ existe ya que el conjunto de la derecha es finito.
+    \end{proof}
+
+    \begin{mydef}
+        Dos grupos $G$ y $H$ son \textbf{quasi-isométricos} si $\Cay{G,S}\qisom\Cay{H,T}$.
+    \end{mydef}
+
+    \begin{exa}
+        Todos los grupos finitos son quasi-isométricos.
+    \end{exa}
+
+    ¿Cómo clasificar grupos hasta quasi-isometrías?
+
+    La primera respuesta es construír invariantes quasi-isométricos.
 
     \chapter{Ejercicios y Problemas}
 
