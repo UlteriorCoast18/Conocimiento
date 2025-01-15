@@ -567,7 +567,7 @@
         \end{equation*}
         y,
         \begin{equation*}
-            \forall\left\{v,w \right\}\in E,\varphi_g\left(\left\{v,w \right\}\right) \left\{\varphi_g(v),\varphi_g(w) \right\}\neq \left\{v,w \right\}
+            \forall\left\{v,w \right\}\in E,\varphi_g\left(\left\{v,w \right\}\right)=\left\{\varphi_g(v),\varphi_g(w) \right\}\neq \left\{v,w \right\}
         \end{equation*}
     \end{mydef}
 
@@ -1137,4 +1137,332 @@
         Por ende, $g\circ f$ tiene imagen quasi-densa. Por un teorema anterior se sigue que $g\circ f$ es quasi-isometría.
     \end{proof}
     
+    \section{Gráfica de Caley y Acciones de Grupos}
+
+    \begin{excer}
+        Demuestra que el grupo libre $F_n$ actúa libremente en su gráfica de Caley. Además, demuestra que todo subgrupo de $F_n$ es un grupo libre.
+    \end{excer}
+
+    \begin{proof}
+        Considere el grupo libre $F_n$:
+        \begin{equation*}
+            F_n=\gen{x_1,...,x_n}
+        \end{equation*}
+        Tomemmos $S=\left\{x_1,...,x_n\right\}$. Así que $\Cay{F_n,S}$ es la gráfica de Caley de $F_n$. Veamos que la acción:
+        \begin{equation*}
+            (g,h)\mapsto gh
+        \end{equation*}
+        de $G$ en la gráfica $\Cay{F_n,S}$ es libre. Por una proposición basta con ver que el grupo $G$ no contiene involuciones, es decir que:
+        \begin{equation*}
+            s^2\neq e,\quad\forall s\in S
+        \end{equation*}
+        En efecto, si tal cosa ocurriese, existiría $i=1,...,n$ tal que:
+        \begin{equation*}
+            x_i^2=e\Rightarrow x_i=x_i^{-1}
+        \end{equation*}
+        pero, como $F_n$ es grupo libre en los elementos $x_1,..,x_n$, forzosamente se tiene que:
+        \begin{equation*}
+            x_i\neq x_i^{-1}
+        \end{equation*}
+        por tanto $x_i=x_i^{-1}$ y $x_i\neq x_i^{-1}$\contradiction. Así que $s^2\neq e$ para todo $s\in S$, es decir que $F_n$ no tiene involuciones, por lo que la acción de $F_n$ en $\Cay{F_n,S}$ es libre.
+
+        Para la otra parte, sea $H$ un subgrupo de $F_n$. Afirmamos que $H$ es libre. En efecto, recordemos que un grupo $G$ actúa de manera libre en un árbol si y sólo si $G$ es grupo libre.
+        
+        En particular, $F_n$ es grupo libre, por lo que $F_n$ actúa de manera libre en un árbol, digamos $T$.
+
+        En particular, como $F_n$ actúa libre sobre $T$ se tiene que:
+        \begin{equation*}
+            \forall v\in V, g\cdot v\neq v
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \forall\left\{v,w \right\}\in E, g\cdot\left\{v,w \right\}\neq \left\{v,w \right\}
+        \end{equation*}
+        para todo $g\in F_n\setminus\left\{e\right\}$. Por ser $H$ subgrupo de $F_n$, se sigue que:
+        \begin{equation*}
+            \forall v\in V, h\cdot v\neq v
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \forall\left\{v,w \right\}\in E, g\cdot\left\{v,w \right\}\neq \left\{v,w \right\}
+        \end{equation*}
+        para todo $g\in H\setminus\left\{e\right\}$. Por tanto, $H$ actúa de manera libre en el árbol $T$, así que $H$ es grupo libre.
+    \end{proof}
+
+    \begin{excer}
+        Demuestra que los siguientes subgrupos son cuasi-isométricos: $D_\infty$, $\bbm{Z}\times\bbm{Z}/2\bbm{Z}$ y $\bbm{Z}$.
+    \end{excer}
+
+    \begin{proof}
+        Los grupos $D_\infty$, $\bbm{Z}\times\bbm{Z}/2\bbm{Z}$ y $\bbm{Z}$ son finitamente generados, por lo que su gráfic ade Caley es única hasta cuasi-isometrías.
+
+        Primero, veamos que $D_\infty\qisom\bbm{Z}$. Como $D_\infty\cong\bbm{Z}/2\bbm{Z}*\bbm{Z}/2\bbm{Z}$, entonces ya se sabe por un ejercicio anterior que los conjuntos:
+        \begin{equation*}
+            S=\left\{x,y \right\}\subseteq\bbm{Z}/2\bbm{Z}*\bbm{Z}/2\bbm{Z} \quad\textup{y}\quad T=\left\{1\right\}\subseteq\bbm{z}
+        \end{equation*}
+        con $\bbm{Z}/2\bbm{Z}*\bbm{Z}/2\bbm{Z}=\gen{x,y\Big|x^2=y^2=1}$, son tales que:
+        \begin{equation*}
+            \Cay{D_\infty,S}\cong\Cay{\bbm{Z},T}
+        \end{equation*}
+        en particular, como son isomorfos como gráficas, son cuasi-isométricos, es decir que:
+        \begin{equation*}
+            \Cay{D_\infty,S}\qisom\Cay{\bbm{Z},T}
+        \end{equation*}
+        por lo que $D_\infty\qisom\bbm{Z}$.
+
+        Ahora, veamos que $D_\infty\qisom\bbm{Z}\times\bbm{Z}/2\bbm{Z}$. Para ello, recordemos que:
+        \begin{equation*}
+            D_\infty=\gen{r,s\Big|s^2=1\textup{ y }srs=r^{-1}}
+        \end{equation*}
+        Por otro ejercicio, se sabe que los conjuntos:
+        \begin{equation*}
+            S=\left\{(1,0),(0,1)\right\}\subseteq\bbm{Z}\times\bbm{Z}/2\bbm{Z}\quad\textup{y}\quad T=\left\{r,s \right\}\subseteq D_\infty
+        \end{equation*}
+        son tales que:
+        \begin{equation*}
+            \Cay{D_\infty,T}\cong\Cay{\bbm{Z}\times\bbm{Z}/2\bbm{Z},S}
+        \end{equation*}
+        por tanto, al igual que en la parte anterior, se sigue que:
+        \begin{equation*}
+            \Cay{D_\infty,T}\qisom\Cay{\bbm{Z}\times\bbm{Z}/2\bbm{Z},S}
+        \end{equation*}
+        es decir que $D_\infty\qisom\bbm{Z}\times\bbm{Z}/2\bbm{Z}$.
+    \end{proof}
+
+    \begin{excer}
+        Demuestra que un grupo infinito no puede ser quasi-isométrico a un grupo finito.
+    \end{excer}
+
+    \begin{proof}
+        Sea $G$ un grupo infinito y $H$ un grupo finito. Como es finito y todos los grupos finitos son quasi-isométricos, se tiene que:
+        \begin{equation*}
+            H\qisom\gen{e}
+        \end{equation*}
+        por lo que existe uno conjunto $S_1\subseteq H$ tal que:
+        \begin{equation*}
+            \Cay{H,S_1}\qisom\Cay{\gen{e},\left\{e\right\}}
+        \end{equation*}
+
+        Si $G\qisom H$, entonces existirían conjuntos $T\subseteq G$ y $S_2\subseteq H$ tales que:
+        \begin{equation*}
+            \Cay{G,T}\qisom\Cay{H,S_2}
+        \end{equation*}
+        Por ser $H$ finitamente generado se sigue que su gráfica de Caley es única hasta quasi-isometrías, es decir que:
+        \begin{equation*}
+            \Cay{H,S_2}\qisom \Cay{H,S_1}
+        \end{equation*}
+        por tanto, usando la transitividad de la relación $\qisom$ se sigue que:
+        \begin{equation*}
+            \Cay{G,T}\qisom\Cay{\gen{e},\left\{e\right\}}
+        \end{equation*}
+        Así que existe un encaje cuasi-isométrico $\cf{f}{\Cay{\gen{e},\left\{e\right\}}}{\Cay{G,T}}$ con imagen cuasi-densa. La gráfica de $\Cay{\gen{e},\left\{e\right\}}$ consta de un solo punto y ninguna arista.
+
+        Por tener imagen cuasi-densa existe $k\in\bbm{R}_{\geq0}$ tal que para todo $g\in G$ existe $e\in\gen{e}$ que cumple:
+        \begin{equation*}
+            d_G(g,f(e))\leq k
+        \end{equation*}
+        Sea $m=\lceil k\rceil+1$. Considere $g\in G$ y tomemos:
+        \begin{equation*}
+            n_g=\min\left\{n\in\bbm{N}\Big|g=t_1^{\epsilon_1}\cdots t_n^{\epsilon_n};t_i\in T, \epsilon_i\in\left\{-1,1\right\} \right\}
+        \end{equation*}
+        Este mínimo existe ya que el conjunto es no vacío (pues $G$ es generado por $T$). Veamos que:
+        \begin{equation*}
+            \sup\left\{n_g\in\bbm{N}\Big|g\in G \right\}=\infty
+        \end{equation*}
+        En efecto, en caso contrario de que fuese finito, digamos $N$, todo elemento de $G$ estaría en el conjunto:
+        \begin{equation*}
+            G=\left\{t_1^{\epsilon_1}\cdot t_l^{\epsilon_l}\Big|t_i\in T, \epsilon_i\in\left\{-1,1\right\},l\leq N \right\}
+        \end{equation*}
+        siendo el conjunto de la derecha un conjunto finito (por ser $T$ finito) y el de la izquierda infinito (ya que $G$ es infinito). Por ende, $\sup\left\{n_g\in\bbm{N}\Big|g\in G \right\}=\infty$. En particular, para $m\in\bbm{N}$ existe un elemento $g\in G$ tal que:
+        \begin{equation*}
+            n_g\geq m
+        \end{equation*}
+        es decir, que la distancia mínima de $e$ a $g$ es mayor o igual a $m$. Veamos que:
+        \begin{equation*}
+            d(g,f(e))\geq d(g,e)-d(e,f(e))\geq d(g,e)=n_g\geq m=\lceil k\rceil+1>k
+        \end{equation*}
+        por tanto:
+        \begin{equation*}
+            d(g,f(e))>k
+        \end{equation*}
+        pues, $d(e,f(e))\geq 0$. Por ende, para $g\in G$ no existe $x\in\gen{e}$ tal que:
+        \begin{equation*}
+            d(g,f(x))\leq k
+        \end{equation*}
+        lo cual es una contradicción ya que $f$ tiene imagen cuasi-densa\contradiction. Por tanto, $G$ no puede ser cuasi-isométrico a $H$.
+    \end{proof}
+
+    \begin{lema}[\textbf{Lema de Svarc-Milnor}]
+        Sea $G$ un grupo actuando por isometrías en un espacio métrico (no vacío) propio y geodésico $(X,d)$. Además, supongamos que esta acción es propia y cocompacta. Entonces, $G$ es finitamente geneardo y, para todo $x\in X$, el mapeo $\cf{\varphi}{G}{X}$ dado por:
+        \begin{equation*}
+            g\mapsto \varphi_g(x)
+        \end{equation*}
+        es una cuasi-isometría.
+    \end{lema}
+
+    \begin{obs}
+        Recordemos que:
+        \begin{equation*}
+            SL(2,\bbm{Z})=\left\{A\in\mathcal{M}_{ 2\times 2}(\bbm{Z})\Big|\det(A)=1 \right\}
+        \end{equation*}
+        
+        Un espacio métrico propio es aquel en el que todas las bolas cerradas son compactas.
+    \end{obs}
+
+    \begin{mydef}
+        Una acción $G\times X\rightarrow X$ de un grupo $G$ en un espacio toplógico es \textbf{propia} si para todo subconjunto compacto $B\subseteq X$, el conjunto:
+        \begin{equation*}
+            \left\{g\in G\Big|g\cdot B\cap B\neq\emptyset \right\}
+        \end{equation*}
+        es finito.
+    \end{mydef}
+
+    \begin{mydef}
+        Una acción $G\times X\rightarrow X$ de un grupo $G$ en un espacio topológico $X$ es \textbf{cocompacta} si el espacio cociente $G/X$ es compacto respecto a la topología cociente. 
+    \end{mydef}
+
+    \begin{obs}
+        Analicemos los elementos de $SL(2\bbm{Z})$. Si:
+        \begin{equation*}
+            \left[\begin{array}{cc}
+                a & b \\
+                c & d \\
+            \end{array} \right]\in SL(2,\bbm{Z})
+        \end{equation*}
+        entonces, se tiene que $a,b,c,d\in\bbm{Z}$ son tales que:
+        \begin{equation*}
+            ad-bc=1
+        \end{equation*}
+        Por lo que es tal que el máximo común divisor de todos los elementos involucrados es $1$ (salvo $a$ y $d$, y $b$ y $c$). Una matriz en este espacio es generada por:
+        \begin{equation*}
+            \left[\begin{array}{cc}
+                1 & a \\
+                0 & 1 \\
+            \end{array} \right],\left[\begin{array}{cc}
+                1 & 0 \\
+                b & 1 \\
+            \end{array} \right]
+        \end{equation*}
+        con $a,b\in\bbm{Z}$. Por tanto, todas las matrices son de la forma:
+        \begin{equation*}
+            \left[\begin{array}{cc}
+                1 & a \\
+                0 & 1 \\
+            \end{array} \right]\cdot \left[\begin{array}{cc}
+                1 & 0 \\
+                b & 1 \\
+            \end{array} \right]=\left[\begin{array}{cc}
+                1+ab & a \\
+                b & 1 \\
+            \end{array} \right]
+        \end{equation*}
+        en general, un elemento $A$ de $SL(2,\bbm{Z})$ es de la forma:
+        \begin{equation*}
+            \left[\begin{array}{cc}
+                1+s_1\cdot s_n\cdot l_1\cdots l_m & s_1\cdot s_n \\
+                l_1\cdots l_m & 1 \\
+            \end{array} \right]
+        \end{equation*}
+        con $s_i,l_j\in\bbm{Z}$.
+    \end{obs}
+
+    \begin{excer}
+        Para cada una de las siguientes acciones de grupos, nombra una de las condiciones del lema de Svarc-Milnor que se cumple y una que no:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item La acción de $SL(2,\bbm{Z})$ en $\bbm{R}^2$ dada por la multiplicación de matrices.
+            \item La acción de $\bbm{Z}$ en $X=\left\{(r^3,s)\Big|r,s\in\bbm{Z} \right\}$ (con respecto a la métrica inducida de la métrica euclideana en $\bbm{R}^2$) que está dada por:
+            \begin{equation*}
+                \begin{split}
+                    \bbm{Z}\times X&\rightarrow X\\
+                    (n,(r^3,s))&\mapsto (r^3,n+s)\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        De \textit{(a)}: Considere la acción de $SL(2,\bbm{Z})$ en $\bbm{R}^2$ dada por:
+        \begin{equation*}
+            (A,(x_1,x_2))\mapsto A\cdot\left[\begin{array}{c}
+                x_1 \\
+                x_2 \\
+            \end{array} \right]
+        \end{equation*}
+        El espacio $\bbm{R}^2$ con la topología usual es geodésico y propio. Además, la acción es por isometrías (ya que las transformaciones con determinante 1 preservan las distancias). Veamos si la acción es propia y cocompacta.
+
+        El espacio cociente está dado por:
+        \begin{equation*}
+            \begin{split}
+                SL(2,\bbm{Z})/\bbm{R}^2&=\left\{SL(2,\bbm{Z})\cdot(x_1,x_2)\Big|x=(x_1,x_2)\in\bbm{R}^2 \right\}
+            \end{split}
+        \end{equation*}
+        el espacio $SL(2,\bbm{Z})/\bbm{R}^2$ tiene como generadores:
+        \begin{equation*}
+            \left[\begin{array}{cc}
+                1 & a \\
+                0 & 1 \\
+            \end{array} \right],\left[\begin{array}{cc}
+                1 & 0 \\
+                b & 1 \\
+            \end{array} \right],a,b\in\bbm{Z}
+        \end{equation*}
+        por lo que basta con ver que pasa con estos generadores. Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \left[\begin{array}{cc}
+                    1 & a \\
+                    0 & 1 \\
+                \end{array} \right]\cdot\left[\begin{array}{c}
+                    x_1 \\
+                    x_2 \\
+                \end{array} \right]&=\left[\begin{array}{c}
+                    x_1+ax_2 \\
+                    x_2 \\
+                \end{array} \right]
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                \left[\begin{array}{cc}
+                    1 & 0 \\
+                    b & 1 \\
+                \end{array} \right]\cdot\left[\begin{array}{c}
+                    x_1 \\
+                    x_2 \\
+                \end{array} \right]&=\left[\begin{array}{c}
+                    x_1 \\
+                    bx_1+x_2 \\
+                \end{array} \right]
+            \end{split}
+        \end{equation*}
+        para todo $a,b\in\bbm{Z}$. Veamos que la acción no es propia. Tomemos el compacto $B=B(0,1)$, se tiene que:
+        \begin{equation*}
+            A\cdot B=B,\quad\forall A\in SL(2,\bbm{Z})
+        \end{equation*}
+        por lo que el conjunto:
+        \begin{equation*}
+            \left\{A\in SL(2,\bbm{Z})\Big|A\cdot B\cap B\neq\emptyset \right\}
+        \end{equation*}
+        no es finito.
+
+        De \textit{(b)}: Se tiene que el espacio $X$ es geodésico (con la métrica inducida de $\bbm{R}^2$) y es propio. Además, la acción es por isometrías (pues la traslación preserva la distancia). Veamos si la acción es propia y cocompacta.
+
+        El espacio cociente está dado por:
+        \begin{equation*}
+            \begin{split}
+                \bbm{Z}/X&=\left\{\bbm{Z}\cdot x\Big|x\in X \right\}\\
+                &=\left\{\bbm{Z}\cdot (r^3,s)\Big|r,s\in\bbm{Z} \right\}\\
+                &=\left\{(r^3,\bbm{Z}+s)\Big|r,s\in\bbm{Z} \right\}\\
+                &=\left\{(r^3,\bbm{Z})\Big|r\in\bbm{Z} \right\}\\
+                &\cong\bbm{Z}\\
+            \end{split}
+        \end{equation*}
+        donde:
+        \begin{equation*}
+            (r^3,\bbm{Z})=\left\{(r^3,n)\Big|n\in\bbm{Z} \right\}
+        \end{equation*}
+        Por tanto, $\bbm{Z}/X$ no es compacto ya que $\bbm{Z}/X\cong\bbm{Z}$, el cual no es compacto. Así que la acción no es cocompacta.
+    \end{sol}
+
 \end{document}
