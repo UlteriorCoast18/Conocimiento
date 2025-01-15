@@ -427,12 +427,139 @@
         Dado un grupo $G$ finitamente generado por un conjunto $S$, definimos la \textbf{métrica de palabras} $d_S(g,h)$ entre dos elementos $g,h\in G$ como la longitud mínima de una palabra en los generadores $S\cup S^{-1}$ que representa a $g^{-1}h$.
     \end{mydef}
 
+    \begin{obs}
+        De ahora en adelante consideraremos a $\bbm{R}^n$ con la métrica euclideana.
+    \end{obs}
+
     \begin{mydef}
         Sean $X$ y $Y$ espacios métricos. Una función $\cf{f}{X}{Y}$ se dice que es un encaje \textbf{isométrico} si:
         \begin{equation*}
             d(x,y)=\rho(f(x),f(y)),\quad\forall x,y\in X
         \end{equation*}
-    \end{mydef}    
+    \end{mydef}
+
+    \begin{mydef}
+        Sean $X$ y $Y$ espacios métricos. Una función $\cf{f}{X}{Y}$ se dice que es un \textbf{encaje bilipschitz} si existe $L\in\bbm{R}_{\geq0}$ tal que:
+        \begin{equation*}
+            \frac{1}{L}d_X(x,y)\leq d_Y(f(x),f(y))\leq Ld_X(x,y)
+        \end{equation*}
+
+        Decimos que $f$ es una \textbf{equivalencia bilipschitz} si existe una función $\cf{g}{Y}{X}$ encaje bilipschitz tal que:
+        \begin{equation*}
+            g\circ f=\bbm{1}_X\quad\textup{y}\quad f\circ g=\bbm{1}_Y
+        \end{equation*}
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $\cf{f}{X}{Y}$ una función. Decimos que $f$ es un \textbf{encaje quasi-isométrico} si:
+        \begin{equation*}
+            \frac{1}{c}d_X(x,y)-b\leq d_Y(f(x),f(y))\leq cd_X(x,y)+b
+        \end{equation*}
+        con $c\geq1$ y $d\geq0$.
+    \end{mydef}
+
+    \newcommand{\floor}[1]{\ensuremath{\lfloor #1\rfloor}}
+
+    \begin{exa}
+        Consideremos a $\bbm{R}$ con la métrica euclideana y tomemos el encaje $\cf{i}{\bbm{Z}}{\bbm{R}}$. Queremos encontrar constates $c\geq1$ y $b\geq0$ tales que:
+        \begin{equation*}
+            \frac{1}{c}\abs{n-m}-b\leq\abs{i(n)-i(m)}\leq c\abs{n-m}+b
+        \end{equation*}
+        para todo $n,m\in\bbm{Z}$. Podemos elegir $b=0$ y $c=1$, con lo cual sucede que:
+        \begin{equation*}
+            \abs{n-m}\leq\abs{i(n)-i(m)}\leq \abs{n-m}
+        \end{equation*}
+        para todo $n,m\in\bbm{Z}$.
+    \end{exa}
+
+    \begin{exa}
+        Consideremos la función parte entera $x\mapsto \floor{x}=\max\left\{n\in\mathbb{Z}\Big|n\leq x \right\}$. Afirmamos que $\floor{\cdot}$ es un encaje quasi-isométrico.
+    \end{exa}
+
+    \begin{proof}
+        En efecto, sean $x,y\in\bbm{R}$, debemos encontrar $c\geq1$ y $b\geq0$ tales que:
+        \begin{equation*}
+            \frac{1}{c}\abs{x-y}-b\leq\abs{\floor{x}-\floor{y}}\leq c\abs{x-y}+b
+        \end{equation*}
+        Tomemos $c=b=1$. En efecto, sean $x,y\in\bbm{R}$, se tiene que:
+        \begin{equation*}
+            \abs{x-y}\leq \abs{\floor{x}-\floor{y}}+1
+        \end{equation*}
+        y, de forma análoga:
+        \begin{equation*}
+            \abs{\floor{x}-\floor{y}}\leq\abs{x-y}+1
+        \end{equation*}
+        con lo que se tienen las desigualdades deseadas.
+    \end{proof}
+
+    \newcommand{\qisom}{\ensuremath{\underset{C.I.}{\sim}}}
+
+    \begin{mydef}
+        Sea $\cf{f}{X}{Y}$ un $(c,b)$-encaje quasi-isométrico.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Decimos que una función $\cf{f'}{X}{Y}$ está a \textbf{distancia fintia de $f$} si existe una constante $k\in\bbm{R}_{\geq0}$ tal que:
+            \begin{equation*}
+                d_Y(f(x),f'(x))\leq k,\quad\forall x\in X
+            \end{equation*}
+            \item Decimos que $f$ es una \textbf{quasi-isometría} si existe un encaje quasi-isométrico $\cf{g}{Y}{X}$ tal que $f\circ g$ está a distancia finita de $\bbm{1}_Y$ y $g\circ f$ lo está de $\bbm{1}_X$.
+            \item Si $X$ es quasi-isométrico a $Y$, escribimos $X\qisom Y$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{mydef}
+        Sea $\cf{f}{X}{Y}$. Decimos que $f$ tiene una \textbf{imagen quasi-densa} si existe $k\in\bbm{R}_{\geq0}$ tal que:
+        \begin{equation*}
+            \forall y\in Y \exists x\in X d_Y(y,f(x))\leq k
+        \end{equation*}
+    \end{mydef}
+
+    \begin{theor}[\textbf{Caracterización de Quasi-isometrías}]
+        Una función $\cf{f}{X}{Y}$ es una quasi-isometría si y sólo si $f$ es un encaje isométrico con imagen quasi-densa.
+    \end{theor}
+
+    \newcommand{\im}[1]{\ensuremath{\textup{im}\left(#1\right)}}
+
+    \begin{proof}
+        $\Rightarrow):$ Supongamos que $\cf{f}{X}{Y}$ es un encaje C.I. Veamos que $f$ es encaje quasi-isométrico y que $\im{f}\subseteq Y$ es quasi-densa.
+
+        Claramente es encaje quasi-isométrico. Ahorra, por ser encaje C.I. existe una función $\cf{g}{Y}{X}$ encaje quasi-isométrico tal que:
+        \begin{equation*}
+            d_Y(f\circ g,\bbm{1}_Y)\leq k
+        \end{equation*}
+        para aklgún $k\in\bbm{R}_{\geq0}$. Entonces, si $y\in Y$ existe $x=g(y)\in X$ tal que:
+        \begin{equation*}
+            d_Y(f(x),y)\leq k
+        \end{equation*}
+        por lo que la imagen de $f$ es quasi-densa.
+
+        $\Leftarrow):$ Supongamos que $\cf{f}{X}{Y}$ es un $(c,b)$ encaje quasi-isométrico con imagen quasi-densa, es decir que:
+        \begin{equation*}
+            \frac{1}{c}d_X(x,y)-b\leq d_Y(f(x),f(y))\leq cd_X(x,y)+b
+        \end{equation*}
+        $\forall x,y\in X$. Y además, existe $c^*\in\bbm{R}_{\geq0}$ tal que $\forall y\in Y$ existe $x\in X$ tal que:
+        \begin{equation*}
+            d_Y(f(x),y)\leq c^*
+        \end{equation*}
+        Tomemos $k=\max\left\{c,c^*,b \right\}\geq 1$. Entonces:
+        \begin{equation*}
+            \frac{1}{k}d_X(x,y)-k\leq d_Y(f(x),f(y))\leq kd_X(x,y)+k
+        \end{equation*}
+        y,
+        \begin{equation*}
+            d_Y(f(x),y)\leq k
+        \end{equation*}
+
+        Sea $y\in Y$, tomemos un $x_y\in X$ tal que:
+        \begin{equation*}
+            d_Y(f(x_y),y)\leq k
+        \end{equation*}
+        hagamos $g(y)=x_y$ para todo $y\in Y$.
+    \end{proof}
+
+    \begin{exa}
+        Todo espacio métrico $X$ de diámetro finito es quasi-isométrico al espacio de un punto.
+    \end{exa}
+
     
     \chapter{Ejercicios y Problemas}
 
@@ -723,4 +850,191 @@
         De \textit{(2)}: 
     \end{proof}
 
+    \section{Quasi-isometrías}
+
+    \begin{excer}
+        Toda función a una distancia finita de un encaje quasi-isométrico es un encaje quasi-isométrico.
+    \end{excer}
+
+    \begin{proof}
+        Sean $X$ y $Y$ espacios métricos y $\cf{f,g}{X}{Y}$ funciones tales que $f$ es una $(c,d)$-encaje quasi-isométrico y la distancia entre ambas funciones es finita, es decir que existe $k\in\bbm{R}_{\geq0}$ tal que:
+        \begin{equation*}
+            d_Y(f(x),g(x))\leq k,\quad\forall x\in X
+        \end{equation*}
+        Por ser $f$ encaje quasi-isométrico se cumple que:
+        \begin{equation*}
+            \frac{1}{c}d_X(x.y)-b\leq d_Y(f(x),f(y))\leq cd_X(x,y)+b
+        \end{equation*}
+        Ahora, veamos que:
+        \begin{equation*}
+            \begin{split}
+                d_Y(f(x),f(y))&\leq d_Y(f(x),g(x))+d_Y(g(x),g(y))+d_Y(g(y),f(y))\\
+                &\leq 2k+d_Y(g(x),g(y))\\
+                \Rightarrow d_Y(f(x),f(y))&\leq d_Y(g(x),g(y))+2k\\
+            \end{split}
+        \end{equation*}
+        de forma análoga:
+        \begin{equation*}
+            \begin{split}
+                d_Y(f(x),f(y))&\geq d_Y(g(x),f(y))-d_Y(f(x),g(x))\\
+                &\geq d_Y(g(x),g(y))-d_Y(g(y),f(y))-d_Y(f(x),g(x))\\
+                &\geq d_Y(g(x),g(y))-2k\\
+                \Rightarrow d_Y(f(x),f(y))&\geq d_Y(g(x),g(y))-2k\\
+            \end{split}
+        \end{equation*}
+
+        Por ende,
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{c}d_X(x,y)-b&\leq d_Y(f(x),f(y))\\
+                &\leq d_Y(g(x),g(y))+2k\\
+                \Rightarrow  \frac{1}{c}d_X(x,y)-(b+2k)&\leq d_Y(g(x),g(y))+2k\\
+            \end{split}
+        \end{equation*}
+        y, 
+        \begin{equation*}
+            \begin{split}
+                d_Y(g(x),g(y))-2k&\leq d_Y(f(x),f(y))\\
+                &\leq cd_X(x,y)+b\\
+                \Rightarrow d_Y(g(x),g(y))&\leq cd_X(x,y)+(b+2k)\\
+            \end{split}
+        \end{equation*}
+        para todo $x,y\in X$. Por tanto, $g$ es un $(c,b+2k)$-encaje quasi-isométrico. 
+    \end{proof}
+
+    \begin{excer}
+        Toda función a distancia finita de una quasi-isometría es una quasi-isometría.
+    \end{excer}
+
+    \begin{proof}
+        Sean $\cf{f,g}{X}{Y}$ funciones tales que $f$ es quasi-isometría y,
+        \begin{equation*}
+            d_Y(f(x),g(x))\leq k_2,\quad\forall x\in X
+        \end{equation*}
+        para algún $k_1\in\bbm{R}_{\geq0}$. Como $f$ es quasi-isometría, por un teorema $f$ es encaje quasi-isométrico y tiene imagen quasi densa. Veamos que $g$ también lo cumple. En efecto, por el ejercicio anterior $g$ es encaje quasi-isométrico. Veamos que tiene imagen quasi-densa.
+
+        Sea $y\in Y$, entonces por tener $f$ imagen quasi-densa, existe $x\in X$ y $k_2\in\bbm{R}_{\geq0}$ tales que:
+        \begin{equation*}
+            d_Y(y,f(x))\leq k
+        \end{equation*}
+        por tanto:
+        \begin{equation*}
+            d_Y(y,g(x))\leq d_Y(y,f(x))+d(f(x),g(x))\leq k_1+k_2
+        \end{equation*}
+        donde $k_1,k_2\in\bbm{R}_{\geq0}$. Así que $g$ tiene imagen quasi-densa.
+
+        Por un teorema se sigue que $g$ es quasi-isometría.
+    \end{proof}
+
+    \begin{excer}
+        Sean $X,Y,Z$ espacios métricos y sean $\cf{f,f'}{X}{Y}$ funciones que están a distancia finita entre ellas.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Si $\cf{g}{Z}{X}$ es función, entonces $f\circ g$ y $f'\circ g$ están a distancia finita entre sí.
+            \item Si $\cf{g}{Y}{Z}$ es un encaje quasi-isométrico, entonce $g\circ f$ y $g\circ f'$ también están a distancia finita entre sí.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        De \textit{(a)}: Suponga que $g$ es función. Como $f$ y $f'$ están a distancia finita entre ellas, existe $k\in\bbm{R}_{\geq0}$ tal que:
+        \begin{equation*}
+            d_Y(f(x),f'(x))\leq k,\quad\forall x\in X
+        \end{equation*}
+        por ende, para todo $z\in Z$:
+        \begin{equation*}
+            d_Y(f\circ g(z),f'\circ g(z))=d_Y(f(g(z)),f'(g(z)))\leq k
+        \end{equation*}
+        así que $f\circ g$ y $f'\circ g$ están a distancia finita entre ellas.
+
+        De \textit{(b)}: Suponga que $g$ es $(c,d)$-encaje quasi-isométrico, entonces:
+        \begin{equation*}
+            \frac{1}{c}d_Y(y_1,y_2)-b\leq d_Z(g(y_1),g(y_2))\leq cd_Y(y_1,y_2)+b,\quad\forall y_1,y_2\in Y
+        \end{equation*}
+        entonces, se tiene que:
+        \begin{equation*}
+            d_Z(g\circ f(x),g\circ f'(x))=d_Z(g(f(x)),g(f'(x)))\leq cd_Y(f(x),f'(x))+b,\quad\forall x\in X
+        \end{equation*}
+        Como $f$ y $f'$ están a distancia finita entre ellas, existe $k\in\bbm{R}_{\geq0}$ tal que:
+        \begin{equation*}
+            d_Y(f(x),f'(x))\leq k,\quad\forall x\in X
+        \end{equation*}
+        así que:
+        \begin{equation*}
+            d_Z(g\circ f(x),g\circ f'(x))\leq ck+b
+        \end{equation*}
+        donde $ck+b\in\bbm{R}_{\geq0}$. Por tanto, las funciones $g\circ f$ y $g\circ f'$ están a distancia finita entre ellas.
+    \end{proof}
+
+    \begin{excer}
+        La composición de encajes quasi-isométricos son encajes quasi-isométricos.    
+    \end{excer}
+
+    \begin{proof}
+        Sean $X,Y,Z$ espacios métricos y $\cf{f}{X}{Y}$, $\cf{g}{Y}{Z}$ $(c,b)$ y $(c',b')$ encajes quasi-isométricos, respectivamente, es decir:
+        \begin{equation*}
+            \frac{1}{c}d_X(x_1,x_2)-b\leq d_Y(f(x_1),f(x_2))\leq cd_X(x_1,x_2)+b,\quad\forall x_1,x_2\in X
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \frac{1}{c'}d_Y(y_1,y_2)-b'\leq d_Z(g(y_1),g(y_2))\leq c'd_Y(y_1,y_2)+b',\quad\forall y_1,y_2\in Y
+        \end{equation*}
+        Veamos que la composición también es encaje quasi-isométrico. En efecto, sean $x_1,x_2\in X$, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                d_Z(g\circ f(x_1),g\circ f(x_2))&=d_Z(g(f(x_1)),g(f(x_2)))\\
+                &\leq c'd_Y(f(x_1),f(x_2))+b'\\
+                &\leq (c'c)d_X(x_1,x_2)+(b+b')\\
+            \end{split}
+        \end{equation*}
+        y, de forma análoga:
+        \begin{equation*}
+            \begin{split}
+                d_Z(g\circ f(x_1),g\circ f(x_2))&=d_Z(g(f(x_1)),g(f(x_2)))\\
+                &\geq \frac{1}{c'}d_Y(f(x_1),f(x_2))-b'\\
+                &\geq \frac{1}{c'c}d_X(x_1,x_2)-(b+b')\\
+            \end{split}
+        \end{equation*}
+        para todo $x_1,x_2\in X$. Por tanto:
+        \begin{equation*}
+            \frac{1}{c'c}d_X(x_1,x_2)-(b+b')\leq d_Z(g\circ f(x_1),g\circ f(x_2))\leq(c'c)d_X(x_1,x_2)+(b+b'),\quad\forall x_1,x_2\in X
+        \end{equation*}
+        así que, $g\circ f$ es un $(cc',b+b')$-encaje quasi-isométrico.
+    \end{proof}
+
+    \begin{excer}
+        La composición de quasi-isometrías son quasi-isometrías.    
+    \end{excer}
+
+    \begin{proof}
+        Sean $X,Y,Z$ espacios métricos y, $\cf{f}{X}{Y}$ y $\cf{g}{Y}{Z}$ quasi-isometrías, en particular por un teorema, estas son encajes quasi-isométricos y tienen imágenes quasi-densas.
+
+        Por ser encajes quasi-isométricos, del ejercicio anterior se sigue que $\cf{g\circ f}{X}{Z}$ es un encaje quasi-isométrico. Veamos que tiene imagen quasi-densa. Como $f$ y $g$ tienen imagen quasi-densa, existen $k_1,k_2\in\bbm{R}_{\geq}$ tales que:
+        \begin{equation*}
+            \forall y\in Y\exists x\in X (d_Y(y,f(x))\leq k_1)
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \forall z\in Z\exists y\in Y( d_Z(z,g(y))\leq k_2)
+        \end{equation*}
+        Por tanto, para $z\in Z$ existe $y\in Y$ tal que:
+        \begin{equation*}
+            d_Z(z,g(y))\leq k_2
+        \end{equation*}
+        y, para $y\in Y$ existe $x\in X$ tal que
+        \begin{equation*}
+            d_Y(y,f(x))\leq k_1
+        \end{equation*}
+        Así que,
+        \begin{equation*}
+            \begin{split}
+                d_Z(z,g\circ f(x))&=d_Z(z,g(f(x)))\\
+                &\leq d_Z(z,g(y))+d_Z(g(y),g(f(x)))\\
+                &\leq k_1+\left(\frac{1}{c'}d_Y(y,f(x))+b'\right)\\
+                &\leq k_1+\frac{k_2}{c'}+b'\\ 
+            \end{split}
+        \end{equation*}
+        donde $k_1+\frac{k_2}{c'}+b'\in\bbm{R}_{\geq0}$ y siendo $g$ un $(c',b')$-encaje quasi-isométrico.
+
+        Por ende, $g\circ f$ tiene imagen quasi-densa. Por un teorema anterior se sigue que $g\circ f$ es quasi-isometría.
+    \end{proof}
+    
 \end{document}
