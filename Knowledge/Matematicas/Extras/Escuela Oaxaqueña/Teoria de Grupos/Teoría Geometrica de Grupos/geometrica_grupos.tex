@@ -23,6 +23,8 @@
 
 %Gestión de Hipervínculos
 
+
+
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
@@ -660,6 +662,182 @@
     ¿Cómo clasificar grupos hasta quasi-isometrías?
 
     La primera respuesta es construír invariantes quasi-isométricos.
+
+    \section{Lema de Svarc-Milnor y algunas aplicaciones}
+
+    \begin{mydef}
+        Sea $X$ un espacio métrico.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Una \textbf{geodésica} entre dos puntos $x,y\in X$ es un encaje isomérico $\cf{\eta}{[a,b]}{X}$ tal que $\eta(a)=x$ y $\eta(b)=y$, con la longitud de $\eta$ igual a $\abs{b-a}$.
+            \item Decimos que $X$ es un \textbf{espacio geodésico} si para todo $x,y\in X$ existe una geodésica entre $x$ y $y$.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        Aquí habla de localidad, cuando dice que es el camino más corto es \textit{localmente}.
+    \end{obs}
+
+    \begin{exa}
+        Considere a $(\bbm{R}^n,\|\cdot\|)$ con la métrica euclideana. Las geodésicas en este espacio son las líneas rectas.
+    \end{exa}
+
+    \begin{exa}
+        El espacio $\bbm{R}^2\setminus\left\{0\right\}$ no es geodésico.
+    \end{exa}
+
+    \begin{exa}
+        El espacio $\bbm{H}^2$ es geodésico.
+    \end{exa}
+
+    \begin{exa}
+        En $\bbm{S}^2\subseteq\bbm{R}^3$ se tiene que las geodésicas son curvas maximales, dadas por planos que pasan por el origen.
+    \end{exa}
+
+    \begin{theor}
+        Sea $S$ una superficie compacta, cerrada y conexa. Entonces:
+        \begin{equation*}
+            S=\left\{
+                \begin{array}{l}
+                    \bbm{S}^2 \\
+                    \underset{n-\textup{veces}}{\underbrace{\bbm{T}\#\cdots\#\bbm{T}}}\\
+                    \underset{n-\textup{veces}}{\underbrace{\bbm{R}P^2\#\cdots\#\bbm{R}P^2}}\\
+                \end{array}
+            \right.
+        \end{equation*}
+        con $n\in\bbm{N}\cup\left\{0\right\}$.
+    \end{theor}
+
+    Resulta que algunos de estos espacios tienen como cubriente universal a $\bbm{S}^2$, $\bbm{R}^2$ o $\bbm{H}^2$. Debido a que estos tienen métrica (y son geodésicos), puede bajarse la métrica localmente a los espacios que cubren.
+
+    \begin{mydef}
+        Sea $X$ un espacio métrico.
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Una \textbf{cuasi-geodésica} entre dos puntos $x,y\in X$ es un encaje cuasi-isométrico $\cf{\gamma}{[a,b]}{X}$ tal que $\gamma(a)=x$ y $\gamma(b)=y$.
+            \item Decimos que $X$ es \textbf{cuasi-geodésico} si existen $a\geq 1$ y $b\geq 0$ tales que para todo $x,y\in X$ existe una $(a,b)$-cuasi-geodésica que los une.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        Todo espacio métrico geodésico es cuasi-geodésico.
+    \end{exa}
+
+    \begin{exa}
+        El espacio $\bbm{R}^2\setminus\left\{0\right\}$ es cuasi-geodésico.
+    \end{exa}
+
+    Checar Clara Löph la página 129.
+
+    \begin{propo}
+        Una gráfica conexa es $(1,1)$-cuasi-geodésico.
+    \end{propo}
+
+    \begin{theor}
+        Sea $G$ un grupo tal que actúa en un espacio métrico $(X,d)$ por isometrías. Supongamos que $X$ es $(c,b)$-cuasi-geodésico y que existe un conjunto $B\subseteq X$ con las siguientes propiedades:
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item $\textup{diam}(B)<\infty$.
+            \item $\bigcup_{ g\in G}g\cdot B=X$.
+            \item El conjunto $S=\left\{g\in G\Big|g\cdot B'\cap B'\neq\emptyset \right\}$ es finito donde:
+            \begin{equation*}
+                B'=B_{ 2b}^{(X.d)}(B)=\left\{x\in X\Big|\exists y\in B\textup{ tal que }d(y,x)\leq 2b \right\}
+            \end{equation*}
+        \end{enumerate}
+        Entonces:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $G=\gen{S}$.
+            \item La función $\cf{\varphi}{G}{X}$ dada por:
+            \begin{equation*}
+                g\mapsto g\cdot x
+            \end{equation*}
+            es una cuasi-isometría. Aquí estamos considerando a $G$ con la métrica de palabras.
+        \end{enumerate}
+    \end{theor}
+
+    \begin{cor}
+        Sea $G$ un grupo y $H<G$ un subgrupo de índice finito. Si $G$ es finitmente generado, entonces $H\qisom G$. 
+    \end{cor}
+
+    \begin{mydef}
+        Decimos que un grupo $G$ es \textbf{virtualmente $\bbm{Z}^n$} si $G$ tiene un subgrupo isomorfo a $\bbm{Z}^n$ de índice finito.
+    \end{mydef}
+
+    \begin{theor}
+        Todo grupo virtualmente $\bbm{Z}$ es cuasi isométrico a $\bbm{Z}$.
+    \end{theor}
+
+    \begin{propo}
+        Todo grupo libre de rango finito $\geq2$ es cuasi-isométrico a $F_2$
+    \end{propo}
+
+    \begin{proof}
+        Sea $F_n$ el grupo libre en $n$-generadores, entonces $F_n<F_2$ es de índice finito, así que ambos son cuasi-isométricos.
+    \end{proof}
+
+    \begin{cor}
+        $F_n\qisom F_2$.
+    \end{cor}
+
+    \begin{theor}
+        Sea $M$ una variedad cerrada Riemmaniana, conexa y esférica (es decir que $\widetilde{M}$ el cubriente universal es contraíble). Entonces:
+        \begin{equation*}
+            \pi_1(M)\qisom\widetilde{ M}
+        \end{equation*}
+    \end{theor}
+
+    \begin{mydef}
+        Un espacio métrico $X$ es \textbf{propio} si las bolas cerradas son compactas.
+    \end{mydef}
+
+    \begin{mydef}
+        Una acción $G\times X\rightarrow X$ de un grupo $G$ en un espacio toplógico es \textbf{propia} si para todo subconjunto compacto $B\subseteq X$, el conjunto:
+        \begin{equation*}
+            \left\{g\in G\Big|g\cdot B\cap B\neq\emptyset \right\}
+        \end{equation*}
+        es finito.
+    \end{mydef}
+
+    \begin{mydef}
+        Una acción $G\times X\rightarrow X$ de un grupo $G$ en un espacio topológico $X$ es \textbf{cocompacta} si el espacio cociente $G/X$ es compacto respecto a la topología cociente. 
+    \end{mydef}
+
+    \begin{lema}[\textbf{Lema de Svar-Milnor Versión Topológica}]
+        Sea $G$ un grupo actúando en un espacio métrico $X$ propio y geodésico. Además, supongamos que la acción es propia y cocompacta.
+
+        Entonces, $G$ es finitamente generado y $G\qisom X$.
+    \end{lema}
+
+    \begin{exa}
+        $\bbm{Z}$ actuando en $\bbm{R}$ por traslaciones es un conjunto finito.
+    \end{exa}
+
+    \begin{exa}
+        Si $X$ es un CW-complejo conexo, entonces:
+    \end{exa}
+
+    \begin{center}
+        \textit{¿Cómo clasificamos grupos hasta cuasi-isometrías?}
+    \end{center}
+
+    Esto es, si tenemos dos grupos $G$ y $H$, cómo sabemos si hay una cuasi-isometría entre ellos. En este caso, debemos mostrar la existencia o no de tal cosa.
+
+    Es más fácil decir cuando son o no son cuasi-isométricos. La razón de esto es que a veces es más facil construir invariantes cuasi-isométricos.
+
+    Para esto, debemos construir invariantes cuasi-isométricos.
+
+    La idea es que vamos a tomar un espacio métrico y nos vamos a fijar en todas las formas de \textit{escapar} al \textit{infinito}, queriendo decir esto \textit{alejarnos} de la identidad lo más posible.
+
+    Por ejemplo, en $\Cay{\bbm{Z},\left\{1\right\}}$ nos podemos escapar de dos maneras al infinito.
+
+    Pero, en el espacio:
+
+    \begin{minipage}{\textwidth}
+        \begin{center}
+            \includegraphics[scale=0.3]{images/F_2.png}\\
+            Figura \thefigcount. Caption.
+            \stepcounter{figcount}
+        \end{center}
+    \end{minipage}
+
+    hay una cantidad infinita de maneras de escapar al infinito.
 
     \chapter{Ejercicios y Problemas}
 
@@ -1436,13 +1614,13 @@
                 \end{array} \right]
             \end{split}
         \end{equation*}
-        para todo $a,b\in\bbm{Z}$. Veamos que la acción no es propia. Tomemos el compacto $B=B(0,1)$, se tiene que:
+        para todo $a,b\in\bbm{Z}$ y para todo $(x_1,x_2)\in\bbm{R}^2$, en particular para $(0,0)$ toda transformación de este tipo lo deja invariante. Veamos que la acción no es propia. Tomemos el compacto $B=B(0,1)$, se tiene que:
         \begin{equation*}
-            A\cdot B=B,\quad\forall A\in SL(2,\bbm{Z})
+            (0,0)\in A\cdot B\cap B,\quad\forall A\in SL(2,\bbm{Z})
         \end{equation*}
-        por lo que el conjunto:
+        ya que toda transformación de $SL(2,\bbm{Z})$ deja invariante al origen, por lo que el conjunto:
         \begin{equation*}
-            \left\{A\in SL(2,\bbm{Z})\Big|A\cdot B\cap B\neq\emptyset \right\}
+            \left\{A\in SL(2,\bbm{Z})\Big|A\cdot B\cap B\neq\emptyset \right\}=SL(2,\bbm{Z})
         \end{equation*}
         no es finito.
 
@@ -1464,5 +1642,226 @@
         \end{equation*}
         Por tanto, $\bbm{Z}/X$ no es compacto ya que $\bbm{Z}/X\cong\bbm{Z}$, el cual no es compacto. Así que la acción no es cocompacta.
     \end{sol}
+
+    \section{Realización geométrica de gráficas}
+
+    El objetivo de la realización geométrica de una gráfica es asociar a una gráfica un espacio métrico, para poder usar propiedades de las geodésicas y cuasi-geodésicas.
+
+    La idea, hablando en términos poco técnicos y muy intuitivamente, es pegar un segmento unitario a dos vértices de una gráfica que se encuentren unidos por una arista. Un punto técnico a considerar es que el intervalo $[0,1]$ es dirigido, para lo cual en la construcción se toman estos dos intervalos dirigidos (de un vértice al otro y viceversa) y se identifican como si fuesen el mismo.
+
+    \begin{mydef}
+        Sea $X=(V,E)$ una gráfica conexa. La \textbf{realización geométrica de $X$} es el espacio métrico:
+        \begin{equation*}
+            (\abs{X},d_{\abs{X}})
+        \end{equation*}
+        definido como sigue:
+        \begin{itemize}
+            \item Si $E=\emptyset$, entonces al ser $X$ conexo se tiene que $\abs{V}\leq 1$; en este caso tomamos $\abs{X}=V$ y $d_{\abs{X}}:=0$.
+            \item Si $E\neq\emptyset$,entonces todo vértice de $X$ cae en alguna arista, por ser $X$ conexo. Definimos así:
+            \begin{equation*}
+                \abs{X}:=\widetilde{E}\times[0,1]/\sim
+            \end{equation*}
+            siendo:
+            \begin{equation*}
+                \widetilde{E}:=\left\{(u,v)\Big|u,v\in V, \left\{u,v\right\}\in E \right\}
+            \end{equation*}
+            el conjunto de todas las aristas dirigidas. En este caso, para cada arista que no está orientada se tiene que $\left\{u,v\right\}=\left\{v,u\right\}$ obtenemos dos aristas dirigidas $(u,v)$ y $(v,u)$. La relación $\sim$ está dada como sigue: para cualesquiera dos elementos $((u,v),t)\sim((u',v').t')$ se tiene:
+            \begin{itemize}
+                \item Los elementos coinciden, es decir que $((u,v),t)=((u',v'),t')$.
+                \item Los elementos describen el mismo vértice que yace sobre ambas aristas, esto es:
+                
+                \begin{minipage}{\textwidth}
+                    \begin{center}
+                        \includegraphics[scale=0.25]{images/relation_clara.png}\\
+                        Figura \thefigcount. Ejemplo de algunas equivalencias.
+                        \stepcounter{figcount}
+                    \end{center}
+                \end{minipage}
+
+                \begin{itemize}
+                    \item $u=u'$ y $t=t'=0$ (puede que $v$ y $v'$ sean diferentes), o
+                    \item $u=v'$, $t=0$ y $t'=1$, o
+                    \item $v=v'$ y $t=1=t'$, o
+                    \item $v=u'$., $t=1$ y $t'=0$, o
+                    \item Los elementos describen el mismo punto en la arista pero usando diferentes orientaciones, esto es que $(u,v)=(v',u')$ y $t=1-t'$.
+                \end{itemize}
+            \end{itemize}
+            La métrica $d_{\abs{X}}$ está dada por:
+            \begin{equation*}
+                \begin{split}
+                    &d_{\abs{X}}\left(\left[((u,v),t)\right],\left[((u',v'),t')\right] \right)\\
+                    &=\left\{
+                        \begin{array}{lcr}
+                            \abs{t-t'} & \textup{ si } & (u,v)=(u',v')\\
+                            \abs{t-(1-t')} & \textup{ si } & (u,v)=(v',u')\\
+                            \min\left(
+                                \begin{split}
+                                    &t+d_X(u,u')+t',\\
+                                    &t+d_X(u,v')+1-t',\\
+                                    &1-t+d_X(v,u')+t',\\
+                                    &1-t+d_X(v,v')+1-t'\\ 
+                                \end{split}
+                            \right) & \textup{ si } & \left\{u,v \right\}\neq\left\{v,u \right\}\\
+                        \end{array}
+                    \right.
+                \end{split}
+            \end{equation*}
+            para todo $\left[((u,v),t)\right],\left[((u',v'),t')\right]\in \abs{X}$, en este caso $d_X$ es la métrica en $V$ inducida por la estructura de gráfica.
+        \end{itemize}
+    \end{mydef}
+
+    \begin{exa}
+        La realización geométrica de la gráfica consistente en dos vértices y una arista uniéndolas es isométrica al intervalo unitario.
+    \end{exa}
+
+    \begin{exa}
+        La realización geométrica de $\Cay{\bbm{Z},\left\{1\right\}}$ es isométrico a la recta real con la métrica estándar.
+    \end{exa}
+
+    \begin{exa}
+        La realización geométrica de $\Cay{\bbm{Z}^2,\left\{(1,0),(0,1) \right\}}$ es isométrica a la estructura de lattice $\left(\bbm{R}\times\bbm{Z}\right)\cup\left(\bbm{R}\times\bbm{Z}\right)\subseteq\bbm{R}^2$ con la métrica inducida de la métrica $l^1$ en $\bbm{R}^2$.
+    \end{exa}
+
+    \begin{minipage}{\textwidth}
+        \begin{center}
+            \includegraphics[scale=0.3]{images/realizaciones.png}\\
+            Figura \thefigcount. Realizaciones geométricas de los ejemplos anteriores.
+            \stepcounter{figcount}
+        \end{center}
+    \end{minipage}    
+
+    \begin{excer}
+        Haga lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Demuestra que la realización geométrica de una gráfica conexa es un espacio métrico geodésico.
+            \item Sea $X=(V,E)$ una gráfica conexa. Demuestra que el mapa canónico $V\mapsto\abs{X}$ es un encaje cuasi-isométrico (donde equipamos a $V$ con la métrica inducida por la estructura de gráfica de $X$).
+            \item Demuestra que todo espacio métrico cuasi-geodésico es cuasi-isométrico a un espacio métrico geodésico.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        De \textit{(2)}: Considere el mapeo canónico $V\rightarrow\abs{X}$ dado por:
+        \begin{equation*}
+            v\mapsto ((v,w),0)
+        \end{equation*}
+        donde $w_v$ es un vértice de $V$ tal que $\left\{v,w_v \right\}\in E$. Afirmamos que esto es un $(1,1)$-encaje cuasi-isométrico. En efecto, el mapeo está bien definido (por como se definieron las clases de equivalencia). Si $v'\in V$ es otro vértice, se tiene que: 
+    \end{proof}
+
+    \begin{mydef}[\textbf{Conmensurabilidad}]
+        Sean $G$ y $H$ grupos.
+        \begin{itemize}
+            \item Decimos que $G$ y $H$ son \textbf{conmensurables} si contienen subgrupos de índice finito $G'\subseteq G$ y $H'\subseteq H$ tales que $G'\cong H'$.
+            \item Dos grupos $G$ y $H$ son \textbf{débilmente conmensurables} si contienen subgrupos de índice finito $G'\subseteq G$ y $H'\subseteq H$ tales que cumplen la siguiente condición: existen subgrupos normales finitos $N$ de $G'$ y $M$ de $H'$ tales que:
+            \begin{equation*}
+                G'/N\cong H'/M
+            \end{equation*}
+        \end{itemize}
+    \end{mydef}
+
+    \begin{excer}
+        Sea $G$ un grupo.
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Sea $G'$ un subgrupo de índice finito de $G$. Entonces, $G'$ es finitamente generado si y sólo si $G$ es finitamente generado. Si estos grupos son finitamente generados, entonces $G\qisom G'$.
+            \item Sea $N$ un subgrupo normal finito. Entonces, $G/N$ es finitamente generado si y sólo si $G$ es finitamente generado. Si estos grupos son finitamente generados, entonces $G\qisom G/N$.
+        \end{enumerate}
+        En particular, si $G$ es finitamente generado, entonces todo grupo débilmente conmensurable de $G$ es finitamente generado y cuasi-isométrico a $G$.
+    \end{excer}
+
+    \begin{proof}
+        De \textit{(1)}: Si $G$ es finitamente generado, entonces como $[G:G']<\infty$ se sigue de un ejercicio anterior que $G'$ es finitamente generado.
+
+        Suponga que $G'$ es finitamente generado. Considere:
+        \begin{equation*}
+            G/_DG'=\left\{G'g\Big|g\in G \right\}
+        \end{equation*}
+        este conjunto es finito pues $[G:G']<\infty$. Así que existen $g_1,...,g_n\in G$ tales que:
+        \begin{equation*}
+            G/_DG'=\left\{G'g_1,...,G'g_n \right\}
+        \end{equation*}
+        Al ser $G'$ finitamente generado, existen $g_1',...,g_m'\in G$ tales que:
+        \begin{equation*}
+            G'=\gen{g_1',...,g_m'}
+        \end{equation*}
+        Veamos que $G=\gen{g_1,...,g_n,g_1',...,g_m'}$. En efecto, sea $g\in G$, entonces existe $i=1,...,n$ tal que:
+        \begin{equation*}
+            g\in G'g_i
+        \end{equation*}
+        luego, existe $g'\in G$ tal que:
+        \begin{equation*}
+            g=g'g_i
+        \end{equation*}
+        como $g'\in G'$, existen $s_1,...,s_k\in\left\{g_1',...,g_m' \right\}$ $\epsilon_1,...,\epsilon_k\in\left\{-1,1\right\}$ tales que:
+        \begin{equation*}
+            g'=g_1'^{\epsilon_1}\cdots g_k'^{\epsilon_k}
+        \end{equation*}
+        por lo cual:
+        \begin{equation*}
+            g=g_1'^{\epsilon_1}\cdots g_k'^{\epsilon_k}g_i
+        \end{equation*}
+        así que $g\in\gen{g_1,...,g_n,g_1',...,g_m'}$. Por ende, $G$ es finitamente generado.
+
+        Para la última parte, si estos dos grupos son finitamente generados, en particular $G$ es finitamente generado, luego por el Corolario al Teorema de Svarc Milnor, se sigue que $G\qisom G'$.
+
+        De \textit{(2)}: Suponga que $G/N$ es finitamente generado, entonces existen $g_1,...,g_n\in G$ tales que:
+        \begin{equation*}
+            G/N=\gen{Ng_1,...,Ng_n}
+        \end{equation*}
+        Sea $S=N\cup\left\{g_1,...,g_n\right\}$. Este conjunto es finito por ser $N$ finito. Afirmamos que $G=\gen{S}$. En efecto, sea $g\in G$, entonces existe $i=1,...,n$ tal que:
+        \begin{equation*}
+            g\in Ng_i
+        \end{equation*}
+        luego, existe $n\in N$ tal que:
+        \begin{equation*}
+            g=ng_i
+        \end{equation*}
+        por ende $g\in\gen{S}$.
+
+        Suponga ahora que $G$ es finitamente generado, entonces existen $g_1,...,g_n\in G$ tales que:
+        \begin{equation*}
+            G=\gen{g_1,...,g_n}
+        \end{equation*}
+        Afirmamos que:
+        \begin{equation*}
+            G/N=\gen{Ng_1,...,Ng_n }
+        \end{equation*}
+        En efecto, tomemos una clase lateral de $G/N$, digamos $Ng$ con $g\in G$. Se tiene que existen $s_1,...,s_k\in G$ y $\epsilon_1,...,\epsilon_k\in\left\{-1,1\right\}$ tales que:
+        \begin{equation*}
+            g=s_1^{\epsilon_1}\cdots s_k^{\epsilon_k}
+        \end{equation*}
+        por lo cual:
+        \begin{equation*}
+            Ng=(Ng_1)^{\epsilon_1}\cdots (Ng_k)^{\epsilon_k}
+        \end{equation*}
+        con lo que $Ng\in\gen{Ng_1,...,Ng_n }$. Así que $G/N$ es finitamente generado.
+
+        Para la última parte, si $G$ es finitamente generado se tiene que si $H$ débilmente conmensurable con $G$, entonces existen $G'\subseteq G$ y $H'\subseteq H$ subgrupos respectivos con índice finito tales que:
+        \begin{equation*}
+            G'\cong H'
+        \end{equation*}
+        En particular, $G'$ es finitamente generado por \textit{(1)}, con lo que $H'$ es finitamente generado y de índice finito con $H$, así que $H$ es finitamente generado. Además, por la segunda parte de \textit{(1)} se sigue que:
+        \begin{equation*}
+            G\qisom G'\quad\textup{y}\quad H\qisom H'
+        \end{equation*}
+        y, como $G'\cong H'$ entonces $G'\qisom H'$. Por tanto, $G\qisom H$.
+    \end{proof}
+
+    \begin{excer}
+        Demuestra la siguiente afirmación: Sea
+        \begin{equation*}
+            1\rightarrow F\rightarrow G\rightarrow K\rightarrow1
+        \end{equation*}
+        una sucesión exacta corta de grupos finitamente generados. Si $F$ es finito, entonces $G$ es cuasi-isométrico a $K$.
+    \end{excer}
+
+    \begin{proof}
+        Se tiene que:
+        \begin{equation*}
+            K\cong G/\im{F}
+        \end{equation*}
+        (viendo a $\im{F}$ como subgrupo de $G$). Entonces, $\im{F}$ es finito y normal en $G$, el cual es finitamente generado. Por el inciso \textit{(2)} del ejercicio anterior se sigue que $G/\im{F}$ es finitamente generado, luego $G\qisom G/\im{F}$. Por ende, como $K\cong G/\im{F}$ entonces $K\qisom G/\im{F}$ con lo que se sigue que:
+        \begin{equation*}
+            G\qisom K
+        \end{equation*} 
+    \end{proof}
 
 \end{document}

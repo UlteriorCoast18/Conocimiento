@@ -16,6 +16,7 @@
 \usepackage{pgffor}
 \usepackage{ifthen}
 \usepackage{enumitem}
+\usepackage{bbm}
 
 \usetikzlibrary{shapes.multipart}
 
@@ -137,6 +138,7 @@
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
 \newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
 
 \begin{document}
 
@@ -384,5 +386,132 @@
 
     First, compute the domain of each of the function summands in $f(x)$, then for each function we compute it's domain. Next, find the intersection of all domains to find the domain of $f$. Finally count all prime numbers in the domain of $f$.
 
+    \begin{proof}
+        \begin{equation*}
+            \begin{split}
+                \bbm{Q}\times\bbm{Q}&=\bigcup_{ a\in\bbm{Q}}\left\{(a,b)\Big|b\in\bbm{Q} \right\}\\
+            \end{split}
+        \end{equation*}
+
+        Sea $a\in\bbm{Q}$. Entonces el conjunto:
+        \begin{equation*}
+            \left\{(a,b)\Big|a<b,b\in\bbm{Q} \right\}\subseteq\mathcal{L}
+        \end{equation*}
+        es numerable.
+
+        Si $\mathcal{L}$ fuese finito, entonces:
+        \begin{equation*}
+            a=\min\left\{a_i \right\}
+        \end{equation*}
+        $(a-1,a)$.
+    \end{proof}
+
+    \begin{proof}
+        Recordemos:
+        \begin{equation*}
+            \overline{A}=A\cup A'
+        \end{equation*}
+        y la otra equivalencia es que:
+        \begin{equation*}
+            x\in\overline{A}\textup{ sii }\exists \left\{x_n \right\}\textup{ en }A \textup{ que converge a $x$}
+        \end{equation*}
+        \begin{equation*}
+            x\in\overline{A}\textup{ sii }\forall r>0, B_d(x,r)\cap A\neq\emptyset
+        \end{equation*}
+
+        Un conjunto $U$ es abierto si para todo $x\in U$ existe $r>0$ tal que $B_d(x,r)\subseteq U$.
+
+        \begin{center}
+            
+        \end{center}
+
+        $\Rightarrow):$ Suponga que $x\in\overline{A}$, entonces
+        \begin{itemize}
+            \item $x\in A$, entonces:
+            \begin{equation*}
+                0\leq d(x,A)=\inf\left\{d(x,a)\Big|a\in A \right\}\leq d(x,x)=0
+                \Rightarrow d(x,A)=0
+            \end{equation*}
+            \item $x\in A'$, si para toda vecindad (para todo $r>0$) se tiene que
+            \begin{equation*}
+                (B_d(x,r)\setminus\left\{x\right\})\cap A\neq\emptyset
+            \end{equation*}
+            entonces existe $a_x\in(B_d(x,r)\setminus\left\{x\right\})\cap A$, por lo que:
+            \begin{equation*}
+                0\leq\inf\left\{d(x,a)\Big|a\in A \right\}\leq d(x,a_x)<r
+            \end{equation*}
+            donde el $r>0$ fue arbitrario.
+
+            Por tanto:
+            \begin{equation*}
+                d(x,A)=\inf\left\{d(x,a)\Big|a\in A \right\}=0
+            \end{equation*}
+        \end{itemize}
+
+        $\Leftarrow)$: 
+    \end{proof}
+
+    \begin{proof}
+        Sea $(X,d)$, como es separable existe un conjunto denso $D$ a lo sumo numerable.
+
+        Sea $A$ el conjunto de puntos aislados de $X$.
+        \begin{itemize}
+            \item Si $A$ es finito ya hemos terminado.
+            \item Suponga que $A$ es infinito.
+            \begin{equation*}
+                x\in A\textup{ si y sólo si }\exists r>0\textup{ abierto es tal que }B_d(x,r)=B_d(x,r)\cap X=\left\{ x\right\}
+            \end{equation*}
+            Ahora, como $D$ es denso entonces:
+            \begin{equation*}
+                \overline{D}=X
+            \end{equation*}
+            lo que quiere decir que
+            \begin{equation*}
+                \forall x\in X,\forall r>0\quad B_d(x,r)\cap D\neq\emptyset
+            \end{equation*}
+            Entonces, $A\subseteq D$ lo cual implica que $A$ es numerable.
+        \end{itemize}
+    \end{proof}
+
+    \begin{proof}
+        \begin{equation*}
+            A=\left\{f\in\mathcal{C}([0,1])\Big|f(1/2)=1 \right\}
+        \end{equation*}
+        el complemento de $A$ es:
+        \begin{equation*}
+            \begin{split}
+                \mathcal{C}A&=\left\{f\in\mathcal{C}([0,1])\Big| f(1/2)\neq 1 \right\}\\
+                &=\left\{f\in\mathcal{C}([0,1])\Big| f(1/2)<1 \right\}\cup\left\{f\in\mathcal{C}([0,1])\Big| f(1/2)>1 \right\} \\
+            \end{split}
+        \end{equation*}
+        objetivo: probar que
+        \begin{equation*}
+            B=\left\{f\in\mathcal{C}([0,1])\Big| f(1/2)<1 \right\}
+        \end{equation*}
+        es abierto. Sea $f\in B$, se tiene que:
+        \begin{equation*}
+            f(1/2)<1
+        \end{equation*}
+        Recordemos que:
+        \begin{equation}
+            \mathcal{N}_\infty(g)=\sup\left\{\abs{g(x)}\Big|x\in[0,1] \right\},g\in\mathcal{C}([0,1])
+        \end{equation}
+        tomemos:
+        \begin{equation*}
+            0<1-f(1/2)=r
+        \end{equation*}
+
+        $x\mapsto d(x,A)$ es continua. Sea $f(x)=d(x,A)$.
+
+        Veamos que:
+        \begin{equation*}
+            \begin{split}
+                f^{-1}(]-\infty,\delta[)&=\left\{x\in X\Big|f(x)\in]-\infty,\delta[ \right\}\\
+                &=\left\{x\in X\Big|-\infty<d(x,A)<\delta \right\}\\
+                &=\left\{x\in X\Big|d(x,A)<\delta \right\}\\
+                &=G_\delta\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
 
 \end{document}
