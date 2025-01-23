@@ -110,26 +110,6 @@
   \medskip
 }
 
-%Gestión marca de agua
-
-\usetikzlibrary{shapes.multipart}
-
-\newcounter{it}
-\newcommand*\watermarktext[1]{\begin{tabular}{c}
-    \setcounter{it}{1}%
-    \whiledo{\theit<100}{%
-    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
-    \stepcounter{it}%
-    }
-    \end{tabular}
-    }
-
-\AddToHook{shipout/foreground}{
-    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
-        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
-  \end{tikzpicture}
-}
-
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
 \def\proof{\paragraph{Demostración:\\}}
@@ -239,6 +219,7 @@
 \newcommand{\pint}[2]{\langle#1\big|#2 \rangle}
 \newcommand{\norm}[1]{\|#1\|}
 \newcommand{\Isom}[1]{\ensuremath{\textup{Isom}\left(#1\right)}}
+\newcommand{\SO}[1]{\ensuremath{\textup{SO}\left(#1\right)}}
 
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
@@ -509,8 +490,191 @@
             \left\{f_A\Big|A\in\SL{2,\bbm{R}} \right\}\cup\left\{z\mapsto-\overline{z} \right\}
         \end{equation*}
         En particular, toda isometría de $(H,d_H)$ es una isometría Riemanniana suave y, $\Isom{H,d_H}=\Isom{\bbm{H}^2}$. Además, la función:
-        
+        \begin{equation*}
+            \begin{split}
+                \PSL{2,\bbm{R}}&\rightarrow\Isom{H,d_H}^+\\
+                A&\mapsto f_A\\
+            \end{split}
+        \end{equation*}
+        es un isomorfismo, siendo $\Isom{H,d_H}^+$ al grupo de todas las isometrías que preservan orientación de $\Isom{H,d_H}$.
     \end{theor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{center}
+        \textit{¿Para qué nos sirven las transformaciones de Möbius?}
+    \end{center}
+
+    \begin{propo}[\textbf{Acción de $\SL{2,\bbm{R}}$ en $H$}]
+        \label{accionSL2RenH}
+        Se tiene lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item El grupo $\SL{2,\bbm{R}}$ actúa en $H$ vía transformaciones de Möbius, más aún, esta acción es transitiva.
+            \item El grupo estabilizador de $i$ respecto a esta acción es $\SO{2}$.
+            \item Para todo $z,z'\in H$ existe $A\in\SL{2,\bbm{R}}$ tal que:
+            \begin{equation*}
+                f_A(z)=i\quad\textup{y}\quad\Re(f_A(z'))=0, \Im(f_A(z'))>1
+            \end{equation*}
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De \textit{(1)}: Es inmediato que el grupo actúa via transformaciones de Möbius con la acción dada por:
+        \begin{equation*}
+            (A,z)\mapsto A\cdot z = f_A(z),\quad\forall A\in \SL{2,\bbm{R}},\forall z\in H
+        \end{equation*}
+        Veamos que esta acción es transitiva. Basta probar que para todo $z\in H$ existe un $A_z\in\SL{2,\bbm{R}}$ tal que:
+        \begin{equation*}
+            f_{A_z}(z)=i
+        \end{equation*}
+        Tomemos $x=\Re(z)$ y $y=\Im(z)$. Entonces la transformación de Möbius asociada a la matriz:
+        \begin{equation*}
+            A_z=\left(
+                \begin{array}{cc}
+                    0 & -x \\
+                    y & 0 \\
+                \end{array}
+            \right)
+        \end{equation*}
+        es tal que:
+        \begin{equation*}
+            A_z\cdot z=f_{ A_z}(z)=\frac{z-x}{y}=i
+        \end{equation*}
+        Con lo que la acción es transitiva.
+
+        De \textit{(2)}: Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \SL{2,\bbm{R}}_i&=\left\{A\in\SL{2,\bbm{R}}\Big|A\cdot i=i \right\}\\
+                &=\left\{\left(\begin{array}{cc}
+                    a & b \\
+                    c & d \\
+                \end{array} \right) \in\SL{2,\bbm{R}}\Big|a = d\textup{ y }c=-b \right\}\\
+                &=\left\{\left(\begin{array}{cc}
+                    a & -c \\
+                    c & a \\
+                \end{array} \right) \in\mathcal{M}_{2\times2}(\bbm{R}) \Big|a^2+c^2=1 \right\}\\
+                &=\SO{2}\\
+            \end{split}
+        \end{equation*}
+
+        De \textit{(3)}: Inmediato del inciso \textit{(1)}.
+    \end{proof}
+
+    Resulta que podemos dotar al grupo $\PSL{2,\bbm{R}}$ con una topología. Para ello, notemos que la función:
+    \begin{equation*}
+        f_A\mapsto (a,b,c,d)
+    \end{equation*}
+    es una función suprayectiva de $\PSL{2,\bbm{R}}$ en el subconjunto:
+    \begin{equation*}
+        \left\{(a,b,c,d)\in\bbm{R}^4\Big|ad-bc=1 \right\}
+    \end{equation*}
+    y, es una función biyectiva al espacio cociente:
+    \begin{equation*}
+        \left\{(a,b,c,d)\in\bbm{R}^4\Big|ad-bc=1 \right\}/\left\{(a,b,c,d)\sim(-a,-b,-c,-d) \right\}
+    \end{equation*}
+    Dotando al subespacio $\left\{(a,b,c,d)\in\bbm{R}^4\Big|ad-bc=1 \right\}$ con la norma usual de $\bbm{R}^4$ resulta que el cociente también se puede dotar de una norma, así que el grupo $\PSL{2,\bbm{R}}$ tiene una norma inducida por la norma del espacio cociente, a saber:
+    \begin{equation*}
+        \norm{f_A}=\sqrt{a^2+b^2+c^2+d^2}
+    \end{equation*}
+    donde
+    \begin{equation*}
+        A=\left(\begin{array}{cc}
+            a & b \\
+            c & d \\
+        \end{array}\right)
+    \end{equation*}
+
+    \begin{propo}
+        $\PSL{2,\bbm{R}}$ es un grupo topológico con la métrica inducida por la norma:
+        \begin{equation*}
+            \norm{f_A}=\sqrt{a^2+b^2+c^2+d^2}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{mydef}
+        Un subgrupo $H<\Isom{2,\bbm{R}}$ es llamado \textbf{discreto} si la topología del subespacio $H$ coincide con la topología discreta.
+    \end{mydef}
+
+    \begin{mydef}
+        Un subgrupo discreto de $\Isom{\bbm{H}}$ es llamado \textbf{grupo Fuchsiano} si todo elemento del grupo es una transformación que preserva el orden.
+
+        En otras palabras, un grupo Fuchsiano es un subgrupo discreto de $\PSL{2,\bbm{R}}$
+    \end{mydef}
+
+    \section{Superfices de género $g$}
+
+    Resulta que existe una relación profunda entre los subgrupos de isometrías del plano hiperbólico y el grupo fundamental de superficies de género $g$.
+
+    \begin{theor}
+        Sea $X$ un espacio conexo, localmente arco-conexo y semilocalmente simplemente conexo. Entonces $X$ tiene admite una cubierta universal.
+    \end{theor}
+
+    \begin{mydef}
+        Una \textbf{superficie de Riemann} es un espacio topológico conexo Hausdorff $M$ junto con una colección de cartas $\left\{(U_\alpha,\phi_\alpha) \right\}_{\alpha\in I}$ tales que:
+        \begin{itemize}
+            \item $\left\{U_\alpha \right\}_{\alpha\in I}$ es una cubierta abierta de $M$.
+            \item Para todo $\alpha\in I$, $\cf{\phi_{\alpha}}{U_\alpha}{V_\alpha\subseteq\bbm{C}}$ es un homeomorfismo, donde $V_\alpha$ es un abierto de $\bbm{C}$.
+            \item Si $U_\alpha\cap U_\beta$ para algunos $\alpha,\beta\in I$, entonces la función $\cf{\phi_{\alpha\beta}=\phi_\beta\circ\phi_\alpha^{-1}}{\phi_\alpha(U_\alpha\cap U_\beta)}{\phi_\beta(U_\alpha\cap U_\beta)}$ es una homeomorfismo analítico complejo.
+        \end{itemize}
+    \end{mydef}
+
+    \begin{exa}
+        $\bbm{C}$ es una superficie de Riemann con carta $\left\{(\bbm{C},\bbm{1}_{\bbm{C}})\right\}$.
+    \end{exa}
+
+    \begin{exa}
+        La esfera $\bbm{S}^2\cong\hat{\bbm{C}}=\bbm{C}\cup\left\{\infty \right\}$ es una superficie de Riemann (recuerde la proyección estereográfica).
+    \end{exa}
+
+    \begin{exa}
+        El plano hiperbólico $\bbm{H}^2$ es una superficie de Riemann. En efecto, basta con ver que el plano hiperbólico es un subconjunto de $\bbm{C}$, por lo que hereda toda la estructura de variedad de Riemann.
+    \end{exa}
+
+    \begin{exa}
+        Toda superficie de género $g\geq0$ es una superficie de Riemann. 
+    \end{exa}
+
+    \begin{propo}
+        Toda superficie de género $g\geq0$ tiene como cubriente universal a alguno de los siguientes:
+        \begin{itemize}
+            \item El plano complejo: $\bbm{C}$.
+            \item La esfera de Riemann; $\hat{\bbm{C}}$.
+            \item El plano hiperbólico: $\bbm{H}^2$.
+        \end{itemize}
+    \end{propo}
+
+    Nos interesa conocer los cubrientes universales de estas superficies de Riemann. Para llegar a ello, recordemos el siguiente teorema:
+
+    \begin{theor}[\textbf{Teorema de uniformización de Riemann}]
+        Toda superficie de Riemann simplemente conexa es conformemente equivalente a alguna de las tres:
+        \begin{itemize}
+            \item El plano complejo: $\bbm{C}$.
+            \item La esfera de Riemann; $\hat{\bbm{C}}$.
+            \item El plano hiperbólico: $\bbm{H}^2$.
+        \end{itemize}
+    \end{theor}
+
+    Con este teorema, resulta que podemos caracterizar los cubrientes universales de todas las superficies de género $g\geq0$:
+
+    \begin{proof}
+        Sea $S_g$ una superficie de género $g$. Se tienen tres casos:
+        \begin{itemize}
+            \item $g=0$, en cuyo caso se sigue que $S_g\cong\bbm{S}^2\cong\hat{\bbm{C}}$ el cual es simplemente conexo, por lo que $\hat{\bbm{C}}$ es su cubriente universal.
+            \item $g=1$, en cuyo caso se sigue que $S_g\cong\bbm{T}^2\cong\bbm{S}^1\times\bbm{S}^1$, por lo que un cubriente universal es el plano $\bbm{R}^2\cong\bbm{C}$.
+            \item $g\geq2$. Consultar libro: Resulta que $S_g$ tiene como cubriente universal a $\bbm{H}^2$.
+        \end{itemize}
+    \end{proof}
+
+
+
+    \section{Propieadades de los grupos Fuchsianos}
 
     \newcommand{\Tr}[1]{\ensuremath{\textup{Tr}\left(#1\right)}}
 
@@ -569,7 +733,7 @@
         
     \end{exa}
 
-    \begin{mydef}
+    \begin{mydef}[\textbf{Espacios hiperbólicos}]
         Sea $(X,d)$ un espacio métrico.
         \begin{enumerate}[label = \textit{(\arabic*)}]
             \item Sea $\delta\bbm{R}_{\geq0}$. Decimos que $(X,d)$ es \textbf{$\delta$-hiperbólico} si $X$ es geodésico y todos los triángulos geodésicos de $X$ son $\delta$-delgados.
@@ -590,6 +754,37 @@
     \end{exa}
 
     %TODO: Hacer triángulo par que no sea hiperbólico
+
+    Resulta que la hiperbolicidad es un invariante cuasi-isométrico. Para llegar a tal cosa, debemos debilitar la definición de hiperbolicidad:
+
+    \begin{mydef}[\textbf{Triángulos cuasi-geodésicos $\delta$-delgados}]
+        Sea $(X,d)$ un espacio métrico.
+        \begin{enumerate}[label = \textit{\arabic*}]
+            \item Un \textbf{triángulo cuasi-geodésico en $X$} es una tripleta $(\gamma_0,\gamma_1,\gamma_2)$ de $(c,b)-$cuasi-geodésicas $\cf{\gamma_i}{[0,L_i]}{X}$ en $X$ tales que:
+            \begin{equation*}
+                \gamma_0(L_0)=\gamma_1(0),\quad \gamma_1(L_1)=\gamma_2(0),\quad \gamma_2(L_2)=\gamma_0(0)
+            \end{equation*}
+            \item Un triángulo $(c,b)$-cuasi-geodésico es \textbf{$\delta$-delgado} si:
+            \begin{equation*}
+                \begin{split}
+                    \im{\gamma_0}&\subseteq B_{\delta}^{(X,d)}(\im{\gamma_1}\cup\im{\gamma_2}),\\
+                    \im{\gamma_1}&\subseteq B_{\delta}^{(X,d)}(\im{\gamma_0}\cup\im{\gamma_2}),\\
+                    \im{\gamma_2}&\subseteq B_{\delta}^{(X,d)}(\im{\gamma_0}\cup\im{\gamma_1})\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{obs}
+        De esta definición es inmediato que todo triángulo geodésico es triángulo cuasi-geodésico.
+    \end{obs}
+
+    \begin{mydef}[\textbf{Espacios cuasi-hiperbólicos}]
+        Sea $(X,d)$ un espacio métrico.
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Sean $c,b\in\bbm{R}_{>0}$, $\delta\in\bbm{R}_{\geq0}$. Decimos que el espacio $(X,d)$ es \textbf{$(c,b,\delta)$-cuasi-hiperbólico} si 
+        \end{enumerate}
+    \end{mydef}
 
     \subsection{Hiperbolicidad de $\bbm{H}^2$}
 
@@ -628,6 +823,42 @@
         siendo $\chi_A$ la función característica de $A$.
     \end{mydef}
 
+    \begin{propo}[\textbf{Las isometrías preservan el área}]
+        Sea $A\subseteq H$ un conjunto Lebesgue medible y tomemos $f\in\Isom{H,d_H}$. Entonces, $f(A)$ es medible y:
+        \begin{equation*}
+            \mu_{\bbm{H}^2}(A)=\mu_{\bbm{H}^2}(f(A))
+        \end{equation*}
+    \end{propo}
+
+    \subsection{Geodésicas}
+
+    \newcommand{\arcosh}[1]{\ensuremath{\textup{arcosh}\left(#1\right)}}
+
+    \begin{theor}[\textbf{Caracterización de las geodésicas}]
+        \label{caracterizacionGeodesicas}
+        Sean $z,z'\in H$ distintos.
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Existe una única geodésica en $(H,d_H)$ que une a $z$ con $z'$. En particular, el espacio métrico es geodésico.
+            \item Hasta reparametrizaciones en $\bbm{R}$, existe una única linea geodésica en $(H,d_H)$ que contiene a $z$ y $z'$. 
+        \end{enumerate}
+        Más precisamente, si $A\in\SL{2,\bbm{R}}$ con $\Re(f_A(z))=0=\Re(f_A(z'))$, entonces la función $f_A\circ t\mapsto i\cdot e^{ t}$ es una línea geodésica que une a $z$ con $z'$ y la geodésica que va de $z$ a $z'$ genera esta línea.
+    \end{theor}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{obs}
+        Usando la descripción anterior de las geodésicas nos permite obtener una fórmula explícita para la métrica $d_H$ en $H$:
+        \begin{equation*}
+            d_H(z,z')=\arcosh{1+\frac{\abs{z-z'}^2}{2\cdot\Im{z}\cdot\Im{z}}}
+        \end{equation*}
+        siendo $\cf{\textup{arcosh}}{\bbm{R}_{\geq1}}{\bbm{R}}$ la función:
+        \begin{equation*}
+            x\mapsto\ln\left(x+\sqrt{x^2-1} \right)
+        \end{equation*}
+    \end{obs}
+
     \begin{propo}[\textbf{Crecimiento exponencial del área hiperbólica}]
         Para todo $r\in\bbm{R}_{>10}$ tenemos que:
         \begin{equation*}
@@ -650,13 +881,73 @@
         \end{equation*}
     \end{proof}
 
+    \begin{mydef}
+        Sea $\Delta$ un triángulo geodésico en $(H,d_H)$. Se define el \textbf{área de $\Delta$} como:
+        \begin{equation*}
+            \mu_{\bbm{H}^2}(\Delta)=\mu_{\bbm{H}^2}(A_\Delta)
+        \end{equation*}
+        siendo $A_\Delta\subseteq H$ el conjunto compacto encerrado por las geodésicas de $\Delta$.
+    \end{mydef}
+
+    \begin{theor}[\textbf{Teorema de Gauß-Bonnet para triángulos hiperbólicos}]
+        Sea $\Delta$ un triángulo geodésico en $(H,d_H)$ con ángulos $\alpha,\beta,\gamma$ y suponga que la imagen de $\Delta$ no está contenida en una sola línea geodésica. Entonces:
+        \begin{equation*}
+            \mu_{\bbm{H}^2}(\Delta)=\pi-(\alpha+\beta+\gamma)
+        \end{equation*}
+        En particular, la suma de los ángulos de un triángulo geodésico es menor que $\pi$ y el área hiperbólica está acotada por $\pi$.
+    \end{theor}
+
     \begin{theor}[\textbf{Triángulos son delgados}]
         Existe una constante $C\in\bbm{R}_{\geq0}$ tal que todo triángulo geodésico en $(H,d_H)$ es $C$-delgado.
     \end{theor}
 
+    \begin{proof}
+        Por la proposición anterior, existe $C>0$ tal que:
+        \begin{equation*}
+            \mu_{\bbm{H}^2}(B_C^{(H,d_H)}(i))\geq 4\cdot\pi
+        \end{equation*}
+        (por ejemplo, tomemos $C=26$). Tomemos $\Delta=(\gamma_0,\gamma_1,\gamma_2)$ un triángulo geodésico en $(H,d_H)$ y sea $x\in\im{\gamma_0}$.
 
+        Sin pérdida de generalidad, podemos suponer que el triángulo geodésico $\Delta$ no está contenido en una sola línea geodésica. Por el inciso \textit{(3)} de la Proposición (\ref{accionSL2RenH}) se sigue que podemos trasladar los puntos $x$ a $i$ y el final de la geodésica a un punto tal que:
+        \begin{equation*}
+            f_A(z)=ci, \quad c>1
+        \end{equation*}
+        Luego, del Teorema (\ref{caracterizacionGeodesicas}) y la Proposición () se sigue que la geodésica $\gamma_0$ es un segmento vertical que yace sobre el eje $y$.
 
-    
+        Supongamos que no existe $y\in\im{\gamma_1}\cup\im{\gamma_2}$ tal que $d_H(x,y)\leq C$. Se tiene entonces que:
+        \begin{equation*}
+            B_c^{(H,d_H)}(i)\subseteq A_\Delta\cup\im{\gamma_0}\cup f(A_\Delta)
+        \end{equation*}
+        siendo $A_\Delta$ el conjunto encerrado por las geodésicas de $\Delta$ y $\cf{f}{H}{H}$ la isometría $z\mapsto-\overline{z}$.
+
+        %TODO Incluir imagen de qué está pasando.
+
+        Por tanto:
+        \begin{equation*}
+            \begin{split}
+                4\cdot\pi&\leq\mu_{\bbm{H}^2}(B_C^{(H,d_H)}(i))\\
+                &\leq\mu_{\bbm{H}^2}(A_\Delta\cup\im{\gamma_0}\cup f(A_\Delta))\\
+                &=\mu_{\bbm{H}^2}(A_\Delta)+\mu_{\bbm{H}^2}(\im{\gamma_0})+\mu_{\bbm{H}^2}(f(A_\Delta))\\
+                &=\mu_{\bbm{H}^2}(\Delta)+\mu_{\bbm{H}^2}(D)\\
+                &< 2\cdot\pi\\
+            \end{split}
+        \end{equation*}
+        lo cual es una contradicción. Por lo cual existe $y\in\im{\gamma_1}\cup\im{\gamma_2}$ tal que $d(x,y)\leq C$.
+
+        En particular se sigue que:
+        \begin{equation*}
+            \im{y_0}\subseteq \bigcup_{y\in\im{\gamma_1}\cup\im{\gamma_2}}B_C^{(H,d_H)}(y)\subseteq B_C^{(H,d_H)}( \im{\gamma_1}\cup\im{\gamma_2} )
+        \end{equation*}
+        el procedimiento anterior se puede repetir para las otras geodésicas, resultando en que:
+        \begin{equation*}
+            \begin{split}
+                \im{\gamma_0}&\subseteq B_{C}^{(H,d_H)}(\im{\gamma_1}\cup\im{\gamma_2}),\\
+                \im{\gamma_1}&\subseteq B_{C}^{(H,d_H)}(\im{\gamma_0}\cup\im{\gamma_2}),\\
+                \im{\gamma_2}&\subseteq B_{C}^{(H,d_H)}(\im{\gamma_0}\cup\im{\gamma_1})\\
+            \end{split}
+        \end{equation*}
+        así que $C$ es un triángulo geodésico $C$-delgado. Como el $\Delta$ triángulo geodésico fue arbitrario se sigue que el plano hiperbólico es $C$-hiperbólico, es decir que es hiperbólico en el sentido de espacio métrico.
+    \end{proof}
 
     \begin{minipage}{\textwidth}
     	\begin{center}
@@ -665,5 +956,7 @@
 	    \stepcounter{figcount}
 	\end{center}
     \end{minipage}
+
+    %Hiperbolicidad implica teorema de la palabra soluble, pag 224
 
 \end{document}
