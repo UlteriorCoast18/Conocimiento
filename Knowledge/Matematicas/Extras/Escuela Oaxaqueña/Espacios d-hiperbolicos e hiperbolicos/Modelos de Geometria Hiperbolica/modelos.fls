@@ -1,8 +1,9 @@
-PWD /home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Escuela Oaxaqueña/Espacios d-hiperbolicos e hiperbolicos/Modelos de Geometria Hiperbolica
-INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
+PWD /media/ulterior/Data/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Escuela Oaxaqueña/Espacios d-hiperbolicos e hiperbolicos/Modelos de Geometria Hiperbolica
+INPUT /etc/texmf/web2c/texmf.cnf
+INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Escuela Oaxaqueña/Espacios d-hiperbolicos e hiperbolicos/Modelos de Geometria Hiperbolica/modelos.tex
+INPUT /media/ulterior/Data/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Escuela Oaxaqueña/Espacios d-hiperbolicos e hiperbolicos/Modelos de Geometria Hiperbolica/modelos.tex
 OUTPUT modelos.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
@@ -1124,7 +1125,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1440.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
@@ -1135,20 +1135,20 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/bbm/bbm12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/bbm/bbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/bbm/bbm7.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm
 INPUT modelos.aux
 INPUT ./modelos.out
 INPUT ./modelos.out
-INPUT /home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.720pk
-INPUT /home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm8.600pk
-INPUT /home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk
+INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+INPUT /home/ulterior/.texlive2022/texmf-var/fonts/pk/ljfour/public/bbm/bbm8.600pk
+INPUT /home/ulterior/.texlive2022/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
@@ -1157,4 +1157,5 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb
+INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb
+INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb

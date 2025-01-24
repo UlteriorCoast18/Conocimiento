@@ -1,8 +1,9 @@
-PWD /home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Escuela Oaxaqueña/Teoria de Grupos/Teoría Geometrica de Grupos
-INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
+PWD /media/ulterior/Data/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Escuela Oaxaqueña/Teoria de Grupos/Teoría Geometrica de Grupos
+INPUT /etc/texmf/web2c/texmf.cnf
+INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Escuela Oaxaqueña/Teoria de Grupos/Teoría Geometrica de Grupos/geometrica_grupos.tex
+INPUT /media/ulterior/Data/Documentos/Knowledge/Conocimiento/Knowledge/Matematicas/Extras/Escuela Oaxaqueña/Teoria de Grupos/Teoría Geometrica de Grupos/geometrica_grupos.tex
 OUTPUT geometrica_grupos.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
@@ -1108,7 +1109,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
-INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT ./geometrica_grupos.toc
@@ -1152,8 +1152,9 @@ INPUT ./images/realizaciones.png
 INPUT geometrica_grupos.aux
 INPUT ./geometrica_grupos.out
 INPUT ./geometrica_grupos.out
-INPUT /home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm8.600pk
-INPUT /home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk
+INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+INPUT /home/ulterior/.texlive2022/texmf-var/fonts/pk/ljfour/public/bbm/bbm8.600pk
+INPUT /home/ulterior/.texlive2022/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
@@ -1170,6 +1171,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb
+INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb
+INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb
+INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb
