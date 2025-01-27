@@ -514,4 +514,119 @@
         \end{equation*}
     \end{proof}
 
+    \begin{proof}
+        Considere la función:
+        \begin{equation*}
+            \cf{h}{X}{\bbm{R}_{\geq0}}
+        \end{equation*}
+        tal que $x\mapsto d(x,f(x))$.
+
+        \begin{equation*}
+            d(x,f(x))>0,\quad\forall x\in X\iff x\neq f(x),\quad\forall x\in X
+        \end{equation*}
+
+        Objetivo: ver que $h$ vale cero en algún punto. 
+
+        Veamos que $h$ es continua. En efecto, pues $\cf{d}{X\times X}{\bbm{R}_{\geq0}}$ y $\cf{f}{X}{X}$ es continua, luego la composición:
+        \begin{equation*}
+            x\mapsto (x,f(x))
+        \end{equation*}
+        es continua, luego la composición de esta función con $d$ es continua. Así que $h$ es continua.
+
+        Como $X$ es compacto, entonces $h(X)\subseteq\bbm{R}_{\geq0}$ es compacto.
+
+        Si $0\notin h(X)$, entonces denotemos por $k\in\bbm{R}_{\geq0}$ al elemento mínimo de $h(X)$.
+
+        Entonces, existe $x'\in X$ tal que:
+        \begin{equation*}
+            h(x')=d(x',f(x'))=k
+        \end{equation*}
+        Luego:
+        \begin{equation*}
+            h(f(x'))=d(f(x'),f^2(x'))<h(x')=k
+        \end{equation*}
+        \contradiction. Por tanto, $0\in h(X)$ luego existe $x\in X$ tal que $h(x)=0\Rightarrow d(x,f(x))=0\Rightarrow x=f(x)$.
+
+        Supongamos que existe $y\in X$ tal que:
+        \begin{equation*}
+            h(y)=0\Rightarrow y=f(y)
+        \end{equation*}
+        queremos probar que $x=y$. En efecto:
+        \begin{equation*}
+            d(f(x),f(y))=d(x,y)\Rightarrow x=y
+        \end{equation*}
+
+        Por ende, $X$ tiene un único punto fijo.
+    \end{proof}
+
+    \begin{proof}
+        Sea $r>0$. Considere la función $\cf{f}{E}{E}$:
+        \begin{equation*}
+            x\mapsto \frac{1}{r}\cdot x
+        \end{equation*}
+        de esta forma $B'(0,r)$ es mapeada a $B'(0,1)$. $f$ es continua y es una aplicación lineal acotada. Tiene inversa continua.
+
+        $f$ es isomorfismo continuo. Se tiene que
+        \begin{equation*}
+            B'(0,r) \textup{ es compacta}\iff B'(0,1) \textup{ es compacta}
+        \end{equation*}
+        Aplicando el Corolario al teorema de Riez:
+        \begin{equation*}
+            B'(0,r) \textup{ es compacta}\iff E\textup{ tiene dimensión finita}
+        \end{equation*}
+        para todo $r>0$.
+
+        Se tiene que: $W_r$ será compacto si $E$ es de dimensión finita es condición suficiente.
+
+        Probaremos ahora que:
+        \begin{equation*}
+            W_r=\left\{x\in X\Big|d(x,C)\leq r \right\}=C+B'(0,r)
+        \end{equation*}
+        Como $C$ es compacto, es cerrado. Luego:
+        \begin{equation*}
+            x\in\overline{C}=C\textup{ si y sólo si }d(x,C)=0
+        \end{equation*}
+        \begin{itemize}
+            \item Suponga que $x\in W_r$, entonces $d(x,C)\leq r$. Se tienen dos casos:
+            \begin{itemize}
+                \item $0=d(x,C)$ por lo anterior se tiene que $x\in C$. Tomamos $c=x$ y $b=0$, se tiene que:
+                \begin{equation*}
+                    x=c+b
+                \end{equation*}
+                con $c\in C$ y $b=0\in B'(0,r)$. Por ende, $x\in C+B'(0,r)$.
+                \item $0<d(x,C)\leq r$. Entonces $x\notin C$, por lo que existe $\epsilon>0$ tal que:
+                \begin{equation*}
+                    B(x,\varepsilon)\subseteq X\setminus C
+                \end{equation*}
+                La función $c\mapsto d(x,c)$ es continua. Entonces como $C$ es compacto, luego alcanza su mínimo:
+                \begin{equation*}
+                    \inf\left\{d(x,c)\Big|c\in C \right\}=d(x,C)
+                \end{equation*}
+                por lo que, existe $c\in C$ tal que:
+                \begin{equation*}
+                    d(x,c)=d(x,C)
+                \end{equation*}
+                Tomemos:
+                \begin{equation*}
+                    b=x-c
+                \end{equation*}
+                afirmamos que $b\in B'(0,r)$. En efecto, veamos que:
+                \begin{equation*}
+                    d(0,b)=\|0-b\|=\|-x+c\|=\|x-c\|=d(x,c)=d(x,C)\leq r
+                \end{equation*}
+                por tanto, $b\in B'(0,r)$. Así que $x=c+b\in C+B'(0,r)$.
+            \end{itemize}
+            \item Si $c+b\in C+B'(0,r)$:
+            \begin{equation*}
+                d(c+b,C)=\inf\left\{\|c+b-c' \|\Big|c'\in C \right\}\leq \|c-c+b \|=\|b\|=d(0,b)\leq r
+            \end{equation*}
+            pues, $c\in C$. Por tanto:
+            \begin{equation*}
+                d(c+b,C)\leq r
+            \end{equation*}
+            es decir, que $c+b\in W_r$.
+        \end{itemize}
+        De ambas contenciones se sigue la igualdad.
+    \end{proof}
+
 \end{document}

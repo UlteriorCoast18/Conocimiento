@@ -1,0 +1,470 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome5}
+\usepackage{verbatim}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,139}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{Cristo Daniel Alvarado}}
+\end{center}
+\vspace{-3mm}
+
+\begin{center}
+    \small{
+    (+52) 55 6437 4266 | \href{mailto:cristo.daniel.alvarado@gmail.com}{cristo.daniel.alvarado@gmail.com} %| \href{https://www.yourwebsite.com/}{yourwebsite.com}
+    }
+\end{center}
+\vspace{-5mm}
+
+\begin{center}
+    \small{
+    \socialicon{\faLinkedin} \href{www.linkedin.com/in/cristo-daniel-alvarado-2b77a7333}{Cristo Alvarado} | 
+    \socialicon{\faGithub} \href{https://github.com/UlteriorCoast18/Portfolio}{UlteriorCoast18 - Porftolio} %| \socialicon{\faTwitter} \href{https://twitter.com/your-handle}{your-handle}
+    }
+\end{center}
+\vspace{-5mm}
+\begin{center}
+    \small{Azcapotzalco, Mexico City, Mexico}
+\end{center}
+
+\vspace{-4mm}
+
+\section{\textbf{Objective}}
+\vspace{1mm}
+\small{
+Seeking a challenging position in Pure Mathematics or in Data Analysis to leverage my expertise in programming and statistics. Aiming to contribute to innovative projects at the intersection of Maths, Computing and practical problem-solving.
+}
+\vspace{-2mm}
+
+\begin{comment}
+    %Experience
+    
+    \section{\textbf{Experience}}
+    \vspace{-0.4mm}
+    \resumeSubHeadingListStart
+    \resumeSubheading
+        {{Company A [\href{https://www.companya.com}{\faIcon{globe}}]}}{City, Country}
+        {Job Title A}{Month Year - Month Year}
+        \resumeItemListStart
+            \item Developed [specific achievement] achieving [specific metric] in [specific area]
+            \item Implemented [technology/method], enhancing [specific aspect] by [specific percentage]
+            \item Conducted analysis on [specific data], identifying [key findings]
+            \item Presented findings at [specific event], receiving [specific recognition]
+        \resumeItemListEnd 
+    \resumeSubheading
+        {Company B [\href{https://www.companyb.com}{\faIcon{globe}}]}{Remote}
+        {Job Title B}{Month Year - Month Year}
+        \resumeItemListStart
+        \item Engineered a [specific system/model], improving [specific metric] by [percentage]
+        \item Developed [specific tool/method], increasing [specific aspect] by [percentage]
+        \item Implemented [specific system], reducing [specific metric] by [percentage]
+        \item Conducted [specific test/analysis] to validate [specific aspect]
+        \resumeItemListEnd
+    \resumeSubHeadingListEnd
+    \vspace{-6mm}
+\end{comment}
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{Escuela Superior de Física y Matemáticas at Instituto Politécnico Nacional}{Mexico City, Mexico}
+{Bachelor's degree in Physics and Mathematics with a specialization in Mathematics (no degree conferred yet).}{August 2020 - January 2025}
+\resumeItemListStart
+\item GPA: 9.27/10.00
+\resumeItemListEnd
+
+\resumeSubheading
+{Centro de Estudios Científicos y Tecnológicos No. 9 at Instituto Politécnico Nacional}{Mexico City, Mexico}
+{Technological baccalaureate with specialization in programming}{August 2020}
+\resumeItemListStart
+\item GPA: 9.03/10.00
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {Cyclon: Web and App Applications developed to track hurricanes.}
+  {Tools: Python, Node JS, Java}
+  {February 2020 - June 2020}
+  {}
+\resumeItemListStart
+  \item Developed in Node JS (Web Application) and Java (Android App).
+  \item Applied linear regression and clustering analysis to predict hurricanes velocity and position.
+  \item 2° place at the twenty-ninth contest: "Premio mejores prototipos nivel medio superior" 2020.
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\begin{comment}
+    %Publications
+
+    \section{\textbf{Publications} \hfill \textcolor{darkblue}{\scriptsize C=Conference, J=Journal, P=Patent, S=In Submission, T=Thesis}}
+    \vspace{0.2mm}
+    \small{
+    \begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{S.1}]}, itemindent=0em, label={\textbf{[\arabic*]}]}]
+    \item[\textbf{[C.1]}] Your Name, et al. (Year). \href{https://doi.org/XX.XXXX/XXXXXXX.XXXX.XXXXXXX}{\textbf{Title of Conference Paper}}. In \textit{Name of Conference Proceedings}, pp. XX-XX. Publisher. Date, Location. DOI: XX.XXXX/XXXXXXX.XXXX.XXXXXXX
+
+    \item[\textbf{[S.1]}] Your Name, et al. (Year). \textbf{Title of Submitted Paper}. Manuscript submitted for publication in \textit{Journal Name}.
+
+    \item[\textbf{[P.1]}] Inventor 1, Your Name, Inventor 3, et al. (Year). \href{https://patentoffice.gov/patent/XXXXXXXXX}{\textbf{Title of Patent}}. Patent Office, Patent No. XXXXXXXXX. Registration Date: Date, Grant Date: Date, Publication Date: Date.
+
+    \item[\textbf{[J.1]}] Author 1, Your Name, Author 3, et al. (Year). \href{https://doi.org/XX.XXXX/XXXXX.XXXX.XXXXXXX}{\textbf{Title of Journal Article}}. \textit{Journal Name}, Vol. XX, Issue X, pp. XXX-XXX. DOI: XX.XXXX/XXXXX.XXXX.XXXXXXX
+    \end{enumerate}
+    }
+\end{comment}
+
+\vspace{-6mm}
+
+\section{\textbf{Volunteer Experience}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+\resumeProject
+  {Volunteer Teacher At Escuela Superior de Física y Matemáticas}
+  {Instituto Politécnico Nacional}
+  {September 2024 - December 2024}
+  {}
+\resumeItemListStart
+  \item Teacher in the workshop on: Algebraic Topology - Introduction. 
+  \item It allowed me to teach school students for a better and deeper understanding of the subject.
+  \item Skills developed: mathematical communication, pedagogical skills, research skills, time management and confidence in public speaking
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\vspace{-6mm}
+
+\section{\textbf{Honors and Awards}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {Award}
+  {Awarding the best averages of the semester}
+  {October 2024}
+  {}
+\resumeItemListStart
+  \item Recognition for achieving a GPA of 9.18 in the academic program of the Bachelor’s Degree in Physics and
+  Mathematics during the August 2023 to January 2024 school term.
+\resumeItemListEnd
+
+\resumeProject
+  {Award}
+  {Awarding the best averages of the semester}
+  {October 2023}
+  {}
+\resumeItemListStart
+  \item Recognition for achieving a GPA of 9.11 in the academic program of the Bachelor’s Degree in Physics and
+  Mathematics during the February 2023 to July 2024 school term.
+\resumeItemListEnd
+
+\resumeProject
+  {2° place at twenty-ninth contest: "Premio mejores prototipos nivel medio superior" 2020}
+  {Instituto Politécnico Nacional}
+  {August 2020}
+  {}
+\resumeItemListStart
+  \item Award for the development of Cyclon, a web and mobile application in charge of monitoring and predicting the movement of hurricanes at Mexican coast line.
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\begin{comment}
+    %Professional Memberships
+
+    \section{\textbf{Professional Memberships}}
+    \vspace{-0.4mm}
+    \resumeSubHeadingListStart
+    \resumePOR{Professional Organization A}
+        {, Membership ID: XXXXXXXX}
+        {Month Year - Present}
+    \resumePOR{Professional Organization B}
+        {, \href{https://membership-certificate-link.com}{Membership ID: XXXXXXXX}}
+        {Month Year - Present}
+    \resumePOR{Professional Organization C}
+        {, \href{https://membership-certificate-link.com}{Membership ID: XXXXXXXX}}
+        {Month Year - Present}
+
+    \resumeSubHeadingListEnd
+    \vspace{-6mm}
+\end{comment}
+
+\begin{comment}
+    %Certifications
+
+    \section{\textbf{Certifications}}
+    \vspace{-0.2mm}
+    \resumeSubHeadingListStart
+    \resumePOR{}{\href{https://certification-link-a.com}{
+    \textbf{Certification A}
+    }}{Month Year}
+    \resumePOR{}{
+    \textbf{Certifying Body:} {{\href{https://certification-link-b.com}{Certification B}}}}{Month Year}
+    \resumePOR{}{
+    \textbf{Certifying Body:} {{\href{https://certification-link-c.com}{Certification C}}}}{Month Year}
+    \resumePOR{}{\href{https://certification-link-d.com}{
+    \textbf{Certification D}
+    }}{Month Year}
+
+    \resumeSubHeadingListEnd
+    \vspace{-6mm}
+\end{comment}
+
+\vspace{-6mm}
+
+\section{\textbf{Extracurricular Activities}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {CIMAT’s School Algebra and Singularities }
+  {}
+  {11 - 14 November 2024}
+  {}
+\resumeItemListStart
+  \item Participation as a student in the School of Algebra and Singularities at CIMAT Guanajuato, in a face-to-face
+  format, held from November 11 to 14, 2024.
+\resumeItemListEnd
+
+\resumeProject
+  {57th Congress of Mexican Mathematical Society}
+  {}
+  {21 - 25 October 2024}
+  {}
+\resumeItemListStart
+  \item Attendance at the 57th National Congress of the Mexican Mathematical Society, held from October 21 to 25,
+  2024, at the Faculty of Exact Sciences of the Universidad Juárez del Estado de Durango.
+\resumeItemListEnd
+
+\resumeProject
+  {CIMAT’s Summer School of 2024 }
+  {}
+  {08 -12 July 2024}
+  {}
+\resumeItemListStart
+  \item Participation as a student in the CIMAT Summer School 2024, Guanajuato Campus, in a face-to-face format, held
+  from July 8 to 12, 2024.
+\resumeItemListEnd
+
+\resumeProject
+  {CIMAT’s Summer School of 2023 }
+  {}
+  {10 -14 July 2023}
+  {}
+\resumeItemListStart
+  \item Participation as a student in the CIMAT Summer School 2023, Mérida Campus, in a face-to-face format, held
+  from July 10 to 14, 2023.
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\vspace{-6mm}
+
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+ \resumeHeadingSkillStart
+  \resumeSubItem{Programming Languages:}
+    { Java, Javascript, C, C++ and Python}
+  \resumeSubItem{Database Systems:}
+    { SQL and MySQL}
+  \resumeSubItem{Data Science \& Machine Learning:}
+    { Pandas Python library}
+  \resumeSubItem{Specialized Area:}
+    {Abstract Algebra, Topology, Mathematical Analysis and Topological Algebra}
+  \resumeSubItem{Mathematical Tools:}
+    {Tex Typesetting}
+  \resumeSubItem{Other Tools \& Technologies:}
+    {Visual Studio Code and Linux}
+ \resumeHeadingSkillEnd
+
+\section{\textbf{Additional Information}}
+\vspace{-0.4mm}
+\small{
+\textbf{Languages:} Spanish (Native) and English (Professional).
+\textbf{Interests:} Pure Mathematics, Applied Mathematics, Data Analysis and Machine Learning, Bookbinding.
+}
+\vspace{-4mm}
+
+
+\begin{comment}
+    %Person References
+
+    \section{\textbf{References}}
+    \vspace{-0.2mm}
+    \small{
+    \begin{enumerate}[leftmargin=*,labelsep=2mm]
+    \item \textbf{Reference Person 1}\\
+    Job Title, Department\\
+    Organization/Institution Name\\
+    Email: email1@example.com\\
+    Phone: +X-XXX-XXX-XXXX\\
+    \textit{Relationship: [e.g., Thesis Advisor, Manager, etc.]}
+
+    \item \textbf{Reference Person 2}\\
+    Job Title, Department\\
+    Organization/Institution Name\\
+    Email: email2@example.com\\
+    Phone: +X-XXX-XXX-XXXX\\
+    \textit{Relationship: [e.g., Project Supervisor, Colleague, etc.]}
+
+    \item \textbf{Reference Person 3}\\
+    Job Title, Department\\
+    Organization/Institution Name\\
+    Email: email3@example.com\\
+    Phone: +X-XXX-XXX-XXXX\\
+    \textit{Relationship: [e.g., Mentor, Collaborator, etc.]}
+    \end{enumerate}
+    }
+\end{comment}
+
+\end{document}
