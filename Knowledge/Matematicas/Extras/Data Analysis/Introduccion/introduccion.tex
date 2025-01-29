@@ -1,0 +1,451 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\usepackage{listings}
+
+%Gestión de Hipervínculos
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan
+}
+
+%Gestión de Código de Programación
+
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA} % additional keywords
+\definecolor{listing-keyword-3}{HTML}{9137CB} % additional keywords
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language         = C++,
+    alsolanguage     = scala,
+    numbers          = left,
+    xleftmargin      = 2.7em,
+    framexleftmargin = 2.5em,
+    backgroundcolor  = \color{gray!15},
+    basicstyle       = \color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines       = true,
+    frameshape       = {RYR}{Y}{Y}{RYR},
+    rulecolor        = \color{black},
+    tabsize          = 2,
+    numberstyle      = \color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip        = 1.0em,
+    belowskip        = 0.1em,
+    abovecaptionskip = 0em,
+    belowcaptionskip = 1.0em,
+    keywordstyle     = {\color{listing-keyword}\bfseries},
+    keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive        = true,
+    identifierstyle  = \color{listing-identifier},
+    commentstyle     = \color{listing-comment},
+    stringstyle      = \color{listing-string},
+    showstringspaces = false,
+    label            = lst:bar,
+    captionpos       = b,
+}
+
+\lstset{style = myStyle}
+
+%Estilo del capítulo y sección
+
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{%
+  {\parindent \z@ \raggedright
+    \reset@font
+    \hrule
+    \vspace*{10\p@}%
+    \par
+    \center \LARGE \scshape \@chapapp{} \huge \thechapter
+    \vspace*{10\p@}%
+    \par\nobreak
+    \vspace*{10\p@}%
+    \par
+    \vspace*{1\p@}%
+    \hrule
+    %\vskip 40\p@
+    \vspace*{60\p@}
+    \Huge #1\par\nobreak
+    \vskip 50\p@
+  }}
+
+\def\section#1{%
+  \par\bigskip\bigskip
+  \hrule\par\nobreak\noindent
+  \refstepcounter{section}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \reset@font
+  { \large \scshape
+    \strut\S \thesection \quad
+    #1}% 
+    \hrule   
+  \par
+  \medskip
+}
+
+\def\subsection#1{%
+  \par\bigskip\bigskip
+  \hrule\par\nobreak\noindent
+  \refstepcounter{subsection}%
+  \addcontentsline{toc}{section}{#1}%
+  \reset@font
+  { \normalsize \scshape
+    \strut\S \thesubsection \quad
+    #1}% 
+    \hrule   
+  \par
+  \medskip
+}
+
+%Gestión marca de agua
+
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcounter{figcount}
+\setcounter{figcount}{1}
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas sobre Análisis de Datos}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+
+    \newpage
+
+    \chapter{Conceptos Fundamnetales e Introuctorios}
+
+    El objetivo de este primer capítulo será el de dar una versión descrpitiva del análisis de datos, su importancia y relevancia así como sus posibles aplicaciones.
+
+    \section{¿Para qué sirve?}
+
+    Básicamente el análisis de datos se basa en filtrar, ordenar y presentar información (datos) obtenida de un negocio / empresa / lugar de trabajo con el fin de obtener una predicción (como lo hacen las matemáticas) de lo que nos puede interesar en el futuro.
+
+    Nos puede servir para lo siguiente:
+
+    \begin{itemize}
+        \item Seguimiento de inventario.
+        \item Identificación de hábitos de compra.
+        \item Detección de tendencias y patrones de usuarios.
+        \item Recomendaciones de compras.
+        \item Definición de optimizaciones de precios.
+        \item Identificación y detección de fraude.
+    \end{itemize}
+
+    El seguimiento de patrones puede hacerse diariamente, semanalmente, mensualmente o anualmente (dependiendo de lo que se desee analizar).
+
+    \begin{center}
+        \textit{Quien sepa analizar los datos conocerá el futuro}
+    \end{center}
+
+    \begin{center}
+        El reto subyacente al que se enfrentan las empresas actuales es comprender y usar sus datos de forma que afecten a su negocio y, en última instancia, a sus beneficios. Debe ser capaz de examinar los datos y facilitar decisiones empresariales de confianza. Después, necesitará la capacidad de examinar las métricas y comprender claramente su significado.
+    \end{center}
+
+    \section{Análisis de Datos}
+
+    \begin{mydef}
+        El \textbf{análisis de datos} es el proceso de identificar, limpiar, transformar y modelar los datos para detectar información significativa y útil.
+    \end{mydef}
+
+    Los datos luego se convierten en una historia a través de \textbf{informes} para el análisis con el fin de admitir el proceso crítico de toma de desiciones.
+
+    Aunque el proceso de análisis de datos se centra en las tareas de limpieza, modelado y visualización de datos, el concepto de análisis de datos y su importancia para las empresas no se debe subestimar. Para analizar los datos, los componentes principales del análisis se dividen en las siguientes categorías:
+
+    \begin{itemize}
+        \item \textit{Descriptivo}: Ayuda a responder preguntas sobre lo que ha sucedido en función de datos históricos.
+        
+        Mediante el desarrollo de indicadores clave de rendimiento (KPI), estas estrategias pueden facilitar el seguimiento del éxito o el fracaso de los objetivos clave. En muchos sectores se usan métricas como la rentabilidad de la inversión (ROI), y las métricas especializadas se desarrollan para realizar un seguimiento del rendimiento en sectores específicos.
+
+        Un ejemplo es la generación de informes para proporcionar una visión de los datos financieros y ventas de una organización.
+
+        \item \textit{Diagnóstico}: Ayuda a responder preguntas sobre por qué se ha producido un evento. Complementa al análisis descriptivo, usan sus resultados para dar una causa del evento.
+        
+        Continúa con la investigación de los indicadores de rendimiento. El proceso puede realizarse en tres pasos:
+
+        \begin{enumerate}
+            \item Identificación de las anomalías en los datos (cambios inesperados).
+            \item Recopilación de datos relacionados con las anomalías.
+            \item Uso de técnicas estadísticas para detectar relaciones y tendencias para explicar anomalías.
+        \end{enumerate}
+
+        \item \textit{Predictivo}: Ayuda a respoder las preguntas de lo que ocurrirá en el futuro. Usan datos históricos para identificar tendencias y determinar probabilidad de repetición. Es la herramienta más valiosa.
+        
+        Usan técnicas de estadística y aprendizaje automático, como redes neuronales, árboles de desición y regresión.
+        \item \textit{Prescriptivo}: Ayuda a responder las preguntas sobre qué acciones deben llevarse a cabo para lograr un objetivo. Permite tomar desiciones basadas en datos.
+        
+        En caso de incertidumbre, permite que una empresa tome desiciones con fundamento. Depende del uso del aprendizaje automático como estrategia para buscar patrones en modelos semánticos.
+        \item \textit{Cognitivo}: Intenta obtener inferencias a partir de datos y patrones existentes, derivar conclusiones en función de bases de conocimiento ya existentes y, después, devolver estos resultados a la base de conocimiento para futuras inferencias, un bucle de comentarios de autoaprendizaje.
+        
+        \begin{center}
+            \textit{El análisis cognitivo ayuda a saber lo que podría ocurrir si cambiaran las circunstancias y a determinar cómo se podrían controlar estas situaciones.}
+        \end{center}
+
+        Las inferencias no son consultas estructuradas basadas en una base de datos de reglas, sino supuestos no estructurados que se recopilan de varios orígenes y se expresan con distintos grados de confianza. El análisis cognitivo eficaz depende de algoritmos de aprendizaje automático y usa varios conceptos del procesamiento de lenguaje natural para entender orígenes de datos desaprovechados anteriormente, como los registros de conversaciones de centros de llamadas y revisiones de productos.
+
+    \end{itemize}
+
+    Una faceta subyacente del análisis de datos es que las empresas necesitan ser capaces de confiar en sus datos. Como práctica, el proceso de análisis de datos toma datos de fuentes de confianza y los convierte en algo que es consumible, significativo y fácil de comprender para ayudar con el proceso de toma de decisiones. El análisis de datos permite a las empresas comprender sus datos de manera integral a través de procesos y decisiones controladas por datos, para de ese modo confiar en sus decisiones.
+
+    \begin{center}
+        \textit{A medida que la cantidad de datos crece, también lo hace la necesidad de analistas de datos. Un analista de datos sabe cómo organizar la información y sintetizarla en algo relevante y comprensible. También sabe cómo recopilar los datos correctos y qué hacer con ellos, es decir, dar sentido a los datos a pesar de la sobrecarga de datos.}
+    \end{center}
+
+    \section{Roles en los Datos}
+
+    La narración de historias mediante datos es un recorrido que normalmente no comienza con usted. Los datos tienen que provenir de alguna parte. Llevar esos datos a un lugar que pueda usar requiere esfuerzo, y es probable que se escape a su ámbito, sobre todo cuando se trata de la empresa.
+
+    Hay un espectro en la detección y comprensión de los datos:
+
+    \begin{itemize}
+        \item \textit{Analista de negocios}: Está más cerca de la empresa y análiza los datos que provienen de la visualización. Puede que sea similar al análista de datos.
+        \item \textit{Analista de datos}: Permite a las empresas maximizar el valor de sus recursos de datos a través de herramientas de visualización y creación de informes como Microsoft Power BI. El analista de datos es responsable de la generación de perfiles, la limpieza y la transformación de los datos.
+        
+        Trabaja con las partes interesadas para identificar requisitos necesarios y creación de informes necesarios para después dar conclusiones sobre estos datos.
+
+        Se le encomienda la implementación y configuración de los procedimientos de seguridad adecuados, junto con los requisitos de las partes interesadas.
+
+        Generalmente trabaja con ingenieros de datos para determinar y localizar los orígenes de datos adecuados que satisfagan los requisitos de las partes interesadas.
+
+        También con los administradores de bases de datos para tener acceso adecuado a los orígenes de datos necesarios. También se enfoca en mejorar los procesos ya existentes.
+        \item \textit{Ingeniero de datos}
+        \item \textit{Científico de datos}
+        \item \textit{Administrador de base de datos}
+    \end{itemize}
+
+    \section{Tools to analyze data}
+
+    There are a variety of tools you can use to analyze data, depending on the type of analysis you're performing, the complexity of your data, and your familiarity with different software. Here are some popular tools across different categories:
+
+    \subsection{Data Cleaning and Manipulation}
+    
+    \begin{itemize}
+        \item \textbf{Excel}: A basic but powerful tool for data manipulation, analysis, and visualization.
+        \item \textbf{Google Sheets}: Similar to Excel, but cloud-based and great for collaboration.
+        \item \textbf{OpenRefine}: An open-source tool for cleaning messy data, especially for larger datasets.
+        \item \textbf{Pandas (Python library)}: A powerful library for data manipulation, especially for tabular data.
+    \end{itemize}
+
+    \subsection{Statistical Analysis}
+    
+    \begin{itemize}
+        \item \textbf{R}: An open-source programming language and environment for statistical computing and graphics. It’s widely used in academia and data science.
+        \item \textbf{SPSS}: A statistical software package that’s often used in social sciences for data analysis.
+        \item \textbf{SAS}: A software suite used for advanced analytics, business intelligence, and data management.
+        \item \textbf{Stata}: A software package used for statistics and data analysis.
+    \end{itemize}
+
+    \subsection{Data Visualization}
+    
+    \begin{itemize}
+        \item \textbf{Tableau}: A powerful tool for creating interactive data visualizations. It’s user-friendly and widely used in business intelligence.
+        \item \textbf{Power BI}: A Microsoft tool for data visualization and business analytics, great for connecting to multiple data sources.
+        \item \textbf{Matplotlib/Seaborn (Python libraries)}: For creating static, animated, and interactive visualizations in Python.
+        \item \textbf{ggplot2 (R package)}: A widely used library in R for creating complex visualizations.
+    \end{itemize}
+
+    \subsection{Machine Learning and Predictive Analytics}
+    
+    \begin{itemize}
+        \item \textbf{Scikit-learn (Python library)}: A machine learning library for Python that offers simple and efficient tools for data mining and data analysis.
+        \item \textbf{TensorFlow/PyTorch}: Frameworks for machine learning and deep learning, often used for more complex analyses.
+        \item \textbf{H2O.ai}: An open-source platform for machine learning and AI.
+        \item \textbf{RapidMiner}: A visual data science workflow tool for machine learning, predictive analytics, and data mining.
+    \end{itemize}
+
+    \subsection{Big Data and Distributed Computing}
+    
+    \begin{itemize}
+        \item \textbf{Apache Hadoop}: A framework for processing large datasets in a distributed computing environment.
+        \item \textbf{Apache Spark}: A unified analytics engine for big data processing, with built-in modules for streaming, machine learning, and graph processing.
+        \item \textbf{Google BigQuery}: A fully-managed data warehouse for large-scale data analysis.
+        \item \textbf{Amazon Redshift}: A data warehouse solution that allows for fast querying and analysis of large datasets.
+    \end{itemize}
+
+    \subsection{Database Management and Analysis}
+    
+    \begin{itemize}
+        \item \textbf{SQL (Structured Query Language)}: A standard language for querying and managing databases.
+        \item \textbf{MySQL/PostgreSQL}: Open-source relational database management systems.
+        \item \textbf{MongoDB}: A NoSQL database used for large volumes of unstructured data.
+        \item \textbf{SQLite}: A lightweight relational database management system.
+    \end{itemize}
+
+    \subsection{Collaboration and Reporting}
+    
+    \begin{itemize}
+        \item \textbf{Jupyter Notebooks}: A popular tool for data analysis and sharing code and visualizations interactively in a notebook format, using Python.
+        \item \textbf{Google Colab}: A cloud-based Jupyter notebook environment that allows you to run Python code with free access to GPUs.
+        \item \textbf{Looker}: A data exploration tool for business intelligence, which helps to visualize and analyze data.
+    \end{itemize}
+
+    modelos semánticos
+
+    aprenizaje automático
+
+    estadística
+
+    probabilidad
+
+    indicadores clave de rendimiento
+
+
+\end{document}
+
+\begin{minipage}{\textwidth}
+    \begin{center}
+        %\includegraphics[scale=0.5]{direccion_imagen}\\
+    Figura \thefigcount. Caption.
+    \stepcounter{figcount}
+\end{center}
+\end{minipage}
