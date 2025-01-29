@@ -18,23 +18,6 @@
 \usepackage{enumitem}
 \usepackage{bbm}
 
-\usetikzlibrary{shapes.multipart}
-
-\newcounter{it}
-\newcommand*\watermarktext[1]{\begin{tabular}{c}
-    \setcounter{it}{1}%
-    \whiledo{\theit<100}{%
-    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
-    \stepcounter{it}%
-    }
-    \end{tabular}
-    }
-
-\AddToHook{shipout/foreground}{
-    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
-        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
-  \end{tikzpicture}
-}
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
 
 \def\proof{\paragraph{Demostración:\\}}
@@ -628,5 +611,162 @@
         \end{itemize}
         De ambas contenciones se sigue la igualdad.
     \end{proof}
+
+    \begin{proof}
+        Considere la ecuación:
+        \begin{equation*}
+            \begin{split}
+                \cos x+4e^x-4xe^x&=0\\
+                \iff \cos x+4e^x&=4xe^x\\
+                \iff \frac{\cos x}{4e^x}+1&=x\\
+            \end{split}
+        \end{equation*}
+        por lo que la ecuación original tiene solución si la ecuación anterior la tiene. Considere la función $\cf{g}{[0,\infty[}{\bbm{R}}$ dada por:
+        \begin{equation*}
+            g(x)=\frac{\cos x}{4e^x}+1,\quad\forall x\in[0,\infty[
+        \end{equation*}
+        es continua por ser producto, suma y composición de funciones continuas. Afirmamos $g\geq0$.
+        \begin{equation*}
+            g(x)=\frac{\cos x}{4e^x}+1\geq-\frac{1}{4e^x}+1\geq 1-\frac{1}{4}=\frac{3}{4}\geq0,\quad\forall x\in[0,\infty[
+        \end{equation*}
+        Por lo que $\cf{g}{[0,\infty[}{[0,\infty[}$. El subespacio métrico $([0,\infty[,\abs{\cdot})$ es completo pues $[0,\infty[$ es cerrado.
+
+        Además, se cumple que:
+        \begin{equation*}
+            \begin{split}
+                \abs{g(x)-g(y)}&=\abs{\frac{\cos x}{4e^x}+1-\frac{\cos y}{4e^y}-1 }\\
+                &=\abs{\frac{\cos x}{4e^x}-\frac{\cos y}{4e^y}}\\
+                &=\frac{1}{4}\abs{\frac{\cos x}{e^x}-\frac{\cos y}{e^y}}\\
+            \end{split}
+        \end{equation*}
+
+        La función $\cf{g}{\bbm{R}}{\bbm{R}}$ es diferenciable (por ser cociente de funciones diferenciables y una que no se anula en $\bbm{R}$). Su derivada es:
+        \begin{equation*}
+            \begin{split}
+                \dot{g}(x)&=\frac{-4e^x\sin x-4e^x\cos x}{(4e^x)^2}\\
+                \dot{g}(x)&=-\frac{1}{4}\cdot\frac{\sin x+\cos x}{e^x},\quad\forall x\in \bbm{R}
+            \end{split}
+        \end{equation*}
+
+        Sean $x,y\in[0,\infty[$ distintos. Por el teorema del valor medio existe $c\in[x,y]$ tal que:
+        \begin{equation*}
+            \frac{g(x)-g(y)}{x-y}=\dot{g}(c)
+        \end{equation*}
+        por lo que:
+        \begin{equation*}
+            \abs{g(x)-g(y)}=\abs{\dot{g}(c)}\abs{x-y}
+        \end{equation*}
+        se tiene que $c\in[0,\infty[$, así que:
+        \begin{equation*}
+            \begin{split}
+                0&\leq\abs{\dot{g}(c)}\\
+                &=\abs{-\frac{1}{4}\cdot\frac{\sin c+\cos c}{e^c}}\\
+                &=\frac{1}{4}\cdot\abs{\frac{\sin c+\cos c}{e^c}}\\
+                &\leq\frac{1}{4}\cdot\frac{\abs{\sin c}+\abs{\cos c}}{e^c}\\
+                &\leq\frac{1}{4}\cdot\frac{2}{e^c}\\
+                &\leq\frac{1}{2e^c}\\
+                &\leq\frac{1}{2}\\
+                &<1\\
+            \end{split}
+        \end{equation*}
+
+        Así que:
+        \begin{equation*}
+            \abs{g(x)-g(y)}\leq\frac{1}{2}\abs{x-y}
+        \end{equation*}
+
+        Se tiene que parecer a algo de la forma:
+        \begin{equation*}
+            \abs{g(x)-g(y)}\leq\alpha\abs{x-y}
+        \end{equation*}
+        con $0\leq\alpha<1$. Por tanto, la desigualdad se cumple con $\alpha=\frac{1}{2}$. Por el teorema del punto fijo existe un único $x_0\in[0,\infty]$ tal que:
+        \begin{equation*}
+            g(x_0)=x_0
+        \end{equation*}
+        es decir que:
+        \begin{equation*}
+            \frac{\cos x_0}{4e^{x_0}}+1=x_0
+        \end{equation*}
+        es decir que la ecuación original tiene solución única en $[0,\infty[$.
+    \end{proof}
+
+    \begin{proof}
+        Primero, como $\left\{G_i \right\}_{ i\in I}$ es una cubierta abierta de $X$, entonces para todo $x\in X$ existe $i_x\in I$ tal que:
+        \begin{equation*}
+            x\in G_{i_x}
+        \end{equation*}
+        El conjunto $G_{ i_x}$ es abierto, por lo que existe $2r_x>0$ tal que:
+        \begin{equation*}
+            B(x,2r_x)\subseteq G_{ i_x}
+        \end{equation*}
+        Considere la cubierta abierta $\left\{B(x,r_x) \right\}_{ x\in X}$ de $X$. Por ser $X$ compacto, existen $x_1,..,x_n\in X$ tales que:
+        \begin{equation*}
+            X=\bigcup_{ i=1}^n B(x_i,r_{x_i})
+        \end{equation*}
+        Tomemos:
+        \begin{equation*}
+            \alpha=\min\left\{r_{ x_i}\Big|i=1,...,n \right\}>0
+        \end{equation*}
+        Sea $y\in X=\bigcup_{ i=1}^n B(x_i,r_{x_i})$ y considere la $B(y,\alpha)$. Existe $j=1,...,n$ tal que:
+        \begin{equation*}
+            y\in B(x_{j},r_{x_{j}})
+        \end{equation*}
+        Queremos ver que $B(y,\alpha)\subseteq G_{i}$ para algún $i\in I$. ¿Qué sabemos?
+        \begin{equation*}
+            B(x_j,2r_{ x_j})\subseteq G_{i}
+        \end{equation*}
+        Tomemos:
+        \begin{equation*}
+            i=i_{x_j}
+        \end{equation*}
+        En efecto, sea $z\in B(y,\alpha)$. Se tiene que:
+        \begin{equation*}
+            d(z,x_j)\leq d(z,y)+d(y,x_j)<\alpha+r_{ x_j}\leq r_{ x_j}+r_{ x_j}=2r_{ x_j}
+        \end{equation*}
+        por lo que $z\in B(x_j,2r_{ x_j})\subseteq G_i$. Por ende:
+        \begin{equation*}
+            B(y,\alpha)\subseteq G_i
+        \end{equation*}
+    \end{proof}
+
+    \begin{proof}
+        Sean $A,B\subseteq X$ espacio métrico conexo, cerrados no vacíos. Pruebe que existe $x_0\in X$ tal que:
+        \begin{equation*}
+            d(x_0,A)=d(x_0,B)\iff d(x_0,A)-d(x_0,B)=0
+        \end{equation*}
+
+        Se tiene que las funciones $x\mapsto d(x,A)$ y $x\mapsto d(x,B)$ son continuas, luego la función $f$:
+        \begin{equation*}
+            x\mapsto f(x)=d(x,A)-d(x,B)
+        \end{equation*}
+        es continua. El espacio métrico $X$ es conexo, por lo que el subespacio $f(X)\subseteq\bbm{R}$ es conexo. La función $\cf{f}{X}{\bbm{R}}$ es tal que:
+        \begin{equation*}
+            f(a)=d(a,A)-d(a,B)=-d(a,B)<0
+        \end{equation*}
+        pues $d(a,B)>0\iff -d(a,B)<0$ ya que $B$ es cerrado y $a\notin B$. De forma análoga:
+        \begin{equation*}
+            f(b)>0
+        \end{equation*}
+        para algún $b\in B$. Así que:
+        \begin{equation*}
+            f(a)<0<f(b)
+        \end{equation*}
+        
+        Por el teorema del valor intermedio existe $x_0\in X$ tal que:
+        \begin{equation*}
+            f(x_0)=0
+        \end{equation*}
+        es decir:
+        \begin{equation*}
+            d(x_0,A)-d(x_0,B)=0\iff d(x_0,A)=d(x_0,B)
+        \end{equation*}
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema del valor intermedio}]
+        Sea $\cf{f}{X}{\bbm{R}}$ una función continua de un espacio métrico conexo. Si $a,b\in X$ son tales que $f(a)<f(b)$, entonces para todo $c\in[f(a),f(b)]$ existe $z\in X$ tal que:
+        \begin{equation*}
+            f(z)=c
+        \end{equation*}
+    \end{theor}
 
 \end{document}
