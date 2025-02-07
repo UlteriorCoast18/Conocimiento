@@ -110,6 +110,20 @@
   \medskip
 }
 
+\def\subsection#1{%
+  \par\bigskip\bigskip
+  \hrule\par\nobreak\noindent
+  \refstepcounter{subsection}%
+  \addcontentsline{toc}{section}{#1}%
+  \reset@font
+  { \normalsize \scshape
+    \strut\S \thesubsection \quad
+    #1}% 
+    \hrule   
+  \par
+  \medskip
+}
+
 %Gestión marca de agua
 
 \usetikzlibrary{shapes.multipart}

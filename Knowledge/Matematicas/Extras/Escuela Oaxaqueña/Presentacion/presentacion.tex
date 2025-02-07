@@ -433,25 +433,6 @@
 \end{frame}
 
 \begin{frame}{Švarc-Milnor y el plano hiperbólico}
-    \begin{mydef}
-        Sea $(X,d)$ un espacio métrico. Para cada $\delta>0$ y para cada $A\subseteq X$ se define el conjunto:
-        \begin{equation*}
-            B_\delta^{(X,d)}(A)=\left\{x\in X\Big|\exists a\in A\textup{ tal que }d(x,a)\leq\delta \right\}
-        \end{equation*}
-        en este caso $B_\delta^{(X,d)}(A)$ será llamado \textbf{ensanchamiento de $A$ por factor $\delta$}.
-    \end{mydef}
-\end{frame}
-
-\begin{frame}{Švarc-Milnor y el plano hiperbólico}
-    \begin{figure}
-        \begin{center}
-            \includegraphics[scale=0.6]{images/B_delta.pdf}
-        \end{center}
-        \caption{Ejemplo de conjunto $A$ y $B_\delta^{(X,d)}(A)$.}
-    \end{figure}
-\end{frame}
-
-\begin{frame}{Švarc-Milnor y el plano hiperbólico}
     \begin{lema}[\textbf{Švarc-Milnor}]
         Sea $G$ un grupo actuando en un espacio métrico no vacío $(X,d)$ por isometrías. Suponga que existen constantes $c,b\in\bbm{R}_{>0}$ tales que $(X,d)$ es $(c,d)$-cuasi-geodésico y además que existe un conjunto $B\subseteq X$ con las siguientes propiedades:
         \begin{itemize}
@@ -650,10 +631,79 @@
     \begin{center}
         \LARGE{Espacios Hiperbólicos}
     \end{center}
-    %TODO: Poner imagen
+
+    \pause
+
+    \begin{center}
+        Hablaremos de triángulos.
+    \end{center}
+    \begin{figure}
+        \begin{center}
+            \includegraphics[scale=0.25]{images/all_triangles.png}
+        \end{center}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{Hiperbólicidad y $\delta$-hiperbolicidad}
+    \begin{center}
+        Triángulos geodésicos sobre superficie \textit{hiperbólica}:
+    \end{center}
+    \begin{figure}
+        \begin{center}
+            \includegraphics[scale=0.5]{images/hyperbolic_triangle_2.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Hiperbólicidad y $\delta$-hiperbolicidad}
+    \textbf{Idea}: generalizar noción de hiperbolicidad a espacios métricos.
+    \begin{itemize}
+        \item Queremos conservar noción de distancia mínima (geodésicas).
+        \item Vía triángulos geodésicos.
+        \item Ensanchamientos.
+    \end{itemize}
+
+    \pause
+    \begin{figure}
+        \begin{center}
+            \includegraphics[scale=0.08]{images/hiearchy.jpg}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Hiperbólicidad y $\delta$-hiperbolicidad}
+    \begin{center}
+        Ensanchamiento:
+    \end{center}
+    \begin{figure}
+        \begin{center}
+            \includegraphics[scale=0.6]{images/B_delta.pdf}
+        \end{center}
+        \caption{Ejemplo de conjunto $A$ y $B_\delta^{(X,d)}(A)$ (ensanchamiento de $A$).}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Hiperbólicidad y $\delta$-hiperbolicidad}
+    \begin{mydef}
+        Sea $(X,d)$ un espacio métrico. Para cada $\delta>0$ y para cada $A\subseteq X$ se define el conjunto:
+        \begin{equation*}
+            B_\delta^{(X,d)}(A)=\left\{x\in X\Big|\exists a\in A\textup{ tal que }d(x,a)\leq\delta \right\}
+        \end{equation*}
+        en este caso $B_\delta^{(X,d)}(A)$ será llamado \textbf{ensanchamiento de $A$ por factor $\delta$}.
+    \end{mydef}
 \end{frame}
 
 \subsection{Hiperbólicidad y $\delta$-hiperbolicidad}
+
+\begin{frame}{Hiperbólicidad y $\delta$-hiperbolicidad}
+    \begin{figure}
+        \begin{center}
+            \includegraphics[scale=1.25]{images/delta_slim_2.pdf}
+        \end{center}
+        \caption{Triángulo geodésico $\Delta=(\gamma_0,\gamma_1,\gamma_2)$ y $B_\delta^{(X,d)}$.}
+    \end{figure}
+\end{frame}
 
 \begin{frame}{Hiperbólicidad y $\delta$-hiperbolicidad}
     \begin{mydef}[\textbf{Triángulos geodésicos $\delta$-delgados}]
@@ -673,15 +723,6 @@
             \end{array}
         \end{equation*}
     \end{mydef}
-\end{frame}
-
-\begin{frame}{Hiperbólicidad y $\delta$-hiperbolicidad}
-    \begin{figure}
-        \begin{center}
-            \includegraphics[scale=1.25]{images/delta_slim_2.pdf}
-        \end{center}
-        \caption{Triángulo geodésico $\Delta=(\gamma_0,\gamma_1,\gamma_2)$ y $B_\delta^{(X,d)}$.}
-    \end{figure}
 \end{frame}
 
 \begin{frame}{Hiperbólicidad y $\delta$-hiperbolicidad}
@@ -859,17 +900,27 @@
     \end{equation*}
     (por ejemplo $C=26$). Tomemos $\Delta=(\gamma_0,\gamma_1,\gamma_2)$ un triángulo geodésico en $(H,d_H)$ y sea $x\in\im{\gamma_0}$.
 
-    Sin pérdida de generalidad, podemos suponer que el triángulo geodésico $\Delta$ no está contenido en una sola línea geodésica. Por el inciso \textit{(3)} de la Proposición (\ref{accionSL2RenH}) se sigue que podemos trasladar los puntos $x$ a $i$ y el final de la geodésica a un punto tal que:
+    Sin pérdida de generalidad, podemos suponer que el triángulo geodésico $\Delta$ no está contenido en una sola línea geodésica. Por una proposición se sigue que podemos trasladar los puntos $x$ a $i$ y un extremo de la geodésica que lo contiene a un punto tal que:
+    %Analizar casos y existencia de transformación de Möbius que manda al 0, 1 y infty
     \begin{equation*}
-        f_A(z)=ci, \quad c>1
+        \Im f_A(z)>1
     \end{equation*}
-
+    y $\Re f_A(z)=0$.
 \end{frame}
 
 \begin{frame}{Hiperbolicidad del Plano $\bbm{H}^2$}
-    Luego, del Teorema (\ref{caracterizacionGeodesicas}) y la Proposición () se sigue que la geodésica $\gamma_0$ es un segmento vertical que yace sobre el eje $y$.
+    \begin{figure}
+        \begin{center}
+            \includegraphics[scale=0.25]{images/hyperbolic_plane_geo_triangle.png}
+        \end{center}
+        \caption{Movimiento del triángulo $\Delta$.}
+    \end{figure}
+\end{frame}
 
-    Supongamos que no existe $y\in\im{\gamma_1}\cup\im{\gamma_2}$ tal que $d_H(x,y)\leq C$. Se tiene entonces que:
+\begin{frame}{Hiperbolicidad del Plano $\bbm{H}^2$}
+    Luego, de un teorema y otra prosición se sigue que la geodésica $\gamma_0$ es un segmento vertical que yace sobre el eje $y$.
+
+    Supongamos que para todo $y\in\im{\gamma_1}\cup\im{\gamma_2}$ se tiene $d_H(i,y)>C$. Se tiene entonces que:
     \begin{equation*}
         B_c^{(H,d_H)}(i)\subseteq A_\Delta\cup\im{\gamma_0}\cup f(A_\Delta)
     \end{equation*}
@@ -902,7 +953,7 @@
             \im{\gamma_2}&\subseteq B_{C}^{(H,d_H)}(\im{\gamma_0}\cup\im{\gamma_1})\\
         \end{split}
     \end{equation*}
-    así que $C$ es un triángulo geodésico $C$-delgado. Como el $\Delta$ triángulo geodésico fue arbitrario se sigue que el plano hiperbólico es $C$-hiperbólico, es decir que es hiperbólico en el sentido de espacio métrico.
+    así que $\Delta$ es un triángulo geodésico $C$-delgado. Como el $\Delta$ triángulo geodésico fue arbitrario se sigue que el plano hiperbólico es $C$-hiperbólico, es decir que es hiperbólico en el sentido de espacio métrico.
 \end{frame}
 
 \begin{frame}{Hiperbolicidad del Plano $\bbm{H}^2$}
@@ -991,7 +1042,7 @@
     \end{exa}
 
     \begin{obs}
-        En general resultará muy complicado probar que un espacio es cuasi-hiperbólico usando la definición anterior, por el hecho de que pueden existir demasiadas geodésicas. Resulta que este proceso se puede hacer más sencillo usando unos resultados que se verán más adelante.
+        En general resultará muy complicado probar que un espacio es cuasi-hiperbólico usando la definición anterior, por el hecho de que pueden existir demasiadas cuasi-geodésicas. Resulta que este proceso se puede hacer más sencillo usando unos resultados que se verán más adelante.
     \end{obs}
 \end{frame}
 
@@ -1255,7 +1306,7 @@
                 representan el mismo elemento en el grupo $\gen{S|R}$. Así que la palabra $w$ es trivial si y sólo si la palabra $w'v_jw''$ (que es más corta) es trivial. Aplicando recursivamente el algoritmo se llega a determinar si $w$ es la palabra trivial o no.
             \end{itemize}
         \end{itemize}
-        Este algoritmo siempre determina si la palabra $w$ es trivial o no, por lo que el problema de la palabra es resoluble en $\gen{S|R}$.
+        Este algoritmo siempre determina si la palabra $w$ es trivial o no, por lo que el problema de la palabra es soluble en $\gen{S|R}$.
     \end{proof}
 \end{frame}
 
@@ -1276,6 +1327,8 @@
         ¡¡Todo grupo hiperbólico finitamente generado tiene problema de la palabra soluble!!
     \end{center}
 \end{frame}
+
+%DAr ejemplos
 
 \begin{frame}
     \Huge{\centerline{\textbf{Fin}}}

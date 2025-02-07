@@ -769,4 +769,128 @@
         \end{equation*}
     \end{theor}
 
+    \begin{sol}
+        Veamos que no existe $M\geq0$ tal que:
+        \begin{equation*}
+            \abs{T(f)} \leq M\|f\|_1
+        \end{equation*}
+        En efecto, suponga que existe tal $M$. Considere la sucesión de funciones $\left\{f_n \right\}_{ n=1}^\infty$ dadas por:
+        \begin{equation*}
+            f_n=\frac{s_n}{\|s_n\|_1}
+        \end{equation*}
+        donde:
+        \begin{equation*}
+            f_n(x)=\left\{
+                \begin{array}{lcr}
+                    0 & \textup{ si } & x\in\left[0,\frac{1}{2}-\frac{1}{n} \right]\cup\left[\frac{1}{2}+\frac{1}{n},1 \right] \\
+                    y_1 & \textup{ si } & x\in\left[\frac{1}{2}-\frac{1}{n},\frac{1}{2}\right] \\
+                    y_2 & \textup{ si } & x\in\left[\frac{1}{2},\frac{1}{2}+\frac{1}{n}\right] \\
+                \end{array}
+            \right.,\quad\forall x\in[0,1]
+        \end{equation*}
+        con:
+        \begin{equation*}
+            \begin{split}
+                \frac{y_1-y_2}{x-x_2}&=\frac{y_2-y_3}{x_2-x_3}\\
+                \frac{y_1}{x-\frac{1}{2}+\frac{1}{n}}&=\frac{-n}{-\frac{1}{n}}\\
+                y_1&=n^2\left(x-\frac{1}{2}+\frac{1}{n}\right) \\
+            \end{split}
+        \end{equation*}
+        (despejar a $y_2$) con $p_2=\left(\frac{1}{2}-\frac{1}{n},0\right)$ y $p_3=\left(\frac{1}{2},n\right)$
+        \begin{equation*}
+            \begin{split}
+                y_2&=n^2\left(\frac{1}{2}+\frac{1}{n}-x\right) \\
+            \end{split}
+        \end{equation*}
+        hacen que:
+        \begin{equation*}
+            f_n(x)=\left\{
+                \begin{array}{lcr}
+                    0 & \textup{ si } & x\in\left[0,\frac{1}{2}-\frac{1}{n} \right]\cup\left[\frac{1}{2}+\frac{1}{n},1 \right] \\
+                    n^2\left(x-\frac{1}{2}+\frac{1}{n}\right) & \textup{ si } & x\in\left[\frac{1}{2}-\frac{1}{n},\frac{1}{2}\right] \\
+                    n^2\left(\frac{1}{2}+\frac{1}{n}-x\right) & \textup{ si } & x\in\left[\frac{1}{2},\frac{1}{2}+\frac{1}{n}\right] \\
+                \end{array}
+            \right.,\quad\forall x\in[0,1]
+        \end{equation*}
+        (hacer figurita de como se ven las $f_n$). Se tiene que:
+        \begin{equation*}
+            \|f_n\|_1=\int_{0}^1\abs{f_n}=1,\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        y, además se cumple que:
+        \begin{equation*}
+            f_n\left(\frac{1}{2}\right)=n
+        \end{equation*}
+        Por lo que, si existiera tal constante $M\geq0$ tal que:
+        \begin{equation*}
+            n=\abs{f\left(\frac{1}{2}\right)}=\abs{T(f_n)}\leq M\|f_n\|_1=M
+        \end{equation*}
+        para todo $n\in\bbm{N}$\contradiction. Por tanto, $T$ no es continuo.
+    \end{sol}
+
+    \newcommand{\Fr}[1]{\ensuremath{\textup{Fr}\left(#1\right)}}
+
+    \begin{proof}
+        Probaremos que:
+        \begin{equation*}
+            \Fr{\overline{A}}\subseteq\Fr{A}\quad\textup{ y }\quad\Fr{\mathring{A}}\subseteq\Fr{A}
+        \end{equation*}
+        Recordemos que:
+        \begin{equation*}
+            \Fr{A}=\overline{A}\cap\overline{X-A}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                \Fr{\overline{A}}&=\overline{\overline{A}}\cap\overline{X-\overline{A}}\\
+                &=\overline{A}\cap\overline{X-\overline{A}}\\
+            \end{split}
+        \end{equation*}
+        Tenemos que:
+        \begin{equation*}
+            A\subseteq\overline{A}\Rightarrow X-\overline{A}\subseteq X-A\Rightarrow \overline{X-\overline{A}} \subseteq \overline{X-A}
+        \end{equation*}
+        por lo que:
+        \begin{equation*}
+            \overline{A}\cap\overline{X-\overline{A}}\subseteq \overline{A}\cap\overline{X-A}
+        \end{equation*}
+        es decir que:
+        \begin{equation*}
+            \Fr{\overline{A}}\subseteq \Fr{A}
+        \end{equation*}
+
+        Toma $A=([0,1]\cap\bbm{Q})\cup[2,3]$. Se tiene que:
+        \begin{itemize}
+            \item $\mathring{A}=(2,3)$, $\Fr{\mathring{A}}=\left\{2,3\right\}$.
+            \item $\Fr{A}=[0,1]\cup\left\{2,3\right\}$.
+            \item $\overline{A}=[0,1]\cup[2,3]$, $\Fr{\overline{A}}=\left\{0,1,2,3 \right\}$.
+        \end{itemize}
+
+        $G=\left\{e\right\}$
+
+        Y para la otra contención:
+        \begin{equation*}
+            \Fr{\mathring{A}}=\overline{\mathring{A}}\cap\overline{X-\mathring{A}}
+        \end{equation*}
+        se tiene que $X-\mathring{A}=\overline{X-\mathring{A}}$ ya que el conjunto es cerrado. Por tanto:
+        \begin{equation*}
+            \Fr{\mathring{A}}=\overline{\mathring{A}}\cap X-\mathring{A}
+        \end{equation*}
+        Se tiene que:
+        \begin{equation*}
+            \mathring{A}\subseteq A\Rightarrow\overline{\mathring{A}}\subseteq\overline{A}
+        \end{equation*}
+        y, por otra parte.
+        \begin{equation*}
+            X-\mathring{A}\subseteq \overline{X-A}
+        \end{equation*}
+        En efecto, sea $x\in X-\mathring{A}$, entonces para todo $\varepsilon>0$ el conjunto:
+        \begin{equation*}
+            B(x,\varepsilon)\cap (X-A)\neq\emptyset
+        \end{equation*}
+        por ende, $x\in\overline{X-A}$. Se sigue de forma inmediata que:
+        \begin{equation*}
+            \Fr{\mathring{A}}\subseteq\Fr{A}
+        \end{equation*}
+    \end{proof}
+
 \end{document}
