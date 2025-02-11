@@ -1,0 +1,73 @@
+%% Inicio del archivo `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% Este trabajo puede ser distribuido o modificado bajo las 
+% condiciones de la LaTeX Project Public License V1.3c, 
+% disponible en http://www.latex-project.org/lppl/.
+%
+% Traducción al Español por Fausto M. Lagos (piratax007@protonmail.ch), 2016.
+
+
+\documentclass[11pt,a4paper]{moderncv}        % posibles opciones de tamaño de fuente ('10pt', '11pt' and '12pt'), papel ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') y familia de fuentes ('sans' and 'roman')
+\usepackage{cfr-lm}
+\usepackage{fontawesome5}
+
+% temas moderncv
+\moderncvstyle{casual}                             % Los estilos disponibles son 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{blue}                               % las opciones de color son 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % descomentar al inicio de la línea para definir la fuente por defecto; use '\sfdefault' para sans serif por defecto, '\rmdefault' para roman, o cualquier otro nombre de fuente instalada en sus sistema
+%\nopagenumbers{}                                  % descomente para eliminar el numerado automático de las páginas en cartas de más de una página
+
+% Codificación de carácteres
+\usepackage[utf8]{inputenc}                        % Si no esta usando xelatex o lualatex, remplace por la codificación que este usando
+%\usepackage{CJKutf8}                              % descomente si necesita usar CJK para escribir su carta en Chino, Japones or Koreano
+\usepackage[spanish, english]{babel}			   % comentar si su carta esta escrita en un idioma diferente del Español
+
+% Configuración de márgenes
+\usepackage[scale=0.75]{geometry}
+
+\usepackage{ragged2e}
+%\setlength{\hintscolumnwidth}{3cm}                % descomente si quiere modificar el ancho de columna para la fecha
+%\setlength{\makecvtitlenamewidth}{10cm}           % para el estilo 'classic', si quiere forzar el ancho del nombre. la longitud es normalmente calculada para evitar sobrelapamientos con su información personal; descomente esta línea bajo su propio riesgo
+
+
+% Información personal
+\name{Cristo Daniel Alvarado, pasante de la Licenciatura en Física y Matemáticas de la ESFM}{}
+
+% para mostrar etiquetas numéricas en la bibliografía (por defecto no se muestran etiquecas); descomente las siguientes líneas solo si usa referencias bibliográficas en su carta
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]} % Considere reemplazar la línea 44 con esta
+
+% bibliografía con múltiples entradas
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            contenido
+%----------------------------------------------------------------------------------
+\begin{document}
+%-----       carta       ---------------------------------------------------------
+% Datos del destinatario
+\recipient{Dirección General de Administración Escolar
+Universidad Nacional Autónoma de México}{Ciudad de México, México}
+\date{10 de febrero de 2025}
+\opening{}
+\closing{Esperando una respuesta favorable, envío un cordial saludo.}
+
+\makelettertitle
+
+\justifying
+Estimados miembros del comité:
+
+Por la presente, me comprometo a dedicarme de tiempo completo al programa de Maestría en Matemáticas en la Facultad de Ciencias de la UNAM en caso de ser aceptado. Entiendo la carga de trabajo y las exigencias del programa, por lo que reorganizaré mis actividades para asegurar que mis estudios sean mi prioridad.
+
+Me comprometo también a cumplir con las obligaciones y responsabilidades del programa, participar activamente en las actividades académicas, colaborar en proyectos de investigación y contribuir de forma significativa al ambiente académico de la Facultad. Además, he tomado las medidas necesarias para poder dedicarme a tiempo completo, lo cual incluye la reorganización de mis actividades profesionales y personales con el fin de asegurar que mis estudios sean mi única prioridad durante esta etapa.
+
+Agradezco la oportunidad de presentar esta carta compromiso y quedo a su disposición para cualquier consulta adicional que requieran.
+
+Atentamente,
+
+Cristo Daniel Alvarado.
+
+\end{document}
