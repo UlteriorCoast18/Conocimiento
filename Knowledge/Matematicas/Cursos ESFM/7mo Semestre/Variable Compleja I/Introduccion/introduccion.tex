@@ -12,11 +12,140 @@
 \usepackage{enumerate}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
 \usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{bbm}
+
+\usepackage{listings}
+
+%Gestión de Hipervínculos
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan
+}
+
+%Gestión de Código de Programación
+
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA} % additional keywords
+\definecolor{listing-keyword-3}{HTML}{9137CB} % additional keywords
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language         = C++,
+    alsolanguage     = scala,
+    numbers          = left,
+    xleftmargin      = 2.7em,
+    framexleftmargin = 2.5em,
+    backgroundcolor  = \color{gray!15},
+    basicstyle       = \color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines       = true,
+    frameshape       = {RYR}{Y}{Y}{RYR},
+    rulecolor        = \color{black},
+    tabsize          = 2,
+    numberstyle      = \color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip        = 1.0em,
+    belowskip        = 0.1em,
+    abovecaptionskip = 0em,
+    belowcaptionskip = 1.0em,
+    keywordstyle     = {\color{listing-keyword}\bfseries},
+    keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive        = true,
+    identifierstyle  = \color{listing-identifier},
+    commentstyle     = \color{listing-comment},
+    stringstyle      = \color{listing-string},
+    showstringspaces = false,
+    label            = lst:bar,
+    captionpos       = b,
+}
+
+\lstset{style = myStyle}
+
+%Estilo del capítulo y sección
+
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{%
+  {\parindent \z@ \raggedright
+    \reset@font
+    \hrule
+    \vspace*{10\p@}%
+    \par
+    \center \LARGE \scshape \@chapapp{} \huge \thechapter
+    \vspace*{10\p@}%
+    \par\nobreak
+    \vspace*{10\p@}%
+    \par
+    \vspace*{1\p@}%
+    \hrule
+    %\vskip 40\p@
+    \vspace*{60\p@}
+    \Huge #1\par\nobreak
+    \vskip 50\p@
+  }}
+
+\def\section#1{%
+  \par\bigskip\bigskip
+  \hrule\par\nobreak\noindent
+  \refstepcounter{section}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \reset@font
+  { \large \scshape
+    \strut\S \thesection \quad
+    #1}% 
+    \hrule   
+  \par
+  \medskip
+}
+
+\def\subsection#1{%
+  \par\bigskip\bigskip
+  \hrule\par\nobreak\noindent
+  \refstepcounter{subsection}%
+  \addcontentsline{toc}{section}{#1}%
+  \reset@font
+  { \normalsize \scshape
+    \strut\S \thesubsection \quad
+    #1}% 
+    \hrule   
+  \par
+  \medskip
+}
+
+%Gestión marca de agua
+
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
 
 %En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
-
-\renewcommand{\theenumii}{\roman{enumii}}
 
 \def\proof{\paragraph{Demostración:\\}}
 \def\endproof{\hfill$\blacksquare$}
@@ -41,8 +170,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!60!red!30
@@ -51,8 +180,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     hidealllines = true,
     roundcorner = 5pt,
     backgroundcolor = gray!50!blue!30
@@ -61,8 +190,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{theor}{Teorema}[section]
@@ -70,8 +199,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{propo}{Proposición}[section]
@@ -79,8 +208,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{cor}{Corolario}[section]
@@ -88,8 +217,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     rightline = false,
     leftline = false
 ]{lema}{Lema}[section]
@@ -97,8 +226,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     roundcorner=5pt,
     backgroundcolor = gray!30,
     hidealllines = true
@@ -107,8 +236,8 @@
 \newmdtheoremenv[
     leftmargin=0em,
     rightmargin=0em,
-    innertopmargin=-2pt,
-    innerbottommargin=8pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
     roundcorner=5pt
 ]{excer}{Ejercicio}[section]
 
@@ -117,6 +246,14 @@
 \newcommand\abs[1]{\ensuremath{\left|#1\right|}}
 \newcommand\divides{\ensuremath{\bigm|}}
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
+
+\newcounter{figcount}
+\setcounter{figcount}{1}
+
+\newcommand{\tbf}[1]{\textbf{#1}}
 
 %recuerda usar \clearpage para hacer un salto de página
 
@@ -140,9 +277,9 @@
             &=\sum_{ k=0}^\infty a_k(x-x_0)^k,\quad\forall x\in]x_0-\delta,x_0+\delta[
         \end{split}
     \end{equation}
-    siendo $\cf{f}{I}{\mathbb{R}}$ con $I$ un intervalo, $x_0\in I$ y $\delta>0$ tal que $]x_0-\delta,x_0+\delta[\subseteq]a,b[$. Cuando una funcion de este tipo puede ser descrita de la forma anterior para algún par $x_0$ y $\delta$, decimos en este caso que \textbf{$f$ es analítica en $x_0$}.
+    siendo $\cf{f}{I}{\mathbb{R}}$ con $I$ un intervalo, $x_0\in I$ y $\delta>0$ tal que $]x_0-\delta,x_0+\delta[\subseteq]a,b[$. Cuando una funcion de este tipo puede ser descrita de la forma anterior para algún par $x_0$ y $\delta$, decimos en este caso que \tbf{$f$ es analítica en $x_0$}.
 
-    En el caso que $I$ sea un intervalo abierto y $f$ sea analítica en $x_0$ para todo $x_0\in I$, decimos que \textbf{$f$ es analítica en $I$}.
+    En el caso que $I$ sea un intervalo abierto y $f$ sea analítica en $x_0$ para todo $x_0\in I$, decimos que \tbf{$f$ es analítica en $I$}.
 
     \begin{exa}
         Las funciones $x\mapsto P(x)$, $x\mapsto e^x$, $x\mapsto \sin x$ y $x\mapsto \cos x$ son analíticas en $\mathbb{R}$
@@ -205,11 +342,11 @@
     Se darán ejemplos y se hablará sobre las propiedades fundamentales de las series de potencias.
 
     \begin{mydef}
-        Sea $\left\{ a_n \right\}_{ n=1}^\infty$ una sucesión en $\mathbb{C}$. Decimos que la serie de $\sum_{n=1}^\infty a_n$ \textbf{converge a $z\in\mathbb{C}$}, si para todo $\varepsilon>0$ existe $N\in\mathbb{N}$ tal que
+        Sea $\left\{ a_n \right\}_{ n=1}^\infty$ una sucesión en $\mathbb{C}$. Decimos que la serie de $\sum_{n=1}^\infty a_n$ \tbf{converge a $z\in\mathbb{C}$}, si para todo $\varepsilon>0$ existe $N\in\mathbb{N}$ tal que
         \begin{equation*}
             n\geq N\Rightarrow\abs{\sum_{ k=1}^na_n-z }<\varepsilon
         \end{equation*}
-        La serie $\sum_{n=1}^\infty a_n$ \textbf{converge absolutamente}, si $\sum_{n=1}^\infty\abs{a_n}$ converge.
+        La serie $\sum_{n=1}^\infty a_n$ \tbf{converge absolutamente}, si $\sum_{n=1}^\infty\abs{a_n}$ converge.
     \end{mydef}
 
     \begin{propo}
@@ -234,7 +371,7 @@
     \end{obs}
 
     \begin{mydef}
-        Una \textbf{serie de potencias alrededor de $a\in\mathbb{C}$} es una serie de la forma $\sum_{ n=0}^\infty a_n(z-a)^n$, siendo $\left\{ a_n \right\}_{ n=1}^\infty$ una sucesión en $\mathbb{C}$ y $z\in\mathbb{C}$.
+        Una \tbf{serie de potencias alrededor de $a\in\mathbb{C}$} es una serie de la forma $\sum_{ n=0}^\infty a_n(z-a)^n$, siendo $\left\{ a_n \right\}_{ n=1}^\infty$ una sucesión en $\mathbb{C}$ y $z\in\mathbb{C}$.
     \end{mydef}
 
     \begin{exa}
@@ -245,7 +382,7 @@
         es convergente a $\frac{1}{1-z}$ si y sólo si $\abs{z}<1$.
     \end{exa}
 
-    \begin{theor}[\textbf{Critero $M$ de Weierestrass}]
+    \begin{theor}[\tbf{Critero $M$ de Weierestrass}]
         Para cada $n\in\mathbb{N}$, sea $\cf{u_n}{X}{\mathbb{C}}$ una función tal que existe $M_n\in\mathbb{R}$ tal que
         \begin{equation*}
             \abs{u_n}(x)<M_n,\quad\forall x\in X
@@ -272,13 +409,13 @@
             \item Si $z\in\mathbb{C}$ es tal que $\abs{z-a}>R$, los términos de la serie no son acotados, por lo que la serie diverge.
             \item Si $0<r<R$, la serie converge uniformemente en $\left\{ z\in\mathbb{C}\Big|\abs{z}\leq r \right\}$.
         \end{enumerate}
-        El elemento no negativo de la recta real extendida $R$ es el único con las propiedades (1) y (2), y es llamado el \textbf{radio de convergencia de la serie $\sum_{ n=0}^\infty a_n(z-a)^n$}.
+        El elemento no negativo de la recta real extendida $R$ es el único con las propiedades (1) y (2), y es llamado el \tbf{radio de convergencia de la serie $\sum_{ n=0}^\infty a_n(z-a)^n$}.
     \end{theor}
 
     \begin{proof}
         De (1): Se tienen dos casos; si $R>0$ y $R=0$:
         \begin{itemize}
-            \item \textbf{$R>0$}: Podemos suponer que $a=0$. Sea $z\in\mathbb{C}$ tal que $\abs{z}<R$. Existe $r\in\mathbb{R}$ tal que $\abs{z}<r<R$. $\frac{1}{R}=\limsup_{ n\rightarrow\infty}\abs{a_n}^{ 1/n}$, entonces existe $N\in\mathbb{N}$ tal que
+            \item \tbf{$R>0$}: Podemos suponer que $a=0$. Sea $z\in\mathbb{C}$ tal que $\abs{z}<R$. Existe $r\in\mathbb{R}$ tal que $\abs{z}<r<R$. $\frac{1}{R}=\limsup_{ n\rightarrow\infty}\abs{a_n}^{ 1/n}$, entonces existe $N\in\mathbb{N}$ tal que
             \begin{equation*}
                 \abs{a_n}^{ 1/n}<\frac{1}{r},\quad\forall n\geq N
             \end{equation*}
@@ -394,7 +531,7 @@
     \end{proof}
 
     \begin{mydef}
-        Se define la \textbf{función exponencial}, como la función $\cf{\exp}{\mathbb{C}}{\mathbb{C}}$ dada por:
+        Se define la \tbf{función exponencial}, como la función $\cf{\exp}{\mathbb{C}}{\mathbb{C}}$ dada por:
         \begin{equation*}
             z\mapsto e^z=\exp(z)=\sum_{ n=0}^\infty\frac{z^n}{n!}
         \end{equation*}
@@ -423,15 +560,15 @@
     Se definen las funciones analíticas y se dan algunos ejemplos.
 
     \begin{mydef}
-        Sea $G\subseteq\mathbb{C}$ abierto y $\cf{f}{G}{\mathbb{C}}$ una función. Entonces, $f$ es \textbf{diferenciable en $a\in G$}, si el límite:
+        Sea $G\subseteq\mathbb{C}$ abierto y $\cf{f}{G}{\mathbb{C}}$ una función. Entonces, $f$ es \tbf{diferenciable en $a\in G$}, si el límite:
         \begin{equation*}
             \lim_{ h\rightarrow0}\frac{f(a+h)-f(a)}{h}
         \end{equation*}
-        existe; el valor de este límite es denotado por $f'(a)$ y es llamado la \textbf{derivada de $f$ en $a$}. Si $f$ es diferenciable en todo punto de $G$, decimos que $f$ es \textbf{diferenciable en $G$}.
+        existe; el valor de este límite es denotado por $f'(a)$ y es llamado la \tbf{derivada de $f$ en $a$}. Si $f$ es diferenciable en todo punto de $G$, decimos que $f$ es \tbf{diferenciable en $G$}.
 
         Puede entonces definirse una función $\cf{f'}{G'\subseteq G}{\mathbb{C}}$, donde $G'\subseteq G$ es el conjunto de puntos donde $f$ es diferenciable. En caso de que $f$ sea diferenciable en todo $G$, se sigue que $G'=G$.
 
-        Si $f'$ es continua, decimos que $f$ es \textbf{diferenciable continua}. Si $f'$ es diferenciable, decimos que $f$ es \textbf{dos veces diferenciable}, continuando, una función $f$ tal que cada derivada sucesiva es diferenciable se dice \textbf{infinitamente diferenciable}.
+        Si $f'$ es continua, decimos que $f$ es \tbf{diferenciable continua}. Si $f'$ es diferenciable, decimos que $f$ es \tbf{dos veces diferenciable}, continuando, una función $f$ tal que cada derivada sucesiva es diferenciable se dice \tbf{infinitamente diferenciable}.
     \end{mydef}
 
     \begin{propo}
@@ -453,7 +590,7 @@
     \end{proof}
 
     \begin{mydef}
-        Una función $\cf{f}{G}{\mathbb{C}}$ es \textbf{analítica} si es diferenciable continua en $G$.
+        Una función $\cf{f}{G}{\mathbb{C}}$ es \tbf{analítica} si es diferenciable continua en $G$.
     \end{mydef}
 
     Se sigue rápidamente (como en cálculo), que las sumas y productos de funciones analíticas siguen siendo analíticas. Si $f$ y $g$ son analíticas en $G$ y $G_1$ es el conjunto de puntos donde $g$ no es cero, entonces $f/g$ es analítica en $G_1$.
@@ -462,7 +599,7 @@
 
     Más aún, todas las leyes de diferenciación de sumas, productos y cocientes siguen siendo válidas.
 
-    \begin{theor}[\textbf{Regla de la Cadena}]
+    \begin{theor}[\tbf{Regla de la Cadena}]
         Sean $f,g$ funciones analíticas en $G$ y $\Omega$, respectivamente y suponga que $f(G)\subseteq\Omega$. Entonces, $f\circ g$ es analítica en $G$ y:
         \begin{equation*}
             (g\circ f)'(z)=g'(f(z))\cdot f'(z),\quad\forall z\in G
@@ -507,10 +644,10 @@
     \end{proof}
 
     \begin{mydef}
-        Una función compleja $f$ se dirá \textbf{analítica en $A\subseteq\mathbb{C}$}, si existe $G\subseteq\mathbb{C}$ tal que $f$ es analítica en $G$ y $A\subseteq G$.
+        Una función compleja $f$ se dirá \tbf{analítica en $A\subseteq\mathbb{C}$}, si existe $G\subseteq\mathbb{C}$ tal que $f$ es analítica en $G$ y $A\subseteq G$.
     \end{mydef}
 
-    En lo que sigue de este curso, se hará el mayor esfuerzo para ver porqué la teoría de las funciones analíticas es MUY diferente del cálculo tradicional.
+    En lo que sigue de este curso, se hará el mayor esfuerzo para ver porqué la teoría de las funciones analíticas es \textit{extremandamente} diferente del cálculo tradicional.
 
     \begin{propo}
         Sea $f(z)=\sum_{ n=0}^\infty a_n(z-a)^n$ una serie de potencias con radio de convergencia $R>0$. Entonces:
@@ -572,7 +709,33 @@
 
     \end{proof}
 
+    \begin{cor}
+        Si la serie de potencias $\sum_{ n=0}^\infty a_n(z-a)^n$ tiene radio de convergencia $R>0$, entonces $f(z)=\sum_{ n=0}^\infty a_n(z-a)^n$ es analítica en $B(a,R)$.
+    \end{cor}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    De forma inmediata se sigue que la función:
+    \begin{equation*}
+        z\mapsto e^z=\sum_{ n=0}^\infty\frac{z^n}{n!}
+    \end{equation*}
+    es analítica en $\bbm{C}$.
+
+    \begin{propo}
+        Si $G\subseteq\bbm{C}$ es abierto y conexo, y la función $\cf{f}{G}{\bbm{C}}$ es diferenciable con $f'(z)=0$ para todo $z\in G$, entonces $f$ es constante.
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
     \section{Ejercicios}
+
+    Ejercicios de cada una de las secciones.
+
+    \subsection{Series de Potencias}
 
     \begin{excer}
         Pruebe que si $z_1,z_2\in\mathbb{C}$, entonces:
@@ -665,6 +828,8 @@
         \end{equation*}
 
     \end{proof}
+
+    \subsection{Funciones Analíticas}
 
     \chapter*{Bibliografía}
 
