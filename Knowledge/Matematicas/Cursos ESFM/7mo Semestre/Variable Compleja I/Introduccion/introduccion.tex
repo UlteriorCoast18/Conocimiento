@@ -667,7 +667,7 @@
     \end{propo}
 
     \begin{proof}
-        Podemos asumir que $a=0$, ya que la función $z\mapsto z-a$ es diferenciable en $\mathbb{C}$.
+        Podemos asumir que $a=0$, ya que la función $z\mapsto z-a$ es diferenciable en $\mathbb{C}$ y composición de funciones diferenciables es diferenciable.
 
         De \textit{(a)}: Basta probar el caso con $k=1$, ya que por inducción se sigue rápidamente que se cumple para todo $k\geq1$. Probaremos que el radio de convergencia de la serie:
         \begin{equation*}
@@ -693,7 +693,7 @@
         \begin{equation*}
             \lim_{ n\rightarrow\infty}n^{\frac{1}{n-1}}=1
         \end{equation*}
-        Del ejercicio (\ref{productoSucesionesLimSupLim}) se sigue que:
+        Del Ejercicio (\ref{productoSucesionesLimSupLim}) se sigue que:
         \begin{equation*}
             \begin{split}
                 \limsup_{ n\rightarrow\infty}\abs{na_n}^{\frac{1}{n-1}}&=1\cdot\limsup_{ n\rightarrow\infty}\abs{a_n}^{\frac{1}{n-1}}\\
@@ -702,11 +702,72 @@
         \end{equation*}
         veamos que el límite superior anterior es $\frac{1}{R}$. Sea $R'>0$ tal que:
         \begin{equation*}
+            \frac{1}{R'}=\limsup_{ n\rightarrow\infty}\abs{a_n}^{\frac{1}{n-1}}\\
+        \end{equation*}
+        Entonces, $R'$ es el radio de convergencia de la serie:
+        \begin{equation*}
+            \sum_{ n=1}^\infty a_nz^{ n-1}=\sum_{ n=0}^\infty a_{n+1}z^{n}
+        \end{equation*}
+        Observemos ahora que:
+        \begin{equation*}
+            \sum_{ n=0}^\infty a_nz^n=z\sum_{ n=0}^\infty a_{ n+1}z^n+a_0
+        \end{equation*}
+        Por lo que la sere de la derecha converge si y sólo si la de la izquierda lo hace, es decir:
+        \begin{equation*}
+            \abs{z}<R'\iff \abs{z}<R'
+        \end{equation*}
+        Por ende, $R=R'$.
+
+        De \textit{(b)}: Nuevamente, solo hay que probar que la función es diferenciable. Sea:
+        \begin{equation*}
+            g(z)=\sum_{ n=1}^\infty na_nz^{ n-1}
+        \end{equation*}
+        Esta serie tiene radio de convergencia $R>0$. Tomemos:
+        \begin{equation*}
+            s_n(z)=\sum_{ k=0}^n a_kz^k\quad\textup{y}\quad R_n(z)=\sum_{ k=n+1}^\infty a_kz^k
+        \end{equation*}
+        Sea $0<r<R$, $\varepsilon>0$ y tomemos $w\in\bbm{C}$ tal que $\abs{w}<r$. Probaremos que $f'(w)$ existe y es igual a $g(w)$. En efecto, tomemos $\delta>0$ tal que:
+        \begin{equation*}
+            \overline{B(w,\delta)}\subseteq B(w,r)
+        \end{equation*}
+        Sea $z\in B(w,\delta)$, entonces:
+        \begin{equation*}
+            \frac{f(z)-f(w)}{z-w}-g(w)=\left[\frac{s_n(z)-s_n(w)}{z-w}-s_n'(w) \right]+[s_n'(w)-g(w)]+\left[\frac{R_n(z)-R_n(w)}{z-w}\right] 
+        \end{equation*}
+        Ahora:
+        \begin{equation*}
             \begin{split}
-                s
+                \frac{R_n(z)-R_n(w)}{z-w}&=\frac{1}{z-w}\sum_{ k=n+1}^\infty a_k(z^k-w^k)\\
+                &=\sum_{ k=n+1}^\infty a_k\left(\frac{z^k-w^k}{z-w} \right)\\
             \end{split}
         \end{equation*}
+        con:
+        \begin{equation*}
+            \abs{\frac{z^k-w^k}{z-w}}=\abs{z^{k-1}+z^{k-2}w+\cdots+zw^{ k-2}+w^{ k-1} }\leq kr^{ k-1}
+        \end{equation*}
+        Por tanto:
+        \begin{equation*}
+            \abs{\frac{R_n(z)-R_n(w)}{z-w}}\leq\sum_{ k=n+1}^\infty a_kkr^{ k-1}
+        \end{equation*}
+        Como $r<R$, entonces la serie anterior converge, así que existe $N_1\in\bbm{N}$ tal que:
+        \begin{equation*}
+            n\geq N_1\Rightarrow \abs{\frac{R_n(z)-R_n(w)}{z-w}}<\frac{\varepsilon}{3}
+        \end{equation*}
+        Adicionalmente, como $\lim_{ n\rightarrow\infty }s_n'(w)=g(w)$, existe $N_2\in\bbm{N}$ tal que:
+        \begin{equation*}
+            n\geq N_2\Rightarrow \abs{s_n'(w)-g(w)}<\frac{\varepsilon}{3}
+        \end{equation*}
+        Sea $N=\max\left\{N_1,N_2 \right\}$. Como $s_N$ es diferenciable con derivada $s_N'$, se tiene que existe $\delta>0$ tal que:
+        \begin{equation*}
+            0<\abs{z-w}<\delta\Rightarrow \abs{\frac{s_n(z)-s_n(w)}{z-w}-s_n'(w)}<\frac{\varepsilon}{3}
+        \end{equation*}
+        Por tanto, poniendo todas las desigualdades juntas resulta que:
+        \begin{equation*}
+            0<\abs{z-w}<\delta\Rightarrow\abs{\frac{f(z)-f(w)}{z-w}-g(w)}<\varepsilon
+        \end{equation*}
+        Por tanto, $f'(w)=g(w)$.
 
+        De \textit{(c)}: Es inmediato de evaluar las derivadas en $z=a$.
     \end{proof}
 
     \begin{cor}
@@ -714,7 +775,7 @@
     \end{cor}
 
     \begin{proof}
-        %TODO
+        Inmediata del teorema anterior.
     \end{proof}
 
     De forma inmediata se sigue que la función:
@@ -725,6 +786,90 @@
 
     \begin{propo}
         Si $G\subseteq\bbm{C}$ es abierto y conexo, y la función $\cf{f}{G}{\bbm{C}}$ es diferenciable con $f'(z)=0$ para todo $z\in G$, entonces $f$ es constante.
+    \end{propo}
+
+    \begin{proof}
+        Sea $z_0\in G$ y tomemos $\omega=f(z_0)$. Probaremos que el conjunto:
+        \begin{equation*}
+            A=\left\{z\in G\Big|f(z)=\omega \right\}
+        \end{equation*}
+        es abierto y cerrado no vacío, por ende es todo $G$. En efecto, sea $z\in\overline{A}\cap G$, entonces existe una sucesión $\left\{z_n \right\}_{ n=1}^\infty$ en $A$ tal que:
+        \begin{equation*}
+            \lim_{ n\rightarrow\infty}z_n=z
+        \end{equation*}
+        Como $f$ es diferenciable, en particular es continua, por lo que:
+        \begin{equation*}
+            \omega=\lim_{ n\rightarrow}f(z_n)=f(z)
+        \end{equation*}
+        Así que $z\in A$. Por tanto, $A=\overline{A}^G$, es decir que $A$ es cerrado en $G$.
+
+        Ahora, sea $z\in A$, entonces existe $\varepsilon>0$ tal que $B(z,\varepsilon)\subseteq G$ y tomemos $w\in B(z,w)$. Definimos la función $\cf{g}{[0,1]}{\bbm{C}}$ dada por:
+        \begin{equation*}
+            g(t)=f(tz+(1-t)w),\quad\forall t\in[0,1]
+        \end{equation*}
+        Entonces, se tiene que $g$ es diferenciable en $[0,1]$ y:
+        \begin{equation*}
+            \begin{split}
+                \frac{dg}{dt}(t)&=f'(tz+(1-t)w)\cdot \frac{d}{dt}(tz+(1-t)w)\\
+                &=f'(tz+(1-t)w)\cdot(z-w)\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        por el Ejercicio (\ref{normalDerivadaComplejaDerivadaCompos}) y ya que $f'=0$ en $G$. Por tanto, $g'=0$, es decir que $g$ es constante, en particular:
+        \begin{equation*}
+            f(w)=g(0)=g(1)=f(z)=\omega
+        \end{equation*}
+        Con lo que $w\in A$. Así que $B(z,\varepsilon)\subseteq A$.
+    \end{proof}
+
+    \begin{mydef}
+        Una función $f$ es \textbf{periódica con período $c\in\bbm{C}$} si $f(z+c)=f(z)$ para todo $z\in\bbm{C}$.
+    \end{mydef}
+
+    En particular, se tiene de algunos ejercicios que:
+    \begin{equation*}
+        e^z=e^{ z+c}\iff c=i\theta
+    \end{equation*}
+    con $\theta\in\bbm{R}$. Más aún, de las propiedades de la función seno y coseno se sigue que:
+    \begin{equation*}
+        \theta=2\pi ik,\quad\textup{ para algún }k\in\bbm{Z}
+    \end{equation*}
+
+    De esta forma se sigue que la función exponencial es periódica.
+
+    Queremos ahora definir la función logarítmo, pero no lo podemos hacer con expansión en serie de potencias (ya que los limitaríamos a un disco) ni con la integral de $t\mapsto\frac{1}{t}$, para ello procederemos de la siguiente manera:
+
+    Queremos una función tal que:
+    \begin{equation*}
+        w\mapsto\log w=z\iff w=e^z
+    \end{equation*}
+
+    Como $e^z$ nunca es cero, logaritmo no puede estar definido en cero. Por tanto, supongamos que $e^z=w$ y $w\neq 0$. Si $z=x+iy$, entonces $\abs{w}=e^x$ y $y=\arg w+2\pi k$ para alguna $k\in\bbm{Z}$ (por la periodicidad de $e^z$).
+    
+    Así que el conjunto:
+    \begin{equation*}
+        \left\{\ln\abs{w}+i(\arg w+2\pi k)\Big|k\in\bbm{Z} \right\}
+    \end{equation*}
+    es un conjunto solución de $e^z=w$ (siendo $\ln\abs{w}$ el logaritmo usual).
+
+    \begin{mydef}[\textbf{Rama de logarítmo}]
+        Si $G$ es un conjunto abierto de $\bbm{C}$ y $\cf{f}{G}{\bbm{C}}$ es continua tal que:
+        \begin{equation*}
+            z=e^{ f(z)},\quad\forall z\in G
+        \end{equation*}
+        decimos que $f$ es una \textbf{rama de logarítmo}.
+    \end{mydef}
+
+    \begin{obs}
+        Si $f$ es una rama de logarítmo en el conjunto abierto conexo $G$, entonces $g(z)=f(z)+2\pi ik$ también lo es. ¿El converso se cumple?
+    \end{obs}
+
+    \begin{propo}[\textbf{Caracterización de las ramas de logarítmo}]
+        Sea $G\subseteq\bbm{C}$ abierto y conexo, $f$ una rama de logarítmo en $G$. Entonces todas las ramas de logarítmo en $G$ son de la forma:
+        \begin{equation*}
+            f(z)+2\pi ik
+        \end{equation*}
+        para algún $k\in\bbm{Z}$.
     \end{propo}
 
     \begin{proof}
@@ -826,8 +971,16 @@
                 &=ab\\
             \end{split}
         \end{equation*}
-
     \end{proof}
+
+    \begin{excer}
+        \label{normalDerivadaComplejaDerivadaCompos}
+        Sea $\cf{f}{G}{\bbm{C}}$ analítica en $G$ y $\cf{h}{[0,1]}{G}$ función real diferenciable. Entonces la función $\cf{f\circ h}{[0,1]}{\bbm{C}}$ cumple que:
+        \begin{equation*}
+            \lim_{ t\rightarrow s}\frac{f\circ h(s)-f\circ h(t)}{s-t}=f'(h(s))\cdot h'(s)
+        \end{equation*}
+        para todo $s\in[0,1]$.
+    \end{excer}
 
     \subsection{Funciones Analíticas}
 
@@ -835,7 +988,7 @@
 
     \begin{itemize}
         \item A. Markusevich, \textit{Teoría de las funciones analíticas}, Ed. Mir Moscu.
-        \item \item J. Conway, \textit{Complex Analysis}, Ed. Mir Moscu.
+        \item J. Conway, \textit{Complex Analysis}, Ed. Mir Moscu.
     \end{itemize}
     
 \end{document}
