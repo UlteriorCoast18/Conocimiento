@@ -1,0 +1,2965 @@
+\documentclass[twoside,12pt,a4 paper,openright]{book}
+%\setlength{\textwidth}{15cm} \setlength{\textheight}{21cm} %esta instrucci\'on sirve para indicar que tanto quieres ocupar de tu hoja
+%\setlength{\oddsidemargin}{1.5cm} \topmargin-0.5cm %esta es para indicar el margen, si quieres puedes omitir esta y la instruccion anterior
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[all]{xy}
+\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+%\usepackage{graphicx}
+\usepackage{color}
+\usepackage{graphics}
+\usepackage{amssymb,amsthm,amsmath,amsfonts}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+
+
+
+\newtheorem{claim}{Proposition}[chapter]
+\newtheorem{teo}[claim]{Teorema}
+\newtheorem{cor}[claim]{Corolario}
+\newtheorem{lem}[claim]{Lema}
+\newtheorem{pro}[claim]{Proposici\'on}
+\newtheorem{ejer}[claim]{Ejercicio}
+\newtheorem{ejem}[claim]{Ejemplo}
+\newtheorem{defi}[claim]{Definici\'on}
+\newtheorem{fig}[claim]{Figura}
+\newtheorem{tab}[claim]{Tabla}
+\newtheorem{tar}[claim]{Tarea}
+\newtheorem{ob}[claim]{Observaci\'on}
+\newtheorem{nota}[claim]{Notaci\'on}
+\title{Teor\'ia de la medida}
+\author{      Instituto Politecnico Nacional \\
+\\
+							Profesor: Jos\'e Oscar Gonz\'alez Cervantes}
+                      
+
+\begin{document}
+
+
+
+
+\maketitle
+
+\tableofcontents
+
+\vspace{2cm}
+Evaluaci\'on parcial (al finalizar cada ca\'itulo): 
+\\
+\\
+
+50 \% entregra de ejercicios + 50 \% examen escrito.  
+\\
+\\
+
+
+Bibliograf\'ia:
+
+\begin{enumerate}
+\item Introductory Real Analysis. A. N. Kolmogorov, S.V. Fomin, Ed. Dover publications.
+
+\item Measure Theory. Paul Halmos. Springer Verlag.
+
+
+\item Introduction to  Real Analysis,  Bartle, Ed. John Wiley.
+
+\item Real and Complex Analysis. W. Rudin, Ed. Mc Graw-Hill.  
+\end{enumerate}
+
+
+
+\chapter{Preliminares}  
+
+
+
+
+\begin{ejer} \ {}
+
+\newpage
+
+\begin{enumerate}
+
+
+\item Son las leyes de distributividad de la teor\'ia de conjuntos: 
+%2
+{\small
+\begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {} $ (A\cup B)\cap C   =(A\cap C)\cap (B\cap C) , \quad (A\cap B)\cap C   =(A\cup C)\cap (B\cup C) $. 
+\item[\textcolor{blue}{$\bullet$}]  {} $ (A\cup B)\cap C   =(A\cap C)\cup (B\cap C) , \quad (A\cap B)\cup C   =(A\cup C)\cap (B\cup C) .$ 
+\item[\textcolor{yellow}{$\bullet$}] {} $(A\cap B)\cap C   =(A\cap C)\cup (B\cap C) , \quad (A\cap B)\cup C   =(A\cup C)\cap (B\cap C) .$ 
+\item[\textcolor{green}{$\bullet$}] {} $(A\cup B)\cap C   =(A\cap C)\cup (B\cup C) , \quad (A\cup B)\cup C   =(A\cup C)\cap (B\cup C) .$
+\end{enumerate}
+}
+
+
+\newpage
+
+\item Son los principios de dualidad (leyes de Morgan):
+%4
+{\small
+\begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {} $\left(\bigcup_{\alpha \in I}A_{\alpha}\right)^{c} =\bigcap_{\alpha \in I}A_{\alpha}^{c}, \quad \left(\bigcap_{\alpha \in I} A_{\alpha}\right)^{c} = \bigcap_{\alpha \in I} A_{\alpha}^{c} $. 
+\item[\textcolor{blue}{$\bullet$}] {} $\left(\bigcup_{\alpha \in I}A_{\alpha}\right)^{c} =\bigcap_{\alpha \in I}A_{\alpha}^{c}, \quad \left(\bigcap_{\alpha \in I} A_{\alpha}\right)^{c} = \bigcup_{\alpha \in I} A_{\alpha}  $. 
+\item[\textcolor{yellow}{$\bullet$}] {} $\left(\bigcup_{\alpha \in I}A_{\alpha}\right)^{c} =\bigcap_{\alpha \in I}A_{\alpha}^{c}, \quad \left(\bigcup_{\alpha \in I} A_{\alpha}\right)^{c} = \bigcup_{\alpha \in I} A_{\alpha}^{c} $. 
+\item[\textcolor{green}{$\bullet$}] {} $\left(\bigcup_{\alpha \in I}A_{\alpha}\right)^{c} =\bigcap_{\alpha \in I}A_{\alpha}^{c}, \quad \left(\bigcap_{\alpha \in I} A_{\alpha}\right)^{c} = \bigcup_{\alpha \in I} A_{\alpha}^{c} $. 
+\end{enumerate}
+}
+
+
+\newpage
+
+
+\item Es la diferencia sim\'etrica entre $A$ y $B$:
+%3
+{\small
+\begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {}
+ $A\Delta B: = (A\setminus  B )\cap (B\setminus A)   = (A\cup B) \setminus (A\cap B)$.
+\item[\textcolor{blue}{$\bullet$}] {}
+ $A\Delta B: = (A\setminus  B )\cup (B\setminus A)   = (A\cup B) \setminus (A\cup B)$.
+ \item[\textcolor{yellow}{$\bullet$}] {}
+ $A\Delta B: = (A\setminus  B )\cup (B\setminus A)   = (A\cup B) \setminus (A\cap B)$.
+\item[\textcolor{green}{$\bullet$}] {}
+ $A\Delta B: = (A\setminus  B )\cup (B\setminus A)   = (A\cup B) \cup (A\cap B)$.
+\end{enumerate}
+}
+
+
+
+\newpage
+
+
+\item Sean $a,b\in \mathbb{R}$ tales que $a< b$. Hallar 
+$$\displaystyle \bigcup_{n\in \mathbb N} \left[a+\frac{1}{n}, b-\frac{1}{n}\right] , \quad   \displaystyle \bigcap_{n\in \mathbb N} \left(a-\frac{1}{n}, b+\frac{1}{n}\right) .$$
+%1
+{\small
+\begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {}  $(a,b)$ y $[a,b]$, respectivamente.
+\item[\textcolor{blue}{$\bullet$}] {}    $[a,b]$ y $(a,b)$, respectivamente.
+\item[\textcolor{yellow}{$\bullet$}] {} $\emptyset$ y $\mathbb R$, respectivamente.
+\item[\textcolor{green}{$\bullet$}] {} $\mathbb R$ y $\emptyset$, respectivamente.
+\end{enumerate}
+}
+
+
+\newpage
+
+
+\item     Sean N,M conjuntos no vac\'ios y sea $f:N \rightarrow M$, dados $A,B \subset M$ se cumple:
+%4
+{\small
+\begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {}
+     $f^{-1}(A \cap B) = f^{-1}(A) \cup f^{-1}(B)$, \ \ \ $f^{-1}(A \cap B) = f^{-1}(A) \cap f^{-1}(B)$.
+\item[\textcolor{blue}{$\bullet$}] {}
+     $f^{-1}(A \cup B) = f^{-1}(A) \cup f^{-1}(B)$, \ \ \ $f^{-1}(A \cap B) = f^{-1}(A) \cup f^{-1}(B)$.
+\item[\textcolor{yellow}{$\bullet$}] {}
+     $f^{-1}(A \cup B) = f^{-1}(A) \cap f^{-1}(B)$, \ \ \ $f^{-1}(A \cap B) = f^{-1}(A) \cap f^{-1}(B)$.
+\item[\textcolor{green}{$\bullet$}] {}
+     $f^{-1}(A \cup B) = f^{-1}(A) \cup f^{-1}(B)$, \ \ \ $f^{-1}(A \cap B) = f^{-1}(A) \cap f^{-1}(B)$.
+\end{enumerate}
+}
+     
+     
+
+\newpage
+
+
+
+ 
+
+\item Dado un conjunto no vac\'io $A$. Una relaci\'on $R$ en $A$ es un subconjunto de $A\times A$.   Diremos que $R$, ($\sim$) es que equivalencia si es    
+%2
+{\small
+\begin{enumerate}
+ \item[\textcolor{red}{$\bullet$}] {} reflexiva,   anti-sim\'etrica y transitiva.
+  \item[\textcolor{blue}{$\bullet$}] {}  reflexiva,   sim\'etrica y transitiva.
+\item[\textcolor{yellow}{$\bullet$}] {} reflexiva y   sim\'etrica.
+\item[\textcolor{green}{$\bullet$}] {} sim\'etrica y transitiva.
+  \end{enumerate}
+}
+
+
+
+\newpage
+
+
+
+
+\item Un  conjunto no vac\'io $A$ y  una relaci\'on $R$ en $A$. Entonces $A$ es descompuesto 
+por conjuntos $ \{ y\in A \ \mid \ x R y\} = [y]$   si y solo si 
+%3
+{\small
+\begin{enumerate}
+ \item[\textcolor{red}{$\bullet$}] {}  $R$ es una relaci\'on.
+\item[\textcolor{blue}{$\bullet$}] {}  $R$ es un orden parcial.
+\item[\textcolor{yellow}{$\bullet$}] {} $R$ es una relaci\'on de equivalencia.
+\item[\textcolor{green}{$\bullet$}] {}  $R$ es una relaci\'on transitiva.
+\end{enumerate}
+}
+
+
+
+\newpage
+
+
+\item Considere $\quad f(x,y) = x-y$, para cada $(x,y)\in \mathbb N^2$. Defina:  
+        $(a,b)R(c,d) \Leftrightarrow f(a,b) = f(c,d)$ para cada $(a,b)\in \mathbb N^2$. La relaci\'on es:
+ %1
+        {\small
+           \begin{enumerate}         
+           \item[\textcolor{red}{$\bullet$}] {} Reflexiva, sim\'etrica y transitiva.
+        \item[\textcolor{blue}{$\bullet$}] {} Reflexiva, pero no sim\'etrica y ni transitiva.
+        \item[\textcolor{yellow}{$\bullet$}] {} Sim\'etrica pero no reflexiva, ni transitiva.
+        \item[\textcolor{green}{$\bullet$}] {} Transitiva pero no reflexiva, ni sim\'etrica
+    \end{enumerate}
+}
+
+
+
+\newpage
+
+
+
+\item Diremos que  $A$ es numerable o contable si es finito o infinito numerable.
+  Ejemplos de conjuntos infinito numerables
+ %2
+        {\small
+    \begin{enumerate}
+            \item[\textcolor{red}{$\bullet$}] {} $\mathbb{Z}$,  $\mathbb{Q}$, $\mathbb R$.
+             \item[\textcolor{blue}{$\bullet$}] {} $\mathbb{Z}$,  $\mathbb{Q}$, $\mathbb N$.
+      \item[\textcolor{yellow}{$\bullet$}] {}     $\mathbb{Z}$,  $\mathbb{Q}$, $\mathbb C$.
+         \item[\textcolor{green}{$\bullet$}] {}    $\mathbb{Z}$,  $\mathbb{Q}$, $[0,1]$.
+                 \end{enumerate}
+}
+
+
+
+\newpage
+
+
+
+
+\item Dado un conjunto $A$. Los siguientes hechos son equivalentes: 
+  % 3
+          {\small
+    \begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {} \begin{enumerate}
+ \item    $A$ es numerable. 
+\item Existe  $f: \mathbb N \to A$ inyectiva.
+\item Existe $g: A \to \mathbb N$ inyectiva.
+\end{enumerate} 
+\item[\textcolor{blue}{$\bullet$}] {} \begin{enumerate}
+ \item $A$ es numerable. 
+\item Existe  $f: \mathbb N \to A$ inyectiva.
+\item Existe $g: A \to \mathbb N$ suprayectiva.
+\end{enumerate} 
+ \item[\textcolor{yellow}{$\bullet$}] {} \begin{enumerate}
+ \item $A$ es numerable. 
+\item Existe  $f: \mathbb N \to A$ suprayectiva.
+\item Existe $g: A \to \mathbb N$ inyectiva.
+\end{enumerate} 
+\item[\textcolor{green}{$\bullet$}] {} \begin{enumerate}
+ \item $A$ es numerable. 
+\item Existe  $f: \mathbb N \to A$ suprayectiva.
+\item Existe $g: A \to \mathbb N$ suprayectiva.
+\end{enumerate} 
+\end{enumerate} 
+}
+
+\newpage
+
+
+\item Si $A_n$ es infinito numerable para cada $n\in \mathbb N $ entonces 
+ % 4
+          {\small
+    \begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {}
+$\bigcup_{n\in \mathbb N} A_n$ es finito. 
+\item[\textcolor{blue}{$\bullet$}] {}
+$\bigcup_{n\in \mathbb N} A_n$ es infinito no numerable. 
+\item[\textcolor{yellow}{$\bullet$}] {}
+$\bigcup_{n\in \mathbb N} A_n$ es vac\'io. 
+\item[\textcolor{green}{$\bullet$}] {}
+$\bigcup_{n\in \mathbb N} A_n$ es infinito numerable. 
+\end{enumerate}
+}
+
+\newpage
+
+
+\item  Teorema de Cantor:
+Dado un conjunto no vac\'io  $A$ entonces no existe $g: A \to \mathcal P(A)$  que sea 
+ % 2
+          {\small
+    \begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {}  inyectiva.
+\item[\textcolor{blue}{$\bullet$}] {} suprayectiva.
+\item[\textcolor{yellow}{$\bullet$}] {} lineal
+\item[\textcolor{green}{$\bullet$}] {} no lineal
+\end{enumerate}
+}
+ 
+\newpage
+
+
+\item Por $\aleph_0$ (Aleph cero) representaremos la cantidad de n\'umeros naturales. Se verifica que $\mathcal P(\mathbb N)$, $[0,1]$ y $\mathbb R$ son todos equivalentes. Como $[0,1] $ es infinito no numerable se dice que tiene la cardinalidad 
+ % 1
+          {\small
+    \begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {}  del cont\'inuo o la cardinalidad   $\aleph_1$ (Aleph uno).
+\item[\textcolor{blue}{$\bullet$}] {}  de $\mathbb N$.
+\item[\textcolor{yellow}{$\bullet$}] {}  $\aleph_0$ (Aleph cero).
+\item[\textcolor{green}{$\bullet$}] {}   $\aleph_2$ (Aleph dos).
+\end{enumerate}
+}
+
+
+\newpage
+
+
+\item  Teorema de Cantor-Bernstein: Sea $A$ y $B$ dos conjuntos tales que existen $A_1\subset A$ y $B_1\subset B$ donde $A_1$ es equivalente a $B$ y $B_1$ es equivalente a $A$. 
+ % 3
+          {\small
+    \begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {} Entonces $A_1$ y $B_1$ son equivalentes. 
+\item[\textcolor{blue}{$\bullet$}] {} Entonces $A_1$ y $B$ son equivalentes. 
+\item[\textcolor{yellow}{$\bullet$}] {}  Entonces $A$ y $B$ son equivalentes. 
+\item[\textcolor{green}{$\bullet$}] {}  Entonces $A$ y $B_1$ son equivalentes. 
+\end{enumerate}
+}
+ 
+
+\newpage
+
+
+\item Dado un conjunto no vaci\'o $A$. Una relaci\'on $R$ en $A$ se dice orden parcial si 
+ % 4
+          {\small
+    \begin{enumerate}
+\item  \textcolor{red}{$\bullet$} {} es  reflexiva, sim\'etrica, transitiva. 
+\item  \textcolor{blue}{$\bullet$} {} es  antisim\'etrica, transitiva y no es reflexiva. 
+\item  \textcolor{yellow}{$\bullet$} {} es  reflexiva, sim\'etrica y no es  transitiva. 
+\item  \textcolor{green}{$\bullet$} {} es  reflexividad, antisimetr\'ia, transitividad. 
+\end{enumerate}
+}
+
+\newpage
+
+
+
+\item  $( \mathbb{R}, \leq )$, $(\mathcal{P(A)}, \subset )$,  $(\mathbb{N}\setminus\{0\}, \ | )$(divisi\'on) 
+ son ejemplos de conjuntos 
+ % 1
+          {\small
+    \begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {} parcialmente ordenados. 
+\item[\textcolor{blue}{$\bullet$}] {} ordenados. 
+\item[\textcolor{yellow}{$\bullet$}] {} bien ordenados. 
+\item[\textcolor{green}{$\bullet$}] {} ninguno de los de arriba. 
+\end{enumerate}
+}
+
+
+\newpage
+
+\item  Sea  $(A,R) $ un conjunto parcialmente ordenado. Diremos que  $B\subset A$ es una cadena en $A$ 
+si
+ % 2
+          {\small
+    \begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {} $xRx$ para cada $x\in B$
+\item[\textcolor{blue}{$\bullet$}] {} $x R y$ \'o $yRx$ para cualesquiera $x,y\in B$. 
+\item[\textcolor{yellow}{$\bullet$}] {} $x R y$ \'o $yRx$ para cualesquiera $x,y\in A$. 
+\item[\textcolor{green}{$\bullet$}] {} $x R y$ \'o $yRx$ para cualesquiera $x,y\in A\setminus B$. 
+\end{enumerate}
+}
+
+\newpage
+
+
+ \item $(A,R)$ se dice ordenado, simple, linealmente o totalmente ordenado, si 
+ % 4
+          {\small
+    \begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {} es un conjunto parcialmente ordenado $A$. 
+\item[\textcolor{blue}{$\bullet$}] {} es no es un conjunto parcialmente ordenado $A$.
+\item[\textcolor{yellow}{$\bullet$}] {} es un conjunto parcialmente ordenado $A$ y no existen cadenas en $A$. 
+\item[\textcolor{green}{$\bullet$}] {} es un conjunto parcialmente ordenado y $A$ es un cadena en $A$. 
+ \end{enumerate}
+}
+
+
+ 
+
+
+
+ 
+
+
+\newpage
+
+
+\item Un conjunto bien ordenado es un conjunto 
+ % 3
+          {\small
+    \begin{enumerate}
+\item[\textcolor{red}{$\bullet$}] {} es un conjunto parcialmente ordenado $A$. 
+\item[\textcolor{blue}{$\bullet$}] {} es no es un conjunto parcialmente ordenado $A$.
+\item[\textcolor{yellow}{$\bullet$}] {} ordenado  $(A,R) $ en el que todo subconjunto no vac\'io tiene un elemento m\'inimo (o primer elemento).
+\item[\textcolor{green}{$\bullet$}] {} es un conjunto parcialmente ordenado y $A$ es un cadena en $A$. 
+ \end{enumerate}
+}
+
+
+\newpage
+
+
+
+\item Conjuntos finitos y $\mathbb N$ son ejemplos de conjuntos  
+ % 1
+          {\small
+    \begin{enumerate}
+\item[\textcolor{red}{$\bullet$}]{} bien ordenados. 
+\item[\textcolor{blue}{$\bullet$}] {} que no son  parcialmente ordenados.
+\item[\textcolor{yellow}{$\bullet$}] {}  infnitos no numerables.
+\item[\textcolor{green}{$\bullet$}] {} que nos son  ordenados.
+  \end{enumerate}
+}
+
+
+
+
+
+\end{enumerate}
+\end{ejer}
+
+
+\newpage
+ 
+ Sobre algunos resultados importantes de la teor\'ia de conjuntos en la matem\'atica discreta.  Los siguientes hechos son equivalentes: 
+\begin{enumerate}
+\item  Principio del buen orden: Todo conjunto puede ser dotado  de un buen orden. 1904. Ernst Zermelo. Universidad de Berlin.    
+
+\item Axioma maximal de Hausdorff. En un conjunto parcialmente ordenado siempre existe al menos una cadena maximal. 1909. Felix Hausdorff. Alemania.
+
+\item Lema de Zorn: Todo conjunto parcialmente ordenado en el que toda cadena tiene una cota superior contiene al menos una elemento maximal. 1935. Max Zorn. Alemania.
+
+\item Axioma de elecci\'on: Dado cualquier conjunto $A$ existe una funci\'on de elecci\'on  $f$ tal que $f(B)\in B$ para cada $B\subset A$ no vac\'io. Erns Zermelo.  
+
+\item Axioma de inducci\'on matem\'atica. Ejercicio: Redactar.  
+\end{enumerate}
+ 
+
+
+
+
+\chapter{Teor\'ia de la medida} 
+
+
+
+
+
+
+
+
+\section{Sistemas de conjuntos}
+ Semianillos, anillos, \'algebras y $\sigma$-\'algebras de conjuntos.
+
+
+\begin{defi}
+Una familia $R$, o un sistema, de conjuntos no vac\'ia es llamada anillo si 
+$A\Delta B,\ A\cap B \in \mathcal R$ para cada $A,B\in \mathcal R$.  
+\end{defi}
+
+\noindent
+Como $A\cup B= (A\Delta B) \Delta (A\cap B) $ y $A\setminus B= A\Delta (A\cap  B)$ para cada $A,B \in \mathcal R$ entonces en un anillo tambi\'en se cumple que  $A\cup B, A\setminus B \in \mathcal R$ para cada $A,B\in \mathcal R$.
+
+\noindent
+Note que $\emptyset =A\setminus A$ para $A\in \mathcal R$ tenemos que $\emptyset \in \mathcal R$.
+
+\noindent
+M\'as a\'un, si $ A_1,\dots, A_n\in \mathcal R$ entonces $\displaystyle \bigcap_{k=1}^n A_k, \bigcup_{k=1}^n  A_k \in \mathcal R$ para cada $A_1,\dots, A_n \in \mathcal R$. 
+
+
+\begin{defi} Un elemento $E\in A$ de una familia $R$  de conjuntos no vac\'ia es llamado  unidad   si 
+$A \cap E  = A$ para cada $A\in \mathcal R$.
+
+\noindent
+ Una familia $R$  de conjuntos no vac\'ia es llamada \'algebra si  es un anillo con unidad.  
+\end{defi}
+
+\noindent
+  Dado un conjunto $A $ no vac\'io claramente  tenemos que el conjunto potencia de $A$, denotado por  $\mathcal P(A)$, es un  \'algebra donde  $A$ es la identidad.
+
+
+\begin{ejer} \ {} 
+\begin{enumerate}
+\item Dado $A$ un conjunto no vac\'io muestre  que  $\{\emptyset, A\}$ es un \'algebra con unidad $A$
+\item Dado $A$ un conjunto  no vac\'io muestre que 
+$   \{F\subset A \ \mid \ F \textrm{ es finito }\}$  es un anillo, pero si $A$ es finito entonces es un  \'algebra con unidad $A$.   
+\item Muestre que $\{ B \subset \mathbb R^n  \ \mid \ B \textrm{ es acotado}\}$
+ es una anillo pero no un \'algebra.
+ 
+ \item Muestre que la intersecci\'on de cualquier familia de anillos es un anillo.
+
+ \end{enumerate}
+
+
+
+\end{ejer}
+
+\begin{teo}
+Dada una familia de conjuntos $\Phi$ no vac\'ia existe un anillo $\mathcal R$ tal que  $\Phi \subset \mathcal R$ y si $\mathcal R' $ es otro anillo que cumple 
+  $\Phi \subset \mathcal R'$ entonces  $ \mathcal R   \subset \mathcal R'$
+\end{teo}
+\begin{proof}
+Sea $\displaystyle A=  \bigcup_{B\in \Phi} B$. As\'i que  $\mathcal P(A)$ es un anillo  y $\Phi \subset \mathcal P(A)$.  Defina 
+$$\mathcal R = \bigcap_{ \begin{array}{c} \Phi \subset R  \subset \mathcal P(A)  \\ 
+R \  \textrm{ es anillo }  \end{array} } R. 
+$$
+ Luego $\mathcal R$ es un anillo y si $\mathcal R' $ es otro anillo que cumple 
+  $\Phi \subset \mathcal R'$  entonces $\mathcal R \subset \mathcal P(A)  \cap \mathcal R' \subset \mathcal R'$.
+\end{proof}
+
+Notaci\'on: Dada una familia de conjuntos $\Phi$ no vac\'ia. El anillo $\mathcal R$ mostrado en el teorema anterior se denotar\'a por $\mathcal R(\Phi)$.
+
+
+\begin{defi}
+Una familia $\mathcal S$ de conjuntos no vac\'ia es llamada semianillo de conjuntos si y s\'olo si 
+\begin{enumerate}
+\item  $\emptyset \in \mathcal S$.
+\item  $A\cap B \in \mathcal A$ para cada $A,B\in \mathcal S$.
+\item  Si $A, A_1 \in \mathcal S$ con $A_1 \subset A $ entonces existen $A_2, \dots A_n \in \mathcal S$ ajenos a pares  tales 	que $A= A_1\cup A_2 \cup \cdots \cup A_n$. Adem\'as, la familia $\{A_1,\dots, A_n\}$ es llamada expansi\'on finita de $A$.  
+\end{enumerate}
+
+\end{defi}
+
+
+
+
+
+\begin{ejer}Muestre lo siguiente:
+\begin{enumerate}
+\item Todo anillo es un semianillo. 
+\item   La familia de conjuntos formada por  intervalos de la forma $(a,b)$, $ [a,b]$,  $ [a,b)$,  $(a,b]$ con $a\leq b$ es un  semianillo pero no  es un anillo. 
+\item La familia de rect\'angulos $I\times J$ en $\mathbb R^2$, donde $I$ y $J$ son intervalos  dados por el ejercicio anterior,  es un  semianillo pero no  es un anillo. 
+
+\end{enumerate}
+\end{ejer}
+
+\begin{lem}
+Dado un semianillo $\mathcal S$ y $A,A_1,\dots, A_n\in \mathcal S$ tales que $A_1,\dots, A_n $ son subconjuntos ajenos a pares de $A$. Entonces $A$ tiene una expansi\'on finita de la forma 
+$A=A_1\cup \cdots \cup A_s $ con $s\geq n$.
+\end{lem}
+\begin{proof} Inducci\'on matem\'atica. 
+
+\noindent
+Si $n=1$ y como  $\mathcal S $ es un semianillo  existen $A_2, \dots, A_s\in \mathcal S$ tales que $A_1\cup A_2\cup \cdots \cup A_s = A$.
+
+\noindent
+Hipotesis de inducci\'on. Suponga que el hecho es cierto para  $A_1,\dots, A_n \in\mathcal S$ son subconjuntos ajenos a pares de $A$.
+
+\noindent
+Sean $A,A_1,\dots, A_n, A_{n+1}\in \mathcal S$  subconjuntos ajenos a pares de $A$. Como   $A_1,\dots, A_n $ y $A$ cumplen la hip\'otesis de inducci\'on   existen $B_{n+1},\dots ,B_s \in S$ ajenos a pares tales que  
+$$A=A_1\cup \cdots \cup A_n \cup B_{n+1} \cup \cdots \cup B_s.$$ 
+\noindent
+Adem\'as,  $A_{n+1} = (B_{n+1}\cap A_{n+1}) \cup \cdots \cup (A_s \cap A_{n+1})$. 
+\noindent
+Por otra parte,  para cada   $i=n+1, \dots, s$ tenemos que    $B_{i} \cap A_{n+1} \subset B_i $ son elementos de $S$. As\'i que  existen $C^i_{1},\dots, C^i_{p_i} \in S$ tales que 
+una expansi\'on finita de  $B_i $ partiendo de $B_{i} \cap A_{n+1}$ es
+ $B_i=  (B_{i} \cap A_{n+1}) \cup C^i_{1}\cup \cdots \cup  C^i_{p_i} $,
+  para $i=n+1,\dots, s$.  Entonces 
+\begin{align*} 
+A= & A_1\cup \cdots \cup A_n \cup B_{n+1} \cup \cdots \cup B_s\\ 
+  = & A_1\cup \cdots \cup A_n  \cup \left[ \bigcup_{i=n+1}^s  (B_{i} \cap A_{n+1}) \cup C^i_{1}\cup \cdots \cup  C^i_{p_i} \right]  \\
+   = & A_1\cup \cdots \cup A_n  \cup \left[ \bigcup_{i=n+1}^s  (B_{i} \cap A_{n+1}) \right] \cup  \left[ \bigcup_{i=n+1}^s  C^i_{1}\cup \cdots \cup  C^i_{p_i} \right]  \\
+      = & A_1\cup \cdots \cup A_n  \cup  A_{n+1}  \cup  \left[ \bigcup_{i=n+1}^s  C^i_{1}\cup \cdots \cup  C^i_{p_i} \right]. 
+  \end{align*} 
+
+La cual es una expansi\'on finita de  $A$. 
+
+\end{proof}
+
+
+ 
+
+
+\begin{pro}
+Si  $S$ es un semianillo entonces  $ \mathcal R (S)$
+ esta formado por todas las expansiones finitas en elementos de $S$; es decir, $A\in \mathcal R(S) $ si y s\'olo si existen 
+ $A_1,\dots, A_n\in S$ ajenos a pares tales que $\displaystyle A=\bigcup_{k=1}^n  A_k$.
+\end{pro}
+\begin{proof}
+Veremos que la familia de expansiones finitas en elementos de $S$ forman un anillo. Sean $\displaystyle \bigcup_{i = 1}^{n} A_i, \bigcup_{j= 1}^{m} B_j$ expansiones finitas en elementos de $S$; es decir,     $\{A_i  \in S \ \mid  \  i = 1,\cdots , n\}$ y $\{B_j  \in S \ \mid \ j=1,\cdots,m\}$ son familias de conjuntos ajenos a pares. 
+
+Denote $C_{ij} = A_i \cap B_j \in S$ y use  el lema anterior en $A_i, C_{i1}, \cdots C_{im}$. Luego  $A_i$ tiene una expansi\'on finita de la forma
+
+$$A_i = \left(\bigcup_{j= 1}^{m} C_{ij} \right)\cup \left(\bigcup_{k= 1}^{r_i}D_{ik}\right) \quad (D_{ik} \in S)$$
+
+Similarmente, 
+el lema anterior en $B_j, C_{1j}, \cdots C_{nj}$ nos da la expansi\'on finita:  
+$$B_j = \left(\bigcup_{i= 1}^{n} C_{ij} \right)\cup \left(\bigcup_{k= 1}^{s_j}E_{kj}\right) \quad (E_{kj} \in S)$$
+Vemos que 
+\begin{align*}
+    \left(\bigcup_{i = 1}^{n}A_i\right) \cap \left(\bigcup_{j=1}^{m}B_j\right) = & \bigcup_{j=1}^{m} \bigcup_{i=1}^{n}C_{ij}   ,\\
+     \left(\bigcup_{i = 1}^{n}A_i\right) \Delta  \left(\bigcup_{j=1}^{m}B_j\right) = & \left(\bigcup_{i = 1}^{n}\bigcup_{k= 1}^{r_i}D_{ik}\right)\cup \left(\bigcup_{j = 1}^{m}\bigcup_{k= 1}^{s_j}E_{kj}\right).
+\end{align*}
+Las cuales son de nuevo expansiones finitas en elementos de $S$. 
+
+Por \'ultimo, note  que cualquier    anillo que contenga a $S$ debe  tener  cualquier expansi\'on finita  entre sus elementos. Por lo tanto $\mathcal{R(S)}$ est\'a formada por expansiones finitas en elementos de $S$
+
+\end{proof}
+
+
+
+\begin{ejem} \
+\begin{enumerate}
+\item 
+Dados $a<b$.  La  familia  formada por uniones de   intervalos ajenos a pares contenidos en  $ [a,b]$ es   un \'algebra.
+\item Dado $n\in \mathbb N$. Por simplicidad diremos que un rect\'angulo  en $\mathbb R^n$ es un conjunto de la forma $I_1 \times \cdots \times I_n$, donde $I_1,\dots, I_n \subset \mathbb R$ son intervalos.  Se verifica que la  familia  formada por uniones de  rect\'angulos en $\mathbb R^n$  ajenos a pares contenidos en  $ [0,1 ]^n$ es un \'algebra.    
+\end{enumerate}
+\end{ejem}
+
+
+
+\begin{defi} \ {} \begin{enumerate}
+\item 
+Un anillo $R$ es llamado $\sigma$-anillo, si para cada familia $\{A_i \}_{i\in \mathbb N}$ de elementos  de $R$ se cumple que $\bigcup_{i\in\mathbb N} A_i\in R$.
+
+\item Un anillo $R$ es llamado $\delta$-anillo, si para cada familia $\{A_i \}_{i\in \mathbb N}$ de elementos  de $R$ se cumple que $\bigcap_{i\in\mathbb N} A_i\in R$.
+
+
+
+\item Un $\sigma$-anillo  con identidad es llamado $\sigma$-\'algebra.    
+
+
+\item Un $\delta$-anillo  con identidad es llamado $\delta$-\'algebra.  
+
+\end{enumerate}
+
+\end{defi}
+
+
+
+
+
+\begin{teo}
+Toda $\sigma$-\'algebra es $\delta$-\'algebra y rec\'iprocamente.
+\end{teo}
+\begin{proof}
+Es consecuencia de las identidades 
+\begin{align*}
+E \setminus ( \bigcap_{i\in \mathbb N} E\setminus A_i ) = \bigcup_{i\in \mathbb N} A_i, \quad   
+E \setminus ( \bigcup_{i\in \mathbb N} E\setminus A_i ) = \bigcap_{i\in \mathbb N} A_i,
+\end{align*}
+donde $E$ es la unidad.
+\end{proof}
+
+
+
+
+\begin{ejer}Muestre que las siguientes familias son $\sigma$-\'algebras. 
+\begin{enumerate} 
+\item Sea $E=\{1, 2, 3, 4,5\}$. Considere las familias $A = \{\emptyset, E,
+\{1,2,3\}, \{4,5\}\}$, $ B = \{\emptyset , E, \{1\}, \{2\}, \{1,2\}, \{3,4,5\}, \{2,3,4,5\}, \{1,3,4,5\}     \}$.
+
+\item   La familia
+$ F = \{ A \subset \mathbb R^n  \ \mid \  A \ \textrm{es contable} \  \textrm{ o} \ A^c \ \textrm{es contable}\}$.
+
+
+
+
+\end{enumerate}
+
+\end{ejer}
+
+\begin{defi}
+Dado un espacio topol\'ogico $(X, \tau)$, el \'algebra de  Borel, o $B$-\'algebra,  asociada a $\tau$,   es la $\sigma$-\'algebra generada por $\tau$, es decir, es la m\'inima $\sigma$-\'algebra que contiene a $\tau$.  Es   la intersecci\'on de todas las $\sigma$-\'algebras que contienen a $\tau$.
+
+ Note que si $A$ es un conjunto no vac\'io entonces $\mathcal P(A)$ es una $B$-\'algebra, la cual esta asociada a la topolog\'ia discreta en $A$. M\'as a\'un, si $\phi$ es una familia de conjuntos entonces 
+ $\displaystyle \mathcal P( \bigcup_{A\in \phi} A)$ es una $B$-\'algebra que contiene a $\phi$.
+ 
+ 
+Sea $\mathcal B$ una $B$-\'algebra y $\phi$ una familia de conjuntos tal que $\phi\subset \mathcal B$. Entonces $\bigcup_{A\in \phi} A \subset E$, donde $E$ es la identidad de $\mathcal B$. Si $\bigcup_{A\in \phi} A = E$ entonces de dice que $\mathcal B$ es irreducible respecto de $\phi$.
+\end{defi}
+
+
+\begin{teo}
+Sea $\phi$    una familia  de conjuntos no vac\'ia. Existe una \'unica 
+$B$-\'algebra $\mathcal B(\phi)$ que contiene a $\phi $, es irreducible respecto de $\phi$ y que est\'a contenida en cualquier $B$-\'algebra que contiene a  $\phi$. 
+\end{teo}
+\begin{proof}
+Ejercicio.
+\end{proof}
+
+$\mathcal B(\phi)$ es llamada la Borel cerradura de $\phi$.
+
+\begin{ejer}
+Escriba un ejemplo de cada uno de los siguientes conceptos:  $\sigma$-anillo,   $\delta$-anillo,   $\sigma$-\'algebra y $\delta$-\'algebra.  
+\end{ejer}
+
+
+\section{Medida en el plano}
+
+
+\noindent
+2. Medidas sobre semianillos
+3. Medidas exteriores.
+4. Conjuntos medibles.
+5. La medida exterior generada por una medida.
+6. La medida de Lebesgue.
+7. La medida de Borel.
+\\
+
+\noindent
+Comenzaremos por establecer el concepto de medida de Lebesgue en $\mathbb R^2$ debido a su accesibilidad y a que su extensi\'on hacia   $\mathbb R^n$, con $n\geq 3$, se da de manera  natural.
+
+
+\begin{defi}
+Por  $A$ denotaremos a la familia  de intervalos abiertos, cerrado, o semiabiertos contenidos en $\mathbb R$. Considere el semianillo    $$\varphi :=\{ I\times J \mid I,J\in A\}.$$ 
+
+\noindent
+Para  cada  rect\'agulo $P$ dado por  $[a,b]\times (c,d)$,
+$(a,b)\times [c,d]$, $(a,b)\times (c,d)$, $[a,b]\times [c,d]$ o como $(a,b]\times [c,d)$,
+ con $a\leq b$,  defina su medida como $m(P):= (b-a)(d-c)$.
+\end{defi}
+
+
+
+\begin{pro}
+Propiedades de $m$.
+\begin{enumerate}
+\item  $m(P)\geq 0$ para cada $P\in \varphi$. 
+\item  Sean $P, P_1, \dots, P_n \in \varphi$ tales que $\displaystyle P=\bigcup_{i=1}^n P_i$  y  $P_i \cap P_j = \emptyset$, si $i\neq j$. Entonces $m(P)= \sum_{i=1}^n m(P_i)$. 
+\end{enumerate}
+\end{pro}                                                                                                                                                                                                                                                                                                                                           
+\begin{proof}
+Ejercicio.
+\end{proof}
+
+
+
+
+\begin{defi}La uni\'on de una cantidad finita de rectangulos ajenos a pares es llamada   conjunto elemental.  
+\end{defi}
+
+
+\begin{teo}
+La uni\'on, intersecci\'on, diferencia y la diferencia sim\'etrica de conjuntos elementales con tambi\'en conjuntos elementales 
+\end{teo}
+\begin{proof}
+Sea $A = \bigcup P_k$, $B = \bigcup Q_l$, notemos que $A\cap B = \bigcup P_k \cap Q_l$, donde los conjuntos $P_k\cap Q_l$ son rectangulos y ajenos a pares; es decir, $A\cap B$ es elemental. Note que si $P$ y $Q$ son rectangulos entonces $P\setminus Q$ es un conjunto elemental. M\'as a\'un, un rectangulo $P$ menos un conjunto elemental se verifica que es de nuevo un conjunto elemental. De esta manera si $P$ es un rectangulo que contiene a $A$ y a $B$ tenemos que
+
+$$A\cup B = P\setminus [(P\setminus A)\cap(P\setminus B)]$$
+
+el cual por razonamientos anterior es elemental.\\
+
+Adem\'as $$A \setminus B = A\cap (P\setminus B)$$
+           $$ A \vartriangle B = (A\cap B)\setminus(A\cap B)$$
+
+    muestran que tambi\'en son conjuntos elementales.
+\end{proof}
+
+
+Lo anterior muestra que la familia de todos los conjuntos elementales en el plano forman un anillo. 
+
+
+
+
+\begin{defi}
+Dado $A\subset \mathbb R^2$ un conjunto elemental con $A= \bigcup_{i=1}^n Q_i
+$,  donde $\{Q_i  \}_{i=1}^n$ es una familia de rect\'angulos ajenos a  pares. Entonces definimos a medida de $A$ como $\tilde{m}(A)= \sum_{i=0}^n m(Q_i)$. 
+
+\end{defi}
+
+ Si   $A= \bigcup_{j=1}^r P_j
+$,  donde $\{P_j  \}_{j=1}^m$ es otra familia de rect\'angulos ajenos a  pares. Entonces 
+$$   \bigcup_{i=1}^n Q_i =  \bigcup_{i=1}^n ( \bigcup_{j=1}^r 
+  Q_i \cap  P_j ) = \bigcup_{j=1}^r ( \bigcup_{i=1}^n 
+   P_j  \cap  Q_i )  =   \bigcup_{j=1}^r P_j  $$
+   De las propiedades de la medida de rect\'angulo vemos que
+   $$   \sum_{i=1}^n m(Q_i) = \sum_{i=1}^n \sum_{j=1}^r 
+ m( Q_i \cap  P_j )= \sum _{j=1}^r m(P_j).  $$
+     Entonces la medida de un conjunto elemental dado en la definici\'on anterior esta bien establecida ya que es independiente de la familia de rect\'angulos ajenos a pares. Adem\'as,   tenemos que 
+     $\tilde{m}(A) \geq 0$ para cada conjunto elemental $A$ en el plano. 
+     
+Adem\'as note que si  $A$ y $B$ son conjuntos elementales ajenos entonces   
+     $\tilde{m}(A \cup B) = \tilde{m}(A  ) + \tilde{m}(  B)$; es decir, $\tilde{m} $ es aditiva en la familia de conjuntos elementales.  
+ 
+
+
+Note que cualquier rect\'angulo $A$ es un conjunto elemental y $m(A) =\tilde{ m
+}(A) $.     
+     
+      \begin{pro}\label{pro1} Sea $A$ un conjunto elemental y sea $(A_n)_{n\in I}
+       $  una familia numerable de conjuntos elementales tales  que $A\subset \bigcup_{n\in I} A_n $. Entonces $$ \tilde{m}(A) \leq \sum_{n\in I} \tilde{m}(A_n) .$$
+           \end{pro}
+\begin{proof}
+Dado  $\epsilon>0$ sea $C$ un conjunto elemental cerrado tal que $C\subset A$ y 
+$$\tilde{m}(A) \leq \tilde{m} (C ) + \frac{\epsilon}{2}  . $$ 
+Para cada $n\in I$ sea $B_n$ un elemental abierto tal que $A_n \subset B_n$ y 
+$$ \tilde{m} (B_n) \leq \tilde{m} (A_n) + \frac{ \epsilon}{ 2^{n+1}}.  $$
+As\'i que $\displaystyle C\subset \bigcup_{n\in I} B_n   $.  
+Del Teorema de  Heine -Borel sabemos que  $C$ es un conjunto  compacto luego 
+    $$ C \subset B_{n_1} \cup\cdots \cup B_{n_m} $$
+    y  se verifica de manera directa que 
+    $$  \tilde{m} (C ) \leq  \tilde{m}( B_{n_1}) +\cdots +  \tilde{m} (B_{n_m})   .$$
+Entonces 
+\begin{align*}
+ \tilde{m}(A) \leq &  \tilde{m} (C ) + \frac{\epsilon}{2} \\
+ \leq &  \tilde{m}( B_{n_1}) +\cdots +  \tilde{m} (B_{n_m})  + \frac{\epsilon}{2} \\
+  \leq &  \sum_{n\in I}   \tilde{m}( B_{n})  +  \frac{\epsilon}{2} \\
+ \leq &\sum_{n\in I} \left( \tilde{m} (A_n) + \frac{ \epsilon}{ 2^{n+1}} \right)   
+ +  \frac{\epsilon}{2} \\
+ \leq &\sum_{n\in I}   \tilde{m} (A_n)    
+ +  \epsilon . \\
+\end{align*}
+Como $\epsilon>0$ fue arbitrario se concluye 
+$$\tilde{m}(A) \leq  \sum_{n\in I}   \tilde{m} (A_n)    
+ . $$ 
+\end{proof} 
+
+
+
+El siguiente razonamiento puede presentarse considerando  cualquier rect\'angulo como unidad pero sin p\'erdida de generalidad supondremos $E=[0,1]\times [0,1]$.
+
+
+\begin{defi}
+Dado $A\subset E$. La media exterior de $A$ se define como 
+$$ \mu^* (A ) = \inf\{   \sum_{i\in I} m(Q_i)  \ \mid \  A\subset \bigcup_{i\in I} Q_i , \textrm{ una cubierta numerable de rect\'angulos de } A   \}.$$
+
+Por otra parte, la medida interior de $A$ se define como 
+$$ \mu_* (A )= 1-  \mu^* (E\setminus A ).$$
+
+\end{defi}
+
+
+\begin{teo}
+Para cada $A\subset E$ se cumple que
+$$ \mu_* (A )\leq   \mu^* ( A ).$$
+\end{teo}
+\begin{proof}
+Supongamos  que existe $A\subset E$ tal que 
+$$ \mu_* (A )>  \mu^* ( A ).$$
+Entonces 
+$$ 1> \mu^* (E\setminus A ) +  \mu^* ( A ).$$
+Por  lo tanto, existe  $(Q_i)_{i\in I}$ cubierta numerable  de rect\'angulos de $E\setminus A$  y    $(P_j)_{i\in J}$ cubierta numerable  de rect\'angulos de $ A$  tales que 
+$$ 1>  \sum_{i\in I} m(Q_i)) +  \sum_{j\in J} m(P_j).$$
+Pero $E =A \cup (E\setminus A ) \subset   ( \bigcup_{i\in I} Q_i ) \sup ( \bigcup_{j\in J} P_j) $ y por la Proposici\'on \ref{pro1} sabemos que 
+$$1=m(E) \leq \sum_{i\in I} m(Q_i)  + \sum_{j\in J} m(P_j) ,$$
+lo cual es una contradicci\'on. 
+
+
+Por lo tanto,  
+   
+$$ \mu_* (A )\leq   \mu^* ( A ), \quad \forall A\subset  E.$$
+
+
+\end{proof}
+
+
+\begin{defi}
+Diremos que $A\subset E$ es medible, si  $ \mu_* (A )= \mu^* ( A )$ 
+
+\end{defi}
+
+
+
+
+\begin{defi}
+Si  $A\subset E$ es medible entonces   $\mu (A):= \mu_* (A )= \mu^* ( A )$ 
+ es llamada medida (medida de Lebesgue) de $A$.
+\end{defi}
+
+
+
+
+\begin{teo}
+\label{teo2}
+Dados $A\subset E$ y una familia numerable $(A_i)_{i\in I} $ de subconjuntos de $E$ tales que $A\subset \bigcup_{i\in I} A_i $. Entonces 
+$$  \mu^* (A) \leq \sum_{i\in I} \mu^* (  A_i). $$
+\end{teo}
+\begin{proof}
+Dado $\epsilon>0$ para cada $i\in I$ existe una familia numerable de rect\'angulos $(Q_{j,i})_{j\in I_i}$ tales que 
+$$ A_i \subset \bigcup _{j\in I_i} Q_{j,i} \quad \textrm{ y} \quad 
+\sum_{j\in I_i}m(Q_{j,i}) < \mu^*(A_i) + \frac{\epsilon}{2^i}.
+$$
+Entonces 
+$$A \subset \bigcup_{i\in I} \bigcup_{j\in I_i } Q_{j,i} $$
+Por definici\'onde medida exterior sabemos que 
+$$\mu^*(A) \leq  \sum_{i\in I} \sum_{j\in I_i }m( Q_{j,i}) < \sum_{i\in I} (  \mu^*(A_i) + \frac{\epsilon}{2^i}) \leq  \sum_{i\in I}   \mu^*(A_i)  + \epsilon   $$
+Como $\epsilon >0$ fue arbitrario concluimos que 
+$$  \mu^* (A) \leq \sum_{i\in I} \mu^* (  A_i). $$
+\end{proof}
+
+
+
+
+\begin{teo}Sea $A\subset E$. Si $A$ es  elemental entonces  es medible 
+ y $\mu (A) = \tilde{m}(A)$. 
+\end{teo}
+\begin{proof}
+Sea $(P_i)_{i=1}^n$ una familia de rect\'angulos ajenos a pares tales que $A= \bigcup_{i=1}^n P_i$. Luego $\tilde{m}(A) = \sum_{i=1}^n m(P_i)$. De la definici\'on de medida exterior tendremos que $\mu^*(A)\leq  \tilde{m}(A)$.
+
+Adem\'as, para cualquier   cubierta  numerable de rectangulos $(Q_i)_{i\in }$  de $A $ se cumple que    $\tilde{m}(A) \leq \sum_{i\in I} m(Q_i)$ por lo tanto $\tilde{m}(A   )  \leq    \mu^*(A)$. 
+En consecuencia, $\tilde{m}(A   )  =  \mu^*(A)$.  
+
+
+
+Por otra parte, $E\setminus A$ es otro elemental y por lo anterior vemos que 
+ $ \mu^*(E\setminus A) = \tilde{m}(E\setminus A )  =1-  \tilde{m}(A)$.  Por la definici\'on de medida interior tenemos que  
+ $$ \mu_*(  A)= 1 - \mu^* (E\setminus A) = 1- \tilde{m}(E\setminus A ) =1-(1-  \tilde{m}(  A)) = \tilde{m}(A)=   \mu^*(  A). $$
+ Por lo tanto $A$ es medible.
+ 
+\end{proof}
+
+
+
+
+\begin{pro}
+Para cada $A,B\subset E$ se cumple que 
+$$|\mu^*(A)- \mu^*(B)  | \leq \mu^*(A\Delta B).$$
+\end{pro}
+\begin{proof}
+Como $A\subset B\cup (A\Delta B)$ y  $B\subset A\cup (A\Delta B)$. Del Teorema \ref{teo2} tendremos que 
+$$\mu^*(A)\leq \mu^* (B)+ \mu^* (A\Delta B), \quad \mu^*(B)\leq \mu^*( A)+ \mu^* (A\Delta B),$$
+es decir 
+$$- \mu^* (A\Delta B)\leq  \mu^*(B)-  \mu^*( A)\leq  \mu^* (A\Delta B).$$
+
+\end{proof}
+
+
+
+\begin{teo}\label{teomedible}
+Sea $A\subset E$. Luego  $A$ es medible  si y s\'olo si para cada $\epsilon >0$ existe un conjunto elemental $B\subset E$ tal que 
+$$\mu^*(A\Delta B)<\epsilon.$$ 
+\end{teo} 
+\begin{proof}\ {}
+
+\noindent
+Suficiencia. De la proposici\'on anterior y como 
+$$(E\setminus A )\Delta (E\setminus B) = A\Delta B$$    tenemos que 
+$$  |\mu^*(A)- \mu^*(B)  | , \  |\mu^*(E\setminus  A)- \mu^*(E\setminus B)  | < \epsilon  ;$$
+es decir 
+\begin{align*}  \mu^*(B)  - \epsilon <  \mu^*(A)  < &  \mu^*(B)  + \epsilon ,\\
+  \mu^*(E\setminus B)  - \epsilon < \mu^*(E\setminus  A)   <  &  \mu^*(E\setminus B)  + \epsilon .
+  \end{align*}
+
+Como $B$ y $E\setminus B$ son elementales recuerde que 
+$$\mu^*(B)  + \mu^*(E\setminus B)= \tilde{m}(B) +\tilde{m}(E\setminus B) =1  . $$
+Entonces  sumando las los t\'erminos  de las anteriores   desigualdades tendremos  
+\begin{align*}  1 -2 \epsilon \leq   \mu^*(A)  +  \mu^*(E\setminus  A)   \leq &  1 + 2 \epsilon,
+  \end{align*}
+es decir  $ | \mu^*(A)  +  \mu^*(E\setminus  A) -1 | < 2\epsilon$. Entonces $ \mu^*(A) = 1-  \mu^*(E\setminus  A) = \mu_*(A) $.
+
+
+\noindent
+Necesidad. Dado $\epsilon >0$ existen dos familias numerables de rect\'agulos  $(B_i)_{i\in I}$ y $(C_j)_{j\in J}$ en $E$ tales que 
+$A \subset \bigcup B_{i\in I}$ y $E\setminus A \subset \bigcup C_{j\in J} $ con 
+ $$\sum_{i\in I} m(B_i) < \mu^* ( A) + \epsilon , \quad \sum_{j\in J} m(C_j) < \mu^* ( E\setminus A) + \epsilon  . $$
+ Como $\displaystyle \sum_{i\in I} m(B_i)$ converge existe $N\in \mathbb N $ tal que 
+ $$\sum_{n> N} m(B_n) <  \epsilon .$$
+Sea $\displaystyle B= \bigcup_{n=1}^N  B_n $ y note que 
+$$ A\setminus B \subset  P := \bigcup_{n> N}  B_n     , \quad   B\setminus A  \subset  Q:=  \bigcup_{j\in J}  C_j\cap B    .$$
+Adem\'as, 
+$A\Delta B \subset P\cup Q$ y 
+\begin{align*}    \mu^* (P)  \leq \sum_{n> N} m(B_n) < &  \epsilon, \\
+ \sum_{i\in I} m(B_i) + \sum_{j\in J} m(C_j)  < &  \mu^* ( A) +  \mu^* ( E\setminus A) + 2\epsilon = 1 + 2\epsilon, \\
+  \sum_{i\in I} m(B_i) + \sum_{j\in J} \tilde{ m} (C_j- B) \geq & 1, 
+\end{align*}
+Lo \'ultimo se debe a que $\displaystyle (\bigcup_{i\in I} B_i )\cup (\bigcup_{j\in J} ( C_j\setminus B) ) =E$. 
+ Por  lo tanto,  
+$$
+   \sum_{j\in J} m(C_j) -  \sum_{j\in J} \tilde{ m} (C_j- B)   <  2\epsilon,$$
+ Debido a que $$  \sum_{j\in J} m(C_j) =  \sum_{j\in J} m(C_j\cap B) +   \sum_{j\in J} \tilde{ m} (C_j- B) , $$
+ tenemos 
+$$
+\mu^*(Q)\leq     \sum_{j\in J} m(C_j\cap  B)   <  2\epsilon. $$
+Por \'ultimo note que 
+$$\mu^* (A\Delta B) \leq  \mu^* ( P\cup Q)\leq  \mu^* ( P) + \mu^* (   Q) < 3\epsilon.$$  
+
+
+\end{proof}
+
+
+
+
+
+
+\begin{teo} 
+La uni\'on e intersecci\'on de una cantidad finita de conjuntos medibles es medible. 
+\end{teo}
+\begin{proof}
+Dados $A_1$,$A_2$ medibles y $\epsilon > 0$, del teorema anterior existen $B_1$, $B_2$ conjuntos elementales tales que 
+
+$$\mu^*(A_1 \Delta B_1) < \frac{\epsilon}{2},\quad \quad \mu^*(A_2 \Delta B_2) < \frac{\epsilon}{2}$$
+
+Luego $(A_1\cup A_2)\Delta (B_1 \cup B_2) \subset (A_1\Delta B_1) \cup (A_2 \Delta B_2)$ implica 
+
+$$\mu^*((A_1\cup A_2)\Delta (B_1 \cup B_2)) \leq \mu^*(A_1\Delta B_1) + \mu^*(A_2 \Delta B_2) < \epsilon$$
+
+Como $B_1\cup B_2$ es un conjunto elemental de nuevo  el teorema anterior nos muestra que $A_1 \cup A_2$ es medible. 
+
+Not\'e que $A_1$ es medible si y s\'olo si $\mu^*(A_1) + \mu^*(E\setminus A_1) = 1$, es decir, si y s\'olo si $E\setminus A_1$ es medible. 
+Lo mismo para $A_2$. As\'i que $$A_1 \cap A_2 = E\setminus [(E\setminus A_1)\cup(E\setminus A_2) ]$$
+Por lo tanto,  $A_1 \cap A_2$ es medible
+\end{proof}
+
+
+\begin{cor} 
+La diferencia y la diferencia sim\'etrica de dos conjuntos medibles  es medible. 
+\end{cor}
+\begin{proof}
+Ejercicio. 
+\end{proof}
+
+
+
+
+
+
+
+
+
+\begin{teo}
+    Si $A_1$ y $A_2$ conjuntos medibles y ajenos  entonces  $\mu(A_1\cup A_2) = \mu(A_1) + \mu(A_2)$
+\end{teo}
+\begin{proof}
+    Sea $A = A_1 \cup A_2$ entonces, por el Teorema \ref{teo2} sabemos que  
+ \begin{align}\label{equation111} 
+\mu(A) \leq \mu(A_1) + \mu(A_2).
+\end{align}
+
+    Como $A_1$ y $A_2$ son conjuntos medibles sabemos que dado $\epsilon> 0$ existen  conjuntos elementales $B_1$ y  $B_2$ tales que 
+    $\mu^*(A_1\Delta B_1)<\epsilon$ y $\mu^*(A_2\Delta B_2)<\epsilon$. 
+
+    Sea $B = B_1 \cup B_2$, por otro lado como $A_1$ y $A_2$ son ajenos tenemos que $B_1 \cap B_2 \subset (A_1\Delta B_1)\cup (A_2 \Delta B_2)$ ( en efecto, dado $x \in B_1\cap B_2$, los posibles casos:  a)  $x\in A_1$  y $x\notin  A_2$,  b) $x\notin A_1$  y $x\in  A_2$  y c) 
+    $x\notin A_1$  y $x\notin  A_2$ nos ayudan a ver que 
+       $x\in (B_1\setminus A_1)\cup (B_2 \setminus A_2)$). Por lo tanto, del Teorema \ref{teo2}
+    vemos que  
+    \begin{align}\label{equation222} 
+\tilde{m}(B_1\cap B_2) = \mu^*(B_1\cap B_2)  \leq \mu^*(A_1\Delta B_1) + \mu^*(A_2\Delta B_2) < 2\epsilon .
+\end{align}
+Del Teorema \ref{teomedible} tenemos que 
+    \begin{align}\label{equation333} 
+|\tilde{m}(B_1) - \mu^*(A_1)|\leq \mu^*(A_1 \Delta B_1) < \epsilon, \quad 
+|\tilde{m}(B_2) - \mu^*(A_2)| < \epsilon . 
+\end{align}
+
+    Como la medida es aditiva en conjuntos elementales sabemos que 
+    \begin{align}\label{equation444}
+        \tilde{m}(B) =& \tilde{m}(B_1) + \tilde{m}(B_2) - \tilde{m}(B_1\cap B_2)  >  \tilde{m}(B_1) + \tilde{m}(B_2) - 2\epsilon  \nonumber \\
+        \geq& \mu^*(A_1) + \mu^*(A_2) - 4\epsilon ,    \end{align}
+        en donde fueron usadas las ecuaciones \eqref{equation222} y \eqref{equation333}.
+        
+        
+Se verifica  que $A\Delta B \subset (A_1\Delta B_1) \cup (A_2\Delta B_2) $. Luego,  
+     \begin{align}\label{equation555}\mu^*(A\Delta B)\leq \mu^*(A_1\Delta B_1) + \mu^*(A_2\Delta B_2)< 2\epsilon.
+     \end{align} 
+        Adem\'as, como $B \subset (A\Delta B) \cup A $ tenemos que 
+    \begin{align*}
+        \mu^*(A) >& \tilde{m}(B) - \mu^*(A\Delta B)\\
+                 >& \tilde{m}(B) - 2\epsilon \\
+                 \geq& \mu^*(A_1) + \mu^*(A_2) - 6\epsilon \\  
+                 \therefore \quad \mu^*(A) \geq&\mu^*(A_1) + \mu^*(A_2),
+    \end{align*}
+en donde hemos usado \eqref{equation444} y \eqref{equation555}. 
+ De la ecuaci\'on anterior y de \eqref{equation111}  se conluye la demostraci\'on.
+\end{proof}
+
+
+
+\begin{teo}
+    La uni\'on e intersecci\'on de una cantidad infinita numerable de conjuntos medibles  son conjuntos medibles
+\end{teo}
+
+\begin{proof}
+    Considere $(A_n)_{n\in \mathbb{N}}$ una familia de conjuntos medibles y defina
+    \begin{align*}
+        A'_1 =  A_1,\quad 
+        A'_2 =  A_2 \setminus A_1,\quad 
+        \dots \quad 
+         A'_n =  A_n \setminus\left(\bigcup_{i=1 }^{n - 1}A_i\right), \
+         \dots
+    \end{align*}
+    Como las operaciones usadas arriba son cerradas en la familai de los conjuntos medibles. Tenemos que  $(A'_n)_{n\in \mathbb{N}}$ es una familia de conjuntos medibles ajenos a pares que cumple:
+    $$ A = \bigcup_{n \in \mathbb{N}}A_n = \bigcup_{n \in \mathbb{N}}A'_n.$$
+    Del teorema anterior y de la definici\'on de medida exterior sabemos que 
+    $$\sum_{n = 1}^{N}\mu(A'_n) = \mu\left(\bigcup_{n=1}^{N}A'_n\right)\leq\mu^{*}(A)$$
+    para cada $N\in \mathbb{N}$. As\'i que la serie de t\'erminos no negativos $\displaystyle \sum_{n = 1}^{\infty}\mu(A'_n) $ al ser acotada sabemos que  converge. 
+    
+    Por lo tanto,  dado $\epsilon > 0$ existe $l \in \mathbb{N}$ tal que 
+    $$\sum_{n=l + 1}^{\infty} \mu(A'_n) < \epsilon.$$
+
+    Como $\displaystyle  \bigcup_{n= 1}^{l}A'_n$ es medible existe un conjunto elemental $B$ tal que 
+    $$\displaystyle  \mu^*\left[\left(\bigcup_{n= 1}^{l}A'_n\right)\Delta B\right]< \epsilon .$$     Adem\'as,
+$\displaystyle  A \Delta B\subset \left[\left(\bigcup_{n= 1}^{l}A'_n\right)\Delta B\right] \cup \left(\bigcup_{n = l + 1}^{\infty}A'_n\right)$. 
+
+    Por lo tanto
+
+    \begin{align*}
+        \mu^{*}(A\Delta B) \leq&  \mu^*\left[\left(\bigcup_{n= 1}^{l}A'_n\right)\Delta B\right] + \mu^*\left(\bigcup_{n = l + 1}^{\infty}A'_n\right)\\
+        <& \epsilon + \sum_{n = l + 1}^{\infty}\mu^*(A'_n)\\
+        <& 2 \epsilon
+    \end{align*}
+    Por tanto $A$ es medible\\
+
+    Por \'ultimo note que
+
+    $$\bigcap_{n=1}^{\infty}A_n =  E\setminus \bigcup_{n = 1}^{\infty}(E\setminus A_n)$$
+
+    As\'i que $\bigcap_{n=1}^{\infty}A_n$ es tambi\'en un conjunto medible
+\end{proof}
+
+
+
+
+
+
+
+
+
+\begin{teo}
+    Si $(A_n)_{n \in \mathbb{N}}$ es una familia de conjuntos medibles que son ajenos a pares  entonces 
+    $$\mu\left(\bigcup_{n=1}^{\infty}A_n\right) = \sum_{n=1}^{\infty}\mu(A_n)$$
+\end{teo}
+\begin{proof}
+    Sea $A = \bigcup_{n=1}^{\infty}A_n$. Del Teorema \ref{teo2}
+ sabemos que 
+$\displaystyle  \mu(A) \leq \sum_{n=1}^{\infty}\mu(A_n)$.  
+
+Por otra parte, como  $\bigcup_{n= 1}^{N}A_n \subset A$ tenemos que 
+    $$\sum_{n=1}^{N}\mu(A_n) = \mu \left(\sum_{n=1}^{N}A_n\right) < \mu(A) \quad \forall N\in \mathbb{N}.$$
+Entonces $ \displaystyle  \sum_{n=1}^{\infty}\mu(A_n)\leq \mu(A)$.
+\end{proof}
+
+\begin{teo} \label{teo235}
+   Sea $(A_n)_{n\in \mathbb{N}}$ es una sucesi\'on de conjuntos medibles decreciente, es decir, $A_1\supset A_2\supset A_3\supset\cdots$. Entonces
+
+    $$\lim_{n\to \infty}\mu(A_n)  = \mu\left(\bigcap_{n=1}^{\infty} A_n\right)$$ 
+\end{teo}
+\begin{proof}
+    Suponga que $\bigcap_{n=1}^{\infty}A_n = \emptyset$, luego $A_1 = (A_1\setminus A_2)\cup(A_2\setminus A_3)\cup \cdots$ y en general para cada $n\in \mathbb{N}\quad A_n = \bigcup_{k= n}^{\infty}A_k\setminus A_{k + 1}$. Del teorema anterior tenemos que 
+    $$\mu(A_1) = \sum_{k=1}^{\infty}\mu(A_k\setminus A_{k + 1}),$$
+es decir, la serie $\sum_{k=1}^{\infty}\mu(A_k\setminus A_{k + 1})$ converge y entonces 
+    $$\lim_{n\to \infty}\mu(A_n) = \lim_{n\to \infty}\sum_{k=n}^{\infty}\mu(A_k\setminus A_{k + 1}) = 0 = \mu(\emptyset) = \mu \left(\bigcap_{n=1}^{\infty} A_n\right)$$
+
+    Si $\bigcap_{n=1}^{\infty}A_n \neq \emptyset$ defina $A'_k = A_k \setminus\left(\bigcap_{n=1}^{\infty}A_n\right)$ y note que $\bigcap_{n=1}^{\infty} A'_k = \emptyset$. Por lo anterior 
+
+    $$0 = \lim_{k\to \infty} \mu(A'_k) = \lim_{k\to \infty}\mu\left[A_k\setminus\left(\bigcap_{n=1}^{\infty}\right)\right] = \lim_{k\to \infty}\mu(A_k) - \mu\left(\bigcap_{n=1}^{\infty}A_n\right)$$
+\end{proof}
+
+
+
+\begin{cor}
+    Sea $(A_n)_{n\in \mathbb{N}}$ una sucesi\'on de conjuntos medible creciente, entonces
+
+    $$\lim_{n\to \infty}\mu(A_n) = \mu \left(\bigcup_{n=1}^{\infty}A_n\right)$$
+\end{cor}
+\begin{proof}
+    Consiere $A'_n = E\setminus A_n$ y aplique el teorema anterior a $(A'_n)_{n\in \mathbb{N}}$
+\end{proof}
+
+
+
+
+
+\begin{ob}
+La medida    $\mu$ es aditiva, pues si $A_1$ y $A_2$ son conjuntos medibles ajenos entonces $\mu(A_1\cup A_2) = \mu(A_1) + \mu(A_2)$. Adem\'as,   tambi\'en se llama $\sigma$-aditiva, pues si $(A_n)_{n\in \mathbb{N}}$ es una familia  de conjuntos medibles ajenos a pares se cumple $\mu\left(\bigcup_{n=1}^{\infty}A_n\right) = \sum_{n=1}^{\infty}\mu(A_n)$.
+
+Por otra parte,  vemos que los conjuntos abiertos son uniones numerables de rect\'angulos y por lo tanto son medibles. Los conjuntos cerrados tambi\'en son medibles  al ser   complementos  de  conjuntos abiertos  en $E$. 
+
+\end{ob}
+
+
+\begin{nota}
+Defina las siguientes familias de conjuntos:     \begin{align*}
+        \mathcal{F}_{m}:&\text{ Familia de rectangulos contenidos en E},\\
+        \mathcal{F}_{\tilde{m}}:&\text{ Familia de conjuntos elementales en E},\\
+        \mathcal{F}_{\mu}:&\text{ Familia de conjuntos medibles en E}.
+    \end{align*}
+         
+Vemos  que $\mathcal{F}_{m}\subset\mathcal{F}_{\tilde{m}}\subset\mathcal{F}_{\mu}$. Adem\'as, 
+ $\mathcal{F}_{m}$ es un semianillo y   $ \mathcal{F}_{\tilde{m}}$ es un anillo. Por\'ultimo, la familia  
+ $ \mathcal{F}_{\mu}$ es una $\sigma$-\'algebra.
+
+
+
+\end{nota}
+
+
+
+
+
+
+
+\begin{ob}
+En los c\'alculos anteriores se consideran s\'olo  subconjuntos de E. Pero podemos extender los resultados a todo el plano en dos formas 
+    \begin{enumerate}
+        \item Denote $E_{mn} := [m,m+1]\times [n,n+1]$ para $m,n\in \mathbb{Z}$ de esta manera diremos que $A\subset \mathbb{R}^{2}$ es medible si y solo si   para cada $m,n\in \mathbb{Z}$ el conjunto $A_{mn} = A\cap E_{mn}$ es medible. Adem\'as, si la serie $\displaystyle \sum \mu(A_{mn})$ converge, diremos que su medida es $\displaystyle \mu(A) = \sum \sum (A_{mn})$. Por otra parte,   si $\displaystyle \sum (A_{mn})$ diverge diremos que el conjunto medible $A$ tiene medida infinita.
+
+        \item Considere $E_n := [-n,n]\times[-n,n]$, para cada $n\in \mathbb{N}$. Diremos que  $A\subset\mathbb{R}^2$ es medible si y s\'olo si $A_n = A\cap E_n$ es medible para cada $n\in \mathbb{N}$. Si la sucesi\'on $(\mu(A_n))_{n\in\mathbb N} $ converge la medida de $A$ es $\mu(A) = \lim_{n\to \infty} \mu(A_n)$ en  caso contrario  diremos que $A$ tiene medida infinita.
+
+    \end{enumerate}
+La medida $\mu$ extendida de cualquiera de las dos formas anteriores  continua siendo aditiva  y $\sigma$-aditiva. M\'as a\'un,   se trata de la misma medida $\mu$ extendida.
+    \end{ob}
+
+
+
+\begin{ejer}  \ {} \begin{enumerate}
+ 
+\item Construya la medida de Lebesgue en $\mathbb{R}$ empleando intervalos en lugar de rect\'angulos.
+
+
+
+\item Muestre que si $A$ es medible en $\mathbb{R}^2$ entonces para todo $a\in \mathbb{R}^2$, $A + a = \{x + a | x\in A\}$ es tambi\'en medible y 
+$\mu (A)= \mu (A+a)$.  
+
+Sugerencia: Note que  si $P\subset \mathbb R^2$ es un rect\'angulo entonces  $P+a$ es otro rect\'angulo y $m(P)= m(P+a)$.
+
+
+
+
+\item Sea $A\subset E$ tal que $\mu^*(A)<+\infty$. Muestre que si existe $B\subset A$ conjunto medible con $\mu(B) = \mu^*(A)$, entonces $A$ es medible ?`Qu\'e sucede si $\mu^*(A) = +\infty ?$
+
+Sugerencia: Note que $E\setminus A \subset E\setminus B  $ y $\mu(B) = \mu^*(A)$  implican 
+$$1 \leq \mu^{*}(E\setminus A )  + \mu^{*}(  A )  \leq \mu^{*}(E\setminus B )  + \mu ( B ) = \mu^* (E\setminus B )  + \mu^* ( B )  = 1.$$
+
+\item Muestre que si $A\subset E=[0,1]\times [0,1]$ es un conjunto cuya frontera es un conjunto medible de medida cero es medible.
+
+Sugerencia: Note que $\overline{A}$ y  $A^{\circ}$  son conjuntos medibles. Adem\'as, $A^{\circ} \subset A \subset \overline{A}$, $ \overline{A} = \partial A \cup A^{\circ}$  implican   
+$\mu^{*} (A^{\circ}) =\mu^{*} (   A ) = \mu^{*} (  \overline{A})$. Al final use el ejercicio anterior.
+
+\item Sea $A\subset \mathbb{R}^2$ y $\alpha\in \mathbb{R}$. Muestre que $\mu^*(\alpha A) =  \alpha^2\mu^*(A)$ donde $\alpha A = \{\alpha x | x\in A\}$ y que si $A$ es medible entonces $\alpha A$ es tambi\'en medible.
+
+
+\item Muestre que todo conjunto finito en el rect\'angulo $E=[0,1]\times [0,1]$   es medible y tiene medida cero. 
+
+
+Sugerencia: Si $A=\{(x,y) \}$ entonces para cada $\epsilon >0 $ tenemos $A\subset (x-\frac{\sqrt{\epsilon}}{2}, x+\frac{\sqrt{\epsilon}}{2}  ) \times  (y-\frac{\sqrt{\epsilon}}{2}, y+\frac{\sqrt{\epsilon}}{2}  )$. Luego $\mu^* (A) <\epsilon $  y  $1-\epsilon < \mu^*(E\setminus A)  <1$
+
+\item Pruebe que $\mathbb{Q}\subset\mathbb{R}$ es medible y tiene medida cero. 
+  
+
+  Sugerencia:   $\mathbb Q$ es un conjunto infinito numerable. Entonces denotemos cada n\'umero racional por  $q_n$, donde $n\in \mathbb N$. Luego 
+  $ \mathbb Q=\cup_{n\in \mathbb N}\{q_n\} $ y para cada $\epsilon >0$ se cumple  
+  $$ \mathbb Q \subset \bigcup_{n\in \mathbb N} (q_n- \frac{\epsilon}{2^n }, q_n+ \frac{\epsilon}{2^n }). $$  
+
+
+\item Considere $F_0 = [0,1]$, $F_1 = [0,1/3]\cup [2/3,1]$, $F_2 = [0,1/9]\cup[2/9,3/9]\cup[6/9,7/9]\cup[8/9,1]$. As\'i sucesivamente, el siguiente conjunto se forma de dividir cada intervalo en tres y solo tomamos en cuenta las dos partes extremas. En general $F_0\supset F_1\supset F_2\supset \cdots$. El conjunto de cantor se define como $\bigcap_{n=0}^{\infty}F_n$, muestre que el conjunto de cantor es medible y tiene medida cero.
+
+Sugerencia: Teorema \ref{teo235}.
+
+
+\item Muestre que la cardinalidad de la familia de todos los conjuntos medibles contenidos en $[0,1]$ es mayor o igual  que la del continuo.
+
+Sugerencia: Para cada $x\in [0,1]$ defina $f(x) =[0,x]$ el cual es un conjunto medible. As\'i que la funci\'on $f$ es inyectiva. Luego la cardinalidad de familia de todos los conjuntos medibles contenidos en $[0,1]$ es mayor o igual  que la del continuo.
+
+
+\item Muestre que todo conjunto medible de medida positiva en el intervalo $[0,1]$ contiene un par de puntos cuya distancia es un n\'umero racional
+
+\begin{proof}
+
+\noindent
+Contradicci\'on.  Suponemos que $A\subset [0,1]$ tiene medida positiva  y que ning\'un par de elementos de  $A$ tienen distancia un n\'umero racional. 
+
+Veamos dos casos: 
+
+\begin{enumerate}
+\item  Suponga que $\sup A<1$. Por la propiedad Arquimediana existe $N\in \mathbb N$ tal que  $\dfrac{1}{N}< 1- \sup A  $ luego  $ \dfrac{1}{n}< 1- \sup A   $ para  cada $n\geq N$. Entonces,  $\sup A +  \dfrac{1}{n} < 1 $ para cada $n\geq N$. Note que cada elemento de $ A +  \dfrac{1}{n}  $  con   $n\geq N$ es de la forma $a+\dfrac{1}{n}$ con $a\in A$ luego   $0\leq a+ \dfrac{1}{n} \leq \sup A +  \dfrac{1}{n} < 1 $; es decir, 
+  $a+ \dfrac{1}{n} \in [0,1]$. Entonces  $ A +  \dfrac{1}{n} \subset [0,1] $  para cada    $n\geq N$.
+  
+  
+ \noindent
+ Note que si $x \in  ( A +  \dfrac{1}{n} ) \cap A$,  con $n\geq N$, entonces existen $a,b\in A$ tales que 
+  $   x = a + \dfrac{1}{n} = b $. Luego $|a-b | =\dfrac{1}{n}$. Lo cual no puede ocurrir. As\'i que $(  A +  \dfrac{1}{n} ) \cap A = \emptyset$ para cada $n\geq N$. De forma similar se verifica que  si $n,m\in \mathbb N$ son diferentes entonces $(  A +  \dfrac{1}{n} ) \cap ( A +  \dfrac{1}{n} ) = \emptyset$.
+  
+  \noindent
+  Por lo anterior $\bigcup _{n\geq N}(  A +  \dfrac{1}{n} )\subset [0,1]$ y $$\infty =   \sum_{n\geq N} \mu (A ) =   \sum_{n\geq N} \mu (A+\dfrac{1}{n}) 
+  = \mu( \ \bigcup _{n\geq N}(  A +  \dfrac{1}{n} ) \  ) 
+  \leq \mu([0,1])=1 . $$
+ Lo cual es una contradicci\'on.
+ 
+ 
+ \item En caso de que $\sup A=1$. Por la propiedad Arquimediana existe  $N\in \mathbb N$ tal que $\dfrac{1}{N}< \mu(A) $.  Note que el conjunto $B= A\setminus [1-\dfrac{1}{N}, 1]$ tiene medida positiva      y que ning\'un par de elementos de  $B$ tienen distancia un n\'umero racional. Ya que 
+ $\mu (B) \geq  \mu ( A ) -\dfrac{1}{N} > 0$ y $B\subset A$. Adem\'as, $\sup B   \leq 1-\dfrac{1}{N}< 1$. Por el caso anterior llegaremos a una contradicci\'on.
+ \end{enumerate}
+  
+  \end{proof}
+  
+\item Sea $C = \{z\in \mathbb{C} : |z| = 1\}$. Sea $\alpha\in \mathbb I$, defina $z_1,z_2\in \mathbb{C}$, $z_1\sim z_2$ si y solo si $z_2$ se obtiene v\'ia una rotaci\'on un \'angulo $n\pi \alpha$  ($n\in \mathbb{Z}$) de $z_1$. Verifique que $\sim$ es una relaci\'on de equivalencia y muestre que $\Phi_0$ formado eligiendo un punto de cada clase, no es medible.
+
+\begin{proof}
+Contradicci\'on.   Suponga que $\Phi_0$  es medible. Para $n,m\in\mathbb Z$ diferentes si $z \in  e^{i n\pi \alpha } \Phi_0 \cap  e^{i m\pi \alpha } \Phi_0$
+ entonces existen $z_1, z_2 \in \Phi_0$ tales que $$z=e^{i n\pi \alpha } z_1 = e^{i m\pi \alpha } z_2$$
+$$z_1 = e^{i(- n+m)\pi \alpha } z_2,$$
+entonces  $z_1\sim z_2$ por lo que $z_1$ y $z_2$ est\'an en la misma clase. Debido a la creaci\'on de $\Phi_0$ tendremos que $z_1=z_2$.  Entonces 
+ $1 = e^{i(- n+m)\pi \alpha }$, lo cual implica $(- n+m)\pi \alpha = 2k\pi$ para alg\'un $k\in \mathbb Z$. As\'i que 
+ $  \alpha =\dfrac{ 2k}{ - n+m}\in \mathbb Q$. Pero $\alpha\in \mathbb I$, as\'i que  
+ $$ e^{i n\pi \alpha } \Phi_0 \cap  e^{i m\pi \alpha } \Phi_0 =\emptyset.$$
+
+Dado $z\in C$ entonces existe $w\in \Phi_0$ tal que $w \in [z]$ luego $z\sim w$ y existe $n\in \mathbb N $ tal que $z = e^{i n\pi \alpha} w $. Entonces $z \in  e^{i n\pi \alpha}  \Phi_0 $. As\'i que $C  =   \bigcup_{n\in\mathbb Z}  e^{i n\pi \alpha}  \Phi_0 $.
+ 
+Si  $ \Phi_0 $ es medible  y $  \mu (  \Phi_0) > 0 $ entonces 
+
+$$\mu (C) = \sum_{n\in \mathbb Z} \mu ( e^{i n\pi \alpha}  \Phi_0) =  \sum_{n\in \mathbb Z} \mu (  \Phi_0)  =\infty .$$
+
+
+Si  $ \Phi_0 $ es medible  y $  \mu (  \Phi_0) = 0 $  entonces 
+
+$$\mu (C) = \sum_{n\in \mathbb Z} \mu ( e^{i n\pi \alpha}  \Phi_0) =  \sum_{n\in \mathbb Z} \mu (  \Phi_0)  =0.$$
+
+Lo cual es falso. 
+
+\end{proof}
+
+
+\end{enumerate}
+\end{ejer}
+
+
+ 
+
+\begin{ob} Un conjunto $B\subset \mathbb R^2$, considere  $\mu^*$ la medida exterior,  se dice de Caratheodory medible si $\mu^*(C) = \mu^*(C\cap B) + \mu^*(C\setminus B)$ para todo $C\subset \mathbb R^2$.
+    Adem\'as, si $B \subset E$    entonces $B$ es Caratheodory medible si y s\'olo si es Lebesgue medible en $E$. Por ejemplo, si $B$ es Caratheodory medible entonces $C=E$ tenemos 
+    $$\mu^*(E) = \mu^*(E\cap B) + \mu^*(E\setminus B),$$
+    $$1 = \mu^*(B) + \mu^*(E\setminus B).$$
+      
+\end{ob}
+
+
+
+
+
+\section{Teor\'ia de la medida general}
+
+\begin{defi}
+    Dado un semianillo de conjuntos $\varphi_ m $, una funci\'on $m:\varphi_\mu \to \mathbb{R}$ es llamada medida, si 
+    \begin{enumerate}[label=\alph*)]
+        \item   $m(A)\geq 0,\quad\forall A\in \varphi_\mu$.
+
+        \item $m$ es aditiva.
+    \end{enumerate}
+\end{defi}
+
+\begin{ob} Note que $m(\emptyset) = 0$. Ya que 
+  $\emptyset = \emptyset\cup \emptyset$ y $\mu$ es aditiva tendremos que  $m(\emptyset) = m(\emptyset) + m(\emptyset)$. Por lo tanto $m(\emptyset) = 0$.
+\end{ob}
+
+\begin{teo}
+    Sea $m$ una medida en el semianillo $\varphi_m$. Si $A, A_1,\cdots, A_n \in \varphi_m$ tales que  $A_1,\cdots,A_n$ son ajenos a pares y son subconjuntos de $A$ entonces 
+
+    $$\sum_{k=1}^{n}m(A_k) \leq m(A) $$
+\end{teo}
+\begin{proof}
+    Sabemos que existe una expansi\'on finita de $A$ de la forma $A = \bigcup_{k=1}^{s}A_k$ con $s\geq n$. Luego
+
+    $$\sum_{k=1}^{n}m(A_k) \leq \sum_{k=1}^{s}m(A_k) = m(A).$$
+\end{proof}
+
+\begin{teo}
+    Sea $m$ una medida sobre un semianillo $\varphi_m$, sean $A, A_1,\cdots, A_n \in \varphi_m$, tales que $A \subset \bigcup_{k=1}^{n}A_k$. Entonces 
+    $$m(A) \leq \sum_{k=1}^{n}m(A_k) . $$
+\end{teo}
+\begin{proof}
+    Existe una familia finita $\{B_1, \cdots, B_n\}$ de elementos de $\varphi_m$, ajenos a pares tales que $ \displaystyle A=\bigcup_{s\in M_0}B_s$ y $\displaystyle A_k = \bigcup_{s\in M_k}B_s$ para $k = 1,\cdots,n$.   Para esto se emplea  la propiedad de expansiones finitas  del semianillo.\\
+
+    Por \'ultimo, 
+
+    $$m(A) = \sum_{s\in M_0}m(B_s) \leq \sum_{k=1}^{n}\sum_{s\in M_k}m(B_s)\leq \sum_{k=1}^{n}m(A_k).$$
+\end{proof}
+\begin{cor}
+    Si $A,A'\in \varphi_m$ y $A\subset A'$, entonces $m(A)\leq m(A')$.
+\end{cor}
+\begin{defi}
+    La medida $\mu$ es llamada extensi\'on de la medida $m$ si $\varphi_m \subset \varphi_\mu$ y $m(A)= \mu(A)$ para toda $A\in \varphi_m$.
+\end{defi}
+
+\begin{teo}
+    Toda medida $m$ en un semianillo $\varphi_m$ tiene una \'unica extensi\'on $\tilde{m}$ definida en $\mathcal{R}(\varphi_m)$, el  anillo generado por $\varphi_m$.
+\end{teo}
+\begin{proof}
+    Recuerde que $\mathcal{R}(\varphi_m )$ esta formado por uniones finitas de elementos de $\varphi_m$, ajenos a pares. De esta manera 
+
+    $$\tilde{m}(A) = \tilde{m}\left(\bigcup_{k=1}^{n}B_k\right) = \sum_{k=1}^{n}\tilde{m}(B_k) = \sum_{k=1}^{n}m(B_k).$$
+
+    Note que est\'a bien definida.  Por \'ultimo si $\mu $ es una extensi\'on de $m$ en $\mathcal{R}(\varphi_m)$ entonces 
+
+    $$\mu (A) = \sum_{k = 1}^n \mu (B_k) = \sum_{k = 1}^n m(B_k) = \tilde{m}(A).$$
+
+    Es decir, $\mu  = m$.
+\end{proof}
+
+\begin{defi}
+    Una medida $m$ en un semianillo $\varphi_m$ se dice $\sigma-$aditiva, si para cualquier subfamilia de $\varphi_m$ infinita numerables de ajenos a pares $\{A_k\}_{k\in \mathbb{N}}$ tales que $\bigcup_{k=1}^{\infty} A_k \in \varphi_m$ se cumple
+    $$m\left(\bigcup_{k=1}^{\infty} A_k\right) = \sum_{k=1}^\infty m(A_k).$$
+\end{defi}
+\begin{teo}
+    Si $m$ es una medida $\sigma$-aditvia en $\varphi_m$, entonces su extensi\'on $\tilde{m}$ a $\mathcal{R}(\varphi_m)$ tambi\'en es $\sigma$-aditiva
+\end{teo}
+\begin{proof}
+      Sea $\{B_k\}_{k\in \mathbb{N}}$ una subfamilia de $\mathcal{R}(\varphi_m)$ de conjuntos ajenos a pares tales     $A = \bigcup_{k=1}^{\infty}B_k\in \mathcal{R}(\varphi_m)$. Como $A,B_k\in \mathcal{R}(\varphi_m)$ para cada $k\in \mathbb{N}$ existen $A_j,B_{n,k}$ en $\varphi_m$ tales que $A = \bigcup A_j$ y $B_{k} = \bigcup B_{n,k}$ (uniones finitas de conjuntos ajenos a pares). Note que los conjuntos de la forma $A_j \cap B_{n,k}$ son ajenos a pares. M\'as a\'un 
+
+      $$A_j = \bigcup_k \bigcup_n A_j \cap B_{n,k}\quad\quad B_{n,k} = \bigcup_j A_j \cap B_{n,k} $$
+
+      As\'i que 
+
+      \begin{align*}
+           \tilde{m}(A) =& \sum_j m(A_j) = \sum_j \sum_k \sum_n m(A_j \cap B_{n,k}) \\
+           = &\sum_k \sum_n \sum_j m(A_j \cap B_{n,k}) \\
+           = & \sum_k\sum_n m(B_{n,k}) = \sum_k \tilde{m}(B_k).
+      \end{align*}
+    
+\end{proof}
+
+\begin{cor}
+    Sea $m$ una medida $\sigma$-aditiva en el semianillo $\varphi_m$. Considere $A, A_1,\cdots, A_k,\cdots,$ elementos de $\varphi_m$ tales que $A_1,\cdots, A_k,\cdots,$ son subconjuntos de $A$ y son ajenos a pares. Entonces
+     $$ \sum_{k=1}^{\infty} m(A_k) \leq m(A).$$
+\end{cor}
+
+\begin{proof}Se sigue de 
+    $\displaystyle \sum_{k=1}^{N}m(A_k) \leq m(A)$ para cada $ N\in \mathbb{N}$ y luego  hacemos $N\to \infty$.
+\end{proof}
+\begin{cor}
+    Sea $m$ una medida $\sigma-$aditiva en el semianillo $\varphi_m$. Sean $A, A_1,\cdots, A_k,\cdots,$ elementos de $\varphi_m$ tales que $A\subset \bigcup_{k=1}^{\infty} A_k$. Entonces 
+    $$m(A) \leq \sum_{k=1}^{\infty} m(A_k)$$
+\end{cor}
+\begin{cor}
+Sea  $\tilde{m}$ a la extensi\'on de $m$ en $\mathcal{R}(\varphi_m)$. Los dos corolario anteriores son v\'alidos en $\mathcal{R}(\varphi_m)$. 
+\end{cor}
+Sugerencia para el \'ultimo corolario: Sea  $B_n = (A\cap A_n)\setminus\bigcup_{k=1}^{n-1} A_k$. De esta manera $A = \bigcup_{n=1}^{\infty} B_n$, $A_n \supset B_n$, la familia $(B_n)_{n\in \mathbb{N}}$ esta contenida en $\mathcal{R}(\varphi_m)$ y es de conjuntos ajenos a pares. Luego
+    $$\mu(A) = \sum_{n=1}^{\infty}\mu(B_n) \leq \sum_{n=1}^{\infty}A_n .$$ 
+ \begin{defi}
+    Sea $m$ una medida $\sigma-$aditiva en un semianillo $\varphi_m$ con unidad $E$. Dado $A\subset E$ defina
+    \begin{enumerate}
+        \item Medida exterior de $A$ denotada por $\mu^*(A)$ definida como
+         $$\mu^*(A) = \inf \{ \sum_{k\in I\subset\mathbb N} m(B_k) \ \mid \   A\subset \bigcup_{k\in I }     B_k, \ \  B_k\in \varphi_m,  \  \ k\in I  \}.$$ 
+         \item Medida interior de $A$ dada por $\mu_*(A) = m(E) - \mu^*(E\setminus A)$.
+
+         \item Diremos que $A\subset E$ es Lebesgue medible si y solo si $\mu^*(A) + \mu_*(A)=m(E)$. La medida de Lebesgue de $A$ es $\mu(A) := \mu^*(A) = \mu_*(A)$.
+    \end{enumerate}
+\end{defi}
+
+ 
+
+\begin{ob}
+    
+     
+Las siguientes propiedades tienen demostraciones  profundamente   an\'alogas a sus hom\'ologas dadas en la secci\'on anterior. Por tal motivo solo se omiten las demostraciones.
+     \begin{enumerate}
+     
+\item Para cada $A\subset E$ se verifica que  $\mu_*(A)\leq \mu^*(A)$. Adem\'as, $A\subset E$ es Lebesgue medible si y s\'olo si $\mu^*(A) + \mu^*(E\setminus A) = m(E)$, o equivalentemente,  $E\setminus A$  es  Lebesgue medible. 
+        \item Dados $A\subset E$ y $(A_n)$ una familia a lo sumo numerable de subconjuntos de $E$ tales que $A\subset \bigcup_n A_n$, entonces
+         $$\mu^*(A) \leq \sum_n \mu^*(A_n).$$
+
+         \item Todo elemento $A\in \mathcal{R}(\varphi_m)$ es medible y $\mu(A) = \tilde{m}(A)$, extensi\'on de $m$ a $\mathcal{R}(\varphi_m)$.
+
+         \item $A\subset E$ es medible si y solo si para cada $\epsilon>0$ existe $B\in \mathcal{R}(\varphi_m)$ tal que $\mu(A\Delta B) < \epsilon$.
+
+         \item La familia $\varphi_\mu$ de todos los subconjuntos medibles de $E$  es un \'algebra con unidad $E$.
+
+         \item $\varphi_\mu$ es un \'algebra de Borel.
+
+
+    \end{enumerate}
+\end{ob}
+
+
+En algunas ocasiones  un conjunto $A\subset E$ se dice medible   si para todo $ \epsilon > 0$ existe $B\in \mathcal{R}(\varphi_m)$ tal que $\mu^*(A\Delta B)<\epsilon$.
+
+\begin{ejer} 
+   {}\
+   \begin{enumerate}
+       \item Sea $m$ una medida $\sigma-$aditiva en un semianillo $\varphi_m$  con unidad $E$. Sea $\mu$ la extensi\'on de Lebesgue de $m$ y sea $\tilde{\mu}$ cualquier medida $\sigma-$aditiva que es extensi\'on de $m$. Muestre que  $\mu_*(A)\leq \tilde{\mu}(A)\leq \mu^*(A) $ para cada $A\subset E$   en que este definida $\tilde{\mu}$. En particular, vemos que si  $A$ es medible y $\tilde{\mu}(A)$ est\'a definida entonces   $\mu(A) = \tilde{\mu}(A)$. 
+\begin{proof}
+Para cualquier $(P_i)_{i\in I \subset \mathbb N} $  
+familia numerable de elementos de  $\varphi_m$ tal que 
+$A \subset \cup_{i\in I} P_i  $ entonces $$\tilde {\mu} (A) \leq \tilde {\mu}( \cup_{i\in I} P_i )\leq \leq \sum_{i\in I} \tilde {\mu}(  P_i ) ;$$
+De la definici\'on de $\mu^*$ tenemos que $\tilde {\mu} (A)\leq \mu^*(A)$  para cada $A\subset E$   en que este definida $\tilde{\mu}$.
+
+\noindent
+Adem\'as,  $ \tilde {\mu} (E\setminus A)\leq \mu^*(E\setminus A) $, luego  
+$$ \mu_*(A) =  m  (E)-  \mu^*(E\setminus A) \leq m  (E) - \tilde {\mu} (E\setminus A) = \tilde{m}  (E) - \left( \tilde {\mu} (E) -  \tilde {\mu}  (A)\right) = 
+\tilde {\mu}  (A). $$
+Entonces 
+$\mu_*(A)\leq \tilde{\mu}(A)\leq \mu^*(A) $ para cada $A\subset E$   en que este definida $\tilde{\mu}$.
+
+
+\end{proof}
+
+
+
+       \item Sea $\tilde{m}$ la extensi\'on de $m$ a $\mathcal{R}(\varphi_m)$. Muestre que la medida exterior de $A\subset E$ est\'a dada como 
+       $$\mu^*(A) = \displaystyle \inf \{  \sum_{k\in I \subset \mathbb N} \tilde{m}(B_k) \ \mid \   A\subset\bigcup_{k\in I  } B_k , \ \mid \ B_k\in  \mathcal{R}(\varphi_m), \ \forall k\in I \}.$$
+  \begin{proof}Sea 
+  \begin{align*}
+T_A= &       \{  \sum_{i\in I \subset \mathbb N}  {m}(P_i) \ \mid \   A\subset\bigcup_{i\in I  } P_i , \ \mid \ P_i\in  \varphi_m , \ \forall i\in I \}  , \\
+S_A =  &      \{  \sum_{k\in I \subset \mathbb N} \tilde{m}(B_k) \ \mid \   A\subset\bigcup_{k\in I  } B_k , \ \mid \ B_k\in  \mathcal{R}(\varphi_m), \ \forall k\in I \}.
+  \end{align*} 
+  Como    
+   $ P_i\in  \varphi_m \subset  \mathcal{R}(\varphi_m) $,  para cada  $ i\in I$ entonces 
+   $\displaystyle \sum_{i\in I \subset \mathbb N}  {m}(P_i)\in S_A$. Por lo tanto, $T_A\subset S_A$ 
+   
+   Rec\'iprocamente, si $ B_k\in  \mathcal{R}(\varphi_m)$,  para cada $ k\in I$.
+   entonces existen $P_1^k, \dots, P_{j_k}^k \in \varphi_m$ ajenos a pares tales que  
+    $\displaystyle B_k = \bigcup_{\ell =1}^{j_k}   P_{\ell}^k$. Entonces 
+      $$\tilde{m}(B_k)  =  \sum_{\ell =1}^{j_k}  m( P_{\ell}^k)$$
+       y 
+     $$  \sum_{k\in I \subset \mathbb N} \tilde{m}(B_k) =  \sum_{k\in I \subset \mathbb N} \sum_{\ell =1}^{j_k}  m( P_{\ell}^k)  =  \sum_{n\in L \subset \mathbb N}   m( C_n) , $$
+   donde $C_n\in \varphi_m$ para cada $n\in L$. Entonces 
+   $$\sum_{k\in I \subset \mathbb N} \tilde{m}(B_k) \in T_A.$$ 
+    As\'i que $S_A\subset T_A$.
+  \end{proof}
+  
+  
+   \end{enumerate}
+\end{ejer}
+
+
+\begin{ob}
+Una medida   en una $\sigma$-\'algebra   se dice completa completa  si todo  subconjunto no vac\'io de cada conjunto  medible de medida cero es medible (y tiene  medida cero). 
+\\
+\noindent
+La medida de Lebesgue    es completa  completa. Ya que   si todo subconjunto no vac\'io de un conjunto medible de medida cero es medible y de medida cero.  
+
+\end{ob}
+
+
+\chapter{Integraci\'on}
+
+\section{Funciones medibles y funciones simples}
+
+\begin{defi}
+    Dada $f:X \to Y$ y dadas $\varphi,\varphi'$ familias de subconjuntos de $X$ y de $Y$, respectivamente. Diremos que $f$ es $(\varphi,\varphi')-$medible si $A\in \varphi'$ implica $f^{-1}(A)\in \varphi$
+\end{defi}
+\begin{ob}
+    Si $(X,T_x)$ y $(Y, T_y)$ son espacios topol\'ogicos, entonces $f:X\to Y$ es continua si y s\'olo si es $(T_x,T_y)-$medible. En particular, si $X=Y=\mathbb{R}$ con $T_x= T_y$ siendo el \'algebra  de  Borel $\mathcal{B}^1$ inducida por la topolog\'ia usual en $\mathbb R$   entonces $f$ se dice Borel-medible o B-medible. Recuerde  que un \'algebra de Borel es la $\sigma-$\'algebra generada por una topolog\'ia.  
+\end{ob}
+
+\begin{defi}
+    Sea  $\mu$  una medida  en un \'algebra de Borel $\varphi_\mu$ de subconjuntos de $X$, con $X$ la unidad de $\varphi_\mu$. Considere $f:X\to\mathbb{R}$. Entonces $f$ se dice $\mu-$medible en $X$ si $A\in \mathcal{B}^1$ implica $f^{-1}(A)\in \varphi_\mu$, o equivalentemente $f^{-1}(\mathcal{B}^1)\subset \varphi_\mu$. 
+\end{defi}
+En nuestro caso supondremos $X=\mathbb R^n$ con $n\in \mathbb N$.
+ 
+\begin{teo}
+    La funci\'on $f$ es $\mu$-medible si y s\'olo si $\{x\in X \ | \  f(x)<c\}$ es $\mu-$medible para cada real $c$.
+\end{teo}
+\begin{proof}
+    Si $f$ es $\mu$-medible como $\{x\in X \ | \ f(x)<c\} = f^{-1}((-\infty,c))$ y $(-\infty,c)\in \mathcal{B}^1$ entonces $\{x\in X \ | \  f(x)<c\}$ es $\mu$-medible. Note que $\mathcal{B}^1$ es la m\'inima $\sigma$-\'algebra que contiene a los intervalos cerrados en $\mathbb{R}$ y usando las siguientes identidades
+    $$(-\infty,c) = \bigcup_{n\in \mathbb{N}} \left[-n, c - \frac{1}{n}\right]$$
+
+    $$[a,b] = (-\infty,a)^c\cap \left(\bigcap_{n\in \mathbb{N}}\left(-\infty, b + \frac{1}{n}\right)\right)$$
+
+    Notamos que $\mathcal{B}^1$ es tambi\'en la m\'inima $\sigma$-\'algebra que contiene a $(-\infty,c)$ para cada $c\in \mathbb{R}$. Por \'ultimo empleando las siguientes identidades:
+
+    $$f^{-1}\left(\bigcup_{\alpha}A_\alpha\right) = \bigcup_\alpha f^{-1}(A_\alpha), \quad f^{-1}\left(\bigcap_{\alpha}A_\alpha\right) = \bigcap_\alpha f^{-1}(A_\alpha), \quad  f^{-1}(A)^c = f^{-1}(A^c)$$
+
+    Se verifica que $f^{-1}(\mathcal{B}^1)\subset\varphi_\mu$
+\end{proof}
+\begin{teo}\label{convergmed}
+    Sea $(f_n)_{n\in \mathbb{N}}$ una sucesi\'on de funciones medibles en $X$ y sea $f$ una funci\'on en $X$ tal que $\lim f_n(x) = f(x)$ para toda $x\in X$. Entonces $f$ es medible. 
+\end{teo} 
+\begin{proof}
+    Se deduce de la identidad 
+    $$\{x \in X \Big{|} f(x)<c\} = \bigcup_k\bigcup_n \bigcap_{m\geq n}\left\{ x \in X \  \Big{|} f_m(x)< c - \frac{1}{k}\right\}.$$
+    Verifiquemos dicha identidad. Si  $x\in X$ es tal que $f(x)< c$ entonces  existen $k,N\in \mathbb{N}$ tales que
+ $$f(x)< c -\frac{2}{k}, \quad f_n(x) - f(x)< \frac{1}{k}, \quad \forall n \geq N.$$ Luego $f_n(x)< c - \frac{1}{k}$.  
+
+\noindent
+Rec\'iprocamente, si 
+    $$x\in \bigcup_k\bigcup_n \bigcap_{m\geq n}\left\{ x\quad \Big{|} f_m(x)< c - \frac{1}{k}\right\}.$$
+Entonces existen  $k,N\in \mathbb{N}$ tal que $f_n(x)< c- 1/k$ para toda $n\geq N$ y haciendo $n\to \infty $ obtenemos $f(x)\leq  c - \dfrac{1}{k}<c$.
+\end{proof}
+\begin{teo}
+    La composici\'on de una funci\'on $\mu$-medible $\psi:X\to \mathbb R$ con una funci\'on $\mathcal{B}$-medible $\varphi :\mathbb R \to \mathbb R$ es $\mu$-medible.
+\end{teo}
+\begin{proof}
+    Sea $f = \varphi \circ\psi$, luego note que   $f^{-1}(A) = \psi^{-1}(\varphi^{-1}(A))$  para todo $A\subset \mathbb{R}$. 
+\end{proof}
+\begin{cor}
+    La composici\'on de una funci\'on medible con una continua es una funci\'on medible.
+\end{cor}
+\begin{proof}
+ Se debe a que una funci\'on continua es una funci\'on $\mathcal{B}$-medible.
+\end{proof}
+\begin{defi}
+    Una funci\'on simple es una funci\'on medible con   una cantidad   numerable de valores diferentes.
+\end{defi}
+
+
+
+
+
+\begin{teo}
+    Si $f$ toma los valores $(y_n)_{n\in I \subset \mathbb{N}}$, entonces $f$ es simple si y solo si $A_n = \{x \in X \  | \  f(x) = y_n\}$ es medible para cada $n\in I$. 
+\end{teo}
+
+\begin{proof}
+    Necesidad. 
+     Como $\{y_n\}\in \mathcal{B}^1$ entonces $A_n = f^{-1}(\{y_n\})\in \varphi_\mu$ para cada $n\in I$. 
+     
+     \noindent 
+     Suficiencia. Para cada $c\in \mathbb{R}$ tenemos
+
+    $$f^{-1}((-\infty,c)) = \bigcup_{y_n<c}\{x|f(x)=y_n\}$$
+  es un conjunto medible. As\'i que $f$ es una funci\'on medible.
+\end{proof}
+\begin{teo}
+    Una funci\'on $f$ es $\mu$-medible si y solo si existe una sucesi\'on de funciones simples que converge uniformemente a $f$
+\end{teo}
+\begin{proof}
+
+    Suficiencia. La convergencia uniforme implica convergencia puntual y el Teorema \ref{convergmed} nos muestra que $f$ es medible.
+    
+    
+    \noindent 
+  Necesidad.  Sea $f$ una funci\'on $\mu$-medible, para cada $n\in\mathbb{N}$ defina
+
+    $$f_n(x) = \frac{m}{n} , \quad \text{si} \quad \frac{m}{n}\leq f(x)< \frac{m + 1}{n}, \ \ \text{con} \ m\in \mathbb Z.$$
+
+    Note que $\displaystyle A_ {m}= f^{-1}\left(\left[\frac{m}{n}, \frac{m + 1}{n}\right)\right)$    es  un conjunto medible. As\'i que $(f_n)_{n\in\mathbb N}$ es una sucesi\'on de funciones simples. 
+    
+     
+    
+    Por \'ultimo, vemos que $0 \leq f(x)- f_n(x)< \dfrac{1}{n} $, para cada $n\in \mathbb{N}$, de donde se deduce la convergencia uniforme.
+    
+\end{proof}
+
+
+\begin{ob}
+Dado $A\subset X$ define la funci\'on caracter\'istica de $A$ como  $\mathcal X_A$:
+$$\mathcal X _A(x ) :=\left\{ \begin{array}{ll} 1, & \  \text{si} \ x\in A , \\  0, & \  \text{si} \ x\in X\setminus A.  \end{array} \right.$$
+Adem\'as, se verifica de manera directamente   $f:X\to \mathbb R$ es una funci\'on simple si y s\'olo si existen $ \lambda_n \in \mathbb R  $   
+  y $A_n\subset X$ un conjunto medible para cada $n\in I\subset \mathbb N$ tales que  
+  $$ f(x) = \sum_{n\in I}  \lambda_n \mathcal X _{A_n}.$$
+\end{ob}
+
+
+
+
+\begin{teo}
+    Si $f,g$ son funciones medibles y $c\in\mathbb R$ entonces $f + g$ y $cf$ son funciones medibles.
+\end{teo}
+\begin{proof} Mostremos  que sumas y producto por una constante de funciones simples son funciones simples.
+\noindent 
+   Si $f,g$ son funciones simples.  Sean 
+    $A_n = \{x\in X \ | f(x) = y_n\}$ y $B_n =\{ x\in X \  | g(x) = z_n\}$ entonces 
+     $$\{x \in X \ | \ f + g = y_n+z_m\} = \bigcup_{y_n + z_m = y_{n'} + z_{m'}} (A_{n'}\cap B_{m'})$$
+     el cual resulta ser conjunto medible. 
+
+\noindent 
+    Si $c\neq 0$  entonces  $\{x \in X \ | cf(x) = cy_n\} = A_n$. 
+
+\noindent
+Si $(f_n)$ y $(g_n)$ son sucesiones de funciones simples que convergen uniformemente a $f$ y $g$ respectivamente. Entonces $(f_n + g_n)$ y $(cf_n)$ son sucesiones de funciones simples que convergen uniformemente a $f + g$ y $cf$ respectivamente y del teorema anterior conluimos que $f + g$ y $cf$ son funciones medibles.
+\end{proof}
+
+
+
+
+
+
+\begin{ob}
+Si $f$ y $g$ son funciones simples entonces existen  
+$ \lambda_n \delta_m \in \mathbb R $ y  ${A_n} B_m \subset X$  
+medibles  para $ n\in I\subset \mathbb N$ y $ m\in J\subset \mathbb N$ tales que 
+$$ f(x) = \sum_{n\in I\subset \mathbb N}  \lambda_n \mathcal X _{A_n}, \ \ \   
+g(x) = \sum_{m\in J\subset \mathbb N}  \delta_m \mathcal X _{B_m}.$$  
+Entonces 
+\begin{align*}
+(f+g)(x)=& \sum_{(n,m)\in I\times J} (\lambda_n + \delta_m)  \mathcal X _{A_n\cap B_m} , \\
+(fg)(x)= & \sum_{(n,m)\in I\times J} \lambda_n  \delta_m  \mathcal X _{A_n\cap B_m}.
+\end{align*}
+\end{ob}
+
+
+\begin{cor}
+    Si $f,g$ son funciones medibles entonces $fg$ es tambi\'en medible
+\end{cor}
+\begin{proof} Si $h $ es una funci\'on medible y $c\in\mathbb R$ entonces la identidades
+$$\{x\in X \ \mid   (h(x))^2 <c \} =  \left\{ \begin{array}{ll} \emptyset , &  \textrm{si} \ c \leq 0 , \\
+   \{x\in X \ \mid   -\sqrt{c} < h(x)  < \sqrt{c} \}, & \textrm{si} \ c > 0  .     \end{array}    \right. $$
+nos muestra que   $\{x\in X \ \mid   (h(x))^2 <c \}$ un conjunto  medible. Por lo tanto, $h^2$ es otra funci\'on medible.
+
+\noindent
+Por \'ultimo, note que
+    $$fg = \frac{1}{4}[(f+g)^2 - (f- g)^2]$$
+\end{proof}
+
+\begin{teo}
+    Si $f$ no tiene ceros y es medible, entonces $\dfrac{1}{f}$ es medible.
+\end{teo}
+
+\begin{proof}Dado $c\in \mathbb{R}$
+    vea los siguientes casos: 
+
+    \noindent
+Si $c > 0$ entonces 
+
+ $\quad \left\{x\in X \ \Big{|} \frac{1}{f(x)}<c\right\} = \{x \in X\   |f(x)\leq 0\}\cup\left\{x \in X\   | f(x)> \frac{1}{c}\right\}$.
+  
+    \noindent
+Si $c = 0$ entonces 
+
+ $\quad \left\{x \in X\  \Big{|} \frac{1}{f(x)}<c\right\} = \{x \in X\  |f(x)<0\}$. 
+
+    \noindent
+Si $c < 0$ entonces 
+ 
+  $\quad \left\{x \in X\  \Big{|} \frac{1}{f(x)}<c\right\} = \{x \in X\  |\frac{1}{c}<f(x)<0\}$.
+   
+Como todos los conjuntos anteriores son medibles concluimos que  $\dfrac{1}{f}$ es una funci\'on medible.
+\end{proof}
+
+
+\begin{cor}
+    Si $f,g$ son funciones medibles y $g$ no tiene ceros entonces $\dfrac{f}{g}$ es una funci\'on medible.
+\end{cor}
+
+
+
+
+\begin{defi}
+    Sean $f,g$ funciones medibles, diremos que $f$ y $g$ son equivalentes respecto a la medida $\mu$,  si 
+    $\mu(\{x\in X \ | \  f(x)\neq g(x)\}) = 0$. Tambi\'en se dice que $f$ y $g$ son iguales salvo un conjunto de medida cero o que son iguales c.t.p. (casi en todas partes) y  de denota como  $f\sim g$.
+\end{defi}
+
+
+
+\begin{ob}
+La relaci\'on $\sim$ es una relaci\'on de equivalencia en el espacio de funciones medibles. Las propiedades de reflexividad y
+ simetr\'ia se verifican de manera directa. Por tal motivo s\'olo platicaremos las propiedad transitiva.   
+Si $f,g,h$ son funciones medibles   tales que $f\sim g$ y $g\sim h$. Entonces 
+     $$\mu(\{x\in X \ | \  f(x)\neq g(x)\}) = \mu(\{x\in X \ | \  g(x)\neq h(x)\}) = 0.$$
+     Note que  
+   $$\{x\in X  \ | \  f(x) = g(x)\} \cap \{x\in X  \ | \  g(x) = h(x)\} \subset \{x\in X  \ | \  f(x) = h(x)\}  $$
+y al considerar los complementos tendremos 
+   $$\{x\in X  \ | \  f(x) \neq h(x)\} \subset  \{x\in X  \ | \  f(x) \neq g(x)\} \cup  \{x\in X  \ | \  g(x) \neq  h(x)\} .$$
+As\'i que 
+$$\mu ( \  \{x\in X  \ | \  f(x) \neq h(x)\} \ ) \leq $$
+$$\mu ( \ \{x\in X  \ | \  f(x) \neq g(x)\} \ ) + \mu ( \   \{x\in X  \ | \  g(x) \neq  h(x)\} \ ) =0 .$$
+ 
+     
+\end{ob}
+
+\begin{teo}
+    Sean $f$ y $g$ dos funciones continuas en un intervalo $I\subset\mathbb{R}$  que son equivalentes de acuerdo a la medida de Lebesgue construida en $\mathbb{R}$. Entonces $f\equiv g$ 
+\end{teo}
+\begin{proof}
+    (Contradicci\'on) Si existe $x_0\in I$ tal que $f(x_0)\neq g(x_0)$, de la continuidad de $f$ y $g$ existe un $\delta >0$ tal que $f(x)\neq g(x)$ para toda $x \in I\cap(x_0-\delta, x_0+\delta)$, pero el conjunto $I\cap(x_0-\delta, x_0+\delta)$ tiene medida positiva.  Por lo tanto, $\mu(\{x\in\mathbb R \ \mid \ f(x)\neq g(x)\}) >0$. Lo cual es falso. 
+\end{proof}
+
+
+
+
+\begin{teo}
+    Una funci\'on equivalente a una funci\'on medible es tambi\'en medible. 
+    \end{teo}
+    \begin{proof}
+    Si $f$ es medible y $f\sim g$ entonces
+    $$\{x \in  X \ | \ g(x)<c\} = (\{x \in  X \ | \  f(x)< c\}\cap M^c)\cup (\{x \in  X \ | \  g(x)<c \}\cap M)$$
+    Donde $M = \{x \in  X \ | \  f(x)\neq g(x)\}$ es medible y de medida cero
+\end{proof}
+\begin{defi}
+    Considere $(f_n)$ una sucesi\'on de funciones en $X$ y sea $f$ una funci\'on definida en $X$. Diremos que $(f_n)$ converge c.t.p. a $f$ si 
+ $\lim_{n\to\infty}f_n(x) = f(x)$ 
+    para casi toda $x\in X$, es decir 
+    $$\mu\left(\{x\in X | \lim_{n\to \infty}f_n(x)\neq f(x) \quad o\quad \nexists\lim_{n\to \infty}f_n(x)\}\right) = 0$$
+\end{defi}
+
+
+
+
+
+
+\begin{teo}
+    Si $(f_n)$ es una sucesi\'on de funciones medibles en $X$ que  converge c.t.p. a $f$, definida en $X$, entonces $f$ es medible .
+\end{teo}
+
+\begin{proof}
+
+Defina    $ A := \{x\in X \  \mid  \ \lim_{n\to \infty}f_n(x) = f(x)\} $. Entonces  $\mu(X\setminus A)= 0$. Luego $X\setminus A$ y $A$ son  medibles. Luego $(f_n)_{n\in \mathbb N} $ converge puntualmente a $f$ en $A$ y por el Teorema \ref{convergmed}   
+obtenemos que  $f$ es medible en $A$. 
+  Como $\mu $ es completa tendremos que
+    $f$ es medible en $X\setminus A$, pues todo subconjunto de este es medible y de medida cero. 
+    \\
+    Por tanto $f$ es medible en $(X\setminus A)\cup A = X$.
+\end{proof}
+    
+
+
+
+
+
+\begin{teo}(Egorov). Sea $(f_n)$ una sucesi\'on de funciones medibles que converge c.t.p. a una funci\'on $f$, en un conjunto medible $E$. Entonces para cualquier $\delta>0$ existe un conjunto medible $E_\delta \subset E$ tal que 
+\begin{enumerate}
+    \item $\mu(E_\delta)>\mu(E) - \delta$
+    \item $(f_n)$ converge uniformemente a $f$ en $E_\delta$
+\end{enumerate}
+\end{teo}
+\begin{proof}
+    Note que $f$ es medible  y defina
+    \begin{align*}
+    E_n^m := &  \bigcap_{i\geq n} \left\{x\in E \ \Big{|} \  |f_i(x) - f(x)| < \frac{1}{m}\right\}\\
+    =  & \left\{x\in E \ \Big{|} \ |f_i(x) - f(x)| < \frac{1}{m}, \forall i \geq n\right\}. 
+    \end{align*}
+
+    Note que $E_1^m \subset E_2^m \subset \cdots  E_{n}^m \subset E_{n+1}^m \subset \cdots$ y  defina  $\displaystyle E^m := \bigcup_{n=1}^{\infty} E_n^m$, entonces
+\begin{align*}
+(E^m\setminus E_1^m)\supset (E^m\setminus E_2^m)\supset \cdots  \supset (E^m\setminus E_n^m)\supset (E^m\setminus E_{n+1}^m) \supset \cdots   
+ \end{align*} 
+ y $ \displaystyle 
+ \bigcap_{n=1}^{\infty}(E^m\setminus E_n^m)=\emptyset$.
+
+Por un resultado anterior tendremos que 
+  $$\displaystyle \lim_{n\to \infty} \mu(E^m\setminus E_n^m) = \lim_{n\to \infty} \mu ( \  \bigcap_{n=1}^{\infty}(E^m\setminus E_n^m)  \  ) = 0.$$ 
+
+Por lo tanto,  dado $\delta> 0$ existe   $n_0(m)\in \mathbb N$ tal que 
+$$\displaystyle\mu(E^m\setminus E_{n_0(m)}^m)<\frac{\delta}{2^m}$$ y defina 
+$\displaystyle E_\delta = \bigcap_{m=1}^{\infty} E_{n_0(m)}$. Adem\'as, si  $x\in E_\delta$ entonces 
+    $$|f_i(x) - f(x)|<\frac{1}{m}\quad\forall i \geq n_0(m)$$
+    es decir, $(f_n)$ converge uniformemente a $f$ en $E_\delta$. 
+    \\
+    Adem\'as,   $\mu(E\setminus E^m)= 0$. Ya que  si $x\in E\setminus E^m$ entonces para cada $n\in \mathbb{N}$ existe $i\geq n$ tal que $\displaystyle|f_i(x)-f(x)|>\frac{1}{m}$. Por lo que, si  $x\in E\setminus E^m$ tendremos que  $(f_n(x))$ no converge  a $f(x)$.
+    
+    Por otra parte, 
+   \begin{align*}
+   \displaystyle \mu\left(E\setminus E_{n_0(m)}^m\right) = & \mu\left(   \  ( E \setminus E^m) \cup  (E^m \setminus E_{n_0(m)}^m) \ \right)  \\ 
+      \leq  &  \mu\left(    E \setminus E^m  \right)   +   \mu\left(  E^m \setminus E_{n_0(m)}^m   \right)   \\
+      \leq   & \mu(E^m\setminus E_{n_0(m)}^m)<\frac{\delta}{2^m} 
+      \end{align*} y 
+                \begin{align*}
+                                 \mu(E)- \mu(E_\delta) = &                  \mu(E\setminus E_\delta) \\ 
+             = &  \mu\left(E\setminus\bigcap_{m=1}^{\infty}E_{n_0(m)}^m\right) = \mu\left(\bigcup_{m=1}^{\infty} (E\setminus E_{n_0(m)}^m)\right)\\
+                 \leq & \sum_{m=1}^{\infty}\mu(E\setminus E_{n_0(m)}^m) <  \sum_{m=1}^{\infty}  \frac{\delta}{2^m} =\delta .  
+                 \end{align*} 
+Entonces      $\mu(E_\delta)>\mu(E) - \delta$.
+
+
+\end{proof}
+
+
+
+\begin{defi}Una sucesi\'on de funciones medibles $(f_n)_{n\in \mathbb N}$  converge en medida a una funci\'on   $f$ en $X$ si  para cada $\epsilon> 0$ se cumple 
+$$ \lim_{n\to \infty } \mu( \{  x\in X \ \mid \  |f_n(x)- f(x)| \geq \epsilon \} )=0.$$
+
+\end{defi}
+
+
+
+
+
+\begin{teo}
+ Si una sucesi\'on de funciones medibles $(f_n)_{n\in \mathbb N}$  converge c.t.p.  a $f$ en $X$ entonces  $(f_n)_{n\in \mathbb N}$  converge en medida  a $f$ en $X$.
+ \end{teo}
+\begin{proof}
+Del Teorema \ref{convergmed} sabemos que $f $ es una funci\'on medible. Defina  
+\begin{align*}
+E_{k,\epsilon} := &  \{ x\in X \ \mid \  |f_k(x) - f(x) | \geq \epsilon \} , \quad  
+F_{n, \epsilon} :=   \bigcup_{k\geq n} E_{k,\epsilon} ,\\
+G_\epsilon :=  & \bigcap_{n\in\mathbb N} F_{n,\epsilon}  
+\end{align*}
+Note que todos estos son conjuntos medibles y que  $F_{n+1, \epsilon} \subset F_{n, \epsilon} $    para cada $n\in \mathbb N$ y por un resultado sobre sucesiones decrecientes de conjuntos medibles tendremos que 
+$$\lim_{n\to \infty }\mu( F_{n, \epsilon} ) = \mu (G_{ \epsilon}) . $$
+Por \'ultimo, sea 
+$$A = \{x\in X | \lim_{n\to \infty}f_n(x)\neq f(x) \quad o\quad \nexists\lim_{n\to \infty}f_n(x)\}  $$
+Vemos que si $x\notin A  $ entonces para $\epsilon >0$ existe    $n\in \mathbb N$ tal que para cada  $k\geq n$   tendremos 
+$ |  f_k(x) - f(x)| < \epsilon $; es decir, $x\notin G_{\epsilon} $. Por lo tanto $ G_{\epsilon}\subset A$ y $\mu(  G_{\epsilon}) =0$. Por lo tanto  
+$$\lim_{n\to \infty }\mu( F_{n, \epsilon} ) =0. $$
+ \end{proof}
+
+
+
+\begin{ob}
+El razonamiento rec\'iproco del teorema anterior no es v\'alido. Por ejemplo, para cada $n\in \mathbb N$  e $i\in \{1,\dots, n\}$ considere las funciones
+$$f_ n ^i (x)=\left\{ \begin{array}{ll} 1 , & \textrm{si} \ \ x\in (\frac{i-1}{n} , \frac{i}{n} ] \\ 0 , & \textrm{en otro caso,} \end{array} \right. \quad\forall x\in (0,1]$$
+Note que  si $f(x)=0$ y $0<\epsilon <1$ entonces 
+ $$ \lim_{n\to \infty } \mu( \{  x\in (0,1]  \ \mid \  |f_n^i(x)- f(x)| \geq \epsilon \} )=  \lim_{n\to \infty }  \mu(  \ (\frac{i-1}{n} , \frac{i}{n} ]  \  )= \lim_{n\to \infty } \frac{1}{n} =0.$$
+ Por lo tanto $(f_ n ^i)$ converge en medida a la funci\'on cero. Pero no converge a ninguna funci\'on. Ya que para cualquier  $x\in (0,1]$ y cualquier valor $n\in \mathbb N$ existe $i\in \{ 1,\dots, n  \}$ tal que $x\in  (\frac{i-1}{n} , \frac{i}{n} ] $, es decir, $f_n^i(x)=1$ pero para $j\neq i$  $f_n^j(x)=0$.  
+ 
+ Sin embargo, si $(f_n)_{n\in \mathbb N}$ converge en medida a una funci\'on $f$ se puede plantear un algoritmo para 
+ elegir sub\'indices  $(n_k)_{k\in \mathbb N}$ y obtener  una subsucesi\'on $(f_{n_k})_{k\in \mathbb N}$  que converge c.t.p. a $f$. 
+ 
+ Por \'ultimo, el Teorema de Luzin  muestra que una funci\'on $f:[a,b]\to \mathbb R$ es medible si y s\'olo 
+ para cada $\epsilon >0$ si existe $\varphi_{\epsilon} \in C([a,b], \mathbb R) $ tal que $$\mu ( \  \{x\in [a,b] \ \mid \ f(x)\neq \varphi(x)\} \ )<\epsilon.$$
+ 
+\end{ob}
+
+
+
+
+\begin{teo}
+    Sean $u,v:X\to\mathbb R$ funciones medibles  y sea $\phi:\mathbb R^2\to \mathbb R$ una funci\'on continua. Entonces la funci\'on  $h(x) := \phi(u(x),v(x))$, con $x\in X$,  es medible.
+\end{teo}
+\begin{proof}
+    Como $\phi$ es continua, solo falta mostrar que la funci\'on $f(x) = (u(x),v(x))$ es medible y para ello note que si $R = I_1\times I_2$ es un rect\'angulo en $\mathbb{R}^2$ con $I_1,I_2\subset\mathbb{R}$ intervalos, entonces $f^{-1}(R) = u^{-1}(I_1)\cap v^{-1}(I_2)$ el cual es medible. Asi que si consideramos cualquier uni\'on infinita numerable de rect\'angulos $\displaystyle A = \bigcup_{k\in \mathbb{N}}R_k$ tendremos $\displaystyle f^{-1}(A) = f^{-1}\left(\bigcup_{k\in \mathbb{N}}R_k\right) = \bigcup_{k\in \mathbb{N}}(f^{-1}(R_k))$ que es medible.
+\end{proof}
+
+Recuerde que $\mathbb C$ y $\mathbb R^2$ son espacios normados reales isom\'etricos e isomorfos.
+ 
+\begin{cor} Considere $f:X \to\mathbb C$.
+    \begin{enumerate}
+        \item Si $\Re f, \ \Im f :X\to \mathbb R$ son medibles entonces $f$ es medible en $X$.
+
+        \item Si $f $ es una funci\'on  medible   entonces $\Re f$, $\Im f$ y $|f|$ son funciones medibles. 
+
+        \item Si $f, g: X \to \mathbb C$ son funciones  medibles  entonces $f\underline{+}g$, $fg$ son  medibles en $X$.
+    \end{enumerate}
+\end{cor}
+
+
+ 
+
+\begin{ejer}\ {} 
+\begin{enumerate}
+\item  Considere $f:X \to \mathbb R$.  Si    $| f |$ es medible muestre que no siempre  $f$ es medible. 
+
+Sugerencia: Sea $C\subset [0,1]$ un subconjunto no medible. Defina 
+$$f(x):=\left\{ \begin{array}{cl} 1  , & \ \textrm{si} \  x\in C ,\\   
+ -1  , & \ \textrm{si} \  x\in [0,1]\setminus C. \end{array}   \right. $$  
+Note que  $f^{-1}(\{1\}) =C$ pero $|f(x)|=1$ para cada $x\in [0,1]$.
+
+\item Si $f,g :X\to \mathbb R$ muestre que las funciones $\max\{f,g\}$ y $\min\{f,g\}$ son funciones medibles. 
+
+
+Sugerencia:   
+Note que  
+\begin{align*}
+ \max\{f,g\}(x)   = & \frac{1}{2} \left\{ f (x) + g(x)  + |  f (x) -g(x) | \right\}  ,\\
+  \min\{f,g\}(x)   = & \frac{1}{2} \left\{ f (x) + g(x)  - |  f (x) -g(x) | \right\}  ,\quad \forall x\in X.
+  \end{align*}
+  
+\item Sea $(f_n)_{n\in\mathbb N} $   una sucesi\'on de funciones medibles de $X$ a $\mathbb R$.  Muestre que 
+las funciones $\sup_{n\in \mathbb N}\{f_n\}$ e $\inf_{n\in \mathbb N}\{f_n\}$ son medibles.
+
+Sugerencia:   
+ \begin{align*}
+\{ x\in X \ \mid \  \inf_{n\in \mathbb N}\{f_n\} (x) <c \} = & \bigcup_{n\in \mathbb N}  \{ x\in X \ \mid \   f_n (x) <c \}\\
+   \sup_{n\in \mathbb N}\{f_n\}  = & -  \inf_{n\in \mathbb N}\{-f_n\} . \end{align*}
+
+
+
+\item Sea $(f_n)_{n\in\mathbb N} $   una sucesi\'on de funciones medibles de $X$ a $\mathbb R$.  Muestre que 
+las funciones $\limsup_{n\in \mathbb N}\{f_n\}$ e $\liminf_{n\in \mathbb N}\{f_n\}$ son medibles.
+
+Sugerencia:
+ \begin{align*}
+ \limsup_{n\in \mathbb N}\{f_n\} = & \inf_{n\in \mathbb N} \{ \sup_{ k\geq n}\{f_k\} \} , \\
+   \liminf_{n\in \mathbb N}\{f_n\} = & \sup_{n\in \mathbb N}\{  \inf_{ k\geq n}\{f_k\} \}. 
+   \end{align*}
+    
+
+\item Muestre que la sucesi\'on de funciones medibles  $f_n(x)= x^n$, para cada $x\in [0,1]$, converge c.t.p. a la funci\'on constante $0$.
+
+Sugerencia: Note que $\{ x\in [0,1] \ \mid  \  \lim_{n\to \infty} x^n \neq 0 \}=\{1\}$.
+
+
+\item Para cada $n\in \mathbb N$ defina
+$$
+f_n(x):= \left\{  \begin{array}{ll} 0, & \   \textrm{si} \ \ x\in [\frac{1}{n }, \frac{1}{n-1}] , \\
+  1 , & \   \textrm{en otro caso,}        \end{array}  \right. \textrm{ para cada $x\in [0,1]$.}
+$$ 
+Muestre que $(f_n)$ converge en medida a la funci\'on constante $f(x)=1$ para cada $x\in [0,1]$.
+
+Sugerencia: Dado $0<\epsilon\leq 1$  luego
+\begin{align*}
+\mu( \ \{   x\in [0,1] \ \mid \  |f_n (x)- f(x)| \geq \epsilon \} \   ) = & \mu( \  \{ x\in [\frac{1}{n}, \frac{1}{n-1}]  \ \mid \  1  \geq \epsilon \} \ )  \\
+                                                                                       = & \frac{1}{(n-1)n}      .
+                                                                                \end{align*}
+                                                                                 
+\end{enumerate}
+\end{ejer}
+
+
+
+
+
+
+
+
+
+\subsection{Integraci\'on de Lebesgue}
+
+
+
+
+
+
+\begin{defi}
+    Sea $f$ una funci\'on simple con $(y_n)_{n\in \mathbb{N}}$ sus diferentes valores definida en $X$. Sea $A\subset X$ un conjunto medible, por la integral de Lebesgue de $f$ sobre $A$ (con respecto a $\mu$) entenderemos 
+    $$\int_A f(x)d\mu = \sum_{n\in \mathbb{N}}y_n \mu(A_n),$$
+donde $A_n = \{x\in A | f(x) = y_n\}$ y la serie es absolutamente convergente. 
+\end{defi}
+
+
+\begin{lem}\label{lemasuma}
+    Sea $f$ una funci\'on simple definida en la uni\'on $A = \bigcup B_k$ de conjuntos medibles y ajenos a pares tales que $f$ toma un solo valor $c_k$ en $B_k$. Entonces $f$ es integrable en $A$ si y solo si, la serie
+    $$\sum_{k}c_k\mu(B_k)$$
+    es absolutamente convergente y en este caso 
+
+    $$\int_A f(x)d\mu = \sum_k c_k \mu(B_k)$$
+\end{lem}
+\begin{proof}
+    Si $A_n = \{x\in A \ | \ f(x) = y_n\}$ entonces 
+    $$\displaystyle\sum_n y_n\mu(A_n) = \sum_n y_n\left(\bigcup_{c_k = y_n}B_k \right) = \sum_n y_n \sum_{c_k = y_n} \mu(B_k) = \sum_k c_k\mu(B_k)$$
+    Como $\mu$ es no negativa:
+
+    $$\sum_n |y_n| \mu(A_n) = \sum_n |y_n|\sum_{c_k = y_n}\mu(B_k) = \sum_k |c_k| \mu(B_k)$$
+\end{proof}     
+Para acortar la redacci\'on todos los conjuntos se considerar\'an medibles.
+\begin{teo}
+    Si $f,g$ son funciones simples e integrables en $A$ y $k\in \mathbb{R}$. Entonces $f + g$ y $kf$ son integrables en $A$.  M\'as a\'un, 
+   \begin{align}
+   \int_A( f(x) + g(x))d\mu = &  \int_A f(x)d\mu + \int_A g(x)d\mu  \label{equation1}, \\ 
+     \int_A kf(x)d\mu  = &  k\int_A f(x)d\mu  . \label{equation2}
+\end{align}
+\end{teo}
+ 
+\begin{proof}
+    Sean $F_n = \{x\in A \ | \  f(x) = y_n\}$ y  $G_m = \{x \in A \ | \ g(x) = z_m\}$. Denote 
+     $$B_{nm} = F_n\cap G_m = \{x\in A\ | \ (f + g)(x) = y_n + z_m\}$$
+    y vemos que 
+     $\displaystyle F_n =\bigcup_{m}B_{nm} $, $\displaystyle G_m =\bigcup_{n}B_{nm} $ siendo estos conjuntos ajenos a pares. Luego
+    \begin{align*}
+  \int_A f(x)d\mu + \int_A g(x) d\mu  = & \sum_n y_n\mu(F_n) + \sum_m z_m \mu(G_m) \\
+        &= \sum_n y_n \sum_m \mu(B_{nm}) + \sum_m z_m \sum_n \mu(B_{nm})\\
+        & = \sum_n\sum_m(y_n + z_m)\mu(B_{nm})\\
+        & = \int_A ( f(x)  +  g(x) ) d\mu.
+    \end{align*}
+     Muestre \eqref{equation2}.
+\end{proof}
+
+\begin{teo}
+    Sea $f$ una funci\'on simple  y sea  $A\subset X$  en un conjunto medible. Si   $|f(x)|\leq M$, para toda $x\in A$, entonces $f$ es  integrable y 
+    $$\left| \int_A f(x) d\mu\right|\leq M\mu(A).$$
+\end{teo}
+\begin{proof}
+    Sea $A_n = \{x\in A \ | \ f(x)= y_n\}$. Luego 
+          $$\left|\sum_n y_n\mu(A_n)\right|\leq \sum_n |y_n|\mu(A_n)\leq\sum_n M\mu(A_n) = M \mu(A).$$
+\end{proof}
+
+\begin{defi}
+    Una funci\'on $f$ se dice sumable o integrable en $A$ (con respecto a la medida $\mu$) si existe una sucesi\'on de funciones $(f_n)$ simples e integrables en $A$ que converge uniformemente a $f$ en $A$. La integral de Lebesgue de $f$ en $A$ se define  como 
+    $$\int_A f(x)d\mu = \lim_{n\to \infty}\int_A f_n(x)d\mu.$$
+\end{defi}
+
+
+\begin{ob} {}\
+    \begin{enumerate}
+        \item La desigualdad
+        \begin{align}\label{ecuaCauchy}
+            \left|\int_A f_m(x)d\mu - \int_A f_n(x)d\mu\right| &= \left|\int_A(f_m(x) - f_n(x))d\mu\right|\nonumber \\
+            &\leq \sup\left\{\left|f_m(x)-f_n(x)\right|  \  \mid \  x\in A\right\}\mu(A)
+        \end{align}
+   muestra      que existe $\displaystyle\int_A f(x)d\mu$.
+        \item M\'as a\'un, $\int_A f(x)d\mu$ es independiente de la sucesi\'on de funciones simples e integrables en $A$ que convergen uniformemente a $f$. Pues si $(f_n)$ y $(g_n)$ son tales sucesiones. Entonces    la sucesion $f_1, g_1, f_2,g_2,\cdots$ converge uniformemente a $f$ en $A$. Por \eqref{ecuaCauchy} 
+        existe   el l\'imite de 
+        $$\displaystyle\int_A f_1(x)d\mu, \int_Ag_1(x)d\mu, \int_Af_2(x)d\mu,\cdots$$ y por lo tanto 
+        $$\lim_{n\to\infty}\int_A f_n(x) = \lim_{n\to \infty}\int_A g(x)d\mu.$$
+
+
+        \item Si $f$ es simple e integrable en $A$ entonces la definici\'on anterior coincide con la integral de la funci\'on simple $f$.
+    \end{enumerate}
+\end{ob}
+
+
+\begin{teo}\label{teoremacomparacion}
+    Sean $f,\varphi$ funciones definidas en $A\subset X$ medible. Si   $\varphi$ es no negativa e integrable en $A$ y  $|f(x)|\leq \varphi(x)$ c.t.p. en $A$ entonces $f$ es integrable en $A$ y 
+    $$\left|\int_A f(x)du\right|< \int_A \varphi(x) du.$$
+\end{teo}
+\begin{proof}
+    Sean $f,\varphi$ funciones simples y denote  $E=\{x\in A \ | \ |f(x)| >\varphi(x)\}$. Sean 
+    $$A_n = \{x\in A | f(x) = y_n\} = \{x\in A | \varphi(x) = \rho_n\}.$$
+     Luego
+    \begin{align*}
+        \sum |y_n|\mu(A_n) &= \sum |y_n|[\mu(A_n\cap E) + \mu(A_n \cap E^c)]\\
+                           &= \sum |y_n| \mu(A_n\cap E^c) \leq \sum \rho_n \mu(A_n\cap E^c)\\
+                           &\leq  \sum \rho_n \mu(A_n) .
+    \end{align*}
+    Por lo tanto $f$ es integrable y 
+    $$\left|\int_A f(x)du\right|\leq \sum |y_n|\mu(A_n) \leq  \sum \rho_n \mu(A_n) .$$
+
+
+Por otra parte, si $f,\varphi$ son funciones medibles, considere las sucesiones de fuciones simples $(f_n)$ y $(\varphi_n)$ creadas como 
+  \begin{align*}
+  \displaystyle f_n(x) =   \frac{m}{n} ,  &  \   \textrm{ si }  \displaystyle \frac{m}{n}\leq f(x) < \frac{m+ 1}{n},\\
+  \displaystyle \varphi_n(x) =   \frac{m+1}{n} , &  \   \textrm{ si }  \frac{m}{n}< \varphi (x) \leq  \frac{m+ 1}{n},
+    \end{align*}
+       Entonces $|f_n(x) | \leq \varphi_n(x)$ para cada $n\in \mathbb{N}$ y por el hecho anterior se tiene que 
+       $| \displaystyle\int_A f_n(x) | du \leq \int_A \varphi_n(x) du$ para cada $n\in \mathbb{N}$. El resultado es obtenido haciendo $n$ tender  a $\infty$.
+\end{proof}
+
+
+
+
+\begin{cor}
+    Si $f$ es medible y acotada en $A$ entonces $f$ es integrable en $A$
+\end{cor}
+\begin{proof}
+    Si $|f(x)| < M$ para toda $x\in A$ basta con definir $\varphi(x) = M$ para toda $x\in A$ y aplicar el resultado anterior.
+\end{proof}
+
+
+
+
+
+
+\begin{teo}
+    Sea $A = \bigcup_{n\in J\subset \mathbb N} A_n$ uni\'on a lo sumo numerable de conjuntos medibles. Si $f$ es integrable en $A$, entonces $f$ es integrable en cada $A_n$ y 
+    $$\int_A f(x) du = \sum_{n\in J } \int_{A_n}f(x) du ,$$
+    donde la serie es absolutamente convergente
+\end{teo}
+\begin{proof}
+Verificamos la identidad para funciones simples: Sea  $\varphi$ una funci\'on simple en  $A$ y sean $(\lambda_m)_{m\in I\subset \mathbb N} $ los diferentes valores y sea $B_m=\{ x\in A \  \mid \ f(x)=\lambda_ m\}$ para cada $ m \in I $. Los conjuntos $(A_n\cap B_m)_{(m,n)\in I\times J }$ son ajenos a pares y en 
+$A_n\cap B_m $ la funcion $\varphi$  toma el valor $\lambda_m$ y del Lema \ref{lemasuma}
+ tenemos que  
+ \begin{align*}
+ \int_{A} \varphi (x) d\mu  = & \sum_{(m,n)\in I\times J } \lambda_m \mu(A_n\cap B_m)  \\
+  = &  \sum_{ n \in J }  (   \sum_{ m \in I } \lambda_m \mu(A_n\cap B_m) ) = \sum_{n\in J} \int_{A_n}\varphi(x) du. 
+ \end{align*}
+ 
+ Si $(\varphi_m)_{m\in\mathbb N}$ es una sucesi\'on de funciones simples que convergen unifomemente a $f$ tendremos 
+  \begin{align*}
+  \int_{A} f (x) d\mu   = & \lim_{m\to \infty }
+  \int_{A} \varphi_m (x) d\mu     = \lim_{m\to \infty } \sum_{n\in J} \int_{A_n}\varphi_m(x) du \\
+  =&  \sum_{n\in J}   \lim_{m\to \infty } \int_{A_n}\varphi_m(x) du  = \sum_{n\in J} \int_{A_n} f (x) d\mu  . 
+ \end{align*}
+ 
+  \end{proof}
+
+
+
+
+
+\begin{cor}
+    Si $f$ es integrable en $A$ y $A'\subset A$ es medible, entonces $f$ es integrable en $A'$
+\end{cor}
+\begin{proof}
+Verificamos la identidad para funciones simples: Sea  $\varphi$ una funci\'on simple en  $A$ y sean $(\lambda_m)_{m\in I\subset \mathbb N} $ los diferentes valores y sea $B_m=\{ x\in A \  \mid \ f(x)=\lambda_ m\}$ para cada $ m \in I $. Los conjuntos $(A'\cap B_m)_{m\in I }$ son ajenos a pares y en 
+$A'\cap B_m $ la funcion $\varphi$  toma el valor $\lambda_m$ y del Lema \ref{lemasuma}
+ tenemos que  
+ \begin{align*}
+  \sum_{ m \in I  }| \lambda_m |\mu(A'\cap B_m)  \leq     \sum_{ m \in I }| \lambda_m |\mu( B_m)  . 
+ \end{align*}
+ As\'i que existe $\int_{A'} \varphi(x)d\mu $. 
+ \\
+ 
+Para las dem\'as funciones se deduce de la propiedad anterior.
+
+  \end{proof}
+
+
+
+
+
+\begin{teo}
+    (Desigualdad de Chebyshev) Si $f$ es integrable y no negativa en $A$ y $c>0$ entonces\\
+    $$\mu(\{   x\in A \ \mid \  f(x) \geq c\})\leq \frac{1}{c}\int_A f(x) du.$$
+\end{teo}
+\begin{proof}
+El conjunto $B =  \{x\in A \ \mid \  f(x) \geq c\})$ es medible  y si $g(x)=c$ para cada $x\in B$ tenemos que
+$g\leq f$ en $B$. Por el Teorema \ref{teoremacomparacion} concluimos 
+\begin{align*}
+ c\mu(\{   x\in A \ \mid \  f(x) \geq c\})  =  & c\mu(B)=  \int_B g(x)d\mu  \leq \int_B f (x)d\mu.  
+ \end{align*}
+ Por \'ultimo, como $f $ es no negativa y $B\subset A$ se muestra 
+ $$\int_B f (x)d\mu\leq \int_A f (x)d\mu $$
+ partiendo de funciones simples.
+ 
+\end{proof}
+
+
+
+
+\begin{cor}
+Sea $f$ una funci\'on integrable y no negativa en $A$.   Si $\displaystyle\int_Af(x)du = 0$ entonces $f(x) = 0$ c.t.p. en $A$
+\end{cor}
+\begin{proof}
+    Ejercicio. 
+    Sugerencia: Use la Desigualdad de Chebyshev.
+     \end{proof}
+
+
+
+
+\begin{teo}
+    Si $f$ es integrable en $A$, entonces para cada $\epsilon> 0$ existe $\delta>0$ tal que 
+    $$\left|\int_Ef(x) du\right|<\epsilon$$
+    para todo $E\subset A$ conjunto medible y con medida menor que $\delta$
+\end{teo}
+\begin{proof}
+ Para cada $n\in \mathbb N$ define 
+ $$A_n =\{  x\in A \ \mid \ n-1 \leq  |f(x)|< n \}.$$ 
+Note que $A=\bigcup_{n\in\mathbb N}A_n$ luego 
+$$\int_A |f(x)| d\mu = \sum_{n\in\mathbb N}  \int_{A_n} |f(x)| d\mu <\infty.$$
+Existe $N\in \mathbb N$ tal que $$\sum_{n= N+1 }^{\infty }  \int_{A_n} |f(x)| d\mu<\frac{\epsilon}{2}. $$
+Sea $B_N =\bigcup_{n=1}^N A_n$ y $C_N =\bigcup_{n=N+1}^{\infty} A_n $. 
+
+
+Por \'ultimo, consideremos $0<\delta<\frac{\epsilon}{2N}$. As\'i que para cada $E \subset A$ tal que $\mu(E) <\delta$ tendremos 
+    \begin{align*} 
+    \left|\int_E f(x) du\right|\leq  &  \int_E   \left|  f(x)  \right| du  =  \int_{E\cap B_N}   \left|  f(x)  \right| du + \int_{E\cap C_N }  \left|  f(x)  \right| du \\
+    \leq  &   N \mu (E) + \int_{C_N}   \left|  f(x)  \right| du \\
+    \leq &   N \frac{\epsilon}{2N} +    \sum_{n= N+1 }^{\infty }  \int_{A_n} |f(x)| d\mu< \epsilon.\\
+        \end{align*}
+ \end{proof}
+ 
+ 
+ 
+\begin{teo}
+    (Lebesgue). Si $(f_n)_{n\in \mathbb N}$ es una sucesi\'on de funciones medibles que  converge a $f$ en $A$,  $|f_n(x)| \leq \varphi(x)$ para todo $n\in \mathbb N$ y $\varphi$ es integrable en $A$  entonces $f$ es integrable en $A$ y 
+    $$\lim \int_A f_n(x) du = \int_Af(x)du.$$
+\end{teo}
+\begin{proof}
+    Haciendo $n\to\infty$ de las hip\'otesis se tiene $|f(x)|\leq \varphi(x)$. Del Teorema \ref{teoremacomparacion} sabemos que  $f$ es integrable en $A$.
+    
+    
+
+   Para cada $k\in \mathbb N$ defina  $A_k := \{x\in A | k-1\leq \varphi(x)< k\}$ y $\displaystyle B_m := \bigcup_{k\geq m} A_k$. Los cuales son conjuntos medibles.  
+ Luego    $$\int_A \varphi du = \sum_k \int_{A_k} \varphi du < \infty$$
+Dado $\epsilon>0$ existe $m^*\in \mathbb N$ tal que 
+    $$\int_{B_{m^*}}\varphi du <\frac{\epsilon}{5} $$
+y vemos que   $\varphi(x)<m^*$ para cada $x\in A\setminus B_{m^*}$. 
+    
+    Del  teorema de Egorov existen conjuntos medibles  $C,D$ tales que $A\setminus B_{m^*} = C\cup D$ con $\displaystyle\mu(D)<\frac{\epsilon}{ 5m^*}$ y $\{f_n\}$ converge uniformemente a $f$ en $C$.    Sea $N\in\mathbb N $ tal que $\displaystyle |f_n(x) - f(x)| < \frac{\epsilon}{5\mu(C)}$ para toda $n\geq N$, en $C$. Luego
+    $$\int_A(f_n - f)du = \int_{B_{m^*}}f_ndu - \int_{B_{m^*}}fdu + \int_D f_n du- \int_D f du+ \int_C(f_n - f) du$$
+    Asi que 
+    $$\left|\int_A(f_n - f)du\right|\leq \frac{\epsilon}{5} + \frac{\epsilon}{5} + m^*\mu(D)+m^* \mu(D) + \frac{\epsilon}{5\mu(C)}\mu(C) = \epsilon$$
+\end{proof}
+\begin{teo}
+    (Beppo-Levi). Sea $(f_n)_{n\in \mathbb N}$ es una sucesi\'on de funciones medibles tal que  $f_1\leq f_2\leq \cdots \leq f_n\leq \cdots$ en $A$. Si  $f_n$ es integrable en $A$ y existe $k\in \mathbb R$ tal que 
+    $$\int_A f_n du \leq k \quad \forall n\in \mathbb N$$
+entonces existe $\displaystyle f(x) = \lim_{n\to \infty} f_n(x)$ c.t.p. en $A$ que  es integrable en $A$ y 
+    $$\lim_{n\to\infty} \int_A f_n = \int_A f.$$
+\end{teo}
+\begin{proof}
+    Suponga $f_1\geq 0$ en $A$ o en caso contrario trabaje con $g_n = f_n - f_1$ para cada $n\in \mathbb N$.
+    
+    Defina $\displaystyle\Omega = \left\{x\in A | \lim_{n\to\infty} f_n(x) = \infty\right\}$ y 
+    $\displaystyle\Omega_n^{(r)} = \left\{x\in A |  f_n(x) > r\right\}$ para cada $n,r\in\mathbb N $. \\
+    Se deduce que $\displaystyle\Omega = \bigcap_{r\in\mathbb N} \ \bigcup_{n\in\mathbb N} \Omega_n^{(r)}$ y de la desigualdad de Ch\'ebishev se obtiene  que 
+    $$\mu(\Omega_n^{(r)} )\leq \frac{k}{r} ,\quad \forall n\in \mathbb N.$$
+
+    Note que $\Omega_1^{(r)}\subset\Omega_2^{(r)}\subset\cdots$, por lo que 
+    $$\mu\left(\bigcup_{n\in\mathbb N} \Omega_n^{(r)}\right)\leq \frac{k}{r}$$
+    Adem\'as,
+    $$\Omega \subset \bigcup_{n\in\mathbb N} \Omega_n^{(r)},\quad \forall r\in \mathbb N.$$
+Luego $\mu(\Omega)<k/r$ para cada $r\in \mathbb N $. Por lo tanto, $\mu(\Omega)=0$.
+    Asi que existe\\
+    $\displaystyle f = \lim_{n\to\infty} f_n$ c.t.p. en A.
+
+    Defina $\varphi(x) = r$ si $r - 1 \leq f(x) < r$ para $r = 1, 2 , 3, \cdots$. Luego  $f(x) < \varphi(x)$ para cada  $x\in A$. Usando el Teorema \ref{teoremacomparacion}  basta mostrar que $\varphi$ es integrable. 
+
+    Sea $A_r = \{x\in A | \varphi(x) = r\}$ y sea $\displaystyle B_s = \bigcup_{r = 1}^s A_r$ con $s\in \mathbb N$. Note que 	$ f$ y $f_n$ son acotadas en $B_s$. Luego $\varphi(x) < f(x) + 1$ en $A$, implica
+    \begin{align*}
+        \int_{B_s}\varphi du \leq & \int_{B_s}fdu + \mu(A) = \lim_{n\to \infty}\int_{B_s}f_n du+ \mu(A)\\
+        \leq &k + \mu(A)
+    \end{align*}
+    Como
+    $$\int_{B_s}\varphi du = \sum_{r=1}^s r\mu(A_r)\leq k + \mu(A)$$
+    para cada $s$, se tiene que la serie es convergente, luego $\varphi$ es integrable
+    en  $B_s$ para cada $s\in \mathbb N$. As\'i que  
+    $$\sum_{r=1}^s\int_{A_r}\varphi du  \leq k + \mu(A).$$
+Entonces 
+$$\int_{A}\varphi du = \sum_{r=1}^\infty  \int_{A_r}\varphi du  \leq k + \mu(A).$$
+\end{proof}
+\begin{cor}
+    Si $\varphi_n \geq 0$ en $A$ si 
+    $$\sum_{n=1}^\infty \int_A \varphi_n du <\infty $$
+    Entonces $(\displaystyle \sum_{n=1}^s \varphi_n)_{s\in\mathbb N}$ converge c.t.p. en $A$ y 
+
+    $$\int_A\left(\sum_{n = 1}^{\infty}\varphi_ndu\right) = \sum_{n=1}^\infty \int_A \varphi_n du$$
+\end{cor}
+\begin{proof}
+Ejercicio.
+
+ Sugerencia: Considere $f_n = \sum_{k = 1}^{n}\varphi_k$ para cada $n\in \mathbb N$ y emplee el teorema anterior.
+\end{proof}
+
+
+
+\begin{teo}
+    (Fatou). Sea $(f_n)_{n\in\mathbb N} $ una sucesi\'on de funciones medibles no negativas que converge c.t.p. a $f$ en $A$ y 
+    $$\int_A f_n du \leq k$$
+    Entonces $f$ es integrable en $A$ y 
+    $$\int_A  f du \leq k$$
+\end{teo}
+\begin{proof}
+    Para $n\in \mathbb N$ defina $\varphi_n(x) := \inf \{f_k(x) | k\geq n\}$ para cada  $x\in A$. Como 
+    $$\{x\in A | \varphi_n(x)< c\} = \bigcup_{k\geq n }\{x\in A| f_k(x)< c\}$$
+    Se deduce que $\varphi_n$ es medible para cada $n\in \mathbb N$. Adem\'as, $0\leq \varphi_n\leq f_n$
+    en $A$. Por lo tanto 
+
+    $$\int_A \varphi_n du \leq \int_A f_n du \leq k$$
+    Note que $\varphi_1\leq \varphi_2\leq \cdots\varphi_n \leq \cdots$ en $A$ y 
+    $\displaystyle\lim_{n\to \infty}\varphi_n(x) = f(x)$. Del teorema anterior tenemos  se tiene que    $f$ es integrable en $A$ y 
+   $$ \int_A f=\lim_{n\to\infty} \int_A \varphi_n \leq k.$$
+    
+
+\end{proof}
+
+
+\chapter{Espacio de funciones $L_p$ } 
+
+
+
+ 
+ 
+\section{Sobre espacios reales lineales} 
+
+Sea $\mathbb K= \mathbb R,\mathbb C$
+Dado $V$  un espacio $\mathbb K$-lineal es un conjunto equipado con dos operaciones suma $+ V\times V \to V$ y la multiplicaci\'on por escalar real $*: \mathbb K \times V\to V$ tales que
+
+1.- $(f+g)+h= f+ (g+h)$ para cada $f,g,h\in V$
+
+2.- $f+g= g+f$ para cada $f,g\ in V$
+
+3.- Existe $0\in V$ tal que $0+f=f$ para cada $f\in V$
+
+4.- Para cada $f\in V$ existe $-f\in V$ tal que $f+(-f) =0$.
+
+5.- $r*(f+g)= r*f+r*g$ para cada $r\in \mathbb K$ y cada $f,g\in V$.
+
+6.- $(r+s)* f = r*f+s*f$ para cada $r,s\in \mathbb K$ y cada $f\in V$.
+
+7.- $r*(s* f) =(rs)* f  $ para cada $r,s\in \mathbb K$ y cada $f\in V$.
+
+8.- $1*f= f$ para cada $f\in V$.
+
+Para simplificar denotamos $r*f$ como $rf$.
+
+
+
+Recuerde que  $\{ f_1,\dots, f_n \} \subset V$  es un conjunto l.i. (linealmente independientes) si y s\'olo si 
+$$ a_1 f_1+ \cdots a_n f_n = 0
+ , \ \   \textrm{con} \  \  a_1, \dots, a_n \in \mathbb K ,$$  implica $a_1= \cdots= a_n =0$. En caso contrario, $\{ f_1,\dots, f_n \}$  se dice l.d. (linealmente  dependientes)
+
+
+
+Sabemos que $W\subset V$ es un subespacio de $V$ si $W $ dotado con las operaciones heredadas de $V$ es un espacio $\mathbb R$-lineal. Claramente se verifica que la intersecci\'on de cualquier familia  de subespacios vectoriales de  $V$  es tambi\'en un subespacio vectorial de $V$ 
+
+
+
+
+
+Una familia $F$ de elementos de $V$ es  l.i. si cualquier subconjunto finito de $F$ es l.i.
+
+
+Se puede mostrar que toda familia de elementos de $V$ contiene una subfamilia maximal, no necesariamente \'unica, de elementos l.i. y todas estas subfamilias tienen la misma potencia. En general $V$    contiene  subfamilias maximales  de elementos l.i. llamadas  bases algebraicas de $V$ y la potencia de cada una de estas es llamada dimensi\'on algebraica de  $V$. 
+
+ 
+
+Recordemos lo siguiente: 
+
+\begin{enumerate}
+
+\item  Dado cualquier subconjunto $U$ de $V$ sabemos que existe el menor subespacio de $V$ que contiene a $U$ y es denotado por $[U]$. Se verifica que 
+$$ [U] =\{  a_1 f_1+ \cdots+ a_n f_n\ \mid \  a_1,\dots ,a_n \in \mathbb K, \  f_1,\dots, f_n\in U\}$$
+y es llamado subespacio vectorial generado por $U$. Toda subfamilia maximal l.i. de $U$ es una base algebraica de $U$.  
+
+\item Si $W_1,W_2$ son subespacios de $V$. Diremos que $W$ es suma  $W_1$ y $ W_2$ ($W= W_1+ W_2$)  sii todo elemento $f$ de $W$ se representa como $f= f_1 + f_2$ con $f_k\in W_k $  para $k=1,2$.  Diremos que $W$ es suma direta de $W_1$ y $W_2$ ($W=W_1\oplus W_2$), si $W= W_1+ W_2$ y la representaci\'on de cada elemento de $W$ en t\'erminos de la suma de lementos de $W_1$ y $W_2$  es \'unica. Se verifica que  $W=W_1\oplus W_2$ sii $W=W_1+W_2$ y $\emptyset = W_1\cap W_2$.  
+
+\item Un espacio $\mathbb K$-lineal $V$ con una  topolog\'ia $\tau$ se dice topol\'ogicamente compatible con la estructura de espacio $\mathbb K$-lineal de $V$ si las operaciones suma y multiplicaci\'on   por escalar de $V$  son funciones continuas con respecto  a $\tau$.
+
+
+
+
+
+\item Dado un espacio $\mathbb K $-lineal $V$. Una funci\'on $N:V\to \mathbb R$ es llamada norma si 
+\begin{align*}
+N(f)\geq & 0,\quad  \forall f\in V,\\
+N(f) = & 0 \quad \Leftrightarrow \quad f=0, \\
+N(\lambda f) = &|\lambda |N(f), \quad \forall \lambda \in \mathbb K, \quad \forall f\in V,\\
+N(f+g)\leq & N(f) + N(g), \quad\forall f,g\in V.
+\end{align*}
+Un espacio    $\mathbb K$-lineal $V$ equipado con una norma $N$ se llamar\'a espacio normado  y denotado como $(V,N)$.
+
+ 
+
+\item En un conjunto no vac\'io  $V$ una funci\'on $\rho:V\to \mathbb R$ es llamada m\'etrica  si 
+\begin{align*}
+\rho(f,g)\geq & 0,\quad  \forall f,g\in V,\\
+\rho(f,g) = & 0 \quad \Leftrightarrow \quad f=g, \\
+ \rho(f,g)\leq &\rho(f,h) + \rho(h,g) , \quad \forall f,g,h\in V.
+\end{align*}
+El conjunto  $V$ equipado con una m\'etrica  $\rho$ se llamar\'a espacio m\'etrico y denotado como   $(V,\rho)$.
+
+Si $(V,N)$ es  espacio normado  entonces se verifica de manera directa que  
+$\rho(f,g) =N(f-g)$ para cada $f,g\in V$ es una m\'etrica en $V$. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+\item Un espacio   m\'etrico   $(V,\rho)$ se dice completo si toda sucesi\'on $(f_n)_{n\in \mathbb N}$ que cumple la condici\'on de Cauchy:  
+$$\forall \epsilon<0, \ \  \exists N\in\mathbb N \ \ \pitchfork \rho(f_n, f_m) <\epsilon, \quad \forall n,m\geq N$$
+es una sucesi\\'on convergente.
+
+
+
+
+
+
+ 
+\item Un espacio $\mathbb K$-lineal normado es  llamado  $\mathbb K$ espacio  se Banach  si 
+ el espacio  m\'etrico $(V, \rho) $ es completo, donde  
+ $\rho(f,g) =N(f-g)$ para cada $f,g\in V$.
+ 
+ 
+ \item 	  Dado un espacio $\mathbb C$-lineal $V$. Una funci\'on $\langle \cdot,  \cdot\rangle: V\times V \to \mathbb C$ es llamado producto escalar o interno si 
+	\begin{enumerate}
+	\item $\langle f,g\rangle =\overline{\langle g,f\rangle }$,
+	\item $\langle f,g+h \rangle = {\langle f,g \rangle } + \langle f,h \rangle$,
+	\item $\langle \lambda  f,g\rangle =\lambda {\langle f,g\rangle }$,
+	\item $\langle  f, f \rangle \geq 0$. Por otra parte,  $\langle  f, f \rangle = 0$ sii  $f=0$ ,
+	\end{enumerate}
+	para cada $f,g,h\in V$ y para cada $\lambda\in \mathbb C$.
+ La pareja $(V, \langle \cdot,  \cdot\rangle)$ suele llamarse espacio euclideano complejo y se verifica que  la funci\'on 
+$$\|f\|= \sqrt{\langle  f,f \rangle}, \quad \forall f\in V,$$
+es una norma.  
+
+En el caso de  un espacio $\mathbb R$-lineal $V$. Una funci\'on $\langle \cdot,  \cdot\rangle: V\times V \to \mathbb R$ es llamado producto escalar o interno  si cumple las propiedades anteriores salvo la primera que se convierte en 
+$$\langle    f,g\rangle = \langle g,f\rangle , \forall f,g\in V  $$
+y  la pareja $(V, \langle \cdot,  \cdot\rangle)$ se llama espacio euclideano real.
+ Tambi\'en $$\|f\|= \sqrt{\langle  f,f \rangle}, \quad \forall f\in V,$$
+es una norma.  
+
+
+
+(Desigualdad de Cauchy-Buniakowsky)  Dados $,x y $ en un espacio euclideano $(V, \langle \cdot,  \cdot\rangle)$ se cumple que 
+$$  | \langle f, g \rangle \leq \|f \| \|g \|  $$
+La igualdad se cumple si y s\'olo si   existe $\lambda \in \mathbb C$ tal que $f=\lambda g$ o $f=0$.
+ 
+
+\item  Un espacio euclideano (complejo o real) es una espacio $\mathbb K$-lineal con producto interno:  $(V, \langle \cdot,  \cdot\rangle)$. Ejemplos:
+
+\begin{enumerate}
+\item El espacio $\mathbb C-$lineal  $\mathbb C^n$ dotado con  $$\langle (z_1, \dots, z_n ), (w_1, \dots, w_n) \rangle= \sum_{k=1}^n  z_k \overline{w_k}, \quad \forall  (z_1, \dots, z_n ), (w_1, \dots, w_n) \in \mathbb C^n$$
+es un espacio euclideano. 
+\item    El espacio $\mathbb C-$lineal  formado por sucesiones de n\'umeros complejos $(z_n)_{n\geq 0}$ tales que  
+ $\sum_{k=0}^{\infty } \|z_k\|^2<  \infty $   dotado con  $$\langle (  z_n ), (  w_n) \rangle= \sum_{k=0}^\infty  z_k\overline{  w_k} $$
+es un espacio euclideano. 
+\item  Dados $a< b$,  el espacio $\mathbb C-$lineal $ C([a,b], \mathbb C)$ dotado con  
+$$\langle f,g \rangle= \int_a^b f(t) \overline{ g(t)} dt  , \quad \forall  f,g \in C([a,b], \mathbb C).$$
+es un espacio euclideano. 
+\end{enumerate}
+
+
+ En un espacio euclideano  $(V, \langle \cdot,  \cdot\rangle)$ la norma    $ \|f\| = \sqrt{  \langle f, f \rangle  } $, para cada  $f\in V $ cumple la identidad del paralelogramo: 
+$$   \| f+g\|^2 + \| f-g\|^2 = 2\| f \|^2 + 2 \| g\|^2 ,\quad \forall f,g \in V .   $$
+
+
+
+  
+Un espacio normado no euclideano no necesariamente satisface la propiedad del paralelogramo. Por ejemplo en
+ $(C([0, 2\pi], \mathbb C), \|\cdot\|_{\infty}) $   la norma no se cumple la identidad.  Basta con elegir $f(t)= \cos^2(t)$ y 
+ $g(t)= \sin^2(t)$. 
+ 
+
+Sea   $(V, \langle \cdot,  \cdot\rangle)$ espacio euclideano. Una familia $F=\{ x_{\alpha}\}_{\alpha\in I}$ de elementos de $V$ se dir\'a   ortogonal  si   $  \alpha \neq  \beta$ entonces 
+$\langle x_{\alpha},x_{\beta}\rangle=0$. Adem\'as,   $F $ se dir\'a   ortogonormal  
+$\langle x_{\alpha},x_{\beta}\rangle=\delta_{\alpha,\beta}$, donde $\delta_{\alpha,\beta}$ es la delta de Kronecker, i.e., 
+$$\delta_{\alpha,\beta}  = \left\{ \begin{array}{ll} 1, & \alpha =\beta, \\  0, & \alpha \neq \beta.    \end{array}\right. $$
+Una familia de elementos  $G=\{ y_{\alpha}\}_{\alpha\in I}$ de elementos de $V$ se dir\'a   biortogonal  a la familia $F$ si   $  \alpha \neq  \beta$ implica  
+$\langle x_{\alpha},y_{\beta}\rangle=0$.  Adm\'as, si $\langle x_{\alpha},y_{\beta}\rangle=\delta_{\alpha,  \beta}$
+ entonces  $G $ se dir\'a   biortonormal   a   $F$. 
+
+
+
+
+\item Un espacio $\mathbb K$-lineal con producto interno que es de Banach con la norma inducida por el producto interno es llamado $\mathbb K$ espacio de Hilbert.
+
+ 
+
+
+ 
+
+
+
+\end{enumerate}
+
+\newcommand{\abs}[1]{\ensuremath{\left|#1\right|}}
+
+%Notas: cambié unas cosas de orden para que no haya tanto problema
+
+\section{Sobre los espacios $L_p$ y $\ell_p$}
+    \begin{enumerate}
+    \item Considere una funci\'on medible $f:[0,1]\to \mathbb C$ y $p>1$ diremos que $f\in L_p(0,1)$, si
+    \begin{equation*}
+        \int_{0}^1 |f(t)|^p dt < \infty
+    \end{equation*}
+    Si $f,g\in L_p(0,1)$ se verifica directamente que 
+    \begin{equation*}
+        |f(t) + g(t)|^p \leq 2^p (|f(t) |^p + | g(t)|^p) , \quad \forall  t\in [0,1]
+    \end{equation*}
+
+    (\textcolor{red}{Mostrar})
+
+    \begin{proof}
+        Sean $f,g\in L_p(0,1)$, se tiene que
+        \begin{equation*}
+            \begin{split}
+                \abs{f(t)+g(t)}&\leq(\abs{f(t)}+\abs{g(t)})\\
+                &\leq2\max\left\{\abs{f(t)},\abs{g(t)}\right\}\\
+            \end{split}
+        \end{equation*}
+        como la funci\'on $x\mapsto x^p$ es creciente en $[0,\infty)$, se sigue que:
+        \begin{equation*}
+            \begin{split}
+                \abs{f(t)+g(t)}^p&\leq 2^p\max\left\{\abs{f(t)}^p,\abs{g(t)}^p\right\}\\
+                &\leq 2^p\max\left\{\abs{f(t)}^p,\abs{g(t)}^p\right\}+2^p\min\left\{\abs{f(t)}^p,\abs{g(t)}^p\right\}\\
+                &=2^p\left(\abs{f(t)}^p+\abs{g(t)}^p\right),\quad\forall t\in[0,1] \\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+    Luego $f+g\in L_p(0,1)$.
+
+    \begin{lem}
+        Sean $a,b\in\mathbb{R}_{\geq0}$ y $\alpha,\beta>0$ tales que $\alpha+\beta=1$, entonces:
+        \begin{equation*}
+            ab\leq \alpha a^{1/\alpha}+\beta b^{1/\beta}
+        \end{equation*}
+    \end{lem}
+
+    \begin{proof}
+        Considere la funci\'on $x\mapsto \ln(x)$. Esta funci\'on es c\'oncava, por lo cual:
+        \begin{equation*}
+            \ln(\alpha a^{\frac{1}{\alpha}}+\beta b^{1/\beta})\geq\ln(a)+\ln(b)=\ln(ab)
+        \end{equation*}
+        y, como esta funci\'on es creciente se sigue que:
+        \begin{equation*}
+            ab\leq\alpha a^{\frac{1}{\alpha}}+\beta b^{1/\beta}
+        \end{equation*}
+    \end{proof}
+
+    Si  $f \in L_p(0,1)$ y $g\in L_q(0,1)$ con $p,q>0$ y $\frac{1}{p}+ \frac{1}{q} =1$  ($p$ y $q$ se llaman n\'umeros conjugados) se muestra la desigualdad de  H\"older: 
+    \begin{equation*}
+        \int_0^1 |f(t) g(t)| dt \leq   \left(  \int_0^1 |f(t)|^p dt\right) ^{\frac{1}{p}}\left(  \int_0^1 |g(t)|^q dt\right) ^{\frac{1}{q}}
+    \end{equation*}
+
+    (\textcolor{red}{Mostrar})
+
+    \begin{proof}
+        Si $f=0$ c.t.p. o $g=0$ c.t.p. la desigualdad se tiene de forma inmediata. Supongamos que no sucede tal cosa, entonces se tiene que:
+        \begin{equation*}
+            \left(\int_0^1|f(t)|^p dt\right) ^{\frac{1}{p}}>0\quad\textup{y}\quad\left(\int_0^1 |g(t)|^q dt\right) ^{\frac{1}{q}}>0
+        \end{equation*}
+        Si $t\in[0,1]$ se tiene usando el Lema anterior tomando:
+        \begin{equation*}
+            a(t)=\frac{\abs{f(t)}}{\left(\int_0^1|f(t)|^p dt\right) ^{\frac{1}{p}}}\quad\textup{y}\quad b(t)=\frac{\abs{g(t)}}{\left(\int_0^1 |g(t)|^q dt\right) ^{\frac{1}{q}}}
+        \end{equation*}
+        y, $\alpha=\frac{1}{p}$ y $\beta=\frac{1}{q}$, que:
+        \begin{equation*}
+            a(t)b(t)\leq\alpha a(t)^{\frac{1}{\alpha}}+\beta b(t)^{\frac{1}{\beta}},\quad\forall t\in[0,1]
+        \end{equation*}
+        es decir:
+        \begin{equation*}
+            \frac{\abs{f(t)g(t)}}{\left(\int_0^1|f(t)|^p dt\right) ^{\frac{1}{p}}\left(\int_0^1 |g(t)|^q dt\right) ^{\frac{1}{q}}}\leq\frac{1}{p}\cdot\frac{\abs{f(t)}^{\frac{1}{p}}}{\int_0^1|f(t)|^p dt}+\frac{1}{1}\cdot\frac{\abs{g(t)}^{\frac{1}{q}}}{\int_0^1|g(t)|^q dt}
+        \end{equation*}
+        para todo $t\in[0,1]$. Integrando ambos lados de 0 a 1 se sigue que:
+        \begin{equation*}
+            \begin{split}
+                \frac{\int_{0}^{1}\abs{f(t)g(t)dt}}{\left(\int_0^1|f(t)|^p dt\right) ^{\frac{1}{p}}\left(\int_0^1 |g(t)|^q dt\right) ^{\frac{1}{q}}}&\leq\frac{1}{p}\cdot\frac{\int_0^1|f(t)|^p dt}{\int_0^1|f(t)|^p dt}+\frac{1}{q}\cdot\frac{\int_0^1|g(t)|^q dt}{\int_0^1|g(t)|^q dt}\\
+                \Rightarrow \frac{\int_{0}^{1}\abs{f(t)g(t)dt}}{\left(\int_0^1|f(t)|^p dt\right) ^{\frac{1}{p}}\left(\int_0^1 |g(t)|^q dt\right) ^{\frac{1}{q}}}&\leq\frac{1}{p}+\frac{1}{q}=1\\
+                \Rightarrow\int_{0}^{1}\abs{f(t)g(t)dt}&\leq\left(\int_0^1|f(t)|^p dt\right) ^{\frac{1}{p}}\left(\int_0^1 |g(t)|^q dt\right) ^{\frac{1}{q}}\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    Si $p=q=2$ la desigualdad anterior es llamada desigualdad de Schwarz en $L_2(0,1)$.
+
+    Se tiene la desigualdad de Minkowski para $f,g\in L_p(0,1)$: 
+    \begin{equation*}
+        \left(\int_0^1 |f(t) + g(t)|^p dt \right)^{\frac{1}{p}}\leq   \left(  \int_0^1 |f(t)|^p dt\right) ^{\frac{1}{p}} + \left(  \int_0^1 |g(t)|^p dt\right) ^{\frac{1}{p}}
+    \end{equation*}
+
+    (\textcolor{red}{Mostrar})
+
+    \begin{proof}
+        El resultado se tiene de forma inmediata si $\int_{0}^{1}\abs{f(t)+g(t)}^pdt=0$. Suponga lo contrario, entonces $\left(\int_{0}^{1}\abs{f(t)+g(t)}^pdt \right)^{\frac{1}{p}}>0$. 
+        
+        Se tiene entonces que:
+        \begin{equation*}
+            \begin{split}
+                \int_{0}^{1}\abs{f(t)+g(t)}^pdt&\leq\int_{0}^{1}\abs{f(t)+g(t)}^{p-1}(\abs{f(t)}+\abs{g(t)})dt\\
+                &\leq\int_{0}^{1}\abs{f(t)+g(t)}^{p-1}\abs{f(t)}dt+\int_{0}^{1}\abs{f(t)+g(t)}^{p-1}\abs{g(t)}dt\\
+            \end{split}
+        \end{equation*}
+
+        Como $p>1$ entonces existe $q>1$ tal que $\frac{1}{p}+\frac{1}{q}=1$, en particular $pq-q=p$. Se tiene as\'i que $\abs{f+g}^{p-1}\in L_{q}(0,1)$ pues:
+        \begin{equation*}
+            \begin{split}
+                (\abs{f+g}^{p-1})^q&=\abs{f+g}^{pq-q}\\
+                &=\abs{f+g}^p\\
+                \Rightarrow \int_{0}^{1}(\abs{f(t)+g(t)}^{p-1})^q&=\int_{0}^{1}\abs{f(t)+g(t)}^p
+            \end{split}
+        \end{equation*}
+        Luego, por la desigualdad de H\"older:
+        \begin{equation*}
+            \begin{split}
+                \int_{0}^{1}\abs{f(t)+g(t)}^{p-1}\abs{f(t)}dt&\leq\left(\int_{0}^{1}(\abs{f(t)+g(t)}^{p-1})^qdt\right)^{\frac{1}{q}}\left(\int_{0}^{1}\abs{f(t)}^p dt\right)^{\frac{1}{p}}\\
+                &=\left(\int_{0}^{1}\abs{f(t)+g(t)}^pdt \right)^{\frac{1}{q}}\left(\int_{0}^{1}\abs{f(t)}^p dt\right)^{\frac{1}{p}}\\
+            \end{split}
+        \end{equation*}
+        y, de forma an\'aloga:
+        \begin{equation*}
+            \begin{split}
+                \int_{0}^{1}\abs{f(t)+g(t)}^{p-1}\abs{g(t)}dt&\leq\left(\int_{0}^{1}\abs{f(t)+g(t)}^pdt \right)^{\frac{1}{q}}\left(\int_{0}^{1}\abs{g(t)}^p dt\right)^{\frac{1}{p}}\\
+            \end{split}
+        \end{equation*}
+        Por tanto:
+        \begin{equation*}
+            \begin{split}
+                \int_{0}^{1}\abs{f(t)+g(t)}^pdt&\\
+                \leq\left(\int_{0}^{1}\abs{f(t)+g(t)}^pdt \right)^{\frac{1}{q}}&\left(\left(\int_{0}^{1}\abs{f(t)}^p dt\right)^{\frac{1}{p}}+\left(\int_{0}^{1}\abs{g(t)}^p dt\right)^{\frac{1}{p}}\right)\\
+                \Rightarrow \left(\int_{0}^{1}\abs{f(t)+g(t)}^pdt\right)^{1-\frac{1}{q}}&=\left(\int_{0}^{1}\abs{f(t)}^p dt\right)^{\frac{1}{p}}+\left(\int_{0}^{1}\abs{g(t)}^p dt\right)^{\frac{1}{p}}\\
+                \Rightarrow \left(\int_{0}^{1}\abs{f(t)+g(t)}^pdt\right)^{\frac{1}{p}}&=\left(\int_{0}^{1}\abs{f(t)}^p dt\right)^{\frac{1}{p}}+\left(\int_{0}^{1}\abs{g(t)}^p dt\right)^{\frac{1}{p}}\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    Con lo anterior vemos que $ L_p(0,1)$ es un espacio lineal complejo y que definiendo la relaci\'on de equivalencia $f \sim g$ sii $f=g$ c.t.p. para cada $f,g \in   L_p(0,1)$ tendremos que el mapeo 
+    \begin{equation*}
+        [f]\mapsto \left(  \int_0^1 |f(t)|^p dt\right) ^{\frac{1}{p}}=N_p(f)
+    \end{equation*}
+    est\'a bien definido en $  L_p(0,1) \diagup \sim $ y m\'as a\'un que es una norma. Luego
+    \begin{equation*}
+        \rho([f],[g])=  \left(  \int_0^1 |f(t)- g(t)|^p dt\right) ^{\frac{1}{p}}
+    \end{equation*}
+    es una m\'etrica en  $ L_p(0,1) \diagup  \sim$
+
+    \begin{lem}
+        Sea $p>1$ y $\varepsilon>0$. Si $f\in L_p(0,1)$ es tal que $(\int_{0}^{1}\abs{f(t)}^pdt)^{\frac{1}{p}}<\varepsilon^{\frac{2}{p}}$, entonces el conjunto:
+        \begin{equation*}
+            A=\left\{x\in[0,1]\Big|\abs{f(x)}>\varepsilon^{\frac{1}{p}} \right\}
+        \end{equation*}
+        tiene medida menor o igual a $\varepsilon$.
+    \end{lem}
+
+    \begin{proof}
+        Veamos que:
+        \begin{equation*}
+            \varepsilon^2>\int_{0}^{1}\abs{f(t)}^pdt\geq\int_{A}\abs{f(t)}^pdt\geq\varepsilon\cdot \mu(A)
+        \end{equation*}
+        por ende, $\mu(A)<\varepsilon$.
+    \end{proof}
+
+    \begin{lem}
+        Sea $p>1$. Si $\left(f_n \right)_{ n=1}^\infty$ es una sucesi\'on de Cauchy en $L_p(0,1)$, entonces existen una funci\'on creciente $\alpha$ de $\mathbb{N}$ en $\mathbb{N}$ y una funci\'on $f$ de $[0,1]$ en $\mathbb{C}$ tal que $\left(f_{\alpha(n)} \right)_{ n=1}^\infty$ converge c.t.p. a $f$.
+    \end{lem}
+
+    \begin{proof}
+        Como la sucesi\'on $\left(f_{n} \right)_{ n=1}^\infty$ es de Cauchy en $L_p(0,1)$, entonces existe una funci\'on creciente $\alpha$ de $\mathbb{N}$ en $\mathbb{N}$ tal que:
+        \begin{equation*}
+            N_p(f_{\alpha(n+1)}-f_{\alpha(n)})<\left(\frac{1}{2^n}\right)^{\frac{2}{p}},\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        Sea:
+        \begin{equation*}
+            A_n=\left\{t\in[0,1]\Big|\abs{f_{\alpha(n+1)}(t)-f_{\alpha(n)}(t)}\geq\left(\frac{1}{2^n}\right)^{\frac{1}{p}} \right\},\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        por el Lema anterior se tiene que $\mu(A_n)<\frac{1}{2^n}$ para todo $n\in\mathbb{N}$. Entonces:
+        \begin{equation*}
+            \abs{f_{\alpha(n+1)}(t)-f_{\alpha(n)}(t)}<\left(\frac{1}{2^n}\right)^{\frac{1}{p}},\quad\forall t\in[0,1]\setminus A_n,\forall n\in\mathbb{N}
+        \end{equation*}
+        Tomemos $M_n=\bigcup_{k=n}^\infty A_k$, entonces $\mu(M_n)\leq\frac{1}{2^{n-1}}$ para todo $n\in\mathbb{N}$, luego:
+        \begin{equation*}
+            \abs{f_{\alpha(n+1)}(t)-f_{\alpha(n)}(t)}<\left(\frac{1}{2^n}\right)^{\frac{1}{p}},\quad\forall t\in[0,1]\setminus M_k,\forall n\geq k
+        \end{equation*}
+        para todo $k\in\mathbb{N}$. Como:
+        \begin{equation*}
+            \sum_{ n=1}^\infty\left(\frac{1}{2^n}\right)^{\frac{1}{p}}<\infty
+        \end{equation*}
+        se sigue por el Criterio $M$ de Weierestrass que la serie:
+        \begin{equation*}
+            \sum_{ n=1}^\infty\abs{f_{\alpha(n+1)}-f_{\alpha(n)}}
+        \end{equation*}
+        converge puntualmente (pues converge uniformemente) en $[0,1]\setminus M_k$. Como $\mathbb{C}$ es de Banach entonces la serie:
+        \begin{equation*}
+            \sum_{ n=1}^\infty f_{\alpha(n+1)}-f_{\alpha(n)}
+        \end{equation*}
+        converge puntualmente en $[0,1]\setminus M_k$. Luego, como:
+        \begin{equation*}
+            f_{\alpha(n)}=f_{\alpha(1)}+\sum_{i=1}^{n-1}[f_{\alpha( i+1)}-f_{\alpha(i)}],\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        converge puntualmente en $[0,1]\setminus M_k$ a una funci\'on $g_k$ de $[0,1]\setminus M_k$ en $\mathbb{C}$. Como:
+        \begin{equation*}
+            M_{ k+1}\subseteq M_k,\quad\forall k\in\mathbb{N}
+        \end{equation*}
+        y $\mu(M_k)<\frac{1}{2^{ k-1}}$ para todo $k\in\mathbb{N}$, entonces existe una funci\'on $f$ de $[0,1]$ en $\mathbb{C}$ tal que:
+        \begin{equation*}
+            f\Big|_{[0,1]\setminus M_k}=g_k,\quad\forall k\in\mathbb{N}
+        \end{equation*}
+        as\i que $\left(f_{\alpha(n)} \right)_{ n=1}^\infty$ converge a $f$ c.t.p.
+    \end{proof}
+
+    Se tiene que el espacio $L_p(0,1)$ es completo.
+
+    (\textcolor{red}{Mostrar})
+
+    \begin{proof}
+        Sea $\left(f_{n} \right)_{ n=1}^\infty$ una sucesi\'on de Cauchy en $L_p(0,1)$. Por el Lema anterior existe una funci\'on creciente $\alpha$ de $\mathbb{N}$ en $\mathbb{N}$. y  una funci\'on $f$ de $[0,1]$ en $\mathbb{C}$ tal que $\left(f_{\alpha(n)} \right)_{ n=1}^\infty$ converge a $f$ c.t.p. Sea $\varepsilon>0$, entonces existe $N\in\mathbb{N}$ tal que:
+        \begin{equation*}
+            m,n\geq N\Rightarrow \int_{0}^{1}\abs{f_n-f_m}^p<\varepsilon^{p}
+        \end{equation*}
+        como $\alpha(m)\geq m$ para todo $m\in\mathbb{N}$, entonces:
+        \begin{equation*}
+            m,n\geq N\Rightarrow \int_{0}^{1}\abs{f_n-f_{\alpha(m)}}^p<\varepsilon^{p}
+        \end{equation*}
+        adem\'as, se tiene para $n\geq N$ fijo:
+        \begin{equation*}
+            \lim_{ m\rightarrow\infty}\abs{f_n-f_{\alpha(m)}}^p=\abs{f_n-f}^p\textup{ c.t.p. en }[0,1]
+        \end{equation*}
+        por el Lema de Fatou se sigue que:
+        \begin{equation*}
+            \int_{0}^{1}\abs{f_n-f}^p\leq\liminf_{ m\rightarrow\infty}\int_{0}^{1}\abs{f_n-f_{\alpha(m)}}^p\leq\varepsilon^p
+        \end{equation*}
+        Por tanto:
+        \begin{equation*}
+            \left(\int_{0}^{1}\abs{f_n-f}^p\right)^{\frac{1}{p}}\leq\varepsilon
+        \end{equation*}
+        as\'i que $n\geq N$ implica que $N_p(f_n-f)\leq\varepsilon$. Por tanto, la sucesi\'on de Cauchy converge a $f$ en $L_p(0,1)$ y se tiene que $f_1-f\in L_p(0,1)$, como $f_1\in L_p(0,1)$ se sigue que $f_1\in L_p(0,1)$. Por tanto, $L_p(0,1)$ es de Banach.
+    \end{proof}
+
+    \item Por $\ell_p$ entendemos el espacio  de sucesiones de n\'umeros complejos $(z_n)_{n\in \mathbb N}$ tal que 
+    \begin{equation*}
+        \sum_{n=1}^{ \infty} |z_n|^{p} < \infty.
+    \end{equation*}
+
+    Si $(z_n)_{n\in \mathbb N} \in \ell_p$ y $(w_n)_{n\in \mathbb N} \in \ell_q$ con $p,q>0$ y $\frac{1}{p}+ \frac{1}{q} =1$  se muestra la desigualdad de  H\"older: 
+    \begin{equation*}
+        \sum_{n=1}^{ \infty} |z_n w_n|  \leq   \left( 
+        \sum_{n=1}^{ \infty} |z_n|^{p}
+        \right) ^{\frac{1}{p}}\left(  \sum_{n=1}^{ \infty} |w_n|^{q}  \right) ^{\frac{1}{q}}
+    \end{equation*}
+    Si $p=q=2$ la desigualdad anterior es llamada desigualdad de Schwarz en $\ell_2$.
+
+    (\textcolor{red}{Mostrar})
+
+    \begin{proof}
+        Se tienen tres casos:
+        \begin{enumerate}
+            \item Alguna de las dos sucesiones $(z_n)_{n\in \mathbb N}$ y $(w_n)_{n\in \mathbb N}$ es cero, en cuyo caso se tiene la desigualdad de forma inmediata.
+            \item Las sucesiones $(z_n)_{n\in \mathbb N}$ y $(w_n)_{n\in \mathbb N}$ son ambas no cero tales que:
+            \begin{equation*}
+                \left( \sum_{n=1}^{ \infty} |z_n|^{p}\right) ^{\frac{1}{p}}=\left(\sum_{n=1}^{\infty} |w_n|^{q}\right)^{\frac{1}{q}}=1
+            \end{equation*}
+            Por el Lema (4.1) para todo $n\in\mathbb{N}$ tomando $a(n)=\abs{z_n}$, $b(n)=\abs{w_n}$, $\alpha=\frac{1}{p}$ y $\beta=\frac{1}{q}$ se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    \abs{z_nw_n}&\leq\frac{1}{p}\abs{z_n}^{p}+\frac{1}{q}\abs{w_n}^{q},\quad\forall n\in\mathbb{N}\\
+                    \Rightarrow\sum_{ n=1}^\infty\abs{z_nw_n}&\leq\frac{1}{p}\sum_{ n=1}^\infty\abs{z_n}^p+\frac{1}{q}\sum_{ n=1}^\infty\abs{w_n}^q\\
+                    &=\frac{1}{p}+\frac{1}{q}\\
+                    &=1\\
+                    &=\left( \sum_{n=1}^{ \infty} |z_n|^{p}\right) ^{\frac{1}{p}}\left(\sum_{n=1}^{\infty} |w_n|^{q}\right)^{\frac{1}{q}}\\
+                \end{split}
+            \end{equation*}
+            \item Las sucesiones $(z_n)_{n\in\mathbb{N}},(w_n)_{n\in\mathbb{N}}$ son ambas no cero. Tomemos las sucesiones:
+            \begin{equation*}
+                (x_n)_{n\in\mathbb{N}}=\left(\frac{z_n}{\left(\sum_{ k=1}^\infty\abs{z_k}^p\right)^{\frac{1}{p}}} \right)_{ n\in\mathbb{N}}\quad\textup{y}\quad(y_n)_{n\in\mathbb{N}}=\left(\frac{w_n}{\left(\sum_{ k=1}^\infty\abs{w_k}^q\right)^{\frac{1}{q}}} \right)_{ n\in\mathbb{N}}
+            \end{equation*}
+            Entonces se tiene de forma inmediata que:
+            \begin{equation*}
+                \sum_{ n=1}^\infty\abs{x_n}^p=\sum_{ n=1}^\infty\abs{y_n}^p=1
+            \end{equation*}
+            por tanto $(x_n)_{n\in\mathbb{N}}\in\ell_p$ y $(y_n)_{n\in\mathbb{N}}\in\ell_q$, de la parte anterior se tiene que:
+            \begin{equation*}
+                \begin{split}
+                    \sum_{ n=1}^\infty\abs{x_ny_n}&\leq1\\
+                    \Rightarrow\sum_{ n=1}^\infty\frac{\abs{z_nw_n}}{\left(\sum_{ k=1}^\infty\abs{z_k}^p\right)^{\frac{1}{p}}\left(\sum_{ k=1}^\infty\abs{w_k}^q\right)^{\frac{1}{q}}}&\leq1\\
+                    \Rightarrow \sum_{ n=1}^\infty\abs{z_nw_n}&\leq\left(\sum_{ k=1}^\infty\abs{z_k}^p\right)^{\frac{1}{p}}\left(\sum_{ k=1}^\infty\abs{w_k}^q\right)^{\frac{1}{q}}\\
+                \end{split}
+            \end{equation*}
+            lo cual prueba el resultado.
+        \end{enumerate}
+    \end{proof}
+
+    La desigualdad de Minkowski para $p>1$:
+    \begin{equation*}
+        \left(\sum_{n=1}^{ \infty} |z_n+w_n|^{p} \right)^{\frac{1}{p}}\leq   \left( \sum_{n=1}^{ \infty} |z_n|^{p}\right) ^{\frac{1}{p}} + \left(\sum_{n=1}^{ \infty} |w_n|^{p}\right) ^{\frac{1}{p}}
+    \end{equation*}
+
+    (\textcolor{red}{Mostrar})
+
+    \begin{proof}
+        Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \abs{z_n+w_n}&\leq\left(\abs{z_n}+\abs{w_n}\right)^p\\
+                &\leq\left(2\max\left\{\abs{z_n},\abs{w_n} \right\} \right)^p\\
+                &\leq2^p\max\left\{\abs{z_n}^p,\abs{w_n}^p \right\}+2^p\min\left\{\abs{z_n}^p,\abs{w_n}^p \right\}\\
+                &=2^p\left(\abs{z_n}^p+\abs{w_n}^p \right),\quad\forall n\in\mathbb{N} \\
+            \end{split}
+        \end{equation*}
+        por tanto:
+        \begin{equation*}
+            \sum_{ n=1}^\infty\abs{z_n+w_n}^p\leq 2^p\left(\sum_{ n=1}^\infty\abs{z_n}^p+\sum_{ n=1}^\infty\abs{w_n}^p \right)<\infty
+        \end{equation*}
+        as\'i que $(z_n+w_n)_{ n\in\mathbb{N}}\in\ell_p$. La desigualdad se tiene de forma inmediata si la sucesi\'on $(z_n+w_n)_{ n\in\mathbb{N}}$ es cero, así que supongamos que no lo es. Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \abs{z_n+w_n}^p&\leq\abs{z_n+w_n}^{p-1}\left(\abs{z_n}+\abs{w_n}\right)\\
+                &=\abs{z_n+w_n}^{p-1}\abs{z_n}+\abs{z_n+w_n}^{p-1}\abs{w_n},\quad\forall n\in\mathbb{N}\\
+                \Rightarrow\sum_{ n=1}^\infty\abs{z_n+w_n}^p&\leq \sum_{ n=1}^\infty\abs{z_n+w_n}^{p-1}\abs{z_n}+\sum_{ n=1}^\infty\abs{z_n+w_n}^{p-1}\abs{w_n}
+            \end{split}
+        \end{equation*}
+        Como $(\abs{z_n+w_n}^{ p-1})_{ n=1}^\infty\in\ell_{\frac{p}{p-1}}$ y:
+        \begin{equation*}
+            \frac{1}{p}+\frac{1}{\frac{p}{p-1}}=1
+        \end{equation*}
+        se sigue por H\"older que:
+        \begin{equation*}
+            \begin{split}
+                \sum_{ n=1}^\infty\abs{z_n+w_n}^{p-1}\abs{z_n}&\leq\left(\sum_{ n=1}^\infty\left(\abs{z_n+w_n}^{p-1}\right)^{\frac{p}{ p-1}} \right)^{\frac{p-1}{p}}\left(\sum_{ n=1}^\infty\abs{z_n}^p \right)^{\frac{1}{p}}\\
+                &=\left(\sum_{ n=1}^\infty\abs{z_n+w_n}^{p} \right)^{1-\frac{1}{p}}\left(\sum_{ n=1}^\infty\abs{z_n}^p \right)^{\frac{1}{p}}\\
+            \end{split}
+        \end{equation*}
+        de forma an\'aloga:
+        \begin{equation*}
+            \sum_{ n=1}^\infty\abs{z_n+w_n}^{p-1}\abs{w_n}\leq\left(\sum_{ n=1}^\infty\abs{z_n+w_n}^{p} \right)^{1-\frac{1}{p}}\left(\sum_{ n=1}^\infty\abs{w_n}^p \right)^{\frac{1}{p}}
+        \end{equation*}
+        Por tanto:
+        \begin{equation*}
+            \sum_{ n=1}^\infty\abs{z_n+w_n}^p\leq\left(\sum_{ n=1}^\infty\abs{z_n+w_n}^{p} \right)^{1-\frac{1}{p}}\left(\left(\sum_{ n=1}^\infty\abs{z_n}^p \right)^{\frac{1}{p}}+\left(\sum_{ n=1}^\infty\abs{w_n}^p \right)^{\frac{1}{p}} \right)
+        \end{equation*}
+        lo cual implica por ser $(z_n+w_n)_{ n\in\mathbb{N}}$ no cero que:
+        \begin{equation*}
+            \left(\sum_{ n=1}^\infty\abs{z_n+w_n}^{p} \right)^{\frac{1}{p}}\leq\left(\sum_{ n=1}^\infty\abs{z_n}^p \right)^{\frac{1}{p}}+\left(\sum_{ n=1}^\infty\abs{w_n}^p \right)^{\frac{1}{p}}
+        \end{equation*}
+    \end{proof}
+
+    Con lo anterior vemos que $ \ell_p$ es un espacio lineal complejo y que 
+    \begin{equation*}
+        z=(z_n)_{n\in \mathbb N}\mapsto 
+    \left( 
+    \sum_{n=1}^{ \infty} |z_n|^{p}
+    \right) ^{\frac{1}{p}}=N_p(z)$$ es una norma en $ \ell_p$. Luego 
+    $$ \rho((z_n),(w_n))=  \left(    
+    \sum_{n=1}^{ \infty} |z_n-w_n|^{p}
+    \right) ^{\frac{1}{p}}
+    \end{equation*}
+    
+    es una m\'etrica en $\ell_p$. Se tiene que $\ell_p$ es completo
+    (\textcolor{red}{Mostrar})
+
+    \begin{proof}
+        Sea $\left(\zeta_n \right)_{ n\in\mathbb{N}}=\left(\left(z_k^n \right)_{ k\in\mathbb{N}} \right)_{ n\in\mathbb{N}}$ una sucesi\'on de Cauchy en $\ell_p$, es decir que para todo $\varepsilon>0$ existe $N\in\mathbb{N}$ tal que:
+        \begin{equation*}
+            n,m\geq N\Rightarrow N_p(\zeta_n-\zeta_m)=\left(\sum_{ k=1}^\infty\abs{z_k^n-z_k^m}^p\right)^{\frac{1}{p}} <\varepsilon
+        \end{equation*}
+        Se tiene que la sucesi\'on en $\mathbb{C}$, $\left(z_k^n \right)_{ n\in\mathbb{N}}$ es de Cauchy, para todo $k\in\mathbb{N}$, pues por lo anterior:
+        \begin{equation*}
+            n,m\geq N\Rightarrow\abs{z_k^n-z_k^m}<\varepsilon,\quad\forall k\in\mathbb{N}
+        \end{equation*}
+        Por ser $\mathbb{C}$ completo, para todo $k\in\mathbb{N}$ existe $w_k\in\mathbb{C}$ tal que:
+        \begin{equation*}
+            \lim_{n\rightarrow\infty}z_k^n=w_k
+        \end{equation*}
+        Afirmamos que $\left( y_k\right)_{ k\in\mathbb{N}}$ est\'a en $\ell_p$ y que $\left(\zeta_n \right)_{ n\in\mathbb{N}}$ converge a esta en $\ell_p$. Sea $\varepsilon>0$, entonces existe $N\in\mathbb{N}$ tal que:
+        \begin{equation*}
+            n,m\geq N\Rightarrow\sum_{ k=1}^\infty\abs{z_k^n-z_k^m}^p<\varepsilon^p
+        \end{equation*}
+        En particular para $M\in\mathbb{N}$ fijo:
+        \begin{equation*}
+            n,m\geq N\Rightarrow\sum_{ k=1}^M\abs{z_k^n-z_k^m}^p<\varepsilon^p
+        \end{equation*}
+        fijando $n$ y tomando l\'imite cuando $m\rightarrow\infty$ se obtiene que:
+        \begin{equation*}
+            n\geq N\Rightarrow\sum_{ k=1}^M\abs{z_k^n-w_k}^p\leq\varepsilon^p
+        \end{equation*}
+        y, como el $M\in\mathbb{N}$ fue arbitrario, se sigue que al ser la serie no decreciente:
+        \begin{equation*}
+            n\geq N\Rightarrow\sum_{ k=1}^\infty\abs{z_k^n-w_k}^p\leq\varepsilon^p
+        \end{equation*}
+        as\'i que:
+        \begin{equation*}
+            n\geq N\Rightarrow N_p(\zeta_n-\left(w_k\right)_{ k\in\mathbb{N}})\leq\varepsilon
+        \end{equation*}
+        con lo que la sucesi\'on $\left(\zeta_n\right)_{ n\in\mathbb{N}}$ converge a $\left(w_k\right)_{ k\in\mathbb{N}}$ en $\ell_p$, adem\'as $\left(w_k\right)_{ k\in\mathbb{N}}\in\ell_p$ ya que en particular:
+        \begin{equation*}
+            N_p(\zeta_n-\left(w_k\right)_{ k\in\mathbb{N}})<\varepsilon
+        \end{equation*}
+        se tiene que $\zeta_n\in\ell_p$ y por lo anterior $\zeta_n-\left(w_k\right)_{ k\in\mathbb{N}}\in\ell_p$, por lo cual $\left(w_k\right)_{ k\in\mathbb{N}}\in\ell_p$.
+
+        Se sigue que $\ell_p$ es de Banach.
+    \end{proof}
+
+\end{enumerate}
+ 
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+\begin{ejem}  {} \ 
+\begin{enumerate}
+\item Considere el espacio de Bergman  en el disco unitario: $\textrm{Hol}(\mathbb D) \cap L_2(\mathbb D, \mathbb C)$.
+  
+Note que si $n,m\in \mathbb N\cup \{0\}$ con $n< m$  tendremos que 
+\begin{align*}
+ \langle z^n, z^m \rangle= & \int_{ \mathbb B(0,1)} w^n \overline{ (w^m)} dw=  \int_{\partial \mathbb B(0,1)}
+  \|w\|^{2n} (\overline{w})^{m-n} dw \\
+= &   \int_{0}^{2\pi} \int_{0}^1  
+  \|r e^{i\theta   }\|^{2n} (\overline{r e^{i\theta   }})^{m-n} rdr d\theta   =  \int_{0}^{2\pi}    \int_{0}^1  
+   r^{ m+ n +1 }   e^{- i\theta(m-n)   }   dr d\theta  \\
+= & \frac{1  }{ m+ n +2  }  \int_{0}^{2\pi}    
+     e^{- i\theta(m-n)   }    d\theta  =0 \\
+\end{align*} 
+As\'i que la familia $(z^n)_{n\geq 0}$ es ortogonal y que la familia $ ( \dfrac{  \sqrt{  n +1}   }{  \sqrt{\pi}  }    z^n )_{n\geq 0}  $ es una familia ortonormal.  Ya que  
+\begin{align*}
+\|z^n \| = \sqrt{  \langle z^n, z^n \rangle} =  \sqrt{ \frac{ 1 }{2n +2  }  2\pi} =  \frac{   \sqrt{\pi} }{  \sqrt{  n +1}  }  ,
+\end{align*} 
+ para cada $n\geq 0$.
+
+\item     Si $(x_n)_{n\in  I \subset \mathbb N}$ es una base del espacio euclideano $(V, \langle \cdot,  \cdot\rangle)$
+y la familia $(y_n)_{n\in  I}$ es biortonormal a la base $(x_n)_{n\in  I}$ entonces podemos calcular de manera directa los coeficientes en que cada elemento de $V$ se escribe en t\'erminos de la base como se muestra:
+\begin{align*}
+ \langle x, y_k \rangle=  \langle \sum_{n\in I} c_n x_n , y_k \rangle =  c_k \langle   x_k , y_k \rangle = c_k. 
+\end{align*} 
+para cada $k\in I$. Por lo tanto,  $$x= \sum_{n\in I} c_n x_n  =   \sum_{n\in I}  \langle x, y_n \rangle x_n   .$$
+
+\item Empleando biortogonalidad,  una  parte del concepto comentado en 2, en el espacio de Bergman comentado en 1. Tendremos que todo elemento del espacio  de Bergman se escribe como 
+$$f(z) = \sum_{n=0}^{\infty } a_n z^n ,$$
+Entonces  $\langle f, z^k \rangle = a_k \langle z^k , z^k \rangle = a_k  \dfrac{ \pi }{ k +1  }   $ para cada $k \geq 0$. As\'i que $a_k = \dfrac{ k +1  }{ \pi }   \langle f, z^k \rangle  $ para cada $k$.  Continuando con este an\'alisis tendremos
+$$f(z) = \sum_{n=0}^{\infty } \dfrac{ n +1  }{ \pi }   \langle f, z^n \rangle   z^n = \sum_{n=0}^{\infty }   \langle f,  
+(\dfrac{ \sqrt{n +1}  }{\sqrt {\pi }   } z^n) \rangle   (\dfrac{ \sqrt{n +1}  }{\sqrt {\pi }   } z^n ),$$
+que era de esperarse ya que $(\dfrac{ \sqrt{n +1}  }{\sqrt {\pi }   } z^n )_{n\geq 0}$ es una familia ortonormal, o equivalentemente esta familia es biortonormal de s\'i misma.
+\end{enumerate}
+\end{ejem}
+
+\end{document}
