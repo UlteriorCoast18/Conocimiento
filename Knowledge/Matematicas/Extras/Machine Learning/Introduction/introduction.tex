@@ -263,6 +263,8 @@
 
     \chapter*{Información y Recursos}
 
+    Página del libro (incluye los datasets) de donde estoy sacando algo de contenido: \href{http://www-stat.stanford.edu/ElemStatLearn}{The Elements of Statistical Learning}.
+
     \section{Libros}
 
     \textit{Escrito por ChatGPT:} Si buscas un enfoque teórico y práctico para aprender Machine Learning, estos libros son altamente recomendados:
@@ -316,6 +318,52 @@
         Explicaciones claras de teoría estadística aplicada a ML.
     \end{itemize}
     
+    Lo siguiente es sacado de ChatGPT (habla de estadística y de donde encontar cosas sobre teoría de la desición y cosas así):
+
+    \section{Referencias en Teoría de la Decisión}
+
+    Si quieres profundizar en \textbf{Teoría de la Decisión}, aquí tienes algunos libros y recursos avanzados que se alinean con una formación matemática rigurosa.
+
+    \subsection{Libros Clásicos y Rigurosos}
+    
+    \begin{itemize}
+        \item \textbf{Statistical Decision Theory and Bayesian Analysis} – James O. Berger\\
+        Un enfoque matemático sólido de la teoría de la decisión estadística, con énfasis en métodos bayesianos.
+        
+        \item \textbf{Theory of Point Estimation} – Erich L. Lehmann y George Casella\\
+        Cubre teoría de la estimación bajo diferentes criterios de optimalidad y conecta con la teoría de la decisión.
+        
+        \item \textbf{Decision Theory: Principles and Approaches} – Giovanni Parmigiani y Lurdes Inoue\\
+        Presenta teoría de la decisión clásica y bayesiana con aplicaciones en estadística y machine learning.
+        
+        \item \textbf{Introduction to Statistical Decision Theory} – John Pratt, Howard Raiffa, Robert Schlaifer\\
+        Un libro clásico que introduce la teoría de la decisión en un contexto estadístico.
+        
+        \item \textbf{Foundations of Decision Theory} – Itzhak Gilboa\\
+        Más filosófico y matemático, ideal si te interesan los fundamentos axiomáticos de la teoría de la decisión.
+    \end{itemize}
+
+    \subsection{Libros con Aplicaciones en Machine Learning y Data Science}
+    \begin{itemize}
+        \item \textbf{Bayesian Decision Theory and Machine Learning} – David Barber (Parte del libro "Bayesian Reasoning and Machine Learning")\\
+        Relaciona la teoría de la decisión con aprendizaje automático.
+        
+        \item \textbf{Pattern Recognition and Machine Learning} – Christopher M. Bishop\\
+        Enfatiza la teoría de la decisión bayesiana en clasificación y reconocimiento de patrones.
+    \end{itemize}
+
+    \subsection{Temas Clave en Teoría de la Decisión}
+    Si ya tienes nociones de probabilidad y optimización, te pueden interesar:
+    \begin{itemize}
+        \item \textbf{Decisiones Bayesianas} (Bayesian Decision Theory)
+        \item \textbf{Teoría de Juegos y Decisión} (Game Theory \& Decision Making)
+        \item \textbf{Riesgo y utilidad} (Risk \& Utility Theory)
+        \item \textbf{Reglas de decisión óptimas} (Optimal Decision Rules)
+        \item \textbf{Criterios de Minimax y Bayes}  
+    \end{itemize}
+
+    Si buscas algo más aplicado o enfocado en optimización estadística, hay muchos otros recursos disponibles.
+
     \chapter{Introducción}
 
     El objetivo de estas notas es el de dar un panorama general sobre el Machine Learning.
@@ -361,9 +409,82 @@
 
     \begin{sol}
         Para cada uno de los 4601 mensajes, podemos asignar dos estados de salida:
-        \begin{equation}
-            \textup{}
-        \end{equation}
+        \begin{equation*}
+            \textup{\texttt{email}}\quad\textup{ó}\quad\textup{\texttt{spam}}
+        \end{equation*}
+        Este es un tipo de problema dentro del área de aprendizaje supervisado y es llamado \textbf{problema de clasificación}.
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=0.4]{images/table_1.png}\\
+                Figura \thefigcount. Tabla donde se muestran las probabilidades de que cierta palabra aparezca en un correo del tipo \texttt{spam} y \texttt{email}.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        Nuestro método de aprendizaje decide cuáles de características usar y como: Por ejemplo puede usar una regla como la siguiente:
+
+        \begin{lstlisting}
+if george < 0.6 & you > 1.5 then spam, else email. 
+        \end{lstlisting}
+
+        o también:
+
+        \begin{lstlisting}
+if 0.2*you - 0.3*george > 0 then spam, else email.
+        \end{lstlisting}
+
+        En este problema no todos los errores son iguales, queremos evitar filtrar email que realmente corresponda a \texttt{email}. Una forma de atacar este problema se discute más adelante.
     \end{sol}
 
+    \begin{obs}
+        No existe un lenguaje de programación usado en este texto a menos que se indique lo contrario. Si no parece que es algún lenguaje conocido, como el caso del ejercicio anterior, asumiremos que este es pseudocódigo.
+    \end{obs}
+
+    \begin{excer}[\textbf{Reconocimiento de Números en Manuscrita}]
+        Se tienen miles de cartas escritas a mano con códigos postales en las mismas. Cada carta es escaneada y almacenada. De cada una de las cartas se extrae el área que contiene el código postal y se almacena. El objetivo es determinar el número que está escrito en el código postal.
+    \end{excer}
+
+    \begin{sol}
+        Lo que se hace es primero, separar cada uno de los números en la imagen para después, colocar ese número en un grid de $16\times 16$ bits en escala de grises con cada uno de éstos variando de intensidad desde 0 hasta 255. Se pretende con esto determinar cada uno de los números en cada una de las imágenes.
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=0.3]{images/image_1.png}\\
+                Figura \thefigcount. Diversos números sacados de cartas en códigos postales.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        Este es un problema de clasificación cuyo error debe mantenerse bajo para poder dar un resultado lo mejor posible.
+    \end{sol}
+
+    Otro problema inteeresante es el de \textit{regresión}, en el que básicamente se da un input de información varia y se requiere dar un output de cierto parámetro que puede o no ser deducido a partir de esos valores introducidos inicialmente.
+
+    %TODO: Poner un problema de aprendizaje no supervisado
+
+    \chapter{Vista Panorámica del Aprendizaje Supervisado}
+
+    \section{Introducción}
+
+    El objetivo es que dada entrada de información demos una salida de la misma que podemos medir (ya que en aprendizaje supervisado eso es lo que se hace). Pueden ser muchas entradas de información de diferentes tipos y varias salidas igualmente de diferentes tipos.
+
+    \begin{mydef}[\textbf{Terminología Machine Learning}]
+        Los \textit{inputs} son a menudo llamados \textbf{predictors} o \textbf{independent variables} (\textbf{variables independientes} en español), los \textit{outputs} son llamados \textbf{responeses} o \textbf{variables dependientes} (\textbf{respuestas} en español). 
+    \end{mydef}
+
+    Se adoptará mucha terminología matemática vista en cursos de álgebra lineal y temas un poco más avanzados, por lo que no se ahondara mucho en ello. Sin embargo, es relevante mencionar el tipo de información con el que puede que estemos trabajando a menudo:
+
+    %TODO: Poner tipos de input y output
+
+    \section{Mínimos Cuadrados y Vecinos Cercanos}
+
 \end{document}
+
+\begin{minipage}{\textwidth}
+    \begin{center}
+        %\includegraphics[scale=0.5]{direccion_imagen}\\
+        Figura \thefigcount. Caption.
+        \stepcounter{figcount}
+    \end{center}
+\end{minipage}
