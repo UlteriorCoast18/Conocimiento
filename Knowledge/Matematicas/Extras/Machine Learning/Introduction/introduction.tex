@@ -1,0 +1,369 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\usepackage{listings}
+
+%Gestión de Hipervínculos
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan
+}
+
+%Gestión de Código de Programación
+
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA} % additional keywords
+\definecolor{listing-keyword-3}{HTML}{9137CB} % additional keywords
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language         = C++,
+    alsolanguage     = scala,
+    numbers          = left,
+    xleftmargin      = 2.7em,
+    framexleftmargin = 2.5em,
+    backgroundcolor  = \color{gray!15},
+    basicstyle       = \color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines       = true,
+    frameshape       = {RYR}{Y}{Y}{RYR},
+    rulecolor        = \color{black},
+    tabsize          = 2,
+    numberstyle      = \color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip        = 1.0em,
+    belowskip        = 0.1em,
+    abovecaptionskip = 0em,
+    belowcaptionskip = 1.0em,
+    keywordstyle     = {\color{listing-keyword}\bfseries},
+    keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive        = true,
+    identifierstyle  = \color{listing-identifier},
+    commentstyle     = \color{listing-comment},
+    stringstyle      = \color{listing-string},
+    showstringspaces = false,
+    label            = lst:bar,
+    captionpos       = b,
+}
+
+\lstset{style = myStyle}
+
+%Estilo del capítulo y sección
+
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{%
+  {\parindent \z@ \raggedright
+    \reset@font
+    \hrule
+    \vspace*{10\p@}%
+    \par
+    \center \LARGE \scshape \@chapapp{} \huge \thechapter
+    \vspace*{10\p@}%
+    \par\nobreak
+    \vspace*{10\p@}%
+    \par
+    \vspace*{1\p@}%
+    \hrule
+    %\vskip 40\p@
+    \vspace*{60\p@}
+    \Huge #1\par\nobreak
+    \vskip 50\p@
+  }}
+
+\def\section#1{%
+  \par\bigskip\bigskip
+  \hrule\par\nobreak\noindent
+  \refstepcounter{section}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \reset@font
+  { \large \scshape
+    \strut\S \thesection \quad
+    #1}% 
+    \hrule   
+  \par
+  \medskip
+}
+
+\def\subsection#1{%
+  \par\bigskip\bigskip
+  \hrule\par\nobreak\noindent
+  \refstepcounter{subsection}%
+  \addcontentsline{toc}{section}{#1}%
+  \reset@font
+  { \normalsize \scshape
+    \strut\S \thesubsection \quad
+    #1}% 
+    \hrule   
+  \par
+  \medskip
+}
+
+%Gestión marca de agua
+
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcounter{figcount}
+\setcounter{figcount}{1}
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Título o Nombre de las notas}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+    
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    %\setcounter{chapter}{3} %En esta parte lo que se hace es cambiar la enumeración del capítulo%
+
+    \chapter*{Información y Recursos}
+
+    \section{Libros}
+
+    \textit{Escrito por ChatGPT:} Si buscas un enfoque teórico y práctico para aprender Machine Learning, estos libros son altamente recomendados:
+    
+    \begin{itemize}
+        \item \textbf{"Pattern Recognition and Machine Learning"} - Christopher M. Bishop  
+        Matemáticamente riguroso, ideal para alguien con formación en matemáticas.
+        
+        \item \textbf{"The Elements of Statistical Learning"} - Hastie, Tibshirani y Friedman  
+        Recomendado para obtener fundamentos teóricos sólidos.
+        
+        \item \textbf{"Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow"} - Aurélien Géron  
+        Enfoque práctico con Python, excelente para comenzar con código.
+    \end{itemize}
+    
+    \section{Lenguajes de Programación}
+    
+    \begin{itemize}
+        \item \textbf{Python} (Principal)  
+        - Librerías clave: NumPy, Pandas, Scikit-Learn, TensorFlow, PyTorch.
+        
+        \item \textbf{R}  
+        - Útil para estadística avanzada y visualización de datos.
+    \end{itemize}
+    
+    \section{Páginas y Cursos en Línea}
+    
+    \subsection{Cursos en Coursera}
+    
+    \begin{itemize}
+        \item Curso de Andrew Ng: \href{https://www.coursera.org/learn/machine-learning}{Machine Learning}  
+        Matemáticas y conceptos clave explicados de manera clara.
+        
+        \item \href{https://www.coursera.org/specializations/deep-learning}{Deep Learning Specialization}  
+        Curso avanzado enfocado en redes neuronales.
+    \end{itemize}
+    
+    \subsection{Otros Cursos y Recursos}
+    
+    \begin{itemize}
+        \item \href{https://course.fast.ai/}{Fast.ai: Practical Deep Learning for Coders}  
+        Curso gratuito con enfoque práctico en código.
+        
+        \item \href{https://www.kaggle.com/learn}{Kaggle Learn}  
+        Mini cursos interactivos y competencias con datos reales.
+        
+        \item \href{http://cs229.stanford.edu/}{CS229 de Stanford}  
+        Notas de clase de Andrew Ng en Stanford.
+        
+        \item \textbf{StatQuest (YouTube)}  
+        Explicaciones claras de teoría estadística aplicada a ML.
+    \end{itemize}
+    
+    \chapter{Introducción}
+
+    El objetivo de estas notas es el de dar un panorama general sobre el Machine Learning.
+    
+    %TODO: Poner para que sirve el machine learning
+
+    \section{Aprendizaje Estadístico}
+
+    \begin{mydef}[\textbf{Aprendizaje Estadístico}]
+        El \textbf{aprendizaje estadístico} consiste en 
+    \end{mydef}
+
+    El aprendizaje estadístico juega un rol clave en muchas áreas de la ciencia, finanzas y la industria. Tales ejemplos pueden verse en los siguientes problemas:
+
+    \begin{itemize}
+        \item Predecir cuando un paciente hospitalizado debido a un ataque cardiaco tendrá un segundo ataque cardiaco. Esta predicción debe basarse en la deomgrafía del paciente.
+        \item Predecir precios de acciones a 6 meses a futuro.
+        \item Identificar números escritos a mano en códigos postales.
+        \item Identificar factores de riesgo para cáncer de próstata, basado en variables clínicas y demográficas.
+    \end{itemize}
+
+    \begin{mydef}[\textbf{Demografía}]
+        La \textbf{demografía} es la ciencia que estudia las poblaciones humanas, su dimensión, estructura, evolución y características generales, así como los procesos que determinan su formación, conservación y desaparición.
+    \end{mydef}
+
+    El objetivo es tomar información, interpretarla y decir algo acerca de ella, más precisamente, se pretende dar una \textit{predicción}.
+
+    Usando la información se construirá un \textbf{aprendedor} (o \textbf{learner}) que será la pieza clave para predecir la salida de nueva fuente de información. Queremos un \textit{good learner}.
+
+    Hay dos tipos de aprendizaje:
+    \begin{itemize}
+        \item \textbf{Supervisado}: En este tipo de aprendizaje hay la presencia de una variable de salida que nos permite guiar el proceso de aprendizaje.
+        \item \textbf{No Supervisado}: Observamos solo las características y no tenemos medida de que tan buena es la salida del proceso. 
+    \end{itemize}
+
+    Hablaremos de algunos ejemplos de aprendizaje supervisado:
+
+    \section{Spam de Email}
+
+    \begin{excer}[\textbf{Spam de Email}]
+        Se tienen 4601 mensajes en email hacia una persona y pretendemos determinar si cada uno de ellos era un email basura o \textit{spam}. Diseñar un detector de spam automático que pueda filtrar el spam antes de que las bandejas de entrada de los usuarios se llenen.
+    \end{excer}
+
+    \begin{sol}
+        Para cada uno de los 4601 mensajes, podemos asignar dos estados de salida:
+        \begin{equation}
+            \textup{}
+        \end{equation}
+    \end{sol}
+
+\end{document}
