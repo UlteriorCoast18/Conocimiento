@@ -364,6 +364,16 @@
 
     Si buscas algo más aplicado o enfocado en optimización estadística, hay muchos otros recursos disponibles.
 
+    \subsection{Cosas que llamaron la atención}
+
+    \begin{itemize}
+        \item Convolutional Neural Networks.
+        \item Natural Language Processing.
+        \item Recurrent Neural Networks.
+        \item Transformers.
+        \item Clustering.
+    \end{itemize}
+
     \chapter{Introducción}
 
     El objetivo de estas notas es el de dar un panorama general sobre el Machine Learning.
@@ -463,6 +473,57 @@ if 0.2*you - 0.3*george > 0 then spam, else email.
 
     %TODO: Poner un problema de aprendizaje no supervisado
 
+    Aplicar técnicas de Machine Learning para escarbar en una gran cantidad de información puede ayudar a descubrir patrones donde no es claro que éstos existan, esto es llamado \textbf{data mining}.
+
+    Podemos aplicar las técnicas del Machine Learning en tres áreas:
+
+    \begin{itemize}
+        \item Supervisado o no supervisado (entran como subcategorías semisupervisado y aprendizaje con refuerzo).
+        \item Online and Batch Learning.
+        \item Si trabajan comparando nueva información con puntos de información ya existentes o si a partir de la información pueden obtener predicciones, como haría un científico.
+    \end{itemize}
+
+    Los algoritmos de aprendizaje supervisado más importantes son los siguientes:
+    \begin{itemize}
+        \item $k$-nearest neighbors.
+        \item Linear Regresssion.
+        \item Logistic Regression.
+        \item Support Vector Machines (SVMs).
+        \item Decision Trees and Random Forests.
+        \item Neural Networks (algunas pueden ser no supervisadas o semisupervisadas).
+    \end{itemize}
+
+    En no supervisado:
+    \begin{itemize}
+        \item Clustering:
+        \begin{itemize}
+            \item $k$-means.
+            \item DBSCAN.
+            \item Hierarchical Cluster Analysis (HCA).
+        \end{itemize}
+        \item Anomaly detection and novelty detection:
+        \begin{itemize}
+            \item One-class SVM.
+            \item Isolation Forest.
+        \end{itemize}
+        \item Visualization and dimensionality reduction:
+        \begin{itemize}
+            \item Principal Component Analysis
+            \item Kernel PCA
+            \item Locality Linear Embedding
+            \item $t$-distributed stochastic neighbor embedding.
+        \end{itemize}
+        \item Association rule learning:
+        \begin{itemize}
+            \item A priori.
+            \item Eclat.
+        \end{itemize}
+    \end{itemize}
+
+    La gran mayoría de algoritmos de aprendizaje semisupervisado son mezclas de algorimos supervisados y no supervisados.
+
+    El aprendizaje reforzado es muy diferente. Hay un \textit{agente} que recibe \textit{rewards} o \textit{penalties} en función de la acción que haga. Una política define que cosas debe elegir el \textit{agent} y cuales no, dada una situación.
+
     \chapter{Vista Panorámica del Aprendizaje Supervisado}
 
     \section{Introducción}
@@ -478,6 +539,104 @@ if 0.2*you - 0.3*george > 0 then spam, else email.
     %TODO: Poner tipos de input y output
 
     \section{Mínimos Cuadrados y Vecinos Cercanos}
+
+    \begin{mydef}
+        Si $\vec{x}$ es un vector $n$-dimensional, entenderemos que $\vec{x}$ es una matriz columna y así, $\vec{x}^T$ denotará a la transpuesta de esta matriz.
+    \end{mydef}
+
+    El modelo más simple de predicción es el modelo líneal. Si $\vec{x}=(x_1,x_2,...,x_n)$ es una entrada, entonces la salida del modelo líneal es el vector:
+    \begin{equation}
+        \vec{y}=\hat{\beta_0}+\sum_{ i=1}^n x_i\hat{\beta_j}
+    \end{equation}
+    donde $\hat{\beta_j}$ son vectores $m$-dimensionales para todo $j\in\natint{0,n}$. En particular, el vector $\hat{\beta_0}$ es llamado el \textbf{bias} en Machine Learning. Una forma más sencilla de representar lo anterior es haciendo $\vec{x'}=(1,x_1,...,x_n)$ y tomar:
+    \begin{equation}
+        \vec{y}=\vec{x'}^T\hat{\beta}
+    \end{equation}
+    donde $\hat{\beta}=(\hat{\beta_0},...,\hat{\beta_0})$. Notemos que en este caso las coordenadas $x_1,...,x_n$ del vector $\vec{x}$ son escalares y las de $\hat{\beta}$ pueden ser incluso vectores, con lo que $\hat{\beta}$ en general será una matriz. La salida tendrá la misma dimensión que las coordenadas de las entradas de $\hat{\beta}$.
+
+    Podemos construir así la función:
+    \begin{equation}
+        f(\vec{x})=\vec{x'}^T\hat{\beta}
+    \end{equation}
+    esta es una función de un espacio $n$-dimensional en uno $m$-dimensional.
+
+    Vista como función:
+    \begin{equation}
+        f(\vec{x})=\vec{x}^T\beta
+    \end{equation}
+    donde $\beta$ es una matriz $m\times n$ y es tal que $\nabla f(\vec{x})=\beta$, es decir lo clásico que uno hace en un curso de Cálculo III para determinar derivadas de transformaciones lineales.
+
+    Nuestro objetivo es que este modelo lineal se acomple a nuestra información. Hay muchas formas de hacerlo pero la más sencilla es por \textbf{mínimos cuadrados}. En tal aproximación lo que uno hace es tomar los coeficientes de $\beta$ para minimizar el residuo de la suma de cuadrados:
+    \begin{equation}
+        \textup{RSS}(\beta)=\sum_{i=1}^k(y_i-\vec{x_i}^T\beta)^2
+    \end{equation}
+    la cosa anterior es un escalar (el cuadrado es el producto interno del vector resultante consigo mismo) y asumimos que tenemos un dataset de $k$-vectores. De forma más simplificada podemos escribir:
+    \begin{equation}
+        \textup{RSS}(\beta)=(\vec{y}-X^T\beta)^T(\vec{y}-X^T\beta)
+    \end{equation}
+    donde $\vec{y}=(y_1,...,y_n)$ y $X=(\vec{x_1},...,\vec{x_k})$. Notemos que $X^T\beta$ define la dimensión de las coordenadas del vector $\vec{y}$.
+
+    Se tiene que $X$ tiene a cada columna como un vector de entrada $\vec{x_i}$ y la salida está dada por $y_i$, esto en el conjunto de entrenamiento.
+
+    Esto es la cosa más simple del mundo de hacer en programación. Considere el siguiente ejemplo:
+
+    \begin{exa}
+        Se tiene un documento .csv donde se encuestó a personas de ciudades con cierto \textit{GDP per cápita (USD)} sobre su satisfacción de vida. Dada cierto GDP per cápita, determine la satisfacción de vida de la persona.
+    \end{exa}
+
+    \begin{sol}
+        Este claramente es un modelo de regresión. Observemos primero un plot de la información para inferir si es que hay algo que podamos determinar de ella:
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=0.7]{images/plot_1.png}\\
+                Figura \thefigcount. Caption.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        rápidamente uno puede ver que tal vez haya alguna relación lineal, por lo que se implementa el siguiente código en Python para realizar un modelo de regresión lineal:
+        
+        \lstinputlisting[language=python,caption=Ejemplo Regresión Lineal]{code/introduccion.py}
+
+        El modelo lo que hizo fue generar la siguiente línea recta roja:
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=0.7]{images/plot_2.png}\\
+                Figura \thefigcount. Caption.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        Con este mismo ejemplo podemos implementar otro modelo, por ejemplo el de $k$-nearest neighbors con $k=3$.
+
+        \lstinputlisting[language=python,caption=Ejemplo $k$-vecinos]{code/knn_1.py}
+
+        En este caso, la gráfica queda de la siguiente manera:
+
+        \begin{minipage}{\textwidth}
+            \begin{center}
+                \includegraphics[scale=0.7]{images/plot_3.png}\\
+                Figura \thefigcount. Caption.
+                \stepcounter{figcount}
+            \end{center}
+        \end{minipage}
+
+        El algoritmo de regresión lo que hace (de forma descriptiva) es encontrar los $k$ vecinos más cercanos de un punto y hace el promedio de los valores.
+
+    \end{sol}
+    
+    En síntesis, se siguen los 4 siguientes pasos:
+
+    \begin{itemize}
+        \item Estudiar la información.
+        \item Limpiar la información.
+        \item Preparar la información.
+        \item Seleccionar un modelo.
+        \item Entrenar el modelo con la información de entrenamiento.
+        \item Aplicar el modelo para hacer predicciones.
+    \end{itemize}
 
 \end{document}
 

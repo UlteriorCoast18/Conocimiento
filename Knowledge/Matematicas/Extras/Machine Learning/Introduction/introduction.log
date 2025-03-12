@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.3.10)  11 MAR 2025 00:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.3.10)  11 MAR 2025 20:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -780,6 +780,12 @@ LaTeX Info: Redefining \% on input line 23.
 
 LaTeX Warning: Label `lst:bar' multiply defined.
 
+
+LaTeX Warning: Label `lst:bar' multiply defined.
+
+
+LaTeX Warning: Label `lst:bar' multiply defined.
+
 )
 \openout1 = `introduction.aux'.
 
@@ -897,52 +903,95 @@ LaTeX Font Warning: Font shape `TS1/cmr/m/sc' undefined
 Cap\'{\i }tulo 1.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 375.
+(mdframed)              on input line 385.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 388.
+(mdframed)              on input line 398.
 [5
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 406.
-<images/table_1.png, id=124, 1122.1925pt x 161.60374pt>
+(mdframed)              on input line 416.
+<images/table_1.png, id=129, 1122.1925pt x 161.60374pt>
 File: images/table_1.png Graphic file (type png)
 <use images/table_1.png>
-Package pdftex.def Info: images/table_1.png  used on input line 419.
+Package pdftex.def Info: images/table_1.png  used on input line 429.
 (pdftex.def)             Requested size: 448.86905pt x 64.64035pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 417--424
+Overfull \hbox (12.0pt too wide) in paragraph at lines 427--434
 []$[]$ 
  []
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 428.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 438.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 440.
+(mdframed)              on input line 450.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 444.
-<images/image_1.png, id=126, 1114.1625pt x 689.57625pt>
+(mdframed)              on input line 454.
+<images/image_1.png, id=131, 1114.1625pt x 689.57625pt>
 File: images/image_1.png Graphic file (type png)
 <use images/image_1.png>
-Package pdftex.def Info: images/image_1.png  used on input line 453.
+Package pdftex.def Info: images/image_1.png  used on input line 463.
 (pdftex.def)             Requested size: 334.25133pt x 206.87447pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 451--458
+Overfull \hbox (12.0pt too wide) in paragraph at lines 461--468
 []$[]$ 
  []
 
-[6 <./images/table_1.png>] [7 <./images/image_1.png>]
+[6 <./images/table_1.png>] [7 <./images/image_1.png>] [8]
 Cap\'{\i }tulo 2.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 472.
-[8
+(mdframed)              on input line 533.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 543.
+[9
 
-] (./introduction.aux
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 583.
+<images/plot_1.png, id=175, 462.528pt x 346.896pt>
+File: images/plot_1.png Graphic file (type png)
+<use images/plot_1.png>
+Package pdftex.def Info: images/plot_1.png  used on input line 592.
+(pdftex.def)             Requested size: 323.76738pt x 242.82553pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 590--597
+[]$[]$ 
+ []
+
+[10] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 600.
+ (./code/introduccion.py)
+<images/plot_2.png, id=186, 462.528pt x 346.896pt>
+File: images/plot_2.png Graphic file (type png)
+<use images/plot_2.png>
+Package pdftex.def Info: images/plot_2.png  used on input line 606.
+(pdftex.def)             Requested size: 323.76738pt x 242.82553pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 604--611
+[]$[]$ 
+ []
+
+[11 <./images/plot_1.png>] (./code/knn_1.py)
+<images/plot_3.png, id=219, 462.528pt x 346.896pt>
+File: images/plot_3.png Graphic file (type png)
+<use images/plot_3.png>
+Package pdftex.def Info: images/plot_3.png  used on input line 620.
+(pdftex.def)             Requested size: 323.76738pt x 242.82553pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 618--625
+[]$[]$ 
+ []
+
+[12 <./images/plot_2.png>] [13 <./images/plot_3.png>] (./introduction.aux
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
@@ -953,21 +1002,21 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `introduction.out' has not changed.
-(rerunfilecheck)             Checksum: 212F7F4028AE4194A91B65DB2B5180DA;2898.
+(rerunfilecheck)             Checksum: B776F56F98B70EE272D9E65CA0F3109A;3125.
  ) 
 Here is how much of TeX's memory you used:
- 27031 strings out of 476041
- 502774 string characters out of 5793174
- 2045388 words of memory out of 6000000
- 46981 multiletter control sequences out of 15000+600000
+ 27369 strings out of 476041
+ 507227 string characters out of 5793174
+ 2165388 words of memory out of 6000000
+ 47237 multiletter control sequences out of 15000+600000
  523945 words of font info for 77 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 104i,15n,111p,605b,1387s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb>
-Output written on introduction.pdf (9 pages, 278833 bytes).
+ 104i,15n,111p,605b,1466s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb>
+Output written on introduction.pdf (14 pages, 404481 bytes).
 PDF statistics:
- 222 PDF objects out of 1000 (max. 8388607)
- 181 compressed objects within 2 object streams
- 38 named destinations out of 1000 (max. 500000)
- 143 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 355 PDF objects out of 1000 (max. 8388607)
+ 292 compressed objects within 3 object streams
+ 107 named destinations out of 1000 (max. 500000)
+ 166 words of extra memory for PDF output out of 10000 (max. 10000000)
 
