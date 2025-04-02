@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.1.15)  30 JAN 2025 20:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.3.10)  24 MAR 2025 19:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -878,7 +878,7 @@ LaTeX Info: Redefining \% on input line 1.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.264     \newpage
+l.262     \newpage
                    [1
 
 ]
@@ -886,11 +886,58 @@ Cap\'{\i }tulo 1.
 
 LaTeX Font Warning: Font shape `TS1/cmr/m/sc' undefined
 (Font)              using `TS1/cmr/m/n' instead
-(Font)              for symbol `textsection' on input line 268.
+(Font)              for symbol `textsection' on input line 266.
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 286.
+
+Package mdframed Warning: You got a bad break
+(mdframed)                because the last box will be empty
+(mdframed)                you have to change it manually
+(mdframed)                by changing the text, the space
+(mdframed)                or something else on input line 290.
 
 [2
 
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./power_bi.aux
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 296.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 300.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 321.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 325.
+ [3]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 331.
+<images/01.png, id=65, 451.6875pt x 543.2295pt>
+File: images/01.png Graphic file (type png)
+<use images/01.png>
+Package pdftex.def Info: images/01.png  used on input line 337.
+(pdftex.def)             Requested size: 225.84319pt x 271.61407pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 335--342
+[]$[]$ 
+ []
+
+<images/02.png, id=67, 940.01187pt x 564.1075pt>
+File: images/02.png Graphic file (type png)
+<use images/02.png>
+Package pdftex.def Info: images/02.png  used on input line 347.
+(pdftex.def)             Requested size: 470.00479pt x 282.05305pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 345--352
+[]$[]$ 
+ []
+
+[4 <./images/01.png>] [5 <./images/02.png>] (./power_bi.aux
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
@@ -898,21 +945,21 @@ LaTeX Info: Redefining \% on input line 23.
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `power_bi.out' has not changed.
-(rerunfilecheck)             Checksum: E15B2ECD58231330D4B134FC2B7C8617;319.
+(rerunfilecheck)             Checksum: 4751ABFFD01E6EDDD89A25116FEF45CE;754.
  ) 
 Here is how much of TeX's memory you used:
- 26399 strings out of 476041
- 494419 string characters out of 5793174
+ 26539 strings out of 476041
+ 497095 string characters out of 5793174
  2045388 words of memory out of 6000000
- 46390 multiletter control sequences out of 15000+600000
- 521987 words of font info for 69 fonts, out of 8000000 for 9000
+ 46508 multiletter control sequences out of 15000+600000
+ 522972 words of font info for 72 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 104i,14n,111p,594b,721s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb>
-Output written on power_bi.pdf (3 pages, 54760 bytes).
+ 104i,15n,111p,594b,930s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb>
+Output written on power_bi.pdf (6 pages, 236684 bytes).
 PDF statistics:
- 61 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
- 6 named destinations out of 1000 (max. 500000)
- 29 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 116 PDF objects out of 1000 (max. 8388607)
+ 90 compressed objects within 1 object stream
+ 22 named destinations out of 1000 (max. 500000)
+ 63 words of extra memory for PDF output out of 10000 (max. 10000000)
 
