@@ -1,0 +1,896 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{bbm}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
+
+\begin{document}
+
+    \setcounter{section}{1}
+    \setcounter{chapter}{1}
+
+    \begin{excer}
+        Let A be a square matrix that is filled with all zeros except for the coordinates where the row number equals the column number. In those cells, the numbers from 1 to n appear in alphabetical order based on each number's English spelling. For example if n=3 then the order would be 1-3-2. Find the trace of A**2
+        \begin{enumerate}[label = \textit{(\Alph*)}]
+            \item  $n^2$
+            \item  $n(n+1)/2$
+            \item  $n(n+1)(2n+1)/6$
+            \item  $n^3$
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        First, lets compute $A^2$. We have for all $i,j=1,...,n$;
+        \begin{equation*}
+            \begin{split}
+                (A^2)_{ i,j}=\sum_{ k=1}^n (A)_{ i,k}(A)_{ k,j}
+            \end{split}
+        \end{equation*}
+        because $A$ is filled with zeros except for the coordinates where the row number equals the column number, when $i\neq j$ we have that:
+        \begin{equation*}
+            (A)_{ i,k}(A)_{ k,j}=0,\quad\forall k=1,...,n
+        \end{equation*}
+        wich implies that $(A^2)_{ i,j}=0$ when $i\neq j$. When $i=j$ the sum becomes:
+        \begin{equation*}
+            \begin{split}
+                (A^2)_{ i,i}&=\sum_{ k=1}^n (A)_{ i,k}(A)_{ k,i}\\
+                &=\sum_{ k=1}^n (A)_{ i,k}^2\\
+                &=(A)_{i,i}^2
+            \end{split}
+        \end{equation*}
+        so now, the trace of $A^2$ would be:
+        \begin{equation*}
+            \begin{split}
+                \textup{Trace}(A)&=\sum_{ i=1}^n (A^2)_{i,i}\\
+                &=\sum_{ i=1}^n (A)_{i,i}^2\\
+            \end{split}
+        \end{equation*}
+        because all the numbers from 1 to $n$ appear in the diagonal of $A$, then we are just making the sum of all squared numbers from 1 to $n$, so rearranging all the terrms, the sum becomes:
+        \begin{equation*}
+            \textup{Trace}(A)=\sum_{ i=1}^n i^2=\frac{n(n+1)(2n+1)}{6}
+        \end{equation*}
+        so the answer is (C).
+    \end{sol}
+
+    \begin{excer}
+        Let \(a\) be a prime number bigger than 3 and \(b\) an integer coprime to \(a\). What is the smallest prime number that divides both \(a^4 b^4\) and \(a^2+ab\)?
+        \begin{enumerate}[label = \textit{(\Alph*)}]
+            \item The smallest prime divisor of b
+            \item The smallest prime divisor of ab
+            \item a
+            \item b
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        It can't be (D) because $b$ not necessarly is a prime number. Also, it can't be (A) because the smallest prime divisor of b not necessarly divides $a^2+ab=a(a+b)$.
+
+        If $p$ is prime such that $p\divides a^4b^4$ then because $a$ and $b$ are coprime we must only one of these: $p\divides a$ or $p\divides b$.
+
+        In the second part, we have that $p\divides a(a+b)$. If $p\divides b$ then $p$ cant divide $a$, so $p\divides a+b$ which by linearity implies that $p\divides a$, a contradiction.
+
+        So, $p\divides a$, whichi implies that $p=a$. Therefore the answer is (C).
+
+    \end{sol}
+
+    \begin{excer}
+        Let m, n be the 11th and 12-th Fibonacci numbers where the first and second Fibonacci numbers are both 1. How many subgroups of $Z_{m*n}$ are there?
+        \begin{enumerate}[label = \textit{(\Alph*)}]
+            \item 20
+            \item 25
+            \item 30
+            \item 35
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        We compute the Fibonacci numbers up to 11 and 12 position:
+        \begin{equation*}
+            1, 1, 2, 3, 5, 8, 13, 21, 34. 55, 89, 144,...
+        \end{equation*}
+        so we must compute all subgroups of $Z_{ 89\cdot 144}$. Recall that:
+        \begin{equation*}
+            89\cdot 144=2\cdot 2\cdot2\cdot 2\cdot 3\cdot 3\cdot 89 
+        \end{equation*}
+        we note first that $Z_{ 89\cdot 144}$ is isomorphic to $Z/{ 89\cdot 144}Z$. Let $n=89\cdot 144$. Now, by correspondence theorem, all subgroups of $Z/{n}Z$ (namely $rZ/nZ$) are in correspondence with the subgroups of $Z$ such that:
+        \begin{equation*}
+            nZ\subseteq rZ\subseteq Z
+        \end{equation*}
+        the condition $nZ\subseteq rZ$ implies that $r\divides n$, so the set of all subgroups of $Z/nZ$ is:
+        \begin{equation*}
+            \left\{rZ/nZ\Big|r\divides n \right\}
+        \end{equation*}
+        so, we must compute all divisors of $n$, with the prime decomposition of $89\cdot 144$ its seen that there are 30 divisors, so the answer is (C).
+    \end{sol}
+
+    \begin{excer}
+        Let v= [1,2] be a vector in the plane and let $A = 2[[1/sqrt(2), - 1/sqrt(2)], [1/sqrt(2), 1/sqrt(2)]]$. What is $(A^8)v$?
+        \begin{enumerate}[label = \textit{(\Alph*)}]
+            \item v
+            \item 256 v
+            \item $[128, 0]$
+            \item -v
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        Recall the matrix $A$ is:
+        \begin{equation*}
+            A=2\left[
+                \begin{array}{cc}
+                    \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} \\
+                    \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+                \end{array}
+            \right]
+        \end{equation*}
+        we remember the form of the rotation matrix of angle $\theta$ in the euclidean plane:
+        \begin{equation*}
+            R_\theta=\left[
+                \begin{array}{cc}
+                    \cos\theta & -\sin\theta \\
+                    \sin\theta & \cos\theta \\
+                \end{array}
+            \right]
+        \end{equation*}
+        so, $A=2R_\theta$ where $\theta=\frac{\pi}{4}$. We observe that:
+        \begin{equation*}
+            A^8=(2R_\theta)^8=2^8 R_\theta^8=256R_\theta^8
+        \end{equation*}
+        but rotation matrix has the property that:
+        \begin{equation*}
+            R_\alpha R_\beta=R_{\alpha+\beta}
+        \end{equation*}
+        so,
+        \begin{equation*}
+            R_\theta^8=R_{ 8\theta}=R_{2\pi}=I
+        \end{equation*}
+        We conclude that $A^8=256 I$, which implies that $(A^8)v=256Iv=256 v$, so the answer is (B).
+    \end{sol}
+
+    \begin{excer}
+        Consider the subset of the real line A = (-inf, 0]. Which of the following are open sets (there may be more than 1 correct answer)?
+        \begin{enumerate}[label = \textit{(\Alph*)}]
+            \item $ A \cap [0,1]$
+            \item $A \cap (-inf,-1)$
+            \item $A \cup \left\{1/2\right\}$
+            \item $A \cup (-1,1)$
+            \item $A \cup (0,1,1)$
+        \end{enumerate}
+    \end{excer}
+
+    \begin{sol}
+        (A) cannot be, because closed sets are closed under intersection, also with (C) but now with union of sets. (E) es not even a subset of the real line.
+
+        Now, $A\subseteq (-inf,-1)$, so $A\cap(-inf,-1)=A$, it can't be open because $A$ is closed, which discards (B)
+
+        Finally, $A\cup(-1,1)=(-inf,1)$, which is open. So the answer is (D).
+    \end{sol}
+
+    \begin{enumerate}
+        \item Hint (1): The square of a diagonal matrix is just the squares of its elements. It's trace is just the sum of the squared numbers from 1 to n, regardless of the order. Use the formula of the sum of squares.
+        \item Hint (2): If \(p\) is a prime number that divides \(a^4b^4\) then it must divide only \(a\) or \(b\) because both of them are coprime. Proof that if we suppose \(p\) divides \(b\) 
+        \item Hint (3): Use the fact that $Z_{m*n}$ is isomorphic to $Z/m*nZ$. By correspondence theorem all subgroups of $Z/m*nZ$ are in correspondence with the subgroups of $Z$ such that those contain $m*nZ$.
+        
+        Subgroups of $Z/m*nZ$ are of the form $rZ/m*nZ$ with $m*nZ\subseteq rZ$. Proof this implies $r\divides n$. Then, all subgroups of $Z/m*nZ$ are of the form:
+        $\left\{rZ/m*nZ\Big|r\divides m*n \right\}$ find all positive integer divisors of $m*n$, then use the latter fact to count all subgroups of $Z_{m*n}$. 
+    \end{enumerate}
+
+    \setcounter{section}{2}
+
+    \begin{excer}
+        
+    \end{excer}
+
+    \begin{sol}
+        \begin{equation*}
+            n^2-n+1 \mod 3 \equiv n^2\mod 3-n\mod 3+1\mod 3
+        \end{equation*}
+
+        \begin{tabular}{ccc}
+            1 & 1 & 0 \\
+            2 & 1 & 0 \\
+            3 & 0 & 1 \\
+            4 & 1 & 1 \\
+            5 & 1 & 0 \\
+            6 & 0 & 0 \\
+        \end{tabular}
+
+        \begin{equation*}
+            \begin{split}
+                (3n-1)^2-(3n-1)+1 \mod 3 &\equiv
+            \end{split}
+        \end{equation*}
+
+        \begin{equation*}
+            \begin{split}
+                n^2-n+1=3^k&\Rightarrow n^2-n+1-3^k=0\\
+                &\Rightarrow n(n-1)+1-3^k=0\\
+                &\Rightarrow n(n-1)=3^k-1\\
+            \end{split}
+        \end{equation*}
+        el producto de dos números consecutivos debe ser tal que sucede eso, para algún k, uno de los dos debe ser par.
+
+        \begin{equation*}
+            (3n-1)^2-(3n-1)+1=9n^2-6n+1-3n+1+1=9n^2-9n+3=3(3n^2-3n+1)
+        \end{equation*}
+
+    \end{sol}
+
+    \begin{excer}
+        \begin{equation*}
+            x^4-2x^3-35x^2+36x+180=(x-a_1)(x-a_2)(x-a_3)(x-a_4)
+        \end{equation*}
+    \end{excer}
+
+    \begin{sol}
+        Se tiene que:
+        \begin{equation*}
+            (-a_1)(-a_2)(-a_3)+(-a_1)(-a_2)(-a_4)+(-a_1)(-a_4)(-a_3)+(-a_4)(-a_2)(-a_3)=-2
+        \end{equation*}
+        tiene como raíces:
+        \begin{equation*}
+            b_1-b_3=-5-3=-8
+        \end{equation*}
+
+        Factorize 180 in its prime decomposition and substitute 
+
+        1. Find roots of the polinomial.
+        2. Order roots from least to greatest.
+        3. Compute $b_1-b_3$.
+        4. Convert from decimal to binary the result of $b_1-b_3$.
+
+    \end{sol}
+
+    \begin{sol}
+        $[-5,5]\cap (1,\infty]\cap[2,6]\setminus\left\{2,3 \right\}=(2,5]\setminus\left\{3\right\}$.
+        \begin{equation*}
+            [-5,5]\cap (1,\infty]\cap[2,6]=[2,5]
+        \end{equation*}
+    \end{sol}
+
+    First, compute the domain of each of the function summands in $f(x)$, then for each function we compute it's domain. Next, find the intersection of all domains to find the domain of $f$. Finally count all prime numbers in the domain of $f$.
+
+    \begin{proof}
+        \begin{equation*}
+            \begin{split}
+                \bbm{Q}\times\bbm{Q}&=\bigcup_{ a\in\bbm{Q}}\left\{(a,b)\Big|b\in\bbm{Q} \right\}\\
+            \end{split}
+        \end{equation*}
+
+        Sea $a\in\bbm{Q}$. Entonces el conjunto:
+        \begin{equation*}
+            \left\{(a,b)\Big|a<b,b\in\bbm{Q} \right\}\subseteq\mathcal{L}
+        \end{equation*}
+        es numerable.
+
+        Si $\mathcal{L}$ fuese finito, entonces:
+        \begin{equation*}
+            a=\min\left\{a_i \right\}
+        \end{equation*}
+        $(a-1,a)$.
+    \end{proof}
+
+    \begin{proof}
+        Recordemos:
+        \begin{equation*}
+            \overline{A}=A\cup A'
+        \end{equation*}
+        y la otra equivalencia es que:
+        \begin{equation*}
+            x\in\overline{A}\textup{ sii }\exists \left\{x_n \right\}\textup{ en }A \textup{ que converge a $x$}
+        \end{equation*}
+        \begin{equation*}
+            x\in\overline{A}\textup{ sii }\forall r>0, B_d(x,r)\cap A\neq\emptyset
+        \end{equation*}
+
+        Un conjunto $U$ es abierto si para todo $x\in U$ existe $r>0$ tal que $B_d(x,r)\subseteq U$.
+
+        \begin{center}
+            
+        \end{center}
+
+        $\Rightarrow):$ Suponga que $x\in\overline{A}$, entonces
+        \begin{itemize}
+            \item $x\in A$, entonces:
+            \begin{equation*}
+                0\leq d(x,A)=\inf\left\{d(x,a)\Big|a\in A \right\}\leq d(x,x)=0
+                \Rightarrow d(x,A)=0
+            \end{equation*}
+            \item $x\in A'$, si para toda vecindad (para todo $r>0$) se tiene que
+            \begin{equation*}
+                (B_d(x,r)\setminus\left\{x\right\})\cap A\neq\emptyset
+            \end{equation*}
+            entonces existe $a_x\in(B_d(x,r)\setminus\left\{x\right\})\cap A$, por lo que:
+            \begin{equation*}
+                0\leq\inf\left\{d(x,a)\Big|a\in A \right\}\leq d(x,a_x)<r
+            \end{equation*}
+            donde el $r>0$ fue arbitrario.
+
+            Por tanto:
+            \begin{equation*}
+                d(x,A)=\inf\left\{d(x,a)\Big|a\in A \right\}=0
+            \end{equation*}
+        \end{itemize}
+
+        $\Leftarrow)$: 
+    \end{proof}
+
+    \begin{proof}
+        Sea $(X,d)$, como es separable existe un conjunto denso $D$ a lo sumo numerable.
+
+        Sea $A$ el conjunto de puntos aislados de $X$.
+        \begin{itemize}
+            \item Si $A$ es finito ya hemos terminado.
+            \item Suponga que $A$ es infinito.
+            \begin{equation*}
+                x\in A\textup{ si y sólo si }\exists r>0\textup{ abierto es tal que }B_d(x,r)=B_d(x,r)\cap X=\left\{ x\right\}
+            \end{equation*}
+            Ahora, como $D$ es denso entonces:
+            \begin{equation*}
+                \overline{D}=X
+            \end{equation*}
+            lo que quiere decir que
+            \begin{equation*}
+                \forall x\in X,\forall r>0\quad B_d(x,r)\cap D\neq\emptyset
+            \end{equation*}
+            Entonces, $A\subseteq D$ lo cual implica que $A$ es numerable.
+        \end{itemize}
+    \end{proof}
+
+    \begin{proof}
+        \begin{equation*}
+            A=\left\{f\in\mathcal{C}([0,1])\Big|f(1/2)=1 \right\}
+        \end{equation*}
+        el complemento de $A$ es:
+        \begin{equation*}
+            \begin{split}
+                \mathcal{C}A&=\left\{f\in\mathcal{C}([0,1])\Big| f(1/2)\neq 1 \right\}\\
+                &=\left\{f\in\mathcal{C}([0,1])\Big| f(1/2)<1 \right\}\cup\left\{f\in\mathcal{C}([0,1])\Big| f(1/2)>1 \right\} \\
+            \end{split}
+        \end{equation*}
+        objetivo: probar que
+        \begin{equation*}
+            B=\left\{f\in\mathcal{C}([0,1])\Big| f(1/2)<1 \right\}
+        \end{equation*}
+        es abierto. Sea $f\in B$, se tiene que:
+        \begin{equation*}
+            f(1/2)<1
+        \end{equation*}
+        Recordemos que:
+        \begin{equation}
+            \mathcal{N}_\infty(g)=\sup\left\{\abs{g(x)}\Big|x\in[0,1] \right\},g\in\mathcal{C}([0,1])
+        \end{equation}
+        tomemos:
+        \begin{equation*}
+            0<1-f(1/2)=r
+        \end{equation*}
+
+        $x\mapsto d(x,A)$ es continua. Sea $f(x)=d(x,A)$.
+
+        Veamos que:
+        \begin{equation*}
+            \begin{split}
+                f^{-1}(]-\infty,\delta[)&=\left\{x\in X\Big|f(x)\in]-\infty,\delta[ \right\}\\
+                &=\left\{x\in X\Big|-\infty<d(x,A)<\delta \right\}\\
+                &=\left\{x\in X\Big|d(x,A)<\delta \right\}\\
+                &=G_\delta\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \begin{proof}
+        Considere la función:
+        \begin{equation*}
+            \cf{h}{X}{\bbm{R}_{\geq0}}
+        \end{equation*}
+        tal que $x\mapsto d(x,f(x))$.
+
+        \begin{equation*}
+            d(x,f(x))>0,\quad\forall x\in X\iff x\neq f(x),\quad\forall x\in X
+        \end{equation*}
+
+        Objetivo: ver que $h$ vale cero en algún punto. 
+
+        Veamos que $h$ es continua. En efecto, pues $\cf{d}{X\times X}{\bbm{R}_{\geq0}}$ y $\cf{f}{X}{X}$ es continua, luego la composición:
+        \begin{equation*}
+            x\mapsto (x,f(x))
+        \end{equation*}
+        es continua, luego la composición de esta función con $d$ es continua. Así que $h$ es continua.
+
+        Como $X$ es compacto, entonces $h(X)\subseteq\bbm{R}_{\geq0}$ es compacto.
+
+        Si $0\notin h(X)$, entonces denotemos por $k\in\bbm{R}_{\geq0}$ al elemento mínimo de $h(X)$.
+
+        Entonces, existe $x'\in X$ tal que:
+        \begin{equation*}
+            h(x')=d(x',f(x'))=k
+        \end{equation*}
+        Luego:
+        \begin{equation*}
+            h(f(x'))=d(f(x'),f^2(x'))<h(x')=k
+        \end{equation*}
+        \contradiction. Por tanto, $0\in h(X)$ luego existe $x\in X$ tal que $h(x)=0\Rightarrow d(x,f(x))=0\Rightarrow x=f(x)$.
+
+        Supongamos que existe $y\in X$ tal que:
+        \begin{equation*}
+            h(y)=0\Rightarrow y=f(y)
+        \end{equation*}
+        queremos probar que $x=y$. En efecto:
+        \begin{equation*}
+            d(f(x),f(y))=d(x,y)\Rightarrow x=y
+        \end{equation*}
+
+        Por ende, $X$ tiene un único punto fijo.
+    \end{proof}
+
+    \begin{proof}
+        Sea $r>0$. Considere la función $\cf{f}{E}{E}$:
+        \begin{equation*}
+            x\mapsto \frac{1}{r}\cdot x
+        \end{equation*}
+        de esta forma $B'(0,r)$ es mapeada a $B'(0,1)$. $f$ es continua y es una aplicación lineal acotada. Tiene inversa continua.
+
+        $f$ es isomorfismo continuo. Se tiene que
+        \begin{equation*}
+            B'(0,r) \textup{ es compacta}\iff B'(0,1) \textup{ es compacta}
+        \end{equation*}
+        Aplicando el Corolario al teorema de Riez:
+        \begin{equation*}
+            B'(0,r) \textup{ es compacta}\iff E\textup{ tiene dimensión finita}
+        \end{equation*}
+        para todo $r>0$.
+
+        Se tiene que: $W_r$ será compacto si $E$ es de dimensión finita es condición suficiente.
+
+        Probaremos ahora que:
+        \begin{equation*}
+            W_r=\left\{x\in X\Big|d(x,C)\leq r \right\}=C+B'(0,r)
+        \end{equation*}
+        Como $C$ es compacto, es cerrado. Luego:
+        \begin{equation*}
+            x\in\overline{C}=C\textup{ si y sólo si }d(x,C)=0
+        \end{equation*}
+        \begin{itemize}
+            \item Suponga que $x\in W_r$, entonces $d(x,C)\leq r$. Se tienen dos casos:
+            \begin{itemize}
+                \item $0=d(x,C)$ por lo anterior se tiene que $x\in C$. Tomamos $c=x$ y $b=0$, se tiene que:
+                \begin{equation*}
+                    x=c+b
+                \end{equation*}
+                con $c\in C$ y $b=0\in B'(0,r)$. Por ende, $x\in C+B'(0,r)$.
+                \item $0<d(x,C)\leq r$. Entonces $x\notin C$, por lo que existe $\epsilon>0$ tal que:
+                \begin{equation*}
+                    B(x,\varepsilon)\subseteq X\setminus C
+                \end{equation*}
+                La función $c\mapsto d(x,c)$ es continua. Entonces como $C$ es compacto, luego alcanza su mínimo:
+                \begin{equation*}
+                    \inf\left\{d(x,c)\Big|c\in C \right\}=d(x,C)
+                \end{equation*}
+                por lo que, existe $c\in C$ tal que:
+                \begin{equation*}
+                    d(x,c)=d(x,C)
+                \end{equation*}
+                Tomemos:
+                \begin{equation*}
+                    b=x-c
+                \end{equation*}
+                afirmamos que $b\in B'(0,r)$. En efecto, veamos que:
+                \begin{equation*}
+                    d(0,b)=\|0-b\|=\|-x+c\|=\|x-c\|=d(x,c)=d(x,C)\leq r
+                \end{equation*}
+                por tanto, $b\in B'(0,r)$. Así que $x=c+b\in C+B'(0,r)$.
+            \end{itemize}
+            \item Si $c+b\in C+B'(0,r)$:
+            \begin{equation*}
+                d(c+b,C)=\inf\left\{\|c+b-c' \|\Big|c'\in C \right\}\leq \|c-c+b \|=\|b\|=d(0,b)\leq r
+            \end{equation*}
+            pues, $c\in C$. Por tanto:
+            \begin{equation*}
+                d(c+b,C)\leq r
+            \end{equation*}
+            es decir, que $c+b\in W_r$.
+        \end{itemize}
+        De ambas contenciones se sigue la igualdad.
+    \end{proof}
+
+    \begin{proof}
+        Considere la ecuación:
+        \begin{equation*}
+            \begin{split}
+                \cos x+4e^x-4xe^x&=0\\
+                \iff \cos x+4e^x&=4xe^x\\
+                \iff \frac{\cos x}{4e^x}+1&=x\\
+            \end{split}
+        \end{equation*}
+        por lo que la ecuación original tiene solución si la ecuación anterior la tiene. Considere la función $\cf{g}{[0,\infty[}{\bbm{R}}$ dada por:
+        \begin{equation*}
+            g(x)=\frac{\cos x}{4e^x}+1,\quad\forall x\in[0,\infty[
+        \end{equation*}
+        es continua por ser producto, suma y composición de funciones continuas. Afirmamos $g\geq0$.
+        \begin{equation*}
+            g(x)=\frac{\cos x}{4e^x}+1\geq-\frac{1}{4e^x}+1\geq 1-\frac{1}{4}=\frac{3}{4}\geq0,\quad\forall x\in[0,\infty[
+        \end{equation*}
+        Por lo que $\cf{g}{[0,\infty[}{[0,\infty[}$. El subespacio métrico $([0,\infty[,\abs{\cdot})$ es completo pues $[0,\infty[$ es cerrado.
+
+        Además, se cumple que:
+        \begin{equation*}
+            \begin{split}
+                \abs{g(x)-g(y)}&=\abs{\frac{\cos x}{4e^x}+1-\frac{\cos y}{4e^y}-1 }\\
+                &=\abs{\frac{\cos x}{4e^x}-\frac{\cos y}{4e^y}}\\
+                &=\frac{1}{4}\abs{\frac{\cos x}{e^x}-\frac{\cos y}{e^y}}\\
+            \end{split}
+        \end{equation*}
+
+        La función $\cf{g}{\bbm{R}}{\bbm{R}}$ es diferenciable (por ser cociente de funciones diferenciables y una que no se anula en $\bbm{R}$). Su derivada es:
+        \begin{equation*}
+            \begin{split}
+                \dot{g}(x)&=\frac{-4e^x\sin x-4e^x\cos x}{(4e^x)^2}\\
+                \dot{g}(x)&=-\frac{1}{4}\cdot\frac{\sin x+\cos x}{e^x},\quad\forall x\in \bbm{R}
+            \end{split}
+        \end{equation*}
+
+        Sean $x,y\in[0,\infty[$ distintos. Por el teorema del valor medio existe $c\in[x,y]$ tal que:
+        \begin{equation*}
+            \frac{g(x)-g(y)}{x-y}=\dot{g}(c)
+        \end{equation*}
+        por lo que:
+        \begin{equation*}
+            \abs{g(x)-g(y)}=\abs{\dot{g}(c)}\abs{x-y}
+        \end{equation*}
+        se tiene que $c\in[0,\infty[$, así que:
+        \begin{equation*}
+            \begin{split}
+                0&\leq\abs{\dot{g}(c)}\\
+                &=\abs{-\frac{1}{4}\cdot\frac{\sin c+\cos c}{e^c}}\\
+                &=\frac{1}{4}\cdot\abs{\frac{\sin c+\cos c}{e^c}}\\
+                &\leq\frac{1}{4}\cdot\frac{\abs{\sin c}+\abs{\cos c}}{e^c}\\
+                &\leq\frac{1}{4}\cdot\frac{2}{e^c}\\
+                &\leq\frac{1}{2e^c}\\
+                &\leq\frac{1}{2}\\
+                &<1\\
+            \end{split}
+        \end{equation*}
+
+        Así que:
+        \begin{equation*}
+            \abs{g(x)-g(y)}\leq\frac{1}{2}\abs{x-y}
+        \end{equation*}
+
+        Se tiene que parecer a algo de la forma:
+        \begin{equation*}
+            \abs{g(x)-g(y)}\leq\alpha\abs{x-y}
+        \end{equation*}
+        con $0\leq\alpha<1$. Por tanto, la desigualdad se cumple con $\alpha=\frac{1}{2}$. Por el teorema del punto fijo existe un único $x_0\in[0,\infty]$ tal que:
+        \begin{equation*}
+            g(x_0)=x_0
+        \end{equation*}
+        es decir que:
+        \begin{equation*}
+            \frac{\cos x_0}{4e^{x_0}}+1=x_0
+        \end{equation*}
+        es decir que la ecuación original tiene solución única en $[0,\infty[$.
+    \end{proof}
+
+    \begin{proof}
+        Primero, como $\left\{G_i \right\}_{ i\in I}$ es una cubierta abierta de $X$, entonces para todo $x\in X$ existe $i_x\in I$ tal que:
+        \begin{equation*}
+            x\in G_{i_x}
+        \end{equation*}
+        El conjunto $G_{ i_x}$ es abierto, por lo que existe $2r_x>0$ tal que:
+        \begin{equation*}
+            B(x,2r_x)\subseteq G_{ i_x}
+        \end{equation*}
+        Considere la cubierta abierta $\left\{B(x,r_x) \right\}_{ x\in X}$ de $X$. Por ser $X$ compacto, existen $x_1,..,x_n\in X$ tales que:
+        \begin{equation*}
+            X=\bigcup_{ i=1}^n B(x_i,r_{x_i})
+        \end{equation*}
+        Tomemos:
+        \begin{equation*}
+            \alpha=\min\left\{r_{ x_i}\Big|i=1,...,n \right\}>0
+        \end{equation*}
+        Sea $y\in X=\bigcup_{ i=1}^n B(x_i,r_{x_i})$ y considere la $B(y,\alpha)$. Existe $j=1,...,n$ tal que:
+        \begin{equation*}
+            y\in B(x_{j},r_{x_{j}})
+        \end{equation*}
+        Queremos ver que $B(y,\alpha)\subseteq G_{i}$ para algún $i\in I$. ¿Qué sabemos?
+        \begin{equation*}
+            B(x_j,2r_{ x_j})\subseteq G_{i}
+        \end{equation*}
+        Tomemos:
+        \begin{equation*}
+            i=i_{x_j}
+        \end{equation*}
+        En efecto, sea $z\in B(y,\alpha)$. Se tiene que:
+        \begin{equation*}
+            d(z,x_j)\leq d(z,y)+d(y,x_j)<\alpha+r_{ x_j}\leq r_{ x_j}+r_{ x_j}=2r_{ x_j}
+        \end{equation*}
+        por lo que $z\in B(x_j,2r_{ x_j})\subseteq G_i$. Por ende:
+        \begin{equation*}
+            B(y,\alpha)\subseteq G_i
+        \end{equation*}
+    \end{proof}
+
+    \begin{proof}
+        Sean $A,B\subseteq X$ espacio métrico conexo, cerrados no vacíos. Pruebe que existe $x_0\in X$ tal que:
+        \begin{equation*}
+            d(x_0,A)=d(x_0,B)\iff d(x_0,A)-d(x_0,B)=0
+        \end{equation*}
+
+        Se tiene que las funciones $x\mapsto d(x,A)$ y $x\mapsto d(x,B)$ son continuas, luego la función $f$:
+        \begin{equation*}
+            x\mapsto f(x)=d(x,A)-d(x,B)
+        \end{equation*}
+        es continua. El espacio métrico $X$ es conexo, por lo que el subespacio $f(X)\subseteq\bbm{R}$ es conexo. La función $\cf{f}{X}{\bbm{R}}$ es tal que:
+        \begin{equation*}
+            f(a)=d(a,A)-d(a,B)=-d(a,B)<0
+        \end{equation*}
+        pues $d(a,B)>0\iff -d(a,B)<0$ ya que $B$ es cerrado y $a\notin B$. De forma análoga:
+        \begin{equation*}
+            f(b)>0
+        \end{equation*}
+        para algún $b\in B$. Así que:
+        \begin{equation*}
+            f(a)<0<f(b)
+        \end{equation*}
+        
+        Por el teorema del valor intermedio existe $x_0\in X$ tal que:
+        \begin{equation*}
+            f(x_0)=0
+        \end{equation*}
+        es decir:
+        \begin{equation*}
+            d(x_0,A)-d(x_0,B)=0\iff d(x_0,A)=d(x_0,B)
+        \end{equation*}
+    \end{proof}
+
+    \begin{theor}[\textbf{Teorema del valor intermedio}]
+        Sea $\cf{f}{X}{\bbm{R}}$ una función continua de un espacio métrico conexo. Si $a,b\in X$ son tales que $f(a)<f(b)$, entonces para todo $c\in[f(a),f(b)]$ existe $z\in X$ tal que:
+        \begin{equation*}
+            f(z)=c
+        \end{equation*}
+    \end{theor}
+
+    \begin{sol}
+        Veamos que no existe $M\geq0$ tal que:
+        \begin{equation*}
+            \abs{T(f)} \leq M\|f\|_1
+        \end{equation*}
+        En efecto, suponga que existe tal $M$. Considere la sucesión de funciones $\left\{f_n \right\}_{ n=1}^\infty$ dadas por:
+        \begin{equation*}
+            f_n=\frac{s_n}{\|s_n\|_1}
+        \end{equation*}
+        donde:
+        \begin{equation*}
+            f_n(x)=\left\{
+                \begin{array}{lcr}
+                    0 & \textup{ si } & x\in\left[0,\frac{1}{2}-\frac{1}{n} \right]\cup\left[\frac{1}{2}+\frac{1}{n},1 \right] \\
+                    y_1 & \textup{ si } & x\in\left[\frac{1}{2}-\frac{1}{n},\frac{1}{2}\right] \\
+                    y_2 & \textup{ si } & x\in\left[\frac{1}{2},\frac{1}{2}+\frac{1}{n}\right] \\
+                \end{array}
+            \right.,\quad\forall x\in[0,1]
+        \end{equation*}
+        con:
+        \begin{equation*}
+            \begin{split}
+                \frac{y_1-y_2}{x-x_2}&=\frac{y_2-y_3}{x_2-x_3}\\
+                \frac{y_1}{x-\frac{1}{2}+\frac{1}{n}}&=\frac{-n}{-\frac{1}{n}}\\
+                y_1&=n^2\left(x-\frac{1}{2}+\frac{1}{n}\right) \\
+            \end{split}
+        \end{equation*}
+        (despejar a $y_2$) con $p_2=\left(\frac{1}{2}-\frac{1}{n},0\right)$ y $p_3=\left(\frac{1}{2},n\right)$
+        \begin{equation*}
+            \begin{split}
+                y_2&=n^2\left(\frac{1}{2}+\frac{1}{n}-x\right) \\
+            \end{split}
+        \end{equation*}
+        hacen que:
+        \begin{equation*}
+            f_n(x)=\left\{
+                \begin{array}{lcr}
+                    0 & \textup{ si } & x\in\left[0,\frac{1}{2}-\frac{1}{n} \right]\cup\left[\frac{1}{2}+\frac{1}{n},1 \right] \\
+                    n^2\left(x-\frac{1}{2}+\frac{1}{n}\right) & \textup{ si } & x\in\left[\frac{1}{2}-\frac{1}{n},\frac{1}{2}\right] \\
+                    n^2\left(\frac{1}{2}+\frac{1}{n}-x\right) & \textup{ si } & x\in\left[\frac{1}{2},\frac{1}{2}+\frac{1}{n}\right] \\
+                \end{array}
+            \right.,\quad\forall x\in[0,1]
+        \end{equation*}
+        (hacer figurita de como se ven las $f_n$). Se tiene que:
+        \begin{equation*}
+            \|f_n\|_1=\int_{0}^1\abs{f_n}=1,\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        y, además se cumple que:
+        \begin{equation*}
+            f_n\left(\frac{1}{2}\right)=n
+        \end{equation*}
+        Por lo que, si existiera tal constante $M\geq0$ tal que:
+        \begin{equation*}
+            n=\abs{f\left(\frac{1}{2}\right)}=\abs{T(f_n)}\leq M\|f_n\|_1=M
+        \end{equation*}
+        para todo $n\in\bbm{N}$\contradiction. Por tanto, $T$ no es continuo.
+    \end{sol}
+
+    \newcommand{\Fr}[1]{\ensuremath{\textup{Fr}\left(#1\right)}}
+
+    \begin{proof}
+        Probaremos que:
+        \begin{equation*}
+            \Fr{\overline{A}}\subseteq\Fr{A}\quad\textup{ y }\quad\Fr{\mathring{A}}\subseteq\Fr{A}
+        \end{equation*}
+        Recordemos que:
+        \begin{equation*}
+            \Fr{A}=\overline{A}\cap\overline{X-A}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \begin{split}
+                \Fr{\overline{A}}&=\overline{\overline{A}}\cap\overline{X-\overline{A}}\\
+                &=\overline{A}\cap\overline{X-\overline{A}}\\
+            \end{split}
+        \end{equation*}
+        Tenemos que:
+        \begin{equation*}
+            A\subseteq\overline{A}\Rightarrow X-\overline{A}\subseteq X-A\Rightarrow \overline{X-\overline{A}} \subseteq \overline{X-A}
+        \end{equation*}
+        por lo que:
+        \begin{equation*}
+            \overline{A}\cap\overline{X-\overline{A}}\subseteq \overline{A}\cap\overline{X-A}
+        \end{equation*}
+        es decir que:
+        \begin{equation*}
+            \Fr{\overline{A}}\subseteq \Fr{A}
+        \end{equation*}
+
+        Toma $A=([0,1]\cap\bbm{Q})\cup[2,3]$. Se tiene que:
+        \begin{itemize}
+            \item $\mathring{A}=(2,3)$, $\Fr{\mathring{A}}=\left\{2,3\right\}$.
+            \item $\Fr{A}=[0,1]\cup\left\{2,3\right\}$.
+            \item $\overline{A}=[0,1]\cup[2,3]$, $\Fr{\overline{A}}=\left\{0,1,2,3 \right\}$.
+        \end{itemize}
+
+        $G=\left\{e\right\}$
+
+        Y para la otra contención:
+        \begin{equation*}
+            \Fr{\mathring{A}}=\overline{\mathring{A}}\cap\overline{X-\mathring{A}}
+        \end{equation*}
+        se tiene que $X-\mathring{A}=\overline{X-\mathring{A}}$ ya que el conjunto es cerrado. Por tanto:
+        \begin{equation*}
+            \Fr{\mathring{A}}=\overline{\mathring{A}}\cap X-\mathring{A}
+        \end{equation*}
+        Se tiene que:
+        \begin{equation*}
+            \mathring{A}\subseteq A\Rightarrow\overline{\mathring{A}}\subseteq\overline{A}
+        \end{equation*}
+        y, por otra parte.
+        \begin{equation*}
+            X-\mathring{A}\subseteq \overline{X-A}
+        \end{equation*}
+        En efecto, sea $x\in X-\mathring{A}$, entonces para todo $\varepsilon>0$ el conjunto:
+        \begin{equation*}
+            B(x,\varepsilon)\cap (X-A)\neq\emptyset
+        \end{equation*}
+        por ende, $x\in\overline{X-A}$. Se sigue de forma inmediata que:
+        \begin{equation*}
+            \Fr{\mathring{A}}\subseteq\Fr{A}
+        \end{equation*}
+    \end{proof}
+
+\end{document}

@@ -1,0 +1,1 @@
+Las presentes notas se basan en lo hecho por Guillermo Morales Luna en sus notas de Variedades Diferenciables. Se pretende resolver algunos de sus ejercicios y probar algunos resultados relevantes en topología diferencial.

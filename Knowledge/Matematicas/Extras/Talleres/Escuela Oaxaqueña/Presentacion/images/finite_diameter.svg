@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="123 182 275 327" width="275pt" height="327pt">
+<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+<dc:date>2012-08-12 20:07Z</dc:date>
+<!-- Produced by OmniGraffle Professional 5.4.1 -->
+</metadata>
+<defs>
+<filter id="Shadow" filterUnits="userSpaceOnUse">
+<feGaussianBlur in="SourceAlpha" result="blur" stdDeviation="3.488"/>
+<feOffset in="blur" result="offset" dx="0" dy="4"/>
+<feFlood flood-color="black" flood-opacity=".75" result="flood"/>
+<feComposite in="flood" in2="offset" operator="in"/>
+</filter>
+<font-face font-family="Verdana" font-size="18" panose-1="2 11 8 4 3 5 4 4 2 4" units-per-em="1000" underline-position="-67.871094" underline-thickness="103.027344" slope="0" x-height="548.33984" cap-height="727.0508" ascent="1005.37115" descent="-209.96094" font-weight="bold">
+<font-face-src>
+<font-face-name name="Verdana-Bold"/>
+</font-face-src>
+</font-face>
+<font-face font-family="Verdana" font-size="14" panose-1="2 11 8 4 3 5 4 4 2 4" units-per-em="1000" underline-position="-67.871094" underline-thickness="103.027344" slope="0" x-height="548.33984" cap-height="727.0508" ascent="1005.37115" descent="-209.96094" font-weight="bold">
+<font-face-src>
+<font-face-name name="Verdana-Bold"/>
+</font-face-src>
+</font-face>
+</defs>
+<g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+<title>Canvas 1</title>
+<g>
+<title>Layer 1</title>
+<g>
+<use xl:href="#id6_Graphic" filter="url(#Shadow)"/>
+</g>
+<path d="M 134 363 L 208 246 L 339 278 L 255 353 L 348 460 L 212 467 L 216 417 Z" fill="lightgray" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+<text transform="translate(110 345.75)" fill="black">
+<tspan font-family="Verdana" font-size="18" font-weight="bold" x="94.512695" y="18" textLength="13.974609">A</tspan>
+</text>
+<line x1="208" y1="246" x2="348" y2="460" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+<text transform=" translate(293 327) rotate(56.5)" fill="black">
+<tspan font-family="Verdana" font-size="14" font-weight="bold" x="30.587402" y="14" textLength="64.825195">diam(A)</tspan>
+</text>
+</g>
+</g>
+</svg>

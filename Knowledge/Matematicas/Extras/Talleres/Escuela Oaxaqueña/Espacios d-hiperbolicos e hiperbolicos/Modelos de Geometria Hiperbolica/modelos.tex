@@ -1,0 +1,1194 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{bbm}
+
+%Gestión de Hipervínculos
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan
+}
+
+%Gestión de Código de Programación
+
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA} % additional keywords
+\definecolor{listing-keyword-3}{HTML}{9137CB} % additional keywords
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language         = C++,
+    alsolanguage     = scala,
+    numbers          = left,
+    xleftmargin      = 2.7em,
+    framexleftmargin = 2.5em,
+    backgroundcolor  = \color{gray!15},
+    basicstyle       = \color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines       = true,
+    frameshape       = {RYR}{Y}{Y}{RYR},
+    rulecolor        = \color{black},
+    tabsize          = 2,
+    numberstyle      = \color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip        = 1.0em,
+    belowskip        = 0.1em,
+    abovecaptionskip = 0em,
+    belowcaptionskip = 1.0em,
+    keywordstyle     = {\color{listing-keyword}\bfseries},
+    keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive        = true,
+    identifierstyle  = \color{listing-identifier},
+    commentstyle     = \color{listing-comment},
+    stringstyle      = \color{listing-string},
+    showstringspaces = false,
+    label            = lst:bar,
+    captionpos       = b,
+}
+
+\lstset{style = myStyle}
+
+%Estilo del capítulo y sección
+
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{%
+  {\parindent \z@ \raggedright
+    \reset@font
+    \hrule
+    \vspace*{10\p@}%
+    \par
+    \center \LARGE \scshape \@chapapp{} \huge \thechapter
+    \vspace*{10\p@}%
+    \par\nobreak
+    \vspace*{10\p@}%
+    \par
+    \vspace*{1\p@}%
+    \hrule
+    %\vskip 40\p@
+    \vspace*{60\p@}
+    \Huge #1\par\nobreak
+    \vskip 50\p@
+  }}
+
+\def\section#1{%
+  \par\bigskip\bigskip
+  \hrule\par\nobreak\noindent
+  \refstepcounter{section}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \reset@font
+  { \large \scshape
+    \strut\S \thesection \quad
+    #1}% 
+    \hrule   
+  \par
+  \medskip
+}
+
+\def\subsection#1{%
+  \par\bigskip\bigskip
+  \hrule\par\nobreak\noindent
+  \refstepcounter{subsection}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \reset@font
+  { \normalsize \scshape
+    \strut\S \thesubsection \quad
+    #1}% 
+    \hrule   
+  \par
+  \medskip
+}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcounter{figcount}
+\setcounter{figcount}{1}
+\newcommand{\bbm}[1]{\ensuremath{\mathbbm{#1}}}
+\newcommand{\pint}[2]{\langle#1\big|#2 \rangle}
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\Isom}[1]{\ensuremath{\textup{Isom}\left(#1\right)}}
+\newcommand{\SO}[1]{\ensuremath{\textup{SO}\left(#1\right)}}
+\newcommand\Aut[1]{\ensuremath{\textup{Aut}\left(#1\right)}}
+\newcommand{\Cay}[1]{\ensuremath{\textup{Cay}\left(#1\right)}}
+\newcommand{\gen}[1]{\ensuremath{\langle#1\rangle}}
+\newcommand{\qisom}{\ensuremath{\underset{C.I.}{\sim}}}
+\newcommand{\SL}[1]{\ensuremath{\textup{SL}\left(#1\right)}}
+\newcommand{\PSL}[1]{\ensuremath{\textup{PSL}\left(#1\right)}}
+\newcommand{\Tr}[1]{\ensuremath{\textup{Tr}\left(#1\right)}}
+\newcommand{\im}[1]{\ensuremath{\textup{im}\left(#1\right)}}
+\newcommand{\Diam}[1]{\ensuremath{\textup{diam}\left(#1\right)}}
+\newcommand{\arcosh}[1]{\ensuremath{\textup{arcosh}\left(#1\right)}}
+
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Sobre Espacios $\delta$-hiperbólicos y aplicaciones del Teorema de Svarc-Milnor}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents %Con este comando se genera el índice general del libro%
+
+    \newpage
+
+    \chapter{Modelos de geometría hiperbólica}
+
+    \section{Construcción del plano hiperbólico}
+
+    En esta sección se construirá un modelo del plano hiperbólico como una variedad Riemanniana.
+
+    \begin{mydef}[\textbf{Plano superior}]
+        Escribimos:
+        \begin{equation*}
+            H=\left\{(x,y)\in\bbm{R}^2\Big|y>0 \right\}\subseteq\bbm{R}^2
+        \end{equation*}
+        para el \textbf{plano superior}.
+    \end{mydef}
+
+    \begin{obs}
+        Dependiendo del contexto, veremos a $H$ como subconjunto de $\bbm{C}$, haciendo las identificaciones:
+        \begin{equation*}
+            H\rightarrow\left\{z\in\bbm{C}\Big|\Im z>0 \right\}
+        \end{equation*}
+        con la aplicación biyectiva $(x,y)\mapsto x+iy$.
+    \end{obs}
+
+    \begin{mydef}[\textbf{Haz tangente}]
+        Sea $M$ una variedad $C^k$-diferenciable. El \textbf{fibrado tangente} o \textbf{haz tangente} es la unión disjunta de los espacios tangentes a cada punto de la variedad, dado por:
+        \begin{equation*}
+            TM=\bigsqcup_{ p\in M}T_pM=\bigcup_{ p\in M}\left\{p\right\}\times T_pM
+        \end{equation*}
+        donde $T_pM$ denota el espacio tangente a $M$ en el punto $p\in M$.
+    \end{mydef}
+
+    Como el conjunto $H$ es abierto y subconjunto de $\bbm{R}^2$, entonces este hereda la estructura de variedad suave de $\bbm{R}^2$. Además, como el haz tangente a $p\in\bbm{R}^2$ es trivial, se sigue también que el haz tangente a $H$ es trivial y por ende, podemos identificar de forma natural al espacio $T_zH$ como el espacio tangente de $x\in H$.
+
+    Además, como $T_zH\cong\bbm{R}^2$, haremos la identificación de estos dos espacios como el mismo.
+
+    \begin{mydef}[\textbf{Métrica Riemanniana}]
+        Una \textbf{métrica Riemanniana} en una variedad $C^k$-diferenciable $M$ es una aplicación bilineal simétrica $\cf{g_p}{T_pM\times T_pM}{\bbm{R}}$ en cada uno de los espacios tangentes $T_pM$ de $M$.
+    \end{mydef}
+
+    \begin{obs}
+        De la definición anterior se sigue que para cada $p\in M$ se satisface:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $g_p(u,v)=g_p(v,u)$ para todo $u,v\in T_pM$.
+            \item $g_p(u,u)\geq0$ para todo $u\in T_pM$.
+            \item $g_p(u,u)=0$ si y sólo si $u=0$.
+        \end{enumerate}
+    \end{obs}
+
+    \begin{mydef}[\textbf{Plano Hiperbólico}]
+        El \textbf{plano hiperbólico} $\bbm{H}^2$ es la variedad Riemanniana $(H,g_H)$, donde:
+        \begin{itemize}
+            \item $H\subseteq\bbm{R}^2$ hereda la estructura suave de $\bbm{R}^2$.
+            \item Consideramos la métrica Riemanniana $\cf{g_{H,p}}{T_pH\times T_pH=\bbm{R}^2\times \bbm{R}^2}{\bbm{R}}$ dada por:
+            \begin{equation*}
+                g_{H,(x,y)}(u,v)=\frac{1}{y^2}\langle u,v\rangle,\quad\forall u,v\in\bbm{R}^2
+            \end{equation*}
+            para todo $(x,y)\in H$, donde $\langle\cdot\big|\cdot \rangle$ denota el producto interno usual de $\bbm{R}^2$. Más aún, escribiremos $\langle\cdot\big|\cdot \rangle_{ H,z}$ en vez de $g_{H,z}$ y a la norma inducida se le denotará por $\norm{\cdot}_{H,z}$.
+        \end{itemize}
+    \end{mydef}
+
+    Nuestro interés ahora será hablar de las isometrías de $\bbm{H}^2$, para lo cual tendremos que construír una métrica en este espacio.
+    
+    \begin{mydef}[\textbf{Longitud hiperbólica de una curva}]
+        Sea $\cf{\gamma}{[a,b]}{H}$ una curva suave. Se define la \textbf{longitud hiperbólica de $\gamma$} por:
+        \begin{equation*}
+            L_{\bbm{H}^2}(\gamma)=\int_{a}^{b}\norm{\dot{\gamma}(t)}_{ H,\gamma(t)}\:dt=\int_{a}^{b}\frac{\sqrt{\dot{\gamma_1}^2(t)+\dot{\gamma_2}^2(t)}}{\gamma_2(t)}\:dt
+        \end{equation*}
+        siendo $\gamma=(\gamma_1,\gamma_2)$.
+    \end{mydef}
+
+    \begin{propo}
+        La función $\cf{d_H}{H\times H}{\bbm{R}_\geq0}$ dada por:
+        \begin{equation*}
+            (z,z')\mapsto\inf\left\{L_{\bbm{H}^2}(\gamma)\Big|\gamma\textup{ es una curva suave en $H$ que une a $z$ con $z'$} \right\}
+        \end{equation*}
+        es una métrica en $H$.
+    \end{propo}
+
+    \begin{proof}
+        La simetría es inmediata, la desigualdad del triángulo se sigue de la definición.
+    \end{proof}
+
+    \begin{propo}
+        Sea $\cf{\gamma}{[a,b]}{H}$ una curva suave. Entonces:
+        \begin{equation*}
+            L_{\bbm{H}^2}(\gamma)=L_{(H,d_H)}(\gamma)
+        \end{equation*}
+        donde $L_{(H,d_H)}$ es llamada la \textbf{longitud métrica} y está dada por:
+        \begin{equation*}
+            L_{(H,d_H)}=\sup\left\{\sum_{ j=0}^{k-1}d_H(\gamma(t_j),\gamma(t_{j+1}))\Big|k\in\bbm{N}, t_0,t_1,...,t_k\in[a,b], t_0<t_1<\cdots <t_k \right\}
+        \end{equation*}
+    \end{propo}
+
+    Conociendo la métrica de este espacio, nos interesa conocer ahora las geodésicas del mismo. Para ello, primero veremos quiénes son las isometrías de este espacio.
+
+    \begin{mydef}[\textbf{Grupo de isometrías Riemanniano}]
+        Una \textbf{isometría Riemanniana de $\bbm{H}^2$} es un difeomorfismo suave $\cf{f}{H}{H}$ que satisface:
+        \begin{equation*}
+            \forall z\in H, \forall v,v'\in T_zH,\quad\pint{(Df)_z(v)}{(Df)_z(v')}_{H,f(z)}=\pint{v}{v'}_{H,z}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{propo}[\textbf{Isometrías Riemannianias son isometrías}]
+        Toda isometría Riemanniana de $\bbm{H}^2$ es una isometría métrica de $(H,d_H)$. En particular, existe un monomorfismo de grupos:
+        \begin{equation*}
+            \Isom{\bbm{H}^2}\rightarrow \Isom{H,d_H}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \section{Grupos Fuchsianos}
+
+    \begin{mydef}
+        $\SL{n,\bbm{A}}$ denota al espacio de todas las matrices $2\times 2$ con entradas en $\bbm{A}\subseteq\bbm{C}$ tales que:
+        \begin{equation*}
+            \det(A)=1,\quad\forall A\in\bbm{A}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{mydef}[\textbf{Transformaciones de Möbius}]
+        Para la matriz $2\times 2$:
+        \begin{equation*}
+            \left(
+                \begin{array}{cc}
+                    a & b \\
+                    c & d \\
+                \end{array}
+             \right)\in\SL{2,\bbm{R}}
+        \end{equation*}
+        definimos la \textbf{transformación de Möbius asociada} $\cf{f_A}{H}{H}$, dada por:
+        \begin{equation*}
+            z\mapsto\frac{a\cdot z+b}{c\cdot z+d}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        Toda transformación de Möbius está bien definida, ya que como $H$ es el plano superior, entonces la parte real de $z$ nunca será un número con parte imaginaria cero, así que $c\cdot z+d\neq 0$ para todo $z\in H$.
+    \end{obs}
+
+    \begin{exa}
+        La función $z\mapsto z$ es una transformación de Möbius. Al igual que la función $z\mapsto\frac{1}{z}$. En particular, todas las funciones lineales de $H$ en $H$ son transformaciones de Möbius.
+    \end{exa}
+
+    \begin{propo}
+        Se tiene lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $f_A$ está bien definido y es un difeomorfismo $C^\infty$ (o suave).
+            \item Para todo $A,B\in\SL{2,\bbm{R}}$ se tiene que $f_{A\cdot B}=f_A\circ f_B$.
+            \item $f_A=f_{-A}$ para todo $A\in\SL{2,\bbm{R}}$.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De \textit{(1)} y \textit{(2)}: Son inmediatas.
+
+        De \textit{(3)}: Si
+        \begin{equation*}
+            A=\left(
+                \begin{array}{cc}
+                    a & b \\
+                    c & d \\
+                \end{array}
+             \right)\in\SL{2,\bbm{R}}
+        \end{equation*}
+        entonces,
+        \begin{equation*}
+            f_A(z)=\frac{a\cdot z+b}{c\cdot z+d}=\frac{-a\cdot z+-b}{-c\cdot z+-d}=f_{-A}(z)
+        \end{equation*}
+        para todo $z\in H$.
+    \end{proof}
+
+    \begin{exa}[\textbf{Generadores $\SL{2,\bbm{R}}$}]
+        Tenemos los siguientes dos tipos de transformaciones de Möbius:
+        \begin{itemize}
+            \item Sea $b\in\bbm{R}$. Entonces, la transformación de Möbius asociada a la matriz:
+            \begin{equation*}
+                \left(\begin{array}{cc}
+                    1 & b \\
+                    0 & 1 \\
+                \end{array} \right)\in\SL{2,\bbm{R}}
+            \end{equation*}
+            es la traslación horizontal $z\mapsto z+b$ en $H$ por un factor $b$ se denotará por $T_b$.
+            \item La transformación de Möbius asociada a la matriz:
+            \begin{equation*}
+                \left(\begin{array}{cc}
+                    0 & 1 \\
+                    -1 & 0 \\
+                \end{array} \right)\in\SL{2,\bbm{R}}
+            \end{equation*}
+            es la función $z\mapsto\frac{1}{z}$ se denotará por $In$.
+        \end{itemize}
+
+        Se tiene que el grupo $\SL{2,\bbm{R}}$ es generado por:
+        \begin{equation*}
+            \left\{\left(\begin{array}{cc}
+                0 & 1 \\
+                -1 & 0 \\
+            \end{array} \right)\right\}\cup\left\{\left(\begin{array}{cc}
+                1 & b \\
+                0 & 1 \\
+            \end{array} \right)\Big|b\in\bbm{R} \right\}
+        \end{equation*}
+    \end{exa}
+
+    \begin{proof}
+        Notemos que:
+        \begin{equation*}
+            \left(\begin{array}{cc}
+                0 & 1 \\
+                -1 & 0 \\
+            \end{array} \right)\cdot\left(\begin{array}{cc}
+                1 & b \\
+                0 & 1 \\
+            \end{array} \right)\cdot\left(\begin{array}{cc}
+                0 & 1 \\
+                -1 & 0 \\
+            \end{array} \right)=\left(\begin{array}{cc}
+                1 & 0 \\
+                -b & 1 \\
+            \end{array} \right)
+        \end{equation*}
+        para todo $b\in\bbm{R}$. Así que todas las matrices de la forma:
+        \begin{equation*}
+            \left(\begin{array}{cc}
+                1 & 0 \\
+                a & 1 \\
+            \end{array} \right)
+        \end{equation*}
+        está en el grupo generado por el conjunto anterior. Para terminar, basta notar que toda matriz en $\SL{2,\bbm{R}}$ admite una descomposición $LU$ o $UL$, dependiendo del caso.
+        %TODO justificar
+    \end{proof}
+
+    \begin{propo}[\textbf{Transformaciones de Möbius son isometrías}]
+        Si $A\in\SL{2,\bbm{R}}$, entonces la transformación de Möbius asociada $\cf{f_A}{H}{H}$ es una isometría Riemanniana de $\bbm{H}^2$. En particular, tenemos un monomorfismo de grupos:
+        \begin{equation*}
+            \PSL{2,\bbm{R}}=\SL{2,\bbm{R}}/\left\{I,-I \right\}\rightarrow\Isom{H,d_H}
+        \end{equation*}
+        dado por $[A]\mapsto f_A$.
+    \end{propo}
+
+    \begin{proof}
+        Por el ejemplo anterior basta con ver que $T_b$ y $In$ son isometrías Riemannianas de $\bbm{H}^2$, ya que la composición de isometrías Riemannianias sigue siendo una isometría Riemanniana. Analicemos los dos casos:
+        \begin{itemize}
+            \item 
+        \end{itemize}
+    \end{proof}
+
+    \begin{theor}[\textbf{El grupo de isometrías hiperbólicas}]
+        El grupo $\Isom{H,d_H}$ es generado por:
+        \begin{equation*}
+            \left\{f_A\Big|A\in\SL{2,\bbm{R}} \right\}\cup\left\{z\mapsto-\overline{z} \right\}
+        \end{equation*}
+        En particular, toda isometría de $(H,d_H)$ es una isometría Riemanniana suave y, $\Isom{H,d_H}=\Isom{\bbm{H}^2}$. Además, la función:
+        \begin{equation*}
+            \begin{split}
+                \PSL{2,\bbm{R}}&\rightarrow\Isom{H,d_H}^+\\
+                A&\mapsto f_A\\
+            \end{split}
+        \end{equation*}
+        es un isomorfismo, siendo $\Isom{H,d_H}^+$ al grupo de todas las isometrías que preservan orientación de $\Isom{H,d_H}$.
+    \end{theor}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{center}
+        \textit{¿Para qué nos sirven las transformaciones de Möbius?}
+    \end{center}
+
+    \begin{propo}[\textbf{Acción de $\SL{2,\bbm{R}}$ en $H$}]
+        \label{accionSL2RenH}
+        Se tiene lo siguiente:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item El grupo $\SL{2,\bbm{R}}$ actúa en $H$ vía transformaciones de Möbius, más aún, esta acción es transitiva.
+            \item El grupo estabilizador de $i$ respecto a esta acción es $\SO{2}$.
+            \item Para todo $z,z'\in H$ existe $A\in\SL{2,\bbm{R}}$ tal que:
+            \begin{equation*}
+                f_A(z)=i\quad\textup{y}\quad\Re(f_A(z'))=0, \Im(f_A(z'))>1
+            \end{equation*}
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De \textit{(1)}: Es inmediato que el grupo actúa via transformaciones de Möbius con la acción dada por:
+        \begin{equation*}
+            (A,z)\mapsto A\cdot z = f_A(z),\quad\forall A\in \SL{2,\bbm{R}},\forall z\in H
+        \end{equation*}
+        Veamos que esta acción es transitiva. Basta probar que para todo $z\in H$ existe un $A_z\in\SL{2,\bbm{R}}$ tal que:
+        \begin{equation*}
+            f_{A_z}(z)=i
+        \end{equation*}
+        Tomemos $x=\Re(z)$ y $y=\Im(z)$. Entonces la transformación de Möbius asociada a la matriz:
+        \begin{equation*}
+            A_z=\left(
+                \begin{array}{cc}
+                    0 & -x \\
+                    y & 0 \\
+                \end{array}
+            \right)
+        \end{equation*}
+        es tal que:
+        \begin{equation*}
+            A_z\cdot z=f_{ A_z}(z)=\frac{z-x}{y}=i
+        \end{equation*}
+        Con lo que la acción es transitiva.
+
+        De \textit{(2)}: Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \SL{2,\bbm{R}}_i&=\left\{A\in\SL{2,\bbm{R}}\Big|A\cdot i=i \right\}\\
+                &=\left\{\left(\begin{array}{cc}
+                    a & b \\
+                    c & d \\
+                \end{array} \right) \in\SL{2,\bbm{R}}\Big|a = d\textup{ y }c=-b \right\}\\
+                &=\left\{\left(\begin{array}{cc}
+                    a & -c \\
+                    c & a \\
+                \end{array} \right) \in\mathcal{M}_{2\times2}(\bbm{R}) \Big|a^2+c^2=1 \right\}\\
+                &=\SO{2}\\
+            \end{split}
+        \end{equation*}
+
+        De \textit{(3)}: Inmediato del inciso \textit{(1)}.
+    \end{proof}
+
+    Resulta que podemos dotar al grupo $\PSL{2,\bbm{R}}$ con una topología. Para ello, notemos que la función:
+    \begin{equation*}
+        f_A\mapsto (a,b,c,d)
+    \end{equation*}
+    es una función suprayectiva de $\PSL{2,\bbm{R}}$ en el subconjunto:
+    \begin{equation*}
+        \left\{(a,b,c,d)\in\bbm{R}^4\Big|ad-bc=1 \right\}
+    \end{equation*}
+    y, es una función biyectiva al espacio cociente:
+    \begin{equation*}
+        \left\{(a,b,c,d)\in\bbm{R}^4\Big|ad-bc=1 \right\}/\left\{(a,b,c,d)\sim(-a,-b,-c,-d) \right\}
+    \end{equation*}
+    Dotando al subespacio $\left\{(a,b,c,d)\in\bbm{R}^4\Big|ad-bc=1 \right\}$ con la norma usual de $\bbm{R}^4$ resulta que el cociente también se puede dotar de una norma, así que el grupo $\PSL{2,\bbm{R}}$ tiene una norma inducida por la norma del espacio cociente, a saber:
+    \begin{equation*}
+        \norm{f_A}=\sqrt{a^2+b^2+c^2+d^2}
+    \end{equation*}
+    donde
+    \begin{equation*}
+        A=\left(\begin{array}{cc}
+            a & b \\
+            c & d \\
+        \end{array}\right)
+    \end{equation*}
+
+    \begin{propo}
+        $\PSL{2,\bbm{R}}$ es un grupo topológico con la métrica inducida por la norma:
+        \begin{equation*}
+            \norm{f_A}=\sqrt{a^2+b^2+c^2+d^2}
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{mydef}
+        Un subgrupo $H<\Isom{2,\bbm{R}}$ es llamado \textbf{discreto} si la topología del subespacio $H$ coincide con la topología discreta.
+    \end{mydef}
+
+    \begin{mydef}
+        Un subgrupo discreto de $\Isom{\bbm{H}}$ es llamado \textbf{grupo Fuchsiano} si todo elemento del grupo es una transformación que preserva el orden.
+
+        En otras palabras, un grupo Fuchsiano es un subgrupo discreto de $\PSL{2,\bbm{R}}$
+    \end{mydef}
+
+    \section{Superfices de género $g$}
+
+    Resulta que existe una relación profunda entre los subgrupos de isometrías del plano hiperbólico y el grupo fundamental de superficies de género $g$.
+
+    \begin{theor}
+        Sea $X$ un espacio conexo, localmente arco-conexo y semilocalmente simplemente conexo. Entonces $X$ tiene admite una cubierta universal.
+    \end{theor}
+
+    \begin{mydef}
+        Una \textbf{superficie de Riemann} es un espacio topológico conexo Hausdorff $M$ junto con una colección de cartas $\left\{(U_\alpha,\phi_\alpha) \right\}_{\alpha\in I}$ tales que:
+        \begin{itemize}
+            \item $\left\{U_\alpha \right\}_{\alpha\in I}$ es una cubierta abierta de $M$.
+            \item Para todo $\alpha\in I$, $\cf{\phi_{\alpha}}{U_\alpha}{V_\alpha\subseteq\bbm{C}}$ es un homeomorfismo, donde $V_\alpha$ es un abierto de $\bbm{C}$.
+            \item Si $U_\alpha\cap U_\beta$ para algunos $\alpha,\beta\in I$, entonces la función $\cf{\phi_{\alpha\beta}=\phi_\beta\circ\phi_\alpha^{-1}}{\phi_\alpha(U_\alpha\cap U_\beta)}{\phi_\beta(U_\alpha\cap U_\beta)}$ es una homeomorfismo analítico complejo.
+        \end{itemize}
+    \end{mydef}
+
+    \begin{exa}
+        $\bbm{C}$ es una superficie de Riemann con carta $\left\{(\bbm{C},\bbm{1}_{\bbm{C}})\right\}$.
+    \end{exa}
+
+    \begin{exa}
+        La esfera $\bbm{S}^2\cong\hat{\bbm{C}}=\bbm{C}\cup\left\{\infty \right\}$ es una superficie de Riemann (recuerde la proyección estereográfica).
+    \end{exa}
+
+    \begin{exa}
+        El plano hiperbólico $\bbm{H}^2$ es una superficie de Riemann. En efecto, basta con ver que el plano hiperbólico es un subconjunto de $\bbm{C}$, por lo que hereda toda la estructura de variedad de Riemann.
+    \end{exa}
+
+    \begin{exa}
+        Toda superficie de género $g\geq0$ es una superficie de Riemann. 
+    \end{exa}
+
+    Nos interesa conocer los cubrientes universales de estas superficies de Riemann. Para llegar a ello, recordemos el siguiente teorema:
+
+    \begin{theor}[\textbf{Teorema de uniformización de Riemann}]
+        Toda superficie de Riemann simplemente conexa es conformemente equivalente a alguna de las tres:
+        \begin{itemize}
+            \item El plano complejo: $\bbm{C}$.
+            \item La esfera de Riemann; $\hat{\bbm{C}}$.
+            \item El plano hiperbólico: $\bbm{H}^2$.
+        \end{itemize}
+    \end{theor}
+
+    Con este teorema, resulta que podemos caracterizar los cubrientes universales de todas las superficies de género $g\geq0$:
+
+    \begin{propo}
+        Toda superficie de género $g\geq0$ tiene como cubriente universal a alguno de los siguientes:
+        \begin{itemize}
+            \item El plano complejo: $\bbm{C}$.
+            \item La esfera de Riemann; $\hat{\bbm{C}}$.
+            \item El plano hiperbólico: $\bbm{H}^2$.
+        \end{itemize}
+    \end{propo}
+
+    \begin{proof}
+        Sea $S_g$ una superficie de género $g$. Se tienen tres casos:
+        \begin{itemize}
+            \item $g=0$, en cuyo caso se sigue que $S_g\cong\bbm{S}^2\cong\hat{\bbm{C}}$ el cual es simplemente conexo, por lo que $\hat{\bbm{C}}$ es su cubriente universal.
+            \item $g=1$, en cuyo caso se sigue que $S_g\cong\bbm{T}^2\cong\bbm{S}^1\times\bbm{S}^1$, por lo que un cubriente universal es el plano $\bbm{R}^2\cong\bbm{C}$.
+            \item $g\geq2$. Consultar libro: Resulta que $S_g$ tiene como cubriente universal a $\bbm{H}^2$.
+        \end{itemize}
+    \end{proof}
+
+
+
+    \section{Propieadades de los grupos Fuchsianos}
+
+    \begin{mydef}
+        Sea $A\in\PSL{2,\bbm{R}}$, con:
+        \begin{equation*}
+            A=\left(\begin{array}{cc}
+                a & b \\
+                c & d \\
+            \end{array} \right)
+        \end{equation*}
+        \begin{itemize}
+            \item Si $\Tr{A}<2$, entonces $A$ es llamada \textbf{elíptica}.
+            \item Si $\Tr{A}=2$, entonces $A$ es llamada \textbf{parabólica}.
+            \item Si $\Tr{A}>2$, entonces $A$ es llamada \textbf{hiperbólica}.
+        \end{itemize}
+    \end{mydef}
+
+
+
+    \section{Hiperbólicidad y $\delta$-hiperbolicidad}
+
+    Hablaremos sobre la propiedad de hiperbolicidad, que más adelante resutará de utilidad para estudiar invariantes cuasi-isométricos.
+
+    \subsection{Espacios Hiperbólicos}
+
+    \begin{mydef}
+        Sea $(X,d)$ un espacio métrico. Para cada $\delta>0$ y para cada $A\subseteq X$ se define el conjunto:
+        \begin{equation*}
+            B_\delta^{(X,d)}(A)=\left\{x\in X\Big|\exists a\in A\textup{ tal que }d(x,a)\leq\delta \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{mydef}[\textbf{Triángulos geodésicos $\delta$-delgados}]
+        Sea $(X,d)$ un espacio métrico.
+        \begin{enumerate}[label = \textit{\arabic*}]
+            \item Un \textbf{triángulo geodésico en $X$} es una tripleta $(\gamma_0,\gamma_1,\gamma_2)$ de geodésicas $\cf{\gamma_i}{[0,L_i]}{X}$ en $X$ tales que:
+            \begin{equation*}
+                \gamma_0(L_0)=\gamma_1(0),\quad \gamma_1(L_1)=\gamma_2(0),\quad \gamma_2(L_2)=\gamma_0(0)
+            \end{equation*}
+            \item Un triángulo geodésico es \textbf{$\delta$-delgado} si:
+            \begin{equation*}
+                \begin{split}
+                    \im{\gamma_0}&\subseteq B_{\delta}^{(X,d)}(\im{\gamma_1}\cup\im{\gamma_2}),\\
+                    \im{\gamma_1}&\subseteq B_{\delta}^{(X,d)}(\im{\gamma_0}\cup\im{\gamma_2}),\\
+                    \im{\gamma_2}&\subseteq B_{\delta}^{(X,d)}(\im{\gamma_0}\cup\im{\gamma_1})\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        %TODO: COlocar triángulo geodésico $\delta$ delgado
+    \end{exa}
+
+    \begin{mydef}[\textbf{Espacios hiperbólicos}]
+        Sea $(X,d)$ un espacio métrico.
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Sea $\delta\bbm{R}_{\geq0}$. Decimos que $(X,d)$ es \textbf{$\delta$-hiperbólico} si $X$ es geodésico y todos los triángulos geodésicos de $X$ son $\delta$-delgados.
+            \item $(X,d)$ es \textbf{hiperbólico} si existe $\delta\in\bbm{R}_{\geq0}$ tal que $(X,d)$ es $\delta$-hiperbólico.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        Todo espacio métrico geodésico $X$ de diámetro finito es $\Diam{X}$-hiperbólico. 
+    \end{exa}
+
+    \begin{exa}
+        La recta real $\bbm{R}$ es $0$-hiperbólico ya que cada triángulo geodésico en $\bbm{R}$ es degenerado, pues estos se ven simplemente como líneas rectas.
+    \end{exa}
+
+    \begin{exa}
+        El plano euclideano $\bbm{R}^2$ no es hiperbólico.
+    \end{exa}
+
+    %TODO: Hacer triángulo par que no sea hiperbólico
+
+    \subsection{Hiperbolicidad de $\bbm{H}^2$}
+
+    Nuestro objetivo en esta subsección será probar el siguiente resultado:
+
+    \begin{propo}
+        El plano hiperbólico $\bbm{H}^2$ es un espacio métrico hiperbólico en el sentido de la definición anterior.
+    \end{propo}
+
+    Antes de llegar a ello, probaremos algunos resultados adicionales y enunciaremos algunas definciones fundamentales.
+
+    \begin{mydef}[\textbf{Área hiperbólica}]
+        Sea $\cf{f}{H}{\bbm{R}_\geq0}$ una función Lebesgue integrable. Se define la \textbf{integral de $f$ sobre $\bbm{H}^2$} como:
+        \begin{equation*}
+            \begin{split}
+                \int_{H}f\:dV_H&=\int_{H}f(x,y)\sqrt{\det(G_{H,(x,y)})}\:dxdy\\
+                &=\int_{H}\frac{f(x,y)}{y^2}\:dxdy\\
+            \end{split}
+        \end{equation*}
+        donde:
+        \begin{equation*}
+            G_{ H,,(x,y)}=\left(\begin{array}{cc}
+                g_{ H,(x,y)}(e_1,e_1) & g_{ H,(x,y)}(e_1,e_2) \\
+                g_{ H,(x,y)}(e_2,e_1) & g_{ H,(x,y)}(e_2,e_2) \\
+            \end{array} \right)=\left(\begin{array}{cc}
+                1/y^2 & 0 \\
+                0 & 1/y^2 \\
+            \end{array} \right)
+        \end{equation*}
+        siendo $e_1,e_2\in T_{(x,y)}H=\bbm{R}^2$ los vectores coordenados usuales.
+
+        Si $A\subseteq H$ es un conjunto Lebesgue medible, definimos el \textbf{área hiperbólica de $A$} por:
+        \begin{equation*}
+            \mu_{\bbm{H}^2}(A)=\int_{H}\chi_A\:dV_H
+        \end{equation*}
+        siendo $\chi_A$ la función característica de $A$.
+    \end{mydef}
+
+    \begin{propo}[\textbf{Las isometrías preservan el área}]
+        Sea $A\subseteq H$ un conjunto Lebesgue medible y tomemos $f\in\Isom{H,d_H}$. Entonces, $f(A)$ es medible y:
+        \begin{equation*}
+            \mu_{\bbm{H}^2}(A)=\mu_{\bbm{H}^2}(f(A))
+        \end{equation*}
+    \end{propo}
+
+    \begin{theor}[\textbf{Caracterización de las geodésicas}]
+        \label{caracterizacionGeodesicas}
+        Sean $z,z'\in H$ distintos.
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Existe una única geodésica en $(H,d_H)$ que une a $z$ con $z'$. En particular, el espacio métrico es geodésico.
+            \item Hasta reparametrizaciones en $\bbm{R}$, existe una única linea geodésica en $(H,d_H)$ que contiene a $z$ y $z'$. 
+        \end{enumerate}
+        Más precisamente, si $A\in\SL{2,\bbm{R}}$ con $\Re(f_A(z))=0=\Re(f_A(z'))$, entonces la función $f_A\circ t\mapsto i\cdot e^{ t}$ es una línea geodésica que une a $z$ con $z'$ y la geodésica que va de $z$ a $z'$ genera esta línea.
+    \end{theor}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{obs}
+        Usando la descripción anterior de las geodésicas nos permite obtener una fórmula explícita para la métrica $d_H$ en $H$:
+        \begin{equation*}
+            d_H(z,z')=\arcosh{1+\frac{\abs{z-z'}^2}{2\cdot\Im{z}\cdot\Im{z}}}
+        \end{equation*}
+        siendo $\cf{\textup{arcosh}}{\bbm{R}_{\geq1}}{\bbm{R}}$ la función:
+        \begin{equation*}
+            x\mapsto\ln\left(x+\sqrt{x^2-1} \right)
+        \end{equation*}
+    \end{obs}
+
+    \begin{propo}[\textbf{Crecimiento exponencial del área hiperbólica}]
+        Para todo $r\in\bbm{R}_{>10}$ tenemos que:
+        \begin{equation*}
+            \mu_{\bbm{H}^2}(B_r^{(H,d_H)}(i))\geq e^{\frac{r}{10}}(1-e^{-\frac{r}{2}})
+        \end{equation*}
+    \end{propo}
+
+    \begin{proof}
+        Sea $r\in\bbm{R}_{>10}$. Se tiene que el conjunto:
+        \begin{equation*}
+            Q_r=\left\{x+iy\Big|x\in[0,e^{ r/10}],y\in[1,e^{r/2}] \right\}
+        \end{equation*}
+        está contenido en $B_r^{(H,d_H)}(i)$. En particular, obtenemos que:
+        \begin{equation*}
+            \begin{split}
+                \mu_{\bbm{H}^2}(B_r^{(H,d_H)}(i))&\geq\mu_{\bbm{H}^2}(Q_r)\\
+                &=\int_{0}^{e^{r/10}}\int_{1}^{e^{r/2}}\frac{dxdy}{y^2}\\
+                =&e^{\frac{r}{10}}(1-e^{-\frac{r}{2}})\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \begin{mydef}
+        Sea $\Delta$ un triángulo geodésico en $(H,d_H)$. Se define el \textbf{área de $\Delta$} como:
+        \begin{equation*}
+            \mu_{\bbm{H}^2}(\Delta)=\mu_{\bbm{H}^2}(A_\Delta)
+        \end{equation*}
+        siendo $A_\Delta\subseteq H$ el conjunto compacto encerrado por las geodésicas de $\Delta$.
+    \end{mydef}
+
+    \begin{theor}[\textbf{Teorema de Gauß-Bonnet para triángulos hiperbólicos}]
+        Sea $\Delta$ un triángulo geodésico en $(H,d_H)$ con ángulos $\alpha,\beta,\gamma$ y suponga que la imagen de $\Delta$ no está contenida en una sola línea geodésica. Entonces:
+        \begin{equation*}
+            \mu_{\bbm{H}^2}(\Delta)=\pi-(\alpha+\beta+\gamma)
+        \end{equation*}
+        En particular, la suma de los ángulos de un triángulo geodésico es menor que $\pi$ y el área hiperbólica está acotada por $\pi$.
+    \end{theor}
+
+    \begin{theor}[\textbf{Triángulos son delgados}]
+        Existe una constante $C\in\bbm{R}_{\geq0}$ tal que todo triángulo geodésico en $(H,d_H)$ es $C$-delgado.
+    \end{theor}
+
+    \begin{proof}
+        Por la proposición anterior, existe $C>0$ tal que:
+        \begin{equation*}
+            \mu_{\bbm{H}^2}(B_C^{(H,d_H)}(i))\geq 4\cdot\pi
+        \end{equation*}
+        (por ejemplo, tomemos $C=26$). Tomemos $\Delta=(\gamma_0,\gamma_1,\gamma_2)$ un triángulo geodésico en $(H,d_H)$ y sea $x\in\im{\gamma_0}$.
+
+        Sin pérdida de generalidad, podemos suponer que el triángulo geodésico $\Delta$ no está contenido en una sola línea geodésica. Por el inciso \textit{(3)} de la Proposición (\ref{accionSL2RenH}) se sigue que podemos trasladar los puntos $x$ a $i$ y el final de la geodésica a un punto tal que:
+        \begin{equation*}
+            f_A(z)=ci, \quad c>1
+        \end{equation*}
+        Luego, del Teorema (\ref{caracterizacionGeodesicas}) y la Proposición () se sigue que la geodésica $\gamma_0$ es un segmento vertical que yace sobre el eje $y$.
+
+        Supongamos que no existe $y\in\im{\gamma_1}\cup\im{\gamma_2}$ tal que $d_H(x,y)\leq C$. Se tiene entonces que:
+        \begin{equation*}
+            B_c^{(H,d_H)}(i)\subseteq A_\Delta\cup\im{\gamma_0}\cup f(A_\Delta)
+        \end{equation*}
+        siendo $A_\Delta$ el conjunto encerrado por las geodésicas de $\Delta$ y $\cf{f}{H}{H}$ la isometría $z\mapsto-\overline{z}$.
+
+        %TODO Incluir imagen de qué está pasando.
+
+        Por tanto:
+        \begin{equation*}
+            \begin{split}
+                4\cdot\pi&\leq\mu_{\bbm{H}^2}(B_C^{(H,d_H)}(i))\\
+                &\leq\mu_{\bbm{H}^2}(A_\Delta\cup\im{\gamma_0}\cup f(A_\Delta))\\
+                &=\mu_{\bbm{H}^2}(A_\Delta)+\mu_{\bbm{H}^2}(\im{\gamma_0})+\mu_{\bbm{H}^2}(f(A_\Delta))\\
+                &=\mu_{\bbm{H}^2}(\Delta)+\mu_{\bbm{H}^2}(D)\\
+                &< 2\cdot\pi\\
+            \end{split}
+        \end{equation*}
+        lo cual es una contradicción. Por lo cual existe $y\in\im{\gamma_1}\cup\im{\gamma_2}$ tal que $d(x,y)\leq C$.
+
+        En particular se sigue que:
+        \begin{equation*}
+            \im{y_0}\subseteq \bigcup_{y\in\im{\gamma_1}\cup\im{\gamma_2}}B_C^{(H,d_H)}(y)\subseteq B_C^{(H,d_H)}( \im{\gamma_1}\cup\im{\gamma_2} )
+        \end{equation*}
+        el procedimiento anterior se puede repetir para las otras geodésicas, resultando en que:
+        \begin{equation*}
+            \begin{split}
+                \im{\gamma_0}&\subseteq B_{C}^{(H,d_H)}(\im{\gamma_1}\cup\im{\gamma_2}),\\
+                \im{\gamma_1}&\subseteq B_{C}^{(H,d_H)}(\im{\gamma_0}\cup\im{\gamma_2}),\\
+                \im{\gamma_2}&\subseteq B_{C}^{(H,d_H)}(\im{\gamma_0}\cup\im{\gamma_1})\\
+            \end{split}
+        \end{equation*}
+        así que $C$ es un triángulo geodésico $C$-delgado. Como el $\Delta$ triángulo geodésico fue arbitrario se sigue que el plano hiperbólico es $C$-hiperbólico, es decir que es hiperbólico en el sentido de espacio métrico.
+    \end{proof}
+
+    \subsection{Hiperbolicidad es invariante cuasi-isométrico}
+
+    Resulta que la hiperbolicidad es un invariante cuasi-isométrico. Para llegar a tal cosa, debemos debilitar la definición de hiperbolicidad:
+
+    \begin{mydef}[\textbf{Triángulos cuasi-geodésicos $\delta$-delgados}]
+        Sea $(X,d)$ un espacio métrico.
+        \begin{enumerate}[label = \textit{\arabic*}]
+            \item Un \textbf{triángulo cuasi-geodésico en $X$} es una tripleta $(\gamma_0,\gamma_1,\gamma_2)$ de $(c,b)-$cuasi-geodésicas $\cf{\gamma_i}{[0,L_i]}{X}$ en $X$ tales que:
+            \begin{equation*}
+                \gamma_0(L_0)=\gamma_1(0),\quad \gamma_1(L_1)=\gamma_2(0),\quad \gamma_2(L_2)=\gamma_0(0)
+            \end{equation*}
+            \item Un triángulo $(c,b)$-cuasi-geodésico es \textbf{$\delta$-delgado} si:
+            \begin{equation*}
+                \begin{split}
+                    \im{\gamma_0}&\subseteq B_{\delta}^{(X,d)}(\im{\gamma_1}\cup\im{\gamma_2}),\\
+                    \im{\gamma_1}&\subseteq B_{\delta}^{(X,d)}(\im{\gamma_0}\cup\im{\gamma_2}),\\
+                    \im{\gamma_2}&\subseteq B_{\delta}^{(X,d)}(\im{\gamma_0}\cup\im{\gamma_1})\\
+                \end{split}
+            \end{equation*}
+        \end{enumerate}
+    \end{mydef}
+
+    %TODO Poner ejemplo de un triángulo cuasi-geodésico
+
+    \begin{obs}
+        De esta definición es inmediato que todo triángulo geodésico es triángulo cuasi-geodésico.
+    \end{obs}
+
+    \begin{mydef}[\textbf{Espacios cuasi-hiperbólicos}]
+        Sea $(X,d)$ un espacio métrico.
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Sean $c,b\in\bbm{R}_{>0}$, $\delta\in\bbm{R}_{\geq0}$. Decimos que el espacio $(X,d)$ es \textbf{$(c,b,\delta)$-cuasi-hiperbólico} si $(X,d)$ es $(c,b)$-cuasi-geodésico y todos los triángulos $(c,b)$-cuasi-geodésicos en $X$ son $\delta$-delgados.
+            \item Sean $c,b\in\bbm{R}_{>0}$. El espacio $(X,d)$ es llamado \textbf{$(c,b)$-cuasi-hiperbólico} si para todo $c',b'\in\bbm{R}_{>0}$ con $c'\geq c$ y $b'\geq b$ existe $\delta\in\bbm{R}_{\geq0}$ tal que $(X,d)$ es $(c',b',\delta)$-cuasi-hiperbólico.
+            \item El espacio $(X,d)$ es \textbf{cuasi-hiperbólico} si existen $c,b\in\bbm{R}_{>0}$ tales que $(X,d)$ es $(c,b)$-cuasi-hiperbólico.
+        \end{enumerate}
+    \end{mydef}
+
+    \begin{exa}
+        Todos los espacios métricos de diámetro finito son cuasi-hiperbólicos.
+    \end{exa}
+
+    \begin{obs}
+        En general resultará muy complicado probar que un espacio es cuasi-hiperbólico usando la definición anterior, por el hecho de que pueden existir demasiadas geodésicas. Resulta que este proceso se puede hacer más sencillo usando unos resultados que se verán más adelante.
+    \end{obs}
+
+    \begin{propo}[\textbf{Invariancia de la cuasi-hiperbolicidad bajo cuasi-isometrías}]
+        Sean $(X,d)$ y $(Y,\rho)$ espacios métricos.
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Si $(Y,\rho)$ es cuasi-geodésico y, $(X,d)$ y $(Y,\rho)$ son cuasi-isométricos, entonces $(X,d)$ es cuasi-geodésico.
+            \item Si $(Y,\rho)$ es cuasi-hiperbólico, $(X,d)$ es cuasi-geodésico y existe un encaje cuasi-isométrico de $(X,d)$ en $(Y,\rho)$, entonces $(X,d)$ es cuasi-hiperbólico.
+            \item Si $(X,d)$ y $(Y,\rho)$ son cuasi-isométricos, entonces $X$ es cuasi-hiperbólico si y sólo si $Y$ es cuasi-hiperbólico.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    Resulta que no existe mucha diferencia entre la propiedad de hiperbolicidad y cuasi-hiperbolicidad, como lo muestra el siguiente resultado:
+
+    \begin{theor}[\textbf{Hiperbolicidad y cuasi-hiperbolicidad}]
+        Sea $(X,d)$ un espacio métrico geodésico. Entonces $(X,d)$ es hiperbólico si y sólo si es cuasi-hiperbólico.
+    \end{theor}
+
+    Si $(X,d)$ es cuasi-hiperbólico, entonces es hiperbólico (ya que en particular toda geodésica es una cuasi-geodésica y por ende, todo triángulo geodésico es cuasi-geodésico).
+
+    La idea para probar la otra parte de la demostración de este teorema radica en ver como podemos aproximar cuasi-geodésicas con geodésicas y por ende, aproximar cuasi-triángulos geodésicos con triángulos geodésicos.
+
+    %TODO: colocar aproximación de estos triángulos cuasi-geodésicos,
+
+    \begin{cor}[\textbf{Invariancia cuasi-isométrica de la hiperbolicidad}]
+        Sean $(X,d)$ y $(Y,\rho)$ espacios métricos.
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Si $(Y,\rho)$ es hiperbólico, $(X,d)$ es cuasi-geodésico y existe un encaje cuasi-isométrico de $(X,d)$ en $(Y,\rho)$, entonces $X$ es cuasi-hiperbólico.
+            \item Si $(Y,\rho)$ es geodésico y $(X,d)$ es cuasi-isométrico a $(Y,\rho)$, entonces $(X,d)$ es cuasi-hiperbólico si y sólo si $(Y,\rho)$ es hiperbólico.
+            \item Si $(X,d)$ y $(Y,\rho)$ son geodésicos y cuasi-isométricos, entonces $(X,d)$ es hiperbólico si y sólo si $(Y,\rho)$ es hiperbólico. 
+        \end{enumerate}
+    \end{cor}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    Como algunos ejemplos de la aplicación del teorema anterior tenemos los siguientes:
+
+    \begin{cor}[\textbf{Hiperbolicidad de gráficas}]
+        Sea $X$ una gráfica conexa. Entonces $X$ es cuasi-hiperbólica si y sólo si su realización geométrica $\abs{X}$ es hiperbólica.
+    \end{cor}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{propo}[\textbf{Hiperbolicidad de árboles}]
+        Si $T$ es un árbol, entonces su realización geométrica $\abs{T}$ es $0$-hiperbólica. En particular, $T$ es cuasi-hiperbólico.
+    \end{propo}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \subsection{Grupos Hiperbólicos}
+
+    Debido a que la hiperbolicidad (y cuasi-hiperbolicidad) es un invariante cuasi-isométrico, resulta que podemos extender la noción de hiperbolicidad a grupos:
+
+    \begin{mydef}[\textbf{Grupos hiperbólicos}]
+        Un grupo finitamente generado $G$ es \textbf{hiperbólico} si para algún conjunto generador $S$ de $G$ se tiene que la gráfica de Caley $\Cay{G,S}$ es cuasi-hiperbólica.
+    \end{mydef}
+
+    \begin{obs}
+        Como la gráfica de Caley de un grupo $G$ es un invariante cuasi-isométrico, es decir que si $S,S'\subseteq G$ son conjuntos finitos que generan a $G$, se tiene que:
+        \begin{equation*}
+            \Cay{G,S}\qisom\Cay{G,S'}
+        \end{equation*}
+    \end{obs}
+
+    \begin{propo}[\textbf{Hiperbolicidad es un invariante cuasi-isométrico}]
+        Sean $G$ y $H$ grupos finitamente generados.
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Si $H$ es hiperbólico y existen conjuntos finitos generadores $S$ y $T$, de $G$ y $H$, respectivamente tal que existe un encaje cuasi-isométrico entre $(G,d_S)$ y $(H,d_T)$, entonces $G$ es hiperbólico.
+            \item Si $G$ y $H$ son cuasi-isométricos, entonces $G$ es hiperbólico si y sólo si $H$ es hiperbólico.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{exa}
+        Todos los grupos finitos son hiperbólicos ya que la realización geométrica de su gráfica de Caley es de diámetro finito.
+    \end{exa}
+
+    \begin{exa}
+        $\bbm{Z}$ es hiperbólico por ser cuasi-isométrico a $\bbm{R}$, que es un espacio métrico hiperbólico.
+    \end{exa}
+
+    \begin{exa}
+        $\bbm{Z}^2$ no es hiperbólico, ya que es cuasi-isométrico al plano euclideano $\bbm{R}^2$, el cual no es hiperbólico.
+    \end{exa}
+
+    \begin{center}
+        \textit{¿De qué nos sirve la noción de hiperbolicidad?}
+    \end{center}
+
+    \subsection{El problema de la palabra en grupos hiperbólicos}
+
+    \begin{mydef}
+        Sea $\gen{S|R}$ una presentación finita de un grupo. Decimos que \textbf{el problema de la palabra es soluble para la presentación $\gen{S|R}$}, si existe una función total computable que recibe como entrada una palabra en $(S\cup S^{-1})^{*}$ que decida si esta representa o no un elemento trivial en el grupo $\gen{S|R}$.
+    \end{mydef}
+
+    Al decir que exista una función total computable, en términos más simples estamos diciendo que existe un algoritmo que para cada entrada que demos, termina en un tiempo finito.
+
+    \begin{obs}
+        Otra forma de enunciar la definición anterior es que los conjuntos:
+        \begin{equation*}
+            \begin{split}
+                &\left\{w\in(S\cup S^{-1})^*\Big|w\textup{ representa un elemento trivial de }\gen{S|R} \right\}\\
+                &\left\{w\in(S\cup S^{-1})^*\Big|w\textup{ no representa un elemento trivial de }\gen{S|R} \right\}\\
+            \end{split}
+        \end{equation*}
+        son conjuntos computablemente enumerables.
+    \end{obs}
+
+    Al decir que son computablemente enumerables, intuitivamente estamos diciendo que existe un algoritmo que va arrojando todos los elementos de este conjunto.
+
+    \begin{exa}
+        La presentación $\gen{x,y|\emptyset}$ tiene problema de la palabra soluble, al igual que $\gen{x,y|xyx^{-1}y^{-1}}$.
+    \end{exa}
+
+    A primera vista uno podría imaginar que todo grupo finitamente presentado tiene problema de la palabra soluble, cosa que no es cierta, como muestra el siguiente resultado:
+
+    \begin{theor}
+        Existen grupos finitamente presentados tales que ninguna presentación finita de ellos tiene problema de la palabra soluble.
+    \end{theor}
+
+    \begin{exa}
+        El grupo:
+        %TODO: https://en.wikipedia.org/wiki/Word_problem_for_groups
+        no tiene problema de la palabra soluble.
+    \end{exa}
+
+    Más cosas que podemos decir sobre los grupos hiperbólicos es lo siguiente.
+
+    \begin{theor}[\textbf{Grupos genéricos son hiperbólicos}]
+        En un sentido estadístico bien definido, casi todos los grupos con presentación finita representan grupos hiperbólicos.
+    \end{theor}
+
+    Por lo que resulta relevante preguntarnos sobre propiedades de los grupos hiperbólicos.
+
+    \begin{mydef}[\textbf{Presentaciones de Dehn}]
+        Una presentación finita $\gen{S|R}$ es una \textbf{presentación de Dehn} si existe $n\in\bbm{N}$ y palabras $u_1,...,u_n,v_1,...,v_n$ tales que:
+        \begin{itemize}
+            \item $R=\left\{u_1v_1^{-1},...,u_nv_n^{-1} \right\}$.
+            \item Para todo $j=1,...,n$, la palabra $v_j$ es más corta que $u_j$.
+            \item Para topa palabra $w\in(S\cup S^{-1})^*\setminus\left\{e\right\}$ que representa un elemento neutro del grupo $\gen{S|R}$ existe $j=1,...,n$ tal que $u_j$ es subpalabra de $w$.
+        \end{itemize}
+    \end{mydef}
+
+    \begin{exa}
+        La presentación:
+        \begin{equation*}
+            \gen{x,y|xx^{-1}e,yy^{-1}e,x^{-1}xe,y^{-1}ye}
+        \end{equation*}
+        es una presentacion de Dehn del grupo libre de rango 2.
+    \end{exa}
+
+    \begin{exa}
+        La presentación:
+        \begin{equation*}
+            \gen{x,y|[x,y]}
+        \end{equation*}
+        no es una presentación de Dehn de $\bbm{Z}^2$.
+    \end{exa}
+
+    \begin{propo}[\textbf{Algoritmo de Dehn}]
+        Si $\gen{S|R}$ es una presentación de Dehn, entonces el problema de la palabra es soluble para $\gen{S|R}$.
+    \end{propo}
+
+    \begin{proof}
+        Escribimos:
+        \begin{equation*}
+            R=\left\{u_1v_1^{-1},...,u_nv_n^{-1} \right\}
+        \end{equation*}
+        como en la definición de presentación de Dehn. Tomemos $w\in(S\cup S^{-1})^*$ una palabra.
+        \begin{itemize}
+            \item Si $w=e$, entonces $w$ representa un elemento trivial del grupo $\gen{S|R}$.
+            \item Si $w\neq e$, tenemos dos casos:
+            \begin{itemize}
+                \item Si ninguna de las palabras $u_1,...,u_n$ es una subpalabra de $w$, entonces $w$ no representa un elemento trivial del grupo $\gen{S|R}$ (por la tercera parte de la definción de presentaciones de Dehn).
+                \item Existe $j=1,...,n$ tal que $u_j$ es subpalabra de $w$, en cuyo caso se sigue que existen palabras $w',w''$ tales que: $w=w'u_jw''$. Ahora, como $u_jv_j^{-1}\in R$ se sigue que los elementos:
+                \begin{equation*}
+                    w'u_jw''\quad\textup{y}\quad w'v_jw''
+                \end{equation*}
+                representan el mismo elemento en el grupo $\gen{S|R}$. Así que la palabra $w$ es trivial si y sólo si la palabra $w'v_jw''$ (que es más corta) es trivial. Aplicando recursivamente el algoritmo se llega a determinar si $w$ es la palabra trivial o no.
+            \end{itemize}
+        \end{itemize}
+        Este algoritmo siempre determina si la palabra $w$ es trivial o no, por lo que el problema de la palabra es resoluble en $\gen{S|R}$.
+    \end{proof}
+
+    \begin{theor}[\textbf{Presentaciones de Dehn en grupos hiperbólicos}]
+        Sea $G$ un grupo hiperbólico y $S$ un conjunto generador de $G$. Entonces existe un conjunto finito $R\subseteq(S\cup S^{-1})^*$ tal que $\gen{S|R}$ es una presentación de Dehn y $G\cong\gen{S|R}$.
+    \end{theor}
+
+    \begin{cor}[\textbf{Grupos hiperbólicos tienen problema de la palabra soluble}]
+        Sea $G$ grupo hiperbólico y $S\subseteq G$ un conjunto generador finito. Entonces existe una presentación finita $\gen{S|R}$ de $G$ tal que el problema de la palabra es soluble.
+    \end{cor}
+
+    \begin{cor}
+        Todo grupo hiperbólico admite una presentación finita.
+    \end{cor}
+
+    \begin{minipage}{\textwidth}
+    	\begin{center}
+    	    %\includegraphics[scale=0.5]{direccion_imagen}\\
+	    Figura \thefigcount. Caption.
+	    \stepcounter{figcount}
+	\end{center}
+    \end{minipage}
+
+    %Hiperbolicidad implica teorema de la palabra soluble, pag 224
+
+\end{document}
