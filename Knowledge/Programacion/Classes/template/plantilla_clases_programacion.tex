@@ -1,0 +1,286 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{titlesec}  % AÑADIDO PARA MANEJO DE SECCIONES
+\usepackage{titletoc}  % AÑADIDO PARA MANEJO DEL ÍNDICE
+
+% Configuración del índice
+\contentsmargin{0cm}
+\dottedcontents{section}[1.5cm]{\contentslabel{2.0cm}}{1.5cm}{0pc}
+\dottedcontents{subsection}[3.8cm]{\contentslabel{2.5cm}}{3.2cm}{0pc}
+
+%Gestión de Hipervínculos
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,  % CAMBIADO A AZUL PARA MEJOR VISIBILIDAD
+    filecolor=magenta,      
+    urlcolor=cyan,
+    bookmarksopen=true  % AÑADIDO
+}
+
+%Gestión de Código de Programación
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA} % additional keywords
+\definecolor{listing-keyword-3}{HTML}{9137CB} % additional keywords
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language         = Java,
+    numbers          = none,
+    xleftmargin      = 2.7em,
+    framexleftmargin = 2.5em,
+    backgroundcolor  = \color{gray!10},
+    basicstyle       = \color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines       = true,
+    frameshape       = {RYR}{Y}{Y}{RYR},
+    rulecolor        = \color{black},
+    tabsize          = 2,
+    numberstyle      = \color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip        = 1.0em,
+    belowskip        = 0.1em,
+    abovecaptionskip = 0em,
+    belowcaptionskip = 1.0em,
+    keywordstyle     = {\color{listing-keyword}\bfseries},
+    keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive        = true,
+    identifierstyle  = \color{listing-identifier},
+    commentstyle     = \color{listing-comment},
+    stringstyle      = \color{listing-string},
+    showstringspaces = false,
+    label            = lst:bar,
+    captionpos       = b,
+}
+
+\lstset{style = myStyle}
+
+% Configuración correcta de secciones (REEMPLAZO COMPLETO)
+\titleformat{\section}
+  {\normalfont\Large\scshape}{\S\thesection}{1em}{}[\titlerule]
+\titleformat{\subsection}
+  {\normalfont\large\scshape}{\S\thesubsection}{1em}{}[\titlerule]
+  
+%Gestión marca de agua
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcounter{figcount}
+\setcounter{figcount}{1}
+
+% Configuración avanzada del índice (nuevo diseño)
+\usepackage{titletoc}
+\usepackage{etoolbox}
+
+% Estilo moderno para el índice
+\contentsmargin{0cm}
+\dottedcontents{part}[-1cm]{}{0cm}{}  % Para partes si las usas
+
+% Estilo para secciones
+\titlecontents{section}
+  [0em]
+  {\vspace{0.2ex}\large}
+  {\makebox[2em][l]{\large\S\thecontentslabel}\hspace*{0.5em}}
+  {}
+  {\titlerule*[0.6em]{\textperiodcentered}\bfseries\contentspage}
+  [\vspace{0.4ex}]
+
+% Estilo para subsecciones
+\titlecontents{subsection}
+  [2.5em]
+  {\vspace{0.2ex}\normalsize}
+  {\makebox[3em][l]{\large\S\thecontentslabel}\hspace*{0.5em}}
+  {}
+  {\titlerule*[0.5em]{\textperiodcentered}\contentspage}
+  [\vspace{0.3ex}]
+
+\renewcommand{\lstlistingname}{Código}% Listing -> Algorithm
+\renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}% List of Listings -> List of Algorithms
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas Java - Introducción}
+    \author{Cristo Alvarado}
+    \maketitle
+    
+    \tableofcontents
+
+    \lstlistoflistings
+
+    \section{Breve Historia de Java}
+
+    \subsection{Orígenes de Java}
+
+    \begin{mydef}[\textbf{Lenguaje de Programación Java}]
+        Java es un lenguaje de programación y una plataforma informática que fue comercializada por primera vez en 1995 por Sun Microsystems.
+    \end{mydef}
+
+    Java se creó como una herramienta de programación para ser usada en un proyecto en una pequeña operación denominada the Green Project en Sun Microsystems en 1991. El equipo (denominado \textit{green team}), compuesto por trece personas y dirigido por James Gosling, trabajó durante 18 meses en Sand Hill Road, Menlo Park (California), para desarrollarlo.
+
+    Su sintaxis deriva en gran medida de C y C++, pero tiene menos utilidades de bajo nivel que cualquiera de ellos. Las aplicaciones de Java son compiladas a bytecode (clase Java), que puede ejecutarse en cualquier máquina virtual Java (JVM) sin importar la arquitectura de la computadora subyacente.
+
+    \begin{obs}[\textbf{Origen del Nombre}]
+        Algunas fuentes señalan que el nombre podría tratarse de un acrónimo, como las iniciales de sus diseñadores, \textbf{J}ames Gosling, \textbf{A}rthur \textbf{V}an Hoff y \textbf{A}ndy Bechtolsheim, o, sencillamente, \textit{\textbf{J}ust \textbf{A}nother \textbf{V}ague \textbf{A}cronym} (‘simplemente otro acrónimo ambiguo más’).
+    \end{obs}
+
+    Actualmente es usado para:
+    \begin{itemize}
+        \item Aplicaciones móviles.
+        \item Aplicaciones de escritorio.
+        \item Aplicaciones Web.
+        \item Servicios Web y Servidores de Aplicaciones.
+        \item Juegos.
+        \item Conexiones a bases de datos.
+    \end{itemize}
+    y muchos más.
+    
+    \subsection{Hola Mundo}
+
+    El clásico \textit{Hola Mundo} en Java se ve de la siguiente manera:
+
+    \begin{lstlisting}[caption={Hola Mundo en Java},label=DescriptiveLabel]
+public class main(){
+    public static void main(String[] args){
+        System.out.println("Hola Mundo");
+    }
+}
+    \end{lstlisting}
+
+\end{document}
