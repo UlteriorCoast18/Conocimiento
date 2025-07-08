@@ -225,7 +225,7 @@
     \maketitle
 
     \begin{abstract}
-        En esta primera sesión construiremos sobre los fundamentos de Java, enfocándonos en: Orígenes de Java (historia, fundamentos, \lstinline|Hola Mundo|, el método \lstinline|main()|) Tipos de datos (primitivos como \lstinline|int|, \lstinline|double|, \lstinline|boolean| y compuestos como \lstinline|String|), sus características y aplicaciones; Operaciones para manipular valores mediante operadores aritméticos, relacionales y lógicos; Casting (conversión implícita y explícita entre tipos) considerando sus riesgos; y Construcción de relaciones lógicas con operadores comparativos (\lstinline|>|, \lstinline|==|, \lstinline|!=|, etc.). Mediante ejemplos aplicados que ayudarán al entendimiento del lenguaje.
+        En esta primera sesión construiremos sobre los fundamentos de Java, enfocándonos en: Orígenes de Java (historia, fundamentos, \lstinline|Hola Mundo|, el método \lstinline|main()|) Tipos de datos (primitivos como \lstinline|int|, \lstinline|double|, \lstinline|boolean| y compuestos como \lstinline|String|), sus características y aplicaciones; Operaciones para manipular valores mediante operadores aritméticos, relacionales y lógicos. Mediante ejemplos aplicados que ayudarán al entendimiento del lenguaje.
     \end{abstract}
     
     \tableofcontents
@@ -349,8 +349,7 @@ public class HolaMundo{
     \lstinline|float| & Almacena números de punto flotante, con algunos decimales, como \textbf{19.99} o \textbf{-19.99} \\
     \lstinline|double| & Almacena números de punto flotante con muchos decimales, como \textbf{3.141592} o \textbf{2.718281} \\
     \lstinline|char| & Almacena caracteres individuales, como 'a' o 'B'. Los valores char se rodean con comillas simples al momento de declararse \\
-    \lstinline|boolean| & Almacena valores con uno de los dos estados: \lstinline|true| o \lstinline|false| \\
-    \hline
+    \lstinline|bool|\lstinline|ean| & Almacena valores con uno de los dos estados: \lstinline|true| o \lstinline|false| \\
     \end{longtable}
 
     \subsection{Declaración de Variables}
@@ -483,8 +482,7 @@ public class HolaMundo{
     \lstinline|boolean| & Almacena valores lógicos: \lstinline|true| (verdadero) o \lstinline|false| (falso) \\
     \hline\multicolumn{2}{c}{\textit{C a r a c t e r}} \\
     \hline
-    \lstinline|char| & Almacena un \textbf{único carácter} Unicode (16 bits) o valores ASCII (ej: 'A', '7', '\$') \\
-    \bottomrule
+    \lstinline|ch|\lstinline|ar| & Almacena un \textbf{único carácter} Unicode (16 bits) o valores ASCII (ej: 'A', '7', '\$') \\
     \end{longtable}
 
     \begin{mydef}[\textbf{Unicode}]
@@ -499,15 +497,213 @@ public class HolaMundo{
 
     Al igual que con Unicode, es posible encontrar la codificación de caracteres ASCII en \href{https://elcodigoascii.com.ar/}{El codigo ASCII}.
 
-    %TODO: Seguir
+    \subsection{Tipo de dato \lstinline|String|}
 
-    \section{Casting}
+    El tipo de dato \lstinline|char| es usado para guardar un sólo caracter. Este caracter debe estar rodeado de comillas simples ''. También se pueden usar números para codificar con ASCII estos caracteres:
 
-    %TODO: Seguir
+    \begin{lstlisting}[caption={Declaración e impresión de variables tipo \lstinline|char|.},label=DescriptiveLabel]
+char myVar1 = 65, myVar2 = 66, myVar3 = 67;
+System.out.println(myVar1);
+System.out.println(myVar2);
+System.out.println(myVar3);
+    \end{lstlisting}
+
+    Un \lstinline|String| es un tipo de dato usado para guardar una secuencia de caracteres (texto). Estos deben estar rodeados por comillas dobles:
+
+    \begin{lstlisting}[caption={Declaración e impresión de variable de tipo \lstinline|String|.},label=DescriptiveLabel]
+String saludo = "Hola Mundo";
+System.out.println(saludo);
+    \end{lstlisting}
 
     \section{Operadores}
 
-    %TODO: Seguir
+    \begin{mydef}[\textbf{Operador}]
+        Los \textbf{operadores} son \textit{funciones usadas para realizar operaciones entre variables y valores (o constantes)}.
+    \end{mydef}
+
+    \begin{exa}[\textbf{Operación Suma \lstinline|+|}]
+        El operador \lstinline|+| es usado para sumar dos números. En el ejemplo:
+        \begin{lstlisting}[caption={Suma de enteros.},label=DescriptiveLabel]
+int x = 100 + 50;
+        \end{lstlisting}
+        Lo que hacemos en el sentido técnico es, al objeto con valor 100 sumarle 50. El resultado es que el valor de la variable \lstinline|x| es 150.
+    \end{exa}
+
+    El operador \lstinline|+| también puede ser usado para sumar una variable y una constante, o una constante y una variable:
+
+    \begin{lstlisting}[caption={Sumas de variables y constantes.},label=DescriptiveLabel]
+int sum1 = 100 + 50;        // 150 (100 + 50)
+int sum2 = sum1 + 250;      // 400 (150 + 250)
+int sum3 = sum2 + sum2;     // 800 (400 + 400)
+    \end{lstlisting}
+
+    Java hace la división de operadores en las siguientes categorias:
+    \begin{itemize}
+        \item Operadores aritméticos.
+        \item Operadores de asignación.
+        \item Operaciones de comparación.
+        \item Operadores lógicos.
+        \item Operadores bit a bit.
+    \end{itemize}
+
+    \subsection{Operadores aritméticos}
+
+    Los operadores aritméticos son usados para efectuar operaciones matemáticas comúnes:
+
+    \begin{longtable}{c l p{0.4\textwidth} c}
+    \toprule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+    $+$ & Suma & Agrega dos valores & \texttt{x + y} \\
+    $-$ & Resta & Sustrae un valor de otro & \texttt{x - y} \\
+    $*$ & Multiplicación & Multiplica dos valores & \texttt{x * y} \\
+    $/$ & División & Divide un valor por otro & \texttt{x / y} \\
+    $\%$ & Módulo & Devuelve el residuo de una división & \texttt{x \% y} \\
+    $++$ & Incremento & Aumenta el valor de una variable en 1 & \texttt{++x} \\
+    $--$ & Decremento & Disminuye el valor de una variable en 1 & \texttt{--x} \\
+    \end{longtable}
+
+    \subsection{Operadores de asignación}
+
+    Los operadores de asignación son usados para asignar un valor a una variable. En el siguiente ejemplo se usa el operador asignación para asignar a la variable \lstinline|var| el valor de \lstinline|10|.
+    \begin{lstlisting}[caption={Operador asignación.},label=DescriptiveLabel]
+int x = 10;
+    \end{lstlisting}
+
+    La siguiente es una lista de todos los operadores de asignación:
+
+    \begin{longtable}{c l l}
+    \toprule
+    \textbf{Operador} & \textbf{Ejemplo} & \textbf{Equivalente a} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Operador} & \textbf{Ejemplo} & \textbf{Equivalente a} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+    $=$ & \texttt{x = 5} & \texttt{x = 5} \\
+    $+=$ & \texttt{x += 3} & \texttt{x = x + 3} \\
+    $-=$ & \texttt{x -= 3} & \texttt{x = x - 3} \\
+    $*=$ & \texttt{x *= 3} & \texttt{x = x * 3} \\
+    $/=$ & \texttt{x /= 3} & \texttt{x = x / 3} \\
+    $\%=$ & \texttt{x \% = 3} & \texttt{x = x \% 3} \\
+    $\&=$ & \texttt{x \&= 3} & \texttt{x = x \& 3} \\
+    $|=$ & \texttt{x |= 3} & \texttt{x = x | 3} \\
+    $\wedge=$ & \texttt{x \^= 3} & \texttt{x = x \^ 3} \\
+    $>>=$ & \texttt{x $>>$= 3} & \texttt{x = x $>>$ 3} \\
+    $<<=$ & \texttt{x $<<$= 3} & \texttt{x = x $<<$ 3} \\
+    \end{longtable}
+
+    \subsection{Operaciones de comparación}
+
+    Los operadores de comparación son usados para comparar los valores de dos variables o valores.
+    
+    Estos son extremadamente importantes en programación ya que nos ayudan a tomar desiciones. l valor de retorno de un operador de comparación en Java es \lstinline|true| o \lstinline|false|. Estos son conocidos como valores \lstinline|boolean|.
+
+    \begin{exa}[\textbf{Uso Operador Comparación}]
+        En este ejemplo usamos el operador de comparación \lstinline|>| para determinar si la variable \lstinline|x| es mayor a la variable \lstinline|y|.
+        \begin{lstlisting}[caption={Operador comparación.},label=DescriptiveLabel]
+int x = 5;
+int y = 3;
+System.out.println(x > y); // imprime true, pues 5 es mayor a 3
+        \end{lstlisting}
+    \end{exa}
+
+    Java posee los siguientes operadores de comparación:
+
+    \begin{longtable}{c l c}
+    \toprule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Ejemplo} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Ejemplo} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+    $==$ & Igual a & \lstinline|x == y| \\
+    $!=$ & No igual a & \lstinline|x != y| \\
+    $>$ & Mayor que & \lstinline|x > y| \\
+    $<$ & Menor que & \lstinline|x < y| \\
+    $>=$ & Mayor o igual que & \lstinline|x >= y| \\
+    $<=$ & Menor o igual que & \lstinline|x <= y| \\
+    \end{longtable}
+
+    \subsection{Operadores lógicos}
+
+    Los operadores lógicos se usan para determinar la lógica entre dos variables o valores.
+
+    \begin{longtable}{c l p{0.45\textwidth} c}
+    \toprule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+    $\&\&$ & AND lógico & Retorna \lstinline|true| si ambas expresiones son verdaderas & \lstinline|x < 5 && x < 10| \\
+    $||$ & OR lógico & Retorna \lstinline|true| si al menos una expresión es verdadera & \texttt{x < 5 || x < 4} \\
+    $!$ & NOT lógico & Invierte el resultado: retorna \lstinline|false| si es verdadero y viceversa & \lstinline|!(x < 5 && x < 10)| \\
+    \end{longtable}
+
+    Generalmente con los operadores lógicos en Java siempre son usados en combinaciones con operadores de comparación
+    \begin{lstlisting}[caption={Operadores lógicos y valores.},label=DescriptiveLabel]
+System.out.println((1 > 0) && (0 < 1));
+    \end{lstlisting}
+    Estos son usados regularmente \lstinline|if|, \lstinline|if else|, \lstinline|for| y \lstinline|while|. Más adelante veremos qué son éstos y para qué nos sirven.
+
+    \subsection{Operadores bit a bit}
+
+    La explicación de estos operadores se verá más adelante, pero de momento colocaremos una tabla donde vienen estos operadores:
+
+    \begin{longtable}{c l p{0.3\textwidth} c}
+    \toprule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+    $\&$ & AND bit a bit & Operación AND en cada bit: 1 solo si ambos bits son 1 & \texttt{5 \& 1} \\  % 0101 & 0001 = 0001 (1)
+    $|$ & OR bit a bit & Operación OR en cada bit: 1 si al menos un bit es 1 & \texttt{5 | 2} \\  % 0101 | 0010 = 0111 (7)
+    $\wedge$ & XOR bit a bit & Operación XOR: 1 solo si los bits son diferentes & \texttt{5 \textasciicircum 3} \\  % 0101 ^ 0011 = 0110 (6)
+    $\sim$ & Complemento a uno & Invierte todos los bits (unario) & \texttt{$\sim$5} \\  % ~0101 = 1010 (-6 en complemento a 2)
+    $<<$ & Desplazamiento izquierdo & Desplaza bits hacia izquierda, rellena con 0 & \lstinline|5 << 1| \\  % 0101 << 1 = 1010 (10)
+    $>>$ & Desplazamiento derecho con signo & Desplaza bits derecha, conserva signo (rellena con bit de signo) & \lstinline|-5 >> 1| \\  % 1111...1011 >> 1 = 1111...1101 (-3)
+    $\ggg$ & Desplazamiento derecho sin signo & Desplaza bits derecha, siempre rellena con 0 & \lstinline|-5 >>> 1| \\  % 1111...1011 >>> 1 = 0111...1101 (2147483645) \\
+    \end{longtable}
+
 
     \newpage
 
