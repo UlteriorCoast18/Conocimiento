@@ -1,0 +1,741 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{titlesec}  
+\usepackage{titletoc}  
+\usepackage{longtable}
+\usepackage{multicol}
+\usepackage{booktabs}
+
+% Configuración del índice
+\contentsmargin{0cm}
+\dottedcontents{section}[1.5cm]{\contentslabel{2.0cm}}{1.5cm}{0pc}
+\dottedcontents{subsection}[3.8cm]{\contentslabel{2.5cm}}{3.2cm}{0pc}
+
+%Gestión de Hipervínculos
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    bookmarksopen=true
+}
+
+%Gestión de Código de Programación
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA}
+\definecolor{listing-keyword-3}{HTML}{9137CB}
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language         = Java,
+    numbers          = none,
+    xleftmargin      = 2.7em,
+    framexleftmargin = 2.5em,
+    backgroundcolor  = \color{gray!10},
+    basicstyle       = \color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines       = true,
+    frameshape       = {RYR}{Y}{Y}{RYR},
+    rulecolor        = \color{black},
+    tabsize          = 2,
+    numberstyle      = \color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip        = 1.0em,
+    belowskip        = 0.1em,
+    abovecaptionskip = 0em,
+    belowcaptionskip = 1.0em,
+    keywordstyle     = {\color{listing-keyword}\bfseries},
+    keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive        = true,
+    identifierstyle  = \color{listing-identifier},
+    commentstyle     = \color{listing-comment},
+    stringstyle      = \color{listing-string},
+    showstringspaces = false,
+    label            = lst:bar,
+    captionpos       = b,
+}
+
+\lstset{style = myStyle}
+
+% Configuración correcta de secciones
+\titleformat{\section}
+  {\normalfont\Large\scshape}{\S\thesection}{1em}{}[\titlerule]
+\titleformat{\subsection}
+  {\normalfont\large\scshape}{\S\thesubsection}{1em}{}[\titlerule]
+  
+%Gestión marca de agua
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
+
+%Redefiniciones de comandos
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%Definiciones para enlistar
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%Comandos personalizados
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcounter{figcount}
+\setcounter{figcount}{1}
+
+% Configuración avanzada del índice
+\usepackage{titletoc}
+\usepackage{etoolbox}
+
+% Estilo moderno para el índice
+\contentsmargin{0cm}
+\dottedcontents{part}[-1cm]{}{0cm}{}
+
+% Estilo para secciones
+\titlecontents{section}
+  [0em]
+  {\vspace{0.2ex}\large}
+  {\makebox[2em][l]{\large\S\thecontentslabel}\hspace*{0.5em}}
+  {}
+  {\titlerule*[0.6em]{\textperiodcentered}\bfseries\contentspage}
+  [\vspace{0.4ex}]
+
+% Estilo para subsecciones
+\titlecontents{subsection}
+  [2.5em]
+  {\vspace{0.2ex}\normalsize}
+  {\makebox[3em][l]{\large\S\thecontentslabel}\hspace*{0.5em}}
+  {}
+  {\titlerule*[0.5em]{\textperiodcentered}\contentspage}
+  [\vspace{0.3ex}]
+
+\renewcommand{\lstlistingname}{Código}
+\renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}
+\begin{document}
+    \setlength{\parskip}{5pt}
+    \setlength{\parindent}{12pt}
+    \title{Notas Java - 2. Operadores y Control de Flujo}
+    \author{Cristo Alvarado}
+    \maketitle
+
+    \begin{abstract}
+        En esta lección se abordarán los conceptos de casting (conversión de tipos) entre datos primitivos, el tipo de dato String y sus métodos más comunes, la importación de clases con énfasis en la clase Scanner para la entrada de datos, los diferentes métodos de entrada para tipos primitivos, las operaciones aritméticas básicas, y las sentencias condicionales (if, else, switch). Además, se introduce la clase Math de Java para operaciones matemáticas avanzadas y las estructuras de repetición (bucles while y for).
+    \end{abstract}
+    
+    \tableofcontents
+
+    \lstlistoflistings
+
+    \section{Información}
+
+    \subsection{Casting}
+
+    \begin{mydef}[\textbf{Casting}]
+        El \textbf{Casting} o \textbf{Casting de Tipos} es \textit{una funcionalidad del lenguaje de programación que nos permite convertir un tipo de dato primitivo en otro}. En Java, tenemos dos tipos de casting:
+        \begin{itemize}
+            \item \textbf{Widening Casting} (\textbf{Casting a más}): \textit{Permite convertir un tipo de dato pequeño a uno más grande}. Este tipo de casting es \textbf{automático}.
+            
+            La conversión de menos a más va de izquierda a derecha como muestra el diagrama:
+            \begin{center}
+                \texttt{byte -> short -> char -> int -> long -> float -> double}
+            \end{center}
+            \item \textbf{Narrowing Casting} (\textbf{Casting a menos}), \textit{este permite convertir tipos de datos grandes a más pequeños}. Este tipo de casting es \textbf{manual}.
+            
+            La conversión de más a menos va de izquierda a derecha como muestra el diagrama:
+            \begin{center}
+                \texttt{double -> float -> long -> int -> char -> short -> byte}
+            \end{center}
+        \end{itemize}
+    \end{mydef}
+
+    \begin{exa}[\textbf{Casting a Más}]
+        Este tipo de casting es hecho automáticamente cuando se pasa de untipo de dato pequeño a uno más grande:
+        \begin{lstlisting}[caption={Casting a más.},label=DescriptiveLabel]
+public class Main {
+  public static void main(String[] args) {
+    int myInt = 9;
+    double myDouble = myInt; // Casting de int a double
+
+    System.out.println(myInt);      // Salida 9
+    System.out.println(myDouble);   // Salida 9.0
+  }
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \begin{exa}[\textbf{Casting a Menos}]
+        Este tipo de casting es hecho colocando \lstinline|()| colocando en estos paréntesis el tipo al que queremos pasar:
+        \begin{lstlisting}[caption={Casting a menos.},label=DescriptiveLabel]
+public class Main {
+  public static void main(String[] args) {
+    double myDouble = 9.78d;
+    int myInt = (int) myDouble; // Casting de double a int
+
+    System.out.println(myDouble);      // Salida 9.78d
+    System.out.println(myInt);   // Salida 9
+  }
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \begin{exa}[\textbf{Uso Casting}]
+        Si en un juego queremos hacer porcentajes usamos casting como se muestra:
+        \begin{lstlisting}[caption={Ejemplo Casting en Score.},label=DescriptiveLabel]
+// Establecer el score maximo a 500
+int maxScore = 500;
+
+// Score del usuario
+int userScore = 423;
+
+/*
+Calculo del porcentaje de score del usuario con referencia al score maximo
+Convertimos score de usuario a flotante para asegurarnos que la division es correcta
+*/
+float percentage = (float) userScore / maxScore * 100.0f;
+
+System.out.println("User's percentage is " + percentage);
+        \end{lstlisting}
+    \end{exa}
+
+    \subsection{Tipo de Dato \lstinline|String|}
+
+    Una variable de tipo \lstinline|String| contiene una colección de caracteres encerrados por comillas dobles \lstinline|"|:
+    \begin{center}
+        \lstinline|String palabra = "Una palabra";|
+    \end{center}
+
+    Un \lstinline|String| en java e sun objeto que contiene métodos que pueden hacer ciertas opearciones con este tipo de dato (el cuál no es primitivo).
+
+    \begin{exa}[\textbf{Longitud de un String}]
+        Podemos encontrar la longitud de una cadena usando el método \lstinline|length()|:
+        \begin{lstlisting}[caption={Longitud de un \lstinline|String|.},label=DescriptiveLabel]
+String texto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+System.out.println("La longitud de lal texto es: " + texto.length());
+        \end{lstlisting}
+    \end{exa}
+
+    Este objeto tiene varios métodos, algunos de elloos son los descritos a continuación:
+    \begin{itemize}
+        \item \lstinline|toUpperCase()|. Este método pone todas las letras en mayúsculas.
+        \item \lstinline|toLowerCase()|. Este método pone todas las letras en minúsculas.
+        \item \lstinline|indexOf()|. Este método retorna el índice o posición de un texto especificado en el String original. En este caso el código:
+        \begin{lstlisting}[caption={Localización de texto en un \lstinline|String|.},label=DescriptiveLabel]
+String txt = "Por favor, localiza donde 'localiza' ocurre!";
+System.out.println(txt.indexOf("localiza")); // Imprime 11
+        \end{lstlisting}
+    \end{itemize}
+
+    Podemos hacer una cosa con Strings que se llama \textbf{concatenación}. Esta operación nos permite unir dos variables \lstinline|String| en una sola variable. Podemos hacer esta operación usando el operador \lstinline|+| o usando el método \lstinline|concat()|:
+    \begin{lstlisting}[caption={Suma y Concatenación de Strings.},label=DescriptiveLabel]
+String primerNombre = "Juan ";
+String segundoNombre = "Perez";
+System.out.println(primerNombre + segundoNombre);
+System.out.println(primerNombre.concat(segundoNombre));
+    \end{lstlisting}
+
+    \begin{obs}
+        Si sumamos un número y una cadena, en vez de que se sumen se concatenan:
+        \begin{lstlisting}[caption={Suma de Número y \lstinline|String|.},label=DescriptiveLabel]
+String x = "10";
+int y = 20;
+String z = x + y;  // z sera 1020 (un String)
+System.out.println(z); // imprime 1020
+        \end{lstlisting}
+    \end{obs}
+
+    \subsection{Importar Clases}
+
+    Parte muy importante de todo programa es la interacción con el usuario, la gran pregunta es: ¿cómo le damos al programa nuestra información? Una forma de hacerlo es con el paquete \lstinline|java.util|:
+
+    \begin{mydef}[\textbf{Paquete}]
+        Un \textbf{paquete} en Java es un \textit{mecanismo que nos permite agrupar clases, interfaces y subpaquetes de manera lógica, facilitando la organización y modularidad del código}.
+
+        Además, es un \textit{contenedor de clases que permite agrupar las distintas partes de un programa y que por lo general tiene una funcionalidad y elementos comunes, definiendo la ubicación de dichas clases en un directorio de estructura jerárquica}.
+    \end{mydef}
+
+    Al importar paquetes importamos clases que nos son de útilidad en nuestro sistema. En particular el paquete \lstinline|java.util| incluye el framework de colecciones, clases de colecciones heredadas (legacy), el modelo de eventos, utilidades de fecha y hora, internacionalización, y otras clases de utilidad (como un tokenizador de cadenas, un generador de números aleatorios y un arreglo de bits). En esencia, es \textit{una extensión de lo que podemos hacer con Java}.
+
+    Una de sus clases que nos es muy útil es \lstinline|java.util.Scanner|.
+
+    Para poder importar clases en nuestro programa, usamos la siguiente sintaxis:
+
+    \begin{lstlisting}[caption={Importar Clases en Java.},label=DescriptiveLabel]
+//import nombre_paquete.nombre_clase_importar;
+    \end{lstlisting}
+
+    donde \lstinline|nombre_paquete| es el nombre del paquete del que queremos importar la (o las clases) y \lstinline|nombre_clase_importar| es el nombre de la clase a importar. En caso de que queramos importar todas las clases de un paquete, colocamos \lstinline|*| en vez de \lstinline|nombre_clase_importar|.
+
+    \begin{exa}[\textbf{Importar Clases}]
+        Para importar la clase \lstinline|Scanner| del paquete \lstinline|java.util|, colocamos la siguiente línea en nuestro código:
+
+        \begin{lstlisting}[caption={Importar Clase \lstinline|Scanner|},label=DescriptiveLabel]
+import java.util.Scanner;
+        \end{lstlisting}
+
+        en caso de que queramos importar todas las clases del paquete \lstinline|java.util|, colocamos lo siguiente:
+        \begin{lstlisting}[caption={Importar todas las Clases del Paquete \lstinline|java.util|},label=DescriptiveLabel]
+import java.util.*;
+        \end{lstlisting}
+    \end{exa}
+
+    \begin{obs}[\textbf{Importación de Clases}]
+        A veces llega a suceder que olvidamos el nombre específico de una clase que queremos usar, por lo que en casos donde el paquete no tenga demasiadas clases, podemos importar todas las clases para usarlas en nuestro programa.
+    \end{obs}
+
+    \begin{exa}[\textbf{Uso Clase Scanner}]
+        El siguiente código nos permite ingresar nuestro nombre para luego, que el sistema lo imprima al momento de ejecutar.
+
+        \begin{lstlisting}[caption={Uso Clase \lstinline|Scanner|.},label=DescriptiveLabel]
+import java.util.Scanner;  // Importar la clase Scanner
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner myObj = new Scanner(System.in);  // Crear un objeto Scanner
+    System.out.println("Ingrese nombre: ");
+
+    String nombre_usuario = myObj.nextLine();  // Leer entrada de usuario
+    System.out.println("Su nombre es: " + nombre_usuario);  // Imprimir nombre de usuario
+  }
+}
+        \end{lstlisting}
+    \end{exa}
+
+    ¿Qué hace el código? Primero, crea una instancia del objeto \lstinline|Scanner|. Esto se hace en esta línea:
+    \begin{center}
+        \lstinline|Scanner myObj = new Scanner(System.in);|
+    \end{center}
+    Notemos que el objeto \lstinline|Scanner| usa el flujo de entrada de \lstinline|System.in|, justamente eso es lo que nos permite leer la terminal pues justamente es la entrada de datos del programa. Al presionar la tecla \texttt{Enter}, el sistema registra la linea leída en el String:
+    \begin{center}
+        \lstinline|String nombre_usuario = myObj.nextLine();|
+    \end{center}
+    Guardamos lo que sea que hayamos escrito en la variable \lstinline|nombre_usuario| para luego imprimirlo.
+
+    \begin{obs}
+        Con la clase \lstinline|Scanner| es posible leer entradas de información de diversos tipos, no solamente del tipo \lstinline|String|. Para poder hacerlo, ya que si intentamos hacerlo directamente en la entrada nos marcará error.
+    \end{obs}
+
+    Para leer tipos de datos diferentes de \lstinline|String|, usamos \textbf{input types}.
+
+    \subsection{Input Types}
+
+    \begin{mydef}[\textbf{Input Type}]
+        Un \textbf{Input Type} es un \textit{tipo de entrada que puede recibie un programa Java en la terminal}.
+    \end{mydef}
+
+    En ejemplos anteriores usamos \lstinline|nextLine()|, el cuál es un método del objeto Scanner, pero podemos leer otros tipos de datos, la siguiente tabla nos dice qué métodos usar para leer cierto tipo de dato en el programa:
+
+    \begin{longtable}{l p{0.6\textwidth}}
+        \toprule
+        \textbf{Método} & \textbf{Descripción} \\
+        \midrule
+        \endfirsthead
+
+        \midrule
+        \textbf{Método} & \textbf{Descripción} \\
+        \midrule
+        \endhead
+
+        \bottomrule
+        \endfoot
+
+        \lstinline|nextBoolean()| & Lee un valor \lstinline|booleano| del usuario \\
+        \lstinline|nextByte()| & Lee un valor \lstinline|byte| del usuario \\
+        \lstinline|nextDouble()| & Lee un valor \lstinline|double| del usuario \\
+        \lstinline|nextFloat()| & Lee un valor \lstinline|float| del usuario \\
+        \lstinline|nextInt()| & Lee un valor \lstinline|int| del usuario \\
+        \lstinline|nextLine()| & Lee un valor \lstinline|String| del usuario \\
+        \lstinline|nextLong()| & Lee un valor \lstinline|long| del usuario \\
+        \lstinline|nextShort()| & Lee un valor \lstinline|short| del usuario \\
+    \end{longtable}
+
+    \begin{exa}[\textbf{Lectura de Diferentes Tipos de Datos}]
+        En el siguiente ejemplo se leen diferentes tipos de datos con \lstinline|Scanner|:
+        \begin{lstlisting}[caption={Lectura diferentes tipos de datos con \lstinline|Scanner|.},label=DescriptiveLabel]
+import java.util.Scanner;
+
+class Main {
+  public static void main(String[] args) {
+    Scanner myObj = new Scanner(System.in);
+
+    System.out.println("Enter name, age and salary:");
+
+    // String input
+    String name = myObj.nextLine();
+
+    // Numerical input
+    int age = myObj.nextInt();
+    double salary = myObj.nextDouble();
+
+    // Output input by user
+    System.out.println("Name: " + name);
+    System.out.println("Age: " + age);
+    System.out.println("Salary: " + salary);
+  }
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \section{Operaciones Elementales}
+
+    En Java, para manipular variables hay operaciones que son imprescindibles conocer para poder hacer el código más eficiente y manejable posible.
+
+    \subsection{Operaciones Aritméticos entre Datos Primitivos}
+
+    En la clase pasada se vió que los tipos de datos primitivos son \lstinline|byte|, \lstinline|short|, \lstinline|int|, \lstinline|long|, \lstinline|float|, \lstinline|double|, \lstinline|boolean| y \lstinline|char|. En particular, veremos las operaciones básicas entre estos datos (salvo el tipo de dato \lstinline|boolean|):
+
+    \begin{longtable}{c l p{0.4\textwidth} c}
+    \toprule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+        $+$ & Suma & Agrega dos valores & \lstinline|x + y| \\
+        $-$ & Resta & Sustrae un valor de otro & \lstinline|x - y| \\
+        $*$ & Multiplicación & Multiplica dos valores & \lstinline|x * y| \\
+        $/$ & División & Divide un valor por otro & \lstinline|x / y| \\
+        $\%$ & Módulo & Devuelve el residuo de una división & \lstinline|x % y| \\
+        $++$ & Incremento & Aumenta el valor de una variable en 1 & \lstinline|++x| \\
+        $--$ & Decremento & Disminuye el valor de una variable en 1 & \lstinline|--x| \\
+    \end{longtable}
+
+    La suma, resta, multiplicación y división nos permite hacer estas operaciones entre los tipos de datos primitivos que hemos hablado anteriormente (salvo \lstinline|boolean|).
+
+    \begin{obs}
+        Al momento de efectuar la operación, el tipo de dato más grande es al que se convierte la información (recordemos que en este caso no necesitamos hacer casting). Cuando pasamos de un dato más grande a uno más pequeño, el número resultante de la operación se redondea.
+    \end{obs}
+
+    Estas operaciones anteriores son llamadas \textbf{binarias}. en cambio, las operaciones \lstinline|++| y \lstinline|--| son \textbf{unarias}. Estas, efectúan lo siguiente: toman una variable int como entrada e incrementan en uno su valor. Así que \lstinline|x++| es equivalente a \lstinline|x = x + 1|.
+
+    La operación \lstinline|%| es la \textbf{operación módulo}. Esta básicamente determina el residuo de la división de dos números enteros.
+
+    \subsection{Matemáticas}
+
+    Java proporciona la clase \lstinline|Math| para operaciones matemáticas avanzadas. Contiene métodos para exponentes, logaritmos, raíces y trigonometría.
+
+    \begin{longtable}{l p{0.6\textwidth}}
+        \toprule
+        \textbf{Método} & \textbf{Descripción} \\
+        \midrule
+        \endfirsthead
+
+        \midrule
+        \textbf{Método} & \textbf{Descripción} \\
+        \midrule
+        \endhead
+
+        \bottomrule
+        \endfoot
+
+        \lstinline|Math.max(x,y)| & Devuelve el mayor entre \lstinline|x| e \lstinline|y| \\
+        \lstinline|Math.min(x,y)| & Devuelve el menor entre \lstinline|x| e \lstinline|y| \\
+        \lstinline|Math.sqrt(x)| & Calcula la raíz cuadrada de \lstinline|x| \\
+        \lstinline|Math.pow(x,y)| & Eleva \lstinline|x| a la potencia \lstinline|y| \\
+        \lstinline|Math.abs(x)| & Devuelve el valor absoluto de \lstinline|x| \\
+        \lstinline|Math.random()| & Genera un número aleatorio en [0.0, 1.0) \\
+    \end{longtable}
+
+    \begin{exa}[\textbf{Uso de Math}]
+        \begin{lstlisting}[caption={Operaciones con la clase Math.},label=DescriptiveLabel]
+double raiz = Math.sqrt(25);     // 5.0
+double potencia = Math.pow(2, 3); // 8.0
+double maximo = Math.max(10, 20); // 20.0
+double aleatorio = Math.random(); // Ej: 0.548392
+        \end{lstlisting}
+    \end{exa}
+
+    \section{If y Else}
+
+    \begin{mydef}[\textbf{Sentencia Condicional}]
+        Una \textbf{sentencia condicional} es \textit{una construcción de programación que permite ejecutar diferentes bloques de código dependiendo de si una condición específica es verdadera o falsa}.
+    \end{mydef}
+
+    Por ejemplo, una sentencia condicional evalúa si una variable \lstinline|a| es mayor que otra \lstinline|b|. Java posee las siguientes sentencias condicionales:
+
+    \begin{itemize}
+        \item \lstinline|if|: Este se usa para ejecutar un bloque de código si una condición es \lstinline|true|.
+        \item \lstinline|else|: Este se usa para ejecutar un bloque de código si la condición especificada en el \lstinline|if| anterior es \lstinline|false|. 
+        \item \lstinline|switch|: Se usa para ejecutar múltiples bloques de código alternativos dependiendo de la entrada.
+    \end{itemize}
+
+    \subsection{\lstinline|if|}
+
+    La sintaxis de la sentencia \lstinline|if| es la siguiente:
+    \begin{lstlisting}[caption={Sintaxis de la sentencia \lstinline|if|.},label=DescriptiveLabel]
+if (condicion) {
+  // bloque de codigo a ejecutar si la condicion es true
+}
+    \end{lstlisting}
+
+    \begin{exa}[\textbf{Comparación de Números}]
+        La sentencia \lstinline|if| puede ser usada como en el siguiente ejemplo:
+        \begin{lstlisting}[caption={Uso de la sentencia \lstinline|if|.},label=DescriptiveLabel]
+if (20 > 18) {
+  System.out.println("20 es mayor a 18");
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \subsection{\lstinline|else|}
+
+    La sintaxis de la sentencia \lstinline|else| es la siguiente:
+    \begin{lstlisting}[caption={Sintaxis de la sentencia \lstinline|else|.},label=DescriptiveLabel]
+if (condicion) {
+
+}
+else {
+    // bloque de codigo a ejecutar si la condicion es false
+}
+    \end{lstlisting}
+
+    \begin{exa}[\textbf{Comparación de Números}]
+        La sentencia \lstinline|else| puede ser usada como en el siguiente ejemplo:
+        \begin{lstlisting}[caption={Uso de la sentencia \lstinline|else|.},label=DescriptiveLabel]
+int time = 20;
+if (time < 18) {
+  System.out.println("Buen dia.");
+} else {
+  System.out.println("Buenas noches.");
+}
+// Imprime "Buenas noches".
+        \end{lstlisting}
+    \end{exa}
+
+    \subsection{\lstinline|switch|}
+
+    En vez de escribir muchos \lstinline|if| y \lstinline|else|, se puede usar la sentencia \lstinline|switch|.
+
+    Lo que hace \lstinline|switch| es seleccionar uno de los muchos bloques de código a ser ejecutados.
+
+    \begin{lstlisting}[caption={Sintaxis de la sentencia \lstinline|switch|.},label=DescriptiveLabel]
+switch(expression) {
+  case x:
+    // bloque de codigo
+    break;
+  case y:
+    // bloque de codigo
+    break;
+  default:
+    // bloque de codigo
+}
+    \end{lstlisting}
+
+    La sentencia \lstinline|switch| funciona de la siguiente forma:
+
+    \begin{itemize}
+        \item La expresión del \lstinline|switch| se evalúa una sola vez.
+        \item El valor de la expresión se compara con los valores de cada caso.
+        \item Si hay coincidencia, se ejecuta el bloque de código asociado.
+        \item Las palabras clave \lstinline|break| y \lstinline|default| son opcionales.
+    \end{itemize}
+
+    \begin{exa}
+        El siguiente ejemplo usa \lstinline|switch| para imprimir el día de la semana (numerados del 1 al 7) en función del número seleccionado:
+        \begin{lstlisting}[caption={Uso de la sentencia \lstinline|switch|.},label=DescriptiveLabel]
+int day = 4;
+switch (day) {
+  case 1:
+    System.out.println("Lunes");
+    break;
+  case 2:
+    System.out.println("Martes");
+    break;
+  case 3:
+    System.out.println("Miercoles");
+    break;
+  case 4:
+    System.out.println("Jueves");
+    break;
+  case 5:
+    System.out.println("Viernes");
+    break;
+  case 6:
+    System.out.println("Sabado");
+    break;
+  case 7:
+    System.out.println("Domingo");
+    break;
+}
+// Imprime "Jueves" (day 4)
+        \end{lstlisting}
+    \end{exa}
+
+    \section{Bucles}
+
+    \begin{mydef}[\textbf{Bucle}]
+        Un \textbf{bucle} es \textit{una estructura de control que repite un bloque de código mientras se cumpla una condición específica}.
+    \end{mydef}
+
+    \subsection{\lstinline|while|}
+
+    Ejecuta un bloque mientras la condición sea verdadera.
+
+    \begin{lstlisting}[caption={Sintaxis de \lstinline|while|.},label=DescriptiveLabel]
+while (condicion) {
+  // codigo a ejecutar
+}
+    \end{lstlisting}
+
+    \begin{exa}[\textbf{Contador con while}]
+        \begin{lstlisting}[caption={Uso de \lstinline|while|.},label=DescriptiveLabel]
+int i = 0;
+while (i < 5) {
+  System.out.println(i);
+  i++;
+}
+// Imprime 0,1,2,3,4
+        \end{lstlisting}
+    \end{exa}
+
+    \subsection{\lstinline|for|}
+
+    Ideal para iteraciones con contador controlado.
+
+    \begin{lstlisting}[caption={Sintaxis de \lstinline|for|.},label=DescriptiveLabel]
+for (inicializacion; condicion; actualizacion) {
+  // codigo a ejecutar
+}
+    \end{lstlisting}
+
+    \begin{exa}[\textbf{Contador con for}]
+        \begin{lstlisting}[caption={Uso de \lstinline|for|.},label=DescriptiveLabel]
+for (int i = 0; i < 5; i++) {
+  System.out.println(i);
+}
+// Imprime 0,1,2,3,4
+        \end{lstlisting}
+    \end{exa}
+
+\end{document}
