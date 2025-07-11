@@ -1,0 +1,676 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{titlesec}  
+\usepackage{titletoc}  
+\usepackage{longtable}
+\usepackage{multicol}
+\usepackage{booktabs}
+
+% Configuración del índice
+\contentsmargin{0cm}
+\dottedcontents{section}[1.5cm]{\contentslabel{2.0cm}}{1.5cm}{0pc}
+\dottedcontents{subsection}[3.8cm]{\contentslabel{2.5cm}}{3.2cm}{0pc}
+
+%Gestión de Hipervínculos
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    bookmarksopen=true
+}
+
+%Gestión de Código de Programación
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA}
+\definecolor{listing-keyword-3}{HTML}{9137CB}
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language         = Java,
+    numbers          = none,
+    xleftmargin      = 2.7em,
+    framexleftmargin = 2.5em,
+    backgroundcolor  = \color{gray!10},
+    basicstyle       = \color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines       = true,
+    frameshape       = {RYR}{Y}{Y}{RYR},
+    rulecolor        = \color{black},
+    tabsize          = 2,
+    numberstyle      = \color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip        = 1.0em,
+    belowskip        = 0.1em,
+    abovecaptionskip = 0em,
+    belowcaptionskip = 1.0em,
+    keywordstyle     = {\color{listing-keyword}\bfseries},
+    keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive        = true,
+    identifierstyle  = \color{listing-identifier},
+    commentstyle     = \color{listing-comment},
+    stringstyle      = \color{listing-string},
+    showstringspaces = false,
+    label            = lst:bar,
+    captionpos       = b,
+}
+
+\lstset{style = myStyle}
+
+% Configuración correcta de secciones
+\titleformat{\section}
+  {\normalfont\Large\scshape}{\S\thesection}{1em}{}[\titlerule]
+\titleformat{\subsection}
+  {\normalfont\large\scshape}{\S\thesubsection}{1em}{}[\titlerule]
+  
+%Gestión marca de agua
+\usetikzlibrary{shapes.multipart}
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<100}{%
+    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
+
+%Redefiniciones de comandos
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%Definiciones para enlistar
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%Comandos personalizados
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcounter{figcount}
+\setcounter{figcount}{1}
+
+% Configuración avanzada del índice
+\usepackage{titletoc}
+\usepackage{etoolbox}
+
+% Estilo moderno para el índice
+\contentsmargin{0cm}
+\dottedcontents{part}[-1cm]{}{0cm}{}
+
+% Estilo para secciones
+\titlecontents{section}
+  [0em]
+  {\vspace{0.2ex}\large}
+  {\makebox[2em][l]{\large\S\thecontentslabel}\hspace*{0.5em}}
+  {}
+  {\titlerule*[0.6em]{\textperiodcentered}\bfseries\contentspage}
+  [\vspace{0.4ex}]
+
+% Estilo para subsecciones
+\titlecontents{subsection}
+  [2.5em]
+  {\vspace{0.2ex}\normalsize}
+  {\makebox[3em][l]{\large\S\thecontentslabel}\hspace*{0.5em}}
+  {}
+  {\titlerule*[0.5em]{\textperiodcentered}\contentspage}
+  [\vspace{0.3ex}]
+
+\renewcommand{\lstlistingname}{Código}
+\renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}
+\begin{document}
+    \setlength{\parskip}{5pt}
+    \setlength{\parindent}{12pt}
+    \title{Notas Java - 2. Operadores y Control de Flujo}
+    \author{Cristo Alvarado}
+    \maketitle
+
+    \begin{abstract}
+        Esta sesión profundiza en el manejo de estructuras de control y operadores en Java, abordando ciclos avanzados (\texttt{do while}), mecanismos de interrupción (\texttt{break/continue}), arreglos (unidimensionales/multidimensionales) y diseño de métodos (parámetros, retornos, sobrecarga). Se integrará teoría con ejercicios prácticos de validación de entradas, algoritmos de filtrado y manipulación de matrices. El alumno fortalecerá competencias en diseño modular y gestión eficiente de flujos programáticos. Revise previamente sintaxis de ciclos y operadores lógicos.
+    \end{abstract}
+    
+    \tableofcontents
+
+    \lstlistoflistings
+
+    \section{\lstinline|do while| y Ejemplos de Ciclos}
+
+    En esta sección veremos el ciclo \lstinline|do while| y algunos ejemplos de como usar los bucles en Java.
+
+    \subsection{\lstinline|do while|}
+
+    El ciclo \lstinline|do while| es una variante del ciclo \lstinline|while|. Este ciclo ejecuta el código \textbf{una vez SIEMPRE} y luego checa si la condición es verdadera, luego repite el ciclo hasta que la condición es verdadera.
+
+    \begin{lstlisting}[caption={Sintaxis \lstinline|do while|},label=DescriptiveLabel]
+do {
+  // code block to be executed
+}while(condition);
+    \end{lstlisting}
+
+    \begin{obs}
+        Después \lstinline|while(condition)| siempre es necesario poner el punto y coma.
+    \end{obs}
+
+    \begin{obs}
+        Diferencias entre \lstinline|while| y \lstinline|do while| son claras en el siguiente código:
+        \begin{lstlisting}[caption={Diferente ejecución entre \lstinline|while| y \lstinline|do while|.},label=DescriptiveLabel]
+public class Main{
+    public static void main(String[] args){
+        int i = 10;
+        System.out.println("Ejecucion de do while:");
+        do{
+            System.out.println(i); //imprime el 10
+            i++;
+        }while(i < 5);
+        System.out.println("Ejecucion de while:");
+        i = 10;
+        while(i < 5){
+            System.out.println(i); //no imprime nada
+            i++;
+        }
+    }
+}
+        \end{lstlisting}
+        Sin embargo, en ciertas circustancias se comportan prácticamente igual:
+        \begin{lstlisting}[caption={Misma ejecución de \lstinline|while| y \lstinline|do while|.},label=DescriptiveLabel]
+public class Main{
+    public static void main(String[] args){
+        int i = 0;
+        System.out.println("Ejecucion de do while:");
+        do{
+            System.out.println(i); //imprime el 10
+            i++;
+        }while(i < 5);
+        System.out.println("Ejecucion de while:");
+        i = 0;
+        while(i < 5){
+            System.out.println(i); //no imprime nada
+            i++;
+        }
+    }
+}
+        \end{lstlisting}
+    \end{obs}
+
+    \subsection{Ejemplos y Ejercicios}
+
+    \begin{exa}[\textbf{Programa que Imprime Números Primos entre 1 y 100}]
+        El siguiente programa imprime números primos entre 1 y 100.
+        \begin{lstlisting}[caption={Programa que imprime números primos entre 1 y 100.},label=DescriptiveLabel]
+public class Main{
+    public static void main(String[] args){
+        int p = 2, j;
+        while(p <= 100){
+            //verificar si el numero es primo
+            j = 2;
+            while(j < p){
+                if(p % j == 0){
+                    j = -1;
+                    break;
+                }
+                else j++;
+            }
+            if(j != -1) System.out.println("Es primo: " + p);
+            p++;
+        }
+    }
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \begin{excer}
+        Modifique el siguiente código para usar \lstinline|for| en vez de \lstinline|while|.
+    \end{excer}
+
+    \begin{exa}[\textbf{Programa que Imprime un Triángulo}]
+        El siguiente programa imprime un triángulo isóceles de tamaño $n=3$:
+        \begin{lstlisting}[caption={Programa que imprime un triángulo de tamaño $n=3$.},label=DescriptiveLabel]
+public class Main{
+    public static void main(String[] args){
+        int n = 3;
+        for(int i = 0; i <= n; i++){
+            for(int j = 0; j < i; j++) System.out.print("*");
+            for(int j = i+1; j < n; j++) System.out.print(" ");
+            System.out.println("");
+        }
+    }
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \begin{excer}
+        ¿Cómo haría un programa que tome como entrada un número $n$ e imprima un triángulo isóceles de de lado $n$?
+    \end{excer}
+
+    \begin{exa}[\textbf{Programa Que Recibe un Entero entre 0 y 10}]
+        El siguiente programa recibe un entero entre 0 y 10 y calcula su cuadrado, y no permite continuar a menos que el entero esté estrictamente entre 0 y 10.
+        \begin{lstlisting}[caption={Programa que recibe entero entre 0 y 10.},label=DescriptiveLabel]
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        int entrada = -1;
+        Scanner flujo_entrada = new Scanner(System.in);
+        do{
+            System.out.print("Ingrese un numero entre 0 y 10: ");
+            entrada = flujo_entrada.nextInt();
+        }while(entrada < 0 || entrada > 10);
+        System.out.println("Su numero es: "+entrada);
+        System.out.println("El cuadrado de su numero es: "+(entrada*entrada));
+    }
+}
+        \end{lstlisting}
+        ¿Qué pasa si no ingresamos un número entero en el programa? El código da error (la terminal muestra que ocurrió un error). Para solucionarlo debemos hacer una cosa que se llama \textbf{excepción de errores}. Más adelante veremos esto.
+    \end{exa}
+
+    \begin{excer}
+        En vez de que tome como entrada un entero, ¿cómo podríamos hacer que tome un número con decimales y calcule su cubo?
+    \end{excer}
+
+    \section{\lstinline|break/continue| y Arreglos}
+
+    \subsection{\lstinline|break/continue|}
+    
+    La sentencia \lstinline|break| se ha usado anteriormente en la sentencia \lstinline|swtich|. \lstinline|break| es usado en ciclos para salir de un ciclo:
+
+    \begin{exa}
+        En este ejemplo el ciclo \lstinline|for| se detiene cuando \lstinline|i == 4|:
+        \begin{lstlisting}[caption={Programa que sale de un ciclo \lstinline|for| al llegar al \lstinline|4|.},label=DescriptiveLabel]
+for (int i = 0; i < 10; i++) {
+if (i == 4) {
+    break;
+}
+System.out.println(i);
+}
+        \end{lstlisting}
+    \end{exa}
+
+    La sentencia \lstinline|continue| es similar a \lstinline|break|, solo que \lstinline|continue| termina la ejecución del código de la iteración actual y continua con la siguiente siguiente iteración en el ciclo.
+
+    \begin{exa}
+        \begin{lstlisting}[caption={Programa usando el ciclo \lstinline|for| que no imprime \lstinline|4|.},label=DescriptiveLabel]
+for (int i = 0; i < 10; i++) {
+  if (i == 4) {
+    continue;
+  }
+  System.out.println(i);
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \subsection{Arreglos}
+
+    \begin{mydef}[\textbf{Arreglos}]
+        Un \textbf{arreglo} es \textit{usado para guardar múltiples valores de algún tipo en una sola variable}.
+    \end{mydef}
+
+    Los arreglos nos sirven para no tener que declarar múltiples variables para cada valor que queramos guardar. Para declarar un arreglo, usamos la siguiente notación:
+    
+    \begin{lstlisting}[caption={Declaración de un arreglo de algún tipo de dato.},label=DescriptiveLabel]
+//tipoDato[] nombreVariable;
+    \end{lstlisting}
+    Para añadir valores a esta variable usamos corchetes \lstinline|{}| y los valores los colocamos dentro, separados por comas:
+\begin{lstlisting}[caption={Declaración de un arreglo con valores dados.},label=DescriptiveLabel]
+//tipoDato[] nombreVariable = {val1, val2, ... , valn};
+    \end{lstlisting}
+
+    \begin{exa}[\textbf{Ejemplos de Arreglos}]
+        En el siguiente código declaramos dos arreglos, uno de \lstinline|String| y otro de \lstinline|int|:
+        \begin{lstlisting}[caption={Ejemplo Arreglos.},label=DescriptiveLabel]
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+int[] myNum = {10, 20, 30, 40};
+        \end{lstlisting}
+    \end{exa}
+
+    Para acceder a los elementos de un arreglo, colocamos corchetes después del nombre de la variable y luego, colocamos la posición en que se encuentra el valor que queremos usar:
+    \begin{lstlisting}[caption={Acceder a variable arreglo.},label=DescriptiveLabel]
+//nombreVariable[numeroPosicion]
+    \end{lstlisting}
+    Para conocer la posición, empezamos contando desde cero.
+
+    \begin{exa}[\textbf{Ejemplo Acceso Valor Arreglo}]
+        Para acceder al valor \lstinline|"Ford"| del arreglo \lstinline|String[] cars = {"Volvo", "BMW", "Ford", "Mazda"}| debemos poner \lstinline|cars[2]|. En este caso, \lstinline|"Volvo"| está en la posición 0, \lstinline|"BMW"| en la 1 y así sucesivamente.
+    \end{exa}
+
+    \subsection{Ciclo sobre Arreglo}
+
+    Para recorrer los elementos de un arreglo, usualmente usamos el ciclo \lstinline|for|:
+
+    \begin{lstlisting}[caption={Recorrer arreglo.},label=DescriptiveLabel]
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+for(int i = 0; i < cars.length; i++){
+    System.out.println(cars[i]);
+}
+    \end{lstlisting}
+
+    Donde la propiedad \lstinline|length| obtiene la longitud de nuestro arreglo. También podemos usar el \lstinline|for-each| para recorrer los elementos de un arreglo:
+
+    \begin{lstlisting}[caption={Recorrer arreglo con \lstinline|for-each|.},label=DescriptiveLabel]
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+for(String i : cars){
+    System.out.println(i);
+}       
+    \end{lstlisting}
+    
+    La sintaxis del \lstinline|for-each| es la siguiente: 
+
+    \begin{lstlisting}[caption={Sintaxis \lstinline|for-each|.},label=DescriptiveLabel]
+for(tipoVariableArreglo i : nombreArreglo){
+    //bloque de codigo
+}       
+    \end{lstlisting}
+
+    En este caso, para cada \lstinline|i| de tipo \lstinline|String| en el arreglo \lstinline|cars|, imprimimos a \lstinline|i|.
+
+    \subsection{Arreglos Multidimensionales}
+
+    Siguiendo la idea de los arreglos, podemos hacer arreglos de arreglos, y arreglos de arreglos de arreglos, y sucesivamente, como en el siguiente código:
+
+    \begin{lstlisting}[caption={Arreglo Bidimensional.},label=DescriptiveLabel]
+int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };
+    \end{lstlisting}
+
+    En este caso hacemos un arreglo del tipo de dato \lstinline|int[]|, que es un arreglo. Para acceder a los elementos de este arreglo lo hacemos de la misma manera que como si fuese un arreglo normal, pero colocando corchetes dos veces y dos números en los corchetes:
+
+    \begin{lstlisting}[caption={Acceder Elementos de Arreglo Bidimensional.},label=DescriptiveLabel]
+int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };
+System.out.println(myNumbers[1][2]); // Outputs 7
+    \end{lstlisting}
+
+    \begin{obs}
+        También podemos usar el ciclo \lstinline|for|, como se ve en el siguiente ejemplo:
+        \begin{lstlisting}[caption={Ciclo \lstinline|for| en Arreglo Bidimensional.},label=DescriptiveLabel]
+int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };
+for (int i = 0; i < myNumbers.length; ++i) {
+  for (int j = 0; j < myNumbers[i].length; ++j) {
+    System.out.println(myNumbers[i][j]);
+  }
+}
+        \end{lstlisting}
+        o también:
+        \begin{lstlisting}[caption={Ciclo \lstinline|for-each| en Arreglo Bidimensional.},label=DescriptiveLabel]
+int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };
+for (int[] row : myNumbers) {
+  for (int i : row) {
+    System.out.println(i);
+  }
+}
+        \end{lstlisting}
+    \end{obs}
+
+    \section{Métodos}
+
+    \begin{mydef}[\textbf{Método}]
+        Un \textbf{método} \textit{es un bloque de código que es ejecutado cuando es llamado por algún otro método}.
+    \end{mydef}
+
+    \begin{obs}
+        El método \lstinline|main()| es un método.
+    \end{obs}
+
+    \textit{Se puede pasar información a un método}. Esta \textit{información es conocida como} \textbf{parámetros}. Los \textit{métodos son usados para realizar alguna acción, estos también son conocidos como} \textbf{funciones}.
+
+    \subsection{Creación de Métodos}
+    
+    Un método debe ser declarado dentro de una clase. Se define el nombre del método, seguido de paréntesis \lstinline|()|. Java da algunos métodos predefinidos, como vimos anteriormente, como el método \lstinline|System.out.println()|, pero nosotros también podemos crear nuestros propios métodos para efectuar alguna acción.
+
+    \begin{exa}
+        El siguiente es un método dentro de la clase \lstinline|Main|:
+        \begin{lstlisting}[caption={Método dentro de \lstinline|Main|.},label=DescriptiveLabel]
+public class Main {
+    public static void main(String args[]){
+        System.out.println("Hola Mundo");
+    }
+    static void myMethod() {
+        System.out.println("Estoy ejecutando mi metodo");
+        // codigo a ejecutar
+    }
+}
+        \end{lstlisting}
+        En este ejemplo tenemos lo siguiente:
+        \begin{itemize}
+            \item \lstinline|myMethod()| es el nombre del método.
+            \item \lstinline|static| significa que el método pertenece a la clase \lstinline|Main| y no a un objeto de la clase \lstinline|Main|. Luego se verá que significa esto último.
+            \item \lstinline|void| significa que este método no tiene un valor de retorno. Los valores de retorno son valores que una función puede regresar después de realizar ciertas operaciones.
+        \end{itemize}
+    \end{exa}
+
+    \subsection{Llamar un Método}
+
+    Para llamada un método en llava se escribe el nombre del método, seguido de dos paréntesis \lstinline|()| y un punto y coma \lstinline|;|.
+
+    \begin{exa}[\textbf{Declaración y Llamada Método}]
+        \begin{lstlisting}[caption={Método dentro de \lstinline|Main|.},label=DescriptiveLabel]
+public class Main {
+    public static void main(String args[]){
+        System.out.println("Hola Mundo");
+        myMethod();
+    }
+    static void myMethod() {
+        System.out.println("Estoy ejecutando mi metodo");
+    }
+}
+        \end{lstlisting}
+
+        Un método también puede ser llamado varias veces:
+        \begin{lstlisting}[caption={Método llamado varias veces.},label=DescriptiveLabel]
+public class Main {
+    public static void main(String args[]){
+        System.out.println("Hola Mundo");
+        myMethod();
+        myMethod();
+        myMethod();
+    }
+    static void myMethod() {
+        System.out.println("Estoy ejecutando mi metodo");
+    }
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \subsection{Parámetros de un Método}
+
+    Es posible pasar información a través de un método, esta información es conocida como \textbf{parámetros}. Los \textit{parámetros actúan como variables dentro de un método}.
+
+    Los parámetros se especifican después del nombre del método, dentro de los paréntesis. Se pueden añadir cuantos parámetros uno desee, mientras estén separados por comas.
+
+    \begin{exa}
+        Este ejemplo tiene un método que toma como parámetro un \lstinline|String| y dentro del método este parámetro es llamado con el nombre de variable \lstinline|nombre|. Cuando se llama al método, debemos siempre introducir este \lstinline|String| o en caso contrario el sistema nos dará error.
+        \begin{lstlisting}[caption={Parámetro en un Método.},label=DescriptiveLabel]
+public class Main {
+  static void myMethod(String name) {
+    System.out.println("Tu nombre es: " + name);
+  }
+
+  public static void main(String[] args) {
+    myMethod("Daniel");
+    myMethod("Alejandro");
+    myMethod("Emilio");
+  }
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \begin{exa}
+        En este ejemplo tenemos un método que recibe como entrada múltiples parámetros:
+        \begin{lstlisting}[caption={Método con Múltiples Parámetros.},label=DescriptiveLabel]
+public class Main {
+  static void myMethod(String name, int edad) {
+    System.out.println("Tu nombre es: " + name + ", y tu edad es: " + edad);
+  }
+
+  public static void main(String[] args) {
+    myMethod("Daniel", 23);
+    myMethod("Alejandro", 18);
+    myMethod("Emilio", 29);
+  }
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \begin{obs}
+        Dentro del método podemos hacer exactamente lo mismo que hacemos dentro del método \lstinline|main()|, esto es, inicializar variables, objetos, usar \lstinline|if|, \lstinline|else|, \lstinline|swtich|, los bucles \lstinline|for|, \lstinline|while|, etc\dots
+    \end{obs}
+
+    \subsection{Valores de Retorno (Return Values)}
+
+    En los ejemplos anteriores, al momento de declarar un método siempre usábamos la palabra \lstinline|void| en todos los ejemplos. Esta palabra indica que el método no debe retornar valor alguno.
+
+    Si se quiere usar un método para regresar un valor, podemos usar un tipo de dato primitivo (como lo son \lstinline|int|, \lstinline|char|, etc\dots) en vez de \lstinline|void|, y usar la palabra reservada \lstinline|return| dentro del método:
+
+    \begin{exa}
+        El siguiente ejemplo es un método que recibe dos parámetros y retorna un entero que es la suma de estos dos parámetros.
+        \begin{lstlisting}[caption={Ejemplo Método que Retorna \lstinline|int|.},label=DescriptiveLabel]
+public class Main {
+    static int myMethod(int x, int y) {
+        return x + y;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(myMethod(5, 3));
+    }
+}
+        \end{lstlisting}
+        El resultado del retorno también se puede guardar en una variable:
+        \begin{lstlisting}[caption={Ejemplo Método que Retorna \lstinline|int|.},label=DescriptiveLabel]
+public class Main {
+    static int myMethod(int x, int y) {
+        return x + y;
+    }
+
+    public static void main(String[] args) {
+        int z = myMethod(5, 3);
+        System.out.println(z);
+    }
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \begin{obs}
+        Java tiene una cosa denominada \textbf{Sobrecarga de Métodos}, que nos permite definir múltiples métodos con el mismo nombre, pero con parámetros diferentes:
+        \begin{lstlisting}[caption={Sobrecarga de Métodos o Method Overloading.},label=DescriptiveLabel]
+int myMethod(int x)
+float myMethod(float x)
+double myMethod(double x, double y)
+        \end{lstlisting}
+    \end{obs}
+
+\end{document}
