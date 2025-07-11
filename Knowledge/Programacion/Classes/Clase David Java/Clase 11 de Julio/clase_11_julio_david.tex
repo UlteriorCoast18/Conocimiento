@@ -85,25 +85,6 @@
   {\normalfont\Large\scshape}{\S\thesection}{1em}{}[\titlerule]
 \titleformat{\subsection}
   {\normalfont\large\scshape}{\S\thesubsection}{1em}{}[\titlerule]
-  
-%Gestión marca de agua
-\usetikzlibrary{shapes.multipart}
-
-\newcounter{it}
-\newcommand*\watermarktext[1]{\begin{tabular}{c}
-    \setcounter{it}{1}%
-    \whiledo{\theit<100}{%
-    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
-    \stepcounter{it}%
-    }
-    \end{tabular}
-    }
-
-\AddToHook{shipout/foreground}{
-    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
-        \node[rectangle,black,rotate=30,scale=2,opacity=0.04] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
-  \end{tikzpicture}
-}
 
 %Redefiniciones de comandos
 \def\proof{\paragraph{Demostración:\\}}
