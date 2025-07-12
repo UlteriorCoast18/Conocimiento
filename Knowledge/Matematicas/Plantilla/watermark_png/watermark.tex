@@ -1,0 +1,28 @@
+\documentclass[convert={density=600,size=2160x1600,outext=.png}]{standalone}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+
+
+\newcounter{it}
+\newcommand*\watermarktext[1]{\begin{tabular}{c}
+    \setcounter{it}{1}%
+    \whiledo{\theit<13}{%
+    \foreach \col in {0,...,7}{#1\ \ } \\ \\ \\ \\
+    \stepcounter{it}%
+    }
+    \end{tabular}
+    }
+
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
+        \node[rectangle,black,rotate=30,scale=2,opacity=0.05] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}};
+  \end{tikzpicture}
+}
+
+\begin{document}
+
+
+
+\end{document}
