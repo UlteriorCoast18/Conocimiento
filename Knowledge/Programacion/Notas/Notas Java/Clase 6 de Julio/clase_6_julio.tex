@@ -1,0 +1,786 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[a4paper, margin = 1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{titlesec}  % AÑADIDO PARA MANEJO DE SECCIONES
+\usepackage{titletoc}  % AÑADIDO PARA MANEJO DEL ÍNDICE
+\usepackage{longtable}
+\usepackage{multicol}
+\usepackage{booktabs}
+
+% Configuración del índice
+\contentsmargin{0cm}
+\dottedcontents{section}[1.5cm]{\contentslabel{2.0cm}}{1.5cm}{0pc}
+\dottedcontents{subsection}[3.8cm]{\contentslabel{2.5cm}}{3.2cm}{0pc}
+
+%Gestión de Hipervínculos
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,  % CAMBIADO A AZUL PARA MEJOR VISIBILIDAD
+    filecolor=magenta,      
+    urlcolor=cyan,
+    bookmarksopen=true  % AÑADIDO
+}
+
+%Gestión de Código de Programación
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA} % additional keywords
+\definecolor{listing-keyword-3}{HTML}{9137CB} % additional keywords
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language         = Java,
+    numbers          = none,
+    xleftmargin      = 2.7em,
+    framexleftmargin = 2.5em,
+    backgroundcolor  = \color{gray!10},
+    basicstyle       = \color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines       = true,
+    frameshape       = {RYR}{Y}{Y}{RYR},
+    rulecolor        = \color{black},
+    tabsize          = 2,
+    numberstyle      = \color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip        = 1.0em,
+    belowskip        = 0.1em,
+    abovecaptionskip = 0em,
+    belowcaptionskip = 1.0em,
+    keywordstyle     = {\color{listing-keyword}\bfseries},
+    keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive        = true,
+    identifierstyle  = \color{listing-identifier},
+    commentstyle     = \color{listing-comment},
+    stringstyle      = \color{listing-string},
+    showstringspaces = false,
+    label            = lst:bar,
+    captionpos       = b,
+}
+
+\lstset{style = myStyle}
+
+% Configuración correcta de secciones (REEMPLAZO COMPLETO)
+\titleformat{\section}
+  {\normalfont\Large}{\S\thesection}{1em}{}[\titlerule]
+\titleformat{\subsection}
+  {\normalfont\large}{\S\thesubsection}{1em}{}[\titlerule]
+
+%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
+\def\proof{\paragraph{Demostración:\\}}
+\def\endproof{\hfill$\blacksquare$}
+
+\def\sol{\paragraph{Solución:\\}}
+\def\endsol{\hfill$\square$}
+
+%En esta parte se definen los comandos a usar dentro del documento para enlistar%
+\newtheoremstyle{largebreak}
+  {}% use the default space above
+  {}% use the default space below
+  {\normalfont}% body font
+  {}% indent (0pt)
+  {\bfseries}% header font
+  {}% punctuation
+  {\newline}% break after header
+  {}% header spec
+
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!60!red!30
+]{exa}{Ejemplo}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    hidealllines = true,
+    roundcorner = 5pt,
+    backgroundcolor = gray!50!blue!30
+]{obs}{Observación}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{theor}{Teorema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{propo}{Proposición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{cor}{Corolario}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    rightline = false,
+    leftline = false
+]{lema}{Lema}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt,
+    backgroundcolor = gray!30,
+    hidealllines = true
+]{mydef}{Definición}[section]
+
+\newmdtheoremenv[
+    leftmargin=0em,
+    rightmargin=0em,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    roundcorner=5pt
+]{excer}{Ejercicio}[section]
+
+%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcounter{figcount}
+\setcounter{figcount}{1}
+
+% Configuración avanzada del índice (nuevo diseño)
+\usepackage{titletoc}
+\usepackage{etoolbox}
+
+% Estilo moderno para el índice
+\contentsmargin{0cm}
+\dottedcontents{part}[-1cm]{}{0cm}{}  % Para partes si las usas
+
+% Estilo para secciones
+\titlecontents{section}
+  [0em]
+  {\vspace{0.2ex}\large}
+  {\makebox[2em][l]{\large\S\thecontentslabel}\hspace*{0.5em}}
+  {}
+  {\titlerule*[0.5em]{\textperiodcentered}\bfseries\contentspage}
+  [\vspace{0.4ex}]
+
+% Estilo para subsecciones
+\titlecontents{subsection}
+  [2.5em]
+  {\vspace{0.2ex}\normalsize}
+  {\makebox[3em][l]{\large\S\thecontentslabel}\hspace*{0.5em}}
+  {}
+  {\titlerule*[0.5em]{\textperiodcentered}\contentspage}
+  [\vspace{0.3ex}]
+
+\renewcommand{\lstlistingname}{Código}% Listing -> Algorithm
+\renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}% List of Listings -> List of Algorithms
+\begin{document}
+    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
+    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
+    \title{Notas Java - 1. Introducción}
+    \author{Cristo Alvarado}
+    \maketitle
+
+    \begin{abstract}
+        En esta primera sesión construiremos sobre los fundamentos de Java, enfocándonos en: Orígenes de Java (historia, fundamentos, \lstinline|Hola Mundo|, el método \lstinline|main()|) Tipos de datos (primitivos como \lstinline|int|, \lstinline|double|, \lstinline|boolean| y compuestos como \lstinline|String|), sus características y aplicaciones; Operaciones para manipular valores mediante operadores aritméticos, relacionales y lógicos. Mediante ejemplos aplicados que ayudarán al entendimiento del lenguaje.
+    \end{abstract}
+    
+    \tableofcontents
+
+    \lstlistoflistings
+
+    \section{Java}
+
+    \subsection{Orígenes de Java}
+
+    \begin{mydef}[\textbf{Lenguaje de Programación Java}]
+        \textbf{Java} es un \textit{lenguaje de programación y una plataforma informática que fue comercializada por primera vez en 1995 por Sun Microsystems}.
+    \end{mydef}
+
+    Java se creó como una herramienta de programación para ser usada en un proyecto en una pequeña operación denominada the Green Project en Sun Microsystems en 1991. El equipo (denominado \textit{green team}), compuesto por trece personas y dirigido por James Gosling, trabajó durante 18 meses en Sand Hill Road, Menlo Park (California), para desarrollarlo.
+
+    Su sintaxis deriva en gran medida de C y C++, pero tiene menos utilidades de bajo nivel que cualquiera de ellos. Las aplicaciones de Java son compiladas a bytecode (clase Java), que puede ejecutarse en cualquier máquina virtual Java (JVM) sin importar la arquitectura de la computadora subyacente.
+
+    \begin{obs}[\textbf{Origen del Nombre}]
+        Algunas fuentes señalan que el nombre podría tratarse de un acrónimo, como las iniciales de sus diseñadores, \textbf{J}ames Gosling, \textbf{A}rthur \textbf{V}an Hoff y \textbf{A}ndy Bechtolsheim, o, sencillamente, \textit{\textbf{J}ust \textbf{A}nother \textbf{V}ague \textbf{A}cronym} (‘simplemente otro acrónimo ambiguo más’).
+    \end{obs}
+
+    Actualmente es usado para:
+    \begin{itemize}
+        \item Aplicaciones móviles.
+        \item Aplicaciones de escritorio.
+        \item Aplicaciones Web.
+        \item Servicios Web y Servidores de Aplicaciones.
+        \item Juegos.
+        \item Conexiones a bases de datos.
+    \end{itemize}
+    y muchos más.
+    
+    \subsection{Hola Mundo}
+
+    El clásico \textit{Hola Mundo} en Java se ve de la siguiente manera:
+
+    \begin{lstlisting}[caption={Hola Mundo.},label=DescriptiveLabel]
+public class HolaMundo{
+    public static void main(String[] args){
+        System.out.println("Hola Mundo");
+    }
+}
+    \end{lstlisting}
+
+    El nombre del archivo es HolaMundo.java. Antes de irnos a cualquier detalle técnico dentro del lenguaje de Java, vamos por las partes básicas que lo componen al momento de escribirlo.
+
+    \subsection{Método \lstinline|main()|}
+
+    \begin{mydef}[\textbf{Método}]
+        Un \textbf{método} en un lenguaje de programación es \textit{un bloque de código que contiene una serie de instrucciones y que se utiliza para realizar una tarea específica}.
+    \end{mydef}
+
+    En este caso, todo lo que queramos ejecutar dentro de nuestro código va dentro del método \lstinline|main()|.
+
+    Todo programa en Java debe tener un nombre de clase (o de \lstinline|class|), que debe coincidir con el nombre del archivo. Además, todo programa debe tener un método main.
+
+    \begin{obs}[\textbf{Clase}]
+        Más adelante se verá qué es una clase y para qué sirve.
+    \end{obs}
+
+    Dentro del método \lstinline|main()| tenemos la línea \lstinline|System.out.println("Hola Mundo")|.
+
+    \begin{mydef}[\textbf{Clase System}]
+        La clase \lstinline|System| es una clase final que pertenece al paquete \lstinline|java.lang| y proporciona acceso a funcionalidades y propiedades del sistema.
+    \end{mydef}
+
+    Esta clase es estática, lo que significa que sus miembros y métodos son accesibles directamente a través de la clase sin necesidad de crear una instancia de la misma.
+    
+    Esta clase nos permite el acceso a los flujos de entrada, salida y error del programa. En particular, el flujo \lstinline|out| nos permite imprimir en la consola estándar. En este flujo, tenemos varios métodos:
+    \begin{itemize}
+        \item \lstinline|println()|.
+        \item \lstinline|print()|.
+        \item \lstinline|printf()|.
+    \end{itemize}
+    ¿Cuál es la diferencia entre cada uno de ellos? \lstinline|println| imprime lo que sea que tenga dentro seguida de un salto de línea, \lstinline|print| no imprime el salto de línea y \lstinline|printf| nos permite imprimir con formato. Más adelante veremos lo que eso significa.
+    
+    Entonces, lo que estamos diciendo al programa cuando colocamos la sentencia \lstinline|System.out.println("Hola Mundo")| es decirle al programa:
+    \begin{center}
+        Imprime en la línea de comandos el \lstinline|String|: "Hola Mundo".
+    \end{center}
+
+    \subsection{Comentarios}
+
+    Para comentar una línea de texto en Java usamos \lstinline|//|. En el caso de que queramos comentar secciones enteras de texto, las líneas las encerramos entre \lstinline|/* ... */|. Esto se vería de la siguiente manera:
+
+    \begin{lstlisting}[caption={Comentarios.},label=DescriptiveLabel]
+// Comentario de una linea
+/*
+    Comentario
+    de
+    varias
+    lineas
+*/
+    \end{lstlisting}
+
+    \section{Variables}
+
+    \begin{mydef}[\textbf{Variables}]
+        Las \textbf{variables} son \textit{contendores de diferentes tipos de información a los que un programa puede acceder}.
+    \end{mydef}
+
+    En Java tenemos (entre muchos) los siguientes tipos de variables:
+
+    \begin{longtable}{l p{0.8\textwidth}}
+    \toprule
+    \textbf{Tipo} & \textbf{Descripción} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Tipo} & \textbf{Descripción} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+    \lstinline|String| & Almacena texto, como "Hola". Los valores String se rodean con comillas dobles \\
+    \lstinline|int| & Almacena enteros, sin decimales, como \textbf{123} o \textbf{-123} \\
+    \lstinline|float| & Almacena números de punto flotante, con algunos decimales, como \textbf{19.99} o \textbf{-19.99} \\
+    \lstinline|double| & Almacena números de punto flotante con muchos decimales, como \textbf{3.141592} o \textbf{2.718281} \\
+    \lstinline|char| & Almacena caracteres individuales, como 'a' o 'B'. Los valores char se rodean con comillas simples al momento de declararse \\
+    \lstinline|bool|\lstinline|ean| & Almacena valores con uno de los dos estados: \lstinline|true| o \lstinline|false| \\
+    \end{longtable}
+
+    \subsection{Declaración de Variables}
+
+    Para usar estas variables en nuestro programa tenemos que declararlas.
+
+    \begin{mydef}[\textbf{Declarar una Variable}]
+        \textbf{Declarar una variable} significa básicamente \textit{crear una variable para poder usarla en el programa}.
+    \end{mydef}
+
+    \begin{exa}[\textbf{Declaración de Variables en Java}]
+        Para declarar una variable en Java usamos la siguiente sintaxis:        
+        \begin{lstlisting}[caption={Declaración de variables.},label=DescriptiveLabel]
+//tipo nombreVariable = valor;
+        \end{lstlisting}
+        donde \lstinline|tipo| es el tipo de variable que queremos usar, \lstinline|nombreVariable| es el nombre de la variable y el \lstinline|valor| es el valor que le queremos asignar a la variable.
+    \end{exa}
+
+    \begin{obs}[\textbf{Nombres Permitidos}]
+        En muchos lenguajes de programación (incluído Java) existe una cosa llamada palabras reservadas. Las palabras reservadas son palabras que tiene almacenadas el sistema y que no pueden ser usadas como nombres de variables, métodos, clases o cualquier otro identificador.
+        
+        En la sección Palabras Reservadas de Java (al final de este documento) viene una lista de todas las palabras reservadas que tiene Java.
+    \end{obs}
+
+    Por ejemplo, con el siguiente código hacemos la declaración de la variable \lstinline|nombre| y luego imprimimos su valor:
+    \begin{lstlisting}[caption={Ejemplo declaracion e impresión de variable.},label=DescriptiveLabel]
+public class HolaMundo{
+    public static void main(String[] args){
+        String nombre = "John";
+        System.out.println(nombre);
+    }
+}
+    \end{lstlisting}
+
+    \begin{obs}[\textbf{Variables Finales}]
+        Si el valor de una variable no va a cambiar en el código, podemos usar la palabra reservada \lstinline|final|. Por ejemplo:
+        \begin{lstlisting}[caption={Variable final.},label=DescriptiveLabel]
+final double pi = 3.141592;
+        \end{lstlisting}
+        si luego en el código intentamos cambiar el valor de esta variable, nos dará error.
+    \end{obs}
+
+    Aquí tenemos un ejemplo de declaración de varias variables:
+    \begin{lstlisting}[caption={Declaración de variables de varios tipos},label=DescriptiveLabel]
+int myNum = 5;
+float myFloatNum = 5.99f;
+char myLetter = 'D';
+boolean myBool = true;
+String myText = "Hello";
+    \end{lstlisting}
+
+    \begin{obs}[Declaración Simultánea de Variables]
+        Algo curioso que se pueda hacer en Java es la declaración de varias variables, por ejemplo el código:
+
+        \begin{lstlisting}[caption={Declaración de múltiples variables en una línea},label=DescriptiveLabel]
+public class HolaMundo{
+    public static void main(String[] args){
+        int x, y, z;
+        x = y = z = 50;
+        System.out.println(x);
+        System.out.println(y);
+        System.out.println(z);
+    }
+}
+        \end{lstlisting}
+
+        imprime 3 veces el valor \lstinline|50|.
+    \end{obs}
+
+    \subsection{Reglas para Nombrar Variables}
+
+    Al momento de nombrar variables en Java, debemos seguir las siguientes reglas:
+    \begin{itemize}
+        \item Nombres pueden contener letras, dígitos, \_, y signo de dólar \$.
+        \item Nombres deben empezar por una letra.
+        \item Nombres deben empezar con una letra minúscula y no deben contener espacios en blanco.
+        \item Nombres pueden empezar con \$ y \_.
+        \item Nombres son sensibles a las mayúsculas (en este caso, \lstinline|miVariable| y \lstinline|mivariable| son dos variables distintas).
+        \item Las palabras reservadas no pueden ser usadas como nombres.
+    \end{itemize}
+
+    \section{Tipos de Datos}
+
+    \begin{mydef}[\textbf{Tipo de Dato (Data Type)}]
+        En Java, un \textbf{data type (tipo de dato)} \textit{define el tipo de valor que puede almacenar una variable y las operaciones que se pueden realizar con ese valor}.
+    \end{mydef}
+    
+    Esencialmente, le dice al compilador cómo interpretar y manipular la información que se guarda en la memoria.
+    
+    \begin{obs}
+        Java es un lenguaje de programación de \textit{tipado estático}, lo que significa que \textit{cada variable debe tener un tipo de dato declarado antes de su uso}.
+        
+        Un lenguaje de programación que no es de tipado estático es Python.
+    \end{obs}
+
+    \subsection{Tipos de Datos Primitivos}
+
+    \begin{mydef}[\textbf{Tipos de Datos Primitivos}]
+        Los \textbf{tipos de datos primitivos} son \textit{tipos de datos predefinidos que almacenan valores simples}.
+    \end{mydef}
+    
+    Hay ocho tipos de datos primitivos en Java: \lstinline|byte|, \lstinline|short|, \lstinline|int|, \lstinline|long|, \lstinline|float|, \lstinline|double|, \lstinline|boolean| y \lstinline|char|:
+
+    \begin{longtable}{l p{0.8\textwidth}}
+    \toprule
+    \textbf{Tipo de Dato} & \textbf{Descripción y Rango} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Tipo de Dato} & \textbf{Descripción y Rango} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+    \multicolumn{2}{c}{\textit{N ú m e r o s}} \\
+    \hline
+
+    \lstinline|byte| & Almacena números enteros en el rango de \textbf{-128 a 127} (8 bits con signo) \\
+    \lstinline|short| & Almacena números enteros en el rango de \textbf{-32,768 a 32,767} (16 bits con signo) \\
+    \lstinline|int| & Almacena números enteros en el rango de \textbf{-2,147,483,648 a 2,147,483,647} (32 bits con signo) \\
+    \lstinline|long| & Almacena números enteros en el rango de \textbf{-9,223,372,036,854,775,808 a 9,223,372,036,854,775,807} (64 bits con signo) \\
+    \lstinline|float| & Almacena números de punto flotante con \textbf{precisión simple} (6-7 dígitos decimales significativos) \\
+    \lstinline|double| & Almacena números de punto flotante con \textbf{precisión doble} (15-16 dígitos decimales significativos) \\
+    \hline
+    \multicolumn{2}{c}{\textit{B o o l e a n o}} \\
+    \hline
+    \lstinline|boolean| & Almacena valores lógicos: \lstinline|true| (verdadero) o \lstinline|false| (falso) \\
+    \hline\multicolumn{2}{c}{\textit{C a r a c t e r}} \\
+    \hline
+    \lstinline|ch|\lstinline|ar| & Almacena un \textbf{único carácter} Unicode (16 bits) o valores ASCII (ej: 'A', '7', '\$') \\
+    \end{longtable}
+
+    \begin{mydef}[\textbf{Unicode}]
+        \textbf{Unicode} es un \textit{estándar de codificación de caracteres que asigna un número único a cada carácter, independientemente del idioma, plataforma o programa, permitiendo que las computadoras representen y procesen texto de diferentes sistemas de escritura}. 
+    \end{mydef}
+
+    Se puede encontrar la codificación de los caracteres Unicode en \href{https://symbl.cc/es/unicode-table/}{Tabla de caracteres Unicode}.
+
+    \begin{mydef}[\textbf{ASCII}]
+        \textbf{ASCII (Código Estándar Americano para el Intercambio de Información)} es un \textit{sistema de codificación que asigna valores numéricos únicos a letras, números, signos de puntuación y otros caracteres utilizados en la comunicación electrónica}.
+    \end{mydef}
+
+    Al igual que con Unicode, es posible encontrar la codificación de caracteres ASCII en \href{https://elcodigoascii.com.ar/}{El codigo ASCII}.
+
+    \subsection{Tipo de dato \lstinline|String|}
+
+    El tipo de dato \lstinline|char| es usado para guardar un sólo caracter. Este caracter debe estar rodeado de comillas simples ''. También se pueden usar números para codificar con ASCII estos caracteres:
+
+    \begin{lstlisting}[caption={Declaración e impresión de variables tipo \lstinline|char|.},label=DescriptiveLabel]
+char myVar1 = 65, myVar2 = 66, myVar3 = 67;
+System.out.println(myVar1);
+System.out.println(myVar2);
+System.out.println(myVar3);
+    \end{lstlisting}
+
+    Un \lstinline|String| es un tipo de dato usado para guardar una secuencia de caracteres (texto). Estos deben estar rodeados por comillas dobles:
+
+    \begin{lstlisting}[caption={Declaración e impresión de variable de tipo \lstinline|String|.},label=DescriptiveLabel]
+String saludo = "Hola Mundo";
+System.out.println(saludo);
+    \end{lstlisting}
+
+    \section{Operadores}
+
+    \begin{mydef}[\textbf{Operador}]
+        Los \textbf{operadores} son \textit{funciones usadas para realizar operaciones entre variables y valores (o constantes)}.
+    \end{mydef}
+
+    \begin{exa}[\textbf{Operación Suma \lstinline|+|}]
+        El operador \lstinline|+| es usado para sumar dos números. En el ejemplo:
+        \begin{lstlisting}[caption={Suma de enteros.},label=DescriptiveLabel]
+int x = 100 + 50;
+        \end{lstlisting}
+        Lo que hacemos en el sentido técnico es, al objeto con valor 100 sumarle 50. El resultado es que el valor de la variable \lstinline|x| es 150.
+    \end{exa}
+
+    El operador \lstinline|+| también puede ser usado para sumar una variable y una constante, o una constante y una variable:
+
+    \begin{lstlisting}[caption={Sumas de variables y constantes.},label=DescriptiveLabel]
+int sum1 = 100 + 50;        // 150 (100 + 50)
+int sum2 = sum1 + 250;      // 400 (150 + 250)
+int sum3 = sum2 + sum2;     // 800 (400 + 400)
+    \end{lstlisting}
+
+    Java hace la división de operadores en las siguientes categorias:
+    \begin{itemize}
+        \item Operadores aritméticos.
+        \item Operadores de asignación.
+        \item Operaciones de comparación.
+        \item Operadores lógicos.
+        \item Operadores bit a bit.
+    \end{itemize}
+
+    \subsection{Operadores aritméticos}
+
+    Los operadores aritméticos son usados para efectuar operaciones matemáticas comúnes:
+
+    \begin{longtable}{c l p{0.4\textwidth} c}
+    \toprule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+    $+$ & Suma & Agrega dos valores & \texttt{x + y} \\
+    $-$ & Resta & Sustrae un valor de otro & \texttt{x - y} \\
+    $*$ & Multiplicación & Multiplica dos valores & \texttt{x * y} \\
+    $/$ & División & Divide un valor por otro & \texttt{x / y} \\
+    $\%$ & Módulo & Devuelve el residuo de una división & \texttt{x \% y} \\
+    $++$ & Incremento & Aumenta el valor de una variable en 1 & \texttt{++x} \\
+    $--$ & Decremento & Disminuye el valor de una variable en 1 & \texttt{--x} \\
+    \end{longtable}
+
+    \subsection{Operadores de asignación}
+
+    Los operadores de asignación son usados para asignar un valor a una variable. En el siguiente ejemplo se usa el operador asignación para asignar a la variable \lstinline|var| el valor de \lstinline|10|.
+    \begin{lstlisting}[caption={Operador asignación.},label=DescriptiveLabel]
+int x = 10;
+    \end{lstlisting}
+
+    La siguiente es una lista de todos los operadores de asignación:
+
+    \begin{longtable}{c l l}
+    \toprule
+    \textbf{Operador} & \textbf{Ejemplo} & \textbf{Equivalente a} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Operador} & \textbf{Ejemplo} & \textbf{Equivalente a} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+    $=$ & \texttt{x = 5} & \texttt{x = 5} \\
+    $+=$ & \texttt{x += 3} & \texttt{x = x + 3} \\
+    $-=$ & \texttt{x -= 3} & \texttt{x = x - 3} \\
+    $*=$ & \texttt{x *= 3} & \texttt{x = x * 3} \\
+    $/=$ & \texttt{x /= 3} & \texttt{x = x / 3} \\
+    $\%=$ & \texttt{x \% = 3} & \texttt{x = x \% 3} \\
+    $\&=$ & \texttt{x \&= 3} & \texttt{x = x \& 3} \\
+    $|=$ & \texttt{x |= 3} & \texttt{x = x | 3} \\
+    $\wedge=$ & \texttt{x \^= 3} & \texttt{x = x \^ 3} \\
+    $>>=$ & \texttt{x $>>$= 3} & \texttt{x = x $>>$ 3} \\
+    $<<=$ & \texttt{x $<<$= 3} & \texttt{x = x $<<$ 3} \\
+    \end{longtable}
+
+    \subsection{Operaciones de comparación}
+
+    Los operadores de comparación son usados para comparar los valores de dos variables o valores.
+    
+    Estos son extremadamente importantes en programación ya que nos ayudan a tomar desiciones. l valor de retorno de un operador de comparación en Java es \lstinline|true| o \lstinline|false|. Estos son conocidos como valores \lstinline|boolean|.
+
+    \begin{exa}[\textbf{Uso Operador Comparación}]
+        En este ejemplo usamos el operador de comparación \lstinline|>| para determinar si la variable \lstinline|x| es mayor a la variable \lstinline|y|.
+        \begin{lstlisting}[caption={Operador comparación.},label=DescriptiveLabel]
+int x = 5;
+int y = 3;
+System.out.println(x > y); // imprime true, pues 5 es mayor a 3
+        \end{lstlisting}
+    \end{exa}
+
+    Java posee los siguientes operadores de comparación:
+
+    \begin{longtable}{c l c}
+    \toprule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Ejemplo} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Ejemplo} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+    $==$ & Igual a & \lstinline|x == y| \\
+    $!=$ & No igual a & \lstinline|x != y| \\
+    $>$ & Mayor que & \lstinline|x > y| \\
+    $<$ & Menor que & \lstinline|x < y| \\
+    $>=$ & Mayor o igual que & \lstinline|x >= y| \\
+    $<=$ & Menor o igual que & \lstinline|x <= y| \\
+    \end{longtable}
+
+    \subsection{Operadores lógicos}
+
+    Los operadores lógicos se usan para determinar la lógica entre dos variables o valores.
+
+    \begin{longtable}{c l p{0.45\textwidth} c}
+    \toprule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+    $\&\&$ & AND lógico & Retorna \lstinline|true| si ambas expresiones son verdaderas & \lstinline|x < 5 && x < 10| \\
+    $||$ & OR lógico & Retorna \lstinline|true| si al menos una expresión es verdadera & \texttt{x < 5 || x < 4} \\
+    $!$ & NOT lógico & Invierte el resultado: retorna \lstinline|false| si es verdadero y viceversa & \lstinline|!(x < 5 && x < 10)| \\
+    \end{longtable}
+
+    Generalmente con los operadores lógicos en Java siempre son usados en combinaciones con operadores de comparación
+    \begin{lstlisting}[caption={Operadores lógicos y valores.},label=DescriptiveLabel]
+System.out.println((1 > 0) && (0 < 1));
+    \end{lstlisting}
+    Estos son usados regularmente \lstinline|if|, \lstinline|if else|, \lstinline|for| y \lstinline|while|. Más adelante veremos qué son éstos y para qué nos sirven.
+
+    \subsection{Operadores bit a bit}
+
+    La explicación de estos operadores se verá más adelante, pero de momento colocaremos una tabla donde vienen estos operadores:
+
+    \begin{longtable}{c l p{0.3\textwidth} c}
+    \toprule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Operador} & \textbf{Nombre} & \textbf{Descripción} & \textbf{Ejemplo} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+    $\&$ & AND bit a bit & Operación AND en cada bit: 1 solo si ambos bits son 1 & \texttt{5 \& 1} \\  % 0101 & 0001 = 0001 (1)
+    $|$ & OR bit a bit & Operación OR en cada bit: 1 si al menos un bit es 1 & \texttt{5 | 2} \\  % 0101 | 0010 = 0111 (7)
+    $\wedge$ & XOR bit a bit & Operación XOR: 1 solo si los bits son diferentes & \texttt{5 \textasciicircum 3} \\  % 0101 ^ 0011 = 0110 (6)
+    $\sim$ & Complemento a uno & Invierte todos los bits (unario) & \texttt{$\sim$5} \\  % ~0101 = 1010 (-6 en complemento a 2)
+    $<<$ & Desplazamiento izquierdo & Desplaza bits hacia izquierda, rellena con 0 & \lstinline|5 << 1| \\  % 0101 << 1 = 1010 (10)
+    $>>$ & Desplazamiento derecho con signo & Desplaza bits derecha, conserva signo (rellena con bit de signo) & \lstinline|-5 >> 1| \\  % 1111...1011 >> 1 = 1111...1101 (-3)
+    $\ggg$ & Desplazamiento derecho sin signo & Desplaza bits derecha, siempre rellena con 0 & \lstinline|-5 >>> 1| \\  % 1111...1011 >>> 1 = 0111...1101 (2147483645) \\
+    \end{longtable}
+
+
+    \newpage
+
+    \section*{Palabras Reservadas de Java}
+    \addcontentsline{toc}{section}{Palabras Reservadas de Java}
+
+    Las siguientes son las palabras reservadas que posee el lenguaje de programación Java:
+
+    \begin{longtable}{l p{0.75\textwidth}}
+    \toprule
+    \textbf{Palabra clave} & \textbf{Descripción} \\
+    \midrule
+    \endfirsthead
+
+    \midrule
+    \textbf{Palabra clave} & \textbf{Descripción} \\
+    \midrule
+    \endhead
+
+    \bottomrule
+    \endfoot
+
+    \lstinline|abstract| & Modificador de no acceso. Para clases y métodos: clase abstracta no puede crear objetos (se accede heredando). Método abstracto solo en clase abstracta, sin cuerpo (implementado en subclase) \\
+    \lstinline|assert| & Para depuración \\
+    \lstinline|boolean| & Tipo de dato que solo almacena true o false \\
+    \lstinline|break| & Sale de un bucle o bloque switch \\
+    \lstinline|byte| & Tipo de dato para números enteros (-128 a 127) \\
+    \lstinline|case| & Define bloque de código en switch \\
+    \lstinline|catch| & Captura excepciones de bloques try \\
+    \lstinline|char| & Tipo de dato para caracteres individuales \\
+    \lstinline|class| & Define una clase \\
+    \lstinline|continue| & Continúa a la siguiente iteración de un bucle \\
+    \lstinline|const| & Define constante. No usado (usar final) \\
+    \lstinline|default| & Bloque por defecto en switch \\
+    \lstinline|do| & Crea bucle do-while con while \\
+    \lstinline|double| & Tipo de dato para números fraccionarios (1.7e-308 a 1.7e+308) \\
+    \lstinline|else| & En condicionales \\
+    \lstinline|enum| & Declara tipo enumerado (inmutable) \\
+    \lstinline|exports| & Exporta paquete con módulo (Nuevo en Java 9) \\
+    \lstinline|extends| & Extiende clase (hereda de otra clase) \\
+    \lstinline|final| & Modificador de no acceso: clases, atributos y métodos inmutables (no heredables/no sobrescribibles) \\
+    \lstinline|finally| & Bloque que siempre se ejecuta (con excepciones) \\
+    \lstinline|float| & Tipo de dato para números fraccionarios (3.4e-038 a 3.4e+038) \\
+    \lstinline|for| & Crea bucle for \\
+    \lstinline|goto| & No usado, sin función \\
+    \lstinline|if| & Crea condicional \\
+    \lstinline|implements| & Implementa interfaz \\
+    \lstinline|import| & Importa paquete, clase o interfaz \\
+    \lstinline|instanceof| & Comprueba si objeto es instancia de clase/interfaz \\
+    \lstinline|int| & Tipo de dato para números enteros (-2147483648 a 2147483647) \\
+    \lstinline|interface| & Clase especial solo con métodos abstractos \\
+    \lstinline|long| & Tipo de dato para números enteros grandes (-9223372036854775808 a 9223372036854775808) \\
+    \lstinline|module| & Declara módulo (Nuevo en Java 9) \\
+    \lstinline|native| & Método no implementado en Java (otro lenguaje) \\
+    \lstinline|new| & Crea nuevos objetos \\
+    \lstinline|package| & Declara paquete \\
+    \lstinline|private| & Modificador de acceso: solo en clase declarada \\
+    \lstinline|protected| & Modificador de acceso: mismo paquete y subclases \\
+    \lstinline|public| & Modificador de acceso: accesible por cualquier clase \\
+    \lstinline|requires| & Especifica librerías requeridas en módulo (Nuevo en Java 9) \\
+    \lstinline|return| & Finaliza método, puede devolver valor \\
+    \lstinline|short| & Tipo de dato para números enteros (-32768 a 32767) \\
+    \lstinline|static| & Modificador de no acceso: métodos/atributos accesibles sin instanciar clase \\
+    \lstinline|strictfp| & Obsoleto. Precisión restringida en cálculos flotantes \\
+    \lstinline|super| & Referencia a superclase (padre) \\
+    \lstinline|switch| & Selecciona bloque de código a ejecutar \\
+    \lstinline|synchronized| & Modificador de no acceso: solo un hilo accede al método \\
+    \lstinline|this| & Referencia al objeto actual \\
+    \lstinline|throw| & Crea error personalizado \\
+    \lstinline|throws| & Indica excepciones que puede lanzar un método \\
+    \lstinline|transient| & Ignora atributo al serializar objeto \\
+    \lstinline|try| & Crea bloque try...catch \\
+    \lstinline|var| & Declara variable (Nuevo en Java 10) \\
+    \lstinline|void| & Especifica método sin valor de retorno \\
+    \lstinline|volatile| & Atributo no almacenado en caché local (siempre leído de memoria principal) \\
+    \lstinline|while| & Crea bucle while \\
+    \bottomrule
+    \end{longtable}
+
+\end{document}
