@@ -1,0 +1,84 @@
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=2cm}
+\usepackage{enumitem}
+\setlist{nosep}
+
+\title{Plan de Estudio: Álgebra Homológica Computacional}
+\author{Referencia Personal}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introducción}
+Este plan de estudio de 6--12 meses está diseñado para combinar teoría, práctica y software en el área de álgebra homológica computacional. Se divide en cuatro etapas, con el objetivo de adquirir una base teórica sólida y aplicarla en cálculos efectivos y experimentos computacionales.
+
+\section*{Etapa 1 (Meses 1--2): Bases en álgebra y topología}
+\textbf{Objetivo:} reforzar la teoría que sustenta los cálculos homológicos.
+\begin{itemize}
+    \item Repaso de álgebra abstracta: grupos abelianos, módulos, anillos conmutativos, resoluciones libres, exactitud, complejos de cadenas.
+    \item Repaso de topología algebraica básica: homología, cohomología, complejos simpliciales, cadenas y fronteras.
+\end{itemize}
+\textbf{Recursos:}
+\begin{itemize}
+    \item Hungerford, \textit{Algebra}.
+    \item Atiyah \& Macdonald, \textit{Introduction to Commutative Algebra}.
+    \item Hatcher, \textit{Algebraic Topology} (cap. 2).
+\end{itemize}
+\textbf{Práctica:} uso de \texttt{SageMath} para calcular homología de complejos pequeños, y paquetes como \texttt{GUDHI} o \texttt{Ripser}.
+
+\section*{Etapa 2 (Meses 3--4): Álgebra homológica clásica}
+\textbf{Objetivo:} entrar en la teoría de Ext, Tor y resoluciones.
+\begin{itemize}
+    \item Complejos de cadenas, homología de un complejo.
+    \item Resoluciones proyectivas e inyectivas.
+    \item Functores derivados: Tor y Ext.
+\end{itemize}
+\textbf{Recursos:}
+\begin{itemize}
+    \item Weibel, \textit{An Introduction to Homological Algebra}.
+\end{itemize}
+\textbf{Práctica:} ejercicios computacionales manuales y uso de \texttt{Macaulay2} (resoluciones libres), \texttt{HAP} en GAP (homología de grupos).
+
+\section*{Etapa 3 (Meses 5--7): Computación en homología}
+\textbf{Objetivo:} estudiar algoritmos y experimentar con software.
+\begin{itemize}
+    \item Cálculo de homología simplicial: matrices de frontera, reducción de Smith, homología persistente.
+    \item Álgebra conmutativa computacional: bases de Gröbner, resoluciones libres mínimas, invariantes homológicos de módulos.
+\end{itemize}
+\textbf{Recursos:}
+\begin{itemize}
+    \item Edelsbrunner \& Harer, \textit{Computational Topology}.
+    \item Miller \& Sturmfels, \textit{Combinatorial Commutative Algebra}.
+\end{itemize}
+\textbf{Práctica:} cálculos en \texttt{Macaulay2}, \texttt{Sage}, y experimentos con \texttt{GUDHI}/\texttt{Ripser}.
+
+\section*{Etapa 4 (Meses 8--12): Especialización y proyectos}
+\textbf{Objetivo:} integrar teoría y aplicaciones.
+\begin{itemize}
+    \item Opción teórica: profundizar en homotopía computacional (\texttt{Kenzo}), problemas de homología en espacios no triviales.
+    \item Opción aplicada: homología multiparamétrica, proyectos con datasets reales (biología, redes sociales, imágenes).
+    \item Opción puente: categorical homological algebra, aplicaciones en teoría de códigos o criptografía.
+\end{itemize}
+\textbf{Proyecto final sugerido:}
+\begin{enumerate}
+    \item Tomar un dataset real (imágenes o redes).
+    \item Construir un complejo simplicial.
+    \item Calcular homología persistente y diagramas de persistencia.
+    \item Conectar resultados con invariantes algebraicos.
+\end{enumerate}
+
+\section*{Resultados esperados}
+\begin{itemize}
+    \item Base teórica sólida en álgebra homológica.
+    \item Experiencia práctica con \texttt{Macaulay2}, \texttt{Sage}, \texttt{GAP/HAP}, \texttt{GUDHI}, \texttt{Ripser}.
+    \item Comprensión de aplicaciones puras y aplicadas de homología computacional.
+    \item Posibilidad de iniciar investigación en álgebra conmutativa computacional, topología algebraica computacional o TDA.
+\end{itemize}
+
+\end{document}
