@@ -1,7 +1,7 @@
 \documentclass[12pt]{report}
 
 % --- Idioma y codificación ---
-\usepackage[spanish]{babel}
+\usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 
 % --- Matemáticas ---
@@ -31,6 +31,7 @@
 % --- Hipervínculos ---
 \usepackage{hyperref}
 \usepackage{multirow}
+\usepackage{bbm}
 
 \hypersetup{
     colorlinks=true,
@@ -55,8 +56,8 @@
 \definecolor{listing-comment}{HTML}{8E8E8E}
 
 \lstdefinestyle{myStyle}{
-    language=C++,
-    alsolanguage=scala,
+    language=Python,
+    alsolanguage=C++,
     numbers=left,
     xleftmargin=2.7em,
     framexleftmargin=2.5em,
@@ -164,21 +165,21 @@
 \newtheoremstyle{largebreak}{}{ }{\normalfont}{}{\bfseries}{}{\newline}{}
 \theoremstyle{largebreak}
 
-\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=gray!60!red!30]{exa}{Ejemplo}[section]
-\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=gray!50!blue!30]{obs}{Observaci\'on}[section]
-\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=green!50!blue!30]{preg}{Pregunta}[section]
+\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=gray!60!red!30]{exa}{Example}[section]
+\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=gray!50!blue!30]{obs}{Observation}[section]
+\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=green!50!blue!30]{preg}{Question}[section]
 \newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=yellow!40]{idea}{Idea}[section]
-\newmdtheoremenv[rightline=false,leftline=false]{theor}{Teorema}[section]
-\newmdtheoremenv[rightline=false,leftline=false]{propo}{Proposici\'on}[section]
-\newmdtheoremenv[rightline=false,leftline=false]{cor}{Corolario}[section]
-\newmdtheoremenv[rightline=false,leftline=false]{lema}{Lema}[section]
-\newmdtheoremenv[roundcorner=5pt,backgroundcolor=gray!30,hidealllines=true]{mydef}{Definici\'on}[section]
-\newmdtheoremenv[roundcorner=5pt]{excer}{Ejercicio}[section]
+\newmdtheoremenv[rightline=false,leftline=false]{theor}{Theorm}[section]
+\newmdtheoremenv[rightline=false,leftline=false]{propo}{Proposition}[section]
+\newmdtheoremenv[rightline=false,leftline=false]{cor}{Corollary}[section]
+\newmdtheoremenv[rightline=false,leftline=false]{lema}{Lemma}[section]
+\newmdtheoremenv[roundcorner=5pt,backgroundcolor=gray!30,hidealllines=true]{mydef}{Definition}[section]
+\newmdtheoremenv[roundcorner=5pt]{excer}{Excercise}[section]
 
 % --- Comandos auxiliares ---
-\def\proof{\paragraph{Demostraci\'on:\\}}
+\def\proof{\paragraph{Proof:\\}}
 \def\endproof{\hfill$\blacksquare$}
-\def\sol{\paragraph{Soluci\'on:\\}}
+\def\sol{\paragraph{Solution:\\}}
 \def\endsol{\hfill$\square$}
 
 \newcommand\abs[1]{\ensuremath{\left|#1\right|}}
@@ -186,12 +187,13 @@
 \newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
 \newcommand\contradiction{\ensuremath{\#_c}}
 \newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand\bbm[1]{\ensuremath{\mathbbm{#1}}}
 
 \newcounter{figcount}
 \setcounter{figcount}{1}
 
-\renewcommand{\lstlistingname}{Código}
-\renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}
+\renewcommand{\lstlistingname}{Code}
+\renewcommand{\lstlistlistingname}{{\lstlistingname} List}
 
 % --- Comienzo del documento ---
 \begin{document}
@@ -209,181 +211,99 @@
 
     \newpage
 
-    \chapter{Module 1}
+    \subfile{Module 1/module1.tex}
 
-    The goal of this chapter is to explore the foundational concepts of machine learning, focusing on how algorithms can transform data into knowledge. We delve into the practical applications of supervised and unsupervised learning, equipping you with the skills to implement these techniques using Python tools for effective data analysis and prediction.
+    \subfile{Module 2/module2.tex}
+
+    \appendix
     
-    \begin{obs}[\textbf{Learning Objectives}]
-        \textbf{Learning Objectives}:
-        \begin{itemize}
-            \item Analyze data patterns to make future predictions.
-            \item Design systems for supervised and unsupervised learning.
-            \item Implement machine learning algorithms using Python tools.
-        \end{itemize}
+    \chapter{Using Python for Machine Learning}
+
+    \section{Basic Configuration}
+
+    For machine learning tasks, we will mostly refer to the \textit{Scikit-Learn} library, which is one of the most popular and accessible open-source machine learning libraries for python.
+
+    When we focus on a subfield of machine learning called: \textbf{deep learning}, we wiell use the latest version of the \textit{PyTorch library}, which specializes in the training of the so called deep \textbf{netural network models}.
+
+    \begin{mydef}[\textbf{Scikit-learn}]
+        \textbf{Scikit-learn} is a \textit{classical machine learning library for Python. It is built on top of NumPy and SciPy and provides a clean, uniform, and simple API for a wide variety of traditional ML algorithms}.
+
+        \textbf{PyTorch} is an \textit{open-source deep learning framework developed primarily by Facebook's AI Research lab (FAIR). It provides the foundational building blocks for building and training neural networks, with a strong focus on flexibility and speed}.
+    \end{mydef}
+
+    We'll use version 3.9 of Python. To check the version of python we use the following code:
+    
+    \begin{lstlisting}[caption={Check Python Version},label=code:chec_python_version, language = python]
+python --version
+    \end{lstlisting}
+
+    \begin{obs}[\textbf{Use of pip}]
+        To install aditional packages used thorught the course, we can install them via the \lstinline|pip| program.
     \end{obs}
-        
-    \section{Overview}
 
-    The goal basically is to learn machine learning using Python libraries such as Scikit-Learn and PyTorch.
+    \begin{mydef}[\textbf{Pip}]
+        \lstinline|pip| is the \textit{standard package installer for Python}. It is a \textit{command-line utility that allows users to install, manage, and uninstall Python packages and libraries that are not part of the Python standard library}.
+    \end{mydef}
 
-    \section{Giving computers the ability to learn from data}
+    After installing python, it's possible to execute the following comand in order to install some package:
 
-    So, basically in this scenario we will do the following:
+    \begin{lstlisting}[caption={\lstinline|pip| Package Installation.},label=code:python_package_installation]
+        pip install SomePackage
+    \end{lstlisting}
+
+    \section{Anaconda Python Distribution and Package Manager}
+
+    \begin{idea}
+        A recommended open-source package management system for installing python for scientific computing contexts is conda by Continuum Analytics.
+    \end{idea}
+
+    \begin{mydef}[\textbf{Conda}]
+        \textbf{Conda} is a \textit{free and licensed under a permissive open-source licence}. Its goal is to help with the \textit{installation and version management of Python packages for data science, math and engineering across different operating systems}.
+    \end{mydef}
+
+    Conda comes in different flavours, like a Linux installation. Some of them are \textbf{Anaconda}, \textbf{Miniconda} and \textbf{Minforge}.
+
     \begin{itemize}
-        \item Implement machine learning algorithms using Python tools.
-        \item Desing systems for supervised and unsupervised learning.
-        \item Analyze data patterns to make future predictions.
+        \item \textbf{Anaconda} comes with many scientific computing packages pre-installed. The Anaconda installer can be downloaded \href{https://docs.anaconda.com/anaconda/install/,}{here} and an Anaconda quick start guide is available \href{https://docs.anaconda.com/anaconda/user-guide/getting-started/}{here}.
+
+        \item \textbf{Miniconda} is a leaner alternative to Anaconda (\href{https://docs.conda.io/en/latest/miniconda.html}{here}). Essentially, it is similar to Anaconda but without any packages pre-installed, which many people (including the authors) prefer.
+
+        \item \textbf{Miniforge} is similar to Miniconda but community-maintained and uses a different package repository (conda-forge) from Miniconda and Anaconda. We found that Miniforge is a great alternative to Miniconda. Download and installation instructions can be found in the GitHub repository \href{https://github.com/conda-forge/miniforge}{here}.
     \end{itemize}
 
-    \section{Introduction}
+    After successfully installing conda through either Anaconda, Miniconda, or Miniforge, we can install and update, respectively, new Python packages using the following command:
 
-    \begin{mydef}[\textbf{Machine Learning}]
-        \textbf{Machine learning} is the\textit{ application and science of algorithms that make sense of data}.
-    \end{mydef}
+    \begin{lstlisting}[caption={Conda Package Installation.},label=code:conda_package_installation]
+conda install SomePackage
+conda update SomePackage
+    \end{lstlisting}
 
-    The goal of this section is to introduce some of the main concepts and different types of machine learning, together with a basic introduction to the relevant terminology. The goal is to stablish the groundwork for successfully using machine learning techniques for practical prolem solving.
+    Packages that are not available through the official conda channel might be available via the community-supported conda-forge project (\href{https://conda-forge.org}{conda-forge}), which can be specified via the --channel conda-forge flag. For example:
 
-    \subsection{The Three Different Types of Machine Learning}
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+conda install SomePackage --channel conda-forge
+    \end{lstlisting}
 
-    In this age, we have a large amount of structured and non-structured data.
+    Packages not available throught the default conda channel or conda-forge can be installed via pip as explainded earlier in Code \ref{code:python_package_installation}.
 
-    \begin{mydef}[\textbf{Structured and Non-structured Data}]
-        \textbf{Structured data} refers \textit{to information that is organized in a predefined format}, typically within a fixed schema, such as rows and columns in a database or spreadsheet
+    \section{Packages for Scientific Computing, Data Science, and Machine Learning}
 
-        In contrast, \textbf{non-structured data} \textit{lacks a predefined format or structure and exists in its native, raw state}. It is typically qualitative and encompasses a wide variety of formats such as text documents, emails, social media posts, images, videos, and audio files.
-    \end{mydef}
+    We will use mainly NumPy's arrays and sometimes Pandas (highler level data manipulation tools). Also the Matplotlib library will be useful to visualize quantitative data. The version of the packages to install are the following:
+    \begin{itemize}
+        \item NumPy 1.21.2
+        \item SciPy 1.7.0
+        \item Scikit-learn 1.0
+        \item Matplotlib 3.4.3
+        \item Pandas 1.3.2
+    \end{itemize}
+    After installing these packages, you can double-check the installed version by importing the package in Python and accessing its \lstinline|__version__| attribute:
+    \begin{lstlisting}[caption={Check Version of Packages},label=code:version_package_verification]
+> Use `numpy.__version__` to check the installed version.
+'1.21.2'
+    \end{lstlisting}
 
-    One of the main goals of machine learning is to extract knowledge from data in order to make predictions.
 
-    \begin{obs}[\textbf{Use of Machine Learning}]
-        \textbf{Machine Learning} \textit{offers a more efficient alternative for capturing the knowledge in data to improve the performance of predictive models and make data-driven decisions}.
-    \end{obs}
-    
-    \begin{idea}[\textbf{Note on the use of Machine Learning and some of its Applications}]
-        Also, notable progress has been made in medical applications; for example, researchers demonstrated that deep learning models can detect skin cancer with near-human accuracy \href{https://www.nature.com/articles/nature21056}{link to article}.
-        
-        Another milestone was recently achieved by researchers at DeepMind, who used deep learning to predict 3D protein structures, outperforming physics-based approaches by a substantial margin \href{https://deepmind.com/blog/article/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology}{link to article}.  
-    \end{idea}
-    
-    There are three types of machine learning: \textbf{supervised learning}, \textbf{unsupervised learning}, and \textbf{reinforcement learning}. There are fundamental differences between these three types of machine learning and we will look at each of them in detail with some notes on its possible applications.
- 
-    \begin{longtable}{l p{7cm}}
-        \toprule
-        \multicolumn{2}{c}{\textbf{Three Types of Machine Learning}} \\
-        \midrule
-        \endfirsthead
-        
-        \toprule
-        \multicolumn{2}{c}{\textbf{Three Types of Machine Learning}} \\
-        \midrule
-        \endhead
-        
-        \bottomrule
-        \caption{Three Types of Machine Learning.}
-        \label{table:types_machine_learning}
-        \endlastfoot
-        
-        \multirow{3}{*}{Supervised learning} 
-        & • Labeled data \\
-        & • Direct feedback \\
-        & • Predict outcome/future \\
-        \hline
-        \multirow{3}{*}{Unsupervised learning}
-        & • No labels/targets \\
-        & • No feedback \\
-        & • Find hidden structure in data \\
-        \hline
-        \multirow{3}{*}{Reinforcement learning}
-        & • Decision process \\
-        & • Reward system \\
-        & • Learn series of actions \\
-    \end{longtable}
 
-    \subsection{Supervised Learning}
 
-    The main goal of \textbf{supervised learning} is to \textit{learn a model from labeled training data that allows us to make predicitons about unseen or future data}.
 
-    The term \textit{supervised} refers to a set of training examples (data inputs), where the desired output signals (labels) are already known.
-
-    \begin{mydef}[\textbf{Supervised Learning}]
-        \textbf{Supervised learning} is the \textit{process of modeling the relationship between data inputs and the labels}.
-    \end{mydef}
-
-    We can think of supervised learning as \textit{label learning}.
-
-    \begin{figure}[h]
-        \begin{minipage}{\textwidth}
-            \centering
-            \includegraphics[scale=1]{images/supervised_learning_process.png} \\
-            \caption{General Process of Supervised Learning}
-            \label{figure:general_process_supervised_learning}
-        \end{minipage}
-    \end{figure}
-
-    \begin{exa}[\textbf{Example of Supervised Learning}]
-        Lets consider the example of email spam filtering. We can train a model using a supervised machine learning algorithm on a corpus of labeled emails, which are correctly marked as spam or non-spam.
-
-        To predict whether a new email belongs to either of the two categories, a supervised learning task with discrete class labels, such as in the previous email spam filtering example.
-        
-        This is called a \textbf{classification task}. Another subcategory of supervised learning is \textbf{regression}, where the outcome signal is a continous value.
-    \end{exa}
-
-    \subsection{Classification for Predicting Class Labels}
-
-    \begin{mydef}[\textbf{Classification}]
-        \textbf{Classification} is \textit{a subcategory of supervised learning, where the goal is to predict the categorical class labels of new instances or data points based on past observations}.
-    \end{mydef}
-
-    Thos class labels are discrete, unordered values that can be understood as the group memberships of the data points. The previously mentioned example of email spam detection represents a typical example of a binary classification task, where the machine learning algorithm learns a set of rules to distinguish between two possible classes: spam and no-spam emails.
-
-    \begin{figure}[h]
-        \begin{minipage}{\textwidth}
-            \centering
-            \includegraphics[scale=1]{images/classification_ml} \\
-            \caption{Classification in Machine Learning}
-            \label{figure:classification_ml}
-        \end{minipage}
-    \end{figure}
-
-    The next ilustration shows the concept of binary classification task given 30 training examples; 15 training are labeled as \textbf{class A} and the other 15 labeled as \textbf{class B}.
-
-    Our dataset is two-dimensional, meaning that each example has two values associated with it: $x_1$ and $x_2$. We can use a supervised machine learning algorithm to to learn a rule (decision boundary represented as the dashed line) that can separate two classes and classify new data into each of those two categories given its $x_1$ and $x_2$ values.
-
-    \begin{obs}[\textbf{Nature of classification of class labels}]
-        When a set of class labels does not have to be of a binar ynature. The predictive model learned by a supervised learning algorithm can assign any class label that was presented in the training dataset to a new, unlabeled data point or instance.
-    \end{obs}
-
-    \begin{exa}
-        An example of a multiclass classification task is handwritten character recognition.
-    \end{exa}
-
-    \subsection{Regression for Predicting Continous Outcomes}
-
-    \begin{mydef}[\textbf{Regression Analysis}]
-        In a \textbf{regression analysis}, \textit{we are given a number of predictor (\textbf{explanatory}) variables and a continus response variable (\textbf{outcome}) and we try to finde a relationship between those variables that allows us to predict an outcome}.
-    \end{mydef}
-
-    \begin{obs}[\textbf{Feature and Target Variables}]
-        In the field of machine learning, the predictor variables are commonly called \textit{features}, and the response variables are referred to as \textit{target variables}.
-    \end{obs}
-
-    \begin{exa}
-        Let's asume we want to predict the mat SAT scores of students. If there is a relationship between time spent studying for the test and the final scores, we could use it as training data to learn a model that uses the study time to predict the test scores of future students.
-    \end{exa}
-
-    Given a feature variable $x$ and a target variable $y$, we fit a straight line to the data points that minimizes the error in predicting $y$ from $x$.
-
-    We can now use the intercept and slope learned from this data to predict the target variable of new data.
-
-    \begin{figure}[h]
-        \begin{minipage}{\textwidth}
-            \centering
-            \includegraphics[scale=1]{images/linear_aproximation.png} \\
-            \caption{Linear Aproximation}
-            \label{figure:linear_aproximation}
-        \end{minipage}
-    \end{figure}
-
-    
-    
 \end{document}
