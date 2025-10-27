@@ -228,4 +228,325 @@
 
     \section{Implementing a Perceptron Learning Algorithm in Python}
 
+    Now, we will do an implementation of the Perceptron Rule in Python.
+
+    \section{And Object-Oriented Perceptron API}
+
+    We will take an object-oriented approach to defining the perceptron interface a a Python class, wich will allow us to initialize new Perceptron objects that can learn from data via a \lstinline|fit| method and make predictions via a separate \lstinline|predict| method.
+
+    \begin{obs}
+        We append an underscore \lstinline|_| to attributes that are not created upon the inicialization of the object, but we do this by calling the object's other methods, for example, \lstinline|self._w_|.
+    \end{obs}
+
+    The code is the following:
+
+    \begin{lstlisting}[caption={Python Perceptron Rule Implementation.},label={code:perceptron_class_implementation}]
+import numpy as np
+
+class Perceptron:
+    """Perceptron classifier.
+
+    Parameters
+    ------------
+    eta : float
+      Learning rate (between 0.0 and 1.0)
+    n_iter : int
+      Passes over the training dataset.
+    random_state : int
+      Random number generator seed for random weight
+      initialization.
+
+    Attributes
+    -----------
+    w_ : 1d-array
+      Weights after fitting.
+    b_ : Scalar
+      Bias unit after fitting.
+    errors_ : list
+      Number of misclassifications (updates) in each epoch.
+
+    """
+    def __init__(self, eta=0.01, n_iter=50, random_state=1):
+        self.eta = eta
+        self.n_iter = n_iter
+        self.random_state = random_state
+
+    def fit(self, X, y):
+        """Fit training data.
+
+        Parameters
+        ----------
+        X : {array-like}, shape = [n_examples, n_features]
+          Training vectors, where n_examples is the number of
+          examples and n_features is the number of features.
+        y : array-like, shape = [n_examples]
+          Target values.
+
+        Returns
+        -------
+        self : object
+
+        """
+        rgen = np.random.RandomState(self.random_state)
+        self.w_ = rgen.normal(loc=0.0, scale=0.01, size=X.shape[1])
+        self.b_ = np.float_(0.)
+        self.errors_ = []
+
+        for _ in range(self.n_iter):
+            errors = 0
+            for xi, target in zip(X, y):
+                update = self.eta * (target - self.predict(xi))
+                self.w_ += update * xi
+                self.b_ += update
+                errors += int(update != 0.0)
+            self.errors_.append(errors)
+        return self
+
+    def net_input(self, X):
+        """Calculate net input"""
+        return np.dot(X, self.w_) + self.b_
+
+    def predict(self, X):
+        """Return class label after unit step"""
+        return np.where(self.net_input(X) >= 0.0, 1, 0)
+    \end{lstlisting}
+
+    First, we will list the parameters and attributes of the code, in order to understand it better:
+    \begin{itemize}
+        \item \lstinline|eta|: Is a float, which represents the learning rate (a number between \lstinline|0.0| and \lstinline|1.0|).
+        \item \lstinline|n_iter|: Is an integer, which is the number of passes over the training dataset.
+        \item \lstinline|random_state|: It is an integer, which is a \textbf{random number generator seed} for random weight initialization.
+    \end{itemize}
+
+    \begin{mydef}[\textbf{Random Number Generator (RNG)}]
+        A \textbf{random number generator (RNG) seed} is \textit{an initial value used by a computer algorithm to generate a sequence of pseudo-random numbers}. For random weight \textit{initialization in a neural network, this seed sets the starting point for the sequence of numbers used to initialize the model's weights and biases}.
+    \end{mydef}
+
+    The attributes are the following:
+    \begin{itemize}
+        \item \lstinline|w_|: It is a 1-dimensional array, which represents the weights after fitting.
+        \item \lstinline|b_|: It is a float, which represents the bias unit after fitting.
+        \item \lstinline|errors_|: It is a list, which is the number of misclassifications (or updates) in each \textbf{epoch}.
+    \end{itemize}
+
+    \begin{mydef}[\textbf{Epoch}]
+        In machine learning, an \textbf{epoch} \textit{is one complete pass through the entire training dataset}. During a single epoch, \textit{the learning algorithm processes every training example once to update the model's internal parameters}. Training a model over multiple epochs \textit{allows it to progressively learn and refine its understanding of the data, with a well-tuned number of epochs balancing performance between underfitting and overfitting}.
+    \end{mydef}
+
+    In this code, we have three methods in the class Perceptron:
+    \begin{itemize}
+        \item \lstinline|__init__|: It initializes the parameters of the class, in this case, the \lstinline|eta| is setted to \lstinline|0.01|, \lstinline|n_iter=50| and \lstinline|random_state=1|.
+        \item \lstinline|fit|: It is the code that fits the data in a dataset, given an array \lstinline|X| and another array \lstinline|y| of target values.
+        \item \lstinline|net_input|: It calculates the net input of a dataset \lstinline|X|.
+        \item \lstinline|predict|: It calculates the class label after a unit step of a dataset \lstinline|X|.
+    \end{itemize}
+
+    \begin{obs}[\textbf{Use of the Perceptron Implementation}]
+        Using this perceptron implementation, we can initialize new Perceptron objects with a given learning rate, \lstinline|eta|, and the number of epochs, \lstinline|n_iter| (or iterations over the training dataset).
+    \end{obs}
+
+    Via the \lstinline|fit| method, we initialize the bias \lstinline|self.b_| to an initial value \lstinline|0| and the weights in \lstinline|self.w_| to a vector in $\bbm{R^m}$. Here, $m$ stands for the number of dimensions (features) in the dataset.
+
+    \begin{obs}[\textbf{Decision of Initialization of Weight Vectors}]
+        The \textbf{initial weight} vector contains small random numbers drawn from a normal distribution with a standard deviation of \lstinline|0.01| via \lstinline|rgen.normal(loc=0.0, scale=0.01, size=1 + X.shape[1])|, where \lstinline|rgen| is a NumPy random number generator seeded with a user-specified random seed so that results can be reproduced when desired.
+    \end{obs}
+
+    Technically, \textit{we could initialize the weights to zero (this is done in the original perceptron algorithm)}. However, if we did that, the \textbf{learning rate} $\eta$ (\lstinline|eta|) \textit{would have no effect on the decision boundary}. \textit{If all the weights are initialized to zero, the learning rate parameter affects only the scale of the weight vector, not the direction}. 
+
+    \begin{obs}[\textbf{Use of Normal Distribution}]
+        Our decision to draw the random numbers from a normal distribution—for example, instead of from a uniform distribution—and to use a standard deviation of \lstinline|0.01| was arbitrary; remember, we are just interested in small random values to avoid the properties of all-zero vectors, as discussed earlier.
+    \end{obs}
+
+    \begin{excer}
+        As an optional exercise, you can change \lstinline|self.w_ = rgen.normal(loc=0.0, scale=0.01, size=X.shape[1])| to \lstinline|self.w_ = np.zeros(X.shape[1])| and \textit{run the perceptron training code presented in the next section with different values for \lstinline|eta|. You will observe that the decision boundary does not change}.
+    \end{excer}
+
+    After the weights have been initialized, the fit method loops over all individual examples in the training dataset and updates the weights according to the perceptron learning rule discussed in the previous section.
+
+    \begin{obs}[\textbf{Prediction}]
+        The \textbf{class labels are predicted by the predict method}, which is \textit{called in the fit method during training to get the class label for the weight update}; but \textit{predict can also be used to predict the class labels of new data after the model has been fitted}. Furthermore, we collect the number of misclassifications during each epoch in the \lstinline|self.errors_| list so that \textit{we can later analyze how well the perceptron performed during training}. The \lstinline|np.dot| function used in the \lstinline|net_input| method calculates the vector dot product, $wTx+bwTx+b$.
+    \end{obs}
+
+    \begin{idea}
+        Instead of using \lstinline|NumPy| to calculate the vector dot product between two arrays, \lstinline|a| and \lstinline|b|, via \lstinline|a.dot(b)| or \lstinline|np.dot(a, b)|, we could also \textit{perform the calculation in pure Python} via \lstinline|sum([i * j for i, j in zip(a, b)])|. However, the advantage of using \lstinline|NumPy| over classic Python for loop structures is that \textbf{its arithmetic operations are vectorized}. \textit{Vectorization means that an elemental arithmetic operation is automatically applied to all elements in an array}. By formulating our arithmetic operations as a \textit{sequence of instructions on an array, rather than performing a set of operations for each element at a time, we can make better use of our modern central processing unit} (\textbf{CPU}) architectures with single instruction, multiple data (\textbf{SIMD}) support. Furthermore, \lstinline|NumPy| \textit{uses highly optimized linear algebra libraries, such as} \textbf{Basic Linear Algebra Subprograms} (\textbf{BLAS}) and \textbf{Linear Algebra Package} (\textbf{LAPACK}), that have been written in \lstinline|C| or \lstinline|Fortran|. Lastly, \lstinline|NumPy| also \textit{allows us to write our code in a more compact and intuitive way using the basics of linear algebra, such as vector and matrix dot products}.
+    \end{idea}
+
+    \section{Training of the Perceptron Algotithm on the Iris Dataset}
+
+    \begin{obs}[\textbf{Restriction of Dimensions}]
+        To \textit{test our perceptron implementation, we will restrict the following analyses and examples in the remainder of this section to two feature variables} (dimensions). Although the perceptron rule is not restricted to two dimensions, \textit{considering only two features—sepal length and petal length—allows us to visualize the decision regions of the trained model in a scatterplot}.
+    \end{obs}
+
+    \begin{idea}[\textbf{Restriction to Only Two Classes}]
+        \textit{We will also only consider two flower classes, setosa and versicolor, from the Iris dataset for practical reasons} (remember, the \textbf{perceptron is a binary classifier}). However, the \textit{perceptron algorithm can be extended to multi-class classification using the one-versus-all (OvA) technique}.
+    \end{idea}
+
+    \subsection{OvA method for multi-class classification}
+
+    We can extend any binary classifier to a multi-class problems using the method called \textbf{OvA} or \textbf{one-versus-rest} (\textbf{OvR}).
+
+    \begin{mydef}[\textbf{One-versus-rest (OvR)}]
+        The method \textbf{OvR} allows to extend any binary classifier to a multple classifier. To classify a new, unlabeled instance, we use our $n$ classifiers (where $n$ is the number of class labels) and \textit{assign the class label with the highest confidence to the instance}. For the perceptron, \textbf{we choose the class label associated with the largest absolute net input value}.
+    \end{mydef}
+
+    First, we use the \lstinline|pandas| library to load the Iris dataset directly from the \textbf{UCI Machine Learning Repository} into a \textbf{\lstinline|DataFrame| object} and \textit{print the last five lines via the tail method to confirm that the data loaded correctly}:
+
+    \begin{lstlisting}[caption={Read Dataset from UCI.},label={code:reading_dataset}]
+import os
+import pandas as pd
+s = 'https://archive.ics.uci.edu/ml/'\
+    'machine-learning-databases/iris/iris.data'
+print('From URL:', s)
+#From URL: https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data
+df = pd.read_csv(s,
+                 header=None,
+                 encoding='utf-8')
+print(df.tail())
+    \end{lstlisting}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/tail_print_iris_dataset.png} \\
+            \caption{Tail of the Iris Dataset.}
+            \label{figure:tail_iris_dataset}
+        \end{minipage}
+    \end{figure}
+
+    Next, \textit{we extract the first} \lstinline|100| \textit{class labels that correspond to the} \lstinline|50 Iris-setosa| and \lstinline|50 Iris-versicolor| \textit{flowers and convert the class labels into the two integer class labels} \lstinline|1| (\lstinline|versicolor|) and \lstinline|0| (\lstinline|setosa|), \textit{assigning them to a vector} \lstinline|y|. Similarly, \textit{we extract the first feature column} (\lstinline|sepal length|) \textit{and the third feature column} (\lstinline|petal length|) of those \lstinline|100| \textit{training examples and assign them to a feature matrix} \lstinline|X|, which we then \textit{visualize via a two-dimensional scatterplot}:
+
+    \begin{lstlisting}[caption={Extraction and Visualization of Iris Dataset.},label=code:{extraction_and_visualization_iris_dataset}]
+import matplotlib.pyplot as plt
+import numpy as np
+# select setosa and versicolor
+y = df.iloc[0:100, 4].values
+y = np.where(y == 'Iris-setosa', 0, 1)
+# extract sepal length and petal length
+X = df.iloc[0:100, [0, 2]].values
+# plot data
+plt.scatter(X[:50, 0], X[:50, 1],
+            color='red', marker='o', label='Setosa')
+plt.scatter(X[50:100, 0], X[50:100, 1],
+            color='blue', marker='s', label='Versicolor')
+plt.xlabel('Sepal length [cm]')
+plt.ylabel('Petal length [cm]')
+plt.legend(loc='upper left')
+plt.show()
+    \end{lstlisting}
+
+    \begin{obs}[\textbf{Use of the Code}]
+        Add this code to the remaining code.
+    \end{obs}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/iris_plot_seritosa_virginica.png} \\
+            \caption{Plot of the Seritosa and Versicolor on the Iris Dataset.}
+            \label{figure:iris_seritosa_versicolor_plot}
+        \end{minipage}
+    \end{figure}
+
+    This plot shows the distribution of flower examples in the Iris dataset, along with the two feature axes: petal and sepal length.
+
+    \begin{obs}
+        In this subspace, a linear decision boundary should be sufficient to separate setosa from versicolor flowers.
+    \end{obs}
+
+    Thus, a linear classifier such as the perceptron should be able to classify the flowers in the Iris dataset perfectly.
+
+    \subsection{Training the Algorithm}
+
+    We will also plot the misclassification error for each epoch to check whether the algorithm converged and found a decision boundary that separates the two Iris flower classes:
+
+    \begin{lstlisting}[caption={Training the Perceptron Algorithm with the Iris Dataset},label=code:training_perceptron]
+import Perceptron
+ppn = Perceptron(eta=0.1, n_iter=10)
+ppn.fit(X, y)
+plt.plot(range(1, len(ppn.errors_) + 1),
+         ppn.errors_, marker='o')
+plt.xlabel('Epochs')
+plt.ylabel('Number of updates')
+plt.show()
+    \end{lstlisting}
+
+    \begin{obs}
+        In this scenario, since I put Perceptron in a different Python file, I have to import it in order to be able to use it.
+    \end{obs}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/epoch_plot_iris_dataset.png} \\
+            \caption{Epoch Plot and Number of Updates on the Iris Dataset.}
+            \label{figure:epoch_plot_iris_dataset}
+        \end{minipage}
+    \end{figure}
+
+    \begin{obs}[\textbf{Convergence of the Perceptron}]
+        As we can see, our \textbf{perceptron converged after the sixth epoch and should now be able to classify the training examples perfectly}.  
+    \end{obs}
+
+    Let's \textit{implement a small convenience function to visualize the decision boundaries for two-dimensional datasets}:
+
+    \begin{lstlisting}[caption={Plotting Regions on the Iris Dataset},label=figure_plotting_regions]
+from matplotlib.colors import ListedColormap
+
+def plot_decision_regions(X, y, classifier, resolution=0.02):
+    # setup marker generator and color map
+    markers = ('o', 's', '^', 'v', '<')
+    colors = ('red', 'blue', 'lightgreen', 'gray', 'cyan')
+    cmap = ListedColormap(colors[:len(np.unique(y))])
+
+    # plot the decision surface
+    x1_min, x1_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    x2_min, x2_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    xx1, xx2 = np.meshgrid(np.arange(x1_min, x1_max, resolution),
+                           np.arange(x2_min, x2_max, resolution))
+    lab = classifier.predict(np.array([xx1.ravel(), xx2.ravel()]).T)
+    lab = lab.reshape(xx1.shape)
+    plt.contourf(xx1, xx2, lab, alpha=0.3, cmap=cmap)
+    plt.xlim(xx1.min(), xx1.max())
+    plt.ylim(xx2.min(), xx2.max())
+
+    # plot class examples
+    for idx, cl in enumerate(np.unique(y)):
+        plt.scatter(x=X[y == cl, 0],
+                    y=X[y == cl, 1],
+                    alpha=0.8,
+                    c=colors[idx],
+                    marker=markers[idx],
+                    label=f'Class {cl}',
+                    edgecolor='black')
+    \end{lstlisting}
+
+    First, we \textit{define a number of \lstinline|colors| and \lstinline|markers| and create a colormap from the list of colors} via \lstinline|ListedColormap|. Then, we \textit{determine the minimum and maximum values for the two features and use those feature vectors to create a pair of grid arrays}, \lstinline|xx1| and \lstinline|xx2|, via \textit{NumPy's meshgrid function}. Since we trained our perceptron classifier on two feature dimensions, \textit{we flatten the grid arrays and create a matrix with the same number of columns as the Iris training subset so that we can use the predict method to predict the class labels lab of the corresponding grid points}.
+
+    After \textit{reshaping the predicted class labels into a grid with the same dimensions as} \lstinline|xx1| and \lstinline|xx2|, we \textit{draw a contour plot via Matplotlib's contourf function, which maps the different decision regions to different colors for each predicted class in the grid array}:
+
+    \begin{lstlisting}[caption={Plotting the Perceptron Info on the Iris Dataset},label=figure:plotting_perceptron_iris_dataset]
+plot_decision_regions(X, y, classifier=ppn)
+plt.xlabel('Sepal length [cm]')
+plt.ylabel('Petal length [cm]')
+plt.legend(loc='upper left')
+plt.show()
+    \end{lstlisting}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/perceptron_visual_implementation_iris_dataset.png} \\
+            \caption{Perceptron Visual Classification on the Iris Dataset.}
+            \label{figure:percepron_visual_classification_iris_dataset}
+        \end{minipage}
+    \end{figure}
+
+    As we can see in the plot, the perceptron learned a decision boundary that can classify all flower examples in the Iris training subset perfectly.
+
+    \begin{obs}[\textbf{Convergence of the Perceptron}]
+        Although the \textit{perceptron classified the two Iris flower classes perfectly, convergence is one of its biggest challenges}. \textit{Rosenblatt proved mathematically that} the \textbf{perceptron learning rule converges if the two classes can be separated by a linear hyperplane}. However, \textit{if the classes cannot be separated perfectly by such a linear decision boundary, the weights will never stop updating unless we set a maximum number of epochs}. Interested readers can find a summary of the proof in the lecture notes at \href{https://sebastianraschka.com/pdf/lecture-notes/stat453ss21/L03_perceptron_slides.pdf}{Perceptron Slides}.
+    \end{obs}
+
+    
+
 \end{document}

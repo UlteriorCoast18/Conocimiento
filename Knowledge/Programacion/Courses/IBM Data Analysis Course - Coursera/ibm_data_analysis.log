@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.7.29)  22 OCT 2025 16:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.7.29)  27 OCT 2025 12:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -900,7 +900,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 203.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-<watermark-1.png, id=58, 127.4361pt x 192.72pt>
+<watermark-1.png, id=70, 127.4361pt x 192.72pt>
 File: watermark-1.png Graphic file (type png)
 <use watermark-1.png>
 Package pdftex.def Info: watermark-1.png  used on input line 203.
@@ -1045,12 +1045,47 @@ File: watermark-1.png Graphic file (type png)
 Package pdftex.def Info: watermark-1.png  used on input line 469.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
 [7{C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 494.
+
 
 File: watermark-1.png Graphic file (type png)
 <use watermark-1.png>
-Package pdftex.def Info: watermark-1.png  used on input line 493.
+Package pdftex.def Info: watermark-1.png  used on input line 512.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
-[8] (ibm_data_analysis.aux
+[8]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 552.
+
+
+Package mdframed Warning: You got a bad break
+(mdframed)                because the last box will be empty
+(mdframed)                you have to change it manually
+(mdframed)                by changing the text, the space
+(mdframed)                or something else on input line 564.
+
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 564.
+
+
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 564.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+[9]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 583.
+
+
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 590.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+[10] (ibm_data_analysis.aux
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
 )
@@ -1059,20 +1094,20 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-07-19>
  ***********
 Package rerunfilecheck Info: File `ibm_data_analysis.out' has not changed.
-(rerunfilecheck)             Checksum: 119A5D5F947D89CCAF8C81DDD1F87DB8;2070.
+(rerunfilecheck)             Checksum: 7873AC75FE6054F14327F7BE9E429246;2657.
  ) 
 Here is how much of TeX's memory you used:
- 26579 strings out of 468111
- 491001 string characters out of 5431381
+ 26607 strings out of 468111
+ 491418 string characters out of 5431381
  1173477 words of memory out of 5000000
- 54667 multiletter control sequences out of 15000+600000
+ 54682 multiletter control sequences out of 15000+600000
  637468 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,91p,666b,899s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,91p,666b,920s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on ibm_data_analysis.pdf (9 pages, 191479 bytes).
+Output written on ibm_data_analysis.pdf (11 pages, 205621 bytes).
 PDF statistics:
- 203 PDF objects out of 1000 (max. 8388607)
- 65 named destinations out of 1000 (max. 500000)
- 122 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 237 PDF objects out of 1000 (max. 8388607)
+ 78 named destinations out of 1000 (max. 500000)
+ 146 words of extra memory for PDF output out of 10000 (max. 10000000)
 
