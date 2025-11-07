@@ -41,6 +41,29 @@
 \usepackage{listings}
 \usepackage{xcolor}
 
+\lstdefinelanguage{json}{
+    basicstyle=\ttfamily,
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    showstringspaces=false,
+    breaklines=true,
+    literate=
+     *{0}{{{\color{blue}0}}}{1}
+      {1}{{{\color{blue}1}}}{1}
+      {2}{{{\color{blue}2}}}{1}
+      {3}{{{\color{blue}3}}}{1}
+      {4}{{{\color{blue}4}}}{1}
+      {5}{{{\color{blue}5}}}{1}
+      {6}{{{\color{blue}6}}}{1}
+      {7}{{{\color{blue}7}}}{1}
+      {8}{{{\color{blue}8}}}{1}
+      {9}{{{\color{blue}9}}}{1}
+      {:}{{{\color{black}{:}}}}{1}
+      {,}{{{\color{black}{,}}}}{1}
+}
+
 \definecolor{listing-background}{HTML}{F7F7F7}
 \definecolor{listing-rule}{HTML}{B3B2B3}
 \definecolor{listing-numbers}{HTML}{B3B2B3}
@@ -586,5 +609,393 @@
 
     Once the questions aries and hypothesis are created, we have to identify the datasets that are going to be isolated and analyze them in order to validate or refute the hypothesis.
 
+    \chapter{Data Ecosystem}
+
+    A Data Analyst's ecosystem includes the following:
+    \begin{itemize}
+        \item Infraestructure
+        \item Software
+        \item Tools
+        \item Frameworks
+        \item Processes used to:
+        \begin{itemize}
+            \item Gather,
+            \item Clean,
+            \item Mine,
+            \item and Visualize
+        \end{itemize}
+        data.
+    \end{itemize}
+
+    \section{Overview of the Ecosystem}
+
+    Data can be categorized into the following types:
+    \begin{enumerate}
+        \item \textbf{Structured}: Data that follows rigid format and can be organized into rows and columns.
+        
+        This data is typically seen in databases and spreedsheets.
+        \item \textbf{Semi-structured}: Mixed of data that has consisten characteristics and data that does not conform to a rigid structure.
+        
+        For example, emails (strucured data such as subject, email, etc\dots and unstrucutred as the message).
+        
+        \item \textbf{Unstrucutred}: Data that is complex and mostly qualitative information that cannot be structured into rows and columns.
+        
+        For example, photos, videos, files and social media contant.
+    \end{enumerate}
+
+    \begin{obs}[\textbf{Importance of Data Types}]
+        The type of data determines the type of data repositories where data can be collected, stored in and, tools used to query or process data.
+    \end{obs}
+
+    \subsection{Data Formats}
+
+    Data can come in a variety of file formats, such as:
+    \begin{enumerate}
+        \item Relational.
+        \item Non-relational databases.
+        \item APIs.
+        \item Web Services
+        \item Data streams.
+        \item Social Platforms.
+        \item Sensor Devices.
+    \end{enumerate}
+
+    \begin{mydef}[\textbf{Data Repositories}]
+        A \textbf{Data Repository} is a container of data. These include:
+        \begin{enumerate}
+            \item Databases.
+            \item Data Warehouses.
+            \item Data Marts.
+            \item Data Lakes.
+            \item Big Data Stores.
+        \end{enumerate}
+    \end{mydef}
+
+    A Data Repository collects types of data, file formats and are sources of data. A data repository is dependent upon this characteristics mentioned earlier, to collect, store and mine data.
+
+    \begin{exa}
+        A Big Data we will need data warehouses, where we need to store and process large volume and high velocity data. Also, frameworks that allow perform complex analytics in big data.
+    \end{exa}
+
+    \subsection{Languages}
+
+    The languages available in the Data Analyst Ecosystem are:
+    \begin{itemize}
+        \item \textbf{Query Languages}: Such as SQL for quering data and manipulating data.
+        \item \textbf{Programming Languages}: Such as Python for data applications.
+        \item \textbf{Shell and Scripting Languages}: For repetitional and operational tasks.
+    \end{itemize}
+
+    \subsection{Automated Tools}
+
+    Automated tools, frameworks, and processes for all stages of the analytics process are part of the Data Analysis Ecosystem. These tools allow to:
+    \begin{itemize}
+        \item \textbf{Gather, extract, transfrom and load data}.
+        \item \textbf{Data wrangling and cleaning}.
+        \item \textbf{Data analysis and mining}.
+        \item \textbf{Data visualization}.
+    \end{itemize}
+
+    \section{Data}
+
+    \begin{mydef}[\textbf{Data}]
+        \textbf{Data} is unorganized information that is processed to be meaningful. This can be conformed of:
+        \begin{itemize}
+            \item Facts, observations, perceptions.
+            \item Numbers, characters, symbols.
+            \item Images.
+        \end{itemize}
+    \end{mydef}
+
+    Data can be interpreted to have a meaning.
+
+    \subsection{Categorization of Data}
+
+    We can organize data in the following three types:
+
+    \begin{enumerate}
+        \item \textbf{Structured}.
+        \item \textbf{Semi-structured}.
+        \item \textbf{Unstrucutred}.
+    \end{enumerate} 
+
+    \subsection{Structured Data}
+
+    The characteristics of Structured Data are the following:
+    \begin{itemize}
+        \item Well-define structure.
+        \item Can be stored in well-defined schemas.
+        \item Can be represented in a tabular maner using rows and columns.
+    \end{itemize}
+
+    Uses facts and numbers which can be:
+    \begin{itemize}
+        \item Collected.
+        \item Exported.
+        \item Stored.
+        \item Organized.
+    \end{itemize}
+    in databases.
+
+    \begin{exa}[\textbf{Sources of Structured Data}]
+        \textbf{Structued data} can come from:
+        \begin{enumerate}
+            \item SQL Databases.
+            \item Online Transaction Processing.
+            \item Spreadsheets.
+            \item Online forms.
+            \item Sensors GPS and RFID text.
+            \item Network and webserver logs.
+        \end{enumerate}
+    \end{exa}
+
+    \subsection{Semistructured Data}
+
+    Characteristics of semi-structured data are the following:
+    \begin{itemize}
+        \item Has some organizational properties but lacks a fixed or rigid schema.
+        \item Cannot be stored in rows and columns.
+        \item Contains tangs and elements or metadate used to group and organize it in a hierarchy.
+    \end{itemize}
+
+    \begin{exa}[\textbf{Sources of Semi-structured Data}]
+        Include:
+        \begin{itemize}
+            \item Emails.
+            \item XML and other markup languages.
+            \item Binary executables.
+            \item TCP/IP packets.
+            \item Zipped files.
+            \item Integration of data from different sources.
+        \end{itemize}
+    \end{exa}
+
+    \begin{obs}[\textbf{Use of XML and JSON}]
+        \lstinline|XML| and \lstinline|JSON| allow users to define tags, associate atributes and store data in a hierarchy form and are used widely to store and exchange semi-structured data.
+    \end{obs}
+
+    \subsection{Unstructured Data}
+
+    Characteristics of unustructured data are the following:
+    \begin{itemize}
+        \item Does not have an easily identificable structure.
+        \item Cannot be organized ina  mainstream relational database in the form of rows and columns.
+        \item Does not follow any particular format, sequence, semantics and rules.
+    \end{itemize}
+    Unstrucutred data can deal with a heterogeneity of sources and has applications in business.
+
+    \begin{exa}[\textbf{Sources of Unustructured Data}]
+        Sources of unstructured data include the following:
+        \begin{itemize}
+            \item Web pages
+            \item Social media feeds
+            \item Images in a varied file formats
+            \item Video and audio files
+            \item Documents and PDF files
+            \item PowerPoint presentations
+            \item Media logs
+            \item Surveys
+        \end{itemize}
+    \end{exa}
+
+    Can be stored in files and documents, such as:
+    \begin{itemize}
+        \item \textbf{Files and Docs} for manual analysis.
+        \item \textbf{NoSQL Databases} for the use of analysis tools.
+    \end{itemize}
+
+    \section{File Structures}
+
+    Al told earlier, data has to be saved and we have plenty of file formats in order to store data. Turns out important to understand the structure of file formats in order to choose between their benefits and limitations.
+
+    We will see the following file formats:
+    \begin{itemize}
+        \item \textbf{Delimited file formats or \lstinline|.CSV|.}
+        \item \textbf{Microsoft Excel Open XML spreedsheet or \lstinline|.XLSX|.}
+        \item \textbf{Extensible Markup Langauge, or \lstinline|.XML|.}
+        \item \textbf{Portable Document Format, or \lstinline|.PDF|.}
+        \item \textbf{JavaScript Object Notation, or \lstinline|.JSON|.} 
+    \end{itemize}
+
+    \subsection{Delimited Text Files}
+
+    \begin{mydef}[\textbf{Delimited Text Files and Delimiters}]
+        \textbf{Delimited Text Files} are \textit{files used to store data as text in which each line and row has a value separated by a delimiter}.
+
+        A \textbf{delimiter} is a \textit{sequence of one or more characters for specifying the boundary between independent entities or values}.
+    \end{mydef}
+
+    Most common delimeters are coma, tab, colon, vertical bar and space.
+
+    \begin{exa}[\textbf{Commonly Used Delimited Text Files}]
+        Two delimited text files are Comma-separated values and Tab-separated values (\lstinline|.CSV| and \lstinline|.TSV|, respectively) are the most commonly used.
+    \end{exa}
+
+    \begin{exa}
+        A \lstinline|.CSV| looks like this:
+
+        \begin{lstlisting}[caption={\lstinline|.CSV| File Content Example.},label=figure:CSV_example]
+id,nombre,edad,puesto,salario
+1,Cristo Alvarado,24,Data Analyst,45000
+2,Ana Lopez,29,Software Engineer,62000
+3,Marco Gomez,31,Project Manager,70000
+4,Laura Ruiz,26,QA Tester,40000
+5,Carlos Perez,35,DevOps Engineer,75000
+        \end{lstlisting}
+
+        And, a \lstinline|.TSV| like this:
+
+        \begin{lstlisting}[caption={\lstinline|.TSV| File Content Example.},label=figure:TSV_example]
+id	nombre	edad	puesto	salario
+1	Cristo Alvarado	24	Data Analyst	45000
+2	Ana Lopez	29	Software Engineer	62000
+3	Marco Gomez	31	Project Manager	70000
+4	Laura Ruiz	26	QA Tester	40000
+5	Carlos Perez	35	DevOps Engineer	75000
+        \end{lstlisting}
+
+    \end{exa}
+
+    The first row are the names of the variables of each column.
+
+    \begin{obs}
+        Delimiters represent one of variuous means to specify bonudaries in a data stream.
+    \end{obs}
+
+    \subsection{Microsoft Excel Open XML Spreadsheet or \lstinline|.XLSX|}
+
+    Is a Microsoft Excel Open XML file format that falls under the spreadsheet file format. It is an XML-based file format created by Microsoft.
+
+    Is a secure file format since it cannot contain malicious malware.
+
+    \subsection{Extensible Markup Language or \lstinline|.XML|}
+
+    \begin{mydef}[\textbf{Extensible Markup Language (XML)}]
+        Extensible Markup Language is a markup language with a set of rules for encoding data.
+        \begin{itemize}
+            \item This format is readable by humans and machines.
+            \item Self-descriptive language.
+            \item Similar to \lstinline|.HTML| in some respects.
+            \item Does not use predefined tags like \lstinline|.HTML| does.
+            \item Platform independent.
+            \item Programming langauge dependent.
+            \item Makes it simpler to share data between systems. 
+        \end{itemize}
+    \end{mydef}
+
+    \begin{exa}
+        An example of a \lstinline|.XML| file is the follwing:
+
+        \begin{lstlisting}[caption={\lstinline|.XML| File Content Example.},label=figure:XML_example, language = XML]
+<?xml version="1.0" encoding="UTF-8"?>
+<employees>
+  <employee>
+    <id>1</id>
+    <nombre>Cristo Alvarado</nombre>
+    <edad>24</edad>
+    <puesto>Data Analyst</puesto>
+    <salario>45000</salario>
+  </employee>
+  <employee>
+    <id>2</id>
+    <nombre>Ana Lopez</nombre>
+    <edad>29</edad>
+    <puesto>Software Engineer</puesto>
+    <salario>62000</salario>
+  </employee>
+  <employee>
+    <id>3</id>
+    <nombre>Marco Gomez</nombre>
+    <edad>31</edad>
+    <puesto>Project Manager</puesto>
+    <salario>70000</salario>
+  </employee>
+  <employee>
+    <id>4</id>
+    <nombre>Laura Ruiz</nombre>
+    <edad>26</edad>
+    <puesto>QA Tester</puesto>
+    <salario>40000</salario>
+  </employee>
+  <employee>
+    <id>5</id>
+    <nombre>Carlos Perez</nombre>
+    <edad>35</edad>
+    <puesto>DevOps Engineer</puesto>
+    <salario>75000</salario>
+  </employee>
+</employees>
+        \end{lstlisting}
+
+    \end{exa}
+
+    \subsection{Portable Document File (PDF)}
+
+    \begin{mydef}[\textbf{Portable Document File (PDF)}]
+        A \textbf{Portable Document File \lstinline|.PDF|} is a file format developed by adobe to present documents independent of application software, hardware, and operating systems.
+        \begin{itemize}
+            \item Can be viewed the same way on any device.
+            \item Is frequently used in legal and financial documents.
+            \item Can also be used to fill data for forms. 
+        \end{itemize}
+    \end{mydef}
+
+    \subsection{JavaScript Object Notation (JSON)}
+
+    \begin{mydef}[\textbf{JavaScript Object Notation (JSON)}]
+        A \textbf{JavaScript Object Notation \lstinline|.JSON|} is a text-based open standard designed to transmit data over the web.
+        \begin{itemize}
+            \item Langauge-independent data format.
+            \item Can be read by any programming language.
+            \item Easy to use.
+            \item Comptaible with a wide range of browsers.
+            \item Best tools for sharing data.
+        \end{itemize}
+    \end{mydef}
+
+    \begin{exa}
+        An example of a \lstinline|.JSON| file is the follwing:
+        \begin{lstlisting}[caption={\lstinline|.JSON| File Content Example.},label=figure:JSON_example, language = json]
+{
+  "employees": [
+    {
+      "id": 1,
+      "nombre": "Cristo Alvarado",
+      "edad": 24,
+      "puesto": "Data Analyst",
+      "salario": 45000
+    },
+    {
+      "id": 2,
+      "nombre": "Ana Lopez",
+      "edad": 29,
+      "puesto": "Software Engineer",
+      "salario": 62000
+    },
+    {
+      "id": 3,
+      "nombre": "Marco Gomez",
+      "edad": 31,
+      "puesto": "Project Manager",
+      "salario": 70000
+    },
+    {
+      "id": 4,
+      "nombre": "Laura Ruiz",
+      "edad": 26,
+      "puesto": "QA Tester",
+      "salario": 40000
+    },
+    {
+      "id": 5,
+      "nombre": "Carlos Perez",
+      "edad": 35,
+      "puesto": "DevOps Engineer",
+      "salario": 75000
+    }
+  ]
+}
+        \end{lstlisting}
+    \end{exa}
 
 \end{document}
