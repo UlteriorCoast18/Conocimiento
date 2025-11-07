@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.3.10)  19 OCT 2025 01:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.1.15)  31 JAN 2025 12:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Talleres/Escuela Oaxaqueña/Presentacion/presentacion_2.tex"
-(/home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Talleres/Escuela Oaxaqueña/Presentacion/presentacion_2.tex
+**"/home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Escuela Oaxaqueña/Presentacion/presentacion.tex"
+(/home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Escuela Oaxaqueña/Presentacion/presentacion.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamer.cls
 Document Class: beamer 2023/02/20 v3.69 A class for typesetting presentations
@@ -884,10 +884,8 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
 (Font)                  U/bbm/m/n --> U/bbm/bx/n on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
 (Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
-) (/usr/share/texlive/texmf-dist/tex/latex/nopageno/nopageno.sty
-Package: nopageno 1989/01/01 no page numbers (DPC)
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 36.
+Package hyperref Info: Option `colorlinks' set `true' on input line 39.
 \c@exa=\count385
 \c@obs=\count386
 \c@theor=\count387
@@ -897,27 +895,30 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 36.
 \c@mydef=\count391
 \c@excer=\count392
 \c@figcount=\count393
- (./presentacion_2.aux)
-\openout1 = `presentacion_2.aux'.
+ (./presentacion.aux
+LaTeX Info: Redefining \. on input line 23.
+LaTeX Info: Redefining \% on input line 23.
+)
+\openout1 = `presentacion.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -927,11 +928,11 @@ LaTeX Font Info:    ... okay on input line 152.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(10.95003pt, 433.34152pt, 10.95003pt)
+* h-part:(L,W,R)=(10.95003pt, 342.2953pt, 10.95003pt)
 * v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
-* \paperwidth=455.24158pt
+* \paperwidth=364.19536pt
 * \paperheight=273.14662pt
-* \textwidth=433.34152pt
+* \textwidth=342.2953pt
 * \textheight=244.6939pt
 * \oddsidemargin=-61.31996pt
 * \evensidemargin=-61.31996pt
@@ -972,59 +973,60 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 152.
+Package hyperref Info: Link coloring ON on input line 140.
+ (./presentacion.out) (./presentacion.out)
 \@outlinefile=\write5
-\openout5 = `presentacion_2.out'.
+\openout5 = `presentacion.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 152.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 140.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 152.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 140.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 152.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 152.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 140.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 152.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 152.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 152.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 140.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 152.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 152.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 152.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 140.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 152.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 152.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 152.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 140.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 152.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 152.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 140.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 152.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 140.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 152.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 152.
+(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 152.
+(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 152.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 152.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 152.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 152.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 140.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 140.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 152.
+(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 140.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 152.
+(Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 140.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 152.
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 140.
  (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 ) (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-bibliography-dictionary-English.dict
@@ -1038,546 +1040,432 @@ Dictionary: translator-numbers-dictionary, Language: English
 ) (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \. on input line 152.
-LaTeX Info: Redefining \% on input line 152.
+LaTeX Info: Redefining \. on input line 140.
+LaTeX Info: Redefining \% on input line 140.
 \c@lstlisting=\count400
- (./presentacion_2.nav) [1
+ (./presentacion.nav) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<images/all_triangles.png, id=35, 1201.48875pt x 304.13625pt>
-File: images/all_triangles.png Graphic file (type png)
-<use images/all_triangles.png>
-Package pdftex.def Info: images/all_triangles.png  used on input line 181.
-(pdftex.def)             Requested size: 300.37146pt x 76.03387pt.
- [2
-
- <./images/all_triangles.png>]
-File: images/all_triangles.png Graphic file (type png)
-<use images/all_triangles.png>
-Package pdftex.def Info: images/all_triangles.png  used on input line 181.
-(pdftex.def)             Requested size: 300.37146pt x 76.03387pt.
- [3
-
-]
-<images/hyperbolic_triangle_2.png, id=49, 451.6875pt x 301.72725pt>
-File: images/hyperbolic_triangle_2.png Graphic file (type png)
-<use images/hyperbolic_triangle_2.png>
-Package pdftex.def Info: images/hyperbolic_triangle_2.png  used on input line 192.
-(pdftex.def)             Requested size: 225.84319pt x 150.86325pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 192.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./presentacion.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 192.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 2.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 192.
+LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 2.
  (/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mathkerncmss.
-) [4
-
- <./images/hyperbolic_triangle_2.png>]
-<images/hiearchy.jpg, id=58, 2696.0725pt x 2095.83pt>
-File: images/hiearchy.jpg Graphic file (type jpg)
-<use images/hiearchy.jpg>
-Package pdftex.def Info: images/hiearchy.jpg  used on input line 208.
-(pdftex.def)             Requested size: 215.6902pt x 167.66982pt.
-
-Overfull \vbox (4.45482pt too high) detected at line 208
- []
-
-[5
-
- <./images/hiearchy.jpg>]
-File: images/hiearchy.jpg Graphic file (type jpg)
-<use images/hiearchy.jpg>
-Package pdftex.def Info: images/hiearchy.jpg  used on input line 208.
-(pdftex.def)             Requested size: 215.6902pt x 167.66982pt.
-
-Overfull \vbox (4.45482pt too high) detected at line 208
- []
-
-[6
+)
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 2.
+ (/usr/share/texlive/texmf-dist/tex/latex/bbm-macros/ubbm.fd
+File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
+)) [2
 
 ]
-<images/geodesics_half_plane.png, id=70, 213.46417pt x 86.99167pt>
-File: images/geodesics_half_plane.png Graphic file (type png)
-<use images/geodesics_half_plane.png>
-Package pdftex.def Info: images/geodesics_half_plane.png  used on input line 228.
-(pdftex.def)             Requested size: 170.77156pt x 69.59341pt.
-File: images/hyperbolic_triangle_2.png Graphic file (type png)
-<use images/hyperbolic_triangle_2.png>
-Package pdftex.def Info: images/hyperbolic_triangle_2.png  used on input line 228.
-(pdftex.def)             Requested size: 135.5073pt x 90.51886pt.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 150.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 150.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 150.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 152.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\left' on input line 152.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\right' on input line 152.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 152.
+
+<images/isometries_2.png, id=108, 894.34125pt x 592.2125pt>
+File: images/isometries_2.png Graphic file (type png)
+<use images/isometries_2.png>
+Package pdftex.def Info: images/isometries_2.png  used on input line 163.
+(pdftex.def)             Requested size: 268.30444pt x 177.66512pt.
+[3
+
+ <./images/isometries_2.png>] [4
+
+] [5
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 182.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 182.
+ [6
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 200.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 200.
  [7
 
- <./images/geodesics_half_plane.png>]
-File: images/geodesics_half_plane.png Graphic file (type png)
-<use images/geodesics_half_plane.png>
-Package pdftex.def Info: images/geodesics_half_plane.png  used on input line 228.
-(pdftex.def)             Requested size: 170.77156pt x 69.59341pt.
-File: images/hyperbolic_triangle_2.png Graphic file (type png)
-<use images/hyperbolic_triangle_2.png>
-Package pdftex.def Info: images/hyperbolic_triangle_2.png  used on input line 228.
-(pdftex.def)             Requested size: 135.5073pt x 90.51886pt.
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 210.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 210.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 210.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 210.
  [8
 
 ]
-<images/B_delta.pdf, id=83, 505.43631pt x 285.07404pt>
-File: images/B_delta.pdf Graphic file (type pdf)
-<use images/B_delta.pdf>
-Package pdftex.def Info: images/B_delta.pdf  used on input line 240.
-(pdftex.def)             Requested size: 303.26411pt x 171.04573pt.
-
-Overfull \vbox (4.21744pt too high) detected at line 240
- []
-
-[9
-
- <./images/B_delta.pdf>]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 250.
+(mdframed)              on input line 241.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 250.
+ mdframed uses option nobreak mdframed on input line 241.
+ [9
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 266.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 266.
  [10
 
 ]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 252.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\delta' on input line 252.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 252.
-
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 272.
+(mdframed)              on input line 281.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 272.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 272.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 272.
-[11
-
-]
-<images/delta_slim_2.pdf, id=160, 164.51363pt x 154.94186pt>
-File: images/delta_slim_2.pdf Graphic file (type pdf)
-<use images/delta_slim_2.pdf>
-Package pdftex.def Info: images/delta_slim_2.pdf  used on input line 283.
-(pdftex.def)             Requested size: 205.64151pt x 193.67685pt.
-
-Overfull \vbox (20.97772pt too high) detected at line 283
- []
-
-[12
-
- <./images/delta_slim_2.pdf>]
-File: images/delta_slim_2.pdf Graphic file (type pdf)
-<use images/delta_slim_2.pdf>
-Package pdftex.def Info: images/delta_slim_2.pdf  used on input line 283.
-(pdftex.def)             Requested size: 205.64151pt x 193.67685pt.
-
-Overfull \vbox (20.97772pt too high) detected at line 283
- []
-
-[13
-
-] [14
-
-] [15
+ mdframed uses option nobreak mdframed on input line 281.
+ [11
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 309.
-LaTeX Font Info:    Trying to load font information for U+bbm on input line 309.
- (/usr/share/texlive/texmf-dist/tex/latex/bbm-macros/ubbm.fd
-File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
-)
+(mdframed)              on input line 295.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 309.
- [16
+ mdframed uses option nobreak mdframed on input line 295.
+ [12
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 309.
+(mdframed)              on input line 312.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 309.
- [17
-
-]
-<images/finite_diameter.png, id=250, 220.825pt x 262.9825pt>
-File: images/finite_diameter.png Graphic file (type png)
-<use images/finite_diameter.png>
-Package pdftex.def Info: images/finite_diameter.png  used on input line 326.
-(pdftex.def)             Requested size: 77.2899pt x 92.04524pt.
-<images/real_line.png, id=251, 465.74pt x 493.845pt>
-File: images/real_line.png Graphic file (type png)
-<use images/real_line.png>
-Package pdftex.def Info: images/real_line.png  used on input line 326.
-(pdftex.def)             Requested size: 46.57672pt x 49.38739pt.
-<images/euclidean_plane.png, id=252, 357.335pt x 142.5325pt>
-File: images/euclidean_plane.png Graphic file (type png)
-<use images/euclidean_plane.png>
-Package pdftex.def Info: images/euclidean_plane.png  used on input line 326.
-(pdftex.def)             Requested size: 107.20132pt x 42.76007pt.
- [18
-
- <./images/finite_diameter.png> <./images/real_line.png> <./images/euclidean_plane.png>]
-File: images/finite_diameter.png Graphic file (type png)
-<use images/finite_diameter.png>
-Package pdftex.def Info: images/finite_diameter.png  used on input line 326.
-(pdftex.def)             Requested size: 77.2899pt x 92.04524pt.
-File: images/real_line.png Graphic file (type png)
-<use images/real_line.png>
-Package pdftex.def Info: images/real_line.png  used on input line 326.
-(pdftex.def)             Requested size: 46.57672pt x 49.38739pt.
-File: images/euclidean_plane.png Graphic file (type png)
-<use images/euclidean_plane.png>
-Package pdftex.def Info: images/euclidean_plane.png  used on input line 326.
-(pdftex.def)             Requested size: 107.20132pt x 42.76007pt.
- [19
-
-]
-<images/hiperbolicnt_euclidean_plane.pdf, id=267, 191.20634pt x 143.22809pt>
-File: images/hiperbolicnt_euclidean_plane.pdf Graphic file (type pdf)
-<use images/hiperbolicnt_euclidean_plane.pdf>
-Package pdftex.def Info: images/hiperbolicnt_euclidean_plane.pdf  used on input line 339.
-(pdftex.def)             Requested size: 239.00734pt x 179.03467pt.
-
-Overfull \vbox (13.49883pt too high) detected at line 339
- []
-
-[20
-
- <./images/hiperbolicnt_euclidean_plane.pdf>]
-File: images/hiperbolicnt_euclidean_plane.pdf Graphic file (type pdf)
-<use images/hiperbolicnt_euclidean_plane.pdf>
-Package pdftex.def Info: images/hiperbolicnt_euclidean_plane.pdf  used on input line 339.
-(pdftex.def)             Requested size: 239.00734pt x 179.03467pt.
-
-Overfull \vbox (13.49883pt too high) detected at line 339
- []
-
-[21
-
-] [22
-
-] [23
+ mdframed uses option nobreak mdframed on input line 312.
+ [13
 
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 353.
+(hyperref)                removing `math shift' on input line 314.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 353.
+(hyperref)                removing `\left' on input line 314.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 353.
-
-<images/hyperbolic_plane.png, id=301, 803.0pt x 401.5pt>
-File: images/hyperbolic_plane.png Graphic file (type png)
-<use images/hyperbolic_plane.png>
-Package pdftex.def Info: images/hyperbolic_plane.png  used on input line 371.
-(pdftex.def)             Requested size: 321.1943pt x 160.59715pt.
-[24
-
- <./images/hyperbolic_plane.png>]
-File: images/hyperbolic_plane.png Graphic file (type png)
-<use images/hyperbolic_plane.png>
-Package pdftex.def Info: images/hyperbolic_plane.png  used on input line 371.
-(pdftex.def)             Requested size: 321.1943pt x 160.59715pt.
- [25
-
-]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 399.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 399.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 399.
+(hyperref)                removing `\right' on input line 314.
 
 
-/home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Talleres/Escuela Oaxaqueña/Presentacion/presentacion_2.tex:399: LaTeX Error: File `images/Cuadrado' not found.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 314.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.399 \end{frame}
-                 
-I could not locate the file with any of these extensions:
-.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
 
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 399.
-[26
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 314.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 314.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 314.
+
+[14
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 399.
+(mdframed)              on input line 339.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 399.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 399.
-
-
-/home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Talleres/Escuela Oaxaqueña/Presentacion/presentacion_2.tex:399: LaTeX Error: File `images/Cuadrado' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.399 \end{frame}
-                 
-I could not locate the file with any of these extensions:
-.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 399.
-[27
+ mdframed uses option nobreak mdframed on input line 339.
+ [15
 
 ]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 424.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 424.
-
-
-LaTeX Warning: File `images/Triangle.png' not found on input line 424.
-
-
-/home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Talleres/Escuela Oaxaqueña/Presentacion/presentacion_2.tex:424: Package pdftex.def Error: File `images/Triangle.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.424 \end{frame}
-                 
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[28
-
-]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 424.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 424.
-
-
-LaTeX Warning: File `images/Triangle.png' not found on input line 424.
-
-
-/home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Talleres/Escuela Oaxaqueña/Presentacion/presentacion_2.tex:424: Package pdftex.def Error: File `images/Triangle.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.424 \end{frame}
-                 
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[29
-
-]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 463.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 463.
-
-
-LaTeX Warning: File `images/Circle.pdf' not found on input line 463.
-
-
-/home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Talleres/Escuela Oaxaqueña/Presentacion/presentacion_2.tex:463: Package pdftex.def Error: File `images/Circle.pdf' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.463 \end{frame}
-                 
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \vbox (32.06993pt too high) detected at line 463
+Overfull \vbox (6.06697pt too high) detected at line 365
  []
 
-[30
+[16
+
+] [17
+
+] [18
+
+] [19
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 463.
+(mdframed)              on input line 425.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 463.
+ mdframed uses option nobreak mdframed on input line 425.
+ [20
 
-
-LaTeX Warning: File `images/Circle.pdf' not found on input line 463.
-
-
-/home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Talleres/Escuela Oaxaqueña/Presentacion/presentacion_2.tex:463: Package pdftex.def Error: File `images/Circle.pdf' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.463 \end{frame}
-                 
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \vbox (32.06993pt too high) detected at line 463
- []
-
-[31
+] [21
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 463.
+(mdframed)              on input line 447.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 463.
-
-
-LaTeX Warning: File `images/Circle.pdf' not found on input line 463.
-
-
-/home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Extras/Talleres/Escuela Oaxaqueña/Presentacion/presentacion_2.tex:463: Package pdftex.def Error: File `images/Circle.pdf' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.463 \end{frame}
-                 
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \vbox (32.06993pt too high) detected at line 463
- []
-
-[32
+ mdframed uses option nobreak mdframed on input line 447.
+ [22
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 482.
+(mdframed)              on input line 464.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 482.
+ mdframed uses option nobreak mdframed on input line 464.
+ [23
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 475.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 475.
+ [24
+
+] [25
+
+] [26
+
+] [27
+
+] [28
+
+] [29
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 538.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 538.
+ [30
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 554.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 554.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 554.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 554.
+ [31
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 560.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 560.
+ [32
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 568.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 568.
  [33
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 482.
+(mdframed)              on input line 578.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 482.
+ mdframed uses option nobreak mdframed on input line 578.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 578.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 578.
  [34
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 482.
+(mdframed)              on input line 588.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 482.
+ mdframed uses option nobreak mdframed on input line 588.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 588.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 588.
  [35
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 482.
+(mdframed)              on input line 598.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 482.
+ mdframed uses option nobreak mdframed on input line 598.
  [36
 
 ]
-<images/uhp_geodesic_triangle.pdf, id=516, 218.94598pt x 144.48077pt>
-File: images/uhp_geodesic_triangle.pdf Graphic file (type pdf)
-<use images/uhp_geodesic_triangle.pdf>
-Package pdftex.def Info: images/uhp_geodesic_triangle.pdf  used on input line 498.
-(pdftex.def)             Requested size: 218.94545pt x 144.48041pt.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 604.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 604.
  [37
 
- <./images/uhp_geodesic_triangle.pdf>]
-File: images/uhp_geodesic_triangle.pdf Graphic file (type pdf)
-<use images/uhp_geodesic_triangle.pdf>
-Package pdftex.def Info: images/uhp_geodesic_triangle.pdf  used on input line 498.
-(pdftex.def)             Requested size: 218.94545pt x 144.48041pt.
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 624.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 624.
  [38
 
 ]
-File: images/uhp_geodesic_triangle.pdf Graphic file (type pdf)
-<use images/uhp_geodesic_triangle.pdf>
-Package pdftex.def Info: images/uhp_geodesic_triangle.pdf  used on input line 498.
-(pdftex.def)             Requested size: 218.94545pt x 144.48041pt.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 624.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 624.
  [39
 
 ]
-File: images/uhp_geodesic_triangle.pdf Graphic file (type pdf)
-<use images/uhp_geodesic_triangle.pdf>
-Package pdftex.def Info: images/uhp_geodesic_triangle.pdf  used on input line 498.
-(pdftex.def)             Requested size: 218.94545pt x 144.48041pt.
+<images/all_triangles.png, id=637, 1201.48875pt x 304.13625pt>
+File: images/all_triangles.png Graphic file (type png)
+<use images/all_triangles.png>
+Package pdftex.def Info: images/all_triangles.png  used on input line 646.
+(pdftex.def)             Requested size: 300.37146pt x 76.03387pt.
  [40
 
-]
-<images/uhp_geodesic_triangle_2.pdf, id=552, 346.75948pt x 180.04665pt>
-File: images/uhp_geodesic_triangle_2.pdf Graphic file (type pdf)
-<use images/uhp_geodesic_triangle_2.pdf>
-Package pdftex.def Info: images/uhp_geodesic_triangle_2.pdf  used on input line 509.
-(pdftex.def)             Requested size: 346.75862pt x 180.04619pt.
+ <./images/all_triangles.png>]
+File: images/all_triangles.png Graphic file (type png)
+<use images/all_triangles.png>
+Package pdftex.def Info: images/all_triangles.png  used on input line 646.
+(pdftex.def)             Requested size: 300.37146pt x 76.03387pt.
  [41
 
- <./images/uhp_geodesic_triangle_2.pdf>]
-<images/uhd_geodesic_triangle_4.pdf, id=571, 275.62773pt x 180.04665pt>
-File: images/uhd_geodesic_triangle_4.pdf Graphic file (type pdf)
-<use images/uhd_geodesic_triangle_4.pdf>
-Package pdftex.def Info: images/uhd_geodesic_triangle_4.pdf  used on input line 518.
-(pdftex.def)             Requested size: 275.62706pt x 180.04619pt.
+]
+<images/hyperbolic_triangle_2.png, id=648, 451.6875pt x 301.72725pt>
+File: images/hyperbolic_triangle_2.png Graphic file (type png)
+<use images/hyperbolic_triangle_2.png>
+Package pdftex.def Info: images/hyperbolic_triangle_2.png  used on input line 657.
+(pdftex.def)             Requested size: 225.84319pt x 150.86325pt.
  [42
 
- <./images/uhd_geodesic_triangle_4.pdf>] [43
+ <./images/hyperbolic_triangle_2.png>]
+<images/hiearchy.jpg, id=655, 2696.0725pt x 2095.83pt>
+File: images/hiearchy.jpg Graphic file (type jpg)
+<use images/hiearchy.jpg>
+Package pdftex.def Info: images/hiearchy.jpg  used on input line 673.
+(pdftex.def)             Requested size: 215.6902pt x 167.66982pt.
 
-] [44
+Overfull \vbox (4.45482pt too high) detected at line 673
+ []
 
-] [45
+[43
 
-] [46
+ <./images/hiearchy.jpg>]
+File: images/hiearchy.jpg Graphic file (type jpg)
+<use images/hiearchy.jpg>
+Package pdftex.def Info: images/hiearchy.jpg  used on input line 673.
+(pdftex.def)             Requested size: 215.6902pt x 167.66982pt.
 
-] [47
+Overfull \vbox (4.45482pt too high) detected at line 673
+ []
 
-] [48
+[44
+
+]
+<images/B_delta.pdf, id=667, 505.43631pt x 285.07404pt>
+File: images/B_delta.pdf Graphic file (type pdf)
+<use images/B_delta.pdf>
+Package pdftex.def Info: images/B_delta.pdf  used on input line 685.
+(pdftex.def)             Requested size: 303.26411pt x 171.04573pt.
+
+Overfull \vbox (4.21744pt too high) detected at line 685
+ []
+
+[45
+
+ <./images/B_delta.pdf>]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 695.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 695.
+ [46
+
+]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 697.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\delta' on input line 697.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 697.
+
+<images/delta_slim_2.pdf, id=707, 164.51363pt x 154.94186pt>
+File: images/delta_slim_2.pdf Graphic file (type pdf)
+<use images/delta_slim_2.pdf>
+Package pdftex.def Info: images/delta_slim_2.pdf  used on input line 706.
+(pdftex.def)             Requested size: 205.64151pt x 193.67685pt.
+
+Overfull \vbox (5.24855pt too high) detected at line 706
+ []
+
+[47
+
+ <./images/delta_slim_2.pdf>]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 726.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 726.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 726.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 726.
+ [48
 
 ] [49
 
@@ -1586,325 +1474,100 @@ Package pdftex.def Info: images/uhd_geodesic_triangle_4.pdf  used on input line 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 584.
+(mdframed)              on input line 752.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 584.
+ mdframed uses option nobreak mdframed on input line 752.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 752.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 752.
  [51
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 584.
+(mdframed)              on input line 752.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 584.
+ mdframed uses option nobreak mdframed on input line 752.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 752.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 752.
  [52
 
-] [53
-
-] [54
-
-] [55
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 764.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 764.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 764.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 764.
+ [53
 
 ]
-<images/cuasi_geodesic.jpg, id=692, 183.68625pt x 144.54pt>
-File: images/cuasi_geodesic.jpg Graphic file (type jpg)
-<use images/cuasi_geodesic.jpg>
-Package pdftex.def Info: images/cuasi_geodesic.jpg  used on input line 627.
-(pdftex.def)             Requested size: 73.47318pt x 57.81496pt.
-<images/cuasi_geodesic_triangle.pdf, id=693, 119.63094pt x 120.48915pt>
-File: images/cuasi_geodesic_triangle.pdf Graphic file (type pdf)
-<use images/cuasi_geodesic_triangle.pdf>
-Package pdftex.def Info: images/cuasi_geodesic_triangle.pdf  used on input line 627.
-(pdftex.def)             Requested size: 95.70486pt x 96.39143pt.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 764.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 764.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 764.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 764.
+ [54
 
-Overfull \vbox (5.9789pt too high) detected at line 627
- []
+]
+<images/hiperbolicnt_euclidean_plane.pdf, id=889, 191.20634pt x 143.22809pt>
+File: images/hiperbolicnt_euclidean_plane.pdf Graphic file (type pdf)
+<use images/hiperbolicnt_euclidean_plane.pdf>
+Package pdftex.def Info: images/hiperbolicnt_euclidean_plane.pdf  used on input line 773.
+(pdftex.def)             Requested size: 239.00734pt x 179.03467pt.
+ [55
 
-[56
+ <./images/hiperbolicnt_euclidean_plane.pdf>] [56
 
- <./images/cuasi_geodesic.jpg> <./images/cuasi_geodesic_triangle.pdf>]
-File: images/cuasi_geodesic.jpg Graphic file (type jpg)
-<use images/cuasi_geodesic.jpg>
-Package pdftex.def Info: images/cuasi_geodesic.jpg  used on input line 627.
-(pdftex.def)             Requested size: 73.47318pt x 57.81496pt.
-File: images/cuasi_geodesic_triangle.pdf Graphic file (type pdf)
-<use images/cuasi_geodesic_triangle.pdf>
-Package pdftex.def Info: images/cuasi_geodesic_triangle.pdf  used on input line 627.
-(pdftex.def)             Requested size: 95.70486pt x 96.39143pt.
+]
 
-Overfull \vbox (5.9789pt too high) detected at line 627
- []
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 781.
 
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 781.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 781.
+
+<images/hyperbolic_plane.png, id=915, 803.0pt x 401.5pt>
+File: images/hyperbolic_plane.png Graphic file (type png)
+<use images/hyperbolic_plane.png>
+Package pdftex.def Info: images/hyperbolic_plane.png  used on input line 793.
+(pdftex.def)             Requested size: 321.1943pt x 160.59715pt.
 [57
 
-]
-File: images/cuasi_geodesic.jpg Graphic file (type jpg)
-<use images/cuasi_geodesic.jpg>
-Package pdftex.def Info: images/cuasi_geodesic.jpg  used on input line 627.
-(pdftex.def)             Requested size: 73.47318pt x 57.81496pt.
-File: images/cuasi_geodesic_triangle.pdf Graphic file (type pdf)
-<use images/cuasi_geodesic_triangle.pdf>
-Package pdftex.def Info: images/cuasi_geodesic_triangle.pdf  used on input line 627.
-(pdftex.def)             Requested size: 95.70486pt x 96.39143pt.
-
-Overfull \vbox (5.9789pt too high) detected at line 627
- []
-
-[58
-
-]
-File: images/cuasi_geodesic.jpg Graphic file (type jpg)
-<use images/cuasi_geodesic.jpg>
-Package pdftex.def Info: images/cuasi_geodesic.jpg  used on input line 627.
-(pdftex.def)             Requested size: 73.47318pt x 57.81496pt.
-File: images/cuasi_geodesic_triangle.pdf Graphic file (type pdf)
-<use images/cuasi_geodesic_triangle.pdf>
-Package pdftex.def Info: images/cuasi_geodesic_triangle.pdf  used on input line 627.
-(pdftex.def)             Requested size: 95.70486pt x 96.39143pt.
-
-Overfull \vbox (5.9789pt too high) detected at line 627
- []
-
-[59
-
-]
-File: images/cuasi_geodesic.jpg Graphic file (type jpg)
-<use images/cuasi_geodesic.jpg>
-Package pdftex.def Info: images/cuasi_geodesic.jpg  used on input line 627.
-(pdftex.def)             Requested size: 73.47318pt x 57.81496pt.
-File: images/cuasi_geodesic_triangle.pdf Graphic file (type pdf)
-<use images/cuasi_geodesic_triangle.pdf>
-Package pdftex.def Info: images/cuasi_geodesic_triangle.pdf  used on input line 627.
-(pdftex.def)             Requested size: 95.70486pt x 96.39143pt.
-
-Overfull \vbox (5.9789pt too high) detected at line 627
- []
-
-[60
-
-]
-<images/delta_slim_qg.pdf, id=728, 173.04951pt x 174.85927pt>
-File: images/delta_slim_qg.pdf Graphic file (type pdf)
-<use images/delta_slim_qg.pdf>
-Package pdftex.def Info: images/delta_slim_qg.pdf  used on input line 636.
-(pdftex.def)             Requested size: 190.35503pt x 192.34576pt.
-
-Overfull \vbox (3.91747pt too high) detected at line 636
- []
-
-[61
-
- <./images/delta_slim_qg.pdf>] [62
-
-] [63
+ <./images/hyperbolic_plane.png>]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 803.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 803.
+ [58
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 660.
+(mdframed)              on input line 826.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 660.
- [64
-
-]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 660.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 660.
- [65
-
-]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 666.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 666.
- [66
-
-]
-<images/approx_geo_cuasi.pdf, id=814, 119.63094pt x 120.48915pt>
-File: images/approx_geo_cuasi.pdf Graphic file (type pdf)
-<use images/approx_geo_cuasi.pdf>
-Package pdftex.def Info: images/approx_geo_cuasi.pdf  used on input line 675.
-(pdftex.def)             Requested size: 143.55638pt x 144.58624pt.
- [67
-
- <./images/approx_geo_cuasi.pdf>]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 687.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 687.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 687.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 687.
- [68
-
-]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 687.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 687.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 687.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 687.
- [69
-
-] [70
-
-]
-<images/disc_tiling.png, id=886, 1927.2pt x 1924.18875pt>
-File: images/disc_tiling.png Graphic file (type png)
-<use images/disc_tiling.png>
-Package pdftex.def Info: images/disc_tiling.png  used on input line 706.
-(pdftex.def)             Requested size: 192.7313pt x 192.43015pt.
- [71
-
- <./images/disc_tiling.png>]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 714.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 714.
- [72
-
-]
-<images/Cayley_Graphs.png, id=908, 1201.48875pt x 538.01pt>
-File: images/Cayley_Graphs.png Graphic file (type png)
-<use images/Cayley_Graphs.png>
-Package pdftex.def Info: images/Cayley_Graphs.png  used on input line 735.
-(pdftex.def)             Requested size: 276.33661pt x 123.73969pt.
- [73
-
- <./images/Cayley_Graphs.png>]
-File: images/Cayley_Graphs.png Graphic file (type png)
-<use images/Cayley_Graphs.png>
-Package pdftex.def Info: images/Cayley_Graphs.png  used on input line 735.
-(pdftex.def)             Requested size: 276.33661pt x 123.73969pt.
- [74
-
-]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 741.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 741.
- [75
-
-]
-Underfull \hbox (badness 2573) in paragraph at lines 755--755
-[]|$[] []$ \OT1/cmss/m/n/10.95 tie-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 755--755
-[]|\OT1/cmss/m/n/10.95 Cuasi-isom^^Setri-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 755--755
-[]|\OT1/cmss/m/n/10.95 Cuasi-isom^^Setri-
- []
-
-[76
-
-]
-Underfull \hbox (badness 2573) in paragraph at lines 755--755
-[]|$[] []$ \OT1/cmss/m/n/10.95 tie-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 755--755
-[]|\OT1/cmss/m/n/10.95 Cuasi-isom^^Setri-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 755--755
-[]|\OT1/cmss/m/n/10.95 Cuasi-isom^^Setri-
- []
-
-[77
-
-]
-Underfull \hbox (badness 2573) in paragraph at lines 755--755
-[]|$[] []$ \OT1/cmss/m/n/10.95 tie-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 755--755
-[]|\OT1/cmss/m/n/10.95 Cuasi-isom^^Setri-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 755--755
-[]|\OT1/cmss/m/n/10.95 Cuasi-isom^^Setri-
- []
-
-[78
-
-] [79
-
-] [80
-
-]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 776.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 776.
- [81
-
-]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 785.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 785.
- [82
-
-]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 785.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 785.
- [83
-
-]
-<images/no_soluble_word_problem.png, id=1011, 918.43124pt x 531.9875pt>
-File: images/no_soluble_word_problem.png Graphic file (type png)
-<use images/no_soluble_word_problem.png>
-Package pdftex.def Info: images/no_soluble_word_problem.png  used on input line 801.
-(pdftex.def)             Requested size: 321.45575pt x 186.19841pt.
- [84
-
- <./images/no_soluble_word_problem.png>]
-File: images/no_soluble_word_problem.png Graphic file (type png)
-<use images/no_soluble_word_problem.png>
-Package pdftex.def Info: images/no_soluble_word_problem.png  used on input line 801.
-(pdftex.def)             Requested size: 321.45575pt x 186.19841pt.
- [85
-
-]
-File: images/no_soluble_word_problem.png Graphic file (type png)
-<use images/no_soluble_word_problem.png>
-Package pdftex.def Info: images/no_soluble_word_problem.png  used on input line 801.
-(pdftex.def)             Requested size: 321.45575pt x 186.19841pt.
- [86
-
-] [87
-
-] [88
-
-] [89
-
-] [90
+ mdframed uses option nobreak mdframed on input line 826.
+ [59
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
@@ -1912,139 +1575,441 @@ Package mdframed Info: mdframed detected package amsthm
 (mdframed)              on input line 836.
 Package mdframed Info: mdframed inside a box 
  mdframed uses option nobreak mdframed on input line 836.
+ [60
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 846.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 846.
+ [61
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 855.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 855.
+ [62
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 865.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 865.
+ [63
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 888.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 888.
+
+Overfull \vbox (18.8941pt too high) detected at line 888
+ []
+
+[64
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 909.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 909.
+
+Overfull \vbox (17.87482pt too high) detected at line 909
+ []
+
+[65
+
+]
+<images/hyperbolic_plane_geo_triangle.png, id=1056, 1224.575pt x 693.59125pt>
+File: images/hyperbolic_plane_geo_triangle.png Graphic file (type png)
+<use images/hyperbolic_plane_geo_triangle.png>
+Package pdftex.def Info: images/hyperbolic_plane_geo_triangle.png  used on input line 918.
+(pdftex.def)             Requested size: 306.143pt x 173.39738pt.
+ [66
+
+ <./images/hyperbolic_plane_geo_triangle.png>] [67
+
+] [68
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 966.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 966.
+ [69
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 966.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 966.
+ [70
+
+] [71
+
+] [72
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1002.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1002.
+
+Overfull \vbox (4.52904pt too high) detected at line 1002
+ []
+
+[73
+
+]
+<images/delta_slim_qg.pdf, id=1129, 173.04951pt x 174.85927pt>
+File: images/delta_slim_qg.pdf Graphic file (type pdf)
+<use images/delta_slim_qg.pdf>
+Package pdftex.def Info: images/delta_slim_qg.pdf  used on input line 1011.
+(pdftex.def)             Requested size: 190.35503pt x 192.34576pt.
+
+Overfull \vbox (3.91747pt too high) detected at line 1011
+ []
+
+[74
+
+ <./images/delta_slim_qg.pdf>] [75
+
+] [76
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1026.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1026.
+ [77
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1037.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1037.
+ [78
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1047.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1047.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1047.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1047.
+ [79
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1058.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1058.
+ [80
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1073.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1073.
+ [81
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1073.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1073.
+ [82
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1073.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1073.
+ [83
+
+]
+<images/approx_geo_cuasi.pdf, id=1293, 119.63094pt x 120.48915pt>
+File: images/approx_geo_cuasi.pdf Graphic file (type pdf)
+<use images/approx_geo_cuasi.pdf>
+Package pdftex.def Info: images/approx_geo_cuasi.pdf  used on input line 1086.
+(pdftex.def)             Requested size: 143.55638pt x 144.58624pt.
+
+Overfull \vbox (7.1504pt too high) detected at line 1086
+ []
+
+[84
+
+ <./images/approx_geo_cuasi.pdf>]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1097.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1097.
+ [85
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1106.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1106.
+ [86
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1112.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1112.
+ [87
+
+] [88
+
+]
+<images/disc_tiling.png, id=1359, 1927.2pt x 1924.18875pt>
+File: images/disc_tiling.png Graphic file (type png)
+<use images/disc_tiling.png>
+Package pdftex.def Info: images/disc_tiling.png  used on input line 1131.
+(pdftex.def)             Requested size: 192.7313pt x 192.43015pt.
+ [89
+
+ <./images/disc_tiling.png>]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1139.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1139.
+ [90
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1148.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1148.
  [91
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 856.
+(mdframed)              on input line 1158.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 856.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 856.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 856.
+ mdframed uses option nobreak mdframed on input line 1158.
  [92
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 856.
+(mdframed)              on input line 1168.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 856.
+ mdframed uses option nobreak mdframed on input line 1168.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 856.
+(mdframed)              on input line 1168.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 856.
+ mdframed uses option nobreak mdframed on input line 1168.
  [93
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 862.
+(mdframed)              on input line 1174.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 862.
+ mdframed uses option nobreak mdframed on input line 1174.
  [94
 
-]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 878.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 878.
- [95
+] [95
+
+] [96
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 878.
+(mdframed)              on input line 1195.
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 878.
- [96
-
-]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 878.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 878.
+ mdframed uses option nobreak mdframed on input line 1195.
  [97
 
 ]
-Overfull \vbox (39.99394pt too high) detected at line 918
- []
-
-[98
-
-]
-Overfull \vbox (39.99394pt too high) detected at line 918
- []
-
-[99
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1210.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1210.
+ [98
 
 ]
-Overfull \vbox (39.99394pt too high) detected at line 918
- []
-
-[100
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1218.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1218.
+ [99
 
 ]
-Overfull \vbox (39.99394pt too high) detected at line 918
- []
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1228.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1228.
+ [100
 
-[101
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1228.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1228.
+ [101
 
-] [102
+]
+<images/no_soluble_word_problem.png, id=1542, 918.43124pt x 531.9875pt>
+File: images/no_soluble_word_problem.png Graphic file (type png)
+<use images/no_soluble_word_problem.png>
+Package pdftex.def Info: images/no_soluble_word_problem.png  used on input line 1244.
+(pdftex.def)             Requested size: 321.45575pt x 186.19841pt.
+ [102
 
-] [103
+ <./images/no_soluble_word_problem.png>]
+File: images/no_soluble_word_problem.png Graphic file (type png)
+<use images/no_soluble_word_problem.png>
+Package pdftex.def Info: images/no_soluble_word_problem.png  used on input line 1244.
+(pdftex.def)             Requested size: 321.45575pt x 186.19841pt.
+ [103
 
-] [104
+]
+File: images/no_soluble_word_problem.png Graphic file (type png)
+<use images/no_soluble_word_problem.png>
+Package pdftex.def Info: images/no_soluble_word_problem.png  used on input line 1244.
+(pdftex.def)             Requested size: 321.45575pt x 186.19841pt.
+ [104
 
-] [105
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1255.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1255.
+ [105
 
-] (./presentacion_2.bbl) [106
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1275.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1275.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1275.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1275.
+ [106
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1275.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1275.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1275.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1275.
+ [107
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1295.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1295.
+LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 1295.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmss.fd
+File: ts1cmss.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+) [108
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [109
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1317.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1317.
+ [110
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1329.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1329.
+ [111
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1329.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1329.
+ [112
+
+] [113
+
+]
+No file presentacion.bbl.
+[114
 
 ]
 \tf@nav=\write6
-\openout6 = `presentacion_2.nav'.
+\openout6 = `presentacion.nav'.
 
 \tf@toc=\write7
-\openout7 = `presentacion_2.toc'.
+\openout7 = `presentacion.toc'.
 
 \tf@snm=\write8
-\openout8 = `presentacion_2.snm'.
+\openout8 = `presentacion.snm'.
 
- (./presentacion_2.aux
+ (./presentacion.aux
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `presentacion_2.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `presentacion_2.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  EE76F2C3BCD42481E0F952295FC6BE5E;1359.
+Package rerunfilecheck Info: File `presentacion.out' has not changed.
+(rerunfilecheck)             Checksum: 1CCF7FCF227AA1065E157E4200C30B9C;2419.
  ) 
 Here is how much of TeX's memory you used:
- 31182 strings out of 476041
- 620718 string characters out of 5793174
- 1876388 words of memory out of 6000000
- 50738 multiletter control sequences out of 15000+600000
- 537300 words of font info for 128 fonts, out of 8000000 for 9000
+ 31467 strings out of 476041
+ 629964 string characters out of 5793174
+ 1877388 words of memory out of 6000000
+ 51021 multiletter control sequences out of 15000+600000
+ 538365 words of font info for 131 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 128i,24n,122p,530b,1204s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm8.600pk> </home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm17.600pk> </home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.720pk> </home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm10.657pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentacion_2.pdf (106 pages, 2285432 bytes).
+ 128i,25n,122p,519b,954s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm9.600pk> </home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm8.600pk> </home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm10.657pk> </home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm17.600pk> </home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm17.864pk> </home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk> </home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.720pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb>
+Output written on presentacion.pdf (114 pages, 2451055 bytes).
 PDF statistics:
- 1392 PDF objects out of 1440 (max. 8388607)
- 916 compressed objects within 10 object streams
- 219 named destinations out of 1000 (max. 500000)
- 1540 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1907 PDF objects out of 2073 (max. 8388607)
+ 1203 compressed objects within 13 object streams
+ 241 named destinations out of 1000 (max. 500000)
+ 2980 words of extra memory for PDF output out of 10000 (max. 10000000)
 
