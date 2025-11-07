@@ -1,0 +1,134 @@
+\documentclass[../../introduccion.tex]{subfiles}
+
+\begin{document}
+
+    \chapter*{Ejercicios}
+
+    \section{Ejercicios}
+
+    Ejercicios de cada una de las secciones.
+
+    \subsection{Series de Potencias}
+
+    \begin{excer}
+        Pruebe que si $z_1,z_2\in\mathbb{C}$, entonces:
+        \begin{equation*}
+            e^{z_1+z_2}=e^{ z_1}e^{ z_1}
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        En efecto, veamos que:
+        \begin{equation*}
+            \begin{split}
+                e^{ x+iz_2}&=\sum_{ n=0}^\infty\frac{(z_1+z_2)^n}{n!}\\
+                &=\sum_{ n=0}^\infty\frac{1}{n!}\sum_{ k=0}^n\binom{n}{k}z_1^kz_2^{ n-k}\\
+                &=\sum_{ n=0}^\infty\sum_{ k=0}^n\frac{1}{n!}\cdot\frac{n!}{k!(n-k)!}z_1^kz_2^{ n-k}\\
+                &=\sum_{ n=0}^\infty\sum_{ k=0}^n\frac{z_1^k}{k!}\cdot\frac{z_2^{n-k}}{(n-k)!}\\
+            \end{split}
+        \end{equation*}
+        donde, recordemos que:
+        \begin{equation*}
+            e^z_1=\sum_{ n=0}^\infty\frac{z_1^n}{n!}\quad\textup{y}\quad e^ {z_2}=\sum_{ n=0}^\infty\frac{z_2^n}{n!}
+        \end{equation*}
+        por tanto, de la Proposición \ref{MultSumSeriesPot} se sigue que:
+        \begin{equation*}
+            e^{ z_1+z_2}=e^z_1e^{ z_2}
+        \end{equation*}
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que
+        \begin{equation*}
+            e^z=e^x(\cos y+i\sin y)
+        \end{equation*}
+        donde $z=x+iy$.
+    \end{excer}
+
+    \begin{proof}
+        Sea $z\in\mathbb{C}$. Se tiene que:
+        \begin{equation*}
+            \begin{split}
+                e^z&=e^{x}e^{iy}
+            \end{split}
+        \end{equation*}
+        Veamos que:
+        \begin{equation*}
+            \begin{split}
+                e^{ iy}&=\sum_{n=0}^\infty\frac{(iy)^n}{n!}\\
+                &=\sum_{n=0}^\infty\frac{(iy)^{2k}}{(2k)!}+\sum_{k=0}^\infty\frac{(iy)^{2k+1}}{(2k+1)!}\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \begin{excer}
+        \label{productoSucesionesLimSupLim}
+        Pruebe que si $\left\{a_n\right\}_{ n=1}^\infty$ y $\left\{b_n\right\}_{ n=1}^\infty$ son dos sucesiones de números no negativos tales que $0\leq b=\lim_{ n\rightarrow\infty}b_n$ y $a=\limsup_{ n\rightarrow\infty}a_n$, entonces:
+        \begin{equation*}
+            \limsup_{ n\rightarrow\infty}(a_nb_n)=ab
+        \end{equation*}
+    \end{excer}
+
+    \begin{proof}
+        Antes, notemos que al tenerse:
+        \begin{equation*}
+            \limsup_{ n\rightarrow\infty}a_n=a
+        \end{equation*}
+        se tiene que el siguiente límite existe:
+        \begin{equation*}
+            \lim_{ n\rightarrow\infty}\left(\sup_{ k\geq n}a_k \right)
+        \end{equation*}
+        por tanto, la sucesión $\left\{\sup_{ k\geq n}a_k\right\}_{ n=1}^\infty$ es acotada. Así que, para cada $n\in\mathbb{N}$, se tiene que el supremo:
+        \begin{equation*}
+            \sup_{ k\geq n}a_k
+        \end{equation*}
+        existe. Veamos ahora que:
+        \begin{equation*}
+            \begin{split}
+                \limsup_{ n\rightarrow\infty}(a_nb_n)&=\lim_{ n\rightarrow\infty}\left(\sup_{ k\geq n}a_kb_k \right)\\
+                &=\lim_{ n\rightarrow\infty}\left(\left(\sup_{ k\geq n}a_k\right)\left(\sup_{ k\geq n}b_k\right) \right)\\
+            \end{split}
+        \end{equation*}
+        donde el supremo se puede separar ya que ambos supremos existen y ser las dos sucesiones acotadas y de números no negativos. Por ende:
+        \begin{equation*}
+            \begin{split}
+                \limsup_{ n\rightarrow\infty}(a_nb_n)&=\lim_{ n\rightarrow\infty}\left(\left(\sup_{ k\geq n}a_k\right)\left(\sup_{ k\geq n}b_k\right) \right)\\
+                &=\lim_{ n\rightarrow\infty}\left(\sup_{ k\geq n} a_k\right)\cdot\lim_{ n\rightarrow\infty}\left(\sup_{ k\geq n}b_k\right)\\
+                &=\left(\limsup_{ n\rightarrow\infty}a_n\right)\cdot\left(\limsup_{ n\rightarrow\infty}b_n\right)\\
+                &=\left(\limsup_{ n\rightarrow\infty}a_n\right)\cdot\left(\lim_{ n\rightarrow\infty}b_n\right)\\
+                &=ab\\
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \begin{excer}
+        \label{normalDerivadaComplejaDerivadaCompos}
+        Sea $\cf{f}{G}{\bbm{C}}$ analítica en $G$ y $\cf{h}{[0,1]}{G}$ función real diferenciable. Entonces la función $\cf{f\circ h}{[0,1]}{\bbm{C}}$ cumple que:
+        \begin{equation*}
+            \lim_{ t\rightarrow s}\frac{f\circ h(s)-f\circ h(t)}{s-t}=f'(h(s))\cdot h'(s)
+        \end{equation*}
+        para todo $s\in[0,1]$.
+    \end{excer}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{excer}
+        Pruebe que la función $u(x,y)=\log(x^2+y^2)^{\frac{1}{2}}$ es armónica en $G=\bbm{C}\setminus\left\{0\right\}$.
+    \end{excer}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \subsection{Funciones Analíticas}
+
+    \chapter*{Bibliografía}
+
+    \begin{itemize}
+        \item A. Markusevich, \textit{Teoría de las funciones analíticas}, Ed. Mir Moscu.
+        \item J. Conway, \textit{Complex Analysis}, Ed. Mir Moscu.
+    \end{itemize}
+
+\end{document}

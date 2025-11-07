@@ -2,8 +2,34 @@ PWD /home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Cursos ESF
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Variable Compleja I/Introduccion/introduccion.tex
-OUTPUT introduccion.log
+INPUT /home/cristoalvarado/Documents/Conocimiento/Knowledge/Matematicas/Cursos ESFM/7mo Semestre/Variable Compleja I/Introduccion/Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.tex
+OUTPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.log
+INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+INPUT Chapters/Chapter 3. Analytic Functions/../../introduccion.tex
+INPUT Chapters/Chapter 3. Analytic Functions/../../introduccion.tex
+INPUT Chapters/Chapter 3. Analytic Functions/../../introduccion.tex
+INPUT Chapters/Chapter 3. Analytic Functions/../../introduccion.tex
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
@@ -995,16 +1021,6 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/import/import.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
@@ -1053,10 +1069,10 @@ INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.multipart.code.tex
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multipart.code.tex
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multipart.code.tex
-INPUT ./introduccion.aux
-INPUT introduccion.aux
-INPUT introduccion.aux
-OUTPUT introduccion.aux
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.aux
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.aux
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.aux
+OUTPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.aux
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1077,38 +1093,24 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
-INPUT ./introduccion.out
-INPUT introduccion.out
-INPUT ./introduccion.out
-INPUT introduccion.out
-INPUT ./introduccion.out
-INPUT introduccion.out
-INPUT ./introduccion.out
-INPUT introduccion.out
-OUTPUT introduccion.pdf
-INPUT ./introduccion.out
-INPUT ./introduccion.out
-OUTPUT introduccion.out
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.out
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.out
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.out
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.out
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.out
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.out
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.out
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.out
+OUTPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.pdf
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.out
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.out
+OUTPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.out
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
-INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1440.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
@@ -1120,29 +1122,23 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT ./introduccion.toc
-INPUT introduccion.toc
-INPUT introduccion.toc
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-OUTPUT introduccion.toc
-INPUT ./Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.tex
-INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.tex
-INPUT ./Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.tex
-INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.tex
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1440.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
+INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT /usr/share/texlive/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/bbm-macros/ubbm.fd
@@ -1151,15 +1147,9 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/bbm/bbm12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/bbm/bbm8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/bbm/bbm6.tfm
-INPUT ./Chapters/Excersises/excersies.tex
-INPUT Chapters/Excersises/excersies.tex
-INPUT ./Chapters/Excersises/excersies.tex
-INPUT Chapters/Excersises/excersies.tex
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm
-INPUT introduccion.aux
-INPUT ./introduccion.out
-INPUT ./introduccion.out
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.aux
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.out
+INPUT Chapters/Chapter 3. Analytic Functions/c_3_analytic_functions.out
 INPUT /home/cristoalvarado/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
@@ -1168,7 +1158,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
@@ -1177,5 +1166,4 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb
