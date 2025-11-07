@@ -566,10 +566,12 @@
         \end{equation*}
         existe; el valor de este límite es denotado por $f'(a)$ y es llamado la \tbf{derivada de $f$ en $a$}. Si $f$ es diferenciable en todo punto de $G$, decimos que $f$ es \tbf{diferenciable en $G$}.
 
-        Puede entonces definirse una función $\cf{f'}{G'\subseteq G}{\mathbb{C}}$, donde $G'\subseteq G$ es el conjunto de puntos donde $f$ es diferenciable. En caso de que $f$ sea diferenciable en todo $G$, se sigue que $G'=G$.
-
         Si $f'$ es continua, decimos que $f$ es \tbf{diferenciable continua}. Si $f'$ es diferenciable, decimos que $f$ es \tbf{dos veces diferenciable}, continuando, una función $f$ tal que cada derivada sucesiva es diferenciable se dice \tbf{infinitamente diferenciable}.
     \end{mydef}
+
+    \begin{obs}
+        Puede entonces definirse una función $\cf{f'}{G'\subseteq G}{\mathbb{C}}$, donde $G'\subseteq G$ es el conjunto de puntos donde $f$ es diferenciable. En caso de que $f$ sea diferenciable en todo $G$, se sigue que $G'=G$.
+    \end{obs}
 
     \begin{propo}
         Si una función $\cf{f}{G}{\mathbb{C}}$ es diferenciable en $a\in G$, entonces $f$ es continua en $a$.
@@ -644,7 +646,7 @@
     \end{proof}
 
     \begin{mydef}
-        Una función compleja $f$ se dirá \tbf{analítica en $A\subseteq\mathbb{C}$}, si existe $G\subseteq\mathbb{C}$ tal que $f$ es analítica en $G$ y $A\subseteq G$.
+        Una función compleja $f$ se dirá \tbf{analítica en $A\subseteq\mathbb{C}$}, si existe $G\subseteq\mathbb{C}$ abierto tal que $f$ es analítica en $G$ y $A\subseteq G$.
     \end{mydef}
 
     En lo que sigue de este curso, se hará el mayor esfuerzo para ver porqué la teoría de las funciones analíticas es \textit{extremandamente} diferente del cálculo tradicional.
@@ -778,11 +780,13 @@
         Inmediata del teorema anterior.
     \end{proof}
 
-    De forma inmediata se sigue que la función:
-    \begin{equation*}
-        z\mapsto e^z=\sum_{ n=0}^\infty\frac{z^n}{n!}
-    \end{equation*}
-    es analítica en $\bbm{C}$.
+    \begin{exa}
+        Por el Teorema anterior se sigue de forma inmediata se sigue que la función:
+        \begin{equation*}
+            z\mapsto e^z=\sum_{ n=0}^\infty\frac{z^n}{n!}
+        \end{equation*}
+        es analítica en $\bbm{C}$.
+    \end{exa}
 
     \begin{propo}
         Si $G\subseteq\bbm{C}$ es abierto y conexo, y la función $\cf{f}{G}{\bbm{C}}$ es diferenciable con $f'(z)=0$ para todo $z\in G$, entonces $f$ es constante.
@@ -873,8 +877,61 @@
     \end{propo}
 
     \begin{proof}
-        
+        %TODO
     \end{proof}
+
+    %TODO
+
+    \section{Ecuaciones de Cauchy-Riemann}
+
+    Sea $\cf{f}{G}{\bbm{C}}$ una función analítica (con $G\subseteq\bbm{C}$ abierto) y consideremos las funciones $\cf{u,v}{G}{\bbm{R}}$ (en este caso viendo a $G$ como subconjunto de $\bbm{R}^2$) dadas por:
+    \begin{equation*}
+        u(x,y)=\Re f(x+iy)\quad\textup{y}\quad v(x,y)=\Im f(x+iy)
+    \end{equation*}
+    para todo $x+iy\in G$. Al ser $f$ analítica en $G$ se sigue que para todo $z\in G$ el siguiente límite existe:
+    \begin{equation*}
+        f'(z)=\lim_{ h\rightarrow0}\frac{f(z+h)-f(z)}{h}
+    \end{equation*}
+    Evaluemos el límite anterior de dos maneras distintas. Dado que el límite siempre existe, podemos tomar $h\rightarrow0$ de valores reales. En este caso tenemos que si $h\neq0$ y $h\in\bbm{R}$:
+    \begin{equation*}
+        \begin{split}
+            \frac{f(z+h)-f(z)}{h}&=\frac{f(x+iy+h)-f(x+iy)}{h}\\
+            &=\frac{u(x+h,y)-u(x,y)}{h}+i\frac{v(x+h,y)-v(x,y)}{h}\\
+        \end{split}
+    \end{equation*}
+    con $z=x+iy$. Tomando límite cuando $h\rightarrow0$ obtenemos que:
+    \begin{equation*}
+        f'(x+iy)=\frac{\partial u}{\partial x}(x,y)+i\frac{\partial v}{\partial x}(x,y)
+    \end{equation*}
+    De manera análoga pero ahora siendo $h=ir$ con $r\in\bbm{R}$ no cero, obtenemos que:
+    \begin{equation*}
+        f'(x+iy)=-i\frac{\partial u}{\partial y}(x,y)+\frac{\partial v}{\partial y}(x,y)
+    \end{equation*}
+    Por lo que:
+    \begin{equation*}
+        \frac{\partial u}{\partial x}(x,y)+i\frac{\partial v}{\partial x}(x,y)=-i\frac{\partial u}{\partial y}(x,y)+\frac{\partial v}{\partial y}(x,y)
+    \end{equation*}
+    Igualando las partes real e imaginarias obtenemos las \textbf{ecuaciones de Cauchy-Riemann}:
+    \begin{equation}
+        \label{ecuacionesCauchyRiemann}
+        \frac{\partial u}{\partial x}(x,y)=\frac{\partial v}{\partial y}(x,y)\quad\textup{y}\quad\frac{\partial v}{\partial x}(x,y)=-\frac{\partial u}{\partial y}(x,y)
+    \end{equation}
+    para todo $x+iy\in G$.
+
+    \begin{obs}[\textbf{$u$ es Función Harmónica}]
+        Si diferenciamos parcialmente dos veces respecto a la variable $x$ y respecto a la variable $y$, respectivamente, las ecuaciones en (\ref{ecuacionesCauchyRiemann}) obtenemos:
+        \begin{equation*}
+            \frac{\partial^2 u}{\partial^2 x}=\frac{\partial^2v}{\partial x\partial y}\quad\textup{y}\quad\frac{\partial^2 u}{\partial^2 y}=-\frac{\partial^2v}{\partial y\partial x}
+        \end{equation*}
+        (siempre que $u$ y $v$ tengan segundas derivadas parciales). Si son continuas, podemos intercambiar el orden de diferenciación parcial obtenemos sumando ambas ecuaciones que:
+        \begin{equation}
+            \label{uEsArmonicaCauchyRiemann}
+            \frac{\partial^2 u}{\partial^2 x}+\frac{\partial^2 u}{\partial^2 y}=0
+        \end{equation}
+        Toda función $u$ que satisfaga la ecuación (\ref{uEsArmonicaCauchyRiemann}) es llamada \textbf{Harmónica}. Más adelante se estudiarán este tipo de funciones con detalle.
+    \end{obs}
+
+    \newpage
 
     \section{Ejercicios}
 

@@ -1,0 +1,307 @@
+\documentclass[12pt]{report}
+
+% --- Idioma y codificación ---
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+% --- Matemáticas ---
+\usepackage{amsmath, amssymb, amsthm}
+
+% --- Gráficos y figuras ---
+\usepackage{graphics, graphicx, subfigure}
+\usepackage{tikz, pgffor, ifthen}
+
+% --- Tablas y estructuras ---
+\usepackage{array, multicol, longtable, booktabs}
+
+% --- Listas y enumeraciones ---
+\usepackage{enumerate, enumitem}
+
+% --- Márgenes y geometría ---
+\usepackage[a4paper, margin=1.5cm]{geometry}
+
+% --- Diseño y marco ---
+\usepackage[framemethod=TikZ]{mdframed}
+
+% --- Texto y contenido de prueba ---
+\usepackage{lipsum}
+
+\usepackage{subfiles}
+
+% --- Hipervínculos ---
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{bbm}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=cyan
+}
+
+% --- Código fuente (listings) ---
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA}
+\definecolor{listing-keyword-3}{HTML}{9137CB}
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language=Python,
+    alsolanguage=C++,
+    numbers=left,
+    xleftmargin=2.7em,
+    framexleftmargin=2.5em,
+    backgroundcolor=\color{gray!15},
+    basicstyle=\color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines=true,
+    frameshape={RYR}{Y}{Y}{RYR},
+    rulecolor=\color{black},
+    tabsize=2,
+    numberstyle=\color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip=1.0em,
+    belowskip=0.1em,
+    abovecaptionskip=0em,
+    belowcaptionskip=1.0em,
+    keywordstyle={\color{listing-keyword}\bfseries},
+    keywordstyle={[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle={[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive=true,
+    identifierstyle=\color{listing-identifier},
+    commentstyle=\color{listing-comment},
+    stringstyle=\color{listing-string},
+    showstringspaces=false,
+    label=lst:bar,
+    captionpos=b
+}
+\lstset{style=myStyle}
+
+% --- Marca de agua ---
+\usepackage{eso-pic}
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.center){
+            \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{watermark-1.png}
+        };
+    \end{tikzpicture}
+}
+
+% --- Redefiniciones de encabezados de capítulo y sección ---
+\makeatletter
+% Capítulo (estilo original conservado)
+\def\@makechapterhead#1{%
+  {\parindent \z@ \raggedright
+    \reset@font
+    \hrule
+    \vspace*{10\p@}%
+    \par
+    \center \LARGE \scshape \@chapapp{} \huge \thechapter
+    \vspace*{10\p@}%
+    \par\nobreak
+    \vspace*{10\p@}%
+    \par
+    \vspace*{1\p@}%
+    \hrule
+    \vspace*{30\p@}  % Espaciado reducido
+    \centering\Huge \scshape #1\par\nobreak  % Centrado y scshape
+    \vskip 30\p@  % Espaciado reducido
+  }}
+
+
+% Sección
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+  {-2.5ex \@plus -0.5ex \@minus -0.1ex}%  % Espaciado superior reducido
+  {1ex \@plus 0.1ex}%                     % Espaciado inferior reducido
+  {\normalfont\Large\sectionstyle}}
+\newcommand{\sectionstyle}[1]{%
+  \par\noindent\hrule
+  \vspace{0.2ex}%   % Espaciado entre líneas reducido
+  {\scshape{#1}\par}%  % Centrado perfecto y scshape
+  \vspace{0.4ex}%   % Espaciado entre líneas reducido
+  \hrule
+}
+
+% Subsección
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+  {-2ex \@plus -0.4ex \@minus -0.1ex}%  % Espaciado superior reducido
+  {0.8ex \@plus 0.1ex}%                 % Espaciado inferior reducido
+  {\normalfont\large\subsectionstyle}}
+\newcommand{\subsectionstyle}[1]{%
+  \par\noindent\hrule
+  \vspace{-0.4ex}%  % Espaciado entre líneas reducido
+  {\scshape #1\par}%  % Centrado perfecto y scshape
+  \vspace{0.4ex}%  % Espaciado entre líneas reducido
+  \hrule
+}
+
+% Subsubsección
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+  {-1.5ex \@plus -0.3ex \@minus -0.1ex}%  % Espaciado superior reducido
+  {0.5ex \@plus 0.1ex}%                   % Espaciado inferior reducido
+  {\normalfont\normalsize\subsubsectionstyle}}
+\newcommand{\subsubsectionstyle}[1]{%
+  \par\noindent\hrule
+  \vspace{0.4ex}%   % Espaciado entre líneas reducido
+  {\scshape #1\par}%  % Centrado perfecto y scshape
+  \vspace{0.4ex}%   % Espaciado entre líneas reducido
+  \hrule
+}
+\makeatother
+
+% --- Entornos personalizados ---
+% (aquí puedes definir tus theorems, definiciones, etc.)
+
+
+% --- Entornos personalizados ---
+\newtheoremstyle{largebreak}{}{ }{\normalfont}{}{\bfseries}{}{\newline}{}
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=gray!60!red!30]{exa}{Example}[section]
+\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=gray!50!blue!30]{obs}{Observation}[section]
+\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=green!50!blue!30]{preg}{Question}[section]
+\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=yellow!40]{idea}{Idea}[section]
+\newmdtheoremenv[rightline=false,leftline=false]{theor}{Theorm}[section]
+\newmdtheoremenv[rightline=false,leftline=false]{propo}{Proposition}[section]
+\newmdtheoremenv[rightline=false,leftline=false]{cor}{Corollary}[section]
+\newmdtheoremenv[rightline=false,leftline=false]{lema}{Lemma}[section]
+\newmdtheoremenv[roundcorner=5pt,backgroundcolor=gray!30,hidealllines=true]{mydef}{Definition}[section]
+\newmdtheoremenv[roundcorner=5pt]{excer}{Excercise}[section]
+
+% --- Comandos auxiliares ---
+\def\proof{\paragraph{Proof:\\}}
+\def\endproof{\hfill$\blacksquare$}
+\def\sol{\paragraph{Solution:\\}}
+\def\endsol{\hfill$\square$}
+
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand\bbm[1]{\ensuremath{\mathbbm{#1}}}
+
+\newcounter{figcount}
+\setcounter{figcount}{1}
+
+\renewcommand{\lstlistingname}{Code}
+\renewcommand{\lstlistlistingname}{{\lstlistingname} List}
+
+% --- Comienzo del documento ---
+\begin{document}
+    \setlength{\parskip}{5pt}
+    \setlength{\parindent}{12pt}
+    \title{Machine Learning with PyTorch and Scikit-Learn\\
+    
+    From Coursera}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents
+
+    \lstlistoflistings
+
+    \newpage
+
+    \subfile{Module 1/module1.tex}
+
+    \subfile{Module 2/module2.tex}
+
+    \subfile{Module 3/module3.tex}
+
+    \appendix
+    
+    \chapter{Using Python for Machine Learning}
+
+    \section{Basic Configuration}
+
+    For machine learning tasks, we will mostly refer to the \textit{Scikit-Learn} library, which is one of the most popular and accessible open-source machine learning libraries for python.
+
+    When we focus on a subfield of machine learning called: \textbf{deep learning}, we wiell use the latest version of the \textit{PyTorch library}, which specializes in the training of the so called deep \textbf{netural network models}.
+
+    \begin{mydef}[\textbf{Scikit-learn}]
+        \textbf{Scikit-learn} is a \textit{classical machine learning library for Python. It is built on top of NumPy and SciPy and provides a clean, uniform, and simple API for a wide variety of traditional ML algorithms}.
+
+        \textbf{PyTorch} is an \textit{open-source deep learning framework developed primarily by Facebook's AI Research lab (FAIR). It provides the foundational building blocks for building and training neural networks, with a strong focus on flexibility and speed}.
+    \end{mydef}
+
+    We'll use version 3.9 of Python. To check the version of python we use the following code:
+    
+    \begin{lstlisting}[caption={Check Python Version},label=code:chec_python_version, language = python]
+python --version
+    \end{lstlisting}
+
+    \begin{obs}[\textbf{Use of pip}]
+        To install aditional packages used thorught the course, we can install them via the \lstinline|pip| program.
+    \end{obs}
+
+    \begin{mydef}[\textbf{Pip}]
+        \lstinline|pip| is the \textit{standard package installer for Python}. It is a \textit{command-line utility that allows users to install, manage, and uninstall Python packages and libraries that are not part of the Python standard library}.
+    \end{mydef}
+
+    After installing python, it's possible to execute the following comand in order to install some package:
+
+    \begin{lstlisting}[caption={\lstinline|pip| Package Installation.},label=code:python_package_installation]
+pip install SomePackage
+    \end{lstlisting}
+
+    \section{Anaconda Python Distribution and Package Manager}
+
+    \begin{idea}
+        A recommended open-source package management system for installing python for scientific computing contexts is conda by Continuum Analytics.
+    \end{idea}
+
+    \begin{mydef}[\textbf{Conda}]
+        \textbf{Conda} is a \textit{free and licensed under a permissive open-source licence}. Its goal is to help with the \textit{installation and version management of Python packages for data science, math and engineering across different operating systems}.
+    \end{mydef}
+
+    Conda comes in different flavours, like a Linux installation. Some of them are \textbf{Anaconda}, \textbf{Miniconda} and \textbf{Minforge}.
+
+    \begin{itemize}
+        \item \textbf{Anaconda} comes with many scientific computing packages pre-installed. The Anaconda installer can be downloaded \href{https://docs.anaconda.com/anaconda/install/,}{here} and an Anaconda quick start guide is available \href{https://docs.anaconda.com/anaconda/user-guide/getting-started/}{here}.
+
+        \item \textbf{Miniconda} is a leaner alternative to Anaconda (\href{https://docs.conda.io/en/latest/miniconda.html}{here}). Essentially, it is similar to Anaconda but without any packages pre-installed, which many people (including the authors) prefer.
+
+        \item \textbf{Miniforge} is similar to Miniconda but community-maintained and uses a different package repository (conda-forge) from Miniconda and Anaconda. We found that Miniforge is a great alternative to Miniconda. Download and installation instructions can be found in the GitHub repository \href{https://github.com/conda-forge/miniforge}{here}.
+    \end{itemize}
+
+    After successfully installing conda through either Anaconda, Miniconda, or Miniforge, we can install and update, respectively, new Python packages using the following command:
+
+    \begin{lstlisting}[caption={Conda Package Installation.},label=code:conda_package_installation]
+conda install SomePackage
+conda update SomePackage
+    \end{lstlisting}
+
+    Packages that are not available through the official conda channel might be available via the community-supported conda-forge project (\href{https://conda-forge.org}{conda-forge}), which can be specified via the --channel conda-forge flag. For example:
+
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+conda install SomePackage --channel conda-forge
+    \end{lstlisting}
+
+    Packages not available throught the default conda channel or conda-forge can be installed via pip as explainded earlier in Code \ref{code:python_package_installation}.
+
+    \section{Packages for Scientific Computing, Data Science, and Machine Learning}
+
+    We will use mainly NumPy's arrays and sometimes Pandas (highler level data manipulation tools). Also the Matplotlib library will be useful to visualize quantitative data. The version of the packages to install are the following:
+    \begin{itemize}
+        \item NumPy 1.21.2
+        \item SciPy 1.7.0
+        \item Scikit-learn 1.0
+        \item Matplotlib 3.4.3
+        \item Pandas 1.3.2
+    \end{itemize}
+    After installing these packages, you can double-check the installed version by importing the package in Python and accessing its \lstinline|__version__| attribute:
+    \begin{lstlisting}[caption={Check Version of Packages},label=code:version_package_verification]
+> Use `numpy.__version__` to check the installed version.
+'1.21.2'
+    \end{lstlisting}
+
+\end{document}

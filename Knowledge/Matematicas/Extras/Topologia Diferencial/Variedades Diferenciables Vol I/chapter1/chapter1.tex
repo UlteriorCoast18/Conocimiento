@@ -1,0 +1,62 @@
+\documentclass[../variedades_diferenciables_I.tex]{subfiles}
+
+\begin{document}
+
+    \chapter{Álgebra Exterior sobre un espacio vectorial de dimensión finita}
+
+    \setcounter{section}{1}
+
+    \begin{excer}[Ejercicio 19]
+        Sea $E$ un espacio vectorial de dimensión finita sobre un campo $\bbm{K}$ provisto de una base $\left\{\vec{e_1},\dots\vec{e_n} \right\}$.
+
+        Para todo entero no negativo $p\in\bbm{Z}_{\geq0}$ se considera un espacio vectorial $E^p$ provisto de una base $\left\{\vec{e}_{\alpha_1,\dots\alpha_p}\right\}_{\alpha_1\cdots\alpha_p}$ en correspondencia biyectiva con el conjunto de todas las $n^p$ sucesiones finitas $\left(\alpha_1,\dots,\alpha_p\right)$ de elementos en $\natint{1,n}$.
+
+        Es claro que $E^0\cong\bbm{K}$ y que $E^1\cong E$. Se define el espacio vectorial de dimensión finita:
+        \begin{equation*}
+            \otimes E=\bigoplus_{ p\geq0}E^p
+        \end{equation*}
+
+        \begin{enumerate}[label = \textit{(\alph*)}]
+            \item Muestre que $\otimes E$ es un álgebra asociativa con uno, mediante la tabla de multiplicación:
+            \begin{equation*}
+                \vec{e}_{\alpha_1,\dots,\alpha_p}\otimes \vec{e}_{\beta_1,\dots,\beta_q}=\vec{e}_{\alpha_1,\dots,\alpha_p,\beta_1,\dots,\beta_q}
+            \end{equation*}
+            En particular, $\vec{e}_{\alpha_1,\dots,\alpha_p}=\vec{e}_{\alpha_1}\otimes\cdots\otimes\vec{e}_{\alpha_p}$.
+            \item De aquí en adelante, álgebra querrá decir álgera asociativa con uno y los homomorifmos $\phi$ de álgebras deberán satisfacer que $\phi(1)=1$.
+            
+            Sea $E$ un espacio vectorial, $\mathcal{A}$ un álgebra, $i$ una aplicación lineal de $E$ en $\mathcal{A}$. La tripleta $\left(E,\mathcal{A},i\right)$ se llama álgebra tensorial sobre $E$ si satisface la siguiente propiedad universal:
+
+            \begin{mydef}[\textbf{Propiedad Universal}]
+                Para toda aplicación lineal $\cf{\lambda}{E}{\mathcal{B}}$ de $E$ en un álgebra $\mathcal{B}$ existe un único homomorfismo de álgebras $\cf{\lambda^*}{\mathcal{A}}{\mathcal{B}}$ tal que:
+                \begin{equation*}
+                    \lambda=\lambda^*\circ i
+                \end{equation*}
+                es decir, que el diagrama:
+                
+                \shorthandoff{"} % <-- DESACTIVA la comilla activa de babel
+                \[
+                \begin{tikzcd}
+                    E \arrow[r, "i"] \arrow[dr,"\lambda"] 
+                    & \mathcal{A} \arrow[d,"\lambda^*"] \\
+                    & \mathcal{B}
+                \end{tikzcd}
+                \]
+                \shorthandon{"} % <-- (opcional) vuelve a activar
+    
+                es conmutativo.
+            \end{mydef}
+
+            Muestre que el álgebra tensorial, si existe, es única en el sentido siguiente:
+
+            \begin{itemize}
+                \item Si $\left(E,\mathcal{A},i\right)$ son álgebras tensoriales sobre $E$, existe un único homomorfismo $p$ de $\mathcal{A}$ sobre $\mathcal{A}'$ tal que $i'=p\circ i$.
+            \end{itemize}
+
+            \item Muestre que si $E$ es de dimensión finita, entonces el álgebra $\otimes E$, construída en \textit{(a)} es un álgebra tensorial sobre $E$.
+            \item Si $\otimes E$ es un álgebra tensorial sobre $E$, constrído de un modo cualquiera, se tiene que $\otimes E=\bigoplus_{ p\geq0}E^p$, donde $E^p$ es el subespacio vectorial de $\otimes E$ engendrado por los tensores descomponibles de orden $p$.
+            
+            Si $\left\{\vec{e}_1,\dots,\vec{e}_n \right\}$ es una base de $E$, los $n^p$ productos tensoriales $\vec{e}_{\alpha_1}\otimes\cdots\otimes\vec{e}_{\alpha_p}$ constituyen una base de $E^p$.
+        \end{enumerate}
+    \end{excer}
+
+\end{document}

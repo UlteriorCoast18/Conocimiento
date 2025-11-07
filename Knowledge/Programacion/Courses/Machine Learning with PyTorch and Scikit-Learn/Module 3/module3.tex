@@ -1,0 +1,91 @@
+\documentclass[../machine_learning_scikit.tex]{subfiles}
+
+\begin{document}
+
+    \chapter{A Tour of Machine Learning Classifiers Using Scikit-Learn}
+
+    \section{Introduction}
+
+    The goal of this chapter is to use Scikit-Learn to impelement some classifiers in order to learn how to use them, his advantages, disadvantages and different use scenarios.
+
+    Specifically, we will take a look of 4 popular machine learning models commonly used in academia and in industry. In addition, we will take a look at the Scikit-Learn library, which offers a user-friendly and consistent interface for using those algorithms efficiently and productively.
+    
+    \subsection{Choosing a Classification Algorithm}
+
+    Each algorithm has its own quirks and relies on certain assumptions. no single classifier works best across all possible scenarios (The Lack of A Priori Distinctions Between Learning Algorithms, Wolpert, David H, Neural Computation 8.7 (1996): 1341-1390).
+
+    \begin{obs}[\textbf{Comparasion}]
+        In practice, it is always recomended to compare the behaviour of different algorithms in order to find the best model suitable for a particular problem; these may differ in the number of features or examples, the amount of noise in a dataset, and whether the classes are linearly separable.
+    \end{obs}
+
+    \begin{idea}
+        The performance of a classifier relies upon the data that is available for learning. The five main steps that are involved in training a supervised machine learning algorithm can be summarized as follows:
+        \begin{enumerate}
+            \item Selecting features and collecting labeled training examples
+            \item Choosing a performance metric
+            \item Choosing a learning algorithm and training a model
+            \item Evaluating the performance of the model
+            \item Changing the settings of the algorithm and tuning the model.
+        \end{enumerate}
+    \end{idea}
+
+    We will mainly focus on the main concepts of the different algorithms in this chapter and revisit topics such as feature selection and preprocessing, performance metrics, and hyperparameter tuning for more detailed discussions later in the book.
+
+    \subsection{First Steps with scikit-learn Training a Perceptron}
+
+    Before we learn about two related learning algorithms: the perceptron and adaline, both implemented in Python using NumPy and other libraries by ourselves.
+
+    \begin{center}
+        Now we will take a look at the \textbf{scikit-learn API}.
+    \end{center}
+
+    \begin{obs}
+        One of the advantages of using scikit-learn is that combines a user-friendly and consistent interface with a highly optimized implementation of several classification algorithms. Also, this library offers a not only a large variety of learning algorithms, but also many convenient functions to preprocess data and to fine-tune and evaluate our models.
+    \end{obs}
+
+    \subsection{Training a Model Using Scikit-Learn}
+
+    To get started with the scikit-learn library, we will train a perceptron model similar to the one that we implemented in Chapter 2. For simplicity, we will use the already familiar Iris dataset throughout the following sections.
+
+    \begin{obs}[\textbf{Iris Dataset and Its Uses}]
+        Conveniently, the Iris dataset is already available via scikit-learn, since it is a simple yet popular dataset that is frequently used for testing and experimenting with algorithms. Similar to the previous chapter, we will only use two features from the Iris dataset for visualization purposes.
+    \end{obs}
+
+    We will assign the petal length and petal width of the 150 flower examples to the feature matrix, \lstinline|X|, and the corresponding class labels of the flower species to the vector array, \lstinline|y|:
+
+    \begin{lstlisting}[caption={Class Labels of Matrix \lstinline|X|},label=matrix_labels]
+Class labels: [0 1 2]
+Class labels: [0 1 2]
+    \end{lstlisting}
+
+    The \lstinline|np.unique(y)| function returned the three unique class labels stored in \lstinline|iris.target|, and as we can see, the Iris flower class names, \lstinline|Iris-setosa|, \lstinline|Iris-versicolor|, and \lstinline|Iris-virginica|, are already stored as integers (here: \lstinline|0|, \lstinline|1|, \lstinline|2|).
+    
+    \begin{obs}[\textbf{Scikit-Learn with Class Labels and String Formats}]
+        Although many scikit-learn functions and class methods also work with \textit{class labels in string format, using integer labels is a recommended approach to avoid technical glitches and improve computational performance due to a smaller memory footprint}; furthermore, \textit{encoding class labels as integers is a common convention among most machine learning libraries}.
+    \end{obs}
+
+    To evaluate how well a trained model performs on unseen data, we will \textit{further split the dataset into separate training and test datasets}.
+    
+    \begin{idea}[\textbf{More Info About Best Practices around Model Evaluation}]
+        In Chapter 6, \textit{Learning Best Practices for Model Evaluation and Hyperparameter Tuning}, we \textbf{will discuss the best practices around model evaluation in more detail}.
+    \end{idea}
+
+    Using the \lstinline|train_test_split| function from scikit-learn's \lstinline|model_selection| module, we randomly split the \lstinline|X| and \lstinline|y| arrays into 30 percent test data (45 examples) and 70 percent training data (105 examples):
+
+    \begin{lstlisting}[caption={Train Test Split Function},label=code:train_test_split]
+train_test_split(X, y, test_size=0.3, random_state=1, stratify=y)
+    \end{lstlisting}
+
+    \begin{obs}
+        Note that the \lstinline|train_test_split| function already shuffles the training datasets internally before splitting; otherwise, all examples from class \lstinline|0| and class \lstinline|1| would have ended up in the training datasets, and the test dataset would consist of 45 examples from class \lstinline|2|. Via the \lstinline|random_state| parameter, we provided a fixed random seed (\lstinline|random_state=1|) for the internal pseudo-random number generator that is used for shuffling the datasets prior to splitting. Using such a fixed \lstinline|random_state| ensures that our results are reproducible.
+    \end{obs}
+
+
+
+
+
+
+
+
+
+\end{document}
