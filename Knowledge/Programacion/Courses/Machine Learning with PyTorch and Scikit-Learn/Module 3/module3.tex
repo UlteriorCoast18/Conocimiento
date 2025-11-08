@@ -80,12 +80,229 @@ train_test_split(X, y, test_size=0.3, random_state=1, stratify=y)
         Note that the \lstinline|train_test_split| function already shuffles the training datasets internally before splitting; otherwise, all examples from class \lstinline|0| and class \lstinline|1| would have ended up in the training datasets, and the test dataset would consist of 45 examples from class \lstinline|2|. Via the \lstinline|random_state| parameter, we provided a fixed random seed (\lstinline|random_state=1|) for the internal pseudo-random number generator that is used for shuffling the datasets prior to splitting. Using such a fixed \lstinline|random_state| ensures that our results are reproducible.
     \end{obs}
 
+    Lastly, we took advantage of the built-in support for stratification via \lstinline|stratify=y|. In this context, \textit{stratification means that the} \lstinline|train_test_split| \textit{method returns training and test subsets that have the same proportions of class labels as the input dataset}. We can use NumPy's \lstinline|bincount| function, which counts the number of occurrences of each value in an array, to verify that this is indeed the case:
 
+    \begin{lstlisting}[caption={Use of \lstinline|bincount| Method in Python.},label=code:use_bicount]
+>>> print('Labels counts in y:', np.bincount(y))
+Labels counts in y: [50 50 50]
+>>> print('Labels counts in y_train:', np.bincount(y_train))
+Labels counts in y_train: [35 35 35]
+>>> print('Labels counts in y_test:', np.bincount(y_test))
+Labels counts in y_test: [15 15 15]
+    \end{lstlisting}
 
+    \begin{idea}[\textbf{Feature Scaling}]
+        Many machine learning and optimization algorithms also require \textbf{feature scaling for optimal performance}, as we saw in the gradient descent example in Chapter 2. Here, \textbf{we will standardize the features using the StandardScaler class from scikit-learn's preprocessing module}:
 
+        \begin{lstlisting}[caption={\lstinline|StandardScaler| Method in Python.},label=code:standard_scaler]
+sc = StandardScaler()
+        \end{lstlisting}
 
+        Using the preceding code, we loaded the \lstinline|StandardScaler| class from the \lstinline|preprocessing| module and initialized a new \lstinline|StandardScaler| object that we assigned to the \lstinline|sc| variable.
+    \end{idea}
 
+    Using the \lstinline|fit| method, \lstinline|StandardScaler| estimated the parameters, $\mu$ (sample mean) and $\sigma$ (standard deviation), for each feature dimension from the training data. By calling the \lstinline|transform| method, we then standardized the training data using those estimated parameters, $\mu$ and $\sigma$. Note that we used the same scaling parameters to standardize the test dataset so that both the values in the training and test dataset are comparable with one another.
 
+    \begin{exa}
+        Having standardized the training data, we can now train a perceptron model. Most algorithms in scikit-learn already support multiclass classification by default via the one-versus-rest (OvR) method, which allows us to feed the three flower classes to the perceptron all at once.
+    \end{exa}
+
+    Finally, we have the code for the model:
+
+    \lstinputlisting[caption={Perceptron Trained Model using Sklearn}, label={code:perceptron_sklearn}, language=Python]{Code/sklearn_first/sklearn_first.py}
+
+    With the slight modification that we made to the \lstinline|plot_decision_regions| function, we can now specify the indices of the examples that we want to mark on the resulting plots.
+
+    As we can see in the resulting plot, the three flower classes can't be perfectly separated by a linear decision boundary:
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/Iris_perceptron_scikit_learn.png} \\
+            \caption{Perceptron Trained with Iris Dataset using Scikit-Learn.}
+            \label{figure:perceptron_iris_scikit_learn}
+        \end{minipage}
+    \end{figure}
+
+    However, remember from our discussion in Chapter 2 that \textbf{the perceptron algorithm never converges on datasets that aren't perfectly linearly separable}, which is \textit{why the use of the perceptron algorithm is typically not recommended in practice}. In the following sections, we will look at more powerful linear classifiers that converge to a loss minimum even if the classes are not perfectly linearly separable.
+
+    \begin{obs}[\textbf{Note}]
+        The Perceptron, as well as other scikit-learn functions and classes, \textit{often has additional parameters that we omit for clarity. You can read more about those parameters using the help function in Python (for instance, \lstinline|help(Perceptron)|) or by going through the excellent scikit-learn online documentation} \href{http://scikit-learn.org/stable/}{here}.
+    \end{obs}
+
+    \newpage
+
+    \section{Modeling Class Probabilities Via Logistic Regression}
+
+    The biggest disadvantage of the Perceptron is that it never converges if the classes aren't linearly separable. The reason for this is that the weights are continuously updated because there is always at least one misclassified training example present in each poch.
+
+    To make better use of our time, we will now look at another simple, yet more powerful, algorithm for linear and binary classification problems: \textbf{logistic regression}. Note that, despite its name, \textit{logistic regression is a model for classification, not regression}.
+
+    \subsection{Logistic Regression and Conditional Probabilities}
+
+    \begin{mydef}[\textbf{Logistic Regression}]
+        \textbf{Logistic regression} is a \textit{classification model that is easy to implement and performs very well on linearly separable classes}. It is \textit{one of the most widely used algorithms for classification in industry}.
+    \end{mydef}
+
+    Similar to the perceptron and Adaline, \textit{the logistic regression model in this section is also a linear model for binary classification}.
+
+    \begin{idea}[\textbf{Note}]
+        Logistic regression can be generalized to multinomial logistic regression.
+    \end{idea}
+
+    To explain the main mechanics behind logistic regression as a probabilistic model for binary classification, let's first introduce the odds: the odds in favor of a particular event. The odds can be written as $\frac{p}{1-p}$, where $p$ stands for the probability of the positive event. The term "positive event" does not necessarily mean "good," but refers to the event that we want to predict.
+    
+    \begin{exa}[\textbf{Conditional Probability}]
+        Consider the \textbf{probability that a patient has a certain disease given certain symptoms}; we can think of the positive event as class label $y=1$ and the symptoms as features $\boldsymbol{x}$. Hence, for brevity, we can define the probability $p$ as $p:=p(y=1|\boldsymbol{x})$, the conditional probability that a particular example belongs to class $1$ given its features, $\boldsymbol{x}$.
+    \end{exa}
+
+    We can then further define the logit function, which is simply the logarithm of the odds (log-odds):
+
+    \begin{equation}
+        \label{logit_function}
+        \logit{p}=\log\left(\frac{p}{1-p}\right)
+    \end{equation}
+
+    Note that $\log$ \textit{refers to the natural logarithm, as it is the common convention in computer science}. The $\textup{logit}$ function \textit{takes input values in the range 0 to 1 and transforms them into values over the entire real-number range}.
+
+    Under the logistic model, we \textbf{assume that there is a linear relationship between the weighted inputs and the log-odds}:
+    \begin{equation}
+        \label{logit_function_assumption}
+        \logit{p}=w_1x_1+\cdots+w_nx_n+b=\sum_{i=1}^n w_ix_i+b=\boldsymbol{w}^T\boldsymbol{x}+b
+    \end{equation}
+
+    \begin{obs}
+        While the preceding describes an assumption we make about the linear relationship between the log-odds and the net inputs, what \textbf{we are actually interested in is the probability} $p$, the \textit{class‐membership probability of an example given its features}. While the logit function maps the probability to a real‐number range, \textit{we can consider the inverse of this function to map the real‐number range back to a} $[0,1)$ range for the probability $p$.
+    \end{obs}
+
+    This inverse of the logit function is typically called the \textbf{logistic sigmoid function}, which is \textit{sometimes simply abbreviated to sigmoid function due to its characteristic $S$-shape}:
+
+    \begin{equation}
+        \label{sigmoid_function}
+        \sigma(z)=\frac{1}{1+e^{-z}},\quad\forall z\in\bbm{R}
+    \end{equation}
+    Here, $z$ is the \textit{net input, the linear combination of weights and the inputs} (that is, the features associated with the training examples):
+    \begin{equation}
+        \label{z_sigmoid_function}
+        z=\boldsymbol{w}^T\boldsymbol{x}+b
+    \end{equation}
+
+    \begin{exa}[\textbf{Graph of Sigmoid Function}]
+        Graph of Sigmoid Function:
+
+        \begin{lstlisting}[caption={Sigmoid Function Graph.},label=figure:sigmoid_function_graph]
+import matplotlib.pyplot as plt
+import numpy as np
+
+def sigmoid(z):
+    return 1.0 / (1.0 + np.exp(-z))
+
+z = np.arange(-7, 7, 0.1)
+sigma_z = sigmoid(z)
+plt.plot(z, sigma_z)
+plt.axvline(0.0, color='k')
+plt.ylim(-0.1, 1.1)
+plt.xlabel('z')
+plt.ylabel('$\\sigma (z)$')
+# y-axis ticks and gridline
+plt.yticks([0.0, 0.5, 1.0])
+ax = plt.gca()
+ax.yaxis.grid(True)
+plt.tight_layout()
+plt.show()
+        \end{lstlisting}
+    \end{exa}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/sigmoid_function_graph.png} \\
+            \caption{Sigmoid Function Graph.}
+            \label{figure:sigmoid_function_graph}
+        \end{minipage}
+    \end{figure}
+
+    As a result of executing the previous code, you should now see the $S$-shaped (sigmoidal) curve.  
+
+    \begin{obs}[\textbf{Comparasion with Adaline}]
+        To build some understanding of the logistic regression model, we can relate it to Adaline. In Adaline, we used the identity function, $\sigma(z)=z$ as the activation function. In logistic regression, \textit{this activation function simply becomes the sigmoid function defined earlier}.
+    \end{obs}
+
+    The only difference between Adaline and logistic regression is the activation function.  
+
+    \begin{mydef}[\textbf{Purpose of an Activation Function}]
+        In simple terms, the purpose of an \textbf{activation function} is \textit{to decide whether a neuron in a neural network should be "activated" or not, and to what degree. It's what allows neural networks to learn and model complex, non-linear relationships}.
+    \end{mydef}
+
+    The output of the sigmoid function is then interpreted as the probability of a particular example belonging to class 1, $\sigma(z) = p(y=1 | \boldsymbol{x}; \boldsymbol{w},b)$, given its features $\boldsymbol{x}$, and parameterized by the weights and bias, $\boldsymbol{w}$ and $b$. 
+
+    For example, if we compute $\sigma(z) = 0.8$ for a particular flower, it means that the chance that this example is an \lstinline|Iris-versicolor| flower is 80 percent. Therefore, the probability that this flower is an \lstinline|Iris-setosa| can be calculated as $p(y=0 |\boldsymbol{x}; \boldsymbol{w},b) = 1 - p(y=1 | \boldsymbol{x}; \boldsymbol{w},b) = 0.2$, or 20 percent.
+
+    The predicted probability can then be converted into a binary outcome via a threshold function:  
+
+    \begin{equation*}
+        \hat{y}=\left\{
+            \begin{array}{lr}
+                1 & \textup{ if }\sigma(z)\geq0.5\\
+                0 & \textup{ otherwise} \\
+            \end{array}
+        \right.
+    \end{equation*}
+
+    If we look at the preceding plot of the sigmoid function, this is equivalent to the following:  
+
+    \begin{equation*}
+        \hat{y}=\left\{
+            \begin{array}{lr}
+                1 & \textup{ if }z\geq0\\
+                0 & \textup{ otherwise} \\
+            \end{array}
+        \right.
+    \end{equation*}
+
+    \begin{obs}[\textbf{Interest in Predicted Class Labels}]
+        In many applications, \textbf{we are not only interested in the predicted class labels but also in the class‐membership probabilities produced by the sigmoid function before applying the threshold}.
+        
+        Logistic regression is \textit{used in weather forecasting, for example, not only to predict whether it will rain on a particular day but also to report the chance of rain}. Similarly, logistic regression \textit{can be used to predict the chance that a patient has a particular disease given certain symptoms, which is why logistic regression enjoys great popularity in the field of medicine}.
+    \end{obs}
+
+    \section{Learning the Model Weights via the Logistic Loss Function}
+
+    \textit{You have learned how we can use the logistic regression model to predict probabilities and class labels}; now, let's briefly talk about how \textit{we fit the parameters of the model, for instance, the weights and bias unit, $\boldsymbol{w}$ and $b$}. Previously, we defined the mean squared error loss function as follows:
+
+    \begin{equation*}
+        L(\boldsymbol{w},b|\boldsymbol{x})=\frac{1}{n}\sum_{ i=1}^n\left(y^{(i)}-\sigma(z^{(i)})\right)^2
+    \end{equation*}
+
+    \textit{We minimized this function in order to learn the parameters for our Adaline classification model}. To explain how we can derive the loss function for logistic regression, \textit{let's first define the likelihood}, $\mathcal{L}$, that we \textbf{want to maximize when we build a logistic regression model}, assuming that the individual examples in our dataset are independent of one another. The formula is as follows:
+
+    \begin{equation}
+    L(w, b \mid x) = p(y|x;w,b) = \prod_{i=1}^{n} p(y^{(i)} \mid x^{(i)}; w, b) = \prod_{i=1}^{n} \left(\sigma(z^{(i)})\right)^{y^{(i)}} \left(1 - \sigma(z^{(i)})\right)^{(1-y^{(i)})}
+    \end{equation}
+
+    This is the \textbf{likelihood function} $L(w, b \mid x)$ in \textit{terms of a product over $n$ terms}. It is expressed as the product of probabilities $p(y^{(i)} \mid x^{(i)}; w, b)$ for $i$ from 1 to $n$, which is further expanded to the product of $(\sigma(z^{(i)}))^{y^{(i)}}$ times $(1 - \sigma(z^{(i)}))^{(1-y^{(i)})}$, where $\sigma$ is the sigmoid function.
+
+    \begin{obs}
+        In practice, it is easier to maximize the (natural) log of this equation, which is called the log-likelihood function:
+    
+        \begin{equation}
+        l(w, b \mid x) = \log\left(\mathcal{L}\left(w, b \mid x\right) \right) = \sum_{i=1}^{n} \left[ y^{(i)} \log(\sigma(z^{(i)})) + (1 - y^{(i)}) \log(1 - \sigma(z^{(i)})) \right]
+        \end{equation}
+
+        Applying the log function reduces the potential for numerical underflow if the likelihoods are very small. In addition, the product of factors becomes a summation of factors, which makes it easier to obtain the derivative of this function via the addition trick.
+    \end{obs}
+
+    \subsection{Deriving the likelihood function}
+
+    We can obtain the expression for the likelihood of the model given the data, $L(w, b \mid x)$, as follows. Given that we have a binary classification problem with class labels 0 and 1, we can think of the label 1 as a Bernoulli variable—it can take on two values, 0 and 1, with the probability $p$ of being 1: $Y \sim \mathrm{Bernoulli}(p)$. 
+
+    For a single data point, we can write this probability as:
+    \begin{align}
+    P(Y=1 \mid X=x^{(i)}) &= \sigma(z^{(i)}) \\
+    P(Y=0 \mid X=x^{(i)}) &= 1 - \sigma(z^{(i)})
+    \end{align}
+
+    Putting these two expressions together, and using the shorthand $P(Y=y^{(i)} \mid X=x^{(i)}) = p(y^{(i)} \mid x^{(i)})$, we get the probability mass function of the Bernoulli variable:
 
 
 \end{document}
