@@ -1,0 +1,667 @@
+\documentclass[../../ibm_data_analysis]{subfiles}
+
+\begin{document}
+
+    \chapter{Data Ecosystem}
+
+    A Data Analyst's ecosystem includes the following:
+    \begin{itemize}
+        \item Infraestructure
+        \item Software
+        \item Tools
+        \item Frameworks
+        \item Processes used to:
+        \begin{itemize}
+            \item Gather,
+            \item Clean,
+            \item Mine,
+            \item and Visualize
+        \end{itemize}
+        data.
+    \end{itemize}
+
+    \section{Overview of the Ecosystem}
+
+    Data can be categorized into the following types:
+    \begin{enumerate}
+        \item \textbf{Structured}: Data that follows rigid format and can be organized into rows and columns.
+        
+        This data is typically seen in databases and spreedsheets.
+        \item \textbf{Semi-structured}: Mixed of data that has consisten characteristics and data that does not conform to a rigid structure.
+        
+        For example, emails (strucured data such as subject, email, etc\dots and unstrucutred as the message).
+        
+        \item \textbf{Unstrucutred}: Data that is complex and mostly qualitative information that cannot be structured into rows and columns.
+        
+        For example, photos, videos, files and social media contant.
+    \end{enumerate}
+
+    \begin{obs}[\textbf{Importance of Data Types}]
+        The type of data determines the type of data repositories where data can be collected, stored in and, tools used to query or process data.
+    \end{obs}
+
+    \subsection{Data Formats}
+
+    Data can come in a variety of file formats, such as:
+    \begin{enumerate}
+        \item Relational.
+        \item Non-relational databases.
+        \item APIs.
+        \item Web Services
+        \item Data streams.
+        \item Social Platforms.
+        \item Sensor Devices.
+    \end{enumerate}
+
+    \begin{mydef}[\textbf{Data Repositories}]
+        A \textbf{Data Repository} is a container of data. These include:
+        \begin{enumerate}
+            \item Databases.
+            \item Data Warehouses.
+            \item Data Marts.
+            \item Data Lakes.
+            \item Big Data Stores.
+        \end{enumerate}
+    \end{mydef}
+
+    A Data Repository collects types of data, file formats and are sources of data. A data repository is dependent upon this characteristics mentioned earlier, to collect, store and mine data.
+
+    \begin{exa}
+        A Big Data we will need data warehouses, where we need to store and process large volume and high velocity data. Also, frameworks that allow perform complex analytics in big data.
+    \end{exa}
+
+    \subsection{Languages}
+
+    The languages available in the Data Analyst Ecosystem are:
+    \begin{itemize}
+        \item \textbf{Query Languages}: Such as SQL for quering data and manipulating data.
+        \item \textbf{Programming Languages}: Such as Python for data applications.
+        \item \textbf{Shell and Scripting Languages}: For repetitional and operational tasks.
+    \end{itemize}
+
+    \subsection{Automated Tools}
+
+    Automated tools, frameworks, and processes for all stages of the analytics process are part of the Data Analysis Ecosystem. These tools allow to:
+    \begin{itemize}
+        \item \textbf{Gather, extract, transfrom and load data}.
+        \item \textbf{Data wrangling and cleaning}.
+        \item \textbf{Data analysis and mining}.
+        \item \textbf{Data visualization}.
+    \end{itemize}
+
+    \section{Data}
+
+    \begin{mydef}[\textbf{Data}]
+        \textbf{Data} is unorganized information that is processed to be meaningful. This can be conformed of:
+        \begin{itemize}
+            \item Facts, observations, perceptions.
+            \item Numbers, characters, symbols.
+            \item Images.
+        \end{itemize}
+    \end{mydef}
+
+    Data can be interpreted to have a meaning.
+
+    \subsection{Categorization of Data}
+
+    We can organize data in the following three types:
+
+    \begin{enumerate}
+        \item \textbf{Structured}.
+        \item \textbf{Semi-structured}.
+        \item \textbf{Unstrucutred}.
+    \end{enumerate} 
+
+    \subsection{Structured Data}
+
+    The characteristics of Structured Data are the following:
+    \begin{itemize}
+        \item Well-define structure.
+        \item Can be stored in well-defined schemas.
+        \item Can be represented in a tabular maner using rows and columns.
+    \end{itemize}
+
+    Uses facts and numbers which can be:
+    \begin{itemize}
+        \item Collected.
+        \item Exported.
+        \item Stored.
+        \item Organized.
+    \end{itemize}
+    in databases.
+
+    \begin{exa}[\textbf{Sources of Structured Data}]
+        \textbf{Structued data} can come from:
+        \begin{enumerate}
+            \item SQL Databases.
+            \item Online Transaction Processing.
+            \item Spreadsheets.
+            \item Online forms.
+            \item Sensors GPS and RFID text.
+            \item Network and webserver logs.
+        \end{enumerate}
+    \end{exa}
+
+    \subsection{Semistructured Data}
+
+    Characteristics of semi-structured data are the following:
+    \begin{itemize}
+        \item Has some organizational properties but lacks a fixed or rigid schema.
+        \item Cannot be stored in rows and columns.
+        \item Contains tangs and elements or metadate used to group and organize it in a hierarchy.
+    \end{itemize}
+
+    \begin{exa}[\textbf{Sources of Semi-structured Data}]
+        Include:
+        \begin{itemize}
+            \item Emails.
+            \item XML and other markup languages.
+            \item Binary executables.
+            \item TCP/IP packets.
+            \item Zipped files.
+            \item Integration of data from different sources.
+        \end{itemize}
+    \end{exa}
+
+    \begin{obs}[\textbf{Use of XML and JSON}]
+        \lstinline|XML| and \lstinline|JSON| allow users to define tags, associate atributes and store data in a hierarchy form and are used widely to store and exchange semi-structured data.
+    \end{obs}
+
+    \subsection{Unstructured Data}
+
+    Characteristics of unustructured data are the following:
+    \begin{itemize}
+        \item Does not have an easily identificable structure.
+        \item Cannot be organized ina  mainstream relational database in the form of rows and columns.
+        \item Does not follow any particular format, sequence, semantics and rules.
+    \end{itemize}
+    Unstrucutred data can deal with a heterogeneity of sources and has applications in business.
+
+    \begin{exa}[\textbf{Sources of Unustructured Data}]
+        Sources of unstructured data include the following:
+        \begin{itemize}
+            \item Web pages
+            \item Social media feeds
+            \item Images in a varied file formats
+            \item Video and audio files
+            \item Documents and PDF files
+            \item PowerPoint presentations
+            \item Media logs
+            \item Surveys
+        \end{itemize}
+    \end{exa}
+
+    Can be stored in files and documents, such as:
+    \begin{itemize}
+        \item \textbf{Files and Docs} for manual analysis.
+        \item \textbf{NoSQL Databases} for the use of analysis tools.
+    \end{itemize}
+
+    \section{File Structures}
+
+    Al told earlier, data has to be saved and we have plenty of file formats in order to store data. Turns out important to understand the structure of file formats in order to choose between their benefits and limitations.
+
+    We will see the following file formats:
+    \begin{itemize}
+        \item \textbf{Delimited file formats or \lstinline|.CSV|.}
+        \item \textbf{Microsoft Excel Open XML spreedsheet or \lstinline|.XLSX|.}
+        \item \textbf{Extensible Markup Langauge, or \lstinline|.XML|.}
+        \item \textbf{Portable Document Format, or \lstinline|.PDF|.}
+        \item \textbf{JavaScript Object Notation, or \lstinline|.JSON|.} 
+    \end{itemize}
+
+    \subsection{Delimited Text Files}
+
+    \begin{mydef}[\textbf{Delimited Text Files and Delimiters}]
+        \textbf{Delimited Text Files} are \textit{files used to store data as text in which each line and row has a value separated by a delimiter}.
+
+        A \textbf{delimiter} is a \textit{sequence of one or more characters for specifying the boundary between independent entities or values}.
+    \end{mydef}
+
+    Most common delimeters are coma, tab, colon, vertical bar and space.
+
+    \begin{exa}[\textbf{Commonly Used Delimited Text Files}]
+        Two delimited text files are Comma-separated values and Tab-separated values (\lstinline|.CSV| and \lstinline|.TSV|, respectively) are the most commonly used.
+    \end{exa}
+
+    \begin{exa}
+        A \lstinline|.CSV| looks like this:
+
+        \begin{lstlisting}[caption={\lstinline|.CSV| File Content Example.},label=figure:CSV_example]
+id,nombre,edad,puesto,salario
+1,Cristo Alvarado,24,Data Analyst,45000
+2,Ana Lopez,29,Software Engineer,62000
+3,Marco Gomez,31,Project Manager,70000
+4,Laura Ruiz,26,QA Tester,40000
+5,Carlos Perez,35,DevOps Engineer,75000
+        \end{lstlisting}
+
+        And, a \lstinline|.TSV| like this:
+
+        \begin{lstlisting}[caption={\lstinline|.TSV| File Content Example.},label=figure:TSV_example]
+id	nombre	edad	puesto	salario
+1	Cristo Alvarado	24	Data Analyst	45000
+2	Ana Lopez	29	Software Engineer	62000
+3	Marco Gomez	31	Project Manager	70000
+4	Laura Ruiz	26	QA Tester	40000
+5	Carlos Perez	35	DevOps Engineer	75000
+        \end{lstlisting}
+
+    \end{exa}
+
+    The first row are the names of the variables of each column.
+
+    \begin{obs}
+        Delimiters represent one of variuous means to specify bonudaries in a data stream.
+    \end{obs}
+
+    \subsection{Microsoft Excel Open XML Spreadsheet or \lstinline|.XLSX|}
+
+    Is a Microsoft Excel Open XML file format that falls under the spreadsheet file format. It is an XML-based file format created by Microsoft.
+
+    Is a secure file format since it cannot contain malicious malware.
+
+    \subsection{Extensible Markup Language or \lstinline|.XML|}
+
+    \begin{mydef}[\textbf{Extensible Markup Language (XML)}]
+        Extensible Markup Language is a markup language with a set of rules for encoding data.
+        \begin{itemize}
+            \item This format is readable by humans and machines.
+            \item Self-descriptive language.
+            \item Similar to \lstinline|.HTML| in some respects.
+            \item Does not use predefined tags like \lstinline|.HTML| does.
+            \item Platform independent.
+            \item Programming langauge dependent.
+            \item Makes it simpler to share data between systems. 
+        \end{itemize}
+    \end{mydef}
+
+    \begin{exa}
+        An example of a \lstinline|.XML| file is the follwing:
+
+        \begin{lstlisting}[caption={\lstinline|.XML| File Content Example.},label=figure:XML_example, language = XML]
+<?xml version="1.0" encoding="UTF-8"?>
+<employees>
+  <employee>
+    <id>1</id>
+    <nombre>Cristo Alvarado</nombre>
+    <edad>24</edad>
+    <puesto>Data Analyst</puesto>
+    <salario>45000</salario>
+  </employee>
+  <employee>
+    <id>2</id>
+    <nombre>Ana Lopez</nombre>
+    <edad>29</edad>
+    <puesto>Software Engineer</puesto>
+    <salario>62000</salario>
+  </employee>
+  <employee>
+    <id>3</id>
+    <nombre>Marco Gomez</nombre>
+    <edad>31</edad>
+    <puesto>Project Manager</puesto>
+    <salario>70000</salario>
+  </employee>
+  <employee>
+    <id>4</id>
+    <nombre>Laura Ruiz</nombre>
+    <edad>26</edad>
+    <puesto>QA Tester</puesto>
+    <salario>40000</salario>
+  </employee>
+  <employee>
+    <id>5</id>
+    <nombre>Carlos Perez</nombre>
+    <edad>35</edad>
+    <puesto>DevOps Engineer</puesto>
+    <salario>75000</salario>
+  </employee>
+</employees>
+        \end{lstlisting}
+
+    \end{exa}
+
+    \subsection{Portable Document File (PDF)}
+
+    \begin{mydef}[\textbf{Portable Document File (PDF)}]
+        A \textbf{Portable Document File \lstinline|.PDF|} is a file format developed by adobe to present documents independent of application software, hardware, and operating systems.
+        \begin{itemize}
+            \item Can be viewed the same way on any device.
+            \item Is frequently used in legal and financial documents.
+            \item Can also be used to fill data for forms. 
+        \end{itemize}
+    \end{mydef}
+
+    \subsection{JavaScript Object Notation (JSON)}
+
+    \begin{mydef}[\textbf{JavaScript Object Notation (JSON)}]
+        A \textbf{JavaScript Object Notation \lstinline|.JSON|} is a text-based open standard designed to transmit data over the web.
+        \begin{itemize}
+            \item Langauge-independent data format.
+            \item Can be read by any programming language.
+            \item Easy to use.
+            \item Comptaible with a wide range of browsers.
+            \item Best tools for sharing data.
+        \end{itemize}
+    \end{mydef}
+
+    \begin{exa}
+        An example of a \lstinline|.JSON| file is the follwing:
+        \begin{lstlisting}[caption={\lstinline|.JSON| File Content Example.},label=figure:JSON_example, language = json]
+{
+  "employees": [
+    {
+      "id": 1,
+      "nombre": "Cristo Alvarado",
+      "edad": 24,
+      "puesto": "Data Analyst",
+      "salario": 45000
+    },
+    {
+      "id": 2,
+      "nombre": "Ana Lopez",
+      "edad": 29,
+      "puesto": "Software Engineer",
+      "salario": 62000
+    },
+    {
+      "id": 3,
+      "nombre": "Marco Gomez",
+      "edad": 31,
+      "puesto": "Project Manager",
+      "salario": 70000
+    },
+    {
+      "id": 4,
+      "nombre": "Laura Ruiz",
+      "edad": 26,
+      "puesto": "QA Tester",
+      "salario": 40000
+    },
+    {
+      "id": 5,
+      "nombre": "Carlos Perez",
+      "edad": 35,
+      "puesto": "DevOps Engineer",
+      "salario": 75000
+    }
+  ]
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \section{Sources of Data}
+
+    Common sources of data are:
+    \begin{itemize}
+        \item Relational databases.
+        \item Flat files and XML Datasets.
+        \item APIs and Web Services.
+        \item Web Scraping.
+        \item Data Streams and Feeds.
+    \end{itemize}
+
+    \subsection{Relational Databases}
+
+    Typically, an organizational unit posess a store of data ot his:
+    \begin{itemize}
+        \item Business activities.
+        \item Customer transactions.
+        \item Human resource activities.
+        \item Workflows.
+    \end{itemize}
+    These systems use Relational Databases, such as SQL Server, Oracle, MySQL and IBM DB2. In this relational databases they store structured data.
+
+    These relational databases could be used for analysis.
+
+    \subsection{Flat File and XML Datasets}
+
+    External to the organization, there are other datasets.
+
+    \begin{exa}
+        Goverment can give datasets which are either public or private. For example, demographic or economic dataset are released on a regular time period.
+    \end{exa}
+
+    Also, this type of data could be a point of sale, financial or weather.
+
+    \begin{idea}
+        This data could be used in companies to define a strategy, predict demand, and make distribution decisions, among other things.
+    \end{idea}
+
+    This data is often available in form of:
+    \begin{itemize}
+        \item Flat files.
+        \item Spreadsheet files.
+        \item XML documents.
+    \end{itemize}
+
+    \begin{mydef}[\textbf{Flat Files}]
+        \textbf{Flat Files} store data in plain text format. Each line, or row is one record. Each value is separated by a delimiter (comma, semicolon, tabs, etc\dots).
+    \end{mydef}
+
+    Flat Files only have one table to organize all of his data. A common example of a Flat File are \lstinline|.CSV| and \lstinline|.TSV| files.
+
+    \begin{mydef}[\textbf{Spreadsheet Files}]
+        \textbf{Spreadsheet files} are a special type of flat files, which can organizse data in a tabular format, can contain multiple worksheets.
+    \end{mydef}
+
+    Common examples are \lstinline|.XSL| or \lstinline|.XLSX| spreadsheet formats.
+
+    Also, Google sheets, apple numbers and libreoffice calc.
+
+    \begin{mydef}[\textbf{XML Files}]
+        \textbf{XML Files} contain data values that are identified or marked up using tags (as we saw earlier). Can support more complex data structures.
+    \end{mydef}
+
+    The uses we have for XML files are online surveys, bank statements, and other unstructured datasets.
+
+    \subsection{APIs and Web Services}
+
+    \begin{mydef}[\textbf{Application Program Interface API}]
+        An \textbf{Application Programming Interface (API)}, is a \textit{set of rules and protocols that allows different software applications to communicate and interact with each other}. It acts as \textit{an intermediary, enabling one application to request data or functionality from another without needing to understand the internal workings of the other application}.
+    \end{mydef}
+
+    \begin{mydef}[\textbf{Web Service}]
+        A \textbf{Web Service} is a \textit{software that enables machine-to-machine communication over the internet using standardized protocols like HTTP, allowing different applications to exchange data and function together regardless of their underlying programming languages or platforms}. 
+    \end{mydef}
+
+    So, basically we can obtain data using APIs and Web Services.
+
+    \begin{obs}[\textbf{Calling an API or Web Service}]
+        Typically, APIs and Web Services listen for upcoming requests, which can be in form of Web requests or Network requests. After a request has been made, they can return data in form of a JSON, XML, Media Files, etc\dots
+    \end{obs}
+
+    \begin{exa}[\textbf{Examples of APIs}]
+        Some popular APIs are the following:
+        \begin{itemize}
+            \item Twitter and Facebook APIs.
+            \item Stock Market APIs.
+            \item Data Lookup and Validation APIs.
+        \end{itemize}
+    \end{exa}
+
+    \subsection{Web Scraping}
+
+    \begin{mydef}[\textbf{Web Scraping}]
+        \textbf{Web Scraping} is \textit{the automated process of using bots to extract data from websites and save it into a structured format, like a database or spreadsheet}.
+    \end{mydef}
+    
+    Instead of copying and pasting by hand, software is used to parse a website's HTML code to pull specific information, which can then be used for analysis, research, or other applications.
+
+    \begin{obs}[\textbf{Use of Web Scraping}]
+        Web Scraping is useful to:
+        \begin{itemize}
+            \item Extract data from unstructured sources.
+            \item Also known as screen scraping, web harvesting, and data straction.
+            \item Download specific data based on defined parameters.
+            \item Can extract text, contact information, images, videos, product items, and more\dots
+        \end{itemize}
+    \end{obs}
+
+    \begin{exa}
+        Popular uses of Web Scraping are:
+        \begin{itemize}
+            \item Providing price comparasions by collecting product details from retailer, manufacturers, and eCommerce websites.
+            \item Generating sales leads though public data sources.
+            \item Extracting data from posts and authors on varios forums and communities.
+            \item Collecting training and testing datasets for machine learning models.
+        \end{itemize}
+    \end{exa}
+
+    \begin{obs}[\textbf{Popular Web Scraping Tools}]
+        Some popular web scraping tools are:
+        \begin{itemize}
+            \item BeautifulSoup.
+            \item Scrapy.
+            \item Pandas.
+            \item Selenium.
+        \end{itemize}
+    \end{obs}
+
+    \subsection{Data Streams}
+
+    \begin{mydef}[\textbf{Data Stream}]
+        A \textbf{data stream} \textit{is a continuous, ordered sequence of data generated by a source in real-time. Unlike data that is stored and processed in batches, a data stream is processed as it arrives, allowing for immediate analysis and action}.
+    \end{mydef}
+
+    Examples include sensor data from IoT devices, website clickstreams, or financial transactions. This data can come from:
+    \begin{itemize}
+        \item Stock market tickers for financial trading.
+        \item Retrail transaction streams for predicting demand and supply chain management.
+        \item Surveillance and video feeds for threat detection.
+        \item Social media feeds for sentiment analysis.
+        \item Sensor data feeds for mnoitoring industrial or farming machinery.
+        \item Web clicks feeds for monitoring web performance and improving design.
+        \item Real-time flight events for rebooking and rescheduling.
+    \end{itemize}
+
+    \begin{obs}
+        Some popular technologies used to preocess data streams include:
+        \begin{itemize}
+            \item Apache Kafka.
+            \item Apache Spark.
+            \item Apache Storm.
+        \end{itemize}
+    \end{obs}
+
+    \begin{obs}
+        RSS (or Really Simple Syndication) feeds are another pupular data sources. These are used for capturing updated date for online forum and news sites, where the data is refreshed on an ongoing basis.
+
+        Using a feed, we can use RSS and convert this data to use it.
+    \end{obs}
+
+    \section{Languages for Data Profesionals}
+
+    We will see some of the most used languages used by data analysts. These can be:
+    \begin{itemize}
+        \item \textbf{Query languages}. These languages are designed for accessing and manipulating data in a database (SQL).
+        \item \textbf{Programming languages}. These languages are used for developing applications and controlling application behavior (Python, R, Java).
+        \item \textbf{Shell scrpiting}. Ideal for repetitive and time consuming operational tasks (Unix/Linux Shell, PowerShell).
+    \end{itemize}
+
+    \subsection{Query Langauges}
+
+    \begin{mydef}[\textbf{Structured Query Language (SQL)}]
+        \textbf{Structured Query Language (SQL)} is a \textit{querying language designed for accessing and manipulating informacion from, mostly, though not exclusively, relational databases}.
+    \end{mydef}
+
+    With SQL we can perform operations such as:
+    \begin{enumerate}
+        \item Insert, update and delete records in a database.
+        \item Create new databases, tables and views.
+        \item Write stored procedures.
+    \end{enumerate}
+
+    \begin{obs}
+        Advantages:
+        \begin{itemize}
+            \item SQL is portable and platform independent.
+            \item Can be used for querying data in a wide variety of databases and data repositories.
+            \item Has simple sintax similar to english.
+            \item Allows developers to write programs with fewer lines of code using keywords.
+            \item Can retrieve large amounts of data quickly and efficiently.
+            \item Runs on an interpreter system.
+        \end{itemize}
+    \end{obs}
+
+    \subsection{Python}
+
+    Python is widely used open-source general-purpuse, high-level programming language.
+
+    \begin{itemize}
+        \item Allows programmers to express their concepts in fewer lines of code.
+        \item Ideal for beginners.
+        \item Great for performing high-computational tasks in large volumes of data.
+        \item A lot of In built-functions.
+        \item Multiple programming paradigms.
+    \end{itemize}
+
+    \begin{idea}
+        Some libraries used in Python are:
+        \begin{itemize}
+            \item Pandas for cleaning and analysis.
+            \item Numpy and Scipy for statistical analysis.
+            \item BeautifulSoup and Scrapy for web scraping.
+            \item Matplotlib and Seaborn to visually represent data in the form of bar graphs, histogram and pie-charts.
+        \end{itemize}
+    \end{idea}
+
+    \subsection{R}
+
+    R is an open-source programming language and enviroment for data-analysis, data visualization, machine learning, and statistics.
+
+    Used for:
+    \begin{itemize}
+        \item Developing statistical software.
+        \item Performing data analytics.
+        \item Creating compelling visualizations.
+    \end{itemize}
+
+    One advantage is that it can be paired with many programming languages. It's highly extensible.
+    
+    \begin{center}
+        \textit{Facilitates the handling of structured and unstructured data.}
+    \end{center}
+
+    \begin{obs}[\textbf{Advantages of R}]
+        This programming language offers libraries such as Ggplot2 and Plotly that offer aesthetic graphical plots to its users.
+
+        Allows data an dscripts to be embedded in reports.
+
+        Allows the creation of interactive web apps.
+    \end{obs}
+
+    \subsection{Unix/Linux Shell}
+
+    \begin{mydef}[\textbf{Unix/Linux Shell}]
+        A \textbf{Unix/Linux Shell} is a \textit{computer program written for the UNIX shell, It is a series of UNIX commands written in a plain text file to accomplish a specific task}.
+    \end{mydef}
+
+    Writing a shell script is fast and easy.
+
+    \begin{obs}
+        Typical operations performed by shell scripts include:
+        \begin{itemize}
+            \item File manipulation.
+            \item Program execution.
+            \item System administration tasks such as disk backups and evaluating system logs.
+            \item Installation scripts for complex programs.
+            \item Executing routine backups.
+            \item Running batches.
+        \end{itemize}
+    \end{obs}
+
+    \subsection{PowerShell}
+
+    \begin{mydef}[\textbf{PowerShell}]
+        \textbf{PowerShell} is a \textit{cross-platform automation tool and configuration framework by Microsoft that its optimized for working with structured data formats, such as JSON, CSV, XML and REST APIs, websites, and office applications}.
+    \end{mydef}
+
+    It consists of a command-line shell and a scripting language.
+
+    Its object based, to it can be used to filter, sort, measure, group, and compare objects as they pass through a data pipeline.
+
+    Also, it's a good tool for data mining, building GUIs, creating charts, dashbords, and interactive reports.
+
+\end{document}

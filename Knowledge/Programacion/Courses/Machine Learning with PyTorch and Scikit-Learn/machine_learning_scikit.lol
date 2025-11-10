@@ -12,8 +12,12 @@
 \contentsline {lstlisting}{\numberline {2.12}Adaline With Standarization Procedure}{38}{lstlisting.2.12}%
 \contentsline {lstlisting}{\numberline {2.13}Adaline Implemented Using Stochastic Gradient Descent}{40}{lstlisting.2.13}%
 \contentsline {lstlisting}{\numberline {3.1}Class Labels of Matrix \lstinline |X|}{44}{lstlisting.3.1}%
-\contentsline {lstlisting}{\numberline {A.1}Check Python Version}{45}{lstlisting.A.1}%
-\contentsline {lstlisting}{\numberline {A.2}\lstinline |pip| Package Installation.}{45}{lstlisting.A.2}%
-\contentsline {lstlisting}{\numberline {A.3}Conda Package Installation.}{46}{lstlisting.A.3}%
-\contentsline {lstlisting}{\numberline {A.4}caption}{46}{lstlisting.A.4}%
-\contentsline {lstlisting}{\numberline {A.5}Check Version of Packages}{47}{lstlisting.A.5}%
+\contentsline {lstlisting}{\numberline {3.2}Train Test Split Function}{45}{lstlisting.3.2}%
+\contentsline {lstlisting}{\numberline {3.3}Use of \lstinline |bincount| Method in Python.}{45}{lstlisting.3.3}%
+\contentsline {lstlisting}{\numberline {3.4}\lstinline |StandardScaler| Method in Python.}{45}{lstlisting.3.4}%
+\contentsline {lstlisting}{\numberline {3.5}Perceptron Trained Model using Sklearn}{46}{lstlisting.3.5}%
+\contentsline {lstlisting}{\numberline {A.1}Check Python Version}{50}{lstlisting.A.1}%
+\contentsline {lstlisting}{\numberline {A.2}\lstinline |pip| Package Installation.}{50}{lstlisting.A.2}%
+\contentsline {lstlisting}{\numberline {A.3}Conda Package Installation.}{51}{lstlisting.A.3}%
+\contentsline {lstlisting}{\numberline {A.4}caption}{51}{lstlisting.A.4}%
+\contentsline {lstlisting}{\numberline {A.5}Check Version of Packages}{52}{lstlisting.A.5}%
