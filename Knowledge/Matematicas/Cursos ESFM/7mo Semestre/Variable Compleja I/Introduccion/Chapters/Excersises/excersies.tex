@@ -124,6 +124,29 @@
 
     \subsection{Funciones Analíticas}
 
+    \begin{excer}
+        Pruebe que la función $\cf{f(z)}{\bbm{C}}{\bbm{R}}$ dada por $f(z)=\abs{z}^2$ tiene derivada solamente en cero.
+    \end{excer}
+
+    \begin{proof}
+        Sea $z_0=x_0+iy_0\in\bbm{C}$. Observemos que:
+        \begin{equation*}
+            f(z_0)=x_0^2+y_0^2=u(x_0,y_0)+iv(x_0,y_0)
+        \end{equation*}
+        Donde $u(x,y)=x^2+y^2$ y $v(x,y)=0$. Ahora, notemos también que:
+        \begin{equation*}
+            \begin{split}
+                u_x=2x\quad&\textup{y}\quad u_y=2y\\
+                v_x=0\quad&\textup{y}\quad v_y=0\\
+            \end{split}
+        \end{equation*}
+        Estas derivadas parciales cumplen (\ref{ecuacionesCauchyRiemann}) si y solo si $x,y=0$, esto es que $f$ es diferenciable en $z_0$ si y solo si $z_0=0$.
+    \end{proof}
+
+    \begin{excer}[]
+        
+    \end{excer}
+
     \chapter*{Bibliografía}
 
     \begin{itemize}
