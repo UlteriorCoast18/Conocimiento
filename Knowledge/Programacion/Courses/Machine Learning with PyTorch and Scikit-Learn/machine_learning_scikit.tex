@@ -305,4 +305,26 @@ conda install SomePackage --channel conda-forge
 '1.21.2'
     \end{lstlisting}
 
+    \chapter{A Note on Distributions}
+
+    \section{Normal Distrubution}
+
+    \section{Bernoulli's Distribution}
+
+    \begin{mydef}[\textbf{Bernoulli distribution}]
+        The \textbf{Bernoulli distribution}, named after Swiss mathematician Jacob Bernoulli, \textit{is the discrete probability distribution of a random variable which takes the value 1 with probability $p$ and the value $0$ with probability $q=1-p$}.
+    \end{mydef}
+
+    The Bernoulli distribution is a special case of the binomial distribution where a single trial is conducted (so $n$ would be 1 for such a binomial distribution). It is \textit{also a special case of the two-point distribution, for which the possible outcomes need not be 0 and 1}.
+
+    If $X$ is a random variable with a Bernoulli distribution, then:
+    \begin{equation*}
+        \begin{split}
+            P(X=1)&=p\\
+            P(X=0)&=q=1-p\\
+        \end{split}
+    \end{equation*}
+
+    The Bernoulli distrubution is simply $B(1,p)$, also written as $\textup{Bernoulli}(p)$.
+
 \end{document}

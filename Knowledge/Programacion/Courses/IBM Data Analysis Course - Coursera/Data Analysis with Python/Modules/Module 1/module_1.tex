@@ -1,0 +1,443 @@
+\documentclass[../../data_analysis_python.tex]{subfiles}
+
+\begin{document}
+
+    \chapter{Python Basics}
+
+    This chapter contains the basics of Python sintaxis for data analysis.
+
+    \section{Basics}
+
+    \begin{mydef}[\textbf{Types}]
+        \textbf{Type} is how Python represents different types of data.
+    \end{mydef}
+
+    \begin{obs}
+        To get the type of a variable use the \lstinline|type()| method.
+    \end{obs}
+
+    Also, we can convert some type to other using the respective method for converting, for example \lstinline|float(2)| converts the integer $2$ into the float $2.0$.
+
+    Also, in Python we have \lstinline|int|, \lstinline|float|, \lstinline|string| and \lstinline|boolean|.
+
+    \begin{obs}
+        The operation \lstinline|//| is the integer division.
+    \end{obs}
+
+    \subsection{Strings}
+
+    For a \lstinline|string|, we can obtain his length with the method \lstinline|len|, also, we can multiply a string by an integer \lstinline|n| and the string is \lstinline|n|-times multiplicated.
+
+    Also, we can do \lstinline|.upper()| and \lstinline|.lower()| after the variable to change to upper or lower case, respectively. Also, we can replace strings inside a string using the \lstinline|.replace(_,_)| method (which requires the string to replace and the one to be replaced with).
+
+    Additionaly, we can find sustrings in a string using the \lstinline|.find(_)| method (which returns the position where the string to find is first located).
+
+    \subsection{\lstinline|f|-Strings}
+
+    Introduced in Python 3.6, f-strings are a new way to format strings in Python. They are prefixed with 'f' and use curly braces {} to enclose the variables that will be formatted. For example:
+
+    \begin{lstlisting}
+name = "John"
+age = 30
+print(f"My name is {name} and I am {age} years old.")
+    \end{lstlisting}
+
+    This will output:
+
+    \begin{lstlisting}
+My name is John and I am 30 years old.
+    \end{lstlisting}
+
+    Another way to format strings in Python is using \lstinline|str.format()|. It uses curly braces \lstinline|{}| as placeholders for variables which are passed as arguments in the \lstinline|format()| method. For example:
+
+    \begin{lstlisting}
+name = "John"
+age = 50
+print("My name is {} and I am {} years old.".format(name, age))
+    \end{lstlisting}
+
+    This will output:
+
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+My name is John and I am 50 years old.
+    \end{lstlisting}
+
+    \begin{obs}
+        Each of these methods has its own advantages and use cases. However, \lstinline|f|-strings are generally considered the most modern and preferred way to format strings in Python due to their readability and performance.
+    \end{obs}
+
+    \begin{idea}
+        F-strings are also able to evaluate expressions inside the curly braces, which can be very handy. For example:
+        \begin{lstlisting}
+x = 10
+y = 20
+print(f"The sum of x and y is {x+y}.")
+        \end{lstlisting}
+
+        This will output:
+        \begin{lstlisting}
+The sum of x and y is 30.
+        \end{lstlisting}
+    \end{idea}
+
+    In Python, raw strings are a powerful tool for handling textual data, especially when dealing with escape characters. By prefixing a string literal with the letter \lstinline|'r'|, Python treats the string as raw, meaning it interprets backslashes as literal characters rather than escape sequences.
+
+    Consider the following examples of regular string and raw string:
+
+    Regular string:
+
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+regular_string = "C:\new_folder\file.txt"
+print("Regular String:", regular_string)
+    \end{lstlisting}
+
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+Regular String:  C:
+ew_folderile.txt
+    \end{lstlisting}
+
+    In the regular string \lstinline|regular_string| variable, the backslashes (\lstinline|\n|) are interpreted as escape sequences. Therefore, \lstinline|\n| represents a newline character, which would lead to an incorrect file path representation.
+
+    Raw string:
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+raw_string = r"C:\new_folder\file.txt"
+print("Raw String:", raw_string)
+    \end{lstlisting}
+
+    This will output:
+
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+Raw String: C:\new_folder\file.txt
+    \end{lstlisting}
+
+    However, in the raw string \lstinline|raw_string|, the backslashes are treated as literal characters. This means that \lstinline|\n| is not interpreted as a newline character, but rather as two separate characters, \lstinline|\| and \lstinline|n|. Consequently, the file path is represented exactly as it appears.
+
+    \begin{obs}
+        Indirectly, we will be working with arrays, so that we can select certain pieces of information of a string using \lstinline|[n:m]|, where we indicate the interval from $n$ to $m-1$ of the string which we want to use.
+
+        This is called a slice.
+    \end{obs}
+
+    Also, we can take every 2 numbers or 3, using \lstinline|[::2]| and \lstinline|[::3]|, respectively.
+
+    \subsection{RegEx}
+
+    In Python, RegEx (short for Regular Expression) is a tool for matching and handling strings.
+
+    This RegEx module provides several functions for working with regular expressions, including search, split, findall, and sub.
+
+    Python provides a built-in module called \lstinline|re|, which allows you to work with regular expressions. First, import the \lstinline|re| module.
+
+    \begin{obs}
+        Regular expressions (RegEx) are patterns used to match and manipulate strings of text. There are several special sequences in RegEx that can be used to match specific characters or patterns.
+    \end{obs}
+
+    \begin{longtable}{p{3cm} p{12cm}}
+    \toprule
+    \textbf{Term} & \textbf{Definition} \\
+    \midrule
+    \endfirsthead
+
+    \toprule
+    \textbf{Term} & \textbf{Definition} \\
+    \endhead
+
+
+    \bottomrule
+    \caption{Glossary of Technical Terms}
+    \label{tab:glossary}
+    \endlastfoot
+
+
+        AI & AI (artificial intelligence) is the ability of a digital computer or computer-controlled robot to perform tasks commonly associated with intelligent beings. \\ 
+        \hline 
+        Application development & Application development, or app development, is the process of planning, designing, creating, testing, and deploying a software application to perform various business operations. \\ 
+        \hline 
+        Arithmetic Operations & Arithmetic operations are the basic calculations we make in everyday life like addition, subtraction, multiplication and division. It is also called as algebraic operations or mathematical operations. \\ 
+        \hline 
+        Array of numbers & Set of numbers or objects that follow a pattern presented as an arrangement of rows and columns to explain multiplication. \\ 
+        \hline 
+        Assignment operator in Python & Assignment operator is a type of Binary operator that helps in modifying the variable to its left with the use of its value to the right. The symbol used for assignment operator is "=". \\ 
+        \hline 
+        Asterisk & Symbol "* " used to perform various operations in Python. \\ 
+        \hline 
+        Backslash & A backslash is an escape character used in Python strings to indicate that the character immediately following it should be treated in a special way, such as being treated as escaped character or raw string. \\ 
+        \hline 
+        Boolean & Denoting a system of algebraic notation used to represent logical propositions by means of the binary digits 0 (false) and 1 (true). \\ 
+        \hline 
+        Colon & A colon is used to represent an indented block. It is also used to fetch data and index ranges or arrays. \\ 
+        \hline 
+        Concatenate & Link (things) together in a chain or series. \\ 
+        \hline 
+        Data engineering & Data engineers are responsible for turning raw data into information that an organization can understand and use. Their work involves blending, testing, and optimizing data from numerous sources. \\ 
+        \hline 
+        Data science & Data Science is an interdisciplinary field that focuses on extracting knowledge from data sets which are typically huge in amount. The field encompasses analysis, preparing data for analysis, and presenting findings to inform high-level decisions in an organization. \\ 
+        \hline 
+        Data type & Data type refers to the type of value a variable has and what type of mathematical, relational or logical operations can be applied without causing an error. \\ 
+        \hline 
+        Double quote & Symbol “ “ used to represent strings in Python. \\ 
+        \hline 
+        Escape sequence & An escape sequence is two or more characters that often begin with an escape character that tell the computer to perform a function or command. \\ 
+        \hline 
+        Expression & An expression is a combination of operators and operands that is interpreted to produce some other value. \\ 
+        \hline 
+        Float & Python float () function is used to return a floating-point number from a number or a string representation of a numeric value. \\ 
+        \hline 
+        Forward slash & Symbol “/“ used to perform various operations in Python \\ 
+        \hline 
+        Foundational & Denoting an underlying basis or principle; fundamental. \\ 
+        \hline 
+        Immutable & Immutable Objects are of in-built datatypes like int, float, bool, string, Unicode, and tuple. In simple words, an immutable object can’t be changed after it is created. \\ 
+        \hline 
+        Integer & An integer is the number zero (0), a positive natural number (1, 2, 3, and so on) or a negative integer with a minus sign (-1, -2, -3, and so on.) \\ 
+        \hline 
+        Manipulate & Is the process of modifying a string or creating a new string by making changes to existing strings. \\ 
+        \hline 
+        Mathematical conventions & A mathematical convention is a fact, name, notation, or usage which is generally agreed upon by mathematicians. \\ 
+        \hline 
+        Mathematical expressions & Expressions in math are mathematical statements that have a minimum of two terms containing numbers or variables, or both, connected by an operator in between. \\ 
+        \hline 
+        Mathematical operations & The mathematical "operation" refers to calculating a value using operands and a math operator. \\ 
+        \hline 
+        Negative indexing & Allows you to access elements of a sequence (such as a list, a string, or a tuple) from the end, using negative numbers as indexes. \\ 
+        \hline 
+        Operands & The quantity on which an operation is to be done. \\ 
+        \hline 
+        Operators in Python & Operators are used to perform operations on variables and values. \\ 
+        \hline 
+        Parentheses & Parentheses is used to call an object. \\ 
+        \hline 
+        Replicate & To make an exact copy of. \\ 
+        \hline 
+        Sequence & A sequence is formally defined as a function whose domain is an interval of integers. \\ 
+        \hline 
+        Single quote & Symbol ' ' used to represent strings in python. \\ 
+        \hline 
+        Slicing in Python & Slicing is used to return a portion from defined list. \\ 
+        \hline 
+        Special characters & A special character is one that is not considered a number or letter. Symbols, accent marks, and punctuation marks are considered special characters. \\ 
+        \hline 
+        Stride value & Stride is the number of bytes from one row of pixels in memory to the next row of pixels in memory. \\ 
+        \hline 
+        Strings & In Python, Strings are arrays of bytes representing Unicode characters. \\ 
+        \hline 
+        Substring & A substring is a sequence of characters that are part of an original string. \\ 
+        \hline 
+        Type casting & The process of converting one data type to another data type is called Typecasting or Type Coercion or Type Conversion. \\ 
+        \hline 
+        Types in Python & Data types are the classification or categorization of data items. It represents the kind of value that tells what operations can be performed on a particular data. \\ 
+        \hline 
+        Variables & Variables are containers for storing data values. \\ 
+    \end{longtable}
+
+    \chapter{Data Structures}
+
+    \section{Lists and Tuples}
+
+    \textbf{Tuples and lists} are called compound data types and \textit{are one of the fundamental structures in Python}.
+
+    \begin{mydef}[\textbf{Tuples}]
+        A \textbf{Tuple} \textit{is an ordered sequence of Python data types}.
+    \end{mydef}
+
+    \begin{exa}
+        Example of a touple is \lstinline|tuple=('disco',20,1.2)|
+    \end{exa}
+
+    We index the same tuple values the same way as an array. We can slice them.
+
+    \begin{obs}
+        Tuples are immutable, therefore you cannot change its values. We can assign a diferent value to a variable.
+
+        Therefore, if we want to manipulate a tuple, we must create another variable to save the value of the original variable modified.
+    \end{obs}
+
+    \begin{mydef}[\textbf{Lists}]
+        \textbf{List} are ordered sequences and are represented with \lstinline|[]|.
+    \end{mydef}
+
+    List are the same as tuples, but Lists are mutable, we can change its   values.
+
+    \begin{obs}
+        We can extend a list using the \lstinline|.extend(a)| method (where \lstinline|a| is a list) or add elements using \lstinline|.append(b)| (where \lstinline|b| is a variable).
+    \end{obs}
+
+    Also, we can delete elements from a list using \lstinline|del(A[n])|, where \lstinline|n| is the position in \lstinline|A| of the element which we want to delete.
+
+    \begin{obs}
+        Also, we can convert a string into a list using \lstinline|.split()|.
+    \end{obs}
+
+    \begin{longtable}{p{0.25\textwidth} p{0.35\textwidth} p{0.3\textwidth}}
+    \toprule
+    \textbf{Package/Method} & \textbf{Description} & \textbf{Code Example} \\
+    \midrule
+    \endfirsthead
+    
+    \toprule
+    \textbf{Package/Method} & \textbf{Description} & \textbf{Code Example} \\
+    \midrule
+    \endhead
+    
+    \bottomrule
+    \caption{List and Tuple Methods in Python}
+    \label{tab:list_tuple_methods}
+    \endlastfoot
+    
+    \textbf{List Methods} & & \\
+    \hline
+    
+    append() & Adds an element to the end of a list. & 
+    \begin{lstlisting}[language=Python]
+fruits = ["apple", "banana", "orange"]
+fruits.append("mango")
+print(fruits)
+    \end{lstlisting} \\
+    \hline
+    
+    copy() & Creates a shallow copy of a list. & 
+    \begin{lstlisting}[language=Python]
+my_list = [1, 2, 3, 4, 5]
+new_list = my_list.copy()
+print(new_list)
+    \end{lstlisting} \\
+    \hline
+    
+    count() & Counts occurrences of a specific element. & 
+    \begin{lstlisting}[language=Python]
+my_list = [1, 2, 2, 3, 4, 2, 5, 2]
+count = my_list.count(2)
+print(count)
+    \end{lstlisting} \\
+    \hline
+    
+    Creating a list & Creates an ordered, mutable collection. & 
+    \begin{lstlisting}[language=Python]
+fruits = ["apple", "banana", "orange", "mango"]
+    \end{lstlisting} \\
+    \hline
+    
+    del & Removes element at specified index. & 
+    \begin{lstlisting}[language=Python]
+my_list = [10, 20, 30, 40, 50]
+del my_list[2]
+print(my_list)
+    \end{lstlisting} \\
+    \hline
+    
+    extend() & Adds multiple elements from an iterable. & 
+    \begin{lstlisting}[language=Python]
+fruits = ["apple", "banana", "orange"]
+more_fruits = ["mango", "grape"]
+fruits.extend(more_fruits)
+print(fruits)
+    \end{lstlisting} \\
+    \hline
+    
+    Indexing & Accesses elements by position. & 
+    \begin{lstlisting}[language=Python]
+my_list = [10, 20, 30, 40, 50]
+print(my_list[0])
+print(my_list[-1])
+    \end{lstlisting} \\
+    \hline
+    
+    insert() & Inserts element at specified position. & 
+    \begin{lstlisting}[language=Python]
+my_list = [1, 2, 3, 4, 5]
+my_list.insert(2, 6)
+print(my_list)
+    \end{lstlisting} \\
+    \hline
+    
+    Modifying a list & Changes values using indexing. & 
+    \begin{lstlisting}[language=Python]
+my_list = [10, 20, 30, 40, 50]
+my_list[1] = 25
+print(my_list)
+    \end{lstlisting} \\
+    \hline
+    
+    pop() & Removes and returns element at index. & 
+    \begin{lstlisting}[language=Python]
+my_list = [10, 20, 30, 40, 50]
+removed_element = my_list.pop(2)
+print(removed_element)
+print(my_list)
+    \end{lstlisting} \\
+    \hline
+    
+    remove() & Removes first occurrence of value. & 
+    \begin{lstlisting}[language=Python]
+my_list = [10, 20, 30, 40, 50]
+my_list.remove(30)
+print(my_list)
+    \end{lstlisting} \\
+    \hline
+    
+    reverse() & Reverses the order of elements. & 
+    \begin{lstlisting}[language=Python]
+my_list = [1, 2, 3, 4, 5]
+my_list.reverse()
+print(my_list)
+    \end{lstlisting} \\
+    \hline
+    
+    Slicing & Accesses a range of elements. & 
+    \begin{lstlisting}[language=Python]
+my_list = [1, 2, 3, 4, 5]
+print(my_list[1:4])
+print(my_list[:3])
+print(my_list[::2])
+    \end{lstlisting} \\
+    \hline
+    
+    sort() & Sorts elements in ascending order. & 
+    \begin{lstlisting}[language=Python]
+my_list = [5, 2, 8, 1, 9]
+my_list.sort()
+print(my_list)
+    \end{lstlisting} \\
+    \hline
+    
+    \textbf{Tuple Methods} & & \\
+    \hline
+    
+    count() & Counts occurrences of a value. & 
+    \begin{lstlisting}[language=Python]
+fruits = ("apple", "banana", "apple", "orange")
+print(fruits.count("apple"))
+    \end{lstlisting} \\
+    \hline
+    
+    index() & Finds first occurrence of value. & 
+    \begin{lstlisting}[language=Python]
+fruits = ("apple", "banana", "orange", "apple")
+print(fruits.index("apple"))
+    \end{lstlisting} \\
+    \hline
+    
+    sum() & Calculates sum of numeric elements. & 
+    \begin{lstlisting}[language=Python]
+numbers = (10, 20, 5, 30)
+print(sum(numbers))
+    \end{lstlisting} \\
+    \hline
+    
+    min() and max() & Finds smallest/largest element. & 
+    \begin{lstlisting}[language=Python]
+numbers = (10, 20, 5, 30)
+print(min(numbers))
+print(max(numbers))
+    \end{lstlisting} \\
+    \hline
+    
+    len() & Gets number of elements. & 
+    \begin{lstlisting}[language=Python]
+fruits = ("apple", "banana", "orange")
+print(len(fruits))
+    \end{lstlisting} \\
+    
+\end{longtable}
+
+\end{document}

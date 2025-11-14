@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.7.29)  7 NOV 2025 13:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.7.29)  10 NOV 2025 17:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -816,6 +816,18 @@ Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
 
 LaTeX Warning: Label `figure:sigmoid_function_graph' multiply defined.
 
+
+LaTeX Warning: Label `lst:bar' multiply defined.
+
+
+LaTeX Warning: Label `lst:bar' multiply defined.
+
+
+LaTeX Warning: Label `lst:bar' multiply defined.
+
+
+LaTeX Warning: Label `lst:bar' multiply defined.
+
 )
 \openout1 = `module3.aux'.
 
@@ -909,7 +921,7 @@ Package mdframed Info: mdframed detected package amsthm
 (mdframed)              on input line 42.
 
 
-<watermark-1.png, id=42, 127.4361pt x 192.72pt>
+<watermark-1.png, id=62, 127.4361pt x 192.72pt>
 File: watermark-1.png Graphic file (type png)
 <use watermark-1.png>
 Package pdftex.def Info: watermark-1.png  used on input line 44.
@@ -970,7 +982,7 @@ File: watermark-1.png Graphic file (type png)
 Package pdftex.def Info: watermark-1.png  used on input line 53.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
 [4])
-<images/Iris_perceptron_scikit_learn.png, id=149, 462.528pt x 346.896pt>
+<images/Iris_perceptron_scikit_learn.png, id=169, 462.528pt x 346.896pt>
 File: images/Iris_perceptron_scikit_learn.png Graphic file (type png)
 <use images/Iris_perceptron_scikit_learn.png>
 Package pdftex.def Info: images/Iris_perceptron_scikit_learn.png  used on input line 121.
@@ -1024,7 +1036,7 @@ File: watermark-1.png Graphic file (type png)
 Package pdftex.def Info: watermark-1.png  used on input line 214.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
 [7]
-<images/sigmoid_function_graph.png, id=219, 462.528pt x 346.896pt>
+<images/sigmoid_function_graph.png, id=239, 462.528pt x 346.896pt>
 File: images/sigmoid_function_graph.png Graphic file (type png)
 <use images/sigmoid_function_graph.png>
 Package pdftex.def Info: images/sigmoid_function_graph.png  used on input line 219.
@@ -1056,13 +1068,133 @@ Package pdftex.def Info: watermark-1.png  used on input line 293.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
 [9]
 Package mdframed Info: Not enough space on this page on input line 293.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 314.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 323.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 335.
 
 
 File: watermark-1.png Graphic file (type png)
 <use watermark-1.png>
-Package pdftex.def Info: watermark-1.png  used on input line 308.
+Package pdftex.def Info: watermark-1.png  used on input line 335.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
-[10] (a:\Segundo Drive\Conocimiento\Conocimiento\Knowledge\Programacion\Courses\Machine Learning with PyTorch and Scikit-Learn\Module 3\module3.aux)
+[10]
+<images/sigomoid_regression.png, id=277, 313.6518pt x 212.4738pt>
+File: images/sigomoid_regression.png Graphic file (type png)
+<use images/sigomoid_regression.png>
+Package pdftex.def Info: images/sigomoid_regression.png  used on input line 340.
+(pdftex.def)             Requested size: 313.65102pt x 212.47327pt.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 356.
+ (Code/Logistic Regression/LogisticRegressionGD.py
+
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 11.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+[11 <./images/sigomoid_regression.png>]
+
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 59.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+[12])
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 396.
+
+
+Package mdframed Warning: You got a bad break
+(mdframed)                because the last box will be empty
+(mdframed)                you have to change it manually
+(mdframed)                by changing the text, the space
+(mdframed)                or something else on input line 398.
+
+Package mdframed Info: You first box width is to small
+ mdframed fixed it
+(mdframed)              on input line 398.
+
+
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 398.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+[13]
+
+Package mdframed Warning: You got a bad break
+(mdframed)                because the last split box is empty
+(mdframed)                You have to change the settings on input line 398.
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 400.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 408.
+
+Overfull \hbox (27.25609pt too wide) in paragraph at lines 409--410
+[]\OT1/cmr/m/n/12 Note that in re-cent ver-sions of scikit-learn, the tech-nique used for mul-ti-class clas-si-fi-ca-tion|multinomial
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 414.
+(Code/Logistic Regression/logistic_regression_example.py
+
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 19.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+[14]
+
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 68.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+[15])
+<images/logistic_regression_iris.png, id=445, 462.528pt x 346.896pt>
+File: images/logistic_regression_iris.png Graphic file (type png)
+<use images/logistic_regression_iris.png>
+Package pdftex.def Info: images/logistic_regression_iris.png  used on input line 427.
+(pdftex.def)             Requested size: 462.52686pt x 346.89514pt.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 439.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 441.
+
+
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 441.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+[16 <./images/logistic_regression_iris.png>]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 445.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 465.
+
+
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 497.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+[17]
+
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 503.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+[18] (a:\Segundo Drive\Conocimiento\Conocimiento\Knowledge\Programacion\Courses\Machine Learning with PyTorch and Scikit-Learn\Module 3\module3.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-07-19>
@@ -1072,20 +1204,20 @@ L3 programming layer <2025-07-19>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `module3.out' has not changed.
-(rerunfilecheck)             Checksum: 3C95A4D8B3D9087BABABFE8EA4815C59;2530.
+(rerunfilecheck)             Checksum: 7FC8554AFB8AD6E1F8796F79AD1FCF1A;3983.
  ) 
 Here is how much of TeX's memory you used:
- 27188 strings out of 468111
- 500041 string characters out of 5431381
+ 27549 strings out of 468111
+ 506622 string characters out of 5431381
  1527297 words of memory out of 5000000
- 55151 multiletter control sequences out of 15000+600000
+ 55321 multiletter control sequences out of 15000+600000
  638183 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 104i,12n,108p,818b,2353s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 104i,15n,108p,863b,2404s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\x\AppData\Local\MiKTeX\fonts/pk/ljfour/public/bbm/dpi600\bbm12.pk><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on "a:\Segundo Drive\Conocimiento\Conocimiento\Knowledge\Programacion\Courses\Machine Learning with PyTorch and Scikit-Learn\Module 3\module3.pdf" (10 pages, 382866 bytes).
+Output written on "a:\Segundo Drive\Conocimiento\Conocimiento\Knowledge\Programacion\Courses\Machine Learning with PyTorch and Scikit-Learn\Module 3\module3.pdf" (18 pages, 549051 bytes).
 PDF statistics:
- 370 PDF objects out of 1000 (max. 8388607)
- 164 named destinations out of 1000 (max. 500000)
- 100 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 634 PDF objects out of 1000 (max. 8388607)
+ 347 named destinations out of 1000 (max. 500000)
+ 150 words of extra memory for PDF output out of 10000 (max. 10000000)
 

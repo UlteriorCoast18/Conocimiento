@@ -287,7 +287,7 @@
     \begin{exa}
         Si $n=0$, entonces $\cf{T}{\left\{* \right\}}{X}$ es una función que manda un punto en un punto.
 
-        Si $n=0$, entonces $\cf{T}{I}{X}$ es un camino con puntos extremos $T(0)$ y $T(1)$.
+        Si $n=1$, entonces $\cf{T}{I}{X}$ es un camino con puntos extremos $T(0)$ y $T(1)$.
     \end{exa}
 
     \begin{obs}
@@ -563,7 +563,147 @@
             H_0(X)=Z_0(X)/B_0(X)=C_0(X)/B_0(X)
         \end{equation*}
     \end{mydef}
+
+    Otra forma de llegar a este mismo resultado es de la siguiente forma: hacemos $C_n(X)=\left\{0\right\}$, para $n\in\mathbb{Z}$ con $n<0$ y hacemos:
+    \begin{equation*}
+        \cf{\partial_n}{C_n(X)}{C_{ n-1}(X)}\textup{ como }\partial_n=0
+    \end{equation*}
+    nuevamente, para todo $n\in\mathbb{Z}$ con $n<0$. De esta forma:
+    \begin{equation*}
+        Z_n(X)=\ker\partial_n,\quad\forall n\in\mathbb{N}
+    \end{equation*}
+    y $B_n(X)=\partial_{n+1}\left(C_{n+1}(X)\right)\subseteq Z_n(X)$, con lo cual:
+    \begin{equation*}
+        H_n(X)=Z_n(X)/B_n(X),\quad\forall n\in\mathbb{N}
+    \end{equation*}
+    En particular se tiene que $H_n(X)=\left\{0\right\}$ para todo $n\in\mathbb{Z}$ con $n<0$.
+
+    De esta forma este grupo está definido aunque $X=\emptyset$.
+
+    \subsection{Opcional: EL Grupo de Homología 0-dimensional Reducido $\tilde{H}_0(X)$}
     
+    Para este caso, lo que haremos será definir un homomorfismo $\cf{\varepsilon}{C_0(X)}{\mathbb{Z}}$ donde $\mathbb{Z}$ denota el anillo de los enteros. Este homomorfismo es llamado usualmente \textbf{aumentación}.
+
+    \begin{obs}
+        Dado que $C_0(X)=Q_0(X)/D_0(X)$ y $D_0(X)\cong\left\{0\right\}$ (pues no hay 0-cubos singulares degenerados), se sigue que $C_0(X)\cong Q_0(X)$, por lo que podemos establecer naturalmente la igualdad $C_0(X)=Q_0(X)$.
+    \end{obs}
+
+    Por la observación anterior, basta definir $\cf{\varepsilon}{C_0(X)}{\mathbb{Z}}$ sobre 0-cubos, lo cual lo hacemos de forma natural:
+    \begin{equation*}
+        \varepsilon(T)=1,\quad\forall T\textup{ 0-cubo singular.}
+    \end{equation*}
+    Así que si $u=\sum_{ i=1}^k n_iT_i\in Q_0(X)$ podemos extender $\varepsilon$ a $Q_0(X)$ naturalmente:
+    \begin{equation*}
+        \varepsilon(u)=\sum_{ i=1}^k n_i
+    \end{equation*}
+    Con lo que tenemos el homomorfismo deseado.
+
+    \begin{lema}
+        Se cumple que:
+        \begin{equation*}
+            \varepsilon\circ\partial_1=0
+        \end{equation*}
+    \end{lema}
+
+    \begin{proof}
+        Sea $T$ un $1$-cubo singular. Entonces:
+        \begin{equation*}
+            \begin{split}
+                \partial_1(T)&=\sum_{ i=1}^1(-1)^i(A_iT-B_iT)\\
+                &=B_1T-A_1T\\
+                &=T_0-T_1\\
+            \end{split}
+        \end{equation*}
+        Con $\cf{T_j}{\left\{*\right\}}{X}$ la función tal que $*\mapsto T(j)$ para $j=0,1$. Por tanto:
+        \begin{equation*}
+            \varepsilon(\partial_1(T))=\varepsilon(T_0)-\varepsilon(T_1)=1-1=0
+        \end{equation*}
+        Usando el hecho de que $\partial_1$ es homomorfismo se sigue que:
+        \begin{equation*}
+            \varepsilon\circ\partial_1=0
+        \end{equation*}
+    \end{proof}
+    
+    Justamente este lema nos permite hacer la siguiente definición:
+
+    \begin{mydef}
+        Definimos $\tilde{Z}_0(X)=\ker\varepsilon$ y, dado que $B_0(X)=\textup{im}\partial_1\subseteq\tilde{Z}_0(X)$ por el lema anterior, podemos definir sin problemas el \textbf{grupo 0-dimensional de homología reducido de $X$} como:
+        \begin{equation*}
+            \tilde{H}_0(X)=\tilde{Z}_0(X)/B_0(X)
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        Para evitar problemas más adelante, definimos $\tilde{H}_n(X)=H_n(X)$ para todo $n\in\mathbb{N}$.
+    \end{obs}
+
+    Resulta que existe una relación entre el grupo de homología 0-reducido y el que hemos definido anteriormente.
+
+    Primero, notemos que $\tilde{Z}_0(X)\subseteq Z_0(X)=C_0(X)$, luego de la definición se sigue que $\tilde{H}_0(X)$ es un subgrupo de $H_0(X)$.
+
+    Tomemos $\cf{\zeta}{\tilde{H}_0(X)}{H_0(X)}$ el homomorfismo inclusión. Ahora, como $B_0(X)\subseteq\tilde{Z}_0(X)\subseteq Z_0(X)=C_0(X)$, se tiene que el homomorfismo aumentación $\cf{\varepsilon}{C_0(X)}{\mathbb{Z}}$ induce un homomorfismo $\cf{\varepsilon_*}{H_0(X)}{\mathbb{Z}}$ dado por:
+    \begin{equation*}
+        \varepsilon_*\left(B_0(X)+\sum_{ i=1}^k n_iT_i\right)=\varepsilon\left(\sum_{ i=1}^k n_i\right)=\sum_{ i=1}^k n_i
+    \end{equation*}
+
+    Resulta que estos homomorfismos guardan una relación muy particular entre sí:
+
+    \begin{propo}
+        La siguiente secuencia de grupos y homomorfismos:
+        \begin{equation*}
+            0\longrightarrow \tilde{H}_0(X)\overset{\zeta}{\longrightarrow}H_0(X)\overset{\varepsilon_*}{\longrightarrow}\mathbb{Z}\longrightarrow0
+        \end{equation*}
+        es exacta. Entonces, podemos identificar a $\tilde{H}_0(X)$ con el kernel de $\varepsilon_*$ (asumiendo que el espacio $X$ ahora es no vacío).
+    \end{propo}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{exa}
+        Sea $X=\left\{*\right\}$ el espacio de un solo punto. Entonces:
+        \begin{equation*}
+            \begin{split}
+                H_0(X)&\cong\mathbb{Z}\\
+                H_n(X)&=\left\{0\right\}\\
+                \tilde{H}_0(X)&=\left\{0\right\}\\
+            \end{split}
+        \end{equation*}
+        en este caso $\cf{\varepsilon_*}{H_0(X)}{\mathbb{Z}}$ es un isomorfismo.
+    \end{exa}
+
+    Este ejemplo se puede generalizar de forma natural a la siguiente proposición:
+
+    \begin{propo}
+        Sea $X$ un espacio no vacío, arco-conexo. Entonces, $\cf{\varepsilon_*}{H_0(X)}{\mathbb{Z}}$ es un isomorfismo, y $\tilde{H}_0(X)=\left\{0\right\}$.
+    \end{propo}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    %TODO
+
+    \section{El Homomorfismo Inducido por una Función Continua}
+
+    La Homología asocia a cada espacio topológico una sucesión $H_n(X)$ de grupos. De manera igualmente importante, a cada función continua $\cf{f}{X}{Y}$ entre dos espacios le podemos asociar una secuencia de homomorfismos:
+    \begin{equation*}
+        \cf{f_*}{H_n(X)}{H_n(Y)},\quad\forall n\in\mathbb{N}^*
+    \end{equation*}
+
+    \begin{obs}
+        Sucederá que ciertas propiedades topológicas se traducirán en propiedades del homomorfismo $f_*$.
+    \end{obs}
+
+    \begin{mydef}[\textbf{Homomorfismo entre $Q_n(X)$ y $Q_n(Y)$}]
+        Sean $X$ y $Y$ espacios topológicos, y $\cf{f}{X}{Y}$ una función continua. Entonces, definimos, para cada $n\in\mathbb{N}^*$ el homomorfismo $\cf{f_\#}{Q_n(X)}{Q_n(Y)}$ dado por:
+        \begin{equation*}
+            f_\#(T)=f\circ T,\quad\forall T\textup{ n-cubo singular}
+        \end{equation*}
+    \end{mydef}
+
+    
+
     \newpage
 
     \section{Ejercicios}

@@ -294,7 +294,7 @@ plt.show()
 
     \subsection{Deriving the likelihood function}
 
-    We can obtain the expression for the likelihood of the model given the data, $L(w, b \mid x)$, as follows. Given that we have a binary classification problem with class labels 0 and 1, we can think of the label 1 as a Bernoulli variable—it can take on two values, 0 and 1, with the probability $p$ of being 1: $Y \sim \mathrm{Bernoulli}(p)$. 
+    We can obtain the expression for the likelihood of the model given the data, $\mathcal{L}(w, b \mid x)$, as follows. Given that we have a binary classification problem with class labels 0 and 1, we can think of the label 1 as a Bernoulli variable—it can take on two values, 0 and 1, with the probability $p$ of being 1: $Y \sim \mathrm{Bernoulli}(p)$. 
 
     For a single data point, we can write this probability as:
     \begin{align}
@@ -303,6 +303,201 @@ plt.show()
     \end{align}
 
     Putting these two expressions together, and using the shorthand $P(Y=y^{(i)} \mid X=x^{(i)}) = p(y^{(i)} \mid x^{(i)})$, we get the probability mass function of the Bernoulli variable:
+    \begin{equation*}
+        p\left(y^{(i)}\Big|x^{(i)}\right)=\left(\sigma(z^{(i)})\right)^{(y^{(i)})}\left(1-\sigma(z^{(i)})\right)^{1-y^{(i)}}
+    \end{equation*}
+    Substituting the probability mass function of the Bernoulli variable, we arrive at the expression for the likelihood, which we attempt to maximize by changing the model parameters:
+    \begin{equation*}
+        \mathcal{L}(w,b\Big|x)=\prod_{ i=1}^n \left(\sigma(z^{(i)})\right)^{(y^{(i)})}\left(1-\sigma(z^{(i)})\right)^{1-y^{(i)}}
+    \end{equation*}
+
+    \begin{obs}
+        We could use an optimization algorithm such as \textbf{gradient ascent} to maximize this log-likelihood function. (\textit{Gradient ascent works the same way as gradient descent explained earlier, except that gradient ascent maximizes a function instead of minimizing it.}).
+    \end{obs}
+
+    Alternatively, let's rewrite the log-likelihood as a loss function, $L$, that can be minimized using gradient descent:
+    \begin{equation*}
+        L(w,b)=\sum_{i=1}^{n} \left[-y^{(i)} \log(\sigma(z^{(i)})) - (1 - y^{(i)}) \log(1 - \sigma(z^{(i)})) \right]
+    \end{equation*}
+
+    \begin{exa}
+        For one single training example, looking at the equation, we can see that the first term becomes zero if $y = 0$, and the second term becomes zero if $y = 1$:
+        \begin{equation*}
+            L(\sigma(z),y,w,b)=\left\{
+                \begin{array}{lr}
+                    -\log\left(\sigma(z)\right) & \textup{ if }y=0\\
+                    -\log\left(1-\sigma(z)\right) & \textup{ if }y=1\\
+                \end{array}
+            \right.
+        \end{equation*}
+
+        Let's write a short code snippet to create a plot that illustrates the loss of classifying a single training example for different values of $\sigma(z)$. The resulting plot shows the sigmoid activation on the x axis in the range 0 to 1 (the inputs to the sigmoid function were z values in the range -10 to 10) and the associated logistic loss on the y axis:
+    \end{exa}
+
+    \begin{figure}[h]
+            \begin{minipage}{\textwidth}
+                \centering
+                \includegraphics[scale=1]{images/sigomoid_regression.png} \\
+                \caption{Loss Function.}
+                \label{figure:loss_function}
+            \end{minipage}
+        \end{figure}
+
+    We can see that the loss approaches 0 (continuous line) if we correctly predict that an example belongs to class 1. Similarly, the loss also approaches 0 if we correctly predict y = 0 (dashed line). However, if the prediction is wrong, the loss goes toward infinity. The main point is that we penalize incorrect predictions with an increasingly larger loss.
+
+    \section{Converting an Adaline Implementation Into an Algorithm for Logistic Regression}
+
+    If we implement logistic regression from scratch, we can substitute the loss function, $L$, in the earlier Adaline implementation with the new loss function:
+
+    \begin{equation*}
+        L(w,b)=\frac{1}{n}\sum_{i=1}^{n} \left[-y^{(i)} \log(\sigma(z^{(i)})) - (1 - y^{(i)}) \log(1 - \sigma(z^{(i)})) \right]
+    \end{equation*}
+
+    \begin{obs}
+        We use this to compute the loss of classifying all training examples per epoch. We also swap the linear activation function for the sigmoid. With those changes, the Adaline code becomes a working logistic regression implementation.
+    \end{obs}
+
+    The following example uses full-batch gradient descent (the same changes can be applied to the stochastic variant):  
+
+    \lstinputlisting[caption={Implementation of Logistic Regression in Python.},label=code:logistic_regression_implementation, language=Python]{Code/Logistic Regression/LogisticRegressionGD.py}
+
+    \begin{center}
+        \textit{When fitting a logistic regression model, remember that it only works for binary classification tasks.}
+    \end{center}
+
+    The resulting decision region plot looks as follows:
+
+    \section{Gradient Descent}
+
+    One observation we can make on the latter code is that the partial derivative of the loss function $L$ is really simple to compute, this is due to the fact:
+
+    \begin{equation*}
+        \frac{\partial L}{\partial w_j}=\frac{\partial L}{\partial \sigma}\cdot\frac{\partial \sigma}{\partial z}\cdot\frac{\partial z}{\partial w_j}
+    \end{equation*}
+    where:
+    \begin{equation*}
+        \begin{split}
+            \frac{\partial L}{\partial \sigma}&=\frac{\sigma-y}{\sigma\cdot(1-\sigma)}\\
+            \frac{\partial \sigma}{\partial z}&=\sigma(1-\sigma)\\
+            \frac{\partial z}{\partial w_j}&=x_j\\
+        \end{split}
+    \end{equation*}
+    So,
+    \begin{equation*}
+        \frac{\partial L}{\partial w_j}=-(y-\sigma)x_j
+    \end{equation*}
+
+    Recall that gradient descent takes steps in the opposite direction of the gradient. Hence, we flip $\nabla L(w)$ and update the j-th weight as follows, including the learning rate $\eta$:
+    \begin{equation*}
+        w_j=w_j-\eta\cdot\frac{\partial L}{\partial w_j}(w)
+    \end{equation*}
+    While the partial derivative of the loss function with respect to the bias unit is not shown, bias derivation follows the same concept.
+
+    \begin{obs}
+        We should compute the mean in all this process, but due we are working in this example with a single record for simplicity.
+    \end{obs}
+
+    \begin{idea}[\textbf{Relation between Adaline and Logistical Regression}]
+        Both the weight and bias updates are the same as for Adaline, but the change is in the activation function.
+    \end{idea}
+
+    \section{Training a Logistic Regression Model with Scikit-Learn}
+
+    We just went through useful coding and math exercises in the previous subsection, which helped to illustrate the conceptual differences between Adaline and logistic regression. Now, let's learn how to use scikit-learn's more optimized implementation of logistic regression, which also supports multiclass settings off the shelf.
+    
+    \begin{obs}
+        Note that in recent versions of scikit-learn, the technique used for multiclass classification—multinomial or OvR—is chosen automatically.
+    \end{obs}
+    
+    In the following code example, we will use the \lstinline|sklearn.linear_model.LogisticRegression| class as well as the familiar fit method to train the model on all three classes in the standardized flower training dataset. Also, we set \lstinline|multi_class='ovr'| for illustration purposes. As an exercise, you may want to compare the results with \lstinline|multi_class='multinomial'|. Note that the \lstinline|multinomial| setting is now the default choice in scikit-learn's \lstinline|LogisticRegression| class and recommended in practice for mutually exclusive classes, such as those found in the Iris dataset.
+    
+    \begin{obs}
+        Here, "mutually exclusive" means that each training example can belong to only a single class (in contrast to multilabel classification, where a training example can be a member of multiple classes).
+    \end{obs}
+
+    Now, let's look at the code example:
+
+    \lstinputlisting[caption={Logistic Regression Iris Dataset Python.},label=code:logistic_regression_iris_dataset]{Code/Logistic Regression/logistic_regression_example.py}
+
+    Which produces an output like this:
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/logistic_regression_iris.png} \\
+            \caption{Logistic Regression on the Iris Dataset.}
+            \label{figure:logistic_regression_iris_dataset}
+        \end{minipage}
+    \end{figure}
+
+    \subsection{Algorithms for convex optimization}
+    
+    Many different algorithms exist for solving optimization problems. For minimizing convex loss functions, such as the logistic regression loss, it is recommended to use more advanced approaches than regular \textbf{stochastic gradient descent} (\textbf{SGD}). Scikit-learn implements a range of such optimization algorithms, which can be specified via the solver parameter: \lstinline|'newton-cg'|, \lstinline|'lbfgs'|, \lstinline|'liblinear'|, \lstinline|'sag'|, and \lstinline|'saga'|.
+
+    While the logistic regression loss is convex, most optimization algorithms should converge to the global loss minimum with ease. However, there are certain advantages to using one algorithm over another. For example, in earlier versions (for instance, v0.21), scikit-learn used \lstinline|'liblinear'| as the default, which cannot handle the multinomial loss and is limited to the OvR scheme for multiclass classification. In scikit-learn v0.22, the default solver was changed to \lstinline|'lbfgs'|, which stands for the \href{https://en.wikipedia.org/wiki/Limited-memory_BFGS}{limited-memory Broyden-Fletcher-Goldfarb-Shanno (BFGS) algorithm}  and is more flexible in this regard.
+
+    \begin{obs}
+        Looking at the preceding code that we used to train the \lstinline|LogisticRegression| model, you might now be wondering, "What is this mysterious parameter \lstinline|C|?" We will discuss this parameter in the next subsection, where we will introduce the concepts of overfitting and regularization. However, before we move on to those topics, let's finish our discussion of class membership probabilities.
+    \end{obs}
+
+    The probability that training examples belong to a certain class can be computed using the \lstinline|predict_proba| method.
+
+    \begin{exa}
+        For example, we can predict the probabilities of the first three examples in the test dataset as follows:
+
+        \begin{lstlisting}[caption={Predicting Probabilities.},label=code:predicting_probabilities]
+lr.predict_proba(X_test[:3, :])
+        \end{lstlisting}
+    \end{exa}
+
+    This code snippet returns the following array:
+
+    \begin{lstlisting}
+array([[3.81527885e-09, 1.44792866e-01, 8.55207131e-01],
+       [8.34020679e-01, 1.65979321e-01, 3.25737138e-13],
+       [8.48831425e-01, 1.51168575e-01, 2.62277619e-14]])
+    \end{lstlisting}
+
+    The first row corresponds to the class membership probabilities of the first flower, the second row corresponds to the second flower, and so forth. Notice that the column-wise sum in each row is 1, as expected (you can confirm this by executing \lstinline|lr.predict_proba(X_test_std[:3, :]).sum(axis=1)|).
+
+    The highest value in the first row is approximately \lstinline|0.85|, which means that the first example belongs to class 3 (\lstinline|Iris-virginica|) with a predicted probability of 85 percent.
+
+    \begin{obs}
+        As you may have noticed, we can obtain the predicted class labels by identifying the largest column in each row, for example, by using NumPy's \lstinline|argmax| function:
+
+        \begin{lstlisting}
+lr.predict_proba(X_test_std[:3, :]).argmax(axis=1)
+        \end{lstlisting}
+        
+        The returned class indices (corresponding to \lstinline|Iris-virginica|, \lstinline|Iris-setosa|, and \lstinline|Iris-setosa|) are:
+
+        \begin{lstlisting}
+array([2, 0, 0])
+        \end{lstlisting}
+
+        In the preceding code example, we converted conditional probabilities into class labels manually by using NumPy's \lstinline|argmax| function. In practice, the more convenient way of obtaining class labels when using scikit-learn is to call the \lstinline|predict| method directly:  
+
+        \begin{lstlisting}
+lr.predict(X_test_std[:3, :])
+array([2, 0, 0])
+        \end{lstlisting}
+
+        Lastly, if you want to predict the class label of a single flower example, scikit-learn expects a two-dimensional array as input. One way to convert a single row entry into a two-dimensional data array is to use NumPy's \lstinline|reshape| method to add a new dimension, as shown here:
+
+        \begin{lstlisting}
+lr.predict(X_test[0, :].reshape(1, -1))
+array([2])
+        \end{lstlisting}
+
+    \end{obs}
+
+    \section{Tackling Overfitting via Regularization}
+
+    Overfitting is a common problem in machine learning, where a model performs well on training data but does not generalize well to unseen data (test data). If a model suffers from overfitting, we also say that the model has high variance, which can be caused by having too many parameters, leading to a model that is too complex given the underlying data. Similarly, a model can suffer from underfitting (high bias), which means it is not complex enough to capture the pattern in the training data well and therefore also performs poorly on unseen data.
+
+    Although we have only encountered linear models for classification so far, the problems of overfitting and underfitting can be illustrated by comparing a linear decision boundary to more complex, nonlinear decision boundaries.
+
+    
 
 
 \end{document}

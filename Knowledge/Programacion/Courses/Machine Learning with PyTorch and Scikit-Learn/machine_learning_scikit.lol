@@ -16,8 +16,12 @@
 \contentsline {lstlisting}{\numberline {3.3}Use of \lstinline |bincount| Method in Python.}{45}{lstlisting.3.3}%
 \contentsline {lstlisting}{\numberline {3.4}\lstinline |StandardScaler| Method in Python.}{45}{lstlisting.3.4}%
 \contentsline {lstlisting}{\numberline {3.5}Perceptron Trained Model using Sklearn}{46}{lstlisting.3.5}%
-\contentsline {lstlisting}{\numberline {A.1}Check Python Version}{50}{lstlisting.A.1}%
-\contentsline {lstlisting}{\numberline {A.2}\lstinline |pip| Package Installation.}{50}{lstlisting.A.2}%
-\contentsline {lstlisting}{\numberline {A.3}Conda Package Installation.}{51}{lstlisting.A.3}%
-\contentsline {lstlisting}{\numberline {A.4}caption}{51}{lstlisting.A.4}%
-\contentsline {lstlisting}{\numberline {A.5}Check Version of Packages}{52}{lstlisting.A.5}%
+\contentsline {lstlisting}{\numberline {3.6}Sigmoid Function Graph.}{50}{lstlisting.3.6}%
+\contentsline {lstlisting}{\numberline {3.7}Implementation of Logistic Regression in Python.}{54}{lstlisting.3.7}%
+\contentsline {lstlisting}{\numberline {3.8}Logistic Regression Iris Dataset Python.}{57}{lstlisting.3.8}%
+\contentsline {lstlisting}{\numberline {3.9}Predicting Probabilities.}{59}{lstlisting.3.9}%
+\contentsline {lstlisting}{\numberline {A.1}Check Python Version}{61}{lstlisting.A.1}%
+\contentsline {lstlisting}{\numberline {A.2}\lstinline |pip| Package Installation.}{61}{lstlisting.A.2}%
+\contentsline {lstlisting}{\numberline {A.3}Conda Package Installation.}{62}{lstlisting.A.3}%
+\contentsline {lstlisting}{\numberline {A.4}caption}{62}{lstlisting.A.4}%
+\contentsline {lstlisting}{\numberline {A.5}Check Version of Packages}{63}{lstlisting.A.5}%

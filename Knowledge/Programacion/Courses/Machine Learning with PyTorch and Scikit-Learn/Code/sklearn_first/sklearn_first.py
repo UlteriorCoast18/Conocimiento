@@ -42,7 +42,7 @@ def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.2):
 #Import Data
 
 iris = datasets.load_iris()
-X = iris.data[:,0:2]
+X = iris.data[:,2:4]
 y = iris.target
 
 #Scale Standard Data
@@ -69,7 +69,7 @@ clf.fit(X_train, y_train)
 #Plot regions
 
 plot_decision_regions(X, y, clf, idx_test, 0.2)
-plt.xlabel(iris.feature_names[0] + " (standarized)")
-plt.ylabel(iris.feature_names[1] + " (standarized)")
+plt.xlabel(iris.feature_names[2] + " (standarized)")
+plt.ylabel(iris.feature_names[3] + " (standarized)")
 plt.legend()
 plt.show()
