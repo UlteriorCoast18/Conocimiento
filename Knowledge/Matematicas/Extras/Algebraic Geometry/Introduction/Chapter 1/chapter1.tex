@@ -149,13 +149,316 @@
 
     \section{Regular Functions on Closed Subsets}
 
-    \begin{mydef}[Nombre]
+    \begin{mydef}[\textbf{Regular Functions}]
         Let $X$ be a closed subset of $\bbm{A}^n$ over the ground field $k$. A function $\cf{f}{X}{k}$ is called \textbf{regular} if there exists a polynomial $F\in k[T]$ such that:
         \begin{equation*}
             f(u)=F(u),\quad\forall u\in X
         \end{equation*}
     \end{mydef}
 
-    %TODO
+    In general, there's not a unique polynomial that defines a regular function.
+
+    \begin{obs}
+        We can add to $F$ any polynomial entering in the system of equations that defines the set $X$, this doesn't always result in an alteration of $F$.
+    \end{obs}
+
+    For the next proposition, we need to remember the definition of an algebra:
+
+    \begin{mydef}[\textbf{$k$-Algebra}]
+        A $k$-algebra is a cuatruplet $(A,k,+,\cdot)$ such that:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $(A,+,\cdot)$ is a ring.
+            \item $(A,+)$ is a vector space over the field $k$.
+            \item The ring multiplication is $k$-bilinear, that is:
+            \begin{equation*}
+                \alpha(a b)=(\alpha a)b=a(\alpha b),\quad\forall \alpha\in k,a,b\in A
+            \end{equation*}
+        \end{enumerate}
+    \end{mydef}
+
+    We will usually denote a $k$-algebra simply by $A$.
+
+    \begin{propo}[\textbf{Algebra of Regular Functions}]
+        Let $X$ be a closed subset of $\bbm{A}^n$ over the ground field $k$. The set of all regular functions over $X$ is a $k$-algebra with the usual addition and multiplication of functions.
+        
+        The ring obtained is denoted by $k[X]$ and is called the \textbf{ring of regular functions over $X$}.
+    \end{propo}
+
+    \begin{proof}
+        Let $k[X]$ be the set of all regular functions over $X$. We will prove that $k[X]$ is a $k$-algebra by checking the three conditions of the definition:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item \textbf{$(k[X],+,\cdot)$ is a ring}. This is obvious since the sum and product of polynomials is a polynomial.
+            \item \textbf{$(k[X],+)$ is a vector space over the field $k$}. This is also obvious since the sum of polynomials and the multiplication of a polynomial by a scalar is a polynomial.
+            \item \textbf{The ring multiplication is $k$-bilinear}. This is also immediate from the fact that the multiplication of elements in the field $k$ is commutative.
+        \end{enumerate}
+        It follows that $k[X]$ is a $k$-algebra.
+    \end{proof}
+
+    \begin{mydef}[\textbf{Coordinate Ring}]
+        Let $X$ be a closed subset of $\bbm{A}^n$ over the ground field $k$. The $k$-algebra $k[X]$ is called the \textbf{coordinate ring of $X$}.
+    \end{mydef}
+
+    We will only deal with the ring structure of the algebra of regular functions, leaving the vector space structure aside (for the moment). We write $k[T]$ for the polynomial ring in $T_1,\dots,T_n$-variables over the field $k$.
+
+    \begin{obs}
+        Let $\cf{ap}{k[T]}{k[X]}$ be the function defined as:
+        \begin{equation*}
+            ap(F)=f,\quad\forall F\in k[T]
+        \end{equation*}
+        where $\cf{f}{X}{k}$ is defined as $f(u)=F(u)$ for all $u\in X$. It's immediate that $ap$ is a epimorfism of rings.
+    \end{obs}
+
+    Due to the latter obsevation and using the first isomorphism theorem, it follows that:
+    \begin{equation*}
+        k[X]\cong k[T]/\ker(ap)
+    \end{equation*}
+    where:
+    \begin{equation*}
+        \ker(ap)=\left\{F\in k[T]\Big|F(u)=0,\quad\forall u\in X \right\}
+    \end{equation*}
+    is an ideal of $k[T]$.
+
+    \begin{mydef}[\textbf{Ideal of a Closed Set}]
+        Let $X$ be a closed subset of $\bbm{A}^n$ over the ground field $k$. The ideal $\ker(ap)$ of $k[T]$ is called the \textbf{ideal of the closed set $X$} and is denoted by $\mathfrak{I}_X$.
+    \end{mydef}
+    From the above, it follows that:
+    \begin{equation*}
+        k[X]\cong k[T]/\mathfrak{I}_X
+    \end{equation*}
+    Thus, the ring is fully determined by the ideal $\mathfrak{I}_X$. We will now focus on studying this ideal in order to understand better the structure of the ring of regular functions over a closed set.
+
+    \begin{exa}
+        If $X\subseteq\bbm{A}^n$ is such that $X=\left\{(x_1,\dots,x_n)\right\}$, then:
+        \begin{equation*}
+            k[X]\cong k[T]/\mathfrak{I}_X
+        \end{equation*}
+        where $\mathfrak{I}_X$ is the ideal of all polynomials vanishing at the point $x=(x_1,\dots,x_n)$, which is given by:
+        \begin{equation*}
+            \mathfrak{I}_X=\left\{F\Big|\textup{ where }F(T)=\alpha(T-x);\alpha\in k \right\}
+        \end{equation*}
+        So, $k[T]/\mathfrak{I}_X\cong k$. It follows that $k[X]\cong k$.
+    \end{exa}
+
+    \begin{exa}
+        If $X=\bbm{A}^n$, then $\mathfrak{I}_X=\left\{0\right\}$, where $0$ is the $0$ polynomial, so $k[X]\cong k[T]$.
+    \end{exa}
+
+    \begin{exa}
+        Let $X\subseteq\bbm{A}^2$ be given by the equation:
+        \begin{equation*}
+            X=\left\{(x_1,x_2)\in\bbm{A}^2\Big|x_1x_2-1=0\right\}
+        \end{equation*}
+        Then, the ideal $\mathfrak{I}_X$ is given by:
+        \begin{equation*}
+            \mathfrak{I}_X=\left\{F\in k[T_1,T_2]\Big|F(T_1,T_2)=(T_1T_2-1)G(T_1,T_2);G\in k[T_1,T_2] \right\}
+        \end{equation*}
+        It is not so difficult to show that there is a ring isomorphism between $k[X]$ and $k[T_1,T_1^{-1}]$, the ring of Laurent polynomials in one variable over the field $k$.
+    \end{exa}
+
+    \begin{obs}
+        Let $R$ be a ring and $I$ and ideal of $R$. We know that there is a correspondence between the ideals of $R/I$ and the ideals of $R$ that contain $I$. This correspondence is given by:
+        \begin{equation*}
+            J\mapsto J/I,\textup{ were $J$ is an ideal of $R$ such that }I\subseteq J
+        \end{equation*}
+        Since $k[T]$ is Noetherian, it follows that $k[X]$ is also Noetherian, no matter the closed subset $X$ of $\bbm{A}^n$.
+    \end{obs}
+
+    And furthermore, we have that $k[X]$ satisfies the following analogue of the Nullstellensatz Theorem. Before that, we shall give the following definition:
+
+    \begin{mydef}[\textbf{Radical Ideal}]
+        Let $R$ be a ring and $I$ an ideal of $R$. The radical of the ideal $I$, denoted by $\rad{I}$ or $\sqrt{I}$, is given by:
+        \begin{equation*}
+            \rad{I}=\left\{a\in R\Big|a^n\in I,\textup{ for some }n\in\bbm{N}\right\}
+        \end{equation*}  
+    \end{mydef}
+
+    \begin{propo}
+        Let $X$ be a closed subset of $\bbm{A}^n$ over the ground field $k$. Then, if $f,g_1,\dots,g_m \in k[X]$ are functions such that $f$ vanishes at all points where $g_1,\dots,g_m$ vanish, then there exists $r\in\bbm{N}$ such that:
+        \begin{equation*}
+            f^r\in (g_1,\dots,g_m)
+        \end{equation*}
+        where $(g_1,\dots,g_m)$ denotes the ideal of $k[X]$ generated by the set $\left\{g_1,\dots,g_m \right\}$.
+    \end{propo}
+
+    \begin{proof}
+        Let $F$ and $G_1,\dots,G_m\in k[T]$ be polynomials such that:
+        \begin{equation*}
+            i(F)=f\textup{ and }i(G_j)=g_j,\quad\forall j\in\natint{1,m}
+        \end{equation*}
+        where $\cf{i}{k[T]/\mathfrak{I}_X}{k[X]}$ is given by:
+        \begin{equation*}
+            i(H+\mathfrak{I}_X)=h,\quad\forall H\in k[T]
+        \end{equation*}
+        being $\cf{h}{X}{k}$ the function defined as $h(u)=H(u)$ for all $u\in X$.
+
+        Let $F_1,\dots, F_l$ be the equations of $X$, that is:
+        \begin{equation*}
+            F_i(u)=0,\quad\forall u\in X,\quad\forall i\in\natint{1,l}
+        \end{equation*}
+        If $u\in X$ is such that $G_j(u)=0$ for all $j\in\natint{1,m}$, then $F_i(u)=0$ for all $i\in\natint{1,l}$ and $F(u)=0$. It follows from the Nullstellensatz Theorem that there exists $r\in\bbm{N}$ such that:
+        \begin{equation*}
+            F^r\in (G_1,\dots,G_m,F_1,\dots,F_l)
+        \end{equation*}
+        Therefore, since $F_1,\dots,F_l\in\mathfrak{I}_X$, it follows that $f^r\in\left(g_1,\dots,g_m\right)$.
+    \end{proof}
+
+    \begin{preg}
+        What's the relation between the ideal $\mathfrak{I}_X$ of a closed set $X$ and a system $F_1=\dots=F_m=0$ of defining equations of $X$?
+    \end{preg}
+
+    \begin{sol}
+        Clearly, by definition we have that $F_i\in\mathfrak{I}_X$, for all $i\in\natint{1,m}$. Therefore, the ideal generated by the set $\left\{F_1,\dots,F_m \right\}$ is contained in $\mathfrak{I}_X$.
+
+        However, it is not always true that $\mathfrak{I}_X$ is equal to the ideal generated by the set $\left\{F_1,\dots,F_m \right\}$.
+    \end{sol}
+
+    \begin{exa}
+        Let $X\subseteq\bbm{A}^2$ be given by the equation:
+        \begin{equation*}
+            T^2=0
+        \end{equation*}
+        Then, $X=\left\{0\right\}$, so $\mathfrak{I}_X$ consists of all the polynomials vanishing at $0$, that is, all polynomials without constant term. However, the ideal generated by the polynomial $T^2$ doesn't contain the polynomial $T$, so they are not equal.
+    \end{exa}
+
+    However, we can always define the same closed set $X$ with a system of equations $G_1=\dots=G_l=0$ whose generated ideal is equal to $\mathfrak{I}_X$. This follows from the Hilbert's Basis Theorem, since $\mathfrak{I}_X$ is finitely generated.
+
+    \begin{obs}[\textbf{Generating System of Equations}]
+        Let $X$ be a closed subset of $\bbm{A}^n$, and let $G_1,\dots,G_m\in k[T]$ be polynomials such that:
+        \begin{equation*}
+            \mathfrak{I}_X=(G_1,\dots,G_m)
+        \end{equation*}
+        then, for all $F\in\mathcal{I}_X$ we have that there exists $H_1,\dots,H_m\in k[T]$ such that:
+        \begin{equation*}
+            F=H_1G_1+\dots+H_mG_m
+        \end{equation*}
+        Since $G_i\in\mathfrak{I}_X$ it follows that $X$ is defined by the system of equations $G_1=\dots=G_m=0$.
+
+        Therefore, we can always find a system of equations defining $X$ whose generated ideal is equal to $\mathfrak{I}_X$.
+    \end{obs}
+
+    \begin{idea}
+        It is sometimes even convenient to consider a closed set as defined by the infinite system of equations $F = 0$ for all polynomials $F\in\mathfrak{I}_X$ . Indeed, if $(F1 , . . . , Fm ) = \mathfrak{I}_X$ then these equations are all consequences of $F_1=\dots=F_m=0$.
+    \end{idea}
+
+    It turns out that relations between closed sets can be translated to relations between their corresponding ideals.
+
+    \begin{exa}
+        Let $X$ and $Y$ be closed subsets of $\bbm{A}^n$. Then, $Y\subseteq X$ if and only if $\mathfrak{I}_X\subseteq\mathfrak{I}_Y$.
+    \end{exa}
+
+    This follows directly from the definitions. The latter example allows us to asociate to every closed subset of a closed set $X$ of the afine space $\bbm{A}^n$ an ideal of the coordinate ring $k[X]$.
+        
+    Indeed, if $Y\subseteq X$ is a closed subset of $X$, then we can asociate to $Y$ the ideal $\mathfrak{a}_Y=\mathfrak{I}_Y/\mathfrak{I}_X$ of the ring $k[X]=k[T]/\mathfrak{I}_X$ (using correspondence theorem).
+
+    Conversely, if $\mathfrak{a}$ is an ideal of $k[X]$, then we can asociate to $\mathfrak{a}$ the closed subset $Y$ of $X$ defined by the equations $F=0$ for all polynomials $F\in\mathfrak{a}$.
+
+    \begin{obs}
+        $Y=\emptyset$ if and only if $\mathfrak{I}_Y=k[X]$
+    \end{obs}
+
+    Something interesting happens when we consider isolated points of $X$. Indeed, if $x\in X$ is an isolated point of $X$, then the ideal $\mathfrak{m}_x=\mathfrak{I}_{\left\{x\right\}}/\mathfrak{I}_X$ has to be a maximal ideal of $k[X]$.
+
+    \begin{obs}
+        By definition, this ideal is the kernel of the homomorphism $\cf{ap}{k[T]}{k[X]}$, so:
+        \begin{equation*}
+            \mathfrak{m}_x=\left\{F\in k[T]\Big|F(x)=0 \right\}
+        \end{equation*}
+        Since $k$ is an algebraically closed field, then:
+        \begin{equation*}
+            \mathfrak{m}_x=\left\{\alpha(x-T)\Big|\alpha\in k \right\}
+        \end{equation*}
+        So, $k[T]/\mathfrak{m}_x=k$. It follows that $\mathfrak{m}_x$ has to be a maximal ideal of $k[X]$.
+    \end{obs}
+
+    We can do the converse too, and to each maximal ideal of $k[X]$ there is an isolated point of $X$ associated.
+
+    \begin{mydef}[\textbf{Hypersurface}]
+        Let $X$ be a closed subset of $\bbm{A}^n$ over the ground field $k$. We say that $X$ is an \textbf{hypersurface} if there exists $F\in k[T]$ such that:
+        \begin{equation*}
+            X=\left\{u\in\bbm{A}^n\Big|F(u)=0 \right\}
+        \end{equation*}
+    \end{mydef}
+
+    \section{Regular Maps}
+
+    From now on, $X$ will denote a closed subset of $\bbm{A}^n$ and $Y$ a closed subset of $\bbm{A}^m$.
+
+    \begin{mydef}[\textbf{Regular Maps}]
+        A map $\cf{f}{X}{Y}$ is called \textbf{regular} if there exists $f_1,\dots,f_m\in X$ regular functions on $X$ such that:
+        \begin{equation*}
+            f(x)=(f_1(x),\dots,f_m(x)),\quad\forall x\in X
+        \end{equation*}
+    \end{mydef}
+
+    Any regular map $\cf{f}{X}{\bbm{A}^m}$ is always given by $m$-functions $f_1,\dots,f_m\in k[X]$.
+
+    \begin{obs}
+        In order to know that this maps into the closed subset $Y\subseteq\bbm{A}^n$, we need to check that:
+        \begin{equation*}
+            G(f_1(x),\dots,f_m(x))=0,\quad\forall x\in X
+        \end{equation*}
+        for all $G\in\mathfrak{I}_Y$.
+    \end{obs}
+
+    \begin{exa}
+        A regular function is the same thing as a regular map $\cf{f}{X}{\bbm{A}^1=k}$.
+    \end{exa}
+
+    \begin{exa}
+        A linear map $\cf{L}{\bbm{A}^n}{\bbm{A}^m}$ is a regular map.
+    \end{exa}
+
+    \begin{proof}
+        It suffices to show that the components of $L$, let say $L=(L_1,\dots,L_m)$ are regular functions. Indeed, since $L$ is linear, it follows that $L_j$ is $k$-linear for all $j\in\natint{1,m}$, so there exists $\alpha_1,\dots,\alpha_m\in\bbm{A}^n$ such that:
+        \begin{equation*}
+            L_j(x)=\alpha_j\cdot x,\quad\forall x\in\bbm{A}^n
+        \end{equation*}
+        where $\alpha_j\cdot x$ denotes the usual dot product. Since each $L_j$ is a polynomial of degree 1, it follows that $L_j$ is a polynomial function, so it's regular.
+    \end{proof}
+
+    \begin{exa}
+        The projection map $(x,y)\mapsto x$ defines a regular map of the curve defined by $xy=1$ to $\bbm{A}^1$.
+    \end{exa}
+
+    \begin{exa}
+        The map $f(t)=(t^2,t^3)$ is a regular map of the line $\bbm{A}^1$ to the curve defined by $x^3-y^2=0$ in $\bbm{A}^2$.
+    \end{exa}
+
+    \subsection{The Zeta Function of a Variety over $\bbm{F}_p$}
+
+    This example is very important to number theorists, since it relates algebraic geometry with number theory in a very deep way.
+
+    Let $p$ be a prime number and $\bbm{F}_p$ the finite field with $p$ elements. Let $X$ be a closed subset of $\bbm{A}^n$ defined over $\bbm{F}_p$, that is, the polynomials defining $X$ have coefficients in $\bbm{F}_p$.
+
+    \begin{obs}
+        Let's consider the closed set $X$ and $F_1=\dots=F_m$ the polynomials defining $X$. If $x\in X$ then:
+        \begin{equation*}
+            F_i(x)=0,\quad\forall i\in\natint{1,m}
+        \end{equation*}
+        So it follows that: %TODO: Congruences mod p
+    \end{obs}
+    Let's consider the map $\cf{\varphi}{\bbm{A}^n}{\bbm{A}^n}$ given by:
+    \begin{equation*}
+        \varphi(x_1,\dots,x_n)=(x_1^p,\dots,x_n^p)
+    \end{equation*}
+    It's immediate to see that $\varphi$ is a regular map. Furthermore, if $x\in X$, then $\varphi(x)\in X$. Let $x\in X$, so:
+    \begin{equation*}
+        F_i(x)=0,\quad\forall i\in\natint{1,m}
+    \end{equation*}
+
+    \newpage 
+
+    \section{Excersies}
+
+    \begin{excer}
+        If $X$ and $Y$ are closed subsets of $\bbm{A}^n$ and $\bbm{A}^m$, then $k[X\times Y]$ is isomorphic to $k[X]\otimes_k k[Y]$, where:
+        \begin{equation*}
+            k[X]\otimes_k k[Y]=\left\{f\otimes_k g\Big|f\in k[X]\textup{ and }g\in k[Y] \right\}
+        \end{equation*}
+        where $\cf{f\otimes_kg}{X\times Y}{k}$ is defined as:
+        \begin{equation*}
+            f\otimes_kg(x,y)=f(x)g(y),\quad\forall (x,y)\in X\times Y
+        \end{equation*}
+    \end{excer}
 
 \end{document}
