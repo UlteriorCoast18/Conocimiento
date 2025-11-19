@@ -17,6 +17,7 @@
 \usepackage{ifthen}
 \usepackage{enumitem}
 \usepackage{hyperref}
+\usepackage{bbm}
 
 %Gestión de Hipervínculos
 
@@ -33,7 +34,7 @@
 \newcommand*\watermarktext[1]{\begin{tabular}{c}
     \setcounter{it}{1}%
     \whiledo{\theit<100}{%
-    \foreach \col in {0,...,15}{#1\ \ } \\ \\ \\
+    \foreach \col in {0,\dots,15}{#1\ \ } \\ \\ \\
     \stepcounter{it}%
     }
     \end{tabular}
@@ -148,6 +149,7 @@
 \newcommand\contradiction{\ensuremath{\#_c}}
 \newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
 \newcommand\gen[1]{\ensuremath{\langle#1\rangle }}
+\newcommand\bbm[1]{\ensuremath{\mathbbm{#1}}}
 
 \newcounter{figcount}
 \setcounter{figcount}{1}
@@ -186,9 +188,9 @@
     La idea de un $\Delta$-complejo es la de generalizar este tipo de construcciones a cualquier número de dimensiones. El análogo $n$-dimensional de un triángulo es el \textbf{$n$-simplejo}.
 
     \begin{mydef}
-        Sean $n,m\in\mathbb{N}\cup\left\{0 \right\}$ con $m>0$. Se define el \textbf{$n$-simplejo} como el subconjunto convexo más pequeño en $\mathbb{R}^m$ tal que contiene a $n+1$ puntos $v_0,...,v_n\in\mathbb{R}^m$ que no yacen en el mismo hiperplano de dimensión menor o igual a $n$.
+        Sean $n,m\in\mathbb{N}\cup\left\{0 \right\}$ con $m>0$. Se define el \textbf{$n$-simplejo} como el subconjunto convexo más pequeño en $\mathbb{R}^m$ tal que contiene a $n+1$ puntos $v_0,\dots,v_n\in\mathbb{R}^m$ que no yacen en el mismo hiperplano de dimensión menor o igual a $n$.
 
-        Los puntos $v_i$ son llamados \textbf{vértices del simplejo} y éste es denotado por $[v_0,...,v_n]$
+        Los puntos $v_i$ son llamados \textbf{vértices del simplejo} y éste es denotado por $[v_0,\dots,v_n]$
     \end{mydef}
 
     \begin{obs}
@@ -206,25 +208,25 @@
     \end{obs}
 
     \begin{exa}
-        El $n$-simplejo que contiene a los vectores canónicos $e_1,...,e_n$ y al cero en $\mathbb{R}^m$ es el conjunto:
+        El $n$-simplejo que contiene a los vectores canónicos $e_1,\dots,e_n$ y al cero en $\mathbb{R}^m$ es el conjunto:
         \begin{equation*}
-            \Delta^n=\left\{(t_0,...,t_n)\in\mathbb{R}^{ n+1}\Big|\sum_{ i=0}^n t_i\textup{ y }t_i\geq0\textup{ }\forall i=0,...,n \right\}
+            \Delta^n=\left\{(t_0,\dots,t_n)\in\mathbb{R}^{ n+1}\Big|\sum_{ i=0}^n t_i\textup{ y }t_i\geq0\textup{ }\forall i=0,\dots,n \right\}
         \end{equation*}
-        es llamado \textbf{$n$-simplejo estándar}. Notemos que $\Delta^n=[0,e_1,...,e_n]$ donde $O$ es el origen de $\mathbb{R}^{ n+1}$.
+        es llamado \textbf{$n$-simplejo estándar}. Notemos que $\Delta^n=[0,e_1,\dots,e_n]$ donde $O$ es el origen de $\mathbb{R}^{ n+1}$.
     \end{exa}
 
     En homología va a resultar importante mantener el orden de los vértices del simplejo, por lo que cuando digamos \textit{$n$-simplejo}, realmente estaremos diciendo \textit{$n$-simplejo con un ordenamiento de vértices}.
 
-    Una consecuencia de ordenar los vértices de un simplejo $[v_0,...,v_n]$ es que éstos determinan la orientación de los vértices $[v_i,v_j]$ de acuerdo a los subíndices ordenados de forma creciente.
+    Una consecuencia de ordenar los vértices de un simplejo $[v_0,\dots,v_n]$ es que éstos determinan la orientación de los vértices $[v_i,v_j]$ de acuerdo a los subíndices ordenados de forma creciente.
 
-    Especificar este orden de los vértices determina un homomorfismo lineal del $n$-simplejo estándar en cualquier otro $n$-simplejo $[v_0,...,v_n]$ que preserve el orden de los vértices, a saber:
+    Especificar este orden de los vértices determina un homomorfismo lineal del $n$-simplejo estándar en cualquier otro $n$-simplejo $[v_0,\dots,v_n]$ que preserve el orden de los vértices, a saber:
     \begin{equation*}
-        (t_0,...,t_n)\mapsto \sum_{ i=0}^n t_iv_i
+        (t_0,\dots,t_n)\mapsto \sum_{ i=0}^n t_iv_i
     \end{equation*}
-    los coeficientes $t_i$ son llamados $i$-ésimas \textbf{coordenadas baricéntricas} del punto $\sum_{ i=0}^n t_iv_i$ en el simplejo $[v_0,...,v_n]$.
+    los coeficientes $t_i$ son llamados $i$-ésimas \textbf{coordenadas baricéntricas} del punto $\sum_{ i=0}^n t_iv_i$ en el simplejo $[v_0,\dots,v_n]$.
 
     \begin{mydef}
-        Sea $[v_0,...,v_n]$ un $n$-simplejo y tomemos $j=0,...,n$. Entonces el simplejo $[v_0,...,\hat{v_j},...,v_n]$ es un $(n-1)$-simplejo llamado \textbf{$j$-ésima cara de $[v_0,...,v_n]$}.
+        Sea $[v_0,\dots,v_n]$ un $n$-simplejo y tomemos $j=0,\dots,n$. Entonces el simplejo $[v_0,\dots,\hat{v_j},\dots,v_n]$ es un $(n-1)$-simplejo llamado \textbf{$j$-ésima cara de $[v_0,\dots,v_n]$}.
     \end{mydef}
 
     \begin{obs}
@@ -313,7 +315,7 @@
     \begin{mydef}
         Sean $X$ espacio topológico y $n\in\mathbb{N}$. Un $n$-cubo singular $\cf{T}{I^n}{X}$ es \textbf{degenerado} si existe $i\in\natint{1,n}$ tal que:
         \begin{equation*}
-            T(x_1,...,x_{ i_1},...,x_n)=T(x_1,...,x_{ i_2},...,x_n)
+            T(x_1,\dots,x_{ i_1},\dots,x_n)=T(x_1,\dots,x_{ i_2},\dots,x_n)
         \end{equation*}
         para todo $x_{i_1},x_{i_2}\in I$. En otras palabras, $T$ no depende de la $i$-ésima entrada.
     \end{mydef}
@@ -358,8 +360,8 @@
         dados por:
         \begin{equation*}
             \begin{split}
-                A_iT(x_1,...,x_n)&=T(x_1,...,x_{ i-1},1,x_i,...,x_n)\\
-                B_iT(x_1,...,x_n)&=T(x_1,...,x_{ i-1},0,x_i,...,x_n)\\
+                A_iT(x_1,\dots,x_n)&=T(x_1,\dots,x_{ i-1},1,x_i,\dots,x_n)\\
+                B_iT(x_1,\dots,x_n)&=T(x_1,\dots,x_{ i-1},0,x_i,\dots,x_n)\\
             \end{split}
         \end{equation*}
         $A_iT$ es llamada la \textbf{$i$-ésima cara frontal de $T$} y $B_iT$ es la \textbf{$i$-ésima cara trasera de $T$}.
@@ -461,11 +463,11 @@
 
         Para la otra parte, suponga que $T$ es degenerado, entonces existe $j\in\natint{1,n}$ tal que:
         \begin{equation*}
-            T(x_1,...,x_{j_1},...,x_n)=T(x_1,...,x_{j_2},...,x_n)
+            T(x_1,\dots,x_{j_1},\dots,x_n)=T(x_1,\dots,x_{j_2},\dots,x_n)
         \end{equation*}
-        para todo $x_1,...,x_{j_1},x_{j_2},...,x_n\in I$. En particular, notemos que:
+        para todo $x_1,\dots,x_{j_1},x_{j_2},\dots,x_n\in I$. En particular, notemos que:
         \begin{equation*}
-            T(x_1,...,0,...,x_n)=T(x_1,...,1,...,x_n)
+            T(x_1,\dots,0,\dots,x_n)=T(x_1,\dots,1,\dots,x_n)
         \end{equation*}
         por lo cual,
         \begin{equation*}
@@ -499,7 +501,7 @@
             \begin{equation*}
                 [C_1]_{D_n(X)}=[C_2]_{D_n(X)}
             \end{equation*}
-            por comodidad, esto simplemente lo denotaremos por $[C_1]=[C_2]$. Por tanto, existen $T_1,...,T_n\in D_n(X)$ y $n_1,...,n_m\in\mathbb{Z}$ tales que:
+            por comodidad, esto simplemente lo denotaremos por $[C_1]=[C_2]$. Por tanto, existen $T_1,\dots,T_n\in D_n(X)$ y $n_1,\dots,n_m\in\mathbb{Z}$ tales que:
             \begin{equation*}
                 C_1-C_2=n_1T_1+\cdots+n_mT_m\Rightarrow C_1=C_2+n_1T_1+\cdots+n_mT_m
             \end{equation*}
@@ -646,7 +648,22 @@
         \varepsilon_*\left(B_0(X)+\sum_{ i=1}^k n_iT_i\right)=\varepsilon\left(\sum_{ i=1}^k n_i\right)=\sum_{ i=1}^k n_i
     \end{equation*}
 
-    Resulta que estos homomorfismos guardan una relación muy particular entre sí:
+    Resulta que estos homomorfismos guardan una relación muy particular entre sí. Antes de ver dicha, relación, veamos la siguiente definición:
+
+    \begin{mydef}[\textbf{Secuencia Exacta}]
+        Sean $G_0,\dots,G_n$ una secuencia de grupos y $\left(\cf{f_i}{G_{ i-1}}{G_i}\right)_{ i=1}^n$ una secuencia de homomorfismos. Decimos que la secuencia es \textbf{exacta} en $G_i$ si:
+        \begin{equation*}
+            \textup{im}\:f_i=\ker f_{ i+1}
+        \end{equation*}
+        y, decimos que la secuencia es \textbf{exacta} si es exacta en cada $G_i$ para $i\in\natint{1,n-1}$.
+    \end{mydef}
+
+    \begin{obs}
+        Normalmente denotaremos la secuencia de grupos y homomorfismos de la siguiente manera:
+        \begin{equation*}
+            G_0\overset{f_1}{\longrightarrow}G_1\overset{f_2}{\longrightarrow}G_2\overset{f_3}{\longrightarrow}\cdots\overset{f_n}{\longrightarrow}G_n
+        \end{equation*}
+    \end{obs}
 
     \begin{propo}
         La siguiente secuencia de grupos y homomorfismos:
@@ -657,10 +674,24 @@
     \end{propo}
 
     \begin{proof}
-        %TODO
+        Veamos que la secuencia es exacta:
+        \begin{itemize}
+            \item \textbf{Exacta en $\tilde{H}_0(X)$}. En efecto, $\textup{im}\:0=\left\{0\right\}=\ker\zeta$, ya que $\zeta$ es el homomorfismo inclusión (en particular, es inyectivo).
+            \item \textbf{Exacta en $H_0(X)$}. Se tiene que la imagen de $\zeta$ es $\tilde{H}_0(X)$, ahora, sea $B_0(X)+\sum_{ i=1}^k n_iT_i\in \tilde{H}_0(X)$ elemento de $\ker\varepsilon_*$, entonces:
+            \begin{equation*}
+                \begin{split}
+                    \varepsilon_*\left(B_0(X)+\sum_{ i=1}^k n_iT_i \right)&=0\\
+                    \Rightarrow\varepsilon\left(\sum_{ i=1}^k n_i \right)&=0\\
+                \end{split}
+            \end{equation*}
+            por tanto, $\sum_{ i=1}^k n_i=0$, así que $B_0(X)+\sum_{ i=1}^k n_iT_i\in \tilde{H}_0(X)$, es decir, $B_0(X)+\sum_{ i=1}^k n_iT_i\in \textup{im}\:\zeta$. Se sigue que $\textup{im}\:\zeta=\ker\varepsilon_*$.
+            \item \textbf{Exacta} en $\mathbb{Z}$. Es inmediato (más adelante se verifica que $\varepsilon_*$ es epimorfismo).
+        \end{itemize}
+        De los tres incisos se sigue que la secuencia es exacta.
     \end{proof}
 
     \begin{exa}
+        \label{ejemplo:espacio_punto_0_homotopia}
         Sea $X=\left\{*\right\}$ el espacio de un solo punto. Entonces:
         \begin{equation*}
             \begin{split}
@@ -679,10 +710,75 @@
     \end{propo}
 
     \begin{proof}
+        Para probar que $\cf{\varepsilon_*}{H_0(X)}{\mathbb{Z}}$ es un isomorfismo, basta con ver que es epimorfismo y monomorfismo.
+        \begin{itemize}
+            \item \textbf{Epimorfismo}: Es inmediato, pues si $T$ es un $0$-cubo singular, entonces para todo $n\in\mathbb{Z}$ se tiene que:
+            \begin{equation*}
+                \varepsilon_*(B_0(X)+nT)=n
+            \end{equation*}
+            \item \textbf{Monomorfismo}: Dado que por la proposición anterior la secuencia:
+            \begin{equation*}
+                0\longrightarrow \tilde{H}_0(X)\overset{\zeta}{\longrightarrow}H_0(X)\overset{\varepsilon_*}{\longrightarrow}\mathbb{Z}\longrightarrow0
+            \end{equation*}
+            es exacta, basta con ver que $\ker\varepsilon_*=\textup{im}\:\zeta=\left\{0\right\}$, en otras palabras, hay que probar que $B_0(X)=\tilde{Z}_0(X)=\ker\varepsilon$. Ya se tiene que $B_0(X)\subseteq\tilde{Z}_0(X)$, por lo que veamos la otra contención. Sea $u=\sum_{i=1}^k n_iT_i\in\ker\varepsilon$, esto es que:
+            \begin{equation*}
+                \varepsilon(u)=\sum_{ i=1}^k n_i=0
+            \end{equation*}
+            Ahora, como $X$ es arco-conexo, para cada par de $0$-cubo singulares $T_i$ y $T_j$ ($i,j\in\natint{1,k}$ con $i\neq j$) existe un $1$-cubo singular $T_{i,j}$ tal que:
+            \begin{equation*}
+                A_1T_{i,j}=T_i\quad\textup{y}\quad B_1T_{i,j}=T_j
+            \end{equation*}
+            Por tanto, notemos que:
+            \begin{equation*}
+                \begin{split}
+                    \partial_1(T_{i,j})&=B_1T_{i,j}-A_1T_{i,j}\\
+                    &=T_j-T_i\\
+                \end{split}
+            \end{equation*}
+            Luego, podemos escribir a $u$ como:
+            \begin{equation*}
+                \begin{split}
+                    \partial_1&\left(n_1T_{2,1}+(n_1+n_2)T_{3,2}+(n_1+n_2+n_3)T_{4,3}+\cdots+\sum_{ i=1}^j n_iT_{j+1,j}+\dots+\sum_{i=1}^{k-1}n_iT_{ k,k-1} \right)\\
+                    &=n_1(T_1-T_2)+(n_1+n_2)(T_2-T_3)+\cdots+\left(\sum_{ i=1}^{k-1} n_i\right)(T_ {k-1}-T_k)\\
+                    &=n_1T_1+\left(-n_1+n_1+n_2\right)T_2+\cdots+\left(-\sum_{ i=1}^{k-2} n_i+\sum_{ i=1}^{k-1} n_i\right)T_{ k-1}-\left(\sum_{ i=1}^{k-1} n_i\right)T_k\\
+                    &=n_1T_1+n_2T_2+\dots+n_{k-1}T_{ k-1}-\left(\sum_{ i=1}^{k-1} n_i\right)T_k\\
+                \end{split}
+            \end{equation*}
+            Pero, como $\sum_{ i=1}^kn_i=0$, se sigue que $n_k=-\sum_{ i=1}^{ k-1}n_i$, por lo cual lo anterior es igual a:
+            \begin{equation*}
+                n_1T_1+n_2T_2+\cdots+n_{k-1}T_{ k-1}+n_kT_k=u
+            \end{equation*}
+            se sigue así que $u\in\textup{im}\:\partial_1$. Por tanto, $\ker\varepsilon\subseteq B_0(X)$.
+        \end{itemize}
+    \end{proof}
+
+    \begin{propo}
+        Sea $X$ un espacio topológico. Si:
+        \begin{equation*}
+            X=\bigsqcup_{ \gamma\in\Gamma} X_\gamma,
+        \end{equation*}
+        (siendo esta la unión disjunta) donde $\left(X_\gamma\right)_{ \gamma\in\Gamma}$ es una sucesión de subconjuntos arco-conexos maximales de $X$ ajenos a pares, entonces:
+        \begin{equation*}
+            H_n(X)\cong\bigoplus_{ \gamma\in\Gamma} H_n(X_\gamma),
+        \end{equation*}
+        para todo $n\in\mathbb{N}$.
+    \end{propo}
+
+    \begin{proof}
         %TODO
     \end{proof}
 
-    %TODO
+    \begin{obs}
+        En las hipótesis de la proposición anterior, los conjuntos arco-conexos maximales son exactamente las componentes arco-conexas de $X$.
+    \end{obs}
+
+    \begin{cor}[\textbf{Caracterización de $H_0(X)$}]
+        Para cualquier espacio topológico $X$, $H_0(X)$ es suma directa de grupos cíclicos infinitos, uno por cada componente arco-conexa de $X$.
+
+        En otras palabras, $H_0(X)$ es un grupo abeliano libre cuyo rango es igual al númeor de componentes arco-conexas de $X$.
+    \end{cor}
+
+    Resulta que el corolario anterior no es para nada válido con el grupo reducido $\tilde{H}_0(X)$, como lo muestra el Ejemplo (\ref{ejemplo:espacio_punto_0_homotopia}).  
 
     \section{El Homomorfismo Inducido por una Función Continua}
 
@@ -698,11 +794,216 @@
     \begin{mydef}[\textbf{Homomorfismo entre $Q_n(X)$ y $Q_n(Y)$}]
         Sean $X$ y $Y$ espacios topológicos, y $\cf{f}{X}{Y}$ una función continua. Entonces, definimos, para cada $n\in\mathbb{N}^*$ el homomorfismo $\cf{f_\#}{Q_n(X)}{Q_n(Y)}$ dado por:
         \begin{equation*}
-            f_\#(T)=f\circ T,\quad\forall T\textup{ n-cubo singular}
+            f_\#(T)=f\circ T,\quad\forall \:T\textup{ n-cubo singular}
         \end{equation*}
     \end{mydef}
 
+    Resulta que este homomorfismo tiene propiedades interesantes que se enlistan a continuación:
+
+    \begin{propo}[\textbf{Propiedades de $f_\#$}]
+        Sean $X$ y $Y$ espacios topológicos y $\cf{f}{X}{Y}$ una función continua. Entonces:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Si $T$ es un $n$-cubo singular degenerado en $X$, entonces $f_\#(T)$ lo es en $Y$. Esto induce un homomorfismo $\cf{f_\#}{C_n(X)}{C_n(Y)}$.
+            \item El siguiente diagrama:
+            
+            \begin{minipage}{\textwidth}
+                \begin{center}
+                    \includegraphics[scale=1]{images/fig_2.pdf}\\
+                    Figura \thefigcount. Conmutatividad de $f_\#$ con $\partial_n$ en $Q_n$.
+                    \stepcounter{figcount}
+                \end{center}
+            \end{minipage}
+
+            es conmtuativo, para todo $n\in\mathbb{N}$. En otras palabras:
+            \begin{equation*}
+                \partial_n\circ f_\#=f_\#\circ\partial_n,\quad\forall n\in\mathbb{N}
+            \end{equation*}
+
+            Además, el diagrama:
+
+            \begin{minipage}{\textwidth}
+                \begin{center}
+                    \includegraphics[scale=1]{images/fig_4.pdf}\\
+                    Figura \thefigcount. Conmutatividad de $f_\#$ con $\partial_n$ en $C_n$.
+                    \stepcounter{figcount}
+                \end{center}
+            \end{minipage}
+
+            es conmutativo, para todo $n\in\mathbb{N}$.
+            \item El diagrama:
+            
+            \begin{minipage}{\textwidth}
+                \begin{center}
+                    \includegraphics[scale=1]{images/fig_3.pdf}\\
+                    Figura \thefigcount. Conmutatividad de $f_\#$ con $\varepsilon$.
+                    \stepcounter{figcount}
+                \end{center}
+            \end{minipage}
+
+            es conmutativo.
+        \end{enumerate}
+    \end{propo}
+
+    \begin{proof}
+        De \textit{(1)}: Sea $T$ un $n$-cubo singular degenerado en $X$, entonces existe $j\in\natint{1,n}$ tal que:
+        \begin{equation*}
+            T(x_1,\dots,x_{j_1},\dots,x_n)=T(x_1,\dots,x_{j_2},\dots,x_n)
+        \end{equation*}
+        para todo $x_1,\dots,x_{j_1},x_{j_2},\dots,x_n\in I$. Por lo cual:
+        \begin{equation*}
+            \begin{split}
+                f_\#(T)(x_1,\dots,x_{ j_1},\dots,x_n)&=f(T(x_1,\dots,x_{ j_1},\dots,x_n))\\
+                &=f(T(x_1,\dots,x_{ j_2},\dots,x_n))\\
+                &=f_\#(T)(x_1,\dots,x_{ j_2},\dots,x_n),\\
+            \end{split}
+        \end{equation*}
+        para todo $x_1,\dots,x_{j_1},x_{j_2},\dots,x_n\in I$. Por tanto, $f_\#(T)$ es degenerado.
+
+        Ahora, el homomorfismo inducido $\cf{f_\#}{C_n(X)}{C_n(Y)}$ está dado por:
+        \begin{equation*}
+            f_\#\left(\sum_{ i=1}^k n_iT_k+D_n(X)\right)=\sum_{ i=1}^k n_if_\#(T_k)+D_n(Y)
+        \end{equation*}
+        Esté está siempre bien definido, pues si tenemos dos elementos que son degenerados en $X$, su diferencia es degenerada, y al aplicar $f_\#$ se mantiene la degeneración pero ahora en $Y$. El hecho de que sea homomorfismo se sigue de la definición del $f_\#$ original.
+
+        De \textit{(2)}: Sea $T$ un $n$-cubo singular en $X$, notemos que:
+        \begin{equation*}
+            \begin{split}
+                f_\#\circ A_i (T)(t_1,\dots,t_{ n-1})&=f(A_iT(t_1,\dots,t_{ n-1}))\\
+                &=f(T(t_1,\dots,t_{ i-1},1,t_i,\dots,t_{ n-1}))\\
+                &=f\circ T(t_1,\dots,t_{ i-1},1,t_i,\dots,t_{ n-1})\\
+                &=A_i(f_\#(T))(t_1,\dots,t_{ n-1})\\
+                &=A_i\circ f_\#(T)(t_1,\dots,t_{ n-1})\\
+            \end{split}
+        \end{equation*}
+        para todo $(t_1,\dots,t_{ n-1})\in I^{ n-1}$. Por ende, se tiene que:
+        \begin{equation}
+            \label{conmutatividad_f_A}
+            f_\#\circ A_i=A_i\circ f_\#
+        \end{equation}
+        De forma análoga se prueba que:
+        \begin{equation}
+            \label{conmutatividad_f_B}
+            f_\#\circ B_i=B_i\circ f_\#
+        \end{equation}
+        De (\ref{conmutatividad_f_A}) y (\ref{conmutatividad_f_B}) se sigue que para todo $T$ un $n$-cubo singular en $X$:
+        \begin{equation*}
+            \begin{split}
+                f_\#\circ\partial_n(T)&=f_\#\left(\sum_{ i=1}^n (-1)^i\left[A_iT-B_iT \right]\right)\\
+                &=\sum_{ i=1}^n (-1)^i\left[f_\#(A_iT)-f_\#(B_iT) \right]\\
+                &=\sum_{ i=1}^n (-1)^i\left[A_i(f_\#T)-B_i(f_\#T) \right]\\
+                &=\partial_n\circ f_\#(T)\\
+            \end{split}
+        \end{equation*}
+        Dado que $f$ y $\partial_n$ son homomorfismos, se sigue que:
+        \begin{equation*}
+            \partial_n\circ f_\#\left(\sum_{ i=1}^kn_iT_i\right) =f_\#\circ\partial_n\left(\sum_{ i=1}^kn_iT_i\right)
+        \end{equation*}
+        para todo $\sum_{ i=1}^kn_iT_i\in Q_n(X)$. Por tanto:
+        \begin{equation*}
+            \partial_n\circ f_\#=f_\#\circ\partial_n
+        \end{equation*}
+        Ahora, dado que $f_\#$ induce un homomorfismo $\cf{f_\#}{C_n(X)}{C_n(Y)}$, este también conmuta con $\cf{\partial_n}{C_n}{C_{n-1}}$, pues si $\sum_{ i=1}^k n_iT_k+D_n(X)\in C_n(X)$:
+        \begin{equation*}
+            \begin{split}
+                f_\#\circ\partial_n\left(\sum_{ i=1}^k n_iT_k+D_n(X)\right)&=f_\#\left(\sum_{ i=1}^k n_i\partial_n(T_k)+D_{n-1}(X)\right)\\
+                &=\sum_{ i=1}^k n_if_\#\left(\partial_n(T_k)\right)+D_{n-1}(Y)\\
+                &=\sum_{ i=1}^k n_i\partial_n\left(f_\#(T_k)\right)+D_{n-1}(Y)\\
+                &=\partial_n\left(\sum_{ i=1}^k n_if_\#(T_k)+D_n(Y)\right)\\
+                &=\partial_n\circ f_\#\left(\sum_{ i=1}^k n_iT_k+D_n(X)\right)\\
+            \end{split}
+        \end{equation*}
+
+        De \textit{(3)}: Es análogo a lo hecho en el inciso \textit{(2)}.
+    \end{proof}
     
+    \begin{obs}
+        En el inciso \textit{(2)} de la proposición anterior, notemos que $f_\#$ mapea a $Z_n(X)\subseteq C_n(X)$ en $Z_n(Y)\subseteq C_n(Y)$, pues si $\sum_{ i=1}^k n_iT_i+D_n(X)\in Z_n(X)$, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \partial_n\circ f_\#\left(\sum_{ i=1}^k n_iT_i+D_n(X)\right)&=f_\#\circ\partial_n\left(\sum_{ i=1}^k n_iT_i+D_n(X)\right)\\
+                &=f_\#(0+D_{ n-1}(X))\\
+                &=0+D_{ n-1}(Y)\\
+                &=0\\
+            \end{split}
+        \end{equation*}
+        pues, dado que $\sum_{ i=1}^k n_iT_i+D_n(X)\in Z_n(X)$, se tiene que $\partial_n\left(\sum_{ i=1}^k n_iT_i+D_n(X)\right)=0+D_{ n-1}(X)$. Así que:
+        \begin{equation*}
+            f_\#(Z_n(X))\subseteq Z_n(Y)
+        \end{equation*}
+
+        Ahora, de forma análoga, se tiene que $f_\#$ mapea a $B_n(X)\subseteq C_n(X)$ en $B_n(Y)\subseteq C_n(Y)$, pues si $\sum_{ i=1}^k n_iT_i+D_n(X)\in B_n(X)$, existe $\sum_{ j=1}^m m_jS_j+D_{ n+1}(X)\in C_{ n+1}(X)$ tal que:
+        \begin{equation*}
+            \sum_{ i=1}^k n_iT_i+D_n(X)=\partial_{ n+1}\left(\sum_{ j=1}^m m_jS_j+D_{ n+1}(X)\right)
+        \end{equation*}
+        Por tanto:
+        \begin{equation*}
+            \begin{split}
+                f_\#\left(\sum_{ i=1}^k n_iT_i+D_n(X)\right)&=f_\#\circ\partial_{ n+1}\left(\sum_{ j=1}^m m_jS_j+D_{ n+1}(X)\right)\\
+                &=\partial_{ n+1}\circ f_\#\left(\sum_{ j=1}^m m_jS_j+D_{ n+1}(X)\right)\\
+            \end{split}
+        \end{equation*}
+        es decir, que $f_\#\left(\sum_{ i=1}^k n_iT_i+D_n(X)\right)\in B_n(Y)$, pues $f_\#\left(\sum_{ j=1}^m m_jS_j+D_{ n+1}(X)\right)\in C_{ n+1}(Y)$. De aquí se sigue la otra contención.
+    \end{obs}
+
+    La observación anterior nos permite definir un homomofismo $\cf{f_*}{H_n(X)}{H_n(Y)}$ de forma natural, dado por:
+    \begin{equation*}
+        f_*\left(\sum_{ i=1}^kn_iT_i+B_n(X)\right)=\sum_{ i=1}^kn_if_\#(T_i)+B_n(Y),
+    \end{equation*}
+    para todo $\sum_{ i=1}^kn_iT_i+B_n(X)\in H_n(X)$.
+
+    \begin{mydef}[\textbf{Homomorfismo Inducido}]
+        Sean $X$ y $Y$ espacios topológicos, y $\cf{f}{X}{Y}$ una función continua. Entonces, el homomorfismo $\cf{f_*}{H_n(X)}{H_n(Y)}$ es llamado el \textbf{homomorfismo inducido por $f$}.
+    \end{mydef}
+
+    De manera análoga podemos hacer esta definición con el homomorfismo inducido en homología reducida: $\cf{f_*}{\tilde{H}_0(X)}{\tilde{H}_0(Y)}$. Este homomorfismo cumple además que el diagrama:
+
+    \begin{minipage}{\textwidth}
+        \begin{center}
+            \includegraphics[scale=1]{images/fig_5.pdf}\\
+            Figura \thefigcount. Conmutatividad de $f_*$ con $\zeta$ y $\varepsilon_*$.
+            \stepcounter{figcount}
+        \end{center}
+    \end{minipage}    
+
+    es conmutativo.
+
+    \begin{lema}
+        Sea $X$ espacio topológico y $\cf{\bbm{1}_X}{X}{X}$ la función identidad. Entonces los siguientes homomorfismos inducidos:
+        \begin{equation*}
+            \begin{split}
+                &\cf{\bbm{1}_\#}{Q_n(X)}{Q_n(X)},\\
+                &\cf{\bbm{1}_\#}{C_n(X)}{C_n(X)},\\
+                &\cf{\bbm{1}_*}{H_n(X)}{H_n(X)},\\
+            \end{split}
+        \end{equation*}
+        y,
+        \begin{equation*}
+            \cf{\bbm{1}_*}{\tilde{H}_n(X)}{\tilde{H}_n(X)}
+        \end{equation*}
+        Coinciden con los homomorfismos identidad en cada uno de los grupos respectivos.
+    \end{lema}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{lema}
+        Sean $X$, $Y$ y $Z$ espacios topológicos y, $\cf{f}{X}{Y}$ y $\cf{g}{Y}{Z}$ funciones continuas. Entonces:
+        \begin{equation*}
+            (g\circ f)_*=g_*\circ f_*,\quad\forall n\in\mathbb{N}
+        \end{equation*}
+        Donde $\cf{(g\circ f)_*}{H_n(X)}{H_n(Z)}$ es el homomorfismo inducido por $g\circ f$.
+    \end{lema}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{obs}
+        Si $\cf{f}{X}{Y}$ es una función continua entre dos espacios topológicos tal que es inyectiva, ¿entonces $f_*$ es inyectiva? la respuesta es que no necesariamente. Esto se ilustrará más adelante.
+    \end{obs}
+
+    \section{}
 
     \newpage
 
@@ -715,6 +1016,33 @@
     \begin{excer}
         Compute $\partial_n(T)$ para el caso en que $n=1,2$.
     \end{excer}
+
+    \begin{excer}
+        Determine la estructura del grupo de homotopía $H_n(X)$ con $n\geq0$ si $X$ es:
+        \begin{itemize}
+            \item $X=(\mathbb{Q},\tau_u)$ con $\tau_u$ la topología usual heredada de la topología usual de $\mathbb{R}$.
+            \item $X$ es un espacio numerable con la topología discreta.
+        \end{itemize}
+    \end{excer}
+
+    \begin{excer}
+        3.1.\; Let $X_y$ be an arccomponent of $X$, and $f : X_y \to X$ the inclusion map.  
+        Prove that $f_* : H_n(X_y) \to H_n(X)$ is a monomorphism, and the image is the direct summand of $H_n(X)$ corresponding to $X_y$, as described in Proposition 2.6.  
+        Consequence: the direct sum decomposition of Proposition 2.6 can be described completely in terms of such homomorphisms which are induced by inclusion maps.
+    \end{excer}
+
+    \begin{excer}
+    3.2.\; Let $X$ and $Y$ be spaces having a finite number of arcwise-connected components, and $f : X \to Y$ a continuous map.  
+    Describe the induced homomorphism $f_* : H_0(X) \to H_0(Y)$.  
+    Generalize to the case where $X$ or $Y$ have an infinite number of arc components.
+    \end{excer}
+
+    \begin{excer}
+    3.3.\; Let $A$ be a retract of $X$ with retracting map $r : X \to A$, and let $i : A \to X$ denote the inclusion map.  
+    Prove that $r_* : H_n(X) \to H_n(A)$ is an epimorphism, $i_* : H_n(A) \to H_n(X)$ is a monomorphism, and that $H_n(X)$ is the direct sum of the image of $i_*$ and the kernel of $r_*$.
+    \end{excer}
+
+
 
 
 \end{document}

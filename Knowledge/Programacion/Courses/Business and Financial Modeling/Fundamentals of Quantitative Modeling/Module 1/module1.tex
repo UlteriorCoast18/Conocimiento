@@ -1,0 +1,87 @@
+\documentclass[../fundamentals_modeling.tex]{subfiles}
+
+\begin{document}
+
+    \chapter{Introduction}
+
+    \section{Topics}
+
+    Some of the topics covered in this module include:
+
+    \begin{itemize}
+        \item Exposure to the language of modeling.
+        \item Exploration of different types of models used in business and how to apply them in practice.
+        \item Process of modeling.
+        \item Characteristics of the models.
+        \item Value and limitations of quantitative models. What sort of things they can and cannot do. Understand the limitations of the models.
+        \item Provide a set of foundational for other courses in specialization.
+    \end{itemize}
+
+    \begin{center}
+        \textit{Which model should I use?}
+    \end{center}
+
+    Process: map the characteristics of the business into the characteristics of the model.
+
+    \section{Definition, Uses of a Model, Common Functions}
+
+    In the business context, the models we are talking about are not physical models (different from the idea an arquitect has). We are talking about a \textbf{formal description of a business process}.
+
+    This description is going to involve a set of mathematical equations and/or random variables.
+
+    \begin{obs}
+        A quantitative model it is almost always a simplification of a more complex structure (in particular, of a business process). We do not want to over simplify, but we also do not want to overcomplicate.
+
+        Turns out it's going to be really difficult to make an exact and acurate representation of what we really want to model.
+    \end{obs}
+
+    Also, there is a set of \textbf{assumptions} that underly the model. We have to check weather these assumptions are reasonable or not in our business process.
+
+    \begin{obs}
+        A model is usually implemented in Excel or a spreadsheet tool like Google Sheets (or using programming langauges as $R$).
+    \end{obs}
+
+    In a more mathematical way, we can define a model as follows:
+
+    \begin{mydef}[\textbf{Model}]
+        A model is a triplet $M=(X,\Theta, F)$, where:
+        \begin{itemize}
+            \item $X$ is a set of measurable input variables (data).
+            \item $\Theta$ is a set of parameters and,
+            \item $\cf{F}{X\times\Theta}{Y}$ is a function, that maps input and parameters to measurable output in $Y$.
+        \end{itemize}
+    \end{mydef}
+
+    Let's give some examples:
+
+    \begin{exa}
+        Some examples of models are the following:
+        \begin{itemize}
+            \item Determine the price of a diamond given its weight.
+            \item The spread of an epidemic over time.
+            \item Relationship between demand for, and price of a product.
+            \item The uptake of a new product in market.
+        \end{itemize}
+        In particular, if I have a product and I want to maximize the gains we acquire when selling it, how can we achieve this goal?
+    \end{exa}
+
+    All of these examples are from different areas, but can be addressed by using a quantitative model.
+
+    \subsection{Diamonds and Weight}
+
+    Let's consider the weight of a diamond and the price it is going to have. We have the following equation that models the price of a diamond given its weight:
+    \begin{equation*}
+        p(w)=-260+3721w
+    \end{equation*}
+    This is a linear model. The price is given in dolars and the weight is given in carats. Sometimes we use a visual representation like this:
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/fig_1/fig_1.pdf} \\
+            \caption{Model of the Price of a Diamond}
+            \label{figure:model_price_diamond}
+        \end{minipage}
+    \end{figure}
+
+\end{document}

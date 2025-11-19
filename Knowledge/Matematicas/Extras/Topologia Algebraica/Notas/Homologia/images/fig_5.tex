@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage{amsfonts}
+\usepackage{tikz-cd}
+
+\begin{document}
+
+\begin{tabular}{cc}
+$\vcenter{
+\hbox{
+\begin{tikzcd}[column sep=4em, row sep=3em]
+    \tilde{H}_0(X) \arrow{r}{\zeta}\arrow{dd}[swap]{f_*}
+        & H_0(X)\arrow{dd}{f_*}\\
+        & \\
+    \tilde{H}_0(Y) \arrow{r}{\zeta} 
+        & H_0(Y)
+\end{tikzcd}
+}
+}$
+&
+$\vcenter{
+\hbox{
+\begin{tikzcd}[column sep=4em, row sep=2.3em]
+    H_0(X)\arrow{rd}{\varepsilon_*}\arrow{dd}{f_*} & \\
+        & \mathbb{Z} \\
+    H_0(Y)\arrow{ru}{\varepsilon_*} &
+\end{tikzcd}
+}
+}$
+\end{tabular}
+
+\end{document}

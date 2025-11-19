@@ -1,0 +1,10 @@
+\documentclass{standalone}
+\usepackage{tikz-cd}
+\begin{document}
+    \begin{tikzcd}[column sep=6em, row sep=4em]
+    Q_n(X) \arrow{r}{f_\#}\arrow{d}[swap]{\partial_n}
+     & Q_n(Y)\arrow{d}{\partial_n}\\
+    Q_{n-1}(X) \arrow{r}{f_\#} 
+     & Q_{n-1}(Y)
+    \end{tikzcd}
+\end{document}

@@ -1,0 +1,17 @@
+\documentclass[tikz,border=6pt]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Weight $w$ (carats)},
+    ylabel={Price $p(w)$ (USD)},
+    xmin=0, xmax=2,
+    ymin=-1500, ymax=8000,
+]
+    % Line p(w) = -260 + 3721 w
+    \addplot[domain=0:2, thick] {-260 + 3721*x};
+\end{axis}
+\end{tikzpicture}
+\end{document}
