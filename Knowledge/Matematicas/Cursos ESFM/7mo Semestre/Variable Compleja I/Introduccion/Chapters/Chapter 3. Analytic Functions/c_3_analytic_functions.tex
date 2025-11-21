@@ -796,4 +796,238 @@
         %TODO
     \end{proof}
 
+    \section{Funciones Analíticas como Mapeos: Transformaciones de Möbius}
+
+    Para empezar esta sección, consideremos la función $\cf{f}{G}{\bbm{C}}$ dada por $z\mapsto z^2$. Ya sabemos que esta función es analítica, pues se verifica rápidamente que cumplen las ecuaciones de Cauchy-Riemann.
+
+    Si hacemos $f(z)=\mu+i\nu$, entonces tomando $z=x+iy$ obtenemos que:
+    \begin{equation*}
+        \mu(x,y)=x^2-y^2\quad\textup{y}\quad\nu(x,y)=2xy
+    \end{equation*}
+    Por tanto, las hipérbolas $c(x,y)=x^2-y^2$ y $d=2xy$ son mapeadas bajo $f$ a líneas rectas dadas por $\mu=c$ y $\nu=d$.
+
+    \begin{obs}
+        Si $c$ y $d$ no son cero, entonces las hipérbolas intersectan en ángulos rectos, tal y como lo hacen sus imágenes.
+    \end{obs}
+
+    La observación anterior se verá más adelante como un resultado general de cierto tipo de funciones.
+
+    \begin{exa}
+        Consideremos ahora las rectas $x=c$ y $y=d$. Si tomamos primeramente la recta $x=c$ (con $y$ arbitrario), entonces $f$ mapea esta línea a $\mu=c^2-y^2$ y $\nu=2cy$.
+
+        Sustituyendo a $y$ en ambas ecuaciones observamos que $x=c$ es mapeado a la parábola $\nu^2=-4c^2(\mu-c^2)$.
+
+        Similarmente, $f$ toma a la recta $y=d$ a la parábola $\nu^2=4d^2(\mu+d^2)$.
+
+        Resulta que estas dos parábolas intersectan en el punto $(c^2-d^2,\pm\abs{cd})$ e intersectan en ángulo recto.
+    \end{exa}
+
+    \begin{exa}
+        Consideremos la misma función $f$ y tomemos ahora la circunferencia $\vartheta\mapsto re^{i\vartheta}=z$, entonces $f(z)=r^2e^{ 2i\vartheta}$, esto es un círculo de radio $r^2$ que se recorre dos veces por cada recorrido que hacemos al círculo original.
+    \end{exa}
+
+    Justamente estos ejemplos nos brindan propiedades de la función $f$ que podremos generalizar a ciertas funciones analíticas.
+
+    \begin{obs}
+        Uno de los problemas principales en teoría de funciones analíticas es el siguiente: dados dos conjuntos abiertos y conexos, $G$ y $\Omega$, ¿existe una función analítica $f$ tal que $f[G]=\Omega$?
+    \end{obs}
+
+    La solución a este problema resultará útil más adelante.
+
+    \subsection{Caminos}
+
+    \begin{mydef}[\textbf{Camino}]
+        Un camino en una región $G\subseteq\bbm{C}$ es una función $\cf{\gamma}{[a,b]}{G}$, siendo $[a,b]\subseteq\bbm{R}$.
+        \begin{itemize}
+            \item Decimos que $\gamma$ es \textbf{suave a piezas} o \textbf{por partes} si existe una partición del intervalo $[a,b]$, digamos $a=\gamma_0<\gamma_1<\dots<t_n=b$ tal que $\gamma$ es suave en cada subintervalo $[t_{ i-1},t_i]$ para $i\in\natint{1,n}$.
+            \item Decimos que $\gamma$ es suave en un subintervalo $[c,d]\subseteq[a,b]$ si $\gamma$ es diferenciable y tal que $\gamma'$ es continua en $[c,d]$.
+        \end{itemize}
+    \end{mydef}
+
+    \begin{obs}
+        Como es usual, decir que un camino $\gamma$ es diferenciable es decir que el límite:
+        \begin{equation*}
+            \lim_{ h\rightarrow0}\frac{\gamma(t+h)-\gamma(t)}{h}=\gamma'(t)
+        \end{equation*}
+        existe, para todo $a<t<b$ y, además, que los límites laterales correspondientes para $a$ y $b$ existen.
+    \end{obs}
+
+    Rápidamente se prueba el siguiente resultado que es clásico en integración de Lebesgue:
+
+    \begin{lema}
+        Un camino $\gamma$ es suave si y sólo si $\Re\gamma$ e $\Im\gamma$ son suaves.
+    \end{lema}
+
+    Supongamos que $\gamma$ es un camino suave y que para algún $t_0\in(a,b)$ se tiene que $\gamma'(t_0)\neq0$. Entonces, $\gamma$ tiene una línea tangente en el punto $z_0=\gamma(t_0)$.
+    
+    Esta línea pasa por el punto $z_0$ en la dirección de (el vector) $\gamma'(t_0)$.
+
+    \begin{obs}
+        En otras palabras, la pendiente de la recta tangente es $\tan\left(\arg\gamma'(t_0) \right)$.
+    \end{obs}
+
+    \begin{mydef}[\textbf{Ángulo entre Caminos que Intersectan}]
+        Si $\gamma_1$ y $\gamma_2$ son dos caminos suaves con $\gamma_1=(t_1)=\gamma_2(t_2)=z_0$ con $\gamma_1'(t_1)\neq0$ y $\gamma_2'(t_2)\neq0$, se define el \textbf{ángulo entre los caminos $\gamma_1$ y $\gamma_2$ en el punto $z$} como:
+        \begin{equation*}
+            \arg\gamma_2'(t_2)-\arg(\gamma_1'(t_1))
+        \end{equation*}
+    \end{mydef}
+
+    Resulta que las funciones analíticas preservan ángulos entre caminos:
+
+    \begin{theor}
+        Sea $\cf{f}{G}{\bbm{C}}$ una función analítica. Entonces, $f$ preserva ángulos en cada punto $z_0\in G$ tal que $f'(z_0)\neq0$.
+    \end{theor}
+
+    \begin{proof}
+        Decir que preserva ángulos es equivalente a decir que si $\gamma_1$ y $\gamma_2$ son dos caminos suaves en $G$ tales que $\gamma_1(t_1)=\gamma_2(t_2)$ con $\gamma_1'(t_1)\neq0$ y $\gamma_2'(t_2)\neq0$, entonces el ángulo entre los caminos $\gamma_1$ y $\gamma_2$ en el punto $z_0=\gamma_1(t_1)=\gamma_2(t_2)$ es el mismo que el ángulo entre los caminos $f\circ\gamma_1$ y $f\circ\gamma_2$ en el punto $f(z_0)$. En otras palabras:
+        \begin{equation*}
+            \arg\gamma_2'(t_2)-\arg(\gamma_1'(t_1))=\arg (f\circ\gamma_2)'(t_2)-\arg(f\circ\gamma_1)'(t_1)
+        \end{equation*}
+
+        En efecto, tomemos ambos caminos como fueron descritos anteriormente. Para continuar, tomemos un camino $\gamma$ en $G$, consideremos $\cf{\sigma}{[a,b]}{\bbm{C}}$ dada por $\sigma=f\circ\gamma$. Se tiene que $\sigma$ es un camino suave, pues $f$ es analítica y $\gamma$ es un camino suave. Ahora, se verifica rápidamente la siguiente relación geométrica:
+        \begin{equation*}
+            \arg\sigma'(t_0)=\arg f'(\gamma(t_0))+\arg\gamma'(t_0)
+        \end{equation*}
+        siempre que $f'(\gamma(t_0))\neq0$ y $\gamma'(t_0)\neq0$, con $a<t_0<b$ (geométricamente esto significa que el ángulo se preserva bajo composición de una función analítica con un mapeo suave, esto se generaliza para composición de funciones analíticas). De esta relación se sigue, tomando los caminos $\gamma_1$ y $\gamma_2$, que:
+        \begin{equation*}
+            \arg\sigma_1'(t_1)-\arg\sigma_2'(t_2)=\arg\gamma_1'(t_1)-\arg\gamma_2'(t_2)
+        \end{equation*}
+        ya que en este caso $\gamma_1(t_1)=\gamma_2(t_2)$, tomando a $\sigma_i=f\circ\gamma_i$ para $i=1,2$. Sigue así que $f$ preserva ángulos.
+    \end{proof}
+
+    \begin{mydef}[\textbf{Funciones que Preservan Ángulos}]
+        Decimos que una función $\cf{f}{G}{\bbm{C}}$ \textbf{preserva ángulos} si sucede lo descrito en el teorema anterior.
+    \end{mydef}
+
+    Esta propiedad de preservar ángulos resultará insuficiente para nuestros propósitos (por ahora), por lo cual introducimos una noción más fuerte que servirá más adelante:
+
+    \begin{mydef}[\textbf{Mapeo Conforme}]
+        Sea $\cf{f}{G}{\bbm{C}}$ una función que preserva ángulos. Si para todo $a\in G$ el límite:
+        \begin{equation*}
+            \lim_{ z\rightarrow a}\frac{\abs{f(z)-f(a)}}{z-a}
+        \end{equation*}
+        existe, diremos que $f$ es un \textbf{mapeo conforme}.
+    \end{mydef}
+
+    \begin{obs}
+        Es claro que si $\cf{f}{G}{\bbm{C}}$ es analítica y $f'(z)\neq 0$ para todo $z\in G$, entonces $f$ es conforme. El converso resultará también ser cierto.
+    \end{obs}
+
+    \begin{exa}
+        Si $f(z)=e^{z}$ para todo $z\in\bbm{C}$, entonces $f$ es conforme. En efecto, esto se sigue de la observación anterior. Dos cosas a notar de esta función son las siguientes:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $f$ mapea la línea $x=c$ a la circunferencia con centro en el origen y radio $e^c$.
+            \item $f$ mapea la línea $y=d$ al rayo infinito $\left\{re^{ id}\Big|0<r<\infty\right\}$.
+        \end{enumerate}
+        Ahora, la rama del logarítmo $\log z$ hace lo opuesto a lo descrito anteriormente.
+    \end{exa}
+
+    Para continuar, veremos una clase de mapeos que son muy importantes (ver Grupos Fuchsianos):
+
+    \begin{mydef}[\textbf{Transformaciones de Möbius}]
+        Una función $S(z)=\frac{az+b}{cz+d}$ es llamada \textbf{transformación fraccional lineal}. Si $a,b,c$ y $d$ satisfacen además que:
+        \begin{equation*}
+            ad-bc\neq 0,
+        \end{equation*}
+        entonces $S$ es llamada una \textbf{transformación de Möbius}.
+    \end{mydef}
+
+    \begin{obs}
+        Sea $S(z)=\frac{az+b}{cz+d}$, entonces $S$ está definida en $\bbm{C}\setminus\left\{-\frac{d}{c}\right\}$ si $c\neq0$. En caso contrario, está definida en todo $\bbm{C}$.
+
+        Esta función tiene como inversa a la transformación:
+        \begin{equation*}
+            S^{-1}(z)=\frac{dz-b}{-cz+a}
+        \end{equation*}
+        y es tal que $S\circ S^{-1}(z)=S^{-1}\circ S(z)=z$ (siempre que estén definidas). También, si $S$ y $T$ son transformaciones fraccionales lineales, entonces $S\circ T$ también lo es.
+    \end{obs}
+
+    \begin{obs}[\textbf{Extensión a la Esfera de Riemann}]
+        Ya se sabe que existe una biyección entre $\bbm{C}\cup\left\{\infty\right\}$ y $\bbm{S}^2$, por lo que ahora lo que haremos es considerar la \textbf{Esfera de Riemann} $\hat{\bbm{C}}=\bbm{C}\cup\left\{\infty\right\}$. Extendemos de forma natural una transformación de Möbius $T(z)=\frac{az+b}{cz+d}$ de $\hat{\bbm{C}}$ en $\hat{\bbm{C}}$ como sigue:
+        \[
+        T(z)=
+        \begin{cases}
+        \dfrac{az+b}{cz+d}, & z\neq -\dfrac{d}{c}, \\[1em]
+        \infty, & z = -\dfrac{d}{c}, \\[1em]
+        \begin{cases}
+        \dfrac{a}{c}, & c\neq 0,\\[0.5em]
+        \infty, & c = 0,
+        \end{cases}
+        & z=\infty .
+        \end{cases}
+        \]
+        Esto hará que todas las transformaciones de Möbius se conviertan en mapeos biyectivos de $\hat{\bbm{C}}$ en $\hat{\bbm{C}}$. En particular, esto permitirá tomar a las transformaciones de Möbius como grupo dotado de la operación composición.
+    \end{obs}
+
+    De ahora en adelante consideraremos simplemente transformaciones de Möbius.
+
+    \begin{exa}[\textbf{Transformaciones de Möbius no son Únicas}]
+        Sea $S(z)=\frac{az+b}{cz+d}$ una transformación de Möbius. Si $\lambda$ es un núemero complejo no cero, se tiene que:
+        \begin{equation*}
+            S(z)=\frac{(\lambda a)z+(\lambda b)}{(\lambda c)z+(\lambda d)}
+        \end{equation*}
+        Esto es, los coeficientes $a,b,c$ y $d$ no son únicos.
+    \end{exa}
+
+    Cuatro transformaciones de Möbius importantísimas son las siguientes:
+    \begin{enumerate}[label = \textit{(\arabic*)}]
+        \item La función traslación: $T_a(z)=z+a$, con $a\in\bbm{C}$.
+        \item La dilación: $D_a(z)=az$, con $a\in\bbm{C}\setminus\left\{0\right\}$.
+        \item La rotación: $r_\vartheta(z)=e^{i\vartheta}z$ con $\vartheta\in[0,2\pi)$.
+        \item La inversión: $I(z)=\frac{1}{z}$.
+    \end{enumerate}
+    
+    \begin{obs}
+        La rotación es un caso particular de una dilación.
+    \end{obs}
+
+    Estas transformaciones resultan relevantes ya que tenemos la siguiente proposición:
+
+    \begin{propo}[\textbf{Descomposición de Transformaciones de Möbius}]
+        Si $T$ es una transformación de Möbius, entonces $T$ es composición de traslaciones, dilaciones y de la inversión (puede que alguna falte).
+    \end{propo}
+
+    \begin{proof}
+        Sea $T=\frac{az+b}{cz+d}$ una transformación de Möbius. Tenemos dos casos:
+        \begin{itemize}
+            \item Si $c=0$, entonces $T(z)=\left(\frac{a}{d}\right)z+\left(\frac{b}{d}\right)$, por lo que $T=T_{\frac{b}{d}}\circ D_{\frac{a}{d}}$.
+            \item Si $c\neq 0$, entonces:
+            \begin{equation*}
+                T=T_{\frac{a}{c}}\circ D_{\frac{bc-ad}{c^2}}\circ I\circ T_{\frac{d}{c}}
+            \end{equation*}
+        \end{itemize}
+    \end{proof}
+
+    \begin{preg}
+        ¿Cuáles son los puntos fijos de una transformación de Möbius?
+    \end{preg}
+
+    \begin{sol}
+        Consideremos la transformación de Möbius $T(z)=\frac{az+b}{cz+d}$. Si $z_0\in\bbm{C}$ es un punto fijo, se tiene que:
+        \begin{equation*}
+            \begin{split}
+                \frac{az_0+b}{cz_0+d}&=z_0\\
+                \iff cz_0^2+(d-a)z_0-b=0
+            \end{split}
+        \end{equation*}
+        Analicemos por casos:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Si $c\neq 0$, entonces $T$ tiene dos puntos fijos si el discriminante de la ecuación:
+            \begin{equation*}
+                cz^2+(d-a)z-b=0
+            \end{equation*}
+            es diferente de cero. En caso contrario tendrá un punto fijo.
+            \item Si $c=0$, tenemos dos casos:
+            \begin{enumerate}[label = \textit{(2.\arabic*)}]
+                \item Si $a\neq d$, entonces tendremos dos puntos fijos, uno en $\bbm{C}$ y otro en $\infty$.
+                \item Si $a=d$, tenemos dos casos:
+                \begin{enumerate}[label = \textit{(2.2.\arabic*)}]
+                    \item Si $b\neq 0$ solo habrá un punto fijo en $\infty$.
+                    \item Si $b=0$, entonces $T=\bbm{1}_\bbm{C}$, por lo cual tendrá una cantidad infinita de puntos fijos.
+                \end{enumerate}
+            \end{enumerate}
+        \end{enumerate}
+    \end{sol}
+
 \end{document}
