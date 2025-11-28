@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.7.29)  19 NOV 2025 13:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.7.29)  28 NOV 2025 09:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -12,7 +12,7 @@ Document Class: subfiles 2020/11/14 v2.2 Multi-file projects (class)
 Preamble taken from file `../fundamentals_modeling.tex'
 (C:\Users\x\AppData\Local\Programs\MiKTeX\tex/latex/import\import.sty
 Package: import 2020/04/01  v 6.2
-) (a:\Segundo Drive\Conocimiento\Conocimiento\Knowledge\Programacion\Courses\Business and Financial Modeling\Fundamentals of Quantitative Modeling\fundamentals_modeling.tex (C:\Users\x\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
+) (../fundamentals_modeling.tex (C:\Users\x\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
 Document Class: report 2025/01/22 v1.4n Standard LaTeX document class
 (C:\Users\x\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
 File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
@@ -812,7 +812,7 @@ Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
 \c@mydef=\count389
 \c@excer=\count390
 \c@figcount=\count391
-)) (a:\Segundo Drive\Conocimiento\Conocimiento\Knowledge\Programacion\Courses\Business and Financial Modeling\Fundamentals of Quantitative Modeling\Module 1\module1.aux)
+)) (module1.aux)
 \openout1 = `module1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -887,13 +887,27 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring ON on input line 3.
-(a:\Segundo Drive\Conocimiento\Conocimiento\Knowledge\Programacion\Courses\Business and Financial Modeling\Fundamentals of Quantitative Modeling\Module 1\module1.out) (a:\Segundo Drive\Conocimiento\Conocimiento\Knowledge\Programacion\Courses\Business and Financial Modeling\Fundamentals of Quantitative Modeling\Module 1\module1.out)
+(module1.out) (module1.out)
 \@outlinefile=\write4
 \openout4 = `module1.out'.
 
 \c@lstlisting=\count398
 
 Chapter 1.
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <20.74> not available
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 5.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <24.88> not available
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 5.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <17.28> not available
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 7.
+
+LaTeX Font Info:    Font shape `OT1/cmss/m/it' in size <12> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 21.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 32.
@@ -911,53 +925,136 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 46.
-Package mdframed Info: Not enough space on this page on input line 53.
 
 
-<watermark-1.png, id=22, 127.4361pt x 192.72pt>
-File: watermark-1.png Graphic file (type png)
-<use watermark-1.png>
-Package pdftex.def Info: watermark-1.png  used on input line 53.
+Package mdframed Warning: You got a bad break
+(mdframed)                because the last box will be empty
+(mdframed)                you have to change it manually
+(mdframed)                by changing the text, the space
+(mdframed)                or something else on input line 53.
+
+
+
+<../watermark-1.png, id=54, 127.4361pt x 192.72pt>
+File: ../watermark-1.png Graphic file (type png)
+<use ../watermark-1.png>
+Package pdftex.def Info: ../watermark-1.png  used on input line 53.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
 [1
 
 
-{C:/Users/x/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./watermark-1.png>]
-Package mdframed Info: Not enough space on this page on input line 53.
+{C:/Users/x/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <../watermark-1.png>]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 57.
-<images/fig_1/fig_1.pdf, id=38, 259.34091pt x 211.6949pt>
-File: images/fig_1/fig_1.pdf Graphic file (type pdf)
-<use images/fig_1/fig_1.pdf>
-Package pdftex.def Info: images/fig_1/fig_1.pdf  used on input line 81.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <14.4> not available
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 70.
+
+<../images/fig_1/fig_1.pdf, id=72, 259.34091pt x 211.6949pt>
+File: ../images/fig_1/fig_1.pdf Graphic file (type pdf)
+<use ../images/fig_1/fig_1.pdf>
+Package pdftex.def Info: ../images/fig_1/fig_1.pdf  used on input line 81.
 (pdftex.def)             Requested size: 259.34027pt x 211.69437pt.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 89.
+<../images/fig_2/fig_2.pdf, id=73, 251.92719pt x 216.26497pt>
+File: ../images/fig_2/fig_2.pdf Graphic file (type pdf)
+<use ../images/fig_2/fig_2.pdf>
+Package pdftex.def Info: ../images/fig_2/fig_2.pdf  used on input line 102.
+(pdftex.def)             Requested size: 251.92656pt x 216.26443pt.
 
 
-File: watermark-1.png Graphic file (type png)
-<use watermark-1.png>
-Package pdftex.def Info: watermark-1.png  used on input line 87.
+File: ../watermark-1.png Graphic file (type png)
+<use ../watermark-1.png>
+Package pdftex.def Info: ../watermark-1.png  used on input line 106.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
-[2 <./images/fig_1/fig_1.pdf>] (a:\Segundo Drive\Conocimiento\Conocimiento\Knowledge\Programacion\Courses\Business and Financial Modeling\Fundamentals of Quantitative Modeling\Module 1\module1.aux)
+[2 <../images/fig_1/fig_1.pdf>]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 113.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 117.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 129.
+<../images/fig_3/fig_3.pdf, id=95, 253.31137pt x 216.15254pt>
+File: ../images/fig_3/fig_3.pdf Graphic file (type pdf)
+<use ../images/fig_3/fig_3.pdf>
+Package pdftex.def Info: ../images/fig_3/fig_3.pdf  used on input line 138.
+(pdftex.def)             Requested size: 253.31075pt x 216.15201pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 151.
+
+
+File: ../watermark-1.png Graphic file (type png)
+<use ../watermark-1.png>
+Package pdftex.def Info: ../watermark-1.png  used on input line 153.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+[3 <../images/fig_2/fig_2.pdf>]
+Package mdframed Info: Not enough space on this page on input line 153.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 157.
+<../images/fig_4/fig_4.pdf, id=134, 254.7347pt x 209.50873pt>
+File: ../images/fig_4/fig_4.pdf Graphic file (type pdf)
+<use ../images/fig_4/fig_4.pdf>
+Package pdftex.def Info: ../images/fig_4/fig_4.pdf  used on input line 166.
+(pdftex.def)             Requested size: 254.73405pt x 209.50821pt.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 178.
+
+
+File: ../watermark-1.png Graphic file (type png)
+<use ../watermark-1.png>
+Package pdftex.def Info: ../watermark-1.png  used on input line 180.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+[4 <../images/fig_3/fig_3.pdf> <../images/fig_4/fig_4.pdf>]
+Package mdframed Info: Not enough space on this page on input line 180.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 196.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 204.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 208.
+
+
+File: ../watermark-1.png Graphic file (type png)
+<use ../watermark-1.png>
+Package pdftex.def Info: ../watermark-1.png  used on input line 226.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+[5] (module1.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-07-19>
  ***********
 Package rerunfilecheck Info: File `module1.out' has not changed.
-(rerunfilecheck)             Checksum: 88645067BFBC977F6E53104E8C19DCD0;646.
+(rerunfilecheck)             Checksum: 9F8AB05D762E1CE1E6295222E6613F64;1885.
  ) 
 Here is how much of TeX's memory you used:
- 26188 strings out of 468111
- 487887 string characters out of 5431381
- 1171241 words of memory out of 5000000
- 54326 multiletter control sequences out of 15000+600000
- 634561 words of font info for 68 fonts, out of 8000000 for 9000
+ 26306 strings out of 468111
+ 489437 string characters out of 5431381
+ 1174241 words of memory out of 5000000
+ 54419 multiletter control sequences out of 15000+600000
+ 634896 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 104i,11n,108p,699b,900s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on "a:\Segundo Drive\Conocimiento\Conocimiento\Knowledge\Programacion\Courses\Business and Financial Modeling\Fundamentals of Quantitative Modeling\Module 1\module1.pdf" (2 pages, 187385 bytes).
+ 104i,11n,108p,699b,914s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi12.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/x/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfss1200.pfb>
+Output written on module1.pdf (5 pages, 319630 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 12 named destinations out of 1000 (max. 500000)
- 55 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 275 PDF objects out of 1000 (max. 8388607)
+ 36 named destinations out of 1000 (max. 500000)
+ 134 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -84,4 +84,143 @@
         \end{minipage}
     \end{figure}
 
+    Basically, this model allows us to forcast the price of a certain object given certain properties of it or \textit{data about it}. This is a \textbf{linear model}.
+
+    \begin{obs}
+        A model doesn't necesarly has to work in all the circustamces. For example, the model given to obtain the price of a diamond doesn't necesarly has to be applicable to a different company.
+    \end{obs}
+
+    \subsection{Spreading of an Epidemic}
+
+    Depending on the disease and other factors (such as time in which the epidemc ocurred), one model arises.
+
+    One of the basic models to start with is the \textbf{exponential model}. On the bottom axis we have weeks (since the start of the epidemic), and on the vertical axis we have the number of cases reported.
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/fig_2/fig_2.pdf} \\
+            \caption{Exponential Model for the spread of an epidemic.}
+            \label{Texto}
+        \end{minipage}
+    \end{figure}
+
+    The equation to describe this model is:
+    \begin{equation*}
+        y = 6.69e^{0.18x}
+    \end{equation*}
+    
+    \begin{obs}
+        This model is suitable for the start of the pandemic, since there is not an unlimited number of people, we cannot expect that the growth of the graph is unstoppable.
+    \end{obs}
+
+    \begin{obs}[\textbf{Exponential Graphs}]
+        In the context of business they are called \textbf{hockey sticks}.
+    \end{obs}
+
+    \begin{center}
+        \textit{This model is not suitable for a long term, but its suitable for an approximation over the first weeks of the pandemic}.
+    \end{center}
+
+    \subsection{Price and Demand}
+
+    Let's suppose a situation of price and demand (very common in the industry). Demand models basically tell when we know the price of a certain product, the quantity of it available in the market.
+
+    \begin{obs}[\textbf{Possitive Association}]
+        The graphs in the first two examples are said to have \textbf{positive association}.
+    \end{obs}
+
+    For products, when there is a huge amount of product, the price decreases and, when the price is too hight, the amout available is too low. The model:
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/fig_3/fig_3.pdf} \\
+            \caption{Price and Demand Model}
+            \label{figure:price_demand_model}
+        \end{minipage}
+    \end{figure}
+
+    This model is given by the equation:
+    \begin{equation*}
+        Q=60,000 P^{ -2.5}
+    \end{equation*}
+
+    In this model we use a power function (which is basically the exponential function in essence, but many people who doesn't have mathematical background calls is \textit{power function}).
+
+    \begin{idea}
+        One use of this model is to find what the optimal price for a product should be.
+    \end{idea}
+
+    \subsection{The Uptake of a Product}
+
+    \begin{mydef}[\textbf{Uptake}]
+        The \textbf{uptake of a product}, often referred to as \textbf{product adoption} or \textbf{market uptake}, is \textit{the process by which individuals or organizations learn about, start using, and ultimately integrate a new product or service into their routine life or business operations}.
+    \end{mydef}
+    
+    The following describes the uptake of a product given the amount of years it has been on the market.
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/fig_4/fig_4.pdf} \\
+            \caption{Model of the Uptake of a Product}
+            \label{figure:uptake_logistic_model}
+        \end{minipage}
+    \end{figure}
+
+    This particular function is called a logistic function, and is given by:
+    \begin{equation*}
+        P=\frac{e^{ 2(Y-2.5)}}{1+e^{ 2(Y-2.5)}}
+    \end{equation*}
+    Here, $Y$ is the number of years and, $P$ is the proportion of target population with product.
+
+    \begin{obs}
+        This model has the potential to model a process where at the first stages we see a slow start (here, it's when target people start adopting the product), and then it has a fast grow that proceeds to slow as time goes by.
+    \end{obs}
+
+    \section{Use of Models in Practice}
+
+    There are four main usages of a model in the business enviroment:
+    \begin{itemize}
+        \item \textbf{Prediciton}.
+        \item \textbf{Forecasting}.
+        \item \textbf{Optimization}.
+        \item \textbf{Ranking and targeting}.
+    \end{itemize}
+
+    \subsection{Prediction}
+
+    Once we got a quantitative model is \textbf{prediction}. Basically is taking a model, puting an input and create a prediction.
+
+    \begin{obs}
+        The use of most quantitative models is for predictive analysis.
+    \end{obs}
+
+    \subsection{Forecasting}
+
+    When talking about forecasting we are talking about time series.
+
+    \begin{mydef}[\textbf{Forecasting}]
+        \textbf{Forecasting} is the \textit{process of predicting future developments by analyzing past and present data and trends}.
+    \end{mydef}
+
+    \begin{exa}
+        For example, with the models presented earlier, we can ask the following questions:
+        \begin{itemize}
+            \item How many people are expected to be infected in 6 weeks?
+            \item Using a scheduling model, who is likely to turn up for their outpatient appointment?
+        \end{itemize}
+    \end{exa}
+
+    This activity has often a lot to do in businesses and to do with resource planning.
+
+    \subsection{Optimization}
+
+    How to maximize or minimize something?
+
+    \subsection{Ranking and targeting}
+
+    When selling a product, we may be interested in which ones we would like to purchase. Since we cannot have a look at all the diamonds in the world, 
+
 \end{document}

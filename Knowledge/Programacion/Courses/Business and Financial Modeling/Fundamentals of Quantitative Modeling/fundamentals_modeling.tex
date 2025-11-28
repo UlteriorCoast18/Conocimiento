@@ -196,6 +196,28 @@
 \renewcommand{\lstlistingname}{Code}
 \renewcommand{\lstlistlistingname}{{\lstlistingname} List}
 
+\setlist{  
+    itemsep=0pt,      % Space between items
+    parsep=0pt,       % Space between paragraphs in items
+    topsep=5pt,       % Space before/after list
+    partopsep=0pt     % Extra space when list starts new paragraph
+}
+
+% Or set separately for different list types
+\setlist[itemize]{  
+    itemsep=2pt,
+    parsep=2pt,
+    topsep=5pt
+}
+
+\setlist[enumerate]{  
+    itemsep=2pt,
+    parsep=2pt,
+    topsep=5pt
+}
+
+\renewcommand*\familydefault{\sfdefault}
+
 % --- Comienzo del documento ---
 \begin{document}
     \setlength{\parskip}{5pt}

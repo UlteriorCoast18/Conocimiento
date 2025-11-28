@@ -426,16 +426,21 @@
 
     \subsection{The Zeta Function of a Variety over $\bbm{F}_p$}
 
+    %TODO: Corregir todo esto
+
     This example is very important to number theorists, since it relates algebraic geometry with number theory in a very deep way.
 
     Let $p$ be a prime number and $\bbm{F}_p$ the finite field with $p$ elements. Let $X$ be a closed subset of $\bbm{A}^n$ defined over $\bbm{F}_p$, that is, the polynomials defining $X$ have coefficients in $\bbm{F}_p$.
 
     \begin{obs}
-        Let's consider the closed set $X$ and $F_1=\dots=F_m$ the polynomials defining $X$. If $x\in X$ then:
+        Let's consider the closed set $X$ and $F_1=\dots=F_m$ the polynomials defining $X$. We have that $x\in X$ if and only if:
         \begin{equation*}
             F_i(x)=0,\quad\forall i\in\natint{1,m}
         \end{equation*}
-        So it follows that: %TODO: Congruences mod p
+        since $F_i\in\bbm{F}_p[T]$, its clear that $x\in X$ if and only if $x$ is a solution of the system of congruences:
+        \begin{equation*}
+            F_i(T)\equiv 0\mod p
+        \end{equation*}        
     \end{obs}
     Let's consider the map $\cf{\varphi}{\bbm{A}^n}{\bbm{A}^n}$ given by:
     \begin{equation*}
@@ -445,7 +450,23 @@
     \begin{equation*}
         F_i(x)=0,\quad\forall i\in\natint{1,m}
     \end{equation*}
+    Let $\alpha\in\bbm{F}_p$, since $\bbm{F}_p$ is the field with $p$-elements, for every we have that:
+    \begin{equation*}
+        H_\alpha=\left\{1,\alpha,\alpha^2,\dots \right\}
+    \end{equation*}
+    is a cyclic (multiplicative) subgroup of $\bbm{F}_p^*$ (where $\bbm{F}_p^*=\bbm{F}_p\setminus\left\{0\right\}$). Since $\abs{\bbm{F}_0^*}=p-1$, we must have that $H_\alpha$ has either 1 element or $p-1$ elements. If it has one, then $\alpha=1$. In the other case, when $\alpha\neq1$, we must have that:
+    \begin{equation*}
+        H_\alpha=\left\{1,\alpha,\alpha^2,\dots,\alpha^{p-2} \right\}
+    \end{equation*}
+    so, $\alpha^{ p-1}=1$, which implies that $\alpha^p=\alpha$. Due to this fact it follows that:
+    \begin{equation*}
+        \begin{split}
+            F_i(\alpha_1^p,\dots,\alpha_n^p)=F_i(\alpha_1,\dots,\alpha_n)
+        \end{split}
+    \end{equation*}
+    for all $(\alpha_1,\dots,\alpha_n)\in\bbm{A}^n$. So that $(\alpha_1,\dots,\alpha_n)\in X$ iff $(\alpha_1^p,\dots,\alpha_n^p)\in X$.
 
+    
     \newpage 
 
     \section{Excersies}

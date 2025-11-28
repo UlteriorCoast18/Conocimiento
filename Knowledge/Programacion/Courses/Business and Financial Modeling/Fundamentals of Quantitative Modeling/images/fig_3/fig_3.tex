@@ -1,0 +1,17 @@
+\documentclass[tikz,border=6pt]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={$P$, price},
+    ylabel={$Q = 60,000P^{-2.5}$, quantity},
+    xmin=0.6, xmax=1.4,
+    ymin=20000, ymax=160000,
+]
+    % Gráfica de y = e^x
+    \addplot[domain=0.6:1.4, thick] {60000*x^(-2.5)};
+\end{axis}
+\end{tikzpicture}
+\end{document}
