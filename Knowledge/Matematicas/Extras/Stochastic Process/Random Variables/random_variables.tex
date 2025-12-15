@@ -1,0 +1,385 @@
+\documentclass[12pt]{report}
+
+% --- Idioma y codificación ---
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+% --- Matemáticas ---
+\usepackage{amsmath, amssymb, amsthm}
+
+% --- Gráficos y figuras ---
+\usepackage{graphics, graphicx, subfigure}
+\usepackage{tikz, pgffor, ifthen}
+
+% --- Tablas y estructuras ---
+\usepackage{array, multicol, longtable, booktabs}
+
+% --- Listas y enumeraciones ---
+\usepackage{enumerate, enumitem}
+
+% --- Márgenes y geometría ---
+\usepackage[a4paper, margin=1.5cm]{geometry}
+
+% --- Diseño y marco ---
+\usepackage[framemethod=TikZ]{mdframed}
+
+% --- Texto y contenido de prueba ---
+\usepackage{lipsum}
+
+\usepackage{subfiles}
+
+% --- Hipervínculos ---
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{bbm}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=cyan
+}
+
+% --- Código fuente (listings) ---
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA}
+\definecolor{listing-keyword-3}{HTML}{9137CB}
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{myStyle}{
+    language=Python,
+    alsolanguage=C++,
+    numbers=left,
+    xleftmargin=2.7em,
+    framexleftmargin=2.5em,
+    backgroundcolor=\color{gray!15},
+    basicstyle=\color{listing-text-color}\linespread{1.0}\ttfamily,
+    breaklines=true,
+    frameshape={RYR}{Y}{Y}{RYR},
+    rulecolor=\color{black},
+    tabsize=2,
+    numberstyle=\color{listing-numbers}\linespread{1.0}\small\ttfamily,
+    aboveskip=1.0em,
+    belowskip=0.1em,
+    abovecaptionskip=0em,
+    belowcaptionskip=1.0em,
+    keywordstyle={\color{listing-keyword}\bfseries},
+    keywordstyle={[2]\color{listing-keyword-2}\bfseries},
+    keywordstyle={[3]\color{listing-keyword-3}\bfseries\itshape},
+    sensitive=true,
+    identifierstyle=\color{listing-identifier},
+    commentstyle=\color{listing-comment},
+    stringstyle=\color{listing-string},
+    showstringspaces=false,
+    label=lst:bar,
+    captionpos=b
+}
+\lstset{style=myStyle}
+
+% --- Marca de agua ---
+\usepackage{eso-pic}
+\AddToHook{shipout/foreground}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.center){
+            \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{watermark-1.png}
+        };
+    \end{tikzpicture}
+}
+
+% --- Redefiniciones de encabezados de capítulo y sección ---
+\makeatletter
+% Capítulo (estilo original conservado)
+\def\@makechapterhead#1{%
+  {\parindent \z@ \raggedright
+    \reset@font
+    \hrule
+    \vspace*{10\p@}%
+    \par
+    \center \LARGE \scshape \@chapapp{} \huge \thechapter
+    \vspace*{10\p@}%
+    \par\nobreak
+    \vspace*{10\p@}%
+    \par
+    \vspace*{1\p@}%
+    \hrule
+    \vspace*{30\p@}  % Espaciado reducido
+    \centering\Huge \scshape #1\par\nobreak  % Centrado y scshape
+    \vskip 30\p@  % Espaciado reducido
+  }}
+
+
+% Sección
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+  {-2.5ex \@plus -0.5ex \@minus -0.1ex}%  % Espaciado superior reducido
+  {1ex \@plus 0.1ex}%                     % Espaciado inferior reducido
+  {\normalfont\Large\sectionstyle}}
+\newcommand{\sectionstyle}[1]{%
+  \par\noindent\hrule
+  \vspace{0.2ex}%   % Espaciado entre líneas reducido
+  {\scshape{#1}\par}%  % Centrado perfecto y scshape
+  \vspace{0.4ex}%   % Espaciado entre líneas reducido
+  \hrule
+}
+
+% Subsección
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+  {-2ex \@plus -0.4ex \@minus -0.1ex}%  % Espaciado superior reducido
+  {0.8ex \@plus 0.1ex}%                 % Espaciado inferior reducido
+  {\normalfont\large\subsectionstyle}}
+\newcommand{\subsectionstyle}[1]{%
+  \par\noindent\hrule
+  \vspace{-0.4ex}%  % Espaciado entre líneas reducido
+  {\scshape #1\par}%  % Centrado perfecto y scshape
+  \vspace{0.4ex}%  % Espaciado entre líneas reducido
+  \hrule
+}
+
+% Subsubsección
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+  {-1.5ex \@plus -0.3ex \@minus -0.1ex}%  % Espaciado superior reducido
+  {0.5ex \@plus 0.1ex}%                   % Espaciado inferior reducido
+  {\normalfont\normalsize\subsubsectionstyle}}
+\newcommand{\subsubsectionstyle}[1]{%
+  \par\noindent\hrule
+  \vspace{0.4ex}%   % Espaciado entre líneas reducido
+  {\scshape #1\par}%  % Centrado perfecto y scshape
+  \vspace{0.4ex}%   % Espaciado entre líneas reducido
+  \hrule
+}
+\makeatother
+
+% --- Entornos personalizados ---
+% (aquí puedes definir tus theorems, definiciones, etc.)
+
+
+% --- Entornos personalizados ---
+\newtheoremstyle{largebreak}{}{ }{\normalfont}{}{\bfseries}{}{\newline}{}
+\theoremstyle{largebreak}
+
+\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=gray!60!red!30]{exa}{Example}[section]
+\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=gray!50!blue!30]{obs}{Observation}[section]
+\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=green!50!blue!30]{preg}{Question}[section]
+\newmdtheoremenv[hidealllines=true,roundcorner=5pt,backgroundcolor=yellow!40]{idea}{Idea}[section]
+\newmdtheoremenv[rightline=false,leftline=false]{theor}{Theorm}[section]
+\newmdtheoremenv[rightline=false,leftline=false]{propo}{Proposition}[section]
+\newmdtheoremenv[rightline=false,leftline=false]{cor}{Corollary}[section]
+\newmdtheoremenv[rightline=false,leftline=false]{lema}{Lemma}[section]
+\newmdtheoremenv[roundcorner=5pt,backgroundcolor=gray!30,hidealllines=true]{mydef}{Definition}[section]
+\newmdtheoremenv[roundcorner=5pt]{excer}{Excercise}[section]
+
+% --- Comandos auxiliares ---
+\def\proof{\paragraph{Proof:\\}}
+\def\endproof{\hfill$\blacksquare$}
+\def\sol{\paragraph{Solution:\\}}
+\def\endsol{\hfill$\square$}
+
+\newcommand\logit[1]{\ensuremath{\textup{logit}\left(#1\right)}}
+\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
+\newcommand\divides{\ensuremath{\bigm|}}
+\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
+\newcommand\contradiction{\ensuremath{\#_c}}
+\newcommand\natint[1]{\ensuremath{\left[\big|#1\big|\right]}}
+\newcommand\bbm[1]{\ensuremath{\mathbbm{#1}}}
+
+\newcounter{figcount}
+\setcounter{figcount}{1}
+
+\renewcommand{\lstlistingname}{Code}
+\renewcommand{\lstlistlistingname}{{\lstlistingname} List}
+
+% --- Comienzo del documento ---
+\begin{document}
+    \setlength{\parskip}{5pt}
+    \setlength{\parindent}{12pt}
+    \title{Random Variables}
+    \author{Cristo Daniel Alvarado}
+    \maketitle
+
+    \tableofcontents
+
+    \lstlistoflistings
+
+    \chapter{Random Variables}
+
+    \section{Definition and Types of Random Variables}
+
+    It frequently occurs that in performing an experiment we are mainly interested in some functions of the outcome as opposed to the outcome itself.
+
+    \begin{exa}
+      In the experiment of tossing two dices, we may be interested in the sum of the two dices and not on the actual outcome of the experiment.
+
+      This is, we may not be interested in whether the outcome is $(1, 6)$ or $(2, 5)$ or $(3, 4)$ or $(4, 3)$ or $(5, 2)$ or $(6, 1)$.
+    \end{exa}
+
+    These quantities of interest, which are real-valued functions defined on a sample space, are called \textbf{random variables}.
+
+    \begin{mydef}[\textbf{Random Variables}]
+      Let $S$ be a sample space. A \textbf{random variable}, denoted by $X$ is a \textit{real-valued function defined on the sample space of an experiment}.
+    \end{mydef}
+
+    \begin{obs}[\textbf{Sample Space}]
+      This \textit{set of all possible outcomes of an experiment} is known as the \textbf{sample space} of the experiment and is denoted by $S$. Any subset $E$ of the sample space $S$ is called an \textbf{event}.
+    \end{obs}
+
+    \begin{exa}
+      Let $X$ be a random variable defined as the sum of two fair dice. Then, $X$ can only take integer values between $2$ and $12$. It happens that:
+
+      \begin{equation*}
+        1=P\left(\bigcup_{ n=2}^{12} P(X=n)\right)=\sum_{ n=2}^{12} P(X=n)
+      \end{equation*}
+
+    \end{exa}
+
+    \begin{exa}
+      Suppose that we toss a coin having a probability $p$ of coming up heads, until the first head appears. Letting $N$ denote the number of flips required, then assuming that the outcome of successive flips are independent, $N$ is a random variable taking on one of the values $1, 2, 3, \dots ,$ with respective probabilities:
+      \begin{equation*}
+        \begin{split}
+          P(N=1)&=p\\
+          P(N=2)&=(1-p)p\\
+          P(N=3)&=(1-p)^2p\\
+          \vdots & \vdots \\
+          P(N=3)&=(1-p)^{n-1}p\\
+        \end{split}
+      \end{equation*}
+
+      It follows that:
+      \begin{equation*}
+        \sum_{ n=1}^{\infty} P(N=n)=\sum_{ n=1}^{\infty} (1-p)^{n-1}p=\frac{p}{1-(1-p)}=1
+      \end{equation*}
+        
+    \end{exa}
+
+    \begin{exa}
+      Suppose that our experiment consists of seeing how long a battery can operate before wearing down. Suppose also that we are not primarily interested in the actual lifetime of the battery but are concerned only about whether or not the battery lasts at least two years. In this case, we may define the random variable $I$ by:
+      \begin{equation*}
+        I=\left\{
+          \begin{array}{lr}
+            1, & \text{if the battery lasts at least 2 years}\\
+            0, & \text{otherwise}\\
+          \end{array}
+        \right.
+      \end{equation*}
+
+      If $E$ denotes the event that the battery lasts two or more years, then we have that the random variable $I$ is know as the \textbf{indicator random variable} of the event $E$ (sometimes denoted by $I_E$).  
+    \end{exa}
+
+    \begin{obs}
+      In all of the preceding examples, the random variables of interest took on either a finite or a countable number of possible values. Such random variables are called \textbf{discrete random variables}.
+    \end{obs}
+
+    There are also \textbf{contiuous random variables}.
+
+    \begin{obs}
+      One example of a continuous random variable is the random variable denoting the lifetime of a car, when the car’s lifetime is assumed to take on any value in some interval $(a, b)$.
+    \end{obs}
+
+    \begin{mydef}[\textbf{Cummulative Distribution Function}]
+      Let $X$ be a random variable. The \textbf{cummulative distrubution function} (called \textbf{CDF}) of $X$, is defined for any real number $b$, $-\infty<b<\infty$ as:
+      \begin{equation*}
+        F(b)=P(X\leq b)
+      \end{equation*}
+    \end{mydef}
+
+    In other words, the CDF of a random variable denotes the probability that the random variable $X$ takes on a value of less than or equal to $b$.
+
+    We verify that the CDF $F$ of a random variable $X$ satisfies the following properties:
+
+    \begin{propo}[\textbf{Properties of CDF}]
+      Let $X$ be a random variable with CDF $F$. Then:
+      \begin{enumerate}[label=(\alph*)]
+        \item $F$ is a non-decreasing function.
+        \item $0\leq F(b)\leq 1$ for all $b\in \mathbb{R}$
+        \item If $b_1<b_2$, then $F(b_1)\leq F(b_2)$
+        \item $\lim_{ b\to -\infty} F(b)=0$ and $\lim_{ b\to \infty} F(b)=1$
+      \end{enumerate}
+    \end{propo}
+
+    Turns out that all probability questions about the random variable $X$ can be answered if we know its CDF $F$.
+
+    \begin{exa}
+      If $a,b\in\bbm{R}$, then:
+      \begin{equation*}
+        P(a<X\leq b)=F(b)-F(a)
+      \end{equation*}
+      and,
+      \begin{equation*}
+        P(X<b)=\lim_{h\to0^+}P(X\leq b-h)=\lim_{ x\to b^-} F(x)
+      \end{equation*}
+    \end{exa}
+
+    \section{Discrete Random Variables}
+
+    A random variable that can take on at most a countable number of possible values is said to be discrete.
+
+    \begin{mydef}[\textbf{Probability Mass Function}]
+      Let $X$ be a discrete random variable, we define the \textbf{probability mass function} $p$ of $X$ by:
+      \begin{equation*}
+        p(x)=P(X=x)
+      \end{equation*}
+    \end{mydef}
+
+    \begin{propo}
+      Let $X$ be a discrete random variable with probability mass function $p$. Then there exists a countable subset $A\subseteq\bbm{R}$, say $A=\left\{a_1,\dots,a_n,\dots\right\}$ such that:
+      \begin{enumerate}[label=(\alph*)]
+        \item $p(a_i)>0$, for all $i\in\bbm{N}$
+        \item $p(x)=0$, for all $x\in\bbm{R}\setminus A$.
+      \end{enumerate}
+      And,
+      \begin{equation*}
+        \sum_{ i=1}^\infty p(a_i)=1
+      \end{equation*}
+    \end{propo}
+
+    \begin{obs}
+      Also, the cummulative distribution function $F$ can be expressed in terms of $p(a)$ by:
+      \begin{equation*}
+        F(a)=\sum_{ x\leq a} p(x)
+      \end{equation*}
+    \end{obs}
+
+    Discrete random variables are often classiﬁed according to their probability mass functions. We now consider some of these random variables.
+
+    \subsection{Bernoulli Random Variable}
+
+    Lets suppose that the trial of an experiment, whose outcome can be classified as a success or failure is performed. Let $X$ be the random variable defined by $X=1$ if the outcome is a success and $X=0$ if the outcome is a failure.
+
+    Then, the probability mass function of $X$ is given by:
+    \begin{equation*}
+      p(x)=\left\{
+        \begin{array}{lr}
+          p, & \text{if } x=1\\
+          1-p, & \text{if } x=0\\
+          0, & \text{otherwise}\\
+        \end{array}
+      \right.
+    \end{equation*}
+    where $p$ is the probability of a success.
+
+    \begin{mydef}[\textbf{Bernoulli Random Variable}]
+      The random variable $X$ is called a \textbf{Bernoulli random variable} with parameter $p\in]0,1[$.
+    \end{mydef}
+
+    \subsection{Binomial Random Variable}
+
+    Suppose that $n$ independent trials, each of which results in a “success” with probability $p$ and in a “failure” with probability $1 - p$, are to be performed.
+    
+    If $X$ represents the number of successes that occur in the $n$ trials, then $X$ is said to be a \textbf{binomial random variable with parameters $(n, p)$}.
+
+    \chapter*{Bibliography}
+
+    \begin{itemize}
+      \item Ross, S. M. (2014). \textit{Introduction to Probability Models}. Academic Press.
+    \end{itemize}
+
+    \newpage
+
+\end{document}

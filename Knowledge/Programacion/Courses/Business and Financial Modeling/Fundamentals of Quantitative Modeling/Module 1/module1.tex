@@ -221,6 +221,125 @@
 
     \subsection{Ranking and targeting}
 
-    When selling a product, we may be interested in which ones we would like to purchase. Since we cannot have a look at all the diamonds in the world, 
+    When selling a product, we may be interested in which ones we would like to purchase. Since we cannot have a look at all the diamonds in the world, \textbf{identify targets of opportunity}. This is a ranking and targeting excersise.
+
+    Or, for example, if I am interested in buying, is useful to create a model to help classify places which I can buy.
+
+    \section{How are models used in practice}
+
+    We use models in real-life scenarios in order to:
+    \begin{itemize}
+        \item Exploring what if scenarios (this is \textbf{called scenario planning}).
+        \item Interpreting the coefficients in a model (what's the meaning behind \textbf{coefficients in model equations?}).
+        \item Assesting how sensitive the model is to key-assumptions.
+    \end{itemize}
+
+    \begin{mydef}[\textbf{Sensitivity Analysis}]
+        A \textbf{sensitivity analysis} is the \textit{process where we check how the output of a model is sensitive to some of the assumptions made at the begining}.
+    \end{mydef}
+
+    \begin{longtable}{p{5cm} c}
+    \toprule
+    \textbf{ Benefits of Modeling } & \textbf{ } \\
+    \midrule
+    \endfirsthead
+    
+    
+    \toprule
+    \textbf{ } & \textbf{ } \\
+    \endhead
+    
+    
+    \bottomrule
+    \caption{ Benefits of Modeling }
+    \label{table:benefits_modeling}
+    \endlastfoot
+    
+    
+     Identify gaps in current undestanding & \\ 
+    \hline 
+     Make assumptions explicit & \\
+     \hline 
+     Have well-defined description of the business process & \\
+     \hline 
+     Create an institution memory & \\ 
+     \hline 
+     Used as a decision \textbf{support} tool & \\ 
+     \hline 
+     Serendipitous insight generator & \\ 
+    \end{longtable}
+
+    \section{Key Steps in the Modeling Process}
+
+    Every model is different but they share common features in the way the model was created (the workflow).
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.5]{images/fig_5.png} \\
+            \caption{Overview of the Modeling Process}
+            \label{figure:overview_modeling_process}
+        \end{minipage}
+    \end{figure}
+
+    \begin{enumerate}
+        \item The first steps is always to \textbf{stablish what the model is trying to predict}, and what are the \textbf{underlying variables} of it (which will help us to predict)?
+        
+        What is the scope of the model? Which is, \textbf{where is it going to be applied?}.
+        \item \textbf{Formulate the model}. Its the step where we undestand the business process and al the mathematical ideas come into the process.
+        \item \textbf{Perform a sensitivity analysis} and validate \textbf{model forecast}.
+        \item Is the model fit for purpose? Is it suitable for its purpose?
+    \end{enumerate}
+
+    \begin{obs}
+        Some teacher said: some wrong models are useful.
+    \end{obs}
+
+    If something went wrong, we start over again. If the model accomplish its purpose, then we implement the model.
+
+    \begin{idea}
+        There is always a learning when a model doesn't work properly. We gain insight into what work and what doesn't work in the process.
+    \end{idea}
+
+    \begin{center}
+        \textit{Modeling is an iterative and evolutionary process}.
+    \end{center}
+
+    \section{Vocabulary for Modeling}
+
+    \subsection{Data Driven vs. Theory Driven}
+
+    There are basically two types of models: theoretical and data-driven. It's more like an spectrum than a certain type of model.
+
+    \begin{itemize}
+        \item \textbf{Theory}: Given a set of assumptions and relations, then what are the logical consecuences?
+        \item \textbf{Data}: Given a set observations, how can we aproximate the underlying process that generated them?
+    \end{itemize}
+
+    \begin{exa}
+        These are two examples of questions that define a model:
+        \begin{itemize}
+            \item \textbf{Theory}: If we assume the markets are efficient, then what should the price of a stock option be?
+            \item \textbf{Data}: I've separated out my profitable customers from the unprofitable ones. Now, what features are able to differentiate them?
+        \end{itemize}
+    \end{exa}\
+    
+    \subsection{Deterministic vs Probabilistic}
+
+    Given a set of inputs, the model always gives the same output or is it different instance from instance? This is the main difference between a deterministic and a probabilistic model, respectively.
+
+    \subsection{Static vs Dynamic}
+
+    So, in a static model, the model captures a single snapshot of the business process.
+
+    \begin{exa}
+        Given a website's installed software base, what are the chances that it is compromised today?
+    \end{exa}
+
+    And dynamic, in which the evolution of the process itself is of interest. The model describes the movement from state to state.
+
+    \begin{exa}
+        Given a person's participation in a job training program, how long will it take until he/she finds a job, and, if they find one, for how long will they keep it?
+    \end{exa}
 
 \end{document}
