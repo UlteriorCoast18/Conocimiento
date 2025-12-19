@@ -426,47 +426,127 @@
 
     \subsection{The Zeta Function of a Variety over $\bbm{F}_p$}
 
-    %TODO: Corregir todo esto
-
     This example is very important to number theorists, since it relates algebraic geometry with number theory in a very deep way.
 
-    Let $p$ be a prime number and $\bbm{F}_p$ the finite field with $p$ elements. Let $X$ be a closed subset of $\bbm{A}^n$ defined over $\bbm{F}_p$, that is, the polynomials defining $X$ have coefficients in $\bbm{F}_p$.
+    Let $p$ be a prime number and $\bbm{F}_p$ the finite field with $p$ elements. Let $X$ be a closed subset of $\bbm{A}^n$, where the afine space is defined over the closure of the field $\bbm{F}_p$, denoted by $\overline{\bbm{F}_p}$, where the coefficients of the equations $F_i(T)$ that define $X$ are in $\bbm{F}_p$.
 
     \begin{obs}
-        Let's consider the closed set $X$ and $F_1=\dots=F_m$ the polynomials defining $X$. We have that $x\in X$ if and only if:
+        Let's consider the closed set $X\subseteq\bbm{A}^n$ and $F_1=\dots=F_m$ the polynomials defining $X$. We have that $x\in X$ if and only if:
         \begin{equation*}
             F_i(x)=0,\quad\forall i\in\natint{1,m}
         \end{equation*}
         since $F_i\in\bbm{F}_p[T]$, its clear that $x\in X$ if and only if $x$ is a solution of the system of congruences:
         \begin{equation*}
             F_i(T)\equiv 0\mod p
-        \end{equation*}        
+        \end{equation*}
     \end{obs}
     Let's consider the map $\cf{\varphi}{\bbm{A}^n}{\bbm{A}^n}$ given by:
     \begin{equation*}
         \varphi(x_1,\dots,x_n)=(x_1^p,\dots,x_n^p)
     \end{equation*}
-    It's immediate to see that $\varphi$ is a regular map. Furthermore, if $x\in X$, then $\varphi(x)\in X$. Let $x\in X$, so:
+    It's immediate to see that $\varphi$ is a regular map. Furthermore, if $x\in X$, then $\varphi(x)\in X$. First, let $\alpha_1,\dots,\alpha_n\in X$, we will prove that:
     \begin{equation*}
-        F_i(x)=0,\quad\forall i\in\natint{1,m}
+        F(\alpha_1^p,\dots,\alpha_n^p)=\left(F(\alpha_1,\dots,\alpha_n)\right)^p
     \end{equation*}
-    Let $\alpha\in\bbm{F}_p$, since $\bbm{F}_p$ is the field with $p$-elements, for every we have that:
+    First, since $F\in\bbm{F}_p[T]=\bbm{F}_p[T_1,\dots,T_n]$, we have that $F$ is a polynomial with coefficients in $\bbm{F}_p$, so we can write $F$ as a finite sum:
     \begin{equation*}
-        H_\alpha=\left\{1,\alpha,\alpha^2,\dots \right\}
+        F(T_1,\dots,T_n)=\sum_{i_1,\dots,i_n} f_{i_1,\dots,i_n}T_1^{i_1}\cdots T_n^{i_n}
     \end{equation*}
-    is a cyclic (multiplicative) subgroup of $\bbm{F}_p^*$ (where $\bbm{F}_p^*=\bbm{F}_p\setminus\left\{0\right\}$). Since $\abs{\bbm{F}_0^*}=p-1$, we must have that $H_\alpha$ has either 1 element or $p-1$ elements. If it has one, then $\alpha=1$. In the other case, when $\alpha\neq1$, we must have that:
-    \begin{equation*}
-        H_\alpha=\left\{1,\alpha,\alpha^2,\dots,\alpha^{p-2} \right\}
-    \end{equation*}
-    so, $\alpha^{ p-1}=1$, which implies that $\alpha^p=\alpha$. Due to this fact it follows that:
+    where $f_{i_1,\dots,i_n}\in\bbm{F}_p$. Now, since $\overline{\bbm{F}_p}$ is a field of characteristic $p$, we have the following facts:
+    \begin{itemize}
+        \item $(a+b)^p=a^p+b^p$ for all $a,b\in\overline{\bbm{F}_p}$. This fact is generalyzsed to more than two summands by induction.
+        \item $a^p=a$ for all $a\in\bbm{F}_p\subseteq\overline{\bbm{F}_p}$.
+    \end{itemize}
+    So,
     \begin{equation*}
         \begin{split}
-            F_i(\alpha_1^p,\dots,\alpha_n^p)=F_i(\alpha_1,\dots,\alpha_n)
+            F(\alpha_1^p,\dots,\alpha_n^p)&=\sum_{i_1,\dots,i_n} f_{i_1,\dots,i_n}\left(\alpha_1^p\right)^{i_1}\cdots \left(\alpha_n^p\right)^{i_n} \\
+            &=\sum_{i_1,\dots,i_n} f_{i_1,\dots,i_n}^p\alpha_1^{pi_1}\cdots \alpha_n^{pi_n} \\
+            &=\sum_{i_1,\dots,i_n} \left(f_{i_1,\dots,i_n}\alpha_1^{i_1}\cdots \alpha_n^{i_n}\right)^p \\
+            &=\left(\sum_{i_1,\dots,i_n}f_{i_1,\dots,i_n}\alpha_1^{i_1}\cdots \alpha_n^{i_n}\right)^p \\
+            &=F(\alpha_1,\dots,\alpha_n)^p
         \end{split}
     \end{equation*}
-    for all $(\alpha_1,\dots,\alpha_n)\in\bbm{A}^n$. So that $(\alpha_1,\dots,\alpha_n)\in X$ iff $(\alpha_1^p,\dots,\alpha_n^p)\in X$.
+    So, if $\alpha=(\alpha_1,\dots,\alpha_n)\in X$, then $\varphi(\alpha)=(\alpha_1^p,\dots,\alpha_n^p)\in X$, because:
+    \begin{equation*}
+        F_i(\alpha_1^p,\dots,\alpha_n^p)=\left(F_i(\alpha_1,\dots,\alpha_n)\right)^p=0^p=0
+    \end{equation*}
+    for all $i\in\natint{1,m}$. This proves that $\varphi(X)\subseteq X$, so the restriction of $\varphi$ to $X$ defines a regular map from $X$ to itself.
 
+    \begin{preg}
+        Is it true that $\varphi(X)=X$?
+    \end{preg}
+
+    \begin{sol}
+        Yes, this is true since $\overline{\bbm{F}_p}$ is algebraically closed, so for all $a\in\overline{\bbm{F}_p}$ the polynomial:
+        \begin{equation*}
+            X^p - a
+        \end{equation*}
+        has a root in $\overline{\bbm{F}_p}$. It follows that $\varphi$ is an automorphism of $\overline{\bbm{F}_p}$ (and, its easy to verify that $\varphi(X)=X$ using the same argument above).
+    \end{sol}
+
+    \begin{mydef}[\textbf{Fröbenius Map}]
+        The map $\varphi$ is called \textbf{Fröbenius map}.
+    \end{mydef}
     
+    Its significance is that all the points of $X$ with coordinates in $\bbm{F}_{p}$ are the fixed points of the map $\varphi^n$.
+
+    \begin{obs}
+        Indeed, the solutions of the equation $x^p=x$ are exactly all the elements of $\bbm{F}_p$.
+    \end{obs}
+
+    Using this exact same procedure, we can prove that the elements of the field $\bbm{F}_{p^r}$ are the solutions of the equation $x^{p^r}=x$, and hence the points $\alpha\in X$ with coordinates in $\bbm{F}_{p^r}$ are exactly the fixed points of the map $\varphi^r$.
+
+    \begin{obs}
+        Is worth noticing that:
+        \begin{equation*}
+            \overline{\bbm{F}_p}=\bigcup_{r=1}^\infty\bbm{F}_{p^r}
+        \end{equation*}
+        so the latter observation makes more sense. In other words:
+        \begin{equation*}
+            \bbm{F}_{p^r}\subseteq\overline{\bbm{F}_p}
+        \end{equation*}
+        for all $r\in\bbm{N}$.
+    \end{obs}
+    
+    \begin{mydef}
+        For each $r\in\bbm{N}$, let $\nu_r$ be the number of points of $X$ with coordinates in $\bbm{F}_{p^r}$.
+    \end{mydef}
+
+    To get a better overview of the numbers $\nu_r$, we must consider the following generating function:
+    \begin{equation*}
+        P_X(t)=\sum_{ r=1}^{\infty}\nu_rt^r
+    \end{equation*}
+
+    \begin{mydef}[Nombre]
+        Let $f\in\bbm{Q}[[t]]$ be a formal series over $\bbm{Q}$, that is:
+        \begin{equation*}
+            f(t)=\sum_{i=1}^\infty a_it^i
+        \end{equation*}
+        where $a_i\in\bbm{Q}$. We say that $f$ is a \textbf{rational function} if there exists two polynomials $P(t),Q(t)\in\bbm{Q}[t]$ such that:
+        \begin{equation*}
+            f(t)=\frac{P(t)}{Q(t)}
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        A theorem states that this function is always a rational function of $t$. This proof can be found in chapter V of \textit{$p$-Adic Numbers, $p$-Adic Analysis and Zeta Functions} by Koblitz, N.
+    \end{obs}
+
+    Which means that basically, the function $P_X(t)$ gives an expression in finite terms for the infinite sequence of numbers $\nu_r$. Turns out that the function $P_X$ associated to a closed set $X$ has some properties analogous to the Riemann zeta function.
+
+    \begin{obs}
+        To express these properties, lets note that if $x\in X$ is a point whose coordinates are in $\bbm{F}_{p^r}$ and generate this field, then $X$ contains all the points $\varphi(x)^i$ for $i\in\natint{1,r}$, and these are all distinct.
+    \end{obs}
+
+    \begin{proof}
+        Let $x\in X$ be a point whose coordinates are in $\bbm{F}_{p^r}$ and generate this field.
+        \begin{enumerate}
+            \item First, we will prove that $\varphi(x)^i\in X$ for all $i\in\natint{1,r}$.
+            \item Now, we will prove that the points $\varphi(x)^i$ for $i\in\natint{1,r}$ are all distinct.
+        \end{enumerate}
+    \end{proof}
+
     \newpage 
 
     \section{Excersies}
@@ -482,4 +562,20 @@
         \end{equation*}
     \end{excer}
 
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        If $p$ is a prime number, then:
+        \begin{equation*}
+            \overline{\bbm{F}_p}=\bigcup_{r=1}^\infty\bbm{F}_{p^r},
+        \end{equation*}
+        where $\bbm{F}_{p^r}$ is the finite field with $p^r$ elements.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+    
 \end{document}
