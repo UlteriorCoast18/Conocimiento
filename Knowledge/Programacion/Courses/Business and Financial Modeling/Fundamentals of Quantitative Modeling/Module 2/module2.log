@@ -1,17 +1,17 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.12.8)  14 DEC 2025 16:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.12.18)  19 DEC 2025 18:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/Ulterior/Documents/Knowledge/Conocimiento/Knowledge/Programacion/Courses/Business and Financial Modeling/Fundamentals of Quantitative Modeling/Module 2/module2.tex"
-(/home/Ulterior/Documents/Knowledge/Conocimiento/Knowledge/Programacion/Courses/Business and Financial Modeling/Fundamentals of Quantitative Modeling/Module 2/module2.tex
+**"/home/ulteriorcoast18/Documents/Knowledge/Conocimiento/Knowledge/Programacion/Courses/Business and Financial Modeling/Fundamentals of Quantitative Modeling/Module 2/module2.tex"
+(/home/ulteriorcoast18/Documents/Knowledge/Conocimiento/Knowledge/Programacion/Courses/Business and Financial Modeling/Fundamentals of Quantitative Modeling/Module 2/module2.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (/usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
 Document Class: subfiles 2020/11/14 v2.2 Multi-file projects (class)
 Preamble taken from file `../fundamentals_modeling.tex'
 (/usr/share/texlive/texmf-dist/tex/latex/import/import.sty
 Package: import 2020/04/01  v 6.2
-) (/home/Ulterior/Documents/Knowledge/Conocimiento/Knowledge/Programacion/Courses/Business and Financial Modeling/Fundamentals of Quantitative Modeling/Module 2/../fundamentals_modeling.tex (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+) (Module 2/../fundamentals_modeling.tex (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2022/07/02 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
@@ -800,7 +800,7 @@ Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
 \c@mydef=\count364
 \c@excer=\count365
 \c@figcount=\count366
-)) (/home/Ulterior/Documents/Knowledge/Conocimiento/Knowledge/Programacion/Courses/Business and Financial Modeling/Fundamentals of Quantitative Modeling/Module 2/module2.aux)
+)) (Module 2/module2.aux)
 \openout1 = `module2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -875,7 +875,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring ON on input line 3.
-(/home/Ulterior/Documents/Knowledge/Conocimiento/Knowledge/Programacion/Courses/Business and Financial Modeling/Fundamentals of Quantitative Modeling/Module 2/module2.out) (/home/Ulterior/Documents/Knowledge/Conocimiento/Knowledge/Programacion/Courses/Business and Financial Modeling/Fundamentals of Quantitative Modeling/Module 2/module2.out)
+(Module 2/module2.out) (Module 2/module2.out)
 \@outlinefile=\write4
 \openout4 = `module2.out'.
 
@@ -890,31 +890,86 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <20.74> not available
 LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <24.88> not available
 (Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 5.
 
-<watermark-1.png, id=11, 127.4361pt x 192.72pt>
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <17.28> not available
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 9.
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 13.
+LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 14.
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmss.fd
+File: ts1cmss.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 19.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 24.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 28.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 36.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 40.
+
+
+Package mdframed Warning: You got a bad break
+(mdframed)                because the last box will be empty
+(mdframed)                you have to change it manually
+(mdframed)                by changing the text, the space
+(mdframed)                or something else on input line 46.
+
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 46.
+<watermark-1.png, id=23, 127.4361pt x 192.72pt>
 File: watermark-1.png Graphic file (type png)
 <use watermark-1.png>
-Package pdftex.def Info: watermark-1.png  used on input line 10.
+Package pdftex.def Info: watermark-1.png  used on input line 46.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
 [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./watermark-1.png>] (/home/Ulterior/Documents/Knowledge/Conocimiento/Knowledge/Programacion/Courses/Business and Financial Modeling/Fundamentals of Quantitative Modeling/Module 2/module2.aux)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./watermark-1.png>]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 54.
+LaTeX Font Info:    Font shape `OT1/cmss/m/it' in size <12> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 55.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 64.
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 74.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+ [2] (Module 2/module2.aux)
 Package rerunfilecheck Info: File `module2.out' has not changed.
-(rerunfilecheck)             Checksum: D7E9FA846247A000B599DF9BCE00F14A;202.
+(rerunfilecheck)             Checksum: 9D35A11F4C96EE4745BBDD111156CBE6;890.
  ) 
 Here is how much of TeX's memory you used:
- 25939 strings out of 476041
- 481759 string characters out of 5793174
- 1853388 words of memory out of 6000000
- 45940 multiletter control sequences out of 15000+600000
- 513800 words of font info for 37 fonts, out of 8000000 for 9000
+ 26121 strings out of 476041
+ 483433 string characters out of 5793173
+ 1871388 words of memory out of 6000000
+ 46082 multiletter control sequences out of 15000+600000
+ 519750 words of font info for 59 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 104i,11n,106p,633b,657s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb>
-Output written on "/home/Ulterior/Documents/Knowledge/Conocimiento/Knowledge/Programacion/Courses/Business and Financial Modeling/Fundamentals of Quantitative Modeling/Module 2/module2.pdf" (1 page, 85070 bytes).
+ 104i,11n,106p,640b,918s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb>
+Output written on "Module 2/module2.pdf" (2 pages, 152407 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
- 24 compressed objects within 1 object stream
- 3 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 93 PDF objects out of 1000 (max. 8388607)
+ 70 compressed objects within 1 object stream
+ 16 named destinations out of 1000 (max. 500000)
+ 50 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,86 @@
+\documentclass[../../fundamentals_modeling.tex]{subfiles}
+
+\begin{document}
+
+    \chapter{Operations Research}
+
+    \section{Introduction}
+
+    The discipline of operations research develops and uses \textbf{mathematical and computational methods} for decision-making. The \textit{field revolves around a mathematical core consisting of several fundamental topics including optimization, stochastic systems, simulation, economics and game theory, and network analysis}.
+
+    \begin{obs}
+        The \textit{broad applicability of its core topics places operations research at the heart of many important contemporary problems such as} \textbf{communication network management, statistical learning, supply-chain management, pricing and revenue management, financial engineering, market design, bio-informatics, production scheduling, energy and environmental policy, and transportation logistics, to name a few}.
+    \end{obs}
+    
+    Operations research offers a wide variety of career opportunities in industry, public service, and academia—applying operations research methods to improve how organizations or engineering systems perform, developing products that leverage operations research tools, consulting, conducting research, or teaching.
+
+    \begin{idea}
+        The major sub-disciplines (\textit{but not limited to}) in modern operational research, as identified by the journal Operations Research and The Journal of the Operational Research Society are:
+        \begin{itemize}
+            \item Computing and information technologies
+            \item Financial engineering
+            \item Manufacturing, service sciences, and supply chain management
+            \item Policy modeling and public sector work
+            \item Revenue management
+            \item Simulation
+            \item Stochastic models
+            \item Transportation theory
+            \item Game theory for strategies
+            \item Linear programming
+            \item Nonlinear programming
+            \item Integer programming in NP-complete problem specially for 0-1 integer linear programming for binary
+            \item Dynamic programming in Aerospace engineering and Economics
+            \item Information theory used in Cryptography, Quantum computing
+            \item Quadratic programming for solutions of Quadratic equation and Quadratic function
+        \end{itemize}
+    \end{idea}
+
+    \section{Linear Programming}
+
+    Many problems in operations research can be modeled as \textbf{linear programming} problems.
+
+    \begin{mydef}[\textbf{Linear Programming}]
+        The maximum flow and minimum cut problems are examples of a general class of problems called \textbf{linear programming}.
+    \end{mydef}
+
+    \begin{obs}
+        Many other optimization problems, such as:
+        \begin{itemize}
+            \item Minimum spanning trees.
+            \item Shortest paths.
+            \item Problems in scheduling, logistics and economics.
+        \end{itemize}
+    \end{obs}
+
+    It was first formalized and applied to problems in economics in the 1930s by Leonid Kantorovich. Linear programming was rediscovered and applied to shipping problems in the late 1930s by Tjalling Koopmans. The first complete algorithm to solve linear programming problems, called the simplex method, was published by George Dantzig in 1947.
+
+    \begin{idea}[\textbf{Focus of Linear Programming}]
+        A linear programming problem, or more simply a \textbf{linear program}, asks for a vector $\vec{x}\in\bbm{R}^n$ that satisfies a linear set of inequalities.
+
+        The general form of a linear programing problem is:
+        \begin{itemize}
+            \item Maximize $c_1x_1 + c_2x_2 + \cdots + c_nx_n$,
+            \item subject to $\sum_{j=1}^n a_{ij}x_j \leq b_i$ for $i = 1, \ldots, k$,
+            \item and $\sum_{j=1}^n a_{ij}x_j = b_i$ for $i = k+1, \ldots, k+l$,
+            \item and $\sum_{j=1}^n a_{ij}x_j \geq b_i$ for $i = k+l+1, \ldots, m$,
+        \end{itemize}
+        Here, the input consist of a matrix called \textbf{constraint matrix} $A=\left(a_{ ij} \right)\in\bbm{R}^{m\times n}$, an \textbf{offset vector} $\vec{b}\in\bbm{R}^m$, and a \textbf{objective vector} $\vec{c}\in\bbm{R}^n$.
+
+        Each coordinate of $\vec{x}$ is called a \textbf{variable}. Each of the linear inequalities is called a \textbf{constraint}. The function:
+        \begin{equation*}
+            \vec{x}\mapsto \vec{c}\cdot\vec{x}=c_1x_1 + c_2x_2 + \cdots + c_nx_n=\sum_{i=1}^n c_ix_i
+        \end{equation*}
+        is called the \textbf{objective function}.
+    \end{idea}
+
+    \begin{obs}[\textbf{Cannonical Form of a Linear Progam}]
+        A linear program is said to be in \textbf{cannonical form} if it has the following form:
+        \begin{itemize}
+            \item Maximize $c_1x_1 + c_2x_2 + \cdots + c_nx_n$,
+            \item subject to $\sum_{j=1}^n a_{ij}x_j \leq b_i$ for $i = 1, \ldots, m$,
+            \item and $x_i \geq 0$ for $i = 1, \ldots, n$ (in other words, $\vec{x} \geq 0$).
+        \end{itemize}
+    \end{obs}
+
+
+\end{document}

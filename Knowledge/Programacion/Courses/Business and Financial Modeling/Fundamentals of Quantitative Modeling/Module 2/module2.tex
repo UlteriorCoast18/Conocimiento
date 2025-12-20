@@ -4,7 +4,71 @@
 
     \chapter{Linear Models and Optimization}
 
-    
+    This chapter is dedicated to linear models and optimization.
 
+    \section{Introduction to Linear Models}
+
+    As stated earlier, in determinstic models we do not have random or uncertain components, so we always have the same output given the same input.
+
+    \begin{obs}
+        Due to the fact that we do not have a random component, it´s very hard to asses the uncertainty in the outputs.
+    \end{obs}
+
+    As we remember from earlier examples, a linear model (1-imensional) is a model given by the equation:
+
+    \begin{equation*}
+        y=mx+b
+    \end{equation*}
+    The slope is the constant $m$, and $b$ is the intercept with the $y$-axis.
+
+    \begin{idea}
+        These kind of models can work in certain circumstances, but may not be ideal every time.
+    \end{idea}
+
+    \begin{exa}[\textbf{Linear Cost Function}]
+        Let $C$ be the cost of producint $q$ units of a product. If we have a process that must start with $100$ dolars cost, then the cost function is given by: 
+        \begin{equation*}
+            C(q)=100+30q
+        \end{equation*}
+        where 30 is the cost to produce each unit of the product $q$.
+    \end{exa}
+
+    \begin{obs}
+        The constant $b$ in the latter example is called \textbf{fixed cost}. Every time we produce a product, we must have to pay some amount of money, which is independent of the number of units produced.
+    \end{obs}
+
+    \begin{exa}[\textbf{Time to Produce Function}]
+        If it takes 2 hours to set up a production run, and each incremental unit produced always takes an additional 15 minutes, then the time to produce $q$ units is given by:
+        \begin{equation*}
+            T(q)=2+\frac{15}{60}q
+        \end{equation*}
+        Here, $\frac{15}{60}$ can be interpreted as the \textbf{work rate} to produce each unit of the product.
+    \end{exa}
+
+    Some notes on the latter examples are the following:
+    \begin{enumerate}
+        \item We are given a description of the process which we have to model, so it´s our work to find the variables and constants that represent the process in the model, describe them and interpret them.
+        \item In all of the examples, we have the constants involved in the process told to us, but in other cases we may need to find them using data or other information. 
+    \end{enumerate}
+
+    \begin{obs}[\textbf{Linear Programming}]
+        \textbf{Linear Programming} is a \textit{method to achieve the best outcome in a mathematical model whose requirements are represented by linear relationships}.
+
+        It is used to solve optimization problems, and is one of the work horses of \textbf{operations research}.
+    \end{obs}
+
+    Linear programming implements something called constraints. When we try to optimize a process, the meaning behind it is to find the best possible solution that satisfies all of the constraints.
+
+    Constraints are ideas that we can incorporate into our models to \textbf{make them more realistic}.
+
+    \begin{exa}
+        For example, if we are trying to optimize a process, \textit{we may have constraints} on the amount of resources available, or the maximum number of units that can be produced.
+    \end{exa}
+
+    \section{Growth and Decay (discrete and continuous time)}
+
+
+    \section{Classical Optimization}
+    
 
 \end{document}
