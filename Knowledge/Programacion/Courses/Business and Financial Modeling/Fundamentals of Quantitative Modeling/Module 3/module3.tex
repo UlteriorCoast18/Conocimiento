@@ -1,0 +1,172 @@
+\documentclass[../fundamentals_modeling.tex]{subfiles}
+
+\begin{document}
+
+    \chapter{Probabilistic Models}
+    
+    \section{Introduction to Probabilistic Models}
+
+    Deterministic models assume that outcomes are precisely determined through known relationships among states and events. However, many systems in the real world exhibit inherent randomness and uncertainty. To effectively model and analyze such systems, we turn to \textbf{probabilistic models}.
+
+    \begin{mydef}[\textbf{Probabilistic Model}]
+        A \textbf{probabilistic model} is a model that incorporates \textit{random variables} and \textit{probability distrubutions}.
+    \end{mydef}
+
+    In a a probabilistic model:
+    \begin{itemize}
+        \item \textbf{Random variables} represent the potential outcomes of uncertain events.
+        \item \textbf{Probability distrubutions} assign probabilities to the various potential outcomes.
+    \end{itemize}
+
+    \begin{obs}[\textbf{Random Variables and Probability Distrubutions}]
+        In simple terms:
+        \begin{itemize}
+            \item A \textbf{random variable} \textit{represents the potential outcomes of a certain event}.
+            \item A \textbf{probability distrubution} is an \textit{assignation of a probability to a certain outcome}.
+        \end{itemize} 
+    \end{obs}
+
+    \begin{idea}
+        By incorporating the uncertainty explicitly in the model, we can measure the uncertainty asociated with the outputs.
+        
+        For example, by giving a range to a forecast, which is a more realistic goal than giving just a single outcome.
+    \end{idea}
+
+    \begin{mydef}[\textbf{Forecast}]
+        \textbf{Forecast} is a \textit{prediction or estimate of future events, especially coming weather or a financial trend}.
+    \end{mydef}
+    
+    \begin{obs}[\textbf{Uncertainty in Business Processes}]
+        In business, by incorporating \textbf{uncertainty} is synonymus with understanding and quantifying the \textbf{risk} in a business process, and ideally leads to better management decisions.
+    \end{obs}
+
+    A key idea is to understand that in some parts of a business process, we have uncertainty, so we must create a model that reflects that uncertainty/risk.
+
+    \begin{exa}
+        A company has 10 drugs in a development portfolio.
+        \begin{itemize}
+            \item Given a drug has been aproved, you have to predict its revenue.
+            \item But, whether a drug is approved or not is an uncertain future event (a random variable). We must estimate the probability of approval.
+            \item We wish to invest in the company if the company's total expected revenue for the portfolio is over \$10B in 5 years time.
+        \end{itemize}
+        We need to calculate the \textbf{probability distrubution of the total revenue} to \textbf{understand the investment risk}.
+    \end{exa}
+
+    \section{Examples of Probabilistic Models}
+
+    Some probabilistic models commonly used in business and finance include:
+    \begin{itemize}
+        \item \textbf{Regression models}.
+        \item \textbf{Probability trees}.
+        \item \textbf{Monte Carlo simulation}.
+        \item \textbf{Markov models}. We look at stages of a certain process.
+    \end{itemize}
+
+    \section{Regression Model}
+
+    \begin{mydef}[\textbf{Regression Model}]
+        A \textbf{regression model} is based on a set of data. We use the data to \textit{make a reverse engineering of the data to find a relationship between the variables in order to capture a realistic description of the process}.
+    \end{mydef}
+
+    The following is an example of a regression model.
+    
+    \begin{exa}
+        Lets suppose we have data from several diamond shops in a certain street in NY. In the picture, we draw the dots corresponding to the price vs number of carats of a diamond sold in that street.
+        
+        We can see that there is a pattern which is linear, this is, there is a linear relation between the price of a diamond and its weight in carats. We use linear regression in order to find the best fitting line (we may use the best fitting curve, etc\dots) that predicts the price of a diamond given its weight in carats.
+        \begin{equation*}
+            P=-259.2 + 3721\times C
+        \end{equation*}
+        where $P$ is the price in dollars and $C$ is the weight in carats. In the graph, we have a band that is a \textbf{prediction inverval} which \textit{captures the range of uncertainty of the model}.
+    \end{exa}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.25]{images/linear_regression.png} \\
+            \caption{Linear Regression Model for Diamond Prices.}
+            \label{figure:linear_regression}
+        \end{minipage}
+    \end{figure}
+
+    If we check the points in the graph, we see that not all of them lie in a line, but some of them are outside of it, these points are called noise in the system. We must incorporate them in our prediction interval and forecast.
+
+    \newpage
+
+    \section{Probability Trees}
+
+    \begin{mydef}[\textbf{Probability Tree}]
+        A \textbf{probability tree} (or \textbf{tree diagram}) is a \textit{visual tool in math that maps out all possible outcomes of a series of events} (like coin flips or drawing cards) \textit{and their likelihood}, using \textit{branches for each outcome and labeling them with probabilities} (fractions/decimals).
+    \end{mydef}
+
+    Probability trees allow to propagate probabilities through a sequence of events.
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.5]{images/probability_tree.png} \\
+            \caption{Probability Three for the Event of Flipping a Coin Twice in a Row.}
+            \label{figure:probability_tree}
+        \end{minipage}
+    \end{figure}
+
+    \begin{exa}
+        Lets consider the following scenario. Imagine that we want to predict the probability of certain people of stop sharing copyright protected files online.
+
+        A team made an estimation that:
+        \begin{itemize}
+            \item When pirates get a notice from the goverment to stop infringing the law, 10\% stop doing it.
+            \item If they continue infringing it and they get a second notice, 15\% of them stop infringing the law.
+            \item If they continue infringing it and they get a third notice, 20\% of them stop infringing the law.
+        \end{itemize}
+        This can be visualized in the tree diagram in Figure \ref{figure:probability_tree_piracy}.
+
+        Lets suppose that we want to measure the probability of a pirate to stop infringing. We can calculate this by doing the multiplications in the diagram:
+        \begin{equation*}
+            P_{ stop}=0.1+0.9\times0.15+0.9\times(0.85\times 0.2)=0.388
+        \end{equation*}
+        So, there is a 39\% change for a pirate to stop infringing the law.
+    \end{exa}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.7]{images/fig_6/fig_6.pdf} \\
+            \caption{Probability Tree of the Example}
+            \label{figure:probability_tree_piracy}
+        \end{minipage}
+    \end{figure}
+
+    \section{Monte Carlo Simulations}
+
+    Monte Carlo simulations are very useful for modelating complicated scenarios. To give an example, lets go back to the demand model.
+    \begin{equation*}
+        Q=60,000 P^{ -2.5}
+    \end{equation*}
+    Here, $Q$ is the quantity of the product and $P$ is the price at which the product is sold.
+    
+    This is a demand model, which describes, given the amount of a certain product, the price it must have.
+    
+    \begin{obs}
+        In the latter chapter, we found out the optimal price given the cost of production of \$2 per product is \$3.33. 
+    \end{obs}
+
+    Here, we know the elasticity of demand, which is $b=-2.5$, but what if we dont know about it? In order to find this particular value, we can use Monte Carlo to find a suitable value of $b$.
+
+    \begin{idea}
+        The idea behind a Monte Carlo simulation is to generate a large number of random candidate values for $b$ within a reasonable range (for example, from $-3$ to $-2$). For each candidate $b_i$, we can compute the corresponding prices and quantities predicted by the model and compare them with the observed market data (actual sales quantities at different prices).
+
+        By defining a measure of error, such as the sum of squared differences between the predicted and observed quantities, we can evaluate how well each candidate $b_i$ fits the data.
+    \end{idea}
+
+    After repeating this process many times, the Monte Carlo simulation allows us to identify the value of $b$ that minimizes the error. In this way, even without prior knowledge of the elasticity, we can estimate it empirically from the data using random sampling and statistical analysis.
+
+    \begin{obs}
+        The course gives the following idea. Lets suppose that $b$ comes from a uniform distrubution between $-3$ to $-2$. In earlier sections we proved that:
+        \begin{equation*}
+            P_{ opt}=\frac{cb}{1+b}
+        \end{equation*}
+        With this predicted price, we can find a distrubution for the optimal price of a product. In the course, the optimal price is between \$3.1 and \$3.7 (this is an interval that has 80\% of all the sample results).
+    \end{obs}
+
+\end{document}

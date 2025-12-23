@@ -67,8 +67,237 @@
 
     \section{Growth and Decay (discrete and continuous time)}
 
+    Growth is a fundamental business concept. Many quantities in business grow over time, such as investments, populations of customers, production capacities, etc.
+
+    \begin{itemize}
+        \item The number of customers at a time $t$.
+        \item The revenue in a quarter $q$.
+        \item The value of an investment at some time $t$ in the future.
+    \end{itemize}
+
+    Sometimes, a linear model may be appropiate for a growth process, but an alternative to a linear growth model is a \textbf{proportionate} one.
+
+    \begin{mydef}[\textbf{Proportionate Growth}]
+        \textbf{Proportionate growth} is a \textit{constant percent increase (or decrease) from one period to another}. 
+    \end{mydef}
+
+    \section{Simple Interest}
+
+    It is basically interest calculated only on the initial amount (the principal), so the interest does not compound.
+
+    \begin{center}
+        \begin{tabular}{c | c | c | c | c | c | c}
+            Year & 0 & 1 & 2 & 3 & 4 & 5 \\ 
+            \hline
+            Amount & \$1000 & \$1100 & \$1200 & \$1300 & \$1400 & \$1500 \\
+        \end{tabular}
+    \end{center}
+
+    \section{Compound Interest}
+
+    It is interest calculated on the initial principal, which also includes all of the accumulated interest from previous periods on a deposit or loan.
+
+    \begin{center}
+        \begin{tabular}{c | c | c | c | c | c | c}
+            Year & 0 & 1 & 2 & 3 & 4 & 5 \\ 
+            \hline
+            Amount & \$1000 & \$1100 & \$1210 & \$1331 & \$1464.10 & \$1610.51 \\
+        \end{tabular}
+    \end{center}
+
+    The growth is no longer the same absoulte amount each year, but it is the same proportionate amount (relative) of 10\%.
+    
+    \begin{obs}[\textbf{Geometric Progression}]
+        Lets understand the model. The growth progression is given by:
+        
+        \begin{center}
+            \begin{tabular}{c | c | c | c | c | c | c}
+                Year & 0 & 1 & 2 & 3 & $\cdots$ & $t$ \\ 
+                \hline
+                Amount $P_t$ & $P_0$ & $P_0\vartheta$ & $P_0\vartheta^2$ & $P_0\vartheta^3$ & $\cdots$ & $P_0\vartheta^t$ \\
+            \end{tabular}
+        \end{center}
+    
+        Here, $P_0$ is the initial amount. And:
+        \begin{itemize}
+            \item If $\vartheta > 1$, then the process is growing.
+            \item If $\vartheta < 1$, then the process is decaying.
+        \end{itemize}
+    
+        This is called a \textbf{geometric series} or \textbf{geometric progression}.
+    \end{obs}
+
+    In this model, we are using a discrete time, because we are only looking at a period of zero, one, two, three, etc\dots
+
+    \begin{exa}
+        Lets consider the following example:
+        \begin{itemize}
+            \item An Indian Ocean nation caught 200,000 tones of fish this year.
+            \item Catch is projected to fall by a constant 5\% factor each year for the next 10 years.
+            \item How many fish are predicted to be caught 5 years from now?
+            \item Including this year, what is the total expected catch over the next 5 years?
+        \end{itemize}
+        The model for the amount of fish caught after $t$ years is given by:
+        \begin{equation*}
+            P_t = 200,000\times 0.95^{t},
+        \end{equation*}
+        where $t$ is the time measured in years.
+    \end{exa}
+
+    \begin{obs}
+        This particular quantitative model has some nice properties. As we know:
+        \begin{equation*}
+            S_t=\sum_{ n=0}^t P_t=P_0+\dots+P_t=P_0\times\left( 1+\vartheta+\dots+\vartheta^t \right)=P_0\times\frac{1-\vartheta^{t+1}}{1-\vartheta}
+        \end{equation*}
+        This sum diverges if $\vartheta \geq 1$ and converges to the finite limit $\frac{P_0}{1-\vartheta}$ if $0<\vartheta<1$.
+    \end{obs}
+
+    \section{Present and Future Values}
+
+    Lets get into some examples.
+    
+    \begin{exa}[\textbf{Present and Future Value Calculation}]
+        If there is no inflation and the prevaling interest rate is 4\% per year, then which of the following options would yoy prefer?
+        \begin{itemize}
+            \item Receive \$1,000 now.
+            \item Recieve \$1,500 in ten years
+        \end{itemize}
+    \end{exa}
+
+    In this example we must decide between to investment options. To compare them, we can compute the \textbf{future value} of the first option or the \textbf{present value} of the second option.
+
+    \begin{sol}
+        To solve this problem, we just have to compute either the future value of \$1,000 or the present value of \$1,500. Lets compute the present value of \$1,000. We know that:
+        \begin{equation*}
+            P_t=\$1,500=P_0\times\vartheta^{10}
+        \end{equation*}
+        where $\vartheta=1.04$. So:
+        \begin{equation*}
+            P_0=\frac{\$1,500}{\left( 1.04 \right)^{10}}=\$1,013.53
+        \end{equation*}
+        which is bigger than \$1,000. So, it is better to receive \$1,500 in ten years.
+    \end{sol}
+
+    \subsection{Uses of Present Value}
+
+    Present value is used:
+    \begin{itemize}
+        \item In \textbf{discounting investments} to the present time.
+        \item Lifetime \textbf{customer value} calculations.
+        \item \textbf{Present value is also used in lifetiem customer value calculations.}.
+    \end{itemize}
+
+    One example to use this present value is in annuitys.
+
+    \begin{mydef}[\textbf{Annuity}]
+        An \textbf{annuity} is a \textit{schedule or fixed payments over a specified and finite time period}.
+    \end{mydef}
+
+    The present value of an annuity is the sum of the present values of each separate payment.
+
+    \subsection{Continuous Compounding}
+
+    When compunding, we have a choice of the compounding period.
+
+    \begin{obs}
+        Typically, we talk about a yearly basis in compounding.
+    \end{obs}
+
+    But, this can be done monthly, daily, or even continuously. In this scenario, we have a neat formula of this model.
+
+    \begin{idea}[\textbf{Exponential Growth}]
+        If a principal amount $P_0$ of money is continuously componding at a nominal annual interest rate of $\%R$, then at year $t$ the amount will be given by:
+        \begin{equation*}
+            P_t=P_0e^{ rt},
+        \end{equation*}
+        where $r=\frac{R}{100}$.
+    \end{idea}
+
+    This is called \textbf{exponential growth} or \textbf{exponential decay}.
+
+    \begin{exa}[\textbf{Continuous Compunding}]
+        In this model, $t$ can take on any value in an interval, whereas in the discrete model, $t$ could only take on disctinct values (like integers).
+
+        Lets suppose we have \$1,000 continuously compounded at a nominal annual interest rate of 4\%. How much is this worth after 1 year?
+    \end{exa}
+
+    \begin{sol}
+        The answer is given by pluging $t$ into the equation:
+        \begin{equation*}
+            P_1=1,000\times e^{ \frac{4}{100}}=1,000\times e^{0.04}=1,040.81
+        \end{equation*}
+    \end{sol}
+
+    \begin{obs}[\textbf{Continuous Compounding vs Discrete Compounding}]
+        This is a little more than if the 4\% was earned at the very end of the time period, in which case you would have exactly \$1,040 at the end of the year.
+    \end{obs}
+
+    \begin{exa}
+        Also, continuous compounding can describe the exponential growth or decay, depending on whether $r$ is positive or negative, respectively.
+
+        A continuous time model for the initial stages of an epidemic states that the number of cases at week $t$ is $15e^{ 0.15t}$.
+    \end{exa}
+
+    Here, $0.15$ can be interpreted as the \textbf{growth rate} of the epidemic, which is the poercent change from cases week to week.
 
     \section{Classical Optimization}
     
+    The classical tool to optimize is Calculus. Business always try to optimize their performance in some way.
+
+    \subsection{Optimization of the Price of a Product}
+
+    Lets get into the scenario where we want to optimize the price of a product in order to get maximum profits. For this goal, lets consider the demand model:
+    \begin{equation*}
+        Q=60,000 P^{ -2.5}
+    \end{equation*}
+    where $Q$ is the quantity of the product, and $P$ is the price of the product (this is a relation between price and quantity). This model is assuming we will sell $Q$ products and each product will be sold at a price of $P$.
+    
+    With this in mind, we may have the following question:
+    
+    \begin{center}
+        \textit{If the price of production is constant at $c=2$ for each unit, then at what price is profit maximized?}
+    \end{center}
+
+    \begin{itemize}
+        \item In this case, profit is the revenue minus the cost of production. So, in this case, profit is the price for which an item is sold minus the cost of production.
+        \begin{equation*}
+            E=R-C,
+        \end{equation*}
+        where $R$ is the revenue, $C$ is the cost, and $E$ is the profit. We want to maximize $E$.
+        \item In this scenario, the revenue $R$ is given by:
+        \begin{equation*}
+            R=Q\times P
+        \end{equation*}
+        because, revenue can be writen as the price we sell a product times the quantity sold.
+        \item The cost is going to he the cost of production of each product $c$, times the number of units produced, or the quantity:
+        \begin{equation*}
+            C=Q\times c
+        \end{equation*}
+        \item So,
+        \begin{equation*}
+            E=Q(P-c)=60,000 P^{ -2.5}(P-2)
+        \end{equation*}
+    \end{itemize}
+
+    \begin{idea}
+        To solve this problem, we must find the derivative of $E$ with respect to $P$ (to find minimum and maximum values of $E$), and then check whether these are minimum or maximum. 
+    \end{idea}
+
+    \begin{sol}
+        The derivative of $E$ with respect to $P$ can be computed rapidly, and evaluating the values using the second derivative rule we find that the price that maximizes profit is given by:
+        \begin{equation*}
+            P_{opt}=\frac{5}{3}c\approx 3.33
+        \end{equation*}
+    \end{sol}
+
+    \begin{obs}[\textbf{Elasticity in Demand}]
+        Using calculus one finds that the optimal value of price is:
+        \begin{equation*}
+            P_{opt}=\frac{cb}{1+b}
+        \end{equation*}
+        Here, $b$ is called the price \textbf{elasticity of demand}. In the latter example, $b=-2.5$. This means that as we increase prices by 1\%, the quantity demanded decreases by 2.5\%.
+    \end{obs}
+
+
 
 \end{document}

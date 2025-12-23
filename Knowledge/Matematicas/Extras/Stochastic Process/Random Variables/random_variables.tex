@@ -374,6 +374,200 @@
     
     If $X$ represents the number of successes that occur in the $n$ trials, then $X$ is said to be a \textbf{binomial random variable with parameters $(n, p)$}.
 
+    %Put some more things about random variables
+
+    \newpage
+
+    \section{Continuous Random Variables}
+
+    Now, our focus is random variables whose set of possible values is uncountable.
+
+    \begin{mydef}[\textbf{Random Variables}]
+      Let $X$ be a random variable. We say that $X$ is a \textbf{continuous random variable} if there exists a nonnegative function $f(x)$ defined for all real $x\in\bbm{R}$, having the property that for any set $B$ of real numbers:
+      \begin{equation*}
+        P( X\in B)=\int_{ B}f(x)\:dx
+      \end{equation*}
+      The function $f$ is called the \textbf{probability density function of the random variable $X$}.
+    \end{mydef}
+
+    This is, given a continuous random variable $X$, we can obtain the probability of $X\in B$ given its probability density function.
+
+    \begin{obs}
+      If $X$ is given as in the latter definition, then:
+      \begin{equation*}
+        \int_{ \mathbb{R}}f(x)\:dx=1
+      \end{equation*}
+    \end{obs}
+
+    This means that all probability statements about $X$ can be answered in terms of $f$. For instance, if $a,b\in\bbm{R}$ are such that $a<b$, then:
+    \begin{equation*}
+      P(a\leq X\leq b)=\int_{ a}^b f(x)\:dx
+    \end{equation*}
+
+    \begin{obs}[\textbf{Zero Values of Probability Density Function}]
+      If $A\subseteq\bbm{R}$ is a set of measure zero, then $P(X\in A)=0$.
+    \end{obs}
+
+    \begin{propo}
+      Let $X$ be a continuous random variable with probability density function $f$. Then:
+      \begin{equation*}
+        \frac{dF}{da}(x)=f(x)
+      \end{equation*}
+      where $F$ is the cummulative distrubution of $X$.
+    \end{propo}
+
+    \begin{proof}
+      The result is immediate, due to the fact that:
+      \begin{equation*}
+        F(a)=P(X\leq a)=\int_{-\infty}^{a}f(x)\:dx
+      \end{equation*}
+      Using the fundamental theorem of calculus, and the fact that $\lim_{ x\to-\infty}f(x)=0$, we find that:
+      \begin{equation*}
+        \frac{dF}{da}(x)=f(x)
+      \end{equation*}
+      for all $x\in\bbm{R}$.
+    \end{proof}
+
+    \begin{obs}
+      A more intuitive interpretation of the densitive function is obtained using this equation:
+      \begin{equation*}
+        P\left(a-\frac{\varepsilon}{2}\leq X\leq a+\frac{\varepsilon}{2}\right)\approx \varepsilon f(a)
+      \end{equation*}
+    \end{obs}
+
+    \subsection{Uniform Random Variable}
+
+    \begin{mydef}[\textbf{Random Variable Uniformly Distrubuted}]
+      A continuous random variable is said to be \textbf{uniformly distributed} over the interval $(0,1)$ if its probability density function is given by:
+      \begin{equation*}
+        f(x)=\left\{
+          \begin{array}{lr}
+          1, & 0<x<1 \\
+          0, & \textup{otherwise} \\  
+          \end{array}
+        \right.
+      \end{equation*}
+    \end{mydef}
+
+    In general, we say that $X$ is a uniform random variable on the interval $(\alpha.\beta)$ if its probability density function is given by:
+
+    \begin{equation*}
+      f(x)=\left\{
+        \begin{array}{lr}
+        \frac{1}{\beta-\alpha}, & \alpha<x<\beta \\
+        0, & \textup{otherwise} \\  
+        \end{array}
+      \right.
+    \end{equation*}
+
+    \begin{obs}
+      If $X$ is a continuous random variable uniformly distrubuted over $(\alpha,\beta)$, then:
+      \begin{equation*}
+        F(x)=\left\{
+        \begin{array}{lr}
+          0, & x\leq\alpha \\  
+          \frac{x-\alpha}{\beta-\alpha}, & \alpha<x<\beta \\
+          1, & \beta\leq x \\  
+        \end{array}
+      \right.,\quad\forall x\in\bbm{R}
+      \end{equation*}
+      Where $F$ is the cumulative distrubution function of $X$.
+    \end{obs}
+    
+    \subsection{Exponential Random Variable}
+
+    %TODO
+
+    \subsection{Gamma Random Variable}
+
+    %TODO
+
+    \subsection{Normal Random Variable}
+
+    %TODO
+
+    \section{Expectation of a Random Variable}
+
+    \subsection{Discrete Case}
+
+    \begin{mydef}[Nombre]
+      Let $X$ be a discrete random variable with a probability mass fucntion $p(x)$. Then, the \textbf{expected value} of $X$ is defined as:
+      \begin{equation*}
+        E[X]=\sum_{ x|p(x)>0}xp(x)
+      \end{equation*}
+    \end{mydef}
+
+    In other words, the expected value of $X$ is a weighted average of the possible values that $X$ can take on, each value being weighted by the probability that $X$ assumes that value.
+
+    \begin{exa}
+      If $X$ is a random variable with probabilty mass function given by:
+      \begin{equation*}
+        p(1)=p(2)=\frac{1}{2}
+      \end{equation*}
+      then, the expected value of $X$ is:
+      \begin{equation*}
+        E[X]=1\times\frac{1}{2}+2\times\frac{1}{2}=\frac{3}{2}
+      \end{equation*}
+    \end{exa}
+
+    \begin{exa}[\textbf{Expected Value of Bernoulli Random Variable}]
+      Let $X$ be a Bernoulli random variable with parameter $p$. Then, its expected value of $X$ is given by:
+      \begin{equation*}
+        E[X]=0(1-p)+1(p)=p
+      \end{equation*}
+    \end{exa}
+
+    \begin{exa}[\textbf{Expected Value of Binomial Random Variable}]
+      Let $X$ be a binomial random variable with parameters $n$ and $p$. Then, its expected value is:
+      \begin{equation*}
+        \begin{aligned}
+          E[X]
+          &= \sum_{i=0}^{n} i \binom{n}{i} p^i (1-p)^{n-i} \\
+          &= \sum_{i=1}^{n} i \binom{n}{i} p^i (1-p)^{n-i} \\
+          &= \sum_{i=1}^{n} n \binom{n-1}{i-1} p^i (1-p)^{n-i} \\
+          &= np \sum_{k=0}^{n-1} \binom{n-1}{k} p^k (1-p)^{n-1-k} \\
+          &= np\left(p+(1-p)\right)^{ n-1} \\
+          &= np.
+        \end{aligned}
+      \end{equation*}
+      Thus, the expected number of successes in $n$ independent trials equals $n$ times the probability of success in a single trial.
+    \end{exa}
+
+    \begin{exa}[\textbf{Expected Value of Geometric Random Variable}]
+      Let $X$ be a geometric random variable with parameter $p$. Its expected value is given by:
+      \begin{equation*}
+        \begin{aligned}
+          E[X]
+          &= \sum_{n=1}^{\infty} n p (1-p)^{n-1} \\
+          &= p \sum_{n=1}^{\infty} n q^{\,n-1}, \quad \text{where } q = 1-p.
+        \end{aligned}
+      \end{equation*}
+      Using the identity $\sum_{n=1}^{\infty} n q^{n-1} = \frac{1}{(1-q)^2}$, we obtain
+      \begin{equation*}
+        E[X] = \frac{1}{p}.
+      \end{equation*}
+      Hence, the expected number of trials until the first success is the reciprocal of the success probability.
+    \end{exa}
+
+    \begin{exa}[\textbf{Expected Value of Poisson Random Variable}]
+      Let $X$ be a Poisson random variable with parameter $\lambda$. Then, its expected value is:
+      \begin{equation*}
+        \begin{aligned}
+          E[X]
+          &= \sum_{i=0}^{\infty} i e^{-\lambda} \frac{\lambda^i}{i!} \\
+          &= \sum_{i=1}^{\infty} e^{-\lambda} \frac{\lambda^i}{(i-1)!} \\
+          &= \lambda e^{-\lambda} \sum_{k=0}^{\infty} \frac{\lambda^k}{k!} \\
+          &= \lambda.
+        \end{aligned}
+      \end{equation*}
+    \end{exa}
+
+    \subsection{Continuous Case}
+
+    
+
+    \subsection{Expectation of a Function of a Random Variable}
+
     \chapter*{Bibliography}
 
     \begin{itemize}

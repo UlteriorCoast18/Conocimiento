@@ -1,0 +1,36 @@
+\documentclass[tikz,border=3mm]{standalone}
+\usetikzlibrary{arrows.meta,positioning}
+
+\begin{document}
+
+\begin{tikzpicture}[
+  node distance=1.8cm and 3.5cm,
+  every node/.style={font=\small},
+  arrow/.style={-{Latex[length=2mm]}, thick}
+]
+
+% Nodos
+\node (start) {Beggining};
+
+\node[right=3.5cm of start] (stop1) {He stops (1st advice)};
+\node[below=1.2cm of stop1] (notice2) {Recieves second advice};
+
+\node[right=3.5cm of notice2] (stop2) {He stops (2nd advice)};
+\node[below=1.2cm of stop2] (notice3) {Recieves third advice};
+
+\node[right=3.5cm of notice3] (stop3) {He stops (3rd advice)};
+\node[below=1.2cm of stop3] (continue) {Continues infraction};
+
+% Flechas con probabilidades
+\draw[arrow] (start) -- node[above] {10\%} (stop1);
+\draw[arrow] (start) -- node[below] {90\%} (notice2);
+
+\draw[arrow] (notice2) -- node[above] {15\%} (stop2);
+\draw[arrow] (notice2) -- node[below] {85\%} (notice3);
+
+\draw[arrow] (notice3) -- node[above] {20\%} (stop3);
+\draw[arrow] (notice3) -- node[below] {80\%} (continue);
+
+\end{tikzpicture}
+
+\end{document}
