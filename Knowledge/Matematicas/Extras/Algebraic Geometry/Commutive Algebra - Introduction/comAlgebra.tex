@@ -16,6 +16,8 @@
 \usepackage{tikz}
 \usepackage{pgffor}
 \usepackage{ifthen}
+\usepackage{bbm}
+\usepackage{hyperref}
 
 \usetikzlibrary{shapes.multipart}
 
@@ -139,6 +141,7 @@
 \newcommand\contradiction{\ensuremath{\#_c}}
 \newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
 \newcommand{\gen}[1]{\ensuremath{\langle#1\rangle}}
+\newcommand{\bbm}[1]{\mathbbm{#1}}
 
 \begin{document}
     \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
@@ -313,8 +316,38 @@
     \end{excer}
 
     \begin{proof}
-        %TODO
+        De \textit{(1)}: Tomemos $x\in\mathfrak{a}$, entonces $x^1\in\mathfrak{a}$, así que $x\in r(\mathfrak{a})$.
+
+        De \textit{(2)}: Por el inciso anterior ya se tiene que $r(r(\mathfrak{a}))\subseteq r(\mathfrak{a})$. Ahora, si $x\in r(\mathfrak{a})$, entonces existe $1\in\bbm{N}$ tal que $x^1\in r(\mathfrak{a})$, así que $x\in r(r(\mathfrak{a}))$. Se sigue así la igualdad.
+
+        De \textit{(3)}: Haremos la demostración por partes:
+        \begin{itemize}
+            \item Primero, probaremos que $r(\mathfrak{a}\mathfrak{b})=r(\mathfrak{a}\cap\mathfrak{b})$. En efecto, sea $x\in r(\mathfrak{a}\mathfrak{b})$, entonces existe $n\in\mathbb{N}$ tal que:
+            \begin{equation*}
+                x^n\in\mathfrak{a}\mathfrak{b}
+            \end{equation*}
+            Por ser $\mathfrak{a}$ y $\mathfrak{b}$ ideales, se sigue que $x^n\in\mathfrak{a}$ y $x^n\in\mathfrak{b}$, por lo cual $x\in r(\mathfrak{a})\cap r(\mathfrak{b})$ y $x\in r(\mathfrak{a}\cap\mathfrak{b})$.
+            \item Si $x\in r(\mathfrak{a})\cap r(\mathfrak{b})$, entonces existen $n,m\in\bbm{N}$ tales que $x^n\in\mathfrak{a}$ y $x^m\in\mathfrak{b}$, luego $x^{ nm}\in \mathfrak{ab}$, lo cual implica que $x\in r(\mathfrak{ab})$.
+            
+            Si $x\in r(\mathfrak{a}\cap\mathfrak{b})$, entonces existe $n\in\bbm{N}$ tal que $x^n\in \mathfrak{a}\cap\mathfrak{b}$, así que $x^{2n}\in\mathfrak{ab}$, esto es que $x\in r(\mathfrak{ab})$.
+        \end{itemize}
+        Por ambos casos se sigue la doble igualdad.
+
+        De \textit{(6)}: Sea $\mathfrak{p}$ un ideal primo de $A$. Procederemos por inducción sobre $n$.
+        \begin{itemize}
+            \item Por \textit{(1)} se tiene que $\mathfrak{p}\subseteq r(\mathfrak{p})$. Sea $x\in r(\mathfrak{p})$, entonces existe $m\in\bbm{N}$ tal que $x^m\in\mathfrak{p}$. Esto implica que $x\in\mathfrak{p}$ (tal hecho se verifica usando inducción). De esta forma se sigue la igualdad.
+            \item Supongamos que lo anterior se cumple para algún $n\in\bbm{N}$. Sea $x\in r(\mathfrak{p}^{ n+1})$, entonces existe $m\in\mathbb{N}$ tal que $x^m\in\mathfrak{p}^{ n+1}\subseteq\mathfrak{p}$, así que $x\in\mathfrak{p}$.
+        \end{itemize}
+        %TODO: no se uso induccion, corregir
+        De ambos incisos se sigue la igualdad.
     \end{proof}
+
+    \begin{obs}
+        Si $I$ y $J$ son ideales, entonces $IJ$ es un ideal, siendo este último definido por:
+        \begin{equation*}
+            IJ=\left\{\sum_{ k=1}^n i_kj_k\Big|i_k\in I\textup{ and } j_k\in J,\forall k\in\natint{1,n};n\in\bbm{N} \right\}
+        \end{equation*}
+    \end{obs}
     
     \begin{propo}
         El radical de un ideal $\mathfrak{a}$ es la intersección de todos ideales primos que contienen a $\mathfrak{a}$.
@@ -404,7 +437,85 @@
         con $n-2\geq 0$. Luego $\mathfrak{p}+x$ es invertible. Así que $A/\mathfrak{p}$ es campo, es decir que $\mathfrak{p}$ es ideal maximal.
     \end{proof}
 
-    
+    \begin{excer}
+        Sea $x$ un elemento nilpotente de un anillo A. Muestre que $1+x$ es una unidad de $A$. Deduzca que la suma de elementos nilpotentes con una unidad es una unidad. 
+    \end{excer}
+
+    \begin{proof}
+        Dado que $x$ es nilpotente, existe $n\in\bbm{N}$ tal que:
+        \begin{equation*}
+            x^n=0
+        \end{equation*}
+        Entonces:
+        \begin{equation*}
+            \begin{split}
+                &(1+x)\left(1-x+\dots+(-1)^{ n-1}x^{ n-1}\right)\\
+                &=\left[1-x+\dots+(-1)^{ n-1}x^{ n-1}\right]+[x-x^2+\dots+(-1)^{ n-2}x^{n-1}+(-1)^{ n-1}x^n]\\
+                &=1\\
+            \end{split}
+        \end{equation*}
+        Por ende, $1+x$ es unidad. Si $a$ y $b$ son nilpotentes, entonces existen $n,m\in\bbm{N}$ tal que:
+        \begin{equation*}
+            a^n=b^m=0
+        \end{equation*}
+        Rápidamente se verifica que $(a+b)^{ nm}=0$. Se sigue así que $a+b$ es nilpotente. En particular, usando inducción se generaliza que la suma de elementos nilpotentes es nilpotente. Por ende, de lo anterior se sigue que la suma de 1 mas un elemento nilpotente es una unidad.
+    \end{proof}
+
+    \begin{excer}
+        Sea $A$ un anillo en el cual todo elemento satisface que $x^n=x$ para algún $n\in\mathbb{N}$. Pruebe que todo ideal primo en $A$ es maximal.
+    \end{excer}
+
+    \begin{proof}
+        Sea $I$ un ideal primo en $A$. Entonces, $A/I$ es dominio entero. Afirmamos que $A/I$ es campo. En efecto, para ello basta con mostrar que todo elemento de este anillo posee inverso. Sea $I+x\in A/I$, entonces existe $n\in\bbm{N}$ tal que $x^n=x$, luego:
+        \begin{equation*}
+            (I+x)(I+x^{ n-1})=I+x^n=I
+        \end{equation*}
+        Se sigue así que $A/I$ es campo, luego $I$ es ideal maximal.
+    \end{proof}
+
+    \begin{excer}
+        Sea $A$ un anilo tal que cada ideal no contenido en el nilradical contiene un elemento idempotente no cero (esto es, un elemento $e$ tal que $e^2=e\neq0$). Pruebe que el nilradical y el radical de Jacobson de $A$ son iguales.
+    \end{excer}
+
+    \begin{proof}
+        Recordemos que el nilradical es la itnerseccion de todos los ideales primos de $A$ y, el radical de Jacobson es el la intersección de todos los ideales maximales de $A$.
+
+        Denotamos a los primer y segundo ideales mencionados anteriormente por $\mathfrak{N}$ y $\mathfrak{R}$. Dado que todo ideal maximal es en particular un ideal primo, se sigue que:
+        \begin{equation*}
+            \mathfrak{N}\subseteq\mathfrak{R}
+        \end{equation*}
+        Supongamos que la contención es propia, se sigue por hipótesis que $\mathfrak{R}$ contiene un elemento idempotente no cero, digamos $e=e^2\neq0$. Observemos que:
+        \begin{equation*}
+            (1-e)^2=1-e-e+e^2=1-2e+e=1-e
+        \end{equation*}
+        por lo cual $1-e$ también es idempotente. Por la caracterización del radical de Jacobson se tiene que $1-e$ es una unidad en $A$.
+
+        Ahora, dado que $1-e$ es unidad en $A$, existe $y\in A$ tal que $(1-e)y=1$, luego:
+        \begin{equation*}
+            1=(1-e)^2y^2=(1-e)yy=y
+        \end{equation*}
+        Por lo cual $1-e=1$, lo cual contradice la elección de $e$ como elemento no cero. Se sigue así que $\mathfrak{N}=\mathfrak{R}$.
+    \end{proof}
+
+    \begin{obs}
+        Créditos a la demostración del ejercicio anterior: \href{https://crypto.stanford.edu/pbc/notes/commalg/jacobson.html}{The Jacobson Radical}.
+    \end{obs}
+
+    \begin{excer}
+        Sea $A$ un anillo no cero. Muestre que el conjunto de ideales primos de $A$ tiene elemento mínimo con respecto a la relación inclusión.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $\mathfrak{a}\neq(1)$ un ideal en un anillo $A$. Muestre que $\mathfrak{a}=r(\mathfrak{a})$ si y solo si $\mathfrak{a}$ es la intersección de ideales primos.
+    \end{excer}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
 
     \newpage
 

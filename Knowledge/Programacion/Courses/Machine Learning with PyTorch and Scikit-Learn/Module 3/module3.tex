@@ -493,11 +493,64 @@ array([2])
 
     \section{Tackling Overfitting via Regularization}
 
-    Overfitting is a common problem in machine learning, where a model performs well on training data but does not generalize well to unseen data (test data). If a model suffers from overfitting, we also say that the model has high variance, which can be caused by having too many parameters, leading to a model that is too complex given the underlying data. Similarly, a model can suffer from underfitting (high bias), which means it is not complex enough to capture the pattern in the training data well and therefore also performs poorly on unseen data.
-
-    Although we have only encountered linear models for classification so far, the problems of overfitting and underfitting can be illustrated by comparing a linear decision boundary to more complex, nonlinear decision boundaries.
-
+    \begin{mydef}[\textbf{Overfitting}]
+        \textbf{Overfitting} is a \textit{common problem in machine learning, where a model performs well on training data but does not generalize well to unseen data (test data)}.
+    \end{mydef}
     
+    If a model suffers from overfitting, we also say that the model has \textbf{high variance}, which can be caused by having too many parameters, leading to a model that is too complex given the underlying data.
+    
+    \begin{obs}[\textbf{Underfitting}]
+        Similarly, a model can suffer from \textbf{underfitting} (\textbf{high bias}), which means \textit{it is not complex enough to capture the pattern in the training data well and therefore also performs poorly on unseen data}.
+    \end{obs}
+
+    Although we have only encountered linear models for classification so far, the \textit{problems of overfitting and underfitting can be illustrated by comparing a linear decision boundary to more complex, nonlinear decision boundaries}.
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/underfitting_normal_overfitting_examples.png} \\
+            \caption{Examples of Underfitting, Good Compromise and Overfitting.}
+            \label{figure:underfitting_and_overfitting_examples}
+        \end{minipage}
+    \end{figure}
+
+    \subsection{The Bias-Variance Tradeoff}
+
+    \begin{mydef}[\textbf{Tradeoff}]
+        \textbf{Tradeoff} is a \textit{balance achieved between two desirable but incompatible features; a compromise}.
+    \end{mydef}
+
+    Researchers often use the terms \textbf{bias} and \textbf{variance} or \textbf{bias-variance tradeoff} to d\textit{escribe model performance—that is, you may encounter talks, courses, or articles where people say that a model has high variance or high bias}.
+    
+    \begin{center}
+        In general, \textit{high variance is proportional to overfitting and high bias is proportional to underfitting}.
+    \end{center}
+
+    \begin{obs}[\textbf{Variance in Machine Learning}]
+        In the context of machine learning models, \textit{variance measures the consistency} (or variability) \textit{of the model prediction for classifying a particular example if we retrain the model multiple times on different subsets of the training dataset}.
+        
+        In contrast, \textit{bias measures how far off the predictions are from the correct values in general if we rebuild the model multiple times on different training datasets}; \textbf{bias is the measure of the systematic error that is not due to randomness}.
+    \end{obs}
+
+    One way of finding a good \textbf{bias-variance tradeoff is to tune the complexity of the model via regularization}.
+    
+    \begin{mydef}[\textbf{Regularization}]
+        \textbf{Regularization} is a \textit{useful method for handling collinearity (high correlation among features), filtering out noise from data, and eventually preventing overfitting}.
+    \end{mydef}
+
+    \begin{center}
+        The concept behind regularization is to \textit{introduce additional information to penalize extreme parameter (weight) values}.
+    \end{center}
+    
+    \begin{obs}[\textbf{L2 Regularization}]
+        The most common form of regularization is \textbf{L2 regularization} (sometimes called L2 shrinkage or weight decay), which can be written as follows:
+        \begin{equation*}
+            \frac{\lambda}{2n}\|w\|^2=\frac{\lambda}{2n}\sum_{ j=1}^{m}w_j^2
+        \end{equation*}\
+        Here, $\lambda$ is the \textbf{regularization parameter}. The $2n$ in the denominator is merely a scaling factor, such that cancels then
+    \end{obs}
+
+
 
 
 \end{document}
