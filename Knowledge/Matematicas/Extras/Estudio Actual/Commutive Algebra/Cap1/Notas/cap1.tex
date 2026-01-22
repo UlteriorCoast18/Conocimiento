@@ -1,156 +1,6 @@
-\documentclass[12pt]{report}
-\usepackage[spanish]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{graphics}
-\usepackage{subfigure}
-\usepackage{lipsum}
-\usepackage{array}
-\usepackage{multicol}
-\usepackage{enumerate}
-\usepackage[framemethod=TikZ]{mdframed}
-\usepackage[a4paper, margin = 1.5cm]{geometry}
-\usepackage{enumitem}
-\usepackage{tikz}
-\usepackage{pgffor}
-\usepackage{ifthen}
-\usepackage{bbm}
-\usepackage{hyperref}
-
-\usetikzlibrary{shapes.multipart}
-
-\newcounter{it}
-\newcommand*\watermarktext[1]{\begin{tabular}{c}
-    \setcounter{it}{1}%
-    \whiledo{\theit<10}{%
-    \foreach \col in {0,...,4}{#1\ \ } \\ \\ \\ \\
-    \stepcounter{it}%
-    }
-    \end{tabular}
-    }
-
-\AddToHook{shipout/foreground}{
-    \begin{tikzpicture}[remember picture,overlay, every text node part/.style={align=center}]
-        \node[rectangle,black,rotate=30,scale=2,opacity=0.08] at (current page.center) {\watermarktext{Cristo Daniel Alvarado ESFM\quad}}; 
-  \end{tikzpicture}
-}
-
-%En esta parte se hacen redefiniciones de algunos comandos para que resulte agradable el verlos%
-
-\def\proof{\paragraph{Demostración:\\}}
-\def\endproof{\hfill$\blacksquare$}
-
-\def\sol{\paragraph{Solución:\\}}
-\def\endsol{\hfill$\square$}
-
-%En esta parte se definen los comandos a usar dentro del documento para enlistar%
-
-\newtheoremstyle{largebreak}
-  {}% use the default space above
-  {}% use the default space below
-  {\normalfont}% body font
-  {}% indent (0pt)
-  {\bfseries}% header font
-  {}% punctuation
-  {\newline}% break after header
-  {}% header spec
-
-\theoremstyle{largebreak}
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=0pt,
-    innerbottommargin=5pt,
-    hidealllines = true,
-    roundcorner = 5pt,
-    backgroundcolor = gray!60!red!30
-]{exa}{Ejemplo}[section]
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=0pt,
-    innerbottommargin=5pt,
-    hidealllines = true,
-    roundcorner = 5pt,
-    backgroundcolor = gray!50!blue!30
-]{obs}{Observación}[section]
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=0pt,
-    innerbottommargin=5pt,
-    rightline = false,
-    leftline = false
-]{theor}{Teorema}[section]
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=0pt,
-    innerbottommargin=5pt,
-    rightline = false,
-    leftline = false
-]{propo}{Proposición}[section]
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=0pt,
-    innerbottommargin=5pt,
-    rightline = false,
-    leftline = false
-]{cor}{Corolario}[section]
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=0pt,
-    innerbottommargin=5pt,
-    rightline = false,
-    leftline = false
-]{lema}{Lema}[section]
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=0pt,
-    innerbottommargin=5pt,
-    roundcorner=5pt,
-    backgroundcolor = gray!30,
-    hidealllines = true
-]{mydef}{Definición}[section]
-
-\newmdtheoremenv[
-    leftmargin=0em,
-    rightmargin=0em,
-    innertopmargin=0pt,
-    innerbottommargin=5pt,
-    roundcorner=5pt
-]{excer}{Ejercicio}[section]
-
-%En esta parte se colocan comandos que definen la forma en la que se van a escribir ciertas funciones%
-
-\newcommand\abs[1]{\ensuremath{\left|#1\right|}}
-\newcommand\divides{\ensuremath{\bigm|}}
-\newcommand\cf[3]{\ensuremath{#1:#2\rightarrow#3}}
-\newcommand\contradiction{\ensuremath{\#_c}}
-\newcommand\natint[1]{\ensuremath{\left[\!\left[ #1\right]\!\right]}}
-\newcommand{\gen}[1]{\ensuremath{\langle#1\rangle}}
-\newcommand{\bbm}[1]{\mathbbm{#1}}
+\documentclass[../../comAlgebra.tex]{subfiles}
 
 \begin{document}
-    \setlength{\parskip}{5pt} % Añade 5 puntos de espacio entre párrafos
-    \setlength{\parindent}{12pt} % Pone la sangría como me gusta
-    \title{Notas Introduction to Commutative Algebra}
-    \author{Cristo Daniel Alvarado}
-    \maketitle
-
-    \tableofcontents %Con este comando se genera el índice general del libro%
 
     \chapter{Anillos e Ideales}
 
@@ -350,179 +200,36 @@
     \end{obs}
     
     \begin{propo}
+        \label{propo:caracterizacion_radical_ideal}
         El radical de un ideal $\mathfrak{a}$ es la intersección de todos ideales primos que contienen a $\mathfrak{a}$.
     \end{propo}
 
     \begin{proof}
-        Considere $A/\mathfrak{a}$.%TODO
+        Consideremos el anillo $A/\mathfrak{a}$. El nilradical $\mathfrak{N}$ de $A/\mathfrak{a}$ es la intersección de todos los ideales primos de $A/\mathfrak{a}$. Ahora, por el teorema de correspondencia, para cada ideal primo $\mathfrak{p}$ de $A/\mathfrak{a}$ existe un único ideal primo $P$ en $A$ tal que $\mathfrak{a}\subseteq P$.
+
+        Afirmamos que:
+        \begin{equation*}
+            \mathfrak{N}=r(\mathfrak{a})/\mathfrak{a}
+        \end{equation*}
+        En efecto, sea $\mathfrak{a}+x\in\mathfrak{N}$, entonces existe $n\in\bbm{N}$ tal que $\mathfrak{a}+x^n=\mathfrak{a}$, esto es que $x^n\in r(\mathfrak{a})$. 
+        
+        Si $\mathfrak{a}+x\in r(\mathfrak{a})/\mathfrak{a}$, entonces $x\in r(\mathfrak{a})$, luego existe $n\in\bbm{N}$ tal que $x^n\in\mathfrak{a}$, esto es que $\mathfrak{a}+x^n=\mathfrak{a}$, luego $\mathfrak{a}+x^n=\mathfrak{a}$, es decir que $\mathfrak{a}+x\in\mathfrak{N}$. Se sigue así la contención.
     \end{proof}
 
-    \newpage
+    \section{Ideales Primos}
 
-    \section{Ejercicios}
+    Sean $A$ un anillo y $\mathfrak{a}_1,\dots,\mathfrak{a}_n$ ideales de $A$. Se define el homomorfismo:
+    \begin{equation*}
+        \cf{\phi}{A}{\prod_{ i=1}^{n}(A/\mathfrak{a}_i)}
+    \end{equation*}
+    Dado por: $\phi(x)=(x+\mathfrak{a}_1,\dots,x+\mathfrak{a}_n)$.
 
     \begin{propo}
-        Todo ideal maximal $\mathfrak{m}$ de $A$ es ideal primo de $A$.
+        Sean $A$ un ideal y $\mathfrak{a}_1,\dots,\mathfrak{a}_n$ ideales de $A$. Entonces:
+        \begin{equation*}
+            s
+        \end{equation*}
     \end{propo}
-
-    \begin{proof}
-        En efecto, se tiene que $A/\mathfrak{m}$ es campo, en particular es dominio entero (por no tener divisores de cero), luego $\mathfrak{m}$ es ideal primo.
-    \end{proof}
-
-    \begin{excer}
-        En el anillo $A[x]$, el radical de Jacobson es igual al nilradical.
-    \end{excer}
-
-    \begin{proof}
-        Como todo ideal maximal es un ideal primo, se tiene la contención:
-        \begin{equation*}
-            \mathfrak{N}\subseteq\mathfrak{R}
-        \end{equation*}
-        sea ahora $f(x)\in \mathfrak{R}$ se tiene que
-        \begin{equation*}
-            1-f(x)g(x) \textup{ es unidad de $A[x]$ para todo }g(x)\in A[x]
-        \end{equation*}
-        en particular, $1-xf(x)$ es unidad de $A[x]$, luego si $f(x)=a_nx^n+a_{ n-1}x^{ n-1}+\cdots+a_0$. Debe suceder entonces que los coeficientes de:
-        \begin{equation*}
-            1-xf(x)=-a_nx^{n+1}-a_{ n-1}x^{ n}-\cdots-a_0x+1
-        \end{equation*}
-        sean tales que $a_i$ es nilpotente para todo $i\in\natint{0,n}$, luego $f(x)$ es elemento nilpotente de $A[x]$.
-
-        Se sigue entonces la igualdad.
-    \end{proof}
-
-    \begin{excer}
-        Sea $A$ un anillo y sea $A[[x]]$ el anillo de series de potencias formales con coeficientes en $A$. Pruebe que:
-        \begin{enumerate}[label =\textit{\arabic*}]
-            \item $f$ es unidad de ...%TODO
-        \end{enumerate}
-    \end{excer}
     
-    \begin{proof}
-        
-    \end{proof}
 
-    \begin{excer}
-        
-    \end{excer}
-
-    \begin{proof}
-        
-    \end{proof}
-
-    \begin{excer}
-        Sea $A$ un anillo tal que para todo $x\in A$ existe $n\in\mathbb{N}$, $n>1$ tal que $x^n=x$. Pruebe que todo ideal primo de $A$ es maximal.
-    \end{excer}
-
-    \begin{proof}
-        Sea $\mathfrak{p}$ un ideal propio primo de $A$. Probaremos que $A/\mathfrak{p}$ es campo. En efecto, no tiene divisores de cero, pues si
-        \begin{equation*}
-            \mathfrak{p}+xy=\left(\mathfrak{p}+x\right)\left(\mathfrak{p}+y\right)=\mathfrak{p}
-        \end{equation*}
-        con $x,y\notin\mathfrak{p}$, entonces $xy\in\mathfrak{p}$\contradiction. Por tanto, no tiene divisores de cero. Hay que ver que todo elemento no cero es invertible. Sea $x\in A\setminus\mathfrak{p}$. Se tiene que existe $n\in\mathbb{N}$ con $n>1$ tal que
-        \begin{equation*}
-            \begin{split}
-                \mathfrak{p}+x^{n}&=\mathfrak{p}+x\\
-                \Rightarrow \left(\mathfrak{p}+x\right)\left(\left(\mathfrak{p}+x^{ n-1}\right)-\left(\mathfrak{p}+1\right) \right)&=\mathfrak{p}\\
-            \end{split}
-        \end{equation*}
-        como no hay divisores de cero, debe suceder que
-        \begin{equation*}
-            \mathfrak{p}+x^{ n-1}=\mathfrak{p}+1
-        \end{equation*}
-        por ende, al ser $n>1$, se tiene que $n-1>0$, así que:
-        \begin{equation*}
-            \left(\mathfrak{p}+x\right)\left(\mathfrak{p}+x^{ n-2}\right)=\mathfrak{p}+1
-        \end{equation*}
-        con $n-2\geq 0$. Luego $\mathfrak{p}+x$ es invertible. Así que $A/\mathfrak{p}$ es campo, es decir que $\mathfrak{p}$ es ideal maximal.
-    \end{proof}
-
-    \begin{excer}
-        Sea $x$ un elemento nilpotente de un anillo A. Muestre que $1+x$ es una unidad de $A$. Deduzca que la suma de elementos nilpotentes con una unidad es una unidad. 
-    \end{excer}
-
-    \begin{proof}
-        Dado que $x$ es nilpotente, existe $n\in\bbm{N}$ tal que:
-        \begin{equation*}
-            x^n=0
-        \end{equation*}
-        Entonces:
-        \begin{equation*}
-            \begin{split}
-                &(1+x)\left(1-x+\dots+(-1)^{ n-1}x^{ n-1}\right)\\
-                &=\left[1-x+\dots+(-1)^{ n-1}x^{ n-1}\right]+[x-x^2+\dots+(-1)^{ n-2}x^{n-1}+(-1)^{ n-1}x^n]\\
-                &=1\\
-            \end{split}
-        \end{equation*}
-        Por ende, $1+x$ es unidad. Si $a$ y $b$ son nilpotentes, entonces existen $n,m\in\bbm{N}$ tal que:
-        \begin{equation*}
-            a^n=b^m=0
-        \end{equation*}
-        Rápidamente se verifica que $(a+b)^{ nm}=0$. Se sigue así que $a+b$ es nilpotente. En particular, usando inducción se generaliza que la suma de elementos nilpotentes es nilpotente. Por ende, de lo anterior se sigue que la suma de 1 mas un elemento nilpotente es una unidad.
-    \end{proof}
-
-    \begin{excer}
-        Sea $A$ un anillo en el cual todo elemento satisface que $x^n=x$ para algún $n\in\mathbb{N}$. Pruebe que todo ideal primo en $A$ es maximal.
-    \end{excer}
-
-    \begin{proof}
-        Sea $I$ un ideal primo en $A$. Entonces, $A/I$ es dominio entero. Afirmamos que $A/I$ es campo. En efecto, para ello basta con mostrar que todo elemento de este anillo posee inverso. Sea $I+x\in A/I$, entonces existe $n\in\bbm{N}$ tal que $x^n=x$, luego:
-        \begin{equation*}
-            (I+x)(I+x^{ n-1})=I+x^n=I
-        \end{equation*}
-        Se sigue así que $A/I$ es campo, luego $I$ es ideal maximal.
-    \end{proof}
-
-    \begin{excer}
-        Sea $A$ un anilo tal que cada ideal no contenido en el nilradical contiene un elemento idempotente no cero (esto es, un elemento $e$ tal que $e^2=e\neq0$). Pruebe que el nilradical y el radical de Jacobson de $A$ son iguales.
-    \end{excer}
-
-    \begin{proof}
-        Recordemos que el nilradical es la itnerseccion de todos los ideales primos de $A$ y, el radical de Jacobson es el la intersección de todos los ideales maximales de $A$.
-
-        Denotamos a los primer y segundo ideales mencionados anteriormente por $\mathfrak{N}$ y $\mathfrak{R}$. Dado que todo ideal maximal es en particular un ideal primo, se sigue que:
-        \begin{equation*}
-            \mathfrak{N}\subseteq\mathfrak{R}
-        \end{equation*}
-        Supongamos que la contención es propia, se sigue por hipótesis que $\mathfrak{R}$ contiene un elemento idempotente no cero, digamos $e=e^2\neq0$. Observemos que:
-        \begin{equation*}
-            (1-e)^2=1-e-e+e^2=1-2e+e=1-e
-        \end{equation*}
-        por lo cual $1-e$ también es idempotente. Por la caracterización del radical de Jacobson se tiene que $1-e$ es una unidad en $A$.
-
-        Ahora, dado que $1-e$ es unidad en $A$, existe $y\in A$ tal que $(1-e)y=1$, luego:
-        \begin{equation*}
-            1=(1-e)^2y^2=(1-e)yy=y
-        \end{equation*}
-        Por lo cual $1-e=1$, lo cual contradice la elección de $e$ como elemento no cero. Se sigue así que $\mathfrak{N}=\mathfrak{R}$.
-    \end{proof}
-
-    \begin{obs}
-        Créditos a la demostración del ejercicio anterior: \href{https://crypto.stanford.edu/pbc/notes/commalg/jacobson.html}{The Jacobson Radical}.
-    \end{obs}
-
-    \begin{excer}
-        Sea $A$ un anillo no cero. Muestre que el conjunto de ideales primos de $A$ tiene elemento mínimo con respecto a la relación inclusión.
-    \end{excer}
-
-    \begin{proof}
-        
-    \end{proof}
-
-    \begin{excer}
-        Sea $\mathfrak{a}\neq(1)$ un ideal en un anillo $A$. Muestre que $\mathfrak{a}=r(\mathfrak{a})$ si y solo si $\mathfrak{a}$ es la intersección de ideales primos.
-    \end{excer}
-
-    \begin{proof}
-        %TODO
-    \end{proof}
-
-    \newpage
-
-    \section{Referencias}
-
-    \begin{itemize}
-        \item \textit{Introduction to Commutative Algebra}, M. F. Atiyah y I. G. MacDonald, University of Oxford.
-    \end{itemize}
-     
 \end{document}

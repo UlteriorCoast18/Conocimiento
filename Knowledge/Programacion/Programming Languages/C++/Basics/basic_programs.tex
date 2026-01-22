@@ -195,6 +195,26 @@
 \renewcommand{\lstlistingname}{Code}
 \renewcommand{\lstlistlistingname}{{\lstlistingname} List}
 
+\setlist{  
+    itemsep=0pt,      % Space between items
+    parsep=0pt,       % Space between paragraphs in items
+    topsep=5pt,       % Space before/after list
+    partopsep=0pt     % Extra space when list starts new paragraph
+}
+
+% Or set separately for different list types
+\setlist[itemize]{  
+    itemsep=2pt,
+    parsep=2pt,
+    topsep=5pt
+}
+
+\setlist[enumerate]{  
+    itemsep=2pt,
+    parsep=2pt,
+    topsep=5pt
+}
+
 % --- Comienzo del documento ---
 \begin{document}
     \setlength{\parskip}{5pt}
@@ -211,7 +231,70 @@
 
     \chapter{Basic Codes}
 
-    \section{}
+    \section{About C++}
+
+    Citing the book \textit{A tour of \lstinline|C++|} by Bjarne Stroustrup:
+
+    \begin{center}
+      \textit{\lstinline|C++| is a compiled language. For a program to run, its source text has to be processed by a compiler, producing object ﬁles, which are combined by a linker yielding an executable program.}
+    \end{center}
+
+    Let's analyze this sentence. One of the questions that arises from this is the following: what is a \textbf{compiled language}?
+
+    \begin{mydef}[\textbf{Compiled Language}]
+      A \textbf{compiled language} is one where \textit{the program, once compiled, is expressed in the instructions of the target machine}.
+      
+      For example, an addition "\lstinline|+|" operation in your source code could be translated directly to the "\lstinline|ADD|" instruction in machine code.
+    \end{mydef}
+
+    There are other kind of languages, called \textbf{interpreted languages}:
+
+    \begin{mydef}[\textbf{Interpreted Language}]
+      An \textbf{interpreted language} is one where \textit{the instructions are not directly executed by the target machine, but instead read and executed by some other program} (which normally is written in the language of the native machine).
+
+      For example, the same "\lstinline|+|" operation would be recognised by the interpreter at run time, which would then call its own "\lstinline|add(a,b)|" function with the appropriate arguments, which would then execute the machine code "\lstinline|ADD|" instruction.
+    \end{mydef}
+
+    Now, what is an \textbf{object file}?
+
+    \begin{mydef}[\textbf{Object File}]
+      An \textbf{object file} is \textit{the real output from the compilation phase}. 
+      
+      It's mostly machine code, but has info that allows a linker to see what symbols are in it as well as symbols it requires in order to work.
+    \end{mydef}
+
+    And, what is a linker?
+
+    \begin{mydef}[\textbf{Linker}]
+      A \textbf{linker} or \textbf{link editor} is a \textit{computer program that combines intermediate software build files such as object and library files into a single executable file such as a program or library}.
+    \end{mydef}
+
+    So, for example, a \lstinline|C++| program consist of many source file codes (sometimes simply called \textbf{source files}).
+
+    The process is as follows:
+
+    \begin{figure}[h]
+      \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[scale=1]{images/cpp_compile_process/cpp_compile_process.pdf} \\
+        \caption{\lstinline|C++| compile process.}
+        \label{figure:cpp_compile_process}
+      \end{minipage}
+    \end{figure}
+
+    \begin{obs}[\textbf{Portability of Source Code}]
+      An executable program is created for a speciﬁc hardware/system combination; it is not portable, say, from a Mac to a Windows PC.
+      
+      When we talk about portability of \lstinline|C++| programs, we usually mean \textbf{portability of source code}; that is, the source code can be successfully compiled and run on a variety of systems.
+    \end{obs}
+
+    \begin{mydef}[\textbf{Entities in the ISO C++}]
+      The ISO C++ standard deﬁnes two kinds of entities:
+      \begin{itemize}
+        \item \textbf{Core language features}, such as built-in types (e.g., \lstinline|char| and \lstinline|int|) and loops (e.g., \lstinline|for-statements| and \lstinline|while-statements|)
+        \item \textbf{Standard-library components}, such as containers (e.g., \lstinline|vector| and \lstinline|map|) and I/O operations (e.g., \lstinline|<<| and \lstinline|getline()|)
+      \end{itemize}
+    \end{mydef}
 
     \newpage
 

@@ -20,8 +20,9 @@
 \contentsline {lstlisting}{\numberline {3.7}Implementation of Logistic Regression in Python.}{54}{lstlisting.3.7}%
 \contentsline {lstlisting}{\numberline {3.8}Logistic Regression Iris Dataset Python.}{57}{lstlisting.3.8}%
 \contentsline {lstlisting}{\numberline {3.9}Predicting Probabilities.}{59}{lstlisting.3.9}%
-\contentsline {lstlisting}{\numberline {A.1}Check Python Version}{63}{lstlisting.A.1}%
-\contentsline {lstlisting}{\numberline {A.2}\lstinline |pip| Package Installation.}{63}{lstlisting.A.2}%
-\contentsline {lstlisting}{\numberline {A.3}Conda Package Installation.}{64}{lstlisting.A.3}%
-\contentsline {lstlisting}{\numberline {A.4}caption}{64}{lstlisting.A.4}%
-\contentsline {lstlisting}{\numberline {A.5}Check Version of Packages}{65}{lstlisting.A.5}%
+\contentsline {lstlisting}{\numberline {3.10}Logistic Regression Regularized with different values of \lstinline |c| on the Iris Dataset Python.}{62}{lstlisting.3.10}%
+\contentsline {lstlisting}{\numberline {A.1}Check Python Version}{65}{lstlisting.A.1}%
+\contentsline {lstlisting}{\numberline {A.2}\lstinline |pip| Package Installation.}{65}{lstlisting.A.2}%
+\contentsline {lstlisting}{\numberline {A.3}Conda Package Installation.}{66}{lstlisting.A.3}%
+\contentsline {lstlisting}{\numberline {A.4}caption}{66}{lstlisting.A.4}%
+\contentsline {lstlisting}{\numberline {A.5}Check Version of Packages}{67}{lstlisting.A.5}%

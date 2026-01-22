@@ -118,7 +118,7 @@ sc = StandardScaler()
     \begin{figure}[h]
         \begin{minipage}{\textwidth}
             \centering
-            \includegraphics[scale=1]{images/Iris_perceptron_scikit_learn.png} \\
+            \includegraphics[scale=0.75]{images/Iris_perceptron_scikit_learn.png} \\
             \caption{Perceptron Trained with Iris Dataset using Scikit-Learn.}
             \label{figure:perceptron_iris_scikit_learn}
         \end{minipage}
@@ -216,7 +216,7 @@ plt.show()
     \begin{figure}[h]
         \begin{minipage}{\textwidth}
             \centering
-            \includegraphics[scale=1]{images/sigmoid_function_graph.png} \\
+            \includegraphics[scale=0.75]{images/sigmoid_function_graph.png} \\
             \caption{Sigmoid Function Graph.}
             \label{figure:sigmoid_function_graph}
         \end{minipage}
@@ -337,7 +337,7 @@ plt.show()
     \begin{figure}[h]
             \begin{minipage}{\textwidth}
                 \centering
-                \includegraphics[scale=1]{images/sigomoid_regression.png} \\
+                \includegraphics[scale=0.75]{images/sigomoid_regression.png} \\
                 \caption{Loss Function.}
                 \label{figure:loss_function}
             \end{minipage}
@@ -424,7 +424,7 @@ plt.show()
     \begin{figure}[h]
         \begin{minipage}{\textwidth}
             \centering
-            \includegraphics[scale=1]{images/logistic_regression_iris.png} \\
+            \includegraphics[scale=0.75]{images/logistic_regression_iris.png} \\
             \caption{Logistic Regression on the Iris Dataset.}
             \label{figure:logistic_regression_iris_dataset}
         \end{minipage}
@@ -508,7 +508,7 @@ array([2])
     \begin{figure}[h]
         \begin{minipage}{\textwidth}
             \centering
-            \includegraphics[scale=1]{images/underfitting_normal_overfitting_examples.png} \\
+            \includegraphics[scale=0.75]{images/underfitting_normal_overfitting_examples.png} \\
             \caption{Examples of Underfitting, Good Compromise and Overfitting.}
             \label{figure:underfitting_and_overfitting_examples}
         \end{minipage}
@@ -547,10 +547,389 @@ array([2])
         \begin{equation*}
             \frac{\lambda}{2n}\|w\|^2=\frac{\lambda}{2n}\sum_{ j=1}^{m}w_j^2
         \end{equation*}\
-        Here, $\lambda$ is the \textbf{regularization parameter}. The $2n$ in the denominator is merely a scaling factor, such that cancels then
+        Here, $\lambda$ is the \textbf{regularization parameter}. The $2$ in the denominator is merely a scaling factor, such that cancels when computing the loss gradient. The sample size $n$ added to scale the regularization term similarly to the loss.
     \end{obs}
 
+    \begin{obs}[\textbf{Importance of Feature Scaling}]
+        Regularization is another reason why feature scaling such as standaraization is important. For regularization to work properly, all features must be on comparable scales.
+    \end{obs}
 
+    The loss function for logistic regression can be regularized by adding a regularization term, which shrinks the weighs during model training:
+
+    \begin{equation*}
+        \frac{\partial L}{\partial w_j}=\frac{1}{n}\sum_{ i=1}^{n}\left(\sigma\left(w^Tx^{(i)}-y^{(i)}\right)x_j^{(i)}\right)
+    \end{equation*}
+    by adding the regularization term to the loss changes the partial derivative to the following form:
+    \begin{equation*}
+        \frac{\partial L}{\partial w_j}=\frac{1}{n}\sum_{ i=1}^{n}\left(\sigma\left(w^Tx^{(i)}-y^{(i)}\right)x_j^{(i)}\right)+\frac{\lambda}{n}w_j
+    \end{equation*}
+
+    \begin{obs}[\textbf{Information About the Regularization Parameter $\lambda$}]
+        Vía the regularization parameter $\lambda$ we can control how closely we fit the training data while keeping the weights small. By increasing $\lambda$, we increase the regularization strength. Note that the bias unit, essentially an intercept term or negative threshold, is usually not regularized.
+    \end{obs}
+
+    \subsection{Implementation of Regularization}
+
+    In the following example, the paramenter \lstinline|c| implemented for the \lstinline|LogisticRegression| class in scikit-learn comes from a convention in support vector machines. The term \lstinline|c| is inversely proportional to the regularization parameter $\lambda$. Consecuently, decreasing \lstinline|c| increases the value of $\lambda$ and therefore, increases the regularization strength.
+    
+    \begin{obs}
+        We can visualize this behaviour by plotting the $L2$ regularization path for the two weight coefficients.
+    \end{obs}
+
+    \lstinputlisting[caption={Logistic Regression Regularized with different values of \lstinline|c| on the Iris Dataset Python.},label=code:logistic_regression_regularization_iris_dataset]{Code/Logistic Regression Regularized/logistic_regression_regularized.py}
+
+    Executing this code fits 10 logistic regression models with different values for the inverse regularization parameter \lstinline|c|. For illustration purposes, we only collected the weight coefficients of class 1 (the second class on the iris dataset, Iris-versicolor) versus all classifiers.
+
+    \begin{obs}
+        Here, we are using OvR technique for multiclass classification.
+    \end{obs}
+
+    As shown in the resulting plot, the wright coefficients shrink when \lstinline|c| decreases-that is, when the regularization strength increases:
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.75]{images/coefficient_c_regularization_plot.png} \\
+            \caption{Weights for Different Values of \lstinline|c|.}
+            \label{figure:weights_different_c_values_regularization}
+        \end{minipage}
+    \end{figure}
+
+    We have to keep in mind that:
+
+    \begin{center}
+        Increasing the regularization strength \textbf{can reduce overfitting}, but if \textit{the strength is too high and the weight coefficients approach zero}, the \textbf{model can perform very poorly due to underfitting}.
+    \end{center}
+
+    \section{Maximum Margin Classification with Support Vector Machines}
+
+    Another powerful and widely used learning algorithm is the \textbf{support vector machine (SVM)}, which can be considered an extension of the perceptron.
+
+    \begin{obs}[\textbf{Key Idea of Support Vector Machines}]
+        Using the perceptron algorithm, we minimized misclassification errors. In SMVs, our optimization objective is to \textbf{maximize} the margin.
+    \end{obs}
+
+    \begin{mydef}[\textbf{Margin}]
+        The \textbf{margin} is defined as \textit{the distance between the separating hyperplane (called desicion boundary) and the training examples that are closest to this hyperplane}, which are the so called \textbf{support vectors}.
+    \end{mydef}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.75]{images/_6cbdc5fdb236429185f6b1c14c53cbc2_9781801819312_03_42.png} \\
+            \caption{SVM and Perceptron Various Boundaries.}
+            \label{figure:svm_perceptron_comparasion}
+        \end{minipage}
+    \end{figure}
+
+    \begin{idea}[\textbf{Reduce Overfitting}]
+        The key idea behind having decision bouyndaries with large margins is that they tend to have a lower generalization error, whereas models with small margines are more prone to overfitting.
+    \end{idea}
+
+    While the main intuition behind SVMs is relatively simple, the mathematics behind them is advanced and requieres sound knowledge of constrained optimization.
+
+    \begin{obs}
+        The following resources are recomended if interested in learning more:
+        \begin{itemize}
+            \item Chris J.C. Burges' explanation in \textit{A Tutorial on Support Vector Machines for Pattern Recognition} (Data Mining and Knowledge Discovery, 2(2): 121-167, 1998)
+            \item Vladimir Vapnik's book \textit{The Nature of Statistical Learning Theory}, Springer Science+Business Media, Vladimir Vapnik, 2000
+            \item \href{https://see.stanford.edu/materials/aimlcs229/cs229-notes3.pdf}{Andrew Ng's lecture notes}.
+        \end{itemize}
+    \end{obs}
+
+    \subsection{Dealing with a Nonlinearly Separable Case Using Slack Variables}
+
+    Let's mention the slack variable introduced by Vladimir Vapnik in 1995 and led to the so-called \textbf{soft-margin classification}.
+    
+    \begin{idea}
+        The motivation for introducing the slack variable was that the \textit{linear constraints in the SVM optimization are objective need to be relaxed for nonlinearly separable data to allow the converegence of the optimization in the presence of misclassifications}, under appropiate loss penalization.
+    \end{idea}
+
+    The use of slack variable introduces a parameter commonly referred to as $C$ in SVM. We can consider $C$ as a hyperparameter controlling the penalty for misclassification.
+    
+    Large values of $C$ correspond to \textit{large error penalties, whereas we are less strict about misclassification errors if we choose smaller values for $C$}. We can then use the $C$ parameter to \textit{control the width of the margin and therefore tune the bias-variance trade-off}.
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.75]{images/_fb26d00b0b4e41adb2b4474fea7b06a6_9781801819312_03_43.png} \\
+            \caption{Parameter $C$ in the Bias-Variance Trade-off.}
+            \label{figure:c_parameter}
+        \end{minipage}
+    \end{figure}
+
+    \begin{idea}
+        This concept is related to regularization, which we discussed in the previous section in the context of regularized regression, where \textit{decreasing the value of $C$ increases the bias (underfitting) and lowers the variance (overfitting) of the model}.
+    \end{idea}
+
+    \subsection{Training a Model with a Support Vector Machine}
+
+    Now that we have learned the basic concepts behind a linear SVM, let's train an SVM model to classify the different flowers in our Iris dataset:
+
+    \lstinputlisting[caption={Implementation of SVM on Python and Graph of Regions.},label=code:logistic_regression_regularization_iris_dataset]{Code/Support Vector Machines/svm.py}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.75]{images/smv_implementation.png} \\
+            \caption{Implementation of SVM and Plot of Regions.}
+            \label{figure:smv_implementation}
+        \end{minipage}
+    \end{figure}
+
+    \subsection{Alternative Implementations in Scikit-learn}
+
+    The scikit-learn library's \lstinline|LogisticRegression| class, which we used in the previous sections, can make use of the \lstinline|LIBLINEAR| library by setting \lstinline|solver='liblinear'|. \lstinline|LIBLINEAR| is a highly optimized C/C++ library developed at the National Taiwan University (\href{http://www.csie.ntu.edu.tw/~cjlin/liblinear/}{Liblinear}).
+
+    Similarly, the \lstinline|SVC| class that we used to train an \lstinline|SVM| makes use of \lstinline|LIBSVM|, which is an equivalent C/C++ library specialized for \lstinline|SVMs| (\href{http://www.csie.ntu.edu.tw/~cjlin/libsvm/}{Libsvm}).
+
+    The advantage of using \lstinline|LIBLINEAR| and \lstinline|LIBSVM| over, for example, native Python implementations is that they allow the \textbf{extremely quick training of large amounts of linear classifiers}. However, \textit{sometimes our datasets are too large to fit into computer memory}. Thus, scikit-learn also offers alternative implementations via the \lstinline|SGDClassifier| class, which also supports online learning via the \lstinline|partial_fit| method. The concept behind the \lstinline|SGDClassifier| class is \textit{similar to the stochastic gradient algorithm previously implemented for Adaline}.
+
+    \begin{obs}
+        We could initialize the SGD version of the perceptron (\lstinline|loss='perceptron'|), logistic regression (\lstinline|loss='log'|), and an SVM with default parameters (\lstinline|loss='hinge'|) as follows:
+
+        \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+from sklearn.linear_model import SGDClassifier
+
+ppn = SGDClassifier(loss='perceptron')
+lr = SGDClassifier(loss='log')
+svm = SGDClassifier(loss='hinge')
+        \end{lstlisting}
+    \end{obs}
+    
+    \begin{mydef}[\textbf{SGDClassifier}]
+        \textbf{SGDClassifier} es una \textit{clase de scikit-learn que implementa clasificadores lineales entrenados usando Stochastic Gradient Descent (SGD)}.
+    \end{mydef}
+
+    \section{Solving Nonlinear Problems Using a Kernel SVM}
+
+    Another reason why SVMs enjoy high popularity among machine learning practitioners is that they can be easily \textbf{kernelized} to solve nonlinear classification problems.
+
+    Before we discuss the main concept behind the so-called kernel SVM, the most common variant of SVMs, let's first create a synthetic dataset to see what such a nonlinear classification problem may look like.
+
+    \subsection{Kernel Methods for Linearly Inseparable Data}
+
+    Using the following code, we will create a simple dataset that has the form of an \lstinline|XOR| gate using the \lstinline|logical_xor| function from NumPy, where 100 examples will be assigned the class label 1, and 100 examples will be assigned the class label -1:
+
+    \lstinputlisting[caption={\lstinline|XOR| in Python.},label=code:xor_graph]{Code/Logical XOR/logical_xor_code.py}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.75]{images/logical_xor_image.png} \\
+            \caption{\lstinline|XOR| Graph in Python.}
+            \label{figure:xor_graph_python}
+        \end{minipage}
+    \end{figure}
+
+    Obviously, we would not be able to separate the examples from the positive and negative class very well using a linear hyperplane as a decision boundary via the linear logistic regression or linear SVM model that we discussed earlier.
+
+    \begin{idea}
+        The basic idea behind kernel methods for dealing with such linearly inseparable data is to create nonlinear combinations of the original features to project them onto a higher-dimensional space via a mapping function, $\varphi$, where the data becomes linearly separable. We can transform a two-dimensional dataset into a new three-dimensional feature space, where the classes become separable via the following projection:
+        \begin{equation*}
+            \begin{array}{rccl}
+                \phi:&\bbm{R}^2&\to&\bbm{R}^3\\
+                &(x_1,x_2)&\mapsto&(x_1,x_2,x_1^2+x_2^2)=(z_1,z_2,z_3)\\
+            \end{array}
+        \end{equation*}
+    \end{idea}
+
+    This idea allows us to separate the two classes shown in the plot via a linear hyperplane that becomes a nonlinear decision boundary if we project it back onto the original feature space, as illustrated with this dataset:
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.75]{images/_8d14bc1fc7764c5c99da905f854c8172_9781801819312_03_48.png} \\
+            \caption{Dataset and Projection of Decision Boundary.}
+            \label{figure:projection_decision_boundary}
+        \end{minipage}
+    \end{figure}
+
+    \subsection{Using the Kernel Trick to Find Separating Hyperplanes in a High-Dimensional Space}
+
+    To solve a nonlinear problem using an SVM, we would \textit{transform the training data into a higher-dimensional feature space via a mapping function, $\phi$, and train a linear SVM model to classify the data in this new feature space}. Then, we could use the same mapping function, $\phi$, to transform new, unseen data to classify it using the linear SVM model.  
+
+    \begin{obs}[\textbf{Problem with Construction of New Features}]
+        However, one problem with this mapping approach is that \textit{the construction of the new features is computationally very expensive, especially if we are dealing with high-dimensional data}.
+    \end{obs}
+
+    This is where the so-called \textbf{kernel trick} comes into play. Although we did not go into much detail about how to solve the quadratic programming task to train an SVM, in practice, we just need to replace the dot product $x^{(i)T} x^{(j)}$ by $\phi(x^{(i)})^T \phi(x^{(j)})$. To save the expensive step of calculating this dot product between two points explicitly, we define a so-called kernel function:
+
+    \begin{equation*}
+        k(x^{i},x^{j})=\phi(x^{i})^T \phi(x^{j})
+    \end{equation*}
+
+    One of the most widely used kernels is the radial basis function (RBF) kernel, which can simply be called the Gaussian kernel:
+
+    \begin{equation*}
+    k(x^{i}, x^{j}) = \exp\left(-\frac{\|x^{i} - x^{j}\|^2}{2\sigma^2}\right)
+    \end{equation*}
+
+    This is often simplified to:
+
+    \begin{equation*}
+    k(x^{i}, x^{j}) = \exp\left(-\gamma \|x^{i} - x^{j}\|^2\right)
+    \end{equation*}
+
+    Here, $\gamma = \frac{1}{2\sigma^2}$ is a free parameter to be optimized.
+
+    \begin{obs}
+        Roughly speaking, the term "kernel" can be interpreted as a \textit{similarity function between a pair of examples}.
+        
+        The minus sign inverts the distance measure into a similarity score, and, due to the exponential term, \textit{the resulting similarity score will fall into a range between 1} (for exactly similar examples) \textit{and 0} (for very dissimilar examples).
+    \end{obs}
+
+    Now that we have covered the big picture behind the kernel trick, let's see if we can train a kernel SVM that is able to draw a nonlinear decision boundary that separates the XOR data well. Here, we simply use the SVC class from scikit-learn that we imported earlier and replace the \lstinline|kernel='linear'| parameter with \lstinline|kernel='rbf'|.
+
+    Note: Fit the SVM model and plot decision regions.
+
+    As we can see in the resulting plot, the kernel SVM separates the XOR data relatively well:
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.75]{images/xor_training.png} \\
+            \caption{XOR Separation Using RBF.}
+            \label{figure:rbf_training}
+        \end{minipage}
+    \end{figure}
+
+    \lstinputlisting[caption={Decision Boundary using RBF Kernel on the XOR Dataset.},label=code:rbf_kernel_xor]{Code/Logical XOR/logical_xor_rbf.py}
+
+    The $\gamma$ parameter, which we set to $\text{gamma}=0.1$, can be understood as a \textit{cut-off parameter for the Gaussian sphere}; increasing \textit{$\gamma$ increases the influence of the training examples}, leading to a tighter and bumpier decision boundary. To get a better understanding of $\gamma$, let's apply an RBF kernel SVM to our Iris flower dataset:
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.75]{images/iris_svc.png} \\
+            \caption{Iris SVC using RBF.}
+            \label{figure:iris_sbf}
+        \end{minipage}
+    \end{figure}
+
+    \lstinputlisting[caption={Decision Boundary on the Iris Dataset using RBF.},label=code:iris_rbf]{Code/SVC/svc_iris.py}
+
+    If we increase the value of gamma, the following happens:
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.75]{images/iris_gamma_1.png} \\
+            \caption{Iris Dataset using RBF Kernel SVM with $\gamma=1$.}
+            \label{figure:iris_svc_gamma_1}
+        \end{minipage}
+    \end{figure}
+
+    \begin{obs}
+        Although the model fits the training dataset very well, \textit{such a classifier will likely have a high generalization error on unseen data}. This illustrates that the \textit{$\gamma$ parameter also plays an important role in controlling overfitting or variance} when the algorithm is too sensitive to fluctuations in the training dataset.
+    \end{obs}
+
+    \newpage
+
+    \section{Decision Tree Learning}
+
+    \begin{mydef}[\textbf{Decision Tree}]
+        \textbf{Decision tree} classifiers are attractive models if we care about interpretability. As the name \textbf{decision tree} suggests, we can think of this model as \textit{breaking down our data by making a decision based on asking a series of questions}.
+    \end{mydef}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/_c260573abced4dbd8aeadcf1689420db_9781801819312_03_60.png} \\
+            \caption{Decision Tree}
+            \label{Texto}
+        \end{minipage}
+    \end{figure}
+
+    Based on the features in our training dataset, the decision tree model learns a series of questions to infer the class labels of the examples.
+
+    \begin{obs}
+        Although the concept of a decision tree based on categorical variables is illustrated, the same concept applies if our features are real numbers, like in the Iris dataset.
+        
+        For example, we could simply define a cut-off value along the sepal width feature axis and ask a binary question: \textit{Is the sepal width $\geq$ 2.8 cm?}
+    \end{obs}
+
+    Using the decision algorithm, we start at the tree root and split the data on the feature that results in the largest information gain (IG), which will be explained in more detail in the following section.
+
+    In an iterative process, we can then repeat this splitting procedure at each child node until the leaves are pure. This means that the training examples at each node all belong to the same class.
+
+    \begin{idea}
+        In practice, this can result in a very deep tree with many nodes, which can easily lead to overfitting. Thus, we typically want to prune the tree by setting a limit for the maximum depth of the tree.
+    \end{idea}
+
+    \subsection{Maximizing IG Getting the Most Bang for Your Buck}
+
+    To split the nodes at the most informative features, we need to define an objective function to optimize via the tree learning algorithm. Here, our objective function is to maximize the IG at each split, which we define as follows:
+
+    \begin{equation*}
+        IG(D_p,f)=I(D_p)-\sum_{ j=1}^{m}\frac{ N_j}{N_p}I(D_j)
+    \end{equation*}
+
+    Here:
+    \begin{itemize}
+        \item $f$ is the feature to perform the split.
+        \item $D_p$ and $D_j$ are the datasets of the parent and $j$-th child node.
+        \item $I$ is our \textbf{impurity measure}.
+        \item $N_p$ is the total number of training examples at the parent node.
+        \item $N_j$ is the number of examples in the $j$-th node.
+    \end{itemize}
+    The information gain (function $IG$) is simply the difference between the impurity of the parent node and the sum of the child node impurities — the lower the impurities of the child nodes, the larger the information gain.
+
+    \begin{obs}
+        However, for simplicity and to reduce the combinatorial search space, most libraries (including scikit-learn) implement binary decision trees. This means that each parent node is split into two child nodes: $D_{ left}$ and $D_{ right}$.
+        \begin{equation*}
+            IG(D_p,f) = I(D_p) - \frac{N_{left}}{N_p}I(D_{ left}) - \frac{N_{right }}{N_p}I(D_{ right})
+        \end{equation*}
+    \end{obs}
+
+    The three impurity measures or splitting criteria that are commonly used in binary decision trees are:
+    \begin{itemize}
+        \item Gini impurity ($I_G$).
+        \item Entropy ($I_H$).
+        \item Classification error ($I_E$).
+    \end{itemize}
+    Let's start with the definition of entropy for all non-empty classes.
+    \begin{equation*}
+        \left\{
+            \begin{array}{l}
+                p( i | t) \neq 0 \\
+                I_H(t)=-\displaystyle\sum_{ i=1}^{c}p( i | t)\log_2 p( i | t)
+            \end{array}
+        \right.
+    \end{equation*}
+    Here:
+    \begin{itemize}
+        \item $p( i | t)$ is the proportion of examples that belong to class $i$ for a particular node $t$.
+    \end{itemize}
+
+    \begin{obs}
+        The entropy is therefore zero if all examples at a node belong to the same class, and the entropy is maximal if we have a uniform class distribution.
+    \end{obs}
+
+    \begin{exa}
+        In a binary class setting, the entropy is 0 is $p( i = 0 | t) = 1$ or $p( i = 0| t) = 0$. If the classes are distributed uniformly with $p( i = 0 | t) = \frac{1}{2}$ or $p( i = 0| t) = \frac{1}{2}$, the entropy is 1. Therefore, we can say that the entropy criterion attempts to maximize tue mutual information in the tree.
+    \end{exa}
+
+    To provide a visual intuition, let us visualize the entropy values for different class distributions via the following code:
+
+    \lstinputlisting[caption={Entropy Computation.},label=code:entropy_computation]{Code/Decision Tree/example.py}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=.6]{images/entropy.png} \\
+            \caption{Entropy Visualization}
+            \label{Texto}
+        \end{minipage}
+    \end{figure}
+
+    \begin{center}
+        \textit{The Gini impurity can be understood as a criterion to minimize the probability of misclassification.}
+    \end{center}
+
+    \begin{equation*}
+        I_G
+    \end{equation*}
 
 
 \end{document}

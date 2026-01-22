@@ -1,0 +1,353 @@
+\documentclass[../../comAlgebra.tex]{subfiles}
+
+\begin{document}
+
+\section{Ejercicios Anillos e Ideales}
+
+    \begin{propo}
+        Todo ideal maximal $\mathfrak{m}$ de $A$ es ideal primo de $A$.
+    \end{propo}
+
+    \begin{proof}
+        En efecto, se tiene que $A/\mathfrak{m}$ es campo, en particular es dominio entero (por no tener divisores de cero), luego $\mathfrak{m}$ es ideal primo.
+    \end{proof}
+
+    \begin{excer}
+        En el anillo $A[x]$, el radical de Jacobson es igual al nilradical.
+    \end{excer}
+
+    \begin{proof}
+        Como todo ideal maximal es un ideal primo, se tiene la contención:
+        \begin{equation*}
+            \mathfrak{N}\subseteq\mathfrak{R}
+        \end{equation*}
+        sea ahora $f(x)\in \mathfrak{R}$ se tiene que
+        \begin{equation*}
+            1-f(x)g(x) \textup{ es unidad de $A[x]$ para todo }g(x)\in A[x]
+        \end{equation*}
+        en particular, $1-xf(x)$ es unidad de $A[x]$, luego si $f(x)=a_nx^n+a_{ n-1}x^{ n-1}+\cdots+a_0$. Debe suceder entonces que los coeficientes de:
+        \begin{equation*}
+            1-xf(x)=-a_nx^{n+1}-a_{ n-1}x^{ n}-\cdots-a_0x+1
+        \end{equation*}
+        sean tales que $a_i$ es nilpotente para todo $i\in\natint{0,n}$, luego $f(x)$ es elemento nilpotente de $A[x]$.
+
+        Se sigue entonces la igualdad.
+    \end{proof}
+
+    \begin{excer}
+        Sea $A$ un anillo y sea $A[[x]]$ el anillo de series de potencias formales con coeficientes en $A$. Pruebe que:
+        \begin{enumerate}[label =\textit{\arabic*}]
+            \item $f$ es unidad de ...%TODO
+        \end{enumerate}
+    \end{excer}
+    
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $A$ un anillo tal que para todo $x\in A$ existe $n\in\mathbb{N}$, $n>1$ tal que $x^n=x$. Pruebe que todo ideal primo de $A$ es maximal.
+    \end{excer}
+
+    \begin{proof}
+        Sea $\mathfrak{p}$ un ideal propio primo de $A$. Probaremos que $A/\mathfrak{p}$ es campo. En efecto, no tiene divisores de cero, pues si
+        \begin{equation*}
+            \mathfrak{p}+xy=\left(\mathfrak{p}+x\right)\left(\mathfrak{p}+y\right)=\mathfrak{p}
+        \end{equation*}
+        con $x,y\notin\mathfrak{p}$, entonces $xy\in\mathfrak{p}$\contradiction. Por tanto, no tiene divisores de cero. Hay que ver que todo elemento no cero es invertible. Sea $x\in A\setminus\mathfrak{p}$. Se tiene que existe $n\in\mathbb{N}$ con $n>1$ tal que
+        \begin{equation*}
+            \begin{split}
+                \mathfrak{p}+x^{n}&=\mathfrak{p}+x\\
+                \Rightarrow \left(\mathfrak{p}+x\right)\left(\left(\mathfrak{p}+x^{ n-1}\right)-\left(\mathfrak{p}+1\right) \right)&=\mathfrak{p}\\
+            \end{split}
+        \end{equation*}
+        como no hay divisores de cero, debe suceder que
+        \begin{equation*}
+            \mathfrak{p}+x^{ n-1}=\mathfrak{p}+1
+        \end{equation*}
+        por ende, al ser $n>1$, se tiene que $n-1>0$, así que:
+        \begin{equation*}
+            \left(\mathfrak{p}+x\right)\left(\mathfrak{p}+x^{ n-2}\right)=\mathfrak{p}+1
+        \end{equation*}
+        con $n-2\geq 0$. Luego $\mathfrak{p}+x$ es invertible. Así que $A/\mathfrak{p}$ es campo, es decir que $\mathfrak{p}$ es ideal maximal.
+    \end{proof}
+
+    \begin{excer}
+        Sea $x$ un elemento nilpotente de un anillo A. Muestre que $1+x$ es una unidad de $A$. Deduzca que la suma de elementos nilpotentes con una unidad es una unidad. 
+    \end{excer}
+
+    \begin{proof}
+        Dado que $x$ es nilpotente, existe $n\in\bbm{N}$ tal que:
+        \begin{equation*}
+            x^n=0
+        \end{equation*}
+        Entonces:
+        \begin{equation*}
+            \begin{split}
+                &(1+x)\left(1-x+\dots+(-1)^{ n-1}x^{ n-1}\right)\\
+                &=\left[1-x+\dots+(-1)^{ n-1}x^{ n-1}\right]+[x-x^2+\dots+(-1)^{ n-2}x^{n-1}+(-1)^{ n-1}x^n]\\
+                &=1\\
+            \end{split}
+        \end{equation*}
+        Por ende, $1+x$ es unidad. Si $a$ y $b$ son nilpotentes, entonces existen $n,m\in\bbm{N}$ tal que:
+        \begin{equation*}
+            a^n=b^m=0
+        \end{equation*}
+        Rápidamente se verifica que $(a+b)^{ nm}=0$. Se sigue así que $a+b$ es nilpotente. En particular, usando inducción se generaliza que la suma de elementos nilpotentes es nilpotente. Por ende, de lo anterior se sigue que la suma de 1 mas un elemento nilpotente es una unidad.
+    \end{proof}
+
+    \begin{excer}
+        Sea $A$ un anillo en el cual todo elemento satisface que $x^n=x$ para algún $n\in\mathbb{N}$. Pruebe que todo ideal primo en $A$ es maximal.
+    \end{excer}
+
+    \begin{proof}
+        Sea $I$ un ideal primo en $A$. Entonces, $A/I$ es dominio entero. Afirmamos que $A/I$ es campo. En efecto, para ello basta con mostrar que todo elemento de este anillo posee inverso. Sea $I+x\in A/I$, entonces existe $n\in\bbm{N}$ tal que $x^n=x$, luego:
+        \begin{equation*}
+            (I+x)(I+x^{ n-1})=I+x^n=I
+        \end{equation*}
+        Se sigue así que $A/I$ es campo, luego $I$ es ideal maximal.
+    \end{proof}
+
+    \begin{excer}
+        Sea $A$ un anilo tal que cada ideal no contenido en el nilradical contiene un elemento idempotente no cero (esto es, un elemento $e$ tal que $e^2=e\neq0$). Pruebe que el nilradical y el radical de Jacobson de $A$ son iguales.
+    \end{excer}
+
+    \begin{proof}
+        Recordemos que el nilradical es la itnerseccion de todos los ideales primos de $A$ y, el radical de Jacobson es el la intersección de todos los ideales maximales de $A$.
+
+        Denotamos a los primer y segundo ideales mencionados anteriormente por $\mathfrak{N}$ y $\mathfrak{R}$. Dado que todo ideal maximal es en particular un ideal primo, se sigue que:
+        \begin{equation*}
+            \mathfrak{N}\subseteq\mathfrak{R}
+        \end{equation*}
+        Supongamos que la contención es propia, se sigue por hipótesis que $\mathfrak{R}$ contiene un elemento idempotente no cero, digamos $e=e^2\neq0$. Observemos que:
+        \begin{equation*}
+            (1-e)^2=1-e-e+e^2=1-2e+e=1-e
+        \end{equation*}
+        por lo cual $1-e$ también es idempotente. Por la caracterización del radical de Jacobson se tiene que $1-e$ es una unidad en $A$.
+
+        Ahora, dado que $1-e$ es unidad en $A$, existe $y\in A$ tal que $(1-e)y=1$, luego:
+        \begin{equation*}
+            1=(1-e)^2y^2=(1-e)yy=y
+        \end{equation*}
+        Por lo cual $1-e=1$, lo cual contradice la elección de $e$ como elemento no cero. Se sigue así que $\mathfrak{N}=\mathfrak{R}$.
+    \end{proof}
+
+    \begin{obs}
+        Créditos a la demostración del ejercicio anterior: \href{https://crypto.stanford.edu/pbc/notes/commalg/jacobson.html}{The Jacobson Radical}.
+    \end{obs}
+
+    \begin{excer}
+        Sea $A$ un anillo no cero. Muestre que el conjunto de ideales primos de $A$ tiene elemento mínimo con respecto a la relación inclusión.
+    \end{excer}
+
+    \begin{proof}
+        
+    \end{proof}
+
+    \begin{excer}
+        Sea $\mathfrak{a}\neq(1)$ un ideal en un anillo $A$. Muestre que $\mathfrak{a}=r(\mathfrak{a})$ si y solo si $\mathfrak{a}$ es la intersección de ideales primos.
+    \end{excer}
+
+    \begin{proof}
+        $\Rightarrow)$: Supongamos que $\mathfrak{a}=r(\mathfrak{a})$. Por la Proposición (\ref{propo:caracterizacion_radical_ideal}) se tiene que:
+        \begin{equation*}
+            \mathfrak{a} = r(\mathfrak{a}) = \bigcap_{\substack{P \text{ primo} \\ \mathfrak{a} \subseteq P}} P
+        \end{equation*}
+        Lo cual prueba el resultado.
+
+        $\Leftarrow)$: Supongamos que $\mathfrak{a}$ es intersección de ideales primos, entonces:
+        \begin{equation*}
+            \mathfrak{a} = \bigcap_{\substack{P \text{ primo} \\ \mathfrak{a} \subseteq P}} P
+        \end{equation*}
+        Nuevamente, por la Proposición (\ref{propo:caracterizacion_radical_ideal}) se sigue que $\mathfrak{a}=r(\mathfrak{a})$.
+    \end{proof}
+
+    Para el siguiente ejercicio usamos la siguiente proposición:
+
+    \begin{propo}
+        Sea $A$ un anillo y $M$ un ideal propio de $A$. Entonces, $M$ es maximal si y sólo si $\forall a\in A\setminus M$ se tiene que $(M,a)=A$.
+    \end{propo}
+
+    \begin{proof}
+        %TODO
+    \end{proof}
+
+    \begin{excer}
+        Sea $A$ un anillo y $\mathfrak{N}$ el nilradical de $A$. Pruebe que los siguientes son equivalentes:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $A$ tiene exactamente un ideal primo.
+            \item Todo elemento de $A$ es una unidad o un elemento nilpotente.
+            \item $A/\mathfrak{N}$ es un campo.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        \textit{(1) $\Rightarrow$ (2)}: Supongamos que $A$ tiene un ideal primo, digamos $P$. Por un teorema, todo anillo unitario admite un ideal maximal, digamos $M$. Este ideal en particular es primo, por lo que $M=P$. Ahora, por la proposición anterior:
+        \begin{equation*}
+            (M,a)=A
+        \end{equation*}
+        para todo $a\notin A\setminus M$. Por la maximalidad de $M$, se debe tener que todo elemento de $A\setminus M$ es invertible. Ahora, $M=\mathfrak{N}$, ya que $\mathfrak{N}=P$ (por ser $P$ el único ideal primo de $A$). Así que todo elemento de $A$ es unidad o nilpotente.
+
+        \textit{(2) $\Rightarrow$ (3)}: Si todo elemento de $A$ es unidad o nilpotente, se tiene que $\mathfrak{N}$ debe ser un ideal maximal, así que $A/\mathfrak{N}$ es campo.
+
+        \textit{(3) $\Rightarrow$ (1)}: Si $\mathfrak{N}$ es campo, entonces $\mathfrak{N}$ es maximal, luego no existe ningún ideal primo $P$ tal que $\mathfrak{N}\subsetneq P\subsetneq A$, así que $\mathfrak{N}$ debe ser el único ideal primo de $A$.
+    \end{proof}
+
+    \begin{excer}
+        Un anillo $A$ es booleano si $x^2=x$ para todo $x\in A$. En un anillo booleano $A$, muestre que:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $2x=0$, para todo $x\in A$.
+            \item Todo ideal primo $\mathfrak{p}$ es maximal, así que $A/\mathfrak{p}$ es un campo con dos elementos.
+            \item Todo ideal finitamente generado de $A$ es principal.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        De \textit{(1)}: Sea $x\in A$, entonces:
+        \begin{equation*}
+            \begin{split}
+                (x + 1)^2 &= x^2 + 2x + 1 \\
+                \Rightarrow x + 1 &= x + 2x + 1 \\
+                \Rightarrow 2x &= 0 \\
+            \end{split}
+        \end{equation*}
+
+        De \textit{(2)}: Sea $\mathfrak{p}$ un ideal primo de $A$. Sea $x\in A$ tal que $x\notin\mathfrak{p}$. En $A/\mathfrak{p}$ se tiene que:
+        \begin{equation*}
+            \mathfrak{p}+x=\mathfrak{p}+x^2=(\mathfrak{p}+x)(\mathfrak{p}+x) \Rightarrow \mathfrak{p}+x=\mathfrak{p}+1,
+        \end{equation*}
+        pues $x\notin\mathfrak{p}$ y pues $A/\mathfrak{p}$ es dominio entero. Se sigue así que $A/\mathfrak{p}$ es campo y, en particular, tiene dos elementos.
+
+        De \textit{(3)}: Sea $I=(x_1,\dots,x_n)$ un ideal finitamente generado. Dado que $(x_1,\dots,x_n)=((x_1,\dots,x_{ n-1}),(x_n))$, usando la Observación (\ref{observacion:ideal_fg_booleano}) e inducción se obtiene el resultado.
+    \end{proof}
+
+    \begin{obs}
+        \label{observacion:ideal_fg_booleano}
+        En el ejercicio anterior, si $I=(x_1,x_2)$, entonces $I=(x_1+x_2+x_1x_2)$, pues:
+        \begin{equation*}
+            (x_1+x_2+x_1x_2)x_1=x_1+x_1x_2+x_1x_2=x_1
+        \end{equation*}
+    \end{obs}
+
+    \section{El espectro primo de un anillo}
+
+    \begin{excer}[\textbf{Topología de Zariski}]
+        Sean $A$ un anillo y $X$ el conjunto de todos los ideales primos de $A$. Para cada $E\subseteq A$, sea $V(E)$ el conjunto de todos los ideales primos de $A$ que contienen a $E$. Pruebe que:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item Si $\mathfrak{a}$ es el ideal generado por $E$, entonces $V(E)=V(\mathfrak{a})=V(r(\mathfrak{a}))$.
+            \item $V(0)=X$, $V(1)=\emptyset$.
+            \item Si $\left(E_i\right)_{ i\in I}$ es una familia de subconjuntos de $A$, entonces:
+            \begin{equation*}
+                V\left(\bigcup_{ i\in I}E_i\right)=\bigcap_{ i\in I}V(E_i)
+            \end{equation*}
+            \item $V(\mathfrak{a}\cap\mathfrak{b})=V(\mathfrak{ab})=V(\mathfrak{a})\cup V(\mathfrak{b})$, para todo par de ideales $\mathfrak{a},\mathfrak{b}$ de $A$.
+        \end{enumerate}
+        Estos enunciados muestran que los conjuntos $V(E)$ satisfacen los axiomas para conjuntos cerrados en un espacio topológico. La topología resultante es llamada la \textbf{Topología de Zariski}. El espacio topológico $X$ es llamado el \textbf{espectro primo de $A$} y se denota por $\spec{A}$.
+    \end{excer}
+
+    \begin{proof}
+        De \textit{(1)}: Sea $\mathfrak{a}=(E)$ el ideal generado por $E$. Dado que $E\subseteq\mathfrak{a}$, de la definición de $V$ se sigue que $ V(\mathfrak{a})\subseteq V(E)$.
+        
+        Si $\mathfrak{p}$ un ideal primo tal que $E\subseteq\mathfrak{p}$, entonces al ser $\mathfrak{a}$ el ideal generado por $E$ y $\mathfrak{p}$ un ideal que contiene a $E$, debe suceder que $\mathfrak{a}\subseteq\mathfrak{p}$. Por tanto, $V(E)\subseteq V(\mathfrak{a})$. De ambas contenciones se sigue la igualdad.
+
+        De \textit{(2)}: Sea $\mathfrak{p}$ un ideal primo, entonces $0\in\mathfrak{p}$. No puede suceder que $1\in\mathfrak{p}$ ya que en tal caso $\mathfrak{p}=A$. Por tanto:
+        \begin{equation*}
+            V(0)=X\quad\textup{y}\quad V(1)=\emptyset
+        \end{equation*}
+
+        De \textit{(3)}: Sea $\mathfrak{p}$ un ideal primo tal que $\bigcup_{ i\in I}E_i\subseteq\mathfrak{p}$, en particular $E_i\subseteq\mathfrak{p}$, para todo $i\in I$, luego $\mathfrak{p}\in V(E_i)$, para todo $i\in I$, esto es que $\mathfrak{p}\in\bigcap_{ i\in I}V(E_i)$. Inversamente, si $\mathfrak{p}\in\bigcap_{ i\in I}V(E_i)$, entonces $E_i\subseteq\mathfrak{p}$ para todo $i\in I$, por lo cual $\bigcup_{ i\in I}E_i\subseteq\mathfrak{p}$.
+
+        De \textit{(4)}: Sea $\mathfrak{p}$ un ideal primo.
+        \begin{itemize}
+            \item Si $\mathfrak{a}\cap\mathfrak{b}\subseteq\mathfrak{p}$. Dado que $\mathfrak{ab}\subseteq\mathfrak{a}\cap\mathfrak{b}$, se sigue que $\mathfrak{p}\in V(\mathfrak{ab})$.
+            \item Si $\mathfrak{ab}\subseteq\mathfrak{p}$ tenemos dos casos:
+            \begin{itemize}
+                \item Existe $b\in\mathfrak{b}$ tal que $b\notin P$. Por la contención $\mathfrak{ab}\subseteq\mathfrak{p}$ se tiene que:
+                \begin{equation*}
+                    ab\in P,
+                \end{equation*}
+                dado que $\mathfrak{p}$ es primo debe suceder que $a\in P$, para todo $a\in\mathfrak{a}$.
+                \item Si $b\in\mathfrak{p}$ para todo $b\in\mathfrak{b}$, entonces $\mathfrak{b}\subseteq\mathfrak{p}$.
+            \end{itemize}
+            En cualquier caso, $\mathfrak{p}\in V(\mathfrak{a})\cup V(\mathfrak{b})$.
+        \end{itemize}
+        De los dos incisos anteriores se sigue que $V(\mathfrak{a}\cap\mathfrak{b})\subseteq V(\mathfrak{ab})\subseteq V(\mathfrak{a})\cup V(\mathfrak{b})$.
+
+        Si $\mathfrak{p}\in V(\mathfrak{a})\cup V(\mathfrak{b})$, entonces $\mathfrak{a}\subseteq\mathfrak{p}$ o $\mathfrak{b}\subseteq\mathfrak{p}$, por lo cual, en cualquier caso, $\mathfrak{ab}\subseteq\mathfrak{p}$. Así que $V(\mathfrak{a})\cup V(\mathfrak{b})\subseteq V(\mathfrak{ab})$.
+
+        Se sigue entonces la igualdad.
+    \end{proof}
+
+    \begin{excer}
+        Analice $\spec{\bbm{Z}}$, $\spec{\bbm{R}}$, $\spec{\bbm{C}[x]}$, $\spec{\bbm{R}[x]}$ y $\spec{\bbm{Z}[x]}$.
+    \end{excer}
+
+    \begin{sol}
+        Para $\spec{\bbm{Z}}$:
+        \begin{enumerate}
+            \item Sea $A\subseteq\bbm{Z}$ con $0\notin A$. Dado que $A=\bigcup_{ a\in A}\left\{a\right\}$, entonces:
+            \begin{equation*}
+                V(A)=V\left(\bigcup_{ a\in A}\left\{a\right\}\right)=\bigcap_{ a\in A}V(\left\{a\right\})
+            \end{equation*}
+            Ahroa, si $a\in\bbm{Z}$, entonces:
+            \begin{equation*}
+                a=\prod_{ i=1}^n p_i,
+            \end{equation*}
+            siendo $p_i$ primo. En tal caso:
+            \begin{equation*}
+                \bigcap_{ a\in A}V(\left\{a\right\})=\left\{p_i\bbm{Z} | i=1,\dots,n \right\}
+            \end{equation*}
+            Por ende, $\bigcap_{ a\in A}V(\left\{a\right\})=\left\{q_1\bbm{Z},\dots,q_m\bbm{Z}\right\}$, donde $q_i\divides a$, para todo $a\in A$. En caso de que no haya divisores, $V(A)$ será vacío.
+            \item Dado que existe una biyección entre los primos de $\bbm{Z}$ junto con el cero y los ideales primos de $\bbm{Z}$ ($p\mapsto p\bbm{Z}$ y $0\mapsto\left\{0\right\}$), podemos ver a $\spec{\bbm{Z}}$ como el conjunto:
+            \begin{equation*}
+                \spec{\bbm{Z}}=\left\{p\bbm{Z} | p\textup{ es primo en }\bbm{Z} \right\}\cup\left\{(0)=0\bbm{Z} \right\}
+            \end{equation*}
+            Sea $A\bbm{Z}=\left\{a\bbm{Z}|a\in A\right\}\subseteq\spec{\bbm{Z}}$.
+            \begin{itemize}
+                \item Si $A=\emptyset$, entonces $A$ es claramente cerrado y abierto.
+                \item Si $A$ es finito y $0\notin A$, digamos $A=\left\{p_1,\dots,p_n\right\}$, entonces $A\bbm{Z}$ es cerrado, ya que $P=\left\{p_1\cdots p_n\right\}$ es tal que $V(P)=A$ (por el inciso anterior), donde $V(P)$ es cerrado.
+                \item Si $A$ es infinito, entonces no puede ser cerrado, pues contradiría el primer inciso (un elemento tendría una cantidad infinita de divisores).
+            \end{itemize}
+            Por lo que, los únicos cerrados no triviales son los conjuntos finitos que no contienen al ideal cero.
+        \end{enumerate}
+        En resumen, está bien raro este espacio.
+
+        Ahora, para $\spec{\bbm{R}}$. Como $\bbm{R}$ es un campo, el único ideal primo es $(0)$, por lo que $\spec{\bbm{R}}=\left\{ (0)\right\}$ está dotado de la topología trivial.
+
+        Ahora, para $\spec{\bbm{C}[x]}$
+    \end{sol}
+    
+    \begin{obs}
+        Algo útil sería caracterizar primero los ideales primos de $\bbm{Z}$, $\bbm{R}$, $\bbm{C}[x]$, $\bbm{R}[x]$ y $\bbm{Z}[x]$, antes de cualquier cosa. El espectro de $\bbm{Z}[x]$ se puede ver en un diagrama como el que se visualiza en la siguiente página: \href{https://pbelmans.ncag.info/blog/atlas/}{Atlas of $\spec{\bbm{Z}[x]}$}.
+    \end{obs}
+
+    \begin{excer}
+        %TODO
+    \end{excer}
+
+    \begin{excer}
+        Es conveniente denotar a los ideales primos de $A$ con letras $x$ y $y$, pensando en puntos de $X=\spec{A}$. Pensando en $x$ como un ideal primo de $A$, lo denotamos por $\mathfrak{p}_x$ (que vienen a ser la misma cosa pero distintos por notación y costumbre). Muestre que:
+        \begin{enumerate}[label = \textit{(\arabic*)}]
+            \item $\overline{\left\{x\right\}}=V(\mathfrak{p}_x)$.
+            \item $y\in\overline{\left\{x\right\}}$ si y solo si $\mathfrak{p}_x\subseteq\mathfrak{p}_y$.
+            \item $X$ es un espacio $T_0$.
+        \end{enumerate}
+    \end{excer}
+
+    \begin{proof}
+        De \textit{(1)}: %TODO
+    \end{proof}
+
+    \begin{idea}
+        Checar este link después: \href{https://math.stackexchange.com/questions/160420/basic-understanding-of-spec-mathbb-z}{Basic understanding of Spec($\bbm{Z}$)}.
+    \end{idea}
+
+\end{document}
