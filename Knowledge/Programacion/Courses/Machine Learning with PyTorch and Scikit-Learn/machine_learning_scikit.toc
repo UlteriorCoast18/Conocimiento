@@ -1,60 +1,71 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {1}Module 1}{4}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Overview}{4}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Giving computers the ability to learn from data}{4}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Introduction}{4}{section.1.3}%
-\contentsline {subsection}{\numberline {1.3.1}The Three Different Types of Machine Learning}{5}{subsection.1.3.1}%
-\contentsline {subsection}{\numberline {1.3.2}Supervised Learning}{5}{subsection.1.3.2}%
-\contentsline {subsection}{\numberline {1.3.3}Classification for Predicting Class Labels}{6}{subsection.1.3.3}%
-\contentsline {subsection}{\numberline {1.3.4}Regression for Predicting Continous Outcomes}{7}{subsection.1.3.4}%
-\contentsline {section}{\numberline {1.4}Solving Problems with Reinforcement Learning}{8}{section.1.4}%
-\contentsline {section}{\numberline {1.5}Unsupervised Learning}{9}{section.1.5}%
-\contentsline {subsection}{\numberline {1.5.1}Finding Subgroups With Clustering}{9}{subsection.1.5.1}%
-\contentsline {subsection}{\numberline {1.5.2}Dimensionality Reduction for Data Compresion}{9}{subsection.1.5.2}%
-\contentsline {section}{\numberline {1.6}Terminology and Notations}{10}{section.1.6}%
-\contentsline {subsection}{\numberline {1.6.1}Machine Learning Teminology}{12}{subsection.1.6.1}%
-\contentsline {section}{\numberline {1.7}Machine Learning Systems}{12}{section.1.7}%
-\contentsline {subsection}{\numberline {1.7.1}Preprocessing: Getting Data into Shape}{12}{subsection.1.7.1}%
-\contentsline {subsection}{\numberline {1.7.2}Training and Selecting a Predictive Model}{14}{subsection.1.7.2}%
-\contentsline {subsection}{\numberline {1.7.3}Evaluating Models and Predicting Unseen Data Instances}{15}{subsection.1.7.3}%
-\contentsline {chapter}{\numberline {2}Training Simple Machine Learning Algorithms for Classification}{16}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Introduction}{16}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Artificial Neurons: Early Stages of Machine Learning}{16}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Formal Definition of an Artificial Neuron}{17}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Perceptron Learning Rule}{18}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Implementing a Perceptron Learning Algorithm in Python}{20}{section.2.5}%
-\contentsline {section}{\numberline {2.6}And Object-Oriented Perceptron API}{20}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Training of the Perceptron Algotithm on the Iris Dataset}{24}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}OvA method for multi-class classification}{24}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Training the Algorithm}{26}{subsection.2.7.2}%
-\contentsline {section}{\numberline {2.8}Adaptive Linear Neurons and the Convergence of Learning}{30}{section.2.8}%
-\contentsline {subsection}{\numberline {2.8.1}Main Differenes Between Perceptron and Adaline}{30}{subsection.2.8.1}%
-\contentsline {subsection}{\numberline {2.8.2}Minimizing Loss Function with Gradient Descent}{30}{subsection.2.8.2}%
-\contentsline {section}{\numberline {2.9}Implementing Adaline in Python}{33}{section.2.9}%
-\contentsline {subsection}{\numberline {2.9.1}Hyperparameters}{36}{subsection.2.9.1}%
-\contentsline {section}{\numberline {2.10}Improving Gradient Descent Through Feature Scaling}{36}{section.2.10}%
-\contentsline {subsection}{\numberline {2.10.1}Large-Scale Machine Learning and Stochastic Gradient Descent}{38}{subsection.2.10.1}%
-\contentsline {chapter}{\numberline {3}A Tour of Machine Learning Classifiers Using Scikit-Learn}{43}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Introduction}{43}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Choosing a Classification Algorithm}{43}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}First Steps with scikit-learn Training a Perceptron}{44}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Training a Model Using Scikit-Learn}{44}{subsection.3.1.3}%
-\contentsline {section}{\numberline {3.2}Modeling Class Probabilities Via Logistic Regression}{49}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Logistic Regression and Conditional Probabilities}{49}{subsection.3.2.1}%
-\contentsline {section}{\numberline {3.3}Learning the Model Weights via the Logistic Loss Function}{52}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Deriving the likelihood function}{52}{subsection.3.3.1}%
-\contentsline {section}{\numberline {3.4}Converting an Adaline Implementation Into an Algorithm for Logistic Regression}{53}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Gradient Descent}{56}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Training a Logistic Regression Model with Scikit-Learn}{56}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Algorithms for convex optimization}{58}{subsection.3.6.1}%
-\contentsline {section}{\numberline {3.7}Tackling Overfitting via Regularization}{60}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}The Bias-Variance Tradeoff}{61}{subsection.3.7.1}%
-\contentsline {subsection}{\numberline {3.7.2}Implementation of Regularization}{62}{subsection.3.7.2}%
-\contentsline {section}{\numberline {3.8}Maximum Margin Classification with Support Vector Machines}{64}{section.3.8}%
-\contentsline {chapter}{\numberline {A}Using Python for Machine Learning}{65}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Basic Configuration}{65}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Anaconda Python Distribution and Package Manager}{66}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Packages for Scientific Computing, Data Science, and Machine Learning}{66}{section.A.3}%
-\contentsline {chapter}{\numberline {B}A Note on Distributions}{68}{appendix.B}%
-\contentsline {section}{\numberline {B.1}Normal Distrubution}{68}{section.B.1}%
-\contentsline {section}{\numberline {B.2}Bernoulli's Distribution}{68}{section.B.2}%
+\contentsline {chapter}{\numberline {1}Module 1}{6}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Overview}{6}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Giving computers the ability to learn from data}{6}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Introduction}{6}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}The Three Different Types of Machine Learning}{7}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Supervised Learning}{7}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}Classification for Predicting Class Labels}{8}{subsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.3.4}Regression for Predicting Continous Outcomes}{9}{subsection.1.3.4}%
+\contentsline {section}{\numberline {1.4}Solving Problems with Reinforcement Learning}{10}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Unsupervised Learning}{11}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Finding Subgroups With Clustering}{11}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Dimensionality Reduction for Data Compresion}{11}{subsection.1.5.2}%
+\contentsline {section}{\numberline {1.6}Terminology and Notations}{12}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Machine Learning Teminology}{14}{subsection.1.6.1}%
+\contentsline {section}{\numberline {1.7}Machine Learning Systems}{14}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}Preprocessing: Getting Data into Shape}{14}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}Training and Selecting a Predictive Model}{16}{subsection.1.7.2}%
+\contentsline {subsection}{\numberline {1.7.3}Evaluating Models and Predicting Unseen Data Instances}{17}{subsection.1.7.3}%
+\contentsline {chapter}{\numberline {2}Training Simple Machine Learning Algorithms for Classification}{18}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introduction}{18}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Artificial Neurons: Early Stages of Machine Learning}{18}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Formal Definition of an Artificial Neuron}{19}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Perceptron Learning Rule}{20}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Implementing a Perceptron Learning Algorithm in Python}{22}{section.2.5}%
+\contentsline {section}{\numberline {2.6}And Object-Oriented Perceptron API}{22}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Training of the Perceptron Algotithm on the Iris Dataset}{26}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}OvA method for multi-class classification}{26}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Training the Algorithm}{28}{subsection.2.7.2}%
+\contentsline {section}{\numberline {2.8}Adaptive Linear Neurons and the Convergence of Learning}{32}{section.2.8}%
+\contentsline {subsection}{\numberline {2.8.1}Main Differenes Between Perceptron and Adaline}{32}{subsection.2.8.1}%
+\contentsline {subsection}{\numberline {2.8.2}Minimizing Loss Function with Gradient Descent}{32}{subsection.2.8.2}%
+\contentsline {section}{\numberline {2.9}Implementing Adaline in Python}{35}{section.2.9}%
+\contentsline {subsection}{\numberline {2.9.1}Hyperparameters}{38}{subsection.2.9.1}%
+\contentsline {section}{\numberline {2.10}Improving Gradient Descent Through Feature Scaling}{38}{section.2.10}%
+\contentsline {subsection}{\numberline {2.10.1}Large-Scale Machine Learning and Stochastic Gradient Descent}{40}{subsection.2.10.1}%
+\contentsline {chapter}{\numberline {3}A Tour of Machine Learning Classifiers Using Scikit-Learn}{45}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Introduction}{45}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Choosing a Classification Algorithm}{45}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}First Steps with scikit-learn Training a Perceptron}{46}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Training a Model Using Scikit-Learn}{46}{subsection.3.1.3}%
+\contentsline {section}{\numberline {3.2}Modeling Class Probabilities Via Logistic Regression}{51}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Logistic Regression and Conditional Probabilities}{51}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Learning the Model Weights via the Logistic Loss Function}{54}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Deriving the likelihood function}{54}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.4}Converting an Adaline Implementation Into an Algorithm for Logistic Regression}{56}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Gradient Descent}{58}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Training a Logistic Regression Model with Scikit-Learn}{58}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Algorithms for convex optimization}{61}{subsection.3.6.1}%
+\contentsline {section}{\numberline {3.7}Tackling Overfitting via Regularization}{62}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}The Bias-Variance Tradeoff}{62}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}Implementation of Regularization}{64}{subsection.3.7.2}%
+\contentsline {section}{\numberline {3.8}Maximum Margin Classification with Support Vector Machines}{65}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Dealing with a Nonlinearly Separable Case Using Slack Variables}{67}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}Training a Model with a Support Vector Machine}{67}{subsection.3.8.2}%
+\contentsline {subsection}{\numberline {3.8.3}Alternative Implementations in Scikit-learn}{69}{subsection.3.8.3}%
+\contentsline {section}{\numberline {3.9}Solving Nonlinear Problems Using a Kernel SVM}{70}{section.3.9}%
+\contentsline {subsection}{\numberline {3.9.1}Kernel Methods for Linearly Inseparable Data}{70}{subsection.3.9.1}%
+\contentsline {subsection}{\numberline {3.9.2}Using the Kernel Trick to Find Separating Hyperplanes in a High-Dimensional Space}{71}{subsection.3.9.2}%
+\contentsline {section}{\numberline {3.10}Decision Tree Learning}{78}{section.3.10}%
+\contentsline {subsection}{\numberline {3.10.1}Maximizing IG Getting the Most Bang for Your Buck}{78}{subsection.3.10.1}%
+\contentsline {section}{\numberline {3.11}Building a Decision Tree}{84}{section.3.11}%
+\contentsline {subsection}{\numberline {3.11.1}Combining Multiple Decision Trees via Random Forests}{87}{subsection.3.11.1}%
+\contentsline {section}{\numberline {3.12}$K$-Nearest Neighbours}{89}{section.3.12}%
+\contentsline {chapter}{\numberline {A}Using Python for Machine Learning}{90}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Basic Configuration}{90}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Anaconda Python Distribution and Package Manager}{91}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Packages for Scientific Computing, Data Science, and Machine Learning}{91}{section.A.3}%
+\contentsline {chapter}{\numberline {B}A Note on Distributions}{93}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Normal Distrubution}{93}{section.B.1}%
+\contentsline {section}{\numberline {B.2}Bernoulli's Distribution}{93}{section.B.2}%

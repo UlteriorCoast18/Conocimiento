@@ -849,7 +849,7 @@ svm = SGDClassifier(loss='hinge')
         For example, we could simply define a cut-off value along the sepal width feature axis and ask a binary question: \textit{Is the sepal width $\geq$ 2.8 cm?}
     \end{obs}
 
-    Using the decision algorithm, we start at the tree root and split the data on the feature that results in the largest information gain (IG), which will be explained in more detail in the following section.
+    Using the decision algorithm, we start at the tree root and split the data on the feature that results in the largest information gain ($IG$), which will be explained in more detail in the following section.
 
     In an iterative process, we can then repeat this splitting procedure at each child node until the leaves are pure. This means that the training examples at each node all belong to the same class.
 
@@ -859,7 +859,7 @@ svm = SGDClassifier(loss='hinge')
 
     \subsection{Maximizing IG Getting the Most Bang for Your Buck}
 
-    To split the nodes at the most informative features, we need to define an objective function to optimize via the tree learning algorithm. Here, our objective function is to maximize the IG at each split, which we define as follows:
+    To split the nodes at the most informative features, we need to define an objective function to optimize via the tree learning algorithm. Here, our objective function is to maximize the $IG$ at each split, which we define as follows:
 
     \begin{equation*}
         IG(D_p,f)=I(D_p)-\sum_{ j=1}^{m}\frac{ N_j}{N_p}I(D_j)
@@ -882,32 +882,35 @@ svm = SGDClassifier(loss='hinge')
         \end{equation*}
     \end{obs}
 
-    The three impurity measures or splitting criteria that are commonly used in binary decision trees are:
+    The three impurity measures ($I$) or splitting criteria that are commonly used in binary decision trees are:
     \begin{itemize}
-        \item Gini impurity ($I_G$).
-        \item Entropy ($I_H$).
-        \item Classification error ($I_E$).
+        \item \textbf{Gini impurity} ($I_G$).
+        \item \textbf{Entropy} ($I_H$).
+        \item \textbf{Classification error} ($I_E$).
     \end{itemize}
-    Let's start with the definition of entropy for all non-empty classes.
-    \begin{equation*}
-        \left\{
-            \begin{array}{l}
-                p( i | t) \neq 0 \\
-                I_H(t)=-\displaystyle\sum_{ i=1}^{c}p( i | t)\log_2 p( i | t)
-            \end{array}
-        \right.
-    \end{equation*}
-    Here:
-    \begin{itemize}
-        \item $p( i | t)$ is the proportion of examples that belong to class $i$ for a particular node $t$.
-    \end{itemize}
+    
+    \begin{mydef}[\textbf{Entropy $I_H$}]
+        The definition of \textbf{entropy} for all non-empty classes is given by:
+        \begin{equation*}
+            \left\{
+                \begin{array}{l}
+                    p( i | t) \neq 0 \\
+                    I_H(t)=-\displaystyle\sum_{ i=1}^{c}p( i | t)\log_2 p( i | t)
+                \end{array}
+            \right.
+        \end{equation*}
+        Here:
+        \begin{itemize}
+            \item $p( i | t)$ is the proportion of examples that belong to class $i$ for a particular node $t$.
+        \end{itemize}
+    \end{mydef}
 
     \begin{obs}
         The entropy is therefore zero if all examples at a node belong to the same class, and the entropy is maximal if we have a uniform class distribution.
     \end{obs}
 
-    \begin{exa}
-        In a binary class setting, the entropy is 0 is $p( i = 0 | t) = 1$ or $p( i = 0| t) = 0$. If the classes are distributed uniformly with $p( i = 0 | t) = \frac{1}{2}$ or $p( i = 0| t) = \frac{1}{2}$, the entropy is 1. Therefore, we can say that the entropy criterion attempts to maximize tue mutual information in the tree.
+    \begin{exa}[\textbf{Objective of the Entropy Criterion}]
+        In a binary class setting, the entropy is 0 is $p( i = 0 | t) = 1$ or $p( i = 0| t) = 0$. If the classes are distributed uniformly with $p( i = 0 | t) = \frac{1}{2}$ or $p( i = 0| t) = \frac{1}{2}$, the entropy is 1. Therefore, we can say that \textbf{the entropy criterion attempts to maximize tue mutual information in the tree}.
     \end{exa}
 
     To provide a visual intuition, let us visualize the entropy values for different class distributions via the following code:
@@ -923,13 +926,382 @@ svm = SGDClassifier(loss='hinge')
         \end{minipage}
     \end{figure}
 
-    \begin{center}
-        \textit{The Gini impurity can be understood as a criterion to minimize the probability of misclassification.}
-    \end{center}
+    \newpage
+
+    \begin{mydef}[Gini Impurity]
+        The Gini impurity is given by:
+        \begin{equation*}
+            I_G(t)=\sum_{ i=1}^{c}p(i|t)\left(1-p(i|t)\right)=1-\sum_{ i=1}^{c}p(i|t)^2
+        \end{equation*}
+    \end{mydef}
+
+    \begin{obs}
+        That is, the Gini Impurity can be understood as a \textbf{criterion to minimize the probability of misclassification}.
+    \end{obs}
+
+    \begin{obs}[\textbf{Relation Between Gini Impurity and Entropy}]
+        Similar to entropy, Gini Impurity is maximal if the classes are perfectly mixed, for example, in a binary class setting (where $c=2$):
+        \begin{equation*}
+            I_G(t)=1-\sum_{ i=1}^{c}\left(\frac{1}{2}\right) ^2=\frac{1}{2}
+        \end{equation*}
+        In practice, \textbf{both the Gini impurity and entropy typically yield very similar results}, and it is often not worth spending much time on evaluating trees using different impurity criteria rather than experimenting with different pruning cut-offs.
+    \end{obs}
+
+    \begin{mydef}[\textbf{Pruning}]
+        \textbf{Pruning} means \textit{removing parts of a model that are unnecessary or harmful, with the goal of making the model simpler, faster, and better at generalizing}.
+    \end{mydef}
+
+    \begin{mydef}[\textbf{Classification Error}]
+        Another impurity measure is the \textbf{classification error}:
+        \begin{equation*}
+            I_E(t)=1-\max\left\{p(i|t)\right\}
+        \end{equation*}
+    \end{mydef}
+
+    \textbf{This is a useful criterion for pruning}, but not recommended for growing a decision tree, since it \textbf{is less sensitive to changes in the class probabilities of the nodes}. We can illustrate this by looking at the two possible splitting scenarios shown below:
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/_93c228db20884e308b9cc38981f46125_9781801819312_03_69.png} \\
+            \caption{Decision Trees $A$ and $B$.}
+            \label{Texto}
+        \end{minipage}
+    \end{figure}
+
+    \begin{exa}
+        We start with a dataset $D_p$, at the parent node, which consists of 40 examples from class 1 and 40 examples from class 2, that we split into two datasets, $D_{ left}$ and $D_{ right}$.
+        \begin{itemize}
+            \item The information gain using the \textbf{classification error} as a splitting criterion would be the same (since $IG=0.25$) in both scenarios, $A$ and $B$:
+            \begin{equation*}
+            \left\{
+            \begin{array}{l}
+            I_E(D_p) = 1 - 0.5 = 0.5 \\[6pt]
+
+            A:\; I_E(D_{\text{left}}) = 1 - \frac{3}{4} = 0.25 \\
+            A:\; I_E(D_{\text{right}}) = 1 - \frac{3}{4} = 0.25 \\
+            A:\; IG_E = 0.5 - \frac{4}{8}\,0.25 - \frac{4}{8}\,0.25 = 0.25 \\[6pt]
+
+            B:\; I_E(D_{\text{left}}) = 1 - \frac{4}{6} = \frac{1}{3} \\
+            B:\; I_E(D_{\text{right}}) = 1 - 1 = 0 \\
+            B:\; IG_E = 0.5 - \frac{6}{8}\times \frac{1}{3} - 0 = 0.25
+            \end{array}
+            \right.
+            \end{equation*}
+            \item However, the \textbf{Gini impurity} would favor the split in scenario $B$ ($IG_G \approx 0.1667$) over scenario $A$ ($IGG = 0.125$), which is indeed purer:
+            \begin{equation*}
+            \left\{
+            \begin{array}{l}
+            I_G(D_p) = 1 - \left(0.5^2 + 0.5^2\right) = 0.5 \\[6pt]
+
+            A:\; I_G(D_{\text{left}}) = 1 - \left(\left(\frac{3}{4}\right)^2 + \left(\frac{1}{4}\right)^2\right) 
+            = \frac{3}{8} = 0.375 \\
+
+            A:\; I_G(D_{\text{right}}) = 1 - \left(\left(\frac{1}{4}\right)^2 + \left(\frac{3}{4}\right)^2\right) 
+            = \frac{3}{8} = 0.375 \\
+
+            A:\; IG_G = 0.5 - \frac{4}{8}\,0.375 - \frac{4}{8}\,0.375 = 0.125 \\[6pt]
+
+            B:\; I_G(D_{\text{left}}) = 1 - \left(\left(\frac{2}{6}\right)^2 + \left(\frac{4}{6}\right)^2\right) 
+            = \frac{4}{9} = 0.\overline{4} \\
+
+            B:\; I_G(D_{\text{right}}) = 1 - (1^2 + 0^2) = 0 \\
+
+            B:\; IG_G = 0.5 - \frac{6}{8}\,0.\overline{4} - 0 = 0.1\overline{6}
+            \end{array}
+            \right.
+            \end{equation*}
+            \item Similarly, the \textbf{entropy criterion} would also favor scenario $B$ ($IG_H = 0.31$) over scenario $A$ ($IG_H = 0.19$):
+            \begin{equation*}
+            \left\{
+            \begin{array}{l}
+            I_H(D_p) = -\left(0.5 \log_2(0.5) + 0.5 \log_2(0.5)\right) = 1 \\[6pt]
+
+            A:\; I_H(D_{\text{left}}) 
+            = -\left(\frac{3}{4}\log_2\!\left(\frac{3}{4}\right) 
+            + \frac{1}{4}\log_2\!\left(\frac{1}{4}\right)\right) = 0.81 \\
+
+            A:\; I_H(D_{\text{right}}) 
+            = -\left(\frac{1}{4}\log_2\!\left(\frac{1}{4}\right) 
+            + \frac{3}{4}\log_2\!\left(\frac{3}{4}\right)\right) = 0.81 \\
+
+            A:\; IG_H = 1 - \frac{4}{8}\,0.81 - \frac{4}{8}\,0.81 = 0.19 \\[6pt]
+
+            B:\; I_H(D_{\text{left}}) 
+            = -\left(\frac{2}{6}\log_2\!\left(\frac{2}{6}\right) 
+            + \frac{4}{6}\log_2\!\left(\frac{4}{6}\right)\right) = 0.92 \\
+
+            B:\; I_H(D_{\text{right}}) = 0 \\
+
+            B:\; IG_H = 1 - \frac{6}{8}\,0.92 - 0 = 0.31
+            \end{array}
+            \right.
+            \end{equation*}
+        \end{itemize}
+    \end{exa}
+
+    For a more visual comparison of the three different impurity criteria that we discussed previously, let's plot the impurity indices for the probability range $[0, 1]$ for class $1$. Note that we will also add a scaled version of the entropy (entropy / 2) to observe that the Gini impurity is an intermediate measure between entropy and the classification error. The code is as follows: 
+
+    \lstinputlisting[caption={Entropy Computation.},label=code:gini_entropy_error]{Code/Decision Tree/gini_entropy_error.py}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/gini_entropy_error.png} \\
+            \caption{Caption}
+            \label{Texto}
+        \end{minipage}
+    \end{figure}
+
+    \begin{idea}
+        This example illustrates that, although two splits may appear equivalent under a coarse criterion such as classification error, more sensitive criteria like Gini impurity and entropy better capture the true purity of the resulting nodes, favoring splits that produce highly homogeneous subsets. In summary:
+        
+        \begin{longtable}{
+        >{\centering\arraybackslash}p{2.5cm}
+        >{\centering\arraybackslash}p{2.5cm}
+        >{\centering\arraybackslash}p{2.5cm}
+        p{6cm}
+        }
+        \toprule
+        \textbf{Key Point} & \textbf{Criterion} & \textbf{Sensitivity} & \textbf{Interpretation} \\
+        \midrule
+        \endfirsthead
+
+        \toprule
+        \textbf{Key Point} & \textbf{Criterion} & \textbf{Sensitivity} & \textbf{Interpretation} \\
+        \midrule
+        \endhead
+
+        \bottomrule
+        \caption{Comparison of impurity criteria in decision tree splitting.}
+        \label{tab:impurity_comparison}
+        \endlastfoot
+
+        (1) Informative power
+        & Classification Error
+        & Low
+        & Insensitive to changes in class distribution; only considers the majority class and may assign the same information gain to qualitatively different splits. \\
+
+        (1) Informative power
+        & Gini Impurity
+        & Medium
+        & Sensitive to class proportions and able to distinguish between moderately and highly pure nodes. \\
+
+        (1) Informative power
+        & Entropy
+        & High
+        & Highly sensitive to uncertainty; strongly rewards splits that produce nodes with high class concentration. \\
+
+        \midrule
+
+        (2) Preference for pure nodes
+        & Gini / Entropy
+        & High
+        & Both criteria favor splits that generate highly pure (or perfectly pure) child nodes, even if the remaining child node becomes less pure. \\
+
+        \midrule
+
+        (3) Relative position
+        & Classification Error
+        & Very Low
+        & Nearly flat behavior as a function of class probability; provides a coarse measure of impurity. \\
+
+        (3) Relative position
+        & Gini Impurity
+        & Medium
+        & Acts as an intermediate measure between entropy and classification error, balancing sensitivity and stability. \\
+
+        (3) Relative position
+        & Entropy
+        & Very High
+        & Exhibits strong curvature near probabilities close to 0 or 1, heavily penalizing uncertainty and strongly favoring purity. \\
+
+        \end{longtable}
+    \end{idea}
+
+    \section{Building a Decision Tree}
+
+    Decision trees can build complex decision boundaries by dividing the feature space into rectangles.
+
+    \begin{obs}
+        However, we have to be careful since the deeper the decision tree, the more complex the decision boundary becomes, which can easily result in overfitting.
+    \end{obs}
+
+    Using scikit-learn, we will now train a decision tree with a maximum depth of 4, using the Gini impurity as a criterion for impurity.
+
+    Although \textit{feature scaling may be desired for visualization purposes, note that feature scaling is not a requirement for decision tree algorithms}. The code is as follows:
+
+    \lstinputlisting[caption={Code for Decision Tree Implementation.},label=code:gini_entropy_error]{Code/Decision Tree/exa_decision_tree.py}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/decision_tree_visualized.png} \\
+            \caption{Decision Tree Boundary Visualized.}
+            \label{Texto}
+        \end{minipage}
+    \end{figure}
+
+    \begin{obs}
+        A nice feature in scikit-learn is that it allows us to readily visualize the decision tree model after training via the following code:
+        \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+from sklearn import tree
+feature_names = ['Sepal length', 'Sepal width',
+                 'Petal length', 'Petal width']
+tree.plot_tree(tree_model,
+               feature_names=feature_names,
+               filled=True)
+plt.show()
+        \end{lstlisting}
+    \end{obs}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/tree_visualization.png} \\
+            \caption{Tree Visualized.}
+            \label{Texto}
+        \end{minipage}
+    \end{figure}
+
+    Setting \lstinline|filled=True| in the \lstinline|plot_tree| function we called colors the nodes by the majority class label at that node.
+
+    \begin{obs}
+        There are many additional options available, which you can find in the documentation at \href{https://scikit-learn.org/stable/modules/generated/sklearn.tree.plot_tree.html}{Plot Tree}.
+    \end{obs}
+
+    Looking at the root node, it starts with \lstinline|105| examples at the top. The first split uses a sepal width $cut-off \leq 0.75$ cm for splitting the root node into two child nodes with 35 examples (left child node) and \lstinline|70| examples (right child node). After the first split, we can see that the left child node is already pure and only contains examples from the Iris-setosa class (\lstinline|Gini impurity = 0|). The further splits on the right are then used to separate the examples from the Iris-versicolor and Iris-virginica class.
+
+    \begin{idea}
+        The decision tree does a very good job of separating the flower classes. Unfortunately, scikit-learn currently does not implement functionality to manually post-prune a decision tree. However, we could go back to our previous code example, change the \lstinline|max_depth| of our decision tree to 3, and compare it to our current model, but we leave this as an exercise for the interested reader.
+    \end{idea}
+
+    \begin{obs}[\textbf{Cost Complexity Post-Pruning}]
+        Alternatively, scikit-learn provides an automatic cost complexity post-pruning procedure for decision trees. Interested readers can find more information about this more advanced topic in the following tutorial: \href{https://scikit-learn.org/stable/auto_examples/tree/plot_cost_complexity_pruning.html}{Plot Cost Complexity Pruning}.
+    \end{obs}
+
+    \subsection{Combining Multiple Decision Trees via Random Forests}
+
+    Ensemble methods have gained huge popularity in applications of machine learning during the last decade due to their good classification performance and robustness toward overfitting.
+
+    Let's discuss the decision tree-based random forest algorithm, which is known for its good scalability and ease of use. 
+
+    \begin{mydef}[\textbf{Random Forest}]
+        A \textbf{random forest} can be considered as \textit{an ensemble of decision trees}.
+        
+        The idea behind a random forest is to \textit{average multiple (deep) decision trees that individually suffer from high variance to build a more robust model that has a better generalization performance and is less susceptible to overfitting}.
+    \end{mydef}
+
+    The random forest algorithm can be summarized in four simple steps:
+    \begin{enumerate}[label = \textit{\arabic*)}]
+        \item Draw a random bootstrap sample of size $n$ (randomly choose $n$ examples from the training dataset with replacement).
+        \item Grow a decision tree from the bootstrap sample. At each node:
+        \begin{itemize}
+            \item Randomly select $d$ features without replacement.
+            \item Split the node using the feature that provides the best split according to the objective function, for instance, maximizing the information gain.
+        \end{itemize}
+        \item Repeat steps \textit{1)}-\textit{2)} $k$ times.
+        \item Aggregate the prediction by each tree to assign the class label by majority vote.
+    \end{enumerate}
+
+    \begin{obs}
+        We should note one slight modification in step \textit{2)} when we are training the individual decision trees: instead of evaluating all features to determine the best split at each node, we only consider a random subset of those.
+    \end{obs}
+
+    %TODO
+
+    \section{$K$-Nearest Neighbours}
+
+    The last supervised learning algorithm that we want to discuss in this section is the k-nearest neighbor (KNN) classifier, which is particularly interesting because it is fundamentally different from the learning algorithms discussed so far.
+
+    \begin{obs}
+        KNN is a typical example of a lazy learner. It is called \textit{lazy} not because of its apparent simplicity, but because \textit{it doesn't learn a discriminative function from the training data but memorizes the training dataset instead}.
+    \end{obs}
+
+    KNN belongs to a subcategory of non-parametric models described as instance-based learning. \textit{Models based on instance-based learning memorize the training dataset, and lazy learning is a special case of instance-based learning that incurs no cost during the learning process}.
+
+    \begin{itemize}
+        \item \textbf{Parametric} models estimate parameters.
+        \item \textbf{Non-parametric} models adapt to data.
+    \end{itemize}
+
+    The KNN algorithm itself is straightforward and can be summarized by the following steps:
+    \begin{enumerate}[label = \textit{\arabic*)}]
+        \item Choose the number of $k$ and a distance metric
+        \item Find the $k$-nearest neighbors of the data record to classify
+        \item Assign the class label by majority vote
+    \end{enumerate}
+
+    Based on the chosen distance metric, the KNN algorithm finds the k examples in the training dataset that are closest (most similar) to the point that we want to classify.
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/_b2d8b536d6b341f2a434158299f570ad_9781801819312_03_78.png} \\
+            \caption{$k$-Nearest Neighbours Algorithm}
+            \label{Texto}
+        \end{minipage}
+    \end{figure}
+
+    \begin{obs}
+        The class label of the data point is then determined by a majority vote among its k nearest neighbors.
+    \end{obs}
+
+    \subsection{Advantages and disadvantages of memory-based approaches}
+
+    \begin{itemize}
+        \item \textbf{Advantage} of a memory-based approach is that the classifier immediately adapts as new training data are collected.
+        
+        \item \textbf{Downside} is that the computational complexity for classifying new examples grows linearly with the number of examples in the training dataset in the worst-case scenario—unless the dataset has very few dimensions and the algorithm uses efficient data structures for querying the training data.
+    \end{itemize}
+
+    Such data structures include $k-d$ tree and ball tree, which are both supported in scikit-learn.
+    
+    In addition to computational costs, large datasets can be problematic in terms of storage requirements.
+
+    \begin{idea}
+        For relatively small to medium-sized datasets, memory-based methods can provide good predictive and computational performance and are therefore suitable for many real-world problems.
+    \end{idea}
+
+    By executing the following code, we implement a KNN model in scikit-learn using a Euclidean distance metric:
+
+    \lstinputlisting[caption={Code for $k$-Nearest Neighbours.},label=code:k_nearest_neighbours.py]{Code/k_nearest_neighbours/k_nearest_neighbours.py}
+
+    By specifying five neighbors, we obtain a relatively smooth decision boundary:
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=1]{images/k_neighbours.png} \\
+            \caption{Caption}
+            \label{Texto}
+        \end{minipage}
+    \end{figure}
+
+    \begin{obs}
+        In the case of a tie, scikit-learn prefers neighbors with a closer distance. If the neighbors have identical distances, the algorithm chooses the class label that appears first in the training dataset.
+    \end{obs}
+
+    \begin{idea}
+        Choosing $k$ is crucial to finding a good balance between overfitting and underfitting. A suitable distance metric is also essential. A simple Euclidean distance measure is often used for real-valued features, such as the centimeters-based measurements in the Iris dataset.
+    \end{idea}
+
+    When using Euclidean distance, standardizing the data is important so that each feature contributes equally to the distance. The minkowski distance used in the preceding code is a generalization of the Euclidean and Manhattan distances and can be written as follows:
 
     \begin{equation*}
-        I_G
+        d_{p}(x,y) = \left( \sum_{i=1}^{n} |x_{i} - y_{i}|^{p} \right)^{1/p}, p\in\mathbb{N}
     \end{equation*}
 
+    It becomes the Euclidean distance when \lstinline|p=2| and the Manhattan distance when \lstinline|p=1|. Many other distance metrics are available in scikit-learn and can be provided to the metric parameter.
+
+    \begin{obs}
+        KNN is susceptible to overfitting due to the curse of dimensionality, where the feature space becomes increasingly sparse as dimensionality grows. Even the closest neighbors can be too far away in a high-dimensional space to provide a good estimate.
+    \end{obs}
+
+    Regularization helps avoid overfitting in models such as logistic regression, but it is not applicable to decision trees and KNN. Instead, feature selection and dimensionality reduction techniques help mitigate the curse of dimensionality.
+
+    \begin{obs}
+        Note: Use RAPIDS' cuML for GPU-accelerated machine learning with large datasets.
+    \end{obs}
 
 \end{document}
