@@ -1,0 +1,110 @@
+\documentclass[../machine_learning_scikit.tex]{subfiles}
+
+\begin{document}
+
+    \chapter{Building Good Trainign Datasets: Data Preprocessing}
+
+    \section{Introduction}
+
+    The quality of the data and the amount of useful information that it contains are key factors that determine how well a machine learning algorithm can learn.
+
+    It is absolutely critical to ensure that we examine and preprocess a dataset before we feed it to a machine learning algorithm.
+
+    \begin{obs}
+        The topics that we will cover in this chapter are as follows:
+
+        \begin{itemize}
+            \item Removing and imputing missing values from the dataset
+            \item Getting categorical data into shape for machine learning algorithms
+            \item Selecting relevant features for the model construction
+        \end{itemize}
+    \end{obs}
+
+    \section{Dealing With Missing Data}
+
+    Sometimes data may be missing due to various reasons.
+
+    \begin{obs}
+        There could have been an error in the data collection process, certain measurements may not be applicable, or particular fields could have been simply left blank in a survey, for example. We typically see missing values as blank spaces in our data table or as placeholder strings such as \lstinline|NaN|, which stands for \textit{not a number} or \lstinline|NULL|.
+    \end{obs}
+
+    We will work through several practical techniques for dealing with missing values by removing entries from our dataset or imputing missing values from other training examples and features.
+
+    \section{Identifying Missing Values in Tabular Data}
+    
+    Before we discuss several techniques for dealing with missing values, let's create a simple example DataFrame from a comma-separated values (\lstinline|CSV|) file to get a better grasp of the problem:
+
+    \lstinputlisting[caption={\lstinline|CSV| with Missing Data.}]{Code/Missing Data/missing_data.py}
+
+    The output is the following:
+
+    \begin{lstlisting}[caption={CSV with Missing Data Output}]
+      A     B     C    D
+0   1.0   2.0   3.0  4.0
+1   5.0   6.0   NaN  8.0
+2  10.0  11.0  12.0  NaN
+    \end{lstlisting}
+
+    Using the preceding code, we read \lstinline|CSV|-formatted data into a pandas \lstinline|DataFrame| via the \lstinline|read_csv| function and noticed that the two missing cells were replaced by NaN. The \lstinline|StringIO| function in the preceding code example was simply used for the purposes of illustration. It allowed us to read the string assigned to \lstinline|csv_data| into a pandas \lstinline|DataFrame| as if it was a regular \lstinline|CSV| file on our hard drive.
+
+    \begin{obs}
+        For a larger \lstinline|DataFrame|, it can be tedious to look for missing values manually; in this case, we can use the isnull method to return a \lstinline|DataFrame| with \lstinline|Boolean| values that indicate whether a cell contains a numeric value (\lstinline|False|) or if data is missing (\lstinline|True|). 
+        
+        Using the sum method, we can then return the number of missing values per column as follows:
+        \begin{lstlisting}[caption={Check Missing Data per Row}]
+print(df.isnull().sum())
+        \end{lstlisting}
+
+        The output is this:
+
+        \begin{lstlisting}[caption={Output Missing Data Per Row}]
+A    0
+B    0
+C    1
+D    1
+dtype: int64
+        \end{lstlisting}
+
+    \end{obs}
+
+    Although scikit-learn was originally developed for working with \lstinline|NumPy| arrays only, it can sometimes be more convenient to preprocess data using pandas' \lstinline|DataFrame|.
+    
+    Nowadays, most scikit-learn functions support \lstinline|DataFrame| objects as inputs, but since \lstinline|NumPy| array handling is more mature in the scikit-learn API, it is recommended to use \lstinline|NumPy| arrays when possible. Note that you can always access the underlying \lstinline|NumPy| array of a \lstinline|DataFrame| via the values attribute before you feed it into a scikit-learn estimator:
+
+    \begin{lstlisting}[caption={Dataframe \lstinline|df|}]
+print(df.values)
+    \end{lstlisting}
+
+    \begin{lstlisting}[caption={Values of Dataframe \lstinline|df|}]
+array([[  1.,   2.,   3.,   4.],
+       [  5.,   6.,  nan,   8.],
+       [ 10.,  11.,  12.,  nan]])
+    \end{lstlisting}
+
+    \subsection{Eliminating Training Examples or Features with Missing Values}
+
+    One of the easiest ways to deal with missing data is simply to remove the corresponding features (columns) or training examples (rows) from the dataset entirely; rows with missing values can easily be dropped via the \lstinline|dropna| method:
+
+    \begin{lstlisting}[caption={Droping Rows from \lstinline|df|}]
+print(df.dropna(axis=0))
+
+output:
+
+      A    B    C    D
+0   1.0  2.0  3.0  4.0
+    \end{lstlisting}
+
+    Similarly, we can drop columns that have at least one NaN in any row by setting the axis argument to 1:  
+
+    \begin{lstlisting}[caption={Dropping Columns from a \lstinline|DataFrame| \lstinline|df|}]
+print(df.dropna(axis=1))
+
+output:
+
+      A      B
+0   1.0    2.0
+1   5.0    6.0
+2  10.0   11.0
+    \end{lstlisting}
+
+\end{document}

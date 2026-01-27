@@ -30,8 +30,17 @@
 \contentsline {lstlisting}{\numberline {3.17}Entropy Computation.}{82}{lstlisting.3.17}%
 \contentsline {lstlisting}{\numberline {3.18}Code for Decision Tree Implementation.}{85}{lstlisting.3.18}%
 \contentsline {lstlisting}{\numberline {3.19}caption}{86}{lstlisting.3.19}%
-\contentsline {lstlisting}{\numberline {A.1}Check Python Version}{90}{lstlisting.A.1}%
-\contentsline {lstlisting}{\numberline {A.2}\lstinline |pip| Package Installation.}{90}{lstlisting.A.2}%
-\contentsline {lstlisting}{\numberline {A.3}Conda Package Installation.}{91}{lstlisting.A.3}%
-\contentsline {lstlisting}{\numberline {A.4}caption}{91}{lstlisting.A.4}%
-\contentsline {lstlisting}{\numberline {A.5}Check Version of Packages}{92}{lstlisting.A.5}%
+\contentsline {lstlisting}{\numberline {3.20}Code for $k$-Nearest Neighbours.}{90}{lstlisting.3.20}%
+\contentsline {lstlisting}{\numberline {4.1}\lstinline |CSV| with Missing Data.}{94}{lstlisting.4.1}%
+\contentsline {lstlisting}{\numberline {4.2}CSV with Missing Data Output}{95}{lstlisting.4.2}%
+\contentsline {lstlisting}{\numberline {4.3}Check Missing Data per Row}{95}{lstlisting.4.3}%
+\contentsline {lstlisting}{\numberline {4.4}Output Missing Data Per Row}{95}{lstlisting.4.4}%
+\contentsline {lstlisting}{\numberline {4.5}Dataframe \lstinline |df|}{95}{lstlisting.4.5}%
+\contentsline {lstlisting}{\numberline {4.6}Values of Dataframe \lstinline |df|}{96}{lstlisting.4.6}%
+\contentsline {lstlisting}{\numberline {4.7}Droping Rows from \lstinline |df|}{96}{lstlisting.4.7}%
+\contentsline {lstlisting}{\numberline {4.8}Dropping Columns from a \lstinline |DataFrame| \lstinline |df|}{96}{lstlisting.4.8}%
+\contentsline {lstlisting}{\numberline {A.1}Check Python Version}{97}{lstlisting.A.1}%
+\contentsline {lstlisting}{\numberline {A.2}\lstinline |pip| Package Installation.}{97}{lstlisting.A.2}%
+\contentsline {lstlisting}{\numberline {A.3}Conda Package Installation.}{98}{lstlisting.A.3}%
+\contentsline {lstlisting}{\numberline {A.4}caption}{98}{lstlisting.A.4}%
+\contentsline {lstlisting}{\numberline {A.5}Check Version of Packages}{99}{lstlisting.A.5}%
