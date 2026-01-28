@@ -1,0 +1,568 @@
+\documentclass[../basic_programs.tex]{subfiles}
+
+\begin{document}
+
+    \chapter{Object Oriented Programming}
+
+    \section{OOP}
+
+    \begin{mydef}[\textbf{OOP Object Oriented Programming}]
+        \textbf{OOP} stands for \textbf{Object-Oriented Programming}. Object-oriented programming is about \textit{creating objects, which can hold data and functions that work on that data}.
+    \end{mydef}
+
+    Advantages:
+    \begin{itemize}
+        \item OOP provides a \textit{clear structure} to programs
+        \item Makes \textit{code easier to maintain, reuse, and debug}
+        \item Helps keep your code DRY (Don't Repeat Yourself)
+        \item Makes it \textit{possible to create full reusable applications with less code and shorter development time}
+    \end{itemize}
+
+    \subsection{Classes and Objects}
+
+    \textbf{Classes} and \textbf{objects} are the two main aspects of object-oriented programming.
+
+    \begin{mydef}[\textbf{Class}]
+        A \textbf{class} \textit{defines what an object should look like, and an object is created based on that class}.
+    \end{mydef}
+
+    \begin{longtable}{c c}
+        \toprule
+        \textbf{Class} & \textbf{Objects} \\
+        \midrule
+        \endfirsthead
+
+        \toprule
+        \textbf{Class} & \textbf{Objects} \\
+        \midrule
+        \endhead
+
+        Fruit & Apple, Banana, Mango \\
+        \hline
+        Car   & Volvo, Audi, Toyota \\
+
+        \bottomrule
+        \caption{}
+        \label{}
+        \endlastfoot
+    \end{longtable}
+
+    \begin{obs}[\textbf{Functions Inside a Class}]
+        When you create an object from a class, it inherits all the variables and functions defined inside that class.
+    \end{obs}
+
+    Also, we say that an object \textit{apple} is an instance of the class \textit{fruit}.
+
+    \subsection{Procedural vs Object-Oriented Programming}
+
+    We have two programming focuses:
+    \begin{itemize}
+        \item \textbf{Procedural programming} is about writing functions that operate on data.
+        \item \textbf{Object-oriented programming (OOP)} is about creating objects that contain both the data and the functions.
+    \end{itemize}
+
+    \section{C++ Classes/Objects}
+    
+    C++ is an object-oriented programming language. Everything in C++ is associated with classes and objects, along with its attributes and methods.
+    
+    \begin{exa}
+        For example: in real life, a car is an object. The car has attributes, such as weight and color, and methods, such as drive and brake.
+    \end{exa}
+
+    \begin{mydef}[\textbf{Attributes and Methods}]
+        \textbf{Attributes} and \textbf{methods} are \textit{basically variables and functions that belongs to the class. These are often referred to as class members}.
+    \end{mydef}
+
+    A class is a user-defined data type that we can use in our program, and it works as an object constructor, or a blueprint for creating objects.
+
+    \begin{exa}[\textbf{Example of a Class}]
+        To create a Class in C++ we do the following:
+
+        \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+class MyClass {       // The class
+  public:             // Access specifier
+    int myNum;        // Attribute (int variable)
+    string myString;  // Attribute (string variable)
+};
+        \end{lstlisting}
+
+        \begin{itemize}
+            \item The \lstinline|class| keyword is used to create a \lstinline|class| called \lstinline|MyClass|.
+            \item The \lstinline|public| keyword is an \textbf{access specifier}, which \textit{specifies that members (attributes and methods) of the class are accessible from outside the class}. You will learn more about access specifiers later.
+            \item Inside the \lstinline|class|, there is an integer variable \lstinline|myNum| and a string variable \lstinline|myString|. When variables are declared within a class, they are called \textbf{attributes}.
+            \item At last, \textit{end the class definition with a semicolon \lstinline|;|}.
+        \end{itemize}
+    \end{exa}
+
+    \subsection{Create an Object}
+
+    In C++, an object is created from a \lstinline|class|. We have already created the \lstinline|class| named \lstinline|MyClass|, so now we can use this to create objects.
+
+    To create an object of \lstinline|MyClass|, specify the class name, followed by the object name.
+
+    To access the class attributes (\lstinline|myNum| and \lstinline|myString|), use the dot syntax (\lstinline|.|) on the object:
+
+    \begin{exa}[\textbf{Creation of an Object}]
+        Create an object called \lstinline|myObj| and access the attributes:
+        \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+class MyClass {       // The class
+  public:             // Access specifier
+    int myNum;        // Attribute (int variable)
+    string myString;  // Attribute (string variable)
+};
+
+int main() {
+  MyClass myObj;  // Create an object of MyClass
+
+  // Access attributes and set values
+  myObj.myNum = 15; 
+  myObj.myString = "Some text";
+
+  // Print attribute values
+  cout << myObj.myNum << "\n";
+  cout << myObj.myString;
+  return 0;
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \begin{obs}[\textbf{Several Objects}]
+        Also, we can create several objects from a same class.
+    \end{obs}
+
+    \section{Class Methods}
+
+    \begin{mydef}[\textbf{Methods}]
+        \textbf{Methods} are \textit{functions that belongs to the class}.
+    \end{mydef}
+
+    There are two ways to define functions that belongs to a class:
+
+    \begin{itemize}
+        \item Inside class definition
+        \item Outside class definition
+    \end{itemize}
+
+    \subsection{Define a Method Inside the Class}
+
+    In the following example, we define a function inside the class, and we name it \lstinline|myMethod|.
+
+    \begin{idea}[\textbf{Note}]
+        You access methods just like you access attributes; by creating an object of the class and using the dot syntax (\lstinline|.|):
+    \end{idea}
+
+    \begin{exa}[\textbf{Method Creation}]
+        Example of a method inside a class:
+        \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+class MyClass {        // The class
+  public:              // Access specifier
+    void myMethod() {  // Method/function defined inside the class
+      cout << "Hello World!";
+    }
+};
+
+int main() {
+  MyClass myObj;     // Create an object of MyClass
+  myObj.myMethod();  // Call the method
+  return 0;
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \subsection{Define a Method Outside the Class}
+
+    Sometimes it is \textit{better to declare the method in the class and define it later} (especially in large programs).
+
+    This is done by specifiying the name of the class, followed the scope resolution \lstinline|::| operator, followed by the name of the function:
+
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+class MyClass {        // The class
+  public:              // Access specifier
+    void myMethod();   // Method/function declaration
+};
+
+// Method/function definition outside the class
+void MyClass::myMethod() {
+  cout << "Hello World!";
+}
+
+int main() {
+  MyClass myObj;     // Create an object of MyClass
+  myObj.myMethod();  // Call the method
+  return 0;
+}
+    \end{lstlisting}
+
+    \subsection{Parameters}
+
+    You can also pass values to methods just like regular functions:
+
+    \begin{exa}[\textbf{Pass Values Through Methods}]
+        To pass some value to a method we do the following:
+
+        \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+#include <iostream>
+using namespace std;
+
+class Car {
+  public:
+    int speed(int maxSpeed);
+};
+
+int Car::speed(int maxSpeed) {
+  return maxSpeed;
+}
+
+int main() {
+  Car myObj; // Create an object of Car
+  cout << myObj.speed(200); // Call the method with an argument
+  return 0;
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \section{Constructors}
+
+    \begin{mydef}[\textbf{Constructor}]
+        A \textbf{constructor} is a \textit{special method that is automatically called when an object of a class is created}.
+
+        To create a constructor, use the same name as the class, followed by parentheses \lstinline|()|:
+    \end{mydef}
+
+    \begin{exa}[Constructor in \lstinline|C++|]
+        Creation of a constructor:
+        \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+class MyClass {     // The class
+  public:           // Access specifier
+    MyClass() {     // Constructor
+      cout << "Hello World!";
+    }
+};
+
+int main() {
+  MyClass myObj;    // Create an object of MyClass (this will call the constructor)
+  return 0;
+}
+
+        \end{lstlisting}
+    \end{exa}
+
+    \begin{obs}[\textbf{Constructor Rules}]
+        When \textit{creating a constructor}, we must have in mind the following rules:
+        \begin{itemize}
+            \item The constructor \textit{has the same name as the class}.
+            \item It \textit{has no return type} (not even void).
+            \item It is \textit{usually declared public}.
+            \item It is \textit{automatically called when an object is created}.
+        \end{itemize}
+    \end{obs}
+
+    \subsection{Constructor with Parameters}
+
+    \begin{mydef}[\textbf{Constructor with Parameters}]
+        Constructors \textit{can also take parameters} (just like regular functions), which \textit{can be useful for setting initial values for attributes}.
+    \end{mydef}
+
+    The following class has \lstinline|brand|, \lstinline|model| and \lstinline|year| attributes, and a constructor with different parameters. Inside the constructor we set the attributes equal to the constructor parameters (\lstinline|brand=x|, etc).
+
+    When we call the constructor (by creating an object of the class), we pass parameters to the constructor, which will set the value of the corresponding attributes to the same:
+
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+class Car {        // The class
+  public:          // Access specifier
+    string brand;  // Attribute
+    string model;  // Attribute
+    int year;      // Attribute
+    Car(string x, string y, int z) { // Constructor with parameters
+      brand = x;
+      model = y;
+      year = z;
+    }
+};
+
+int main() {
+  // Create Car objects and call the constructor with different values
+  Car carObj1("BMW", "X5", 1999);
+  Car carObj2("Ford", "Mustang", 1969);
+
+  // Print values
+  cout << carObj1.brand << " " << carObj1.model << " " << carObj1.year << "\n";
+  cout << carObj2.brand << " " << carObj2.model << " " << carObj2.year << "\n";
+  return 0;
+}
+    \end{lstlisting}
+
+    \subsection{Constructor Defined Outside the Class}
+
+    You can also define the constructor outside the class using the scope resolution operator \lstinline|::|.
+
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+class Car {        // The class
+  public:          // Access specifier
+    string brand;  // Attribute
+    string model;  // Attribute
+    int year;      // Attribute
+    Car(string x, string y, int z); // Constructor declaration
+};
+
+// Constructor definition outside the class
+Car::Car(string x, string y, int z) {
+  brand = x;
+  model = y;
+  year = z;
+}
+
+int main() {
+  // Create Car objects and call the constructor with different values
+  Car carObj1("BMW", "X5", 1999);
+  Car carObj2("Ford", "Mustang", 1969);
+
+  // Print values
+  cout << carObj1.brand << " " << carObj1.model << " " << carObj1.year << "\n";
+  cout << carObj2.brand << " " << carObj2.model << " " << carObj2.year << "\n";
+  return 0;
+}
+    \end{lstlisting}
+
+    \subsection{Why Using Constructors}
+
+    Constructors \textbf{run by themselves when you create an object}. They \textbf{set things up so everything is ready right away}.
+
+    Think of it like this: When you order a pizza (object), the constructor is the chef who adds the sauce, cheese, and toppings before it gets to you - you don't have to do it yourself!
+
+    \subsection{C++ Constructor Overloading}
+
+    In C++, you can have more than one constructor in the same class. This is called \textbf{constructor overloading}.
+
+    \begin{obs}
+        Each constructor \textit{must have a different number or type of parameters, so the compiler knows which one to use when you create an object}.
+    \end{obs}
+
+    \begin{idea}[\textbf{Why Use Constructor Overloading?}]
+        We use constructor overloading to:
+        \begin{itemize}
+            \item To give flexibility when creating objects
+            \item To set default or custom values
+            \item To reduce repetitive code
+        \end{itemize}
+    \end{idea}
+
+    \begin{exa}[\textbf{Example with Two Constructors}]
+        This class has two constructors: one without parameters, and one with parameters:
+        \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+class Car {
+  public:
+    string brand;
+    string model;
+
+    Car() {
+      brand = "Unknown";
+      model = "Unknown";
+    }
+
+    Car(string b, string m) {
+      brand = b;
+      model = m;
+    }
+};
+
+int main() {
+  Car car1;
+  Car car2("BMW", "X5");
+  Car car3("Ford", "Mustang");
+
+  cout << "Car1: " << car1.brand << " " << car1.model << "\n";
+  cout << "Car2: " << car2.brand << " " << car2.model << "\n";
+  cout << "Car3: " << car3.brand << " " << car3.model;
+  return 0;
+}
+        \end{lstlisting}
+
+        The result of executing the following code is this:
+        \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+Car1: Unknown Unknown
+Car2: BMW X5
+Car3: Ford Mustang
+        \end{lstlisting}
+    \end{exa}
+
+    \section{C++ Access Specifiers}
+
+    \begin{mydef}[\textbf{Access Specifiers}]
+        \textbf{Access specifiers} \textit{control how the members (attributes and methods) of a class can be accessed}.
+    \end{mydef}
+
+    They \textbf{help protect data} and \textbf{organize code} so that only the right parts can be seen or changed.
+
+    \subsection{Using Access Specifiers}
+
+    The \lstinline|public| keyword is an access specifier.
+
+    \begin{exa}[\textbf{Use of public Keyword}]
+        In the code below, the \textit{members are public} - which means that \textit{they can be accessed and modified from outside the code}:
+        \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+class MyClass {  // The class
+  public:        // Access specifier
+    // class members goes here
+};
+        \end{lstlisting}
+    \end{exa}
+
+    In C++, there are three access specifiers:
+
+    \begin{itemize}
+        \item \lstinline|public| - members are \textit{accessible from outside the class}.
+        \item \lstinline|private| - members \textit{cannot be accessed (or viewed) from outside the class}.
+        \item \lstinline|protected| - members \textit{cannot be accessed from outside the class, however, they can be accessed in inherited classes}.
+    \end{itemize}
+
+    \subsection{Private}
+
+    Members declared as \lstinline|private| cannot be accessed from outside the class.
+
+    \begin{exa}[\textbf{Differences Between public and private}]
+        In the following code, we demonstrate the \textit{differences between public and private members}:        
+        \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+class MyClass {
+  public:    // Public access specifier
+    int x;   // Public attribute
+  private:   // Private access specifier
+    int y;   // Private attribute
+};
+
+int main() {
+  MyClass myObj;
+  myObj.x = 25;  // Allowed (public)
+  myObj.y = 50;  // Not allowed (private)
+  return 0;
+}
+        \end{lstlisting}
+    \end{exa}
+
+    \begin{obs}[\textbf{Note on private}]
+        It is \textit{possible to access private members of a class using a public method inside the same class}. See the next chapter (Encapsulation) on how to do this.
+    \end{obs}
+
+    \begin{idea}[\textbf{Tip}]
+        It is \textit{considered good practice to declare your class attributes as private (as often as you can)}. This will reduce the possibility of yourself (or others) to mess up the code. This is also the main ingredient of the \textbf{Encapsulation} concept, which you will learn more about in the next chapter.
+    \end{idea}
+
+    By default, all members of a class are \lstinline|private| if you don't specify an access specifier:
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+class MyClass {
+  int x;   // Private attribute
+  int y;   // Private attribute
+};
+    \end{lstlisting}
+  
+    \subsection{Protected}
+
+    Members declared as \lstinline|protected| cannot be accessed from outside the class, but they can be accessed in child classes.
+
+    \section{C++ Encapsulation}
+
+    \begin{mydef}[\textbf{Encapsulation}]
+        The meaning of \textbf{Encapsulation}, is to make sure that \textit{sensitive data is hidden from users}.
+    \end{mydef}
+
+    To achieve this, you must \textit{declare class variables/attributes as private (cannot be accessed from outside the class)}.
+
+    If you want others to read or modify the value of a private member, you \textit{can provide public get and set methods}.
+
+    \begin{exa}[\textbf{Employee's Salary}]
+        Think of an employee's salary:
+        \begin{itemize}
+            \item The \textbf{salary is private} - the employee can't change it directly
+            \item Only their manager can update it or share it when appropriate
+        \end{itemize}
+        Encapsulation works the same way. The \textbf{data is hidden, and only trusted methods can access or modify it}.
+    \end{exa}
+
+    \subsection{Access Private Members}
+
+    To access a private attribute, use public \lstinline|get| and \lstinline|set| methods:
+
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+#include <iostream>
+using namespace std;
+
+class Employee {
+  private:
+    // Private attribute
+    int salary;
+
+  public:
+    // Setter
+    void setSalary(int s) {
+      salary = s;
+    }
+    // Getter
+    int getSalary() {
+      return salary;
+    }
+};
+
+int main() {
+  Employee myObj;
+  myObj.setSalary(50000);
+  cout << myObj.getSalary();
+  return 0;
+}
+    \end{lstlisting}
+
+    \begin{obs}[\textbf{Explanation of Encapsulation}]
+        Example explained
+        \begin{itemize}
+            \item \lstinline|salary| is \lstinline|private| - it cannot be accessed directly
+            \item \lstinline|setSalary()| sets the value
+            \item \lstinline|getSalary()| returns the value
+        \end{itemize}
+        We use \lstinline|myObj.setSalary(50000)| to assign a value, and \lstinline|myObj.getSalary()| to print it.
+    \end{obs}
+
+    \begin{obs}[\textbf{Why Encapsulation?}]
+        We use encapsulation in order to:
+        \begin{itemize}
+            \item It is considered good practice to declare your class attributes as private (as often as you can). Encapsulation ensures better control of your data, because you (or others) can change one part of the code without affecting other parts \item Increased security of data
+        \end{itemize}
+    \end{obs}
+
+    \section{C++ The Friend Keyword}
+
+    Normally, private members of a class can only be accessed using public methods like getters and setters. But in some cases, you \textit{can use a special function called a friend function to access them directly}.
+
+    A \textbf{friend} function is \textit{not a member of the class, but it is allowed to access the class's private data} as in the following example:
+
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+class Employee {
+  private:
+    int salary;
+
+  public:
+    Employee(int s) {
+      salary = s;
+    }
+
+    // Declare friend function
+    friend void displaySalary(Employee emp);
+};
+
+void displaySalary(Employee emp) {
+  cout << "Salary: " << emp.salary;
+}
+
+int main() {
+  Employee myEmp(50000);
+  displaySalary(myEmp);
+  return 0;
+}
+    \end{lstlisting}
+
+    \begin{itemize}
+        \item The \lstinline|friend| function \lstinline|displaySalary()| is declared inside the \lstinline|Employee class| but defined outside of it.
+        \item Even though \lstinline|displaySalary()| is not a member of the class, it can still access the private member \lstinline|salary|.
+        \item In the \lstinline|main()| function, we create an \lstinline|Employee| object and call the \lstinline|friend| function to print its salary.
+    \end{itemize}
+
+
+\end{document}
