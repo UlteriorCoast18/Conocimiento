@@ -564,5 +564,78 @@ int main() {
         \item In the \lstinline|main()| function, we create an \lstinline|Employee| object and call the \lstinline|friend| function to print its salary.
     \end{itemize}
 
+  \section{Inheritance}
+
+  \begin{mydef}[\textbf{Inheritance}]
+    \textbf{Inheritance} \textit{allows one class to reuse attributes and methods from another class}. It helps you write cleaner, more efficient code by avoiding duplication.
+  \end{mydef}
+
+  We group the \textit{inheritance concept} into two categories:
+
+  \begin{itemize}
+    \item \textbf{derived class (child)} - the \textit{class that inherits from another class}
+    \item \textbf{base class (parent)} - the \textit{class being inherited from}
+  \end{itemize}
+  To inherit from a class, use the \lstinline|:| symbol.
+
+  \begin{exa}[\textbf{Example of Inheritance}]
+    In the code below, the \lstinline|Car| class (child) inherits the attributes and methods from the \lstinline|Vehicle| class (parent):
+
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+// Base class
+class Vehicle {
+  public:
+    string brand = "Ford";
+    void honk() {
+      cout << "Tuut, tuut! \n" ;
+    }
+};
+
+// Derived class
+class Car: public Vehicle {
+  public:
+    string model = "Mustang";
+};
+
+int main() {
+  Car myCar;
+  myCar.honk();
+  cout << myCar.brand + " " + myCar.model;
+  return 0;
+}
+    \end{lstlisting}
+  \end{exa}
+
+  \subsection{Multilevel Inheritance}
+
+  A class can also be derived from one class, which is already derived from another class.
+
+  \begin{exa}[\textbf{Example of Multilevel Inheritance}]
+    In the following example, \lstinline|MyGrandChild| is derived from class \lstinline|MyChild| (which is derived from \lstinline|MyClass|):
+
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+// Base class (parent)
+class MyClass {
+  public:
+    void myFunction() {
+      cout << "Some content in parent class." ;
+    }
+};
+
+// Derived class (child)
+class MyChild: public MyClass {
+};
+
+// Derived class (grandchild)
+class MyGrandChild: public MyChild {
+};
+
+int main() {
+  MyGrandChild myObj;
+  myObj.myFunction();
+  return 0;
+}
+    \end{lstlisting}
+  \end{exa}
 
 \end{document}

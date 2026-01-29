@@ -1,17 +1,17 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2026.1.21)  27 JAN 2026 20:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.12.22)  28 JAN 2026 11:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/cristoalvarado/Documents/Conocimiento/Knowledge/Programacion/Programming Languages/C++/Basics/OOP/oop.tex"
-(/home/cristoalvarado/Documents/Conocimiento/Knowledge/Programacion/Programming Languages/C++/Basics/OOP/oop.tex
+**"/home/ulteriorcoast18/Documents/Conocimiento/Knowledge/Programacion/Programming Languages/C++/Basics/OOP/oop.tex"
+(/home/ulteriorcoast18/Documents/Conocimiento/Knowledge/Programacion/Programming Languages/C++/Basics/OOP/oop.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (/usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
 Document Class: subfiles 2020/11/14 v2.2 Multi-file projects (class)
 Preamble taken from file `../basic_programs.tex'
 (/usr/share/texlive/texmf-dist/tex/latex/import/import.sty
 Package: import 2020/04/01  v 6.2
-) (../basic_programs.tex (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+) (OOP/../basic_programs.tex (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2022/07/02 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
@@ -32,7 +32,7 @@ File: size12.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 Package: babel 2023/02/13 3.86 The Babel package
 \babel@savecnt=\count194
 \U@D=\dimen141
-\l@unhyphenated=\language86
+\l@unhyphenated=\language85
  (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count195
@@ -41,9 +41,9 @@ Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
 (babel)             (\language0). Reported on input line 102.
 Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
-(babel)             (\language72). Reported on input line 105.
+(babel)             (\language21). Reported on input line 105.
 Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
-(babel)             (\language72). Reported on input line 108.
+(babel)             (\language21). Reported on input line 108.
 )) (/usr/share/texlive/texmf-dist/tex/generic/babel/locale/en/babel-english.tex
 Package babel Info: Importing font and identification data for english
 (babel)             from babel-en.ini. Reported on input line 11.
@@ -798,7 +798,13 @@ Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
 \c@mydef=\count364
 \c@excer=\count365
 \c@figcount=\count366
-)) (./oop.aux
+)) (OOP/oop.aux
+
+LaTeX Warning: Label `DescriptiveLabel' multiply defined.
+
+
+LaTeX Warning: Label `DescriptiveLabel' multiply defined.
+
 
 LaTeX Warning: Label `DescriptiveLabel' multiply defined.
 
@@ -916,7 +922,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring ON on input line 3.
-(./oop.out) (./oop.out)
+(OOP/oop.out) (OOP/oop.out)
 \@outlinefile=\write4
 \openout4 = `oop.out'.
 
@@ -935,15 +941,15 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 68.
-<..//watermark-1.png, id=95, 127.4361pt x 192.72pt>
-File: ..//watermark-1.png Graphic file (type png)
-<use ..//watermark-1.png>
-Package pdftex.def Info: ..//watermark-1.png  used on input line 70.
+<watermark-1.png, id=103, 127.4361pt x 192.72pt>
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 70.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
 [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <..//watermark-1.png>]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./watermark-1.png>]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 72.
@@ -956,9 +962,9 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 105.
-File: ..//watermark-1.png Graphic file (type png)
-<use ..//watermark-1.png>
-Package pdftex.def Info: ..//watermark-1.png  used on input line 127.
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 127.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
  [2]
 Package mdframed Info: mdframed detected package amsthm 
@@ -976,17 +982,17 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
 (mdframed)              on input line 170.
-File: ..//watermark-1.png Graphic file (type png)
-<use ..//watermark-1.png>
-Package pdftex.def Info: ..//watermark-1.png  used on input line 170.
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 170.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
  [3]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 200.
-File: ..//watermark-1.png Graphic file (type png)
-<use ..//watermark-1.png>
-Package pdftex.def Info: ..//watermark-1.png  used on input line 222.
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 222.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
  [4]
 Package mdframed Info: mdframed detected package amsthm 
@@ -1009,14 +1015,14 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 262.
-File: ..//watermark-1.png Graphic file (type png)
-<use ..//watermark-1.png>
-Package pdftex.def Info: ..//watermark-1.png  used on input line 275.
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 275.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
  [5]
-File: ..//watermark-1.png Graphic file (type png)
-<use ..//watermark-1.png>
-Package pdftex.def Info: ..//watermark-1.png  used on input line 322.
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 322.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
  [6]
 Package mdframed Info: mdframed detected package amsthm 
@@ -1028,9 +1034,9 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 350.
-File: ..//watermark-1.png Graphic file (type png)
-<use ..//watermark-1.png>
-Package pdftex.def Info: ..//watermark-1.png  used on input line 387.
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 387.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
  [7]
 Package mdframed Info: mdframed detected package amsthm 
@@ -1042,9 +1048,9 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 423.
-File: ..//watermark-1.png Graphic file (type png)
-<use ..//watermark-1.png>
-Package pdftex.def Info: ..//watermark-1.png  used on input line 440.
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 440.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
  [8]
 Package mdframed Info: Not enough space on this page on input line 440.
@@ -1060,9 +1066,9 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 472.
-File: ..//watermark-1.png Graphic file (type png)
-<use ..//watermark-1.png>
-Package pdftex.def Info: ..//watermark-1.png  used on input line 479.
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 479.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
  [9]
 Package mdframed Info: Not enough space on this page on input line 479.
@@ -1072,35 +1078,57 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 523.
-File: ..//watermark-1.png Graphic file (type png)
-<use ..//watermark-1.png>
-Package pdftex.def Info: ..//watermark-1.png  used on input line 528.
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 528.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
  [10]
-File: ..//watermark-1.png Graphic file (type png)
-<use ..//watermark-1.png>
-Package pdftex.def Info: ..//watermark-1.png  used on input line 568.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 569.
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 577.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
- [11] (./oop.aux)
+ [11]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 581.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 613.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 639.
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 639.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+ [12]
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 641.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+ [13] (OOP/oop.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `oop.out' has not changed.
-(rerunfilecheck)             Checksum: 2485ED8304ACB1A5251DE48F424F588D;3706.
+(rerunfilecheck)             Checksum: B69E89E2816F531D4D1F50373E293D0D;3991.
  ) 
 Here is how much of TeX's memory you used:
- 26945 strings out of 476034
- 492542 string characters out of 5792864
+ 27021 strings out of 476041
+ 493761 string characters out of 5793173
  2163388 words of memory out of 6000000
- 46628 multiletter control sequences out of 15000+600000
+ 46651 multiletter control sequences out of 15000+600000
  520828 words of font info for 64 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 104i,12n,106p,575b,2234s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 104i,12n,106p,576b,2234s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on oop.pdf (11 pages, 224280 bytes).
+Output written on OOP/oop.pdf (13 pages, 233044 bytes).
 PDF statistics:
- 526 PDF objects out of 1000 (max. 8388607)
- 488 compressed objects within 5 object streams
- 299 named destinations out of 1000 (max. 500000)
- 194 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 601 PDF objects out of 1000 (max. 8388607)
+ 560 compressed objects within 6 object streams
+ 350 named destinations out of 1000 (max. 500000)
+ 210 words of extra memory for PDF output out of 10000 (max. 10000000)
 
