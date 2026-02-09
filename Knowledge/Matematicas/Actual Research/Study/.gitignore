@@ -1,0 +1,30 @@
+# Archivos auxiliares de LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.nav
+*.snm
+*.vrb
+*.xdv
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+
+# Directorios comunes de compilación
+_build/
+build/
+out/

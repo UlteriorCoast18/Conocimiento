@@ -638,4 +638,182 @@ int main() {
     \end{lstlisting}
   \end{exa}
 
+  \subsection{C++ Multiple Inheritance}
+
+  A class can also be derived from more than one base class, using a comma-separated list:
+
+  \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+// Base class
+class MyClass {
+  public:
+    void myFunction() {
+      cout << "Some content in parent class." ;
+    }
+};
+
+// Another base class
+class MyOtherClass {
+  public:
+    void myOtherFunction() {
+      cout << "Some content in another class." ;
+    }
+};
+
+// Derived class
+class MyChildClass: public MyClass, public MyOtherClass {
+};
+
+int main() {
+  MyChildClass myObj;
+  myObj.myFunction();
+  myObj.myOtherFunction();
+  return 0;
+}
+  \end{lstlisting}
+
+  \subsection{C++ Inheritance Access}
+
+  You learned from the Access Specifiers chapter that there are three specifiers available in \lstinline|C++|.
+
+  Until now, we have only used \lstinline|public| (members of a class are accessible from outside the class) and \lstinline|private| (members can only be accessed within the class).
+
+  The third specifier, \lstinline|protected|, is similar to private, but it can also be accessed in the inherited class:
+
+  \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+// Base class
+class Employee {
+  protected: // Protected access specifier
+    int salary;
+};
+
+// Derived class
+class Programmer: public Employee {
+  public:
+    int bonus;
+    void setSalary(int s) {
+      salary = s;
+    }
+    int getSalary() {
+      return salary;
+    }
+};
+
+int main() {
+  Programmer myObj;
+  myObj.setSalary(50000);
+  myObj.bonus = 15000;
+  cout << "Salary: " << myObj.getSalary() << "\n";
+  cout << "Bonus: " << myObj.bonus << "\n";
+  return 0;
+}
+  \end{lstlisting}
+
+  \subsection{Polymorphism}
+
+  \textbf{Polymorphism} means \textit{many forms}, and it occurs when we have many classes that are related to each other by inheritance.
+
+  Like we specified in the previous chapter; \textit{Inheritance lets us inherit attributes and methods from another class}. Polymorphism \textit{uses those methods to perform different tasks}. This allows us to \textit{perform a single action in different ways}.
+
+  For example, imagine a base class \lstinline|Animal| with a method called \lstinline|makeSound()|. Derived classes of \lstinline|Animals| could be \lstinline|Pigs|, \lstinline|Cats|, \lstinline|Dogs|, \lstinline|Birds|, etc... Every animal can \textit{make a sound}, but each one sounds different:
+
+  \begin{itemize}
+    \item \lstinline|Pig|: wee wee
+    \item \lstinline|Dog|: bow wow
+    \item \lstinline|Bird|: tweet tweet
+  \end{itemize}
+
+  This is polymorphism - the same action (making a sound) behaves differently for each animal:
+
+  \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+// Base class
+class Animal {
+  public:
+    void animalSound() {
+      cout << "The animal makes a sound \n";
+    }
+};
+
+// Derived class
+class Pig : public Animal {
+  public:
+    void animalSound() {
+      cout << "The pig says: wee wee \n";
+    }
+};
+
+// Derived class
+class Dog : public Animal {
+  public:
+    void animalSound() {
+      cout << "The dog says: bow wow \n";
+    }
+};
+  \end{lstlisting}
+
+  Now we can create Pig and Dog objects and override the \lstinline|animalSound()| method:
+
+  \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+// Base class
+class Animal {
+  public:
+    void animalSound() {
+      cout << "The animal makes a sound \n";
+    }
+};
+
+// Derived class
+class Pig : public Animal {
+  public:
+    void animalSound() {
+      cout << "The pig says: wee wee \n";
+    }
+};
+
+// Derived class
+class Dog : public Animal {
+  public:
+    void animalSound() {
+      cout << "The dog says: bow wow \n";
+    }
+};
+
+int main() {
+  Animal myAnimal;
+  Pig myPig;
+  Dog myDog;
+
+  myAnimal.animalSound();
+  myPig.animalSound();
+  myDog.animalSound();
+  return 0;
+}
+  \end{lstlisting}
+
+  \subsection{C++ Virtual Functions}
+
+  \begin{mydef}[\textbf{Virtual Function}]
+    A \textbf{virtual function} is a \textit{member function in the base class that can be overridden in derived classes}.
+  \end{mydef}
+
+  Virtual functions are a key part of polymorphism in C++. They let different objects respond differently to the same function call.
+
+  Why Use Virtual Functions?
+  Without virtual, C++ decides which function to call based on the pointer type, not the actual object type.
+
+  With virtual, it checks the actual object the pointer is pointing to.
+
+  Or to put it even more simply:
+
+  Without virtual: the base function runs, even if the object is from a child class.
+  With virtual: the child's version runs, like you expect.
+  Without Virtual Function
+
+  \begin{obs}[\textbf{Explanation of Virtual}]
+    In \lstinline|C++|, when you write \lstinline|Shape* s = new Circle();|, you are storing a pointer to a \lstinline|Circle| object in a variable typed as \lstinline|Shape*|. 
+    
+    Without virtual functions, C++ decides which method to call based only on the static type of the pointer \lstinline|(Shape*)|, so calling \lstinline|s->draw()| will execute \lstinline|Shape::draw()| even though the object is actually a \lstinline|Circle|. This is because non-virtual methods use compile-time (static) binding. Virtual functions exist to change this behavior: when a method is declared virtual, \lstinline|C++| uses runtime (dynamic) binding and calls the method corresponding to the object’s real type, so \lstinline|s->draw()| correctly calls \lstinline|Circle::draw()|. In short, virtual functions allow derived objects to behave according to their actual type when accessed through base-class pointers or references.
+  \end{obs}
+
+
+
 \end{document}

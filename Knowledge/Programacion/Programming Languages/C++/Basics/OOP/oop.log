@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.12.22)  28 JAN 2026 11:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.12.22)  29 JAN 2026 13:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -847,6 +847,18 @@ LaTeX Warning: Label `DescriptiveLabel' multiply defined.
 
 LaTeX Warning: Label `DescriptiveLabel' multiply defined.
 
+
+LaTeX Warning: Label `DescriptiveLabel' multiply defined.
+
+
+LaTeX Warning: Label `DescriptiveLabel' multiply defined.
+
+
+LaTeX Warning: Label `DescriptiveLabel' multiply defined.
+
+
+LaTeX Warning: Label `DescriptiveLabel' multiply defined.
+
 )
 \openout1 = `oop.aux'.
 
@@ -941,7 +953,7 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 68.
-<watermark-1.png, id=103, 127.4361pt x 192.72pt>
+<watermark-1.png, id=119, 127.4361pt x 192.72pt>
 File: watermark-1.png Graphic file (type png)
 <use watermark-1.png>
 Package pdftex.def Info: watermark-1.png  used on input line 70.
@@ -1107,28 +1119,49 @@ Package pdftex.def Info: watermark-1.png  used on input line 639.
  [12]
 File: watermark-1.png Graphic file (type png)
 <use watermark-1.png>
-Package pdftex.def Info: watermark-1.png  used on input line 641.
+Package pdftex.def Info: watermark-1.png  used on input line 685.
 (pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
- [13] (OOP/oop.aux)
+ [13]
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 738.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+ [14]
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 790.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+ [15]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 794.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 811.
+File: watermark-1.png Graphic file (type png)
+<use watermark-1.png>
+Package pdftex.def Info: watermark-1.png  used on input line 819.
+(pdftex.def)             Requested size: 558.87906pt x 845.18575pt.
+ [16] (OOP/oop.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `oop.out' has not changed.
-(rerunfilecheck)             Checksum: B69E89E2816F531D4D1F50373E293D0D;3991.
+(rerunfilecheck)             Checksum: 6CCBB48291BFA5BDD0018857C111CA01;4652.
  ) 
 Here is how much of TeX's memory you used:
- 27021 strings out of 476041
- 493761 string characters out of 5793173
+ 27202 strings out of 476041
+ 496552 string characters out of 5793173
  2163388 words of memory out of 6000000
- 46651 multiletter control sequences out of 15000+600000
+ 46710 multiletter control sequences out of 15000+600000
  520828 words of font info for 64 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 104i,12n,106p,576b,2234s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 104i,12n,106p,890b,2234s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on OOP/oop.pdf (13 pages, 233044 bytes).
+Output written on OOP/oop.pdf (16 pages, 250866 bytes).
 PDF statistics:
- 601 PDF objects out of 1000 (max. 8388607)
- 560 compressed objects within 6 object streams
- 350 named destinations out of 1000 (max. 500000)
- 210 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 771 PDF objects out of 1000 (max. 8388607)
+ 725 compressed objects within 8 object streams
+ 472 named destinations out of 1000 (max. 500000)
+ 242 words of extra memory for PDF output out of 10000 (max. 10000000)
 

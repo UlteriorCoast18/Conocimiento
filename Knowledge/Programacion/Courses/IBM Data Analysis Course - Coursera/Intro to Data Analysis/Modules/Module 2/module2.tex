@@ -1,4 +1,4 @@
-\documentclass[../../ibm_data_analysis]{subfiles}
+\documentclass[../../ibm_data_analysis.tex]{subfiles}
 
 \begin{document}
 
@@ -675,6 +675,291 @@ id	nombre	edad	puesto	salario
         \item Databases
         \item Data warehouses
         \item Big Data Stores
+    \end{itemize}
+
+    \begin{mydef}[\textbf{DBMS}]
+        DBMS is a database management system. Allows to extract data from the database using querying.
+    \end{mydef}
+
+    Two main types of databases:
+    \begin{itemize}
+        \item Relational (RDBMSes): Data organized in tabular format with rows and columns, well defined structure and schema. Optimized for data operations and querying (using SQL).
+        \item Non-relational (no SQL): Built for speed, flexibility and scale. Data can be stored in a schema-less form. No SQL for processing. 
+    \end{itemize}
+
+    \begin{mydef}[\textbf{Data Warehouse}]
+        \textbf{Data Warehouse} consolidates data thourgh the extract, transform, and load process, also known as ETL process, into one comprehensive database for analytics and business inteligence.
+    \end{mydef}
+
+    We extract data from different sources. Then transform the data to finally load into the data repository.
+
+    \begin{mydef}[\textbf{Big Data}]
+        \textbf{Big Data} stores, distrubuted computational and storage infraestructure to store, scale and process very large datasets.
+    \end{mydef}
+
+    \begin{obs}
+        Use cases for RDBS:
+        \begin{itemize}
+            \item Online Transaction Processing App (accomodate larges amount of users, manage small amounts of data, frequent queries).
+            \item Data Warehouses (optimized for online analytical processsing OLAP)
+            \item IoT Solutions (Speed and ability to collect and process data from edge devices) 
+        \end{itemize}
+    \end{obs}
+
+    \begin{obs}
+        Limitations of RDBMS:
+        \begin{itemize}
+            \item Not working well with semistrctured and unstructured data.
+            \item Migration between RDBMS possible when the source and destination have identical tables.
+            \item Entering a value greater thatn the defined length of a data field results in loss of information.
+        \end{itemize}
+    \end{obs}
+
+    \section{No SQL}
+
+    Used for their attributes araoudn scale, performance, and ease of use. No is an abreviation of Not Only. 
+    \begin{itemize}
+        \item Built for specific data models
+        \item Has flexible schemas that allow programmers to create and manage modern applications
+        \item Do not use traditional row/column/table database design with fixed schemas
+        \item Do not typically use SQL to query data
+    \end{itemize}
+
+    This type of database can store structured, semi-structured and unstructured data.
+    
+    There are four common types of NoSQL databases: 
+    \begin{itemize}
+        \item Key-value store:
+        \begin{itemize}
+            \item Key value database is stored as collection of key-value pairs.
+            \item Key represents an attribute of de data and is a unique identifier 
+            \item Key and values can be simple integers or strings or complex JSON
+            \item Great for storing user session data, user preferences, real time recomendations, targeted advertising, in memory data caching.
+        \end{itemize}
+
+        Not great if:
+        \begin{itemize}
+            \item Query data on specific data value
+            \item Need relationships between data
+            \item Need multiple unique keys
+        \end{itemize}
+
+        Examples: Redis, Memcached and DynamoBD
+
+        \item Document-based:
+        \begin{itemize}
+            \item Document databases store each record and its associated data within a single document.
+            \item Enable flexible indexing, powerful ad hoc queries, and analytics over collections of documents.
+            \item Preferred for eCommerce platforms, medical records storage, CRM platforms and analytics platforms. 
+        \end{itemize}
+
+         Not great if:
+        \begin{itemize}
+            \item Running complex queries
+            \item Perform multi operation transactions
+        \end{itemize}
+
+        Examples; MongoDB, DocumentDB, CouchDB and Cloudant
+
+        \item Column-based:
+        \begin{itemize}
+            \item Data is stored in cells grouped as columns fo data instead of rows
+            \item Logical grouping of columns is reffered to as column family
+            \item All cells corresponding to a column are saved as a continuous disk entry, making access and search easier and faster
+            \item Great for systems that requiere heavy write request, storing time series data, wheather data and IoT data
+        \end{itemize}
+         Not great if:
+        \begin{itemize}
+            \item Complex queries
+            \item Change querying patterns frequently
+        \end{itemize}
+
+        Examples:  Cassandra and Apache Hbase
+
+        \item Graph based:
+        \begin{itemize}
+            \item Use graphical model to represent and store data
+            \item Useful for visualizing, analyzing and finding connections between different pieces of data
+            \item Excelent for working with connected data
+            \item Used for social networks, product recomendations and network diagrams, fraud detection
+        \end{itemize}
+
+        Not great if:
+        \begin{itemize}
+            \item Process high volumes of transactions
+        \end{itemize}
+
+        Examples: Neo3J and CosmosDB
+    \end{itemize}
+
+    \begin{figure}[h]
+        \begin{minipage}{\textwidth}
+            \centering
+            \includegraphics[scale=0.35]{images/graph.png} \\
+            \caption{Example of Relationships in Graph-Based NoSQL DB}
+            \label{Texto}
+        \end{minipage}
+    \end{figure}
+
+    \begin{obs}
+        Advantages:
+        \begin{itemize}
+            \item Store structured, unsutrcuted and semistructured data.
+            \item Ability to run as a distributed system scaled across multiple data centers.
+            \item Efficient and cost effective srquitecture
+            \item Simpler design, better control over availability and improved scalability that makes it agile, flexible and support quick iterations
+        \end{itemize}
+    \end{obs}
+
+    \section{Containers}
+
+    \subsection{Data Warehouses}
+
+    \begin{mydef}[Nombre]
+        A data warehouse works like a multipurpose storage for different use cases.
+    \end{mydef}
+
+    By the time data comes into the warehouse, it has been structured for a specific purpose, like analysis ready.
+
+    \begin{obs}
+        We opt for a data warehouse when having a system that needs to be readily available for reporting and analysis.
+    \end{obs}
+
+    It is like a single source of truth, of data that has been cleansed, conformed, and categorized.
+
+    \subsection{Data Mart}
+
+    \begin{mydef}[Nombre]
+        A subsection of a data warehouse built specifically for a particular business function, purpose or community of users.
+    \end{mydef}
+
+    Idea is to provide stakeholders data that is most relevant to them, when they need it.
+
+    \begin{exa}
+        Data for the sales or finance tems accesing data for their quarterly reporting and projections.
+    \end{exa}
+
+    The advantages of data marts are:
+    \begin{itemize}
+        \item Provide analytical capabilities for a restricted area of the data warehouse
+        \item Offer isolated security and isolated performance
+        \item Business specific reporting and analytics.
+    \end{itemize}
+
+    \subsection{Data Lake}
+
+    \begin{mydef}[Nombre]
+        Storage repository that can storage large amounts of structured, semi-strucutred, and unstructured data in their native format. Classified and tagged with metadata. 
+    \end{mydef}
+
+    Is basically:
+    \begin{itemize}
+        \item A pool of rwa data where each data element is given a unique identifier and is tagged with metatags for further use.
+        \item Selected and organized based on the use case needed for
+        \item Retains all source data without exclusions
+    \end{itemize}
+
+    \subsection{ETL}
+
+    Extract, Transform and Load process. This is how raw data is converted into analysis-ready data. It is an automated process where:
+    \begin{itemize}
+        \item Gathering raw data
+        \item Extracting information needed for reporting and analysis
+        \item Cleaning, standarizing, and transforming data into usable format
+        \item Loading data into a data repository
+    \end{itemize}
+
+    \begin{itemize}
+        \item \textbf{Extract}: Proces where the data is collected for transformation.
+        
+        Extraction can be through:
+        \begin{itemize}
+            \item Batch processing - large chunks of data moved from source to destination at scheduled intervals. \textbf{Tools}: Blend and Stitch
+            \item Stream processing - data pulled in real time from source, transformed in transit, and loaded into data repository. \textbf{Tools}: Apache Samza, Storm and Kafka.
+        \end{itemize}
+        \item Transform: Execution of rules and functions that converts raw data into data that can be used for analysis. For example
+        \begin{itemize}
+            \item Standarizing date formats and units of measurement
+            \item Removing duplicate data
+            \item Filtering out data that is not required
+            \item Enriching data
+            \item Establishing key relationships across tables
+            \item Applying business rules and data validations
+        \end{itemize}
+
+        \item Transform: Proces where the processed data is transported into a data repository. It could be:
+        \begin{itemize}
+            \item Initial loading - pupulating all of the data in the repository
+            \item Incremental loading - applying updates and modifications periodically
+            \item Full refresh - erasing a data table and reloading with fresh data
+        \end{itemize}
+
+        The load verification includes checks for:
+        \begin{itemize}
+            \item Missing or null values
+            \item Server performance
+            \item Load failures
+        \end{itemize}
+    \end{itemize}
+
+    \subsection{Data Pipeline}
+
+    A data pipeline:
+    \begin{itemize}
+        \item Encompasses the entire journey of moving data from one system to another, including the ETL process
+        \item Can be used for both bach and streaming data
+
+        \begin{obs}
+            in the case of Streaming data, data processing or transformation happens in a continuous flow, useful for data that needs constant updating, such as data from a sensor
+        \end{obs}
+
+        \item Is a high performing system that supports both long-running batch queries and smaller interactive queries
+        \item Typically loads data into a data lake, but can also load data intoa  variety of target destinations, cluding different applications and visualization tools
+    \end{itemize}
+
+    Most popular tools: Apache Beam, Data Flow and Kafka
+
+    \section{Foundations of Big Data}
+
+    \begin{mydef}[Nombre]
+        Big data referes to the dynamic, large and disprate voluems of data being created by people, tools, and machines. It requiers new, innovative, and scalable technology to collect, host, and analyticaly process the vast amounts of data gathered in order to derive real-time business insights that relate to consumers, risk, profit, performance, productivity management, and enhanced stakeholder value.  
+    \end{mydef}
+
+    There is not a standard definition of big data, but all of them have in common the following:
+    \begin{itemize}
+        \item \textbf{Veolcity}: Speed at which data accumulates
+        \item \textbf{Volume}: Scale of data
+        \item \textbf{Variety}: Diversity of data (in its form and coming from different sources)
+        \item \textbf{Veracity}: Quality and origin of data
+        \item \textbf{Value}: Turn data into value
+    \end{itemize}
+
+    \subsection{Big Data Processing Tools}
+
+    The big data processing technologies provide ways to work with large sets of structured, semi-structured, and unstructured data so that value can be derived from big data.
+
+    These three tools play a big role in data analytics:
+    \begin{itemize}
+        \item \textbf{Hadoop}: A collection of tools taht provides distributed storage and processing of big data.
+        \begin{itemize}
+            \item Allows distributed storage and processing of large datasets across clusters of computers.
+            \item Can scale from a single node to any number of nodes.
+            \item Provides scalable, reliable and cost-effective solution for storing data with no format requirements
+            \item Incorporates emerging data formats not traditionally used in data warehouses
+            \item Real time and self-service access to stakeholders
+            \item Optimize and streamline costs in enterprise data warehouse by consolidating data across organization and moving cold data to a Hadoop based system
+        \end{itemize}
+        The main components of Hadoop are
+        \begin{itemize}
+            \item Hadoop distrubuted file system or HDFS: Storage for big data that runs on multiple commodity hardware connected through a network. This provides
+            \begin{itemize}
+                \item Scalable and reliable big data storage by partitioning files over multiple nodes
+                \item Splits large files across multiple computers, allowing parallel acces to them
+                \item Replicetes file blocks on different nodes to prevent data loss
+            \end{itemize}
+        \end{itemize}
+        \item \textbf{Hive}: A data warehouse for data query and analysis
+        \item \textbf{Apache Spark}: Distributed data analytics framework for complex, real time data analytics.
     \end{itemize}
 
     

@@ -440,4 +440,32 @@ print(len(fruits))
     
 \end{longtable}
 
+    \section{Dictionaries}
+
+    Dictionaries are a type of collection in Python. A dictionary has keys and values. This is analogous to the index, these keys do not have to be integers.
+
+    \begin{lstlisting}[caption={caption},label=DescriptiveLabel]
+Dict = {"key1": 1, "key2": "2", "key1": [3,3,3], "key1": (4,4,4), "key1": 1, ("key1"): 5}
+    \end{lstlisting}
+
+    \begin{itemize}
+        \item Dictionaries are denoted with curly brackets \lstinline|{}|
+        \item Keys have to be immutable and unique
+        \item Values can be immutable, mutable and duplicates
+    \end{itemize}
+
+    To acces an element of a dictionary we use curly brackets \lstinline|Dict["key1"]|. We can also:
+    \begin{itemize}
+        \item Delete: \lstinline|del(Dict["key1"])|.
+        \item CHeck for values: \lstinline|"key1" in Dict|.
+        \item Get all keys: \lstinline|Dict.keys()|.
+        \item Get all values: \lstinline|Dict.values()|.
+        \item Add value: \lstinline|Dict['asd']=10|, just use a new unique key and add value.
+    \end{itemize}
+
+    \section{Sets}
+
+    
+
+
 \end{document}
